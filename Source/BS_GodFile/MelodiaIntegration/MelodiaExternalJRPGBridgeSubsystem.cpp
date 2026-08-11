@@ -2,6 +2,7 @@
 
 #include "Engine/GameInstance.h"
 #include "EngineUtils.h"
+#include "MelodiaJRPGPostBattleLibrary.h"
 #include "MelodiaSaveRecoverySubsystem.h"
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaNarrativeTypes.h"
@@ -183,6 +184,15 @@ void UMelodiaExternalJRPGBridgeSubsystem::HandleBattleOver(uint8 BattleResult)
 			Recovery->InvalidateRhythmTransientState(
 				FString::Printf(TEXT("stock OnBattleOver before relay result=%u"), static_cast<uint32>(BattleResult)));
 		}
+	}
+
+	// Heal-only recovery before Quill resume. ActiveBattleActor is the tagged
+	// stock battle controller (StartBattle / OnBattleOver contract). Writes
+	// full HP/MP into live units + the controller's persistent map so the next
+	// encounter cannot soft-lock on a dead party. No retry / death recovery.
+	if (IsValid(ActiveBattleActor))
+	{
+		UMelodiaJRPGPostBattleLibrary::RestorePartyAfterBattle(ActiveBattleActor);
 	}
 
 	OnJRPGBattleEnded.Broadcast(BattleResult);
