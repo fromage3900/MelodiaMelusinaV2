@@ -35,14 +35,19 @@ double-invokes the skill (`cpp:534` documents the exactly-once guard; `cpp:716` 
 the deferral cleanly on invalidation). Campaign 1's A/B (`melodia.Rhythm.Disable 0|1`)
 is therefore meaningful on this path. No HOLD from sequencing.
 
-## Step 5 — RestorePartyAfterBattle: WIRED 2026-08-11 (cloud foundation)
+## Step 5 — RestorePartyAfterBattle: WIRED 2026-08-11
 
-- `MelodiaJRPGPostBattleLibrary` map field lookup corrected: `curentMP` → `currentMP`
-  (matches unit-instance property + JRPG catalog).
-- Call site: `UMelodiaExternalJRPGBridgeSubsystem::HandleBattleOver` restores via the
-  live `BP_BattleController` **before** `CompleteBattle` / Quill resume.
-- Still needs a closed-editor build + one PIE defeat/victory to observe
+- `MelodiaJRPGPostBattleLibrary.h` — `UFUNCTION(BlueprintCallable) RestorePartyAfterBattle(UObject* BattleController)`.
+- Implementation walks `playerUnits` + controller persistent map; map-side MP field is
+  **`curentMP`** (typo confirmed 2026-08-11 via Monolith `export_asset_text` on
+  `/Game/TurnBasedJRPGTemplate/Blueprints/Structs/S_PlayerUnitData` — do not “fix” it).
+- **Call site WIRED** on foundation: `UMelodiaExternalJRPGBridgeSubsystem::HandleBattleOver`
+  restores via live `BP_BattleController` **before** `CompleteBattle` / Quill resume.
+- Still needs closed-editor build + one PIE defeat/victory to observe
   `MELODIA_RECOVERY restored N player unit(s)` in the log.
+
+**Verdict:** spelling RESOLVED (live reflection = `curentMP`); call-site WIRED (cloud foundation).
+Observe in PIE before claiming gate evidence.
 
 ## Notes
 
