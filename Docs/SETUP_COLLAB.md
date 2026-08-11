@@ -1,6 +1,6 @@
 ﻿# Live Collaborative Level Designer -- 5-Minute Setup
 
-> **No 300 GB download. No Unreal content.** Set up Blender <-> UE5 live bridge for collaborative level design using sparse checkout or the tiered onboarding scripts. Only downloads the scripts, addons, and tools you need -- ~50 MB to ~10 GB depending on tier.
+> **No 300 GB download. No Unreal content.** Set up Blender <-> UE5 live bridge for collaborative level design using sparse checkout. Only downloads the scripts, addons, and tools you need -- ~120 MB total (verified 2026-08-11). Portfolio stage .blend files live in `Exports/PortfolioStages/` and are excluded from the sparse cone.
 
 ---
 
@@ -27,7 +27,7 @@ git sparse-checkout set `
 git checkout
 ```
 
-**What you get (~50 MB):**
+**What you get (~120 MB, verified 2026-08-11):**
 - (check) SurrealArch Blender addon (procedural generation, live bridge, material bridge)
 - (check) GMM game systems (Python combat/rhythm/roguelike rules)
 - (check) All pipeline tools and scripts
