@@ -1,4 +1,4 @@
-# Install Melodia Monolith skills into the user jcode skills directory.
+﻿# Install Melodia Monolith skills into the user jcode skills directory.
 # Idempotent. Run from repo root: .\deploy\install_jcode_melodia_skills.ps1
 param(
     [string]$RepoRoot = "",
@@ -53,7 +53,7 @@ foreach ($name in $SkillNames) {
         $body = @"
 ---
 name: $name
-description: Melodia bridge — Monolith skill $name
+description: Melodia bridge -- Monolith skill $name
 type: skill
 ---
 
