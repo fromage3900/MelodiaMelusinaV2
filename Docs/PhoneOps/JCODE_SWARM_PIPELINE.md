@@ -14,7 +14,7 @@ Human (phone or desktop)
         ▼
   Coordinator session          ← .jcode/coordinator-bootstrap.md
         │ spawns scoped workers (light-swarm, ≤6)
-        ├─► PGA / MPA / PPA / WIA / SQA / WEB
+        ├─► PGA / MPA / PPA / WIA / SQA / WEB / MUSE
         ▼
   Shared MelodiaMelusina checkout
   (jcode tracks reads/writes → code-shift pings)
@@ -24,6 +24,22 @@ Human (phone or desktop)
 ```
 
 jcode does **not** replace Unreal/Blender. It is the parallel **repo** coding lane (Python, C++, docs, deploy, `wix/`).
+
+## Companion IDE lanes (not jcode)
+
+| Lane | Tool | Job |
+|---|---|---|
+| Parallel repo swarm | jcode (this doc) | Coordinator → PGA/MPA/PPA/WIA/SQA/WEB/**MUSE** workers on shared checkout |
+| C++ / PIE gameplay | OpenCode inside JetBrains Rider | MelodiaCore edits, build, PIE debug; Rider shortcut **Ctrl+\\** opens OpenCode terminal |
+| Meta terminal agent | Muse Code (WSL2 `muse`) | Cloud Muse Spark agent; docs: `Docs/Production/MUSE_CODE_LANE_2026-08-11.md` |
+
+Launch helpers:
+
+- Swarm: `.\deploy\start_jcode_swarm.ps1`
+- OpenCode/Muse validate (no UE): `.\deploy\start_opencode_muse_lane.ps1`
+- Project OpenCode config: `.opencode/opencode.jsonc` (Monolith/Blender MCP off until editors are live)
+
+Do not run jcode workers and OpenCode/Muse on the same write paths without coordinator ownership.
 
 ## Install (Windows UE workstation)
 
@@ -59,6 +75,10 @@ More: [`.jcode/README.md`](../../.jcode/README.md)
 | `.jcode/coordinator-bootstrap.md` | Recipe A/B paste prompt |
 | `deploy/start_jcode_swarm.ps1` | One-command launch |
 | `deploy/install_jcode_melodia_skills.ps1` | Monolith → `~/.jcode/skills/*/SKILL.md` |
+| `deploy/start_opencode_muse_lane.ps1` | Validate OpenCode (+ optional Muse); print Rider shortcuts; no UE |
+| `.opencode/opencode.jsonc` | OpenCode project config for Rider lane |
+| `Docs/Production/MUSE_CODE_LANE_2026-08-11.md` | Muse Code install/auth status |
+| `Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md` | Tonight First Dream + OpenCode prep |
 | `AGENTS.md` §5 | Constitution pointer |
 
 ## Loops policy
@@ -103,6 +123,7 @@ Single MelodiaCore worker for GS-001/GS-002 after LFS push — do not split one 
 3. One material master editor at a time
 4. Swarm v1 avoids bulk LFS asset churn
 5. SQA verify before merging production mutations
+6. OpenCode/Muse are companion lanes — coordinate write paths with jcode MUSE role; never start UE from `start_opencode_muse_lane.ps1`
 
 ## Phone / Cursor cloud
 
