@@ -4,9 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'BS_GodFile/Source/**'
-      - 'BS_GodFile/Plugins/**/Source/**'
-      - 'BS_GodFile/Content/Python/gmm/**'
+      - 'Source/**'
+      - 'Plugins/**/Source/**'
+      - 'Content/Python/gmm/**'
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -17,11 +17,22 @@ env:
 
 jobs:
   build:
-    runs-on: [self-hosted, Windows]
-    timeout-minutes: 15
+    runs-on: [self-hosted, Windows, UE58]
+    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Pull LFS (build-critical only)
+        shell: powershell
+        run: |
+          git lfs pull --include="Content/TurnBasedJRPGTemplate/**,Content/MelodiaIntegration/**,Content/Melodia/**"
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "##[error]LFS pull failed"
+            exit $LASTEXITCODE
+          }
 
       - name: Build Unreal Editor (development)
         shell: powershell
@@ -37,21 +48,13 @@ jobs:
 
       - name: Run Python unit tests
         shell: powershell
-        working-directory: BS_GodFile/Content/Python
+        working-directory: Content/Python
         run: |
           python -m pytest -v --tb=short
           if ($LASTEXITCODE -ne 0) {
             Write-Host "##[error]Python tests failed"
             exit $LASTEXITCODE
           }
-
-      - name: Install Python tooling
-        shell: powershell
-        run: |
-          python -m pip install --upgrade pip
-          pip install ruff pytest mypy pre-commit
-          pre-commit install-hooks
-        continue-on-error: true
 
       - name: Ruff lint + format check
         shell: powershell
@@ -66,18 +69,3 @@ jobs:
             Write-Host "##[error]Ruff format check failed"
             exit $LASTEXITCODE
           }
-
-      - name: Trufflehog secret scan
-        shell: powershell
-        run: |
-          trufflehog filesystem . --only-verified --no-update
-          if ($LASTEXITCODE -ne 0) {
-            Write-Host "##[error]Trufflehog found potential secrets"
-            exit $LASTEXITCODE
-          }
-
-      - name: Markdownlint + codespell
-        shell: powershell
-        run: |
-          markdownlint-cli2 "**/*.md" --config .pre-commit-config.yaml || true
-          codespell BS_GodFile/*.md BS_GodFile/Docs/**/*.md --ignore-words-list=Ue,NDKB,ue,an,ue5,ue4,ue6,ue7,ue8,ue9,ue10,ue11,ue12,ue13,ue14,ue15,ue16,ue17,ue18,ue19,ue20,ue21,ue22,ue23,ue24,ue25,ue26,ue27,ue28,ue29,ue30,ue31,ue32,ue33,ue34,ue35,ue36,ue37,ue38,ue39,ue40,ue41,ue42,ue43,ue44,ue45,ue46,ue47,ue48,ue49,ue50

@@ -1,0 +1,60 @@
+name: Release Tag (on demand)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'SemVer tag to create (e.g. v0.1.0)'
+        required: true
+        type: string
+      note:
+        description: 'Release note'
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: false
+
+      - name: Verify completion gates have ledger rows
+        shell: bash
+        run: |
+          python - <<'EOF'
+          import json
+          with open("Saved/gate_ledger.json") as f:
+              ledger = json.load(f)
+          gates = {g["id"]: g for g in ledger.get("gates", [])}
+          required = ["runtime", "save_load", "repeat_consume", "package_launch"]
+          missing = [g for g in required if g not in gates or gates[g].get("status") != "pass"]
+          if missing:
+              print("BLOCKED: gates without ledger pass rows:", missing)
+              raise SystemExit(1)
+          print("All completion gates certified by ledger.")
+          EOF
+
+      - name: Create and push tag
+        shell: bash
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          if [[ ! "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "ERROR: version must be semver like v0.1.0"
+            exit 1
+          fi
+          git tag -a "$VERSION" -m "Release $VERSION: ${{ github.event.inputs.note }}"
+          git push origin "$VERSION"
+
+      - name: Draft GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.event.inputs.version }}" `
+            --title "Melodia ${{ github.event.inputs.version }}" `
+            --notes "${{ github.event.inputs.note }}" `
+            --generate-notes || true
