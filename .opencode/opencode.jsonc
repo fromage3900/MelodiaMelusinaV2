@@ -1,0 +1,82 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // Inherit model from ~/.config/opencode (do not hard-code provider keys here).
+  // Optional pin examples (uncomment one):
+  // "model": "anthropic/claude-sonnet-4-20250514",
+  // "model": "ollama/qwen2.5-coder:14b",
+
+  "permission": {
+    "edit": "ask",
+    "bash": "allow"
+  },
+
+  "agent": {
+    "build": {
+      "mode": "primary",
+      "description": "First Dream P0 build -- B3/B4/B7 rhythm-battle grade + ledger evidence",
+      "permission": {
+        "edit": "ask",
+        "bash": "allow"
+      }
+    },
+    "plan": {
+      "mode": "primary",
+      "description": "Readonly planning / review for First Dream closeout",
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    }
+  },
+
+  "mcp": {
+    // Enable only when Unreal Editor is open (exactly one instance on 9316).
+    "monolith": {
+      "type": "remote",
+      "url": "http://127.0.0.1:9316/mcp",
+      "enabled": false
+    },
+    // Blender SurrealArch MCP -- enable when addon answers /api/ping on 9317.
+    "blender-mcp": {
+      "type": "remote",
+      "url": "http://127.0.0.1:9317",
+      "enabled": false
+    },
+
+    // Locals ported from root .opencode.json (no secrets).
+    "ollama-mcp": {
+      "type": "local",
+      "command": [
+        "node",
+        "C:\\Users\\froma\\AppData\\Roaming\\npm\\node_modules\\ollama-mcp\\dist\\index.js"
+      ],
+      "environment": {
+        "OLLAMA_HOST": "http://127.0.0.1:11434"
+      },
+      "enabled": true
+    },
+    "hermes": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-hermes"],
+      "enabled": true
+    },
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "node",
+        "C:\\Users\\froma\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
+        "C:\\EnvironmentPortfolio\\BS_GodFile"
+      ],
+      "enabled": true
+    },
+    "git-mcp": {
+      "type": "local",
+      "command": [
+        "python",
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\deploy\\mcp_git.py"
+      ],
+      "enabled": true
+    }
+  }
+}
