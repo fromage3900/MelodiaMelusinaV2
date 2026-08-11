@@ -6,6 +6,7 @@ This is the front door for project documentation. Prefer updating this index ove
 
 Read [`Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md) and
 [`Docs/LIVEOPS_GIT_SOP_2026-08-11.md`](Docs/LIVEOPS_GIT_SOP_2026-08-11.md) first.
+Sculpt drops: [`Docs/SCULPT_ASSET_INTAKE_2026-08-11.md`](Docs/SCULPT_ASSET_INTAKE_2026-08-11.md).
 Echo manifest: [`specs/echo_pipeline.json`](specs/echo_pipeline.json).
 Then [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md). Older 2026-08-09 PC-resume detail remains in
 [`Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md`](Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md).

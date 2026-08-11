@@ -147,6 +147,14 @@ Imports/Animations/Cascadeur/*
 !Imports/Animations/Cascadeur/Inbox/
 Imports/Animations/Cascadeur/Inbox/*
 !Imports/Animations/Cascadeur/Inbox/README.md
+!Imports/Sculpt/
+Imports/Sculpt/*
+!Imports/Sculpt/Inbox/
+!Imports/Sculpt/Archive/
+Imports/Sculpt/Inbox/*
+Imports/Sculpt/Archive/*
+!Imports/Sculpt/Inbox/README.md
+!Imports/Sculpt/Archive/README.md
 Tools/*
 !Tools/Cascadeur/
 !Tools/Cascadeur/Melusina/
@@ -177,6 +185,7 @@ Tools/*
 !Tools/lane_dispatcher.py
 !Tools/git_safe_push.py
 !Tools/lfs_health_audit.py
+!Tools/sculpt_intake_check.py
 !Tools/bp_live_path.py
 !Tools/bp_sweep.py
 !Tools/project_state.py

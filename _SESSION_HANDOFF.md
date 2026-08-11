@@ -10,10 +10,11 @@
 - Echo-aligned live-ops SOP; collab slices docs50/slice50/placement50; dual 50/512 LFS budgets; hooks allow `cursor/*`; `lfs_health_audit.py`; CI `base..HEAD` budget; duplicate inventory (33 tracked, no delete).
 - RestorePartyAfterBattle wired; Zbrush untracked; MeshBlend EOL.
 
-## Next (Windows — Lane A / E)
+## Next (Windows — Lane A / E / F)
 
 1. Closed-editor build + PIE highway + Campaign 1 real-input `runtime` ledger row.
 2. `git lfs pull` EnvSandbox; measure `placement50` for Universal BP physics placement.
+3. Sculpt exports → `Imports/Sculpt/Inbox/` + `python Tools/sculpt_intake_check.py` before UE import.
 
 Older handoff content below is historical (2026-08-08 and earlier).
 

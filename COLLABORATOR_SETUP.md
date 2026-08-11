@@ -33,6 +33,16 @@ git lfs unlock Content/MelodiaIntegration/Blueprints/BP_MelodiaTravelVolume.uass
 
 Push budgets (hooks enforce): `collab/` `cursor/` `docs/` → **50 MB** LFS batch; other branches → **512 MB**. Override: `MELODIA_LFS_LIMIT_MB=50`.
 
+## Sculpting right now?
+
+Export finished meshes to `Imports/Sculpt/Inbox/` (versioned `SM_|SK_|…_v01.fbx`), then:
+
+```bash
+python Tools/sculpt_intake_check.py --limit-mb 50
+```
+
+Full intake: [Docs/SCULPT_ASSET_INTAKE_2026-08-11.md](Docs/SCULPT_ASSET_INTAKE_2026-08-11.md).
+
 ## Echo reminder
 
 Gameplay claims need ledger rows (`python Tools/echo_run.py status`). A green clone is not a `runtime` pass.

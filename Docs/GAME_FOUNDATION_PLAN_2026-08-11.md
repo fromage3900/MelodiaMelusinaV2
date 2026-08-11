@@ -31,8 +31,9 @@ Authority: JRPG template owns combat/save; `UMelodiaNarrativeSubsystem` is the n
 | **C — Repo hygiene** | Git / CI / docs | Live-ops SOP, 50 MB slices, LFS audit, Echo promote hygiene | Public V2 done |
 | **D — Swarm / phone** | jcode + cloud agents | Recipes A/B accepted; keep docs/audit only until A is green | Do not overlap editor with A |
 | **E — Universal placement** | EnvSandbox PCG/materials (Windows LFS) | `placement50` manifest; lock Universal BPs | EnvSandbox absent on some cloud checkouts |
+| **F — Sculpt intake** | `Imports/Sculpt/Inbox` (DCC → FBX) | Offline `sculpt_intake_check.py`; one import session | Never overwrite existing uasset paths |
 
-Cloud agents stay in **C/D** unless explicitly handed an editor-free **B** task. Never two editors. Never probe-only as `runtime` pass.
+Cloud agents stay in **C/D/F-text** unless explicitly handed an editor-free **B** task. Never two editors. Never probe-only as `runtime` pass.
 
 **Echo (current):** `author → spec_validate → inject → compile → static_gates → runtime_gates → record → promote` — [`specs/echo_pipeline.json`](../specs/echo_pipeline.json). Live-ops SOP: [`LIVEOPS_GIT_SOP_2026-08-11.md`](LIVEOPS_GIT_SOP_2026-08-11.md).
 
@@ -57,6 +58,7 @@ Cloud agents stay in **C/D** unless explicitly handed an editor-free **B** task.
 - Collab slices: `specs/collab_slices/{docs50,slice50,placement50}.json` + onboarding tiers (gameplay ≈2 GB renamed from “lightweight”).
 - Hooks: `cursor/*` allowed; dual LFS budget 50/512; `Tools/lfs_health_audit.py`; CI audits PR `base..HEAD`.
 - Duplicate mirror inventory: `Docs/Reports/DUPLICATE_TREE_INVENTORY_2026-08-11.md` (33 tracked; no deletes).
+- Sculpt intake: `Imports/Sculpt/Inbox` + `Docs/SCULPT_ASSET_INTAKE_2026-08-11.md` + `Tools/sculpt_intake_check.py`.
 
 ---
 
