@@ -15,7 +15,9 @@ import subprocess
 from pathlib import Path
 
 MONOLITH_BASE_URL = "http://localhost:9316"
-PROJECT_ROOT = Path(r"G:\EnvironmentPortfolio\BS_GodFile")
+PROJECT_ROOT = Path(
+    os.environ.get("MELODIA_PROJECT_ROOT", str(Path(__file__).resolve().parents[2]))
+).expanduser().resolve()
 
 
 def call_monolith(namespace, action, params=None):

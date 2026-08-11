@@ -14,8 +14,14 @@ import os
 import sys
 import argparse
 from datetime import datetime
+from pathlib import Path
 
-PROJECT_ROOT = "G:/EnvironmentPortfolio/BS_GodFile"
+PROJECT_ROOT = Path(
+    os.environ.get("MELODIA_PROJECT_ROOT", str(Path(__file__).resolve().parents[1]))
+).expanduser().resolve()
+WEBSITE_ROOT = Path(
+    os.environ.get("MELODIA_WEBSITE_ROOT", str(PROJECT_ROOT.parent / "my-site-clean"))
+).expanduser().resolve()
 
 def run_blender_render_capture():
     """Capture renders from Blender via MCP adapter."""
@@ -36,7 +42,7 @@ def update_website_renders(render_paths):
     """Update website HTML with new render paths."""
     print("Updating website with renders...")
     
-    index_html = os.path.join(PROJECT_ROOT, "my-site-clean/wix/index.html")
+    index_html = WEBSITE_ROOT / "wix" / "index.html"
     if os.path.exists(index_html):
         print(f"  [OK] Found {index_html}")
         return True
@@ -49,7 +55,7 @@ def deploy_to_github():
     # Run sync script
     result = subprocess.run(
         ["powershell", "-ExecutionPolicy", "Bypass", "-File", 
-         os.path.join(PROJECT_ROOT, "deploy/sync_site_to_github.ps1")],
+         str(PROJECT_ROOT / "deploy" / "sync_site_to_github.ps1")],
         capture_output=True,
         text=True,
         cwd=PROJECT_ROOT

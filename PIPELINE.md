@@ -21,7 +21,7 @@
   
   Material Maker 1.7 ──.ptex graphs──> Material Functions ──> 4 Master Materials ──> 50+ Instances
   
-  PCG Scatter ──role──> surreal_world/export.py ──> *.world.json ──> import_world_manifest.py ──> HISM actors
+  PCG Scatter ──role──> surreal_world/export.py ──> *.world.json ──> import_world_manifest.py --apply ──> explicit StaticMeshActors
   
   UE MCP :9316 ──Python──> Blueprint creation, material audit, PIE control
   Blender MCP :9317 ──genome──> surreal_arch style application
@@ -29,8 +29,8 @@
 
   Deploy Tools
   ════════════
-  deploy_all.ps1 / stop_all.ps1 / loop_status.ps1 ── 11 autonomous agent loops
-  validate_setup.ps1 ── pre-flight check for collaborators
+  start_* loop scripts / stop_* scripts ── optional autonomous agent loops
+  validate_setup.ps1 / bootstrap_environment.ps1 ── portable pre-flight/bootstrap
   sync_surreal_to_live.ps1 ── deploy/ SSOT -> Blender addon dir
 ```
 
@@ -175,12 +175,17 @@ surreal_arch gen           import_world_manifest.py       MelodiaCore
 surreal_world/export.py     HISM actor spawns              Rhythm battle
     |                             |                         Roguelike run
     v                             v                         NPC dialogue
-.world.json ──────────>  /Game/Melodia/                     Token economy
+.world.json ──────────>  validated import plan              Token economy
     |                             |
 material_bridge.py          resolve_material_crosswalk.py
     |                             |
 .material_map.json ───────>  Auto-apply to meshes
 ```
+
+World manifests are read-only plans unless `import_world_manifest.py --apply`
+is explicitly used. The current importer creates explicit StaticMeshActors for
+instances with a declared `static_mesh_path`; HISM grouping remains a separate
+optimization and is not inferred from a role or library name.
 
 ### Voice Pipeline
 

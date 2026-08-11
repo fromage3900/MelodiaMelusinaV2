@@ -16,16 +16,20 @@ import struct
 import sys
 import time
 from datetime import datetime
+from pathlib import Path
 
 # ── Constants ──────────────────────────────────────────────────────────
-PROJECT_ROOT = r"G:\EnvironmentPortfolio"
+PROJECT_ROOT = os.environ.get(
+    "MELODIA_PROJECT_ROOT",
+    str(Path(__file__).resolve().parents[2]),
+)
 TD_MCP_PORT = 9870
 UE_OSC_PORT = 8000
 TD_OSC_PORT = 9000
 BLENDER_OSC_PORT = 9000
 
-SENTINEL_PATH = os.path.join(PROJECT_ROOT, r"BS_GodFile\Saved\Audit\AGENT_LOOP_TICK_td_orch")
-OSC_ROUTING_PATH = os.path.join(PROJECT_ROOT, r"BS_GodFile\deploy\osc_routing.json")
+SENTINEL_PATH = os.path.join(PROJECT_ROOT, "Saved", "Audit", "AGENT_LOOP_TICK_td_orch")
+OSC_ROUTING_PATH = os.path.join(PROJECT_ROOT, "deploy", "osc_routing.json")
 
 # ── Nikki Style Presets (MPC-mapped parameter names) ────────────────────
 # Each preset is a 12-float array mapped to UE MPC parameters:

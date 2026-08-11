@@ -2,13 +2,18 @@
 set -euo pipefail
 
 # Collaborator Onboarding Script
-# Usage: ./collaborator_onboarding.sh [tier]
+# Usage: ./collaborator_onboarding.sh [tier] [repo_dir]
 # Tiers: lightweight | full | docs
 # Default: lightweight
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+TIER="${1:-lightweight}"
+REPO_DIR="${2:-$PROJECT_ROOT}"
 
-case "$TIER" in
+case "${TIER,,}" in
   lightweight|full|docs)
+    TIER="${TIER,,}"
     ;;
   *)
     echo "Unknown tier: $TIER"
@@ -17,8 +22,14 @@ case "$TIER" in
     ;;
 esac
 
+if ! git -C "$REPO_DIR" rev-parse --show-toplevel >/dev/null 2>&1; then
+  echo "Repository is not a Git checkout: $REPO_DIR"
+  echo "Usage: $0 [lightweight|full|docs] [repo_dir]"
+  exit 2
+fi
+
 echo "==> Tier: $TIER"
-echo "==> Repo: $REPO_DIR"
+echo "==> Repo: $(git -C "$REPO_DIR" rev-parse --show-toplevel)"
 
 cd "$REPO_DIR"
 
@@ -56,8 +67,7 @@ git lfs pull --include="Content/Melodia/Levels/*.umap" || true
 git lfs pull --include="Content/EnvSandbox/Meshes/*.uasset" || true
 git lfs pull --include="Content/EnvSandbox/Materials/*.uasset" || true
 
-
-echo "==> Onboarding complete for tier: $TIER"elif [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
-  echo "Run: powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1"
-else
-  echo "Validation script not found; continuing without it."
+echo "==> Onboarding complete for tier: $TIER"
+if [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
+  echo "Run: powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1 -SkipServices"
+fi

@@ -62,8 +62,10 @@ the queue.
 
 ## Notes
 
-- `echo_run.py` / `record_gate.py` are gone from the tree (removed by the
-  2026-08-11 reorg); `playtest_harness record` writes the same ledger schema so
-  gate evidence stays verifiable. `Saved/Echo/state.txt` still exists.
-- API keys remain inline in `.mcp.json`/`.opencode.json` (existing pattern);
-  new tools read them at runtime instead of duplicating them.
+- `echo_run.py` and `record_gate.py` remain the canonical ECHO runner/ledger
+  tools under `Tools/`. `playtest_harness record` may add runtime evidence, but
+  it does not replace the explicit ECHO commands.
+- `.mcp.json`/`.opencode.json` are machine-local configuration and must not be
+  copied, committed, or used as a portable secret source. Provider keys belong
+  in environment variables or a local secret manager; existing fallback reads
+  are legacy behavior to be removed before external-service use.

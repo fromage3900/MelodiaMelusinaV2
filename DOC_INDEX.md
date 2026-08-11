@@ -2,11 +2,20 @@
 
 This is the front door for project documentation. Prefer updating this index over creating another floating status document.
 
-## Latest handoff checkpoint — 2026-08-09
+## Latest environment checkpoint — 2026-08-11
+
+Read these before changing setup, ECHO, or cross-checkout tooling:
+
+| Doc | Purpose |
+|---|---|
+| [Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md](Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md) | Workspace topology, authority boundaries, service contract, and drift register |
+| [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) | Portable Windows setup and execution path |
+| [Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md](Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md) | Evidence from the implemented environment and remaining blockers |
+| [Docs/ECHO_PIPELINE_2026-08-09.md](Docs/ECHO_PIPELINE_2026-08-09.md) | ECHO stages, evidence rules, and campaign contract |
 
 Read [`Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md`](Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md) first when
-resuming from another PC. It records the local Git state, isolated commit batches, C:→G: mirror state,
-Drive synchronization state, validation evidence, and known remote-network limitations as of 2026-08-09.
+resuming gameplay work from another session. It records the earlier local Git
+state, validation evidence, and known remote-network limitations as of 2026-08-09.
 
 ## ⭐ Gameplay/vertical-slice canonical docs (project root, read these first for gameplay)
 

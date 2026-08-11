@@ -4,25 +4,28 @@ set -euo pipefail
 # validate_collaborator_setup.sh
 # Checks collaborator environment: git, LFS, sparse checkout, disk usage, key folders.
 # Usage: ./validate_collaborator_setup.sh [repo_dir]
-# Default repo_dir: BS_GodFile
+# Default repo_dir: the checkout containing this script
 
-REPO_DIR="${1:-BS_GodFile}"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+REPO_DIR="${1:-$PROJECT_ROOT}"
 ERRORS=0
 
-if [ ! -d "$REPO_DIR/.git" ]; then
-  echo "FAIL: .git missing in $REPO_DIR"
+if ! git -C "$REPO_DIR" rev-parse --show-toplevel >/dev/null 2>&1; then
+  echo "FAIL: Git checkout not found at $REPO_DIR"
   exit 2
 fi
 
-echo "==> Repo: $REPO_DIR"
-cd "$REPO_DIR"
+REPO_ROOT="$(git -C "$REPO_DIR" rev-parse --show-toplevel)"
+echo "==> Repo: $REPO_ROOT"
+cd "$REPO_ROOT"
 
 echo "==> Git status"
 git status --short --branch || true
 
 echo "==> Git LFS"
 git lfs version || true
-git lfs ls-files | head -n 5 || true
+git lfs ls-files | awk 'NR <= 5 { print }' || true
 
 echo "==> Sparse checkout"
 if git sparse-checkout list >/dev/null 2>&1; then
@@ -40,6 +43,12 @@ for d in Content Docs Source Plugins Config deploy; do
     ERRORS=$((ERRORS+1))
   fi
 done
+
+if [ -f "BS_GodFile.uproject" ]; then
+  echo "OK: BS_GodFile.uproject"
+else
+  echo "WARN: BS_GodFile.uproject missing (docs/code-only tier may omit it)"
+fi
 
 echo "==> Disk usage"
 du -sh . 2>/dev/null || true

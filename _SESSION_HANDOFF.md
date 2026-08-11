@@ -1,3 +1,78 @@
+# Session Handoff — 2026-08-11 (agent infrastructure, intake, repo v2, UI fix)
+
+**Session type:** Multi-agent infra expansion + read-only intake + repo migration + editor fix
+**Project phase:** UE 5.8 production JRPG + QuillScript integration
+
+## Agent infrastructure (new, all committed to v2)
+
+- **Model fleet (13 MCP endpoints in root `.mcp.json`):** fixed `kimi-k3-free`
+  (host is `api.tokenrouter.com/v1`, NOT the dead `tokenrouter.ai`), fixed stale slug
+  `deepseek/deepseek-v4` → `deepseek/deepseek-v4-flash`, added Mistral Medium 3.5, Grok 4.5,
+  Grok 4.20 multi-agent, Meta Muse Spark 1.2 (age-confirm blocked), Nemotron Ultra free
+  (1M ctx), gpt-oss-20b free. `Saved/router_ledger.jsonl` tracks per-model cost.
+- **Tools (5 new in `Tools/`, .gitignore carve-out):** `model_router.py` (7 task classes
+  + `deep` for slow-strong Kimi; keys read from .mcp.json at runtime; UTF-8 stdout fixed),
+  `playtest_harness.py` (real-input runtime gate: slate-sendinput / pie-inject-input /
+  probe backends, `record pass|fail` writes gate_ledger rows), `video_review_lane.py`
+  (free Nemotron VL vision review — paid-model image input 402s on the free-tier key),
+  `memory_index.py` (730-file keyword index), `lane_dispatcher.py` (queue→lane, READ
+  ONLY; CAVEAT: currently routes against NEXT_ACTIONS.md which is the platform queue —
+  gameplay queue lives in `_VERTICAL_SLICE_SCOPE.md`/handoffs; fix before relying on it).
+- **New agent hosts:** Muse Code (Meta, WSL2, v0.1.0, API key auth via
+  `~/.config/muse/auth.json` schema `{schema_version, providers.meta.{mechanism,api_key,
+  obtained_via}}`, smoke test PASSED, reads AGENTS.md + .mcp.json). Junie CLI v26.8.3
+  BYOK OpenRouter configured (`~/.junie/config.json`); **headless non-interactive is
+  broken on Windows** (readPipedInput IOException "Incorrect function") — interactive only.
+- **Free-tier reality:** OpenRouter key is free tier — paid-model daily quota exhausts
+  mid-day (Grok/DeepSeek/Mistral 402); TokenRouter (kimi) drops out sporadically. Free
+  models unaffected. Plan paid work early in the day or add credits.
+
+## Read-only intake fan-out (6 lanes, ~$0.0014 total)
+
+All reports + cross-lane synthesis: `Saved/Intake/INTAKE_SYNTHESIS_2026-08-11.md`.
+Consensus: (1) runtime gate is THE blocker (probe-only = HOLD; real keys never tested
+through BP_BattleUI::OnKeyDown); (2) queue-authority mismatch; (3) HUD dual-writer
+fix compiled but never observed in PIE; (4) don't push GitHub before Content/LFS secured
+(partially superseded — v2 push happened below); (5) best single finding: Q/W/O/P has a
+6-key W→O hand shift (spatial playability risk for dense notes).
+
+## Repo: v2 canonical
+
+`v2` remote = `github.com/fromage3900/MelodiaMelusinaV2` (fresh 4-commit history +
+lane's follow-ups; old `origin` is the website repo — leave it). My commits:
+`87b2938d` (tools + Figma key redaction), `2770c0e9` (UI transparency audit).
+**SECURITY:** Figma API key was public on v2 in `Docs/Reviews/MCP_SURFACE_SCAN_2026-08-03.md`
+— redacted in the doc; **OWNER MUST ROTATE the live key at figma.com** and update root
+`.mcp.json`/`.opencode.json`. OpenRouter/TokenRouter/Muse keys verified NOT in v2.
+Pushes intermittently blocked by GitHub connectivity — retry; commit is safe locally.
+Content/ stays untracked (no LFS) — v2 is asset-light by design.
+
+## Closeout source verdicts (`Docs/Handoffs/CLOSEOUT_SOURCE_VERDICTS_2026-08-11.md`)
+
+- **Step 3 (damage-scalar sequencing): PASS by design.** FinishSession latches
+  PendingDamageMultiplier → OnRhythmComplete.Broadcast → deferred InvokeStockUseSkill →
+  montage notify (0.5s) reads latched scalar. The old 2.5s gap applied only to the
+  replaced parallel-start pattern. A/B meaningful.
+- **Step 5 (RestorePartyAfterBattle): HOLD.** Implementation complete, zero callers;
+  reads `curentMP` (typo form) via FindAuthoredStructMember — confirm the stock struct's
+  real spelling via Monolith reflection before wiring (heal-only decision stands).
+- **UI transparency audit: FIXED.** `WBP_Battle_Rhythm` JudgementText/ComboText/
+  ClockSourceText were authored A=0 and nothing ever set their color → grade/combo/clock
+  text permanently invisible. Fixed to opaque white (flat rgba JSON write shape — the
+  import-text shape does NOT persist; this was the line-228 quirk), compiled, saved,
+  readback verified. Flags: `RhythmPrompt` Collapsed by default (verify shown on rhythm
+  start); `WBP_MelodiaRhythmHighway` = duplicate-tree candidate for closeout Step 9.
+
+## Next work (per CORE_GAMEPLAY_CLOSEOUT_PLAN_2026-08-11.md)
+
+Four gates: `runtime`, `save_load`, `repeat_consume`, `package_launch` (runtime FAIL row
+is honest). Campaign 1 (real-input rhythm→damage A/B) maps exactly onto
+`playtest_harness.py` (slate-sendinput, assertion JSON next to frames, `record pass`).
+One editor + Monolith 9316 are up now. Editor was restarted mid-session (two-instance
+violation observed at 15:02 — resolved by owner closing one).
+
+---
+
 # Session Handoff - 2026-08-08 (prep for P0 work)
 
 **Session type:** Closed-editor prep: TD preservation, gate trust, git organization
