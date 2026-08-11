@@ -1,0 +1,382 @@
+/* Melodia Planetarium — interactive armillary constellation navigator */
+
+.planetarium {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+  perspective: 1400px;
+  perspective-origin: 50% 46%;
+}
+
+.planetarium-3d {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+  transition: transform 0.08s linear;
+  will-change: transform;
+  filter: drop-shadow(0 28px 48px rgba(7, 9, 18, 0.35));
+}
+
+.planetarium.is-dragging {
+  cursor: grabbing;
+}
+
+.hero[data-planetarium-hero] .hero-inner {
+  z-index: 8;
+}
+
+.hero[data-planetarium-hero] .planetarium-hero-slot {
+  pointer-events: none;
+}
+
+.hero[data-planetarium-hero] .planetarium-hero-slot .planetarium {
+  pointer-events: none;
+  opacity: 0.58;
+}
+
+.hero[data-planetarium-hero] .parallax-layer-5 .orrery-system,
+.hero[data-planetarium-hero] .melodia-orrery {
+  opacity: 0.38;
+  mix-blend-mode: screen;
+}
+
+.hero[data-planetarium-hero] .planetarium-hero-slot {
+  position: absolute;
+  inset: 6% max(8px, 3vw) auto auto;
+  width: min(46vw, 500px);
+  z-index: 6;
+  pointer-events: auto;
+}
+
+.hero[data-planetarium-hero] .planetarium-hero-slot .planetarium {
+  opacity: 0.72;
+}
+
+.planetarium-explorer {
+  max-width: min(92vw, 720px);
+  margin: 0 auto 32px;
+  padding: 12px;
+  border: 1px solid rgba(201, 168, 106, 0.32);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(26, 31, 58, 0.55), rgba(8, 11, 19, 0.92) 68%),
+    radial-gradient(ellipse 120% 80% at 50% 100%, rgba(102, 217, 255, 0.06), transparent 55%);
+  box-shadow:
+    inset 0 0 80px rgba(102, 217, 255, 0.06),
+    0 24px 80px rgba(8, 11, 19, 0.45),
+    0 0 0 1px rgba(204, 153, 255, 0.08);
+}
+
+/* NASA texture wash (canvas) reads better on night mode */
+.planetarium-explorer {
+  position: relative;
+}
+
+.planetarium-explorer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(13, 18, 36, 0.28) 78%),
+    radial-gradient(circle at 30% 20%, rgba(102, 217, 255, 0.22), transparent 52%),
+    radial-gradient(circle at 70% 80%, rgba(255, 110, 180, 0.16), transparent 56%);
+  mix-blend-mode: screen;
+}
+
+.planetarium-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.planetarium-svg {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.planetarium-dome {
+  fill: none;
+  stroke: rgba(102, 217, 255, 0.12);
+  stroke-width: 0.6;
+}
+
+.planetarium-arm {
+  fill: none;
+  stroke-width: 1.15;
+  transition: stroke 0.3s ease;
+  stroke-dasharray: 3.5 6.5;
+  filter: drop-shadow(0 0 6px rgba(102, 217, 255, 0.2));
+  animation: planetarium-sheen 10s linear infinite;
+}
+
+.planetarium-arm.arm-0 { stroke: rgba(102, 217, 255, 0.55); }
+.planetarium-arm.arm-1 { stroke: rgba(255, 230, 102, 0.48); }
+.planetarium-arm.arm-2 { stroke: rgba(204, 153, 255, 0.5); }
+.planetarium-arm.arm-3 { stroke: rgba(125, 211, 192, 0.46); }
+
+@keyframes planetarium-sheen {
+  to { stroke-dashoffset: -120; }
+}
+
+.planetarium-axis {
+  stroke: rgba(233, 229, 242, 0.18);
+  stroke-width: 0.5;
+  stroke-dasharray: 3 5;
+}
+
+.planetarium-core {
+  fill: url(#planetarium-core-grad);
+}
+
+.planetarium-core-ring {
+  fill: none;
+  stroke: rgba(255, 230, 102, 0.5);
+  stroke-width: 0.7;
+}
+
+.planetarium-node {
+  cursor: pointer;
+  outline: none;
+}
+
+.planetarium-node circle.node-body {
+  fill: var(--node-color, #ffe666);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--node-color, #ffe666) 65%, transparent));
+  transition: r 0.25s ease, fill 0.25s ease;
+}
+
+.planetarium-node:hover circle.node-body,
+.planetarium-node:focus-visible circle.node-body {
+  fill: #fff;
+}
+
+.planetarium-node circle.node-pulse {
+  fill: none;
+  stroke: var(--node-color, #ffe666);
+  stroke-width: 0.6;
+  opacity: 0;
+}
+
+.planetarium-node.is-active circle.node-pulse {
+  animation: planetarium-pulse 2.2s ease-out infinite;
+}
+
+.planetarium-node.is-active circle.node-body {
+  fill: #fff;
+}
+
+@keyframes planetarium-pulse {
+  0% { r: 6; opacity: 0.7; }
+  100% { r: 22; opacity: 0; }
+}
+
+.planetarium-node-label {
+  fill: rgba(236, 234, 244, 0.92);
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.planetarium-explorer .planetarium-node-label {
+  opacity: 0.9;
+  font-size: 7.5px;
+}
+
+.planetarium-node:hover .planetarium-node-label,
+.planetarium-node:focus-visible .planetarium-node-label {
+  opacity: 1;
+}
+
+.planetarium-constellation-line {
+  stroke: rgba(201, 168, 106, 0.22);
+  stroke-width: 0.45;
+  stroke-linecap: round;
+  opacity: 0.35;
+  transition: opacity 0.3s ease, stroke 0.3s ease;
+}
+
+.planetarium-constellation-line.is-lit {
+  stroke: rgba(102, 217, 255, 0.55);
+  opacity: 0.85;
+}
+
+.planetarium-hud {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  z-index: 5;
+  text-align: center;
+  pointer-events: none;
+}
+
+.planetarium-hero .planetarium-hud {
+  bottom: 4%;
+}
+
+.planetarium-hint {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(228, 201, 144, 0.55);
+}
+
+.planetarium-focus {
+  margin: 8px 0 0;
+  min-height: 1.4em;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(236, 234, 244, 0.88);
+  text-shadow: 0 0 20px rgba(102, 217, 255, 0.25);
+}
+
+.planetarium-band {
+  position: relative;
+  overflow: hidden;
+  padding: 88px 24px 96px;
+}
+
+.planetarium-band .inner {
+  position: relative;
+  z-index: 2;
+}
+
+.planetarium-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(102, 217, 255, 0.1), transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(204, 153, 255, 0.08), transparent 40%);
+  pointer-events: none;
+}
+
+.planetarium-band .section-head h2 {
+  text-align: center;
+}
+
+.planetarium-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.planetarium-legend button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid rgba(201, 168, 106, 0.3);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(236, 234, 244, 0.82);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.planetarium-legend button:hover,
+.planetarium-legend button.is-active {
+  border-color: rgba(102, 217, 255, 0.5);
+  box-shadow: 0 0 18px rgba(102, 217, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.planetarium-legend button span.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot, #ffe666);
+  box-shadow: 0 0 10px var(--dot, #ffe666);
+}
+
+@media (max-width: 680px) {
+  .planetarium-hero {
+    width: min(78vw, 340px);
+    inset: 6% -8% auto auto;
+    opacity: 0.38;
+  }
+
+  .planetarium-explorer {
+    border-radius: 12px;
+    max-width: 100%;
+  }
+
+  .planetarium-hint {
+    font-size: 0.52rem;
+  }
+
+  .planetarium-node-label {
+    font-size: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planetarium-node.is-active circle.node-pulse {
+    animation: none;
+  }
+  .planetarium-arm { animation: none; }
+}
+
+/* Mini constellation — recruiter path */
+.planetarium-mini {
+  max-width: 420px;
+  cursor: default;
+  touch-action: manipulation;
+}
+
+.planetarium-mini-mount {
+  min-height: 280px;
+}
+
+.planetarium-mini .planetarium-hint-mini {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.planetarium-mini .planetarium-arm {
+  stroke-width: 1.35;
+  opacity: 0.78;
+}
+
+.planetarium-mini .planetarium-core-ring {
+  stroke: rgba(255, 110, 180, 0.45);
+}
+
+@media (max-width: 680px) {
+  .planetarium-mini {
+    max-width: 300px;
+  }
+  .planetarium-mini-mount {
+    min-height: 220px;
+  }
+}

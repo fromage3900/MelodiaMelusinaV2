@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-page="social-kit">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Social upload kit | Brennan Shepherd</title>
+<meta name="description" content="Ready-to-post Melodia social crops — OG, square, story, and landscape plates for Stage, ornament, and Vow Cross." />
+<meta property="og:title" content="Melodia social upload kit — Brennan Shepherd" />
+<meta property="og:description" content="OG, square, story, and landscape crops from Melusina Stage and kitbash plates." />
+<meta property="og:image" content="https://fromage3900.github.io/my-site/generated/social/og-default.jpg" />
+<meta property="og:url" content="https://fromage3900.github.io/my-site/wix/social-kit.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="melodia-tokens.css">
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-premium-system.css">
+<link rel="stylesheet" href="portfolio-pages.css">
+<style>
+.social-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+.social-card { margin: 0; border: 1px solid rgba(255,255,255,0.12); background: rgba(12,16,28,0.85); }
+.social-card img { display: block; width: 100%; height: auto; }
+.social-card figcaption { padding: 0.65rem 0.75rem; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.04em; }
+.social-note { font-size: 0.9rem; opacity: 0.85; max-width: 42rem; }
+</style>
+</head>
+<body>
+<div class="melodia-shell fashion-mode" data-mg="soft" data-hero="editorial" data-effects="starfield,holo">
+<header class="shell-nav" aria-label="Portfolio navigation">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="index.html">Home</a>
+    <a href="ornament-kitbash.html">Shop</a>
+    <a href="melodia-stage-character.html">Stage</a>
+    <a href="SOCIAL_UPLOAD_KIT.md">Captions</a>
+  </nav>
+  <a class="nav-cta button-premium" href="index.html#shop">Shop status</a>
+</header>
+
+<main id="main">
+<section class="band paper" aria-labelledby="social-title">
+  <div class="inner">
+    <p class="eyebrow magazine-kicker">Social · 2026-07-11</p>
+    <h1 id="social-title">Upload kit.</h1>
+    <p class="lede">Crops for OG, feed, story, and landscape. Captions and do/don’t rules live in the markdown companion. Store Buy stays off until Gumroad is live.</p>
+    <p class="social-note">Rebuild: <code>python tools/build_social_upload_kit.py</code> · Manifest: <code>generated/social/manifest.json</code></p>
+    <div class="button-row" style="margin-top:1rem;">
+      <a class="button primary button-premium-primary" href="../generated/social/og-default.jpg" download>Download OG default</a>
+      <a class="button button-premium" href="melodia-stage-character.html">Stage passport</a>
+      <a class="button button-premium" href="ornament-kitbash.html">Kitbash page</a>
+    </div>
+    <div class="social-grid" id="socialGrid" aria-live="polite"></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <span>Brennan Shepherd / Social kit</span>
+    <span>store_live off</span>
+  </div>
+</footer>
+</div>
+<script src="melodia-magical-girl.js"></script>
+<script src="melodia-starfield.js"></script>
+<script src="melodia-dream-shaders.js"></script>
+<script>
+(function () {
+  var grid = document.getElementById("socialGrid");
+  if (!grid) return;
+  fetch("../generated/social/manifest.json", { cache: "no-store" })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      (data.crops || []).forEach(function (c) {
+        var fig = document.createElement("figure");
+        fig.className = "social-card";
+        var a = document.createElement("a");
+        a.href = "../" + c.file;
+        a.target = "_blank";
+        a.rel = "noopener";
+        var img = document.createElement("img");
+        img.src = "../" + c.file;
+        img.alt = c.id;
+        img.loading = "lazy";
+        a.appendChild(img);
+        var cap = document.createElement("figcaption");
+        cap.textContent = c.id + " · " + (c.size || []).join("×");
+        fig.appendChild(a);
+        fig.appendChild(cap);
+        grid.appendChild(fig);
+      });
+    })
+    .catch(function () {
+      grid.textContent = "Could not load generated/social/manifest.json — run tools/build_social_upload_kit.py";
+    });
+})();
+</script>
+</body>
+</html>

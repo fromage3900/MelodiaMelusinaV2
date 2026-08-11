@@ -1,0 +1,329 @@
+{
+  "zone_name": "PCGTest_Forest",
+  "level_path": "/Game/Levels/L_PCGTest_Forest",
+  "max_concurrent": 15,
+  "respawn_time": 300.0,
+  "npc_spawns": [
+    {
+      "npc_id": "SD_01_SakuraMaiden",
+      "archetype": "SakuraDreamer",
+      "location": [
+        -1200,
+        800,
+        120
+      ],
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "ai_type": "Stationary",
+      "patrol_path": "",
+      "wander_radius": 500.0,
+      "schedule": {},
+      "interaction_type": "shop",
+      "interaction_data": {
+        "shop_type": "healing_items",
+        "inventory": [
+          "PetalTea",
+          "SakuraSalve",
+          "DreamDust"
+        ]
+      },
+      "outfit_variant": "default",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    },
+    {
+      "npc_id": "SD_02_PetalPriestess",
+      "archetype": "SakuraDreamer",
+      "location": [
+        2500,
+        -1500,
+        100
+      ],
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "ai_type": "Patrol",
+      "patrol_path": "ShrinePatrolPath",
+      "wander_radius": 500.0,
+      "schedule": {},
+      "interaction_type": "dialogue",
+      "interaction_data": {
+        "dialogue_tree": "PetalPriestess_Intro",
+        "quest_giver": true
+      },
+      "outfit_variant": "priestess",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    },
+    {
+      "npc_id": "SD_03_BlossomGuide",
+      "archetype": "SakuraDreamer",
+      "location": [
+        -800,
+        -2200,
+        80
+      ],
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "ai_type": "Wander",
+      "patrol_path": "",
+      "wander_radius": 800,
+      "schedule": {},
+      "interaction_type": "dialogue",
+      "interaction_data": {
+        "dialogue_tree": "BlossomGuide_Paths",
+        "tips": [
+          "hidden_grove",
+          "photo_spot"
+        ]
+      },
+      "outfit_variant": "guide",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    },
+    {
+      "npc_id": "SD_04_FlowerMerchant",
+      "archetype": "SakuraDreamer",
+      "location": [
+        1800,
+        1900,
+        110
+      ],
+      "rotation": [
+        0,
+        -135,
+        0
+      ],
+      "ai_type": "Stationary",
+      "patrol_path": "",
+      "wander_radius": 500.0,
+      "schedule": {},
+      "interaction_type": "shop",
+      "interaction_data": {
+        "shop_type": "cosmetics",
+        "inventory": [
+          "PetalDye_Pink",
+          "Ribbon_White",
+          "FlowerCrown"
+        ]
+      },
+      "outfit_variant": "merchant",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    },
+    {
+      "npc_id": "CW_01_StarWeaver",
+      "archetype": "CosmicWeaver",
+      "location": [
+        3200,
+        2800,
+        200
+      ],
+      "rotation": [
+        0,
+        -45,
+        0
+      ],
+      "ai_type": "Stationary",
+      "patrol_path": "",
+      "wander_radius": 500.0,
+      "schedule": {},
+      "interaction_type": "battle",
+      "interaction_data": {
+        "battle_archetype": "CosmicWeaver_Battle",
+        "difficulty": "normal",
+        "rewards": [
+          "StarlightThread",
+          "ConstellationMap"
+        ]
+      },
+      "outfit_variant": "default",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    },
+    {
+      "npc_id": "CW_02_VoidSeamstress",
+      "archetype": "CosmicWeaver",
+      "location": [
+        -2500,
+        3000,
+        150
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "ai_type": "Schedule",
+      "patrol_path": "",
+      "wander_radius": 500.0,
+      "schedule": {
+        "06:00": [
+          -2500,
+          3000,
+          150
+        ],
+        "18:00": [
+          -1800,
+          2200,
+          100
+        ],
+        "22:00": [
+          -3000,
+          3500,
+          250
+        ]
+      },
+      "interaction_type": "dialogue",
+      "interaction_data": {
+        "dialogue_tree": "VoidSeamstress_Night",
+        "time_sensitive": true
+      },
+      "outfit_variant": "seamstress",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    },
+    {
+      "npc_id": "CW_03_AstralScribe",
+      "archetype": "CosmicWeaver",
+      "location": [
+        500,
+        -3500,
+        90
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "ai_type": "Stationary",
+      "patrol_path": "",
+      "wander_radius": 500.0,
+      "schedule": {},
+      "interaction_type": "quest",
+      "interaction_data": {
+        "quest_chain": "StarfallChronicles",
+        "step": 1
+      },
+      "outfit_variant": "scribe",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    },
+    {
+      "npc_id": "MD_01_TwilightDancer",
+      "archetype": "MirageDancer",
+      "location": [
+        -3000,
+        -500,
+        80
+      ],
+      "rotation": [
+        0,
+        135,
+        0
+      ],
+      "ai_type": "Wander",
+      "patrol_path": "",
+      "wander_radius": 1200,
+      "schedule": {},
+      "interaction_type": "photo",
+      "interaction_data": {
+        "pose_set": "TwilightDance",
+        "photo_reward": "TwilightRibbon"
+      },
+      "outfit_variant": "dancer",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    },
+    {
+      "npc_id": "MD_02_WindWalker",
+      "archetype": "MirageDancer",
+      "location": [
+        2800,
+        -2800,
+        100
+      ],
+      "rotation": [
+        0,
+        -180,
+        0
+      ],
+      "ai_type": "Patrol",
+      "patrol_path": "WindPath_Clearing",
+      "wander_radius": 500.0,
+      "schedule": {},
+      "interaction_type": "battle",
+      "interaction_data": {
+        "battle_archetype": "MirageDancer_Battle",
+        "difficulty": "hard",
+        "rewards": [
+          "WindBell",
+          "ZephyrStep"
+        ]
+      },
+      "outfit_variant": "walker",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    },
+    {
+      "npc_id": "MD_03_ZephyrChampion",
+      "archetype": "MirageDancer",
+      "location": [
+        0,
+        0,
+        250
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "ai_type": "Event",
+      "patrol_path": "",
+      "wander_radius": 500.0,
+      "schedule": {},
+      "interaction_type": "battle",
+      "interaction_data": {
+        "battle_archetype": "MirageDancer_Battle",
+        "difficulty": "boss",
+        "rewards": [
+          "ChampionScarf",
+          "ZephyrTitle",
+          "MasterDancerPose"
+        ],
+        "unlock_requirement": "defeat_2_mirage_dancers"
+      },
+      "outfit_variant": "champion",
+      "expression_override": "",
+      "spawn_weight": 1.0,
+      "min_level": 1,
+      "max_level": 50
+    }
+  ]
+}

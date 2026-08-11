@@ -1,0 +1,823 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_Impressionist_BrushStroke" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_8" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_7" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_6" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_5" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_4" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_3" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_2" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_1" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_8" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_7" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_6" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_5" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_4" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_3" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_2" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_1" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_8" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_7" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_8" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_7" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_6" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_5" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_4" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_3" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_2" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_3" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComment_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_2" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComment_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_8" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_7" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_6" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_5" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_4" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_3" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_2" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_1" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_Impressionist_BrushStrokeEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MF_Impressionist_BrushStrokeEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_8" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_8'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=923791594D7D20D74F9C5291A3DDDB5B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_7" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_7'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=9BDD27EF4F43BEC31084BD87073ECB12
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_6" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_6'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=5AB02DE547A851585D79569E57F5C58B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_5" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_5'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=1EC89F624AE34C02989D41897987D5D8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_4" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_4'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=BED09F194D515D7E058C08A80BE2FCDE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_3" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_3'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=2591B42D4EC1E626E6EEAFADF7445254
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_2" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_2'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=11EF278243B9222ADFE9E599DF95F76B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_1" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_1'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=00DF54BA4D1B1F9010B0D8BE5FDE34C9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_0'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=8A546EE3444D37BFF3FC66A466ED8351
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_8" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_8'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_16'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=25082F49484AD7622BC71A9ACB3A639A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_7" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_7'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_14'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=4FA2C3384020715B3CA0DB913A68E528
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_6" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_6'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_12'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=A91B10164F4C79F03068A493B2122CFA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_5" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_5'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_10'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=DAD46F0A4AFF2DB5407148AFF242F70D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_4" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_4'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_8'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=635CEA3A46A705CCC03CC4957FF0428D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_3" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_3'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_6'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=28C7E4384AF9E452BD375184D1BE24D6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_2" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_4'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=0D0F6DB94203777E403FD4AC0CF67A6F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_1" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=E7D2B53E45660BC70D200D85697420C7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_0'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=9350D219478243A75C2C52B041C63C41
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_9'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=22E28FAA4163A896DD1C479301665441
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=C80A32064A0B7C65CEFBFC9AAF5091C3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_8'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=2B880FD94383104A16DDEEB6A0FA624E
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=BF28D3D04B5A71DFDE696482AFBB6538
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_7'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=2B5FB146458F3C629BE0CC9B4E5DB713
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=153326DF4A2BEDD98EE4CA86E416DB9C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_6'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=AEDA9F5C4825D181FDFC6CB16BF0831B
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=F6D70C13443BAE0A187685B4F97B4E95
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_5'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=CD0074EB4D731738376C6FB6BE4DBF3B
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=2665BDA14CEE79EB08531192F024C918
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_4'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=379341344580B298BF4CF8B5E0ACBA80
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=C4C50F1E40144041694DDEBA3FD6D2CF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_3'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=6B9D8935493E78807542779B004D504E
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=BD2EB85F477E445D3BBEA3932895E8AA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_2'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=24442F4D4B91120494B373B4A0675756
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=ED0C92E046048FF8459F2C81318A83B4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_17'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=DBF4A9B84022F0F42D334EAF2210AC0D
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=219AF54F4EDC6D20E54466A5045C5EBB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_16'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=B48AFFEF430953CEC8EBA39EADBA2C95
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=E5A2AD4A4BFBD727E0146A97309D3417
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_15'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=41A8A1DB40D86A9C0F2CF8BB84F1A0A9
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=33AD81234C343898A1AE89B3D9622EBA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_14'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=0A92942F43D09C610D5CDD98C32013B7
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=F49C7646440ED0881C2110ADA0002729
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_13'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=D49C8B554CB687AF8DDC04BBBEC2F9E2
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=F17E86C0423434953D7DFBA99A4A77C5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_12'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=423D3E3B41B433FD8727A7B2ED8ACF7D
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=1C34300547DBA991CAAC72BC255D814B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_11'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=6EF6F67E4E4F31FC4C11B1829ACE17D2
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=19F021774CAB06E745A19996893F5092
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_10'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=FE94C7B24BDA347470BEA2BCE1487E86
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=66122A5849BE4BA7E3F4BE9E22B551DA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_1'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=F71F2A3948A031265F21CE9FB8BA6242
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=6A292F2E4A65EC71355394A8B29A2D4E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_0'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=C5B2D73E4AD9D2C8EE3B39A2FB62265E
+      Group="OilPaint"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=60E9DB43490133BB44D826863031A1D3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_9'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_9'")
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=305F744445290686183CE19B73282527
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_8'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_8'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=099C9B5449414DF82F7AE9AF073E6320
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_7'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_7'")
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=8D29EC634E43BE488EFCB29DA2409F24
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_6'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=7E6CFA504AD58BCFFA20958526DC6B85
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_5'")
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=2F3D45994BF083DBFA66F7848C2A821E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_4'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=8C02EE3B461FDB28E4E591A1FFE59712
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_3'")
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=A0948CFB457E8A1C2E00249C027F5253
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=A900365C486A81E29A6D47851BDF4F0F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_17'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_17'")
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=E6D1192F4F2C0EBE60417480F4BF33E9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_16'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_16'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=548709F34BB798399E68A8B145BE1FA7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_15'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_7'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_15'")
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=480E230F4AF31F19F46CE99041458CA7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_14'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_7'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_14'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=9ECFE3714E34A157EFC08E841BDB6EB6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_13'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_13'")
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=5F2259F246065B6DE3B7878F2B3C6968
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_12'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_12'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=6F316BB64F72A7606615BA8266A3A260
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_11'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_11'")
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=FCCADDAB49B0861A21A0CBB33FDE7D73
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_10'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_10'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=9A10FFF043FF09012221198486AC9E49
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_1'")
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=220F51A541A2CF72153CB89B033F61A3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=23E9AE5949D18240B8E663ADF7500641
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_8" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_8'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_17'")
+      Id=533986844A92D61D7E73C1A201FA0AB1
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=19AA6F414002609841F5D8A93A932F4D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_7" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_7'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_15'")
+      Id=A0F9509B47C349F94798D2B3410DC5F0
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=1FF317AE4652663AF0D3FFA139FE6221
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_13'")
+      Id=CC112982498404764FA067B169BEF22F
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=8B4864034EE0E7FD6CFB5BBC45749223
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_11'")
+      Id=DE86739545AD7D00F7CFEFB6D85215FE
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=199C82444CEF72DD2F662992DFF21D23
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_9'")
+      Id=E94F6A454509D409E8F1D5B3BBB10931
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=12EDD8FE408366CE847E4B8AB41C75A6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_7'")
+      Id=712E0E7049924280E85251A30B32E80C
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=294FC5B34DF4E535978AC4BFF83F81F7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_5'")
+      Id=D53890E343185FC90F612792FC9B9014
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=DDEF8CA84767C972DD153DA232A82734
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_3'")
+      Id=EBE8EB144FA4367437AB83917139D190
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=B52B1D7A4E9B396B238B189AE9BC02DC
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_0'"
+      OutputName="StrokeMask"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_1'")
+      Id=1A8DEF774C3FDA14ED9959BAD8F192C4
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=0BAB904246B44AC7B21FD7A13036845F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_8" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_8'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_8'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=883A2F294411FE47535815A8C7376053
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_7" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_7'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_7'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=72A255064528E521B7FDD6A4CCDB61B0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_6" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_6'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_6'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=6B5F636F4F98FC9B4D1233A32CD5DCF2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_5" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_5'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_5'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=D580BE36471064F539AEFE814656990D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_4" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_4'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_4'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=DC00AFF14EBB0411363C2282F75F9AA0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_3" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_3'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_3'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=B03F590F4805A21B1C0BC99D8F6A053F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_2" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=A21EA9814CAC7A3E7AE16199FAAC98E4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=13BE86AC48F784006FE181B2545FAF60
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=136B4713465BD9A13E25FA9D462DCF45
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_3" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComment_3'"
+      Text="✦ OilPaint"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-980
+      MaterialExpressionEditorY=-10
+      MaterialExpressionGuid=7D68F0E449B6F5227FB9F481B32D43B9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_2" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComment_2'"
+      Text="Brush Stroke ~ paint by numbers"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-980
+      MaterialExpressionEditorY=-130
+      MaterialExpressionGuid=415535014B71BF47FE2A68B87FD104B3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_8" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_8'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_8'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=E4B3DAF541C81D0DF1E866ADA69DB651
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_7" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_7'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_7'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=40BDEC8A40641E4A7EC2B2B1FC80E705
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_6" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_6'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_6'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=1CFF54AC42F0D7DF6055A1882A4F9A3C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_5" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_5'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_5'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=A8740EE84DB83692058DE8ADDD6B52DB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_4" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_4'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_4'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=6F2587DB444E1EE4E54773A649176840
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_3" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_3'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_3'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=FF41695F46A4179441EE298C066EE5AF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_2" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_2'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=F32FA7C244589C3CB33412865A3BAA56
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_1" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_1'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=0BEA1A37482F8B03DFD55BB44E30F80C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_0'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=61351218440C43D8AE69978E936993E2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke'"
+   End Object
+   Begin Object Name="MF_Impressionist_BrushStrokeEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MF_Impressionist_BrushStrokeEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_0'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComment_2'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComment_3'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_1'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_1'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_2'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_2'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_5'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_2'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_3'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_6'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_3'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_7'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_3'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_4'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_9'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_8'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_4'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_4'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_9'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_4'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_5'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_10'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_11'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_10'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_5'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_5'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_11'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_5'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_6'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_12'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_13'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_12'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_6'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_6'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_13'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_6'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_7'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_14'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_15'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_14'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_7'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_7'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_15'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_7'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionWorldPosition_8'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionComponentMask_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_16'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionScalarParameter_17'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_16'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionSine_8'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionAbs_8'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionMultiply_17'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MaterialExpressionFunctionOutput_8'"))
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke.MF_Impressionist_BrushStroke:MF_Impressionist_BrushStrokeEditorOnlyData'"
+   StateId=C4DE8BBA43396D23F25CC9BA959DA626
+   CombinedInputTypes=15
+End Object

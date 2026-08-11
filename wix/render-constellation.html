@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-page="render-constellation">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Render Constellation | Brennan Shepherd</title>
+<meta name="description" content="Editorial Unreal-to-web intake for Brennan Shepherd's stylized environment renders, shader families, PCG route proof, and latest production notes." />
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-fashion-editorial.css">
+<link rel="stylesheet" href="melodia-premium-system.css">
+<link rel="stylesheet" href="portfolio-pages.css">
+<link rel="stylesheet" href="render-constellation-intake.css">
+</head>
+<body>
+<div class="melodia-shell fashion-mode" data-mg="chrome" data-hero="editorial" data-effects="starfield,holo">
+<header class="shell-nav" aria-label="Portfolio navigation">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="application-hub.html">Hub</a>
+    <a href="world-bible.html">Worlds</a>
+    <a href="shader-breakdowns.html">Shaders</a>
+    <a href="sdf-material-gallery.html">MI Gallery</a>
+    <a href="geometry-nodes.html">Geometry</a>
+  </nav>
+  <a class="nav-cta button-premium" href="../generated/unreal_portfolio_intake.json">JSON</a>
+</header>
+<main>
+<section class="hero has-editorial-frame mg-hero-wish" aria-labelledby="page-title">
+  <div class="hero-media" aria-hidden="true"><img src="../generated/assets/nightshift/grid_cosmic_all.png" alt="Cosmic SDF material instance preview grid" /></div>
+  <div class="hero-inner">
+    <p class="kicker magazine-kicker premium-kicker">Editorial Unreal to web intake</p>
+    <h1 id="page-title">Production notes in constellation form.</h1>
+    <p class="lede">Live intake from portfolio_package.json plus production audit signals: WP PCG ISM counts, NightShift MI previews, material families, and the next captures to fill.</p>
+    <div class="button-row">
+      <a class="button primary button-premium-primary" href="shader-breakdowns.html">Shader pages</a>
+      <a class="button button-premium" href="sdf-material-gallery.html">MI gallery</a>
+      <a class="button button-premium" href="world-bible.html">World bible</a>
+    </div>
+  </div>
+</section>
+
+<section class="band night">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Package snapshot</p>
+        <h2 id="intakeSceneName">ZenForestTest</h2>
+      </div>
+      <p>Generated <span id="intakeGenerated">?</span> from <strong id="intakeEngine">UE 5.8</strong>. Score measures proof coverage ? not render quality.</p>
+    </div>
+    <div class="intake-stat-grid" id="intakeStats" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="band paper fashion-band">
+  <div class="inner">
+    <div class="editorial-rule"><span class="diamond" aria-hidden="true"></span><span>Production audit</span><span class="diamond" aria-hidden="true"></span></div>
+    <div class="section-head">
+      <div><h2>WP pillar PCG ? verified from Saved/Audit logs.</h2></div>
+      <p id="intakePcgSummary">Loading pillar ISM counts?</p>
+    </div>
+    <div class="intake-stat-grid five-col" id="intakeWpStats" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="band paper">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Latest signals</p>
+        <h2>Fresh work, translated for a reviewer.</h2>
+      </div>
+      <p>Intake JSON plus portfolio_production_signals.json from UE audit logs (2026-07-09).</p>
+    </div>
+    <div class="intake-signal-grid" id="intakeSignals" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="band paper">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Zen shrine axis</p>
+        <h2>ZEN_SHRINE_AXIS</h2>
+      </div>
+      <p>Route spine: <strong>Torii / Sando / Kairo / Haiden</strong> ? matches SurrealArch GB_ZEN_* GN builders in deploy/surreal_architecture_gen.py.</p>
+    </div>
+    <div class="intake-card-grid">
+      <article class="intake-card premium-card">
+        <div class="intake-thumb heatmap-thumb"><img src="../generated/assets/unreal/pcg-heatmap.png" alt="PCG heatmap" loading="lazy" /></div>
+        <div class="intake-card-body"><span class="intake-pill">PCG proof</span><h3>Exclusion heatmap</h3><p>Route-safe exclusion zones around Sando Path, Sakura Pond, and Torii Gate.</p></div>
+      </article>
+      <article class="intake-card premium-card">
+        <div class="intake-card-body"><span class="intake-pill">Scene budget</span><h3 id="intakeTriangles">72924 triangles</h3><p id="intakeBudget">ZenForestTest package stats.</p></div>
+      </article>
+      <article class="intake-card premium-card">
+        <div class="intake-card-body"><span class="intake-pill">NightShift</span><h3>32 MI previews</h3><p>Cosmic + Nikki grids, NASA nebula sphere, four WP terrain heroes.</p><p class="intake-meta-line" style="margin-top:12px"><a href="sdf-material-gallery.html">Open MI gallery ?</a></p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band paper">
+  <div class="inner">
+    <div class="section-head">
+      <div><p class="eyebrow">Render cards</p><h2>Promote, explain, or recapture.</h2></div>
+      <p>NightShift plates sort first by priority. Rerun <code>tools/ingest_unreal_portfolio.ps1</code> after package changes.</p>
+    </div>
+    <div class="intake-card-grid" id="intakeCards" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="band astral fashion-band">
+  <div class="section-orrery constellation-slot" data-orrery="constellation" aria-hidden="true"></div>
+  <div class="inner">
+    <div class="section-head">
+      <div><p class="eyebrow">Shader families</p><h2>Material language as a map.</h2></div>
+      <p>30 portfolio MIs ? Zen 15 ? Showcase 11 ? Baroque 4 (nap prep audit).</p>
+    </div>
+    <div class="intake-family-grid" id="intakeFamilies" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="band deep">
+  <div class="inner">
+    <div class="section-head">
+      <div><p class="eyebrow">Next capture needs</p><h2>What the next render pass should fill.</h2></div>
+      <p>From portfolio_package.json readiness ? updated when intake reruns.</p>
+    </div>
+    <div class="intake-needs" id="intakeNeeds" aria-live="polite"></div>
+    <div class="button-row" style="margin-top:24px">
+      <a class="button primary button-premium-primary" href="world-bible.html">World bible</a>
+      <a class="button button-premium" href="geometry-nodes.html">Real geometry pipelines</a>
+      <a class="button button-premium" href="../generated/portfolio_production_signals.json">Audit JSON</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="inner"><span>Render constellation / Brennan Shepherd</span><span>JSON-hydrated Melodia shell</span></div></footer>
+</div><script src="melodia-orrery-system.js"></script>
+<script src="melodia-planetarium.js"></script>
+<script src="melodia-cosmic-instruments.js"></script>
+<script src="melodia-magical-girl.js"></script>
+<script src="melodia-starfield.js"></script>
+<script src="melodia-dream-shaders.js"></script>
+<script src="melodia-editorial.js"></script>
+<script>MelodiaEditorial.init({ constellation: true });</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "gacha_maps": [
+    {
+      "name": "LightMap",
+      "description": "Pre-baked lighting for stylized shading",
+      "channel": "R",
+      "resolution": 1024,
+      "format": "BC7"
+    },
+    {
+      "name": "FaceSDF",
+      "description": "Signed distance field for facial features",
+      "channel": "G",
+      "resolution": 512,
+      "format": "BC7"
+    },
+    {
+      "name": "MaterialID",
+      "description": "Per-material identification for stylized outlines",
+      "channel": "B",
+      "resolution": 512,
+      "format": "BC7"
+    }
+  ],
+  "pipeline": {
+    "source": "blender",
+    "export_format": "EXR",
+    "import_path": "/Game/Melodia/Characters/Melusina/Textures/GachaMaps/",
+    "naming_convention": "T_Melusina_{MapName}",
+    "compression": "BC7",
+    "srgb": false
+  },
+  "material_assignments": {
+    "M_Master_Toon_Universal": {
+      "LightMap": "TextureParameter",
+      "FaceSDF": "TextureParameter", 
+      "MaterialID": "TextureParameter"
+    }
+  }
+}

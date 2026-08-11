@@ -1,0 +1,626 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_NikkiDreamGrade" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_NikkiDreamGradeEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MF_NikkiDreamGradeEditorOnlyData'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_3" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_4" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAppendVector Name="MaterialExpressionAppendVector_0" ExportPath="/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAppendVector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCameraVectorWS Name="MaterialExpressionCameraVectorWS_0" ExportPath="/Script/Engine.MaterialExpressionCameraVectorWS'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionCameraVectorWS_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_4" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_5" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_6" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_7" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_2" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_3" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant3Vector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDotProduct Name="MaterialExpressionDotProduct_0" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionDotProduct_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDotProduct Name="MaterialExpressionDotProduct_1" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionDotProduct_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionLinearInterpolate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionLinearInterpolate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_0" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionNoise_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionOneMinus Name="MaterialExpressionOneMinus_0" ExportPath="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionOneMinus_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionOneMinus Name="MaterialExpressionOneMinus_1" ExportPath="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionOneMinus_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPixelNormalWS Name="MaterialExpressionPixelNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionPixelNormalWS_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPower Name="MaterialExpressionPower_0" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionPower_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_2" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_3" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSine_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSubtract_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_1" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSubtract_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTime Name="MaterialExpressionTime_0" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionTime_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionWorldPosition_0'"
+   End Object
+   Begin Object Name="MF_NikkiDreamGradeEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MF_NikkiDreamGradeEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant3Vector_0'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionDotProduct_0'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSubtract_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionOneMinus_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_1'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionWorldPosition_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionNoise_0'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_1'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSubtract_1'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_5'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionPixelNormalWS_0'","/Script/Engine.MaterialExpressionCameraVectorWS'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionCameraVectorWS_0'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionDotProduct_1'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_3'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionOneMinus_1'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_8'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSine_0'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_9'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_10'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_11'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_4'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_4'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_5'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_6'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_9'","/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionTime_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_12'","/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAppendVector_0'","/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionPower_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionLinearInterpolate_1'"))
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_0'")
+      MaterialExpressionEditorX=-80
+      MaterialExpressionGuid=9A4B9F694BB3D94913896398179F7F37
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_1'")
+      MaterialExpressionEditorX=80
+      MaterialExpressionGuid=B1C318DC4D5A5B226DD22F8F8EF9E97C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_3" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_9'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_3'")
+      MaterialExpressionEditorX=400
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=76588EFD4C60FAA9640F0BBCB120A249
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_4" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_11'")
+      MaterialExpressionEditorX=880
+      MaterialExpressionEditorY=950
+      MaterialExpressionGuid=20B8EA954B04A892C880D897F358B049
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionAppendVector_0" ExportPath="/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAppendVector_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_12'")
+      MaterialExpressionEditorX=-260
+      MaterialExpressionEditorY=750
+      MaterialExpressionGuid=2124186145A04EAF0305F1A681A13CB5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionCameraVectorWS_0" ExportPath="/Script/Engine.MaterialExpressionCameraVectorWS'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionCameraVectorWS_0'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=1250
+      MaterialExpressionGuid=4663C90E4EB0D8A7503F178F259DC71D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_4" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_4'"
+      Text="MF_NikkiDreamGrade"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-1280
+      MaterialExpressionEditorY=-330
+      MaterialExpressionGuid=6CB96AF640B0E146229AD99F624375F8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_5" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_5'"
+      Text="✦ Nikki DreamGrade"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-1280
+      MaterialExpressionEditorY=-130
+      MaterialExpressionGuid=04031E0746D7948F6E5892B1FF0D4759
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_6" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_6'"
+      Text="✦ Nikki Sparkle"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-1280
+      MaterialExpressionEditorY=470
+      MaterialExpressionGuid=B3BDE89E481E16389FBCB59DC37F95FC
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_7" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComment_7'"
+      Text="✦ Nikki Iridescence"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-1280
+      MaterialExpressionEditorY=970
+      MaterialExpressionGuid=639DA0AB43C3B2F92308198BA7A14CAF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComponentMask_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionWorldPosition_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=9C6FE52D403D8ED36A7ABA88D6773AC6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_0'"
+      R=0.500000
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=6174FB394C2366C7A46E0B8341E2030A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_1'"
+      R=10.000000
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=800
+      MaterialExpressionGuid=ADCBEF7E4B06277C7C9EC9857DA36F27
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_2" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_2'"
+      R=6.283180
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=1300
+      MaterialExpressionGuid=FC1479C141A7ED011D34C19608D13A7D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_3" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_3'"
+      R=0.500000
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=1300
+      MaterialExpressionGuid=8019760E4380D84B7750D3B825ED76B7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant3Vector_0'"
+      Constant=(R=0.299000,G=0.587000,B=0.114000,A=1.000000)
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=A2BDDE3D4EAAAD451B2B5B9534577F62
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionDotProduct_0" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionDotProduct_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionInput_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant3Vector_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=3C5CFAD04EB8B444D24D45A97FAA2E39
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionDotProduct_1" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionDotProduct_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionPixelNormalWS_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionCameraVectorWS'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionCameraVectorWS_0'")
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=811C82AC48D0A12EBA4C8BBE56431383
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionInput_0'"
+      InputName="BaseColorIn"
+      Id=A989834C4B4E244211617BBA89261BA8
+      PreviewValue=(X=1.000000,Y=1.000000,Z=1.000000,W=1.000000)
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=-200
+      MaterialExpressionGuid=4831928F4E6A73808C0DE58CB9492909
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionOutput_0'"
+      OutputName="Color"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_0'")
+      bLastPreviewed=True
+      Id=D1B1DD5D40FC4AB2A8DC5EABF7229776
+      MaterialExpressionEditorX=720
+      MaterialExpressionGuid=9D8EDB914117F9D5485819B20134A75D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionOutput_1'"
+      OutputName="Emissive"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_4'")
+      Id=C73BF2264319C2C8446848AEA4CB4BC6
+      MaterialExpressionEditorX=1040
+      MaterialExpressionEditorY=950
+      MaterialExpressionGuid=7AB45F224A7A8A44224E849810ED94EF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionLinearInterpolate_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionDotProduct_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionFunctionInput_0'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionGuid=6C32EA294EF4AD8967BD08A5ED9FDC1D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionLinearInterpolate_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_1'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_3'")
+      ConstAlpha=0.000000
+      MaterialExpressionEditorX=240
+      MaterialExpressionEditorY=50
+      MaterialExpressionGuid=BBDFFE0742CCA814F33661A56CD1E3F2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSubtract_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_1'")
+      MaterialExpressionEditorX=-240
+      MaterialExpressionGuid=BAA6C32F426CA86F562FB8BEFED75650
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionOneMinus_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=150
+      MaterialExpressionGuid=25A7C2914AF7107A30A100BDF855EBB6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_10'"
+      A=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAdd_3'")
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=021CFD8D4A224D6D68C1E6ACDFD5CBEE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_11'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_10'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_7'")
+      MaterialExpressionEditorX=720
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=24A54B634EB2145326A8039372F5A007
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_12'"
+      A=(Expression="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionTime_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_9'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=800
+      MaterialExpressionGuid=E129746742215878F439B88CAC448B64
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionLinearInterpolate_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=400
+      MaterialExpressionGuid=12050AEB45A1EF7FBA37DAAC8A623BB7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionComponentMask_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_4'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=20D347BE4E105018F252FCAAEEC245F5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSubtract_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_1'")
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=1D48A3374126CC720F175280644C7098
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_5'")
+      MaterialExpressionEditorX=400
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=92DEE63D4B284FA8767F4EB234D2D01C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=D25C984348E4D7236F04CE9C5A55151B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_8'"
+      A=(Expression="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionPower_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_2'")
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=754803094FB27C105219E1858C12DEDE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_9'"
+      A=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSine_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_3'")
+      MaterialExpressionEditorX=240
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=C7B039FD42153D016A0BCBAFC3CDCFD0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_0" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionNoise_0'"
+      Position=(Expression="/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionAppendVector_0'")
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=A55650334FEE9BC510CD44BBE77E0ED8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionOneMinus_0" ExportPath="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionOneMinus_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionDotProduct_0'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionEditorY=150
+      MaterialExpressionGuid=417210DA483AB7CB60D0EFBF93E10F1F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionOneMinus_1" ExportPath="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionOneMinus_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_3'")
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=AA35E5434E15BB895DE09F90A7817EC4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionPixelNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionPixelNormalWS_0'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=1150
+      MaterialExpressionGuid=2FE838DA4DFE68E0B13EB6B7456BE107
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionPower_0" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionPower_0'"
+      Base=(Expression="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionOneMinus_1'")
+      Exponent=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_8'")
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=1180
+      MaterialExpressionGuid=B1DEE9BE4650B5944776B38856CBF711
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=560
+      MaterialExpressionGuid=6D83673E464E8520B888A7A17407AB73
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionNoise_0'")
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=1A77596445060F7A18695D91A2A1CF99
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_2" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_4'")
+      MaterialExpressionEditorX=240
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=5FE958FC4858AADE07D6AC9A77E634A4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_3" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_3'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionDotProduct_1'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=9763BDD04663C85BE9767A910E6BD14B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_0'"
+      ParameterName="DreamSaturation"
+      ExpressionGUID=3341C0924D30B488AB6298B9D94F6162
+      Group="Nikki DreamGrade"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionGuid=2BC7D67C48B128FD564A51B1B0F4A0DF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_1'"
+      ParameterName="DreamContrast"
+      ExpressionGUID=63248B104BFB11E2DE24DDB566370770
+      Group="Nikki DreamGrade"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=496AF0E746575AE175D2F386DECCCF30
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_2'"
+      ParameterName="DreamShadowLift"
+      ExpressionGUID=1425CB6F44D9D4D0229B44B2CBE4FCAA
+      Group="Nikki DreamGrade"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=93CBCB1F48A57E17F5B0B48C3CA0D360
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_3'"
+      ParameterName="PastelLift"
+      ExpressionGUID=2021727B438F9BE9309A29909ACC4C66
+      Group="Nikki DreamGrade"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=06DD90214E835BE814B8F99E462E1E60
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_4'"
+      DefaultValue=40.000000
+      ParameterName="SparkleScale"
+      ExpressionGUID=882985FB412123DDA86D5EBA197E6E04
+      Group="Nikki Sparkle"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=600
+      MaterialExpressionGuid=A4297DB044EE087663E609A31AC9BD80
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_5'"
+      ParameterName="SparkleIntensity"
+      ExpressionGUID=02700769410895145A4B79A75790FA6B
+      Group="Nikki Sparkle"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=9F76ACE747221CE8EA91C99A3C38B87F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_6'"
+      ParameterName="SparkleThreshold"
+      ExpressionGUID=EC2C169040AC673471234E908256F866
+      Group="Nikki Sparkle"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=800
+      MaterialExpressionGuid=A444AAFE4ED7A82BC8C797939788BF5A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_7'"
+      ParameterName="Iridescence"
+      ExpressionGUID=4E8E79CA4623D935122D1687C3B0F4E3
+      Group="Nikki Iridescence"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=1100
+      MaterialExpressionGuid=FB6F2E4147AC2ED6A4A0EDAF8F38BCAA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_8'"
+      DefaultValue=1.000000
+      ParameterName="IridescencePower"
+      ExpressionGUID=FB2A5D81434733FECE21F18DF33154BD
+      Group="Nikki Iridescence"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=1300
+      MaterialExpressionGuid=AF2FD25F4073C2BA7D02358FF77E2814
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_9'"
+      DefaultValue=2.000000
+      ParameterName="SparkleTwinkleSpeed"
+      ExpressionGUID=F0282BF640ED42115A3BC88C86466B06
+      Group="Nikki Sparkle"
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=780
+      MaterialExpressionGuid=FD17C51E47EC86C7D0737595C2DE9422
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSine_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionMultiply_8'")
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=AF0567E14BD76D1BA27F9B9FEB2226B8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSubtract_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionLinearInterpolate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionConstant_0'")
+      MaterialExpressionEditorX=-400
+      MaterialExpressionGuid=2CE84B324BD14F7F7AEEBBA94BDC648F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_1" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSubtract_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionSaturate_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionScalarParameter_6'")
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=2750F44E4A1E916407C0189DEA00E228
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionTime_0" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionTime_0'"
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=850
+      MaterialExpressionGuid=3B4576BD4386ED3CCE6185961AAEBC85
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_0'"
+      DefaultValue=(R=1.000000,G=0.850000,B=0.920000,A=1.000000)
+      ParameterName="DreamTint"
+      ExpressionGUID=E44D5BE748C841065B8E81851511515F
+      Group="Nikki DreamGrade"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=F78F6864479F401B697001A535362231
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_1'"
+      DefaultValue=(R=1.000000,G=0.950000,B=0.800000,A=1.000000)
+      ParameterName="SparkleColor"
+      ExpressionGUID=3591915B498B0CEC40BFF6A8A9565CC8
+      Group="Nikki Sparkle"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=900
+      MaterialExpressionGuid=93F0010441F86C4A045273BD7B2A98C6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionVectorParameter_2'"
+      DefaultValue=(R=0.800000,G=0.600000,B=1.000000,A=1.000000)
+      ParameterName="IridescenceTint"
+      ExpressionGUID=F352251B4CA031F6098A13B5ADF5D708
+      Group="Nikki Iridescence"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=D721DE0C4F0A5C69027360B77151C702
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MaterialExpressionWorldPosition_0'"
+      WorldPositionShaderOffset=WPT_CameraRelative
+      MaterialExpressionEditorX=-1024
+      MaterialExpressionEditorY=800
+      MaterialExpressionGuid=8F8BD19546D79282B5DE329D09EDEB18
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade'"
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade.MF_NikkiDreamGrade:MF_NikkiDreamGradeEditorOnlyData'"
+   StateId=194616E248FA934BEDC022943687316B
+   CombinedInputTypes=15
+End Object

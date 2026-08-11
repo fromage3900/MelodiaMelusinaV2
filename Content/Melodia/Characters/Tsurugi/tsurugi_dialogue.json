@@ -1,0 +1,53 @@
+{
+  "character": "Chubu Tsurugi",
+  "voice": "VOICEVOX Chubu Tsurugi (speaker 17)",
+  "language": "ja",
+  "speech_style": "Stoic, brief, samurai-like. Uses '-de gozaru' (でござる) archaic suffix. Speaks in short sentences.",
+  "pronoun": "sessha (拙者)",
+  "description": "Arena master from the Mountain Pass. Runs the combat arena and training dojo. Party member (tank — damage absorber with counter-attacks).",
+
+  "lines": [
+    {
+      "id": "tsu_first_meet_01",
+      "text": "...拙者は中部つるぎ。この道場の主でござる。あなたが新しい挑戦者か。",
+      "context": "first_meeting",
+      "notes": "Stoic introduction"
+    },
+    {
+      "id": "tsu_arena_intro_01",
+      "text": "闘技場で己を試すがよい。実戦こそ最良の師でござる。",
+      "context": "arena_intro",
+      "notes": "Introducing the combat arena"
+    },
+    {
+      "id": "tsu_training_01",
+      "text": "構えが甘い。もう一度...今度は腰を落とせ。",
+      "context": "training",
+      "notes": "Giving combat training advice"
+    },
+    {
+      "id": "tsu_quest_worthy_01",
+      "text": "山に暴れ者が現れた。拙者と共に討伐に向かうでござる。",
+      "context": "quest_give_01",
+      "notes": "Quest: defeat the mountain bandits together"
+    },
+    {
+      "id": "tsu_bond_01",
+      "text": "あなたの剣...日に日に冴えている。見事でござる。",
+      "context": "bond_up",
+      "notes": "Rare compliment — bond increase"
+    },
+    {
+      "id": "tsu_party_join_01",
+      "text": "拙者の盾、あなたを守るでござる。",
+      "context": "party_join",
+      "notes": "Joining the party — tank pledge"
+    },
+    {
+      "id": "tsu_ending_01",
+      "text": "あなたと肩を並べて戦えたこと、生涯の誇りでござる。",
+      "context": "ending",
+      "notes": "Stoic but heartfelt ending"
+    }
+  ]
+}

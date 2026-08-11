@@ -1,0 +1,145 @@
+{
+  "character": "Tohoku Itako",
+  "voice": "VOICEVOX Tohoku Itako (speaker 6)",
+  "language": "ja",
+  "speech_style": "Calm, ethereal, poetic. Speaks in riddles. Dots sentences with '...' pauses. Uses keigo (formal Japanese) peppered with ancient terms.",
+  "pronoun": "watakushi (わたくし)",
+  "description": "Zunko and Kiritan's older sister. Itako spirit medium who lives at the mountain shrine. Skill tree trainer and lore expositor who reveals the connection between the Green East and Melusina's Astral Threshold. Party member (magic DPS, debuffer, spirit summoner).",
+
+  "lines": [
+    {
+      "id": "ita_first_meet_01",
+      "text": "おや...あなたでしたか。星の導きが告げていたとおり、ついに旅人が訪れましたね...",
+      "context": "first_meeting",
+      "notes": "Mysterious first greeting at the mountain shrine"
+    },
+    {
+      "id": "ita_first_meet_02",
+      "text": "妹たちが世話になっているようで...ありがとうございます。ずんだもんも、きっと喜んでいるでしょう。",
+      "context": "thanks",
+      "notes": "Thanking the player for helping her sisters"
+    },
+
+    {
+      "id": "ita_lore_intro_01",
+      "text": "この世界には七つの門があります。東の里も、そのひとつ...そしてあなたが出会ったメリュジーヌも、門の守護者。",
+      "context": "lore_exposition",
+      "notes": "First major lore dump — the seven gates"
+    },
+    {
+      "id": "ita_lore_intro_02",
+      "text": "メリュジーヌの力は...少しずつ衰えています。境界が薄くなり、他の世界の者が迷い込むようになりました。ずんだもんのように...",
+      "context": "lore_threshold",
+      "notes": "Explaining why Zundamon crossed over"
+    },
+    {
+      "id": "ita_lore_intro_03",
+      "text": "あなたは偶然ここに来たのではありません。「星の契約」があなたを呼んだのです...",
+      "context": "lore_player_role",
+      "notes": "Revealing the player's destined role"
+    },
+
+    {
+      "id": "ita_skill_intro_01",
+      "text": "あなたの中にも...眠っている力があります。目覚めさせて差し上げましょう。",
+      "context": "skill_tree_intro",
+      "notes": "Introducing the skill tree system"
+    },
+    {
+      "id": "ita_skill_unlock_01",
+      "text": "見事です...その力の使い方、すでに心得ているようですね。",
+      "context": "skill_unlocked",
+      "notes": "After unlocking a new skill"
+    },
+
+    {
+      "id": "ita_quest_spirit_01",
+      "text": "この神社の地下に、古の霊が眠っています...どうか鎮めてはいただけませんか？長い間、誰も訪れなかったので...",
+      "context": "quest_give_01",
+      "notes": "Quest: pacify the ancient spirit beneath the shrine"
+    },
+    {
+      "id": "ita_quest_gate_01",
+      "text": "東の門が...不安定になっています。ずんだもんが矢を放った影響かもしれません。門を調べてきていただけますか？",
+      "context": "quest_give_02",
+      "notes": "Quest: investigate and stabilize the eastern gate"
+    },
+    {
+      "id": "ita_quest_melusina_01",
+      "text": "メリュジーヌにお会いになりましたか？彼女に...これを渡してください。古の守護者同士の、伝言です。",
+      "context": "quest_give_03",
+      "notes": "Quest: deliver a message to Melusina"
+    },
+
+    {
+      "id": "ita_bond_01",
+      "text": "あなたの魂は...とても澄んでいますね。見ていると、心が洗われるようです。",
+      "context": "bond_level_up",
+      "notes": "Bond level increase"
+    },
+    {
+      "id": "ita_bond_02",
+      "text": "わたくし、長い間ひとりでした。ですが...あなたと出会って、また誰かと心を通わせる喜びを思い出しました。",
+      "context": "bond_high",
+      "notes": "High bond level — rare emotional moment"
+    },
+
+    {
+      "id": "ita_idle_meditate_01",
+      "text": "（静かに数珠を繰りながら瞑想している...）",
+      "context": "idle_meditate",
+      "notes": "Meditating at the shrine"
+    },
+    {
+      "id": "ita_idle_stars_01",
+      "text": "今夜の星は...何かを告げていますね。風の向きが変わります。",
+      "context": "idle_stargazing",
+      "notes": "Reading the stars"
+    },
+    {
+      "id": "ita_idle_worried_01",
+      "text": "ずん子、きりたん...ふたりとも、わたくしがいなくても大丈夫でしょうか...",
+      "context": "idle_worried",
+      "notes": "Worrying about her sisters from afar"
+    },
+
+    {
+      "id": "ita_party_join_01",
+      "text": "わたくしも参りましょう...古の霊たちよ、我が導きに従え。",
+      "context": "party_join",
+      "notes": "Joining the party — summoning spirits"
+    },
+    {
+      "id": "ita_battle_spirit_01",
+      "text": "荒ぶる魂よ...鎮まりなさい。",
+      "context": "battle_spirit",
+      "notes": "Using spirit pacification skill"
+    },
+    {
+      "id": "ita_battle_debuff_01",
+      "text": "あなたの運命の糸は...ここで切れます。",
+      "context": "battle_debuff",
+      "notes": "Debuffing an enemy"
+    },
+
+    {
+      "id": "ita_late_truth_01",
+      "text": "わたくしたち七人は...最初から、メリュジーヌの後継者候補として選ばれていたのです。あなたが誰と最も深く結ばれるか...それが、この世界の未来を決めます。",
+      "context": "late_game_truth",
+      "notes": "THE BIG REVEAL — the seven are successor candidates for Melusina's role"
+    },
+    {
+      "id": "ita_late_choice_01",
+      "text": "恐れることはありません。選ぶのは、あなたです。どの道も、間違いではありません。",
+      "context": "ending_choice",
+      "notes": "Reassuring the player before the final choice"
+    },
+
+    {
+      "id": "ita_ending_01",
+      "text": "あなたが選んだ未来...それは、あなただけの真実です。どうか、誇りを持って進んでください。",
+      "context": "ending",
+      "notes": "Ending dialogue"
+    }
+  ]
+}

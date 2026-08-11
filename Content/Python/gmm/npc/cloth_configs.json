@@ -1,0 +1,314 @@
+{
+  "kimono_sleeve_top": {
+    "piece_name": "kimono_sleeve_top",
+    "archetype": "SakuraDreamer",
+    "mobile": {
+      "enabled": false,
+      "solver": "BakedAnim",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.8,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": true,
+      "solver": "Chaos",
+      "iterations": 8,
+      "self_collision": false,
+      "wind_field": false,
+      "stiffness": 0.6,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "hakama_skirt": {
+    "piece_name": "hakama_skirt",
+    "archetype": "SakuraDreamer",
+    "mobile": {
+      "enabled": true,
+      "solver": "DistanceConstraint",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.85,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": true,
+      "solver": "Chaos",
+      "iterations": 12,
+      "self_collision": true,
+      "wind_field": false,
+      "stiffness": 0.7,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "petal_hair_ribbon": {
+    "piece_name": "petal_hair_ribbon",
+    "archetype": "SakuraDreamer",
+    "mobile": {
+      "enabled": true,
+      "solver": "VRMSpringBone",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.8,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": true,
+      "solver": "VRMSpringBone",
+      "iterations": 12,
+      "self_collision": true,
+      "wind_field": false,
+      "stiffness": 0.6,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "falling_petal_accessory": {
+    "piece_name": "falling_petal_accessory",
+    "archetype": "SakuraDreamer",
+    "mobile": {
+      "enabled": false,
+      "solver": "DistanceConstraint",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.8,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": true,
+      "solver": "NiagaraParticles",
+      "iterations": 12,
+      "self_collision": true,
+      "wind_field": false,
+      "stiffness": 0.6,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "stellar_cape": {
+    "piece_name": "stellar_cape",
+    "archetype": "CosmicWeaver",
+    "mobile": {
+      "enabled": true,
+      "solver": "DistanceConstraint",
+      "chains": 3,
+      "iterations": 4,
+      "stiffness": 0.75,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": true,
+      "solver": "Chaos",
+      "iterations": 16,
+      "self_collision": true,
+      "wind_field": true,
+      "stiffness": 0.5,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "constellation_corset": {
+    "piece_name": "constellation_corset",
+    "archetype": "CosmicWeaver",
+    "mobile": {
+      "enabled": false,
+      "solver": "DistanceConstraint",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.8,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": false,
+      "solver": "Chaos",
+      "iterations": 12,
+      "self_collision": true,
+      "wind_field": false,
+      "stiffness": 0.6,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "orbital_hair_ornaments": {
+    "piece_name": "orbital_hair_ornaments",
+    "archetype": "CosmicWeaver",
+    "mobile": {
+      "enabled": true,
+      "solver": "VRMSpringBone",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.9,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": true,
+      "solver": "VRMSpringBone",
+      "iterations": 12,
+      "self_collision": true,
+      "wind_field": false,
+      "stiffness": 0.7,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "cosmic_gloves": {
+    "piece_name": "cosmic_gloves",
+    "archetype": "CosmicWeaver",
+    "mobile": {
+      "enabled": false,
+      "solver": "DistanceConstraint",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.8,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": false,
+      "solver": "Chaos",
+      "iterations": 12,
+      "self_collision": true,
+      "wind_field": false,
+      "stiffness": 0.6,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "asymmetric_gradient_dress": {
+    "piece_name": "asymmetric_gradient_dress",
+    "archetype": "MirageDancer",
+    "mobile": {
+      "enabled": true,
+      "solver": "DistanceConstraint",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.8,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": true,
+      "solver": "Chaos",
+      "iterations": 12,
+      "self_collision": true,
+      "wind_field": false,
+      "stiffness": 0.65,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "wind_torn_scarf": {
+    "piece_name": "wind_torn_scarf",
+    "archetype": "MirageDancer",
+    "mobile": {
+      "enabled": true,
+      "solver": "VRMSpringBone",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.5,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": true,
+      "solver": "Chaos",
+      "iterations": 10,
+      "self_collision": true,
+      "wind_field": true,
+      "stiffness": 0.4,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "ankle_bells": {
+    "piece_name": "ankle_bells",
+    "archetype": "MirageDancer",
+    "mobile": {
+      "enabled": false,
+      "solver": "DistanceConstraint",
+      "chains": 2,
+      "iterations": 4,
+      "stiffness": 0.8,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": false,
+      "solver": "Chaos",
+      "iterations": 12,
+      "self_collision": true,
+      "wind_field": false,
+      "stiffness": 0.6,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  },
+  "trailing_ribbons": {
+    "piece_name": "trailing_ribbons",
+    "archetype": "MirageDancer",
+    "mobile": {
+      "enabled": true,
+      "solver": "VRMSpringBone",
+      "chains": 4,
+      "iterations": 4,
+      "stiffness": 0.4,
+      "damping": 0.5
+    },
+    "pc": {
+      "enabled": true,
+      "solver": "Chaos",
+      "iterations": 14,
+      "self_collision": true,
+      "wind_field": true,
+      "stiffness": 0.3,
+      "damping": 0.3
+    },
+    "common": {
+      "gravity_scale": 1.0,
+      "collision_radius": 2.0,
+      "tether_strength": 0.5
+    }
+  }
+}

@@ -1,0 +1,221 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_LandscapeStorybookSDF" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionWorldPosition_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionSubtract_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionSaturate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMin Name="MaterialExpressionMin_2" ExportPath="/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMin Name="MaterialExpressionMin_1" ExportPath="/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMin Name="MaterialExpressionMin_0" ExportPath="/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFrac Name="MaterialExpressionFrac_0" ExportPath="/Script/Engine.MaterialExpressionFrac'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFrac_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDivide Name="MaterialExpressionDivide_0" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDivide_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDistance Name="MaterialExpressionDistance_3" ExportPath="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDistance Name="MaterialExpressionDistance_2" ExportPath="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDistance Name="MaterialExpressionDistance_1" ExportPath="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDistance Name="MaterialExpressionDistance_0" ExportPath="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant2Vector Name="MaterialExpressionConstant2Vector_3" ExportPath="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant2Vector Name="MaterialExpressionConstant2Vector_2" ExportPath="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant2Vector Name="MaterialExpressionConstant2Vector_1" ExportPath="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant2Vector Name="MaterialExpressionConstant2Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_LandscapeStorybookSDFEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MF_LandscapeStorybookSDFEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionWorldPosition_0'"
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionGuid=DADE6E924FB4714232880EA9AE082A09
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionSubtract_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_2'")
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=3C5BE2384F1A55BCEADE8AAFB3109674
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionSaturate_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDivide_0'")
+      MaterialExpressionEditorX=680
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=D94EA5134534D94601F13DBCF18AA5FA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionComponentMask_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_0'")
+      MaterialExpressionEditorX=-960
+      MaterialExpressionGuid=571EBD41458FB3A8EAC3A8A4F7A83831
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionMin_2" ExportPath="/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_3'")
+      MaterialExpressionEditorX=190
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=B094B0AE4A3635E62FF6E2A6CBABEEED
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionMin_1" ExportPath="/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_2'")
+      MaterialExpressionEditorX=60
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=5F40693C4C855FD44727EE8E4A698046
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionMin_0" ExportPath="/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_1'")
+      MaterialExpressionEditorX=-70
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=66D05E7A4F94682D6C88AC8191872393
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionOutput_0'"
+      OutputName="Mask"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionSaturate_0'")
+      Id=26895D9E43CD7E8963492FBB8E29461D
+      MaterialExpressionEditorX=880
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=A9304E114D672695443D608379B18A70
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_2'"
+      InputName="Softness"
+      Id=1C02D5EC4F7AA94EE87A5D9B0612EEAC
+      MaterialExpressionEditorX=-780
+      MaterialExpressionEditorY=270
+      MaterialExpressionGuid=1DD749D745B6EE129F5AD1A903E7B6E7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_1'"
+      InputName="Radius"
+      Id=C80F190C4D753A9B44FFCFB6BD525A48
+      MaterialExpressionEditorX=-780
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=BD90F13249B3398533E8869D01C17A51
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_0'"
+      InputName="Scale"
+      Id=3DC0C9D548A787E49E806FB0A02E24F9
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=150
+      MaterialExpressionGuid=087B266B4FFE7EDEBCCE778DBAF16134
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionFrac_0" ExportPath="/Script/Engine.MaterialExpressionFrac'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFrac_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMultiply_0'")
+      MaterialExpressionEditorX=-780
+      MaterialExpressionGuid=5C7C90BE42DE00CAE20D8B9DEC8846C1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionDivide_0" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDivide_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionSubtract_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_2'")
+      MaterialExpressionEditorX=480
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=F3F5749041BAC71275491CB982401340
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionDistance_3" ExportPath="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionFrac'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFrac_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_3'",Mask=1,MaskR=1,MaskG=1)
+      MaterialExpressionEditorX=-420
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=293455574A61354A6DCFE69E81CE156A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionDistance_2" ExportPath="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionFrac'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFrac_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_2'",Mask=1,MaskR=1,MaskG=1)
+      MaterialExpressionEditorX=-420
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=E973291F4AB03F69AE04C6AFC7C2E25E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionDistance_1" ExportPath="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionFrac'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFrac_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_1'",Mask=1,MaskR=1,MaskG=1)
+      MaterialExpressionEditorX=-420
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=9DE3FC2E480ADA1144DB2D8AE6910063
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionDistance_0" ExportPath="/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFrac'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFrac_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_0'",Mask=1,MaskR=1,MaskG=1)
+      MaterialExpressionEditorX=-420
+      MaterialExpressionGuid=2E3B38B5405329A6A2AD8EB5AC2CDDE0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant2Vector_3" ExportPath="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_3'"
+      R=0.320000
+      G=0.500000
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=87A8C7164A9D91442A2DAA928BA807E7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant2Vector_2" ExportPath="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_2'"
+      R=0.500000
+      G=0.680000
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=E222013E4FF13DCAC9B5EC8BE1604278
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant2Vector_1" ExportPath="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_1'"
+      R=0.680000
+      G=0.500000
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=6876499A4DF68CF845DE1696D6582ECF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant2Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_0'"
+      R=0.500000
+      G=0.320000
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=5FE647F342AF6649A7A9328AC506E70D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionComponentMask_0'"
+      R=True
+      G=True
+      MaterialExpressionEditorX=-1140
+      MaterialExpressionGuid=06330A2744656D7CE60F479032E51322
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF'"
+   End Object
+   Begin Object Name="MF_LandscapeStorybookSDFEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MF_LandscapeStorybookSDFEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionWorldPosition_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionFrac'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFrac_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_0'","/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_0'","/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_1'","/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_1'","/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_2'","/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_2'","/Script/Engine.MaterialExpressionConstant2Vector'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionConstant2Vector_3'","/Script/Engine.MaterialExpressionDistance'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDistance_3'","/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_0'","/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_1'","/Script/Engine.MaterialExpressionMin'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionMin_2'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionSubtract_0'","/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionDivide_0'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MaterialExpressionFunctionOutput_0'"))
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF.MF_LandscapeStorybookSDF:MF_LandscapeStorybookSDFEditorOnlyData'"
+   StateId=1309313B46AF59E69C3BF69155283D7A
+   CombinedInputTypes=15
+End Object

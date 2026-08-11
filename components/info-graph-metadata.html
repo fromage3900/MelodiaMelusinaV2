@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+  INFO/GRAPH METADATA — PCG graph metadata card
+  HOW TO USE: Wix Editor → Add (+) → Embed Code → Embed HTML → paste this file.
+  Size: ~ 360 × auto
+  Edit DATA below to customize.
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:transparent}
+  body{display:flex;justify-content:center;padding:8px}
+  .card{width:100%;max-width:360px;border-radius:2px;padding:16px;background:#FFFFFF;border:1px solid #E3DACE;font-family:'IBM Plex Mono',monospace}
+  .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #E3DACE}
+  .title{font-size:13px;font-weight:500;color:#241B2E}
+  .role{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6E6080}
+  .row{display:flex;justify-content:space-between;padding:6px 0;font-size:11px}
+  .k{letter-spacing:0.1em;text-transform:uppercase;color:#6E6080}
+  .v{color:#241B2E}
+  .features{margin-top:12px;padding-top:8px;border-top:1px solid #E3DACE}
+  .features-title{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6E6080;margin-bottom:6px}
+  .feature-tags{display:flex;flex-wrap:wrap;gap:4px}
+  .feature-tag{font-size:9px;letter-spacing:0.06em;text-transform:uppercase;padding:2px 6px;background:#F7F4EF;border:1px solid #E3DACE;color:#5A6170;border-radius:1px}
+</style>
+</head>
+<body>
+<div id="card"></div>
+<script>
+var DATA = {
+  title: "PCG Graph",
+  role: "foliage",
+  path: "/Game/EnvSandbox/PCG/Universal/PCG_FoliageDensity",
+  voxel: null,
+  phase: null,
+  features: {
+    density_filter: true,
+    surface_sampler: false,
+    passthrough: false,
+    pcgex_exclusion: false,
+    pcgex_candidate: null
+  }
+};
+var q=new URLSearchParams(location.search);
+["title","role","path","voxel","phase"].forEach(function(k){ if(q.get(k)) DATA[k]=q.get(k); });
+["density_filter","surface_sampler","passthrough","pcgex_exclusion"].forEach(function(k){ if(q.get(k)!=null) DATA.features[k]=q.get(k)==="true"||q.get(k)==="1"; });
+if(q.get("pcgex_candidate")) DATA.features.pcgex_candidate=q.get("pcgex_candidate");
+function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+
+function render(){
+  var h=document.getElementById("card");
+  var rows='';
+  if(DATA.path) rows+='<div class="row"><span class="k">Path</span><span class="v">'+esc(DATA.path.split('/').pop())+'</span></div>';
+  if(DATA.role) rows+='<div class="row"><span class="k">Role</span><span class="v">'+esc(DATA.role)+'</span></div>';
+  if(DATA.voxel) rows+='<div class="row"><span class="k">Voxel</span><span class="v">'+esc(DATA.voxel)+'cm</span></div>';
+  if(DATA.phase) rows+='<div class="row"><span class="k">Phase</span><span class="v">'+esc(DATA.phase)+'</span></div>';
+  
+  var featuresHtml='';
+  var featureLabels={density_filter:'Density Filter',surface_sampler:'Surface Sampler',passthrough:'Passthrough',pcgex_exclusion:'PCGEx Exclusion'};
+  Object.keys(DATA.features).forEach(function(k){
+    if(DATA.features[k]===true){
+      featuresHtml+='<span class="feature-tag">'+esc(featureLabels[k]||k)+'</span>';
+    }else if(DATA.features[k] && typeof DATA.features[k]==='string'){
+      featuresHtml+='<span class="feature-tag">PCGEx: '+esc(DATA.features[k])+'</span>';
+    }
+  });
+  
+  var featuresSection=featuresHtml ? '<div class="features"><div class="features-title">Features</div><div class="feature-tags">'+featuresHtml+'</div></div>' : '';
+  
+  h.innerHTML='<div class="card"><div class="head"><span class="title">'+esc(DATA.title)+'</span><span class="role">'+esc(DATA.role)+'</span></div>'+rows+featuresSection+'</div>';
+}
+render();
+</script>
+</body>
+</html>

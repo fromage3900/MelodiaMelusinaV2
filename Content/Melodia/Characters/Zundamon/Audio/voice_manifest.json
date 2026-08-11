@@ -1,0 +1,111 @@
+{
+  "character": "Zundamon",
+  "speaker_id": 3,
+  "voice_style": "ノーマル",
+  "total": 20,
+  "generated": 0,
+  "cached": 20,
+  "errors": 0,
+  "lines": [
+    {
+      "id": "zun_first_meet_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_first_meet_01.wav"
+    },
+    {
+      "id": "zun_first_meet_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_first_meet_02.wav"
+    },
+    {
+      "id": "zun_first_meet_03",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_first_meet_03.wav"
+    },
+    {
+      "id": "zun_quest_board_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_quest_board_01.wav"
+    },
+    {
+      "id": "zun_quest_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_quest_01.wav"
+    },
+    {
+      "id": "zun_quest_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_quest_02.wav"
+    },
+    {
+      "id": "zun_quest_03",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_quest_03.wav"
+    },
+    {
+      "id": "zun_quest_complete_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_quest_complete_01.wav"
+    },
+    {
+      "id": "zun_shop_open_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_shop_open_01.wav"
+    },
+    {
+      "id": "zun_shop_buy_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_shop_buy_01.wav"
+    },
+    {
+      "id": "zun_shop_goodbye_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_shop_goodbye_01.wav"
+    },
+    {
+      "id": "zun_idle_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_idle_01.wav"
+    },
+    {
+      "id": "zun_idle_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_idle_02.wav"
+    },
+    {
+      "id": "zun_unlucky_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_unlucky_01.wav"
+    },
+    {
+      "id": "zun_unlucky_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_unlucky_02.wav"
+    },
+    {
+      "id": "zun_power_reveal_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_power_reveal_01.wav"
+    },
+    {
+      "id": "zun_power_reveal_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_power_reveal_02.wav"
+    },
+    {
+      "id": "zun_battle_start_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_battle_start_01.wav"
+    },
+    {
+      "id": "zun_battle_win_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_battle_win_01.wav"
+    },
+    {
+      "id": "zun_mochi_rhythm_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\zun_mochi_rhythm_01.wav"
+    }
+  ]
+}

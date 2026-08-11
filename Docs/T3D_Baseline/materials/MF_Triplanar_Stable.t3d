@@ -1,0 +1,66 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_Triplanar_Stable" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable'"
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCustom Name="MaterialExpressionCustom_0" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionCustom_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_Triplanar_StableEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MF_Triplanar_StableEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionOutput_0'"
+      OutputName="Color"
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionCustom_0'")
+      Id=BEF2B6BF4F0D93B3810E22A6B1C411DC
+      MaterialExpressionEditorX=400
+      MaterialExpressionGuid=94AB5DFE46AE1CD4835C0CA0E4AABB40
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_2'"
+      InputName="BlendSharpness"
+      Id=FE86B50C49086937BDBB05910A017A4F
+      InputType=FunctionInput_Scalar
+      SortPriority=2
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=5A5C161E4EBF8F475E992C85C6F34226
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_1'"
+      InputName="TriplanarScale"
+      Id=EB7BE4A846D9CFA0A8DC24A4F2E82932
+      InputType=FunctionInput_Scalar
+      SortPriority=1
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=195086C44C830CFEEAF7138CF02A5A8D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_0'"
+      InputName="Tex"
+      Id=0149C12B4AEB43F5D08C889BBB06C566
+      InputType=FunctionInput_Texture2D
+      MaterialExpressionEditorX=-400
+      MaterialExpressionGuid=8E76F008480E6B7EFF45D28907A13750
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable'"
+   End Object
+   Begin Object Name="MaterialExpressionCustom_0" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionCustom_0'"
+      Code="float3 n = pow(abs(normalize(VertexNormalWS)), max(BlendSharpness, 0.01));\nn /= max(n.x + n.y + n.z, 0.0001);\nfloat3 p = AbsoluteWorldPosition * TriplanarScale;\nfloat3 sx = Texture2DSample(Tex, TexSampler, p.yz).rgb;\nfloat3 sy = Texture2DSample(Tex, TexSampler, p.xz).rgb;\nfloat3 sz = Texture2DSample(Tex, TexSampler, p.xy).rgb;\nreturn sx * n.x + sy * n.y + sz * n.z;"
+      Description="Stable triplanar blend using vertex-normal weights"
+      Inputs(0)=(InputName="Tex",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_0'"))
+      Inputs(1)=(InputName="TriplanarScale",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_1'"))
+      Inputs(2)=(InputName="BlendSharpness",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_2'"))
+      MaterialExpressionGuid=024E63E54B34E08937B97FA2F70B44CE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable'"
+   End Object
+   Begin Object Name="MF_Triplanar_StableEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MF_Triplanar_StableEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MaterialExpressionCustom_0'"))
+   End Object
+   Description="Stable albedo triplanar projection for the Nikki universal master."
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable.MF_Triplanar_Stable:MF_Triplanar_StableEditorOnlyData'"
+   StateId=9AD01B7140F6442AD644E3B039089CEF
+   CombinedInputTypes=31
+End Object

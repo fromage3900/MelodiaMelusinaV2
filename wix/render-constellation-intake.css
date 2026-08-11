@@ -1,0 +1,186 @@
+/* Render constellation — intake grid on Melodia night shell */
+.intake-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-gold);
+  border: 1px solid var(--border-gold);
+}
+
+.intake-stat-grid.five-col {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.intake-stat-grid .info-cell {
+  background: rgba(16, 23, 54, 0.72);
+}
+
+.paper .intake-stat-grid .info-cell {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.intake-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.intake-signal {
+  min-height: 220px;
+  padding: 18px;
+  border: 1px solid var(--border-gold);
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.intake-signal h3 {
+  font-size: 1.35rem;
+  margin-top: 10px;
+}
+
+.intake-signal p {
+  color: var(--muted);
+  line-height: 1.58;
+  margin: 0;
+}
+
+.intake-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.intake-card {
+  overflow: hidden;
+  border: 1px solid var(--border-gold);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.intake-thumb {
+  aspect-ratio: 16 / 10;
+  background: rgba(8, 11, 19, 0.55);
+  display: grid;
+  place-items: center;
+}
+
+.intake-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intake-thumb.material-thumb {
+  aspect-ratio: 1;
+}
+
+.intake-thumb.material-thumb img {
+  object-fit: contain;
+}
+
+.intake-thumb.heatmap-thumb img {
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.intake-card-body {
+  padding: 16px 18px 20px;
+}
+
+.intake-card-body h3 {
+  font-size: 1rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  margin: 10px 0 8px;
+  word-break: break-word;
+}
+
+.intake-card-body p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.intake-pill {
+  display: inline-flex;
+  margin: 0 8px 8px 0;
+  padding: 6px 9px;
+  border: 1px solid var(--border-gold);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+.intake-family-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.intake-family {
+  border: 1px solid var(--border-gold);
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.intake-family strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gold-soft);
+}
+
+.intake-family p {
+  margin: 8px 0 0;
+  color: rgba(232, 228, 242, 0.72);
+  line-height: 1.55;
+}
+
+.intake-needs {
+  display: grid;
+  gap: 12px;
+}
+
+.intake-need {
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  background: rgba(16, 23, 54, 0.55);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.deep .intake-need {
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(232, 228, 242, 0.72);
+}
+
+.intake-meta-line {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+@media (max-width: 1080px) {
+  .intake-stat-grid,
+  .intake-signal-grid,
+  .intake-card-grid,
+  .intake-family-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .intake-stat-grid,
+  .intake-signal-grid,
+  .intake-card-grid,
+  .intake-family-grid {
+    grid-template-columns: 1fr;
+  }
+}

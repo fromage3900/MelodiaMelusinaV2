@@ -1,0 +1,15 @@
+{
+  "id": "BYZANTINE_BASILICA",
+  "label": "Byzantine Basilica",
+  "description": "Horseshoe narthex, cusped triumphal arch, ribbed vault nave, rose clerestory, crossing dome",
+  "style": "byzantine",
+  "modules": [
+    {"arch_type": "ARCHWAY_ADV", "overrides": {"archway_style": "HORSESHOE", "archway_width": 2.8, "archway_height": 2.4, "archway_depth": 0.55, "material_choice": "MARBLE"}},
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {"gb_width": 3.4, "gb_height": 4.8, "gb_trim_mode": "RECESS", "unit_size": 3.4, "material_choice": "MARBLE"}},
+    {"arch_type": "CUSPED_ARCH", "overrides": {"gothic_width": 2.4, "gb_height": 4.2, "gb_trim_mode": "RECESS", "material_choice": "MARBLE"}},
+    {"arch_type": "BAROQUE_VAULT", "overrides": {"baroque_vault_span": 8.0, "baroque_vault_rise": 3.2, "baroque_vault_style": "BARREL", "material_choice": "MARBLE"}},
+    {"arch_type": "PILLAR", "overrides": {"pillar_radius": 0.38, "pillar_height": 5.0, "pillar_flutes": 12, "material_choice": "MARBLE"}},
+    {"arch_type": "ROSE_WINDOW", "overrides": {"rose_outer_radius": 1.6, "rose_petal_count": 12, "rose_spoke_count": 12, "material_choice": "STAINED"}},
+    {"arch_type": "DOME", "overrides": {"dome_radius": 2.4, "dome_rib_count": 16, "dome_spire": 0.75, "material_choice": "GOLD"}}
+  ]
+}

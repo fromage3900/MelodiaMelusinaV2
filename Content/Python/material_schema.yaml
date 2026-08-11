@@ -1,0 +1,156 @@
+# Master Material Parameter Schema — BS_GodFile
+# Canonical definition for validation and auto-repair.
+# Each master lists every expected parameter, its type, range, group, and default.
+---
+version: 1
+date: 2026-08-04
+
+# ── Toon Profile assignments ──────────────────────────────────────────
+# Profiles must be created manually in-editor (no Python API exists yet).
+# See TOON_PROFILES_GUIDE.md for creation steps.
+# After creation, run: python assign_toon_profiles.py --apply
+toon_profiles:
+  TP_Character:
+    expected_path: /Game/EnvSandbox/Materials/ToonProfiles/TP_Character
+    assigned_to: M_Master_Nikki
+    diffuse_stops: 3
+    specular: narrow
+    gi_intensity: 0.3
+    hatching: false
+  TP_Foliage:
+    expected_path: /Game/EnvSandbox/Materials/ToonProfiles/TP_Foliage
+    assigned_to: M_Master_Toon_Landscape_HeightBlend
+    diffuse_stops: 2
+    specular: none
+    gi_intensity: 0.8
+    hatching: false
+  TP_Water:
+    expected_path: /Game/EnvSandbox/Materials/ToonProfiles/TP_Water
+    assigned_to: M_Universal_Enhanced_Water
+    diffuse_stops: 2
+    specular: strong
+    gi_intensity: 1.0
+    hatching: false
+  TP_Hero:
+    expected_path: /Game/EnvSandbox/Materials/ToonProfiles/TP_Hero
+    assigned_to: M_Master_Toon_Universal  # Hero close-ups override
+    diffuse_stops: 3
+    specular: narrow
+    gi_intensity: 0.3
+    hatching: true
+
+# ── Global MPC schema ─────────────────────────────────────────────────
+material_parameter_collections:
+  MPC_Melodia_Palette:
+    path: /Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette
+    scalars:
+      - { name: GlobalTimeScale, default: 1.0, range: [0.0, 10.0] }
+      - { name: BeatPulse, default: 0.0, range: [0.0, 1.0] }
+      - { name: BeatIntensity, default: 0.0, range: [0.0, 1.0] }
+      - { name: BeatPhase, default: 0.0, range: [0.0, 1.0] }
+      - { name: RhythmPulse, default: 0.0, range: [0.0, 1.0] }
+      - { name: GlobalEmissiveBoost, default: 1.0, range: [0.0, 5.0] }
+      - { name: GlobalSparkleIntensity, default: 1.0, range: [0.0, 2.0] }
+      - { name: GlobalUVScale, default: 1.0, range: [0.01, 10.0] }
+      - { name: ProximityGlow, default: 0.0, range: [0.0, 1.0] }
+      - { name: PaletteShift, default: 0.0, range: [0.0, 1.0] }
+      - { name: TemporalJitter, default: 0.0, range: [0.0, 1.0] }
+      - { name: WindStrength, default: 0.5, range: [0.0, 2.0] }
+      - { name: ShadowSharpness, default: 1.0, range: [0.0, 2.0] }
+      - { name: DayCyclePhase, default: 0.0, range: [0.0, 1.0] }
+      - { name: SeasonBlend, default: 0.0, range: [0.0, 1.0] }
+      - { name: UnderwaterDepth, default: 0.0, range: [0.0, 1.0] }
+      - { name: PlayerProximity, default: 0.0, range: [0.0, 1.0] }
+      - { name: GlobalReactivity, default: 0.0, range: [0.0, 1.0] }
+      - { name: Bass, default: 0.0, range: [0.0, 1.0] }
+      - { name: Mid, default: 0.0, range: [0.0, 1.0] }
+      - { name: Treble, default: 0.0, range: [0.0, 1.0] }
+      - { name: BassIntensity, default: 0.0, range: [0.0, 1.0] }
+      - { name: MidIntensity, default: 0.0, range: [0.0, 1.0] }
+      - { name: TrebleIntensity, default: 0.0, range: [0.0, 1.0] }
+      - { name: ComboNormalized, default: 0.0, range: [0.0, 1.0] }
+      - { name: CrescendoNormalized, default: 0.0, range: [0.0, 1.0] }
+      - { name: CommandEnergy, default: 0.0, range: [0.0, 1.0] }
+      - { name: BreakPulse, default: 0.0, range: [0.0, 1.0] }
+      - { name: VictoryPulse, default: 0.0, range: [0.0, 1.0] }
+      - { name: EnemyTension, default: 0.0, range: [0.0, 1.0] }
+      - { name: WaterLevelZ, default: 0.0, range: [-5000.0, 5000.0] }
+      - { name: BaseTintShift, default: 1.0, range: [0.0, 2.0] }
+      - { name: ShadowDreamBias, default: 0.0, range: [-1.0, 1.0] }
+      - { name: RimWarmth, default: 0.0, range: [-1.0, 1.0] }
+      - { name: ElementalGrade, default: 0.0, range: [-1.0, 1.0] }
+      - { name: TimeOfDayWarmth, default: 0.0, range: [-1.0, 1.0] }
+    vectors:
+      - { name: Melusina_InkNavy, default: [0.04, 0.04, 0.08, 1.0] }
+      - { name: Melusina_Aqua, default: [0.2, 0.5, 0.6, 1.0] }
+      - { name: Melusina_Gild, default: [0.75, 0.65, 0.35, 1.0] }
+      - { name: Melusina_SoftWhite, default: [0.92, 0.90, 0.88, 1.0] }
+      - { name: Melusina_Lavender, default: [0.72, 0.65, 0.82, 1.0] }
+      - { name: Melusina_RoseGold, default: [0.85, 0.55, 0.45, 1.0] }
+      - { name: Melusina_DeepTeal, default: [0.05, 0.25, 0.30, 1.0] }
+      - { name: R1999_Burgundy, default: [0.45, 0.08, 0.10, 1.0] }
+      - { name: R1999_Gold, default: [0.85, 0.70, 0.30, 1.0] }
+      - { name: R1999_Teal, default: [0.10, 0.35, 0.40, 1.0] }
+      - { name: R1999_Navy, default: [0.05, 0.08, 0.18, 1.0] }
+      - { name: R1999_Ivory, default: [0.88, 0.85, 0.78, 1.0] }
+      - { name: MeluPrimary, default: [0.75, 0.50, 0.60, 1.0] }
+      - { name: MeluSecondary, default: [0.30, 0.40, 0.55, 1.0] }
+      - { name: MeluAccent, default: [0.85, 0.70, 0.40, 1.0] }
+      - { name: PaletteTint, default: [1.0, 1.0, 1.0, 1.0] }
+
+# ── Master material schemas ──────────────────────────────────────────
+masters:
+  M_Master_Toon_Universal:
+    path: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal
+    toon_profile: TP_Default
+    mpc_references:
+      - MPC_Melodia_Palette: [GlobalSparkleIntensity, GlobalEmissiveBoost, Melusina_Lavender, Melusina_RoseGold, Melusina_SoftWhite]
+    groups:
+      - name: "00 Palette"
+        params:
+          - { name: BaseTint, type: vector, default: [1,1,1,1] }
+          - { name: PaletteRampLow, type: vector, default: [0.1,0.05,0.15,1] }
+          - { name: PaletteRampMid, type: vector, default: [0.5,0.4,0.5,1] }
+          - { name: PaletteRampHigh, type: vector, default: [0.9,0.85,0.8,1] }
+          - { name: PaletteRampStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: PaletteRampDriver, type: float, default: 0.5, range: [0,1] }
+      - name: "01 Surface"
+        params:
+          - { name: RoughnessScale, type: float, default: 1.0, range: [0,1] }
+          - { name: RoughnessBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: MetallicScale, type: float, default: 1.0, range: [0,1] }
+          - { name: MetallicBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: NormalStrength, type: float, default: 1.0, range: [0,2] }
+
+  M_Master_Nikki:
+    path: /Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki
+    toon_profile: TP_Character
+    mpc_references:
+      - MPC_Melodia_Palette: [GlobalSparkleIntensity, GlobalEmissiveBoost, R1999_Navy, R1999_Gold, Melusina_SoftWhite, Melusina_Lavender]
+    groups:
+      - name: "00 Surface"
+        params:
+          - { name: Roughness, type: float, default: 0.5, range: [0,1] }
+          - { name: Metallic, type: float, default: 0.0, range: [0,1] }
+
+  M_PP_MeluColorGrade:
+    path: /Game/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade
+    custom_hlsl_pins:
+      - { name: CelSteps, type: float, default: 0.0, range: [0, 8], group: "V3 Cel-Shading" }
+      - { name: DynamicContrast, type: float, default: 0.0, range: [0, 1], group: "V3 Adaptive" }
+      - { name: SelectiveStrength, type: float, default: 0.0, range: [0, 1], group: "V3 Adaptive" }
+      - { name: KeepColorHue, type: float, default: 0.0, range: [0, 1], group: "V3 Adaptive" }
+    mpc_references: []
+    groups: []
+
+  M_Universal_Enhanced_Water:
+    path: /Game/_PROJECT/04_Materials/Masters/M_Universal_Enhanced_Water
+    mpc_references: []
+    groups: []
+
+  M_Master_Toon_Landscape_HeightBlend:
+    path: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend
+    toon_profile: TP_Foliage
+    mpc_references:
+      - MPC_Melodia_Palette: [GlobalSparkleIntensity, GlobalEmissiveBoost, GlobalReactivity, Melusina_Lavender, Melusina_SoftWhite]
+    groups: []

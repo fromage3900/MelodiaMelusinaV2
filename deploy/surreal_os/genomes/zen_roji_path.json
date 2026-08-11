@@ -1,0 +1,33 @@
+{
+  "id": "zen_roji_path",
+  "family": "Zen",
+  "verticality": 0.7,
+  "symmetry": 0.6,
+  "ornament_density": 0.48,
+  "structural_logic": 0.75,
+  "organic_growth": 0.72,
+  "cosmic_influence": 0.12,
+  "sacred_sequence": [
+    "torii_frame",
+    "roji_path_segment",
+    "tsukubai_station",
+    "stone_lantern_post"
+  ],
+  "compose_style": "ZEN_SHRINE",
+  "default_graph": "ZEN_ROJI_PATH",
+  "grammar_id": "ZEN_ROJI_PATH",
+  "surreal_transform": "axis_compression",
+  "torii_variant": "standard",
+  "compose_roles": {
+    "gate": "_lib_GB_ZEN_TORII_GATE",
+    "small": "_lib_GB_ZEN_LANTERN",
+    "medium": "_lib_GB_ZEN_TSUKUBAI"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "uv_unwrap_mode": "TRIM_SHEET",
+    "material_choice": "STONE",
+    "unit_size": 2.0
+  }
+}

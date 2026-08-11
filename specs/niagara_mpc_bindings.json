@@ -1,0 +1,12 @@
+{
+  "NS_Uni_WaterMist": {
+    "WaterMist": {
+      "emitter_update": {
+        "ProximityDriver": {
+          "type": "ModuleScript",
+          "source": "MPC_ScalarParameterCollection = Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette';\nfloat Proximity = MPC_ScalarParameterCollection.GetScalarParameterValue('PlayerProximity');\nProximitySpawnRateMultiplier = 1.0 + (1.0 - Proximity) * 4.0;"
+        }
+      }
+    }
+  }
+}

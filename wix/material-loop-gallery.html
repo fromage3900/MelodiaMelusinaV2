@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-page="material-loop-gallery">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Material Loop Gallery | Brennan Shepherd</title>
+<meta name="description" content="Animated material instance loops — studio PP, pillar backdrops, profile-based swatch staging on M_Master_Toon_Universal." />
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-fashion-editorial.css">
+<link rel="stylesheet" href="melodia-premium-system.css">
+<style>
+.mi-group { margin-bottom: 54px; }
+.mi-group:last-child { margin-bottom: 0; }
+.mi-grid { grid-template-columns: repeat(3, 1fr); }
+.mi-loop-tile video,
+.loop-hero-card video {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: rgba(8, 11, 19, 0.55);
+}
+.loop-pending-swatch {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, rgba(24, 18, 32, 0.9), rgba(48, 32, 52, 0.75));
+  border: 1px dashed rgba(201, 168, 106, 0.35);
+}
+.loop-pending { opacity: 0.82; }
+.mi-loop-tile h3,
+.loop-hero-card h3 {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.loop-hero-card { max-width: 520px; margin: 0 auto 28px; }
+@media (max-width: 1080px) { .mi-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 680px) { .mi-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="melodia-shell fashion-mode" data-mg="chrome" data-hero="editorial" data-effects="starfield,holo">
+<header class="shell-nav" aria-label="Portfolio navigation">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="shader-breakdowns.html">Shaders</a>
+    <a href="sdf-material-gallery.html">MI Spheres</a>
+    <a href="render-constellation.html">Intake</a>
+    <a href="world-bible.html">Worlds</a>
+  </nav>
+  <a class="nav-cta button-premium" href="../generated/material_loops_manifest.json">Manifest</a>
+</header>
+<main>
+<section class="hero has-editorial-frame" aria-labelledby="page-title">
+  <div class="hero-media" aria-hidden="true"><img src="../generated/assets/nightshift/grid_nikki_heroes.png" alt="Nikki hero material preview grid" /></div>
+  <div class="hero-inner">
+    <p class="kicker magazine-kicker premium-kicker">Material preview studio</p>
+    <h1 id="page-title">Loops that show iridescence moving.</h1>
+    <p class="lede">L_MaterialPreview_Studio captures — frozen NikkiDream PP, pillar cyclorama backdrops, and profile-routed swatch meshes. The pipeline runs in batches of 3 per night; run <code>Tools\publish_material_loops.ps1</code> and walk away.</p>
+    <div class="button-row">
+      <a class="button primary button-premium-primary" href="shader-breakdowns.html">Shader breakdowns</a>
+      <a class="button button-premium" href="sdf-material-gallery.html">Legacy MI spheres</a>
+      <a class="button button-premium" href="world-bible.html">World bible</a>
+    </div>
+  </div>
+</section>
+
+<section class="band paper fashion-band">
+  <div class="inner">
+    <div class="editorial-rule"><span class="diamond" aria-hidden="true"></span><span>Hero validation</span><span class="diamond" aria-hidden="true"></span></div>
+    <div class="section-head"><div><h2>MI_ZenTrim_FlowersLots</h2></div><p>Sakura trimsheet with layer B flower density — the proof loop for roughness and iridescence reads.</p></div>
+    <div id="miLoopHero" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="band astral fashion-band">
+  <div class="section-orrery atelier-slot" data-orrery="atelier" aria-hidden="true"></div>
+  <div class="inner" id="miLoopGallery" aria-live="polite"></div>
+</section>
+</main>
+<footer class="footer"><div class="inner"><span data-copy="global.footer.left">Brennan Shepherd / Environment & Technical Artist</span><span data-copy="global.footer.right">Melodia editorial portfolio</span></div></footer>
+</div>
+<script src="melodia-orrery-system.js"></script>
+<script src="melodia-planetarium.js"></script>
+<script src="melodia-cosmic-instruments.js"></script>
+<script src="melodia-magical-girl.js"></script>
+<script src="melodia-starfield.js"></script>
+<script src="melodia-dream-shaders.js"></script>
+<script src="melodia-editorial.js"></script>
+<script>MelodiaEditorial.init({ materialLoopGallery: true });</script>
+</body>
+</html>

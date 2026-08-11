@@ -1,0 +1,14 @@
+{
+  "source_id": "CW_01_StarWeaver",
+  "source_type": "vroid_studio",
+  "archetype": "CosmicWeaver",
+  "filename": "CW_01_StarWeaver.vrm",
+  "author": "Melodia Team (VRoid Studio)",
+  "license": "vroid_studio_tos",
+  "commercial_ok": true,
+  "body_type": "tall",
+  "base_hair_color": "#6E5AA6",
+  "base_eye_color": "#A99AD0",
+  "expression_presets": ["mystical", "knowing_smile", "contemplative", "stargazing"],
+  "notes": "Create in VRoid Studio: tall female, amethyst hair, lavender eyes, star-weaver robes. Export as VRM 1.0."
+}

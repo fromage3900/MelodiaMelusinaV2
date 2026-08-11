@@ -1,0 +1,461 @@
+{
+  "archetypes": {
+    "SakuraDreamer": {
+      "id": "SakuraDreamer",
+      "display_name": "Sakura Dreamer",
+      "description": "Floral support archetype \u2014 petal motifs, flowing sleeves, cherry blossom palette. Healer/buffer in battle.",
+      "role": "Support",
+      "element": "Radiant",
+      "count": 4,
+      "bpm": 128.0,
+      "palette_name": "SakuraDreamer",
+      "body_types": [
+        "petite",
+        "standard",
+        "willowy"
+      ],
+      "outfit_pieces": [
+        "kimono_sleeve_top",
+        "hakama_skirt",
+        "petal_hair_ribbon"
+      ],
+      "optional_accessories": [
+        "falling_petal_accessory"
+      ],
+      "battle_archetype_id": "Enemy_SakuraDreamer",
+      "enemy_def_overrides": {
+        "MaxHP": 140.0,
+        "MaxToughness": 28.0,
+        "BaseDamage": 10.0,
+        "Speed": 85,
+        "Element": "Radiant",
+        "BPMOverride": 128.0,
+        "MeshScale": 1.1
+      },
+      "spawn_zones": [
+        "SakuraGrove",
+        "HealingShrine",
+        "PetalPlaza",
+        "DreamGarden"
+      ],
+      "schedule": {
+        "day": 0.7,
+        "night": 0.3,
+        "rain": 0.1,
+        "clear": 0.9
+      },
+      "affinity_rewards": {
+        "1": "PetalHairRibbon_ColorVariant",
+        "3": "KimonoSleeve_PatternUnlock",
+        "5": "HakamaSkirt_GradientDye",
+        "10": "Exclusive_Pose_PetalDance"
+      }
+    },
+    "CosmicWeaver": {
+      "id": "CosmicWeaver",
+      "display_name": "Cosmic Weaver",
+      "description": "Stellar controller archetype \u2014 star-field fabric, constellation jewelry, iridescent violet-blue. Buff/debuffer in battle.",
+      "role": "Controller",
+      "element": "Arcane",
+      "count": 3,
+      "bpm": 144.0,
+      "palette_name": "CosmicWeaver",
+      "body_types": [
+        "tall",
+        "willowy"
+      ],
+      "outfit_pieces": [
+        "stellar_cape",
+        "constellation_corset",
+        "orbital_hair_ornaments"
+      ],
+      "optional_accessories": [
+        "cosmic_gloves"
+      ],
+      "battle_archetype_id": "Enemy_CosmicWeaver",
+      "enemy_def_overrides": {
+        "MaxHP": 200.0,
+        "MaxToughness": 80.0,
+        "BaseDamage": 12.0,
+        "Speed": 70,
+        "Element": "Arcane",
+        "BPMOverride": 144.0,
+        "MeshScale": 1.3
+      },
+      "spawn_zones": [
+        "StarObservatory",
+        "CosmicLibrary",
+        "VoidLoom",
+        "AstralNexus"
+      ],
+      "schedule": {
+        "day": 0.3,
+        "night": 0.9,
+        "rain": 0.5,
+        "clear": 0.8,
+        "meteor_shower": 1.0
+      },
+      "affinity_rewards": {
+        "1": "OrbitalHairOrnament_ColorVariant",
+        "3": "StellarCape_StarDensity",
+        "5": "ConstellationCorset_PatternUnlock",
+        "10": "Exclusive_Pose_StarWeaving"
+      }
+    },
+    "MirageDancer": {
+      "id": "MirageDancer",
+      "display_name": "Mirage Dancer",
+      "description": "Twilight evasion archetype \u2014 gradient fabrics, trailing ribbons, gold-accented aurora palette. High-mobility DPS in battle.",
+      "role": "DPS",
+      "element": "Gale",
+      "count": 3,
+      "bpm": 180.0,
+      "palette_name": "MirageDancer",
+      "body_types": [
+        "willowy",
+        "standard",
+        "athletic"
+      ],
+      "outfit_pieces": [
+        "asymmetric_gradient_dress",
+        "wind_torn_scarf",
+        "ankle_bells"
+      ],
+      "optional_accessories": [
+        "trailing_ribbons"
+      ],
+      "battle_archetype_id": "Enemy_MirageDancer",
+      "enemy_def_overrides": {
+        "MaxHP": 90.0,
+        "MaxToughness": 30.0,
+        "BaseDamage": 18.0,
+        "Speed": 120,
+        "Element": "Gale",
+        "BPMOverride": 180.0,
+        "MeshScale": 0.95
+      },
+      "spawn_zones": [
+        "TwilightDunes",
+        "WindTemple",
+        "MirageOasis",
+        "ZephyrPeak"
+      ],
+      "schedule": {
+        "day": 0.6,
+        "night": 0.8,
+        "rain": 0.2,
+        "clear": 1.0,
+        "windy": 1.0
+      },
+      "affinity_rewards": {
+        "1": "AnkleBells_ToneVariant",
+        "3": "WindTornScarf_LengthVariant",
+        "5": "GradientDress_ColorShiftUnlock",
+        "10": "Exclusive_Pose_ZephyrDance"
+      }
+    }
+  },
+  "outfit_pieces": {
+    "kimono_sleeve_top": {
+      "slot_name": "Torso",
+      "display_name": "Kimono Sleeve Top",
+      "skeletal_mesh": "SakuraDreamer/SK_KimonoSleeveTop",
+      "material_slot": "Torso",
+      "cloth_config": {
+        "mobile": {
+          "enabled": false,
+          "baked_anim": true
+        },
+        "pc": {
+          "enabled": true,
+          "solver": "Chaos",
+          "iterations": 8
+        }
+      },
+      "compatible_archetypes": [
+        "SakuraDreamer"
+      ],
+      "required_by_archetype": [
+        "SakuraDreamer"
+      ]
+    },
+    "hakama_skirt": {
+      "slot_name": "Legs",
+      "display_name": "Hakama Skirt",
+      "skeletal_mesh": "SakuraDreamer/SK_HakamaSkirt",
+      "material_slot": "Legs",
+      "cloth_config": {
+        "mobile": {
+          "enabled": true,
+          "solver": "DistanceConstraint",
+          "chains": 2,
+          "iterations": 4
+        },
+        "pc": {
+          "enabled": true,
+          "solver": "Chaos",
+          "iterations": 12,
+          "self_collision": true
+        }
+      },
+      "compatible_archetypes": [
+        "SakuraDreamer"
+      ],
+      "required_by_archetype": [
+        "SakuraDreamer"
+      ]
+    },
+    "petal_hair_ribbon": {
+      "slot_name": "Head",
+      "display_name": "Petal Hair Ribbon",
+      "skeletal_mesh": "SakuraDreamer/SK_PetalHairRibbon",
+      "material_slot": "Hair",
+      "cloth_config": {
+        "mobile": {
+          "enabled": true,
+          "solver": "VRMSpringBone",
+          "stiffness": 0.8
+        },
+        "pc": {
+          "enabled": true,
+          "solver": "VRMSpringBone",
+          "stiffness": 0.6
+        }
+      },
+      "compatible_archetypes": [
+        "SakuraDreamer"
+      ],
+      "required_by_archetype": []
+    },
+    "falling_petal_accessory": {
+      "slot_name": "Back",
+      "display_name": "Falling Petal Accessory",
+      "skeletal_mesh": "SakuraDreamer/SK_FallingPetalAccessory",
+      "material_slot": "Back",
+      "cloth_config": {
+        "mobile": {
+          "enabled": false
+        },
+        "pc": {
+          "enabled": true,
+          "particle_system": true
+        }
+      },
+      "compatible_archetypes": [
+        "SakuraDreamer"
+      ],
+      "required_by_archetype": []
+    },
+    "stellar_cape": {
+      "slot_name": "Back",
+      "display_name": "Stellar Cape",
+      "skeletal_mesh": "CosmicWeaver/SK_StellarCape",
+      "material_slot": "Back",
+      "cloth_config": {
+        "mobile": {
+          "enabled": true,
+          "solver": "DistanceConstraint",
+          "chains": 3,
+          "iterations": 4
+        },
+        "pc": {
+          "enabled": true,
+          "solver": "Chaos",
+          "iterations": 16,
+          "wind_field": true
+        }
+      },
+      "compatible_archetypes": [
+        "CosmicWeaver"
+      ],
+      "required_by_archetype": [
+        "CosmicWeaver"
+      ]
+    },
+    "constellation_corset": {
+      "slot_name": "Torso",
+      "display_name": "Constellation Corset",
+      "skeletal_mesh": "CosmicWeaver/SK_ConstellationCorset",
+      "material_slot": "Torso",
+      "cloth_config": {
+        "mobile": {
+          "enabled": false
+        },
+        "pc": {
+          "enabled": false
+        }
+      },
+      "compatible_archetypes": [
+        "CosmicWeaver"
+      ],
+      "required_by_archetype": [
+        "CosmicWeaver"
+      ]
+    },
+    "orbital_hair_ornaments": {
+      "slot_name": "Head",
+      "display_name": "Orbital Hair Ornaments",
+      "skeletal_mesh": "CosmicWeaver/SK_OrbitalHairOrnaments",
+      "material_slot": "Hair",
+      "cloth_config": {
+        "mobile": {
+          "enabled": true,
+          "solver": "VRMSpringBone",
+          "stiffness": 0.9
+        },
+        "pc": {
+          "enabled": true,
+          "solver": "VRMSpringBone",
+          "stiffness": 0.7
+        }
+      },
+      "compatible_archetypes": [
+        "CosmicWeaver"
+      ],
+      "required_by_archetype": []
+    },
+    "cosmic_gloves": {
+      "slot_name": "Arms",
+      "display_name": "Cosmic Gloves",
+      "skeletal_mesh": "CosmicWeaver/SK_CosmicGloves",
+      "material_slot": "Arms",
+      "cloth_config": {
+        "mobile": {
+          "enabled": false
+        },
+        "pc": {
+          "enabled": false
+        }
+      },
+      "compatible_archetypes": [
+        "CosmicWeaver"
+      ],
+      "required_by_archetype": []
+    },
+    "asymmetric_gradient_dress": {
+      "slot_name": "Torso",
+      "display_name": "Asymmetric Gradient Dress",
+      "skeletal_mesh": "MirageDancer/SK_AsymmetricGradientDress",
+      "material_slot": "Torso",
+      "cloth_config": {
+        "mobile": {
+          "enabled": true,
+          "solver": "DistanceConstraint",
+          "chains": 2,
+          "iterations": 4
+        },
+        "pc": {
+          "enabled": true,
+          "solver": "Chaos",
+          "iterations": 12
+        }
+      },
+      "compatible_archetypes": [
+        "MirageDancer"
+      ],
+      "required_by_archetype": [
+        "MirageDancer"
+      ]
+    },
+    "wind_torn_scarf": {
+      "slot_name": "Neck",
+      "display_name": "Wind-Torn Scarf",
+      "skeletal_mesh": "MirageDancer/SK_WindTornScarf",
+      "material_slot": "Neck",
+      "cloth_config": {
+        "mobile": {
+          "enabled": true,
+          "solver": "VRMSpringBone",
+          "stiffness": 0.5
+        },
+        "pc": {
+          "enabled": true,
+          "solver": "Chaos",
+          "iterations": 10,
+          "wind_field": true
+        }
+      },
+      "compatible_archetypes": [
+        "MirageDancer"
+      ],
+      "required_by_archetype": []
+    },
+    "ankle_bells": {
+      "slot_name": "Feet",
+      "display_name": "Ankle Bells",
+      "skeletal_mesh": "MirageDancer/SK_AnkleBells",
+      "material_slot": "Feet",
+      "cloth_config": {
+        "mobile": {
+          "enabled": false
+        },
+        "pc": {
+          "enabled": false
+        }
+      },
+      "compatible_archetypes": [
+        "MirageDancer"
+      ],
+      "required_by_archetype": []
+    },
+    "trailing_ribbons": {
+      "slot_name": "Back",
+      "display_name": "Trailing Ribbons",
+      "skeletal_mesh": "MirageDancer/SK_TrailingRibbons",
+      "material_slot": "Back",
+      "cloth_config": {
+        "mobile": {
+          "enabled": true,
+          "solver": "VRMSpringBone",
+          "stiffness": 0.4,
+          "chains": 4
+        },
+        "pc": {
+          "enabled": true,
+          "solver": "Chaos",
+          "iterations": 14,
+          "wind_field": true
+        }
+      },
+      "compatible_archetypes": [
+        "MirageDancer"
+      ],
+      "required_by_archetype": []
+    }
+  },
+  "enemy_definitions": {
+    "Enemy_SakuraDreamer": {
+      "EnemyId": "Enemy_SakuraDreamer",
+      "DisplayName": "Sakura Dreamer (Battle Form)",
+      "MaxHP": 140.0,
+      "MaxToughness": 28.0,
+      "BaseDamage": 10.0,
+      "Speed": 85,
+      "Element": "Radiant",
+      "BPMOverride": 128.0,
+      "MeshScale": 1.1
+    },
+    "Enemy_CosmicWeaver": {
+      "EnemyId": "Enemy_CosmicWeaver",
+      "DisplayName": "Cosmic Weaver (Battle Form)",
+      "MaxHP": 200.0,
+      "MaxToughness": 80.0,
+      "BaseDamage": 12.0,
+      "Speed": 70,
+      "Element": "Arcane",
+      "BPMOverride": 144.0,
+      "MeshScale": 1.3
+    },
+    "Enemy_MirageDancer": {
+      "EnemyId": "Enemy_MirageDancer",
+      "DisplayName": "Mirage Dancer (Battle Form)",
+      "MaxHP": 90.0,
+      "MaxToughness": 30.0,
+      "BaseDamage": 18.0,
+      "Speed": 120,
+      "Element": "Gale",
+      "BPMOverride": 180.0,
+      "MeshScale": 0.95
+    }
+  }
+}

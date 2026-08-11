@@ -1,0 +1,25 @@
+{
+  "id": "romanesque_apse_v1",
+  "family": "Romanesque",
+  "verticality": 0.78,
+  "symmetry": 0.92,
+  "ornament_density": 0.6,
+  "structural_logic": 0.92,
+  "organic_growth": 0.15,
+  "cosmic_influence": 0.25,
+  "sacred_sequence": [],
+  "compose_style": "ROMANESQUE_APSE",
+  "default_graph": "ROMANESQUE_APSE",
+  "grammar_id": "ROMANESQUE_APSE",
+  "surreal_transform": "recursive_interior",
+  "compose_roles": {
+    "sacred": "_lib_GB_ROMANESQUE_APSE",
+    "large": "_lib_BELL_TOWER",
+    "gate": "_lib_GATEHOUSE"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "material_choice": "STONE",
+    "unit_size": 3.2
+  }
+}

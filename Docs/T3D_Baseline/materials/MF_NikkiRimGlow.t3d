@@ -1,0 +1,186 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_NikkiRimGlow" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionSaturate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPower Name="MaterialExpressionPower_0" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionPower_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFresnel Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFresnel_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_NikkiRimGlowEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MF_NikkiRimGlowEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionSaturate_0'"
+      MaterialExpressionEditorX=-780
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=2B9EA1D54289B52945A899B3CE1B73CD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionPower_0" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionPower_0'"
+      Base=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFresnel_0'")
+      Exponent=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_4'")
+      MaterialExpressionEditorX=-980
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=657B6AC64FEAD352B0CC0CA73A3A0794
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=DA3DE2744E7023710F65888A26091437
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_6'")
+      MaterialExpressionEditorX=-580
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=FBAC4DCD449C253504883A84E991707C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_0'")
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=AD61CBC44AA936EB21696CBF6E6F1A5D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionSaturate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_3'")
+      MaterialExpressionEditorX=-580
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=CD8F955F4B61CAF9AAD5B1A45DF7590F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionOutput_0'"
+      OutputName="Color"
+      Id=E265D1A54BDA9A9F8C00D0B0D70F1A65
+      MaterialExpressionEditorX=200
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=5CE8F2E745A5C1CC4F4DF0A944226B5B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_6'"
+      InputName="BloomBoost"
+      Id=B3A6073B4F189660F81A929F3C76F53E
+      InputType=FunctionInput_Scalar
+      SortPriority=6
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=960
+      MaterialExpressionGuid=9E73580042AA937840249E905FB40C7B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_5'"
+      InputName="GlowIntensity"
+      Id=C06279D34B8362887A3329B58CFEB5AB
+      InputType=FunctionInput_Scalar
+      SortPriority=5
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=800
+      MaterialExpressionGuid=8058ED414495292E9802A2AAA89A85C9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_4'"
+      InputName="RimWidth"
+      Id=2E32B6AF4B0FE43FEB32DB956B3A1E90
+      InputType=FunctionInput_Scalar
+      SortPriority=4
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=640
+      MaterialExpressionGuid=688D72F24740E335C115AB8EF608CD97
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_3'"
+      InputName="RimIntensity"
+      Id=45246EB644999A83A640219FFD998ACF
+      InputType=FunctionInput_Scalar
+      SortPriority=3
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=7F89F2A34649578D2CE4C9BA07F79D70
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_2'"
+      InputName="RimColor"
+      Id=E9AA2EA54683AD45375D90882066D300
+      SortPriority=2
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=0B747D304B9CD0156B5538AEB5F06447
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_1'"
+      InputName="Normal"
+      Id=B1A907934ECD7D78A6854CAA9E64CD43
+      SortPriority=1
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=F1A2251E442EA9CFFF9FBDADB23C98AD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_0'"
+      InputName="BaseColor"
+      Id=A1BF569745BAF3F1B59B369C56D2296E
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionGuid=426859364651D4B8A8F4D7BB22B1EF28
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFresnel_0'"
+      Normal=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_1'")
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=00E995E544B8D6AB417EBF8180864030
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionAdd_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_3'")
+      MaterialExpressionEditorX=20
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=63E1BBA74AB31D7B417D33AD5C7EC910
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_1'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=1CBBFE0D4E518BFC8C8C22BA66656548
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow'"
+   End Object
+   Begin Object Name="MF_NikkiRimGlowEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MF_NikkiRimGlowEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_3'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_4'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_5'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionInput_6'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFresnel_0'","/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionPower_0'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MaterialExpressionFunctionOutput_0'"))
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow.MF_NikkiRimGlow:MF_NikkiRimGlowEditorOnlyData'"
+   StateId=FA05303B475379ACE01F0CB50B53A7A5
+   CombinedInputTypes=15
+End Object

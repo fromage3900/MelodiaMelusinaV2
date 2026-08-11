@@ -1,0 +1,372 @@
+/* Melodia editorial polish — divider variants, ivory surfaces, passport alignment */
+
+:root {
+  --ivory-50: #fff8ee;
+  --ivory-100: #f8ecd6;
+  --ivory-200: #f3e6c8;
+  --ivory-ink: #241b2e;
+  --ivory-muted: #5a4f62;
+  --ivory-gold: #c9a86a;
+  --ivory-gold-bright: #ddc79b;
+  --ivory-line: rgba(201, 168, 106, 0.48);
+  --ivory-mg-rose: rgba(255, 110, 180, 0.08);
+  --ivory-mg-iris: rgba(180, 140, 255, 0.07);
+  --divider-astral: "·͙*̩̩͙˚̩̥̩̥*̩̩̥͙　✩　*̩̩̥͙˚̩̥̩̥*̩̩͙‧͙";
+  --divider-diamond: "◇─◇──◇─◇";
+  --divider-pipes: "┊ ⋆ ┊ . ┊ ┊";
+  --divider-pipes-dot: "┊ ┊⋆ ┊ .";
+  --divider-pipes-spark: "┊ ┊ ⋆˚ ⁭ ✧. ┊ ⁭ ⁭ ⁭ ⁭";
+}
+
+/* ——— Divider glyph variants ——— */
+.editorial-rhythm-divider,
+.viz-rule,
+.nikki-spark-rule,
+.editorial-rule,
+.melodia-divider {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
+}
+
+.editorial-rhythm-divider[data-divider="astral"] .glyph,
+.viz-rule[data-divider="astral"] .glyph,
+.melodia-divider[data-divider="astral"] {
+  letter-spacing: 0.12em;
+  text-transform: none;
+  font-size: 0.82rem;
+}
+
+.editorial-rhythm-divider[data-divider="diamond"] .glyph,
+.viz-rule[data-divider="diamond"] .glyph,
+.melodia-divider[data-divider="diamond"] {
+  letter-spacing: 0.22em;
+  text-transform: none;
+  color: rgba(201, 168, 106, 0.85);
+}
+
+.editorial-rhythm-divider[data-divider^="pipes"] .glyph,
+.viz-rule[data-divider^="pipes"] .glyph,
+.nikki-spark-rule[data-divider^="pipes"],
+.melodia-divider[data-divider^="pipes"] {
+  letter-spacing: 0.18em;
+  text-transform: none;
+  font-size: 0.78rem;
+  color: rgba(236, 234, 244, 0.62);
+  opacity: 0.92;
+}
+
+.nikki-spark-rule[data-divider] {
+  justify-content: center;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.nikki-spark-rule[data-divider] .spark {
+  font-family: var(--font-mono, "Azeret Mono", monospace);
+  letter-spacing: 0.12em;
+  white-space: pre;
+  color: rgba(221, 199, 155, 0.78);
+  opacity: 0.9;
+}
+
+.editorial-rule[data-divider] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.editorial-rule[data-divider] .diamond.glyph-flank {
+  width: auto;
+  height: auto;
+  background: none;
+  border: 0;
+  transform: none;
+  font-family: var(--font-mono, "Azeret Mono", monospace);
+  letter-spacing: 0.12em;
+  white-space: pre;
+  font-size: 0.72rem;
+  color: rgba(221, 199, 155, 0.78);
+}
+
+/* ——— Sparse ivory reading surfaces (overrides night paper) ——— */
+.melodia-shell .band.ivory,
+.melodia-shell .band.paper[data-surface="ivory"],
+.melodia-shell .band.cloud[data-surface="ivory"] {
+  background:
+    radial-gradient(ellipse 70% 55% at 12% 8%, var(--ivory-mg-rose), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 92% 12%, var(--ivory-mg-iris), transparent 52%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(201, 168, 106, 0.12), transparent 62%),
+    linear-gradient(180deg, var(--ivory-50) 0%, var(--ivory-100) 46%, var(--ivory-200) 100%) !important;
+  color: var(--ivory-ink) !important;
+  box-shadow: inset 0 0 80px rgba(201, 168, 106, 0.06);
+}
+
+.melodia-shell .band.ivory::before,
+.melodia-shell .band.paper[data-surface="ivory"]::before {
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ivory-gold-bright), var(--ivory-line), var(--ivory-gold-bright), transparent);
+  margin-bottom: -1px;
+}
+
+.melodia-shell .band.ivory h1,
+.melodia-shell .band.ivory h2,
+.melodia-shell .band.ivory h3,
+.melodia-shell .band.ivory strong,
+.melodia-shell .band.paper[data-surface="ivory"] h1,
+.melodia-shell .band.paper[data-surface="ivory"] h2,
+.melodia-shell .band.paper[data-surface="ivory"] h3,
+.melodia-shell .band.paper[data-surface="ivory"] strong,
+.melodia-shell .band.cloud[data-surface="ivory"] h2,
+.melodia-shell .band.cloud[data-surface="ivory"] h3,
+.melodia-shell .band.cloud[data-surface="ivory"] strong {
+  color: var(--ivory-ink) !important;
+}
+
+.melodia-shell .band.ivory p,
+.melodia-shell .band.ivory .human-lede,
+.melodia-shell .band.ivory .body-copy,
+.melodia-shell .band.paper[data-surface="ivory"] p,
+.melodia-shell .band.paper[data-surface="ivory"] .human-lede,
+.melodia-shell .band.cloud[data-surface="ivory"] p {
+  color: var(--ivory-muted) !important;
+}
+
+.melodia-shell .band.ivory .eyebrow,
+.melodia-shell .band.ivory .magazine-kicker,
+.melodia-shell .band.ivory .nikki-ribbon,
+.melodia-shell .band.paper[data-surface="ivory"] .eyebrow,
+.melodia-shell .band.paper[data-surface="ivory"] .magazine-kicker,
+.melodia-shell .band.cloud[data-surface="ivory"] .eyebrow {
+  /* Keep iridescent clip — do not force solid ivory-gold (kills Figma type motion) */
+  background: linear-gradient(
+    100deg,
+    var(--ivory-gold, #c9a86a) 0%,
+    var(--iri-cyan, #66d9ff) 42%,
+    var(--iri-purple, #cc99ff) 70%,
+    var(--ivory-gold, #c9a86a) 100%
+  ) !important;
+  background-size: 220% 220% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  animation: dream-iri-softmg 2.4s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 8px rgba(201, 168, 106, 0.35));
+}
+
+.melodia-shell .band.ivory .viz-rule .glyph,
+.melodia-shell .band.ivory .editorial-rhythm-divider,
+.melodia-shell .band.ivory .editorial-rhythm-divider .glyph,
+.melodia-shell .band.ivory .nikki-spark-rule,
+.melodia-shell .band.paper[data-surface="ivory"] .viz-rule .glyph,
+.melodia-shell .band.paper[data-surface="ivory"] .nikki-spark-rule {
+  color: rgba(70, 58, 84, 0.72) !important;
+}
+
+.melodia-shell .band.ivory .nikki-spark-rule[data-divider] .spark,
+.melodia-shell .band.paper[data-surface="ivory"] .nikki-spark-rule[data-divider] .spark,
+.melodia-shell .band.ivory .editorial-rule[data-divider] .diamond.glyph-flank,
+.melodia-shell .band.paper[data-surface="ivory"] .editorial-rule[data-divider] .diamond.glyph-flank {
+  color: rgba(201, 168, 106, 0.95);
+  text-shadow: 0 0 10px rgba(221, 199, 155, 0.35);
+}
+
+.melodia-shell .band.ivory .viz-link,
+.melodia-shell .band.paper[data-surface="ivory"] .viz-link {
+  color: var(--ivory-gold) !important;
+}
+
+.melodia-shell .band.ivory .card,
+.melodia-shell .band.ivory .premium-card,
+.melodia-shell .band.ivory .guide-card,
+.melodia-shell .band.paper[data-surface="ivory"] .premium-card,
+.melodia-shell .band.paper[data-surface="ivory"] .guide-card,
+.melodia-shell .band.cloud[data-surface="ivory"] .guide-card {
+  border-color: rgba(201, 168, 106, 0.55) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 248, 238, 0.82) 0%, rgba(255, 255, 255, 0.62) 55%, rgba(243, 230, 200, 0.5) 100%) !important;
+  color: var(--ivory-ink);
+  box-shadow:
+    0 0 0 1px rgba(221, 199, 155, 0.28),
+    0 10px 28px rgba(36, 27, 46, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  position: relative;
+}
+
+.melodia-shell .band.ivory .card::after,
+.melodia-shell .band.ivory .premium-card::after,
+.melodia-shell .band.ivory .guide-card::after,
+.melodia-shell .band.paper[data-surface="ivory"] .premium-card::after,
+.melodia-shell .band.paper[data-surface="ivory"] .guide-card::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 100% 0%, var(--ivory-mg-rose), transparent 70%),
+    linear-gradient(225deg, rgba(201, 168, 106, 0.45), transparent 60%);
+  border-radius: 0 0 0 18px;
+  opacity: 0.85;
+}
+
+.melodia-shell .band.ivory .guide-card > span,
+.melodia-shell .band.ivory .guide-card > b,
+.melodia-shell .band.paper[data-surface="ivory"] .guide-card > span,
+.melodia-shell .band.paper[data-surface="ivory"] .guide-card > b,
+.melodia-shell .band.cloud[data-surface="ivory"] .guide-card > span,
+.melodia-shell .band.cloud[data-surface="ivory"] .guide-card > b {
+  color: var(--ivory-gold) !important;
+}
+
+.melodia-shell .band.ivory .guide-card p,
+.melodia-shell .band.paper[data-surface="ivory"] .guide-card p,
+.melodia-shell .band.cloud[data-surface="ivory"] .guide-card p {
+  color: var(--ivory-muted) !important;
+}
+
+.melodia-shell .band.ivory .skill-cloud span,
+.melodia-shell .band.paper[data-surface="ivory"] .skill-cloud span {
+  border-color: var(--ivory-line);
+  color: var(--ivory-ink);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* ——— Asset Passport editorial alignment ——— */
+.pp-banner,
+.stage-passport-fallback,
+.passport-card,
+.passport-inline {
+  font-variant-numeric: tabular-nums;
+}
+
+.pp-banner-head,
+.passport-head,
+.stage-passport-fallback .pp-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono, "Azeret Mono", monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.pp-title,
+.passport-title,
+.stage-passport-fallback .pp-title {
+  font-family: var(--font-display, "Instrument Serif", Georgia, serif);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+}
+
+.pp-banner-specs > div,
+.passport-row,
+.stage-passport-fallback .pp-row {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 38%) 1fr;
+  align-items: baseline;
+  gap: 12px 16px;
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono, "Azeret Mono", monospace);
+  font-size: 0.72rem;
+}
+
+.pp-banner-specs dt,
+.passport-row > span:first-child,
+.stage-passport-fallback .pp-row span:first-child {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.78;
+}
+
+.pp-banner-specs dd,
+.passport-row > strong,
+.passport-row > *:last-child,
+.stage-passport-fallback .pp-row span:last-child {
+  margin: 0;
+  text-align: right;
+  justify-self: end;
+  color: inherit;
+  font-weight: 500;
+}
+
+.passport-card.light {
+  background: rgba(252, 251, 248, 0.94);
+  color: var(--ivory-ink);
+  border-color: var(--ivory-line);
+}
+
+.passport-card.light .passport-head,
+.passport-card.light .passport-row > span:first-child {
+  color: var(--ivory-gold);
+}
+
+.passport-card.light .passport-title,
+.passport-card.light .passport-row strong {
+  color: var(--ivory-ink);
+}
+
+.passport-card.light .passport-row {
+  border-top-color: rgba(36, 27, 46, 0.08);
+}
+
+.passport-grid {
+  align-items: stretch;
+}
+
+.passport-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.passport-cell .meta-label {
+  font-family: var(--font-mono, "Azeret Mono", monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.hero-passport-banner .pp-banner {
+  max-width: 100%;
+}
+
+.hero-passport-banner .pp-title {
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+}
+
+.stage-passport-mount iframe,
+.stage-passport-mount .passport-inline,
+.stage-passport-fallback {
+  margin-inline: 0;
+  width: 100%;
+  max-width: 380px;
+}
+
+@media (max-width: 720px) {
+  .pp-banner-specs > div,
+  .passport-row,
+  .stage-passport-fallback .pp-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .pp-banner-specs dd,
+  .passport-row > strong,
+  .passport-row > *:last-child,
+  .stage-passport-fallback .pp-row span:last-child {
+    text-align: left;
+    justify-self: start;
+  }
+}

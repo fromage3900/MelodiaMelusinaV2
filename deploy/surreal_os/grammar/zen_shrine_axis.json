@@ -1,0 +1,17 @@
+{
+  "id": "ZEN_SHRINE_AXIS",
+  "label": "Zen Shrine Axis",
+  "description": "Torii, sando approach, kairo cloister, karesansui, machiai",
+  "style": "zen",
+  "modules": [
+    {"arch_type": "GB_ZEN_TORII_GATE", "overrides": {"torii_width": 3.6, "torii_height": 4.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_SANDO", "overrides": {"gb_length": 8.0, "gb_width": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_SANDO", "overrides": {"gb_length": 6.0, "gb_width": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_KAIRO", "overrides": {"gb_length": 6.0, "gb_width": 2.4, "gb_height": 2.8, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_KARESANSUI", "overrides": {"gb_width": 8.0, "gb_depth": 6.0, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_HAIDEN", "overrides": {"gb_width": 5.0, "gb_depth": 4.0, "gb_height": 3.2, "zen_genkan_rise": 0.45, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_HONDEN", "overrides": {"gb_width": 5.5, "gb_depth": 4.5, "gb_height": 3.6, "zen_honden_platform_rise": 0.55, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_MACHIAI", "overrides": {"gb_width": 3.2, "gb_depth": 2.4, "gb_height": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_LANTERN", "overrides": {"zen_lantern_height": 1.5, "zen_lantern_style": "KASUGA", "gb_trim_mode": "RECESS"}}
+  ]
+}

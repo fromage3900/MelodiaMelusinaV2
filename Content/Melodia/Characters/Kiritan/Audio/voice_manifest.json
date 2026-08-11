@@ -1,0 +1,111 @@
+{
+  "character": "Kiritan",
+  "speaker_id": 5,
+  "voice_style": "ノーマル",
+  "total": 20,
+  "generated": 0,
+  "cached": 20,
+  "errors": 0,
+  "lines": [
+    {
+      "id": "kir_first_meet_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_first_meet_01.wav"
+    },
+    {
+      "id": "kir_first_meet_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_first_meet_02.wav"
+    },
+    {
+      "id": "kir_forge_intro_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_forge_intro_01.wav"
+    },
+    {
+      "id": "kir_upgrade_complete_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_upgrade_complete_01.wav"
+    },
+    {
+      "id": "kir_upgrade_material_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_upgrade_material_01.wav"
+    },
+    {
+      "id": "kir_quest_blade_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_quest_blade_01.wav"
+    },
+    {
+      "id": "kir_quest_training_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_quest_training_01.wav"
+    },
+    {
+      "id": "kir_quest_sister_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_quest_sister_01.wav"
+    },
+    {
+      "id": "kir_bond_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_bond_01.wav"
+    },
+    {
+      "id": "kir_bond_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_bond_02.wav"
+    },
+    {
+      "id": "kir_idle_forge_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_idle_forge_01.wav"
+    },
+    {
+      "id": "kir_idle_practice_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_idle_practice_01.wav"
+    },
+    {
+      "id": "kir_idle_eating_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_idle_eating_01.wav"
+    },
+    {
+      "id": "kir_party_join_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_party_join_01.wav"
+    },
+    {
+      "id": "kir_battle_attack_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_battle_attack_01.wav"
+    },
+    {
+      "id": "kir_battle_crit_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_battle_crit_01.wav"
+    },
+    {
+      "id": "kir_late_truth_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_late_truth_01.wav"
+    },
+    {
+      "id": "kir_late_truth_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_late_truth_02.wav"
+    },
+    {
+      "id": "kir_ending_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_ending_01.wav"
+    },
+    {
+      "id": "kir_goodbye_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\kir_goodbye_01.wav"
+    }
+  ]
+}

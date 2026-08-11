@@ -1,0 +1,694 @@
+Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Unified" ExportPath="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionWorldPosition_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVertexNormalWS Name="MaterialExpressionVertexNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVertexNormalWS_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_2" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionTextureSampleParameter2D_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_1" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionTextureSampleParameter2D_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_0" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionTextureSampleParameter2D_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubstrateToonBSDF Name="MaterialExpressionSubstrateToonBSDF_0" ExportPath="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionSubstrateToonBSDF_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionSine_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_32" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_32'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_31" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_31'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_30" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_30'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_29" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_29'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_28" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_28'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_27" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_27'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_26" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_26'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_25" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_25'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_24" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_24'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_23" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_23'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_22" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_22'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_21" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_21'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_20'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPixelNormalWS Name="MaterialExpressionPixelNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionPixelNormalWS_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_4" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_3" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_2" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionConstant3Vector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAbs_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialEditorOnlyData Name="M_Master_Toon_UnifiedEditorOnlyData" ExportPath="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:M_Master_Toon_UnifiedEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionWorldPosition_0'"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=3798080C4B84644BBE233B93EF057278
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionVertexNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVertexNormalWS_0'"
+      MaterialExpressionEditorX=320
+      MaterialExpressionEditorY=900
+      MaterialExpressionGuid=2A12F37547400675F89FB59AFA10A436
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_3'"
+      DefaultValue=(R=0.050000,G=0.080000,B=0.150000,A=1.000000)
+      ParameterName="InkColor"
+      ExpressionGUID=013E858B4028E1ECB50EF1A74499F70A
+      Group="Palette"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2180
+      MaterialExpressionGuid=23C3454942CE1781038127846A89E473
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_2'"
+      DefaultValue=(R=0.850000,G=0.650000,B=0.250000,A=1.000000)
+      ParameterName="GoldTint"
+      ExpressionGUID=C99E594945840AF9880ED09706D1AC9A
+      Group="Palette"
+      SortPriority=1201
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1080
+      MaterialExpressionGuid=1FB1640E499416638B36868BFFB3B678
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_1'"
+      DefaultValue=(R=0.720000,G=0.620000,B=0.520000,A=1.000000)
+      ParameterName="AccentTint"
+      ExpressionGUID=4551A7274B963CD16B1FA2A8BFBF06B1
+      Group="Palette"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=479441FA4E655F172657BB9EF9890529
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_0'"
+      DefaultValue=(R=0.550000,G=0.480000,B=0.420000,A=1.000000)
+      ParameterName="BaseTint"
+      ExpressionGUID=EF8EE2584401936D627D33BA6AC71D95
+      Group="Palette"
+      SortPriority=0
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=-80
+      MaterialExpressionGuid=DBF2576449E8796E580F38B7DBF1435E
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_2" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionTextureSampleParameter2D_2'"
+      ParameterName="HeightMap"
+      ExpressionGUID=BF966D794BC08082D3F9738B67CEA44F
+      Group="Maps"
+      Texture="/Script/Engine.Texture2D'/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512'"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=660
+      MaterialExpressionGuid=45A8F8C64CD609E88AD02CBF263F466E
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_1" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionTextureSampleParameter2D_1'"
+      ParameterName="RoughnessMap"
+      ExpressionGUID=DAE985034B648D6825773987BA4F5F73
+      Group="Maps"
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_5_-_512x512.Marble_5_-_512x512'"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=540
+      MaterialExpressionGuid=833884E64EE2111D01A10C9B2297FCF5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_0" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionTextureSampleParameter2D_0'"
+      ParameterName="NormalMap"
+      ExpressionGUID=0D2C017A46C07C43EAF13D9F2BA72941
+      Group="Maps"
+      Texture="/Script/Engine.Texture2D'/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_10_-_512x512.Perlin_10_-_512x512'"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=13C71343401164B285AFA68A1B7B5CB0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionSubstrateToonBSDF_0" ExportPath="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionSubstrateToonBSDF_0'"
+      BaseColor=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAdd_1'")
+      Roughness=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_4'")
+      Normal=(Expression="/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionPixelNormalWS_0'")
+      ToonProfile="/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Stone.TP_Stone'"
+      MaterialExpressionEditorX=720
+      MaterialExpressionEditorY=360
+      MaterialExpressionGuid=180EFCD247F7FA8E6A9CB4A0308B3B1C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionSine_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_0'")
+      MaterialExpressionEditorX=-660
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=E9C211CC49E5392FA788B5B44EEB6CFB
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_9'"
+      ParameterName="TemporalStrength"
+      ExpressionGUID=6A3AAE5A4469D389D32948AB17E80966
+      Group="Temporal"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1580
+      MaterialExpressionGuid=3234F4C6422C09B7FC49BC86A6BF2FA0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_8'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=E3E0956C4A12AED300271BAAD3183371
+      Group="OilPaint"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1480
+      MaterialExpressionGuid=40908E814CB32CCA51D4DCB7E91F9FC4
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_7'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=20E779A54A6E26DADD225289CC054D2D
+      Group="OilPaint"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1380
+      MaterialExpressionGuid=8002CD3244502FA2D5399EAF22AC327D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_6'"
+      ParameterName="OilPaintStrength"
+      ExpressionGUID=194F50234A89E3F1A91D1884C81FA864
+      Group="OilPaint"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1280
+      MaterialExpressionGuid=522A58374CC3F969FCCC059D78129181
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_5'"
+      ParameterName="GoldEmissive"
+      ExpressionGUID=65FFBDF04DD837BF2A8E37B7B667275A
+      Group="Gilding"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1180
+      MaterialExpressionGuid=67DA4A0748351BCC6786A0865AF3D63B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_4'"
+      ParameterName="GildingStrength"
+      ExpressionGUID=26A6CAC94C399DD1A82F8E939AEA9D18
+      Group="Gilding"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=980
+      MaterialExpressionGuid=BDC49FF44ED2140FB8AEABAE50DD67D2
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_32" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_32'"
+      DefaultValue=0.040000
+      ParameterName="ParallaxHeight"
+      ExpressionGUID=BEDDDC6B41E8D2F11AC4C6BD81693082
+      Group="Parallax"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=840
+      MaterialExpressionGuid=57EAEC4F4F1E24DDD042C48B798BE667
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_31" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_31'"
+      ParameterName="TemporalStrength"
+      ExpressionGUID=E9940C714FAF7C24902D558B8C21C069
+      Group="Temporal"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=1120
+      MaterialExpressionGuid=B2F80CAC42EC6EAB47FA0AA0764AF411
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_30" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_30'"
+      ParameterName="InkIntensity"
+      ExpressionGUID=B08989BA4A8114351EAACDA368553C94
+      Group="Ink"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=920
+      MaterialExpressionGuid=4225D314474F30CE6BD96C90DA5EE4EB
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_3'"
+      DefaultValue=8.000000
+      ParameterName="ParallaxSteps"
+      ExpressionGUID=D94B890E43463C93256E858981846146
+      Group="Parallax"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=880
+      MaterialExpressionGuid=36EEEECC40241D584FFBF58BE5975D21
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_29" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_29'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=57D30BCA497BD23E23DB4782A961E59D
+      Group="OilPaint"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=C09453A347665997699A09B6FD4DD621
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_28" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_28'"
+      DefaultValue=0.120000
+      ParameterName="BandStrength"
+      ExpressionGUID=E58138674713A8BFC993EF9E5E0534E3
+      Group="Toon"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=EB0EF92C48EEC86FEE7679BB7309F87F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_27" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_27'"
+      DefaultValue=0.035000
+      ParameterName="BandScale"
+      ExpressionGUID=71D039C94C61DD0EA746FAA4D86116F7
+      Group="Toon"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=B5188EF246B80CC71C3C4CB39FB77D85
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_26" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_26'"
+      DefaultValue=1.000000
+      ParameterName="EdgeStrength"
+      ExpressionGUID=95EB97824A0E06532E7D54B12C3FD7FB
+      Group="Outline"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=3380
+      MaterialExpressionGuid=8DE089EF4DF41EA154D0E48CF912E01D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_25" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_25'"
+      DefaultValue=0.250000
+      ParameterName="WetRoughness"
+      ExpressionGUID=1AFE53BD408E37275FEE21AB270F4AE0
+      Group="Surface"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=3280
+      MaterialExpressionGuid=20EC6EA24A2E078E1754FE9774D01CAC
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_24" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_24'"
+      DefaultValue=0.780000
+      ParameterName="DryRoughness"
+      ExpressionGUID=58D58BDF415E7ACA740AFA9DB766263D
+      Group="Surface"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=3180
+      MaterialExpressionGuid=23D6CE154FBCB6B5F7A2AC8C200B8250
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_23" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_23'"
+      DefaultValue=0.250000
+      ParameterName="TrebleWeight"
+      ExpressionGUID=ED3D595F4B0CA7F34F7271BA3BCC11A9
+      Group="Audio"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=3080
+      MaterialExpressionGuid=ED1AC4FE47D20BF8E56A069BE9832571
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_22" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_22'"
+      DefaultValue=0.500000
+      ParameterName="MidWeight"
+      ExpressionGUID=89291F0A4451D05CE69B849509C98845
+      Group="Audio"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2980
+      MaterialExpressionGuid=C9A162974A3B58E21090309132DCABAC
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_21" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_21'"
+      DefaultValue=1.000000
+      ParameterName="BassWeight"
+      ExpressionGUID=44C95BE74B29F54DBDC2D8B409345C63
+      Group="Audio"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2880
+      MaterialExpressionGuid=E27BF5A8463A2B121E4668AC31A5B0C7
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_20'"
+      ParameterName="AudioReactivity"
+      ExpressionGUID=899F2ABF4866441BEAB1AEB4B1609CB0
+      Group="Audio"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2780
+      MaterialExpressionGuid=ED8A83AD4DC273776B4DE791CE38C90B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_2'"
+      DefaultValue=0.040000
+      ParameterName="ParallaxScale"
+      ExpressionGUID=7B332EC748CAF0FECD87DFAECED3DF79
+      Group="Parallax"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=780
+      MaterialExpressionGuid=19EAA0A74D9180825424499750BA6936
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_19'"
+      DefaultValue=2.000000
+      ParameterName="CurvatureSensitivity"
+      ExpressionGUID=08DD951A403B0995E8D5D7B7062517C4
+      Group="Ornament"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2680
+      MaterialExpressionGuid=D28EAA1E40F683B3AC256385912659B4
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_18'"
+      DefaultValue=1.000000
+      ParameterName="OrnamentScale"
+      ExpressionGUID=D526ED2C40EBBC77952D428EC760648A
+      Group="Ornament"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2580
+      MaterialExpressionGuid=987B4C2E4158F6021BAFC4A10515C132
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_17'"
+      ParameterName="OrnamentStyle"
+      ExpressionGUID=167B159C4C9FB40AC80531B5CBFA416F
+      Group="Ornament"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2480
+      MaterialExpressionGuid=F3DDAF054B353E616E463B8D3768E0A8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_16'"
+      ParameterName="Wetness"
+      ExpressionGUID=57F2BA084FCDEB66E73DDB8E2F7A528B
+      Group="Ink"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2380
+      MaterialExpressionGuid=29DDAF6E4E7B327F1030309A5C2E4693
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_15'"
+      DefaultValue=0.500000
+      ParameterName="PoolingStrength"
+      ExpressionGUID=50FA4091440CC8C4F0BF7AB3A3D6C706
+      Group="Ink"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2280
+      MaterialExpressionGuid=CDBBF8C44A2D769CD1E5608EFF69F5E6
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_14'"
+      ParameterName="InkIntensity"
+      ExpressionGUID=4DE6D04846C4A5026A6F27BD2457F97D
+      Group="Ink"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=2080
+      MaterialExpressionGuid=9CF5BEBE42637FD51690D08A51983608
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_13'"
+      ParameterName="BoilIntensity"
+      ExpressionGUID=81F054674E2C4EFFD2AAA3BF4BFE9C94
+      Group="Temporal"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1980
+      MaterialExpressionGuid=E4CE8836441EACECD85AF98FD40A72B8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_12'"
+      ParameterName="SmearStrength"
+      ExpressionGUID=C32767E44F316510FFD90499C805F7E9
+      Group="Temporal"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1880
+      MaterialExpressionGuid=D63E8BD0414AC769A7DD5991334DB8E9
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_11'"
+      DefaultValue=1.500000
+      ParameterName="NoiseScale"
+      ExpressionGUID=23EFC04B4C69EA8092EF23A9B41720EB
+      Group="Toon"
+      SortPriority=902
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1780
+      MaterialExpressionGuid=6D65A9614B422A29C18291BB201D3771
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_10'"
+      DefaultValue=0.150000
+      ParameterName="WindSpeed"
+      ExpressionGUID=40B4F98642D2A4EEE1836BBB93D025DF
+      Group="Temporal"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=1680
+      MaterialExpressionGuid=1F95BDCC4FD3798D9B6E259BBDC2A47B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_1'"
+      ParameterName="UVRotation"
+      ExpressionGUID=4AAAB63841921E798781CABFA2CDE143
+      Group="UV"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=A679ED164F103BD0707DF6820C5F55B5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_0'"
+      DefaultValue=1.000000
+      ParameterName="UVScale"
+      ExpressionGUID=EEEFB59346A99EE9364FCBBCFBCADC30
+      Group="UV"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=80CAD07E45520B9E333E3FAE9FC74576
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionPixelNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionPixelNormalWS_0'"
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=680
+      MaterialExpressionGuid=538C8C974F32B806BEC8BDB832DCC7F5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVertexNormalWS_0'")
+      MaterialExpressionEditorX=520
+      MaterialExpressionEditorY=860
+      MaterialExpressionGuid=CF2798C24AAD7754B4394D8113841A4F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_32'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=840
+      MaterialExpressionGuid=FA231BC8498E90EDE6D16BAE09CCF9BF
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_31'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionConstant3Vector_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=200
+      MaterialExpressionEditorY=1120
+      MaterialExpressionGuid=AFC9F37A4D82336F6A91DD958616419C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=720
+      MaterialExpressionGuid=6811FA3947BCD8BBCE4A10A91713DC9D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAbs_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_28'")
+      MaterialExpressionEditorX=-300
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=F3F9A96D4567325C6BFFB98CF1077887
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionComponentMask_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_27'")
+      MaterialExpressionEditorX=-840
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=ABA595944AE5BDB1B18C31892CBDA4CC
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_4" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_24'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_25'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_16'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=DE54BF574A8139184D6BE4BA2487CD1F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_3" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAdd_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_3'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_30'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=A40EAF6E4C021FB96FF5AA9E0B2F90D8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_2" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_1'")
+      MaterialExpressionEditorX=-280
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=DB7B2F77498A4376F40A9998844DFD76
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_0'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_6'")
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=D3054D974655ACFBAF0FAC9BED0171D0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_29'")
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=26C1A3DF430328B3EB7C059A3A4576B1
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionConstant3Vector_0'"
+      Constant=(R=0.020000,G=0.020000,B=0.030000,A=1.000000)
+      MaterialExpressionEditorY=1120
+      MaterialExpressionGuid=A88E9A6441DFDFB05BDC4A8C4C0331C6
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionComponentMask_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionWorldPosition_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-1020
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=61323DA64266AC6D969C7FA822A0422F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_3'")
+      MaterialExpressionEditorX=320
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=24C7A2B643B711408A60A08AF5752347
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=7430F2D24BD15C04CB5830BD645C5077
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAbs_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionSine_0'")
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=A68909F143B83762451B80AE5E9758C3
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified'"
+   End Object
+   Begin Object Name="M_Master_Toon_UnifiedEditorOnlyData" ExportPath="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:M_Master_Toon_UnifiedEditorOnlyData'"
+      WorldPositionOffset=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_5'")
+      FrontMaterial=(Expression="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionSubstrateToonBSDF_0'")
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionTextureSampleParameter2D_0'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionTextureSampleParameter2D_1'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionTextureSampleParameter2D_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_10'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_11'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_12'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_13'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_14'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVectorParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_15'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_16'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_17'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_18'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_19'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_20'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_21'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_22'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_23'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_24'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_25'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_26'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionWorldPosition_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_27'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_28'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionSine_0'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAbs_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_29'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_1'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_30'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_31'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionConstant3Vector_0'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionLinearInterpolate_4'","/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionPixelNormalWS_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionScalarParameter_32'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionVertexNormalWS_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionMultiply_5'","/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:MaterialExpressionSubstrateToonBSDF_0'"))
+   End Object
+   StateId=B29CC65049F70AE49909E7B0C8E8F3EA
+   EditorOnlyData="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.M_Master_Toon_Unified:M_Master_Toon_UnifiedEditorOnlyData'"
+   ToonProfiles(0)="/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Stone.TP_Stone'"
+   ReferencedDefaultTextures(0)="/Script/Engine.Texture2D'/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_10_-_512x512.Perlin_10_-_512x512'"
+   ReferencedDefaultTextures(1)="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_5_-_512x512.Marble_5_-_512x512'"
+   ReferencedDefaultTextures(2)="/Script/Engine.Texture2D'/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512'"
+   LightingGuid=EA98B66D4B42B3E25CBE16BB18DF5D4F
+End Object

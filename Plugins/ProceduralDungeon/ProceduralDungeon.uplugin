@@ -1,0 +1,35 @@
+{
+	"FileVersion": 3,
+	"Version": 30803,
+	"VersionName": "3.8.3",
+	"FriendlyName": "Procedural Dungeon",
+	"Description": "Create rich and diverse dungeon experiences that combine the best of both worlds: the creativity and precision of handmade room designs, paired with the unpredictability and excitement of procedural generation.",
+	"Category": "Procedural",
+	"CreatedBy": "Ben Pyton",
+	"CreatedByURL": "https://chat-cripant.com",
+	"DocsURL": "https://BenPyton.github.io/ProceduralDungeon",
+	"FabURL": "com.epicgames.launcher://ue/Fab/product/62cbdceb-ae3c-4fe4-adac-39d751a15df9",
+	"SupportURL": "https://github.com/BenPyton/ProceduralDungeon/issues",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "ProceduralDungeon",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"PlatformAllowList": [
+				"Win64", "Mac", "Linux", "IOS", "Android"
+			]
+		},
+		{
+			"Name": "ProceduralDungeonEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64", "Mac", "Linux"
+			]
+		}
+	]
+}

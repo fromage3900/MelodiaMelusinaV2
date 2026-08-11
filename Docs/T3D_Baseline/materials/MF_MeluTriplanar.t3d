@@ -1,0 +1,189 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_MeluTriplanar" ExportPath="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   Begin Object Class=/Script/Engine.MaterialExpressionVertexNormalWS Name="MaterialExpressionVertexNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionVertexNormalWS'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionVertexNormalWS_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_2" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_1" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_0" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_2" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_1" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComment_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAbs_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_MeluTriplanarEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MF_MeluTriplanarEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionVertexNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionVertexNormalWS'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionVertexNormalWS_0'"
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=5E9A0D8E4D2DE32DBC20F7BC1F9834E8
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_2" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_2'"
+      TextureObject=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_0'")
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=8C802B8F4FB45FAEC288908D1D25712A
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_1" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_1'"
+      TextureObject=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_0'")
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=8D4807064B246B17CA76BA9B7FB1C6B3
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_0" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_0'"
+      TextureObject=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_0'")
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=3AAD2130427AC4546B23D4AD122DC5D7
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_0'")
+      MaterialExpressionEditorX=-300
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=57DA7CC24036DFB5FEF3AFA8032C91DC
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_1'")
+      MaterialExpressionEditorX=-300
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=4B4ED9CD4D3F9505ECB743AE34B2BECE
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_2'")
+      MaterialExpressionEditorX=-300
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=C7F9DA8E4F72633203CA8794E28E9249
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionOutput_0'"
+      OutputName="TriplanarColor"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAdd_1'")
+      Id=5746E1434DA8F15F02DD84974E6413AE
+      MaterialExpressionEditorX=450
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=81895078492C869BE217B58974211313
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_2'"
+      InputName="BlendSharpness"
+      Id=CE72B171473CFD44763D828153278856
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=2
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=54FB4EDD45AC217E528FFB875039CAEA
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_1'"
+      InputName="TileSize"
+      Id=3DB227FC42DD87B80E299E96A1106323
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=1
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=671F084F438F89232653CCA427961BFF
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_0'"
+      InputName="Texture"
+      Id=06CA9F414C7D1FF802B62A9A9432A605
+      InputType=FunctionInput_Texture2D
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionGuid=D11F68924BAEBF3C64115A9C0FD4A52F
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_2" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_2'"
+      B=True
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=BB924C314EF81A4662FD048B5DDD547F
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_1'"
+      G=True
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=BBDFD4674BADD32002C267BD704D077E
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_0'"
+      R=True
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=A11E32EB43CA76E948E9549FF994A2C7
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_1" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComment_1'"
+      Text="Melu Triplanar ~ no UVs, no problem"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-1680
+      MaterialExpressionEditorY=-230
+      MaterialExpressionGuid=47AD572640EEE34D986B1E8AA33160D7
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAdd_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=200
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=19313AB548924326A5C8D39FB5867319
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_1'")
+      MaterialExpressionEditorY=-20
+      MaterialExpressionGuid=2A3EC9854C1C5F0433C0D2AC0E858E89
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAbs_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionVertexNormalWS'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionVertexNormalWS_0'")
+      MaterialExpressionEditorX=-1400
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=73C3531246FAFED313A3E182B54557FA
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+   End Object
+   Begin Object Name="MF_MeluTriplanarEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MF_MeluTriplanarEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_0'","/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_1'","/Script/Engine.MaterialExpressionTextureSample'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionTextureSample_2'","/Script/Engine.MaterialExpressionVertexNormalWS'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionVertexNormalWS_0'","/Script/Engine.MaterialExpressionAbs'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAbs_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_1'","/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComponentMask_2'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MaterialExpressionComment_1'"))
+   End Object
+   Description="Triplanar world-aligned texture projection. Input: Texture, TileSize, BlendSharpness. Outputs: RGB color blended from XY/XZ/YZ faces using world position and vertex normal."
+   bExposeToLibrary=True
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar:MF_MeluTriplanarEditorOnlyData'"
+   StateId=5190AC5E4483E4E2C1CD19B103B47955
+   CombinedInputTypes=31
+End Object

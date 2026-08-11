@@ -1,0 +1,20 @@
+{
+  "id": "scifi_deck_spine_v1",
+  "family": "Sci-Fi",
+  "verticality": 0.48,
+  "symmetry": 0.8,
+  "ornament_density": 0.28,
+  "structural_logic": 0.94,
+  "organic_growth": 0.05,
+  "cosmic_influence": 0.38,
+  "sacred_sequence": [],
+  "compose_style": "SCIFI_DECK",
+  "default_graph": "SCI_FI_DECK",
+  "grammar_id": "SCI_FI_DECK",
+  "surreal_transform": "recursive_interior",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

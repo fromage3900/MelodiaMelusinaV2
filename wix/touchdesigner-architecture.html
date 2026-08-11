@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-page="touchdesigner-architecture">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TouchDesigner Grandmaster Melodia | Brennan Shepherd</title>
+<meta name="description" content="TouchDesigner grandmaster page — Envoy MCP orchestration, audio-reactive beat streams, OSC routing, and worldgen preview for Melodia." />
+<meta property="og:title" content="TouchDesigner Grandmaster Melodia" />
+<meta property="og:description" content="Real-time SSOT for audio-reactive visual polish, OSC routing, and worldgen preview." />
+<meta property="og:image" content="https://fromage3900.github.io/my-site/generated/social/og-default.jpg" />
+<meta property="og:url" content="https://fromage3900.github.io/my-site/wix/touchdesigner-architecture.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-fashion-editorial.css">
+<link rel="stylesheet" href="melodia-premium-system.css">
+<link rel="stylesheet" href="melodia-visual-breakdown.css">
+<link rel="stylesheet" href="portfolio-pages.css">
+<link rel="stylesheet" href="escher-carousel.css">
+</head>
+<body>
+<div class="melodia-shell fashion-mode" data-mg="soft" data-hero="editorial" data-visual="lookbook" data-effects="starfield,holo,magical" data-nav-cta="application-hub.html" data-nav-cta-label="Application hub">
+<header class="shell-nav" aria-label="Portfolio navigation">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="index.html">Home</a>
+    <a href="application-hub.html">Hub</a>
+    <a href="melodia-melusina.html">Game UI</a>
+    <a href="melodia-gameplay-loop.html">Loop</a>
+    <a href="design-specs.html">Specs</a>
+  </nav>
+  <a class="nav-cta button-premium" href="application-hub.html">Application hub</a>
+</header>
+
+<main id="main">
+<section class="band sx-open" aria-labelledby="td-title">
+  <div class="inner">
+    <p class="eyebrow magazine-kicker">TouchDesigner · real-time SSOT</p>
+    <h1 id="td-title">Grandmaster Melodia in motion.</h1>
+    <p class="lede">TouchDesigner handles the live layer: audio analysis, OSC routing, portfolio preview, and beat-reactive polish before anything gets frozen into UE.</p>
+    <div class="hero-actions">
+      <a class="button primary button-premium-primary" href="application-hub.html">Back to hub</a>
+      <a class="button button-premium" href="../_TouchDesigner/README.md">TD workspace</a>
+      <a class="button button-premium" href="design-specs.html#game-ui">Game UI specs</a>
+    </div>
+  </div>
+</section>
+
+<section class="band paper">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow magazine-kicker">Why it exists</p>
+        <h2>Live polish, not a second runtime.</h2>
+      </div>
+      <p>TD is the fast layer for visual breathing, beat capture, and preview orchestration around MelodiaCore and the site.</p>
+    </div>
+    <div class="card-grid">
+      <article class="card premium-card">
+        <span>Audio</span>
+        <div>
+          <h3>Beat stream and music reactivity.</h3>
+          <p>OSC beat pulse / beat phase, bloom response, and subtle environment motion for the opening slice.</p>
+        </div>
+      </article>
+      <article class="card premium-card">
+        <span>Bridge</span>
+        <div>
+          <h3>Envoy MCP orchestration.</h3>
+          <p>Use the TD MCP server to drive networks, inspect operators, and keep the build diffable and rerunnable.</p>
+        </div>
+      </article>
+      <article class="card premium-card">
+        <span>Preview</span>
+        <div>
+          <h3>Worldgen and render proof.</h3>
+          <p>TouchDesigner sits between Blender exports and Unreal captures so the ecosystem can iterate in real time.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band astral">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow magazine-kicker">Bridge map</p>
+        <h2>Ports, scripts, and authority.</h2>
+      </div>
+      <p>Current prep already has Envoy on 9870; OSC stays on the documented battle and beat routes.</p>
+    </div>
+    <div class="table-list">
+      <div class="table-row">
+        <span>Envoy</span>
+        <div>
+          <h3>TD MCP server</h3>
+          <p><code>localhost:9870</code> · drive TD Python, inspect ops, and externalize networks.</p>
+        </div>
+        <b>Live</b>
+      </div>
+      <div class="table-row">
+        <span>OSC</span>
+        <div>
+          <h3>Battle / beat routing</h3>
+          <p><code>wire_battle_osc.py</code> and <code>wire_beat_stream.py</code> keep the game and TD layer in sync.</p>
+        </div>
+        <b>9000</b>
+      </div>
+      <div class="table-row">
+        <span>Worldgen</span>
+        <div>
+          <h3>TouchDesigner world builder</h3>
+          <p><code>world_builder.py</code> and <code>verify_worldgen.py</code> keep the 13-piece modular preview rerunnable.</p>
+        </div>
+        <b>TD</b>
+      </div>
+      <div class="table-row">
+        <span>Web</span>
+        <div>
+          <h3>Site surfaces</h3>
+          <p>Melodia Melusina, gameplay loop, application hub, and the TD page all share the same editorial language.</p>
+        </div>
+        <b>Live</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band paper">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow magazine-kicker">Escher Geometry Gallery</p>
+        <h2>M.C. Escher-inspired procedural geometry.</h2>
+      </div>
+      <p>Five impossible structures built entirely in TouchDesigner SOPs, rendered with Nikki-style bloom and polish.</p>
+    </div>
+    
+    <div class="escher-carousel" id="escherCarousel">
+      <div class="carousel-track">
+        <div class="carousel-slide">
+          <img src="../../_TouchDesigner/grandmaster_melodia/renders/escher_gallery/escher_penrose_stairs.png" alt="Penrose Impossible Stairs">
+          <div class="slide-caption">
+            <h3>Penrose Impossible Stairs</h3>
+            <p>Four connected staircases forming an infinite loop</p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="../../_TouchDesigner/grandmaster_melodia/renders/escher_gallery/escher_spiral_staircase.png" alt="Spiral Staircase">
+          <div class="slide-caption">
+            <h3>Spiral Staircase</h3>
+            <p>60 steps wrapping a central column in ascending helix</p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="../../_TouchDesigner/grandmaster_melodia/renders/escher_gallery/escher_fractal_tower.png" alt="Fractal Tower">
+          <div class="slide-caption">
+            <h3>Recursive Fractal Tower</h3>
+            <p>Self-similar boxes scaled, rotated, and stacked 8 times</p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="../../_TouchDesigner/grandmaster_melodia/renders/escher_gallery/escher_tessellation.png" alt="Tessellation Grid">
+          <div class="slide-caption">
+            <h3>Geometric Tessellation</h3>
+            <p>Interlocking diamond pattern on a warped grid</p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="../../_TouchDesigner/grandmaster_melodia/renders/escher_gallery/escher_belvedere.png" alt="Belvedere Arches">
+          <div class="slide-caption">
+            <h3>Belvedere Impossible Arches</h3>
+            <p>Pillars supporting upper and lower floors simultaneously</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-nav prev" aria-label="Previous slide">←</button>
+      <button class="carousel-nav next" aria-label="Next slide">→</button>
+      <div class="carousel-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band paper">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow magazine-kicker">Polish run</p>
+        <h2>Suggested execution order.</h2>
+      </div>
+      <p>Use this when warming the whole toolchain before a playtest or capture session.</p>
+    </div>
+    <ol class="kitbash-excluded" style="padding-left:1.25rem;">
+      <li>Start TouchDesigner and confirm Envoy MCP on 9870.</li>
+      <li>Run the battle OSC wiring, then the beat stream wiring.</li>
+      <li>Confirm the UE-side rhythm reactivity subsystem is emitting beat pulse / phase.</li>
+      <li>Capture a short worldgen or opening-slice preview and verify the note / bloom response.</li>
+      <li>Return to the site pages and use the same language for the published proof.</li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <span>Brennan Shepherd / TouchDesigner</span>
+    <span>Envoy MCP + OSC + worldgen preview</span>
+  </div>
+</footer>
+</div>
+<script src="melodia-magical-girl.js"></script>
+<script src="melodia-starfield.js"></script>
+<script src="melodia-dream-shaders.js"></script>
+<script src="melodia-site-nav.js"></script>
+<script src="escher-carousel.js"></script>
+</body>
+</html>

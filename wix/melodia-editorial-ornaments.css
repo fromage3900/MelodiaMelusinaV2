@@ -1,0 +1,342 @@
+/* Modular monogram + frame utilities — chic math / celestial editorial accents */
+
+:root {
+  --frame-inset: clamp(14px, 4.5%, 52px);
+  --frame-opacity: 0.11;
+  --ornament-gold: rgba(201, 168, 106, 0.55);
+  --ornament-pearl: rgba(233, 229, 242, 0.42);
+}
+
+/* portfolioframe.png (starry alpha) retired — was squished via 100% 100% stretch */
+.editorial-frame-overlay,
+.ornate-frame,
+.hero.editorial-framed::after,
+.hero.has-editorial-frame::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* Card corner monogram — replaces misaligned PNG bleed on cards */
+.card-monogram,
+.premium-card::before {
+  /* sparkle star — keep existing clip-path from portfolio-pages when present */
+}
+
+.card-editorial-corner::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 72px;
+  height: 72px;
+  opacity: 0.14;
+  pointer-events: none;
+  background: center / contain no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Ccircle cx='32' cy='32' r='28' stroke='%23c9a86a' stroke-width='0.8' opacity='0.7'/%3E%3Cpath d='M32 8v48M8 32h48M14 14l36 36M50 14L14 50' stroke='%23e8e4f2' stroke-width='0.5' opacity='0.45'/%3E%3Ccircle cx='32' cy='32' r='3' fill='%23c9a86a'/%3E%3C/svg%3E");
+}
+
+/* Section rule with flanking stars */
+.editorial-rule-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0 0 28px;
+  font-family: var(--font-mono, var(--font-mono));
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-soft, #e4c990);
+}
+
+.editorial-rule-stars::before,
+.editorial-rule-stars::after {
+  content: "";
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  background: center / contain no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c9a86a' d='M12 1l2.2 6.8H21l-5.5 4 2.1 6.8L12 14.6 6.4 18.6l2.1-6.8-5.5-4h6.8z'/%3E%3C/svg%3E");
+  opacity: 0.72;
+}
+
+/* Monogram strip — orbit arcs + golden-ratio tick marks */
+.monogram-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 10px 0 18px;
+  opacity: 0.78;
+}
+
+.monogram-strip span {
+  display: block;
+  width: 36px;
+  height: 36px;
+  background: center / contain no-repeat;
+}
+
+.monogram-strip .glyph-star {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='none' stroke='%23c9a86a' stroke-width='0.9' d='M16 2l3.8 8.6L29 12l-6.5 5.6 2 9.4L16 22.8 7.5 27l2-9.4L3 12l9.2-1.4z'/%3E%3C/svg%3E");
+}
+
+.monogram-strip .glyph-orbit {
+  width: 44px;
+  height: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cellipse cx='22' cy='22' rx='18' ry='12' fill='none' stroke='%23e8e4f2' stroke-width='0.7' opacity='0.8'/%3E%3Cellipse cx='22' cy='22' rx='12' ry='18' fill='none' stroke='%23c9a86a' stroke-width='0.6' transform='rotate(35 22 22)'/%3E%3Ccircle cx='22' cy='22' r='2' fill='%23c9a86a'/%3E%3C/svg%3E");
+  animation: monogram-orbit-spin 48s linear infinite;
+}
+
+.monogram-strip .glyph-phi {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' fill='none' stroke='%23c9a86a' stroke-width='0.7'/%3E%3Cpath d='M4 20h24M12 4v24' stroke='%23e8e4f2' stroke-width='0.5' opacity='0.6'/%3E%3Ctext x='18' y='17' fill='%23c9a86a' font-family='Georgia,serif' font-size='9' opacity='0.9'%3Eφ%3C/text%3E%3C/svg%3E");
+}
+
+.monogram-strip .glyph-infinity {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 24'%3E%3Cpath fill='none' stroke='%23c9a86a' stroke-width='1.1' d='M8 12c0-4 3-7 7-7s5 3 5 7-1 7-5 7-7-3-7-7zm14 0c0-4 3-7 7-7s5 3 5 7-1 7-5 7-7-3-7-7z'/%3E%3C/svg%3E");
+  width: 48px;
+}
+
+@keyframes monogram-orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Floating constellation accent for band headers */
+.band-constellation-accent {
+  position: relative;
+}
+
+.band-constellation-accent::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: clamp(12px, 4vw, 48px);
+  width: min(120px, 22vw);
+  height: min(120px, 22vw);
+  opacity: 0.16;
+  pointer-events: none;
+  background: center / contain no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='%23c9a86a' stroke-width='0.6'/%3E%3Ccircle cx='50' cy='50' r='26' fill='none' stroke='%23e8e4f2' stroke-width='0.5'/%3E%3Ccircle cx='88' cy='50' r='2' fill='%23c9a86a'/%3E%3Ccircle cx='50' cy='24' r='1.6' fill='%23e8e4f2'/%3E%3Ccircle cx='18' cy='62' r='1.4' fill='%23c9a86a'/%3E%3C/svg%3E");
+  animation: monogram-orbit-spin 90s linear infinite reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .monogram-strip .glyph-orbit,
+  .band-constellation-accent::before {
+    animation: none;
+  }
+}
+
+/* ── Melodia motif family (A–F) ─────────────────────────────────────────── */
+
+/* Tier A — filled sparkle glyph (::after) */
+.motif-star-glyph::after,
+.magazine-kicker:not(.motif-no-glyph)::after,
+.premium-kicker:not(.motif-no-glyph)::after {
+  content: " ✦";
+  opacity: var(--motif-glyph-opacity, 0.42);
+  color: var(--motif-accent, var(--gold, #c9a86a));
+}
+
+/* Tier A2 — hollow sparkle (lists, secondary affordances) */
+.motif-star-glyph-open::after {
+  content: " ✧";
+  opacity: calc(var(--motif-glyph-opacity, 0.42) - 0.04);
+  color: var(--motif-accent, var(--gold, #c9a86a));
+}
+
+/* Tier B — 8-point clip star (::before corners) */
+.motif-star-clip::before,
+.spark.motif-star-clip {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 18px;
+  height: 18px;
+  clip-path: polygon(50% 0, 60% 36%, 100% 50%, 60% 64%, 50% 100%, 40% 64%, 0 50%, 40% 36%);
+  background: var(--motif-accent, rgba(201, 168, 106, 0.58));
+  opacity: var(--motif-clip-opacity, 0.52);
+  pointer-events: none;
+}
+
+.meta-label.motif-star-clip::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: auto;
+  left: -14px;
+  width: 8px;
+  height: 8px;
+  transform: translateY(-50%);
+  clip-path: polygon(50% 0, 60% 36%, 100% 50%, 60% 64%, 50% 100%, 40% 64%, 0 50%, 40% 36%);
+  background: var(--motif-accent, rgba(201, 168, 106, 0.58));
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.meta-label.motif-star-clip {
+  position: relative;
+  padding-left: 10px;
+}
+
+/* Tier C — gold rules (structural) */
+.gold-rule,
+.passport-rule {
+  height: 1px;
+  border: 0;
+  margin: 14px 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--motif-accent, rgba(201, 168, 106, 0.55)) 20%,
+    var(--motif-accent, rgba(201, 168, 106, 0.55)) 80%,
+    transparent
+  );
+  opacity: 0.72;
+}
+
+/* Path list glyph rhythm — odd ✦, even ✧ (guide-cards stay clean for column align) */
+.path-list .path-row:nth-child(odd) > b::before {
+  content: "✦ ";
+  opacity: var(--motif-glyph-opacity, 0.42);
+  color: var(--motif-accent, var(--gold-soft, #e8c9b8));
+}
+
+.path-list .path-row:nth-child(even) > b::before {
+  content: "✧ ";
+  opacity: calc(var(--motif-glyph-opacity, 0.42) - 0.06);
+  color: var(--motif-accent, var(--gold-soft, #e8c9b8));
+}
+
+.guide-list .guide-card > b::before {
+  content: none !important;
+}
+
+.path-row,
+.guide-card,
+.portal-card,
+.premium-card.alignment-card,
+.premium-card.stack-card {
+  position: relative;
+}
+
+/* Portal corner glyph uses tier A — pillar tint via accent-* on card */
+.portal-card::after {
+  color: var(--motif-accent, var(--gold, #c9a86a));
+  opacity: 0.72;
+}
+
+/* Hub band — spaced glyph divider (texture, not sky) */
+.hub-motif-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+  margin: 0;
+  padding: 6px 0 18px;
+  font-size: 0.55rem;
+  letter-spacing: 1.2em;
+  color: var(--motif-accent, rgba(201, 168, 106, 0.55));
+  opacity: 0.06;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hub-motif-divider::before {
+  content: "✦ ✧ ✦ ✧ ✦";
+}
+
+/* Rhythm / Game UI–inspired editorial dividers (CSS-only; no missing PNG deps) */
+.editorial-rhythm-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 0.35rem auto 1.35rem;
+  max-width: 28rem;
+  font-family: var(--font-mono, "Azeret Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 230, 102, 0.72);
+  user-select: none;
+}
+
+.editorial-rhythm-divider::before,
+.editorial-rhythm-divider::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  max-width: 7.5rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 110, 180, 0.45),
+    rgba(255, 230, 102, 0.55),
+    rgba(102, 217, 255, 0.4),
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(255, 110, 180, 0.12);
+}
+
+.editorial-rhythm-divider .glyph {
+  display: inline-flex;
+  gap: 0.55rem;
+  color: rgba(255, 110, 180, 0.78);
+  letter-spacing: 0.35em;
+  text-shadow: 0 0 14px rgba(255, 110, 180, 0.28);
+}
+
+.editorial-rhythm-divider.sheet::before,
+.editorial-rhythm-divider.sheet::after {
+  height: 2px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 6px,
+      rgba(102, 217, 255, 0.22) 6px,
+      rgba(102, 217, 255, 0.22) 7px
+    ),
+    linear-gradient(90deg, transparent, rgba(255, 230, 102, 0.35), transparent);
+}
+
+.melodia-shell[data-mg="full"] .editorial-rhythm-divider .glyph,
+.melodia-shell[data-mg="soft"] .editorial-rhythm-divider .glyph {
+  color: rgba(255, 110, 180, 0.88);
+}
+
+.melodia-shell.mg-wish-mode .editorial-rhythm-divider::before,
+.melodia-shell.mg-wish-mode .editorial-rhythm-divider::after {
+  box-shadow: 0 0 16px rgba(255, 110, 180, 0.28);
+}
+
+/* Soft MG lift on section kickers */
+.melodia-shell[data-mg="full"] .magazine-kicker,
+.melodia-shell[data-mg="soft"] .magazine-kicker {
+  color: rgba(255, 182, 214, 0.92);
+}
+
+.melodia-shell[data-mg="full"] .band.fashion-band .section-head h2,
+.melodia-shell[data-mg="soft"] .band.fashion-band .section-head h2 {
+  text-shadow: 0 0 40px rgba(255, 110, 180, 0.08);
+}
+
+/* Wish mode — brighten glyphs slightly, no new shapes */
+.melodia-shell.mg-wish-mode .magazine-kicker::after,
+.melodia-shell.mg-wish-mode .premium-kicker::after,
+.mg-ui-chrome.mg-wish-mode .path-list .path-row > b::before,
+.mg-ui-chrome.mg-wish-mode .guide-list .guide-card > b::before {
+  opacity: calc(var(--motif-glyph-opacity, 0.42) + 0.15);
+}
+
+/* Cosmic tier — ensure card motifs sit above canvas starfield */
+.melodia-shell[data-effects*="starfield"] .portal-card,
+.melodia-shell[data-effects*="starfield"] .path-row,
+.melodia-shell[data-effects*="starfield"] .guide-card,
+.melodia-shell[data-effects*="starfield"] .alignment-card,
+.melodia-shell[data-effects*="starfield"] .stack-card {
+  z-index: 1;
+}

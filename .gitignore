@@ -1,0 +1,179 @@
+﻿# UE generated / transient
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+!Saved/Portfolio/
+!Saved/Audit/
+Build/
+.vs/
+*.sln
+*.slnx
+*.VC.db
+*.VC.opendb
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local backups / bundles and repository recovery copies (never commit)
+*.bundle
+Saved/Backups/
+.git.backup/
+BackupBeforeRebuild/
+
+# Local toolchains, IDE state, and agent caches
+# These are machine-specific and must not become project dependencies.
+dotnet10/
+dotnet6/
+.ai/
+.claude/
+.claude.json
+.codex_staged_paths.txt
+.continue/
+.cursor/
+.devin/
+.idea/
+.junie/
+.kiro/
+.opencode.json
+.mcp.json
+.pytest_cache/
+.rider/
+.windsurf/
+._site_aside_untracked/
+_ollama_experiments/
+
+# Local level overrides (editor-generated)
+Content/ZenForestTest.ini
+
+# World Partition conversion artifacts (experimental — tracked on wp-experiments branch)
+Content/ZenForestTest_WP*
+Content/ZenForestTest_HLODLayer_*
+Content/__ExternalActors__/ZenForestTest/
+Content/__ExternalActors__/ZenForestTest_WP/
+
+# Python cache
+Content/Python/__pycache__/
+*.pyc
+# Unreal scratch assets created by editor-analysis scripts; these are not project source.
+Content/Python/_doonce.uasset
+Content/Python/_eventgraph.uasset
+Plugins/UEBlueprintMCP/Python/venv/
+
+# Q# build output (dotnet artifacts under the quantum experiment)
+Content/Python/quantum/qsharp_project/bin/
+Content/Python/quantum/qsharp_project/obj/
+
+# Editor-generated backup files and IDE user settings (never commit)
+*.h~
+*.cpp~
+*.cs~
+*.DotSettings.user
+
+# Node.js (my-site-clean website subproject) - never commit, always npm install
+node_modules/
+.npm/
+npm-debug.log*
+
+# Autonomous worker output and local process state
+_staging/
+Products/_Staging/
+deploy/*.pid
+*.blend1
+nul
+target_file.md
+*.tmp
+
+# Blender Flip/cache output; source .blend and exported deliverables remain tracked explicitly.
+KitbashExport/flip_cache_*/
+
+# --- Core systems and playable vertical-slice scope (2026-07-27) ---
+# Git tracks native/runtime systems plus the narrowly authored packages required
+# to reproduce the working Melodia loop. Bulk environment/art libraries remain
+# local unless explicitly promoted through a reviewed allowlist entry.
+Content/*
+!Content/Python/
+!Content/Melodia/
+Content/Melodia/*
+!Content/Melodia/DataStuctures/
+
+# Authored Melodia JRPG integration and presentation packages.
+!Content/MelodiaIntegration/
+!Content/MelodiaIntegration/**
+!Content/Experiments/
+Content/Experiments/*
+!Content/Experiments/MelodiaJRPG/
+!Content/Experiments/MelodiaJRPG/**
+
+# --- IRREPLACEABLE CHARACTER CONTENT — tracked in full (2026-08-08) ---
+# These are hand-authored over two years and cannot be re-downloaded or rebuilt.
+# Until today they were NOT tracked: the `Content/*` blanket above never had a
+# matching un-ignore for Content/Characters/, so SK_Melusina -- the protagonist,
+# 36 MB -- lived on disk with no version history at all. A `git clean -fd` would
+# have erased her permanently, and one was started on 2026-08-08 and interrupted
+# by luck. Everything below is now recoverable from git.
+#
+# Anything re-downloadable (marketplace kits, Brushify, Greybox, UltraDynamicSky,
+# Library, _ThirdParty, CC0 surfaces) stays ignored on purpose -- roughly 15 GB
+# that would blow the LFS budget for no protective value.
+!Content/Characters/
+!Content/Characters/**
+
+!Content/Melodia/Characters/
+!Content/Melodia/Characters/**
+
+# Exact stock packages intentionally changed for the playable loop.
+!Content/TurnBasedJRPGTemplate/
+Content/TurnBasedJRPGTemplate/*
+!Content/TurnBasedJRPGTemplate/Blueprints/
+Content/TurnBasedJRPGTemplate/Blueprints/*
+!Content/TurnBasedJRPGTemplate/Blueprints/Battle/
+Content/TurnBasedJRPGTemplate/Blueprints/Battle/*
+!Content/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController.uasset
+
+# Nested site repo + deploy staging dir (mirrors, not tracked content)
+my-site-clean/
+_github_deploy/
+
+Backups/
+Imports/*
+!Imports/Animations/
+Imports/Animations/*
+!Imports/Animations/Cascadeur/
+Imports/Animations/Cascadeur/*
+!Imports/Animations/Cascadeur/Inbox/
+Imports/Animations/Cascadeur/Inbox/*
+!Imports/Animations/Cascadeur/Inbox/README.md
+Tools/*
+!Tools/Cascadeur/
+!Tools/Cascadeur/Melusina/
+!Tools/Cascadeur/Melusina/README.md
+!Tools/run_cascadeur_import.ps1
+!Tools/validate_cascadeur_manifest.py
+# Verification + injection pipeline core (AGENTS.md "Core Tools") — the gates P0 claims run on
+!Tools/mcp_client.py
+!Tools/t3d_blueprint_injector.py
+!Tools/t3d_material_curve_injector.py
+!Tools/t3d_niagara_injector.py
+!Tools/t3d_anim_injector.py
+!Tools/t3d_mesh_lod_injector.py
+!Tools/nl_to_blueprint.py
+!Tools/bp_regression_checker.py
+!Tools/continuous_loop.py
+!Tools/pie_smoke_runner.py
+!Tools/regression_suite.py
+!Tools/graph_reachability.py
+!Tools/ui_lint.py
+!Tools/record_gate.py
+!Tools/echo_run.py
+!Tools/BlenderAddons/
+!Tools/BlenderAddons/**
+melodia-design-system/
+KitbashExport/
+research/
+Products/
+Assets/
+pipeline/
+Samples/
+.kiro/
+.junie/

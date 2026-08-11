@@ -1,0 +1,105 @@
+{
+  "timestamp": "2026-07-16T01:50:25.260562+00:00",
+  "verified_at": "2026-07-16T01:51:00Z",
+  "strategy": "restore_lfs_to_masters_then_rename_to_sdf",
+  "note": "SDF Factory v2 remains retired; blessed instance parents stay M_Master_SDF_Toon + M_Toon_SDF. These four underwater specialty masters are NOT factory products — they were accidentally deleted in 94ed9d8 (Masters/ copies removed without an SDF/ copy ever existing in git). Bodies recovered from local Git LFS oids at 94ed9d8^.",
+  "blessed_parents_unchanged": [
+    "/Game/EnvSandbox/Materials/Masters/M_Master_SDF_Toon",
+    "/Game/EnvSandbox/Materials/Masters/M_Toon_SDF"
+  ],
+  "restored_parents": [
+    {
+      "name": "M_SDF_Bioluminescence",
+      "lfs_oid": "6538e22a492f72632ce8e539e90b4a60f95cce14c36e96a2328535505889b612",
+      "final_path": "/Game/EnvSandbox/Materials/SDF/M_SDF_Bioluminescence",
+      "bytes": 14154
+    },
+    {
+      "name": "M_SDF_BubbleColumn",
+      "lfs_oid": "35cb283db2c2444d0a3b2272664974d506282266e20f07d3e866a70c1c1c2367",
+      "final_path": "/Game/EnvSandbox/Materials/SDF/M_SDF_BubbleColumn",
+      "bytes": 17300
+    },
+    {
+      "name": "M_SDF_CoralBranching",
+      "lfs_oid": "7794eac756739c0718eaa4c695f0c8e0a9871484537e8da37a5e4e615696ef68",
+      "final_path": "/Game/EnvSandbox/Materials/SDF/M_SDF_CoralBranching",
+      "bytes": 17591
+    },
+    {
+      "name": "M_SDF_FloatingNotes",
+      "lfs_oid": "db86f9c2b20a3733de776ddcc264ea143279f9baacf94784810563fd300a1556",
+      "final_path": "/Game/EnvSandbox/Materials/SDF/M_SDF_FloatingNotes",
+      "bytes": 12358
+    }
+  ],
+  "moved": [
+    {
+      "from": "/Game/EnvSandbox/Materials/Masters/M_SDF_Bioluminescence",
+      "to": "/Game/EnvSandbox/Materials/SDF/M_SDF_Bioluminescence",
+      "ok": true
+    },
+    {
+      "from": "/Game/EnvSandbox/Materials/Masters/M_SDF_BubbleColumn",
+      "to": "/Game/EnvSandbox/Materials/SDF/M_SDF_BubbleColumn",
+      "ok": true
+    },
+    {
+      "from": "/Game/EnvSandbox/Materials/Masters/M_SDF_CoralBranching",
+      "to": "/Game/EnvSandbox/Materials/SDF/M_SDF_CoralBranching",
+      "ok": true
+    },
+    {
+      "from": "/Game/EnvSandbox/Materials/Masters/M_SDF_FloatingNotes",
+      "to": "/Game/EnvSandbox/Materials/SDF/M_SDF_FloatingNotes",
+      "ok": true
+    }
+  ],
+  "already_in_sdf": [],
+  "missing_source": [],
+  "mi_parents": [
+    {
+      "instance": "/Game/EnvSandbox/Materials/Instances/Grotto/MI_Grotto_Bioluminescence",
+      "expected_parent": "/Game/EnvSandbox/Materials/SDF/M_SDF_Bioluminescence",
+      "status": "parent_set",
+      "parent_after": "/Game/EnvSandbox/Materials/SDF/M_SDF_Bioluminescence.M_SDF_Bioluminescence"
+    },
+    {
+      "instance": "/Game/EnvSandbox/Materials/Instances/Grotto/MI_Grotto_BubbleColumn",
+      "expected_parent": "/Game/EnvSandbox/Materials/SDF/M_SDF_BubbleColumn",
+      "status": "parent_set",
+      "parent_after": "/Game/EnvSandbox/Materials/SDF/M_SDF_BubbleColumn.M_SDF_BubbleColumn"
+    },
+    {
+      "instance": "/Game/EnvSandbox/Materials/Instances/Grotto/MI_Grotto_CoralBranching",
+      "expected_parent": "/Game/EnvSandbox/Materials/SDF/M_SDF_CoralBranching",
+      "status": "parent_set",
+      "parent_after": "/Game/EnvSandbox/Materials/SDF/M_SDF_CoralBranching.M_SDF_CoralBranching"
+    },
+    {
+      "instance": "/Game/EnvSandbox/Materials/Instances/Grotto/MI_Grotto_FloatingNotes",
+      "expected_parent": "/Game/EnvSandbox/Materials/SDF/M_SDF_FloatingNotes",
+      "status": "parent_set",
+      "parent_after": "/Game/EnvSandbox/Materials/SDF/M_SDF_FloatingNotes.M_SDF_FloatingNotes"
+    }
+  ],
+  "errors": [],
+  "ok": true,
+  "post_audit": {
+    "tool": "Content/Python/audit_mi_master_integrity_disk.py",
+    "missing_parent_like_count": 0,
+    "missing_texture_ref_count": 63,
+    "blessed_all_present": true
+  },
+  "script": "Content/Python/fix_grotto_sdf_parents.py",
+  "melusina_no_stomp": true,
+  "deferred_non_sdf": [
+    "Art/Textures/Base T_*_BSS_* pack (~9 unique; concrete/grass/bark/leaf/cobble)",
+    "SBS seamless abstract pack path drift (/Game/Textures/... and /Game/_PROJECT/...)",
+    "T_Itto_SpiralTile under Materials/Functions/Textures",
+    "UDS Snow_Normal third-party path",
+    "Live Fix Up Redirectors + Map Check (needs interactive UE/MCP)",
+    "Blender Melusina recovery freeze still missing (PRE_225030 / Desktop v15)",
+    "Untracked Melodia Melusina tree (~770 MB) + WP maps hygiene"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "CLOISTER",
+  "label": "Gothic Cloister",
+  "description": "Double corridor, bend, corridor, gothic portal",
+  "style": "gothic",
+  "modules": [
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 8.0, "gb_corridor_profile": "DOUBLE"}},
+    {"arch_type": "GB_CORRIDOR_BEND", "overrides": {"gb_length": 6.0}},
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 8.0}},
+    {"arch_type": "GB_GOTHIC_PORTAL", "overrides": {}}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "asset_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina",
+  "class": "ToonProfile",
+  "settings": {
+    "DiffuseIndirectScale": 0.3,
+    "SpecularIndirectScale": 0.3,
+    "ShadowExtinctionCoefficient": 0.3,
+    "DiffuseRamp": [
+      {"time": 0.0, "color": {"r": 0.034, "g": 0.022, "b": 0.047, "a": 1.0}},
+      {"time": 0.3, "color": {"r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0}},
+      {"time": 1.0, "color": {"r": 1.08, "g": 1.04, "b": 0.98, "a": 1.0}}
+    ],
+    "SpecularRamp": [
+      {"time": 0.9, "color": {"r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0}}
+    ],
+    "ShadowHatchingPattern": "/Game/EnvSandbox/Materials/ToonProfiles/T_HatchPattern",
+    "ShadowingExtinction": 0.3
+  }
+}

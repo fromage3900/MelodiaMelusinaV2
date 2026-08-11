@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Melodia Cosmic Hero</title>
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<style>
+  :root {
+    --surface-base: #141A30;
+    --surface-raised: #1C2340;
+    --accent-astral: #3C5C9E;
+    --accent-iris: #6E5AA6;
+    --gold: #C9A86A;
+    --gold-soft: #DDC79B;
+    --text-primary: #ECEAF4;
+    --text-secondary: #A9A7C0;
+    --border-gold: rgba(201, 168, 106, 0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body), system-ui, sans-serif;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Cosmic Background */
+  .cosmic-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #141A30 0%, #1C2340 50%, #241B2E 100%);
+    z-index: 0;
+  }
+
+  /* Animated Stars */
+  .stars-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--duration) ease-in-out infinite;
+    opacity: var(--opacity);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--opacity); transform: scale(1); }
+    50% { opacity: 0.2; transform: scale(0.8); }
+  }
+
+  /* Nebula Effect */
+  .nebula {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(ellipse at 20% 30%, rgba(110, 90, 166, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(60, 92, 158, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(158, 124, 180, 0.08) 0%, transparent 60%);
+    animation: nebula-drift 20s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  @keyframes nebula-drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, -20px) scale(1.05); }
+  }
+
+  /* Constellation Lines */
+  .constellation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    opacity: 0.15;
+  }
+
+  .constellation-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    height: 1px;
+    transform-origin: left center;
+    animation: line-glow 4s ease-in-out infinite;
+  }
+
+  @keyframes line-glow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Hero Content */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 40px;
+    max-width: 900px;
+  }
+
+  .hero-kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fade-up 1s ease-out 0.5s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fade-up 1s ease-out 0.7s forwards;
+  }
+
+  .hero-title .highlight {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fade-up 1s ease-out 0.9s forwards;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Navigation Dots */
+  .nav-dots {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 32px;
+    z-index: 10;
+    opacity: 0;
+    animation: fade-up 1s ease-out 1.2s forwards;
+  }
+
+  .nav-dot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-dot:hover {
+    transform: translateY(-4px);
+  }
+
+  .nav-dot-icon {
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+
+  .nav-dot.active .nav-dot-icon {
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+  }
+
+  .nav-dot-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-dot:hover .nav-dot-label,
+  .nav-dot.active .nav-dot-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Gold Corner Accents */
+  .corner-accent {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--border-gold);
+    z-index: 5;
+    opacity: 0.4;
+  }
+
+  .corner-accent.top-left {
+    top: 40px;
+    left: 40px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .corner-accent.top-right {
+    top: 40px;
+    right: 40px;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .corner-accent.bottom-left {
+    bottom: 40px;
+    left: 40px;
+    border-right: none;
+    border-top: none;
+  }
+
+  .corner-accent.bottom-right {
+    bottom: 40px;
+    right: 40px;
+    border-left: none;
+    border-top: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .corner-accent {
+      width: 40px;
+      height: 40px;
+    }
+
+    .corner-accent.top-left { top: 20px; left: 20px; }
+    .corner-accent.top-right { top: 20px; right: 20px; }
+    .corner-accent.bottom-left { bottom: 20px; left: 20px; }
+    .corner-accent.bottom-right { bottom: 20px; right: 20px; }
+
+    .nav-dots {
+      gap: 24px;
+      bottom: 40px;
+    }
+
+    .hero-content {
+      padding: 24px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .star, .nebula, .constellation-line {
+      animation: none;
+    }
+
+    .hero-kicker, .hero-title, .hero-subtitle, .nav-dots {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="hero-container">
+  <!-- Cosmic Background -->
+  <div class="cosmic-background"></div>
+
+  <!-- Animated Stars -->
+  <div class="stars-container" id="stars"></div>
+
+  <!-- Nebula Effect -->
+  <div class="nebula"></div>
+
+  <!-- Constellation Lines -->
+  <div class="constellation" id="constellation"></div>
+
+  <!-- Corner Accents -->
+  <div class="corner-accent top-left"></div>
+  <div class="corner-accent top-right"></div>
+  <div class="corner-accent bottom-left"></div>
+  <div class="corner-accent bottom-right"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <div class="hero-kicker" id="kicker">Environment Art</div>
+    <h1 class="hero-title" id="title">Your <span class="highlight">Name</span></h1>
+    <p class="hero-subtitle" id="subtitle">3D Environment Artist & Technical Designer</p>
+  </div>
+
+  <!-- Navigation Dots -->
+  <div class="nav-dots">
+    <div class="nav-dot active" data-section="renders">
+      <div class="nav-dot-icon"></div>
+      <span class="nav-dot-label">Renders</span>
+    </div>
+    <div class="nav-dot" data-section="illustrations">
+      <div class="nav-dot-icon"></div>
+      <span class="nav-dot-label">Illustrations</span>
+    </div>
+    <div class="nav-dot" data-section="breakdowns">
+      <div class="nav-dot-icon"></div>
+      <span class="nav-dot-label">Breakdowns</span>
+    </div>
+    <div class="nav-dot" data-section="about">
+      <div class="nav-dot-icon"></div>
+      <span class="nav-dot-label">About</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Configuration from URL parameters or defaults
+  const urlParams = new URLSearchParams(window.location.search);
+  const config = {
+    kicker: urlParams.get('kicker') || 'Environment Art',
+    title: urlParams.get('title') || 'Your Name',
+    subtitle: urlParams.get('subtitle') || '3D Environment Artist & Technical Designer',
+    highlight: urlParams.get('highlight') || 'Name'
+  };
+
+  // Update content
+  document.getElementById('kicker').textContent = config.kicker;
+  document.getElementById('title').innerHTML = config.title.replace(
+    config.highlight,
+    `<span class="highlight">${config.highlight}</span>`
+  );
+  document.getElementById('subtitle').textContent = config.subtitle;
+
+  // Generate animated stars
+  function createStars() {
+    const container = document.getElementById('stars');
+    const starCount = 100;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      
+      const size = Math.random() * 2 + 1;
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      const duration = Math.random() * 3 + 2;
+      const opacity = Math.random() * 0.7 + 0.3;
+
+      star.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}%;
+        top: ${y}%;
+        --duration: ${duration}s;
+        --opacity: ${opacity};
+        animation-delay: ${Math.random() * 2}s;
+      `;
+
+      container.appendChild(star);
+    }
+  }
+
+  // Generate constellation lines
+  function createConstellation() {
+    const container = document.getElementById('constellation');
+    const lineCount = 8;
+
+    for (let i = 0; i < lineCount; i++) {
+      const line = document.createElement('div');
+      line.className = 'constellation-line';
+      
+      const x1 = Math.random() * 80 + 10;
+      const y1 = Math.random() * 80 + 10;
+      const length = Math.random() * 200 + 100;
+      const angle = Math.random() * 360;
+
+      line.style.cssText = `
+        left: ${x1}%;
+        top: ${y1}%;
+        width: ${length}px;
+        transform: rotate(${angle}deg);
+        animation-delay: ${Math.random() * 2}s;
+      `;
+
+      container.appendChild(line);
+    }
+  }
+
+  // Navigation dot interaction
+  const navDots = document.querySelectorAll('.nav-dot');
+  navDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      navDots.forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+
+      // Send message to parent about section change
+      const section = dot.dataset.section;
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: 'navigate', section }, '*');
+      }
+    });
+  });
+
+  // Initialize
+  createStars();
+  createConstellation();
+
+  // Handle reduced motion preference
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.star, .nebula, .constellation-line').forEach(el => {
+      el.style.animation = 'none';
+    });
+  }
+</script>
+</body>
+</html>

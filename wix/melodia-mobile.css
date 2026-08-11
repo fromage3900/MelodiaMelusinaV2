@@ -1,0 +1,210 @@
+/* Mobile layout fixes — nav, overflow, hero, frames */
+
+@media (max-width: 1080px) {
+  .shell-nav {
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+  }
+
+  .shell-nav .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px;
+    border: 1px solid var(--line, rgba(201, 168, 106, 0.32));
+    border-radius: 3px;
+    background: rgba(7, 9, 18, 0.92);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 16px 48px rgba(34, 26, 42, 0.14);
+    max-height: min(70vh, 420px);
+    overflow-y: auto;
+    z-index: 60;
+  }
+
+  .shell-nav.nav-open .nav-links {
+    display: flex;
+  }
+
+  .shell-nav .nav-links a {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(233, 229, 242, 0.08);
+  }
+
+  .shell-nav .nav-links a:last-child {
+    border-bottom: 0;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    min-height: 42px;
+    padding: 0;
+    border: 1px solid var(--line, rgba(201, 168, 106, 0.32));
+    border-radius: 2px;
+    background: rgba(7, 9, 18, 0.55);
+    color: rgba(236, 234, 244, 0.86);
+    cursor: pointer;
+    font-family: var(--font-mono, var(--font-mono));
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .nav-toggle::before {
+    content: "Menu";
+  }
+
+  .shell-nav.nav-open .nav-toggle::before {
+    content: "Close";
+  }
+
+  .hero-passport {
+    margin: 0 18px 24px;
+    max-width: 100%;
+  }
+
+  .proof-layout,
+  .breakdown-passports,
+  .about-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .feature-frame img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: 1081px) {
+  .nav-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .melodia-shell {
+    overflow-x: visible;
+  }
+
+  .band {
+    overflow-x: clip;
+  }
+
+  .shell-nav {
+    inset: 8px 10px auto;
+    padding: 8px 10px;
+  }
+
+  .shell-nav .nav-cta {
+    display: inline-flex;
+    min-height: 36px;
+    padding: 8px 10px;
+    font-size: 0.58rem;
+  }
+
+  .hero {
+    min-height: 88svh;
+  }
+
+  .hero-inner {
+    padding-top: 108px;
+    padding-bottom: 32px;
+  }
+
+  .melodia-orrery {
+    opacity: 0.22;
+    width: min(72vw, 320px);
+    inset: 10% -12% auto auto;
+    /* Keep slow spin on mobile — glow motion is intentional */
+  }
+
+  .melodia-orrery .ring {
+    animation-duration: 58s;
+  }
+
+  .melodia-orrery .ring.fast {
+    animation-duration: 38s;
+  }
+
+  .hero h1,
+  h1 {
+    font-size: clamp(2.2rem, 11vw, 3.4rem) !important;
+    line-height: 0.95;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
+  }
+
+  .world-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .world-card {
+    min-height: 280px;
+  }
+
+  .world-card h3 {
+    margin-top: 48px;
+    font-size: 1.85rem;
+  }
+
+  .impossible-card,
+  .escher-tessellation {
+    min-height: 280px;
+  }
+
+  .table-row,
+  .guide-card,
+  .data-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer .inner {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  :root {
+    --frame-inset: clamp(10px, 3.5%, 28px);
+  }
+
+  /* Prevent planetarium hero slot clipping / offscreen */
+  .hero[data-planetarium-hero] .planetarium-hero-slot {
+    inset: 10% 0 auto auto;
+    width: min(92vw, 420px);
+    max-width: 420px;
+  }
+
+  .hero[data-planetarium-hero] .planetarium-hero-slot .planetarium {
+    max-width: 100%;
+  }
+}
+
+/* Only strip motion for explicit accessibility preference — not all mobile */
+@media (prefers-reduced-motion: reduce) {
+  .melodia-orrery .ring,
+  .star-layer,
+  .escher-grid,
+  .monogram-strip .glyph-orbit {
+    animation: none !important;
+  }
+
+  .hero-media img,
+  .texture-layer,
+  .melodia-orrery {
+    transform: none !important;
+  }
+}

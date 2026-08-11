@@ -1,0 +1,187 @@
+/* Melodia Night Theme — site-wide darker nighttime palette + magical hues */
+
+:root {
+  --night-void: #070912;
+  --night-ink: #0b0f1f;
+  --night-astral: #101736;
+  --night-plum: #1c1633;
+  --night-lavender: rgba(236, 234, 244, 0.92);
+  --night-muted: rgba(236, 234, 244, 0.66);
+  --night-line: rgba(201, 168, 106, 0.28);
+  --night-soft-line: rgba(233, 229, 242, 0.10);
+
+  /* Override \"paper\" tokens so any leftover ivory cards go night */
+  --ivory: var(--night-void);
+  --paper: rgba(16, 23, 54, 0.62);
+  --ink: var(--night-lavender);
+  --muted: var(--night-muted);
+  --line: var(--night-line);
+  --soft-line: var(--night-soft-line);
+}
+
+body {
+  background: radial-gradient(circle at 22% 12%, rgba(102, 217, 255, 0.08), transparent 34%),
+    radial-gradient(circle at 82% 18%, rgba(204, 153, 255, 0.08), transparent 36%),
+    radial-gradient(circle at 60% 84%, rgba(255, 230, 102, 0.04), transparent 42%),
+    linear-gradient(180deg, var(--night-void), var(--night-ink));
+  color: var(--night-lavender);
+}
+
+.melodia-shell {
+  background:
+    radial-gradient(circle at 12% 16%, rgba(232, 201, 184, 0.08), transparent 28%),
+    radial-gradient(circle at 78% 22%, rgba(155, 143, 196, 0.10), transparent 32%),
+    radial-gradient(circle at 50% 80%, rgba(102, 217, 255, 0.06), transparent 40%),
+    linear-gradient(180deg, var(--night-void) 0%, var(--night-astral) 50%, var(--night-ink) 100%);
+}
+
+.band.paper,
+.band.cloud {
+  background:
+    linear-gradient(180deg, rgba(16, 23, 54, 0.92), rgba(7, 9, 18, 0.94)),
+    radial-gradient(circle at 18% 26%, rgba(102, 217, 255, 0.06), transparent 40%),
+    radial-gradient(circle at 82% 72%, rgba(204, 153, 255, 0.06), transparent 40%);
+  color: var(--night-lavender);
+}
+
+/* Any legacy “paper” utility classes should be night too */
+.paper {
+  background:
+    linear-gradient(180deg, rgba(16, 23, 54, 0.92), rgba(7, 9, 18, 0.94)) !important;
+  color: var(--night-lavender) !important;
+}
+
+.band.paper p,
+.band.cloud p,
+.band.paper .body-copy,
+.band.cloud .body-copy {
+  color: var(--night-muted);
+}
+
+.band.paper h2,
+.band.cloud h2,
+.band.paper h3,
+.band.cloud h3,
+.band.paper strong,
+.band.cloud strong {
+  color: var(--night-lavender);
+}
+
+.table-list,
+.table-row,
+.guide-card {
+  border-color: var(--night-line) !important;
+}
+
+.table-row p,
+.guide-card p {
+  color: var(--night-muted) !important;
+}
+
+.image-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--night-line);
+}
+
+.image-card p {
+  color: var(--night-muted);
+}
+
+.shell-nav {
+  background: rgba(7, 9, 18, 0.78) !important;
+  border-color: var(--night-line) !important;
+}
+
+.shell-nav .nav-links a {
+  color: rgba(236, 234, 244, 0.82);
+}
+
+.brand {
+  color: rgba(255, 230, 102, 0.92);
+}
+
+.footer {
+  background: linear-gradient(180deg, rgba(7, 9, 18, 0.96), rgba(7, 9, 18, 1)) !important;
+  color: rgba(236, 234, 244, 0.62) !important;
+}
+
+/* Make sparkle + aurora read better over night */
+.melodia-shell > .dream-aurora-layer { opacity: 0.22; mix-blend-mode: soft-light; }
+.melodia-shell > .dream-sparkle-layer { opacity: 0.28; }
+
+/* Keep readable contrast on buttons */
+.button,
+.button-premium {
+  color: rgba(236, 234, 244, 0.88);
+}
+
+.button.primary,
+.button-premium-primary {
+  color: var(--night-void) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .melodia-shell > .dream-aurora-layer { opacity: 0.38; }
+  .melodia-shell > .dream-sparkle-layer { opacity: 0.18; }
+}
+
+/* Editorial cards + captions — night glass (beats cascade from bridge pages) */
+.alignment-card,
+.stack-card,
+.axis-card {
+  background: rgba(16, 23, 54, 0.72) !important;
+  border-color: var(--night-line) !important;
+}
+
+.feature-caption {
+  background: rgba(16, 23, 54, 0.88) !important;
+  color: var(--night-lavender) !important;
+  backdrop-filter: blur(12px);
+}
+
+.portal-card {
+  background:
+    linear-gradient(145deg, rgba(16, 23, 54, 0.92), rgba(7, 9, 18, 0.88)),
+    var(--pattern-hearts-svg, none) !important;
+  color: var(--night-lavender);
+}
+
+.portal-card p { color: var(--night-muted); }
+
+.card,
+.feature-card,
+.look-card {
+  background: rgba(16, 23, 54, 0.72) !important;
+}
+
+.impact-card {
+  background: rgba(16, 23, 54, 0.82) !important;
+}
+
+.impact-card .body p {
+  color: var(--night-muted) !important;
+}
+
+.skill-cloud span,
+.check-list li,
+.route-line span {
+  background: rgba(16, 23, 54, 0.55) !important;
+  color: rgba(236, 234, 244, 0.82) !important;
+}
+
+.identity-panel {
+  background:
+    linear-gradient(rgba(16, 23, 54, 0.88), rgba(7, 9, 18, 0.92)),
+    var(--pattern-hearts-svg) !important;
+}
+
+.passport-card.light {
+  background: linear-gradient(180deg, rgba(16, 23, 54, 0.94), rgba(7, 9, 18, 0.92)) !important;
+  color: var(--night-lavender) !important;
+}
+
+.cloud {
+  background:
+    linear-gradient(180deg, rgba(16, 23, 54, 0.88), rgba(7, 9, 18, 0.92)),
+    radial-gradient(circle at 18% 26%, rgba(102, 217, 255, 0.06), transparent 40%) !important;
+}

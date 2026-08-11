@@ -1,0 +1,126 @@
+{
+  "atoms": {
+    "pointed_arch": {
+      "category": "opening",
+      "trim_labels": ["trim:arch_reveal"]
+    },
+    "torii_frame": {
+      "category": "gateway",
+      "parts": ["hashira", "nuki", "kasagi"],
+      "kit": "GB_ZEN_TORII_GATE",
+      "trim_labels": ["trim:hashira", "trim:nuki", "trim:kasagi"],
+      "snap_contract": ["floor", "path_ny", "path_py", "gate"],
+      "proportions": {"post_to_span": 0.12, "lintel_to_height": 0.98}
+    },
+    "sakura_torii_frame": {
+      "category": "gateway",
+      "variant_of": "torii_frame",
+      "parts": ["hashira", "nuki", "kasagi", "blossom_band", "petal_accent"],
+      "kit": "GB_ZEN_SAKURA_TORII",
+      "trim_labels": ["trim:hashira", "trim:nuki", "trim:kasagi", "trim:blossom_band", "trim:petal_accent"],
+      "snap_contract": ["floor", "path_ny", "path_py", "gate"]
+    },
+    "roji_path_segment": {
+      "category": "circulation",
+      "kit": "GB_ZEN_ROJI_STEP",
+      "trim_labels": ["trim:path_slab", "trim:edge_stone"],
+      "snap_contract": ["floor", "path_ny", "path_py"]
+    },
+    "tobiishi_scatter": {
+      "category": "circulation",
+      "kit": "GB_ZEN_TOBIISHI",
+      "trim_labels": ["trim:stepping_stone", "trim:path_bed"],
+      "snap_contract": ["floor", "path_ny", "path_py"]
+    },
+    "tsukubai_station": {
+      "category": "ritual",
+      "kit": "GB_ZEN_TSUKUBAI",
+      "trim_labels": ["trim:basin", "trim:flagstone"],
+      "snap_contract": ["floor", "basin", "approach_ny", "approach_py"]
+    },
+    "engawa_threshold": {
+      "category": "threshold",
+      "kit": "GB_ZEN_ENGAWA",
+      "trim_labels": ["trim:deck", "trim:post", "trim:rail"],
+      "snap_contract": ["floor", "roji", "garden", "engawa_edge"]
+    },
+    "bamboo_screen": {
+      "category": "boundary",
+      "kit": "GB_ZEN_BAMBOO_FENCE",
+      "trim_labels": ["trim:bamboo_post", "trim:bamboo_rail"],
+      "snap_contract": ["floor", "fence_ny", "fence_py"]
+    },
+    "karesansui_field": {
+      "category": "sacred_ground",
+      "kit": "GB_ZEN_KARESANSUI",
+      "trim_labels": ["trim:sand_bed", "trim:border_stone", "trim:rake_groove"],
+      "snap_contract": ["floor", "view_ny", "view_py", "bench_px"]
+    },
+    "machiai_wait": {
+      "category": "pavilion",
+      "kit": "GB_ZEN_MACHIAI",
+      "trim_labels": ["trim:post", "trim:roof", "trim:bench"],
+      "snap_contract": ["floor", "path_ny", "garden_py"]
+    },
+    "stone_bridge_span": {
+      "category": "crossing",
+      "kit": "GB_ZEN_STONE_BRIDGE",
+      "trim_labels": ["trim:deck", "trim:rail", "trim:abutment"],
+      "snap_contract": ["deck", "bank_ny", "bank_py"]
+    },
+    "cherry_canopy_path": {
+      "category": "landscape",
+      "kit": "GB_ZEN_CHERRY_ALLEE",
+      "trim_labels": ["trim:trunk_base", "trim:blossom_canopy", "trim:petal_scatter"],
+      "snap_contract": ["floor", "path_ny", "path_py", "canopy"]
+    },
+    "stream_bank_edge": {
+      "category": "hydrology",
+      "kit": "GB_ZEN_WATER_EDGE",
+      "trim_labels": ["trim:stream_bed", "trim:stream_bank", "trim:stepping_stone"],
+      "snap_contract": ["floor", "path_ny", "path_py", "bridge_ny", "bridge_py"]
+    },
+    "sando_approach": {
+      "category": "circulation",
+      "kit": "GB_ZEN_SANDO",
+      "trim_labels": ["trim:paving", "trim:edge_stone", "trim:toro_post", "trim:toro_base"],
+      "snap_contract": ["floor", "path_ny", "path_py", "toro_mid"]
+    },
+    "kairo_cloister": {
+      "category": "cloister",
+      "kit": "GB_ZEN_KAIRO",
+      "trim_labels": ["trim:floor", "trim:column", "trim:beam", "trim:noki_eave", "trim:wall_panel"],
+      "snap_contract": ["floor", "path_ny", "path_py", "court_px", "garden_nx", "engawa_edge"]
+    },
+    "haiden_platform": {
+      "category": "worship_hall",
+      "kit": "GB_ZEN_HAIDEN",
+      "trim_labels": ["trim:haijo_floor", "trim:genkan_step", "trim:ranma", "trim:noki", "trim:post"],
+      "snap_contract": ["floor", "approach_ny", "threshold", "sacred_py"]
+    },
+    "goju_pagoda_tower": {
+      "category": "tower",
+      "kit": "GB_ZEN_GOJU_PAGODA",
+      "trim_labels": ["trim:plinth", "trim:tier_core", "trim:tier_roof", "trim:sorin"],
+      "snap_contract": ["floor", "court_anchor"]
+    },
+    "tahoto_treasure_tower": {
+      "category": "tower",
+      "kit": "GB_ZEN_TAHOTO",
+      "trim_labels": ["trim:plinth", "trim:mokoshi_base", "trim:drum_body", "trim:roof_lower", "trim:roof_upper", "trim:sorin"],
+      "snap_contract": ["floor", "sacred_anchor"]
+    },
+    "honden_sanctuary": {
+      "category": "sacred_core",
+      "kit": "GB_ZEN_HONDEN",
+      "trim_labels": ["trim:sanctum_floor", "trim:sanctuary_wall", "trim:engawa_margin", "trim:noki_eave", "trim:threshold"],
+      "snap_contract": ["floor", "haiden_ny", "sacred_core", "noki_edge"]
+    },
+    "stone_lantern_post": {
+      "category": "accent",
+      "kit": "GB_ZEN_LANTERN",
+      "trim_labels": ["trim:kiso", "trim:sao", "trim:chudai", "trim:hibukuro", "trim:kasa", "trim:hoju"],
+      "snap_contract": ["floor", "toro_mid", "accent"]
+    }
+  }
+}

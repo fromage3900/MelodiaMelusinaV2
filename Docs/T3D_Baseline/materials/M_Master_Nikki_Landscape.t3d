@@ -1,0 +1,1304 @@
+Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki_Landscape" ExportPath="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_9" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_8" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_7" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_6" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_5" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_17" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_9" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_8" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_7" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_6" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_5" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_3" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_22" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_22'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_18" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_17" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_12" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_11" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_1" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_6" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_4" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_3" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_11" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_1" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubstrateToonBSDF Name="MaterialExpressionSubstrateToonBSDF_1" ExportPath="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubstrateToonBSDF_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_65" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_65'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_62" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_62'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_60" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_60'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_59" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_59'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_54" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_54'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_53" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_53'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_44" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_44'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_36" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_36'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_35" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_35'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_34" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_34'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_33" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_33'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_32" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_32'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_31" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_31'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_30" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_30'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_29" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_29'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_28" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_28'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_27" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_27'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_26" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_26'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_25" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_25'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_24" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_24'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_23" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_23'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_22" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_22'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_21" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_21'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_20'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSaturate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPixelDepth Name="MaterialExpressionPixelDepth_1" ExportPath="/Script/Engine.MaterialExpressionPixelDepth'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionPixelDepth_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionOneMinus Name="MaterialExpressionOneMinus_1" ExportPath="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionOneMinus_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_35" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_35'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_32" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_32'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_30" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_30'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_20" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_20'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_4" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_3" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_2" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_1" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_5" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_4" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_3" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_11" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_11'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_6" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_6'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_5" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_5'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_4" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_4'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_3" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_3'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_2" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_2'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_1" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_1'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_0'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerBlend Name="MaterialExpressionLandscapeLayerBlend_6" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_6'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerBlend Name="MaterialExpressionLandscapeLayerBlend_5" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_5'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerBlend Name="MaterialExpressionLandscapeLayerBlend_4" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_4'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerBlend Name="MaterialExpressionLandscapeLayerBlend_3" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_3'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerBlend Name="MaterialExpressionLandscapeLayerBlend_11" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_11'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerBlend Name="MaterialExpressionLandscapeLayerBlend_1" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFresnel Name="MaterialExpressionFresnel_1" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionFresnel_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFresnel Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionFresnel_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDotProduct Name="MaterialExpressionDotProduct_1" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDotProduct_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDivide Name="MaterialExpressionDivide_2" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDivide Name="MaterialExpressionDivide_1" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDivide Name="MaterialExpressionDivide_0" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_1" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant3Vector_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant3Vector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialEditorOnlyData Name="M_Master_Nikki_LandscapeEditorOnlyData" ExportPath="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:M_Master_Nikki_LandscapeEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_9" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_9'"
+      DefaultValue=(R=0.620000,G=0.720000,B=0.820000,A=1.000000)
+      ParameterName="AtmosphericColor"
+      ExpressionGUID=B218D2E84ADAA4F3682D8D94B26D8B61
+      Group="Atmosphere"
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-880
+      MaterialExpressionGuid=3CBA5E5642F39B6854178C96A0C35BE4
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_8" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_8'"
+      DefaultValue=(R=1.000000,G=0.950000,B=0.900000,A=1.000000)
+      ParameterName="RampHigh"
+      ExpressionGUID=785ED5914B0ED426C89292A6CBA79A92
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=-340
+      MaterialExpressionGuid=EECF4DF0442F2E564C8875A298167CD4
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_7" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_7'"
+      DefaultValue=(R=0.850000,G=0.600000,B=0.750000,A=1.000000)
+      ParameterName="RampMid"
+      ExpressionGUID=9B591AB94BB8002A0E99238C391CB3C8
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=-480
+      MaterialExpressionGuid=8726692A4F95356C31E4D5A6A49C8ED3
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_6" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_6'"
+      DefaultValue=(R=0.200000,G=0.150000,B=0.300000,A=1.000000)
+      ParameterName="RampLow"
+      ExpressionGUID=9CCBF1C641209DE05DFB4CA6B8EF3C22
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=-620
+      MaterialExpressionGuid=0B77DAC348E5157BE71D61963A1330F5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_5" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_5'"
+      DefaultValue=(R=1.000000,G=1.000000,B=1.000000,A=1.000000)
+      ParameterName="BaseTint"
+      ExpressionGUID=553BA1E341C885A8033BD1BDD334373B
+      Group="Base"
+      MaterialExpressionEditorX=-1550
+      MaterialExpressionEditorY=-420
+      MaterialExpressionGuid=6C73AA314699D35ADD1138AFF87585EF
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_3'"
+      DefaultValue=(R=1.000000,G=0.950000,B=0.900000,A=1.000000)
+      ParameterName="RampHigh"
+      ExpressionGUID=758760F54CE59AB651F03A9467EAA01A
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=-340
+      MaterialExpressionGuid=1868F5764D681E44789AF0AEFD90AA7B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_17" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_17'"
+      DefaultValue=(R=0.850000,G=0.600000,B=0.750000,A=1.000000)
+      ParameterName="RampMid"
+      ExpressionGUID=7939EBE549D3773756E440B9EBB3DCDC
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=-480
+      MaterialExpressionGuid=61BE37794D0BCB1383E5D8ADCE53EFCC
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_1'"
+      DefaultValue=(R=0.200000,G=0.150000,B=0.300000,A=1.000000)
+      ParameterName="RampLow"
+      ExpressionGUID=1CCBCC534798A698616143A2B8EBE6D3
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=-620
+      MaterialExpressionGuid=98F34A6C4A1F0C69B7A4EE9C889972E6
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_0'"
+      DefaultValue=(R=1.000000,G=1.000000,B=1.000000,A=1.000000)
+      ParameterName="BaseTint"
+      ExpressionGUID=C3D7D5A4471E53B98E99518C2BC0A9C2
+      Group="Base"
+      MaterialExpressionEditorX=-1550
+      MaterialExpressionEditorY=-420
+      MaterialExpressionGuid=CFAEF7644D7775D0C3E807977E9D9AA0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_9" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_9'"
+      ParameterName="Grass_NormalMap"
+      ExpressionGUID=50B2B7D141A2A9330E679FA681C2DB29
+      Group="Layer Grass"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_11'")
+      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-40
+      MaterialExpressionGuid=EC60878B4F090BF76A289187961E392E
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_8" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_8'"
+      ParameterName="Grass_Albedo"
+      ExpressionGUID=1E75B2BF4BC7E8618E62A08798FEAD92
+      Group="Layer Grass"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_11'")
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-340
+      MaterialExpressionGuid=FFE9359D4BF340911554E782D74D0494
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_7" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_7'"
+      ParameterName="Ground_NormalMap"
+      ExpressionGUID=A1023A2A4D6C26E011949B9F6D45E62B
+      Group="Layer Ground"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_10'")
+      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-660
+      MaterialExpressionGuid=63FF13D744E943402ECFA88C74C184E1
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_6" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_6'"
+      ParameterName="Ground_Albedo"
+      ExpressionGUID=7D3FEFFB457F3351761F1B943478846C
+      Group="Layer Ground"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_10'")
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-960
+      MaterialExpressionGuid=3FD2E1EF4179C8A1A50F1E8AD83461D6
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_5" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_5'"
+      ParameterName="Rock_NormalMap"
+      ExpressionGUID=2073F64847F1B75C9AD0FDA71A72C33F
+      Group="Layer Rock"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_2'")
+      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=580
+      MaterialExpressionGuid=2FA517524A7A99CFB20BEE82C03EA05E
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_3" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_3'"
+      ParameterName="Grass_NormalMap"
+      ExpressionGUID=FC66EBD5425070A21544AC8B5C102525
+      Group="Layer Grass"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_1'")
+      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-40
+      MaterialExpressionGuid=E069BD2F41B4AAC43A0781A1835CEE8B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_22" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_22'"
+      ParameterName="Rock_Albedo"
+      ExpressionGUID=224DDEB74E2E5AB92783708BFC9ADFBE
+      Group="Layer Rock"
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=280
+      MaterialExpressionGuid=9F532B784C0587BDE8857DAA8B4BFF36
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_18" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_18'"
+      ParameterName="Ground_Albedo"
+      ExpressionGUID=2B8D8C2A41D6AFF2EB08529D047A33CF
+      Group="Layer Ground"
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-960
+      MaterialExpressionGuid=174649F94C8179C0A45DDD9FA5FD7FD8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_17" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_17'"
+      ParameterName="Rock_NormalMap"
+      ExpressionGUID=01B788E94431BCB9524A019E8051A906
+      Group="Layer Rock"
+      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=580
+      MaterialExpressionGuid=75F30EB248032E0E6D0215AF60EE9B84
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_12" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_12'"
+      ParameterName="Rock_NormalMap"
+      ExpressionGUID=BAE696B54AA27F9E8F2B40B431544AE4
+      Group="Layer Rock"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_12'")
+      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=580
+      MaterialExpressionGuid=E17B6BE341E187911C6098904CE9676B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_11" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_11'"
+      ParameterName="Rock_Albedo"
+      ExpressionGUID=C2A6DACA4D3D71E1790A5B804A4B6021
+      Group="Layer Rock"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_12'")
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=280
+      MaterialExpressionGuid=4313981F44DB6392765B9192098E100F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_1" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_1'"
+      ParameterName="Ground_NormalMap"
+      ExpressionGUID=511B3A7041CF498813AAB58834EF9BE2
+      Group="Layer Ground"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_0'")
+      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-660
+      MaterialExpressionGuid=D0F38EB14FDCAF19E12A9FB5669582A6
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_6" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_33'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_32'")
+      MaterialExpressionEditorX=-500
+      MaterialExpressionEditorY=-540
+      MaterialExpressionGuid=06114EFC4D359AA29449BA9D6E916159
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_4" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionPixelDepth'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionPixelDepth_1'",Mask=1,MaskR=1)
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_32'")
+      MaterialExpressionEditorX=-500
+      MaterialExpressionEditorY=-650
+      MaterialExpressionGuid=30A4A53047525971484783A25880659A
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_3" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_14'")
+      MaterialExpressionEditorX=-780
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=130555EC479FDC9A6B3267BC824CF917
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_11" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_11'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_65'")
+      MaterialExpressionEditorX=-500
+      MaterialExpressionEditorY=-540
+      MaterialExpressionGuid=FE9E3CC64DC1321F914245AACE91780F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_1" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_1'"
+      A=(Mask=1,MaskR=1)
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_13'")
+      MaterialExpressionEditorX=-500
+      MaterialExpressionEditorY=-650
+      MaterialExpressionGuid=ADED661A4815150416BB708E8A5D33C0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_0'"
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_4'")
+      MaterialExpressionEditorX=-780
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=A435125042FE5849B0F3FAADE165B35D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSubstrateToonBSDF_1" ExportPath="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubstrateToonBSDF_1'"
+      BaseColor=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_5'")
+      Metallic=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_31'")
+      Roughness=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_15'")
+      Normal=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_4'")
+      EmissiveColor=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_20'")
+      MaterialExpressionEditorX=260
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=CDF7F26B4824B79A51B0DB9D2D8F5DC1
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_7'"
+      DefaultValue=1.000000
+      SliderMin=0.100000
+      SliderMax=4.000000
+      ParameterName="RampContrast"
+      ExpressionGUID=C03174B44D27898EFF5264B63E53A0ED
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionGuid=1582AE02494AF0181636669D19709BF8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_65" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_65'"
+      DefaultValue=50000.000000
+      SliderMin=1000.000000
+      SliderMax=500000.000000
+      ParameterName="AtmosphericEnd"
+      ExpressionGUID=040321F14E6DFE9BCAAD058F6698CB22
+      Group="Atmosphere"
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-520
+      MaterialExpressionGuid=A5A8C66F40A7D824083303A25D98A9CB
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_62" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_62'"
+      SliderMax=1.000000
+      ParameterName="IridescenceRoughnessAtten"
+      ExpressionGUID=38B42051497996837710DC987976C0ED
+      Group="Nikki"
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=5DC1E2CD4467E072371F3D8C2556FA80
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_60" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_60'"
+      SliderMax=1.000000
+      ParameterName="RoughnessMin"
+      ExpressionGUID=2E4B21994EC346DDCA952B85FE9A7783
+      Group="Base"
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=1058FF38411CDACE635609B7A2FA0A1C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_59" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_59'"
+      SliderMax=1.000000
+      ParameterName="RampStrength"
+      ExpressionGUID=51D5052641E1FB03067FDBA2F2F63D62
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=661713674E5AE25A7F331488E67C7E25
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_54" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_54'"
+      DefaultValue=0.800000
+      SliderMax=1.000000
+      ParameterName="Grass_Roughness"
+      ExpressionGUID=823932E948E9141FE9FF4E8D0F6AFA09
+      Group="Layer Grass"
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-110
+      MaterialExpressionGuid=0A71093343B9DC036EEA2BB79E5CD578
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_53" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_53'"
+      DefaultValue=1.000000
+      SliderMin=0.050000
+      SliderMax=10.000000
+      ParameterName="Grass_UVScale"
+      ExpressionGUID=4CDA57674AA1E944538E7D96C4084BFF
+      Group="Layer Grass"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=-150
+      MaterialExpressionGuid=BA14A4A340F5AA9EB4C986ABD4567B02
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_44" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_44'"
+      DefaultValue=1.000000
+      SliderMax=1.500000
+      ParameterName="RoughnessMax"
+      ExpressionGUID=E6F1EAFF4BAC646EE2F82F9E4A5C96B0
+      Group="Base"
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=A90558204DD027ABE1032A8AD08DAD6F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_36" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_36'"
+      DefaultValue=0.120000
+      SliderMax=1.000000
+      ParameterName="EmissiveFloor"
+      ExpressionGUID=7CD1FCE544BB227380CDA58ECDFF4853
+      Group="Nikki"
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=-40
+      MaterialExpressionGuid=0D012B0643AE112F23EF37BEAE5F02C8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_35" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_35'"
+      DefaultValue=1.000000
+      SliderMax=4.000000
+      ParameterName="NikkiEmissiveStrength"
+      ExpressionGUID=5F0ECCDF4D238899C5AB22944A40B3DE
+      Group="Nikki"
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=-120
+      MaterialExpressionGuid=3E2DE6814A75A579AC17DC9A84CDB917
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_34" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_34'"
+      SliderMax=1.000000
+      ParameterName="AtmosphericStrength"
+      ExpressionGUID=91B96FCF42009759BEE198A1F027AD48
+      Group="Atmosphere"
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-460
+      MaterialExpressionGuid=BACEF10B4CB591D13EE55D9E3DE97341
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_33" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_33'"
+      DefaultValue=50000.000000
+      SliderMin=1000.000000
+      SliderMax=500000.000000
+      ParameterName="AtmosphericEnd"
+      ExpressionGUID=69E0BF7D4114433B02EB199E2CC3D6C5
+      Group="Atmosphere"
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-520
+      MaterialExpressionGuid=88A64FAE4965100ACC5A1EBFABC05B78
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_32" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_32'"
+      DefaultValue=5000.000000
+      SliderMax=100000.000000
+      ParameterName="AtmosphericStart"
+      ExpressionGUID=2839718F4C143BDC79DFFB9B2EFD2DAF
+      Group="Atmosphere"
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-580
+      MaterialExpressionGuid=524F0542404247ECF7D27B8A387ACA5B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_31" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_31'"
+      SliderMax=1.000000
+      ParameterName="MetallicScale"
+      ExpressionGUID=8CF7878B465A428DE5556AAA27BAB416
+      Group="Base"
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=35B551914B17B9BFA2079A81A6EFB1FF
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_30" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_30'"
+      SliderMax=1.000000
+      ParameterName="IridescenceRoughnessAtten"
+      ExpressionGUID=875295D34F3AB6BA84EC52992ACF26CB
+      Group="Nikki"
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=330F3DE148F104D9B58408899E7637EE
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_29" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_29'"
+      DefaultValue=1.000000
+      SliderMax=1.500000
+      ParameterName="RoughnessMax"
+      ExpressionGUID=C275245D443672D13BEEF8972380D42B
+      Group="Base"
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=53F05B9042B48AFC298B2BAA2AD3A059
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_28" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_28'"
+      SliderMax=1.000000
+      ParameterName="RoughnessMin"
+      ExpressionGUID=737B37D84D90101B1FE81389F6C305BD
+      Group="Base"
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=42B071684C5152547F52D0889F345EB3
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_27" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_27'"
+      SliderMax=1.000000
+      ParameterName="RampStrength"
+      ExpressionGUID=DAA02CC648B4F148337E37AC0B28E886
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=A11C01F34CA11559B493A282E92CF030
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_26" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_26'"
+      SliderMax=1.000000
+      ParameterName="RoughnessMin"
+      ExpressionGUID=A7DE9B094A4E9CD9B15C34818303EDDA
+      Group="Base"
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=6851CAC9476DD3C404870D9EA2ED18CA
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_25" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_25'"
+      DefaultValue=1.000000
+      SliderMin=0.100000
+      SliderMax=4.000000
+      ParameterName="RampContrast"
+      ExpressionGUID=B020B93B45E12B925FA3FD99C191C9B3
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionGuid=042F9E8246C1DC0F54E837BEB195E45D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_24" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_24'"
+      DefaultValue=0.500000
+      SliderMin=0.050000
+      SliderMax=0.950000
+      ParameterName="RampPosMid"
+      ExpressionGUID=55A2169B433255570D643DB2D8FDDA7E
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=-60
+      MaterialExpressionGuid=671FBBA349E20179C4E8EE959D1941E8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_23" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_23'"
+      DefaultValue=0.800000
+      SliderMax=1.000000
+      ParameterName="Rock_Roughness"
+      ExpressionGUID=FA93B26846114565339BFB810C800420
+      Group="Layer Rock"
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=510
+      MaterialExpressionGuid=E9531CD24400A942620EA888D5A3B308
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_22" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_22'"
+      DefaultValue=1.000000
+      SliderMin=0.050000
+      SliderMax=10.000000
+      ParameterName="Rock_UVScale"
+      ExpressionGUID=8DF395C643BCDA2EC4FAA28A8E4C1153
+      Group="Layer Rock"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=470
+      MaterialExpressionGuid=CC9A739141A46B83AE5AA68461855D7D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_21" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_21'"
+      DefaultValue=0.800000
+      SliderMax=1.000000
+      ParameterName="Grass_Roughness"
+      ExpressionGUID=B0AD37D54654EF6DAE0072A294F7C025
+      Group="Layer Grass"
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-110
+      MaterialExpressionGuid=C5926D874966957062150BA5F13A4F21
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_20'"
+      DefaultValue=1.000000
+      SliderMin=0.050000
+      SliderMax=10.000000
+      ParameterName="Grass_UVScale"
+      ExpressionGUID=AE6DD9C94A53FE655C6DC7888C05DFFF
+      Group="Layer Grass"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=-150
+      MaterialExpressionGuid=FF8F3DA541251C5816FE85A03C768C79
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_19'"
+      DefaultValue=0.800000
+      SliderMax=1.000000
+      ParameterName="Ground_Roughness"
+      ExpressionGUID=B477309946CFA14C1C983F8E13410E9A
+      Group="Layer Ground"
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-730
+      MaterialExpressionGuid=480C20B84FA0CA3BECDA76B792E243E2
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_18'"
+      DefaultValue=0.120000
+      SliderMax=1.000000
+      ParameterName="EmissiveFloor"
+      ExpressionGUID=7A9BD66D4B6C1C46E1D899A61A359F67
+      Group="Nikki"
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=-40
+      MaterialExpressionGuid=4705074C446C9373D433B28E9EB66869
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_17'"
+      DefaultValue=1.000000
+      SliderMax=4.000000
+      ParameterName="NikkiEmissiveStrength"
+      ExpressionGUID=761B14A34AC7DFC31B84FF9544C3B6C7
+      Group="Nikki"
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=-120
+      MaterialExpressionGuid=F969F4C847AAA8655063EFB4D65037B4
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_16'"
+      SliderMax=1.000000
+      ParameterName="AtmosphericStrength"
+      ExpressionGUID=C3F3D5A544D346844D201E8745FD384E
+      Group="Atmosphere"
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-460
+      MaterialExpressionGuid=90C8865F4401DCBAFD6752B07D2C4CBC
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_15'"
+      DefaultValue=1.000000
+      SliderMin=0.050000
+      SliderMax=10.000000
+      ParameterName="Ground_UVScale"
+      ExpressionGUID=53676DD64836F86468967A8AC9D93422
+      Group="Layer Ground"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=-770
+      MaterialExpressionGuid=E2436AB7455264456E0FA4B430C4CAB3
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_13'"
+      DefaultValue=5000.000000
+      SliderMax=100000.000000
+      ParameterName="AtmosphericStart"
+      ExpressionGUID=14B5E66946A5EF22338CD5B7BE2FAEA3
+      Group="Atmosphere"
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-580
+      MaterialExpressionGuid=701E06064E21333DE17DA1BE138DD4CE
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_12'"
+      SliderMax=1.000000
+      ParameterName="MetallicScale"
+      ExpressionGUID=FB8382424ECC920760E6989D48C80015
+      Group="Base"
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=3F8B8E1840BF628A4A2114A3616B3F11
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_10'"
+      DefaultValue=1.000000
+      SliderMax=1.500000
+      ParameterName="RoughnessMax"
+      ExpressionGUID=4A54DF15415825327ED29D9B3298520D
+      Group="Base"
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=262AA7AB4F9C264A85E7088A964B537E
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSaturate_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_1'")
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=-600
+      MaterialExpressionGuid=90ECC70C48AB24ADF0A2C89C73F4451A
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionPixelDepth_1" ExportPath="/Script/Engine.MaterialExpressionPixelDepth'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionPixelDepth_1'"
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-700
+      MaterialExpressionGuid=1D6C6A9F44A6FA2D835D66B1D5ADBD30
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionOneMinus_1" ExportPath="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionOneMinus_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_16'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=-20
+      MaterialExpressionGuid=10E9AFF04295C37FC5B8F1968E0001C9
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_9'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionAdd_0'")
+      MaterialExpressionEditorX=20
+      MaterialExpressionEditorY=-120
+      MaterialExpressionGuid=3DA6D3F647E80BAD7AE979895BA45489
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_6'"
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_16'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=-560
+      MaterialExpressionGuid=E86E6460423291D63B4B5B855D761A37
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionFresnel_0'")
+      MaterialExpressionEditorX=-920
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=01DE4FE74D3182A4DF4C39A4E9BDC56D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_35" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_35'"
+      MaterialExpressionEditorX=20
+      MaterialExpressionEditorY=-120
+      MaterialExpressionGuid=CE6DC2154512B6BE4E0BC798CE2B09E5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_32" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_32'"
+      MaterialExpressionEditorX=-650
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=A04B64DF4CEB876F965CB9A53BA24CE5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_30" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_30'"
+      B=(Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=-300
+      MaterialExpressionGuid=7B5E68814B2B2A1A6E468E8B4299E68D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_20" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_20'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionAdd_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionOneMinus_1'")
+      MaterialExpressionEditorX=20
+      MaterialExpressionEditorY=-120
+      MaterialExpressionGuid=140269A54E6F3983824D73893BBC4A63
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_3'")
+      MaterialExpressionEditorX=-2100
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=165D76BB4DE714AE01C026B2D1CEA7B0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_18'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_36'")
+      MaterialExpressionEditorX=-300
+      MaterialExpressionEditorY=-40
+      MaterialExpressionGuid=92679E6E407A9F24642A799265B748D3
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_17'"
+      A=(Expression="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_35'")
+      MaterialExpressionEditorX=-300
+      MaterialExpressionEditorY=-140
+      MaterialExpressionGuid=E14317674C404FB63B884DABA442FB99
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_16'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSaturate_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_34'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=-560
+      MaterialExpressionGuid=34AE22554F64EA9C75FF68BE9C6BFD45
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_15'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_3'")
+      MaterialExpressionEditorX=-650
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=D91CA203463AE30C52C46B93AEA0C30C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_14'"
+      A=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionFresnel_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_30'")
+      MaterialExpressionEditorX=-920
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=4043A9C74A8164CDC61F158CD41DCA22
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_13'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_5'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=-300
+      MaterialExpressionGuid=3B3D969D490FFCEF74EAE7966697DC31
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_12'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_22'")
+      MaterialExpressionEditorX=-2100
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=B0DD85D145F6388436B859A590652D15
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_11'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_20'")
+      MaterialExpressionEditorX=-2100
+      MaterialExpressionEditorY=-240
+      MaterialExpressionGuid=CCABC26248065AF3946707801CD5D052
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_10'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_15'")
+      MaterialExpressionEditorX=-2100
+      MaterialExpressionEditorY=-860
+      MaterialExpressionGuid=F33895D64C85E1B45EE842A06A14C7B4
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_1'")
+      MaterialExpressionEditorX=-2100
+      MaterialExpressionEditorY=-240
+      MaterialExpressionGuid=8B8BCCC247490E268206F780BE40AB1F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_0'")
+      MaterialExpressionEditorX=-2100
+      MaterialExpressionEditorY=-860
+      MaterialExpressionGuid=C1BB4ACF413C66F7D5AD99A74A110FC4
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_4" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_4'"
+      MaterialFunction="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+      FunctionInputs(0)=(ExpressionInputId=42E548D14C6EC8E8417A13A578AC13F7,Input=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_3'",InputName="BaseColorIn"))
+      FunctionOutputs(0)=(ExpressionOutputId=1ED28BCF4948B6DA676098AB139735DE,Output=(OutputName="EmissiveOut"))
+      FunctionOutputs(1)=(ExpressionOutputId=CCAF63534DB1F35699017DB3C6D49EC0,Output=(OutputName="ColorOut"))
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=-300
+      MaterialExpressionGuid=911072F44A5D52986039E28F8C626C05
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+      Outputs(0)=(OutputName="EmissiveOut")
+      Outputs(1)=(OutputName="ColorOut")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_3" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_3'"
+      MaterialFunction="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+      FunctionInputs(0)=(ExpressionInputId=9888C72C443E00F2579DD291CCADF350,Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_6'",InputName="RampLow",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(1)=(ExpressionInputId=BAB3880A4F69B652FD96BC953C1125B2,Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_7'",InputName="RampMid",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(2)=(ExpressionInputId=F0F07B5145940F476DBE0EA46BC7761A,Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_8'",InputName="RampHigh",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(3)=(ExpressionInputId=D02E96D240B90ACD2BF20D8456917B23,Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_24'",InputName="RampPosMid"))
+      FunctionInputs(4)=(ExpressionInputId=C141EA4849D49347636C78A557F28F5D,Input=(Expression="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDotProduct_1'",InputName="Mask"))
+      FunctionInputs(5)=(ExpressionInputId=93E81A3349CE0D1C2421F18A7EA6861F,Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_25'",InputName="RampContrast"))
+      FunctionOutputs(0)=(ExpressionOutputId=A3575DC94E97AC84D167708066752825,Output=(OutputName="Color"))
+      MaterialExpressionEditorX=-880
+      MaterialExpressionEditorY=-400
+      MaterialExpressionGuid=C2A140D44645FEC92BD79DA88F80297C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+      Outputs(0)=(OutputName="Color")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_2" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_2'"
+      MaterialFunction="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+      FunctionInputs(0)=(ExpressionInputId=42E548D14C6EC8E8417A13A578AC13F7,Input=(InputName="BaseColorIn"))
+      FunctionOutputs(0)=(ExpressionOutputId=1ED28BCF4948B6DA676098AB139735DE,Output=(OutputName="EmissiveOut"))
+      FunctionOutputs(1)=(ExpressionOutputId=CCAF63534DB1F35699017DB3C6D49EC0,Output=(OutputName="ColorOut"))
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=-300
+      MaterialExpressionGuid=1D3BC3804E3F658BCB0651B2F2621BF8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+      Outputs(0)=(OutputName="EmissiveOut")
+      Outputs(1)=(OutputName="ColorOut")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_1" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_1'"
+      MaterialFunction="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+      FunctionInputs(0)=(ExpressionInputId=9888C72C443E00F2579DD291CCADF350,Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_1'",InputName="RampLow",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(1)=(ExpressionInputId=BAB3880A4F69B652FD96BC953C1125B2,Input=(InputName="RampMid",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(2)=(ExpressionInputId=F0F07B5145940F476DBE0EA46BC7761A,Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_3'",InputName="RampHigh",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(3)=(ExpressionInputId=D02E96D240B90ACD2BF20D8456917B23,Input=(InputName="RampPosMid"))
+      FunctionInputs(4)=(ExpressionInputId=C141EA4849D49347636C78A557F28F5D,Input=(InputName="Mask"))
+      FunctionInputs(5)=(ExpressionInputId=93E81A3349CE0D1C2421F18A7EA6861F,Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_7'",InputName="RampContrast"))
+      FunctionOutputs(0)=(ExpressionOutputId=A3575DC94E97AC84D167708066752825,Output=(OutputName="Color"))
+      MaterialExpressionEditorX=-880
+      MaterialExpressionEditorY=-400
+      MaterialExpressionGuid=CBB8F92949BD4E054A4F0599E4965309
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+      Outputs(0)=(OutputName="Color")
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_5" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_4'",OutputIndex=1)
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_9'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_16'")
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=-300
+      MaterialExpressionGuid=9CA7228C431FDB917D17518B9FB848D5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_4" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_28'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_29'")
+      Alpha=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_6'")
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=05C79C7E4A4D966C8AAF1D81A3793DD7
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_3" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_13'")
+      B=(Expression="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_3'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_27'")
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-300
+      MaterialExpressionGuid=07F33835473456B0A0580BA1E5E07CA5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_11" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_11'"
+      A=(OutputIndex=1)
+      B=(Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=-300
+      MaterialExpressionGuid=B42FE0C648FDB2DCF968EDBC7824571F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_6" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_6'"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=-900
+      MaterialExpressionGuid=002DD3764D029F5836BFF5882BD1ADDD
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_5" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_5'"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=911667BC4128EF43A914D6AC78A6F23C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_4" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_4'"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=-280
+      MaterialExpressionGuid=371EF541443D7CE90FD6F5802ED89CAF
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_3" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_3'"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=1733765343C9A999997EAB9629467EBE
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_2" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_2'"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=-900
+      MaterialExpressionGuid=C1993F734A8AF1474AD54E934B904878
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_1" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_1'"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=-280
+      MaterialExpressionGuid=BB42B7D54A38753954E4DABE6FFF9635
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_0'"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=-900
+      MaterialExpressionGuid=FEC5E25B428D9879B909ACA624C75180
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerBlend_6" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_6'"
+      Layers(0)=(LayerName="Ground",LayerInput=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_19'"),PreviewWeight=1.000000)
+      Layers(1)=(LayerName="Grass",LayerInput=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_21'"))
+      Layers(2)=(LayerName="Rock",LayerInput=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_23'"))
+      MaterialExpressionEditorX=-1550
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=33D0C86C4CD9EB75E6AA68AC777100F8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerBlend_5" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_5'"
+      Layers(0)=(LayerName="Ground",PreviewWeight=1.000000)
+      Layers(1)=(LayerName="Grass")
+      Layers(2)=(LayerName="Rock")
+      MaterialExpressionEditorX=-1550
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=91B9D7D44E497D02E024148234DF00E1
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerBlend_4" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_4'"
+      Layers(0)=(LayerName="Ground",LayerInput=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_7'",Mask=1,MaskR=1,MaskG=1,MaskB=1),PreviewWeight=1.000000)
+      Layers(1)=(LayerName="Grass",LayerInput=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_9'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Layers(2)=(LayerName="Rock",LayerInput=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_12'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      MaterialExpressionEditorX=-1550
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=9A85BDE64D1E7816518B99B1012BA13E
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerBlend_3" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_3'"
+      Layers(0)=(LayerName="Ground",LayerInput=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_6'",Mask=1,MaskR=1,MaskG=1,MaskB=1),PreviewWeight=1.000000)
+      Layers(1)=(LayerName="Grass",LayerInput=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_8'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Layers(2)=(LayerName="Rock",LayerInput=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_11'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      MaterialExpressionEditorX=-1550
+      MaterialExpressionEditorY=-260
+      MaterialExpressionGuid=BE829DBB4A55CA383E2CBEA5C7F37157
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerBlend_11" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_11'"
+      Layers(0)=(LayerName="Ground",PreviewWeight=1.000000)
+      Layers(1)=(LayerName="Grass",LayerInput=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_54'"))
+      Layers(2)=(LayerName="Rock")
+      MaterialExpressionEditorX=-1550
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=4213AFF34A741A4320EB98807C2060C8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerBlend_1" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_1'"
+      Layers(0)=(LayerName="Ground",LayerInput=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1),PreviewWeight=1.000000)
+      Layers(1)=(LayerName="Grass",LayerInput=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_3'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Layers(2)=(LayerName="Rock",LayerInput=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_5'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      MaterialExpressionEditorX=-1550
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=3B57573D463E01BCE1C1B8884ABFA31F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionFresnel_1" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionFresnel_1'"
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=260
+      MaterialExpressionGuid=9602596C445EF748BB0BF28143B328DB
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionFresnel_0'"
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=260
+      MaterialExpressionGuid=0D2D018049B1A287574978A85E4E924A
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionDotProduct_1" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDotProduct_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_13'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant3Vector_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=-1120
+      MaterialExpressionEditorY=-180
+      MaterialExpressionGuid=ECB1359543442399518F6A9F0AC53D7D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionDivide_2" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_2'"
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=-600
+      MaterialExpressionGuid=ADE6F7D242A591EDED1F61A5201C4C0F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionDivide_1" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_6'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=-600
+      MaterialExpressionGuid=3EA4D0B44D2BB913B3B7EE98DA0286FA
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionDivide_0" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_1'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=-600
+      MaterialExpressionGuid=68AD8E6047D46AF789CD02B9067410B0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_1" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant3Vector_1'"
+      Constant=(R=0.299000,G=0.587000,B=0.114000,A=0.000000)
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=-140
+      MaterialExpressionGuid=C766096A4FC1DD865B90B9AB36963759
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant3Vector_0'"
+      Constant=(R=0.299000,G=0.587000,B=0.114000,A=0.000000)
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=-140
+      MaterialExpressionGuid=B14BA63F43688AF039250F8D5F2E4D87
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant_1'"
+      R=1.000000
+      MaterialExpressionEditorX=-920
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=21BC3C01478ECB96A4AF46878819CB03
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_17'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_18'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=7515A29D40B6968ADB5687A017366DF8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionAdd_0'"
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=B2C3C9B746E2EC120D8774B315DB122B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape'"
+   End Object
+   Begin Object Name="M_Master_Nikki_LandscapeEditorOnlyData" ExportPath="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:M_Master_Nikki_LandscapeEditorOnlyData'"
+      FrontMaterial=(Expression="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubstrateToonBSDF_1'")
+      ExpressionCollection=(Expressions=("/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_26'","/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_6'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_17'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_44'","/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_2'","/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_11'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_18'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_53'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_54'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_22'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_30'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_17'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_59'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_60'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_62'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_32'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_65'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_11'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_11'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_35'","/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_1'","/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_1'","/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_3'","/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_5'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant3Vector_0'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_1'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_1'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_10'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionFresnel_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_12'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_13'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_16'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_1'","/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_17'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_18'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_9'","/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_3'","/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_4'","/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerBlend_6'","/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_15'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_10'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_6'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_19'","/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_20'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_11'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_8'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_21'","/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLandscapeLayerCoords_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_22'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_12'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_11'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionTextureSampleParameter2D_12'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_23'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_5'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_13'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant3Vector_1'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDotProduct_1'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_6'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_7'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_24'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_25'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_27'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_3'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_3'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMaterialFunctionCall_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_28'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_29'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_4'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionFresnel_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_30'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_14'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionConstant_1'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_15'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_31'","/Script/Engine.MaterialExpressionPixelDepth'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionPixelDepth_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_32'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_33'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_34'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionVectorParameter_9'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_4'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubtract_6'","/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionDivide_1'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSaturate_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_16'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionLinearInterpolate_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_35'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_17'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionScalarParameter_36'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_18'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionOneMinus_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_20'","/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionSubstrateToonBSDF_1'"))
+   End Object
+   StateId=39090B1741162F48D02F31B587AF5C41
+   EditorOnlyData="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:M_Master_Nikki_LandscapeEditorOnlyData'"
+   ReferencedDefaultTextures(0)="/Script/Engine.Texture2D'/Engine/EngineMaterials/WeightMapPlaceholderTexture.WeightMapPlaceholderTexture'"
+   ReferencedDefaultTextures(1)="/Script/Engine.Texture2DArray'/Engine/EngineMaterials/WeightMapArrayPlaceholderTexture.WeightMapArrayPlaceholderTexture'"
+   ReferencedDefaultTextures(2)="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+   ReferencedDefaultTextures(3)="/Script/Engine.Texture2D'/Engine/EngineResources/DefaultTexture.DefaultTexture'"
+   LightingGuid=2B8A22DD400510959CD9479A45FCB8DA
+End Object

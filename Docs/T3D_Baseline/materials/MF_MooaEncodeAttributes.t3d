@@ -1,0 +1,343 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_MooaEncodeAttributes" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_0" ExportPath="/Script/UnrealEd.SceneThumbnailInfoWithPrimitive'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:SceneThumbnailInfoWithPrimitive_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_46" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_46'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_42" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_42'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_40" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_40'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_39" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_39'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_38" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_38'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_37" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_37'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_36" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_36'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_35" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_35'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_30" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_30'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_28" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_28'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_26" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_26'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_25" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_25'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_24" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_24'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCustom Name="MaterialExpressionCustom_1" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionCustom_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_MooaEncodeAttributesEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MF_MooaEncodeAttributesEditorOnlyData'"
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_0" ExportPath="/Script/UnrealEd.SceneThumbnailInfoWithPrimitive'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:SceneThumbnailInfoWithPrimitive_0'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_4'"
+      OutputName="MooaEncodedAttribute4"
+      SortPriority=4
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionCustom_1'",OutputIndex=5)
+      Id=1AC58AF340956F0510CC9CABBFB91445
+      MaterialExpressionEditorX=1344
+      MaterialExpressionEditorY=288
+      MaterialExpressionGuid=05563D984FF4FCE0223C40B02CCB63F1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_3'"
+      OutputName="MooaEncodedAttribute1"
+      SortPriority=1
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionCustom_1'",OutputIndex=2)
+      Id=2F63843B413DFDDC75CB6C9129F42359
+      MaterialExpressionEditorX=1344
+      MaterialExpressionEditorY=-208
+      MaterialExpressionGuid=43A3E12249001C72CA9487BD53CF3422
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_2'"
+      OutputName="MooaEncodedAttribute3"
+      SortPriority=3
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionCustom_1'",OutputIndex=4)
+      Id=C715E0EB40028071BF3FDAAE7449163E
+      MaterialExpressionEditorX=1344
+      MaterialExpressionEditorY=128
+      MaterialExpressionGuid=BDD724C04602E006DC4A7A92020AFC92
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_1'"
+      OutputName="MooaEncodedAttribute0"
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionCustom_1'",OutputIndex=1)
+      bLastPreviewed=True
+      Id=7A1F16EF482E9308CC0334B2BAE3D428
+      MaterialExpressionEditorX=1344
+      MaterialExpressionEditorY=-416
+      MaterialExpressionGuid=13529E1B4BADD96DF7379FB964117436
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_0'"
+      OutputName="MooaEncodedAttribute2"
+      SortPriority=2
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionCustom_1'",OutputIndex=3)
+      Id=88F36DD443A8BF5C7C7CC596A967DF50
+      MaterialExpressionEditorX=1344
+      MaterialExpressionEditorY=-48
+      MaterialExpressionGuid=4CAB448145EEE2F61CFC8E81D35A084D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_46" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_46'"
+      InputName="RimLightIntensity"
+      Id=0B0A647D43F86A591AC5D59C8CE60FE4
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=50
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=96
+      MaterialExpressionGuid=18E2863743D5684C57D983B1FE5FF355
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_42" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_42'"
+      InputName="RimLightWidth"
+      Id=36B0EC014447530CC877B5937DD89BBA
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=51
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=192
+      MaterialExpressionGuid=92E572444399A657218B5AA877D7F67C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_40" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_40'"
+      InputName="RayTracingShadowFlag"
+      Description="0: None 1: Is Face 2: Is Face with Screen Space Hair Shadow 3: Is Hair"
+      Id=392520214C1A9B0909D7FFA81159561B
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=60
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=1008
+      MaterialExpressionGuid=783787654A0A3E00680966B979E15360
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_4'"
+      InputName="DiffuseColorRampUVOffset"
+      Id=5E3B9830433626557145C68B4B90B286
+      InputType=FunctionInput_Scalar
+      PreviewValue=(X=0.500000,Y=0.000000,Z=0.000000,W=1.000000)
+      bUsePreviewValueAsDefault=True
+      SortPriority=11
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=-752
+      MaterialExpressionGuid=04ECDC0B4A3BDA4C7CB629B3CC7C99AB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_39" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_39'"
+      InputName="Stencil"
+      Id=72AE9B434F3637E23957329F0D523AA0
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=58
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=912
+      MaterialExpressionGuid=28A3447B493AB207494AF9AA31FC79A2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_38" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_38'"
+      InputName="ReflectionIntensity"
+      Id=3576CE004D78C3B1C93FC3830B177F44
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=48
+      MaterialExpressionEditorX=-16
+      MaterialExpressionGuid=293CBAD84C4D7FFD3D944AA54A8A1D86
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_37" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_37'"
+      InputName="===== Ray Tracing Shadow ====="
+      Id=BE3720E54E67F97309C0D083D474CA5C
+      bUsePreviewValueAsDefault=True
+      SortPriority=56
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=816
+      MaterialExpressionGuid=BA43EB574203693E564AE39CDDAC72BA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_36" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_36'"
+      InputName="===== Specular ====="
+      Id=24BDBE404FFB67ABCCC1C5AEA4971226
+      bUsePreviewValueAsDefault=True
+      SortPriority=30
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=-384
+      MaterialExpressionGuid=A6C516744DAEC4C99A4D1F9B4FB4BE8D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_35" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_35'"
+      InputName="===== Diffuse ====="
+      Id=EB9C97D34D06CA69B1C04EBB1D52A79C
+      bUsePreviewValueAsDefault=True
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=-992
+      MaterialExpressionGuid=4A09592B4C3698BD9E48E49E9ACF5353
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_30" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_30'"
+      InputName="SpecularColor"
+      Id=DE7A513E4D7CCC617E37BBAB799BD8FB
+      bUsePreviewValueAsDefault=True
+      SortPriority=35
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=-288
+      MaterialExpressionGuid=37EF462F4C34FE2A9CBD5FA19B54FE48
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_3'"
+      InputName="FacialShadowSdfRight"
+      Id=E58C603340FCB940DFCD079299B4CBF6
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=55
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=9B423C404A0DD04B10DEB0A09D7D2165
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_28" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_28'"
+      InputName="SpecularColorRampUVOffset"
+      Id=29F4F4234FB95CCEE9115D9E1CE9F2DB
+      InputType=FunctionInput_Scalar
+      PreviewValue=(X=0.500000,Y=0.000000,Z=0.000000,W=1.000000)
+      bUsePreviewValueAsDefault=True
+      SortPriority=40
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=-96
+      MaterialExpressionGuid=1CFDE6F04244AB1BA3B6AF8696918050
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_26" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_26'"
+      InputName="DiffuseColorRampIndex"
+      Id=838E877A4BDC2F56786F9B96E44594CE
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=10
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=-832
+      MaterialExpressionGuid=7588FC784BF75C8D225F34985B98BB3C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_25" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_25'"
+      InputName="SpecularColorRampIndex"
+      Id=FF2D23A14C6993BD8597A4B97E90BF7E
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=38
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=-192
+      MaterialExpressionGuid=BDD1EC734A8389628C0A14AECDE6FCF1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_24" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_24'"
+      InputName="MainLightShadowColor"
+      Id=1A4DFB4E45D1629B383503BE70112AA1
+      bUsePreviewValueAsDefault=True
+      SortPriority=5
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=-912
+      MaterialExpressionGuid=AD69CA0F4C7CF5CA55D7A4A24353461E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_2'"
+      InputName="FacialShadowSdfLeft"
+      Id=D9DDB3924E6A43070A8E3FBF9EDC91F4
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=54
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=4E9C26BC4635A297EB55C4BCEC3B41DD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_1'"
+      InputName="===== Distance Field Facial Shadow ====="
+      Id=EC21868B43441927F8E9048671147D04
+      bUsePreviewValueAsDefault=True
+      SortPriority=53
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=416
+      MaterialExpressionGuid=E67E74514E5C3EB48758299494B4DA5F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_0'"
+      InputName="ShadingFeatureID"
+      Id=0D3F047A458052995427BF963742EE9D
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      SortPriority=-5
+      MaterialExpressionEditorX=-16
+      MaterialExpressionEditorY=-1232
+      MaterialExpressionGuid=5A97F0F748F20DA369CAEDB9EB3A113F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+   End Object
+   Begin Object Name="MaterialExpressionCustom_1" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionCustom_1'"
+      Code="FToonGBufferData ToonGBuffer = (FToonGBufferData)0;\r\n\r\nToonGBuffer.ShadingFeatureID = ShadingFeatureID;\r\nToonGBuffer.MainLightShadowColor = MainLightShadowColor;\r\nToonGBuffer.DiffuseColorRampIndex = DiffuseColorRampIndex;\r\nToonGBuffer.DiffuseColorRampUVOffset = DiffuseColorRampUVOffset;\r\nToonGBuffer.SpecularColor = SpecularColor;\r\nToonGBuffer.SpecularColorRampIndex = SpecularColorRampIndex;\r\nToonGBuffer.SpecularColorRampUVOffset = SpecularColorRampUVOffset;\r\nToonGBuffer.ReflectionIntensity = ReflectionIntensity;\r\nToonGBuffer.RimLightIntensity = RimLightIntensity;\r\nToonGBuffer.RimLightWidth = RimLightWidth;\r\nToonGBuffer.FacialShadowSdfLeft = FacialShadowSdfLeft;\r\nToonGBuffer.FacialShadowSdfRight = FacialShadowSdfRight;\r\nToonGBuffer.Stencil = Stencil;\r\nToonGBuffer.RayTracingShadowFlag = RayTracingShadowFlag;\r\n\r\nEncodeToonGBufferDataToMaterialAttribute(ToonGBuffer, \r\n\tOutMooaEncodedAttribute0, OutMooaEncodedAttribute1, OutMooaEncodedAttribute2, OutMooaEncodedAttribute3, OutMooaEncodedAttribute4);\r\nreturn 0;"
+      Inputs(0)=(InputName="ShadingFeatureID",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_0'"))
+      Inputs(1)=(InputName="MainLightShadowColor",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_24'"))
+      Inputs(2)=(InputName="DiffuseColorRampIndex",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_26'"))
+      Inputs(3)=(InputName="DiffuseColorRampUVOffset",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_4'"))
+      Inputs(4)=(InputName="SpecularColor",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_30'"))
+      Inputs(5)=(InputName="SpecularColorRampIndex",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_25'"))
+      Inputs(6)=(InputName="SpecularColorRampUVOffset",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_28'"))
+      Inputs(7)=(InputName="ReflectionIntensity",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_38'"))
+      Inputs(8)=(InputName="RimLightIntensity",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_46'"))
+      Inputs(9)=(InputName="RimLightWidth",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_42'"))
+      Inputs(10)=(InputName="FacialShadowSdfLeft",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_2'"))
+      Inputs(11)=(InputName="FacialShadowSdfRight",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_3'"))
+      Inputs(12)=(InputName="Stencil",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_39'"))
+      Inputs(13)=(InputName="RayTracingShadowFlag",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_40'"))
+      AdditionalOutputs(0)=(OutputName="OutMooaEncodedAttribute0",OutputType=CMOT_Float4)
+      AdditionalOutputs(1)=(OutputName="OutMooaEncodedAttribute1",OutputType=CMOT_Float4)
+      AdditionalOutputs(2)=(OutputName="OutMooaEncodedAttribute2",OutputType=CMOT_Float4)
+      AdditionalOutputs(3)=(OutputName="OutMooaEncodedAttribute3",OutputType=CMOT_Float4)
+      AdditionalOutputs(4)=(OutputName="OutMooaEncodedAttribute4",OutputType=CMOT_Float4)
+      IncludeFilePaths(0)="/Engine/Private/ToonProfileCommon.ush"
+      MaterialExpressionEditorX=720
+      MaterialExpressionEditorY=-320
+      MaterialExpressionGuid=0B5DD0DA47A065AA4952BA945FC196AF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes'"
+      bShowOutputNameOnPin=True
+      Outputs(0)=(OutputName="return")
+      Outputs(1)=(OutputName="OutMooaEncodedAttribute0")
+      Outputs(2)=(OutputName="OutMooaEncodedAttribute1")
+      Outputs(3)=(OutputName="OutMooaEncodedAttribute2")
+      Outputs(4)=(OutputName="OutMooaEncodedAttribute3")
+      Outputs(5)=(OutputName="OutMooaEncodedAttribute4")
+   End Object
+   Begin Object Name="MF_MooaEncodeAttributesEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MF_MooaEncodeAttributesEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_3'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_24'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_25'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_26'","/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionCustom_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_28'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_30'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_35'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_36'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_37'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_38'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_39'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_40'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_42'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_46'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_2'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionOutput_4'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_3'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MaterialExpressionFunctionInput_4'"))
+   End Object
+   bExposeToLibrary=True
+   LibraryCategoriesText(0)=NSLOCTEXT("", "49AC382F44AF8D919CD8E8AD8BC5CCF6", "Mooa")
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:MF_MooaEncodeAttributesEditorOnlyData'"
+   StateId=E2C532B14F7FBA797652FCA115C06FAA
+   CombinedInputTypes=15
+   CombinedOutputTypes=15
+   ThumbnailInfo="/Script/UnrealEd.SceneThumbnailInfoWithPrimitive'/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes.MF_MooaEncodeAttributes:SceneThumbnailInfoWithPrimitive_0'"
+End Object

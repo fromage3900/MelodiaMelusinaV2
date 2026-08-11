@@ -1,0 +1,28 @@
+{
+  "id": "zen_shrine_v1",
+  "family": "Zen",
+  "verticality": 0.85,
+  "symmetry": 0.7,
+  "ornament_density": 0.5,
+  "structural_logic": 0.8,
+  "organic_growth": 0.4,
+  "cosmic_influence": 0.15,
+  "sacred_sequence": [
+    "torii_frame",
+    "sando_approach",
+    "kairo_cloister",
+    "karesansui_field"
+  ],
+  "compose_style": "ZEN_SHRINE",
+  "default_graph": "ZEN_SHRINE_AXIS",
+  "surreal_transform": "axis_compression",
+  "torii_variant": "standard",
+  "sakura_graph": "ZEN_SAKURA_WALK",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "uv_unwrap_mode": "TRIM_SHEET",
+    "material_choice": "STONE",
+    "unit_size": 2.0
+  }
+}

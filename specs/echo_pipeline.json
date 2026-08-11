@@ -1,0 +1,108 @@
+{
+  "$schema": "echo_pipeline.v1",
+  "name": "melodia_echo",
+  "version": "1",
+  "generated_by": "T3D-manifest, 2026-08-09",
+  "purpose": "One runnable gate chain for the Melodia integration layer. Nothing is 'done' without a ledger row. Mirrors the agent gating categories HoYoverse's Echo applies to AI-generated game content.",
+  "stages": [
+    {
+      "id": "author",
+      "label": "Author",
+      "impl": "human_or_agent",
+      "note": "Proposal must be a spec (json/.qsc/t3d) plus the expected gate it claims. Agents are content producers; nothing about a beat is assumed until scored."
+    },
+    {
+      "id": "spec_validate",
+      "label": "Spec validation",
+      "impl": "echo_run.py:validate_spec",
+      "contract": "ids in scope are allowlisted, arity matches the 7-verb contract, no duplicate consume-once ids",
+      "ledger_id": "spec_validate"
+    },
+    {
+      "id": "inject",
+      "label": "T3D inject",
+      "impl": "t3d_blueprint_injector.py / nl_to_blueprint.py",
+      "contract": "one asset per transaction, pre-flight passes, graph untouched on failure",
+      "ledger_id": "inject"
+    },
+    {
+      "id": "compile",
+      "label": "Compile",
+      "impl": "blueprint_query:compile_blueprint",
+      "contract": "0 errors",
+      "ledger_id": "blueprint_compile"
+    },
+    {
+      "id": "static_gates",
+      "label": "Static gates",
+      "impls": [
+        "graph_reachability.py",
+        "bp_live_path.py",
+        "ui_lint.py",
+        "bp_sweep.py",
+        "verify_baseline.py"
+      ],
+      "contract": "no dead exec islands, asset LIVE not ORPHAN, no lint defects, baseline clean",
+      "ledger_id": "static_gates"
+    },
+    {
+      "id": "runtime_gates",
+      "label": "Runtime gates",
+      "impls": [
+        "pie_smoke_runner.py",
+        "regression_suite.py",
+        "Melodia.Wiring suite (Automation RunTests Melodia)",
+        "campaign scripts (docs/echo/campaign_*.md)"
+      ],
+      "contract": "PIE smoke clean, wiring suite green, campaign evidence captured",
+      "ledger_id": "runtime_gates"
+    },
+    {
+      "id": "record",
+      "label": "Record",
+      "impl": "record_gate.py <gate-id> pass|fail",
+      "contract": "every stage appends a dated ledger row; next session reads the ledger, not prose",
+      "ledger_id": "gate_ledger"
+    },
+    {
+      "id": "promote",
+      "label": "Promote",
+      "impl": "commit + baseline update + AGENTS.md next-work tick",
+      "contract": "bp_fingerprints.json / material_catalog.json updated if fingerprints moved; plain git add/commit",
+      "ledger_id": "promote"
+    }
+  ],
+  "completion_gates": [
+    "runtime",
+    "save_load",
+    "repeat_consume",
+    "package_launch"
+  ],
+  "completion_definitions": {
+    "runtime": "Victory/Defeat/Fled/unavailable; each resumes/aborts Quill exactly once",
+    "save_load": "Canonical BP_JRPGSaveGame slot across a full process restart",
+    "repeat_consume": "Flag+reward restore without duplication; melodia:stat: idempotent per IntentId",
+    "package_launch": "Development-packaged build launches outside the editor"
+  },
+  "quality_gates": {
+    "graph_fingerprint": "exact_match",
+    "blueprint_compile": "0_errors",
+    "material_compile": "0_errors",
+    "pie_smoke": "0_crashes",
+    "wiring_invariants": "all_pass"
+  },
+  "agent_contract": {
+    "producer": "an agent or the owner authors a spec + claimed gate",
+    "gate": "the claimed gate must record a ledger row before it is believed",
+    "verbs": [
+      "melodia:battle:<EncounterId>",
+      "melodia:quest:<QuestId>",
+      "melodia:flag:<FlagId>:<true|false>",
+      "melodia:travel:<LevelId>",
+      "melodia:reward:<RewardId>",
+      "melodia:stat:<IntentId>:<StatId>:<Delta>",
+      "melodia:item:give:<ItemId>:<Count>"
+    ],
+    "authority": "DA_MelodiaIntegrationConfig allowlist is the live check; there is no relaxed-mode claim in Shipping"
+  }
+}

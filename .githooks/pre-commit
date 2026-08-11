@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Pre-commit hook: LFS + file-size validation + junk artifact detection
+# Blocks commits that would push large binary files without LFS tracking,
+# zero-byte files, and common junk artifacts.
+# Updated 2026-08-07: added 0-byte/junk-file detection (Scope C tooling gate).
+
+echo "==> [pre-commit] Running LFS/size/junk validation..."
+
+# 1. Check for files > 50MB that are NOT tracked by LFS
+#
+# Test the STAGED BLOB, not HEAD. `git lfs ls-files <path>` lists what is in
+# HEAD, so a brand-new large file that IS correctly staged as an LFS pointer
+# reports as untracked and the commit is rejected. That false positive blocked
+# the 2026-08-08 commit of Melusina's character content -- five files, three of
+# them 128 MB, every one a valid pointer.
+#
+# A staged LFS pointer always begins with the spec URL, so read the first line
+# of the staged blob and look for it. Correct for new and existing files alike,
+# and still catches a genuine raw binary.
+LARGE_FILES=$(git diff --cached --name-only -z | xargs -0 -I{} sh -c '
+  if [ -f "{}" ]; then
+    size=$(wc -c < "{}" 2>/dev/null || echo 0)
+    if [ "$size" -gt 52428800 ]; then
+      if ! git show ":{}" 2>/dev/null | head -n 1 | grep -q "git-lfs.github.com/spec"; then
+        echo "{}"
+      fi
+    fi
+  fi
+' 2>/dev/null || true)
+
+if [ -n "$LARGE_FILES" ]; then
+  echo "ERROR: [pre-commit] Large files not tracked by Git LFS:"
+  echo "$LARGE_FILES"
+  echo ""
+  echo "Fix: git lfs track \"<pattern>\" && git add <file>"
+  exit 1
+fi
+
+# 2. Block forbidden file types
+FORBIDDEN=$(git diff --cached --name-only | grep -E '\.(blend1|blend2|7z|zip)$' || true)
+if [ -n "$FORBIDDEN" ]; then
+  echo "ERROR: [pre-commit] Forbidden file types staged:"
+  echo "$FORBIDDEN"
+  echo ""
+  echo "These files should never be committed. Remove them: git rm --cached <file>"
+  exit 1
+fi
+
+# 3. Block UE build artifacts
+BUILD_ARTIFACTS=$(git diff --cached --name-only | grep -E '^(Intermediate|Saved|Binaries|DerivedDataCache)/' || true)
+if [ -n "$BUILD_ARTIFACTS" ]; then
+  echo "ERROR: [pre-commit] UE build artifacts staged:"
+  echo "$BUILD_ARTIFACTS"
+  echo ""
+  echo "These should be gitignored. Remove them: git rm --cached <file>"
+  exit 1
+fi
+
+# 4. Block zero-byte files (junk artifacts)
+ZERO_BYTE=$(git diff --cached --name-only -z | xargs -0 -I{} sh -c '
+  if [ -f "{}" ]; then
+    size=$(wc -c < "{}" 2>/dev/null || echo 0)
+    if [ "$size" -eq 0 ]; then
+      echo "{}"
+    fi
+  fi
+' 2>/dev/null || true)
+
+if [ -n "$ZERO_BYTE" ]; then
+  echo "ERROR: [pre-commit] Zero-byte files staged (junk artifacts):"
+  echo "$ZERO_BYTE"
+  echo ""
+  echo "These are 0-byte artifacts and should not be committed."
+  echo "Remove them: git rm --cached <file>"
+  exit 1
+fi
+
+# 5. Block common junk filename patterns
+JUNK=$(git diff --cached --name-only | grep -E '(target_file\.md|^nul$|\.tmp$)' || true)
+if [ -n "$JUNK" ]; then
+  echo "ERROR: [pre-commit] Junk artifacts staged:"
+  echo "$JUNK"
+  echo ""
+  echo "Remove them: git rm --cached <file>"
+  exit 1
+fi
+
+echo "==> [pre-commit] Validation passed."
+exit 0

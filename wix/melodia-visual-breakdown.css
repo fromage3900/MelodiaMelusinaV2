@@ -1,0 +1,724 @@
+/* Melodia visual breakdowns — lookbook flow, not AI card grids */
+
+.viz-rule {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(212, 184, 122, 0.9);
+}
+
+.viz-rule::before,
+.viz-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 106, 0.45), transparent);
+}
+
+.viz-rule .glyph {
+  opacity: 0.85;
+}
+
+/* Vertical story spine */
+.viz-spine {
+  position: relative;
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  padding-left: 0;
+}
+
+@media (min-width: 900px) {
+  .viz-spine {
+    padding-left: 1.25rem;
+  }
+  .viz-spine::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(102, 217, 255, 0.35) 12%,
+      rgba(255, 110, 180, 0.3) 55%,
+      rgba(255, 230, 102, 0.25) 88%,
+      transparent
+    );
+  }
+}
+
+.viz-beat {
+  position: relative;
+  display: grid;
+  gap: 1rem 1.75rem;
+}
+
+@media (min-width: 900px) {
+  .viz-beat {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.75fr);
+    align-items: center;
+  }
+  .viz-beat.is-flip {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.35fr);
+  }
+  .viz-beat.is-flip .viz-copy {
+    order: -1;
+  }
+  .viz-spine .viz-beat::before {
+    content: "";
+    position: absolute;
+    left: -1.25rem;
+    top: 1.35rem;
+    width: 9px;
+    height: 9px;
+    transform: translateX(-50%) rotate(45deg);
+    background: linear-gradient(135deg, #ffe666, #ff6eb4);
+    box-shadow: 0 0 0 3px rgba(13, 18, 36, 0.85);
+  }
+}
+
+.viz-plate {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+.viz-plate img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  filter: saturate(1.04) contrast(1.03);
+  transition: transform 0.7s ease, filter 0.7s ease;
+}
+
+.viz-plate:hover img {
+  transform: scale(1.03);
+  filter: saturate(1.08) contrast(1.05);
+}
+
+.viz-plate .viz-caption {
+  margin-top: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.viz-plate .viz-caption strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
+
+.viz-plate .viz-caption span {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(236, 234, 244, 0.55);
+}
+
+.viz-copy h3 {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+  line-height: 1.05;
+}
+
+.viz-copy p {
+  margin: 0;
+  font-family: var(--font-lede);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: rgba(236, 234, 244, 0.78);
+  max-width: 28rem;
+}
+
+.viz-copy .viz-link {
+  display: inline-flex;
+  margin-top: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--iri-gold, #ffe666);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 230, 102, 0.35);
+  padding-bottom: 0.15rem;
+}
+
+.viz-copy .viz-link:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.45);
+}
+
+/* Horizontal plate rail with connectors */
+.viz-rail {
+  display: grid;
+  gap: 0;
+  align-items: stretch;
+}
+
+@media (min-width: 800px) {
+  .viz-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .viz-rail-item {
+    position: relative;
+    padding: 0 1.1rem;
+  }
+  .viz-rail-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 38%;
+    right: -0.15rem;
+    width: 1.35rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(102, 217, 255, 0.15), rgba(255, 110, 180, 0.55), rgba(255, 230, 102, 0.15));
+  }
+  .viz-rail-item:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: calc(38% - 3px);
+    right: 0.35rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 110, 180, 0.85);
+    box-shadow: 0 0 10px rgba(255, 110, 180, 0.45);
+    z-index: 1;
+  }
+}
+
+.viz-rail-item .viz-plate img {
+  aspect-ratio: 4 / 5;
+}
+
+/* Process connectors (short visual steps, no cards) */
+.viz-process {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 800px) {
+  .viz-process {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+  }
+}
+
+.viz-process-step {
+  position: relative;
+  padding: 0 1rem;
+  text-align: left;
+}
+
+@media (min-width: 800px) {
+  .viz-process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: calc(100% - 0.65rem);
+    top: 1.1rem;
+    width: calc(100% - 1.3rem);
+    height: 1px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(201, 168, 106, 0.55) 0 6px,
+      transparent 6px 11px
+    );
+  }
+}
+
+.viz-process-step .num {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: rgba(102, 217, 255, 0.9);
+}
+
+.viz-process-step strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.viz-process-step p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: rgba(236, 234, 244, 0.68);
+  max-width: 16rem;
+}
+
+/* Door row — image-first destinations */
+.viz-doors {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .viz-doors {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 1.15rem;
+  }
+}
+
+.viz-door {
+  position: relative;
+  display: block;
+  min-height: 280px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.viz-door img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.viz-door:hover img {
+  transform: scale(1.04);
+}
+
+.viz-door::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(8, 10, 18, 0.88) 100%);
+}
+
+.viz-door .viz-door-meta {
+  position: absolute;
+  left: 1.1rem;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 1;
+}
+
+.viz-door .viz-door-meta b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 230, 102, 0.85);
+  margin-bottom: 0.35rem;
+}
+
+.viz-door .viz-door-meta strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+}
+
+/* Soften/hide AI chip dumps when visual mode is preferred */
+.melodia-shell[data-visual="lookbook"] .math-chip-grid,
+.melodia-shell[data-visual="lookbook"] .pipeline-lane,
+.melodia-shell[data-visual="lookbook"] #geometryPipelineLanes,
+.melodia-shell[data-visual="lookbook"] .kitbash-mesh-grid,
+.melodia-shell[data-visual="lookbook"] .kitbash-includes,
+.melodia-shell[data-visual="lookbook"] .card-grid,
+.melodia-shell[data-visual="lookbook"] .alignment-grid,
+.melodia-shell[data-visual="lookbook"] .stack-grid,
+.melodia-shell[data-visual="lookbook"] .intake-card-grid,
+.melodia-shell[data-visual="lookbook"] .world-grid:not(.viz-rail) {
+  display: none !important;
+}
+
+/* Passport cards stay visible in lookbook — light tech, not chip walls */
+.melodia-shell[data-visual="lookbook"] .breakdown-passports {
+  margin-top: 0.5rem;
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-tech-dose {
+  margin-top: 1.75rem;
+  max-width: 42rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(236, 234, 244, 0.68);
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-tech-dose strong {
+  color: rgba(255, 230, 102, 0.9);
+  font-weight: 500;
+}
+
+.technical-appendix {
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(201, 168, 106, 0.22);
+  padding-top: 1rem;
+}
+
+.technical-appendix summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(236, 234, 244, 0.55);
+  list-style: none;
+}
+
+.technical-appendix summary::-webkit-details-marker { display: none; }
+
+.technical-appendix .appendix-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+  margin-top: 1rem;
+}
+
+.technical-appendix .appendix-links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(102, 217, 255, 0.9);
+  text-decoration: none;
+}
+
+.technical-appendix .appendix-links a:hover {
+  color: #ffe666;
+}
+
+/* ——— Infinity Nikki lookbook chrome ——— */
+.melodia-shell[data-visual="lookbook"] {
+  --nikki-pink: rgba(255, 110, 180, 0.9);
+  --nikki-cyan: rgba(102, 217, 255, 0.85);
+  --nikki-gold: rgba(255, 230, 102, 0.88);
+  --nikki-pearl: rgba(255, 248, 240, 0.92);
+  --nikki-lavender: rgba(196, 168, 255, 0.88);
+}
+
+/* Outfit-board header — Nikki wardrobe / ability-dress strip */
+.nikki-outfit-board {
+  display: grid;
+  gap: 1rem;
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(255, 110, 180, 0.22);
+  background:
+    linear-gradient(135deg, rgba(255, 110, 180, 0.1), transparent 42%),
+    linear-gradient(180deg, rgba(18, 22, 40, 0.55), rgba(12, 14, 28, 0.35));
+}
+
+@media (min-width: 900px) {
+  .nikki-outfit-board {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: end;
+  }
+}
+
+.nikki-outfit-board .nikki-outfit-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nikki-cyan);
+  margin: 0 0 0.45rem;
+}
+
+.nikki-outfit-board h2,
+.nikki-outfit-board .nikki-outfit-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.55rem, 2.8vw, 2.2rem);
+  line-height: 1.05;
+  background: linear-gradient(115deg, #fff8f0 0%, #ffb4d2 45%, #c4a8ff 78%, #ffe666 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nikki-outfit-board p {
+  margin: 0.55rem 0 0;
+  font-family: var(--font-lede);
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.4;
+  color: rgba(236, 234, 244, 0.72);
+  max-width: 28rem;
+}
+
+.nikki-stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: flex-start;
+}
+
+@media (min-width: 900px) {
+  .nikki-stat-row {
+    justify-content: flex-end;
+  }
+}
+
+.nikki-stat {
+  min-width: 5.5rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(255, 230, 102, 0.22);
+  background: rgba(8, 10, 18, 0.45);
+}
+
+.nikki-stat b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 180, 210, 0.85);
+  margin-bottom: 0.25rem;
+}
+
+.nikki-stat strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--nikki-pearl);
+}
+
+/* Photo-spot frame — Nikki capture chrome around hero media */
+.nikki-photospot {
+  position: relative;
+  display: block;
+}
+
+.nikki-photospot::before {
+  content: "PHOTO SPOT";
+  position: absolute;
+  top: 0.85rem;
+  left: 0.95rem;
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 248, 240, 0.88);
+  padding: 0.28rem 0.55rem;
+  background: rgba(255, 110, 180, 0.35);
+  border: 1px solid rgba(255, 230, 102, 0.35);
+  pointer-events: none;
+}
+
+.nikki-photospot::after {
+  content: "";
+  position: absolute;
+  inset: 0.65rem;
+  z-index: 2;
+  border: 1px solid rgba(255, 248, 240, 0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 110, 180, 0.12),
+    0 0 0 1px rgba(102, 217, 255, 0.08);
+  pointer-events: none;
+}
+
+/* Desire-object sparkle divider */
+.nikki-spark-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 180, 210, 0.9);
+}
+
+.nikki-spark-rule::before,
+.nikki-spark-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 110, 180, 0.55) 0 5px,
+    transparent 5px 11px
+  );
+}
+
+.nikki-spark-rule .spark {
+  color: var(--nikki-gold);
+}
+
+.nikki-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--nikki-pearl);
+  background: linear-gradient(100deg, rgba(255, 110, 180, 0.22), rgba(102, 217, 255, 0.08));
+  border: 1px solid rgba(255, 110, 180, 0.28);
+  border-left: 3px solid var(--nikki-pink);
+}
+
+.nikki-ribbon::before {
+  content: "✦";
+  color: var(--nikki-gold);
+  font-size: 0.7rem;
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-plate {
+  position: relative;
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-plate::before,
+.melodia-shell[data-visual="lookbook"] .viz-plate::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.75;
+  border-color: rgba(255, 230, 102, 0.55);
+  border-style: solid;
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-plate::before {
+  top: 10px;
+  left: 10px;
+  border-width: 1px 0 0 1px;
+  box-shadow: -1px -1px 0 rgba(255, 110, 180, 0.35);
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-plate::after {
+  right: 10px;
+  bottom: 10px;
+  border-width: 0 1px 1px 0;
+  box-shadow: 1px 1px 0 rgba(102, 217, 255, 0.35);
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-plate img {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 248, 240, 0.08),
+    0 0 0 1px rgba(255, 110, 180, 0.12);
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-door {
+  border: 1px solid rgba(255, 110, 180, 0.18);
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-door::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  z-index: 1;
+  border: 1px solid rgba(255, 230, 102, 0.2);
+  pointer-events: none;
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-process-step .num {
+  color: var(--nikki-pink);
+}
+
+.melodia-shell[data-visual="lookbook"] .viz-rule .glyph {
+  color: rgba(255, 180, 210, 0.95);
+}
+
+.nikki-ability-strip {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 800px) {
+  .nikki-ability-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+}
+
+.nikki-ability {
+  position: relative;
+  padding: 1rem 1.15rem;
+}
+
+@media (min-width: 800px) {
+  .nikki-ability:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 1.35rem;
+    right: 0;
+    width: 1px;
+    height: calc(100% - 2.2rem);
+    background: linear-gradient(180deg, transparent, rgba(255, 110, 180, 0.45), transparent);
+  }
+}
+
+.nikki-ability b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--nikki-cyan);
+  margin-bottom: 0.4rem;
+}
+
+.nikki-ability strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+}
+
+.nikki-ability p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: rgba(236, 234, 244, 0.68);
+  max-width: 18rem;
+}
+
+.melodia-shell[data-visual="lookbook"] .passport-card {
+  box-shadow: 0 0 0 1px rgba(255, 110, 180, 0.12), 0 18px 40px rgba(8, 10, 20, 0.35);
+}
+
+.melodia-shell[data-visual="lookbook"] .passport-title {
+  background: linear-gradient(120deg, #fff8f0 0%, #ffb4d2 48%, #ffe666 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viz-plate img,
+  .viz-door img {
+    transition: none;
+  }
+  .viz-plate:hover img,
+  .viz-door:hover img {
+    transform: none;
+  }
+}

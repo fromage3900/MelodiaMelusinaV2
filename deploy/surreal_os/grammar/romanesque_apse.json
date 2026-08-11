@@ -1,0 +1,12 @@
+{
+  "id": "ROMANESQUE_APSE",
+  "label": "Romanesque Apse Terminus",
+  "description": "Arcade nave leading to semicircular choir apse",
+  "style": "romanesque",
+  "modules": [
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {"gb_width": 3.2, "gb_height": 4.2, "gb_trim_mode": "RECESS", "unit_size": 3.2}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 10.0, "gb_trim_mode": "RECESS", "unit_size": 3.2}},
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {"gb_width": 3.2, "gb_height": 4.2}},
+    {"arch_type": "GB_ROMANESQUE_APSE", "overrides": {"gb_width": 4.0, "gb_depth": 3.5, "gb_height": 4.5, "gb_trim_mode": "RECESS"}}
+  ]
+}

@@ -1,0 +1,233 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_Gemstone" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_GemstoneEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MF_GemstoneEditorOnlyData'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCustom Name="MaterialExpressionCustom_0" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionCustom_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFresnel Name="MaterialExpressionFresnel_3" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFresnel_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionInput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionOutput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionOutput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_4" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_4'"
+   End Object
+   Begin Object Name="MF_GemstoneEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MF_GemstoneEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionInput_3'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionOutput_2'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionOutput_3'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFresnel_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_9'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_10'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_11'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_12'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_13'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_14'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_15'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_2'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_3'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_4'","/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionCustom_0'"))
+   End Object
+   Begin Object Name="MaterialExpressionCustom_0" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionCustom_0'"
+      Code="float edge = pow(saturate(EdgeMask), max(RefractionPower, 0.01));\nfloat rampMask = saturate((edge + Dispersion - 0.5) * max(RampContrast, 0.01) + 0.5);\nfloat midpoint = clamp(RampMidPoint, 0.001, 0.999);\nfloat3 ramp = lerp(RampLow, RampMid, smoothstep(0.0, midpoint, rampMask));\nramp = lerp(ramp, RampHigh, smoothstep(midpoint, 1.0, rampMask));\nfloat gemMask = saturate(GemstoneStrength) * edge;\nfloat nikkiMask = saturate(RampStrength) * edge;\nfloat iriMask = pow(edge, max(IridescencePower, 0.01)) * saturate(Iridescence);\nfloat3 gemColor = lerp(BaseColor, BaseColor * ramp, nikkiMask);\ngemColor = lerp(gemColor, ramp + GlowTint * saturate(Emission), iriMask);\nRoughnessOut = saturate(Roughness - edge * saturate(SpecularVariance) * max(FacetScale, 0.0));\nreturn lerp(BaseColor, gemColor, saturate(gemMask + nikkiMask + iriMask));"
+      Description="Nikki gemstone ramp: spectral edge colour, glow, and roughness shaping"
+      Inputs(0)=(InputName="BaseColor",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionInput_2'"))
+      Inputs(1)=(InputName="Roughness",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionInput_3'"))
+      Inputs(2)=(InputName="EdgeMask",Input=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFresnel_3'"))
+      Inputs(3)=(InputName="GemstoneStrength",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_5'"))
+      Inputs(4)=(InputName="RefractionPower",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_6'"))
+      Inputs(5)=(InputName="Dispersion",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_7'"))
+      Inputs(6)=(InputName="SpecularVariance",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_8'"))
+      Inputs(7)=(InputName="FacetScale",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_9'"))
+      Inputs(8)=(InputName="GlowTint",Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Inputs(9)=(InputName="RampStrength",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_10'"))
+      Inputs(10)=(InputName="RampMidPoint",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_11'"))
+      Inputs(11)=(InputName="RampContrast",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_12'"))
+      Inputs(12)=(InputName="Iridescence",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_13'"))
+      Inputs(13)=(InputName="IridescencePower",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_14'"))
+      Inputs(14)=(InputName="Emission",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_15'"))
+      Inputs(15)=(InputName="RampLow",Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Inputs(16)=(InputName="RampMid",Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_3'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Inputs(17)=(InputName="RampHigh",Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_4'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      AdditionalOutputs(0)=(OutputName="RoughnessOut")
+      MaterialExpressionGuid=FD2427D74720D0FA8E17829F90A2E31C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+      bShowOutputNameOnPin=True
+      Outputs(0)=(OutputName="return")
+      Outputs(1)=(OutputName="RoughnessOut")
+   End Object
+   Begin Object Name="MaterialExpressionFresnel_3" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFresnel_3'"
+      MaterialExpressionGuid=7ECB9E524E8B2BDFA317E48BDF1D17B8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionInput_2'"
+      InputName="BaseColorIn"
+      Id=DE2BA5D14C71B09D52E3E6AD15D38F37
+      MaterialExpressionEditorX=-400
+      MaterialExpressionGuid=44DA71AB4510710B2D31D6A4FA0A71C9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionInput_3'"
+      InputName="RoughnessIn"
+      Id=64E4A5DC4DD5E6CCED9743B19FB96613
+      InputType=FunctionInput_Scalar
+      SortPriority=1
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=19E6C3144C438848CDF06B888FFE27B1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionOutput_2'"
+      OutputName="ColorOut"
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionCustom_0'")
+      Id=9FFBB9CF4DD5B17731DBC2828A3AFB04
+      MaterialExpressionEditorX=400
+      MaterialExpressionGuid=FA3ECB2A407A47030240478AAA70B572
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionFunctionOutput_3'"
+      OutputName="RoughnessOut"
+      SortPriority=1
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionCustom_0'",OutputIndex=1)
+      Id=0636F88C46B40331371079B01FD689CA
+      MaterialExpressionEditorX=400
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=1E53A28D47EF2D2C71CC5C927D8548A5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_10'"
+      ParameterName="NikkiGemstoneRampStrength"
+      ExpressionGUID=597A4BCA48CDE5DA97CEDC81B24A8B08
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=C8E1ED9B45B7772D8FADD6BDA12F28B7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_11'"
+      DefaultValue=0.500000
+      ParameterName="NikkiGemstoneRampMidpoint"
+      ExpressionGUID=6F039E49471BACB026AA05A89B348014
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=D78D881D4570685EB337BC96D6CF9567
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_12'"
+      DefaultValue=1.000000
+      ParameterName="NikkiGemstoneRampContrast"
+      ExpressionGUID=2A1725EC456D2547E0C47C84AB781AE1
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=18109F1A408E2F5275B6E18038208E27
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_13'"
+      ParameterName="NikkiGemstoneIridescence"
+      ExpressionGUID=9265D6944B8C7DBE3625A2A330FAB97B
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=BC0CF2254F4C3DD5773E4B8C31EAB8FA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_14'"
+      DefaultValue=2.000000
+      ParameterName="NikkiGemstoneIridescencePower"
+      ExpressionGUID=D7240F874D080101646954B404E6EB37
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=550CF049478EE1E9D548DDA1EE26BB0D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_15'"
+      ParameterName="NikkiGemstoneEmission"
+      ExpressionGUID=D11A30E6478B5BD05376FAB58434570B
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=0654FC854453D1AC1C65A997970C24DD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_5'"
+      ParameterName="GemstoneStrength"
+      ExpressionGUID=E497B1C642695E7AFCBED2B136381538
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=4C04A8784A792E659D108DBD7DFA199E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_6'"
+      DefaultValue=4.000000
+      ParameterName="GemstoneRefractionPower"
+      ExpressionGUID=B32F18C6408F222B96C44692B9290AED
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=E5DC761946B790B0FA73FAA4645B5193
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_7'"
+      ParameterName="GemstoneDispersion"
+      ExpressionGUID=BD5595094985938712FCCA94302EA094
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=08A5F84C4875E6BC39C9C885E0CBEA79
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_8'"
+      ParameterName="GemstoneSpecularVariance"
+      ExpressionGUID=9A406D5341EB7534ADCB6D8F03D08556
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=83B46F884A887CC9A3AF44B356C178AA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionScalarParameter_9'"
+      DefaultValue=1.000000
+      ParameterName="GemstoneFacetScale"
+      ExpressionGUID=C9E72D12411425E26AE9C2BA786A5231
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=B7016123464ABFF1CA7654B172E958BE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_1'"
+      DefaultValue=(R=0.600000,G=0.850000,B=1.000000,A=1.000000)
+      ParameterName="GemstoneGlowTint"
+      ExpressionGUID=45049BF54A55D1F42629548901F59249
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=1F19A95D41A32C965664CF9706AF8EF2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_2'"
+      DefaultValue=(R=0.080000,G=0.025000,B=0.220000,A=1.000000)
+      ParameterName="NikkiGemstoneRampLow"
+      ExpressionGUID=4982F25E4668CD3B9130D7BBAA181401
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=1A98D4844B2AD17FD5AB118E8AB75B30
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_3'"
+      DefaultValue=(R=0.950000,G=0.120000,B=0.620000,A=1.000000)
+      ParameterName="NikkiGemstoneRampMid"
+      ExpressionGUID=4DFD466342FCD5E52CE686B659C7907A
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=689BFDA4452A30079A015F9442439F9B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_4" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MaterialExpressionVectorParameter_4'"
+      DefaultValue=(R=0.180000,G=0.900000,B=1.000000,A=1.000000)
+      ParameterName="NikkiGemstoneRampHigh"
+      ExpressionGUID=38192FD7440E33EAEC73FEA2B6622CDA
+      Group="Nikki | Gemstone"
+      MaterialExpressionGuid=A73794D04D5D00E1A42B9CA0B32FFEED
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone'"
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone.MF_Gemstone:MF_GemstoneEditorOnlyData'"
+   StateId=E467AC4A43FBC4E04ACA43A7E0706C13
+   CombinedInputTypes=15
+End Object

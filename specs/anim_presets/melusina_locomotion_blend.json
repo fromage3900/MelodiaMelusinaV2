@@ -1,0 +1,41 @@
+{
+  "blendspace_path": "/Game/Melodia/Characters/Melusina/BS_Melusina_Locomotion",
+  "samples": [
+    {
+      "index": 0,
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Mocap_RootX/A_Melusina_Idle.A_Melusina_Idle",
+      "speed": 0.0,
+      "label": "Idle"
+    },
+    {
+      "index": 1,
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Mocap_RootX/A_Melusina_Walk.A_Melusina_Walk",
+      "speed": 180.0,
+      "label": "Walk_Mocap"
+    },
+    {
+      "index": 2,
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Mocap_RootX/A_Melusina_Run.A_Melusina_Run",
+      "speed": 420.0,
+      "label": "Run_Mocap"
+    },
+    {
+      "index": 3,
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Mocap_RootX/A_Melusina_Sprint.A_Melusina_Sprint",
+      "speed": 630.0,
+      "label": "Sprint_Mocap"
+    }
+  ],
+  "axis_settings": {
+    "horizontal_axis": "Speed",
+    "horizontal_range": [0.0, 630.0],
+    "interpolation": {
+      "type": "linear",
+      "target_value_interpolation": "Linear"
+    }
+  },
+  "modifiers": {
+    "rate_scale": 1.0,
+    "b_loop": true
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "DataType": "RoguelikeBlessing",
+  "Rows": {
+    "DeepenedResonance": {
+      "blessing_id": "DeepenedResonance",
+      "display_name": "Deepened Resonance",
+      "description": "Start each run with 75 mana instead of 50",
+      "token_cost": 50,
+      "effect_type": "starting_mana",
+      "effect_value": 75.0,
+      "effect_str": ""
+    },
+    "ExpandedHarmony": {
+      "blessing_id": "ExpandedHarmony",
+      "display_name": "Expanded Harmony",
+      "description": "Maximum SP increased to 7",
+      "token_cost": 100,
+      "effect_type": "max_sp",
+      "effect_value": 7.0,
+      "effect_str": ""
+    },
+    "EmberGift": {
+      "blessing_id": "EmberGift",
+      "display_name": "Ember Gift",
+      "description": "Unlock Forte element affinity",
+      "token_cost": 25,
+      "effect_type": "element_unlock",
+      "effect_value": 0.0,
+      "effect_str": "Forte"
+    },
+    "TidalGift": {
+      "blessing_id": "TidalGift",
+      "display_name": "Tidal Gift",
+      "description": "Unlock Tide element affinity",
+      "token_cost": 25,
+      "effect_type": "element_unlock",
+      "effect_value": 0.0,
+      "effect_str": "Tide"
+    },
+    "RhythmMaster": {
+      "blessing_id": "RhythmMaster",
+      "display_name": "Rhythm Master",
+      "description": "Perfect timing window extended by 10ms",
+      "token_cost": 75,
+      "effect_type": "perfect_window_bonus",
+      "effect_value": 10.0,
+      "effect_str": ""
+    },
+    "ComboKeeper": {
+      "blessing_id": "ComboKeeper",
+      "display_name": "Combo Keeper",
+      "description": "Combo persists between battles in same act",
+      "token_cost": 150,
+      "effect_type": "combo_persistence",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModHarmonyMire": {
+      "blessing_id": "RoomMod_ModHarmonyMire",
+      "display_name": "Melodic Fortitude",
+      "description": "HP +10% for every perfect note",
+      "token_cost": 50,
+      "effect_type": "starting_mana",
+      "effect_value": 10.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodicFate": {
+      "blessing_id": "RoomMod_ModMelodicFate",
+      "display_name": "Harmonic Guardian",
+      "description": "Boosts your ultimate gauge by 5%",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodicHarmony": {
+      "blessing_id": "RoomMod_ModMelodicHarmony",
+      "display_name": "Melodic Fortitude",
+      "description": "Increase HP by 10%",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodicLabyrinth": {
+      "blessing_id": "RoomMod_ModMelodicLabyrinth",
+      "display_name": "Harmonic Boost",
+      "description": "Rhythm timing window +20% for 10 turns.",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodicMire": {
+      "blessing_id": "RoomMod_ModMelodicMire",
+      "display_name": "Harmonic Haven",
+      "description": "HP +10% for each piece of sheet music found.",
+      "token_cost": 50,
+      "effect_type": "starting_mana",
+      "effect_value": 10.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodicPuzzle": {
+      "blessing_id": "RoomMod_ModMelodicPuzzle",
+      "display_name": "Harmonic Guardian",
+      "description": "Reduces incoming damage by 10% while under rhythm timing window.",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodicTune": {
+      "blessing_id": "RoomMod_ModMelodicTune",
+      "display_name": "Harmonious Heart",
+      "description": "HP +10% when rhythm timing window is perfect.",
+      "token_cost": 50,
+      "effect_type": "starting_mana",
+      "effect_value": 10.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodious": {
+      "blessing_id": "RoomMod_ModMelodious",
+      "display_name": "Harmonic Boost",
+      "description": "Increases rhythm timing window by 10%",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodiousLabyrinth": {
+      "blessing_id": "RoomMod_ModMelodiousLabyrinth",
+      "display_name": "Harmonic Heartbeat",
+      "description": "Increases rhythm timing window by 5%.",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodyMalediction": {
+      "blessing_id": "RoomMod_ModMelodyMalediction",
+      "display_name": "Harmonic Harmony",
+      "description": "HP +10% within the next boss fight.",
+      "token_cost": 50,
+      "effect_type": "starting_mana",
+      "effect_value": 10.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodyMaze": {
+      "blessing_id": "RoomMod_ModMelodyMaze",
+      "display_name": "Harmonic Heart",
+      "description": "HP +10% for each perfect rhythm.",
+      "token_cost": 50,
+      "effect_type": "starting_mana",
+      "effect_value": 10.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMelodyMist": {
+      "blessing_id": "RoomMod_ModMelodyMist",
+      "display_name": "Harmony Boost",
+      "description": "Increases rhythm timing window by 10%",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMidiMagic": {
+      "blessing_id": "RoomMod_ModMidiMagic",
+      "display_name": "Harmonic Harmony",
+      "description": "Increase ultimate gauge by 10%.",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMuseScore": {
+      "blessing_id": "RoomMod_ModMuseScore",
+      "display_name": "Melodic Harmony",
+      "description": "Increases rhythm timing window by 10%",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMusicalHarmony": {
+      "blessing_id": "RoomMod_ModMusicalHarmony",
+      "display_name": "Melodic Boost",
+      "description": "Increase rhythm timing window by 10%",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMusicNoteBlast": {
+      "blessing_id": "RoomMod_ModMusicNoteBlast",
+      "display_name": "Melodic Boost",
+      "description": "HP +5% per note hit",
+      "token_cost": 50,
+      "effect_type": "starting_mana",
+      "effect_value": 5.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMusicPulse": {
+      "blessing_id": "RoomMod_ModMusicPulse",
+      "display_name": "Melodic Fortitude",
+      "description": "Increase toughness by 10%",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_ModMysticHarmony": {
+      "blessing_id": "RoomMod_ModMysticHarmony",
+      "display_name": "Melodic Fortitude",
+      "description": "Increases HP by 10%",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    },
+    "RoomMod_SheetMusicChamber": {
+      "blessing_id": "RoomMod_SheetMusicChamber",
+      "display_name": "Melodic Fortitude",
+      "description": "HP +10% when within rhythm timing window",
+      "token_cost": 50,
+      "effect_type": "starting_mana",
+      "effect_value": 10.0,
+      "effect_str": ""
+    },
+    "RoomMod_SheetMusicHarmony": {
+      "blessing_id": "RoomMod_SheetMusicHarmony",
+      "display_name": "Melodic Fortitude",
+      "description": "Increase ultimate gauge by 10% for every perfect note.",
+      "token_cost": 50,
+      "effect_type": "passive",
+      "effect_value": 0.0,
+      "effect_str": ""
+    }
+  }
+}

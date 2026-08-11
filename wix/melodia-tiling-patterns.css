@@ -1,0 +1,33 @@
+/* Replace raster alpha textures with tiling procedural/SVG patterns */
+
+:root {
+  /* Coprime tile sizes + staggered offsets break visible grid seams */
+  --pattern-stars: radial-gradient(circle, rgba(255, 255, 255, 0.82) 0 0.9px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 110, 180, 0.72) 0 0.85px, transparent 1.45px),
+    radial-gradient(circle, rgba(201, 168, 106, 0.88) 0 1px, transparent 1.65px),
+    radial-gradient(circle, rgba(204, 153, 255, 0.7) 0 1px, transparent 1.75px),
+    radial-gradient(circle, rgba(102, 217, 255, 0.55) 0 1.1px, transparent 1.9px);
+  --pattern-stars-size: 73px 73px, 127px 127px, 199px 199px, 283px 283px, 347px 347px;
+  --pattern-stars-pos: 0 0, 31px 17px, 11px 53px, 67px 29px, 43px 91px;
+  --pattern-stars-repeat: repeat;
+
+  --pattern-hearts-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg opacity='0.2'%3E%3Cpath d='M32 44c-8-6-14-11-14-19 0-5 3-8 8-8 3 0 5 2 6 3 1-1 3-3 6-3 5 0 8 3 8 8 0 8-6 13-14 19z' fill='%23ff6eb4'/%3E%3C/g%3E%3Cg opacity='0.14' transform='translate(0 0)'%3E%3Cpath d='M32 44c-8-6-14-11-14-19 0-5 3-8 8-8 3 0 5 2 6 3 1-1 3-3 6-3 5 0 8 3 8 8 0 8-6 13-14 19z' fill='%23c9a86a' transform='translate(32 -32) scale(0.55)'/%3E%3C/g%3E%3Cg opacity='0.12' transform='translate(0 0)'%3E%3Cpath d='M32 44c-8-6-14-11-14-19 0-5 3-8 8-8 3 0 5 2 6 3 1-1 3-3 6-3 5 0 8 3 8 8 0 8-6 13-14 19z' fill='%23cc99ff' transform='translate(-16 16) scale(0.42)'/%3E%3C/g%3E%3C/svg%3E");
+  --pattern-hearts-size: 64px 64px;
+  --pattern-hearts-pos: 0 0;
+}
+
+/* Generic starfield utility */
+.pattern-stars {
+  background-image: var(--pattern-stars);
+  background-size: var(--pattern-stars-size);
+  background-position: var(--pattern-stars-pos);
+  background-repeat: var(--pattern-stars-repeat);
+}
+
+.pattern-hearts {
+  background-image: var(--pattern-hearts-svg);
+  background-size: var(--pattern-hearts-size);
+  background-position: var(--pattern-hearts-pos);
+  background-repeat: repeat;
+}
+

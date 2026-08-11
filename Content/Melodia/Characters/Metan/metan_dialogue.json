@@ -1,0 +1,53 @@
+{
+  "character": "Shikoku Metan",
+  "voice": "VOICEVOX Shikoku Metan (speaker 2)",
+  "language": "ja",
+  "speech_style": "Tsundere. Crisp, slightly haughty. 'It's not like I made this for you!' energy. Perfectionist.",
+  "pronoun": "watashi (わたし)",
+  "description": "Alchemist from the Southern Isles. Runs the potion shop and elemental crafting station. Ranged party member (elemental mage with thrown bombs).",
+
+  "lines": [
+    {
+      "id": "met_first_meet_01",
+      "text": "ふん、新しい顔ね。あんたが例の旅人？別に興味があるわけじゃないけど。",
+      "context": "first_meeting",
+      "notes": "Classic tsundere introduction"
+    },
+    {
+      "id": "met_shop_open_01",
+      "text": "入っていいわよ。今日はちゃんと在庫あるから。...いつも品切れだと思ってたでしょ。",
+      "context": "shop_open",
+      "notes": "Opening the potion shop"
+    },
+    {
+      "id": "met_craft_intro_01",
+      "text": "調合は科学よ。適当に混ぜたら爆発するんだから、ちゃんとレシピ通りにしなさい。",
+      "context": "crafting_intro",
+      "notes": "Explaining elemental crafting — with a warning"
+    },
+    {
+      "id": "met_quest_explosive_01",
+      "text": "実験に使う「火焔草」がもうなくて...採ってきてくれたら、お礼くらいはするわよ。",
+      "context": "quest_give_01",
+      "notes": "Quest: gather Flame Grass for her experiments"
+    },
+    {
+      "id": "met_bond_01",
+      "text": "あんた...意外と役に立つじゃない。べ、別に褒めてるわけじゃないんだから！",
+      "context": "bond_up",
+      "notes": "Tsundere bond increase"
+    },
+    {
+      "id": "met_party_join_01",
+      "text": "仕方ないから手伝ってあげるわ。感謝しなさいよね。",
+      "context": "party_join",
+      "notes": "Joining the party reluctantly"
+    },
+    {
+      "id": "met_ending_01",
+      "text": "あんたと旅した時間、悪くなかったわ。...ありがとう。",
+      "context": "ending",
+      "notes": "Finally dropping the tsundere act at the end"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "ROLE_UE_HINTS": {
+    "large": "/Game/EnvSandbox/Materials/Instances/Environment/Stylistic/MI_Show_StoneCliff",
+    "medium": "/Game/EnvSandbox/Materials/Instances/Environment/Stylistic/MI_Show_Default",
+    "small": "/Game/EnvSandbox/Materials/Instances/Environment/Stylistic/MI_Show_Default",
+    "wall": "/Game/EnvSandbox/Materials/Instances/Environment/Stylistic/MI_Trimsheet_HeavyWear",
+    "corner_tower": "/Game/EnvSandbox/Materials/Instances/Environment/Stylistic/MI_Show_StoneCliff",
+    "gate": "/Game/EnvSandbox/Materials/Instances/Environment/Stylistic/MI_Show_ContactRimHero",
+    "monument": "/Game/EnvSandbox/Materials/Instances/Environment/Stylistic/MI_Show_StoneCliff",
+    "sacred": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_Karesansui",
+    "joined_mesh": "/Game/EnvSandbox/Materials/Instances/Environment/Stylistic/MI_Show_Default"
+  },
+  "STYLE_ROLE_OVERRIDES": {
+    "ZEN_SHRINE": {
+      "gate": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_ToriiVermillion",
+      "sacred": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_HondenSanctum",
+      "large": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_MossGarden",
+      "monument": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_SakuraDrift"
+    }
+  }
+}

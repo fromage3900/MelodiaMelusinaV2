@@ -1,0 +1,35 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "2.0.0.15",
+	"FriendlyName": "Gaea2Unreal",
+	"Description": "Enhance your landscape creation workflow.",
+	"Category": "Gaea",
+	"CreatedBy": "QuadSpinner",
+	"CreatedByURL": "https://quadspinner.com/",
+	"DocsURL": "https://gaea.app/uedocs",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "5.7.0",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "GaeaUnrealTools",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "GaeaUEToolsEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "EditorScriptingUtilities",
+			"Enabled": true
+		}
+	]
+}

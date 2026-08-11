@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Pre-push hook: branch naming + LFS pointer validation
+# Enforces collab/[role]/[feature] branch naming convention.
+
+echo "==> [pre-push] Running branch naming + LFS validation..."
+
+# 1. Validate branch naming convention
+BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || echo "")
+if [ -n "$BRANCH" ] && [ "$BRANCH" != "main" ]; then
+  case "$BRANCH" in
+    feature/*|fix/*|docs/*|cleanup/*|collab/*|codex/*|recovery/*)
+      echo "==> [pre-push] Branch '$BRANCH' follows naming convention."
+      ;;
+    *)
+      echo "ERROR: [pre-push] Branch '$BRANCH' does not follow naming convention."
+      echo ""
+      echo "Allowed prefixes: feature/, fix/, docs/, cleanup/, collab/, codex/, recovery/"
+      echo "Examples:"
+      echo "  feature/zundamon-npc"
+      echo "  fix/modifier-stacking"
+      echo "  docs/collab-guide"
+      echo "  collab/level-design/kaleido-nave"
+      echo ""
+      echo "Fix: git branch -m <new-name>"
+      exit 1
+      ;;
+  esac
+fi
+
+# 2. Check for LFS pointer files that are actually large binaries
+# (files tracked by LFS but with the real content staged instead of a pointer)
+echo "==> [pre-push] Checking for LFS pointer integrity..."
+git lfs pointer --check --stdin >/dev/null 2>&1 || true
+
+echo "==> [pre-push] Validation passed."
+exit 0

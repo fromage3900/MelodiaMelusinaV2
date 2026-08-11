@@ -1,0 +1,34 @@
+{
+  "format": "gmm_water_presentation_profiles_v1",
+  "profiles": {
+    "pond_shrine": {
+      "surface_instance": "/Game/EnvSandbox/Materials/Instances/Water/MI_GrandWater_SakuraPond",
+      "role": "pond",
+      "authoring_mode": "water_body",
+      "mobile": {"refraction": 0.0, "niagara_quality": 0, "rhythm_reactivity": 0.12},
+      "pc": {"refraction": 0.02, "niagara_quality": 1, "rhythm_reactivity": 0.2}
+    },
+    "river_clear": {
+      "surface_instance": "/Game/EnvSandbox/Materials/Instances/Water/MI_GrandWater_RiverClear",
+      "role": "river",
+      "authoring_mode": "water_body",
+      "mobile": {"refraction": 0.0, "niagara_quality": 0, "rhythm_reactivity": 0.08},
+      "pc": {"refraction": 0.015, "niagara_quality": 1, "rhythm_reactivity": 0.12}
+    },
+    "waterfall_sheet": {
+      "surface_instance": "/Game/EnvSandbox/Materials/Instances/Water/MI_GrandWater_WaterfallSheet",
+      "role": "waterfall",
+      "authoring_mode": "spline_sheet",
+      "mobile": {"refraction": 0.0, "niagara_quality": 0, "rhythm_reactivity": 0.1},
+      "pc": {"refraction": 0.01, "niagara_quality": 1, "rhythm_reactivity": 0.16}
+    },
+    "melusina_hair": {
+      "source_identity": "Water (Advance).001",
+      "mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair",
+      "runtime_material": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair",
+      "unsafe_surface_features": ["gerstner_wpo", "screen_refraction", "shoreline_foam", "world_depth_fade"],
+      "mobile": {"refraction": 0.0, "translucency": "masked_or_dithered", "rhythm_reactivity": 0.18},
+      "pc": {"refraction": 0.0, "translucency": "controlled", "rhythm_reactivity": 0.3}
+    }
+  }
+}

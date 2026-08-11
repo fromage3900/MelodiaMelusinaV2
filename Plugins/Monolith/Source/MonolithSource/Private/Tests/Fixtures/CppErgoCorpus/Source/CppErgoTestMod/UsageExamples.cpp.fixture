@@ -1,0 +1,28 @@
+// Fixture for Monolith.Source.CppErgonomics.FindExampleUsagePagination and
+// VerifySymbolsComposition. NOT compiled into any module — read as data by the
+// indexer (source_fts) and by FFileHelper during the tests.
+//
+// CallMe( appears on many lines so a >limit pagination round-trip has enough
+// distinct call-site rows for the rerun-slice cursor to thread a second page.
+#include "UsageExamples.h"
+
+void UCppErgoUsage::Run()
+{
+	CallMe(1);
+	CallMe(2);
+	CallMe(3);
+	CallMe(4);
+	CallMe(5);
+	CallMe(6);
+	CallMe(7);
+	CallMe(8);
+	CallMe(9);
+	CallMe(10);
+	CallMe(11);
+	CallMe(12);
+}
+
+void UCppErgoUsage::CallMe(int32 Value)
+{
+	// body
+}

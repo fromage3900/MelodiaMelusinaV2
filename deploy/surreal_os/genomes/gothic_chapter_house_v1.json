@@ -1,0 +1,28 @@
+{
+  "id": "gothic_chapter_house_v1",
+  "family": "Gothic",
+  "verticality": 0.92,
+  "symmetry": 0.78,
+  "ornament_density": 0.82,
+  "structural_logic": 0.88,
+  "organic_growth": 0.22,
+  "cosmic_influence": 0.38,
+  "sacred_sequence": ["portal", "nave", "crossing", "chapter"],
+  "compose_style": "GOTHIC_CHAPTER_HOUSE",
+  "default_graph": "GOTHIC_CHAPTER_HOUSE",
+  "grammar_id": "GOTHIC_CHAPTER_HOUSE",
+  "surreal_transform": "recursive_interior",
+  "compose_roles": {
+    "large": "_lib_CHAPEL",
+    "gate": "_lib_GB_GOTHIC_PORTAL",
+    "medium": "_lib_GREYBOX_CORRIDOR",
+    "monument": "_lib_BELL_TOWER",
+    "sacred": "_lib_CHAPEL"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "material_choice": "STONE",
+    "unit_size": 2.0
+  }
+}

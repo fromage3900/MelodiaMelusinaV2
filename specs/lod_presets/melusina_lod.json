@@ -1,0 +1,38 @@
+{
+  "skeletal_mesh_path": "/Game/Melodia/Characters/Melusina/SK_Melusina.SK_Melusina",
+  "source_tri_count": 224123,
+  "source_bone_count": 465,
+  "lod_groups": [
+    {
+      "lod_index": 0,
+      "description": "Full detail — base mesh",
+      "target_tri_count": 224123,
+      "reduction_percent": 0.0,
+      "screen_size": 1.0,
+      "notes": "No reduction; full 224k triangles. All jewelry, cloth folds, and micro-details visible."
+    },
+    {
+      "lod_index": 1,
+      "description": "50% reduction — remove jewelry details, simplify cloth folds",
+      "target_tri_count": 112061,
+      "reduction_percent": 0.5,
+      "screen_size": 0.5,
+      "notes": "Remove micro-details: button faceting, small cloth wrinkles, jewelry sub-facets. Keep silhouette and major cloth folds."
+    },
+    {
+      "lod_index": 2,
+      "description": "75% reduction — simpler silhouette for extreme distance",
+      "target_tri_count": 56030,
+      "reduction_percent": 0.75,
+      "screen_size": 0.2,
+      "notes": "Aggressive simplification: block out silhouette only. Remove separate jewelry meshes, flatten cloth into planes."
+    }
+  ],
+  "lod_settings": {
+    "minimum_lod_count": 1,
+    "maximum_lod_count": 4,
+    "default_lod_bias": 0,
+    "lod_bias_max": 10
+  },
+  "material_overrides": {}
+}

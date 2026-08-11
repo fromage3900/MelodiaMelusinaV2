@@ -1,0 +1,10 @@
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="Probe"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetSystemLibrary"',MemberName="PrintString")
+   NodePosX=0
+   NodePosY=0
+   NodeGuid={{GUID:probe}}
+   CustomProperties Pin (PinId={{GUID:probein}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:probeout}},PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:probestr}},PinName="InString",Direction="EGPD_Input",PinType.PinCategory="string",PinType.PinSubCategoryObject=None,DefaultValue="{{message}}",)
+   CustomProperties Pin (PinId={{GUID:probedur}},PinName="Duration",Direction="EGPD_Input",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,DefaultValue="{{duration}}",)
+End Object

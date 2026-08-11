@@ -1,0 +1,14 @@
+{
+  "id": "SCI_FI_DECK_EXPANSION",
+  "label": "Sci-Fi Deck Expansion",
+  "description": "Long corridor spine, T-junction, airlock, hab module, offset leg",
+  "style": "scifi",
+  "modules": [
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 14.0, "gb_corridor_profile": "DOUBLE", "material_choice": "AUTO"}},
+    {"arch_type": "GB_CORRIDOR_T", "overrides": {"gb_length": 8.0, "material_choice": "AUTO"}},
+    {"arch_type": "GB_SCIFI_PRESSURE_DOOR", "overrides": {"gb_length": 3.5, "gb_door_width": 1.4, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GREYBOX_ROOM", "overrides": {"gb_width": 10.0, "gb_depth": 8.0, "gb_height": 3.6, "material_choice": "AUTO"}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 10.0, "gb_trim_mode": "RECESS", "material_choice": "AUTO"}},
+    {"arch_type": "GB_SCIFI_PRESSURE_DOOR", "overrides": {"gb_length": 3.5, "gb_trim_mode": "RECESS"}}
+  ]
+}

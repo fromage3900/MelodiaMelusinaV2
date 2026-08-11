@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PCG System Impact | Brennan Shepherd</title>
+  <meta name="description" content="In-scene proof that PCG systems affect composition and traversal: route proof, heatmap, and capture slots that update from intake." />
+  <link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="portfolio-luxury-bridge.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-fashion-editorial.css">
+<link rel="stylesheet" href="melodia-premium-system.css">
+<link rel="stylesheet" href="portfolio-pages.css">
+  <style>
+    .impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .impact-card{border:1px solid rgba(201,168,106,.35);background:rgba(16,23,54,.82);overflow:hidden}
+    .impact-card .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(18,24,45,.14),rgba(200,164,94,.10));display:grid;place-items:center;color:rgba(236,234,244,.62);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+    .impact-card img{width:100%;height:100%;object-fit:cover;display:block}
+    .impact-card .body{padding:16px 18px}
+    .impact-card .body p{color:rgba(236,234,244,.72);line-height:1.6}
+    .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+    .pillrow span{display:inline-flex;align-items:center;padding:7px 9px;border:1px solid rgba(201,168,106,.35);font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#9b8fc4;background:rgba(16,23,54,.55)}
+    @media(max-width:980px){.impact-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="melodia-shell fashion-mode" data-mg="chrome" data-hero="editorial" data-effects="starfield,holo">
+  <header class="shell-nav" aria-label="Portfolio navigation">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="hero-renders.html">Renders</a>
+      <a href="shader-breakdowns.html">Shaders</a>
+      <a href="geometry-nodes.html">Geometry</a>
+      <a href="render-constellation.html">Intake</a>
+    </nav>
+    <a class="nav-cta" href="commissions.html">Request Work</a>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-media" aria-hidden="true">
+        <img id="leadImg" src="../generated/assets/unreal/pcg-heatmap.png" alt="PCG heatmap" />
+      </div>
+      <div class="hero-inner">
+        <p class="kicker magazine-kicker">PCG / in-scene proof</p>
+        <h1 id="page-title">Prove the rules shape the route.</h1>
+        <p class="lede">This page pairs the PCG heatmap with route-proof capture slots so reviewers can see the procedural system protecting traversal and composition.</p>
+        <div class="button-row">
+          <a class="button primary" href="render-constellation.html">Render Constellation</a>
+          <a class="button" href="../generated/unreal_portfolio_intake.json">Intake JSON</a>
+          <a class="button" href="world-bible.html">World bible</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band paper">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Impact Plates</p>
+            <h2>Route proof + beauty.</h2>
+          </div>
+          <p>These cards are fed by the Unreal intake JSON. Once the PCG route-proof plate is captured and ingested, it will appear here automatically.</p>
+        </div>
+        <div class="impact-grid" id="impactGrid"></div>
+      </div>
+    </section>
+
+    <section class="band deep">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">What to capture next</p>
+            <h2>Minimum proof for “PCG system” credibility.</h2>
+          </div>
+          <p>These filenames match the capture brief. The goal: one plate that reads “procedural logic” and one that reads “final beauty.”</p>
+        </div>
+        <div class="card-grid two">
+          <article class="card">
+            <span>renders.pcg</span>
+            <div>
+              <h3>ZEN_SHRINE_AXIS route proof plate</h3>
+              <p><strong>Filename:</strong> <code>pcg_zen_shrine_axis_route_proof_1920x1080.png</code></p>
+              <p><strong>Shows:</strong> debug overlay or graph + a matching in-world crop that demonstrates the dressing rules.</p>
+            </div>
+          </article>
+          <article class="card">
+            <span>PCG heatmap</span>
+            <div>
+              <h3>Exclusion heatmap</h3>
+              <p><strong>Shows:</strong> route-safe exclusion zones and the “why” behind your dressing density.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="inner"><span data-copy="global.footer.left">Brennan Shepherd / Environment & Technical Artist</span><span data-copy="global.footer.right">Melodia editorial portfolio</span></div></footer>
+</div>
+
+  <script>
+    const INTAKE_URL = '../generated/unreal_portfolio_intake.json';
+    function esc(value){return String(value == null ? '' : value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];});}
+    function byPriorityDesc(a,b){return (b.priority||0)-(a.priority||0);}
+
+    function renderCard(card){
+      const title = esc(card.filename || 'Plate');
+      const caption = esc(card.caption || '');
+      const web = esc(card.web_path || '');
+      const media = web ? `<img src="${web}" alt="${title}" />` : `<div class="thumb">Missing plate</div>`;
+      return `
+        <article class="impact-card">
+          <div class="thumb">${media}</div>
+          <div class="body">
+            <div class="pillrow">
+              <span>${esc(card.group || 'plate')}</span>
+              <span>${esc(card.status || 'pending')}</span>
+            </div>
+            <h3>${title}</h3>
+            <p>${caption || 'In-scene proof slot.'}</p>
+          </div>
+        </article>
+      `;
+    }
+
+    async function main(){
+      const res = await fetch(INTAKE_URL, { cache: 'no-store' });
+      const intake = await res.json();
+
+      if (intake.pcg_heatmap && intake.pcg_heatmap.web_path){
+        const img = document.getElementById('leadImg');
+        img.src = intake.pcg_heatmap.web_path;
+        img.alt = 'PCG heatmap';
+      }
+
+      const cards = Array.isArray(intake.render_cards) ? intake.render_cards : [];
+      const pcg = cards.filter(c=>c.group==='pcg' && c.web_path).sort(byPriorityDesc);
+      const heroes = cards.filter(c=>c.group==='hero' && c.web_path).sort(byPriorityDesc);
+
+      const grid = document.getElementById('impactGrid');
+      const entries = [];
+      if (pcg[0]) entries.push(renderCard(pcg[0]));
+      if (heroes[0]) entries.push(renderCard(heroes[0]));
+
+      if (!entries.length){
+        grid.innerHTML = '<p>No PCG plates found yet. Capture the route-proof plate from the brief and rerun ingest.</p>';
+        return;
+      }
+      grid.innerHTML = entries.join('');
+    }
+    main().catch((err)=>{
+      const grid = document.getElementById('impactGrid');
+      if (grid) grid.innerHTML = '<p>Failed to load intake JSON. Ensure <code>generated/unreal_portfolio_intake.json</code> exists.</p>';
+      console.error(err);
+    });
+  </script>
+
+<script src="melodia-magical-girl.js"></script>
+<script src="melodia-starfield.js"></script>
+<script src="melodia-dream-shaders.js"></script>
+<script src="melodia-editorial.js"></script>
+<script>MelodiaEditorial.init();</script>
+</body>
+</html>
+

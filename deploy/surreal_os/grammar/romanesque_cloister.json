@@ -1,0 +1,13 @@
+{
+  "id": "ROMANESQUE_CLOISTER",
+  "label": "Romanesque Cloister",
+  "description": "Arcade bays alternating with offset corridor legs",
+  "style": "romanesque",
+  "modules": [
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {"gb_width": 3.2, "gb_height": 4.2, "unit_size": 3.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 8.0, "gb_trim_mode": "RECESS", "unit_size": 3.2}},
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {"gb_width": 3.2, "gb_height": 4.2}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 8.0, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {}}
+  ]
+}

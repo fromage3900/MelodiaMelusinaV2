@@ -1,0 +1,256 @@
+Begin Object Class=/Script/Engine.Material Name="M_Master_Simple_Universal" ExportPath="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionVectorParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_2" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_1" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_0" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureObjectParameter Name="MaterialExpressionTextureObjectParameter_2" ExportPath="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureObjectParameter Name="MaterialExpressionTextureObjectParameter_1" ExportPath="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureObjectParameter Name="MaterialExpressionTextureObjectParameter_0" ExportPath="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureCoordinate Name="MaterialExpressionTextureCoordinate_0" ExportPath="/Script/Engine.MaterialExpressionTextureCoordinate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureCoordinate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionStaticSwitchParameter Name="MaterialExpressionStaticSwitchParameter_0" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionStaticSwitchParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionSaturate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_0" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMaterialFunctionCall_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionLinearInterpolate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionConstant3Vector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionComponentMask_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialEditorOnlyData Name="M_Master_Simple_UniversalEditorOnlyData" ExportPath="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:M_Master_Simple_UniversalEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionVectorParameter_0'"
+      DefaultValue=(R=1.000000,G=1.000000,B=1.000000,A=1.000000)
+      ParameterName="ColorTint"
+      ExpressionGUID=6ED839B84CABEC65668C72B52D70D077
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=-300
+      MaterialExpressionGuid=117F7D2E41B33C38E10200B85086DC32
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_2" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_2'"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_0'")
+      TextureObject=(Expression="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_2'")
+      SamplerType=SAMPLERTYPE_LinearColor
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=921716DD442D81C1B79EFA88E0C3B68C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_1" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_1'"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_0'")
+      TextureObject=(Expression="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_1'")
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=BB17F71748AE4CDEB40899B9967C3214
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_0" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_0'"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_0'")
+      TextureObject=(Expression="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_0'")
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=-200
+      MaterialExpressionGuid=631AD1B9412A0D34322802897BA9A4C9
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureObjectParameter_2" ExportPath="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_2'"
+      ParameterName="ORM"
+      ExpressionGUID=87AF5790416895242C1C52A50D03440D
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=89131D694A0DB34013274A91CDC76E49
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureObjectParameter_1" ExportPath="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_1'"
+      ParameterName="NormalMap"
+      ExpressionGUID=A40A36ED4436C9ED5C053FB3283B3A94
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionGuid=01CD2D2E488A90C120F9FFBEFA30B82C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureObjectParameter_0" ExportPath="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_0'"
+      ParameterName="Albedo"
+      ExpressionGUID=33C75CAE4404640C256769870E74EB03
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=-200
+      MaterialExpressionGuid=F6BFF2254038A7B78CAA3288BD1296CB
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureCoordinate_0" ExportPath="/Script/Engine.MaterialExpressionTextureCoordinate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureCoordinate_0'"
+      MaterialExpressionEditorX=-1400
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=089E9C634548142B681C5D951C390518
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionStaticSwitchParameter_0" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionStaticSwitchParameter_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMaterialFunctionCall_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_1'")
+      ParameterName="bTriplanar"
+      ExpressionGUID=506D94584D9F737039BF4D8CC861003F
+      MaterialExpressionEditorX=-300
+      MaterialExpressionEditorY=-350
+      MaterialExpressionGuid=EE1D5F60432908CCC59898A7C1BDCDA8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_4'"
+      DefaultValue=1.000000
+      ParameterName="RoughnessStrength"
+      ExpressionGUID=2B334BD544EE15C2F1DFEF8159497691
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=250
+      MaterialExpressionGuid=5F2783DC48F2791C21D64D8E69C2B479
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_3'"
+      DefaultValue=1.000000
+      ParameterName="NormalStrength"
+      ExpressionGUID=B70E6D9943664E0A1FD681B21F31C475
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=3C797369405500F07F9751AB586F56D0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_2'"
+      DefaultValue=4.000000
+      ParameterName="TriplanarBlendSharpness"
+      ExpressionGUID=E04DE2214496960A4C44B48C085A92D8
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=-390
+      MaterialExpressionGuid=FA6EF101457FBC52E0C31F9FA5FD5DB9
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_1'"
+      DefaultValue=200.000000
+      ParameterName="TriplanarTileSize"
+      ExpressionGUID=B337C34F4444520C01BA05BA3958DFE3
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=-450
+      MaterialExpressionGuid=DCB9209448FC5ED9E6A8D0B2DDAA87C7
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_0'"
+      DefaultValue=1.000000
+      ParameterName="UVTiling"
+      ExpressionGUID=6517107D4B7C2DDBC5F7A6913E8B4498
+      MaterialExpressionEditorX=-1400
+      MaterialExpressionEditorY=-250
+      MaterialExpressionGuid=CD79F29E47F7C7F35B36C893D2F27AAD
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionSaturate_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=-300
+      MaterialExpressionEditorY=250
+      MaterialExpressionGuid=93F8335540DE2A7F57221FA3637F6777
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionComponentMask_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_4'")
+      MaterialExpressionEditorX=-500
+      MaterialExpressionEditorY=250
+      MaterialExpressionGuid=D6EBA54E4174D1147E821DB22DDC8EED
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionVectorParameter_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=-500
+      MaterialExpressionEditorY=-200
+      MaterialExpressionGuid=D1BD52924B4531464DAB6497E0A81533
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionTextureCoordinate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureCoordinate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=-150
+      MaterialExpressionGuid=375E640445E13ED28D36EBBC02087CEB
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_0" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMaterialFunctionCall_0'"
+      MaterialFunction="/Script/Engine.MaterialFunction'/Game/_PROJECT/04_Materials/Functions/MF_MeluTriplanar.MF_MeluTriplanar'"
+      FunctionInputs(0)=(ExpressionInputId=06CA9F414C7D1FF802B62A9A9432A605,Input=(Expression="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_0'",InputName="Texture"))
+      FunctionInputs(1)=(ExpressionInputId=3DB227FC42DD87B80E299E96A1106323,Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_1'",InputName="TileSize"))
+      FunctionInputs(2)=(ExpressionInputId=CE72B171473CFD44763D828153278856,Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_2'",InputName="BlendSharpness"))
+      FunctionOutputs(0)=(ExpressionOutputId=5746E1434DA8F15F02DD84974E6413AE,Output=(OutputName="TriplanarColor"))
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=-450
+      MaterialExpressionGuid=C04E1A57497AF0E6E36EB8A9A3E1B225
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+      Outputs(0)=(OutputName="TriplanarColor")
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionLinearInterpolate_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionConstant3Vector_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_3'")
+      MaterialExpressionEditorX=-500
+      MaterialExpressionGuid=759DEC5745D4F9BB4DF703B53F15B270
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionConstant3Vector_0'"
+      Constant=(R=0.500000,G=0.500000,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=-50
+      MaterialExpressionGuid=6F0C988240D33E5310CF389894500E3C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionComponentMask_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=True
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=350
+      MaterialExpressionGuid=84BC26F04D89CC1131D76CB5025D405C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionComponentMask_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      G=True
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=0B91CA794461A012313063AA14B5BCD7
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal'"
+   End Object
+   Begin Object Name="M_Master_Simple_UniversalEditorOnlyData" ExportPath="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:M_Master_Simple_UniversalEditorOnlyData'"
+      BaseColor=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionStaticSwitchParameter_0'")
+      Metallic=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionComponentMask_1'")
+      Roughness=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionSaturate_0'")
+      Normal=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionLinearInterpolate_0'")
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_0'","/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_1'","/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureObjectParameter_2'","/Script/Engine.MaterialExpressionTextureCoordinate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureCoordinate_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_0'","/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_1'","/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionTextureSample_2'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionStaticSwitchParameter_0'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMaterialFunctionCall_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionConstant3Vector_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:MaterialExpressionComponentMask_1'"))
+   End Object
+   StateId=2C8BD3CD4FA2E0726161F791654D3FC3
+   ReferencedTextureGuids(0)=00000000000000000000000000000000
+   EditorOnlyData="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal.M_Master_Simple_Universal:M_Master_Simple_UniversalEditorOnlyData'"
+   TextureStreamingDataVersion=1
+   TextureStreamingData(0)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="DefaultTexture",TextureReference="/Engine/EngineResources/DefaultTexture.DefaultTexture")
+   ReferencedDefaultTextures(0)="/Script/Engine.Texture2D'/Engine/EngineResources/DefaultTexture.DefaultTexture'"
+   ReferencedDefaultTextures(1)=None
+   LightingGuid=EE21C5F846C1157B4DF49EB345AB7936
+End Object

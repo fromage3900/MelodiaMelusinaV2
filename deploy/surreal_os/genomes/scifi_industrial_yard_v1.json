@@ -1,0 +1,26 @@
+{
+  "id": "scifi_industrial_yard_v1",
+  "family": "Sci-Fi",
+  "verticality": 0.55,
+  "symmetry": 0.72,
+  "ornament_density": 0.18,
+  "structural_logic": 0.97,
+  "organic_growth": 0.04,
+  "cosmic_influence": 0.32,
+  "sacred_sequence": [],
+  "compose_style": "SCIFI_DECK",
+  "default_graph": "SCI_FI_INDUSTRIAL_YARD",
+  "grammar_id": "SCI_FI_INDUSTRIAL_YARD",
+  "surreal_transform": "recursive_interior",
+  "compose_roles": {
+    "large": "_lib_GREYBOX_PILLAR_HALL",
+    "gate": "_lib_GB_SCIFI_PRESSURE_DOOR",
+    "medium": "_lib_GREYBOX_CATWALK",
+    "monument": "_lib_GREYBOX_ROOM"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "material_choice": "AUTO",
+    "unit_size": 4.0
+  }
+}

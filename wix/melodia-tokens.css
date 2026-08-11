@@ -1,0 +1,331 @@
+/* Melodia Design Tokens — Single Source of Truth for Web
+   Generated from tokens.json (Figma SSOT). Do not edit manually — run token sync.
+   All CSS files must @import this FIRST before any other styles. */
+
+:root {
+  /* ===== PRIMITIVE COLORS (from tokens.json primitives) ===== */
+  --primitive-ivory-50:  #FFF8EE;
+  --primitive-ivory-100: #F8ECD6;
+  --primitive-ivory-200: #F3E6C8;
+  --primitive-ivory-300: #E3DACE;
+
+  --primitive-plum-500:  #6E6080;
+  --primitive-plum-600:  #463A54;
+  --primitive-plum-700:  #2E2438;
+  --primitive-plum-800:  #241B2E;
+  --primitive-plum-900:  #1C1426;
+
+  --primitive-gold-100:  #F0E6D2;
+  --primitive-gold-300:  #DDC79B;
+  --primitive-gold-500:  #C9A86A;
+  --primitive-gold-700:  #A7884E;
+
+  --primitive-lavender-100: #E8E4F2;
+  --primitive-lavender-300: #C2BAE0;
+  --primitive-lavender-500: #9F94C6;
+
+  --primitive-sakura-100: #F5E8EA;
+  --primitive-sakura-300: #E7C9CE;
+  --primitive-sakura-500: #D6A9B0;
+
+  --primitive-astral-100: #E5EAF5;
+  --primitive-astral-300: #8AA9D6;
+  --primitive-astral-500: #3C5C9E;
+  --primitive-astral-700: #26365E;
+  --primitive-astral-900: #141A30;
+
+  --primitive-iris-100: #ECE6F4;
+  --primitive-iris-300: #A99AD0;
+  --primitive-iris-500: #6E5AA6;
+
+  --primitive-slate-200: #D5D8DE;
+  --primitive-slate-300: #AEB4BF;
+  --primitive-slate-400: #828A98;
+  --primitive-slate-500: #5A6170;
+  --primitive-slate-700: #3C414B;
+
+  --primitive-status-success: #5E8B7E;
+  --primitive-status-warning: #B8862F;
+  --primitive-status-error:   #A85751;
+  --primitive-status-info:    #6B7CA8;
+
+  /* ===== NIKKI / SOFTMG PRIMITIVES (from tokens.json) ===== */
+  --primitive-nikki-parchment:      #F2E6CF;
+  --primitive-nikki-parchment-deep: #E3D3AD;
+  --primitive-nikki-rose:           #E8A9A1;
+  --primitive-nikki-amber:          #D9A566;
+  --primitive-nikki-lavender:       #B6A6D9;
+  --primitive-nikki-seafoam:        #8FC9BD;
+  --primitive-nikki-ink:            #3B2A22;
+
+  --primitive-game-parchment:       #F2E6CF;
+  --primitive-game-parchment-deep:  #E3D3AD;
+  --primitive-game-rose:            #E8A9A1;
+  --primitive-game-amber:           #D9A566;
+  --primitive-game-lavender:        #B6A6D9;
+  --primitive-game-seafoam:         #8FC9BD;
+  --primitive-game-ink:             #3B2A22;
+
+  /* ===== SEMANTIC TOKENS — LIGHT MODE (Ivory Editorial) ===== */
+  --color-surface-base:     var(--primitive-ivory-100);
+  --color-surface-raised:   var(--primitive-ivory-50);
+  --color-surface-sunken:   var(--primitive-ivory-200);
+  --color-surface-inverse:  var(--primitive-plum-800);
+
+  --color-text-primary:     var(--primitive-plum-800);
+  --color-text-secondary:   var(--primitive-slate-500);
+  --color-text-tertiary:    var(--primitive-slate-400);
+  --color-text-inverse:     var(--primitive-ivory-50);
+  --color-text-accent:      var(--primitive-gold-700);
+
+  --color-border-subtle:    var(--primitive-ivory-300);
+  --color-border-default:   var(--primitive-slate-200);
+  --color-border-strong:    var(--primitive-slate-300);
+
+  --color-accent-primary:   var(--primitive-gold-500);
+  --color-accent-secondary: var(--primitive-lavender-500);
+  --color-accent-tertiary:  var(--primitive-sakura-300);
+  --color-accent-astral:    var(--primitive-astral-500);
+  --color-accent-iris:      var(--primitive-iris-500);
+
+  --color-rule-gold:        var(--primitive-gold-500);
+
+  --color-feedback-success: var(--primitive-status-success);
+  --color-feedback-warning: var(--primitive-status-warning);
+  --color-feedback-error:   var(--primitive-status-error);
+  --color-feedback-info:    var(--primitive-status-info);
+
+  /* ===== NIKKI / SOFTMG SEMANTIC TOKENS (Light) ===== */
+  --color-nikki-parchment:       var(--primitive-nikki-parchment);
+  --color-nikki-parchment-deep:  var(--primitive-nikki-parchment-deep);
+  --color-nikki-rose:            var(--primitive-nikki-rose);
+  --color-nikki-amber:           var(--primitive-nikki-amber);
+  --color-nikki-lavender:        var(--primitive-nikki-lavender);
+  --color-nikki-seafoam:         var(--primitive-nikki-seafoam);
+  --color-nikki-ink:             var(--primitive-nikki-ink);
+
+  --color-game-parchment:        var(--primitive-game-parchment);
+  --color-game-parchment-deep:   var(--primitive-game-parchment-deep);
+  --color-game-rose:             var(--primitive-game-rose);
+  --color-game-amber:            var(--primitive-game-amber);
+  --color-game-lavender:         var(--primitive-game-lavender);
+  --color-game-seafoam:          var(--primitive-game-seafoam);
+  --color-game-ink:              var(--primitive-game-ink);
+
+  /* ===== SEMANTIC TOKENS — DARK MODE (Astral Night) ===== */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-surface-base:     var(--primitive-astral-900);
+      --color-surface-raised:   var(--primitive-astral-700);
+      --color-surface-sunken:   var(--primitive-plum-900);
+      --color-surface-inverse:  var(--primitive-ivory-100);
+
+      --color-text-primary:     var(--primitive-ivory-50);
+      --color-text-secondary:   var(--primitive-slate-300);
+      --color-text-tertiary:    var(--primitive-slate-400);
+      --color-text-inverse:     var(--primitive-astral-900);
+      --color-text-accent:      var(--primitive-gold-300);
+
+      --color-border-subtle:    var(--primitive-astral-700);
+      --color-border-default:   var(--primitive-astral-500);
+      --color-border-strong:    var(--primitive-iris-500);
+
+      --color-accent-primary:   var(--primitive-gold-500);
+      --color-accent-secondary: var(--primitive-lavender-300);
+      --color-accent-tertiary:  var(--primitive-sakura-300);
+      --color-accent-astral:    var(--primitive-astral-300);
+      --color-accent-iris:      var(--primitive-iris-300);
+
+      --color-rule-gold:        var(--primitive-gold-500);
+      
+      /* Nikki / SoftMG dark */
+      --color-nikki-parchment:       var(--primitive-nikki-parchment);
+      --color-nikki-parchment-deep:  var(--primitive-nikki-parchment-deep);
+      --color-nikki-rose:            var(--primitive-nikki-rose);
+      --color-nikki-amber:           var(--primitive-nikki-amber);
+      --color-nikki-lavender:        var(--primitive-nikki-lavender);
+      --color-nikki-seafoam:         var(--primitive-nikki-seafoam);
+      --color-nikki-ink:             var(--primitive-nikki-ink);
+
+      --color-game-parchment:        var(--primitive-game-parchment);
+      --color-game-parchment-deep:   var(--primitive-game-parchment-deep);
+      --color-game-rose:             var(--primitive-game-rose);
+      --color-game-amber:            var(--primitive-game-amber);
+      --color-game-lavender:         var(--primitive-game-lavender);
+      --color-game-seafoam:          var(--primitive-game-seafoam);
+      --color-game-ink:              var(--primitive-game-ink);
+    }
+  }
+
+  /* ===== EXPLICIT DARK MODE CLASS (for forced dark) ===== */
+  .dark,
+  [data-theme="dark"] {
+    --color-surface-base:     var(--primitive-astral-900);
+    --color-surface-raised:   var(--primitive-astral-700);
+    --color-surface-sunken:   var(--primitive-plum-900);
+    --color-surface-inverse:  var(--primitive-ivory-100);
+
+    --color-text-primary:     var(--primitive-ivory-50);
+    --color-text-secondary:   var(--primitive-slate-300);
+    --color-text-tertiary:    var(--primitive-slate-400);
+    --color-text-inverse:     var(--primitive-astral-900);
+    --color-text-accent:      var(--primitive-gold-300);
+
+    --color-border-subtle:    var(--primitive-astral-700);
+    --color-border-default:   var(--primitive-astral-500);
+    --color-border-strong:    var(--primitive-iris-500);
+
+    --color-accent-primary:   var(--primitive-gold-500);
+    --color-accent-secondary: var(--primitive-lavender-300);
+    --color-accent-tertiary:  var(--primitive-sakura-300);
+    --color-accent-astral:    var(--primitive-astral-300);
+    --color-accent-iris:      var(--primitive-iris-300);
+
+    --color-rule-gold:        var(--primitive-gold-500);
+  }
+
+  /* ===== SPACING SCALE (8pt base) ===== */
+  --space-4:   4px;
+  --space-8:   8px;
+  --space-16:  16px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-48:  48px;
+  --space-64:  64px;
+  --space-96:  96px;
+  --space-128: 128px;
+
+  /* Fluid spacing clamp helpers */
+  --space-clamp-xs:   clamp(8px, 1.5vw, 16px);
+  --space-clamp-sm:   clamp(16px, 2.5vw, 24px);
+  --space-clamp-md:   clamp(24px, 4vw, 48px);
+  --space-clamp-lg:   clamp(48px, 6vw, 96px);
+  --space-clamp-xl:   clamp(96px, 8vw, 128px);
+
+  /* ===== RADIUS SCALE ===== */
+  --radius-none: 0;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-pill: 999px;
+
+  /* ===== TYPOGRAPHY (from tokens.json global.fontFamilies) ===== */
+  --font-display:       'Fraunces', Georgia, serif;
+  --font-display-fallback: Georgia, serif;
+  --font-cover:         'Cinzel', 'Fraunces', Georgia, serif;
+  --font-body:          'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  --font-body-fallback: 'Inter', system-ui, sans-serif;
+  --font-mono:          'Azeret Mono', 'IBM Plex Mono', monospace;
+  --font-brand:         'Cinzel', 'Fraunces', Georgia, serif;
+
+  /* Type scale (matches tokens.json global.type) */
+  --text-display-xl:    clamp(48px, 8vw, 72px) / 1.05 var(--font-display);
+  --text-display-lg:    clamp(40px, 6vw, 56px) / 1.07 var(--font-display);
+  --text-title-project: clamp(32px, 5vw, 40px) / 1.1 var(--font-display);
+  --text-header-section: clamp(24px, 4vw, 28px) / 1.2 var(--font-display);
+  --text-header-sub:    clamp(18px, 3vw, 20px) / 1.4 var(--font-body);
+  --text-body-lg:       clamp(16px, 2.5vw, 18px) / 1.67 var(--font-body);
+  --text-body:          clamp(14px, 2vw, 16px) / 1.625 var(--font-body);
+  --text-caption:       clamp(12px, 1.5vw, 13px) / 1.38 var(--font-body);
+  --text-label-tech:    clamp(11px, 1.5vw, 12px) / 1.33 var(--font-mono);
+  --text-metadata:      clamp(10px, 1.2vw, 11px) / 1.27 var(--font-mono);
+
+  /* ===== ELEVATION / SHADOWS ===== */
+  --shadow-sm: 0 1px 2px rgba(36, 27, 46, 0.06);
+  --shadow-md: 0 8px 24px rgba(36, 27, 46, 0.10);
+  --glow-gold: 0 0 16px rgba(201, 168, 106, 0.45);
+  --glow-astral: 0 0 20px rgba(60, 92, 158, 0.50);
+
+  /* ===== Z-INDEX SCALE ===== */
+  --z-starfield: 0;
+  --z-aurora: 0;
+  --z-content: 1;
+  --z-hero-celestial: 5;
+  --z-nav: 50;
+  --z-modal: 100;
+  --z-tooltip: 200;
+  --z-skip-link: 1000;
+
+  /* ===== MOTIF / ACCENT SYSTEM ===== */
+  --motif-accent: rgba(201, 168, 106, 0.58);
+  --motif-glyph-opacity: 0.42;
+  --motif-clip-opacity: 0.52;
+
+  /* ===== MELODIA VOID GRADIENT (dark mode hero) ===== */
+  --melodia-void-gradient:
+    radial-gradient(ellipse 72% 68% at 50% 42%, rgba(240, 220, 240, 0.14) 0%, rgba(13, 18, 36, 0.92) 42%, #0d1224 68%, #0a0e1c 100%),
+    radial-gradient(ellipse 50% 40% at 78% 28%, rgba(255, 110, 180, 0.16), transparent 60%),
+    radial-gradient(ellipse 45% 38% at 18% 72%, rgba(102, 217, 255, 0.12), transparent 55%),
+    radial-gradient(ellipse 40% 30% at 55% 88%, rgba(255, 230, 102, 0.08), transparent 50%);
+
+  /* ===== NIKKI PILLAR ACCENT OVERRIDES ===== */
+  [data-pillar="nikki"],
+  .accent-nikki {
+    --motif-accent: rgba(240, 192, 208, 0.55);  /* #F0C0D0 sakura milk */
+    --color-accent-tertiary: #F0C0D0;
+    --color-surface-base: #2A2A45;
+    --color-surface-sunken: #352D40;
+  }
+
+  [data-pillar="sakura"],
+  .accent-sakura {
+    --motif-accent: rgba(255, 110, 180, 0.55);
+  }
+
+  [data-pillar="cathedral"],
+  [data-pillar="cosmic"],
+  .accent-cosmic {
+    --motif-accent: rgba(102, 217, 255, 0.55);
+  }
+
+  [data-pillar="grotto"],
+  .accent-gold {
+    --motif-accent: rgba(201, 168, 106, 0.58);
+  }
+
+  [data-pillar="orrery"],
+  .accent-iris {
+    --motif-accent: rgba(255, 110, 180, 0.58);
+  }
+
+  /* ===== SOFTMG / GAME TOKENS (scoped to #phase-rhythm) ===== */
+  #phase-rhythm {
+    --game-parchment:       #F2E6CF;
+    --game-parchment-deep:  #E3D3AD;
+    --game-rose:            #E8A9A1;
+    --game-amber:           #D9A566;
+    --game-lavender:        #B6A6D9;
+    --game-seafoam:         #8FC9BD;
+    --game-ink:             #3B2A22;
+  }
+
+  /* ===== MAX WIDTH ===== */
+  --max: 1180px;
+
+  /* ===== INTERACTION TOKENS ===== */
+  --scroll-shift: 0px;
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+  --dream-mouse-x: 0.5;
+  --dream-mouse-y: 0.5;
+  --dream-fresnel: 0.35;
+}
+
+/* ===== FOCUS VISIBLE POLYFILL ===== */
+:focus:not(:focus-visible) { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--color-accent-astral);
+  outline-offset: 2px;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
