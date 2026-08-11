@@ -7,12 +7,20 @@ Installed in WSL2 Ubuntu. Model runs on Meta's cloud (no local GPU needed).
 
 - [x] Installed: WSL2 Ubuntu, `~/.local/bin/muse` (launcher + `muse-bin-0.1.0-R708.1`)
 - [x] Verified: `muse --version` → Muse Code 0.1.0
+- [x] Auth: **DONE 2026-08-11** — Meta Model API key (`mechanism:"api_key"`,
+      verified `KEY_OK`). Stored chmod-600 at `~/.config/muse/auth.json` (+ raw key
+      backup `~/.config/muse/api_key.secure`; device-flow token backup
+      `~/.config/muse/auth.device.bak`).
+- [x] Smoke test: **PASSED** — `muse exec --trust-workspace` read AGENTS.md and answered
+      the working-agreement question correctly (exit 0). Lane is live.
 - [x] Workspace: `/mnt/c/EnvironmentPortfolio/BS_GodFile` (reads this repo's `AGENTS.md`;
       `muse init` correctly refuses to overwrite it)
 - [x] MCP: binary reads `.mcp.json` (Monolith, ueblueprintmcp, ollama, model endpoints auto-wire)
 - [x] Auth script staged: `~/.local/bin/muse-login.sh` (device flow, polls, saves token)
-- [ ] Auth: Meta account approval — OWNER STEP, not yet completed
-- [ ] Smoke test: headless `muse exec` run pending auth
+
+Known warnings (2026-08-11): AGENTS.md is 35.6KB — truncated at 32KB for subagent
+delegation context; `.claude/skills/continue-extension/SKILL.md` malformed (no YAML
+frontmatter) and skipped. Both pre-existing.
 
 ## Auth (owner step — pick one)
 
