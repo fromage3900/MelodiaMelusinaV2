@@ -14,7 +14,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+import tempfile
 import time
 import uuid
 from datetime import datetime, timezone
@@ -23,8 +25,15 @@ from typing import Any
 
 SAVED_DIR = Path(__file__).resolve().parent.parent / "Saved"
 LEDGER_PATH = SAVED_DIR / "gate_ledger.json"
+MANIFEST_PATH = Path(__file__).resolve().parent.parent / "specs" / "echo_pipeline.json"
 
 KNOWN_GATES = [
+    "spec_validate",
+    "inject",
+    "blueprint_compile",
+    "static_gates",
+    "runtime_gates",
+    "promote",
     "dialogue_visible",
     "travel_allowlist",
     "battle_encounter",
@@ -57,6 +66,23 @@ KNOWN_GATES = [
 ]
 
 
+def _all_known_gates() -> list[str]:
+    """Return legacy gates plus ids declared by the current ECHO manifest."""
+    result = list(KNOWN_GATES)
+    try:
+        manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+        for stage in manifest.get("stages", []):
+            for gate_id in (stage.get("id"), stage.get("ledger_id")):
+                if gate_id and gate_id not in result:
+                    result.append(gate_id)
+        for gate_id in manifest.get("completion_gates", []):
+            if gate_id not in result:
+                result.append(gate_id)
+    except (OSError, json.JSONDecodeError, AttributeError):
+        pass
+    return result
+
+
 def _load_ledger() -> dict:
     if LEDGER_PATH.exists():
         try:
@@ -68,7 +94,17 @@ def _load_ledger() -> dict:
 
 def _save_ledger(ledger: dict) -> None:
     SAVED_DIR.mkdir(parents=True, exist_ok=True)
-    LEDGER_PATH.write_text(json.dumps(ledger, indent=2, default=str), encoding="utf-8")
+    payload = json.dumps(ledger, indent=2, default=str) + "\n"
+    # Replace atomically so a concurrent status/dashboard read never sees a
+    # half-written JSON document.
+    fd, temp_name = tempfile.mkstemp(prefix="gate_ledger.", suffix=".tmp", dir=SAVED_DIR)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:
+            handle.write(payload)
+        os.replace(temp_name, LEDGER_PATH)
+    finally:
+        if os.path.exists(temp_name):
+            os.unlink(temp_name)
 
 
 def _session_id(ledger: dict) -> str:
@@ -81,13 +117,25 @@ def _session_id(ledger: dict) -> str:
     return sid
 
 
-def record_gate(gate_id: str, status: str, note: str = "") -> dict:
-    if gate_id not in KNOWN_GATES:
-        print(f"Warning: '{gate_id}' is not in the known gate list: {KNOWN_GATES}", file=sys.stderr)
+def record_gate(
+    gate_id: str,
+    status: str,
+    note: str = "",
+    session_id: str | None = None,
+) -> dict:
+    if status not in ("pass", "fail"):
+        raise ValueError("status must be pass or fail")
+    known_gates = _all_known_gates()
+    if gate_id not in known_gates:
+        print(f"Warning: '{gate_id}' is not in the known gate list: {known_gates}", file=sys.stderr)
 
     ledger = _load_ledger()
     now = datetime.now(timezone.utc)
-    sid = _session_id(ledger)
+    sid = session_id or _session_id(ledger)
+    ledger.setdefault("sessions", {}).setdefault(
+        sid,
+        {"date": now.strftime("%Y-%m-%d"), "gates_passed": [], "gates_failed": []},
+    )
 
     entry = {
         "id": gate_id,
@@ -118,7 +166,7 @@ def list_gates() -> None:
 
     print(f"{'Gate ID':<25} {'Status':<8} {'Date':<12} {'Note'}")
     print("-" * 80)
-    for gid in KNOWN_GATES:
+    for gid in _all_known_gates():
         rec = latest.get(gid)
         if rec:
             status = rec["status"]
@@ -154,7 +202,7 @@ def generate_report() -> str:
         "| Gate ID | Status | Date | Note |",
         "|---------|--------|------|------|",
     ]
-    for gid in KNOWN_GATES:
+    for gid in _all_known_gates():
         rec = latest.get(gid)
         if rec:
             lines.append(f"| {gid} | {rec['status']} | {rec['date']} | {rec.get('note', '')} |")
@@ -181,6 +229,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("gate_id", nargs="?", help="Gate ID from known list")
     p.add_argument("status", nargs="?", choices=["pass", "fail"], help="pass or fail")
     p.add_argument("--note", default="", help="Observation note")
+    p.add_argument("--session", default=None, help="Optional evidence session id")
     p.add_argument("--list", action="store_true", help="Show all known gates and current status")
     p.add_argument("--report", action="store_true", help="Generate markdown summary")
     return p.parse_args(argv)
@@ -196,7 +245,7 @@ def main() -> None:
         generate_report()
         return
     if args.gate_id and args.status:
-        record_gate(args.gate_id, args.status, note=args.note)
+        record_gate(args.gate_id, args.status, note=args.note, session_id=args.session)
         return
 
     print("Usage: python Tools/record_gate.py <gate-id> pass|fail --note \"...\"")

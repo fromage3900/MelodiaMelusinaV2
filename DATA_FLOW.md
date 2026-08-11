@@ -13,7 +13,7 @@ The diagram below traces the conversion of procedural geometry and styling data 
             │
             ▼ (FBX & JSON manifest export)
  [ Unreal Import Pipeline]  ──► Coordinate transformation (Z-up meters -> UE cm)
-            │                  Spawns HISM actors and queries material hints
+            │                  Validates manifests; --apply spawns explicit actors
             ▼
  [ Substrate Materials  ]  ──► Samples textures, masks trim vertex colors (trim_id),
             │                  and accumulates roughness/emissive values
@@ -79,3 +79,9 @@ The diagram below traces the conversion of procedural geometry and styling data 
     *   `editor.capture_with_overlay` produces wireframe and UV density diagnostic sheets.
 *   **Manifest Compiler**: Generates `portfolio_stats_manifest.json` collating geometric polygon metrics, HISM instance counts, and PCG density reports.
 *   **Design/Publish Sync**: Transmits compiled metadata and screenshots to the Figma Token API to build portfolio layout sheets, while drafting ArtStation project uploads.
+
+The current `import_world_manifest.py` implementation validates the canonical
+`instances` schema and supports an explicit `--apply` mode for entries with a
+declared `static_mesh_path`. It does not infer HISM groups or claim that Figma
+and ArtStation publication is automatic; those remain separate integration
+boundaries.

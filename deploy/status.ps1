@@ -71,21 +71,62 @@ foreach ($p in $PROTECTED) {
 }
 Pop-Location
 
-# Service Discovery (Decision 2026-08-06: Added health checks for background services)
+# Service Discovery (ports and optional/required semantics come from Config/paths.json)
 Write-Section "SERVICE DISCOVERY"
+$configPath = Join-Path $ROOT "Config\paths.json"
+$config = if (Test-Path $configPath) {
+    Get-Content $configPath -Raw | ConvertFrom-Json
+} else {
+    $null
+}
+$ports = if ($config) { $config.ports } else { $null }
+
+function Get-Port($name, $fallback) {
+    if ($ports -and $ports.PSObject.Properties[$name]) {
+        return [int]$ports.$name
+    }
+    return $fallback
+}
+
+function Test-TcpPort($port) {
+    $client = New-Object System.Net.Sockets.TcpClient
+    try {
+        $async = $client.BeginConnect("127.0.0.1", $port, $null, $null)
+        if (-not $async.AsyncWaitHandle.WaitOne(700)) { return $false }
+        $client.EndConnect($async)
+        return $true
+    } catch {
+        return $false
+    } finally {
+        $client.Close()
+    }
+}
+
+function Test-Http($uri) {
+    try {
+        $response = Invoke-WebRequest -Uri $uri -UseBasicParsing -TimeoutSec 1 -ErrorAction Stop
+        return $response.StatusCode -ge 200 -and $response.StatusCode -lt 500
+    } catch {
+        return $false
+    }
+}
+
 $services = @(
-    @{ Name = "Monolith MCP"; Port = 9316; Url = "http://127.0.0.1:9316/health" },
-    @{ Name = "LiveLink"; Port = 9876; Url = "http://127.0.0.1:9876" },
-    @{ Name = "VOICEVOX"; Port = 50021; Url = "http://127.0.0.1:50021/version" },
-    @{ Name = "Ollama"; Port = 11434; Url = "http://127.0.0.1:11434" }
+    @{ Name = "Monolith MCP"; Port = Get-Port "ue_mcp" 9316; Uri = "http://127.0.0.1:$(Get-Port "ue_mcp" 9316)/health"; Probe = "http" },
+    @{ Name = "LiveLink"; Port = Get-Port "livelink" 9876; Uri = $null; Probe = "tcp" },
+    @{ Name = "Blender MCP"; Port = Get-Port "blender_mcp" 9317; Uri = "http://127.0.0.1:$(Get-Port "blender_mcp" 9317)/health"; Probe = "http" },
+    @{ Name = "VOICEVOX"; Port = Get-Port "voicevox" 50021; Uri = "http://127.0.0.1:$(Get-Port "voicevox" 50021)/version"; Probe = "http" },
+    @{ Name = "Melusina Voice"; Port = Get-Port "melusina_voice" 50022; Uri = $null; Probe = "tcp" },
+    @{ Name = "Ollama"; Port = Get-Port "ollama" 11434; Uri = "http://127.0.0.1:$(Get-Port "ollama" 11434)"; Probe = "http" },
+    @{ Name = "Quantum"; Port = Get-Port "quantum" 8008; Uri = "http://127.0.0.1:$(Get-Port "quantum" 8008)/health"; Probe = "http" }
 )
 
 foreach ($s in $services) {
-    try {
-        $response = Invoke-WebRequest -Uri $s.Url -UseBasicParsing -TimeoutSec 1 -ErrorAction Stop
+    $up = if ($s.Probe -eq "http") { Test-Http $s.Uri } else { Test-TcpPort $s.Port }
+    if ($up) {
         Write-Host "  [UP]   $($s.Name) (:$($s.Port))" -ForegroundColor Green
-    } catch {
-        Write-Host "  [DOWN] $($s.Name) (:$($s.Port))" -ForegroundColor Red
+    } else {
+        Write-Host "  [DOWN] $($s.Name) (:$($s.Port), optional)" -ForegroundColor Yellow
     }
 }
 

@@ -59,15 +59,18 @@ author  →  spec_validate  →  inject  →  compile  →  static_gates  →  r
 
 - **author** — an agent or the owner produces a spec (`.qsc`, T3D pattern,
   JSON data) plus the one gate it claims. Nothing else about the beat is assumed.
-- **spec_validate** — `echo_run.py validate-spec <file>` checks the proposal
-  against the 7-verb contract and the allowlist authority
-  (`DA_MelodiaIntegrationConfig`). Duplicate consume-once ids are rejected here.
+- **spec_validate** — `echo_run.py validate-spec <file>` checks JSON, QSC, or T3D
+  proposals against the 7-verb contract, integer arity, duplicate consume-once
+  identities, and the allowlist authority (`DA_MelodiaIntegrationConfig`).
+  Supply `--live-allowlist` with a live editor or `--allowlist-file` with an
+  exported JSON snapshot; a proposal containing intents cannot pass without one.
 - **inject / compile** — one asset per transaction, pre-flight passes, compile
   must read 0 errors from the nested result (the old `ok:true-with-errors`
   false positive is fixed and must stay fixed).
 - **static_gates** — graph reachability, live-path (LIVE not ORPHAN), UI lint,
   project sweep, T3D baseline. All are editor-gated; a non-answering editor
-  yields HOLD, never a pass.
+  yields HOLD, never a pass. `bp_live_path` checks the assets listed in
+  `MELODIA_ECHO_LIVE_PATH_ASSETS` or its safe defaults.
 - **runtime_gates** — PIE smoke, regression suite, the `Melodia.Wiring` suite
   (`Automation RunTests Melodia`), and the campaign scripts
   (`Docs/ECHO/` campaigns, §6).
@@ -82,12 +85,18 @@ author  →  spec_validate  →  inject  →  compile  →  static_gates  →  r
 ```text
 python Tools/echo_run.py list              # stages + tools
 python Tools/echo_run.py status            # ledger-backed completion gates
-python Tools/echo_run.py run static_gates  # static chain (editor must answer 9316)
-python Tools/echo_run.py run --all         # static chain + note about runtime gates
-python Tools/echo_run.py run pie_smoke     # one editor gate
+python Tools/echo_run.py run static_gates  # editor must answer 9316
+python Tools/echo_run.py run runtime_gates # pie/regression/fingerprint tools
+python Tools/echo_run.py run --all         # static chain; runtime is separate
+python Tools/echo_run.py run pie_smoke     # one editor gate on KaleidoNave
 python Tools/echo_run.py validate-spec specs/toon_profiles/tp_melusina.json
+python Tools/echo_run.py validate-spec Content/MelodiaIntegration/Narrative/MelodiaQuillSmoke.qsc --live-allowlist
 python Tools/echo_run.py record package_launch pass --note "..."
 ```
+
+`run` commands never write a ledger row automatically. Review the output and
+campaign artifacts first, then use `record` for the exact gate observed. A
+missing editor returns `HOLD` with a non-zero exit code; it is not a pass.
 
 ## 4. One truth: the control panel
 
