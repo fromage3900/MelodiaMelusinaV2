@@ -73,7 +73,7 @@ All configured MCP servers, their statuses, and tool inventories.
 | **Config files** | .opencode.json, .mcp.json, .rider/mcp.json (NOT in BS_GodFile/.mcp.json) |
 | **Type** | Local stdio via npx figma-developer-mcp --stdio |
 | **Status** | **CONFIGURED** (stdio process -- cannot health-check via HTTP) |
-| **API Key** | figd_YK4ZF6TpotFIbE3GvDH6eK1s80GShXT1dyiN2-sX |
+| **API Key** | figd_***REDACTED_2026-08-11*** (rotated — key was public on GitHub v2) |
 | **REST API direct test** | **WORKING** -- full file access confirmed |
 
 **Figma File: "MelodiaMelusina"**
@@ -218,7 +218,7 @@ The project is NOT crippled. The following alternatives exist:
 ## 3. Figma API Status
 
 ### Token Verification
-**Result: TOKEN WORKS.** The API key figd_YK4ZF6TpotFIbE3GvDH6eK1s80GShXT1dyiN2-sX successfully authenticated to the Figma API.
+**Result: TOKEN WORKS.** The API key figd_***REDACTED_2026-08-11*** successfully authenticated to the Figma API.
 
 ### What We Can Still Pull
 The Figma file "MelodiaMelusina" (owned by us) is fully accessible:
