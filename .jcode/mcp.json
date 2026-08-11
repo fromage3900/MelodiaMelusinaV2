@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "monolith": {
+      "command": "Plugins/Monolith/Scripts/monolith_proxy.bat",
+      "args": []
+    }
+  }
+}
