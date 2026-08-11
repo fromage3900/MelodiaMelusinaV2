@@ -4,9 +4,10 @@ This is the front door for project documentation. Prefer updating this index ove
 
 ## Latest handoff checkpoint — 2026-08-11 (V2)
 
-Read [`Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md) first for
-long-term game building on MelodiaMelusinaV2 (parallel lanes + completion gates). Then
-[`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md). Older 2026-08-09 PC-resume detail remains in
+Read [`Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md) and
+[`Docs/LIVEOPS_GIT_SOP_2026-08-11.md`](Docs/LIVEOPS_GIT_SOP_2026-08-11.md) first.
+Echo manifest: [`specs/echo_pipeline.json`](specs/echo_pipeline.json).
+Then [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md). Older 2026-08-09 PC-resume detail remains in
 [`Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md`](Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md).
 
 ## Latest handoff checkpoint — 2026-08-09

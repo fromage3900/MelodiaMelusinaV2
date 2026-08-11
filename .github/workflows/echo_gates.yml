@@ -56,14 +56,22 @@ jobs:
           }
           Write-Host "Static gates passed."
 
-      - name: LFS budget gate (no >512MB new LFS per change)
+      - name: LFS budget gate (PR base..head; 50 MB on collab/cursor)
         shell: powershell
         run: |
-          python Tools/git_safe_push.py --limit-mb 512 --check-only
+          $base = "${{ github.event.pull_request.base.sha }}"
+          if (-not $base) { $base = "origin/main" }
+          git fetch origin main --depth=50 2>$null
+          $limit = 512
+          $ref = "${{ github.head_ref }}"
+          if ($ref -match '^(collab|cursor|docs)/') { $limit = 50 }
+          python Tools/git_safe_push.py --range "$base..HEAD" --limit-mb $limit --check-only
           if ($LASTEXITCODE -ne 0) {
-            Write-Host "##[error]LFS batch exceeds 512 MB budget"
+            Write-Host "##[error]LFS batch exceeds $limit MB budget"
             exit $LASTEXITCODE
           }
+          python Tools/lfs_health_audit.py --game-paths-only
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Record gate row (artifact only; do not push from CI)
         shell: powershell

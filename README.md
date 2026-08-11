@@ -13,7 +13,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
  ◇─◇──◇──◇─◇
 ```
 
-> **Repo status:** V2 at [`MelodiaMelusinaV2`](https://github.com/fromage3900/MelodiaMelusinaV2) — rebuilt 2026-08-11 from the verified snapshot after V1 LFS/history failure. **Authority plan:** [Docs/GAME_FOUNDATION_PLAN_2026-08-11.md](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md). Old repo (`MelodiaMelusina`) is archive-only.
+> **Repo status:** Public V2 at [`MelodiaMelusinaV2`](https://github.com/fromage3900/MelodiaMelusinaV2). **Authority plan:** [Docs/GAME_FOUNDATION_PLAN_2026-08-11.md](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md). **Live-ops / 50 MB collab:** [Docs/LIVEOPS_GIT_SOP_2026-08-11.md](Docs/LIVEOPS_GIT_SOP_2026-08-11.md). **Echo:** `specs/echo_pipeline.json` (`echo_run.py status`). Old repo (`MelodiaMelusina`) is archive-only.
 >
 > **Gameplay scope?** [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority.
 >

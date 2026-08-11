@@ -2,17 +2,23 @@
 """
 git_safe_push.py — LFS batch budget gate (Docs/GIT_BATCH_DISCIPLINE.md).
 
-Refuses to proceed when staged/to-push LFS objects would exceed LimitMB.
-Used by CI (echo_gates.yml) and local pre-push discipline.
+Refuses to proceed when LFS objects would exceed LimitMB.
+
+Modes:
+  staged (default)     — git diff --cached (pre-push / local)
+  --range A..B         — files changed between commits (CI PR base..head)
+  --auto-limit         — 50 MB for collab/cursor/docs branches, else 512
 
 Usage:
-  python Tools/git_safe_push.py --limit-mb 512
-  python Tools/git_safe_push.py --limit-mb 512 --remote origin --branch main
-  python Tools/git_safe_push.py --limit-mb 512 --check-only
+  python Tools/git_safe_push.py --check-only
+  python Tools/git_safe_push.py --limit-mb 50 --check-only
+  python Tools/git_safe_push.py --range origin/main..HEAD --limit-mb 50 --check-only
+  python Tools/git_safe_push.py --auto-limit --check-only
 """
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import subprocess
 import sys
@@ -25,73 +31,123 @@ POINTER_RE = re.compile(
     re.MULTILINE,
 )
 
+BINARY_SUFFIXES = {
+    ".uasset",
+    ".umap",
+    ".fbx",
+    ".blend",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".wav",
+    ".mp3",
+    ".ogg",
+    ".psd",
+    ".tif",
+    ".tiff",
+    ".exr",
+    ".dll",
+    ".so",
+    ".dylib",
+    ".ttf",
+    ".otf",
+    ".mp4",
+    ".webm",
+}
+
 
 def run(cmd: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(cmd, check=False, text=True, capture_output=True)
 
 
+def current_branch() -> str:
+    proc = run(["git", "symbolic-ref", "--short", "HEAD"])
+    return proc.stdout.strip() if proc.returncode == 0 else ""
+
+
+def auto_limit_mb(branch: str) -> float:
+    env = os.environ.get("MELODIA_LFS_LIMIT_MB")
+    if env:
+        return float(env)
+    for prefix in ("collab/", "cursor/", "docs/"):
+        if branch.startswith(prefix):
+            return 50.0
+    return 512.0
+
+
 def staged_paths() -> list[tuple[str, str]]:
-    """Return (status, path) for staged files. Status is A/M/D/R/..."""
     proc = run(["git", "diff", "--cached", "--name-status"])
     if proc.returncode != 0:
         print(proc.stderr, file=sys.stderr)
         sys.exit(2)
+    return _parse_name_status(proc.stdout)
+
+
+def range_paths(rev_range: str) -> list[tuple[str, str]]:
+    # Accept "A..B" or "A...B"
+    proc = run(["git", "diff", "--name-status", rev_range])
+    if proc.returncode != 0:
+        print(proc.stderr, file=sys.stderr)
+        sys.exit(2)
+    return _parse_name_status(proc.stdout)
+
+
+def _parse_name_status(text: str) -> list[tuple[str, str]]:
     rows: list[tuple[str, str]] = []
-    for line in proc.stdout.splitlines():
+    for line in text.splitlines():
         if not line.strip():
             continue
         status, path = line.split("\t", 1)
         code = status[0]
         if code in {"R", "C"} and "\t" in path:
-            # name-status without -z: R100\told\tnew
             path = path.split("\t")[-1]
         rows.append((code, path))
     return rows
 
 
-def lfs_pointer_size(path: Path) -> int | None:
+def blob_pointer_size(rel: str, at_ref: str | None = None) -> int | None:
+    """Size from LFS pointer at ref, or working tree file."""
+    if at_ref:
+        proc = run(["git", "show", f"{at_ref}:{rel}"])
+        if proc.returncode != 0:
+            return None
+        data = proc.stdout.encode("utf-8", errors="surrogateescape")
+        match = POINTER_RE.match(data)
+        if match:
+            return int(match.group(2))
+        path = Path(rel)
+        if path.suffix.lower() in BINARY_SUFFIXES:
+            return len(data)
+        return None
+
+    path = Path(rel)
     try:
         data = path.read_bytes()
     except OSError:
-        return None
+        # Fall back to staged blob
+        proc = run(["git", "show", f":{rel}"])
+        if proc.returncode != 0:
+            return None
+        data = proc.stdout.encode("utf-8", errors="surrogateescape")
     match = POINTER_RE.match(data)
-    if not match:
-        # Staged binary that should be LFS but isn't a pointer yet — count file size.
-        if path.suffix.lower() in {
-            ".uasset",
-            ".umap",
-            ".fbx",
-            ".blend",
-            ".png",
-            ".jpg",
-            ".jpeg",
-            ".wav",
-            ".mp3",
-            ".ogg",
-            ".psd",
-            ".tif",
-            ".tiff",
-            ".exr",
-            ".dll",
-            ".so",
-            ".dylib",
-        }:
-            return path.stat().st_size
-        return None
-    return int(match.group(2))
+    if match:
+        return int(match.group(2))
+    if path.suffix.lower() in BINARY_SUFFIXES or Path(rel).suffix.lower() in BINARY_SUFFIXES:
+        return len(data) if not path.exists() else path.stat().st_size
+    return None
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Refuse oversized LFS push batches")
-    parser.add_argument("--limit-mb", type=float, default=512.0)
+    parser.add_argument("--limit-mb", type=float, default=None)
+    parser.add_argument("--auto-limit", action="store_true")
+    parser.add_argument("--range", dest="rev_range", default="", help="e.g. origin/main..HEAD")
     parser.add_argument("--remote", default="origin")
     parser.add_argument("--branch", default="")
     parser.add_argument("--check-only", action="store_true")
-    # Accept PowerShell-style positional leftovers from the old .ps1 call sites.
     parser.add_argument("extras", nargs="*", help=argparse.SUPPRESS)
     args = parser.parse_args()
 
-    # Map legacy "-LimitMB 512 -Remote origin -Branch x" style if passed via extras.
     extras = list(args.extras)
     i = 0
     while i < len(extras):
@@ -109,23 +165,44 @@ def main() -> int:
             args.branch = extras[i + 1]
             i += 2
             continue
+        if key in {"range"} and i + 1 < len(extras):
+            args.rev_range = extras[i + 1]
+            i += 2
+            continue
         i += 1
 
+    branch = args.branch or current_branch()
+    if args.limit_mb is None:
+        args.limit_mb = auto_limit_mb(branch)
+
     limit_bytes = int(args.limit_mb * 1024 * 1024)
-    paths = staged_paths()
+
+    if args.rev_range:
+        # Prefer right side of A..B as blob source
+        right = args.rev_range.split("...")[-1].split("..")[-1] or "HEAD"
+        paths = range_paths(args.rev_range)
+        size_at = right
+    else:
+        paths = staged_paths()
+        size_at = None
+
     total = 0
     rows: list[tuple[str, int]] = []
     for status, rel in paths:
         if status == "D":
-            continue  # deletions free references; they are not a new LFS upload
-        size = lfs_pointer_size(Path(rel))
+            continue
+        size = blob_pointer_size(rel, at_ref=size_at)
         if size is None:
             continue
         total += size
         rows.append((rel, size))
 
     rows.sort(key=lambda r: r[1], reverse=True)
-    print(f"LFS batch candidates: {len(rows)} files, {total / (1024 * 1024):.2f} MB")
+    mode = f"range {args.rev_range}" if args.rev_range else "staged"
+    print(
+        f"LFS batch candidates ({mode}): {len(rows)} files, "
+        f"{total / (1024 * 1024):.2f} MB (limit {args.limit_mb:.0f} MB, branch={branch or 'detached'})"
+    )
     for rel, size in rows[:20]:
         print(f"  {size / (1024 * 1024):7.2f} MB  {rel}")
     if len(rows) > 20:
@@ -134,7 +211,7 @@ def main() -> int:
     if total > limit_bytes:
         print(
             f"BLOCKED: LFS batch {total / (1024 * 1024):.2f} MB exceeds "
-            f"limit {args.limit_mb:.0f} MB (remote={args.remote} branch={args.branch or '(current)'})",
+            f"limit {args.limit_mb:.0f} MB",
             file=sys.stderr,
         )
         return 1
@@ -143,7 +220,6 @@ def main() -> int:
     if args.check_only or not args.branch:
         return 0
 
-    # Optional push path for local use; CI only needs the check.
     push = run(["git", "push", args.remote, f"HEAD:{args.branch}"])
     sys.stdout.write(push.stdout)
     sys.stderr.write(push.stderr)

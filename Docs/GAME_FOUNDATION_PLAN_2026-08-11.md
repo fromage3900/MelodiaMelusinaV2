@@ -28,10 +28,13 @@ Authority: JRPG template owns combat/save; `UMelodiaNarrativeSubsystem` is the n
 |------|---------------|-----|------------|
 | **A — Play proof** | One UE editor / Monolith 9316 | Campaign 1 real-input runtime gate | Windows workstation |
 | **B — Source seams** | C++ (editor closed for header changes) | Post-battle restore wired; highway ownership already in tree | Full closed-editor build + PIE observe |
-| **C — Repo hygiene** | Git / CI / docs (this PR) | LFS dirt, onboarding, CI budget gate, foundation docs | Public visibility (owner Settings click) |
+| **C — Repo hygiene** | Git / CI / docs | Live-ops SOP, 50 MB slices, LFS audit, Echo promote hygiene | Public V2 done |
 | **D — Swarm / phone** | jcode + cloud agents | Recipes A/B accepted; keep docs/audit only until A is green | Do not overlap editor with A |
+| **E — Universal placement** | EnvSandbox PCG/materials (Windows LFS) | `placement50` manifest; lock Universal BPs | EnvSandbox absent on some cloud checkouts |
 
 Cloud agents stay in **C/D** unless explicitly handed an editor-free **B** task. Never two editors. Never probe-only as `runtime` pass.
+
+**Echo (current):** `author → spec_validate → inject → compile → static_gates → runtime_gates → record → promote` — [`specs/echo_pipeline.json`](../specs/echo_pipeline.json). Live-ops SOP: [`LIVEOPS_GIT_SOP_2026-08-11.md`](LIVEOPS_GIT_SOP_2026-08-11.md).
 
 ---
 
@@ -49,13 +52,11 @@ Cloud agents stay in **C/D** unless explicitly handed an editor-free **B** task.
 
 ## Done this foundation pass (cloud, 2026-08-11)
 
-- Untracked `86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/` (Blender tooling, not game) — files remain on disk, gitignored.
-- MeshBlend LFS pointer EOL renormalize.
-- Fixed `deploy/collaborator_onboarding.sh` (syntax + tier/REPO_DIR).
-- Added `Tools/git_safe_push.py`; CI calls Python, not a missing `.ps1`.
-- Ledger path exception in `.gitignore` for `Saved/gate_ledger.json` + `Saved/Echo/`.
-- Wired `RestorePartyAfterBattle` on stock `OnBattleOver` before `CompleteBattle`; fixed map field `curentMP` → `currentMP`.
-- Folded planning into this doc; refreshed README / PhoneOps / session handoff pointers.
+- Untracked Zbrush brush pack; MeshBlend LFS EOL; RestorePartyAfterBattle wired; `curentMP` → `currentMP`.
+- Live-ops: `Docs/LIVEOPS_GIT_SOP_2026-08-11.md` aligned to current Echo pipeline.
+- Collab slices: `specs/collab_slices/{docs50,slice50,placement50}.json` + onboarding tiers (gameplay ≈2 GB renamed from “lightweight”).
+- Hooks: `cursor/*` allowed; dual LFS budget 50/512; `Tools/lfs_health_audit.py`; CI audits PR `base..HEAD`.
+- Duplicate mirror inventory: `Docs/Reports/DUPLICATE_TREE_INVENTORY_2026-08-11.md` (33 tracked; no deletes).
 
 ---
 
@@ -75,7 +76,7 @@ Evidence standard: AGENTS.md § “Evidence standard — runtime/rhythm gates (2
 
 ## Repo rules that keep the game buildable
 
-- Text often; binaries once (`Docs/GIT_BATCH_DISCIPLINE.md`).
-- `python Tools/git_safe_push.py --limit-mb 512` before LFS pushes.
+- Text often; binaries once (`Docs/GIT_BATCH_DISCIPLINE.md` + `Docs/LIVEOPS_GIT_SOP_2026-08-11.md`).
+- `python Tools/git_safe_push.py --check-only` before LFS pushes (50 MB on collab/cursor/docs).
 - No `git clean -fd`, no `git checkout -- .`, no skill-Blueprint Python loads.
-- Public V2: `https://github.com/fromage3900/MelodiaMelusinaV2` (owner must flip visibility if still private).
+- Public V2: `https://github.com/fromage3900/MelodiaMelusinaV2`.

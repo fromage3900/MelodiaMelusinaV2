@@ -1,52 +1,59 @@
-# 👥 Collaborator Setup Guide
+# Collaborator Setup Guide — MelodiaMelusinaV2
 
-**Work together without downloading the full 300GB project!**
+**Public repo:** https://github.com/fromage3900/MelodiaMelusinaV2  
+**Live-ops + Echo:** [Docs/LIVEOPS_GIT_SOP_2026-08-11.md](Docs/LIVEOPS_GIT_SOP_2026-08-11.md)  
+**Full clone is huge.** Use a ≤50 MB slice unless you need gameplay assets.
 
-```
-✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
-```
-
----
-
-## 🎯 Problem: Full Clone = 300GB Download
-
-The current project tracks all binary files in Git LFS (textures, models, audio, etc.), which means a full clone is ~300GB. For collaborators working on specific tasks, this is overkill.
-
-## ✅ Solution: Tiered Onboarding
-
-Pick the tier that matches your role. Each tier downloads only what you need.
-
-| Tier | Role | Clone Size | Setup Time |
-|------|------|-----------|------------|
-| **Tier 1 — Lightweight** | Level design, material art, UI work, documentation | 2–10 GB | 10–15 min |
-| **Tier 2 — Full Build** | Build engineer, packaging, PIE testing | ~300 GB | 1–2 hours |
-| **Tier 3 — Code/Docs Reviewer** | Code review, planning, documentation review | ~50 MB | ~1 minute |
-
----
-
-## 🚀 Quick Start
-
-Use the tiered onboarding scripts:
+## Quick start (recommended)
 
 ```bash
-# Tier 1: Lightweight (level design, materials, UI)
-bash deploy/collaborator_onboarding.sh lightweight
+git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+cd MelodiaMelusinaV2
+git config core.hooksPath .githooks
 
-# Tier 2: Full build (build engineer, PIE testing)
+# ≤50 MB — pick one
+bash deploy/collaborator_onboarding.sh docs50        # source/docs/Python
+bash deploy/collaborator_onboarding.sh slice50       # MelodiaIntegration BPs (~10 MB LFS)
+bash deploy/collaborator_onboarding.sh placement50   # Universal placement (needs EnvSandbox on workstation)
+
+# ~2 GB Melodia+EnvSandbox+JRPG (formerly misnamed "lightweight")
+bash deploy/collaborator_onboarding.sh gameplay
+
+# Everything
 bash deploy/collaborator_onboarding.sh full
-
-# Tier 3: Docs/code-only (reviewers, planners)
-bash deploy/collaborator_onboarding.sh docs
-
-# Validate your setup
-bash deploy/validate_collaborator_setup.sh
 ```
+
+Lock before editing binaries:
+
+```bash
+git lfs lock Content/MelodiaIntegration/Blueprints/BP_MelodiaTravelVolume.uasset
+# ... edit in UE ...
+git lfs unlock Content/MelodiaIntegration/Blueprints/BP_MelodiaTravelVolume.uasset
+```
+
+Push budgets (hooks enforce): `collab/` `cursor/` `docs/` → **50 MB** LFS batch; other branches → **512 MB**. Override: `MELODIA_LFS_LIMIT_MB=50`.
+
+## Echo reminder
+
+Gameplay claims need ledger rows (`python Tools/echo_run.py status`). A green clone is not a `runtime` pass.
+
+## Tier table
+
+| Tier | Size | Use |
+|------|------|-----|
+| `docs50` | ≤50 MB | Code/docs/Python review |
+| `slice50` | ≤50 MB | Integration travel/UI/water BPs |
+| `placement50` | target ≤50 MB | Universal PCG + physics placement |
+| `gameplay` | ~2 GB | Level/material work with Melodia+EnvSandbox+JRPG |
+| `full` | full LFS | Build / PIE / cook |
+
+Manifests: `specs/collab_slices/*.json`. Blender-only sparse kit also documented in [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md).
 
 ---
 
-## Tier 1: Lightweight Collaborator
+## Older notes
 
-**Best for:** Level design, material art, UI work, documentation
+The sections below retain historical detail. Prefer the Quick Start tiers above when they conflict.
 
 ```bash
 # 1. Clone the repo (skip LFS download — ~50MB)

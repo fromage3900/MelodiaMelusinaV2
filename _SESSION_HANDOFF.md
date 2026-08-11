@@ -1,22 +1,19 @@
-# Session Handoff - 2026-08-11 (V2 game foundation)
+# Session Handoff - 2026-08-11 (V2 game foundation + live-ops)
 
-**Session type:** Cloud agent — MelodiaMelusinaV2 public-prep + parallel foundation execution  
-**Authority plan:** `Docs/GAME_FOUNDATION_PLAN_2026-08-11.md` (folds closeout + Echo + jcode + LFS discipline)
+**Session type:** Cloud agent — MelodiaMelusinaV2 public + Lane C live-ops / 50 MB collab  
+**Authority plan:** `Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`  
+**Live-ops / Echo:** `Docs/LIVEOPS_GIT_SOP_2026-08-11.md` + `specs/echo_pipeline.json`
 
 ## Done this session
 
-- Attempted `gh repo edit --visibility public` → **HTTP 403** (integration token). Owner must flip visibility in GitHub Settings → Danger Zone.
-- Untracked Zbrush Orb brush pack from git (local files kept; not game content).
-- MeshBlend LFS pointer CRLF→LF renormalize.
-- Fixed collaborator onboarding script; added `Tools/git_safe_push.py`; CI no longer calls missing `.ps1` or pushes ledger from runners.
-- Wired `RestorePartyAfterBattle` on JRPG bridge `HandleBattleOver` before `CompleteBattle`; map MP field `curentMP` → `currentMP`.
-- Folded planning into foundation plan; README + PhoneOps point at V2.
+- Repo public (owner). Foundation PR #1.
+- Echo-aligned live-ops SOP; collab slices docs50/slice50/placement50; dual 50/512 LFS budgets; hooks allow `cursor/*`; `lfs_health_audit.py`; CI `base..HEAD` budget; duplicate inventory (33 tracked, no delete).
+- RestorePartyAfterBattle wired; Zbrush untracked; MeshBlend EOL.
 
-## Next (Windows workstation — Lane A)
+## Next (Windows — Lane A / E)
 
-1. Full closed-editor build (restore + highway ownership in source).
-2. PIE observe highway ownership.
-3. Campaign 1 real-input `runtime` gate → ledger row.
+1. Closed-editor build + PIE highway + Campaign 1 real-input `runtime` ledger row.
+2. `git lfs pull` EnvSandbox; measure `placement50` for Universal BP physics placement.
 
 Older handoff content below is historical (2026-08-08 and earlier).
 

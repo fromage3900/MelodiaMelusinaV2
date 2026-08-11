@@ -68,7 +68,7 @@
       "id": "promote",
       "label": "Promote",
       "impl": "commit + baseline update + AGENTS.md next-work tick",
-      "contract": "bp_fingerprints.json / material_catalog.json updated if fingerprints moved; plain git add/commit",
+      "contract": "bp_fingerprints.json / material_catalog.json updated if fingerprints moved; plain git add/commit; LFS batch within collab 50MB / full 512MB (git_safe_push.py); see Docs/LIVEOPS_GIT_SOP_2026-08-11.md",
       "ledger_id": "promote"
     }
   ],

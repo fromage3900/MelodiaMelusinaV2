@@ -33,9 +33,9 @@ That means the cost lever is not "commit less often". It is:
    - `git lfs prune --recent` reclaims local disk (V1: 64 GB → 18 GB).
    - `git gc --prune=now` after branch deletions.
 7. **The guard script.**
-   - `python Tools/git_safe_push.py --limit-mb 512` runs before every push: it
-     lists staged LFS objects with sizes and refuses to proceed if the batch
-     exceeds the limit (default 512 MB). CI calls the same check.
+   - `python Tools/git_safe_push.py --check-only` (auto 50 MB on `collab/`/`cursor/`/`docs/`, else 512 MB).
+   - CI uses `--range base..HEAD`. Collab slices: `specs/collab_slices/*.json` + `Tools/lfs_health_audit.py`.
+   - SOP: `Docs/LIVEOPS_GIT_SOP_2026-08-11.md` (Echo promote-adjacent).
 
 ## Cost reference (metered)
 

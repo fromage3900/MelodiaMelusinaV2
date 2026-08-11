@@ -176,6 +176,7 @@ Tools/*
 !Tools/memory_index.py
 !Tools/lane_dispatcher.py
 !Tools/git_safe_push.py
+!Tools/lfs_health_audit.py
 !Tools/bp_live_path.py
 !Tools/bp_sweep.py
 !Tools/project_state.py
