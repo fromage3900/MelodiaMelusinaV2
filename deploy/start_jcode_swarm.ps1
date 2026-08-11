@@ -1,4 +1,4 @@
-# Launch jcode in the MelodiaMelusina repo (interactive swarm coordinator session).
+﻿# Launch jcode in the MelodiaMelusina repo (interactive swarm coordinator session).
 # Prerequisite: jcode installed + logged in. See .jcode/README.md
 param(
     [switch]$SkipSkillsInstall,
@@ -63,13 +63,13 @@ Write-Host ""
 Write-Host "=== Melodia jcode swarm ==="
 Write-Host "Repo:     $repoRoot"
 Write-Host "Policy:   .jcode\swarm-prompt.md"
-Write-Host "MCP:      .jcode\mcp.json (Monolith proxy — needs UE open for editor tools)"
+Write-Host "MCP:      .jcode\mcp.json (Monolith proxy -- needs UE open for editor tools)"
 Write-Host "Bootstrap: paste contents of .jcode\coordinator-bootstrap.md into the root session"
 Write-Host "Quit:     /quit in jcode (interactive; no separate stop script)"
 Write-Host ""
 
 if ($NoLaunch) {
-    Write-Host "NoLaunch set — not starting jcode."
+    Write-Host "NoLaunch set -- not starting jcode."
     if (Test-Path $bootstrap) {
         Write-Host "Bootstrap file: $bootstrap"
     }
