@@ -50,12 +50,14 @@ is therefore meaningful on this path. No HOLD from sequencing.
   the stock reference project at `CompatibilityLabs/TurnBasedJRPGUE58` did not surface it
   in .h search either.
 
-**Verdict:** HOLD the wiring until the stock field spelling is confirmed via reflection
-(Monolith `blueprint_query get_cdo_properties` on the stock struct — rule 20, never a
-text dump). If the stock really has `curentMP`, the library is correct and only the call
-site is missing (hang it off `CompleteBattle -> ResumeQuillOnce`); if the stock spells it
-`currentMP`, `FindAuthoredStructMember("curentMP")` returns null and the MP half silently
-no-ops — the string must be fixed first. Either way, the heal-only owner decision stands.
+**Verdict:** ~~HOLD~~ **RESOLVED 2026-08-11 (live reflection).** Monolith `project_query export_asset_text`
+on `/Game/TurnBasedJRPGTemplate/Blueprints/Structs/S_PlayerUnitData` shows
+`VariablesDescriptions(2)=(VarName="curentMP_6_79399572456CC89F79B2DA9F0A8BB445",...,FriendlyName="curentMP",Category="int")`
+— the stock struct **really spells it `curentMP`** (typo confirmed in the authored asset, not a
+text-dump artifact: this is the full T3D export of the live struct). The library's faithful-match
+assumption is **correct**; the string does not need fixing. Remaining work is the call site only:
+hang `RestorePartyAfterBattle` off `CompleteBattle -> ResumeQuillOnce` (heal-only decision stands).
+Wiring gate: `RestorePartyAfterBattle_callers`.
 
 ## Notes
 
