@@ -57,7 +57,7 @@ Gameplay claims need ledger rows (`python Tools/echo_run.py status`). A green cl
 | `gameplay` | ~2 GB | Level/material work with Melodia+EnvSandbox+JRPG |
 | `full` | full LFS | Build / PIE / cook |
 
-Manifests: `specs/collab_slices/*.json`. Blender-only sparse kit also documented in [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md).
+Manifests: `specs/collab_slices/*.json` (see `specs/collab_slices/README.md`). Blender-only sparse kit also documented in [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md).
 
 ---
 

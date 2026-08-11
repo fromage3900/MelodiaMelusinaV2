@@ -73,3 +73,12 @@ Full SOP: [`Docs/SCULPT_ASSET_INTAKE_2026-08-11.md`](SCULPT_ASSET_INTAKE_2026-08
 ## Forbidden
 
 `git clean -fd`, `git checkout -- .`, skill-Blueprint Python loads, probe-only `runtime` pass, mixing BP rewire + texture dumps in one push.
+
+## Recommended GitHub branch protection (Settings — owner)
+
+Document only; cloud agents cannot flip these:
+
+1. Protect `main`: require PR, linear history (no direct pushes).
+2. Require status checks when self-hosted runners are green: `Echo Static Gates` / `Unreal Build + Tests`.
+3. Do not require admin bypass for LFS-heavy merges without a human looking at `git_safe_push` output.
+4. Keep Releases on-demand via `Release Tag` workflow (ledger-gated).
