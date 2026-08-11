@@ -4,6 +4,10 @@
 ✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧  ┊ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
 ```
 
+![Build](https://img.shields.io/github/actions/workflow/status/fromage3900/MelodiaMelusinaV2/unreal_build.yml?branch=main&label=UE%20build)
+![Echo Gates](https://img.shields.io/github/actions/workflow/status/fromage3900/MelodiaMelusinaV2/echo_gates.yml?branch=main&label=Echo%20static%20gates)
+![Release](https://img.shields.io/github/v/release/fromage3900/MelodiaMelusinaV2?label=release)
+
 UE 5.8 + Blender 5.2 production project with two active tracks:
 
 1. **Gameplay vertical slice ("First Dream")** — a compact Persona-lite JRPG loop: QuillScript dialogue, stock JRPG combat, rhythm-combat (Harmonix), canonical save/load, travel/input authorities, a Melody Token economy, and co-op skills.
@@ -23,7 +27,9 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 >
 > **Architecture overview?** [PIPELINE.md](PIPELINE.md) — full system map.
 >
-> **Repo status:** Clean V2 repository at `https://github.com/fromage3900/MelodiaMelusinaV2` — rebuilt 2026-08-11 from the verified snapshot tree (`763b013b` lineage) after the original repo's LFS budget block and corrupt 144-commit history. HEAD `2623f02a` on `main`. The old repo (`MelodiaMelusina`) is retained as a read-only archive; the local `.git` is healthy, fsck-clean, LFS-pruned (64 GB → 18 GB).
+> **Machine setup?** [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) — portable Windows environment.
+>
+> **Repo status:** Private V2 repository at `https://github.com/fromage3900/MelodiaMelusinaV2` — rebuilt 2026-08-11 from the verified snapshot tree (`763b013b` lineage) after the original repo's LFS budget block and corrupt 144-commit history. HEAD `fbc1b178` on `main` (protected: PR review + linear history). Self-hosted runner `melodia-v2-win` online. Local `.git` healthy, fsck-clean, LFS-pruned (64 GB → 18 GB). Releases cut on demand via the `Release Tag` workflow; LFS is metered billing — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
 
 ```
  ◇─◇──◇──◇─◇
@@ -122,7 +128,7 @@ Run setup check: `.\deploy\validate_collaborator_setup.sh`
 | `Content/Python/import_zundamon.py` | Import Zundamon FBX + materials | UE |
 | `Content/Python/create_zunzun_bps.py` | Auto-create 7 NPC BPs + quests/shop/party | UE |
 | `Content/Python/resolve_material_crosswalk.py` | Post-import material auto-resolver | UE |
-| `deploy/deploy_all.ps1` | Launch all 11 agent loops | Terminal |
+| `deploy/bootstrap_environment.ps1` | Opt-in Python/website environment bootstrap | Terminal |
 
 ### Two-designer workflow
 
