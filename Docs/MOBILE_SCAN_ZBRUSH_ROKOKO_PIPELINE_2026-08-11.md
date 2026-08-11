@@ -66,3 +66,15 @@ If neck/spine warps: finish Melusina neck hierarchy fix before stocking a large 
 - Mesh/mocap FBX stay in `Imports/` (gitignored binaries) until intentional publish.
 - Finished `.uasset` anims/meshes: one concern per commit; collab branches ≤50 MB unless `feature/sculpt-*` / `MELODIA_LFS_LIMIT_MB=512`.
 - Capture does not close Echo `runtime` — still needs playable ledger evidence.
+- `docs50` / `slice50` are the real ≤50 MB packs — do **not** treat old `lightweight` (~1.9 GB) as a phone/collab slice (Grok collab research 2026-08-11).
+
+## Windows PC checklist (cloud cannot do this)
+
+No private Cursor worker is attached to the foundation cloud agent. Run these on the UE workstation:
+
+1. `git lfs pull --include="Content/EnvSandbox/**,Content/TurnBasedJRPGTemplate/**"` — EnvSandbox is often **0 files** in cloud; Universal PCG/`M_Master_Toon_Universal` need that pull before prop MI assign or `placement50` measure.
+2. `python Tools/sculpt_intake_check.py --limit-mb 50` then one editor import to a **new** path.
+3. Rokoko: `Tools\setup_rokoko_livelink_plugins.ps1` once → CharacterRef FBX → Inbox takes → `import_rokoko_mocap.main()`.
+4. Gameplay: wire stock `BP_BattleUI` / `BP_BattleController` (keep authority); Melodia overlays only — [`Reports/JRPG_BP_REPLACEMENT_PRIORITY_2026-08-11.md`](Reports/JRPG_BP_REPLACEMENT_PRIORITY_2026-08-11.md).
+
+Research digest (four read-only agents, **no research branch**): [`Reports/GROK_RESEARCH_FOLDIN_2026-08-11.md`](Reports/GROK_RESEARCH_FOLDIN_2026-08-11.md).

@@ -65,6 +65,8 @@ Text builders live under `Content/Python/setup_*universal*.py`. Binary authority
 
 Use `placement50` on a machine that can `git lfs pull` EnvSandbox. Cloud checkouts may have **zero** EnvSandbox files — treat missing required paths as HOLD, not as “system absent from the project.”
 
+Grok Universal research (2026-08-11, no branch): text builders under `Content/Python/setup_*universal*.py` are **not** binary proof; EnvSandbox PCG/Universal + `M_Master_Toon_Universal` must exist on disk after LFS pull. Digest: [`Reports/GROK_RESEARCH_FOLDIN_2026-08-11.md`](Reports/GROK_RESEARCH_FOLDIN_2026-08-11.md).
+
 ## Sculpt drops (parallel with play-proof)
 
 While sculpting: export to `Imports/Sculpt/Inbox/`, run `python Tools/sculpt_intake_check.py`, then one UE import + one LFS commit.  
