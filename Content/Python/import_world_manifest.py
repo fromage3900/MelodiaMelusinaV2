@@ -1,18 +1,23 @@
-"""Import surreal_arch_world_v1 manifest into UE with schema validation.
+"""Validate and optionally import a surreal_arch_world_v1 manifest into UE.
 
 Run (editor):
-  py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py"
-  py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py" manifest.json
+  py Content/Python/import_world_manifest.py --manifest world.json
+  py Content/Python/import_world_manifest.py --manifest world.json --apply
 
 Headless:
   UnrealEditor-Cmd.exe BS_GodFile.uproject ^
-    -ExecutePythonScript="G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py" ^
-    -manifest="G:/.../world.json" ^
+    -ExecutePythonScript="Content/Python/import_world_manifest.py" ^
+    -manifest="world.json" ^
     -stdout -unattended -nullrhi
+
+Without `--apply`, the command is a read-only import plan. With `--apply`, it
+spawns StaticMeshActors only for instances that provide an explicit
+`static_mesh_path`; it never guesses a mesh from a library name.
 """
 from __future__ import annotations
 
 import json
+import math
 import sys
 import logging
 from datetime import datetime, timezone
@@ -51,7 +56,50 @@ def validate_manifest(data: dict) -> list[str]:
     return errors
 
 
-def import_manifest(manifest_path: Path) -> dict:
+def _matrix_transform(matrix: list[list[float]]) -> dict:
+    """Convert a row-major Blender-style 4x4 matrix to UE centimeters/yaw."""
+    if len(matrix) != 4 or any(len(row) != 4 for row in matrix):
+        raise ValueError("transform must be a 4x4 matrix")
+    sx = math.sqrt(matrix[0][0] ** 2 + matrix[0][1] ** 2 + matrix[0][2] ** 2)
+    sy = math.sqrt(matrix[1][0] ** 2 + matrix[1][1] ** 2 + matrix[1][2] ** 2)
+    sz = math.sqrt(matrix[2][0] ** 2 + matrix[2][1] ** 2 + matrix[2][2] ** 2)
+    return {
+        "location_cm": [
+            float(matrix[3][0]) * 100.0,
+            float(matrix[3][1]) * 100.0,
+            float(matrix[3][2]) * 100.0,
+        ],
+        "yaw_degrees": math.degrees(math.atan2(matrix[1][0], matrix[0][0])),
+        "scale": [sx, sy, sz],
+    }
+
+
+def _apply_instance(unreal, entry: dict, transform: dict) -> str:
+    mesh_path = entry.get("static_mesh_path")
+    if not mesh_path:
+        raise ValueError("apply requires an explicit static_mesh_path")
+    mesh = unreal.EditorAssetLibrary.load_asset(mesh_path)
+    if not mesh:
+        raise ValueError(f"static mesh not found: {mesh_path}")
+
+    location = unreal.Vector(*transform["location_cm"])
+    rotation = unreal.Rotator(0.0, transform["yaw_degrees"], 0.0)
+    scale = unreal.Vector(*transform["scale"])
+    actor = unreal.EditorLevelLibrary.spawn_actor_from_class(
+        unreal.StaticMeshActor,
+        location,
+        rotation,
+    )
+    if not actor:
+        raise RuntimeError("EditorLevelLibrary.spawn_actor_from_class returned null")
+    actor.set_actor_scale3d(scale)
+    component = actor.static_mesh_component
+    component.set_editor_property("static_mesh", mesh)
+    actor.set_actor_label(str(entry.get("role") or entry.get("object") or "WorldInstance"))
+    return str(actor.get_path_name())
+
+
+def import_manifest(manifest_path: Path, apply: bool = False) -> dict:
     try:
         import unreal
     except Exception as e:
@@ -72,28 +120,48 @@ def import_manifest(manifest_path: Path) -> dict:
         return {"ok": False, "error": "schema errors", "errors": schema_errors}
 
     results: dict = {}
-    actors = data.get("actors") or {}
-    for name, entry in actors.items():
+    instances = data.get("instances") or []
+    # Accept the old actor-map shape during migration, but make the canonical
+    # world_schema.json `instances` array the source of truth.
+    if not instances and isinstance(data.get("actors"), dict):
+        instances = [
+            {"object": name, **(entry if isinstance(entry, dict) else {})}
+            for name, entry in data["actors"].items()
+        ]
+    for index, entry in enumerate(instances):
         try:
-            transform = entry.get("transform") or [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]
-            mesh_path = entry.get("mesh") or entry.get("static_mesh")
+            transform = _matrix_transform(entry.get("transform") or [])
+            mesh_path = entry.get("static_mesh_path")
             material_role = entry.get("material_role") or entry.get("role")
-            results[name] = {
-                "transform_len": len(transform),
+            result = {
+                "object": entry.get("object") or f"instance_{index}",
+                "transform": transform,
                 "mesh": mesh_path,
                 "role": material_role,
+                "applied": False,
             }
+            if apply:
+                result["actor"] = _apply_instance(unreal, entry, transform)
+                result["applied"] = True
+            results[str(result["object"])] = result
         except Exception as exc:
-            results[name] = {"error": str(exc)}
-    return {"ok": True, "actors": results}
+            results[str(entry.get("object") or f"instance_{index}")] = {"error": str(exc)}
+    failures = [value for value in results.values() if "error" in value]
+    return {
+        "ok": not failures,
+        "applied": apply,
+        "instances": results,
+        "errors": len(failures),
+    }
 
 
 def main() -> int:
+    apply = "--apply" in sys.argv
     path = _resolve_manifest_path()
     if not path:
         logger.error("No manifest found via command line or cwd.")
         return 1
-    result = import_manifest(path)
+    result = import_manifest(path, apply=apply)
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps({
         "generated_at": datetime.now(timezone.utc).isoformat(),

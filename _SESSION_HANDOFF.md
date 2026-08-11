@@ -3,7 +3,8 @@
 **Session type:** Cloud agent — MelodiaMelusinaV2 public + Lane C live-ops / 50 MB collab  
 **Authority plan:** `Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`  
 **Live-ops / Echo:** `Docs/LIVEOPS_GIT_SOP_2026-08-11.md` + `specs/echo_pipeline.json`  
-**Owner PIE:** `Docs/Handoffs/PIE_2026-08-11.md` · **This week:** `Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md`
+**Owner PIE:** `Docs/Handoffs/PIE_2026-08-11.md` · **This week:** `Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md`  
+**Env setup:** `Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md` · `Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md`
 
 ## PIE — 2026-08-11 (owner, MelodiaMelusinaV2)
 
@@ -17,12 +18,27 @@
 **Next focus:** One map, one interaction, one battle start — log + viewport proof before rhythm or Sir polish.  
 **Grok share pack** landed on this branch (Grok GitHub write was 403).
 
-## Done this session
+## Done this session (foundation / live-ops branch)
 
 - Repo public (owner). Foundation PR #1.
 - Echo-aligned live-ops SOP; collab slices docs50/slice50/placement50; dual 50/512 LFS budgets; hooks allow `cursor/*`; `lfs_health_audit.py`; CI `base..HEAD` budget; duplicate inventory (33 tracked, no delete).
 - RestorePartyAfterBattle wired; Zbrush untracked; MeshBlend EOL.
 - Scan→ZBrush→Rokoko SOP; Grok research fold-in; SuperGrok share docs (PIE, RT leverage, env pack shortlist).
+- Merged `origin/main` env runbook + Echo tooling updates (2026-08-11).
+
+## Agent infrastructure (from main, 2026-08-11)
+
+- **Model fleet (9 MCP servers in root `.mcp.json` + 11-model router fleet in `Tools/model_router.py`):** fixed `kimi-k3-free`
+  (host is `api.tokenrouter.com/v1`, NOT the dead `tokenrouter.ai`), fixed stale slug
+  `deepseek/deepseek-v4` → `deepseek/deepseek-v4-flash`, added Mistral Medium 3.5, Grok 4.5,
+  Grok 4.20 multi-agent, Meta Muse Spark 1.2 (age-confirm blocked), Nemotron Ultra free
+  (1M ctx), gpt-oss-20b free. `Saved/router_ledger.jsonl` tracks per-model cost.
+- **Tools:** `model_router.py`, `playtest_harness.py` (real-input runtime gate), `video_review_lane.py`,
+  `memory_index.py`, `lane_dispatcher.py` (READ ONLY; routes against NEXT_ACTIONS — gameplay queue is elsewhere).
+- **UI transparency audit (main):** `WBP_Battle_Rhythm` Judgement/Combo/ClockSource text A=0 → opaque white fix committed.
+  Owner PIE still reports panel backgrounds transparent — **RT-003** still open for panels.
+- **RestorePartyAfterBattle:** foundation branch wired the call site; spelling map uses `currentMP` (was `curentMP`).
+- **SECURITY:** Figma API key was public on v2 in `Docs/Reviews/MCP_SURFACE_SCAN_2026-08-03.md` — redacted; **OWNER MUST ROTATE** at figma.com.
 
 ## Next (Windows — Lane A / E / F)
 
@@ -34,7 +50,6 @@
 Older handoff content below is historical (2026-08-08 and earlier).
 
 ---
-
 # Session Handoff - 2026-08-08 (prep for P0 work)
 
 **Session type:** Closed-editor prep: TD preservation, gate trust, git organization

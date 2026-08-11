@@ -13,6 +13,9 @@ Also works as a batch tool:
 import json
 import os
 import unreal
+from pathlib import Path
+
+from melodia_paths import PROJECT_ROOT
 
 # ═══════════════════════════════════════════════════════════════════════
 # Configuration
@@ -20,9 +23,9 @@ import unreal
 
 # Where to look for .material_map.json files
 CROSSWALK_SEARCH_PATHS = [
-    r"G:\EnvironmentPortfolio\BS_GodFile\KitbashExport",
-    r"G:\EnvironmentPortfolio\BS_GodFile\Exports",
-    r"G:\EnvironmentPortfolio\BS_GodFile\Content\Melodia\Characters",
+    PROJECT_ROOT / "KitbashExport",
+    PROJECT_ROOT / "Exports",
+    PROJECT_ROOT / "Content" / "Melodia" / "Characters",
 ]
 
 # Fallback material if crosswalk entry points to non-existent asset
@@ -37,9 +40,9 @@ def find_crosswalk_files() -> list[str]:
     """Find all .material_map.json files in search paths."""
     found = []
     for search_path in CROSSWALK_SEARCH_PATHS:
-        if not os.path.isdir(search_path):
+        if not Path(search_path).is_dir():
             continue
-        for root, dirs, files in os.walk(search_path):
+        for root, dirs, files in os.walk(str(search_path)):
             for f in files:
                 if f.endswith(".material_map.json"):
                     found.append(os.path.join(root, f))

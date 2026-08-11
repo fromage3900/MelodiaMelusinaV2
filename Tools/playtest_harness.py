@@ -291,20 +291,12 @@ def run_once_with(args, disable):
 
 
 def record_gate(status, note, session):
-    ledger = {"gates": [], "sessions": {}}
-    if os.path.exists(LEDGER):
-        with open(LEDGER, encoding="utf-8") as fh:
-            ledger = json.load(fh)
-    now = time.strftime("%Y-%m-%d")
-    now_t = time.strftime("%H:%M:%S")
-    ledger["gates"].append({"id": "runtime", "status": status, "date": now, "time": now_t,
-                            "note": note, "session": session})
-    if session not in ledger["sessions"]:
-        ledger["sessions"][session] = {"date": now, "gates_passed": [], "gates_failed": []}
-    (ledger["sessions"][session]["gates_passed"] if status == "pass"
-     else ledger["sessions"][session]["gates_failed"]).append("runtime")
-    with open(LEDGER, "w", encoding="utf-8") as fh:
-        json.dump(ledger, fh, indent=2)
+    # Keep every writer on the same atomic ledger implementation. The
+    # playtest harness supplies stronger runtime evidence, but it must not
+    # maintain a second JSON-writing implementation with different semantics.
+    from record_gate import record_gate as write_gate
+
+    write_gate("runtime", status, note=note, session_id=session)
     print("ledger row written: runtime=%s session=%s" % (status, session))
 
 

@@ -6,7 +6,7 @@ Run from project root:
 In editor:
   py Content/Python/generate_portfolio.py
 
-Steps (sequential, best-effort):
+Steps (sequential, failure-reporting):
   1. ensure_portfolio_layout()
   2. scene_metadata_exporter.write_scene_metadata()
   3. capture_material_previews.write_previews_manifest()
@@ -30,7 +30,26 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 REPORT = PROJECT_ROOT / "Saved" / "Audit" / "generate_portfolio.json"
 PACKAGE_PATH = PROJECT_ROOT / "Saved" / "Portfolio" / "portfolio_package.json"
 LEVEL = "/Game/EnvSandbox/Environments/Sakura/L_SakuraPath"
-UE_CMD = Path(r"C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor-Cmd.exe")
+
+
+def _resolve_unreal_command() -> Path:
+    configured = os.environ.get("MELODIA_UNREAL_ROOT")
+    if not configured:
+        config_path = PROJECT_ROOT / "Config" / "paths.json"
+        try:
+            config = json.loads(config_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            config = {}
+        paths = config.get("paths") if isinstance(config, dict) else {}
+        defaults = config.get("defaults") if isinstance(config, dict) else {}
+        configured = paths.get("unreal") or defaults.get("unreal")
+    root = Path(configured or r"C:\Program Files\Epic Games\UE_5.8")
+    if not root.is_absolute():
+        root = (PROJECT_ROOT.parent / root).resolve()
+    return root / "Engine" / "Binaries" / "Win64" / "UnrealEditor-Cmd.exe"
+
+
+UE_CMD = _resolve_unreal_command()
 UPROJECT = PROJECT_ROOT / "BS_GodFile.uproject"
 
 
@@ -58,7 +77,7 @@ def _load_portfolio_level() -> None:
 
 
 def run_portfolio_pipeline() -> dict:
-    """Execute all portfolio steps; continue after individual step failures."""
+    """Execute all portfolio steps and preserve a complete failure report."""
     import portfolio_aggregator as aggregator
     import compile_render_plates as plates
     import portfolio_output_layout as layout
@@ -126,8 +145,8 @@ def run_portfolio_pipeline() -> dict:
 
     step("package_to_website_handoff", website_handoff.write_handoff)
 
-    all_ok = PACKAGE_PATH.is_file() and all(
-        entry.get("ok") for entry in steps if entry.get("step") != "portfolio_aggregator"
+    all_ok = PACKAGE_PATH.is_file() and bool(steps) and all(
+        entry.get("ok") is True for entry in steps
     )
     report = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -152,7 +171,7 @@ def main() -> int:
             f"GENERATE_PORTFOLIO all_ok={report['all_ok']} "
             f"package={report.get('portfolio_package')} -> {REPORT}"
         )
-        return 0 if package_exists else 1
+        return 0 if report["all_ok"] and package_exists else 1
     except ImportError:
         if not UE_CMD.exists():
             print(f"ERROR: Unreal Editor not found at {UE_CMD}")

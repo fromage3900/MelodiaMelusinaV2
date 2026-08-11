@@ -1,7 +1,7 @@
 {
   "$schema": "echo_pipeline.v1",
   "name": "melodia_echo",
-  "version": "1",
+  "version": "1.1",
   "generated_by": "T3D-manifest, 2026-08-09",
   "purpose": "One runnable gate chain for the Melodia integration layer. Nothing is 'done' without a ledger row. Mirrors the agent gating categories HoYoverse's Echo applies to AI-generated game content.",
   "stages": [
@@ -15,7 +15,7 @@
       "id": "spec_validate",
       "label": "Spec validation",
       "impl": "echo_run.py:validate_spec",
-      "contract": "ids in scope are allowlisted, arity matches the 7-verb contract, no duplicate consume-once ids",
+      "contract": "ids in scope are allowlisted by DA_MelodiaIntegrationConfig or an explicit export, arity matches the 7-verb contract, no duplicate consume-once ids, item:give remains a logging stub",
       "ledger_id": "spec_validate"
     },
     {
@@ -42,7 +42,7 @@
         "bp_sweep.py",
         "verify_baseline.py"
       ],
-      "contract": "no dead exec islands, asset LIVE not ORPHAN, no lint defects, baseline clean",
+      "contract": "Monolith must answer; no dead exec islands, every configured live-path target is LIVE, no lint defects, no sweep findings, baseline clean",
       "ledger_id": "static_gates"
     },
     {
@@ -54,7 +54,7 @@
         "Melodia.Wiring suite (Automation RunTests Melodia)",
         "campaign scripts (docs/echo/campaign_*.md)"
       ],
-      "contract": "PIE smoke clean, wiring suite green, campaign evidence captured",
+      "contract": "Monolith runtime tools are clean; Melodia.Wiring and campaign evidence are reviewed separately and recorded explicitly",
       "ledger_id": "runtime_gates"
     },
     {
@@ -104,5 +104,23 @@
       "melodia:item:give:<ItemId>:<Count>"
     ],
     "authority": "DA_MelodiaIntegrationConfig allowlist is the live check; there is no relaxed-mode claim in Shipping"
+  },
+  "runner_contract": {
+    "editor_endpoint": "http://127.0.0.1:9316/mcp",
+    "allowlist_asset": "/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig",
+    "default_pie_map": "/Game/EnvSandbox/Environments/L_KaleidoNave",
+    "holds_without_editor": [
+      "bp_live_path",
+      "graph_reachability",
+      "bp_sweep",
+      "ui_lint",
+      "verify_baseline",
+      "pie_smoke",
+      "regression",
+      "fingerprint",
+      "runtime_gates"
+    ],
+    "automatic_ledger_writes": false,
+    "record_command": "python Tools/echo_run.py record <gate-id> pass|fail --note \"...\""
   }
 }

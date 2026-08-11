@@ -58,6 +58,8 @@ Content/__ExternalActors__/ZenForestTest_WP/
 # Python cache
 Content/Python/__pycache__/
 *.pyc
+**/.venv/
+.env.local
 # Unreal scratch assets created by editor-analysis scripts; these are not project source.
 Content/Python/_doonce.uasset
 Content/Python/_eventgraph.uasset

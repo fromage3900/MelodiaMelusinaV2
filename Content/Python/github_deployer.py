@@ -11,6 +11,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import shutil
 from datetime import datetime, timezone
@@ -20,7 +21,12 @@ from typing import Any
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 WEB_COMPONENTS_DIR = PROJECT_ROOT / "Saved" / "Portfolio" / "WebComponents"
 DEPLOYMENT_CONFIG = WEB_COMPONENTS_DIR / "deployment_config.json"
-GITHUB_REPO_DIR = Path("G:/EnvironmentPortfolio/_github_deploy")  # Worktree of my-site repo
+GITHUB_REPO_DIR = Path(
+    os.environ.get(
+        "MELODIA_DEPLOY_WORKTREE",
+        str(PROJECT_ROOT.parent / "_github_deploy"),
+    )
+).expanduser().resolve()
 
 # Default deployment configuration
 DEFAULT_CONFIG = {
@@ -86,8 +92,11 @@ def ensure_github_repo(config: dict) -> Path:
         except Exception as exc:
             _log(f"Error updating GitHub worktree: {exc}")
     else:
-        _log(f"GitHub worktree not found at {repo_path}. Expected worktree at G:/EnvironmentPortfolio/_github_deploy")
-        raise RuntimeError("GitHub worktree not found. Run 'git worktree add _github_deploy main' from G:/EnvironmentPortfolio")
+        _log(f"GitHub worktree not found at {repo_path}. Configure MELODIA_DEPLOY_WORKTREE or create the worktree.")
+        raise RuntimeError(
+            "GitHub worktree not found. Set MELODIA_DEPLOY_WORKTREE or create "
+            f"a worktree at {repo_path}"
+        )
     
     return repo_path
 

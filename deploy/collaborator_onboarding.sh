@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Collaborator Onboarding — MelodiaMelusinaV2
-# Usage: ./deploy/collaborator_onboarding.sh [tier]
+# Usage: ./deploy/collaborator_onboarding.sh [tier] [repo_dir]
 # Tiers:
 #   docs50      — ≤50 MB docs/source/Python (Echo author/spec text)
 #   slice50     — ≤50 MB MelodiaIntegration BP slice
@@ -12,8 +12,10 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 TIER="${1:-docs50}"
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+REPO_DIR="${2:-$PROJECT_ROOT}"
 MANIFEST_DIR="$REPO_DIR/specs/collab_slices"
 
 # Aliases
@@ -21,6 +23,8 @@ case "$TIER" in
   docs) TIER=docs50 ;;
   lightweight) TIER=gameplay ;;
 esac
+# normalize case for legacy callers
+TIER="$(printf '%s' "$TIER" | tr '[:upper:]' '[:lower:]')"
 
 case "$TIER" in
   docs50|slice50|placement50|gameplay|full)
@@ -32,8 +36,14 @@ case "$TIER" in
     ;;
 esac
 
+if ! git -C "$REPO_DIR" rev-parse --show-toplevel >/dev/null 2>&1; then
+  echo "Repository is not a Git checkout: $REPO_DIR"
+  echo "Usage: $0 [docs50|slice50|placement50|gameplay|full] [repo_dir]"
+  exit 2
+fi
+
 echo "==> Tier: $TIER"
-echo "==> Repo: $REPO_DIR (public: https://github.com/fromage3900/MelodiaMelusinaV2)"
+echo "==> Repo: $(git -C "$REPO_DIR" rev-parse --show-toplevel) (public: https://github.com/fromage3900/MelodiaMelusinaV2)"
 echo "==> Tip: git config core.hooksPath .githooks"
 
 cd "$REPO_DIR"
@@ -90,6 +100,9 @@ if [ "$TIER" = "full" ]; then
   echo "==> Full LFS pull"
   git lfs pull
   echo "==> Onboarding complete for tier: $TIER"
+  if [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
+    echo "Run: powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1 -SkipServices"
+  fi
   exit 0
 fi
 
@@ -105,6 +118,9 @@ if [ "$TIER" = "gameplay" ]; then
     Docs Source Config Tools deploy specs Content/Python || true
   git lfs pull --include="Content/Melodia/**,Content/EnvSandbox/**,Content/MelodiaIntegration/**,Content/TurnBasedJRPGTemplate/**" || true
   echo "==> Onboarding complete for tier: $TIER"
+  if [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
+    echo "Run: powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1 -SkipServices"
+  fi
   exit 0
 fi
 
@@ -112,3 +128,6 @@ apply_manifest "$TIER"
 echo "==> Onboarding complete for tier: $TIER"
 echo "==> Echo: gameplay claims need ledger rows (python Tools/echo_run.py status)"
 echo "==> Lock binaries before edit: git lfs lock <path>"
+if [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
+  echo "Run: powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1 -SkipServices"
+fi

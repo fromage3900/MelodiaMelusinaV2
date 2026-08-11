@@ -6,16 +6,29 @@ This is the front door for project documentation. Prefer updating this index ove
 
 Read [`Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md) and
 [`Docs/LIVEOPS_GIT_SOP_2026-08-11.md`](Docs/LIVEOPS_GIT_SOP_2026-08-11.md) first.
-Sculpt drops: [`Docs/SCULPT_ASSET_INTAKE_2026-08-11.md`](Docs/SCULPT_ASSET_INTAKE_2026-08-11.md).
+Owner PIE: [`Docs/Handoffs/PIE_2026-08-11.md`](Docs/Handoffs/PIE_2026-08-11.md) ·
+PhoneOps: [`Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md`](Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md).
+Sculpt / scan: [`Docs/SCULPT_ASSET_INTAKE_2026-08-11.md`](Docs/SCULPT_ASSET_INTAKE_2026-08-11.md),
+[`Docs/MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md`](Docs/MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md).
 Echo manifest: [`specs/echo_pipeline.json`](specs/echo_pipeline.json).
-Then [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md). Older 2026-08-09 PC-resume detail remains in
-[`Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md`](Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md).
+Then [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md).
+
+## Latest environment checkpoint — 2026-08-11
+
+Read these before changing setup, ECHO, or cross-checkout tooling:
+
+| Doc | Purpose |
+|---|---|
+| [Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md](Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md) | Workspace topology, authority boundaries, service contract, and drift register |
+| [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) | Portable Windows setup and execution path |
+| [Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md](Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md) | Evidence from the implemented environment and remaining blockers |
+| [Docs/ECHO_PIPELINE_2026-08-09.md](Docs/ECHO_PIPELINE_2026-08-09.md) | ECHO stages, evidence rules, and campaign contract |
 
 ## Latest handoff checkpoint — 2026-08-09
 
 Read [`Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md`](Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md) first when
-resuming from another PC. It records the local Git state, isolated commit batches, C:→G: mirror state,
-Drive synchronization state, validation evidence, and known remote-network limitations as of 2026-08-09.
+resuming gameplay work from another session. It records the earlier local Git
+state, validation evidence, and known remote-network limitations as of 2026-08-09.
 
 ## ⭐ Gameplay/vertical-slice canonical docs (project root, read these first for gameplay)
 
