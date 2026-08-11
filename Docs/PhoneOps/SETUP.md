@@ -1,29 +1,31 @@
 # Phone + Multi-Agent Setup
 
-How this MelodiaMelusina workspace is driven from phone, GitHub cloud agents, and parallel research (SuperGrok / Cursor Pro).
+How this MelodiaMelusinaV2 workspace is driven from phone, GitHub cloud agents, and parallel research (SuperGrok / Cursor Pro).
 
 ## Stack
 
 | Layer | Tool | Role |
 |---|---|---|
 | Phone UI | Cursor iOS / mobile agents | Kick off cloud runs, review diffs, steer priorities |
-| Cloud code | Cursor Cloud Agents (`MelodiaMelusina`) | Read/write repo, PRs, docs, audits |
+| Cloud code | Cursor Cloud Agents (`MelodiaMelusinaV2`) | Read/write repo, PRs, docs, audits |
 | Deep research | SuperGrok (or similar) | Scratchpads, strategy, cross-tool synthesis — often no git push |
-| Local production | UE 5.8 + Blender 5.1 + MCP | Materials, PCG, Live Link, capture (desktop) |
-| Source of truth | This GitHub repo | `main` + `cursor/*-0e29` agent branches |
+| Local production | UE 5.8 + Blender 5.2 + MCP | Materials, PCG, Live Link, capture (desktop) |
+| Source of truth | This GitHub repo | `main` + `cursor/*-098b` agent branches |
 
-Repo: `github.com/fromage3900/MelodiaMelusina`  
-UProject: `BS_GodFile.uproject` (UE 5.8)
+Repo: `github.com/fromage3900/MelodiaMelusinaV2`  
+UProject: `BS_GodFile.uproject` (UE 5.8)  
+Foundation plan: `Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`
 
 ## Cursor Pro (phone / cloud)
 
-1. Open Cursor Agents on phone → target **MelodiaMelusina**.
-2. Prefer short, one-lane prompts (docs, audit, one script family).
-3. Cloud agents create branches like `cursor/<name>-0e29`, commit, push, open draft PRs.
+1. Open Cursor Agents on phone → target **MelodiaMelusinaV2**.
+2. Prefer short, one-lane prompts (docs, audit, one script family). Follow the parallel lanes in the foundation plan — do not contend the live editor.
+3. Cloud agents create branches like `cursor/<name>-098b`, commit, push, open draft PRs.
 4. You approve merge / art direction / external publish — agents do not.
 
 Useful first prompts from phone:
 
+- `Read Docs/GAME_FOUNDATION_PLAN_2026-08-11.md and execute the next cloud-safe lane item`
 - `Read Docs/PhoneOps/INDEX.md and Docs/PhoneOps/NORTH_STAR.md, then do the top Now item in BACKLOG.md`
 - `Study CURRENT_STATE.md + NEXT_ACTIONS.md; summarize blockers only`
 - `Do not edit L_SakuraPath or Content/_PROJECT/; stay in EnvSandbox / deploy / Docs`

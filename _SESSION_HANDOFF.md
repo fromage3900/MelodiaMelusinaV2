@@ -1,3 +1,27 @@
+# Session Handoff - 2026-08-11 (V2 game foundation)
+
+**Session type:** Cloud agent — MelodiaMelusinaV2 public-prep + parallel foundation execution  
+**Authority plan:** `Docs/GAME_FOUNDATION_PLAN_2026-08-11.md` (folds closeout + Echo + jcode + LFS discipline)
+
+## Done this session
+
+- Attempted `gh repo edit --visibility public` → **HTTP 403** (integration token). Owner must flip visibility in GitHub Settings → Danger Zone.
+- Untracked Zbrush Orb brush pack from git (local files kept; not game content).
+- MeshBlend LFS pointer CRLF→LF renormalize.
+- Fixed collaborator onboarding script; added `Tools/git_safe_push.py`; CI no longer calls missing `.ps1` or pushes ledger from runners.
+- Wired `RestorePartyAfterBattle` on JRPG bridge `HandleBattleOver` before `CompleteBattle`; map MP field `curentMP` → `currentMP`.
+- Folded planning into foundation plan; README + PhoneOps point at V2.
+
+## Next (Windows workstation — Lane A)
+
+1. Full closed-editor build (restore + highway ownership in source).
+2. PIE observe highway ownership.
+3. Campaign 1 real-input `runtime` gate → ledger row.
+
+Older handoff content below is historical (2026-08-08 and earlier).
+
+---
+
 # Session Handoff - 2026-08-08 (prep for P0 work)
 
 **Session type:** Closed-editor prep: TD preservation, gate trust, git organization

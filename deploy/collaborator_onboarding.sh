@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-set -euo pipefail
-
 # Collaborator Onboarding Script
-# Usage: ./collaborator_onboarding.sh [tier]
+# Usage: ./deploy/collaborator_onboarding.sh [tier]
 # Tiers: lightweight | full | docs
 # Default: lightweight
 
+set -euo pipefail
+
+TIER="${1:-lightweight}"
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 case "$TIER" in
   lightweight|full|docs)
@@ -26,12 +28,14 @@ if [ "$TIER" = "full" ]; then
   echo "==> Full clone workflow"
   git lfs install
   git lfs pull
+  echo "==> Onboarding complete for tier: $TIER"
   exit 0
 fi
 
 if [ "$TIER" = "docs" ]; then
   echo "==> Docs/code-only workflow"
   git lfs install || true
+  echo "==> Onboarding complete for tier: $TIER"
   exit 0
 fi
 
@@ -43,21 +47,22 @@ git sparse-checkout init --cone || true
 git sparse-checkout set \
   Content/Melodia/Levels \
   Content/EnvSandbox \
+  Content/MelodiaIntegration \
+  Content/TurnBasedJRPGTemplate \
   Plugins/MelodiaCore/Source \
   Docs \
   Source \
   Config \
-  deploy || true
+  Tools \
+  deploy \
+  specs || true
 
-echo "==> Pulling targeted LFS assets for level/material work"
-git lfs pull --include="*.umap" || true
-git lfs pull --include="Content/EnvSandbox/Levels/*.umap" || true
-git lfs pull --include="Content/Melodia/Levels/*.umap" || true
-git lfs pull --include="Content/EnvSandbox/Meshes/*.uasset" || true
-git lfs pull --include="Content/EnvSandbox/Materials/*.uasset" || true
+echo "==> Pulling targeted LFS assets for level/material/integration work"
+git lfs pull --include="Content/Melodia/**,Content/EnvSandbox/**,Content/MelodiaIntegration/**,Content/TurnBasedJRPGTemplate/**" || true
 
-
-echo "==> Onboarding complete for tier: $TIER"elif [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
+echo "==> Onboarding complete for tier: $TIER"
+if [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
   echo "Run: powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1"
 else
   echo "Validation script not found; continuing without it."
+fi

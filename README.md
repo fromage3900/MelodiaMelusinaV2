@@ -13,7 +13,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
  ◇─◇──◇──◇─◇
 ```
 
-> **New here?** [QUICKSTART.md](QUICKSTART.md) — 5 minutes to first demo.
+> **Repo status:** V2 at [`MelodiaMelusinaV2`](https://github.com/fromage3900/MelodiaMelusinaV2) — rebuilt 2026-08-11 from the verified snapshot after V1 LFS/history failure. **Authority plan:** [Docs/GAME_FOUNDATION_PLAN_2026-08-11.md](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md). Old repo (`MelodiaMelusina`) is archive-only.
 >
 > **Gameplay scope?** [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority.
 >
@@ -23,7 +23,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 >
 > **Architecture overview?** [PIPELINE.md](PIPELINE.md) — full system map.
 >
-> **Repo status:** Clean V2 repository at `https://github.com/fromage3900/MelodiaMelusinaV2` — rebuilt 2026-08-11 from the verified snapshot tree (`763b013b` lineage) after the original repo's LFS budget block and corrupt 144-commit history. HEAD `2623f02a` on `main`. The old repo (`MelodiaMelusina`) is retained as a read-only archive; the local `.git` is healthy, fsck-clean, LFS-pruned (64 GB → 18 GB).
+> **New here?** [QUICKSTART.md](QUICKSTART.md) — 5 minutes to first demo.
 
 ```
  ◇─◇──◇──◇─◇

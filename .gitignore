@@ -5,6 +5,9 @@ Intermediate/
 Saved/
 !Saved/Portfolio/
 !Saved/Audit/
+!Saved/gate_ledger.json
+!Saved/Echo/
+!Saved/Echo/**
 Build/
 .vs/
 *.sln
@@ -172,8 +175,17 @@ Tools/*
 !Tools/video_review_lane.py
 !Tools/memory_index.py
 !Tools/lane_dispatcher.py
+!Tools/git_safe_push.py
+!Tools/bp_live_path.py
+!Tools/bp_sweep.py
+!Tools/project_state.py
+!Tools/ui_style_audit.py
+!Tools/test_ui_style_audit.py
+!Tools/t3d_dashboard.py
 !Tools/BlenderAddons/
 !Tools/BlenderAddons/**
+# Local Blender brush packs — not game content (keep on disk, do not re-add)
+86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/
 melodia-design-system/
 KitbashExport/
 research/

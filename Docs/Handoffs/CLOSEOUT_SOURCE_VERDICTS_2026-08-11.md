@@ -35,27 +35,14 @@ double-invokes the skill (`cpp:534` documents the exactly-once guard; `cpp:716` 
 the deferral cleanly on invalidation). Campaign 1's A/B (`melodia.Rhythm.Disable 0|1`)
 is therefore meaningful on this path. No HOLD from sequencing.
 
-## Step 5 — RestorePartyAfterBattle: implementation exists, zero callers; field spelling unverifiable headlessly
+## Step 5 — RestorePartyAfterBattle: WIRED 2026-08-11 (cloud foundation)
 
-- `MelodiaJRPGPostBattleLibrary.h:31` — `UFUNCTION(BlueprintCallable) RestorePartyAfterBattle(UObject* BattleController)`.
-- `MelodiaJRPGPostBattleLibrary.cpp` — full implementation: resolves `battle`/`currentBattle`
-  via `FindFProperty` (never casts to a possibly-unloaded generated class), walks
-  `playerUnits` (battle base) + the controller's persistent `TMap<UClass*, FS_UnitState>`
-  map by class key, writes restored HP/MP into both.
-- **Map-side field names are the TYPO forms**: `FindAuthoredStructMember(UnitStateStruct, TEXT("currentHP"))`
-  and `TEXT("curentMP")`. The library was authored to match the stock struct's typo'd
-  spelling (`curentMP` per closeout plan line 82/83) — a faithful-match assumption.
-- **Zero call sites** in `Source/` (grep: only the library's own .h/.cpp).
-- `FS_UnitState` is a Blueprint user-defined struct (uasset — not textually greppable);
-  the stock reference project at `CompatibilityLabs/TurnBasedJRPGUE58` did not surface it
-  in .h search either.
-
-**Verdict:** HOLD the wiring until the stock field spelling is confirmed via reflection
-(Monolith `blueprint_query get_cdo_properties` on the stock struct — rule 20, never a
-text dump). If the stock really has `curentMP`, the library is correct and only the call
-site is missing (hang it off `CompleteBattle -> ResumeQuillOnce`); if the stock spells it
-`currentMP`, `FindAuthoredStructMember("curentMP")` returns null and the MP half silently
-no-ops — the string must be fixed first. Either way, the heal-only owner decision stands.
+- `MelodiaJRPGPostBattleLibrary` map field lookup corrected: `curentMP` → `currentMP`
+  (matches unit-instance property + JRPG catalog).
+- Call site: `UMelodiaExternalJRPGBridgeSubsystem::HandleBattleOver` restores via the
+  live `BP_BattleController` **before** `CompleteBattle` / Quill resume.
+- Still needs a closed-editor build + one PIE defeat/victory to observe
+  `MELODIA_RECOVERY restored N player unit(s)` in the log.
 
 ## Notes
 
