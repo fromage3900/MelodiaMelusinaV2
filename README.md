@@ -17,7 +17,11 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
  ◇─◇──◇──◇─◇
 ```
 
-> **Repo status:** Public V2 at [`MelodiaMelusinaV2`](https://github.com/fromage3900/MelodiaMelusinaV2). **Authority plan:** [Docs/GAME_FOUNDATION_PLAN_2026-08-11.md](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md). **Live-ops / 50 MB collab:** [Docs/LIVEOPS_GIT_SOP_2026-08-11.md](Docs/LIVEOPS_GIT_SOP_2026-08-11.md). **Echo:** `specs/echo_pipeline.json` (`echo_run.py status`). Old repo (`MelodiaMelusina`) is archive-only.
+> **Repo status:** Public V2 at [`MelodiaMelusinaV2`](https://github.com/fromage3900/MelodiaMelusinaV2). **Authority plan:** [Docs/GAME_FOUNDATION_PLAN_2026-08-11.md](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md). **Live-ops / 50 MB collab:** [Docs/LIVEOPS_GIT_SOP_2026-08-11.md](Docs/LIVEOPS_GIT_SOP_2026-08-11.md). **Echo:** `specs/echo_pipeline.json` → `python Tools/echo_run.py status` (ledger: `Saved/gate_ledger.json`; CI: `.github/workflows/echo_gates.yml`). Old repo (`MelodiaMelusina`) is archive-only.
+>
+> **Owner PIE 2026-08-11:** [Docs/Handoffs/PIE_2026-08-11.md](Docs/Handoffs/PIE_2026-08-11.md) — Kaleido triggers present but dead; UI transparency; Sir CTRL missing; empty rhythm highway. **This week:** [Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md](Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md) (RT-001 Quill → RT-002 battle before Sir/rhythm).
+>
+> **Phone / on-the-go:** [Docs/PhoneOps/INDEX.md](Docs/PhoneOps/INDEX.md) · [MOBILE_LANES.md](Docs/PhoneOps/MOBILE_LANES.md) · [Scan→ZBrush→Rokoko](Docs/MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md).
 >
 > **Gameplay scope?** [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority.
 >
@@ -29,7 +33,8 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 >
 > **New here?** [QUICKSTART.md](QUICKSTART.md) — 5 minutes to first demo.
 >
-> **LFS / CI:** Metered LFS + dual 50/512 MB budgets — [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md), [Docs/LIVEOPS_GIT_SOP_2026-08-11.md](Docs/LIVEOPS_GIT_SOP_2026-08-11.md). Release Tag workflow is on-demand; Echo static gates via `.github/workflows/echo_gates.yml`.
+> **LFS / CI:** Metered LFS + dual 50/512 MB budgets — [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md), [Docs/LIVEOPS_GIT_SOP_2026-08-11.md](Docs/LIVEOPS_GIT_SOP_2026-08-11.md). Release Tag workflow is on-demand.
+
 
 ```
  ◇─◇──◇──◇─◇

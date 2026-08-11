@@ -39,3 +39,16 @@ powershell -ExecutionPolicy Bypass -File Tools\setup_rokoko_livelink_plugins.ps1
 
 - PCG ~49% scale / VolumeSampler zero-emit findings → keep in EnvSandbox audit track; not sculpt/mocap SOP.
 - MeshBlend → RVT/DF → owner art-direction; never-touch materials still apply.
+
+## SuperGrok share (2026-08-11) — landed on this branch
+
+Share: https://grok.com/share/bGVnYWN5LWNvcHk_c7761e0a-252b-44bf-b4de-4940025d6de0  
+Grok could not push (GitHub contents write 403). Cursor foundation branch absorbed:
+
+| Path | Content |
+|------|---------|
+| `Docs/Handoffs/PIE_2026-08-11.md` | Owner PIE (empty highway, Sir CTRL, UI alpha, Kaleido dead triggers) |
+| `Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md` | RT-001…007 / PH-* |
+| `Docs/PhoneOps/MOBILE_LANES.md` | Drive / Live Link / Polycam lane split |
+| `Docs/Research/STYLIZED_ENV_PACK_SHORTLIST_2026-08-11.md` | Cute/mystical/underwater Fab shortlist |
+| README / CURRENT_STATE / PhoneOps INDEX+BACKLOG | Front door + Echo + this-week focus |

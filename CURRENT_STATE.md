@@ -2,11 +2,20 @@
 
 Status labels: `Implemented`, `Partial`, `Broken`, `Planned`, `Research`, `Deprecated`.
 
+> **V2 banner (2026-08-11):** Repo is public [`MelodiaMelusinaV2`](https://github.com/fromage3900/MelodiaMelusinaV2). Echo completion gates (`runtime`, `save_load`, `repeat_consume`, `package_launch`) stay **OPEN** until `Saved/gate_ledger.json` rows exist. Owner PIE same day: Quill/battle/traversal on Kaleido **non-functional**, UI backgrounds transparent, Sir missing from CTRL, rhythm highway empty — see [`Docs/Handoffs/PIE_2026-08-11.md`](Docs/Handoffs/PIE_2026-08-11.md) and [`Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md`](Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md). Do not treat older “build-green” rows below as play-proven.
+
 > **READ THIS FIRST.** This file's older sections are a **historical record** of the
 > environment-art platform work (materials, PCG, portfolio). The project has since **pivoted
 > to a gameplay vertical slice ("First Dream")** as the primary track. The authoritative,
 > current state lives in the gameplay docs listed below — not in the older sections of this
 > file. See `DOC_INDEX.md` for the full map.
+
+## Current State (2026-08-11) — V2 public + owner PIE
+
+- Public V2 + LFS lockable + Echo CI shape are scaffolding-healthy; **gameplay loop is not playable**.
+- RT order: Quill visible → battle start → opaque UI → Sir CTRL → rhythm notes → save restart.
+- Foundation plan + live-ops pack live on `cursor/v2-game-foundation-098b` until merged.
+- Env loose-ends research: [`Docs/Research/STYLIZED_ENV_PACK_SHORTLIST_2026-08-11.md`](Docs/Research/STYLIZED_ENV_PACK_SHORTLIST_2026-08-11.md).
 
 ## Current State (2026-08-09) — handoff checkpoint
 
