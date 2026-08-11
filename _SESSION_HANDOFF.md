@@ -5,7 +5,7 @@
 
 ## Agent infrastructure (new, all committed to v2)
 
-- **Model fleet (13 MCP endpoints in root `.mcp.json`):** fixed `kimi-k3-free`
+- **Model fleet (9 MCP servers in root `.mcp.json` + 11-model router fleet in `Tools/model_router.py`):** fixed `kimi-k3-free`
   (host is `api.tokenrouter.com/v1`, NOT the dead `tokenrouter.ai`), fixed stale slug
   `deepseek/deepseek-v4` → `deepseek/deepseek-v4-flash`, added Mistral Medium 3.5, Grok 4.5,
   Grok 4.20 multi-agent, Meta Muse Spark 1.2 (age-confirm blocked), Nemotron Ultra free
