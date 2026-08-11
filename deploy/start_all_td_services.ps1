@@ -7,7 +7,7 @@ param(
     [switch]$Status
 )
 
-$ProjectRoot = "G:\EnvironmentPortfolio"
+$ProjectRoot = "C:\EnvironmentPortfolio"
 $AuditDir = "$ProjectRoot\BS_GodFile\Saved\Audit"
 
 if ($Status) {

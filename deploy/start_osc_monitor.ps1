@@ -6,7 +6,7 @@ param(
     [int]$IntervalSeconds = 10
 )
 
-$ProjectRoot = "G:\EnvironmentPortfolio"
+$ProjectRoot = "C:\EnvironmentPortfolio"
 $AuditDir = "$ProjectRoot\BS_GodFile\Saved\Audit"
 $StateFile = "$AuditDir\osc_monitor_state.json"
 

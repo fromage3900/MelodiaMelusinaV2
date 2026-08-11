@@ -276,7 +276,7 @@ param(
     [string]$SentinelName = "AGENT_LOOP_TICK_td_orch"
 )
 
-$ProjectRoot = "G:\EnvironmentPortfolio"
+$ProjectRoot = "C:\EnvironmentPortfolio"
 $SentinelPath = "$ProjectRoot\BS_GodFile\Saved\Audit\$SentinelName"
 $StopPath = "$ProjectRoot\BS_GodFile\Saved\Audit\td_loop_STOP"
 
@@ -319,7 +319,7 @@ import struct
 import time
 from datetime import datetime
 
-PROJECT_ROOT = r"G:\EnvironmentPortfolio"
+PROJECT_ROOT = r"C:\EnvironmentPortfolio"
 TD_MCP_PORT = 9870
 UE_OSC_PORT = 8000
 TD_OSC_PORT = 9000
@@ -456,7 +456,7 @@ if __name__ == "__main__":
 # start_all_td_services.ps1
 # Launches all autonomous TouchDesigner production services
 
-$ProjectRoot = "G:\EnvironmentPortfolio"
+$ProjectRoot = "C:\EnvironmentPortfolio"
 $AuditDir = "$ProjectRoot\BS_GodFile\Saved\Audit"
 
 # Ensure audit directory exists
@@ -512,7 +512,7 @@ Write-Host "  New-Item -Path '$AuditDir\td_loop_STOP' -ItemType File"
 ```powershell
 param([int]$IntervalSeconds = 10)
 
-$AuditDir = "G:\EnvironmentPortfolio\BS_GodFile\Saved\Audit"
+$AuditDir = "C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit"
 $StateFile = "$AuditDir\osc_monitor_state.json"
 
 while ($true) {
@@ -535,7 +535,7 @@ while ($true) {
 ```powershell
 param([int]$IntervalSeconds = 5)
 
-$AuditDir = "G:\EnvironmentPortfolio\BS_GodFile\Saved\Audit"
+$AuditDir = "C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit"
 $StateFile = "$AuditDir\spout_stream_state.json"
 
 while ($true) {

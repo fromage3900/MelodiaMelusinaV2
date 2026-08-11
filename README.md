@@ -23,7 +23,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 >
 > **Architecture overview?** [PIPELINE.md](PIPELINE.md) — full system map.
 >
-> **Repo status:** `BS_GodFile/.git` is healthy at repo root on `main`; latest local commit `ec20b015`; checkpoint `6154cc1e` captures recovered history. Push to `origin` is currently blocked by network connectivity to `github.com:443`.
+> **Repo status:** Clean V2 repository at `https://github.com/fromage3900/MelodiaMelusinaV2` — rebuilt 2026-08-11 from the verified snapshot tree (`763b013b` lineage) after the original repo's LFS budget block and corrupt 144-commit history. HEAD `2623f02a` on `main`. The old repo (`MelodiaMelusina`) is retained as a read-only archive; the local `.git` is healthy, fsck-clean, LFS-pruned (64 GB → 18 GB).
 
 ```
  ◇─◇──◇──◇─◇
@@ -33,7 +33,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 
 ## 🎮 Primary Track: First Dream Vertical Slice
 
-> **Status (2026-08-07):** The gameplay is **not yet playable**. Per the owner's live verification on 2026-08-06, Quill dialogue is not visible, battle systems are non-functional, and the game is unplayable. The 12 P0 foundation gates are unclaimed, Live Coding is currently blocked, and push to `origin` is blocked by network connectivity. Treat the "proven" bullets in older docs as **unverified** until PIE proof is recorded.
+> **Status (2026-08-11):** The core loop is implemented and the rhythm→damage runtime gate work is in flight (see `Docs/ECHO/`). Per the evidence standard, the `runtime` gate is **OPEN until real keyboard input through `BP_BattleUI::OnKeyDown` is recorded with a ledger row** — probe-injected runs are not play evidence. Treat "proven" claims without a ledger row or PIE capture as **unverified**.
 
 ### The loop
 

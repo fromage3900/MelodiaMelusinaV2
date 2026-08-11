@@ -31,7 +31,7 @@ From a shell (adjust engine path if needed):
 
 ```powershell
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" `
-  "G:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject" `
+  "C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject" `
   -run=ResavePackages -fixupredirects -projectonly -unattended -stdout
 ```
 

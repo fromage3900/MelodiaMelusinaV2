@@ -10,7 +10,7 @@ separate lane; see §4.
 ## What shipped this session
 
 1. **13 Melusina spoken WAVs rendered** via the CosyVoice 3 server
-   (`G:\EnvironmentPortfolio\VoiceSynthResearch\tools\melusina_tts_server.py`, port 8765, anchor seed
+   (`C:\EnvironmentPortfolio\VoiceSynthResearch\tools\melusina_tts_server.py`, port 8765, anchor seed
    `Melusina_EN_TTS_Demo_v0.1\anchor_vc_seed_v1_30s.wav`) and **auto-imported as USoundWave** at:
 
    ```
@@ -98,7 +98,7 @@ separate lane; see §4.
 
 ```powershell
 # Server (CosyVoice 3, anchor seed):
-python G:\EnvironmentPortfolio\VoiceSynthResearch\tools\melusina_tts_server.py
+python C:\EnvironmentPortfolio\VoiceSynthResearch\tools\melusina_tts_server.py
 # Health:
 curl http://127.0.0.1:8765/health
 # One line (default profile):
@@ -117,7 +117,7 @@ Drop the WAV into `Content\Melodia\Characters\Melusina\Audio\` and let UE auto-i
 ## Singing lane (separate — Phase 2, G: drive)
 
 Singing banks are **not** in UE. They live at
-`G:\EnvironmentPortfolio\VoiceSynthResearch\release_candidate\` (DiffSinger/OpenUtau package +
+`C:\EnvironmentPortfolio\VoiceSynthResearch\release_candidate\` (DiffSinger/OpenUtau package +
 CosyVoice speech). The open blocker before any singing asset can be imported is the **vocoder gate**:
 `melusina_unified_voicebank\ENGINE_COMPATIBILITY.md` records a hop-size/vocoder mismatch producing
 hiss/noise on the packaged ONNX model. Fix that (NSF-HiFiGAN at the acoustic's exact hop length,

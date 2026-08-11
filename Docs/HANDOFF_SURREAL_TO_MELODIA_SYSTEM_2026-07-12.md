@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-12  
 **Audience:** Next agent / DeepSeek / human co-pilot  
-**Workspace:** `G:\EnvironmentPortfolio` · primary code in `BS_GodFile/`  
+**Workspace:** `C:\EnvironmentPortfolio` · primary code in `BS_GodFile/`  
 **Blender:** **5.1 only** (do not use 4.2 headless on Melodia stage)  
 **Related chat:** [GN editable Melodia Studio](ffa3f1b9-a9b6-4d6f-9afe-3f047531b297)
 
@@ -44,14 +44,14 @@ Finish turning the **Surreal Architecture** Blender monolith into a coherent **M
 
 | Role | Path |
 |------|------|
-| **Edit SSOT** | `G:\EnvironmentPortfolio\BS_GodFile\deploy\` |
+| **Edit SSOT** | `C:\EnvironmentPortfolio\BS_GodFile\deploy\` |
 | Live Blender 5.1 addons | `%APPDATA%\Blender Foundation\Blender\5.1\scripts\addons\` |
 | Sync | `deploy\sync_surreal_to_live.ps1` |
 
 After any `surreal_arch/` or monolith edit:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File "G:\EnvironmentPortfolio\BS_GodFile\deploy\sync_surreal_to_live.ps1"
+powershell -ExecutionPolicy Bypass -File "C:\EnvironmentPortfolio\BS_GodFile\deploy\sync_surreal_to_live.ps1"
 ```
 
 Then in Blender: disable/enable **Melodia Studio** addon, or restart Blender 5.1.  
@@ -68,7 +68,7 @@ Ensure MCP:
 
 ```text
 # In open Blender 5.1 (Text Editor / MCP execute):
-exec(open(r"G:\EnvironmentPortfolio\BS_GodFile\Tools\ensure_blender_mcp.py").read())
+exec(open(r"C:\EnvironmentPortfolio\BS_GodFile\Tools\ensure_blender_mcp.py").read())
 ```
 
 Cursor MCP server: `user-blender` → tool `execute_blender_code`. User must have Blender open with stage + MCP started.
@@ -266,7 +266,7 @@ Use these as full first messages. Replace nothing unless noted.
 ### Prompt A — Master orchestrator (full transformation)
 
 ```text
-You are continuing Melodia System work in G:\EnvironmentPortfolio\BS_GodFile.
+You are continuing Melodia System work in C:\EnvironmentPortfolio\BS_GodFile.
 
 Read and obey:
 - Docs/HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md
@@ -450,7 +450,7 @@ Do not use Live Link for ornament SSOT. Do not dual-lineage Minimal HUD for Melu
 
 ```powershell
 # Sync addon
-powershell -ExecutionPolicy Bypass -File "G:\EnvironmentPortfolio\BS_GodFile\deploy\sync_surreal_to_live.ps1"
+powershell -ExecutionPolicy Bypass -File "C:\EnvironmentPortfolio\BS_GodFile\deploy\sync_surreal_to_live.ps1"
 
 # Spawn editable GN (in Blender or -P)
 # blender KitbashExport/Melodia_Portfolio_Stage_v4.blend -P Tools/spawn_editable_ornament_gn.py
@@ -464,7 +464,7 @@ powershell -ExecutionPolicy Bypass -File "G:\EnvironmentPortfolio\BS_GodFile\dep
 
 ```python
 # Blender: ensure MCP
-exec(open(r"G:\EnvironmentPortfolio\BS_GodFile\Tools\ensure_blender_mcp.py").read())
+exec(open(r"C:\EnvironmentPortfolio\BS_GodFile\Tools\ensure_blender_mcp.py").read())
 ```
 
 ---

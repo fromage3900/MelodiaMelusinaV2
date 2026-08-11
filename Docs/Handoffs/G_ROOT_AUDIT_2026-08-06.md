@@ -1,7 +1,7 @@
 # G: Root Audit — 2026-08-06
 
 Summary
-- Purpose: inventory workspace files that reference `G:\EnvironmentPortfolio` (the alternate project root) and recommend remediations.
+- Purpose: inventory workspace files that reference `C:\EnvironmentPortfolio` (the alternate project root) and recommend remediations.
 - Findings: many hardcoded references exist across deployment scripts, tools, and generated logs; grep found 1,000+ matches in ~13 files (notably large manifest files and tool scripts).
 
 Top affected files / folders (representative)
@@ -10,7 +10,7 @@ Top affected files / folders (representative)
 - `deploy/mcp_git.py` — hardcoded `PROJECT_ROOT = "G:/EnvironmentPortfolio/BS_GodFile"`
 - `BS_GodFile/.rider/mcp.json`, `.cursor/mcp.json`, `.idea/mcp.json` — editor MCP configs referencing G:\ paths
 - `deploy/agent_bridge_mcp.py`, `deploy/blender_mcp_adapter.py`, `deploy/hermes_mcp.py` — deployment adapters referencing G:\ or expecting G: layout
-- `tools/*.ps1` — many PowerShell publishing/build scripts with `ProjectRoot = "G:\EnvironmentPortfolio\BS_GodFile"`
+- `tools/*.ps1` — many PowerShell publishing/build scripts with `ProjectRoot = "C:\EnvironmentPortfolio\BS_GodFile"`
 - `tools/_consistency_pass.py`, `tools/_verify_site_facts.py` — constants pointing at G:\ path
 
 Immediate risks

@@ -50,8 +50,8 @@ bash deploy/validate_collaborator_setup.sh
 
 ```bash
 # 1. Clone the repo (skip LFS download — ~50MB)
-git clone https://github.com/fromage3900/environment-portfolio.git
-cd environment-portfolio/BS_GodFile
+git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+cd MelodiaCollab
 
 # 2. Install Git LFS
 git lfs install
@@ -104,8 +104,8 @@ git lfs pull --include="Content/Audio/Voice/*.wav"
 
 ```bash
 # 1. Clone with LFS (full ~300GB)
-git clone https://github.com/fromage3900/environment-portfolio.git
-cd environment-portfolio/BS_GodFile
+git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+cd MelodiaCollab
 
 # 2. Install and pull all LFS assets
 git lfs install
@@ -123,8 +123,8 @@ git lfs pull
 
 ```bash
 # 1. Clone without LFS (~50MB, ~1 minute)
-git clone --filter=blob:none https://github.com/fromage3900/environment-portfolio.git
-cd environment-portfolio/BS_GodFile
+git clone --filter=blob:none https://github.com/fromage3900/MelodiaMelusinaV2.git
+cd MelodiaCollab
 
 # 2. That's it! All source code, configs, and docs are available.
 ```

@@ -7,7 +7,7 @@
 ## Option A: Sparse Checkout (Recommended -- 50 MB)
 
 ```powershell
-git clone --filter=blob:none --no-checkout https://github.com/fromage3900/environment-portfolio.git MelodiaCollab
+git clone --filter=blob:none --no-checkout https://github.com/fromage3900/MelodiaMelusinaV2.git MelodiaCollab
 cd MelodiaCollab
 git sparse-checkout init --cone
 git sparse-checkout set `
@@ -17,10 +17,6 @@ git sparse-checkout set `
   deploy/surreal_greybox `
   Content/Python/gmm `
   Content/Python/material_lib.py `
-  Content/Python/create_zunzun_bps.py `
-  Content/Python/import_zundamon.py `
-  Content/Python/resolve_material_crosswalk.py `
-  Content/Python/fix_vertical_slice_p0.py `
   Tools `
   Docs/ONBOARDING_LIVE_COLLAB.md `
   Docs/ZUNZUN_FAMILY_INTEGRATION.md `

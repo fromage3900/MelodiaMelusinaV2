@@ -46,7 +46,7 @@ python deploy/orchestrator.py --orchestrate
 ```
 
 ### 4. For Devin (Alternative)
-Launch Devin and configure MCP with: `G:\EnvironmentPortfolio\BS_GodFile\.devin\mcp.json`
+Launch Devin and configure MCP with: `C:\EnvironmentPortfolio\BS_GodFile\.devin\mcp.json`
 
 ### 5. For Reliable AI Work
 

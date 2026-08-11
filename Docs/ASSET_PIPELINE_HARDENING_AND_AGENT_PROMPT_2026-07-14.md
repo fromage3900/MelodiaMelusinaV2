@@ -328,7 +328,7 @@ Each validator should output:
 Copy this prompt into the next agent/task that will execute the pipeline-hardening work:
 
 ```text
-You are working in G:\EnvironmentPortfolio\BS_GodFile. Your goal is to harden the long-term asset pipeline and streamline asset creation for NPCs, environments, gameplay assets, and materials.
+You are working in C:\EnvironmentPortfolio\BS_GodFile. Your goal is to harden the long-term asset pipeline and streamline asset creation for NPCs, environments, gameplay assets, and materials.
 
 Read these first:
 - Docs/ASSET_PIPELINE_HARDENING_AND_AGENT_PROMPT_2026-07-14.md

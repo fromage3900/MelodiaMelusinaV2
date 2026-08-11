@@ -438,7 +438,7 @@ if tick % 6 == 5:  # Every 6th tick
 
 **Test Web Component Generation:**
 ```bash
-cd G:\EnvironmentPortfolio\BS_GodFile
+cd C:\EnvironmentPortfolio\BS_GodFile
 python Content/Python/web_component_generator.py
 ```
 
