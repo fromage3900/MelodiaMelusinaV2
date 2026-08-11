@@ -2,19 +2,34 @@
 
 **Session type:** Cloud agent — MelodiaMelusinaV2 public + Lane C live-ops / 50 MB collab  
 **Authority plan:** `Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`  
-**Live-ops / Echo:** `Docs/LIVEOPS_GIT_SOP_2026-08-11.md` + `specs/echo_pipeline.json`
+**Live-ops / Echo:** `Docs/LIVEOPS_GIT_SOP_2026-08-11.md` + `specs/echo_pipeline.json`  
+**Owner PIE:** `Docs/Handoffs/PIE_2026-08-11.md` · **This week:** `Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md`
+
+## PIE — 2026-08-11 (owner, MelodiaMelusinaV2)
+
+**Runtime findings (not static):**
+1. Rhythm highway shows **no notes** — beat-hit path unusable (chart/session/data).
+2. **Sir Melodious** still missing from **CTRL party switch**.
+3. **UI backgrounds still transparent** (readability fail; text-alpha fix may be incomplete or not in this process).
+4. On **L_KaleidoNave**: traversal, QuillScript NPC trigger, and battle trigger **assets/actors present but non-functional**.
+
+**Consequence:** First Dream loop remains unproven. All foundation runtime gates stay OPEN.  
+**Next focus:** One map, one interaction, one battle start — log + viewport proof before rhythm or Sir polish.  
+**Grok share pack** landed on this branch (Grok GitHub write was 403).
 
 ## Done this session
 
 - Repo public (owner). Foundation PR #1.
 - Echo-aligned live-ops SOP; collab slices docs50/slice50/placement50; dual 50/512 LFS budgets; hooks allow `cursor/*`; `lfs_health_audit.py`; CI `base..HEAD` budget; duplicate inventory (33 tracked, no delete).
 - RestorePartyAfterBattle wired; Zbrush untracked; MeshBlend EOL.
+- Scan→ZBrush→Rokoko SOP; Grok research fold-in; SuperGrok share docs (PIE, RT leverage, env pack shortlist).
 
 ## Next (Windows — Lane A / E / F)
 
-1. Closed-editor build + PIE highway + Campaign 1 real-input `runtime` ledger row.
-2. `git lfs pull` EnvSandbox; measure `placement50` for Universal BP physics placement.
-3. Sculpt exports → `Imports/Sculpt/Inbox/` + `python Tools/sculpt_intake_check.py` before UE import.
+1. **RT-001** Quill visible → **RT-002** battle starts → **RT-003** opaque UI (before Sir/rhythm).
+2. Closed-editor build + PIE highway + Campaign 1 real-input `runtime` ledger row (after stock path works).
+3. `git lfs pull` EnvSandbox; measure `placement50` for Universal BP physics placement.
+4. Sculpt exports → `Imports/Sculpt/Inbox/` + `python Tools/sculpt_intake_check.py` before UE import.
 
 Older handoff content below is historical (2026-08-08 and earlier).
 
