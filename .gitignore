@@ -166,6 +166,12 @@ Tools/*
 !Tools/ui_lint.py
 !Tools/record_gate.py
 !Tools/echo_run.py
+# Agent infrastructure 2026-08-11 (intake fan-out tooling)
+!Tools/model_router.py
+!Tools/playtest_harness.py
+!Tools/video_review_lane.py
+!Tools/memory_index.py
+!Tools/lane_dispatcher.py
 !Tools/BlenderAddons/
 !Tools/BlenderAddons/**
 melodia-design-system/
