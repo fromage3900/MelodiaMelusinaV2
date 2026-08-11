@@ -155,6 +155,16 @@ Imports/Sculpt/Inbox/*
 Imports/Sculpt/Archive/*
 !Imports/Sculpt/Inbox/README.md
 !Imports/Sculpt/Archive/README.md
+!Imports/Mocap/
+Imports/Mocap/*
+!Imports/Mocap/Rokoko/
+Imports/Mocap/Rokoko/*
+!Imports/Mocap/Rokoko/Inbox/
+!Imports/Mocap/Rokoko/CharacterRef/
+Imports/Mocap/Rokoko/Inbox/*
+Imports/Mocap/Rokoko/CharacterRef/*
+!Imports/Mocap/Rokoko/Inbox/README.md
+!Imports/Mocap/Rokoko/CharacterRef/README.md
 Tools/*
 !Tools/Cascadeur/
 !Tools/Cascadeur/Melusina/

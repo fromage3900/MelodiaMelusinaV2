@@ -2,7 +2,7 @@
 
 **For:** dropping new sculpts into MelodiaMelusinaV2 without burning LFS or creating redirectors.  
 **Echo stage:** `author` only until the mesh is imported, compiled, and (if gameplay-facing) covered by static/runtime gates.  
-**Companion:** [`LIVEOPS_GIT_SOP_2026-08-11.md`](LIVEOPS_GIT_SOP_2026-08-11.md), [`GIT_BATCH_DISCIPLINE.md`](GIT_BATCH_DISCIPLINE.md)
+**Companion:** [`MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md`](MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md) (Polycam/Kiri → ZBrush → inbox), [`LIVEOPS_GIT_SOP_2026-08-11.md`](LIVEOPS_GIT_SOP_2026-08-11.md), [`GIT_BATCH_DISCIPLINE.md`](GIT_BATCH_DISCIPLINE.md)
 
 ## While you sculpt (now)
 

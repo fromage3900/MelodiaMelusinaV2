@@ -68,7 +68,7 @@ Use `placement50` on a machine that can `git lfs pull` EnvSandbox. Cloud checkou
 ## Sculpt drops (parallel with play-proof)
 
 While sculpting: export to `Imports/Sculpt/Inbox/`, run `python Tools/sculpt_intake_check.py`, then one UE import + one LFS commit.  
-Full SOP: [`Docs/SCULPT_ASSET_INTAKE_2026-08-11.md`](SCULPT_ASSET_INTAKE_2026-08-11.md). Never FBX-import onto an existing `.uasset` path.
+Full SOP: [`Docs/SCULPT_ASSET_INTAKE_2026-08-11.md`](SCULPT_ASSET_INTAKE_2026-08-11.md). Phone scan → ZBrush → Rokoko: [`Docs/MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md`](MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md). Never FBX-import onto an existing `.uasset` path.
 
 ## Forbidden
 

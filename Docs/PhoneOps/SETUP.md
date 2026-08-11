@@ -92,6 +92,14 @@ Primary parallel coding lane on the UE workstation:
 
 See [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) and [`.jcode/README.md`](../../.jcode/README.md). Cursor iOS cloud agents remain the phone/PR lane.
 
+## Capture / mocap (phone + desktop)
+
+Scan on phone (**Polycam** primary, **Kiri** secondary) → always **ZBrush** on desktop → `Imports/Sculpt/Inbox`.  
+Rokoko: Live Link rehearses on `SK_MocapSource`; game clips are FBX → `Imports/Mocap/Rokoko/Inbox` → retarget.  
+Do not push LFS meshes from iOS — sync FBX to the Windows tree, then intake/import there.
+
+Full SOP: [`Docs/MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md`](../MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md).
+
 ## What phone agents cannot do well
 
 - Live Unreal editor / Blender viewport taste checks
@@ -99,5 +107,6 @@ See [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) and [`.jcode/README.md`](
 - Gumroad / external publish
 - Final Sakura art direction
 - Running the local jcode TUI (needs the Windows box)
+- LFS mesh / mocap pushes from iOS
 
 Use phone agents for docs, queues, audits, PR hygiene, and bounded Python/doc fixes; park visual look-dev and jcode swarm for desktop.
