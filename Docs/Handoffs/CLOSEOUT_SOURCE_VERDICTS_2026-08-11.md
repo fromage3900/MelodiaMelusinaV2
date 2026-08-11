@@ -50,3 +50,22 @@ is therefore meaningful on this path. No HOLD from sequencing.
   15:02-15:03, same project, both `-log`) with Monolith on 9316 held by 35236. Per the
   one-editor rule, no editor work (PIE, graph reads, T3D) was attempted; this document
   is source-only. Confirm one instance before Campaign 1.
+
+---
+
+## UI Transparency Audit — 2026-08-11 (editor live, Monolith 9316)
+
+**FIXED:** WBP_Battle_Rhythm JudgementText / ComboText / ClockSourceText were authored
+ColorAndOpacity A=0 (invisible). Nothing sets the color at runtime (SetJudgment/
+ShowBattleStatus write text only; widget graph has zero color nodes; C++ stores values
+only). The closeout Step-4 evidence "ShowRhythmGrade renders" could not pass.
+
+- Fix: ui_query set_widget_property ColorAndOpacity = flat rgba JSON {R,G,B,A}
+  (import-text shape does NOT persist — this is the line-228 readback quirk; flat rgba
+  shape compiles + reads back correctly). Compiled 0 errors, saved, readback verified:
+  (SpecifiedColor=(R=1,G=1,B=1,A=1)) on all three.
+- Clean: WBP_MelodiaRhythmHighway lane labels white opaque, label text Q/W/O/P
+  (names Lane_D/F/J/K legacy only). HitWindow/MenuOpenButtonLabel/overlays correct.
+- Flags: RhythmPrompt (BP_MelodiaRhythmPrompt_C) Collapsed by default — verify shown on
+  rhythm start in Campaign 1. WBP_MelodiaRhythmHighway = likely duplicate-tree candidate
+  for closeout Step 9 sweep (live HUD is WBP_Battle_Rhythm / UMelodiaRhythmHUDWidget).

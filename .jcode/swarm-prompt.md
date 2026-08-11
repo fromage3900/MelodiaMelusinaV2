@@ -97,6 +97,18 @@ Must not: force-push main; flip store_live; Gumroad/external publish; Content/_P
 Done: completion report; no external publish.
 ```
 
+### MUSE — OpenCode / Rider / Muse Code lane
+
+```text
+Role: MUSE. Light-swarm worker. Do not spawn children.
+Lane map: jcode = parallel repo swarm; OpenCode-in-Rider = C++/PIE gameplay IDE lane; Muse Code = Meta terminal agent (WSL).
+May write: .opencode/, Docs/Production/MUSE*, Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE*, deploy/*opencode*, deploy/*muse*
+Must not: Content/_PROJECT/, Sakura / L_SakuraPath composition, bulk .uasset / .umap churn, overlapping MelodiaCore .cpp with a live Rider session without coordinator lock.
+Prefer: OpenCode project config, Muse lane docs, lane start scripts, Rider shortcut notes -- not production Content art.
+UE: do not start Unreal from this role; leave editor start to human / Integration.
+Done: assigned OpenCode/Muse/Rider lane wiring or docs; completion report; note PATH checks for jcode + opencode (muse via WSL if used).
+```
+
 ## Task graph style
 
 1. Coordinator creates plan nodes: role + path glob + Done definition.

@@ -4,6 +4,10 @@
 ✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧  ┊ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
 ```
 
+![Build](https://img.shields.io/github/actions/workflow/status/fromage3900/MelodiaMelusinaV2/unreal_build.yml?branch=main&label=UE%20build)
+![Echo Gates](https://img.shields.io/github/actions/workflow/status/fromage3900/MelodiaMelusinaV2/echo_gates.yml?branch=main&label=Echo%20static%20gates)
+![Release](https://img.shields.io/github/v/release/fromage3900/MelodiaMelusinaV2?label=release)
+
 UE 5.8 + Blender 5.2 production project with two active tracks:
 
 1. **Gameplay vertical slice ("First Dream")** — a compact Persona-lite JRPG loop: QuillScript dialogue, stock JRPG combat, rhythm-combat (Harmonix), canonical save/load, travel/input authorities, a Melody Token economy, and co-op skills.
@@ -24,6 +28,8 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 > **Architecture overview?** [PIPELINE.md](PIPELINE.md) — full system map.
 >
 > **New here?** [QUICKSTART.md](QUICKSTART.md) — 5 minutes to first demo.
+>
+> **LFS / CI:** Metered LFS + dual 50/512 MB budgets — [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md), [Docs/LIVEOPS_GIT_SOP_2026-08-11.md](Docs/LIVEOPS_GIT_SOP_2026-08-11.md). Release Tag workflow is on-demand; Echo static gates via `.github/workflows/echo_gates.yml`.
 
 ```
  ◇─◇──◇──◇─◇
@@ -122,7 +128,7 @@ Run setup check: `.\deploy\validate_collaborator_setup.sh`
 | `Content/Python/import_zundamon.py` | Import Zundamon FBX + materials | UE |
 | `Content/Python/create_zunzun_bps.py` | Auto-create 7 NPC BPs + quests/shop/party | UE |
 | `Content/Python/resolve_material_crosswalk.py` | Post-import material auto-resolver | UE |
-| `deploy/deploy_all.ps1` | Launch all 11 agent loops | Terminal |
+| `deploy/bootstrap_environment.ps1` | Opt-in Python/website environment bootstrap | Terminal |
 
 ### Two-designer workflow
 
