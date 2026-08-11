@@ -6,7 +6,7 @@ param(
     [int]$IntervalSeconds = 5
 )
 
-$ProjectRoot = "G:\EnvironmentPortfolio"
+$ProjectRoot = "C:\EnvironmentPortfolio"
 $AuditDir = "$ProjectRoot\BS_GodFile\Saved\Audit"
 $StateFile = "$AuditDir\spout_stream_state.json"
 

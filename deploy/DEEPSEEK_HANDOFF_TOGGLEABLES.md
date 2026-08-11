@@ -17,7 +17,7 @@ Make Surreal’s “toggle” UI actually control scene/viewport state — espec
 
 | Role | Path |
 |------|------|
-| **Edit SSOT** | `G:\EnvironmentPortfolio\BS_GodFile\deploy\` |
+| **Edit SSOT** | `C:\EnvironmentPortfolio\BS_GodFile\deploy\` |
 | Live Blender 5.1 | `C:\Users\froma\AppData\Roaming\Blender Foundation\Blender\5.1\scripts\addons\` |
 | Sync after edits | `deploy\sync_surreal_to_live.ps1` then F3 → Reload Scripts (or restart Blender) |
 

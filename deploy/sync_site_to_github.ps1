@@ -16,7 +16,7 @@ $source     = Join-Path $scriptRoot "my-site-clean"
 if (Test-Path "C:\EnvironmentPortfolio\_github_deploy") {
     $dest = "C:\EnvironmentPortfolio\_github_deploy"
 } else {
-    $dest = "G:\EnvironmentPortfolio\_github_deploy"
+    $dest = "C:\EnvironmentPortfolio\_github_deploy"
 }
 
 # --- Header ---------------------------------------------------------------
@@ -37,7 +37,7 @@ if (-not (Test-Path $source)) {
 }
 if (-not (Test-Path $dest)) {
     Write-Host "  [FAIL] Worktree not found: $dest"
-    Write-Host "         Expected a git worktree at G:\EnvironmentPortfolio\_github_deploy"
+    Write-Host "         Expected a git worktree at C:\EnvironmentPortfolio\_github_deploy"
     exit 1
 }
 

@@ -42,7 +42,7 @@ Remaining editor-session work (in order): run the fixed PIE smoke gate on the au
 ## Verified state (2026-08-08, before editor relaunch)
 
 - **TouchDesigner preserved (A0 done, commit `4f0d1ede`).** The live project was saved
-  (`G:\EnvironmentPortfolio\_TouchDesigner\grandmaster_melodia\grandmaster_melodia7.9.toe`) and
+  (`C:\EnvironmentPortfolio\_TouchDesigner\grandmaster_melodia\grandmaster_melodia7.9.toe`) and
   exported to tracked, diffable `.tdn` files:
   `_TouchDesigner/grandmaster_melodia/networks/{project1_full,osc,audio,postfx}.tdn`
   (project1_full = 2.68 MB, full embed incl. DAT code). Canonical

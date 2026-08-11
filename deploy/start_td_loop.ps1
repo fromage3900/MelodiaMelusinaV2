@@ -7,7 +7,7 @@ param(
     [string]$SentinelName = "AGENT_LOOP_TICK_td_orch"
 )
 
-$ProjectRoot = "G:\EnvironmentPortfolio"
+$ProjectRoot = "C:\EnvironmentPortfolio"
 $SentinelPath = "$ProjectRoot\BS_GodFile\Saved\Audit\$SentinelName"
 $StopPath = "$ProjectRoot\BS_GodFile\Saved\Audit\td_loop_STOP"
 $TdBridge = "$ProjectRoot\BS_GodFile\Content\Python\td_bridge.py"

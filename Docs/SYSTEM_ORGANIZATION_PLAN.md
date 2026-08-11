@@ -2,7 +2,7 @@
 
 ## EXECUTED (2026-06-25)
 - Cleared Epic Vault Cache (74 GB), UE5.7 shader DDC (22 GB), Temp (8 GB) → **C: free space: 6.4 GB → 110.8 GB**.
-- Extracted and moved 10 asset packs from Downloads into `G:\EnvironmentPortfolio\_AssetLibrary\_Incoming\`: Brushes_5PackVfxmed, Brushes_AlphasStylized, Brushes_BlenderStylized, Brushes_GrutComplete, Brushes_InletMSK, Brushes_LandscapeBundle2020, Brushes_SubstancePainterStylized, Brushes_ZBrushOrb_Blender, Meshes_RockForms, Tool_FloorGenerator3. Source zips/rars deleted from Downloads.
+- Extracted and moved 10 asset packs from Downloads into `C:\EnvironmentPortfolio\_AssetLibrary\_Incoming\`: Brushes_5PackVfxmed, Brushes_AlphasStylized, Brushes_BlenderStylized, Brushes_GrutComplete, Brushes_InletMSK, Brushes_LandscapeBundle2020, Brushes_SubstancePainterStylized, Brushes_ZBrushOrb_Blender, Meshes_RockForms, Tool_FloorGenerator3. Source zips/rars deleted from Downloads.
 - Still open from this plan: MooaToon engine build decision, UE 5.6/5.7 uninstall decision, legacy MelodiaMelusina texture pull, Quixel Bridge install (not present on this machine).
 
 
@@ -51,7 +51,7 @@ I'm flagging these rather than acting — they're tens to hundreds of GB of crea
 ## 5. Asset inventory for the environment-design portfolio
 
 ### Already organized and in active use
-`G:\EnvironmentPortfolio\_AssetLibrary\` (26.8 GB project total) — this is your curated, ready-to-use library:
+`C:\EnvironmentPortfolio\_AssetLibrary\` (26.8 GB project total) — this is your curated, ready-to-use library:
 - `Surfaces_CC0\` — 17 CC0 PBR material sets (Bricks051/066, Carpet013, Fabric045, Ground037, Marble006/012, Metal007/027/032, PavingStones070/092, Plaster001/003, Tiles074/093/101, WoodFloor043), each with full PBR maps + `.blend`/`.usdc`/`.mtlx` variants.
 - `Greybox_Kit\` — 8 modular blockout meshes (blocks, columns, walls, steps, pillars) for level layout.
 - `Stylization\` — 11 toon-shading utility textures (dither, hatch, flow, ramps, noise) — these directly back the `M_Master_Toon_Universal` material system.

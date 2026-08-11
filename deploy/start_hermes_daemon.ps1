@@ -5,7 +5,7 @@ param(
     [switch]$RunOnce
 )
 
-$ProjectRoot = "G:\EnvironmentPortfolio\BS_GodFile"
+$ProjectRoot = "C:\EnvironmentPortfolio\BS_GodFile"
 $AuditDir = "$ProjectRoot\Saved\Audit"
 
 if ($Status) {

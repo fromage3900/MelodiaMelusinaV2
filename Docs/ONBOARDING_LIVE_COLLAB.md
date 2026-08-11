@@ -18,7 +18,7 @@
 - VRM Importer v4.4 -- character model import
 - LiveLink v3.3 -- FBX streaming to Unreal
 
-**Unreal project:** `G:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject`
+**Unreal project:** `C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject`
 
 ---
 
@@ -144,7 +144,7 @@ POST http://127.0.0.1:9316/mcp
 
 ### 5a. Generate Voice Lines
 ```powershell
-cd G:\EnvironmentPortfolio\BS_GodFile\Tools
+cd C:\EnvironmentPortfolio\BS_GodFile\Tools
 $env:PYTHONIOENCODING = "utf-8"
 python generate_all_voices.py
 # -> 102 WAVs across 7 characters
@@ -196,7 +196,7 @@ Hit **Play** (Alt+P). What you should see:
 
 ### 6c. Smoke Test
 ```powershell
-cd G:\EnvironmentPortfolio\BS_GodFile\Content\Python
+cd C:\EnvironmentPortfolio\BS_GodFile\Content\Python
 python -m gmm.gameplay_smoke
 ```
 

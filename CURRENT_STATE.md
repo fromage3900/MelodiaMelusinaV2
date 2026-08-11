@@ -57,7 +57,7 @@ has not been re-run, so treat that finding as still current until a fresh PIE wa
   stub in the 08-05 catalog. Always assert `full_bytes == returned_bytes`.
 
 **TouchDesigner bridge:**
-- The real TD project lives at `G:\EnvironmentPortfolio\_TouchDesigner\grandmaster_melodia\` (G: is a
+- The real TD project lives at `C:\EnvironmentPortfolio\_TouchDesigner\grandmaster_melodia\` (G: is a
   real mounted drive). `BS_GodFile\_TouchDesigner\` is a stale 2026-07-24 fragment — treat as dead.
   The `G:\` paths in `Content/Python/td_bridge.py` and `deploy/start_*.ps1` are correct, not bugs.
   `deploy/touchdesigner_validator.py`'s `PROJECT_ROOT` was wrongly pointed at `G:` (the UE project's
@@ -312,7 +312,7 @@ The editor appeared to "crash on relaunch" repeatedly overnight, but the real pr
 
 **Going forward, always launch this project as:**
 ```powershell
-Start-Process -FilePath "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe" -ArgumentList '"G:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject"','-unattended' -PassThru
+Start-Process -FilePath "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe" -ArgumentList '"C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject"','-unattended' -PassThru
 ```
 via the PowerShell tool (not Bash's `cmd.exe /c start`, which did not reliably produce a surviving process in this environment — verify with `Get-Process -Id $p.Id`, not just `tasklist`, immediately after).
 

@@ -77,7 +77,7 @@ Server mocks Blender; client tests the UE-side protocol on port **9876**.
 ```powershell
 $dst = "$env:APPDATA\Blender Foundation\Blender\5.1\extensions\user_default\live_link_unreal"
 New-Item -ItemType Directory -Force -Path $dst | Out-Null
-Copy-Item -Recurse -Force "G:\EnvironmentPortfolio\BS_GodFile\Tools\BlenderLiveLink\*" $dst
+Copy-Item -Recurse -Force "C:\EnvironmentPortfolio\BS_GodFile\Tools\BlenderLiveLink\*" $dst
 ```
 
 Restart Blender → enable extension in Preferences if needed.

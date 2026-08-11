@@ -5,7 +5,7 @@ param(
     [string]$Action = "status"
 )
 
-$PROJECT_ROOT = "G:\EnvironmentPortfolio\BS_GodFile"
+$PROJECT_ROOT = "C:\EnvironmentPortfolio\BS_GodFile"
 $DAEMON_SCRIPT = Join-Path $PROJECT_ROOT "deploy\blessing_evolution_daemon.py"
 
 Write-Host "[AgentBridge] Checking status..." -ForegroundColor Cyan

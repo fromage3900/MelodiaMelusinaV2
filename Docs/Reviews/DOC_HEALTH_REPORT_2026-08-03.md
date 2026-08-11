@@ -322,36 +322,36 @@ Scanned: `Source/` + MelodiaCore, QuillScript, Monolith, UEBlueprintMCP plugin d
 
 ## Stale Drive Paths
 
-- `_ROADBLOCKS_2026-07-31.md:108` — Stale drive path: `G:\EnvironmentPortfolio\`
+- `_ROADBLOCKS_2026-07-31.md:108` — Stale drive path: `C:\EnvironmentPortfolio\`
 - `_SESSION_HANDOFF.md:5` — Stale drive path: `F:\ollama_models`
 - `_SESSION_HANDOFF.md:70` — Stale drive path: `F:\ollama_models`
-- `CURRENT_STATE.md:122` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\BS_GodFile`
-- `INTEGRATION_WORKFLOW.md:439` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile`
-- `README.md:166` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\Tools`
-- `WEBSITE_MAINTENANCE.md:146` — Stale drive path: `G:\EnvironmentPortfolio\_github_deploy`
-- `WEBSITE_MAINTENANCE.md:176` — Stale drive path: `G:\EnvironmentPortfolio\_github_deploy\`
-- `WORKING_SOLUTION.md:49` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\`
+- `CURRENT_STATE.md:122` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile`
+- `INTEGRATION_WORKFLOW.md:439` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile`
+- `README.md:166` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\Tools`
+- `WEBSITE_MAINTENANCE.md:146` — Stale drive path: `C:\EnvironmentPortfolio\_github_deploy`
+- `WEBSITE_MAINTENANCE.md:176` — Stale drive path: `C:\EnvironmentPortfolio\_github_deploy\`
+- `WORKING_SOLUTION.md:49` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\`
 - `Docs\_Reference\MELODIA_ACFU_QUILLSCRIPT_COMPATIBILITY_MATRIX_2026-07-25.md:30` — Stale drive path: `G:\ueprojects\TurnBasedjRPGTemplate`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:41` — Stale drive path: `G:\EnvironmentPortfolio\_TouchDesigner\grandmaster_melodia\`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:41` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\Plugins\MelodiaCore\Source\MelodiaCore\`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:41` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\BS_GodFile`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:140` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\BS_GodFile`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:150` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:165` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\Imports\UI\`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:178` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:179` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\BS_GodFile`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:195` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:204` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\Imports\Data\`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:213` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile`
-- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:227` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile`
-- `Docs\ASSET_PIPELINE_HARDENING_AND_AGENT_PROMPT_2026-07-14.md:331` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile`
-- `Docs\BLENDER_LIVELINK.md:80` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\Tools\BlenderLiveLink\`
-- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:5` — Stale drive path: `G:\EnvironmentPortfolio`
-- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:47` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\deploy\`
-- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:54` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\deploy\sync_surreal_to_live`
-- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:71` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\Tools\ensure_blender_mcp`
-- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:269` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile`
-- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:453` — Stale drive path: `G:\EnvironmentPortfolio\BS_GodFile\deploy\sync_surreal_to_live`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:41` — Stale drive path: `C:\EnvironmentPortfolio\_TouchDesigner\grandmaster_melodia\`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:41` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\Plugins\MelodiaCore\Source\MelodiaCore\`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:41` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:140` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:150` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:165` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\Imports\UI\`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:178` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:179` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:195` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:204` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:213` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile`
+- `Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md:227` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile`
+- `Docs\ASSET_PIPELINE_HARDENING_AND_AGENT_PROMPT_2026-07-14.md:331` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile`
+- `Docs\BLENDER_LIVELINK.md:80` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\Tools\BlenderLiveLink\`
+- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:5` — Stale drive path: `C:\EnvironmentPortfolio`
+- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:47` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\deploy\`
+- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:54` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\deploy\sync_surreal_to_live`
+- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:71` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\Tools\ensure_blender_mcp`
+- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:269` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile`
+- `Docs\HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md:453` — Stale drive path: `C:\EnvironmentPortfolio\BS_GodFile\deploy\sync_surreal_to_live`
 - *... and 151 more*
 
 ## Stale Docs (>14 Days)

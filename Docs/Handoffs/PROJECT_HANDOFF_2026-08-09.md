@@ -7,7 +7,7 @@ document is authoritative.
 ## Source of truth
 
 - Primary local workspace: `C:\EnvironmentPortfolio`
-- Backup/mirror target: `G:\EnvironmentPortfolio`
+- Backup/mirror target: `C:\EnvironmentPortfolio`
 - Active Unreal repository: `C:\EnvironmentPortfolio\BS_GodFile`
 - Active Unreal branch at closeout: `codex/melodia-main-sync-20260809`
 - Final local Unreal HEAD at closeout: the final handoff-ledger commit containing this file
@@ -16,9 +16,9 @@ document is authoritative.
 - Website repository: `C:\EnvironmentPortfolio\my-site-clean`
 - Website branch: `main`; local checkout was clean and recorded `137` commits ahead / `14` behind
   its configured GitHub remote at inspection time.
-- G: entry points: use `G:\EnvironmentPortfolio\BS_GodFile` for Unreal and
-  `G:\EnvironmentPortfolio\my-site-clean` for the website. The preserved root
-  `G:\EnvironmentPortfolio\.git` is a legacy website/ToucheDesigner checkout on
+- G: entry points: use `C:\EnvironmentPortfolio\BS_GodFile` for Unreal and
+  `C:\EnvironmentPortfolio\my-site-clean` for the website. The preserved root
+  `C:\EnvironmentPortfolio\.git` is a legacy website/ToucheDesigner checkout on
   `feature/touchdesigner-mcp-integration` with the `my-site` remote; it is not authoritative for
   the Unreal project and its LFS filter currently prevents a clean root status check.
 

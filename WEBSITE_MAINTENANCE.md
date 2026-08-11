@@ -143,7 +143,7 @@ To add a nav link:
 
 ### Deploy script (`deploy/sync_site_to_github.ps1`)
 
-Copies `my-site-clean/` to `G:\EnvironmentPortfolio\_github_deploy/` (git worktree), then:
+Copies `my-site-clean/` to `C:\EnvironmentPortfolio\_github_deploy/` (git worktree), then:
 
 ```powershell
 git add -A
@@ -173,7 +173,7 @@ The site references assets at `../generated/assets/...` paths. These must exist 
 
 ### "Deploy script says worktree not found"
 
-The script expects the git worktree at `G:\EnvironmentPortfolio\_github_deploy\`. If it's missing:
+The script expects the git worktree at `C:\EnvironmentPortfolio\_github_deploy\`. If it's missing:
 
 ```powershell
 # From the EnvironmentPortfolio repo root:

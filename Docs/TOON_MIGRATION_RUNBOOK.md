@@ -115,7 +115,7 @@ Build `M_Master_Toon` first via `setup_sdf_materials.py` pattern or MCP; **wire 
 ```powershell
 # Example: Batch 3 cathedral SDF pack
 $src = "G:\Melodia\Content\_PROJECT\04_Materials\SDF"
-$dst = "G:\EnvironmentPortfolio\BS_GodFile\Content\EnvSandbox\Materials\Masters"
+$dst = "C:\EnvironmentPortfolio\BS_GodFile\Content\EnvSandbox\Materials\Masters"
 robocopy $src $dst M_SDF_CathedralVault.uasset M_SDF_FlyingButtress.uasset /NFL /NDL
 # Textures referenced by those masters — copy to SDF/Textures/<Category>/
 ```

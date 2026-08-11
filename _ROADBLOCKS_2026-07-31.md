@@ -110,7 +110,7 @@ The original five-item checklist is partially complete: items 1, 2a, 2c, and 5a 
 - **New duplicate found 2026-07-31:** ~64 custom UI textures (`T_Melodia_*`, `SoftMG_*`) duplicated with identical names across `/Game/EnvSandbox/Textures/Melodia/GameUI/`, `/Game/EnvSandbox/Textures/Source/MelodiaGameUI/`, and partially in `/Game/EnvSandbox/Alphas_Melodia/` — unresolved, needs in-editor reference audit to pick the canonical copy; see Decision 032.
 
 ### (e) Tooling / pipeline
-- **17 of the 45 `.pyc` files in `Tools/__pycache__/` have no surviving `.py`.** The handoff recorded only one. Compiled paths inside them point at `G:\EnvironmentPortfolio\...`, so these are migration casualties.
+- **17 of the 45 `.pyc` files in `Tools/__pycache__/` have no surviving `.py`.** The handoff recorded only one. Compiled paths inside them point at `C:\EnvironmentPortfolio\...`, so these are migration casualties.
 
   Recovered 2026-07-31: `generate_melodia_rules`, `export_melodia_rhythm_web_config`.
 
