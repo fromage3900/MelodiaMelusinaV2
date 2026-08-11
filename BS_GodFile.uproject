@@ -225,6 +225,10 @@
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/194bb68ad2204f65bb7b646b5b982b35"
 		},
 		{
+			"Name": "MelodiaCore",
+			"Enabled": true
+		},
+		{
 			"Name": "CommonUI",
 			"Enabled": true
 		},
