@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-page="melodia-gameplay-loop">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Melodia Core Gameplay Loop | Brennan Shepherd</title>
+<meta name="description" content="Melodia core gameplay loop dossier — ZenForest explore, rhythm battle, songcraft resolve, victory rank. Portfolio proof (not a SKU)." />
+<meta property="og:title" content="Melodia Core Gameplay Loop" />
+<meta property="og:description" content="Explore → encounter → 4-lane rhythm → songcraft resolve → victory. Portfolio gameplay proof." />
+<meta property="og:image" content="https://fromage3900.github.io/my-site/generated/social/og-default.jpg" />
+<meta property="og:url" content="https://fromage3900.github.io/my-site/wix/melodia-gameplay-loop.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="melodia-tokens.css">
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-fashion-editorial.css">
+<link rel="stylesheet" href="melodia-premium-system.css">
+<link rel="stylesheet" href="melodia-visual-breakdown.css">
+<link rel="stylesheet" href="portfolio-pages.css">
+<style>
+  .gp-softmg-strip {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.1rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid rgba(196, 154, 78, 0.28);
+    border-radius: 0.75rem;
+    background: rgba(20, 14, 28, 0.35);
+    transition: border-color 0.5s ease, background 0.5s ease;
+  }
+  .gp-softmg-strip[data-softmg-flash="1"] {
+    border-color: rgba(102, 217, 255, 0.65);
+    background: rgba(20, 14, 28, 0.5);
+  }
+  /* SoftMG breathe — parchment wash + ink-seal crest, swapped in for the
+     Combat gold/cyan corner crest. Reference: Saved/Audit/softmg_nikki_ref_notes.md */
+  html[data-mg-breathe="soft"] .gp-softmg-strip {
+    border-color: rgba(217, 165, 102, 0.45);
+    background:
+      linear-gradient(165deg, rgba(242, 230, 207, 0.14), rgba(20, 14, 28, 0.5)),
+      url("../generated/assets/melodia-game-ui/T_Melodia_SoftMG_Parchment.png") top right / 220px no-repeat;
+  }
+  .gp-softmg-crest {
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    background: url("../generated/assets/melodia-game-ui/T_Melodia_FiligreeCrestBaroque.png") center / contain no-repeat;
+    filter: drop-shadow(0 0 10px rgba(196, 154, 78, 0.35));
+    opacity: 0.75;
+    transition: opacity 0.6s ease, filter 0.6s ease, background-image 0.4s ease;
+  }
+  html[data-mg-breathe="soft"] .gp-softmg-crest {
+    opacity: 1;
+    background-image: url("../generated/assets/melodia-game-ui/T_Melodia_SoftMG_SealSP.png");
+    filter: drop-shadow(0 0 12px rgba(217, 165, 102, 0.5));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html[data-mg-breathe="soft"] .gp-softmg-crest {
+      animation: gp-softmg-breathe 2.4s ease-in-out infinite;
+    }
+  }
+  @keyframes gp-softmg-breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+  .gp-softmg-copy { min-width: 0; }
+  .gp-softmg-state {
+    margin: 0 0 0.3rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: #c49a4e;
+    text-transform: uppercase;
+  }
+  .gp-softmg-hint {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.82;
+  }
+  .gp-softmg-hint kbd {
+    font-family: var(--font-mono, monospace);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0.25rem;
+    padding: 0.05rem 0.35rem;
+    font-size: 0.78em;
+  }
+</style>
+</head>
+<body>
+<div class="melodia-shell fashion-mode game-mode" data-mg="soft" data-hero="editorial" data-visual="lookbook" data-effects="starfield,holo" data-nav-cta="melodia-melusina.html" data-nav-cta-label="Battle UI">
+<header class="shell-nav" aria-label="Portfolio navigation">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="index.html">Home</a>
+    <a href="application-hub.html">Hub</a>
+    <a href="melodia-melusina.html">Game UI</a>
+    <a href="design-specs.html">Specs</a>
+    <a href="melodia-stage-character.html">Stage</a>
+  </nav>
+  <a class="nav-cta button-premium" href="melodia-melusina.html?mode=ios">Game UI</a>
+</header>
+
+<main id="main">
+<section class="band" aria-labelledby="gp-title">
+  <div class="inner">
+    <p class="eyebrow game-eyebrow">MelodiaCore · portfolio proof</p>
+    <h1 id="gp-title">Core gameplay loop.</h1>
+    <p class="lede game-lede">One musical combat slice: explore ZenForest, trigger an encounter, perform Basic or Skill on a 4-lane highway, resolve songcraft effects, take the enemy turn, and now return through a native results screen before exploration resumes.</p>
+    
+    <div class="video-container" style="margin-top: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(196, 154, 78, 0.28); aspect-ratio: 16/9; background: #0b0811;">
+      <video controls style="width: 100%; height: 100%; object-fit: cover;" poster="../generated/assets/unreal/hero_l_wp_sakuradream_1920x1080.png">
+        <source src="../generated/assets/video/gameplay_reel.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="button-row" style="margin-top: 2rem;">
+      <a class="button primary button-premium-primary" href="https://github.com/fromage3900/BS_GodFile/releases" target="_blank" rel="noopener">Download Playable Build (Win64)</a>
+      <a class="button button-premium" href="melodia-melusina.html">Battle UI</a>
+      <a class="button button-premium" href="melodia-stage-character.html">Stage passport</a>
+      <a class="button button-premium" href="design-specs.html#game-ui">Design specs</a>
+    </div>
+  </div>
+</section>
+
+<section class="band paper" aria-labelledby="gp-flow-title">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Flow</p>
+        <h2 id="gp-flow-title">Explore → perform → resolve → breathe.</h2>
+      </div>
+      <p>Runtime authority is MelodiaCore. GMM stays the no-editor balance simulator.</p>
+    </div>
+    <ol class="kitbash-excluded" style="padding-left:1.25rem;">
+      <li><strong>Explore</strong> — <code>ZenForestTest</code> with Melusina / smoke pawn</li>
+      <li><strong>Encounter</strong> — overlap trigger → command phase HUD</li>
+      <li><strong>Perform</strong> — Basic or Skill; 4-lane note matching; Enhanced Input + touch</li>
+      <li><strong>Resolve</strong> — grade multipliers + songcraft <code>skill_effects</code> (toughness, break, heal, delay, modifiers)</li>
+      <li><strong>Enemy</strong> — response damage; affliction ticks</li>
+      <li><strong>Victory</strong> — session score, max combo, rank S–D → return to explore</li>
+    </ol>
+  </div>
+</section>
+
+<section class="band game-surface-band" aria-labelledby="gp-status-title">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Status</p>
+        <h2 id="gp-status-title">Shipped vs still in progress.</h2>
+      </div>
+    </div>
+    <ul class="kitbash-excluded">
+      <li><strong>Done</strong> — Enhanced Input, 4-lane hits, procedural audio, session combo/score, victory rank, native results widget</li>
+      <li><strong>In progress</strong> — songcraft effects / resolve wiring; presentation hooks; chart DataAsset polish; this dossier page</li>
+      <li><strong>Parked</strong> — full loot/XP progression until the loop feels solid in PIE</li>
+      <li><strong>Not a SKU</strong> — gameplay is portfolio proof; ornament kitbash is the store lane (<code>store_live</code> off)</li>
+    </ul>
+    <div class="gp-softmg-strip" data-softmg-strip aria-live="polite">
+      <span class="gp-softmg-crest" aria-hidden="true"></span>
+      <div class="gp-softmg-copy">
+        <p class="gp-softmg-state" data-softmg-state>Combat breathe — full pace.</p>
+        <p class="gp-softmg-hint">Type <kbd>G</kbd> <kbd>F</kbd> <kbd>C</kbd> <kbd>G</kbd> to swap Combat / SoftMG breathe — the choice carries to and from the <a href="melodia-melusina.html#phase-rhythm">Battle UI</a> and the new results flow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <span>Brennan Shepherd / Melodia gameplay</span>
+    <span>store_live off</span>
+  </div>
+</footer>
+</div>
+<script src="melodia-magical-girl.js"></script>
+<script src="melodia-starfield.js"></script>
+<script src="melodia-site-nav.js"></script>
+<script src="melodia-gameplay-loop-softmg.js"></script>
+</body>
+</html>

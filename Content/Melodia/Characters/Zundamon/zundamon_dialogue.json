@@ -1,0 +1,136 @@
+{
+  "character": "Zundamon",
+  "voice": "VOICEVOX Zundamon (speaker 3)",
+  "language": "ja",
+  "speech_quirk": "~na no da (なのだ)",
+  "pronoun": "boku (ぼく)",
+  "description": "First traveler the player meets. Zunda mochi fairy from the Green East. Comic relief, questkeeper, and shopkeeper. Speaks with a childlike Tohoku accent ending sentences with 'na no da'.",
+
+  "lines": [
+    {
+      "id": "zun_first_meet_01",
+      "text": "あっ！助けてほしいのだ！矢が木に引っかかっちゃったのだ...",
+      "context": "first_meeting",
+      "notes": "Player finds Zundamon stuck in a tree, Zunda Arrow tangled"
+    },
+    {
+      "id": "zun_first_meet_02",
+      "text": "ありがとうなのだ！ぼくはずんだもん。東の国から来たもちの妖精なのだ。",
+      "context": "introduction",
+      "notes": "After being freed from the tree"
+    },
+    {
+      "id": "zun_first_meet_03",
+      "text": "もちを追いかけてたら、気づいたらこの世界に来ちゃったのだ...",
+      "context": "backstory",
+      "notes": "Explaining how she crossed the dimensional rift"
+    },
+
+    {
+      "id": "zun_quest_board_01",
+      "text": "これがぼくのもちボードなのだ！ここでクエストを確認できるのだ。",
+      "context": "quest_mechanic_intro",
+      "notes": "Introducing the quest board mechanic"
+    },
+    {
+      "id": "zun_quest_01",
+      "text": "村に逃げたもちを三つ集めてほしいのだ！お礼にいいものをあげるのだ。",
+      "context": "quest_give_01",
+      "notes": "Quest: Mochi Retrieval"
+    },
+    {
+      "id": "zun_quest_02",
+      "text": "キッチンにもスライムが入り込んじゃったのだ...退治してくれるのだ？",
+      "context": "quest_give_02",
+      "notes": "Quest: Kitchen Chaos"
+    },
+    {
+      "id": "zun_quest_03",
+      "text": "ずんだアローを洞窟に落としちゃったのだ。矢がないと魔法が使えないのだ...",
+      "context": "quest_give_03",
+      "notes": "Quest: Zunda Arrow Lost"
+    },
+    {
+      "id": "zun_quest_complete_01",
+      "text": "すごいのだ！全部集めてくれたのだ！約束のお礼なのだ。",
+      "context": "quest_complete",
+      "notes": "Generic quest completion"
+    },
+
+    {
+      "id": "zun_shop_open_01",
+      "text": "いらっしゃいなのだ！今日のおすすめは抹茶もちなのだ。",
+      "context": "shop_open",
+      "notes": "Shop greeting"
+    },
+    {
+      "id": "zun_shop_buy_01",
+      "text": "良い選択なのだ！そのもち、すごく頭が良くなるのだ。",
+      "context": "shop_purchase",
+      "notes": "After buying Intelligence Mochi"
+    },
+    {
+      "id": "zun_shop_goodbye_01",
+      "text": "また来てほしいのだ！もちはいつでも用意してるのだ。",
+      "context": "shop_close",
+      "notes": "Leaving the shop"
+    },
+
+    {
+      "id": "zun_idle_01",
+      "text": "ふんふんふ〜ん♪ もち、もち、ずんだもち〜♪",
+      "context": "idle",
+      "notes": "Humming to herself while wandering"
+    },
+    {
+      "id": "zun_idle_02",
+      "text": "今日は何をしようかなのだ...あっ、また転びそうになったのだ。",
+      "context": "idle",
+      "notes": "Almost trips while thinking"
+    },
+    {
+      "id": "zun_unlucky_01",
+      "text": "うわっ！またもちが逃げたのだ！待ってほしいのだー！",
+      "context": "unlucky_event",
+      "notes": "Comic unlucky moment — mochi escapes"
+    },
+    {
+      "id": "zun_unlucky_02",
+      "text": "いたたた...また転んじゃったのだ。ぼく、ちょっと運が悪いのかも...",
+      "context": "unlucky_event",
+      "notes": "After tripping"
+    },
+
+    {
+      "id": "zun_power_reveal_01",
+      "text": "実はね、ぼくのこの不運、本当は力が強すぎて制御できてないだけなのだ。",
+      "context": "late_game_reveal",
+      "notes": "Late game: revealing her true nature"
+    },
+    {
+      "id": "zun_power_reveal_02",
+      "text": "次元を超える力を持ってるのだ。でも制御が難しくて...助けてほしいのだ。",
+      "context": "late_game_quest",
+      "notes": "Asking player to help stabilize her power"
+    },
+
+    {
+      "id": "zun_battle_start_01",
+      "text": "ぼくも戦うのだ！ずんだアロー、発射なのだ！",
+      "context": "battle_start",
+      "notes": "Battle dialogue — if she becomes a party member"
+    },
+    {
+      "id": "zun_battle_win_01",
+      "text": "やったのだ！勝利の祝いにもちを食べるのだ！",
+      "context": "battle_win",
+      "notes": "Victory celebration"
+    },
+    {
+      "id": "zun_mochi_rhythm_01",
+      "text": "もちつきのリズムに合わせるのだ！ぺったん、ぺったん！",
+      "context": "rhythm_minigame",
+      "notes": "Mochi pounding rhythm minigame (GMM integration)"
+    }
+  ]
+}

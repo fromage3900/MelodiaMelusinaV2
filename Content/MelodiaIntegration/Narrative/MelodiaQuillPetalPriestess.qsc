@@ -1,0 +1,54 @@
+@ Start
+
+? if: {melodia_q_echo_01_complete} == on
+
+  - Petal Priestess
+    The grove is quieter now. You carried its first echo with kindness.
+
+? else:
+
+  ? if: {melodia_priestess_greeted} == on
+
+    - Petal Priestess
+      The rhythm echo is still waiting among the lanterns. Take your time, then meet it with a clear heart.
+
+  ? else:
+
+    - Petal Priestess
+      Welcome, Melusina. The lanterns have been humming your name.
+
+    - Petal Priestess
+      A rhythm echo has gathered in the grove. How will you answer it?
+
+    * Answer with the melody you heard. | -> HarmonyAnswer
+    * Stay quiet and listen a little longer. | -> ListeningAnswer
+
+  ? endif
+
+? endif
+
+$ End
+
+<@> HarmonyAnswer
+
+- Melusina
+  I cannot finish its song for it. But I can answer, and let it know it was heard.
+
+-> AcceptFirstEcho
+
+<@> ListeningAnswer
+
+- Melusina
+  I will listen first. The answer can come when the echo has made room for it.
+
+-> AcceptFirstEcho
+
+<@> AcceptFirstEcho
+
+- Petal Priestess
+  Then follow the lanterns. Meet the echo gently, in your own time.
+
+$ Notify melodia:stat:priestess_first_echo:melodia_harmony:1
+$ Notify melodia:quest:melodia_q_echo_01
+$ melodia_priestess_greeted = on
+$ End

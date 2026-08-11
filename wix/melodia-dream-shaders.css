@@ -1,0 +1,722 @@
+/* Melodia Dream Shaders — web iridescence + Nikki dreamy glow (CSS "shader" stack) */
+
+:root {
+  /* Canonical Nikki iridescence ramp — hex fallback, OKLCH when supported */
+  --iri-cyan: #66d9ff;
+  --iri-gold: #ffe666;
+  --iri-purple: #cc99ff;
+  --iri-pearl: #f0dcf0;
+  --iri-seafoam: #7dd3c0;
+  --iri-lavender: #c8b6db;
+  --dream-iri-ramp: linear-gradient(
+    128deg,
+    var(--iri-cyan) 0%,
+    var(--iri-gold) 42%,
+    var(--iri-purple) 78%,
+    var(--iri-cyan) 100%
+  );
+  --pillar-iri-ramp: var(--dream-iri-ramp);
+  --holo-x: 0.5;
+  --holo-y: 0.5;
+  --dream-aurora: linear-gradient(
+    145deg,
+    rgba(255, 110, 180, 0.1) 0%,
+    rgba(102, 217, 255, 0.12) 22%,
+    rgba(255, 230, 102, 0.09) 42%,
+    rgba(204, 153, 255, 0.14) 68%,
+    rgba(232, 80, 140, 0.08) 86%,
+    rgba(125, 211, 192, 0.07) 100%
+  );
+  --dream-fresnel: 0.35;
+  --dream-hue-shift: 0deg;
+  --dream-mouse-x: 0.5;
+  --dream-mouse-y: 0.5;
+  --dream-sparkle-density: 1;
+}
+
+@supports (color: oklch(0.5 0.1 250)) {
+  :root {
+    --dream-iri-ramp: linear-gradient(
+      128deg,
+      oklch(0.82 0.11 220) 0%,
+      oklch(0.92 0.14 95) 42%,
+      oklch(0.78 0.14 300) 78%,
+      oklch(0.82 0.11 220) 100%
+    );
+    --pillar-iri-ramp: var(--dream-iri-ramp);
+  }
+
+  .melodia-shell[data-pillar="sakura"],
+  .image-card[data-pillar="sakura"],
+  .world-card.sakura,
+  .card.world-card-large:nth-child(1) {
+    --pillar-iri-ramp: linear-gradient(
+      128deg,
+      oklch(0.78 0.14 350) 0%,
+      oklch(0.9 0.12 85) 40%,
+      oklch(0.76 0.1 330) 100%
+    );
+  }
+
+  .melodia-shell[data-pillar="cathedral"],
+  .image-card[data-pillar="cathedral"],
+  .world-card.cathedral,
+  .card.world-card-large:nth-child(2) {
+    --pillar-iri-ramp: linear-gradient(
+      128deg,
+      oklch(0.72 0.14 285) 0%,
+      oklch(0.88 0.1 250) 45%,
+      oklch(0.7 0.16 300) 100%
+    );
+  }
+
+  .melodia-shell[data-pillar="grotto"],
+  .image-card[data-pillar="grotto"],
+  .world-card.castle,
+  .card.world-card-large:nth-child(3) {
+    --pillar-iri-ramp: linear-gradient(
+      128deg,
+      oklch(0.62 0.1 175) 0%,
+      oklch(0.78 0.12 95) 42%,
+      oklch(0.58 0.08 160) 100%
+    );
+  }
+
+  .melodia-shell[data-pillar="orrery"],
+  .image-card[data-pillar="orrery"],
+  .world-card.grotto,
+  .card.world-card-large:nth-child(4) {
+    --pillar-iri-ramp: linear-gradient(
+      128deg,
+      oklch(0.7 0.14 265) 0%,
+      oklch(0.85 0.12 220) 38%,
+      oklch(0.68 0.16 305) 100%
+    );
+  }
+}
+
+/* Pillar ramps — hex fallback when OKLCH unsupported */
+.melodia-shell[data-pillar="sakura"],
+.image-card[data-pillar="sakura"],
+.world-card.sakura {
+  --pillar-iri-ramp: linear-gradient(128deg, #ffb3c8 0%, #ffe666 42%, #e8a0c8 100%);
+}
+
+.melodia-shell[data-pillar="cathedral"],
+.image-card[data-pillar="cathedral"],
+.world-card.cathedral {
+  --pillar-iri-ramp: linear-gradient(128deg, #9b8cff 0%, #66d9ff 45%, #cc99ff 100%);
+}
+
+.melodia-shell[data-pillar="grotto"],
+.image-card[data-pillar="grotto"],
+.world-card.castle {
+  --pillar-iri-ramp: linear-gradient(128deg, #5cb8a8 0%, #d4b87a 42%, #3d8a7a 100%);
+}
+
+.melodia-shell[data-pillar="orrery"],
+.image-card[data-pillar="orrery"],
+.world-card.grotto {
+  --pillar-iri-ramp: linear-gradient(128deg, #7a9eff 0%, #66d9ff 38%, #b388ff 100%);
+}
+
+/* Ambient iridescent wash on every melodia page */
+.melodia-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.melodia-shell > .dream-aurora-layer,
+.melodia-shell > .dream-sparkle-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.melodia-shell > .dream-aurora-layer {
+  opacity: 0.18;
+  background:
+    radial-gradient(
+      ellipse 70% 40% at 70% 35%,
+      rgba(102, 217, 255, 0.08),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 50% 35% at 20% 70%,
+      rgba(204, 153, 255, 0.06),
+      transparent 52%
+    );
+  background-size: 100% 100%, 100% 100%;
+  mix-blend-mode: soft-light;
+  animation: none;
+}
+
+.melodia-shell > .dream-sparkle-layer {
+  opacity: 0.03;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(255, 230, 102, 0.9) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(102, 217, 255, 0.85) 0 1.2px, transparent 1.8px);
+  background-size:
+    calc(88px / var(--dream-sparkle-density)) calc(88px / var(--dream-sparkle-density)),
+    calc(142px / var(--dream-sparkle-density)) calc(142px / var(--dream-sparkle-density)),
+    calc(196px / var(--dream-sparkle-density)) calc(196px / var(--dream-sparkle-density));
+  animation: dream-sparkle-twinkle 6s ease-in-out infinite alternate;
+}
+
+.melodia-shell.dream-reduced > .dream-aurora-layer {
+  opacity: 0.28;
+}
+
+.melodia-shell > .dream-sparkle-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle, rgba(204, 153, 255, 0.9) 0 0.9px, transparent 1.7px);
+  background-size:
+    calc(64px / var(--dream-sparkle-density)) calc(64px / var(--dream-sparkle-density)),
+    calc(118px / var(--dream-sparkle-density)) calc(118px / var(--dream-sparkle-density));
+  animation: dream-sparkle-twinkle 4.5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes dream-aurora-drift {
+  0% { background-position: 0% 40%, 100% 60%, 0% 50%; filter: hue-rotate(0deg); }
+  50% { background-position: 20% 50%, 80% 40%, 50% 50%; filter: hue-rotate(18deg); }
+  100% { background-position: 8% 45%, 92% 55%, 100% 50%; filter: hue-rotate(-12deg); }
+}
+
+@keyframes dream-sparkle-twinkle {
+  0%, 100% { opacity: 0.02; transform: translateY(0); }
+  50% { opacity: 0.04; transform: translateY(-4px); }
+}
+
+/* Hero — iridescent fresnel rim + pearl bloom */
+.melodia-shell .hero {
+  position: relative;
+}
+
+.melodia-shell .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 90% 70% at calc(var(--dream-mouse-x) * 100%) calc(var(--dream-mouse-y) * 100%),
+      rgba(255, 230, 102, calc(0.08 + var(--dream-fresnel) * 0.06)),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 100%,
+      rgba(102, 217, 255, 0.06),
+      transparent 55%
+    );
+  mix-blend-mode: screen;
+}
+
+.melodia-shell .hero-media img {
+  filter: saturate(1.12) contrast(1.04) brightness(0.82)
+    drop-shadow(0 0 42px rgba(102, 217, 255, 0.08));
+}
+
+.melodia-shell .hero-media::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(8, 11, 19, 0.94),
+      rgba(18, 24, 45, 0.72) 44%,
+      rgba(102, 217, 255, 0.06) 72%,
+      rgba(204, 153, 255, 0.1)
+    ),
+    linear-gradient(0deg, rgba(8, 11, 19, 0.96), rgba(8, 11, 19, 0.1) 68%);
+}
+
+/* Dream bloom typography */
+.melodia-shell .hero h1 {
+  text-shadow:
+    0 0 40px rgba(102, 217, 255, 0.18),
+    0 0 80px rgba(204, 153, 255, 0.12),
+    0 2px 24px rgba(8, 11, 19, 0.45);
+}
+
+/* Full hero title iridescence — astral/hero only; paper bands stay solid ink */
+.melodia-shell .hero h1,
+.melodia-shell.fashion-mode .hero h1,
+.melodia-shell .band.astral .section-head h2,
+.melodia-shell .band.deep .section-head h2 {
+  background: var(--pillar-iri-ramp, var(--dream-iri-ramp));
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: dream-iri-text 11s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(204, 153, 255, 0.22));
+}
+
+.melodia-shell .hero h1 em,
+.melodia-shell .hero h1 strong {
+  font-style: italic;
+  background: var(--pillar-iri-ramp, var(--dream-iri-ramp));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: dream-iri-text 10s ease-in-out infinite;
+}
+
+@keyframes dream-iri-text {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.melodia-shell .hero .lede,
+.melodia-shell .hero .human-lede,
+.melodia-shell .section-head .human-lede {
+  text-shadow:
+    0 0 28px rgba(240, 220, 240, 0.16),
+    0 0 48px rgba(102, 217, 255, 0.08);
+  color: rgba(236, 228, 245, 0.92);
+}
+
+.melodia-shell .kicker,
+.melodia-shell .magazine-kicker,
+.melodia-shell .premium-kicker,
+.melodia-shell .eyebrow {
+  background: linear-gradient(
+    100deg,
+    var(--iri-gold) 0%,
+    var(--iri-cyan) 40%,
+    var(--iri-purple) 72%,
+    var(--iri-gold) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: dream-iri-text 8s ease-in-out infinite;
+  text-shadow: none;
+  filter: drop-shadow(0 0 10px rgba(255, 230, 102, 0.28));
+}
+
+/* SoftMG / Figma SoftMG_Baroque timeline — quieter 2.4s hue drift on titles */
+@keyframes dream-iri-softmg {
+  0%, 100% { background-position: 0% 45%; }
+  50% { background-position: 100% 55%; }
+}
+
+.melodia-shell[data-mg="soft"] .kicker,
+.melodia-shell[data-mg="soft"] .magazine-kicker,
+.melodia-shell[data-mg="soft"] .premium-kicker,
+.melodia-shell[data-mg="soft"] .eyebrow,
+.melodia-shell[data-mg="soft"] .game-eyebrow,
+.melodia-shell .game-ui-sheet-echo.is-soft .nikki-outfit-title,
+.melodia-shell .game-ui-title-chip h3,
+.melodia-shell .game-ui-field-hud .tag {
+  animation-name: dream-iri-softmg;
+  animation-duration: 2.4s;
+}
+
+.melodia-shell .game-ui-sheet-echo.is-soft .nikki-outfit-title,
+.melodia-shell .game-ui-title-chip h3 {
+  background: var(--pillar-iri-ramp, var(--dream-iri-ramp));
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 12px rgba(196, 154, 78, 0.28));
+}
+
+/* Paper bands: solid readable headlines — no transparent clip */
+.melodia-shell .band.paper .section-head h2,
+.melodia-shell .band.paper .section-head h2 em,
+.melodia-shell .band.paper .section-head h2 strong {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: var(--ink, rgba(236, 228, 245, 0.96));
+  animation: none;
+  filter: none;
+  text-shadow: 0 0 24px rgba(204, 153, 255, 0.12);
+}
+
+/* Iridescent glass nav */
+.melodia-shell .shell-nav {
+  background:
+    linear-gradient(135deg, rgba(245, 242, 237, 0.9), rgba(240, 220, 245, 0.82));
+  border: 1px solid rgba(201, 168, 106, 0.38);
+  box-shadow:
+    0 20px 60px rgba(34, 26, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 0 0 1px rgba(102, 217, 255, 0.14),
+    0 0 28px rgba(204, 153, 255, 0.08);
+}
+
+/* Cards — ridge iridescence on hover (box-shadow, no pseudo conflict) */
+.melodia-shell .premium-card:hover,
+.melodia-shell .card.premium-card:hover,
+.melodia-shell .alignment-card:hover,
+.melodia-shell .world-card:hover {
+  box-shadow:
+    0 0 0 1px rgba(102, 217, 255, 0.38),
+    0 0 18px rgba(255, 230, 102, 0.14),
+    0 0 36px rgba(204, 153, 255, 0.1),
+    0 12px 32px rgba(201, 168, 106, 0.18);
+  animation: dream-card-glow 5s ease-in-out infinite;
+}
+
+@keyframes dream-card-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(102, 217, 255, 0.38),
+      0 0 18px rgba(255, 230, 102, 0.14),
+      0 0 36px rgba(204, 153, 255, 0.1),
+      0 12px 32px rgba(201, 168, 106, 0.18);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 230, 102, 0.42),
+      0 0 22px rgba(204, 153, 255, 0.16),
+      0 0 40px rgba(102, 217, 255, 0.12),
+      0 12px 32px rgba(201, 168, 106, 0.2);
+  }
+}
+
+.melodia-shell .band.astral,
+.melodia-shell .band.night,
+.melodia-shell .band.deep {
+  position: relative;
+  overflow: hidden;
+}
+
+.melodia-shell .band.astral::before,
+.melodia-shell .band.night::before,
+.melodia-shell .band.deep::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(102, 217, 255, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(204, 153, 255, 0.07), transparent 38%),
+    radial-gradient(circle at 50% 50%, rgba(255, 230, 102, 0.04), transparent 50%);
+  animation: dream-band-pulse 14s ease-in-out infinite alternate;
+}
+
+@keyframes dream-band-pulse {
+  from { opacity: 0.65; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.04); }
+}
+
+/* Buttons — jewel refraction shimmer */
+.melodia-shell .button-premium-primary {
+  background: var(--pillar-iri-ramp, var(--dream-iri-ramp));
+  background-size: 220% 220%;
+  color: var(--void, #0d1224);
+  box-shadow:
+    0 8px 24px rgba(102, 217, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  animation: dream-btn-iri 8s ease-in-out infinite;
+}
+
+@keyframes dream-btn-iri {
+  0%, 100% { background-position: 0% 50%; box-shadow: 0 8px 24px rgba(102, 217, 255, 0.2); }
+  33% { background-position: 50% 50%; box-shadow: 0 8px 28px rgba(255, 230, 102, 0.22); }
+  66% { background-position: 100% 50%; box-shadow: 0 8px 28px rgba(204, 153, 255, 0.2); }
+}
+
+.melodia-shell .button-premium {
+  border-color: rgba(102, 217, 255, 0.22);
+  background: linear-gradient(
+    135deg,
+    rgba(26, 31, 58, 0.92),
+    rgba(42, 48, 85, 0.88)
+  );
+}
+
+/* Fashion paper/cloud bands — night glass wash */
+.melodia-shell.fashion-mode .band.paper,
+.melodia-shell.fashion-mode .band.cloud {
+  background:
+    linear-gradient(180deg, rgba(16, 23, 54, 0.94), rgba(7, 9, 18, 0.96)),
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(102, 217, 255, 0.08), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 8% 90%, rgba(204, 153, 255, 0.06), transparent 50%);
+}
+
+.melodia-shell .editorial-rule .diamond {
+  background: var(--dream-iri-ramp);
+  background-size: 200% 200%;
+  animation: dream-iri-text 8s ease-in-out infinite;
+}
+
+/* Orrery nodes — iridescent glow */
+.melodia-shell .melodia-orrery .node,
+.melodia-orrery .node {
+  fill: var(--iri-gold);
+  filter: drop-shadow(0 0 8px rgba(255, 230, 102, 0.55))
+    drop-shadow(0 0 14px rgba(102, 217, 255, 0.35));
+}
+
+.melodia-shell .melodia-orrery .orbit {
+  stroke: rgba(102, 217, 255, 0.42);
+}
+
+/* Passport cards — satin sheen */
+.melodia-shell .passport-card {
+  background:
+    linear-gradient(155deg, rgba(26, 31, 58, 0.98), rgba(42, 48, 85, 0.94)),
+    var(--dream-aurora);
+  background-size: auto, 200% 200%;
+  animation: dream-passport-sheen 16s ease-in-out infinite;
+}
+
+@keyframes dream-passport-sheen {
+  0%, 100% { background-position: 0 0, 0% 50%; }
+  50% { background-position: 0 0, 100% 50%; }
+}
+
+/* Index cosmic hero — nebula layer disabled (warped smear); keep slot quiet */
+.melodia-shell .parallax-layer-3 {
+  display: none;
+}
+
+.melodia-shell .parallax-layer-2 {
+  opacity: 0;
+}
+
+/* Light paper heroes — soft iridescent frame */
+.melodia-shell .band.paper .hero,
+.melodia-shell .hero.hero-proof {
+  color: var(--ink, #221a2a);
+}
+
+.melodia-shell .band.paper .hero h1 {
+  text-shadow:
+    0 0 32px rgba(204, 153, 255, 0.12),
+    0 2px 16px rgba(34, 26, 42, 0.08);
+}
+
+/* ── Holo plate: thin-film sweep on render / material cards ── */
+.melodia-shell .image-card.holo-plate {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.melodia-shell .image-card.holo-plate img {
+  display: block;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+}
+
+.melodia-shell .image-card.holo-plate > div {
+  position: relative;
+  z-index: 3;
+}
+
+.melodia-shell .image-card.fashion-frame::after {
+  z-index: 4;
+}
+
+.melodia-shell .image-card.holo-plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background:
+  linear-gradient(
+    115deg,
+    transparent 18%,
+    rgba(255, 255, 255, 0.45) 28%,
+    rgba(255, 180, 255, 0.35) 38%,
+    rgba(102, 217, 255, 0.4) 48%,
+    rgba(255, 230, 102, 0.35) 58%,
+    transparent 68%
+  ),
+  conic-gradient(
+    from calc(var(--holo-x, 0.5) * 360deg) at calc(var(--holo-x, 0.5) * 100%) calc(var(--holo-y, 0.5) * 100%),
+    transparent 0deg,
+    rgba(255, 255, 255, 0.12) 40deg,
+    rgba(102, 217, 255, 0.18) 120deg,
+    rgba(204, 153, 255, 0.16) 200deg,
+    rgba(255, 230, 102, 0.14) 280deg,
+    transparent 360deg
+  );
+  background-size: 300% 300%, 100% 100%;
+  mix-blend-mode: color-dodge;
+  transition: opacity 0.35s ease;
+}
+
+.melodia-shell .image-card.holo-plate:hover::before,
+.melodia-shell .image-card.holo-plate:focus-visible::before {
+  opacity: 0.82;
+  animation: dream-holo-sweep 2.4s linear infinite;
+}
+
+.melodia-shell .image-card.holo-plate.is-gacha-in::before {
+  animation: dream-holo-sweep-once 1.35s ease-out forwards;
+  opacity: 0.75;
+}
+
+.melodia-shell .image-card.holo-plate:hover img,
+.melodia-shell .image-card.holo-plate:focus-visible img {
+  transform: scale(1.03);
+  filter: saturate(1.14) contrast(1.05) brightness(1.02);
+}
+
+.melodia-shell .image-card.holo-plate.is-gacha-in {
+  animation: dream-gacha-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes dream-holo-sweep {
+  0% { background-position: 100% 100%, 50% 50%; }
+  100% { background-position: 0% 0%, 50% 50%; }
+}
+
+@keyframes dream-holo-sweep-once {
+  0% { background-position: 120% 120%, 50% 50%; opacity: 0; }
+  25% { opacity: 0.85; }
+  100% { background-position: -20% -20%, 50% 50%; opacity: 0; }
+}
+
+@keyframes dream-gacha-reveal {
+  0% { opacity: 0; transform: scale(0.94) translateY(12px); }
+  70% { transform: scale(1.01) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Pillar-tinted holo on tagged cards */
+.melodia-shell .image-card[data-pillar]::before {
+  background:
+    linear-gradient(
+      115deg,
+      transparent 18%,
+      color-mix(in oklch, white 55%, transparent) 30%,
+      color-mix(in srgb, var(--iri-gold) 40%, transparent) 45%,
+      transparent 65%
+    ),
+    var(--pillar-iri-ramp, var(--dream-iri-ramp));
+  background-size: 280% 280%, 200% 200%;
+  mix-blend-mode: soft-light;
+}
+
+@supports not (color: color-mix(in oklch, white, transparent)) {
+  .melodia-shell .image-card[data-pillar]::before {
+    mix-blend-mode: color-dodge;
+  }
+}
+
+/* World cards — conic view-angle rim (dress-up menu chrome) */
+.melodia-shell .world-card {
+  position: relative;
+  transition: box-shadow 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.melodia-shell .world-card .holo-rim {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  padding: 1px;
+  background: conic-gradient(
+    from calc(var(--holo-x, 0.5) * 360deg),
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    rgba(102, 217, 255, 0.5),
+    rgba(204, 153, 255, 0.45),
+    rgba(255, 230, 102, 0.4),
+    transparent
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: opacity 0.4s ease;
+}
+
+.melodia-shell .world-card:hover .holo-rim,
+.melodia-shell .world-card:focus-within .holo-rim {
+  opacity: 0.9;
+}
+
+.melodia-shell .world-card.sakura:hover {
+  box-shadow: 0 0 0 1px rgba(255, 179, 200, 0.45), 0 0 28px rgba(255, 230, 102, 0.12);
+}
+
+.melodia-shell .world-card.cathedral:hover {
+  box-shadow: 0 0 0 1px rgba(102, 217, 255, 0.42), 0 0 28px rgba(155, 140, 255, 0.14);
+}
+
+.melodia-shell .world-card.castle:hover {
+  box-shadow: 0 0 0 1px rgba(92, 184, 168, 0.4), 0 0 24px rgba(212, 184, 122, 0.12);
+}
+
+.melodia-shell .world-card.grotto:hover {
+  box-shadow: 0 0 0 1px rgba(122, 158, 255, 0.42), 0 0 30px rgba(179, 136, 255, 0.14);
+}
+
+.melodia-shell .world-card-large:hover {
+  box-shadow:
+    0 0 0 1px rgba(102, 217, 255, 0.32),
+    0 0 24px rgba(204, 153, 255, 0.1),
+    0 16px 40px rgba(8, 11, 19, 0.35);
+}
+
+@media (max-width: 680px) {
+  .melodia-shell > .dream-aurora-layer {
+    opacity: 0.28;
+  }
+
+  .melodia-shell > .dream-sparkle-layer {
+    opacity: 0.14;
+    background-size: 64px 64px, 108px 108px, 148px 148px;
+  }
+
+  :root { --dream-sparkle-density: 1.2; }
+
+  .melodia-shell .hero h1 em {
+    /* Keep gradient text readable on small screens */
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .melodia-shell > .dream-aurora-layer,
+  .melodia-shell > .dream-sparkle-layer,
+  .melodia-shell .button-premium-primary,
+  .melodia-shell .passport-card,
+  .melodia-shell .band.astral::before,
+  .melodia-shell .band.night::before,
+  .melodia-shell .band.deep::before,
+  .melodia-shell .hero h1,
+  .melodia-shell .hero h1 em,
+  .melodia-shell .kicker,
+  .melodia-shell .magazine-kicker,
+  .melodia-shell .premium-kicker,
+  .melodia-shell .eyebrow,
+  .melodia-shell .game-eyebrow,
+  .melodia-shell .game-ui-title-chip h3,
+  .melodia-shell .premium-card:hover,
+  .melodia-shell .image-card.holo-plate:hover::before,
+  .melodia-shell .image-card.holo-plate.is-gacha-in,
+  .melodia-shell .image-card.holo-plate.is-gacha-in::before {
+    animation: none !important;
+  }
+
+  .melodia-shell .image-card.holo-plate.is-gacha-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .melodia-shell[data-dream-intensity="low"] > .melodia-starfield-canvas {
+    opacity: 0.2;
+  }
+}

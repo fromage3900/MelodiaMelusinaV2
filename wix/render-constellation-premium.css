@@ -1,0 +1,6 @@
+/* Render constellation — premium type overrides (uses Melodia luxury-type SSOT) */
+body { font-family: var(--font-body) !important; letter-spacing: var(--tracking-body); }
+.brand { font-family: var(--font-brand) !important; letter-spacing: var(--tracking-brand) !important; }
+h1, h2, h3, .lede, .stat strong, .family strong { font-family: var(--font-display) !important; }
+.lede { font-family: var(--font-lede) !important; font-style: italic; }
+.kicker, .meta, .pill, .button, .footer, .nav a:last-child { font-family: var(--font-mono) !important; }

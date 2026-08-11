@@ -1,0 +1,85 @@
+{
+  "DataType": "MelodiaTokenType",
+  "Rows": {
+    "heart": {
+      "TokenID": "heart",
+      "DisplayName": "Forte Shard",
+      "Description": "Burn element energy - fuels attack skills",
+      "Element": "Forte",
+      "Value": 10,
+      "Rarity": "common",
+      "TexturePath": "/Game/EnvSandbox/Textures/melodsytoken/Textures/T_MelodyToken_Heart_BaseColor",
+      "MaterialPath": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Heart"
+    },
+    "star": {
+      "TokenID": "star",
+      "DisplayName": "Radiant Shard",
+      "Description": "Radiant element energy - fuels light magic",
+      "Element": "Radiant",
+      "Value": 12,
+      "Rarity": "uncommon",
+      "TexturePath": "/Game/EnvSandbox/Textures/melodsytoken_textures/MelodyToken_Star_BaseColor",
+      "MaterialPath": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Star"
+    },
+    "swirl": {
+      "TokenID": "swirl",
+      "DisplayName": "Arcane Shard",
+      "Description": "Arcane element energy - fuels mystic arts",
+      "Element": "Arcane",
+      "Value": 15,
+      "Rarity": "rare",
+      "TexturePath": "/Game/EnvSandbox/Textures/melodsytoken_textures/MelodyToken_Swirl_BaseColor",
+      "MaterialPath": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Swirl"
+    },
+    "water": {
+      "TokenID": "water",
+      "DisplayName": "Tide Shard",
+      "Description": "Tide element energy - fuels healing and flow",
+      "Element": "Tide",
+      "Value": 12,
+      "Rarity": "common",
+      "TexturePath": "/Game/EnvSandbox/Textures/melodsytoken_textures/MelodyToken_Water_BaseColor",
+      "MaterialPath": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Water"
+    },
+    "stone": {
+      "TokenID": "stone",
+      "DisplayName": "Stone Shard",
+      "Description": "Stone element energy",
+      "Element": "Stone",
+      "Value": 11,
+      "Rarity": "uncommon",
+      "TexturePath": "/Game/EnvSandbox/Textures/melodsytoken/Textures/T_MelodyToken_Heart_BaseColor",
+      "MaterialPath": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Heart"
+    },
+    "gale": {
+      "TokenID": "gale",
+      "DisplayName": "Gale Shard",
+      "Description": "Gale element energy",
+      "Element": "Gale",
+      "Value": 11,
+      "Rarity": "uncommon",
+      "TexturePath": "/Game/EnvSandbox/Textures/melodsytoken_textures/MelodyToken_Water_BaseColor",
+      "MaterialPath": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Heart"
+    },
+    "umbral": {
+      "TokenID": "umbral",
+      "DisplayName": "Umbral Shard",
+      "Description": "Umbral element energy",
+      "Element": "Umbral",
+      "Value": 13,
+      "Rarity": "rare",
+      "TexturePath": "/Game/EnvSandbox/Textures/melodsytoken_textures/MelodyToken_Swirl_BaseColor",
+      "MaterialPath": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Heart"
+    },
+    "mana_orb": {
+      "TokenID": "mana_orb",
+      "DisplayName": "Mana Orb",
+      "Description": "Restores mana - collectible energy",
+      "Element": "",
+      "Value": 20,
+      "Rarity": "common",
+      "TexturePath": "/Game/EnvSandbox/Textures/melodsytoken/Textures/T_MelodyToken_Heart_Emission",
+      "MaterialPath": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Heart"
+    }
+  }
+}

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" data-page="zbrush-breakdown">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sculpt &amp; Procedural → Editor | Brennan Shepherd</title>
+<meta name="description" content="Labelled high-poly sculpt plates — Zen Lantern, Melody Tokens, Melusina, Sir Melodious — beside the Blender → Unreal production pipeline." />
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-fashion-editorial.css">
+<link rel="stylesheet" href="melodia-premium-system.css">
+<link rel="stylesheet" href="enhanced-cosmic-hero-premium.css">
+<style>
+.sculpt-pipeline {
+  display: grid;
+  gap: clamp(48px, 7vw, 88px);
+  margin-top: 28px;
+}
+.sculpt-set-head {
+  display: grid;
+  gap: 8px;
+  max-width: 44rem;
+  margin-bottom: 1.25rem;
+}
+.sculpt-set-head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.sculpt-set-head p {
+  margin: 0;
+  color: var(--muted, rgba(233, 229, 242, 0.72));
+  font-family: var(--font-lede);
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.45;
+}
+.sculpt-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 4px;
+}
+.sculpt-meta span {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(233, 229, 242, 0.55);
+}
+.sculpt-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: clamp(14px, 2vw, 22px);
+}
+.sculpt-plate {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+  min-width: 0;
+}
+.sculpt-plate .stage-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-soft, rgba(228, 201, 144, 0.88));
+}
+.sculpt-plate .frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1px solid rgba(200, 164, 94, 0.28);
+  background: #1a1c22;
+}
+.sculpt-plate .frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #2a2c33;
+}
+.sculpt-plate .caption {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: rgba(233, 229, 242, 0.78);
+}
+.sculpt-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2.5vw, 28px);
+  align-items: stretch;
+}
+.sculpt-pair-head {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 8px;
+  max-width: 42rem;
+}
+.sculpt-pair-head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 400;
+}
+.sculpt-pair-head p {
+  margin: 0;
+  color: rgba(233, 229, 242, 0.72);
+  font-family: var(--font-lede);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+.sculpt-plate .frame.is-pending {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  aspect-ratio: 16 / 10;
+  background:
+    linear-gradient(160deg, rgba(16, 23, 54, 0.92), rgba(7, 9, 18, 0.96));
+}
+.sculpt-plate .frame.is-pending span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(233, 229, 242, 0.45);
+  line-height: 1.7;
+}
+.sculpt-plate.is-soft-hidden {
+  display: none;
+}
+.sculpt-process-note {
+  margin: 0.75rem 0 0;
+  max-width: 42rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(233, 229, 242, 0.68);
+}
+@media (max-width: 820px) {
+  .sculpt-pair { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="melodia-shell fashion-mode" data-mg="soft" data-hero="editorial" data-effects="starfield,holo,magical">
+<header class="shell-nav" aria-label="Portfolio navigation">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
+  <nav class="nav-links" aria-label="Sections"></nav>
+  <a class="nav-cta button-premium" href="hero-renders.html">Renders</a>
+</header>
+
+<main id="main">
+<section class="hero has-editorial-frame" aria-labelledby="page-title">
+  <div class="hero-media" aria-hidden="true">
+    <img data-plate="hub.melusina" src="../generated/assets/character/melusina_beauty_eevee_20260715c_01.png" alt="" />
+  </div>
+  <div class="hero-inner">
+    <p class="kicker magazine-kicker premium-kicker">Brennan Shepherd · Clay ↔ glam</p>
+    <p class="nikki-ribbon">Form → production · Magical Girl lookbook</p>
+    <h1 id="page-title">Labelled sculpt plates.</h1>
+    <p class="lede">Clay beside EEVEE — Zen Lantern, Melody Tokens, Melusina, Sir Melodious — with Vow Cross as an EEVEE breakdown set.</p>
+    <div class="hero-actions">
+      <a class="button primary button-premium-primary" href="#live-plates">Live plates</a>
+      <a class="button button-premium" href="hero-renders.html">Beauty gallery</a>
+    </div>
+  </div>
+</section>
+
+<section class="band paper fashion-band ivory" data-surface="ivory" id="pipeline">
+  <div class="inner">
+    <div class="viz-rule" aria-hidden="true"><span class="glyph">♪ pipeline</span></div>
+    <div class="section-head">
+      <div>
+        <p class="eyebrow magazine-kicker">Pipeline</p>
+        <h2>How a piece graduates.</h2>
+      </div>
+      <p class="human-lede">Blender poly base → sculpt pass for ornaments and hero props. Procedural math + Escher when the asset is a system. ZBrush when the piece is truly sculptural. Then retopo / UVs, Substance / trim, Unreal for lighting proof.</p>
+    </div>
+    <div class="alignment-grid">
+      <article class="alignment-card premium-card"><span>01</span><div><h3>Blender base + sculpt</h3><p>Poly-model the silhouette, then sculpt pass — ornament rhythm, edge break-up, hand form.</p></div></article>
+      <article class="alignment-card premium-card"><span>02</span><div><h3>Procedural / Escher</h3><p>Math-driven generation when pattern logic beats clay.</p></div></article>
+      <article class="alignment-card premium-card"><span>03</span><div><h3>ZBrush · sculptural only</h3><p>Reserved for true sculptural elements — not the default kitbash lane.</p></div></article>
+      <article class="alignment-card premium-card"><span>04</span><div><h3>Texture + Unreal</h3><p>Retopo / UVs, Painter or trim, then material instances under Melodia lighting.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="band astral fashion-band" id="live-plates">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow magazine-kicker">Live plates</p>
+        <h2>Sculpt gallery — labelled.</h2>
+      </div>
+      <p class="human-lede">Clay MatCaps in <code>generated/assets/sculpt/</code>; EEVEE Komikaze / Nikki plates sit beside them. Ornament heroes below carry EEVEE beauty — UE stills are a later gate.</p>
+    </div>
+
+    <div class="sculpt-pipeline">
+
+      <article class="sculpt-set" id="zen-lantern" data-sculpt-id="zen-lantern" data-status="live">
+        <div class="sculpt-set-head">
+          <h3>Zen Lantern</h3>
+          <p>Clay · EEVEE — high sculpt density MatCaps beside Komikaze glam beauty (front / three-quarter / back).</p>
+          <div class="sculpt-meta">
+            <span>SKU · Stylized Props Mini</span>
+            <span>Target · zenlantern / zenlanternhigh</span>
+            <span>Status · sculpt + EEVEE glam live</span>
+          </div>
+        </div>
+        <div class="sculpt-gallery">
+          <div class="sculpt-plate">
+            <p class="stage-label">Clay · Front sculpt</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_zenlantern_front.png" alt="Zen Lantern high-poly sculpt, front view" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Front elevation — window panes, scroll arms, mushroom roof.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">Clay · Three-quarter sculpt</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_zenlantern_three_quarter.png" alt="Zen Lantern high-poly sculpt, three-quarter view" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Three-quarter — stem, base plate, roof banding.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Beauty glam</p>
+            <div class="frame"><img src="../generated/assets/props/zenlantern_komikaze_beauty_34.png" alt="Zen Lantern EEVEE glam beauty plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Hero sheet beauty — Voronoi NPR on glam-blue studio.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Three-quarter glam</p>
+            <div class="frame"><img src="../generated/assets/props/zenlantern_komikaze_three_quarter.png" alt="Zen Lantern EEVEE glam three-quarter plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Turned read for portfolio rail / passport.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Front glam</p>
+            <div class="frame"><img data-plate="zenlantern.front" src="../generated/assets/props/zenlantern_komikaze_front.png" alt="Zen Lantern EEVEE glam front plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Front elevation glam — pane and roof read.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Back glam</p>
+            <div class="frame"><img data-plate="zenlantern.back" src="../generated/assets/props/zenlantern_komikaze_back.png" alt="Zen Lantern EEVEE glam back plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Back elevation glam — stem and rear banding.</p>
+          </div>
+        </div>
+        <p class="sculpt-process-note">Full beauty gallery → <a href="hero-renders.html">Hero renders</a>.</p>
+      </article>
+
+      <article class="sculpt-set" id="vow-cross" data-sculpt-id="vow-cross" data-status="live">
+        <div class="sculpt-set-head">
+          <h3>Melusina Vow Cross</h3>
+          <p>EEVEE breakdown set — no MatCap clay on disk. Desire-object NPR across beauty, elevation, macro, silhouette, and back.</p>
+          <div class="sculpt-meta">
+            <span>SKU · Stylized Cross Prop</span>
+            <span>Target · cross_Instance / StylizedCrossProp</span>
+            <span>Status · EEVEE breakdown live</span>
+          </div>
+        </div>
+        <div class="sculpt-gallery">
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Beauty</p>
+            <div class="frame"><img src="../generated/assets/cross/cross_komikaze_beauty_34.png" alt="Melusina Vow Cross EEVEE beauty plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Beauty 3/4 — heart filigree and diamond boss.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Front</p>
+            <div class="frame"><img src="../generated/assets/cross/cross_komikaze_front.png" alt="Melusina Vow Cross EEVEE front plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Straight-on silhouette for sheet layout.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Macro</p>
+            <div class="frame"><img src="../generated/assets/cross/cross_komikaze_macro.png" alt="Melusina Vow Cross EEVEE macro filigree plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Macro filigree — scroll and boss detail.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Silhouette</p>
+            <div class="frame"><img src="../generated/assets/cross/cross_komikaze_silhouette.png" alt="Melusina Vow Cross EEVEE rim silhouette plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Rim-lit pink silhouette plate.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Back</p>
+            <div class="frame"><img src="../generated/assets/cross/cross_komikaze_back.png" alt="Melusina Vow Cross EEVEE back plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Reverse elevation — mount and reverse filigree.</p>
+          </div>
+        </div>
+        <p class="sculpt-process-note">Process · Stage mesh → Komikaze Wall on glam studio → EEVEE shot set (beauty / front / macro / silhouette / back). Clay MatCaps were never captured for this prop — board stays honest without inventing them.</p>
+      </article>
+
+      <article class="sculpt-set" id="melody-tokens" data-sculpt-id="melody-token" data-status="live">
+        <div class="sculpt-set-head">
+          <h3>Melody Tokens</h3>
+          <p>Clay · EEVEE — heart / star / swirl / water. Star · swirl · water glam from stage meshes; heart stays clay with a glam-pending slot until a stage mesh exists.</p>
+          <div class="sculpt-meta">
+            <span>SKU · Musical Ornament Kitbash</span>
+            <span>Target · MelodyToken 01–03</span>
+            <span>Status · sculpt + EEVEE glam live · heart glam pending</span>
+          </div>
+        </div>
+        <div class="sculpt-gallery">
+          <div class="sculpt-plate">
+            <p class="stage-label">Clay · Heart</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_melodytoken_heart_01.png" alt="Melody Token heart variant clay sculpt" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Heart motif · recessed petals.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Heart glam</p>
+            <div class="frame is-pending" role="img" aria-label="Heart glam pending"><span>glam pending</span></div>
+            <p class="caption">Heart glam pending — no stage mesh yet.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">Clay · Heart scroll</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_melodytoken_heart_02.png" alt="Melody Token heart scroll relief sculpt" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Four-arm scroll with quadrant hearts.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">Clay · Heart rise</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_melodytoken_heart_03.png" alt="Melody Token raised heart knot sculpt" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Raised knot over leaf recesses.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">Clay · Star</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_melodytoken_star.png" alt="Melody Token icy star gem sculpt" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Icy translucent star / petal disc.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Star glam</p>
+            <div class="frame"><img data-plate="melody.star_glam" src="../generated/assets/ornaments/melody_token_star_komikaze_beauty_34.png" alt="Melody Token star EEVEE ice glam" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Jewelry ice beauty — <code>MelodyTokenStar</code>.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">Clay · Swirl</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_melodytoken_swirl.png" alt="Melody Token swirl emblem sculpt" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Symmetrical swirl emblem in the rim.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Swirl glam</p>
+            <div class="frame"><img data-plate="melody.swirl_glam" src="../generated/assets/ornaments/melody_token_swirl_komikaze_beauty_34.png" alt="Melody Token swirl EEVEE ice glam" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Jewelry ice beauty — <code>MelodyTokenSwirl</code>.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">Clay · Water</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_melodytoken_water.png" alt="Melody Token water citrus cross-section sculpt" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Water / citrus cross-section read.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Water glam</p>
+            <div class="frame"><img data-plate="melody.water_glam" src="../generated/assets/ornaments/melody_token_water_komikaze_beauty_34.png" alt="Melody Token water EEVEE ice glam" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Jewelry ice beauty — <code>MelodyTokenWater</code>.</p>
+          </div>
+          <div class="sculpt-plate is-soft-hidden" aria-hidden="true">
+            <p class="stage-label">Token · Water bottom</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_melodytoken_water_bottom.png" alt="" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Soft-hidden — weak board plate.</p>
+          </div>
+        </div>
+        <p class="sculpt-process-note">Lookbook rail → <a href="hero-renders.html#melody-tokens">Hero renders</a>.</p>
+      </article>
+
+      <article class="sculpt-set" id="melusina-sculpt" data-sculpt-id="melusina" data-status="live">
+        <div class="sculpt-set-head">
+          <h3>Melusina</h3>
+          <p>Wireframe · EEVEE — July 15 grey wire topology beside <code>*20260715c*</code> glam keepers. Clay T-poses retired from this board. Back still queued.</p>
+          <div class="sculpt-meta">
+            <span>SKU · Character</span>
+            <span>Target · Asset_melusina</span>
+            <span>Status · sculpt + EEVEE glam live</span>
+          </div>
+        </div>
+        <div class="sculpt-gallery">
+          <div class="sculpt-plate">
+            <p class="stage-label">Wire · Front grey</p>
+            <div class="frame"><img data-plate="stage.wire_front" src="../generated/assets/character/melusina_front_wireframe_grey_20260715.png" alt="Melusina front grey wireframe" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Full-body topology — front grey wire (replaces clay T-pose).</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">Wire · Three-quarter grey</p>
+            <div class="frame"><img data-plate="stage.wire_34" src="../generated/assets/character/melusina_34_wireframe_grey_20260715.png" alt="Melusina three-quarter grey wireframe" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Three-quarter wire — costume volume + hair strands.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Beauty</p>
+            <div class="frame"><img data-plate="stage.beauty" src="../generated/assets/character/melusina_beauty_eevee_20260715c_01.png" alt="Melusina EEVEE glam beauty plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Hero beauty — Nikki iri on Melodia Portfolio Stage.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Bust glam</p>
+            <div class="frame"><img data-plate="melusina.glam_02" src="../generated/assets/character/melusina_eevee_glam_20260715c_02.png" alt="Melusina EEVEE glam bust plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Glam bust — front costume read.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Three-quarter glam</p>
+            <div class="frame"><img data-plate="melusina.glam_05" src="../generated/assets/character/melusina_eevee_glam_20260715c_05.png" alt="Melusina EEVEE glam three-quarter plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Turned glam — costume color and film rim.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Back</p>
+            <div class="frame is-pending" role="img" aria-label="Melusina back glam pending interactive Nikki shoot"><span>back pending · interactive Nikki</span></div>
+            <p class="caption">Back elevation queued — Cam_Back with compositor off (STOP / no stage save).</p>
+          </div>
+        </div>
+        <p class="sculpt-process-note">Full lookbook → <a href="melodia-stage-character.html">Stage passport</a>.</p>
+      </article>
+
+      <article class="sculpt-set" id="sirmelodious-sculpt" data-sculpt-id="sirmelodious" data-status="live">
+        <div class="sculpt-set-head">
+          <h3>Sir Melodious</h3>
+          <p>Companion bird clay — full approach and beak profile for wardrobe / stage pairing.</p>
+          <div class="sculpt-meta">
+            <span>SKU · Character · companion</span>
+            <span>Target · Asset_sirmelodious</span>
+            <span>Status · sculpt plates live</span>
+          </div>
+        </div>
+        <div class="sculpt-gallery">
+          <div class="sculpt-plate">
+            <p class="stage-label">Sir Melodious · Full</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_sirmelodious_full.png" alt="Sir Melodious bird companion sculpt full approach" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Full silhouette — cloak edge, paddle wings.</p>
+          </div>
+          <div class="sculpt-plate">
+            <p class="stage-label">Sir Melodious · Profile</p>
+            <div class="frame"><img src="../generated/assets/sculpt/sculpt_sirmelodious_profile.png" alt="Sir Melodious bird companion sculpt beak profile" loading="lazy" width="1024" height="1024" /></div>
+            <p class="caption">Beak / eye / rolled collar close.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="band paper fashion-band" id="pairs">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Ornament heroes</p>
+        <h2>Kitbash EEVEE beauty — three forms.</h2>
+      </div>
+      <p class="human-lede">Rose window, vault ribs, spiral stair — Komikaze plates live. UE companion stills come after the ship gate; empty Blender↔UE shells are retired.</p>
+    </div>
+
+    <div class="sculpt-pipeline">
+      <article class="sculpt-set" data-sculpt-id="orn-rose-window" data-status="live">
+        <div class="sculpt-set-head">
+          <h3>Rose window ornament</h3>
+          <p>EEVEE · Gothic eight-petal rose — kitbash hero beauty. No clay MatCap on this board.</p>
+          <div class="sculpt-meta">
+            <span>SKU · Ornament Kitbash</span>
+            <span>Target · SM_Orn_RoseWindow_8Petal</span>
+            <span>Status · EEVEE live</span>
+          </div>
+        </div>
+        <div class="sculpt-gallery">
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Front beauty</p>
+            <div class="frame"><img src="../generated/assets/ornaments/rose_window_komikaze_front.png" alt="Rose window ornament EEVEE Komikaze front plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Straight-on petal rhythm — Komikaze on glam studio.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="sculpt-set" data-sculpt-id="orn-vault-ribs" data-status="live">
+        <div class="sculpt-set-head">
+          <h3>Vault ribs cluster</h3>
+          <p>EEVEE · Crossing gothic ribs as a lit cluster for the kitbash pack hero.</p>
+          <div class="sculpt-meta">
+            <span>SKU · Ornament Kitbash</span>
+            <span>Target · SM_Orn_VaultRibs</span>
+            <span>Status · EEVEE live</span>
+          </div>
+        </div>
+        <div class="sculpt-gallery">
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Beauty</p>
+            <div class="frame"><img src="../generated/assets/ornaments/vault_ribs_komikaze_beauty_34.png" alt="Vault ribs ornament EEVEE Komikaze beauty plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Three-quarter cluster — ribs as dress for the ceiling.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="sculpt-set" data-sculpt-id="orn-spiral-stair" data-status="live">
+        <div class="sculpt-set-head">
+          <h3>Spiral stair</h3>
+          <p>EEVEE · Helical gothic stair as kitbash hero beauty.</p>
+          <div class="sculpt-meta">
+            <span>SKU · Ornament Kitbash</span>
+            <span>Target · SM_Orn_SpiralStair</span>
+            <span>Status · EEVEE live</span>
+          </div>
+        </div>
+        <div class="sculpt-gallery">
+          <div class="sculpt-plate">
+            <p class="stage-label">EEVEE · Beauty</p>
+            <div class="frame"><img src="../generated/assets/ornaments/spiral_stair_komikaze_beauty_34.png" alt="Spiral stair ornament EEVEE Komikaze beauty plate" loading="lazy" width="800" height="1000" /></div>
+            <p class="caption">Beauty 3/4 — rise and finial silhouette.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="body-copy" style="margin-top:22px;">
+      <a href="ornament-kitbash.html">Ornament kitbash →</a>
+      · <a href="melodia-melusina.html">Melusina Game UI →</a>
+      · <a href="melodia-stage-character.html">Stage passport →</a>
+      · <a href="application-hub.html">Application hub →</a>
+    </p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <span>Brennan Shepherd / Environment &amp; Technical Artist</span>
+    <span>Form → editor breakdown</span>
+  </div>
+</footer>
+</div>
+<script src="melodia-magical-girl.js"></script>
+<script src="melodia-starfield.js"></script>
+<script src="melodia-dream-shaders.js"></script>
+<script src="melodia-site-nav.js"></script>
+<script src="melodia-editorial.js"></script>
+<script>MelodiaEditorial.init({ page: 'zbrush-breakdown' });</script>
+</body>
+</html>

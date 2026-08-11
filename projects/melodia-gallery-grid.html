@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Melodia Gallery Grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --surface-base: #141A30;
+    --surface-raised: #1C2340;
+    --surface-sunken: #241B2E;
+    --text-primary: #ECEAF4;
+    --text-secondary: #A9A7C0;
+    --gold: #C9A86A;
+    --gold-soft: #DDC79B;
+    --border-default: rgba(201, 168, 106, 0.2);
+    --border-gold: rgba(201, 168, 106, 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    width: 100%;
+    min-height: 400px;
+  }
+
+  .gallery-container {
+    width: 100%;
+    padding: 40px;
+  }
+
+  .gallery-header {
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .gallery-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .gallery-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+
+  /* Masonry Grid Layout */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    grid-auto-rows: 10px;
+  }
+
+  .gallery-item {
+    position: relative;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+    border-color: var(--border-gold);
+  }
+
+  .gallery-item.size-small {
+    grid-row-end: span 25;
+  }
+
+  .gallery-item.size-medium {
+    grid-row-end: span 35;
+  }
+
+  .gallery-item.size-large {
+    grid-row-end: span 45;
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .gallery-item:hover .gallery-image {
+    transform: scale(1.05);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(20, 26, 48, 0.95));
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+  }
+
+  .gallery-item-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .gallery-item-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+  }
+
+  .empty-state-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+  }
+
+  .empty-state-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .gallery-container {
+      padding: 24px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-item,
+    .gallery-image,
+    .gallery-overlay {
+      transition: none;
+    }
+
+    .gallery-item:hover {
+      transform: none;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="gallery-container">
+  <div class="gallery-header">
+    <h2 class="gallery-title" id="galleryTitle">Illustrations</h2>
+    <p class="gallery-subtitle" id="gallerySubtitle">Traditional & Digital Artwork</p>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid"></div>
+</div>
+
+<script>
+  // Configuration from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const config = {
+    title: urlParams.get('title') || 'Illustrations',
+    subtitle: urlParams.get('subtitle') || 'Traditional & Digital Artwork',
+    items: JSON.parse(urlParams.get('items') || '[]')
+  };
+
+  // Update header
+  document.getElementById('galleryTitle').textContent = config.title;
+  document.getElementById('gallerySubtitle').textContent = config.subtitle;
+
+  // Render gallery items
+  const galleryGrid = document.getElementById('galleryGrid');
+
+  if (config.items.length > 0) {
+    config.items.forEach((item, index) => {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = `gallery-item size-${item.size || 'medium'}`;
+      galleryItem.style.animationDelay = `${index * 0.1}s`;
+
+      const image = item.image || '';
+      const placeholder = item.placeholder || `linear-gradient(135deg, #1C2340 0%, #3C5C9E 100%)`;
+
+      galleryItem.innerHTML = `
+        <img class="gallery-image" src="${image}" alt="${item.title}" onerror="this.style.background='${placeholder}'">
+        <div class="gallery-overlay">
+          <h3 class="gallery-item-title">${item.title}</h3>
+          <span class="gallery-item-category">${item.category || 'Illustration'}</span>
+        </div>
+      `;
+
+      galleryItem.addEventListener('click', () => {
+        if (item.url) {
+          window.open(item.url, '_blank');
+        }
+      });
+
+      galleryGrid.appendChild(galleryItem);
+    });
+  } else {
+    // Empty state
+    galleryGrid.innerHTML = `
+      <div class="empty-state" style="grid-column: 1 / -1;">
+        <div class="empty-state-icon">✦</div>
+        <p class="empty-state-text">No illustrations yet</p>
+      </div>
+    `;
+  }
+</script>
+</body>
+</html>

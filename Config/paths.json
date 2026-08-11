@@ -1,0 +1,16 @@
+{
+  "paths": {
+    "unreal": "C:/Program Files/Epic Games/UE_5.8/",
+    "blender": "C:/Program Files/Blender Foundation/Blender 5.1/",
+    "voicevox": "G:/programs/VOICEVOX/",
+    "material_maker": "G:/programs/MaterialMaker/"
+  },
+  "ports": {
+    "livelink": 9876,
+    "ue_mcp": 9316,
+    "blender_mcp": 9317,
+    "voicevox": 50021,
+    "melusina_voice": 50022
+  },
+  "notes": "Update these paths if your tools are installed in different locations"
+}

@@ -1,0 +1,138 @@
+{
+  "character": "Tohoku Kiritan",
+  "voice": "VOICEVOX Tohoku Kiritan (speaker 5)",
+  "language": "ja",
+  "speech_style": "Energetic, tomboyish. Uses '~ssu' (っす) informal suffix. Hot-headed but loyal.",
+  "pronoun": "atashi (あたし)",
+  "description": "Zunko's younger sister. Blacksmith's apprentice who upgrades the player's weapons and gear. Second character to join the party. Fast melee DPS with armor-piercing attacks.",
+
+  "lines": [
+    {
+      "id": "kir_first_meet_01",
+      "text": "おっ、あんたが新しい旅人っすか！あたしはきりたん。ここの鍛冶屋で修行中っす！",
+      "context": "first_meeting",
+      "notes": "Energetic introduction at the forge"
+    },
+    {
+      "id": "kir_first_meet_02",
+      "text": "ずん子姉ちゃんから聞いてるっすよ。ずんだもんを見つけてくれてありがとうっす！",
+      "context": "thanks_for_zundamon",
+      "notes": "Thanking player for helping Zundamon"
+    },
+
+    {
+      "id": "kir_forge_intro_01",
+      "text": "武器の強化なら任せるっす！このハンマーでガンガン打って、最高の一振りにしてやるっす！",
+      "context": "forge_intro",
+      "notes": "Introducing weapon upgrade system"
+    },
+    {
+      "id": "kir_upgrade_complete_01",
+      "text": "どうっすか！切れ味が全然違うっしょ！あたしの腕前、なかなかでしょ！",
+      "context": "upgrade_complete",
+      "notes": "After completing a weapon upgrade"
+    },
+    {
+      "id": "kir_upgrade_material_01",
+      "text": "もっといい素材があれば、もっといい武器が作れるんすけどね...鉱山に良い鉱石があるらしいっす。",
+      "context": "material_hint",
+      "notes": "Hinting at mining location for better materials"
+    },
+
+    {
+      "id": "kir_quest_blade_01",
+      "text": "特注の剣を頼まれたんすけど、仕上げに必要な「火竜の鱗」がなくて...西の火山に行ってくれないっすか？",
+      "context": "quest_give_01",
+      "notes": "Quest: gather Fire Dragon Scale from the western volcano"
+    },
+    {
+      "id": "kir_quest_training_01",
+      "text": "あたし、もっと強くなりたいんす！手合わせしてくれないっすか？",
+      "context": "quest_give_02",
+      "notes": "Quest: sparring match — combat tutorial"
+    },
+    {
+      "id": "kir_quest_sister_01",
+      "text": "イタコ姉さんが神社にこもったままなんす...心配で。一緒に見に行ってほしいっす。",
+      "context": "quest_give_03",
+      "notes": "Quest: check on Itako (same chain as Zunko's)"
+    },
+
+    {
+      "id": "kir_bond_01",
+      "text": "あんた、なかなかやるっすね！あたし、結構気に入ったっす！",
+      "context": "bond_level_up",
+      "notes": "Bond level increase — tsundere-ish approval"
+    },
+    {
+      "id": "kir_bond_02",
+      "text": "あたし...あんたと一緒にいると、もっと強くなれる気がするんす。だから、ずっと一緒に戦いたいっす。",
+      "context": "bond_high",
+      "notes": "High bond level — admitting she wants to stay together"
+    },
+
+    {
+      "id": "kir_idle_forge_01",
+      "text": "カンカンカン！...あ、集中しすぎてまた夜になっちゃったっす。",
+      "context": "idle_forging",
+      "notes": "Lost track of time while forging"
+    },
+    {
+      "id": "kir_idle_practice_01",
+      "text": "やあっ！とおっ！...まだまだ練習が足りないっすね。",
+      "context": "idle_practice",
+      "notes": "Practicing sword swings"
+    },
+    {
+      "id": "kir_idle_eating_01",
+      "text": "ずん子姉ちゃんのお菓子、世界一うまいっす。...ちょっと食べ過ぎたっす。",
+      "context": "idle_eating",
+      "notes": "Eating Zunko's snacks"
+    },
+
+    {
+      "id": "kir_party_join_01",
+      "text": "あたしも連れて行くっす！鍛えたこの剣、役に立つっすよ！",
+      "context": "party_join",
+      "notes": "Joining the party"
+    },
+    {
+      "id": "kir_battle_attack_01",
+      "text": "これで決めるっす！きりたんスペシャル！",
+      "context": "battle_attack",
+      "notes": "Special attack in battle"
+    },
+    {
+      "id": "kir_battle_crit_01",
+      "text": "今だっ！急所に入ったっす！",
+      "context": "battle_crit",
+      "notes": "Landing a critical hit"
+    },
+
+    {
+      "id": "kir_late_truth_01",
+      "text": "あたしのこの力...ただの鍛冶の腕前じゃなかったんすね。この剣が光るのは...",
+      "context": "late_game_reveal",
+      "notes": "Discovering her blade glows because of guardian power"
+    },
+    {
+      "id": "kir_late_truth_02",
+      "text": "ずんだもんだけじゃない。東の里のみんな...みんな、特別な力を持って生まれたんす。",
+      "context": "late_game_reveal_2",
+      "notes": "Realizing the whole Green East is special"
+    },
+
+    {
+      "id": "kir_ending_01",
+      "text": "あんたと一緒に戦えて、本当に良かったっす。これからも、よろしくっす！",
+      "context": "ending",
+      "notes": "Ending dialogue — high bond route"
+    },
+    {
+      "id": "kir_goodbye_01",
+      "text": "また来るっすよね？あたし、待ってるっすから！",
+      "context": "goodbye",
+      "notes": "Leaving the forge"
+    }
+  ]
+}

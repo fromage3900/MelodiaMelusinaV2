@@ -1,0 +1,28 @@
+{
+  "id": "gothic_nave_crossing_v1",
+  "family": "Gothic",
+  "verticality": 0.95,
+  "symmetry": 0.9,
+  "ornament_density": 0.85,
+  "structural_logic": 0.9,
+  "organic_growth": 0.18,
+  "cosmic_influence": 0.42,
+  "sacred_sequence": ["nave", "crossing", "transept", "altar"],
+  "compose_style": "GOTHIC_NAVE_CROSSING",
+  "default_graph": "GOTHIC_NAVE_CROSSING",
+  "grammar_id": "GOTHIC_NAVE_CROSSING",
+  "surreal_transform": "vertical_stretch",
+  "compose_roles": {
+    "large": "_lib_CHAPEL",
+    "gate": "_lib_GB_GOTHIC_PORTAL",
+    "medium": "_lib_GREYBOX_CORRIDOR",
+    "monument": "_lib_ROSE_WINDOW",
+    "sacred": "_lib_CHAPEL"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "material_choice": "STONE",
+    "unit_size": 2.0
+  }
+}

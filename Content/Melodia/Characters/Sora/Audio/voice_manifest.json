@@ -1,0 +1,53 @@
+{
+  "character": "Sora",
+  "speaker_id": 16,
+  "voice_style": "ノーマル",
+  "total": 7,
+  "generated": 7,
+  "cached": 0,
+  "errors": 0,
+  "lines": [
+    {
+      "id": "sor_first_meet_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Sora\\Audio\\sor_first_meet_01.wav",
+      "size_kb": 651.04296875
+    },
+    {
+      "id": "sor_rhythm_intro_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Sora\\Audio\\sor_rhythm_intro_01.wav",
+      "size_kb": 427.04296875
+    },
+    {
+      "id": "sor_shop_open_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Sora\\Audio\\sor_shop_open_01.wav",
+      "size_kb": 538.04296875
+    },
+    {
+      "id": "sor_quest_score_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Sora\\Audio\\sor_quest_score_01.wav",
+      "size_kb": 395.04296875
+    },
+    {
+      "id": "sor_bond_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Sora\\Audio\\sor_bond_01.wav",
+      "size_kb": 367.04296875
+    },
+    {
+      "id": "sor_party_join_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Sora\\Audio\\sor_party_join_01.wav",
+      "size_kb": 401.04296875
+    },
+    {
+      "id": "sor_ending_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Sora\\Audio\\sor_ending_01.wav",
+      "size_kb": 566.04296875
+    }
+  ]
+}

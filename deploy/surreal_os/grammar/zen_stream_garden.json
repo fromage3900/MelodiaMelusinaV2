@@ -1,0 +1,16 @@
+{
+  "id": "ZEN_STREAM_GARDEN",
+  "label": "Zen Stream Garden",
+  "description": "Sando, stream edge, stone bridge, cherry allée, machiai, karesansui, engawa, lantern",
+  "style": "zen",
+  "modules": [
+    {"arch_type": "GB_ZEN_SANDO", "overrides": {"gb_length": 8.0, "gb_width": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_WATER_EDGE", "overrides": {"gb_length": 2.8, "gb_width": 2.4, "zen_stream_depth": 0.35, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_STONE_BRIDGE", "overrides": {"zen_bridge_span": 5.0, "zen_bridge_rise": 0.55, "gb_width": 1.8, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_CHERRY_ALLEE", "overrides": {"gb_length": 6.0, "gb_width": 2.6, "gb_height": 0.32, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_MACHIAI", "overrides": {"gb_width": 3.2, "gb_depth": 2.4, "gb_height": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_KARESANSUI", "overrides": {"gb_width": 8.0, "gb_depth": 6.0, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_ENGAWA", "overrides": {"gb_width": 5.0, "gb_depth": 2.3, "gb_height": 0.35, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_LANTERN", "overrides": {"zen_lantern_height": 1.5, "gb_trim_mode": "RECESS"}}
+  ]
+}

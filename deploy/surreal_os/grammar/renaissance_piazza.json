@@ -1,0 +1,14 @@
+{
+  "id": "RENAISSANCE_PIAZZA",
+  "label": "Renaissance Piazza",
+  "description": "Baroque facade, arcade colonnade, balustrade terrace, fountain, dome cap",
+  "style": "renaissance",
+  "modules": [
+    {"arch_type": "BAROQUE_FACADE", "overrides": {"baroque_facade_bays": 5, "baroque_facade_height": 14.0, "baroque_order": "CORINTHIAN", "baroque_ornament_density": 0.65, "material_choice": "AUTO"}},
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {"gb_width": 3.4, "gb_height": 4.5, "gb_trim_mode": "RECESS", "unit_size": 3.4, "material_choice": "AUTO"}},
+    {"arch_type": "BAROQUE_BALUSTRADE", "overrides": {"baroque_balustrade_length": 6.0, "baroque_balustrade_posts": 11, "material_choice": "MARBLE"}},
+    {"arch_type": "PUBLIC_FOUNTAIN", "overrides": {"fountain_radius": 1.6, "fountain_tiers": 3, "material_choice": "MARBLE"}},
+    {"arch_type": "PILLAR", "overrides": {"pillar_radius": 0.35, "pillar_height": 4.5, "pillar_flutes": 20, "material_choice": "MARBLE"}},
+    {"arch_type": "DOME", "overrides": {"dome_radius": 2.2, "dome_rib_count": 12, "dome_spire": 0.6, "material_choice": "AUTO"}}
+  ]
+}

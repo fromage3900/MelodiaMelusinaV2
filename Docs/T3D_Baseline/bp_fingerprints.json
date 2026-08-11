@@ -1,0 +1,4409 @@
+{
+  "/Game/Melodia/Actor_BP/BP_InstanceOnSpline_Old": {
+    "asset_path": "/Game/Melodia/Actor_BP/BP_InstanceOnSpline_Old",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Actor_BP/BP_Ladder3_PEN": {
+    "asset_path": "/Game/Melodia/Actor_BP/BP_Ladder3_PEN",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 49,
+    "connection_count": 53,
+    "fingerprint": "a585e074ae23774cdd294444b72301660eba4211",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 16,
+      "K2Node_ComponentBoundEvent": 2,
+      "K2Node_DynamicCast": 2,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 5,
+      "K2Node_PromotableOperator": 1,
+      "K2Node_VariableGet": 10,
+      "K2Node_VariableSet": 11
+    }
+  },
+  "/Game/Melodia/Actor_BP/BP_Ladder_PEN": {
+    "asset_path": "/Game/Melodia/Actor_BP/BP_Ladder_PEN",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 11,
+    "connection_count": 15,
+    "fingerprint": "c5dc9fef4c9de395ad5b6ed8530901cc72cfd008",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 2,
+      "K2Node_ComponentBoundEvent": 2,
+      "K2Node_DynamicCast": 2,
+      "K2Node_VariableGet": 1,
+      "K2Node_VariableSet": 4
+    }
+  },
+  "/Game/Melodia/Actor_BP/BP_PathDeform_PEN": {
+    "asset_path": "/Game/Melodia/Actor_BP/BP_PathDeform_PEN",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Actor_BP/BP_PipeBuilder": {
+    "asset_path": "/Game/Melodia/Actor_BP/BP_PipeBuilder",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Actor_BP/BP_RoadBuilder": {
+    "asset_path": "/Game/Melodia/Actor_BP/BP_RoadBuilder",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Actor_BP/BP_VineMaker_PEN": {
+    "asset_path": "/Game/Melodia/Actor_BP/BP_VineMaker_PEN",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Audio/BP_MelodiaAmbient_GlobalWeather": {
+    "asset_path": "/Game/Melodia/Audio/BP_MelodiaAmbient_GlobalWeather",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 2,
+    "connection_count": 0,
+    "fingerprint": "4b0cbec3c8ea8574ab09b83a66a25a321e15935a",
+    "node_class_histogram": {
+      "K2Node_Event": 2
+    }
+  },
+  "/Game/Melodia/Blueprints/BP_StorySequenceTrigger": {
+    "asset_path": "/Game/Melodia/Blueprints/BP_StorySequenceTrigger",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Blueprints/Battle/BP_Melodia_GameMode": {
+    "asset_path": "/Game/Melodia/Blueprints/Battle/BP_Melodia_GameMode",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 2,
+    "connection_count": 0,
+    "fingerprint": "4b0cbec3c8ea8574ab09b83a66a25a321e15935a",
+    "node_class_histogram": {
+      "K2Node_Event": 2
+    }
+  },
+  "/Game/Melodia/Blueprints/Battle/BP_Melodia_RhythmBattle": {
+    "asset_path": "/Game/Melodia/Blueprints/Battle/BP_Melodia_RhythmBattle",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 1,
+    "fingerprint": "47b5e1433b5ba3967077c670f6ca4da2efbf0bd8",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Blueprints/Volumes/BP_MelodiaTeleporterVolume": {
+    "asset_path": "/Game/Melodia/Blueprints/Volumes/BP_MelodiaTeleporterVolume",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 1,
+    "fingerprint": "0a2f24b16a269f0892d2357cb53c82c233e0972a",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Blueprints/WBP_RhythmHUD": {
+    "asset_path": "/Game/Melodia/Blueprints/WBP_RhythmHUD",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 39,
+    "connection_count": 37,
+    "fingerprint": "b33f39d8cce0e8483a8a171ac6ff584a48d4bcb1",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 15,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 3,
+      "K2Node_IfThenElse": 3,
+      "K2Node_VariableGet": 12,
+      "K2Node_VariableSet": 4
+    }
+  },
+  "/Game/Melodia/Bridge/JRPG/BP_Melodia_JRPG_Bridge": {
+    "asset_path": "/Game/Melodia/Bridge/JRPG/BP_Melodia_JRPG_Bridge",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Characters/Melusina/ABP_Melusina": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 11,
+    "connection_count": 11,
+    "fingerprint": "f368b263a2583064caccf75adfd04eb104fc7ccc",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 7,
+      "K2Node_Event": 1,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 30,
+    "connection_count": 33,
+    "fingerprint": "e188f6b7c1100e96232db665e05822bbb3bb591d",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 13,
+      "K2Node_Event": 1,
+      "K2Node_PropertyAccess": 2,
+      "K2Node_Select": 3,
+      "K2Node_VariableGet": 6,
+      "K2Node_VariableSet": 5
+    }
+  },
+  "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current_BACKUP_20260729": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current_BACKUP_20260729",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 5,
+    "connection_count": 2,
+    "fingerprint": "18acec2a1c1781622fff17e44580edc06ce4e650",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 4,
+      "K2Node_Event": 1
+    }
+  },
+  "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_Hair": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_Hair",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 2,
+    "connection_count": 0,
+    "fingerprint": "c40453928525ca06eaefbc1dafecfb98909a1dd4",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_Event": 1
+    }
+  },
+  "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 5,
+    "connection_count": 6,
+    "fingerprint": "19a6bad1315fa934942fb4f434bf5e82860b03e1",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 2,
+      "K2Node_Event": 1,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/Melodia/Characters/Melusina/_Archive/FromCharactersMelusina/ABP_Melusina": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/_Archive/FromCharactersMelusina/ABP_Melusina",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 11,
+    "connection_count": 11,
+    "fingerprint": "f368b263a2583064caccf75adfd04eb104fc7ccc",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 7,
+      "K2Node_Event": 1,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight": {
+    "asset_path": "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Core/BP_QuestManager": {
+    "asset_path": "/Game/Melodia/Core/BP_QuestManager",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Data/DA_MelodiaDesignTokens": {
+    "asset_path": "/Game/Melodia/Data/DA_MelodiaDesignTokens",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/Melodia/Enemies/BP_Enemy_CrystalShard": {
+    "asset_path": "/Game/Melodia/Enemies/BP_Enemy_CrystalShard",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Enemies/BP_Enemy_SakuraPhantom": {
+    "asset_path": "/Game/Melodia/Enemies/BP_Enemy_SakuraPhantom",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Enemies/BP_Enemy_StoneGolem": {
+    "asset_path": "/Game/Melodia/Enemies/BP_Enemy_StoneGolem",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Enemies/BP_MelodiaEnemyBase": {
+    "asset_path": "/Game/Melodia/Enemies/BP_MelodiaEnemyBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Enemies/CrystalShard/BP_CrystalShard_SlimePlaceholder": {
+    "asset_path": "/Game/Melodia/Enemies/CrystalShard/BP_CrystalShard_SlimePlaceholder",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "413823dbbe2aa6fc248f683c56860b06950f91a3",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Game_BP/BP_Character_PEN": {
+    "asset_path": "/Game/Melodia/Game_BP/BP_Character_PEN",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 45,
+    "connection_count": 44,
+    "fingerprint": "9f4505a9cfb00522f3bf2239a5776b5785504f9c",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 15,
+      "K2Node_IfThenElse": 3,
+      "K2Node_InputAction": 2,
+      "K2Node_InputAxisEvent": 4,
+      "K2Node_Knot": 9,
+      "K2Node_MacroInstance": 1,
+      "K2Node_PromotableOperator": 3,
+      "K2Node_VariableGet": 7,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/Melodia/Roguelike/Blueprints/BP_DungeonFloorManager": {
+    "asset_path": "/Game/Melodia/Roguelike/Blueprints/BP_DungeonFloorManager",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Roguelike/Blueprints/BP_MelodiaDungeonRunCoordinator": {
+    "asset_path": "/Game/Melodia/Roguelike/Blueprints/BP_MelodiaDungeonRunCoordinator",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Roguelike/Blueprints/BP_MelodiaRoomExit": {
+    "asset_path": "/Game/Melodia/Roguelike/Blueprints/BP_MelodiaRoomExit",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/Roguelike/Blueprints/BP_RoguelikeDungeonGenerator": {
+    "asset_path": "/Game/Melodia/Roguelike/Blueprints/BP_RoguelikeDungeonGenerator",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 0,
+    "fingerprint": "a173d6ebacf5c1d46a5b24b0a6046388820d3da5",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaBossUI": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaBossUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaCraftBar": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaCraftBar",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaDefeatDialogue": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaDefeatDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 1,
+    "fingerprint": "620e399148c50c1be06e3aa869b770fd7679eca3",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaExploreUI": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaExploreUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaFadeTransitionUI": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaFadeTransitionUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 1,
+    "fingerprint": "e22e6c2ebae0abad0323c402301b05241c5b0b55",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaItemUseDialogue": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaItemUseDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 2,
+    "fingerprint": "9bdf913468569ef8c5f96d4bcfc6381de8655e83",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaPlayerUnitListUI": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaPlayerUnitListUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaQuestNotification": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaQuestNotification",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 1,
+    "fingerprint": "c74a88b66024546b71f17599b28bc255bb75b5ea",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaQuestNotificationListUI": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaQuestNotificationListUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaSkillUseDialogue": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaSkillUseDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 2,
+    "fingerprint": "4dbe3bba437c481951c8928f8513c09738968dd6",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaUnitBattleDetails": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaUnitBattleDetails",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/BP_MelodiaVictoryDialogue": {
+    "asset_path": "/Game/Melodia/UI/BP_MelodiaVictoryDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 1,
+    "fingerprint": "ff26a0bee81cd9be59b7c3410444c1d3067ae13b",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/Foundation/WBP_MelodiaDivider": {
+    "asset_path": "/Game/Melodia/UI/Foundation/WBP_MelodiaDivider",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/Foundation/WBP_MelodiaElementWheel": {
+    "asset_path": "/Game/Melodia/UI/Foundation/WBP_MelodiaElementWheel",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/Foundation/WBP_MelodiaFiligreeDividerWave": {
+    "asset_path": "/Game/Melodia/UI/Foundation/WBP_MelodiaFiligreeDividerWave",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/Foundation/WBP_MelodiaFiligreeGradeHalo": {
+    "asset_path": "/Game/Melodia/UI/Foundation/WBP_MelodiaFiligreeGradeHalo",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/Foundation/WBP_MelodiaParchmentPanel": {
+    "asset_path": "/Game/Melodia/UI/Foundation/WBP_MelodiaParchmentPanel",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/Foundation/WBP_MelodiaUniversalButton": {
+    "asset_path": "/Game/Melodia/UI/Foundation/WBP_MelodiaUniversalButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/Quill/WBP_MelodiaQuillBackground": {
+    "asset_path": "/Game/Melodia/UI/Quill/WBP_MelodiaQuillBackground",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 0,
+    "fingerprint": "6b29f79a10156ff757f63351fc8b2b1c3ba349a4",
+    "node_class_histogram": {
+      "K2Node_Event": 4
+    }
+  },
+  "/Game/Melodia/UI/Quill/WBP_MelodiaQuillChoiceEntry": {
+    "asset_path": "/Game/Melodia/UI/Quill/WBP_MelodiaQuillChoiceEntry",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/Quill/WBP_MelodiaQuillDialog": {
+    "asset_path": "/Game/Melodia/UI/Quill/WBP_MelodiaQuillDialog",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 26,
+    "connection_count": 11,
+    "fingerprint": "d956ebd64953a1e41a2bd874a1aeb5d1a699da8e",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 11,
+      "K2Node_Event": 4,
+      "K2Node_IfThenElse": 2,
+      "K2Node_VariableGet": 4,
+      "K2Node_VariableSet": 5
+    }
+  },
+  "/Game/Melodia/UI/Quill/WBP_MelodiaQuillSelection": {
+    "asset_path": "/Game/Melodia/UI/Quill/WBP_MelodiaQuillSelection",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 0,
+    "fingerprint": "6b29f79a10156ff757f63351fc8b2b1c3ba349a4",
+    "node_class_histogram": {
+      "K2Node_Event": 4
+    }
+  },
+  "/Game/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway": {
+    "asset_path": "/Game/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_Battle_Mobile": {
+    "asset_path": "/Game/Melodia/UI/WBP_Battle_Mobile",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_Battle_Results": {
+    "asset_path": "/Game/Melodia/UI/WBP_Battle_Results",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_Battle_Rhythm": {
+    "asset_path": "/Game/Melodia/UI/WBP_Battle_Rhythm",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 0,
+    "fingerprint": "2a2a53feb6ef3ea428b367ffe3d03c1cac68258a",
+    "node_class_histogram": {
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_BlessingBurden": {
+    "asset_path": "/Game/Melodia/UI/WBP_BlessingBurden",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 12,
+    "connection_count": 6,
+    "fingerprint": "857000edf132e9fd25e1b62efcf185a4004d18c7",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 6,
+      "K2Node_ComponentBoundEvent": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_ComicOrrery": {
+    "asset_path": "/Game/Melodia/UI/WBP_ComicOrrery",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 13,
+    "connection_count": 4,
+    "fingerprint": "c53ec706e1a29596e52850c6a25ec178221fbc40",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 5,
+      "K2Node_ComponentBoundEvent": 5,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_DialogueBubble": {
+    "asset_path": "/Game/Melodia/UI/WBP_DialogueBubble",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_GradePop": {
+    "asset_path": "/Game/Melodia/UI/WBP_GradePop",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_MainMenu": {
+    "asset_path": "/Game/Melodia/UI/WBP_MainMenu",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 21,
+    "connection_count": 17,
+    "fingerprint": "9d39a8d5f7809a8b21f5957145405a06bfee61a8",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 10,
+      "K2Node_ComponentBoundEvent": 3,
+      "K2Node_DynamicCast": 2,
+      "K2Node_Event": 3,
+      "K2Node_IfThenElse": 1,
+      "K2Node_VariableGet": 2
+    }
+  },
+  "/Game/Melodia/UI/WBP_MelodiaOpeningSlideshow": {
+    "asset_path": "/Game/Melodia/UI/WBP_MelodiaOpeningSlideshow",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_MelodiaSettings": {
+    "asset_path": "/Game/Melodia/UI/WBP_MelodiaSettings",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_MenuButton": {
+    "asset_path": "/Game/Melodia/UI/WBP_MenuButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 8,
+    "connection_count": 4,
+    "fingerprint": "9cbe759d0ed2768855b7ee9ace4ba3546ec39529",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 2,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_Event": 3,
+      "K2Node_VariableGet": 2
+    }
+  },
+  "/Game/Melodia/UI/WBP_QuestJournal": {
+    "asset_path": "/Game/Melodia/UI/WBP_QuestJournal",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_SaveLoad": {
+    "asset_path": "/Game/Melodia/UI/WBP_SaveLoad",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_SaveLoadPanel": {
+    "asset_path": "/Game/Melodia/UI/WBP_SaveLoadPanel",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 5,
+    "connection_count": 1,
+    "fingerprint": "741fc305406370b3fb655b5e998148d4d729d4c1",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_Settings": {
+    "asset_path": "/Game/Melodia/UI/WBP_Settings",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 15,
+    "connection_count": 8,
+    "fingerprint": "53731787027dd3adb1178fbb60ffe61e4e230ebd",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 8,
+      "K2Node_ComponentBoundEvent": 4,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_SkillCodex": {
+    "asset_path": "/Game/Melodia/UI/WBP_SkillCodex",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/UI/WBP_UltCutIn": {
+    "asset_path": "/Game/Melodia/UI/WBP_UltCutIn",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/Textures/BP_ForestEncounter": {
+    "asset_path": "/Game/Melodia/_PROJECT/04_Materials/Textures/BP_ForestEncounter",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/_PROJECT/BP_MelodiaGameMode": {
+    "asset_path": "/Game/Melodia/_PROJECT/BP_MelodiaGameMode",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 2,
+    "connection_count": 0,
+    "fingerprint": "4b0cbec3c8ea8574ab09b83a66a25a321e15935a",
+    "node_class_histogram": {
+      "K2Node_Event": 2
+    }
+  },
+  "/Game/Melodia/_PROJECT/Blueprints/Gameplay/BP_MusicManager": {
+    "asset_path": "/Game/Melodia/_PROJECT/Blueprints/Gameplay/BP_MusicManager",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 17,
+    "connection_count": 17,
+    "fingerprint": "9e4204f53f895c5b69b8db07930898d4211a69bb",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 8,
+      "K2Node_Event": 3,
+      "K2Node_IfThenElse": 2,
+      "K2Node_VariableGet": 1,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/Melodia/_PROJECT/Blueprints/Gameplay/BP_RhythmHUD": {
+    "asset_path": "/Game/Melodia/_PROJECT/Blueprints/Gameplay/BP_RhythmHUD",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 10,
+    "connection_count": 5,
+    "fingerprint": "10f39bc08fbf774647ad008ae9734a77d03f73b6",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_CreateWidget": 1,
+      "K2Node_Event": 3,
+      "K2Node_IfThenElse": 1,
+      "K2Node_VariableGet": 1,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlime": {
+    "asset_path": "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlime",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "413823dbbe2aa6fc248f683c56860b06950f91a3",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle": {
+    "asset_path": "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlimeExplorePawn": {
+    "asset_path": "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlimeExplorePawn",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "018fb30a3a7478a13b72c40581717dc5a9e80eb7",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGController_Config": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGController_Config",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 1,
+    "fingerprint": "98bd6a7473b39d2e526b2fc111fc3f88458d6f33",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 2
+    }
+  },
+  "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameInstance": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameInstance",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 225,
+    "connection_count": 280,
+    "fingerprint": "a69284257a56d51215fa65db9de94650de6cfcbe",
+    "node_class_histogram": {
+      "K2Node_CallArrayFunction": 5,
+      "K2Node_CallFunction": 73,
+      "K2Node_CommutativeAssociativeBinaryOperator": 6,
+      "K2Node_CustomEvent": 16,
+      "K2Node_DynamicCast": 6,
+      "K2Node_IfThenElse": 6,
+      "K2Node_Knot": 32,
+      "K2Node_MacroInstance": 9,
+      "K2Node_VariableGet": 40,
+      "K2Node_VariableSet": 32
+    }
+  },
+  "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameInstance_Config": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameInstance_Config",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 2,
+    "connection_count": 0,
+    "fingerprint": "4b0cbec3c8ea8574ab09b83a66a25a321e15935a",
+    "node_class_histogram": {
+      "K2Node_Event": 2
+    }
+  },
+  "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGPlayerController": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGPlayerController",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 625,
+    "connection_count": 769,
+    "fingerprint": "df399bb6079db9c02175849414dc8d2caaa39199",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 4,
+      "K2Node_BreakStruct": 4,
+      "K2Node_CallArrayFunction": 24,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 199,
+      "K2Node_CallParentFunction": 1,
+      "K2Node_ClassDynamicCast": 1,
+      "K2Node_ClearDelegate": 2,
+      "K2Node_CommutativeAssociativeBinaryOperator": 12,
+      "K2Node_CreateWidget": 5,
+      "K2Node_CustomEvent": 48,
+      "K2Node_DynamicCast": 5,
+      "K2Node_Event": 2,
+      "K2Node_GetArrayItem": 4,
+      "K2Node_GetClassDefaults": 6,
+      "K2Node_IfThenElse": 25,
+      "K2Node_InputAction": 4,
+      "K2Node_InputAxisEvent": 6,
+      "K2Node_Knot": 101,
+      "K2Node_MacroInstance": 29,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 2,
+      "K2Node_Self": 6,
+      "K2Node_SetFieldsInStruct": 2,
+      "K2Node_SpawnActorFromClass": 2,
+      "K2Node_SwitchEnum": 5,
+      "K2Node_VariableGet": 106,
+      "K2Node_VariableSet": 17
+    }
+  },
+  "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 67,
+    "connection_count": 102,
+    "fingerprint": "40c372335f0428f0ce93526c8faca4226c8812ab",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 44,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 2,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 19
+    }
+  },
+  "/Game/MelodiaIntegration/Blueprints/Opening/BP_MelodiaSirMelodiousMorningIntro": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/Opening/BP_MelodiaSirMelodiousMorningIntro",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 18,
+    "connection_count": 15,
+    "fingerprint": "26e2445f630be2e9f72cd9479b5e07809471531a",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_CallFunction": 4,
+      "K2Node_CreateDelegate": 2,
+      "K2Node_CustomEvent": 2,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 3,
+      "K2Node_MacroInstance": 1,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit": {
+    "asset_path": "/Game/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "b1da79e04b4c31346ec2f8f74e40bb21e2e49bfd",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/MelodiaIntegration/Party/Skills/BP_SirSkyboundRefrain": {
+    "asset_path": "/Game/MelodiaIntegration/Party/Skills/BP_SirSkyboundRefrain",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/MelodiaIntegration/Party/Skills/Buffs/BP_Resonance": {
+    "asset_path": "/Game/MelodiaIntegration/Party/Skills/Buffs/BP_Resonance",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 1,
+    "fingerprint": "cc3719542de923e9bd2007f58c5e7ba944333013",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/MelodiaIntegration/UI/BP_MelodiaActionButton": {
+    "asset_path": "/Game/MelodiaIntegration/UI/BP_MelodiaActionButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 38,
+    "connection_count": 39,
+    "fingerprint": "22c5660055478a8f01ac33151fe9fcaf1985e357",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 10,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_Knot": 3,
+      "K2Node_MakeStruct": 6,
+      "K2Node_Select": 6,
+      "K2Node_VariableGet": 8,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/MelodiaIntegration/UI/BP_MelodiaActionsUI": {
+    "asset_path": "/Game/MelodiaIntegration/UI/BP_MelodiaActionsUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 19,
+    "connection_count": 18,
+    "fingerprint": "5186d80a208c5791d593d000af9dff8153fe380b",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 6,
+      "K2Node_CustomEvent": 4,
+      "K2Node_Event": 1,
+      "K2Node_MacroInstance": 1,
+      "K2Node_MakeArray": 1,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 2,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/MelodiaIntegration/UI/BP_MelodiaBattleUI": {
+    "asset_path": "/Game/MelodiaIntegration/UI/BP_MelodiaBattleUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 15,
+    "connection_count": 19,
+    "fingerprint": "565ab7192b2a39759bcabe690b1f7a70f6daaf14",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 11,
+      "K2Node_Event": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_VariableGet": 2
+    }
+  },
+  "/Game/MelodiaIntegration/UI/BP_MelodiaRhythmPrompt": {
+    "asset_path": "/Game/MelodiaIntegration/UI/BP_MelodiaRhythmPrompt",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/MelodiaIntegration/UI/BP_MelodiaTurnOrderList": {
+    "asset_path": "/Game/MelodiaIntegration/UI/BP_MelodiaTurnOrderList",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 15,
+    "connection_count": 16,
+    "fingerprint": "14067760064e33ec0cf28b4b5d193549524f5c99",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 4,
+      "K2Node_CustomEvent": 3,
+      "K2Node_Knot": 2,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 3,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Animations/A_BattleAnimationBlueprint": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Animations/A_BattleAnimationBlueprint",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 12,
+    "connection_count": 15,
+    "fingerprint": "813111b512877bcb7bdb207a5af6bb1c5e80b434",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 2,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 1,
+      "K2Node_Knot": 3,
+      "K2Node_VariableGet": 2,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Animations/A_EnemyExplorePawnAnimationBlueprint": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Animations/A_EnemyExplorePawnAnimationBlueprint",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 6,
+    "fingerprint": "d4b196af0daf15a96aade142353608c50e6fa3e2",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 3,
+      "K2Node_Event": 1,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Animations/A_ThirdPerson_AnimBP": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Animations/A_ThirdPerson_AnimBP",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 6,
+    "fingerprint": "d4b196af0daf15a96aade142353608c50e6fa3e2",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 3,
+      "K2Node_Event": 1,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 243,
+    "connection_count": 305,
+    "fingerprint": "41fa18bacf90c89f104adf6c9425805986781f8c",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 2,
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallArrayFunction": 6,
+      "K2Node_CallDelegate": 3,
+      "K2Node_CallFunction": 67,
+      "K2Node_ClassDynamicCast": 1,
+      "K2Node_CommutativeAssociativeBinaryOperator": 7,
+      "K2Node_CustomEvent": 17,
+      "K2Node_DynamicCast": 3,
+      "K2Node_Event": 1,
+      "K2Node_GetArrayItem": 2,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 9,
+      "K2Node_Knot": 44,
+      "K2Node_MacroInstance": 15,
+      "K2Node_Self": 5,
+      "K2Node_SetFieldsInStruct": 1,
+      "K2Node_SpawnActorFromClass": 2,
+      "K2Node_VariableGet": 50,
+      "K2Node_VariableSet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 694,
+    "connection_count": 782,
+    "fingerprint": "dc51896fe3b7c0c11278d0eb40d245c9be7cf302",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 18,
+      "K2Node_AssignDelegate": 5,
+      "K2Node_CallArrayFunction": 1,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 241,
+      "K2Node_ClassDynamicCast": 1,
+      "K2Node_CreateWidget": 7,
+      "K2Node_CustomEvent": 56,
+      "K2Node_DynamicCast": 10,
+      "K2Node_Event": 1,
+      "K2Node_ExecutionSequence": 3,
+      "K2Node_GetArrayItem": 3,
+      "K2Node_IfThenElse": 19,
+      "K2Node_Knot": 65,
+      "K2Node_MacroInstance": 15,
+      "K2Node_PlayMontage": 2,
+      "K2Node_RemoveDelegate": 10,
+      "K2Node_Self": 5,
+      "K2Node_SpawnActorFromClass": 6,
+      "K2Node_SwitchEnum": 3,
+      "K2Node_VariableGet": 192,
+      "K2Node_VariableSet": 29
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_Camera": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_Camera",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_DamageText": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_DamageText",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 19,
+    "connection_count": 20,
+    "fingerprint": "edbb814e455efbfe6e7ef966af8cc1b244561d4f",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 5,
+      "K2Node_CustomEvent": 1,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 1,
+      "K2Node_VariableGet": 10,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_DynamicEnemyBattleBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_DynamicEnemyBattleBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 5,
+    "connection_count": 6,
+    "fingerprint": "afe1f3292a1aff6b82d520ae4c823234e25202b5",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Knot": 1,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_EnemySpawnLocation": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_EnemySpawnLocation",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_FixedEnemyBattleBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_FixedEnemyBattleBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_InteractionBattle": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_InteractionBattle",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "02c21e24ca0ccb9cc81df8a246619edbb2b1e0d6",
+    "node_class_histogram": {
+      "K2Node_CallArrayFunction": 2,
+      "K2Node_CallDelegate": 1,
+      "K2Node_Event": 1,
+      "K2Node_VariableGet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_OffLevelBattle": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_OffLevelBattle",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 19,
+    "connection_count": 21,
+    "fingerprint": "bb863308ac3525cf2c90350a13ee914d67714a2e",
+    "node_class_histogram": {
+      "K2Node_CallArrayFunction": 2,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 6,
+      "K2Node_CallParentFunction": 1,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 1,
+      "K2Node_VariableGet": 5
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_OffLevelBattleController": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_OffLevelBattleController",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 26,
+    "connection_count": 27,
+    "fingerprint": "0aeae949617db7eecdf09231b561615db3de2e44",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 12,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 1,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableGet": 9
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_OneTimeBattle": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_OneTimeBattle",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 28,
+    "connection_count": 29,
+    "fingerprint": "4ff84b3dc58a2a0d70279cd77fe13525871bc31b",
+    "node_class_histogram": {
+      "K2Node_CallArrayFunction": 2,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 8,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 1,
+      "K2Node_MacroInstance": 2,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 7
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_PermanentBattle": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_PermanentBattle",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 47,
+    "connection_count": 52,
+    "fingerprint": "3a04c6afdec04059c9b4d19842bed632864a9853",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallArrayFunction": 2,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 10,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 2,
+      "K2Node_DynamicCast": 1,
+      "K2Node_EnumEquality": 1,
+      "K2Node_Event": 2,
+      "K2Node_IfThenElse": 3,
+      "K2Node_Knot": 6,
+      "K2Node_MacroInstance": 1,
+      "K2Node_RemoveDelegate": 1,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 11,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_PlayerSpawnLocation": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_PlayerSpawnLocation",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_UnitSpawnLocation": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_UnitSpawnLocation",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 4,
+    "fingerprint": "51529c3459efd98dd583fd70fb8b3a7ecdb58070",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallFunction": 1,
+      "K2Node_CustomEvent": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BattleTransitionBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BattleTransitionBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 2,
+    "connection_count": 1,
+    "fingerprint": "93fba1f62c94bcc8caad442c401d8a0a2dce57be",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CustomEvent": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BossCameraShake": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BossCameraShake",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BossTransition": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BossTransition",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 34,
+    "connection_count": 37,
+    "fingerprint": "bc67efdde0ed805e1438e6ab9c09a36dd01509d0",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 15,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_Timeline": 1,
+      "K2Node_VariableGet": 10,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_FadeBattleLevelTransition": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_FadeBattleLevelTransition",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 19,
+    "connection_count": 20,
+    "fingerprint": "96104a090cedcc4bb3020068224db68587571cec",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 10,
+      "K2Node_CreateWidget": 1,
+      "K2Node_Event": 1,
+      "K2Node_Knot": 2,
+      "K2Node_VariableGet": 4
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_FadeBattleTransition": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_FadeBattleTransition",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 18,
+    "connection_count": 19,
+    "fingerprint": "e8cd762e0b5820ee3e48d442be9a5a2242f81ac5",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 9,
+      "K2Node_CreateWidget": 1,
+      "K2Node_Event": 1,
+      "K2Node_Knot": 2,
+      "K2Node_VariableGet": 4
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_InstantBattleTransition": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_InstantBattleTransition",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGGameInstance": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGGameInstance",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 217,
+    "connection_count": 268,
+    "fingerprint": "9ee4e45d4d4e179c04255895b131d8def707618b",
+    "node_class_histogram": {
+      "K2Node_CallArrayFunction": 5,
+      "K2Node_CallFunction": 65,
+      "K2Node_CommutativeAssociativeBinaryOperator": 6,
+      "K2Node_CustomEvent": 16,
+      "K2Node_DynamicCast": 6,
+      "K2Node_IfThenElse": 4,
+      "K2Node_Knot": 32,
+      "K2Node_MacroInstance": 9,
+      "K2Node_VariableGet": 40,
+      "K2Node_VariableSet": 34
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGGameMode": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGGameMode",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 2,
+    "connection_count": 0,
+    "fingerprint": "4b0cbec3c8ea8574ab09b83a66a25a321e15935a",
+    "node_class_histogram": {
+      "K2Node_Event": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGPlayerController": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGPlayerController",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 610,
+    "connection_count": 747,
+    "fingerprint": "266782c64b21d4f20ab13ed38bc9dbc2dfc11a1e",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 4,
+      "K2Node_BreakStruct": 4,
+      "K2Node_CallArrayFunction": 24,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 191,
+      "K2Node_CallParentFunction": 1,
+      "K2Node_ClassDynamicCast": 1,
+      "K2Node_ClearDelegate": 2,
+      "K2Node_CommutativeAssociativeBinaryOperator": 12,
+      "K2Node_CreateWidget": 4,
+      "K2Node_CustomEvent": 48,
+      "K2Node_DynamicCast": 5,
+      "K2Node_Event": 1,
+      "K2Node_GetArrayItem": 4,
+      "K2Node_GetClassDefaults": 6,
+      "K2Node_IfThenElse": 23,
+      "K2Node_InputAction": 4,
+      "K2Node_InputAxisEvent": 6,
+      "K2Node_Knot": 101,
+      "K2Node_MacroInstance": 29,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 2,
+      "K2Node_Self": 6,
+      "K2Node_SetFieldsInStruct": 2,
+      "K2Node_SpawnActorFromClass": 2,
+      "K2Node_SwitchEnum": 5,
+      "K2Node_VariableGet": 105,
+      "K2Node_VariableSet": 15
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGSaveGame": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGSaveGame",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 16,
+    "connection_count": 23,
+    "fingerprint": "ddac32d3c82e7fbae05bcfc908e6d8af00027d7d",
+    "node_class_histogram": {
+      "K2Node_CustomEvent": 1,
+      "K2Node_Knot": 7,
+      "K2Node_VariableSet": 8
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_MainMenuController": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_MainMenuController",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 4,
+    "fingerprint": "3ed3d40ea42bf5163299eb055730c2f2c33008ba",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_CreateWidget": 1,
+      "K2Node_Event": 1,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/AggressiveEnemyExplorePawns/BP_AggressiveEnemyExplorePawnBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/AggressiveEnemyExplorePawns/BP_AggressiveEnemyExplorePawnBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 87,
+    "connection_count": 94,
+    "fingerprint": "827bd7af0244be8d7b8fafc182f48e3f6874170d",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_AIMoveTo": 1,
+      "K2Node_CallFunction": 25,
+      "K2Node_CallParentFunction": 1,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_ComponentBoundEvent": 2,
+      "K2Node_CustomEvent": 7,
+      "K2Node_DynamicCast": 1,
+      "K2Node_EnumEquality": 1,
+      "K2Node_Event": 2,
+      "K2Node_IfThenElse": 7,
+      "K2Node_Knot": 7,
+      "K2Node_MacroInstance": 3,
+      "K2Node_Self": 1,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_Timeline": 1,
+      "K2Node_VariableGet": 16,
+      "K2Node_VariableSet": 9
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/AggressiveEnemyExplorePawns/BP_AverageEnemyExplorePawn": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/AggressiveEnemyExplorePawns/BP_AverageEnemyExplorePawn",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/BP_EnemyExplorePawnBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/BP_EnemyExplorePawnBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 66,
+    "connection_count": 71,
+    "fingerprint": "2b6a10ef0aafdecdb8d99b3e3afdb41a25780708",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 2,
+      "K2Node_AIMoveTo": 1,
+      "K2Node_AssignDelegate": 1,
+      "K2Node_CallFunction": 23,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_CustomEvent": 7,
+      "K2Node_DynamicCast": 3,
+      "K2Node_Event": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 2,
+      "K2Node_Self": 4,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_Timeline": 1,
+      "K2Node_VariableGet": 13,
+      "K2Node_VariableSet": 4
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/PassiveEnemyExplorePawns/BP_PassiveEnemyExplorePawnBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/PassiveEnemyExplorePawns/BP_PassiveEnemyExplorePawnBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 1,
+    "fingerprint": "0385552072d89d6916b2bcf6d7a1fdf23b7299ad",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/PassiveEnemyExplorePawns/BP_WeakEnemyExplorePawn": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/PassiveEnemyExplorePawns/BP_WeakEnemyExplorePawn",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "018fb30a3a7478a13b72c40581717dc5a9e80eb7",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_Chest": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_Chest",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 36,
+    "connection_count": 40,
+    "fingerprint": "e6911e90289866fa323b248d73e1246cdca94e48",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallFunction": 9,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 5,
+      "K2Node_Timeline": 1,
+      "K2Node_VariableGet": 15
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_ChestBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_ChestBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 37,
+    "connection_count": 33,
+    "fingerprint": "7480e3ee5b5e8f1e4e779ffdec3a32d945e06256",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_AssignDelegate": 1,
+      "K2Node_CallFunction": 9,
+      "K2Node_CustomEvent": 7,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 1,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableGet": 15,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_Forge": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_Forge",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_ForgeBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_ForgeBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 94,
+    "connection_count": 113,
+    "fingerprint": "ad2a81953272fd1869fc2f40ef625204a57ae5d1",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_AssignDelegate": 3,
+      "K2Node_CallFunction": 29,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 10,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 13,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableGet": 26,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_InteractionDetector": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_InteractionDetector",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 103,
+    "connection_count": 107,
+    "fingerprint": "8533e4058a11bf58acb353dea241ae93cadd6b12",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_AssignDelegate": 3,
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallDelegate": 4,
+      "K2Node_CallFunction": 28,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_CreateWidget": 2,
+      "K2Node_CustomEvent": 15,
+      "K2Node_DynamicCast": 2,
+      "K2Node_Event": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_Knot": 9,
+      "K2Node_MacroInstance": 3,
+      "K2Node_Self": 1,
+      "K2Node_SetFieldsInStruct": 1,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_VariableGet": 23,
+      "K2Node_VariableSet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_LockedChest": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_LockedChest",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 24,
+    "connection_count": 25,
+    "fingerprint": "b9e7cd7649639fcb50b544501edd1fc402de55a2",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallFunction": 6,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 2,
+      "K2Node_Timeline": 1,
+      "K2Node_VariableGet": 10
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_NPC": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_NPC",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 40,
+    "connection_count": 43,
+    "fingerprint": "81d4460b39772291100a47866e804bbf7f1d1d55",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 4,
+      "K2Node_CallFunction": 11,
+      "K2Node_CustomEvent": 4,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 1,
+      "K2Node_Self": 2,
+      "K2Node_VariableGet": 11,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_QuestNPC": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_QuestNPC",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_QuestNPCBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_QuestNPCBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 112,
+    "connection_count": 139,
+    "fingerprint": "d05dc39f82e1d17304e68690e082232e94a69bc1",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 7,
+      "K2Node_AssignDelegate": 5,
+      "K2Node_CallArrayFunction": 1,
+      "K2Node_CallFunction": 16,
+      "K2Node_ClassDynamicCast": 1,
+      "K2Node_CreateWidget": 5,
+      "K2Node_CustomEvent": 12,
+      "K2Node_DynamicCast": 2,
+      "K2Node_Event": 1,
+      "K2Node_ExecutionSequence": 1,
+      "K2Node_GetClassDefaults": 7,
+      "K2Node_Knot": 25,
+      "K2Node_VariableGet": 27,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_SavePoint": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_SavePoint",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 6,
+    "fingerprint": "8f284bf0b69cae0928e74f25f000d1f7a1100f9a",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_CallParentFunction": 2,
+      "K2Node_Event": 2,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_SavePointBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_SavePointBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 64,
+    "connection_count": 78,
+    "fingerprint": "0728110b0916e399d572844944348e4e7dd4554e",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 7,
+      "K2Node_CallFunction": 17,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 9,
+      "K2Node_DynamicCast": 2,
+      "K2Node_Event": 1,
+      "K2Node_Knot": 9,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableGet": 13,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_Shop": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_Shop",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 18,
+    "connection_count": 22,
+    "fingerprint": "221f6679b3e64d3c09879ecb68b347d5185aee61",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 2,
+      "K2Node_CallFunction": 5,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 1,
+      "K2Node_Knot": 3,
+      "K2Node_VariableGet": 4
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_ShopBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_ShopBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 54,
+    "connection_count": 58,
+    "fingerprint": "138546450033feff018560086ffe26f23a1a0b6f",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 4,
+      "K2Node_CallFunction": 9,
+      "K2Node_CreateWidget": 2,
+      "K2Node_CustomEvent": 7,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 1,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_Knot": 5,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableGet": 21,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_Shrine": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_Shrine",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 6,
+    "fingerprint": "930854fb7db12e4671c88a9dc9fff1cfe6ab5438",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_CallParentFunction": 2,
+      "K2Node_Event": 2,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_ShrineBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Interactables/BP_ShrineBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 41,
+    "connection_count": 54,
+    "fingerprint": "9a2b272896e745a811d98a6e5304ee36f2e56683",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallFunction": 9,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 3,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 1,
+      "K2Node_Knot": 6,
+      "K2Node_MacroInstance": 1,
+      "K2Node_SetFieldsInStruct": 1,
+      "K2Node_VariableGet": 13,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/BP_ItemBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/BP_ItemBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/CraftItems/BP_CraftItemBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/CraftItems/BP_CraftItemBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/CraftItems/BP_DragonSwordCraft": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/CraftItems/BP_DragonSwordCraft",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/CraftItems/BP_RevivePotionCraft": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/CraftItems/BP_RevivePotionCraft",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Armors/BP_ArmorBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Armors/BP_ArmorBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Armors/BP_LeatherArmor": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Armors/BP_LeatherArmor",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/BP_EquipmentBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/BP_EquipmentBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Boots/BP_BootsBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Boots/BP_BootsBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Boots/BP_LeatherBoots": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Boots/BP_LeatherBoots",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "c597d7d26f72399a91057e2aa0af95f167a6e801",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/EquipmentMesh/BP_EquipmentMeshBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/EquipmentMesh/BP_EquipmentMeshBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 21,
+    "connection_count": 18,
+    "fingerprint": "31ad5714c978966ac764b442ec2b8318a394c5f8",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 6,
+      "K2Node_CustomEvent": 4,
+      "K2Node_Event": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 2,
+      "K2Node_VariableGet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Helms/BP_HelmBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Helms/BP_HelmBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Helms/BP_Hood": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Helms/BP_Hood",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "8719ee1aff9499d7b05c77e0f46195d196944823",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Shields/BP_Buckler": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Shields/BP_Buckler",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Shields/BP_ShieldBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Shields/BP_ShieldBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_BroadSword": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_BroadSword",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "7be5b69926f004fe09359513ae65a169b7c42221",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_DragonSword": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_DragonSword",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "7be5b69926f004fe09359513ae65a169b7c42221",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_GreatStaff": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_GreatStaff",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "7be5b69926f004fe09359513ae65a169b7c42221",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_Rod": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_Rod",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "7be5b69926f004fe09359513ae65a169b7c42221",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_ShortBow": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_ShortBow",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "7be5b69926f004fe09359513ae65a169b7c42221",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_WeaponBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_WeaponBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/MiscItems/BP_MiscItemBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/MiscItems/BP_MiscItemBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/MiscItems/BP_Stone": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/MiscItems/BP_Stone",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/UsableItems/BP_BluePotion": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/UsableItems/BP_BluePotion",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 34,
+    "connection_count": 44,
+    "fingerprint": "ff0def198646deccf18302adcef693e490ea45e5",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 2,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 10,
+      "K2Node_CommutativeAssociativeBinaryOperator": 2,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 9,
+      "K2Node_SetFieldsInStruct": 1,
+      "K2Node_VariableGet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/UsableItems/BP_RedPotion": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/UsableItems/BP_RedPotion",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 34,
+    "connection_count": 44,
+    "fingerprint": "ee8c6093cc8d4bbb8d7552de775a2ecb51a818a6",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 2,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 10,
+      "K2Node_CommutativeAssociativeBinaryOperator": 2,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 9,
+      "K2Node_SetFieldsInStruct": 1,
+      "K2Node_VariableGet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/UsableItems/BP_RevivePotion": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/UsableItems/BP_RevivePotion",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 65,
+    "connection_count": 84,
+    "fingerprint": "07951ddc2338cc4963c6bc6d483042b10981321c",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 2,
+      "K2Node_CallArrayFunction": 1,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 13,
+      "K2Node_ClassDynamicCast": 1,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 11,
+      "K2Node_SetFieldsInStruct": 2,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_VariableGet": 29,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Items/UsableItems/BP_UsableItemBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Items/UsableItems/BP_UsableItemBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 20,
+    "connection_count": 24,
+    "fingerprint": "9fb42682c4acd05c07d5a7f1be772753b288be10",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 4,
+      "K2Node_CustomEvent": 3,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 7,
+      "K2Node_Self": 1,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_ArcherCharacter": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_ArcherCharacter",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_JRPGCharacter": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_JRPGCharacter",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_JRPGCharacterBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_JRPGCharacterBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 68,
+    "connection_count": 77,
+    "fingerprint": "464338357925218fc40d7e6a8ac4f3bef0d90c1c",
+    "node_class_histogram": {
+      "K2Node_AIMoveTo": 1,
+      "K2Node_CallFunction": 18,
+      "K2Node_CommutativeAssociativeBinaryOperator": 2,
+      "K2Node_CustomEvent": 5,
+      "K2Node_Event": 2,
+      "K2Node_IfThenElse": 3,
+      "K2Node_Knot": 10,
+      "K2Node_MacroInstance": 1,
+      "K2Node_Self": 3,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_VariableGet": 16,
+      "K2Node_VariableSet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_MageCharacter": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_MageCharacter",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_PriestCharacter": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_PriestCharacter",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_Arrow": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_Arrow",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_FireBallProjectile": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_FireBallProjectile",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 13,
+    "connection_count": 11,
+    "fingerprint": "cedebd2661ea38cede2570f29aa333d62f0e33f2",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 7,
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 2,
+      "K2Node_VariableGet": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_MagicBallprojectile": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_MagicBallprojectile",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 2,
+    "fingerprint": "8bc69fdd4f19405c024372465bdd6c0c22873fa9",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_ProjectileBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_ProjectileBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 32,
+    "connection_count": 30,
+    "fingerprint": "7eea8896fe08bf62737370828521a76fa48ba343",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 14,
+      "K2Node_CustomEvent": 3,
+      "K2Node_Event": 1,
+      "K2Node_Knot": 1,
+      "K2Node_MacroInstance": 1,
+      "K2Node_Timeline": 1,
+      "K2Node_VariableGet": 9,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_ThunderboltProjectile": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_ThunderboltProjectile",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 2,
+    "fingerprint": "8bc69fdd4f19405c024372465bdd6c0c22873fa9",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/BP_QuestBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/BP_QuestBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/BP_QuestLogic": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/BP_QuestLogic",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 16,
+    "connection_count": 24,
+    "fingerprint": "db77ed2ae93c5e5ccd81459382bd829068d3683c",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 5,
+      "K2Node_CallFunction": 2,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Knot": 6,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/HuntingQuests/BP_HuntingQuestBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/HuntingQuests/BP_HuntingQuestBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/HuntingQuests/BP_Kill5WeakEnemies": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/HuntingQuests/BP_Kill5WeakEnemies",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "ac38c264424ce854cad44b2398aa84e03d6f548c",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/ItemQuests/BP_Collect10Stones": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/ItemQuests/BP_Collect10Stones",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "c7ef3c34975444a4efd99ea40bc1ee692ad8fc43",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/ItemQuests/BP_ItemQuestBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Quests/ItemQuests/BP_ItemQuestBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_BasicHeal": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_BasicHeal",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 28,
+    "connection_count": 33,
+    "fingerprint": "2d0270a165ae045837cb5bf7965558a3238b8dab",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 2,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 8,
+      "K2Node_CommutativeAssociativeBinaryOperator": 2,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 5,
+      "K2Node_SetFieldsInStruct": 1,
+      "K2Node_VariableGet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_BattleSkillBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_BattleSkillBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 53,
+    "connection_count": 65,
+    "fingerprint": "5f6b4553d9a594c7c6524d1612df21c5989b70ef",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 14,
+      "K2Node_CustomEvent": 5,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 4,
+      "K2Node_Knot": 12,
+      "K2Node_MacroInstance": 3,
+      "K2Node_PlayMontage": 1,
+      "K2Node_Select": 1,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_VariableGet": 10
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_DoubleHit": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_DoubleHit",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 34,
+    "connection_count": 36,
+    "fingerprint": "f50c05d7a023cca1b27d5147928010c669ffc0db",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 7,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 3,
+      "K2Node_IfThenElse": 4,
+      "K2Node_MakeArray": 1,
+      "K2Node_VariableGet": 16
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_ExploreSkillBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_ExploreSkillBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_FireBall": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_FireBall",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 32,
+    "connection_count": 35,
+    "fingerprint": "0e3b3d3dd1044dec3e6fec3da8a5f13ec0263a8d",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 5,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 3,
+      "K2Node_IfThenElse": 3,
+      "K2Node_Knot": 2,
+      "K2Node_MakeArray": 1,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_VariableGet": 9,
+      "K2Node_VariableSet": 4
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_FocusAttack": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_FocusAttack",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 32,
+    "connection_count": 32,
+    "fingerprint": "49c81b2b013aae051e53b1d7d7c472a4f7a1f174",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 6,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 3,
+      "K2Node_IfThenElse": 3,
+      "K2Node_MakeArray": 1,
+      "K2Node_VariableGet": 16
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_FullHeal": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_FullHeal",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 27,
+    "connection_count": 32,
+    "fingerprint": "20aaf7f44582e2e04fa1d69d49c0713ac503132d",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 8,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 6,
+      "K2Node_SetFieldsInStruct": 1,
+      "K2Node_VariableGet": 7
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_GreatHeal": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_GreatHeal",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 34,
+    "connection_count": 41,
+    "fingerprint": "75019a58b8bdf5bfdf7d1e02c75fb13aa430b32c",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 2,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 12,
+      "K2Node_CommutativeAssociativeBinaryOperator": 2,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 6,
+      "K2Node_SetFieldsInStruct": 1,
+      "K2Node_VariableGet": 7
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_Lockpicking": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_Lockpicking",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 2,
+    "connection_count": 1,
+    "fingerprint": "bf7823a0801d1905c19930ff1e4a719d0486a2ad",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_Event": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_MeteorStorm": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_MeteorStorm",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 38,
+    "connection_count": 38,
+    "fingerprint": "8974c28ddaf5cf5379ae4f272725efa85ac22c85",
+    "node_class_histogram": {
+      "K2Node_AssignDelegate": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 15,
+      "K2Node_CommutativeAssociativeBinaryOperator": 3,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 2,
+      "K2Node_Select": 2,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_VariableGet": 8
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_SkillBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_SkillBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 2,
+    "connection_count": 1,
+    "fingerprint": "d813d3b74ad06054070e2bf172e34b6730402a0c",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CustomEvent": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_Thunderbolt": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_Thunderbolt",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 26,
+    "connection_count": 27,
+    "fingerprint": "1ff8dd7f35408b2e5b736b2a341ad813c31aa0fc",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 4,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 3,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 2,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_VariableGet": 6,
+      "K2Node_VariableSet": 4
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_TrueStrike": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_TrueStrike",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 32,
+    "connection_count": 32,
+    "fingerprint": "a8e941dee684a58d629d3be21f07a4dbfeedafc7",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 6,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 3,
+      "K2Node_IfThenElse": 3,
+      "K2Node_MakeArray": 1,
+      "K2Node_VariableGet": 16
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/Buffs/BP_BuffBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/Buffs/BP_BuffBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 49,
+    "connection_count": 51,
+    "fingerprint": "bf32475cb29ef0a36e6664370f2cc735954e3f88",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_CallFunction": 15,
+      "K2Node_CustomEvent": 7,
+      "K2Node_Event": 1,
+      "K2Node_IfThenElse": 3,
+      "K2Node_Knot": 1,
+      "K2Node_MacroInstance": 2,
+      "K2Node_Self": 1,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 12,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/Buffs/BP_Stun": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/Buffs/BP_Stun",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 12,
+    "connection_count": 14,
+    "fingerprint": "6ad3c45854a70930869f8074f7e50676f95702b9",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 2,
+      "K2Node_Event": 2,
+      "K2Node_Knot": 2,
+      "K2Node_VariableGet": 4,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ActionButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ActionButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 45,
+    "connection_count": 48,
+    "fingerprint": "f83bde90097381d8dc142164cd3070b23b41716c",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 12,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_Knot": 3,
+      "K2Node_MakeStruct": 6,
+      "K2Node_Select": 6,
+      "K2Node_VariableGet": 13,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ActionTimeBar": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ActionTimeBar",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 34,
+    "connection_count": 39,
+    "fingerprint": "cd6fecc42627e9d2cf086c3c883e2d8116ccf433",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_CallFunction": 9,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_CustomEvent": 5,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 3,
+      "K2Node_VariableGet": 11,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ActionsUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ActionsUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 23,
+    "connection_count": 22,
+    "fingerprint": "55eefd4a1a6df6da8a6f2792dc8bad1bc68299e0",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 6,
+      "K2Node_CustomEvent": 4,
+      "K2Node_Event": 1,
+      "K2Node_MacroInstance": 1,
+      "K2Node_MakeArray": 1,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 6,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_BattleUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_BattleUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 183,
+    "connection_count": 175,
+    "fingerprint": "08132757f5db2d97db1e637ea419c82d164cabb6",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 7,
+      "K2Node_AssignDelegate": 2,
+      "K2Node_CallDelegate": 8,
+      "K2Node_CallFunction": 67,
+      "K2Node_ClearDelegate": 4,
+      "K2Node_CustomEvent": 28,
+      "K2Node_DynamicCast": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 8,
+      "K2Node_MacroInstance": 4,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 50,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_BossUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_BossUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 53,
+    "connection_count": 60,
+    "fingerprint": "3b3dac9a98e182e776924f93c5cb2f0d8d23ceed",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 4,
+      "K2Node_CallFunction": 17,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_CustomEvent": 6,
+      "K2Node_Knot": 4,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 19,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_CraftBar": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_CraftBar",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 4,
+    "fingerprint": "dd484c7ffd00212d6ccabd9665571e3f64ed46ce",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 2,
+      "K2Node_CustomEvent": 1,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_DamageTextUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_DamageTextUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 41,
+    "connection_count": 45,
+    "fingerprint": "9aa4b68259bef758b34b932fc0f58f77c579f775",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 6,
+      "K2Node_CustomEvent": 3,
+      "K2Node_DynamicCast": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 6,
+      "K2Node_MacroInstance": 3,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 3,
+      "K2Node_VariableGet": 8,
+      "K2Node_VariableSet": 8
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_EnemyUnitUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_EnemyUnitUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 11,
+    "connection_count": 13,
+    "fingerprint": "b008e4da6989a8d06bdc92bb45e77df2f26f91f4",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 3,
+      "K2Node_CustomEvent": 1,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 5,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ExpBar": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ExpBar",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 46,
+    "connection_count": 59,
+    "fingerprint": "96b1889359f02f76f9a2be75678fafb577bb5fc2",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 15,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_CustomEvent": 2,
+      "K2Node_FormatText": 2,
+      "K2Node_GetClassDefaults": 4,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 9,
+      "K2Node_VariableGet": 10,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ExploreUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_ExploreUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 21,
+    "connection_count": 24,
+    "fingerprint": "3bae3a9b0c1f22724adcefabce7cf30b9ddba0eb",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 7,
+      "K2Node_CustomEvent": 2,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_Knot": 4,
+      "K2Node_VariableGet": 7
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_FadeTransitionUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_FadeTransitionUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 2,
+    "fingerprint": "b017feb5b422099ed5db7f8eae2b405cd85f7560",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_Event": 1,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_HPBar": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_HPBar",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 18,
+    "connection_count": 20,
+    "fingerprint": "8932aa16d81dab7a87a2bc45fdf4f00f2e9f11db",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallFunction": 7,
+      "K2Node_CustomEvent": 2,
+      "K2Node_VariableGet": 7,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_InteractionUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_InteractionUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 15,
+    "connection_count": 14,
+    "fingerprint": "f6911bd4ed0c7a1b707eb598f2599042f3b0425e",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 3,
+      "K2Node_CustomEvent": 4,
+      "K2Node_Knot": 2,
+      "K2Node_VariableGet": 3,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_MPBar": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_MPBar",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 18,
+    "connection_count": 20,
+    "fingerprint": "bbce5e9ae83c85067386ece5b63abc9b2969d98a",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallFunction": 7,
+      "K2Node_CustomEvent": 2,
+      "K2Node_VariableGet": 7,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_MobileUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_MobileUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 40,
+    "connection_count": 40,
+    "fingerprint": "9589f16f2dea184cb2dfd759bd8a6b4967b10926",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 14,
+      "K2Node_ComponentBoundEvent": 2,
+      "K2Node_CustomEvent": 5,
+      "K2Node_Event": 1,
+      "K2Node_MacroInstance": 2,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 10,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_NoCursor": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_NoCursor",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 3,
+    "connection_count": 0,
+    "fingerprint": "f0d10909a9fdacd5c4a77824b7145cb427003482",
+    "node_class_histogram": {
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_PlayerUnitListUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_PlayerUnitListUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 13,
+    "connection_count": 18,
+    "fingerprint": "6e05a9800860adf306eaecdb9446bd1f7a1ae864",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 3,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Knot": 5,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_PlayerUnitUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_PlayerUnitUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 34,
+    "connection_count": 35,
+    "fingerprint": "be1e98fa96a8b4579443d65bc195647bae8ba017",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallFunction": 9,
+      "K2Node_CustomEvent": 4,
+      "K2Node_Knot": 1,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 15
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_QuestNotification": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_QuestNotification",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 67,
+    "connection_count": 68,
+    "fingerprint": "0464cb4ca6cc9f26218dc30c1e7b761a8abc5da0",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 3,
+      "K2Node_CallFunction": 28,
+      "K2Node_CustomEvent": 7,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 1,
+      "K2Node_GetClassDefaults": 5,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 3,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableGet": 16
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_QuestNotificationListUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_QuestNotificationListUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 4,
+    "connection_count": 6,
+    "fingerprint": "b85644934eaa60b460172970f4f1b05d889688d8",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 1,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_TargetIcon": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_TargetIcon",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 7,
+    "fingerprint": "1623edb6c2d973165c49a0d745aa453bbc171588",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 3,
+      "K2Node_CustomEvent": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_TurnOrderList": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_TurnOrderList",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 15,
+    "connection_count": 16,
+    "fingerprint": "2790ec1b28b3dfefa12931381052afa432499f39",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 4,
+      "K2Node_CustomEvent": 3,
+      "K2Node_Knot": 2,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 3,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_TurnOrderUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_TurnOrderUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 24,
+    "connection_count": 25,
+    "fingerprint": "e4647da0b1b8347dd0d97b93a1bd91c6195c1566",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallFunction": 6,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 1,
+      "K2Node_MacroInstance": 1,
+      "K2Node_Select": 1,
+      "K2Node_VariableGet": 10
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_UIBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_UIBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 57,
+    "connection_count": 50,
+    "fingerprint": "131042088f68070b57ef5c2dd4bb252f1d0101b0",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 26,
+      "K2Node_CustomEvent": 18,
+      "K2Node_DynamicCast": 2,
+      "K2Node_MacroInstance": 7,
+      "K2Node_Self": 1,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_UnitBattleDetails": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_UnitBattleDetails",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 44,
+    "connection_count": 50,
+    "fingerprint": "3e794095db0e29fbb7e4a822eeff79e0e6f711f8",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallFunction": 13,
+      "K2Node_CustomEvent": 1,
+      "K2Node_FormatText": 3,
+      "K2Node_VariableGet": 25,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_UnitClass": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_UnitClass",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 12,
+    "connection_count": 12,
+    "fingerprint": "c79a361b87383a660acde101f7dd3ce1a9729dfe",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 3,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_GetEnumeratorNameAsString": 1,
+      "K2Node_Select": 1,
+      "K2Node_VariableGet": 4,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ArrowButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ArrowButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 12,
+    "connection_count": 10,
+    "fingerprint": "ea9fd28e2184ef3babc1b7e34b682b5afd8de6fd",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 4,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_VariableGet": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_BuyItemAmountDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_BuyItemAmountDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 107,
+    "connection_count": 114,
+    "fingerprint": "1c865a33c74087f09b8e05c43f1e8dff9490c9dc",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 30,
+      "K2Node_ClassDynamicCast": 3,
+      "K2Node_CommutativeAssociativeBinaryOperator": 5,
+      "K2Node_ComponentBoundEvent": 4,
+      "K2Node_CreateWidget": 2,
+      "K2Node_CustomEvent": 4,
+      "K2Node_Event": 6,
+      "K2Node_FormatText": 1,
+      "K2Node_GetClassDefaults": 4,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 5,
+      "K2Node_MacroInstance": 1,
+      "K2Node_Select": 1,
+      "K2Node_VariableGet": 34,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_CraftDetails": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_CraftDetails",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 162,
+    "connection_count": 173,
+    "fingerprint": "dbc2c9cf4683c98062052da4c71b6c40a116f67c",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_AssignDelegate": 4,
+      "K2Node_CallArrayFunction": 3,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 47,
+      "K2Node_ClassDynamicCast": 2,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_ComponentBoundEvent": 3,
+      "K2Node_CreateWidget": 5,
+      "K2Node_CustomEvent": 13,
+      "K2Node_Event": 6,
+      "K2Node_FormatText": 1,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_GetClassDefaults": 6,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 11,
+      "K2Node_MacroInstance": 6,
+      "K2Node_Select": 1,
+      "K2Node_VariableGet": 41,
+      "K2Node_VariableSet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_CraftItemButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_CraftItemButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 35,
+    "connection_count": 37,
+    "fingerprint": "3810a54d9736b22f1f48e41ebbc6e03b4089967b",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 9,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_GetClassDefaults": 2,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 4,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 2,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 9
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_CraftItemRecipe": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_CraftItemRecipe",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 26,
+    "connection_count": 28,
+    "fingerprint": "bed9fd3a40a6595afe0a792ceafc8a154efeb3dd",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallFunction": 8,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 1,
+      "K2Node_VariableGet": 10
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_DefeatDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_DefeatDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 19,
+    "connection_count": 18,
+    "fingerprint": "fc9f54a8272abc7bb2fad827ac53b8f6fedfa7cf",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 6,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 1,
+      "K2Node_MacroInstance": 1,
+      "K2Node_VariableGet": 5,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_DialogueButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_DialogueButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 23,
+    "connection_count": 24,
+    "fingerprint": "d70d44cd86ade43ee95b252775a5b9c41f9c7656",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 6,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 4,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 2,
+      "K2Node_VariableGet": 5
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_EquipmentButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_EquipmentButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 42,
+    "connection_count": 44,
+    "fingerprint": "fbbf913d182d62b696779ade7f6fdc34deeddbbb",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 12,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 3,
+      "K2Node_Event": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 4,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 2,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 11,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_EquipmentStatComparison": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_EquipmentStatComparison",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 28,
+    "connection_count": 33,
+    "fingerprint": "9dd7a1f77d8d6c79200251fb8199d3222f0c334a",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 9,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 2,
+      "K2Node_Knot": 8,
+      "K2Node_VariableGet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_InfoDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_InfoDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 16,
+    "connection_count": 13,
+    "fingerprint": "1e6ac3d7652c96374eed272ba28c2a2abd141992",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 6,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_Event": 3,
+      "K2Node_VariableGet": 5
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ItemButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ItemButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 53,
+    "connection_count": 55,
+    "fingerprint": "4b1401441cb811e7593ea6542c96c7a272681177",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 14,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 4,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 5,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 2,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 16,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ItemObtainDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ItemObtainDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 68,
+    "connection_count": 76,
+    "fingerprint": "16024ff4afc963939aa17a0d987f84a85af3707e",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 27,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 5,
+      "K2Node_Event": 3,
+      "K2Node_FormatText": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_MacroInstance": 3,
+      "K2Node_VariableGet": 20
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ItemUseDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ItemUseDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 101,
+    "connection_count": 107,
+    "fingerprint": "ae45bb0afd1e35351873bea090fb9561397668eb",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_CallArrayFunction": 4,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 28,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 11,
+      "K2Node_Event": 5,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 6,
+      "K2Node_MacroInstance": 5,
+      "K2Node_VariableGet": 27,
+      "K2Node_VariableSet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_LevelUpDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_LevelUpDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 96,
+    "connection_count": 116,
+    "fingerprint": "0f5d46389114ce79aa529b2bc1919336648769ba",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 39,
+      "K2Node_CommutativeAssociativeBinaryOperator": 2,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CreateWidget": 2,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 2,
+      "K2Node_FormatText": 4,
+      "K2Node_GetClassDefaults": 3,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 3,
+      "K2Node_MacroInstance": 2,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 30,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_QuestButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_QuestButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 29,
+    "connection_count": 30,
+    "fingerprint": "ae0953147f486c30fc299f61d676014f43c81356",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 7,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 4,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 2,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 7
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_SellItemAmountDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_SellItemAmountDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 87,
+    "connection_count": 89,
+    "fingerprint": "fe688efe186bc2fd4fe91070567273f3f7d1cfa2",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 2,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 23,
+      "K2Node_ClassDynamicCast": 3,
+      "K2Node_CommutativeAssociativeBinaryOperator": 6,
+      "K2Node_ComponentBoundEvent": 4,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 4,
+      "K2Node_Event": 6,
+      "K2Node_FormatText": 1,
+      "K2Node_GetClassDefaults": 3,
+      "K2Node_Knot": 3,
+      "K2Node_VariableGet": 27,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ShopBuyDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ShopBuyDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 213,
+    "connection_count": 223,
+    "fingerprint": "be0a23207f857baed16c920c12483952b7a7dfe9",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_AssignDelegate": 1,
+      "K2Node_CallArrayFunction": 4,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 76,
+      "K2Node_CastByteToEnum": 3,
+      "K2Node_ClassDynamicCast": 2,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_ComponentBoundEvent": 5,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 14,
+      "K2Node_Event": 8,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_GetNumEnumEntries": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 12,
+      "K2Node_MacroInstance": 5,
+      "K2Node_Select": 3,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 58,
+      "K2Node_VariableSet": 8
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ShopBuyItemButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ShopBuyItemButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 38,
+    "connection_count": 42,
+    "fingerprint": "54b9b82c1ffa4f55cf035a1dbf9d75412863d545",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 10,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 4,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 2,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 10,
+      "K2Node_VariableSet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ShopSellDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_ShopSellDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 212,
+    "connection_count": 236,
+    "fingerprint": "1ef7b6f4f29d3f77bcc1b83c86abaf1171b2ed7c",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 4,
+      "K2Node_CallArrayFunction": 4,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 81,
+      "K2Node_CastByteToEnum": 3,
+      "K2Node_ClassDynamicCast": 2,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_ComponentBoundEvent": 5,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 14,
+      "K2Node_Event": 8,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_GetNumEnumEntries": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 10,
+      "K2Node_MacroInstance": 5,
+      "K2Node_Select": 3,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 54,
+      "K2Node_VariableSet": 8
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_SkillButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_SkillButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 42,
+    "connection_count": 44,
+    "fingerprint": "2c701283f22bb8454165affff534bfbcba7c234b",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 12,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 1,
+      "K2Node_GetClassDefaults": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 4,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 3,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 11
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_SkillUseDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_SkillUseDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 100,
+    "connection_count": 103,
+    "fingerprint": "7626639b0de9b77d2491c007ef2b1470f5d71475",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_CallArrayFunction": 4,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 26,
+      "K2Node_ClassDynamicCast": 1,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 11,
+      "K2Node_Event": 5,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 6,
+      "K2Node_MacroInstance": 5,
+      "K2Node_VariableGet": 27,
+      "K2Node_VariableSet": 6
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_VictoryDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_VictoryDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 71,
+    "connection_count": 77,
+    "fingerprint": "0406611be8730ab4a172eb243ef6004551f305d8",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 31,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 4,
+      "K2Node_Event": 2,
+      "K2Node_FormatText": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_MacroInstance": 3,
+      "K2Node_Select": 1,
+      "K2Node_VariableGet": 21
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_YesNoDialogue": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_YesNoDialogue",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 36,
+    "connection_count": 31,
+    "fingerprint": "275d85bedeee190472da5a2ac42e6a8d7787eb3f",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 12,
+      "K2Node_ComponentBoundEvent": 2,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 5,
+      "K2Node_IfThenElse": 2,
+      "K2Node_VariableGet": 10,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_EquipmentComparisonUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_EquipmentComparisonUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 133,
+    "connection_count": 170,
+    "fingerprint": "b8924d6d51d9ce2152eae1336746485fdc9f2139",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 19,
+      "K2Node_CallFunction": 35,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 4,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_Knot": 24,
+      "K2Node_Select": 1,
+      "K2Node_VariableGet": 39,
+      "K2Node_VariableSet": 7
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_EquipmentDetails": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_EquipmentDetails",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 107,
+    "connection_count": 124,
+    "fingerprint": "5060a538d04dba77873c1dc55235af61f67048d1",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_BreakStruct": 1,
+      "K2Node_CallArrayFunction": 2,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 39,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_ComponentBoundEvent": 2,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 6,
+      "K2Node_Event": 3,
+      "K2Node_FormatText": 3,
+      "K2Node_GetClassDefaults": 5,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 8,
+      "K2Node_MacroInstance": 2,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 25,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_ItemDetails": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_ItemDetails",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 290,
+    "connection_count": 333,
+    "fingerprint": "6cb1117ebfc661624533432e81f2690e14a00425",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 5,
+      "K2Node_AssignDelegate": 1,
+      "K2Node_CallArrayFunction": 7,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 101,
+      "K2Node_CastByteToEnum": 3,
+      "K2Node_ClassDynamicCast": 5,
+      "K2Node_CommutativeAssociativeBinaryOperator": 2,
+      "K2Node_ComponentBoundEvent": 5,
+      "K2Node_CreateWidget": 6,
+      "K2Node_CustomEvent": 16,
+      "K2Node_Event": 8,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_GetClassDefaults": 4,
+      "K2Node_GetNumEnumEntries": 2,
+      "K2Node_IfThenElse": 3,
+      "K2Node_Knot": 22,
+      "K2Node_MacroInstance": 7,
+      "K2Node_Select": 2,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 76,
+      "K2Node_VariableSet": 10
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_MainMenu": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_MainMenu",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 137,
+    "connection_count": 144,
+    "fingerprint": "2134c7efa171ca38518888e7763949d9a5280f79",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 7,
+      "K2Node_CallArrayFunction": 4,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 40,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 16,
+      "K2Node_DynamicCast": 2,
+      "K2Node_Event": 6,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_IfThenElse": 4,
+      "K2Node_Knot": 10,
+      "K2Node_MacroInstance": 5,
+      "K2Node_MakeArray": 1,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 26,
+      "K2Node_VariableSet": 9
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_MenuButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_MenuButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 26,
+    "connection_count": 27,
+    "fingerprint": "f7fe4d2ac621a8760ac0b615fa76fa015e1e8dc7",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 7,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 4,
+      "K2Node_MakeStruct": 1,
+      "K2Node_Select": 2,
+      "K2Node_VariableGet": 7
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_PartyUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_PartyUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 321,
+    "connection_count": 348,
+    "fingerprint": "6af49d0f670d3eae5638c5b9ffcdcdcffdf70aca",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 3,
+      "K2Node_CallArrayFunction": 14,
+      "K2Node_CallDelegate": 3,
+      "K2Node_CallFunction": 80,
+      "K2Node_CommutativeAssociativeBinaryOperator": 8,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 15,
+      "K2Node_Event": 7,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_IfThenElse": 21,
+      "K2Node_Knot": 16,
+      "K2Node_MacroInstance": 6,
+      "K2Node_Select": 7,
+      "K2Node_VariableGet": 116,
+      "K2Node_VariableSet": 20
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_PauseMenu": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_PauseMenu",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 375,
+    "connection_count": 422,
+    "fingerprint": "84109b69e21060a1799de9dafcaf3373eb56817e",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 30,
+      "K2Node_AssignDelegate": 1,
+      "K2Node_CallArrayFunction": 9,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 110,
+      "K2Node_ClearDelegate": 2,
+      "K2Node_CreateWidget": 8,
+      "K2Node_CustomEvent": 46,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 5,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_IfThenElse": 9,
+      "K2Node_Knot": 37,
+      "K2Node_MacroInstance": 4,
+      "K2Node_MakeArray": 1,
+      "K2Node_Self": 2,
+      "K2Node_VariableGet": 93,
+      "K2Node_VariableSet": 14
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_QuestDetails": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_QuestDetails",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 137,
+    "connection_count": 146,
+    "fingerprint": "8d9866c4fad8cc15c500bd08c751c8cbaa4d035b",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 2,
+      "K2Node_CallArrayFunction": 5,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 41,
+      "K2Node_ComponentBoundEvent": 3,
+      "K2Node_CreateWidget": 2,
+      "K2Node_CustomEvent": 8,
+      "K2Node_Event": 6,
+      "K2Node_FormatText": 1,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_GetClassDefaults": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 10,
+      "K2Node_MacroInstance": 6,
+      "K2Node_Select": 1,
+      "K2Node_VariableGet": 40,
+      "K2Node_VariableSet": 7
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_SaveButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_SaveButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 57,
+    "connection_count": 63,
+    "fingerprint": "3076554c5fc0c58e100f24c11fc70e838543fc71",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 23,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 2,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 3,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 4,
+      "K2Node_MacroInstance": 1,
+      "K2Node_Select": 3,
+      "K2Node_VariableGet": 17
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_SaveUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_SaveUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 84,
+    "connection_count": 91,
+    "fingerprint": "dea43532d10898e5ccd98e8fa8d11d58da24b2f7",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallArrayFunction": 2,
+      "K2Node_CallDelegate": 3,
+      "K2Node_CallFunction": 26,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 6,
+      "K2Node_DynamicCast": 2,
+      "K2Node_Event": 6,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 4,
+      "K2Node_MacroInstance": 4,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 17,
+      "K2Node_VariableSet": 7
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_SkillDetails": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_SkillDetails",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 286,
+    "connection_count": 321,
+    "fingerprint": "59300b78f8de3c6d18a231ed87627f9835fbf611",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 4,
+      "K2Node_AssignDelegate": 2,
+      "K2Node_CallArrayFunction": 8,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 81,
+      "K2Node_ClassDynamicCast": 3,
+      "K2Node_CommutativeAssociativeBinaryOperator": 4,
+      "K2Node_ComponentBoundEvent": 4,
+      "K2Node_CreateWidget": 3,
+      "K2Node_CustomEvent": 16,
+      "K2Node_Event": 7,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_GetClassDefaults": 8,
+      "K2Node_IfThenElse": 7,
+      "K2Node_Knot": 24,
+      "K2Node_MacroInstance": 8,
+      "K2Node_Select": 5,
+      "K2Node_SetFieldsInStruct": 1,
+      "K2Node_SpawnActorFromClass": 2,
+      "K2Node_VariableGet": 84,
+      "K2Node_VariableSet": 12
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitButton": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitButton",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 60,
+    "connection_count": 66,
+    "fingerprint": "fe47fa9f03bafae96088564897846a4cdfe52331",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 2,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 24,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 2,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 3,
+      "K2Node_Select": 2,
+      "K2Node_Self": 1,
+      "K2Node_VariableGet": 19
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitButtonList": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitButtonList",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 65,
+    "connection_count": 67,
+    "fingerprint": "b762522ee0c91a70a168e8042b11daf34225a932",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallArrayFunction": 2,
+      "K2Node_CallDelegate": 3,
+      "K2Node_CallFunction": 15,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 5,
+      "K2Node_Event": 5,
+      "K2Node_GetArrayItem": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 3,
+      "K2Node_MacroInstance": 5,
+      "K2Node_VariableGet": 18,
+      "K2Node_VariableSet": 4
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitDetails": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitDetails",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 156,
+    "connection_count": 184,
+    "fingerprint": "572280bbba91e0e541748ac7dacdded3912a6ce8",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 2,
+      "K2Node_AssignDelegate": 1,
+      "K2Node_BreakStruct": 3,
+      "K2Node_CallArrayFunction": 2,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 54,
+      "K2Node_CommutativeAssociativeBinaryOperator": 1,
+      "K2Node_ComponentBoundEvent": 4,
+      "K2Node_CreateWidget": 2,
+      "K2Node_CustomEvent": 8,
+      "K2Node_Event": 5,
+      "K2Node_FormatText": 4,
+      "K2Node_GetArrayItem": 2,
+      "K2Node_GetClassDefaults": 2,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 16,
+      "K2Node_MacroInstance": 2,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 41,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitDetailsSummary": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitDetailsSummary",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 70,
+    "connection_count": 81,
+    "fingerprint": "7ee3e768f3075232d69aa18c93f49e524d600cb0",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 2,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 25,
+      "K2Node_ComponentBoundEvent": 1,
+      "K2Node_CustomEvent": 1,
+      "K2Node_Event": 1,
+      "K2Node_FormatText": 2,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_IfThenElse": 1,
+      "K2Node_Knot": 7,
+      "K2Node_Select": 4,
+      "K2Node_VariableGet": 24
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitDetailsSummaryList": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitDetailsSummaryList",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 73,
+    "connection_count": 81,
+    "fingerprint": "fba3c9e4d7c5b718a548da059fbac0c71ee1caeb",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 1,
+      "K2Node_CallArrayFunction": 3,
+      "K2Node_CallDelegate": 4,
+      "K2Node_CallFunction": 18,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 6,
+      "K2Node_Event": 4,
+      "K2Node_GetArrayItem": 2,
+      "K2Node_IfThenElse": 2,
+      "K2Node_Knot": 6,
+      "K2Node_MacroInstance": 5,
+      "K2Node_VariableGet": 16,
+      "K2Node_VariableSet": 5
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitPartyDetails": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_UnitPartyDetails",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 83,
+    "connection_count": 111,
+    "fingerprint": "d81ea23a3f98c001281f44b3b1b344499e0ea0e7",
+    "node_class_histogram": {
+      "K2Node_BreakStruct": 3,
+      "K2Node_CallFunction": 26,
+      "K2Node_CustomEvent": 3,
+      "K2Node_FormatText": 4,
+      "K2Node_GetClassDefaults": 1,
+      "K2Node_Knot": 14,
+      "K2Node_MakeStruct": 1,
+      "K2Node_SwitchEnum": 1,
+      "K2Node_VariableGet": 28,
+      "K2Node_VariableSet": 2
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_WearEquipmentUI": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/MainMenu/BP_WearEquipmentUI",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 379,
+    "connection_count": 411,
+    "fingerprint": "6304fa90365e67e225cecbdac995026518652a97",
+    "node_class_histogram": {
+      "K2Node_AddDelegate": 4,
+      "K2Node_CallArrayFunction": 10,
+      "K2Node_CallDelegate": 2,
+      "K2Node_CallFunction": 100,
+      "K2Node_ClassDynamicCast": 6,
+      "K2Node_CommutativeAssociativeBinaryOperator": 2,
+      "K2Node_ComponentBoundEvent": 5,
+      "K2Node_CreateWidget": 4,
+      "K2Node_CustomEvent": 19,
+      "K2Node_Event": 8,
+      "K2Node_GetArrayItem": 6,
+      "K2Node_GetClassDefaults": 4,
+      "K2Node_IfThenElse": 22,
+      "K2Node_Knot": 28,
+      "K2Node_MacroInstance": 10,
+      "K2Node_MakeArray": 1,
+      "K2Node_Select": 3,
+      "K2Node_VariableGet": 127,
+      "K2Node_VariableSet": 18
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/BP_UnitBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/BP_UnitBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 183,
+    "connection_count": 197,
+    "fingerprint": "afd7ea50d54dbfa5e75fa2a6d91ff5e6df88e067",
+    "node_class_histogram": {
+      "K2Node_AssignDelegate": 1,
+      "K2Node_CallDelegate": 7,
+      "K2Node_CallFunction": 57,
+      "K2Node_ClearDelegate": 1,
+      "K2Node_CommutativeAssociativeBinaryOperator": 5,
+      "K2Node_CustomEvent": 19,
+      "K2Node_DynamicCast": 1,
+      "K2Node_IfThenElse": 4,
+      "K2Node_Knot": 17,
+      "K2Node_MacroInstance": 1,
+      "K2Node_PlayMontage": 1,
+      "K2Node_Select": 4,
+      "K2Node_Self": 3,
+      "K2Node_SpawnActorFromClass": 2,
+      "K2Node_Timeline": 2,
+      "K2Node_VariableGet": 46,
+      "K2Node_VariableSet": 12
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_AverageEnemy": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_AverageEnemy",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "413823dbbe2aa6fc248f683c56860b06950f91a3",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_BossEnemy": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_BossEnemy",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 0,
+    "connection_count": 0,
+    "fingerprint": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "node_class_histogram": {}
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_EnemyBossBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_EnemyBossBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 5,
+    "connection_count": 5,
+    "fingerprint": "f6e5a372e9b7a8132cc5c793ced68726e78cd511",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 2,
+      "K2Node_CallParentFunction": 1,
+      "K2Node_Event": 1,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_EnemyUnitBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_EnemyUnitBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 98,
+    "connection_count": 110,
+    "fingerprint": "d313cc05ee94ef040ee023a40aedf9b241e1e0af",
+    "node_class_histogram": {
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 43,
+      "K2Node_CallParentFunction": 3,
+      "K2Node_CustomEvent": 4,
+      "K2Node_DynamicCast": 3,
+      "K2Node_Event": 4,
+      "K2Node_IfThenElse": 3,
+      "K2Node_Knot": 2,
+      "K2Node_MacroInstance": 2,
+      "K2Node_Self": 7,
+      "K2Node_VariableGet": 23,
+      "K2Node_VariableSet": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_WeakEnemy": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_WeakEnemy",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "413823dbbe2aa6fc248f683c56860b06950f91a3",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_ArcherPlayerUnit": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_ArcherPlayerUnit",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "16c1faf299ab6da3ce47669ce44130113c9090ad",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_MagePlayerUnit": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_MagePlayerUnit",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "b1da79e04b4c31346ec2f8f74e40bb21e2e49bfd",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_PlayerUnitBase": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_PlayerUnitBase",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 459,
+    "connection_count": 514,
+    "fingerprint": "9710526c52d263f894e27155dc89a95867d1b696",
+    "node_class_histogram": {
+      "K2Node_AddComponent": 1,
+      "K2Node_AddDelegate": 2,
+      "K2Node_BreakStruct": 2,
+      "K2Node_CallArrayFunction": 9,
+      "K2Node_CallDelegate": 1,
+      "K2Node_CallFunction": 158,
+      "K2Node_CallParentFunction": 3,
+      "K2Node_CommutativeAssociativeBinaryOperator": 5,
+      "K2Node_CreateWidget": 1,
+      "K2Node_CustomEvent": 16,
+      "K2Node_DynamicCast": 1,
+      "K2Node_Event": 6,
+      "K2Node_ExecutionSequence": 1,
+      "K2Node_GetClassDefaults": 3,
+      "K2Node_IfThenElse": 7,
+      "K2Node_InputAction": 8,
+      "K2Node_InputTouch": 1,
+      "K2Node_Knot": 47,
+      "K2Node_MacroInstance": 7,
+      "K2Node_Select": 8,
+      "K2Node_Self": 12,
+      "K2Node_SpawnActorFromClass": 1,
+      "K2Node_SwitchEnum": 14,
+      "K2Node_Timeline": 1,
+      "K2Node_VariableGet": 115,
+      "K2Node_VariableSet": 29
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_PriestPlayerUnit": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_PriestPlayerUnit",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "b1da79e04b4c31346ec2f8f74e40bb21e2e49bfd",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_SwordsmanPlayerUnit": {
+    "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_SwordsmanPlayerUnit",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 6,
+    "connection_count": 5,
+    "fingerprint": "b1da79e04b4c31346ec2f8f74e40bb21e2e49bfd",
+    "node_class_histogram": {
+      "K2Node_CallParentFunction": 3,
+      "K2Node_Event": 3
+    }
+  },
+  "/Game/Melodia/VFX/BP_MelodiaNiagaraDriver": {
+    "asset_path": "/Game/Melodia/VFX/BP_MelodiaNiagaraDriver",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 79,
+    "connection_count": 123,
+    "fingerprint": "d6fdbb0030a3cc54775d1467fce0444cee9105e4",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 60,
+      "K2Node_Event": 2,
+      "K2Node_IfThenElse": 1,
+      "K2Node_MacroInstance": 2,
+      "K2Node_VariableGet": 7,
+      "K2Node_VariableSet": 7
+    }
+  }
+}

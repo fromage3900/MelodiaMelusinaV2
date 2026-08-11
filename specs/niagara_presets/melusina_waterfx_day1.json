@@ -1,0 +1,86 @@
+{
+  "description": "Melusina WaterFX — Day 1 Sprint Tuned Values (gentle drip, subtle mist, low splash)",
+  "version": "1.0.1",
+  "target_system": "/Game/Melodia/VFX/Melusina_WaterFX",
+  "sprint_goal": "Subtle water droplets near hair tips with ambient mist — dry beauty pass ready",
+  "sprint_notes": [
+    "Low droplet density for 'a little drip' look — not a waterfall",
+    "Mist opacity reduced for ambient-only feel",
+    "SplashForce kept low — beads should drip, not explode",
+    "HairDripIntensity at 0.35 for wet-look without over-saturation",
+    "All values safe for dry beauty stills (set hide_render=True on WaterFX to remove)"
+  ],
+  "niagara_systems": {
+    "/Game/Melodia/VFX/Melusina_WaterFX": {
+      "WaterSplashEmitter": {
+        "SpawnRate": 60.0,
+        "Lifetime": 1.8,
+        "SplashForce": 0.25,
+        "DropletDensity": 0.35,
+        "GravityScale": 0.55,
+        "DragCoefficient": 3.0,
+        "CollisionRadius": 0.015,
+        "SurfaceTension": 0.25,
+        "Viscosity": 0.12,
+        "Resolution": 72
+      },
+      "WaterSheetEmitter": {
+        "SpawnRate": 15.0,
+        "Lifetime": 0.6,
+        "SheetWidth": 0.08,
+        "SheetForce": 0.1
+      }
+    },
+    "/Game/EnvSandbox/VFX/Systems/NS_Uni_WaterMist": {
+      "WaterMist": {
+        "SpawnRate": 25.0,
+        "Lifetime": 4.0,
+        "MistOpacity": 0.18,
+        "MistScale": 1.5,
+        "DriftSpeed": 0.05,
+        "ProximitySpawnRateMultiplier": 1.0,
+        "NearProximityDistance": 150.0,
+        "FarProximityDistance": 400.0
+      }
+    }
+  },
+  "mpc_bindings": [
+    {
+      "niagara_path": "/Game/EnvSandbox/VFX/Systems/NS_Uni_WaterMist",
+      "emitter": "WaterMist",
+      "param": "ProximitySpawnRateMultiplier",
+      "mpc_path": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+      "mpc_param": "PlayerProximity"
+    }
+  ],
+  "module_scripts": [
+    {
+      "niagara_path": "/Game/Melodia/VFX/Melusina_WaterFX",
+      "emitter": "WaterSplashEmitter",
+      "module_name": "GentleDripLifetime",
+      "stage": "ParticleUpdate",
+      "source": "float AgeFactor = 1.0 - NormalizedAge * 0.15;\nParticle.Lifetime = Particle.Lifetime * AgeFactor;"
+    },
+    {
+      "niagara_path": "/Game/EnvSandbox/VFX/Systems/NS_Uni_WaterMist",
+      "emitter": "WaterMist",
+      "module_name": "AmbientMistDrift",
+      "stage": "ParticleUpdate",
+      "source": "Particle.Velocity += float3(DriftSpeed * 0.5, 0.0, DriftSpeed * 0.15);\nParticle.Scale += float3(0.01, 0.01, 0.01) * NormalizedAge;"
+    }
+  ],
+  "material_instances": {
+    "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair": {
+      "scalars": {
+        "HairDripIntensity": 0.35,
+        "SplashForce": 0.25,
+        "WaterOpacity": 0.72,
+        "WaterRoughness": 0.28,
+        "MagicalIntensity": 0.15,
+        "CausticIntensity": 0.08,
+        "DripSpeed": 0.2,
+        "DripLength": 0.08
+      }
+    }
+  }
+}

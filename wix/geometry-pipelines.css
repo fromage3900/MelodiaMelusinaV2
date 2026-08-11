@@ -1,0 +1,148 @@
+/* Geometry pipeline breakdown — flow steps on Melodia night shell */
+.pipeline-lane {
+  margin-bottom: 42px;
+  padding: 22px 24px 26px;
+  border: 1px solid var(--border-gold);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.pipeline-lane:last-child {
+  margin-bottom: 0;
+}
+
+.pipeline-lane-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pipeline-lane-head h3 {
+  margin: 0;
+  font-size: 1.55rem;
+}
+
+.pipeline-lane-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+.pipeline-status {
+  padding: 6px 10px;
+  border: 1px solid var(--border-gold);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--iris);
+}
+
+.pipeline-status.is-live { color: #7dd3c0; }
+.pipeline-status.is-progress { color: var(--gold-soft); }
+.pipeline-status.is-planned { color: var(--muted); }
+.pipeline-status.is-scaffold { color: #cc99ff; }
+
+.pipeline-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.pipeline-step {
+  position: relative;
+  padding: 14px 12px 12px;
+  border: 1px solid rgba(201, 168, 106, 0.28);
+  background: rgba(16, 23, 54, 0.5);
+  min-height: 118px;
+}
+
+.pipeline-step::before {
+  content: attr(data-order);
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-soft);
+}
+
+.pipeline-step strong {
+  display: block;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.astral .pipeline-step strong,
+.deep .pipeline-step strong {
+  color: rgba(244, 240, 252, 0.92);
+}
+
+.pipeline-step p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.pipeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+.pipeline-meta a {
+  color: var(--gold-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.math-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.math-chip {
+  padding: 10px 12px;
+  border: 1px solid var(--border-gold);
+  background: rgba(16, 23, 54, 0.55);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.math-chip b {
+  display: block;
+  color: var(--gold-soft);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 1080px) {
+  .pipeline-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .pipeline-steps {
+    grid-template-columns: 1fr;
+  }
+}

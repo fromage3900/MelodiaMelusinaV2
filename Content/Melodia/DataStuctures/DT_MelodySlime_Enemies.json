@@ -1,0 +1,485 @@
+{
+  "DataType": "EnemyStats",
+  "Rows": {
+    "SlimeForteFestivo": {
+      "enemy_id": "SlimeForteFestivo",
+      "display_name": "Forte Festivo Slime",
+      "max_hp": 486.0,
+      "max_toughness": 93.0,
+      "base_damage": 26.5,
+      "speed": 96,
+      "element": "Forte",
+      "bpm": 144.0
+    },
+    "SlimeForteFugue": {
+      "enemy_id": "SlimeForteFugue",
+      "display_name": "Forte Fugue Slime",
+      "max_hp": 289.0,
+      "max_toughness": 65.0,
+      "base_damage": 16.7,
+      "speed": 90,
+      "element": "Forte",
+      "bpm": 136.0
+    },
+    "SlimeForteFurioso": {
+      "enemy_id": "SlimeForteFurioso",
+      "display_name": "ForteFurioso",
+      "max_hp": 318.0,
+      "max_toughness": 61.0,
+      "base_damage": 14.5,
+      "speed": 69,
+      "element": "Tide",
+      "bpm": 144.0
+    },
+    "SlimeFortePhenomenon": {
+      "enemy_id": "SlimeFortePhenomenon",
+      "display_name": "FortePhenomenon Slime",
+      "max_hp": 517.0,
+      "max_toughness": 85.0,
+      "base_damage": 22.1,
+      "speed": 73,
+      "element": "Forte",
+      "bpm": 136.0
+    },
+    "SlimeFortePresto": {
+      "enemy_id": "SlimeFortePresto",
+      "display_name": "Forte Presto Slime",
+      "max_hp": 462.0,
+      "max_toughness": 112.0,
+      "base_damage": 21.2,
+      "speed": 64,
+      "element": "Forte",
+      "bpm": 128.0
+    },
+    "SlimeForteRondo": {
+      "enemy_id": "SlimeForteRondo",
+      "display_name": "Rondo Slime",
+      "max_hp": 289.0,
+      "max_toughness": 64.0,
+      "base_damage": 15.4,
+      "speed": 82,
+      "element": "Forte",
+      "bpm": 128.0
+    },
+    "SlimeForteTide": {
+      "enemy_id": "SlimeForteTide",
+      "display_name": "Forte Tide Slime",
+      "max_hp": 500.0,
+      "max_toughness": 89.0,
+      "base_damage": 21.1,
+      "speed": 75,
+      "element": "Tide",
+      "bpm": 136.0
+    },
+    "SlimeFortissimo": {
+      "enemy_id": "SlimeFortissimo",
+      "display_name": "Fortissimo Slime",
+      "max_hp": 188.0,
+      "max_toughness": 37.0,
+      "base_damage": 9.7,
+      "speed": 74,
+      "element": "Forte",
+      "bpm": 120.0
+    },
+    "SlimeFurieWind": {
+      "enemy_id": "SlimeFurieWind",
+      "display_name": "Furie Wind Slime",
+      "max_hp": 288.0,
+      "max_toughness": 62.0,
+      "base_damage": 15.0,
+      "speed": 91,
+      "element": "Gale",
+      "bpm": 144.0
+    },
+    "SlimeFurvor": {
+      "enemy_id": "SlimeFurvor",
+      "display_name": "Furvorous Gale",
+      "max_hp": 521.0,
+      "max_toughness": 102.0,
+      "base_damage": 20.8,
+      "speed": 69,
+      "element": "Gale",
+      "bpm": 120.0
+    },
+    "SlimeGaleBurst": {
+      "enemy_id": "SlimeGaleBurst",
+      "display_name": "Gale Burst Slime",
+      "max_hp": 290.0,
+      "max_toughness": 60.0,
+      "base_damage": 13.7,
+      "speed": 96,
+      "element": "Gale",
+      "bpm": 112.0
+    },
+    "SlimeGaleHarbinger": {
+      "enemy_id": "SlimeGaleHarbinger",
+      "display_name": "Gale Harbinger",
+      "max_hp": 696.0,
+      "max_toughness": 120.0,
+      "base_damage": 40.4,
+      "speed": 75,
+      "element": "Gale",
+      "bpm": 144.0
+    },
+    "SlimeGaleHarmonia": {
+      "enemy_id": "SlimeGaleHarmonia",
+      "display_name": "Gale Harmonia",
+      "max_hp": 627.0,
+      "max_toughness": 132.0,
+      "base_damage": 37.7,
+      "speed": 66,
+      "element": "Gale",
+      "bpm": 120.0
+    },
+    "SlimeGaleToccata": {
+      "enemy_id": "SlimeGaleToccata",
+      "display_name": "Gale Toccata Slime",
+      "max_hp": 758.0,
+      "max_toughness": 154.0,
+      "base_damage": 37.5,
+      "speed": 65,
+      "element": "Gale",
+      "bpm": 120.0
+    },
+    "SlimeGaleTphoon": {
+      "enemy_id": "SlimeGaleTphoon",
+      "display_name": "GaleTphoon Slime",
+      "max_hp": 681.0,
+      "max_toughness": 147.0,
+      "base_damage": 37.7,
+      "speed": 68,
+      "element": "Gale",
+      "bpm": 112.0
+    },
+    "SlimeGaleTroupe": {
+      "enemy_id": "SlimeGaleTroupe",
+      "display_name": "Gale Troupe Slime",
+      "max_hp": 281.0,
+      "max_toughness": 51.0,
+      "base_damage": 14.8,
+      "speed": 92,
+      "element": "Gale",
+      "bpm": 144.0
+    },
+    "SlimeGaleWhirl": {
+      "enemy_id": "SlimeGaleWhirl",
+      "display_name": "GaleWhirl Slime",
+      "max_hp": 301.0,
+      "max_toughness": 56.0,
+      "base_damage": 17.1,
+      "speed": 74,
+      "element": "Gale",
+      "bpm": 128.0
+    },
+    "SlimeMelodicHarbinger": {
+      "enemy_id": "SlimeMelodicHarbinger",
+      "display_name": "Melodic Harbinger",
+      "max_hp": 199.0,
+      "max_toughness": 43.0,
+      "base_damage": 8.9,
+      "speed": 68,
+      "element": "Arcane",
+      "bpm": 136.0
+    },
+    "SlimeMelodicHarmony": {
+      "enemy_id": "SlimeMelodicHarmony",
+      "display_name": "Melodic Harmony Slime",
+      "max_hp": 308.0,
+      "max_toughness": 51.0,
+      "base_damage": 17.2,
+      "speed": 76,
+      "element": "Arcane",
+      "bpm": 144.0
+    },
+    "SlimeMelodicStorm": {
+      "enemy_id": "SlimeMelodicStorm",
+      "display_name": "Melodic Storm Slime",
+      "max_hp": 664.0,
+      "max_toughness": 121.0,
+      "base_damage": 35.3,
+      "speed": 98,
+      "element": "Forte",
+      "bpm": 128.0
+    },
+    "SlimeMelodrone": {
+      "enemy_id": "SlimeMelodrone",
+      "display_name": "Melodrone Slime",
+      "max_hp": 521.0,
+      "max_toughness": 91.0,
+      "base_damage": 24.4,
+      "speed": 95,
+      "element": "Arcane",
+      "bpm": 120.0
+    },
+    "SlimeRadianceDuet": {
+      "enemy_id": "SlimeRadianceDuet",
+      "display_name": "Radiance Duet Slime",
+      "max_hp": 456.0,
+      "max_toughness": 80.0,
+      "base_damage": 26.8,
+      "speed": 94,
+      "element": "Radiant",
+      "bpm": 144.0
+    },
+    "SlimeRadianceSpark": {
+      "enemy_id": "SlimeRadianceSpark",
+      "display_name": "Radiance Spark Slime",
+      "max_hp": 336.0,
+      "max_toughness": 67.0,
+      "base_damage": 13.9,
+      "speed": 81,
+      "element": "Radiant",
+      "bpm": 136.0
+    },
+    "SlimeRadianceWaltz": {
+      "enemy_id": "SlimeRadianceWaltz",
+      "display_name": "Radiance Waltz Slime",
+      "max_hp": 256.0,
+      "max_toughness": 57.0,
+      "base_damage": 14.1,
+      "speed": 71,
+      "element": "Radiant",
+      "bpm": 128.0
+    },
+    "SlimeRadiantHarmonia": {
+      "enemy_id": "SlimeRadiantHarmonia",
+      "display_name": "Radiant Harmonia",
+      "max_hp": 289.0,
+      "max_toughness": 50.0,
+      "base_damage": 15.4,
+      "speed": 69,
+      "element": "Radiant",
+      "bpm": 144.0
+    },
+    "SlimeRadiantHarmony": {
+      "enemy_id": "SlimeRadiantHarmony",
+      "display_name": "Radiant Harmony Slime",
+      "max_hp": 285.0,
+      "max_toughness": 61.0,
+      "base_damage": 13.0,
+      "speed": 92,
+      "element": "Radiant",
+      "bpm": 112.0
+    },
+    "SlimeRadiantSparkle": {
+      "enemy_id": "SlimeRadiantSparkle",
+      "display_name": "Radiant Sparkle Slime",
+      "max_hp": 268.0,
+      "max_toughness": 68.0,
+      "base_damage": 14.4,
+      "speed": 73,
+      "element": "Radiant",
+      "bpm": 112.0
+    },
+    "SlimeShadowWaltz": {
+      "enemy_id": "SlimeShadowWaltz",
+      "display_name": "Shadow Waltz Slime",
+      "max_hp": 807.0,
+      "max_toughness": 157.0,
+      "base_damage": 40.0,
+      "speed": 98,
+      "element": "Umbral",
+      "bpm": 112.0
+    },
+    "SlimeSorcererSweep": {
+      "enemy_id": "SlimeSorcererSweep",
+      "display_name": "Sorcerer Sweep",
+      "max_hp": 180.0,
+      "max_toughness": 32.0,
+      "base_damage": 8.8,
+      "speed": 77,
+      "element": "Arcane",
+      "bpm": 112.0
+    },
+    "SlimeStalagmite": {
+      "enemy_id": "SlimeStalagmite",
+      "display_name": "Stalagmite Slime",
+      "max_hp": 167.0,
+      "max_toughness": 37.0,
+      "base_damage": 9.2,
+      "speed": 96,
+      "element": "Stone",
+      "bpm": 128.0
+    },
+    "SlimeStarfall": {
+      "enemy_id": "SlimeStarfall",
+      "display_name": "Starfall Slime",
+      "max_hp": 298.0,
+      "max_toughness": 52.0,
+      "base_damage": 17.2,
+      "speed": 99,
+      "element": "Arcane",
+      "bpm": 136.0
+    },
+    "SlimeStoneBrawler": {
+      "enemy_id": "SlimeStoneBrawler",
+      "display_name": "Stone Brawler Slime",
+      "max_hp": 552.0,
+      "max_toughness": 101.0,
+      "base_damage": 26.3,
+      "speed": 92,
+      "element": "Stone",
+      "bpm": 144.0
+    },
+    "SlimeStoneBulwark": {
+      "enemy_id": "SlimeStoneBulwark",
+      "display_name": "Stone Bulwark Slime",
+      "max_hp": 311.0,
+      "max_toughness": 53.0,
+      "base_damage": 17.0,
+      "speed": 85,
+      "element": "Stone",
+      "bpm": 136.0
+    },
+    "SlimeStoneKnocker": {
+      "enemy_id": "SlimeStoneKnocker",
+      "display_name": "Stone Knocker Slime",
+      "max_hp": 282.0,
+      "max_toughness": 49.0,
+      "base_damage": 13.7,
+      "speed": 71,
+      "element": "Stone",
+      "bpm": 128.0
+    },
+    "SlimeStonemaul": {
+      "enemy_id": "SlimeStonemaul",
+      "display_name": "Stonemaul Slime",
+      "max_hp": 752.0,
+      "max_toughness": 131.0,
+      "base_damage": 41.1,
+      "speed": 85,
+      "element": "Stone",
+      "bpm": 112.0
+    },
+    "SlimeStonemaw": {
+      "enemy_id": "SlimeStonemaw",
+      "display_name": "Stonemaw Slime",
+      "max_hp": 323.0,
+      "max_toughness": 69.0,
+      "base_damage": 13.6,
+      "speed": 90,
+      "element": "Stone",
+      "bpm": 144.0
+    },
+    "SlimeStoneStalwart": {
+      "enemy_id": "SlimeStoneStalwart",
+      "display_name": "Stalwart Slime",
+      "max_hp": 200.0,
+      "max_toughness": 37.0,
+      "base_damage": 10.3,
+      "speed": 75,
+      "element": "Stone",
+      "bpm": 120.0
+    },
+    "SlimeStonetide": {
+      "enemy_id": "SlimeStonetide",
+      "display_name": "TidalStone Slime",
+      "max_hp": 765.0,
+      "max_toughness": 117.0,
+      "base_damage": 37.5,
+      "speed": 86,
+      "element": "Stone",
+      "bpm": 136.0
+    },
+    "SlimeStonetone": {
+      "enemy_id": "SlimeStonetone",
+      "display_name": "Stonetone Slime",
+      "max_hp": 311.0,
+      "max_toughness": 48.0,
+      "base_damage": 13.9,
+      "speed": 74,
+      "element": "Stone",
+      "bpm": 120.0
+    },
+    "SlimeTidalHarmony": {
+      "enemy_id": "SlimeTidalHarmony",
+      "display_name": "Tidal Harmony Slime",
+      "max_hp": 513.0,
+      "max_toughness": 79.0,
+      "base_damage": 24.2,
+      "speed": 92,
+      "element": "Tide",
+      "bpm": 144.0
+    },
+    "SlimeTidalWave": {
+      "enemy_id": "SlimeTidalWave",
+      "display_name": "Tidal Wave Slime",
+      "max_hp": 473.0,
+      "max_toughness": 110.0,
+      "base_damage": 24.1,
+      "speed": 87,
+      "element": "Tide",
+      "bpm": 128.0
+    },
+    "SlimeTideChord": {
+      "enemy_id": "SlimeTideChord",
+      "display_name": "Tide Chord Slime",
+      "max_hp": 176.0,
+      "max_toughness": 38.0,
+      "base_damage": 8.9,
+      "speed": 76,
+      "element": "Tide",
+      "bpm": 120.0
+    },
+    "SlimeTideCurrent": {
+      "enemy_id": "SlimeTideCurrent",
+      "display_name": "Tide Current Slime",
+      "max_hp": 163.0,
+      "max_toughness": 32.0,
+      "base_damage": 8.0,
+      "speed": 85,
+      "element": "Tide",
+      "bpm": 128.0
+    },
+    "SlimeTideSurge": {
+      "enemy_id": "SlimeTideSurge",
+      "display_name": "TideSurge Slime",
+      "max_hp": 164.0,
+      "max_toughness": 40.0,
+      "base_damage": 9.4,
+      "speed": 73,
+      "element": "Tide",
+      "bpm": 112.0
+    },
+    "SlimeUmbralFugue": {
+      "enemy_id": "SlimeUmbralFugue",
+      "display_name": "Umbral Fugue Slime",
+      "max_hp": 198.0,
+      "max_toughness": 42.0,
+      "base_damage": 10.3,
+      "speed": 78,
+      "element": "Umbral",
+      "bpm": 136.0
+    },
+    "SlimeUmbralHarbinger": {
+      "enemy_id": "SlimeUmbralHarbinger",
+      "display_name": "Umbral Harbinger Slime",
+      "max_hp": 486.0,
+      "max_toughness": 95.0,
+      "base_damage": 24.2,
+      "speed": 69,
+      "element": "Umbral",
+      "bpm": 128.0
+    },
+    "SlimeUmbralHarmony": {
+      "enemy_id": "SlimeUmbralHarmony",
+      "display_name": "Umbral Harmony Slime",
+      "max_hp": 267.0,
+      "max_toughness": 57.0,
+      "base_damage": 15.5,
+      "speed": 75,
+      "element": "Umbral",
+      "bpm": 144.0
+    },
+    "SlimeUmbralMishmash": {
+      "enemy_id": "SlimeUmbralMishmash",
+      "display_name": "Umbral Melody Slime",
+      "max_hp": 200.0,
+      "max_toughness": 42.0,
+      "base_damage": 9.3,
+      "speed": 66,
+      "element": "Umbral",
+      "bpm": 112.0
+    }
+  }
+}

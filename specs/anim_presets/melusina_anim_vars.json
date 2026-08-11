@@ -1,0 +1,91 @@
+{
+  "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+  "backup_asset": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current_BACKUP_20260729",
+  "variables": {
+    "bIsGliding": {
+      "type": "bool",
+      "default": false,
+      "description": "True while Melusina is gliding (hover/float state)"
+    },
+    "bIsSprinting": {
+      "type": "bool",
+      "default": false,
+      "description": "True while sprinting (fastest ground speed)"
+    },
+    "bIsSwimming": {
+      "type": "bool",
+      "default": false,
+      "description": "True while swimming or submerged"
+    },
+    "bIsInCombat": {
+      "type": "bool",
+      "default": false,
+      "description": "True during JRPG battle sequence"
+    },
+    "Speed": {
+      "type": "float",
+      "default": 0.0,
+      "description": "Current ground speed from CharacterMovement"
+    },
+    "Direction": {
+      "type": "float",
+      "default": 0.0,
+      "description": "Movement direction angle (-180 to 180)"
+    },
+    "bIsJumping": {
+      "type": "bool",
+      "default": false,
+      "description": "True during jump launch/rise"
+    },
+    "bIsFalling": {
+      "type": "bool",
+      "default": false,
+      "description": "True while in falling state (after jump apex)"
+    },
+    "bIsLanding": {
+      "type": "bool",
+      "default": false,
+      "description": "True during landing blend window"
+    },
+    "HairDripIntensity": {
+      "type": "float",
+      "default": 0.5,
+      "description": "0-1 water drip intensity on hair (Niagara-driven)"
+    },
+    "bHairWet": {
+      "type": "bool",
+      "default": false,
+      "description": "Toggle wet hair shader variant"
+    },
+    "bIsAlive": {
+      "type": "bool",
+      "default": true,
+      "description": "False during death/faint sequence"
+    },
+    "bHitReact": {
+      "type": "bool",
+      "default": false,
+      "description": "Trigger hit reaction montage slot"
+    },
+    "bUseFwdBackMovement": {
+      "type": "bool",
+      "default": true,
+      "description": "Use forward/back instead of strafe blend"
+    }
+  },
+  "state_machines": {
+    "LocomotionStateMachine": {
+      "states": ["Idle", "Walk", "Run", "Sprint", "Jump", "Fall", "Land"],
+      "transitions": [
+        {"from": "Idle", "to": "Walk", "rule": "Speed > 10.0"},
+        {"from": "Walk", "to": "Run", "rule": "Speed > 300.0"},
+        {"from": "Run", "to": "Sprint", "rule": "bIsSprinting == true"},
+        {"from": "Sprint", "to": "Run", "rule": "bIsSprinting == false"},
+        {"from": "Any", "to": "Jump", "rule": "bIsJumping == true"},
+        {"from": "Jump", "to": "Fall", "rule": "bIsFalling == true"},
+        {"from": "Fall", "to": "Land", "rule": "bIsLanding == true"},
+        {"from": "Land", "to": "Idle", "rule": "true"}
+      ]
+    }
+  }
+}

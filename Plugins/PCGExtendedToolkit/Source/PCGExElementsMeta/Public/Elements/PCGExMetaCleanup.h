@@ -1,0 +1,81 @@
+﻿// Copyright 2026 Timothé Lapetite and contributors
+// Released under the MIT license https://opensource.org/license/MIT/
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Core/PCGExPointsProcessor.h"
+#include "Data/Utils/PCGExDataFilterDetails.h"
+#include "PCGExMetaCleanup.generated.h"
+
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc", meta=(PCGExNodeLibraryDoc="metadata/modify/meta-cleanup"))
+class UPCGExMetaCleanupSettings : public UPCGExSettings
+{
+	GENERATED_BODY()
+
+public:
+	//~Begin UPCGSettings
+#if WITH_EDITOR
+	PCGEX_NODE_INFOS(MetaCleanup, "Meta Cleanup", "Keep/Remove tags & attributes using string queries.");
+
+	virtual FLinearColor GetNodeTitleColor() const override
+	{
+		return PCGEX_NODE_COLOR_OPTIN_NAME(FilterHub);
+	}
+
+	virtual EPCGSettingsType GetType() const override
+	{
+		return EPCGSettingsType::Filter;
+	}
+
+	virtual bool ShouldDrawNodeCompact() const override
+	{
+		return bDrawAsCompactNode;
+	}
+#endif
+
+protected:
+	virtual TArray<FPCGPinProperties> InputPinProperties() const override;
+	virtual TArray<FPCGPinProperties> OutputPinProperties() const override;
+
+	virtual bool HasDynamicPins() const override
+	{
+		return true;
+	}
+
+	virtual bool SupportsDataStealing() const override
+	{
+		return true;
+	}
+
+	virtual FPCGElementPtr CreateElement() const override;
+
+	//~End UPCGSettings
+
+public:
+	virtual PCGExData::EIOInit GetMainDataInitializationPolicy() const override;
+
+	/** List of attributes to delete. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ShowOnlyInnerProperties))
+	FPCGExCarryOverDetails Filters = FPCGExCarryOverDetails(true);
+
+	/** Whether to draw this node as a compact node */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable), AdvancedDisplay)
+	bool bDrawAsCompactNode = true;
+};
+
+struct FPCGExMetaCleanupContext final : FPCGExContext
+{
+	friend class FPCGExMetaCleanupElement;
+
+	FPCGExCarryOverDetails Filters;
+};
+
+class FPCGExMetaCleanupElement final : public IPCGExElement
+{
+protected:
+	PCGEX_ELEMENT_CREATE_CONTEXT(MetaCleanup)
+
+	virtual bool Boot(FPCGExContext* InContext) const override;
+	virtual bool AdvanceWork(FPCGExContext* InContext, const UPCGExSettings* InSettings) const override;
+};

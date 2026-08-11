@@ -1,0 +1,106 @@
+/* Melodia site chrome — layout consistency across pages */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: 0.65rem 1rem;
+  background: var(--iri-gold, #ffe666);
+  color: #0d1224;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.shell-nav .nav-cta.button-premium {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.shell-nav .nav-links a.is-active {
+  color: var(--iri-gold, #ffe666);
+}
+
+.shell-nav .nav-links a.is-active::after {
+  opacity: 1;
+}
+
+/* Shared band rhythm */
+.melodia-shell .band .inner {
+  width: min(100%, var(--max, 1180px));
+  margin-inline: auto;
+  padding-inline: clamp(1.1rem, 3vw, 2.75rem);
+}
+
+.melodia-shell .band {
+  padding-block: clamp(3.25rem, 7vw, 5.5rem);
+}
+
+.melodia-shell .section-head {
+  display: grid;
+  gap: 1rem 2rem;
+  margin-bottom: 1.75rem;
+}
+
+@media (min-width: 900px) {
+  .melodia-shell .section-head {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: end;
+  }
+}
+
+.melodia-shell .section-head h2 {
+  margin: 0.15rem 0 0;
+  line-height: 1.05;
+}
+
+.melodia-shell .section-head > p,
+.melodia-shell .section-head .human-lede {
+  margin: 0;
+  max-width: 36rem;
+}
+
+/* Product/tool pages: band-as-hero should feel like editorial hero */
+.melodia-shell .band.kitbash-hero,
+.melodia-shell .band.sx-open,
+.melodia-shell .band.stage-character-band,
+.melodia-shell .band.game-hero-band {
+  padding-top: clamp(5.5rem, 12vw, 7.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.kitbash-price,
+.price {
+  font-family: var(--font-display) !important;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  letter-spacing: 0.01em;
+  color: var(--iri-gold, #ffe666);
+}
+
+/* Soften game-mode HUD bleed on product pages */
+.melodia-shell.fashion-mode:not([data-page="melodia-melusina"]) .game-eyebrow {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+}
+
+.melodia-shell .button.primary:not(.button-premium-primary) {
+  /* keep legacy buttons readable with premium chrome */
+  border-color: rgba(255, 230, 102, 0.35);
+}
+
+@media (max-width: 720px) {
+  .shell-nav .nav-links {
+    gap: 0.65rem;
+  }
+  .shell-nav .nav-cta {
+    display: none;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "source_id": "CW_02_VoidSeamstress",
+  "source_type": "vroid_studio",
+  "archetype": "CosmicWeaver",
+  "filename": "CW_02_VoidSeamstress.vrm",
+  "author": "Melodia Team (VRoid Studio)",
+  "license": "vroid_studio_tos",
+  "commercial_ok": true,
+  "body_type": "willowy",
+  "base_hair_color": "#3C5C9E",
+  "base_eye_color": "#8AA9D6",
+  "expression_presets": ["focused", "subtle_smile", "weaving", "distant"],
+  "notes": "Create in VRoid Studio: willowy female, astral blue hair, mid astral eyes, seamstress attire. Export as VRM 1.0."
+}

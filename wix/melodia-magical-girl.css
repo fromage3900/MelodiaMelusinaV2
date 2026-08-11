@@ -1,0 +1,695 @@
+/* Melodia Magical Girl Layer — tiered assembly (full / soft / chrome / off)
+   Motion budget: bow pulse, ribbon shimmer, crystal tick. Nothing else. */
+
+:root {
+  --mg-accent-pink: rgba(255, 110, 180, 0.88);
+  --mg-accent-rose: rgba(232, 80, 140, 0.82);
+  --mg-accent-gold: rgba(255, 230, 102, 0.8);
+  --mg-accent-cyan: rgba(102, 217, 255, 0.78);
+  --mg-accent-violet: rgba(204, 153, 255, 0.72);
+  --mg-void-deep: rgba(10, 6, 18, 0.92);
+  --mg-glass: rgba(7, 9, 18, 0.45);
+  --mg-glass-hi: rgba(255, 255, 255, 0.06);
+  --mg-stamp-opacity: 0.58;
+  --mg-contract-opacity: 0.14;
+  --mg-shard-opacity: 0.22;
+}
+
+/* Mount (fixed, subtle, non-obstructive) */
+.mg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+}
+
+.mg-layer.is-hidden {
+  opacity: 0;
+}
+
+.mg-layer.is-hidden .mg-halftone {
+  opacity: 0;
+}
+
+.mg-wish-stage {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.mg-layer.is-wish .mg-wish-stage {
+  opacity: 1;
+}
+
+.mg-layer.is-wish {
+  opacity: 1;
+  --mg-stamp-opacity: 0.52;
+  --mg-contract-opacity: 0.1;
+  --mg-shard-opacity: 0.16;
+}
+
+/* ——— Tier: full ——— */
+.melodia-shell[data-mg="full"] {
+  --mg-stamp-opacity: 0.52;
+  --mg-contract-opacity: 0.1;
+  --dream-hue-shift: 4deg;
+}
+
+.melodia-shell[data-mg="full"] .mg-halftone {
+  opacity: 0.085;
+}
+
+.melodia-shell[data-mg="full"] .shell-nav {
+  border-bottom-color: rgba(255, 110, 180, 0.14);
+}
+
+.melodia-shell[data-mg="full"] .magazine-kicker::after {
+  opacity: calc(var(--motif-glyph-opacity, 0.42) + 0.08);
+  color: var(--mg-accent-pink);
+}
+
+.melodia-shell[data-mg="full"] .mg-bow-toggle {
+  border-color: rgba(255, 110, 180, 0.32);
+  animation: mg-bow-pulse 4s ease-in-out infinite;
+}
+
+/* ——— Tier: soft ——— */
+.melodia-shell[data-mg="soft"] {
+  --mg-stamp-opacity: 0.28;
+  --mg-contract-opacity: 0.04;
+  --dream-hue-shift: 1deg;
+}
+
+.melodia-shell[data-mg="soft"] .mg-halftone {
+  opacity: 0.025;
+}
+
+.melodia-shell[data-mg="soft"] .shell-nav {
+  border-bottom-color: rgba(255, 110, 180, 0.08);
+}
+
+.melodia-shell[data-mg="soft"] .mg-bow-toggle {
+  border-color: rgba(255, 110, 180, 0.2);
+  animation: mg-bow-pulse 5.5s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+/* ——— Tier: chrome (nav / kicker only) ——— */
+.melodia-shell[data-mg="chrome"] .mg-halftone,
+.melodia-shell[data-mg="chrome"] .mg-wish-stage {
+  display: none;
+}
+
+.melodia-shell[data-mg="chrome"] .shell-nav {
+  border-bottom-color: rgba(255, 110, 180, 0.06);
+}
+
+/* Batch O Baroque — musical chrome accents (page-12 beauty SSOT) */
+.melodia-shell[data-mg="full"] .shell-nav,
+.melodia-shell[data-mg="soft"] .shell-nav,
+.melodia-shell[data-mg="chrome"] .shell-nav {
+  background-image:
+    url("../generated/assets/melodia-game-ui/T_Melodia_FiligreeDividerScroll.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: min(520px, 70%) 14px;
+}
+
+.melodia-shell[data-mg="full"] .magazine-kicker,
+.melodia-shell[data-mg="soft"] .magazine-kicker {
+  position: relative;
+  padding-left: 1.85rem;
+}
+
+.melodia-shell[data-mg="full"] .magazine-kicker::before,
+.melodia-shell[data-mg="soft"] .magazine-kicker::before {
+  content: "";
+  position: absolute;
+  left: -0.15rem;
+  top: 50%;
+  width: 1.6rem;
+  height: 1.6rem;
+  transform: translateY(-50%);
+  background: url("../generated/assets/melodia-game-ui/T_Melodia_FiligreeCornerBaroque.png") center / contain no-repeat;
+  opacity: 0.65;
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(196, 154, 78, 0.35));
+}
+
+/* Kill paper-band pink inset (was fighting editorial) */
+.melodia-shell.mg-ambient .band.paper,
+.melodia-shell.mg-ambient .band.cloud,
+.melodia-shell.fashion-mode .band.paper,
+.melodia-shell.fashion-mode .band.cloud {
+  box-shadow: none;
+}
+
+/* No blanket pink card borders — hover only via .mg-ribbon-card */
+.melodia-shell.mg-ambient .portal-card,
+.melodia-shell.mg-ambient .image-card,
+.melodia-shell.mg-ambient .alignment-card,
+.melodia-shell.fashion-mode .portal-card,
+.melodia-shell.fashion-mode .image-card,
+.melodia-shell.fashion-mode .alignment-card {
+  box-shadow: none;
+}
+
+@keyframes mg-bow-pulse {
+  0%, 100% { box-shadow: 0 14px 42px rgba(7, 9, 18, 0.42), 0 0 0 0 rgba(255, 110, 180, 0); }
+  50% { box-shadow: 0 14px 42px rgba(7, 9, 18, 0.42), 0 0 12px rgba(255, 110, 180, 0.16); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .melodia-shell[data-mg="full"] .mg-bow-toggle,
+  .melodia-shell[data-mg="soft"] .mg-bow-toggle {
+    animation: none;
+  }
+}
+
+/* Nav — single rose hairline; sparkle lives on the CTA, not overlapping it */
+.mg-ui-chrome .mg-nav-chrome {
+  position: relative;
+  align-items: center;
+}
+
+.mg-ui-chrome .mg-nav-chrome::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 110, 180, 0.28) 18%,
+    rgba(255, 230, 102, 0.18) 50%,
+    rgba(102, 217, 255, 0.16) 82%,
+    transparent
+  );
+  pointer-events: none;
+  animation: mg-ribbon-shimmer 8s ease-in-out infinite;
+}
+
+@keyframes mg-ribbon-shimmer {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Soft brand-side sparkle — kept left of CTA so Shop never collides */
+.mg-ui-chrome .mg-nav-chrome::after {
+  content: "✦";
+  position: absolute;
+  left: 18px;
+  bottom: 6px;
+  font-size: 0.55rem;
+  color: rgba(255, 110, 180, 0.42);
+  text-shadow: 0 0 10px rgba(102, 217, 255, 0.35);
+  pointer-events: none;
+  opacity: 0.75;
+  animation: mg-crystal-tick 7s ease-in-out infinite;
+}
+
+.melodia-shell[data-mg="soft"] .mg-nav-chrome::after {
+  color: rgba(255, 110, 180, 0.32);
+  opacity: 0.55;
+}
+
+.melodia-shell[data-mg="chrome"] .mg-nav-chrome::after {
+  content: none;
+}
+
+.melodia-shell .shell-nav > a.nav-cta,
+.melodia-shell .shell-nav > a.nav-cta.button-premium {
+  align-self: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem;
+  box-sizing: border-box;
+  min-height: 40px !important;
+  height: 40px !important;
+  max-height: 40px;
+  padding: 0 14px !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  white-space: nowrap;
+  transform: none;
+}
+
+.melodia-shell .shell-nav > a.nav-cta:hover,
+.melodia-shell .shell-nav > a.nav-cta.button-premium:hover {
+  transform: none; /* avoid vertical jump in the fixed header */
+}
+
+.melodia-shell .shell-nav > a.nav-cta::before,
+.melodia-shell .shell-nav > a.nav-cta.button-premium::before {
+  content: "✦";
+  font-size: 0.58rem;
+  color: rgba(255, 110, 180, 0.62);
+  line-height: 1;
+}
+
+.melodia-shell[data-mg="full"] .shell-nav .nav-cta::before,
+.melodia-shell[data-mg="soft"] .shell-nav .nav-cta::before {
+  color: rgba(255, 110, 180, 0.78);
+  text-shadow: 0 0 10px rgba(255, 110, 180, 0.35);
+}
+
+.shell-nav .brand {
+  align-self: center;
+  line-height: 1.1;
+}
+
+.shell-nav .nav-links {
+  align-items: center;
+  align-self: center;
+}
+
+@keyframes mg-crystal-tick {
+  0%, 90%, 100% { opacity: 0.42; transform: scale(1); }
+  94% { opacity: 0.85; transform: scale(1.12); }
+}
+
+.mg-ui-chrome.mg-wish-mode .shell-nav .nav-cta::before {
+  color: rgba(255, 110, 180, 0.92);
+  animation: mg-crystal-tick 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mg-ui-chrome .mg-nav-chrome::before,
+  .mg-ui-chrome .mg-nav-chrome::after,
+  .mg-ui-chrome.mg-wish-mode .shell-nav .nav-cta::before,
+  .mg-crystal,
+  .mg-ribbon-trail {
+    animation: none;
+  }
+}
+
+/* Contract seal — wish mode only */
+.mg-contract-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(78vmin, 640px);
+  height: min(78vmin, 640px);
+  transform: translate(-50%, -50%);
+  opacity: var(--mg-contract-opacity);
+  animation: mg-contract-spin 120s linear infinite;
+}
+
+.mg-contract-ring svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mg-contract-ring circle {
+  fill: none;
+  stroke: rgba(255, 110, 180, 0.22);
+  stroke-width: 0.8;
+}
+
+.mg-contract-ring .tick {
+  stroke: rgba(255, 230, 102, 0.16);
+  stroke-width: 0.6;
+}
+
+.mg-contract-ring .inner {
+  stroke: rgba(204, 153, 255, 0.14);
+  stroke-dasharray: 4 8;
+}
+
+@keyframes mg-contract-spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.mg-shards {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  mask-image: radial-gradient(ellipse 88% 78% at 50% 50%, transparent 62%, black 100%);
+}
+
+.mg-shard {
+  position: absolute;
+  width: 36px;
+  height: 54px;
+  opacity: var(--mg-shard-opacity);
+  background: linear-gradient(135deg, rgba(255, 110, 180, 0.12), rgba(102, 217, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  clip-path: polygon(50% 0%, 100% 38%, 68% 100%, 0% 62%);
+}
+
+.mg-shard.s1 { top: 8%; left: 46%; transform: rotate(18deg); }
+.mg-shard.s2 { top: 62%; right: 5%; transform: rotate(-24deg); }
+.mg-shard.s3 { bottom: 10%; left: 4%; transform: rotate(32deg); }
+
+.mg-halftone {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-image: radial-gradient(circle, rgba(255, 110, 180, 0.9) 0 0.8px, transparent 0.9px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(ellipse 78% 68% at 50% 42%, transparent 58%, black 92%);
+}
+
+/* Corner crystal ticks — Magical Girl chrome, not fullscreen soul-gems */
+.mg-crystal {
+  position: fixed;
+  z-index: 46;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  background: linear-gradient(135deg, var(--iri-cyan, #66d9ff), var(--iri-purple, #cc99ff));
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  opacity: 0.72;
+  animation: mg-crystal-tick 6.5s ease-in-out infinite;
+  box-shadow: 0 0 18px rgba(102, 217, 255, 0.55), 0 0 6px rgba(255, 110, 180, 0.4);
+}
+
+.mg-crystal.c1 { top: 18%; left: 2.5%; animation-delay: 0s; }
+.mg-crystal.c2 { top: 28%; right: 3%; animation-delay: 1.4s; background: linear-gradient(135deg, var(--iri-gold, #ffe666), var(--iri-cyan, #66d9ff)); }
+.mg-crystal.c3 { bottom: 16%; left: 4%; animation-delay: 2.8s; background: linear-gradient(135deg, rgba(255, 110, 180, 0.9), var(--iri-purple, #cc99ff)); }
+.mg-crystal.c4 { bottom: 24%; right: 3.5%; animation-delay: 4.2s; }
+
+.melodia-shell[data-mg="soft"] .mg-crystal {
+  opacity: 0.28;
+}
+
+.melodia-shell[data-mg="chrome"] .mg-crystal,
+.melodia-shell[data-mg="off"] .mg-crystal {
+  display: none;
+}
+
+/* Floating ribbon trails — soft curls at band edges */
+.mg-ribbon-trail {
+  position: absolute;
+  width: 160px;
+  height: 10px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 110, 180, 0.85) 18%,
+    rgba(255, 230, 102, 0.7) 48%,
+    rgba(102, 217, 255, 0.75) 78%,
+    transparent
+  );
+  border-radius: 999px;
+  filter: drop-shadow(0 0 8px rgba(255, 110, 180, 0.45));
+  mix-blend-mode: normal;
+  animation: mg-ribbon-shimmer 7s ease-in-out infinite;
+}
+
+.mg-ribbon-trail.t1 { top: 1.5rem; right: 8%; transform: rotate(-12deg); }
+.mg-ribbon-trail.t2 { bottom: 2rem; left: 6%; transform: rotate(8deg); animation-delay: 1.6s; }
+
+.melodia-shell[data-mg="soft"] .mg-ribbon-trail {
+  opacity: 0.35;
+}
+
+.melodia-shell[data-mg="chrome"] .mg-ribbon-trail,
+.melodia-shell[data-mg="off"] .mg-ribbon-trail {
+  display: none;
+}
+
+/* Bow toggle */
+.mg-bow-toggle {
+  pointer-events: auto;
+  position: fixed;
+  top: 92px;
+  right: 22px;
+  z-index: 48;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 106, 0.24);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08), transparent 60%),
+    rgba(7, 9, 18, 0.55);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 14px 42px rgba(7, 9, 18, 0.42);
+  cursor: pointer;
+}
+
+.mg-bow-toggle:focus-visible {
+  outline: 2px solid rgba(204, 153, 255, 0.55);
+  outline-offset: 3px;
+}
+
+.mg-bow-toggle svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mg-bow-toggle path.bow-fill {
+  fill: rgba(255, 110, 180, 0.12);
+  stroke: rgba(255, 230, 102, 0.82);
+  stroke-width: 1.2;
+}
+
+.mg-bow-toggle path.bow-knot {
+  fill: rgba(255, 230, 102, 0.35);
+  stroke: none;
+}
+
+.mg-bow-toggle.is-wish {
+  box-shadow:
+    0 0 0 1px rgba(255, 110, 180, 0.35),
+    0 14px 42px rgba(7, 9, 18, 0.42);
+}
+
+.melodia-shell.mg-wish-mode .dream-aurora-layer {
+  opacity: 0.58;
+  filter: hue-rotate(var(--dream-hue-shift, 0deg)) saturate(1.12);
+}
+
+.melodia-shell.mg-wish-mode .dream-sparkle-layer {
+  opacity: 0.55;
+}
+
+/* Interactive ribbon cards — always a soft sparkle; stronger on hover */
+.portal-card.mg-ribbon-card,
+.path-row.mg-ribbon-card,
+.guide-card.mg-ribbon-card {
+  position: relative;
+}
+
+.portal-card.mg-ribbon-card::before,
+.path-row.mg-ribbon-card::before,
+.guide-card.mg-ribbon-card::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 110, 180, 0.45) 20%,
+    rgba(255, 230, 102, 0.35) 50%,
+    rgba(102, 217, 255, 0.4) 80%,
+    transparent
+  );
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.25s ease;
+}
+
+.portal-card.mg-ribbon-card:hover::before,
+.path-row.mg-ribbon-card:hover::before,
+.guide-card.mg-ribbon-card:hover::before,
+.portal-card.mg-ribbon-card:focus-visible::before,
+.path-row.mg-ribbon-card:focus-visible::before {
+  opacity: 0.95;
+}
+
+.portal-card.mg-ribbon-card::after,
+.path-row.mg-ribbon-card::after,
+.guide-card.mg-ribbon-card::after {
+  content: "✦";
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 0.7rem;
+  color: rgba(255, 110, 180, 0.5);
+  pointer-events: none;
+  opacity: 0.4;
+  transition: opacity 0.2s ease, text-shadow 0.2s ease;
+  z-index: 2;
+}
+
+.portal-card.mg-ribbon-card:hover::after,
+.path-row.mg-ribbon-card:hover::after,
+.guide-card.mg-ribbon-card:hover::after,
+.portal-card.mg-ribbon-card:focus-visible::after,
+.path-row.mg-ribbon-card:focus-visible::after {
+  opacity: 1;
+  text-shadow: 0 0 12px rgba(102, 217, 255, 0.45);
+}
+
+.mg-ui-chrome.mg-wish-mode .portal-card.mg-ribbon-card::after,
+.mg-ui-chrome.mg-wish-mode .path-row.mg-ribbon-card::after {
+  opacity: 0.75;
+}
+
+.mg-ui-chrome.mg-wish-mode .portal-card.mg-ribbon-card::before,
+.mg-ui-chrome.mg-wish-mode .path-row.mg-ribbon-card::before {
+  opacity: 0.7;
+}
+
+.melodia-shell.mg-wish-mode .magazine-kicker::after,
+.melodia-shell.mg-wish-mode .premium-kicker::after {
+  content: " ✦";
+  color: var(--mg-accent-pink);
+}
+
+/* Ribbon hover — hairline only */
+.button:hover,
+.button-premium:hover,
+.nav-cta:hover,
+.portal-card:hover,
+.path-row:hover {
+  box-shadow: 0 0 0 1px rgba(255, 110, 180, 0.28);
+}
+
+@media (max-width: 680px) {
+  .mg-bow-toggle { top: 84px; right: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mg-contract-ring { animation: none; }
+}
+
+/* Soft keeps Magical Girl pink (lifted for Infold sendoff) */
+.melodia-shell[data-mg="soft"] {
+  --mg-accent-pink: rgba(255, 110, 180, 0.86);
+  --mg-stamp-opacity: 0.38;
+  --dream-hue-shift: 3deg;
+}
+
+.melodia-shell[data-mg="soft"] .mg-halftone {
+  opacity: 0.045;
+}
+
+.melodia-shell[data-mg="soft"] .shell-nav {
+  border-bottom-color: rgba(255, 110, 180, 0.14);
+}
+
+.melodia-shell[data-mg="chrome"] {
+  --mg-accent-pink: rgba(255, 130, 185, 0.55);
+}
+
+.melodia-shell[data-mg="soft"] .button:hover,
+.melodia-shell[data-mg="soft"] .button-premium:hover,
+.melodia-shell[data-mg="soft"] .nav-cta:hover,
+.melodia-shell[data-mg="soft"] .portal-card:hover,
+.melodia-shell[data-mg="soft"] .path-row:hover {
+  box-shadow: 0 0 0 1px rgba(255, 110, 180, 0.36);
+}
+
+.melodia-shell[data-mg="chrome"] .button:hover,
+.melodia-shell[data-mg="chrome"] .button-premium:hover,
+.melodia-shell[data-mg="chrome"] .nav-cta:hover,
+.melodia-shell[data-mg="chrome"] .portal-card:hover,
+.melodia-shell[data-mg="chrome"] .path-row:hover {
+  box-shadow: 0 0 0 1px rgba(255, 110, 180, 0.22);
+}
+
+.melodia-shell[data-mg="soft"] > .dream-sparkle-layer {
+  opacity: 0.1;
+}
+
+.melodia-shell[data-mg="full"] > .dream-sparkle-layer {
+  opacity: 0.12;
+}
+
+.melodia-shell[data-mg="soft"] > .dream-aurora-layer {
+  opacity: 0.36;
+  background:
+    radial-gradient(
+      ellipse 70% 40% at 70% 35%,
+      rgba(255, 110, 180, 0.14),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 50% 35% at 20% 70%,
+      rgba(102, 217, 255, 0.12),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 50% 20%,
+      rgba(255, 230, 102, 0.08),
+      transparent 55%
+    );
+}
+
+.melodia-shell[data-mg="full"] > .dream-aurora-layer {
+  opacity: 0.4;
+  background:
+    radial-gradient(
+      ellipse 70% 40% at 70% 35%,
+      rgba(255, 110, 180, 0.16),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 50% 35% at 20% 70%,
+      rgba(204, 153, 255, 0.12),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse 42% 32% at 48% 18%,
+      rgba(255, 110, 180, 0.12),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 36% 28% at 80% 75%,
+      rgba(102, 217, 255, 0.1),
+      transparent 50%
+    );
+}
+
+/* Orrery MG accents — crystals near armillary (don't flatten 3D) */
+.orrery-system::after {
+  content: "";
+  position: absolute;
+  inset: 18% 22%;
+  pointer-events: none;
+  transform: translateZ(64px);
+  transform-style: preserve-3d;
+  background:
+    radial-gradient(circle at 22% 30%, rgba(255, 110, 180, 0.55) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 78% 42%, rgba(255, 230, 102, 0.5) 0 1.2px, transparent 1.8px),
+    radial-gradient(circle at 48% 72%, rgba(102, 217, 255, 0.45) 0 1.4px, transparent 2px);
+  animation: mg-crystal-tick 7s ease-in-out infinite;
+  opacity: 0.85;
+  z-index: 2;
+}
+
+.melodia-shell[data-mg="full"] .orrery-system::before,
+.melodia-shell[data-mg="soft"] .orrery-system::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 12%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 110, 180, 0.35) 25%,
+    rgba(255, 230, 102, 0.25) 50%,
+    rgba(102, 217, 255, 0.28) 75%,
+    transparent
+  );
+  pointer-events: none;
+  animation: mg-ribbon-shimmer 8s ease-in-out infinite;
+  z-index: 2;
+}

@@ -1,0 +1,38 @@
+{
+	"FileVersion": 3,
+	"Version": 10,
+	"VersionName": "3.0",
+	"FriendlyName": "MeshBlend",
+	"Description": "",
+	"Category": "FX",
+	"CreatedBy": "Tore Lervik",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "com.epicgames.launcher://ue/Fab/product/1f4abe73-4cda-42db-995a-c9f8ca4790e5",
+	"SupportURL": "",
+	"EngineVersion": "5.8.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "MeshBlend",
+			"Type": "Runtime",
+			"LoadingPhase": "PostConfigInit",
+			"PlatformAllowList": [
+				"Win64",
+				"Linux",
+				"Mac"
+			]
+		},
+		{
+			"Name": "MeshBlendEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64",
+				"Linux",
+				"Mac"
+			]
+		}
+	]
+}

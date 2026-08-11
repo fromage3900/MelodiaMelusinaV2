@@ -1,0 +1,230 @@
+{
+	"FileVersion": 3,
+	"Version": 2,
+	"VersionName": "0.20.3",
+	"FriendlyName": "Monolith",
+	"Description": "Unified Unreal Engine MCP server — 1,400+ actions across 25+ in-tree namespaces (Blueprint, Material, Animation, Niagara, Mesh, Editor, Config, Source, Project, UI, GAS, ComboGraph, AI, LogicDriver, Audio, LevelSequence, plus monolith meta / bulk_fill / describe and the Reflection Intelligence set: decision / risk / cppreflect / network / pipeline / reflect). Query `monolith_discover()` for the live count. Experimental town-gen actions register when `bEnableProceduralTownGen=true`. Framework-level `bulk_fill_query` and `describe_query` route to 12 per-namespace adapters for transacted JSON-tree writes and rich schema introspection. Reflection Intelligence layers deterministic decision-record, git-risk, and UE reflection queries on top of the source index. AI-powered asset creation, inspection, and modification.",
+	"Category": "Editor",
+	"CreatedBy": "tumourlove",
+	"CreatedByURL": "https://github.com/tumourlove/monolith",
+	"DocsURL": "https://github.com/tumourlove/monolith/wiki",
+	"MarketplaceURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": true,
+	"EnabledByDefault": true,
+	"Plugins": [
+		{
+			"Name": "Niagara",
+			"Enabled": true
+		},
+		{
+			"Name": "SQLiteCore",
+			"Enabled": true
+		},
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "EditorScriptingUtilities",
+			"Enabled": true
+		},
+		{
+			"Name": "PoseSearch",
+			"Enabled": true
+		},
+		{
+			"Name": "IKRig",
+			"Enabled": true
+		},
+		{
+			"Name": "ControlRig",
+			"Enabled": true
+		},
+		{
+			"Name": "RigVM",
+			"Enabled": true
+		},
+		{
+			"Name": "GeometryScripting",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BlueprintAssist",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BlueprintAttributes",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "ComboGraph",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
+		},
+		{
+			"Name": "StateTree",
+			"Enabled": true
+		},
+		{
+			"Name": "SmartObjects",
+			"Enabled": true
+		},
+		{
+			"Name": "EnvironmentQueryEditor",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayStateTree",
+			"Enabled": true
+		},
+		{
+			"Name": "ProceduralMeshComponent",
+			"Enabled": true
+		},
+		{
+			"Name": "CommonUI",
+			"Enabled": true
+		},
+		{
+			"Name": "SMSystem",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "GameplayBehaviors",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "MassGameplay",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "ZoneGraph",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Metasound",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PythonScriptPlugin",
+			"Enabled": true
+		}
+	],
+	"Modules": [
+		{
+			"Name": "MonolithCore",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
+		},
+		{
+			"Name": "MonolithBABridge",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithBlueprint",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithMaterial",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithAnimation",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithNiagara",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithConfig",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithIndex",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithSource",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithUI",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithMesh",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithGAS",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithComboGraph",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithAI",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithLogicDriver",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithAudio",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithAudioRuntime",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithLevelSequence",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MonolithReflectionIntel",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}

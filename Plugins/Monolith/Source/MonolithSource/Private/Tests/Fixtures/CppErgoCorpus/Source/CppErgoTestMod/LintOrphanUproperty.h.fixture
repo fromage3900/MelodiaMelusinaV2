@@ -1,0 +1,15 @@
+// Fixture: rule (e) UPROPERTY/UFUNCTION in a non-reflected type.
+// A plain (non-UCLASS/USTRUCT) type carrying a UPROPERTY. NOT compiled.
+#pragma once
+
+#include "CoreMinimal.h"
+
+class FLintOrphanUproperty
+{
+public:
+	UPROPERTY()
+	int32 Value;
+
+	UFUNCTION()
+	void DoThing();
+};

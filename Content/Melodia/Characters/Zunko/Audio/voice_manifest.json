@@ -1,0 +1,111 @@
+{
+  "character": "Zunko",
+  "speaker_id": 14,
+  "voice_style": "ノーマル",
+  "total": 20,
+  "generated": 0,
+  "cached": 20,
+  "errors": 0,
+  "lines": [
+    {
+      "id": "zun_first_meet_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_first_meet_01.wav"
+    },
+    {
+      "id": "zun_first_meet_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_first_meet_02.wav"
+    },
+    {
+      "id": "zun_shop_open_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_shop_open_01.wav"
+    },
+    {
+      "id": "zun_shop_recommend_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_shop_recommend_01.wav"
+    },
+    {
+      "id": "zun_craft_intro_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_craft_intro_01.wav"
+    },
+    {
+      "id": "zun_craft_upgrade_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_craft_upgrade_01.wav"
+    },
+    {
+      "id": "zun_quest_cooking_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_quest_cooking_01.wav"
+    },
+    {
+      "id": "zun_quest_feast_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_quest_feast_01.wav"
+    },
+    {
+      "id": "zun_quest_sisters_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_quest_sisters_01.wav"
+    },
+    {
+      "id": "zun_bond_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_bond_01.wav"
+    },
+    {
+      "id": "zun_bond_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_bond_02.wav"
+    },
+    {
+      "id": "zun_idle_baking_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_idle_baking_01.wav"
+    },
+    {
+      "id": "zun_idle_worried_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_idle_worried_01.wav"
+    },
+    {
+      "id": "zun_party_join_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_party_join_01.wav"
+    },
+    {
+      "id": "zun_battle_heal_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_battle_heal_01.wav"
+    },
+    {
+      "id": "zun_battle_buff_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_battle_buff_01.wav"
+    },
+    {
+      "id": "zun_late_truth_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_late_truth_01.wav"
+    },
+    {
+      "id": "zun_late_truth_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_late_truth_02.wav"
+    },
+    {
+      "id": "zun_ending_hint_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_ending_hint_01.wav"
+    },
+    {
+      "id": "zun_goodbye_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\zun_goodbye_01.wav"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_NikkiIridescenceSheen" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionSaturate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPower Name="MaterialExpressionPower_0" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionPower_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFresnel Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFresnel_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_NikkiIridescenceSheenEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MF_NikkiIridescenceSheenEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionSaturate_0'"
+      MaterialExpressionEditorX=-780
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=7B9CA7594604E72D986C26A1E1AB9A08
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionPower_0" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionPower_0'"
+      Base=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFresnel_0'")
+      Exponent=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_4'")
+      MaterialExpressionEditorX=-980
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=8D1868654060BCB73132D19D8A3C9656
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=9DAF5D264AE89502147C4FB1CD41AB82
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFresnel_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_5'")
+      MaterialExpressionEditorX=-580
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=643035594840ACBE27AD5DA1AA544D5C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_0'")
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=994949A94AF8005E6EFB35820552E928
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionSaturate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_2'")
+      MaterialExpressionEditorX=-580
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=8D77D1CE4B329DD07A42E688E590D698
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionOutput_0'"
+      OutputName="Color"
+      Id=18835CF441AD8F745F86D48BB2755330
+      MaterialExpressionEditorX=200
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=C96423CB4330C19FA15A299579395996
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_6'"
+      InputName="SheenTint"
+      Id=8C9D5DA14396BAA7DFD84BAD9B824963
+      SortPriority=6
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=960
+      MaterialExpressionGuid=841A3CF646EA1CE19C55879F5A7DB17C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_5'"
+      InputName="FabricSheen"
+      Id=45813F00409A996621C0B882F394DED1
+      InputType=FunctionInput_Scalar
+      SortPriority=5
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=800
+      MaterialExpressionGuid=C58AFA9C4D4E49B39179A38F51B4B361
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_4'"
+      InputName="IridescencePower"
+      Id=43074E274EF81BAAB06AFB91E31E30B3
+      InputType=FunctionInput_Scalar
+      SortPriority=4
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=640
+      MaterialExpressionGuid=0E96ABE74730AC14D749A5BBFF9EEC43
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_3'"
+      InputName="IridescenceTint"
+      Id=BD3FDC6C4F81472B2AC5E2A4CFA747E1
+      SortPriority=3
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=539827FA43ABEE6653C21ABC53D212CD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_2'"
+      InputName="Iridescence"
+      Id=40BF8D5440FE68CAC73C64A00379ADF0
+      InputType=FunctionInput_Scalar
+      SortPriority=2
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=C69DD6C648E7937C7D343388C7DC32C4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_1'"
+      InputName="Normal"
+      Id=1B69041B444F2E98B41F198856FA7E35
+      SortPriority=1
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=2B55BAC9475ED53468253C8EBF5EE4A3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_0'"
+      InputName="BaseColor"
+      Id=62F75FA948220495F299E5B4E30D51B3
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionGuid=04FD5269473BE77827E61692F09279C8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFresnel_0'"
+      Normal=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_1'")
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=37D06CCD4275510B291BC09255B4179D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionAdd_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_3'")
+      MaterialExpressionEditorX=20
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=92FCF2884587037A9047A3AEC5590782
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_1'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=B07B362D41846EFFB9DBC59FFD7D0EC0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen'"
+   End Object
+   Begin Object Name="MF_NikkiIridescenceSheenEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MF_NikkiIridescenceSheenEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_3'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_4'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_5'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionInput_6'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFresnel_0'","/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionPower_0'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MaterialExpressionFunctionOutput_0'"))
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen.MF_NikkiIridescenceSheen:MF_NikkiIridescenceSheenEditorOnlyData'"
+   StateId=C380A15645F9422D4285019608C406B7
+   CombinedInputTypes=15
+End Object

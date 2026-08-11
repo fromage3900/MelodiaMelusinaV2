@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design Specifications | Brennan Shepherd</title>
+    <link rel="stylesheet" href="melodia-luxury-type.css">
+    <link rel="stylesheet" href="melodia-editorial.css">
+    <link rel="stylesheet" href="melodia-fashion-editorial.css">
+    <link rel="stylesheet" href="melodia-premium-system.css">
+    <link rel="stylesheet" href="portfolio-luxury-bridge.css">
+    <link rel="stylesheet" href="portfolio-pages.css">
+    <link rel="stylesheet" href="melodia-tokens.css">
+    <link rel="stylesheet" href="melodia-game-ui.css">
+  </head>
+  <body>
+    <div class="melodia-shell fashion-mode" data-mg="soft" data-hero="editorial" data-effects="starfield,holo,magical" data-nav-cta="melodia-melusina.html" data-nav-cta-label="Melusina UI">
+      <header class="shell-nav" aria-label="Portfolio navigation">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+          </span>Brennan Shepherd</a>
+          <nav class="nav-links" aria-label="Sections"></nav>
+          <a class="nav-cta button-premium" href="melodia-melusina.html">Melusina UI</a>
+        </header>
+        <main>
+          <section class="hero" aria-labelledby="page-title">
+            <div class="hero-media" aria-hidden="true">
+              <img src="../generated/assets/l-sakurapath-hero.png" alt="Design specification — Sakura mood reference" />
+            </div>
+            <div class="hero-inner">
+              <p class="kicker magazine-kicker">Portfolio design specifications</p>
+              <h1 id="page-title">A system for fantasy portfolio pages.</h1>
+              <p class="lede">Design tokens, layout rules, page templates, and publishing contracts for the Infold-focused portfolio system.</p>
+              <div class="button-row">
+                <a class="button primary button-premium-primary" href="../generated/deployment_manifest.json">Deployment manifest</a>
+                <a class="button button-premium" href="../generated/design-system-manifest.json">Design-system manifest</a>
+              </div>
+            </div>
+          </section>
+          <section class="band paper">
+            <div class="inner">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Design Rules</p>
+                  <h2>Editorial artbook energy, portfolio clarity.</h2>
+                </div>
+                <p>The system avoids generic portfolio grids by using Melodia editorial pacing, celestial accents, near-sharp frames, and recruiter-readable guide pages.</p>
+              </div>
+              <div class="card-grid">
+                <article class="card premium-card">
+                  <span>Color</span>
+                  <div>
+                    <h3>Melodia fantasy palette.</h3>
+                    <p>Ivory paper, midnight plum, astral night, champagne gold, lavender, iris, and restrained sakura accents.</p>
+                  </div>
+                </article>
+                <article class="card premium-card">
+                  <span>Typography</span>
+                  <div>
+                    <h3>Editorial plus technical.</h3>
+                    <p>Syne for the wordmark, Instrument Serif for editorial headlines, Bricolage Grotesque for body, and Azeret Mono for metadata and system labels.</p>
+                  </div>
+                </article>
+                <article class="card premium-card">
+                  <span>Layout</span>
+                  <div>
+                    <h3>Portal and guide structure.</h3>
+                    <p>Hero, chapter openers, world pillars, render plates, technical breakdowns, appendices, and dedicated deep-dive pages.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+          <section class="band astral" id="game-ui">
+            <div class="inner">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Melodia Melusina</p>
+                  <h2>Game UI — sheet music combat chrome.</h2>
+                </div>
+                  <p>Figma page <strong>12 Game UI</strong> SSOT is <strong>SheetMusicHUD</strong> — continuous parchment staff + Batch O Baroque / SoftMG chrome. Batch N MusicalFiligree / NoteHead atlas slots are <strong>deprecated</strong> (2026-07-16). Skill ring + combo burst accents use Melodia portfolio chrome (pearl/gold/iri-cyan on void) via <code>data-mg</code> only. Nikki <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=41-242" target="_blank" rel="noopener">Rhythm Reactivity Board</a> drives beat-bus motion. Discrete chips stay library-only; see the <a href="melodia-melusina.html">Melusina lookbook</a> for the playable beauty frame.</p>
+                <p class="game-ui-atom-links" style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase">
+                  Deep links:
+                  <a href="melodia-melusina.html#battle-phases">Phases</a> ·
+                  <a href="melodia-melusina.html#phase-rhythm">SheetMusicHUD</a> ·
+                  <a href="melodia-melusina.html#field-title">Field + Title</a> ·
+                  <a href="melodia-melusina.html#nikki-reactivity">Reactivity</a> ·
+                  <a href="melodia-melusina.html#batch-o">Chrome kit</a> ·
+                  <a href="melodia-melusina.html#atom-grade-pop">Grade flourishes</a> ·
+                  <a href="melodia-melusina.html#ios-battle">iOS</a>
+                </p>
+                <p style="margin-top:0.55rem;font-size:0.78rem;opacity:0.85">Batch O Figma comps include additive <code>Game/FiligreeGradeHalo/{Perfect,Great,Good,Miss}</code> color rings beside ScrollBorderRail / SheetParchment — web flourishes use the matching PNG set.</p>
+              </div>
+              <div class="game-ui-showcase">
+                <article class="game-ui-frame game-ui-sheet-master" id="phase-rhythm" aria-label="SheetMusicHUD rhythm preview — SoftMG Infold beauty pass">
+                  <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+                  <span class="game-ui-filigree is-baroque tr" aria-hidden="true"></span>
+                  <span class="game-ui-filigree is-baroque bl" aria-hidden="true"></span>
+                  <span class="game-ui-filigree is-baroque br" aria-hidden="true"></span>
+                  <span class="game-ui-scroll-rail top" aria-hidden="true"></span>
+                  <span class="game-ui-scroll-rail bottom" aria-hidden="true"></span>
+                  <span class="game-ui-crest-finale" aria-hidden="true"></span>
+                  <div class="game-ui-shimmer" aria-hidden="true"></div>
+                  <div class="game-ui-filigree-divider is-wave" aria-hidden="true"><span>♪</span><span>𝄞</span><span>♪</span></div>
+                  <div class="game-ui-sheet">
+                    <div class="game-ui-sheet-head">
+                      <div class="game-ui-sheet-title">
+                        <h3>Cherry Storm — Movement III</h3>
+                        <div class="game-ui-sheet-meta">
+                          <span class="time">4/4</span>
+                          <span class="bpm">♩ = 120</span>
+                          <span class="phase-ink">SheetMusicHUD</span>
+                        </div>
+                      </div>
+                      <div class="game-ui-combo-cartouche" aria-label="Combo">
+                        <span class="cartouche-label">Combo</span>
+                        <span class="cartouche-num">× 24</span>
+                      </div>
+                    </div>
+                    <div class="game-ui-staff" aria-hidden="true">
+                      <span class="clef">𝄞</span>
+                      <span class="game-ui-staff-ticks"></span>
+                      <div class="game-ui-ink-meters">
+                        <div class="game-ui-ink-meter sp"><span class="ink-label">SP</span><span class="ink-track"><span class="ink-fill" style="width:70%"></span></span></div>
+                        <div class="game-ui-ink-meter ult"><span class="ink-label">ULT</span><span class="ink-track"><span class="ink-fill" style="width:45%"></span></span></div>
+                      </div>
+                      <span class="note-beam b1"></span>
+                      <span class="note-beam b2"></span>
+                      <span class="note-beam b3"></span>
+                      <span class="note-beam b4"></span>
+                      <span class="note-beam b5"></span>
+                      <span class="game-ui-playback-head"></span>
+                    </div>
+                    <div class="game-ui-highway game-ui-highway-shader">
+                      <div class="game-ui-lane" data-lane="A"></div>
+                      <div class="game-ui-lane" data-lane="B"></div>
+                      <div class="game-ui-lane" data-lane="C"></div>
+                      <div class="game-ui-lane" data-lane="D"></div>
+                      <span class="grade-pop perfect is-luxury is-flourish">PERFECT<small>±90ms</small></span>
+                      <div class="game-ui-hitline" aria-hidden="true"></div>
+                      <span class="game-ui-lane-rail" aria-hidden="true"></span>
+                    </div>
+                    <p class="game-ui-ink-dialogue"><span class="speaker">MELUSINA</span> The shrine remembers every note we play together.</p>
+                  </div>
+                </article>
+                <div class="game-ui-grades game-ui-grades-flourish" aria-label="Notation grade flourishes">
+                  <span class="grade-pop perfect is-luxury is-flourish">PERFECT<small>±90ms</small></span>
+                  <span class="grade-pop great is-luxury is-flourish">GREAT<small>±120ms</small></span>
+                  <span class="grade-pop good is-luxury is-flourish">GOOD<small>±160ms</small></span>
+                  <span class="grade-pop miss is-luxury is-flourish">MISS<small>&gt;160ms</small></span>
+                </div>
+                <div class="game-ui-dual">
+                  <aside class="game-ui-codex" aria-label="30 song skill library">
+                    <h4>Song Skills — Library (not beauty frame)</h4>
+                    <div class="game-ui-codex-grid">
+                      <span class="game-ui-codex-chip">01 · Prelude</span>
+                      <span class="game-ui-codex-chip">02 · Andante</span>
+                      <span class="game-ui-codex-chip">03 · Allegro</span>
+                      <span class="game-ui-codex-chip">04 · Adagio</span>
+                      <span class="game-ui-codex-chip">05 · Scherzo</span>
+                      <span class="game-ui-codex-chip">06 · Finale</span>
+                      <span class="game-ui-codex-chip">07 · Nocturne</span>
+                      <span class="game-ui-codex-chip">08 · Rondo</span>
+                      <span class="game-ui-codex-chip">09 · Cadenza</span>
+                      <span class="game-ui-codex-chip">10 · Interlude</span>
+                      <span class="game-ui-codex-chip">11 · Ballade</span>
+                      <span class="game-ui-codex-chip">12 · March</span>
+                    </div>
+                  </aside>
+                  <article class="game-ui-frame game-ui-sheet-echo game-ui-mobile" aria-label="Portrait SheetMusicHUD">
+                    <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+                    <span class="game-ui-filigree is-baroque tr" aria-hidden="true"></span>
+                    <div class="game-ui-sheet" style="margin:0.5rem;padding:0.65rem">
+                      <div class="game-ui-sheet-head">
+                        <div class="game-ui-sheet-title"><h3 style="font-size:0.95rem">Cherry Storm</h3></div>
+                        <div class="game-ui-combo-cartouche"><span class="cartouche-label">Combo</span><span class="cartouche-num">× 12</span></div>
+                      </div>
+                      <div class="game-ui-highway game-ui-highway-shader" style="min-height:8rem">
+                        <div class="game-ui-lane" data-lane="A"></div>
+                        <div class="game-ui-lane" data-lane="B"></div>
+                        <div class="game-ui-lane" data-lane="C"></div>
+                        <div class="game-ui-lane" data-lane="D"></div>
+                        <div class="game-ui-hitline" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <p class="game-ui-mobile-cta"><a href="melodia-melusina.html?mode=ios#ios-battle">iOS SheetMusicHUD kit →</a></p>
+                  </article>
+                </div>
+                <p class="game-ui-figma-link">Figma: <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=45-480" target="_blank" rel="noopener">SheetMusicHUD Desktop</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=40-334" target="_blank" rel="noopener">Batch O chrome</a> · <a href="melodia-melusina.html">Melusina page</a> · <a href="melodia-melusina.html?mode=ios#ios-battle">iOS kit</a>
+                </p>
+                <div class="softmg-infold-doc" style="margin-top:1.5rem;padding:1rem 1.25rem;border:1px solid rgba(217,165,102,0.3);border-radius:0.75rem;background:rgba(242,230,207,0.06)">
+                  <p class="eyebrow" style="margin:0 0 0.35rem">SoftMG · Infinity Nikki / Infold beauty pass</p>
+                  <p style="font-size:0.82rem;line-height:1.55;opacity:0.9;margin:0 0 0.5rem">
+                    The preview above (id <code>#phase-rhythm</code>) carries the same SoftMG chrome as the live Battle UI: warm parchment sheet, ink-seal SP/ULT meters, staff-ink lanes, and a dense ink hitline — Melodia-original components exported from the
+                    <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=61-531" target="_blank" rel="noopener">Game/SoftMG_Kit</a> frame (Grandmaster page 12, node <code>61:531</code>). No third-party sprites ship — see
+                    <a href="https://github.com/fromage3900/my-site/blob/main/Saved/Audit/softmg_nikki_ref_notes.md" target="_blank" rel="noopener">softmg_nikki_ref_notes.md</a> for the Infold acceptance checklist and craft-reference notes.
+                  </p>
+                  <p style="font-size:0.72rem;font-family:var(--font-mono);letter-spacing:0.04em;opacity:0.7;margin:0">
+                    SoftMG/ParchmentPanel · SoftMG/ScrollEdge · SoftMG/SealSP · SoftMG/SealULT · SoftMG/LaneInk · SoftMG/Hitline · SoftMG/PillowChip
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="band deep">
+            <div class="inner">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Publishing Contract</p>
+                  <h2>What must be true before applying.</h2>
+                </div>
+                <p>These are the practical checks for each update.</p>
+              </div>
+              <div class="table-list">
+                <div class="table-row">
+                  <span>Check 01</span>
+                  <div>
+                    <h3>Public URL</h3>
+                    <p>GitHub Pages must serve the root URL and all Wix page routes.</p>
+                  </div>
+                  <b>Required</b>
+                </div>
+                <div class="table-row">
+                  <span>Check 02</span>
+                  <div>
+                    <h3>Route inventory</h3>
+                    <p>Deployment manifest should list homepage, renders, shaders, geometry, commissions, case study, and specs.</p>
+                  </div>
+                  <b>Required</b>
+                </div>
+                <div class="table-row">
+                  <span>Check 03</span>
+                  <div>
+                    <h3>Asset proof</h3>
+                    <p>Hero images, render configs, and technical sheets must resolve locally before pushing.</p>
+                  </div>
+                  <b>Required</b>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <footer class="footer">
+          <div class="inner">
+            <span>Brennan Shepherd / Environment & Technical Artist</span>
+            <span>GitHub Pages + Wix iframe portfolio</span>
+          </div>
+        </footer>
+      </div>
+      <script src="melodia-planetarium.js">
+      </script>
+      <script src="melodia-cosmic-instruments.js">
+      </script>
+      <script src="melodia-magical-girl.js">
+      </script>
+      <script src="melodia-starfield.js">
+      </script>
+      <script src="melodia-dream-shaders.js">
+      </script>
+      <script src="melodia-site-nav.js"></script>
+      <script src="melodia-editorial.js">
+      </script>
+      <script>MelodiaEditorial.init();</script>
+      <script src="melodia-game-ui.js">
+      </script>
+    </body>
+  </html>

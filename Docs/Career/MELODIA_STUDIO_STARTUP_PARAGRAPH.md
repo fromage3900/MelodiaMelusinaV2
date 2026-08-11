@@ -1,0 +1,7 @@
+# Melodia Studio — Startup Positioning Paragraph
+
+**Context:** Written for applications targeting Digital Extremes (London, Ontario) and similar pipeline-heavy, procedurally-minded studios. Melodia Studio is the solo game development entity behind the Melodia Platform (BS_GodFile project). This paragraph can be adapted for cover letters, recruiter messages, portfolio "about" sections, or interview talking points.
+
+---
+
+Melodia Studio is a solo game-development startup focused on procedural, stylized environment art for Unreal Engine 5.8. What sets it apart is not any single asset or scene — it is the pipeline infrastructure that makes a single artist capable of producing at the velocity and technical standard of a small environment team. The platform integrates Blender 5.1 procedural geometry (49 Geometry Nodes builders across 30+ style genomes) with a single source-of-truth Substrate toon master material (916–1015 expressions covering 12 parameter families), a 77-graph PCG production library, and a Python-driven automation layer that connects every stage from greybox to final render. This is not one-off scene scripting — it is a genuine procedural-authoring pipeline that can produce an environment pillar in a day and iterate it in minutes. The immediate goal is to ship the portfolio website and a playable vertical slice, proving that a solo technical artist with the right tooling can close the loop from procedural world-building to shipped content.

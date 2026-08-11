@@ -1,0 +1,4 @@
+Begin Object Class=/Script/Engine.ToonProfile Name="TP_Stucco" ExportPath="/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Stucco.TP_Stucco'"
+   Settings=(DiffuseRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),SpecularRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),ShadowHatchingPatternDistributionRamp=(EditorCurveData=()),SpecularIndirectRamp=(EditorCurveData=()))
+   Guid=D9A56D714078CCDDFD63A3B5F08F1021
+End Object

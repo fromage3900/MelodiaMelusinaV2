@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "character": "Melusina",
+  "canonical_pawn": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+  "skeletal_mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina",
+  "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+  "animation_blueprint": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+  "battle_animation_blueprint": "/Game/Experiments/MelodiaJRPG/ABP_Melusina_JRPGPresentation",
+  "cascadeur": {
+    "executable": "C:/Program Files/Cascadeur/cascadeur.exe",
+    "tested_version": "2025.1.0.13204",
+    "rig_template": "C:/Program Files/Cascadeur/resources/autorig_templates/UE5.qrigcasc",
+    "authoring_scene": "Tools/Cascadeur/Melusina/SC_Melusina_Golden.casc",
+    "authoring_fps": 30,
+    "import_fbx_up_axis": "Z",
+    "import_axis_adjustment": "Root",
+    "export_fbx_binary": true,
+    "export_animation_only": true,
+    "bake_animation": true,
+    "apply_euler_filter": true,
+    "export_fbx_up_axis": "Y"
+  },
+  "folders": {
+    "source_inbox": "Imports/Animations/Cascadeur/Inbox",
+    "source_archive": "Imports/Animations/Cascadeur/Archive",
+    "ue_output": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur",
+    "audit_report": "Saved/Audit/cascadeur_import_report.json"
+  },
+  "root_motion": {
+    "exploration": "in_place",
+    "battle": "in_place",
+    "cinematic": "explicit_review_required"
+  },
+  "contexts": {
+    "exploration": {
+      "consumer": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+      "default_loop": true,
+      "root_motion": "in_place"
+    },
+    "battle": {
+      "consumer": "/Game/Experiments/MelodiaJRPG/ABP_Melusina_JRPGPresentation",
+      "default_loop": false,
+      "root_motion": "in_place",
+      "notifies_added_in_unreal": true
+    },
+    "vn": {
+      "consumer": "Level Sequence or authored presentation layer",
+      "default_loop": true,
+      "root_motion": "in_place"
+    }
+  },
+  "protected_runtime_contract": {
+    "body_bones": [
+      "root_x",
+      "spine_01_x",
+      "spine_02_x",
+      "spine_03_x",
+      "neck_x",
+      "head_x"
+    ],
+    "hair_root": "hair_root",
+    "skirt_physics_root": "c_kilt_master_x",
+    "hair_runtime_asset": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "hair_attachment_owner": "UMelodiaHairComponent",
+    "hair_rule": "Do not re-export or rename the separate hair skeleton in the animation pass."
+  },
+  "montage_notify_contract": {
+    "skill_impact_notify": "BP_UseSkillN",
+    "required_count_per_skill_montage": 1,
+    "source_fbx_must_contain_gameplay_notifies": false
+  }
+}

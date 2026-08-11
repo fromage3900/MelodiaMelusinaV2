@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-page="sdf-material-gallery">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SDF Material Gallery | Brennan Shepherd</title>
+<meta name="description" content="Per-instance NightShift material previews — Cosmic SDF, Nikki hero surfaces, ornamental toon trims, and supporting SDF library." />
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-fashion-editorial.css">
+<link rel="stylesheet" href="melodia-premium-system.css">
+<style>
+.mi-group { margin-bottom: 54px; }
+.mi-group:last-child { margin-bottom: 0; }
+.mi-grid { grid-template-columns: repeat(3, 1fr); }
+.mi-tile img { object-fit: contain; background: rgba(8, 11, 19, 0.55); }
+.mi-tile h3 { font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.04em; }
+@media (max-width: 1080px) { .mi-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 680px) { .mi-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="melodia-shell fashion-mode" data-mg="chrome" data-hero="editorial" data-effects="starfield,holo">
+<header class="shell-nav" aria-label="Portfolio navigation">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="shader-breakdowns.html">Shaders</a>
+    <a href="render-constellation.html">Intake</a>
+    <a href="application-hub.html">Hub</a>
+    <a href="world-bible.html">Worlds</a>
+  </nav>
+  <a class="nav-cta button-premium" href="../generated/nightshift_manifest.json">Manifest</a>
+</header>
+<main>
+<section class="hero has-editorial-frame" aria-labelledby="page-title">
+  <div class="hero-media" aria-hidden="true"><img src="../generated/assets/nightshift/grid_nikki_heroes.png" alt="Nikki hero SDF material preview grid" /></div>
+  <div class="hero-inner">
+    <p class="kicker magazine-kicker premium-kicker">NightShift instance catalog</p>
+    <h1 id="page-title">Every MI, one sphere at a time.</h1>
+    <p class="lede">July 2026 NightShift captures — static sphere plates. For animated studio loops with PP and pillar backdrops, see the <a href="material-loop-gallery.html">material loop gallery</a>. Instances are reparented on <code>M_Master_Toon_Universal</code>; masters stay frozen.</p>
+    <div class="button-row">
+      <a class="button primary button-premium-primary" href="material-loop-gallery.html">Material loops</a>
+      <a class="button button-premium" href="shader-breakdowns.html">Shader breakdowns</a>
+      <a class="button button-premium" href="render-constellation.html">Render intake</a>
+      <a class="button button-premium" href="universal-material-impact.html">Material impact</a>
+    </div>
+  </div>
+</section>
+
+<section class="band paper fashion-band">
+  <div class="inner">
+    <div class="editorial-rule"><span class="diamond" aria-hidden="true"></span><span>Overview grids</span><span class="diamond" aria-hidden="true"></span></div>
+    <div class="section-head"><div><h2>Family grids before the per-instance read.</h2></div><p>These composite plates are the fastest recruiter scan — then drill into individual instances below.</p></div>
+    <div class="image-grid">
+      <figure class="image-card premium-card material-proof-frame"><img src="../generated/assets/nightshift/grid_cosmic_all.png" alt="Cosmic SDF family grid" loading="lazy" /><div><h3>Cosmic family grid</h3><p>Nine cosmic instances — nebula, starfield, aurora veil, void deep.</p></div></figure>
+      <figure class="image-card premium-card material-proof-frame"><img src="../generated/assets/nightshift/grid_nikki_heroes.png" alt="Nikki hero SDF grid" loading="lazy" /><div><h3>Nikki hero grid</h3><p>Six magical-girl SDF heroes — Rosy Quartz through Starfield Dust.</p></div></figure>
+      <figure class="image-card premium-card material-proof-frame"><img src="../generated/assets/nightshift/celestial_nebula_nasa_sphere.png" alt="CelestialNebula with NASA star map" loading="lazy" /><div><h3>CelestialNebula + NASA</h3><p>Starmap-driven nebula sphere — Space Cathedral pillar proof.</p></div></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band astral fashion-band">
+  <div class="section-orrery atelier-slot" data-orrery="atelier" aria-hidden="true"></div>
+  <div class="inner" id="miGalleryGroups" aria-live="polite"></div>
+</section>
+</main>
+<footer class="footer"><div class="inner"><span>SDF material gallery / Brennan Shepherd</span><span>NightShift · 2026-07-09</span></div></footer>
+</div><script src="melodia-orrery-system.js"></script>
+<script src="melodia-planetarium.js"></script>
+<script src="melodia-cosmic-instruments.js"></script>
+<script src="melodia-magical-girl.js"></script>
+<script src="melodia-starfield.js"></script>
+<script src="melodia-dream-shaders.js"></script>
+<script src="melodia-editorial.js"></script>
+<script>MelodiaEditorial.init({ materialGallery: true });</script>
+</body>
+</html>

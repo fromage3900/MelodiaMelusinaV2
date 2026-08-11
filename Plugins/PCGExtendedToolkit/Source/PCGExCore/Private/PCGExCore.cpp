@@ -1,0 +1,40 @@
+// Copyright 2026 Timothé Lapetite and contributors
+// Released under the MIT license https://opensource.org/license/MIT/
+
+#include "PCGExCore.h"
+
+#include "Data/PCGExSubAccessor.h"
+
+#if WITH_EDITOR
+#include "AssetTypeActions_Base.h"
+#include "Data/Bitmasks/PCGExBitmaskCollection.h"
+#include "Data/Registry/PCGDataTypeRegistry.h"
+#include "PCGExCoreEditor/Public/PCGExAssetTypesMacros.h"
+#include "Sorting/PCGExSortingRuleProvider.h"
+#endif
+
+PCGEX_IMPLEMENT_MODULE(FPCGExCoreModule, PCGExCore)
+
+void FPCGExCoreModule::StartupModule()
+{
+	IPCGExLegacyModuleInterface::StartupModule();
+	PCGExData::FSubAccessorRegistry::Initialize();
+}
+
+#if WITH_EDITOR
+void FPCGExCoreModule::RegisterToEditor(const TSharedPtr<FSlateStyleSet>& InStyle)
+{
+	IPCGExModuleInterface::RegisterToEditor(InStyle);
+
+	PCGEX_START_PCG_REGISTRATION
+	PCGEX_REGISTER_DATA_TYPE(SortRule, SortRule)
+
+	PCGEX_REGISTER_PIN_ICON(OUT_Special)
+	PCGEX_REGISTER_PIN_ICON(IN_Special)
+
+	PCGEX_REGISTER_PIN_ICON(OUT_RecursionTracker)
+	PCGEX_REGISTER_PIN_ICON(IN_RecursionTracker)
+
+	// Bitmask collection: UAssetDefinition + UFactory in PCGExCoreEditor handle menu registration
+}
+#endif

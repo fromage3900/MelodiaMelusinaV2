@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" data-page="melodia-melusina">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Melodia Melusina — Game UI | Brennan Shepherd</title>
+<meta name="description" content="Melodia Melusina rhythm RPG UI — SheetMusicHUD continuous staff combat, Batch O scrollwork, notation grade flourishes, and Figma-synced battle chrome." />
+<meta property="og:title" content="Melodia Melusina — Game UI" />
+<meta property="og:description" content="Sheet-first rhythm battle chrome — parchment staff, filigree scrollwork, portrait iOS kit." />
+<meta property="og:image" content="https://fromage3900.github.io/my-site/generated/social/og-default.jpg" />
+<meta property="og:url" content="https://fromage3900.github.io/my-site/wix/melodia-melusina.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="melodia-tokens.css?v=20260716b">
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-fashion-editorial.css">
+<link rel="stylesheet" href="melodia-premium-system.css">
+<link rel="stylesheet" href="melodia-visual-breakdown.css">
+<link rel="stylesheet" href="portfolio-pages.css">
+<link rel="stylesheet" href="melodia-game-ui.css?v=20260716b">
+</head>
+<body>
+<div class="melodia-shell fashion-mode game-mode" data-mg="soft" data-hero="editorial" data-visual="lookbook" data-effects="starfield,holo,magical" data-nav-cta="design-specs.html#game-ui" data-nav-cta-label="Design specs">
+<header class="shell-nav" aria-label="Portfolio navigation">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="index.html">Home</a>
+    <a href="application-hub.html">Hub</a>
+    <a href="melodia-stage-character.html">Stage</a>
+    <a href="design-specs.html">Specs</a>
+    <a href="melodia-gameplay-loop.html">Loop</a>
+  </nav>
+  <a class="nav-cta button-premium" href="application-hub.html">Application Hub</a>
+</header>
+
+<main id="main">
+<section class="band game-hero-band astral" aria-labelledby="page-title">
+  <div class="inner">
+    <p class="eyebrow magazine-kicker">Melodia Melusina · Figma page 12 · SheetMusicHUD</p>
+    <div class="editorial-rhythm-divider" aria-hidden="true"><span class="glyph">✦ · ♪ · ✦</span></div>
+    <p class="nikki-ribbon">Ability dress · continuous score combat</p>
+    <div class="nikki-outfit-board" style="margin-top:1rem">
+      <div>
+        <p class="nikki-outfit-label">Outfit board · Game UI</p>
+        <h2 class="nikki-outfit-title">Sheet music combat. Portfolio chrome.</h2>
+        <p>Same Melodia lookbook language as Stage and Hub — the beauty frame is a continuous score framed in scrollwork before Unreal binds every WBP.</p>
+      </div>
+      <div class="nikki-stat-row" aria-label="HUD readiness">
+        <div class="nikki-stat"><b>SSOT</b><strong>SheetHUD</strong></div>
+        <div class="nikki-stat"><b>Web</b><strong>L2 live</strong></div>
+        <div class="nikki-stat"><b>WBP</b><strong>2 live</strong></div>
+      </div>
+    </div>
+    <h1 id="page-title">Celestial sheet music combat.</h1>
+    <p class="lede game-lede">Turn-based rhythm RPG UI from the Grandmaster Figma library — <strong>SheetMusicHUD</strong> continuous staff + Batch O Baroque / SoftMG chrome, skill-ring + combo-burst accents (pearl/gold/iri-cyan on void), gothic portfolio frames, and motion prototypes for Unreal <code>WBP_*</code>. Batch N MusicalFiligree / NoteHead atlas slots are <strong>deprecated</strong> — do not re-bind. Atoms stay library-only; the beauty frame is a continuous score.</p>
+    <div class="button-row">
+      <a class="button primary button-premium-primary" href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=45-480" target="_blank" rel="noopener">SheetMusicHUD</a>
+      <a class="button button-premium" href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=40-334" target="_blank" rel="noopener">Batch O chrome</a>
+      <a class="button button-premium" href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=58-716" target="_blank" rel="noopener">Baroque filigree</a>
+      <a class="button button-premium" href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=41-242" target="_blank" rel="noopener">Motion board</a>
+      <a class="button button-premium" href="#final-polish">Final polish</a>
+      <a class="button button-premium" href="melodia-melusina.html?mode=ios#ios-battle">iOS battle kit</a>
+    </div>
+    <div class="game-ui-phase-switch" role="tablist" aria-label="Battle phase" data-phase-switch>
+      <button type="button" role="tab" aria-selected="false" data-phase="command">Command</button>
+      <button type="button" role="tab" aria-selected="true" data-phase="rhythm">Rhythm</button>
+      <button type="button" role="tab" aria-selected="false" data-phase="enemy">Enemy</button>
+      <button type="button" role="tab" aria-selected="false" data-phase="results">Results</button>
+    </div>
+  </div>
+</section>
+
+<section class="band paper fashion-band" id="final-polish" aria-labelledby="polish-title">
+  <div class="inner">
+    <div class="viz-rule" aria-hidden="true"><span class="glyph">♪ final polish</span></div>
+    <div class="section-head">
+      <div>
+        <p class="eyebrow magazine-kicker">Prep checklist · Figma → web → UE</p>
+        <h2 id="polish-title">Game UI polish board.</h2>
+      </div>
+      <p class="human-lede">Section-by-section gate before UE L3. Motion + baroque filigree expanded in Figma first; check each strip here, then bind.</p>
+    </div>
+    <div class="viz-process" aria-label="Final polish checklist">
+      <div class="viz-process-step">
+        <span class="num">01</span>
+        <strong><a href="#phase-rhythm">SheetMusicHUD</a></strong>
+        <p>Depth stack ≥4 · one hero zone lit · scroll rails no rotate break · iri grade ramp.</p>
+      </div>
+      <div class="viz-process-step">
+        <span class="num">02</span>
+        <strong><a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=41-242" target="_blank" rel="noopener">Motion board</a></strong>
+        <p>IdleBreathe · PerfectStreak · BreakReveal · ULTReady · SoftMG_Baroque keyframed (2.4s).</p>
+      </div>
+      <div class="viz-process-step">
+        <span class="num">03</span>
+        <strong><a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=58-716" target="_blank" rel="noopener">Baroque O</a></strong>
+        <p>CornerBaroque · DividerScroll · CrestBaroque · MedallionRosette · BraceVolute — denser than Batch O.</p>
+      </div>
+      <div class="viz-process-step">
+        <span class="num">04</span>
+        <strong><a href="#ios-battle">iOS kit</a></strong>
+        <p>Portrait primary · ≥44px lanes · landscape nudge · thumb chrome clear of fingers.</p>
+      </div>
+      <div class="viz-process-step">
+        <span class="num">05</span>
+        <strong><a href="#batch-o">Batch O web</a></strong>
+        <p>Baroque PNGs bound on SoftMG / SheetMusicHUD · chips stay library-only · beauty = continuous score.</p>
+      </div>
+      <div class="viz-process-step">
+        <span class="num">06</span>
+        <strong>UE L3 next</strong>
+        <p>Reimport atlas · bitmap filigree bind · Mobile BindWidgets · Command→Results WBPs.</p>
+      </div>
+    </div>
+    <p class="viz-tech-dose">Figma: <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=45-480" target="_blank" rel="noopener">SheetMusicHUD</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=40-334" target="_blank" rel="noopener">Batch O</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=58-716" target="_blank" rel="noopener">Baroque</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=41-242" target="_blank" rel="noopener">RhythmReactivityBoard</a>. Plan: <code>Docs/MELODIA_LUXURY_UI_FILIGREE_NIKKI_MOTION_PLAN_2026-07-12.md</code>.</p>
+  </div>
+</section>
+
+<section class="band astral fashion-band" aria-label="HUD system passport">
+  <div class="inner">
+    <div class="viz-rule" aria-hidden="true"><span class="glyph">✦ system passport</span></div>
+    <div class="breakdown-passports">
+      <article class="passport-card">
+        <div class="passport-head"><span>✦ HUD Passport</span><span>AAA bar</span></div>
+        <div class="passport-rule"></div>
+        <h3 class="passport-title">Melodia Rhythm Chrome</h3>
+        <div class="passport-row"><span>Clarity</span><strong>Grade / lane / turn ≤0.5s</strong></div>
+        <div class="passport-row"><span>Tokens</span><strong>Syne stack + iri ramp</strong></div>
+        <div class="passport-row"><span>Beauty</span><strong>SheetMusicHUD + scrollwork</strong></div>
+      </article>
+      <article class="passport-card light">
+        <div class="passport-head"><span>✦ Production</span><span>honest</span></div>
+        <div class="passport-rule"></div>
+        <h3 class="passport-title">Catch-up queue</h3>
+        <div class="passport-row"><span>Live</span><strong>WBP_Battle_Rhythm · GradePop</strong></div>
+        <div class="passport-row"><span>Figma</span><strong><a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=45-480" target="_blank" rel="noopener">SheetMusicHUD</a></strong></div>
+        <div class="passport-row"><span>Next</span><strong>WBP brush bind</strong></div>
+      </article>
+    </div>
+    <div class="viz-doors" style="margin-top:1.5rem">
+      <a class="viz-door" href="application-hub.html">
+        <img src="../generated/assets/character/melusina_beauty_eevee_20260715c_01.png" alt="" loading="lazy" />
+        <div class="viz-door-meta"><b>Hub</b><strong>Lookbook</strong></div>
+      </a>
+      <a class="viz-door" href="melodia-stage-character.html">
+        <img src="../generated/assets/character/melusina_beauty_eevee_20260715c_01.png" alt="" loading="lazy" />
+        <div class="viz-door-meta"><b>Stage</b><strong>Passport</strong></div>
+      </a>
+      <a class="viz-door" href="design-specs.html#game-ui">
+        <img src="../generated/assets/character/melusina_eevee_glam_20260715c_05.png" alt="" loading="lazy" />
+        <div class="viz-door-meta"><b>Specs</b><strong>Game UI</strong></div>
+      </a>
+      <a class="viz-door" href="melodia-gameplay-loop.html">
+        <img src="../generated/assets/character/melusina_beauty_eevee_20260715c_01.png" alt="" loading="lazy" />
+        <div class="viz-door-meta"><b>Loop</b><strong>Core flow</strong></div>
+      </a>
+    </div>
+
+    <div class="section-head" style="margin-top:2.4rem" id="eevee-glam">
+      <div>
+        <p class="eyebrow game-eyebrow">EEVEE · glam AudVis</p>
+        <h2>New Melusina beauty wave</h2>
+      </div>
+      <p>Komikaze / NPR beauty stills from the Jul 15 EEVEE pass — full plate plus bust / portrait cuts.</p>
+    </div>
+    <div class="viz-doors" aria-label="Melusina EEVEE glam stills">
+      <a class="viz-door" href="../generated/assets/character/melusina_eevee_glam_20260715c_01.png">
+        <img src="../generated/assets/character/melusina_eevee_glam_20260715c_01.png" alt="Melusina glam full EEVEE" loading="lazy" />
+        <div class="viz-door-meta"><b>01</b><strong>Full</strong></div>
+      </a>
+      <a class="viz-door" href="../generated/assets/character/melusina_eevee_glam_20260715c_02.png">
+        <img src="../generated/assets/character/melusina_eevee_glam_20260715c_02.png" alt="Melusina glam bust EEVEE" loading="lazy" />
+        <div class="viz-door-meta"><b>02</b><strong>Bust</strong></div>
+      </a>
+      <a class="viz-door" href="../generated/assets/character/melusina_eevee_glam_20260715c_03.png">
+        <img src="../generated/assets/character/melusina_eevee_glam_20260715c_03.png" alt="Melusina glam portrait EEVEE" loading="lazy" />
+        <div class="viz-door-meta"><b>03</b><strong>Portrait</strong></div>
+      </a>
+      <a class="viz-door" href="../generated/assets/character/melusina_eevee_glam_20260715c_05.png">
+        <img src="../generated/assets/character/melusina_eevee_glam_20260715c_05.png" alt="Melusina glam three-quarter EEVEE" loading="lazy" />
+        <div class="viz-door-meta"><b>05</b><strong>¾</strong></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="band game-void-band" id="battle-phases" aria-labelledby="phases-title">
+  <div class="inner game-ui-showcase">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow game-eyebrow">Movement &amp; measure</p>
+        <h2 id="phases-title">Command · perform · resolve · breathe.</h2>
+      </div>
+      <p>MelodiaCore phases — dominant zone lit, others dimmed. Windows from <code>melodia_rules.json</code>.</p>
+    </div>
+
+    <div class="game-ui-phase-stage" data-battle-stage data-active-phase="rhythm">
+      <article class="game-ui-frame game-ui-sheet-echo game-ui-phase-panel" data-phase-panel="command" id="phase-command" aria-label="Battle command">
+        <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+        <span class="game-ui-filigree is-baroque tr" aria-hidden="true"></span>
+        <div class="game-ui-topbar"><span class="phase">♪ Command — choose a song skill</span><span class="combo">Measure 3</span></div>
+        <div class="game-ui-turn-rail" aria-hidden="true"><span class="active">Melusina</span><span>Warden</span><span>Ally</span><span>Melusina</span></div>
+        <div class="game-ui-skill-strip is-legacy-atom" aria-label="Skill chips (library)">
+          <button type="button" class="game-ui-skill-chip">Basic</button>
+          <button type="button" class="game-ui-skill-chip is-selected">Skill · Cherry Storm</button>
+          <button type="button" class="game-ui-skill-chip">Guard</button>
+          <button type="button" class="game-ui-skill-chip">ULT</button>
+        </div>
+        <p class="game-ui-phase-note game-ui-sheet-skill-note">Song skill: <strong>Cherry Storm</strong> · chips live in the atom library, not the beauty sheet.</p>
+        <p class="game-ui-phase-note">Highway dimmed (~40%) until rhythm execution starts.</p>
+        <div class="game-ui-highway game-ui-highway-dim" aria-hidden="true">
+          <div class="game-ui-lane"></div><div class="game-ui-lane"></div><div class="game-ui-lane"></div><div class="game-ui-lane"></div>
+        </div>
+      </article>
+
+      <article class="game-ui-frame game-ui-sheet-master game-ui-phase-panel is-active" data-phase-panel="rhythm" id="phase-rhythm" aria-label="Rhythm execution" data-rhythm-playground data-shrine-awake="0">
+      <span class="game-ui-gothic-corner tl" aria-hidden="true"></span>
+      <span class="game-ui-gothic-corner tr" aria-hidden="true"></span>
+      <span class="game-ui-gothic-corner bl" aria-hidden="true"></span>
+      <span class="game-ui-gothic-corner br" aria-hidden="true"></span>
+      <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+      <span class="game-ui-filigree is-baroque tr" aria-hidden="true"></span>
+      <span class="game-ui-filigree is-baroque bl" aria-hidden="true"></span>
+      <span class="game-ui-filigree is-baroque br" aria-hidden="true"></span>
+      <span class="game-ui-scroll-rail top" aria-hidden="true"></span>
+      <span class="game-ui-scroll-rail bottom" aria-hidden="true"></span>
+      <span class="game-ui-scroll-rail left" aria-hidden="true"></span>
+      <span class="game-ui-scroll-rail right" aria-hidden="true"></span>
+      <span class="game-ui-crest-finale" aria-hidden="true"></span>
+      <span class="game-ui-streak-edge" aria-hidden="true"></span>
+      <div class="game-ui-shimmer" aria-hidden="true"></div>
+
+      <div class="game-ui-play-controls">
+        <button type="button" class="button button-premium-primary" data-rhythm-start>Play rhythm strip</button>
+        <p class="game-ui-play-hint" data-rhythm-status>Keys <kbd>D</kbd> <kbd>F</kbd> <kbd>J</kbd> <kbd>K</kbd> or tap lanes · MelodiaCore windows</p>
+      </div>
+
+      <div class="game-ui-filigree-divider is-baroque" aria-hidden="true"></div>
+
+      <div class="game-ui-sheet">
+        <div class="game-ui-sheet-head">
+          <div class="game-ui-sheet-title">
+            <h3>Cherry Storm — Movement III</h3>
+            <div class="game-ui-sheet-meta"><span class="time">4/4</span><span class="bpm" data-rhythm-bpm>♩ = 120</span><span class="phase-ink">Rhythm · SheetMusicHUD</span></div>
+          </div>
+          <div class="game-ui-combo-cartouche" data-rhythm-combo aria-label="Combo">
+            <span class="cartouche-label">Combo</span>
+            <span class="cartouche-num" data-rhythm-combo-num>× 0</span>
+          </div>
+        </div>
+        <div class="game-ui-staff">
+          <span class="clef">𝄞</span>
+          <span class="game-ui-staff-ticks" aria-hidden="true"></span>
+          <div class="game-ui-ink-meters" aria-hidden="true">
+            <div class="game-ui-ink-meter sp"><span class="ink-label">SP</span><span class="ink-track"><span class="ink-fill" style="width:70%"></span></span></div>
+            <div class="game-ui-ink-meter ult"><span class="ink-label">ULT</span><span class="ink-track"><span class="ink-fill" style="width:45%"></span></span></div>
+          </div>
+          <span class="note-beam b1"></span>
+          <span class="note-beam b2"></span>
+          <span class="note-beam b3"></span>
+          <span class="note-beam b4"></span>
+          <span class="note-beam b5"></span>
+          <span class="game-ui-playback-head" aria-hidden="true"></span>
+        </div>
+
+        <div class="game-ui-highway game-ui-highway-shader" data-rhythm-highway>
+          <div class="game-ui-lane" data-lane="A"></div>
+          <div class="game-ui-lane" data-lane="B"></div>
+          <div class="game-ui-lane" data-lane="C"></div>
+          <div class="game-ui-lane" data-lane="D"></div>
+          <span class="grade-pop perfect game-ui-floating-grade is-luxury is-flourish" data-rhythm-grade>READY<small>tap D F J K</small></span>
+          <div class="game-ui-hitline" aria-hidden="true"></div>
+          <span class="game-ui-lane-rail" aria-hidden="true"></span>
+        </div>
+
+        <p class="game-ui-ink-dialogue"><span class="speaker">MELUSINA</span> The shrine remembers every note we play together.</p>
+
+        <p class="game-ui-ink-dialogue game-ui-clef-note" data-clef-status aria-live="polite" hidden></p>
+
+        <div class="game-ui-shrine-remembers" data-shrine-host aria-hidden="true">
+          <div class="game-ui-shrine-brace game-ui-filigree-brace is-baroque" aria-hidden="true"></div>
+          <div class="game-ui-shrine-crest-row">
+            <span class="game-ui-shrine-medallion game-ui-filigree-medallion is-baroque" aria-hidden="true"></span>
+            <span class="game-ui-shrine-crest game-ui-filigree-crest is-baroque" data-shrine-crest aria-hidden="true"></span>
+            <span class="game-ui-shrine-medallion game-ui-filigree-medallion is-baroque" aria-hidden="true"></span>
+          </div>
+          <p class="game-ui-ink-dialogue game-ui-shrine-ink" data-shrine-ink><span class="speaker">MELUSINA</span> The shrine remembers this measure&hellip;</p>
+        </div>
+      </div>
+
+      <div class="game-ui-hud-row is-legacy-atom" aria-hidden="true">
+        <div class="game-ui-element-wheel" aria-label="Element wheel">SOUND</div>
+        <div class="game-ui-ult-arc" title="ULT arc"></div>
+        <div class="game-ui-meter sp"><span class="label">SP</span><div class="track"><div class="fill" style="width:70%"></div></div></div>
+        <div class="game-ui-meter ult"><span class="label">ULT</span><div class="track"><div class="fill" style="width:45%;background:var(--game-gold)"></div></div></div>
+        <div class="game-ui-dialogue">
+          <div class="speaker">MELUSINA</div>
+          <p>The shrine remembers every note we play together.</p>
+        </div>
+      </div>
+    </article>
+
+      <article class="game-ui-frame game-ui-sheet-echo game-ui-phase-panel" data-phase-panel="enemy" id="phase-enemy" aria-label="Enemy turn">
+        <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+        <span class="game-ui-filigree is-baroque tr" aria-hidden="true"></span>
+        <div class="game-ui-topbar"><span class="phase">Enemy turn — telegraphs</span><span class="combo">HIGHWAY HIDDEN</span></div>
+        <article class="game-ui-enemy-card">
+          <div class="game-ui-enemy-top"><span class="tag enemy">Enemy turn</span><span class="tag break">Toughness break</span></div>
+          <h3>Shrine Warden</h3>
+          <p class="telegraph">Cherry Storm incoming — prepare guard</p>
+          <div class="game-ui-toughness"><span>TOUGHNESS</span><div class="track"><div class="fill" style="width:40%"></div></div><span>48 / 120</span></div>
+        </article>
+        <p class="game-ui-phase-note">Skills locked · note highway hidden per UX table.</p>
+      </article>
+
+      <article class="game-ui-frame game-ui-sheet-echo game-ui-phase-panel" data-phase-panel="results" id="phase-results" aria-label="Battle results">
+        <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+        <span class="game-ui-filigree is-baroque tr" aria-hidden="true"></span>
+        <span class="game-ui-crest-finale" aria-hidden="true"></span>
+        <div class="game-ui-topbar"><span class="phase">Victory — Movement clear</span><span class="combo">MAX × 24</span></div>
+        <div class="game-ui-results-staff" aria-hidden="true">
+          <span class="clef">𝄞</span>
+          <span class="results-note n1"></span>
+          <span class="results-note n2"></span>
+          <span class="results-note n3"></span>
+          <span class="results-note n4"></span>
+          <span class="results-bar"></span>
+        </div>
+        <div class="game-ui-results-grid">
+          <div class="game-ui-results-card">
+            <h3>Performance</h3>
+            <ul>
+              <li>Perfect <strong data-stat-perfect>18</strong></li>
+              <li>Great <strong data-stat-great>6</strong></li>
+              <li>Good <strong data-stat-good>2</strong></li>
+              <li>Miss <strong data-stat-miss>1</strong></li>
+            </ul>
+          </div>
+          <div class="game-ui-results-card game-ui-party-score">
+            <h3>Party Score</h3>
+            <p class="speaker">MELUSINA</p>
+            <p>Rank <strong>S</strong> · Songcraft crescendo +12</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band game-surface-band" id="field-title" aria-labelledby="field-title-h">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow game-eyebrow">Field + Title</p>
+        <h2 id="field-title-h">Exploration chrome &amp; atelier title.</h2>
+      </div>
+      <p><code>Game/FieldHUD</code> and <code>Game/Title</code> echo SheetMusicHUD lightly (parchment wash + mini staff) — Melusina stays visible; battle chrome does not swallow the character fantasy.</p>
+    </div>
+    <div class="game-ui-dual">
+      <article class="game-ui-frame game-ui-field-hud game-ui-sheet-echo is-soft" id="atom-field-hud" aria-label="Field HUD">
+        <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+        <span class="game-ui-filigree is-baroque tr" aria-hidden="true"></span>
+        <div class="game-ui-filigree-brace is-baroque" aria-hidden="true"></div>
+        <span class="game-ui-scroll-rail top" aria-hidden="true"></span>
+        <div class="game-ui-topbar"><span class="phase">Field · Sakura Path</span><span class="combo">♪ Atelier</span></div>
+        <div class="game-ui-mini-staff" aria-hidden="true"><span class="clef">𝄞</span><span class="staff-lines"></span></div>
+        <div class="game-ui-dialogue">
+          <div class="speaker">MELUSINA</div>
+          <p>The path opens when the shrine bell answers.</p>
+        </div>
+        <div class="game-ui-meter sp"><span class="label">SP</span><div class="track"><div class="fill" style="width:55%"></div></div></div>
+      </article>
+      <article class="game-ui-frame game-ui-title-chip game-ui-sheet-echo is-soft" id="atom-title" aria-label="Title atelier">
+        <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+        <span class="game-ui-filigree is-baroque br" aria-hidden="true"></span>
+        <div class="game-ui-filigree-crest is-baroque" aria-hidden="true"></div>
+        <div class="game-ui-filigree-brace is-baroque" aria-hidden="true"></div>
+        <p class="eyebrow game-eyebrow">Game/Title</p>
+        <h3>Melodia Melusina</h3>
+        <div class="game-ui-mini-staff" aria-hidden="true"><span class="clef">𝄞</span><span class="staff-lines"></span></div>
+        <p class="lede game-lede">Celestial sheet music combat</p>
+        <div class="button-row"><span class="button primary button-premium-primary">Begin</span><span class="button button-premium">Codex</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band game-void-band" id="nikki-reactivity" aria-labelledby="react-title">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow game-eyebrow">Pass L2 · Nikki motion</p>
+        <h2 id="react-title">Rhythm reactivity on the web.</h2>
+      </div>
+      <p>Mirrors Figma <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=41-242" target="_blank" rel="noopener">Game/RhythmReactivityBoard</a> (keyframed 2.4s — IdleBreathe · PerfectStreak · BreakReveal · ULTReady · SoftMG_Baroque). Beat bus drives scroll rails, filigree breathe, hitline pulse, ink-meter shimmer, streak edge, and notation grade halos while you play the SheetMusicHUD strip above.</p>
+    </div>
+
+    <div class="game-ui-react-board" data-mg="full">
+      <header>
+        <h3>Rhythm Reactivity Board · Nikki Motion</h3>
+        <p>Channels: Beat · Bass · Mid · High · Grade · Streak · Break · Phase | Tiers: CombatFull / SoftMG / Chrome / Off</p>
+      </header>
+
+      <article class="game-ui-react-strip" data-strip="idle">
+        <h4>Motion/IdleBreathe</h4>
+        <p>FiligreeBreathe 400ms · StaffShimmer bass-gated · PortraitIri 2.4s</p>
+        <div class="demo-row">
+          <span class="demo-pulse" aria-hidden="true"></span>
+          <span class="demo-rail" aria-hidden="true"></span>
+          <span class="demo-pulse" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <article class="game-ui-react-strip" data-strip="perfect">
+        <h4>Motion/PerfectStreak</h4>
+        <p>NoteTrailIri 280ms · GradeFlourish 420ms · StreakGlowEdge 3/5/8</p>
+        <div class="demo-row">
+          <span class="demo-rail" aria-hidden="true"></span>
+          <span class="grade-pop perfect is-luxury is-flourish">PERFECT<small>±90ms</small></span>
+        </div>
+      </article>
+
+      <article class="game-ui-react-strip" data-strip="break">
+        <h4>Motion/BreakReveal</h4>
+        <p>BreakCrestReveal 500ms · HitlinePulse · PhaseDim secondaries 40%</p>
+        <div class="demo-row">
+          <span class="game-ui-crest-finale" style="position:relative;left:auto;top:auto;transform:none" aria-hidden="true"></span>
+          <span class="demo-rail" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <article class="game-ui-react-strip" data-strip="ult">
+        <h4>Motion/ULTReady</h4>
+        <p>ULTArcPulse 800ms · SPMeterShimmer · MobileLanePress 180ms</p>
+        <div class="demo-row">
+          <span class="game-ui-ult-arc" style="opacity:1" aria-hidden="true"></span>
+          <span class="demo-rail" aria-hidden="true"></span>
+          <div class="demo-lanes" aria-hidden="true"><span></span><span class="is-press"></span><span></span><span></span></div>
+        </div>
+      </article>
+
+      <article class="game-ui-react-strip" data-strip="softmg-baroque" data-shrine-board>
+        <h4>Motion/SoftMG_Baroque</h4>
+        <p>ShrineCrestReveal 2.4s · InkDialogueWash · CrestTattoo persists (localStorage)</p>
+        <p class="game-ui-clef-hint">ClefBreatheToggle — type <kbd>G</kbd> <kbd>F</kbd> <kbd>C</kbd> <kbd>G</kbd> on the rhythm strip to swap SoftMG ⇄ Combat breathe</p>
+        <div class="demo-row">
+          <span class="demo-shrine-crest game-ui-filigree-crest is-baroque" aria-hidden="true"></span>
+          <span class="demo-rail" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <div class="game-ui-channel-matrix">
+        <strong>Reactivity channel matrix</strong>
+        Beat → FiligreeBreathe, HitlinePulse · Bass → StaffShimmer, SPMeterShimmer · Grade → GradePopLuxury, NoteTrailIri · Streak → StreakGlowEdge (3/5/8) · Break → BreakCrestReveal · High/ULT → ULTArcPulse · Phase → PhaseDim · Lane → MobileLanePress · Shrine → ShrineCrestReveal (combo 8, SoftMG, one-shot) · Clef → ClefBreatheToggle (type G F C G, SoftMG ⇄ Combat)
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band game-surface-band" id="batch-o" aria-labelledby="batch-o-title">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow game-eyebrow">Batch O · Atelier Ornate</p>
+        <h2 id="batch-o-title">Scrollwork chrome kit.</h2>
+      </div>
+      <p>One framing jewelry system from <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=40-334" target="_blank" rel="noopener">Game/FiligreeBatchO</a> — corners, wave, crest, rails, grade halos, border rail + parchment. Denser baroque expansion: <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=58-716" target="_blank" rel="noopener">FiligreeBatchO_Baroque</a>. Not inventory chips; not 3D FiligreeRing kitbash.</p>
+    </div>
+    <div class="game-ui-batch-o-grid">
+      <figure class="game-ui-batch-o-tile"><div class="swatch corner" aria-hidden="true"></div><figcaption>CornerOrnate</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch wave" aria-hidden="true"></div><figcaption>DividerWave</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch crest" aria-hidden="true"></div><figcaption>CrestFinale</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch rail" aria-hidden="true"></div><figcaption>LaneRail</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch halo" aria-hidden="true"></div><figcaption>GradeHalo</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch halo-p" aria-hidden="true"></div><figcaption>Halo · Perfect</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch halo-g" aria-hidden="true"></div><figcaption>Halo · Great</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch halo-o" aria-hidden="true"></div><figcaption>Halo · Good</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch halo-m" aria-hidden="true"></div><figcaption>Halo · Miss</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch border-rail" aria-hidden="true"></div><figcaption>ScrollBorderRail</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch parchment" aria-hidden="true"></div><figcaption>SheetParchment</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch corner-baroque" aria-hidden="true"></div><figcaption>CornerBaroque</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch divider-scroll" aria-hidden="true"></div><figcaption>DividerScroll</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch crest-baroque" aria-hidden="true"></div><figcaption>CrestBaroque</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch medallion" aria-hidden="true"></div><figcaption>MedallionRosette</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch brace" aria-hidden="true"></div><figcaption>BraceVolute</figcaption></figure>
+      <figure class="game-ui-batch-o-tile"><div class="swatch atlas-baroque" aria-hidden="true"></div><figcaption>Baroque atlas</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band game-surface-band" id="components" aria-labelledby="atoms-title">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow game-eyebrow">Library inventory</p>
+        <h2 id="atoms-title">Atoms stay off the beauty frame.</h2>
+      </div>
+      <p>Grade flourishes, enemy telegraph, and skill codex mapped via <code>code_connect_map.json</code> — library units for Code Connect, not the default SheetMusicHUD composition.</p>
+    </div>
+
+    <div class="game-ui-atlas">
+      <div class="game-ui-grades game-ui-grades-flourish" id="atom-grade-pop">
+        <span class="grade-pop perfect is-luxury is-flourish">PERFECT<small data-window-perfect>±90ms</small></span>
+        <span class="grade-pop great is-luxury is-flourish">GREAT<small data-window-great>±120ms</small></span>
+        <span class="grade-pop good is-luxury is-flourish">GOOD<small data-window-good>±160ms</small></span>
+        <span class="grade-pop miss is-luxury is-flourish">MISS<small data-window-miss>&gt;160ms</small></span>
+      </div>
+
+      <article class="game-ui-enemy-card game-ui-sheet-echo">
+        <div class="game-ui-enemy-top"><span class="tag enemy">Enemy turn</span><span class="tag break">Toughness break</span></div>
+        <h3>Shrine Warden</h3>
+        <p class="telegraph">Cherry Storm incoming — prepare guard</p>
+        <div class="game-ui-toughness"><span>TOUGHNESS</span><div class="track"><div class="fill" style="width:40%"></div></div><span>48 / 120</span></div>
+      </article>
+
+      <div class="game-ui-dual">
+        <aside class="game-ui-codex game-ui-codex-full">
+          <h4>30 Song Skills — Library</h4>
+          <div class="game-ui-codex-grid" data-codex-grid></div>
+        </aside>
+        <article class="game-ui-frame game-ui-sheet-echo game-ui-mobile" aria-label="Mobile SheetMusicHUD preview">
+          <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+          <span class="game-ui-filigree is-baroque tr" aria-hidden="true"></span>
+          <div class="game-ui-sheet" style="margin:0.45rem;padding:0.55rem">
+            <div class="game-ui-sheet-head">
+              <div class="game-ui-sheet-title"><h3 style="font-size:0.9rem;margin:0">Cherry Storm</h3></div>
+              <div class="game-ui-combo-cartouche"><span class="cartouche-label">Combo</span><span class="cartouche-num">× 24</span></div>
+            </div>
+            <div class="game-ui-highway game-ui-highway-shader">
+              <div class="game-ui-lane" data-lane="A"></div>
+              <div class="game-ui-lane" data-lane="B"></div>
+              <div class="game-ui-lane" data-lane="C"></div>
+              <div class="game-ui-lane" data-lane="D"></div>
+              <div class="game-ui-hitline" aria-hidden="true"></div>
+              <span class="game-ui-lane-rail" aria-hidden="true"></span>
+            </div>
+          </div>
+          <p class="game-ui-mobile-cta"><a href="#ios-battle">Open iOS SheetMusicHUD →</a></p>
+        </article>
+      </div>
+    </div>
+
+    <p class="game-ui-figma-link">Spec: <a href="design-specs.html#game-ui">Design specs · Game UI</a> · Beauty: <a href="#phase-rhythm">SheetMusicHUD</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=45-480" target="_blank" rel="noopener">Figma master</a> · Chrome: <a href="#batch-o">Batch O</a> · iOS: <a href="melodia-melusina.html?mode=ios#ios-battle">battle kit</a></p>
+  </div>
+</section>
+
+<section class="band game-void-band" id="ios-battle" aria-labelledby="ios-title">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow game-eyebrow">iOS · portrait primary</p>
+        <h2 id="ios-title">Mobile gameplay kit.</h2>
+      </div>
+      <p>Playable thumb-zone rhythm with SheetMusicHUD staff strip — safe areas, ≥44pt lanes, vertical highway. Open with <code>?mode=ios</code> for full-viewport play. Spec: <a href="design-specs.html#game-ui">Design specs</a>.</p>
+    </div>
+
+    <div class="game-ui-ios-stage">
+      <div class="game-ui-ios-play" data-ios-play data-ios-phase="rhythm" data-ios-rhythm>
+        <span class="game-ui-filigree is-baroque tl" aria-hidden="true"></span>
+        <span class="game-ui-filigree is-baroque tr" aria-hidden="true"></span>
+        <span class="game-ui-filigree is-baroque bl" aria-hidden="true"></span>
+        <span class="game-ui-filigree is-baroque br" aria-hidden="true"></span>
+        <div class="game-ui-ios-safe-guide" aria-hidden="true"></div>
+        <header class="game-ui-ios-topbar" style="background-image:url('../generated/assets/melodia-game-ui/T_Melodia_MobileTopBar.png')">
+          <div class="game-ui-ios-enemy">
+            <span class="tag enemy">Shrine Warden</span>
+            <div class="game-ui-toughness compact"><div class="track"><div class="fill" style="width:40%"></div></div></div>
+          </div>
+          <div class="game-ui-combo-cartouche" data-rhythm-combo aria-label="Combo">
+            <span class="cartouche-label">Combo</span>
+            <span class="cartouche-num" data-rhythm-combo-num>× 0</span>
+          </div>
+        </header>
+
+        <div class="game-ui-ios-stage-area" data-ios-panel="enemy" hidden>
+          <article class="game-ui-enemy-card compact">
+            <p class="telegraph">Cherry Storm incoming — prepare guard</p>
+          </article>
+        </div>
+
+        <div class="game-ui-ios-controls">
+          <button type="button" class="button button-premium-primary" data-rhythm-start>Play</button>
+          <p class="game-ui-play-hint" data-rhythm-status>Tap lanes A–D</p>
+          <span class="grade-pop game-ui-floating-grade is-luxury is-flourish" data-rhythm-grade>READY<small>tap lanes</small></span>
+        </div>
+
+        <div class="game-ui-sheet game-ui-ios-sheet">
+          <div class="game-ui-sheet-head">
+            <div class="game-ui-sheet-title">
+              <h3>Cherry Storm</h3>
+              <div class="game-ui-sheet-meta"><span class="time">4/4</span><span class="bpm" data-rhythm-bpm>♩ = 120</span></div>
+            </div>
+          </div>
+          <div class="game-ui-staff">
+            <span class="clef">𝄞</span>
+            <span class="game-ui-staff-ticks" aria-hidden="true"></span>
+            <span class="game-ui-playback-head" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <div class="game-ui-ios-thumb">
+          <div class="game-ui-highway game-ui-highway-shader game-ui-ios-highway" data-ios-panel="rhythm">
+            <div class="game-ui-lane" data-lane="A"></div>
+            <div class="game-ui-lane" data-lane="B"></div>
+            <div class="game-ui-lane" data-lane="C"></div>
+            <div class="game-ui-lane" data-lane="D"></div>
+            <div class="game-ui-hitline" aria-hidden="true"></div>
+            <span class="game-ui-lane-rail" aria-hidden="true"></span>
+          </div>
+          <div class="game-ui-ios-skills" data-ios-panel="command" data-ios-skills aria-label="Skill chips">
+            <button type="button" class="game-ui-skill-chip">Basic</button>
+            <button type="button" class="game-ui-skill-chip is-selected">Skill</button>
+            <button type="button" class="game-ui-skill-chip">Guard</button>
+            <button type="button" class="game-ui-skill-chip">ULT</button>
+          </div>
+        </div>
+
+        <nav class="game-ui-ios-phases" aria-label="iOS battle phase" data-ios-phase-switch>
+          <button type="button" data-ios-set-phase="command">Cmd</button>
+          <button type="button" data-ios-set-phase="rhythm" aria-current="true">Rhythm</button>
+          <button type="button" data-ios-set-phase="enemy">Enemy</button>
+          <button type="button" data-ios-set-phase="results">Results</button>
+        </nav>
+
+        <div class="game-ui-ios-results" data-ios-panel="results" hidden>
+          <div class="game-ui-results-card compact">
+            <h3>Clear</h3>
+            <ul><li>Max combo — live</li><li>Grade mix — MelodiaCore windows</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band game-surface-band" id="envsandbox-assets" aria-labelledby="assets-title">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow game-eyebrow">EnvSandbox export</p>
+        <h2 id="assets-title">Alphas &amp; textures for Unreal.</h2>
+      </div>
+      <p>Procedural exports from Figma-synced tokens → <code>/Game/EnvSandbox/Alphas_Melodia</code> + <code>/Game/EnvSandbox/Textures/Melodia/GameUI</code>. Run <code>export_melodia_game_ui_assets.py</code> then <code>import_melodia_game_ui_textures.py</code> in-editor.</p>
+    </div>
+    <div class="game-ui-asset-grid" data-game-ui-assets></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <span>Brennan Shepherd / Environment & Technical Artist</span>
+    <span>Melodia Melusina · AAA HUD lookbook</span>
+  </div>
+</footer>
+</div>
+<script src="melodia-magical-girl.js"></script>
+<script src="melodia-starfield.js"></script>
+<script src="melodia-dream-shaders.js"></script>
+<script src="melodia-site-nav.js"></script>
+<script src="melodia-editorial.js"></script>
+<script src="melodia-game-ui.js?v=20260716a"></script>
+<script>if (window.MelodiaEditorial) MelodiaEditorial.init({ page: 'melodia-melusina' });</script>
+</body>
+</html>

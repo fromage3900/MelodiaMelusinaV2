@@ -1,0 +1,23 @@
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="TheIsValid"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetSystemLibrary"',MemberName="IsValid")
+   NodePosX=0
+   NodePosY=0
+   NodeGuid={{GUID:isvalid}}
+   CustomProperties Pin (PinId={{GUID:ivout}},PinName="ReturnValue",Direction="EGPD_Output",PinType.PinCategory="bool",PinType.PinSubCategoryObject=None,LinkedTo=(TheBranch {{GUID:cond}},),)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_IfThenElse Name="TheBranch"
+   NodePosX=300
+   NodePosY=0
+   NodeGuid={{GUID:branch}}
+   CustomProperties Pin (PinId={{GUID:brin}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:cond}},PinName="Condition",Direction="EGPD_Input",PinType.PinCategory="bool",PinType.PinSubCategoryObject=None,LinkedTo=(TheIsValid {{GUID:ivout}},),)
+   CustomProperties Pin (PinId={{GUID:brthen}},PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(GuardedCall {{GUID:gcin}},),)
+   CustomProperties Pin (PinId={{GUID:brelse}},PinName="else",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="GuardedCall"
+   FunctionReference=(MemberParent=Class'"{{target_class}}"',MemberName="{{function}}")
+   NodePosX=650
+   NodePosY=0
+   NodeGuid={{GUID:gc}}
+   CustomProperties Pin (PinId={{GUID:gcin}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(TheBranch {{GUID:brthen}},),)
+End Object

@@ -1,0 +1,14 @@
+{
+  "id": "ASIAN_CITY",
+  "label": "Asian City Street",
+  "description": "Pailou gate, market lane, pavilion bays, moon gate terminus",
+  "style": "asian",
+  "modules": [
+    {"arch_type": "CN_PAILOU", "overrides": {"gb_width": 4.0, "gb_height": 7.5, "gb_trim_mode": "RECESS", "material_choice": "AUTO"}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 10.0, "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "CN_TING_PAVILION", "overrides": {"gb_width": 5.0, "gb_depth": 5.0, "gb_height": 4.5, "material_choice": "AUTO"}},
+    {"arch_type": "JP_KURA_STOREHOUSE", "overrides": {"gb_width": 3.5, "gb_depth": 4.0, "gb_height": 3.2, "material_choice": "AUTO"}},
+    {"arch_type": "KR_HANOK", "overrides": {"gb_width": 6.0, "gb_depth": 5.5, "gb_height": 3.0, "material_choice": "AUTO"}},
+    {"arch_type": "CN_MOON_GATE", "overrides": {"gb_width": 3.2, "gb_height": 3.8, "material_choice": "STONE"}}
+  ]
+}

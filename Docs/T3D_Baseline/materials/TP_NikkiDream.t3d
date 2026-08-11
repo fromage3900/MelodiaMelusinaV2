@@ -1,0 +1,4 @@
+Begin Object Class=/Script/Engine.ToonProfile Name="TP_NikkiDream" ExportPath="/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_NikkiDream.TP_NikkiDream'"
+   Settings=(DiffuseRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),SpecularRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),ShadowHatchingPatternDistributionRamp=(EditorCurveData=()),SpecularIndirectRamp=(EditorCurveData=()))
+   Guid=29BD8EFF4AC75D3D7CC9DC9A26DAB9D5
+End Object

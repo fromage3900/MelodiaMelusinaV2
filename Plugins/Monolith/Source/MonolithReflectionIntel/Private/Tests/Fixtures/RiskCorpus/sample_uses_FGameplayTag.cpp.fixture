@@ -1,0 +1,29 @@
+// Fixture: Phase 2 module-dep-reality + conditional-gate test corpus.
+// SPDX-License-Identifier: MIT
+//
+// File extension is `.cpp.fixture` (NOT `.cpp`) so UnrealBuildTool's source
+// glob does NOT compile this file into the MonolithReflectionIntel module.
+// Automation tests load it directly via FFileHelper::LoadFileToString.
+//
+// This file references FGameplayTag — a class that lives in the GameplayTags
+// module. The sibling sample.Build.cs.fixture does NOT list GameplayTags in
+// either PrivateDependencyModuleNames or PublicDependencyModuleNames, so a
+// hypothetical audit_module_dep_reality run pointed at the fixture pair would
+// emit a violation row.
+//
+// Also contains `#if WITH_GBA` — the FConditionalGateIndexer's regex (when
+// invoked on this file's content directly) detects the cpp_if macro.
+
+#include "CoreMinimal.h"
+
+#if WITH_GBA
+#include "GameplayTagContainer.h"
+#endif
+
+void SampleUsesFGameplayTag()
+{
+#if WITH_GBA
+    FGameplayTag SomeTag;
+    (void)SomeTag;
+#endif
+}

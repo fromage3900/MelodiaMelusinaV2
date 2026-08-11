@@ -1,0 +1,59 @@
+/* Secondary portfolio pages — luxury shell bridge on portfolio-pages.css */
+@import url("melodia-luxury-type.css");
+@import url("melodia-editorial-ornaments.css");
+@import url("melodia-mobile.css");
+@import url("melodia-dream-shaders.css");
+@import url("melodia-night-theme.css");
+@import url("melodia-planetarium.css");
+@import url("melodia-editorial-polish.css");
+
+body {
+  font-family: var(--font-body);
+  background: var(--ivory, #070912);
+}
+
+.shell-nav .brand {
+  font-family: var(--font-brand);
+  letter-spacing: var(--tracking-brand);
+}
+
+.page-hero h1,
+.section-title,
+.price {
+  font-family: var(--font-display);
+}
+
+.page-hero .lede,
+.human-copy {
+  font-family: var(--font-lede);
+  font-style: italic;
+}
+
+.eyebrow,
+.pill,
+.skill-cloud span,
+.roadmap-tag,
+.resume-note,
+.shell-nav .nav-links a,
+.nav-cta {
+  font-family: var(--font-mono);
+}
+
+/* Premium nav chrome when melodia shell classes present */
+.melodia-shell .shell-nav {
+  border-bottom: 1px solid var(--border-gold, rgba(201, 168, 106, 0.34));
+  background: rgba(7, 9, 18, 0.78);
+  backdrop-filter: blur(14px);
+}
+
+.melodia-shell .nav-cta,
+.melodia-shell .button-premium {
+  border: 1px solid var(--border-gold, rgba(201, 168, 106, 0.34));
+  background: linear-gradient(135deg, var(--astral, #1a1f3a), var(--plum, #2a3055));
+  color: var(--lavender, #e8e4f2);
+}
+
+.melodia-shell .hero {
+  background: linear-gradient(135deg, var(--void, #0d1224), var(--plum, #2a3055));
+  color: var(--lavender, #e8e4f2);
+}

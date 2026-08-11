@@ -1,0 +1,392 @@
+format: tdn
+version: '2.0'
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia7.7.toe
+exported_at: '2026-08-08T15:40:23Z'
+network_path: /project1/postfx
+options:
+  include_dat_content: true
+  include_storage: true
+type_defaults:
+  outTOP:
+    parameters:
+      label: =me.name
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  glslTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  rampTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  textDAT:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  levelTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  blurTOP:
+    parameters:
+      filterscaley: 0
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  infoDAT:
+    flags:
+    - viewer
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  tableDAT:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.95, 0.55, 0.2]
+comment: POST-FX CHAIN — Nikki bloom (3-pass Gaussian), LUT grade, DOF bokeh
+operators:
+- name: in1
+  type: inTOP
+  parameters:
+    label: =me.name
+    outputresolution: custom
+    resolutionw: 1280
+    resolutionh: 720
+  position: [-351, -124]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: out1
+  type: outTOP
+  position: [1918, 15]
+  inputs:
+  - postfx_out
+- name: dof_pass
+  type: glslTOP
+  parameters:
+    pixeldat: /project1/postfx/dof_pass_pixel
+    computedat: dof_pass_compute
+  sequences:
+    vec:
+    - name: uDoFParams
+      valuex: 0.008
+      valuey: 0.25
+      valuez: 0.3
+  position: [1010, 172]
+  inputs:
+  - add_bloom
+- name: vig_over
+  type: overTOP
+  position: [1464, 93]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - chroma_grain_pass
+  - vignette
+- name: vignette
+  type: rampTOP
+  parameters:
+    dat: vignette_keys
+    type: radial
+    outputresolution: custom
+    resolutionw: 1280
+    resolutionh: 720
+  position: [1237, 15]
+- name: add_bloom
+  type: addTOP
+  position: [783, 172]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - in1
+  - anamorphic_streak_glsl
+- name: lut_conns
+  type: textDAT
+  position: [103, -772]
+  dat_content: vig_over -> nikki_lut[0]
+  dat_content_format: text
+- name: nikki_lut
+  type: rampTOP
+  parameters:
+    dat: nikki_lut_keys
+    outputresolution: custom
+    resolutionw: 1280
+    resolutionh: 720
+  position: [1691, 172]
+  inputs:
+  - vig_over
+- name: bokeh_blur
+  type: lumablurTOP
+  flags:
+  - bypass
+  position: [102, -536]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - glow_boost
+  - focus_ramp
+- name: focus_ramp
+  type: rampTOP
+  parameters:
+    dat: focus_ramp_keys
+    type: radial
+    phase: =absTime.seconds * 0.1
+  position: [-124, -614]
+- name: glitter_fx
+  type: noiseTOP
+  parameters:
+    amp: 2
+    offset: -1
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: glow_boost
+  type: levelTOP
+  parameters:
+    brightness1: 1.2
+    gamma1: 1.3
+  position: [-124, -457]
+  inputs:
+  - in1
+- name: postfx_out
+  type: nullTOP
+  position: [1691, 15]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - vig_over
+- name: rainbow_fx
+  type: rampTOP
+  parameters:
+    dat: rainbow_fx_keys
+    phase: =absTime.seconds * 0.1
+- name: bloom_blur_5
+  type: blurTOP
+  parameters:
+    size: 10
+    filterscalex: 5
+    filtertype: useinput
+  position: [102, 172]
+  inputs:
+  - bloom_threshold
+- name: bloom_blur_15
+  type: blurTOP
+  parameters:
+    size: 25
+    filterscalex: 10
+  position: [102, -142]
+  inputs:
+  - bloom_threshold
+- name: bloom_blur_30
+  type: blurTOP
+  parameters:
+    size: 60
+    filterscalex: 20
+  position: [102, -299]
+  inputs:
+  - bloom_threshold
+- name: dof_pass_info
+  type: infoDAT
+  parameters:
+    op: dof_pass
+  position: [786, -772]
+  dock: dof_pass
+  dat_read_only: true
+- name: vignette_keys
+  type: tableDAT
+  position: [-351, -772]
+  dat_content:
+  - - pos
+    - r
+    - g
+    - b
+    - a
+  - - '0.0'
+    - '1.0'
+    - '1.0'
+    - '1.0'
+    - '1.0'
+  - - '1.0'
+    - '0.0'
+    - '0.0'
+    - '0.0'
+    - '0.35'
+  dat_content_format: table
+- name: dof_pass_pixel
+  type: textDAT
+  position: [558, -772]
+  dat_content: "// Depth Bokeh DoF Pass Pixel Shader\nuniform vec4 uDoFParams; // x: maxBlur, y: focusDist, z: focusRange\n\nout vec4 fragColor;\n\nvoid main()\n{\n\tvec2 uv = vUV.st;\n\tvec4 baseColor = texture(sTD2DInputs[0], uv);\n\t\n\tfloat distFromCenter = length(uv - vec2(0.5)) * 2.0;\n\tfloat focusDist = uDoFParams.y > 0.0 ? uDoFParams.y : 0.25;\n\tfloat focusRange = uDoFParams.z > 0.0 ? uDoFParams.z : 0.3;\n\tfloat blurFactor = smoothstep(focusRange, 1.0, abs(distFromCenter - focusDist));\n\t\n\tfloat maxBlur = uDoFParams.x > 0.0 ? uDoFParams.x : 0.008;\n\tfloat radius = blurFactor * maxBlur;\n\t\n\tif (radius < 0.0005) {\n\t\tfragColor = TDOutputSwizzle(baseColor);\n\t\treturn;\n\t}\n\t\n\tvec4 accum = vec4(0.0);\n\tfloat totalWeight = 0.0;\n\t\n\tvec2 offsets[8] = vec2[](\n\t\tvec2(1.0, 0.0), vec2(0.707, 0.707), vec2(0.0, 1.0), vec2(-0.707, 0.707),\n\t\tvec2(-1.0, 0.0), vec2(-0.707, -0.707), vec2(0.0, -1.0), vec2(0.707, -0.707)\n\t);\n\t\n\tfor (int i = 0; i < 8; i++) {\n\t\tvec2 sampleUV = clamp(uv + offsets[i] * radius, 0.0, 1.0);\n\t\tvec4 smp = texture(sTD2DInputs[0], sampleUV);\n\t\tfloat luma = dot(smp.rgb, vec3(0.299, 0.587, 0.114));\n\t\tfloat weight = 1.0 + luma * 2.0;\n\t\taccum += smp * weight;\n\t\ttotalWeight += weight;\n\t}\n\t\n\tvec4 bokehResult = accum / totalWeight;\n\tvec4 finalColor = mix(baseColor, bokehResult, clamp(blurFactor * 1.2, 0.0, 1.0));\n\tfragColor = TDOutputSwizzle(finalColor);\n}\n"
+  dat_content_format: text
+- name: nikki_lut_keys
+  type: tableDAT
+  position: [-123, -772]
+  dat_content:
+  - - pos
+    - r
+    - g
+    - b
+    - a
+  - - '0.0'
+    - '0.1'
+    - '0.1'
+    - '0.2'
+    - '1.0'
+  - - '0.5'
+    - '0.8'
+    - '0.5'
+    - '0.9'
+    - '1.0'
+  - - '1.0'
+    - '1.0'
+    - '0.9'
+    - '0.9'
+    - '1.0'
+  dat_content_format: table
+- name: bloom_composite
+  type: compositeTOP
+  position: [329, 172]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - bloom_blur_5
+  - bloom_blur_15
+  - bloom_blur_30
+- name: bloom_threshold
+  type: levelTOP
+  position: [-124, -90]
+  inputs:
+  - in1
+- name: focus_ramp_keys
+  type: tableDAT
+  flags:
+  - viewer
+  position: [331, -772]
+  dock: focus_ramp
+  dat_content:
+  - - pos
+    - r
+    - g
+    - b
+    - a
+  - - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+  - - '1'
+    - '1'
+    - '1'
+    - '1'
+    - '1'
+  dat_content_format: table
+- name: rainbow_fx_keys
+  type: tableDAT
+  flags:
+  - viewer
+  position: [0, -120]
+  dock: rainbow_fx
+  dat_content:
+  - - pos
+    - r
+    - g
+    - b
+    - a
+  - - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+  - - '1'
+    - '1'
+    - '1'
+    - '1'
+    - '1'
+  dat_content_format: table
+- name: dof_pass_compute
+  type: textDAT
+  parameters:
+    language: glsl
+  flags:
+  - viewer
+  position: [1013, -772]
+  dock: dof_pass
+- name: chroma_grain_pass
+  type: glslTOP
+  parameters:
+    pixeldat: /project1/postfx/chroma_grain_pass_pixel
+    computedat: chroma_grain_pass_compute
+  sequences:
+    vec:
+    - name: uChromaGrainParams
+      valuex: 0.006
+      valuez: 1
+    - valuex: 1
+      valuey: 1
+      valuez: 1
+      valuew: 1
+    - valuex: 1
+      valuey: 1
+      valuez: 1
+      valuew: 1
+    - valuex: 1
+      valuey: 1
+      valuez: 1
+      valuew: 1
+  position: [1237, 172]
+  inputs:
+  - dof_pass
+- name: anamorphic_streak_glsl
+  type: glslTOP
+  parameters:
+    pixeldat: /project1/postfx/anamorphic_streak_glsl_pixel
+    computedat: anamorphic_streak_glsl_compute
+  position: [556, 172]
+  inputs:
+  - bloom_composite
+- name: chroma_grain_pass_info
+  type: infoDAT
+  parameters:
+    op: chroma_grain_pass
+  position: [1468, -772]
+  dock: chroma_grain_pass
+  dat_read_only: true
+- name: chroma_grain_pass_pixel
+  type: textDAT
+  position: [1241, -772]
+  dat_content: "// Chromatic Aberration & Film Grain Pixel Shader\nuniform vec4 uChromaGrainParams; // x: chromaAmount, y: grainAmount, z: time\n\nout vec4 fragColor;\n\nfloat hash21(vec2 p) {\n    p = fract(p * vec2(123.34, 456.21));\n    p += dot(p, p + 45.32);\n    return fract(p.x * p.y);\n}\n\nvoid main()\n{\n\tvec2 uv = vUV.st;\n\tvec2 center = vec2(0.5);\n\tvec2 dir = uv - center;\n\t\n\tfloat chromaAmt = uChromaGrainParams.x > 0.0 ? uChromaGrainParams.x : 0.006;\n\t\n\tvec2 uvR = center + dir * (1.0 + chromaAmt);\n\tvec2 uvG = uv;\n\tvec2 uvB = center + dir * (1.0 - chromaAmt);\n\t\n\tfloat r = texture(sTD2DInputs[0], clamp(uvR, 0.0, 1.0)).r;\n\tfloat g = texture(sTD2DInputs[0], clamp(uvG, 0.0, 1.0)).g;\n\tfloat b = texture(sTD2DInputs[0], clamp(uvB, 0.0, 1.0)).b;\n\tfloat a = texture(sTD2DInputs[0], uv).a;\n\t\n\tvec3 color = vec3(r, g, b);\n\t\n\tfloat grainAmt = uChromaGrainParams.y > 0.0 ? uChromaGrainParams.y : 0.04;\n\tfloat grainNoise = (hash21(uv * 1000.0 + vec2(uChromaGrainParams.z)) - 0.5) * grainAmt;\n\tcolor += vec3(grainNoise);\n\t\n\tfragColor = TDOutputSwizzle(vec4(color, a));\n}\n"
+  dat_content_format: text
+- name: OUT_RENDER_REVIEW_postfx
+  type: outTOP
+  position: [329, -536]
+  inputs:
+  - bokeh_blur
+- name: chroma_grain_pass_compute
+  type: textDAT
+  parameters:
+    language: glsl
+  flags:
+  - viewer
+  position: [1696, -772]
+  dock: chroma_grain_pass
+- name: anamorphic_streak_glsl_info
+  type: infoDAT
+  parameters:
+    op: anamorphic_streak_glsl
+  position: [2151, -772]
+  dock: anamorphic_streak_glsl
+  dat_read_only: true
+- name: anamorphic_streak_glsl_pixel
+  type: textDAT
+  parameters:
+    language: glsl
+    extension: frag
+  flags:
+  - viewer
+  position: [1923, -772]
+  dock: anamorphic_streak_glsl
+  dat_content: "// Anamorphic Bloom Streak Pixel Shader\nout vec4 fragColor;\nvoid main()\n{\n\tvec2 uv = vUV.st;\n\tvec4 sum = vec4(0.0);\n\tfloat weights[9] = float[](0.05, 0.09, 0.12, 0.15, 0.18, 0.15, 0.12, 0.09, 0.05);\n\tfloat dx = 0.003;\n\t\n\tfor (int i = -4; i <= 4; i++) {\n\t\tvec2 sampleUV = clamp(uv + vec2(float(i) * dx, 0.0), 0.0, 1.0);\n\t\tsum += texture(sTD2DInputs[0], sampleUV) * weights[i + 4];\n\t}\n\tfragColor = TDOutputSwizzle(sum * 1.3);\n}\n"
+  dat_content_format: text
+- name: anamorphic_streak_glsl_compute
+  type: textDAT
+  parameters:
+    language: glsl
+  flags:
+  - viewer
+  position: [2151, -614]
+  dock: anamorphic_streak_glsl

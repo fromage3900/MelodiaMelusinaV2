@@ -1,0 +1,21 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "batch_operations",
+    "arguments": {
+      "operations": [
+        {"method": "create_op", "params": {"parent_path": "/project1/postfx", "op_type": "lumaLevelTOP", "name": "bloom_threshold"}},
+        {"method": "create_op", "params": {"parent_path": "/project1/postfx", "op_type": "blurTOP", "name": "bloom_blur_5"}},
+        {"method": "create_op", "params": {"parent_path": "/project1/postfx", "op_type": "blurTOP", "name": "bloom_blur_15"}},
+        {"method": "create_op", "params": {"parent_path": "/project1/postfx", "op_type": "blurTOP", "name": "bloom_blur_30"}},
+        {"method": "create_op", "params": {"parent_path": "/project1/postfx", "op_type": "compositeTOP", "name": "bloom_composite"}},
+        {"method": "create_op", "params": {"parent_path": "/project1/postfx", "op_type": "rampTOP", "name": "nikki_lut"}},
+        {"method": "create_op", "params": {"parent_path": "/project1/postfx", "op_type": "rampTOP", "name": "vignette"}},
+        {"method": "create_op", "params": {"parent_path": "/project1/postfx", "op_type": "overTOP", "name": "vig_over"}},
+        {"method": "create_op", "params": {"parent_path": "/project1/postfx", "op_type": "nullTOP", "name": "postfx_out"}}
+      ]
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "description": "Melusina Water Hair Material Presets — MI_Melusina_WaterHair parameter collections",
+  "version": "1.0.0",
+  "target_material": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair",
+  "presets": {
+    "subtle_drip": {
+      "display_name": "Subtle Drip",
+      "description": "Gentle water layer, low opacity — for ambient wet-look without over-saturation",
+      "scalars": {
+        "HairDripIntensity": 0.35,
+        "SplashForce": 0.25,
+        "WaterOpacity": 0.72,
+        "WaterRoughness": 0.28,
+        "MagicalIntensity": 0.15,
+        "CausticIntensity": 0.08,
+        "DripSpeed": 0.2,
+        "DripLength": 0.08
+      },
+      "notes": "Good for day 1 sprint — dry beauty pass safe"
+    },
+    "nikki_subtle": {
+      "display_name": "Nikki Subtle",
+      "description": "Lower emissive and more transparent water layer — for Nikki-style beauty lighting without emissive bloom",
+      "scalars": {
+        "HairDripIntensity": 0.35,
+        "SplashForce": 0.25,
+        "WaterOpacity": 0.6,
+        "WaterRoughness": 0.35,
+        "MagicalIntensity": 0.08,
+        "CausticIntensity": 0.04,
+        "DripSpeed": 0.2,
+        "DripLength": 0.08
+      },
+      "notes": "Halved emissive/caustic values for daylight scenes"
+    },
+    "moderate_splash": {
+      "display_name": "Moderate Splash",
+      "description": "Balanced water presence on hair with visible drip trails",
+      "scalars": {
+        "HairDripIntensity": 0.55,
+        "SplashForce": 0.65,
+        "WaterOpacity": 0.82,
+        "WaterRoughness": 0.22,
+        "MagicalIntensity": 0.18,
+        "CausticIntensity": 0.12,
+        "DripSpeed": 0.3,
+        "DripLength": 0.12
+      },
+      "notes": "Default water hair look — droplets visible but not overpowering"
+    },
+    "heavy_water": {
+      "display_name": "Heavy Water",
+      "description": "Full water coverage on hair with high drip intensity",
+      "scalars": {
+        "HairDripIntensity": 0.85,
+        "SplashForce": 1.2,
+        "WaterOpacity": 0.95,
+        "WaterRoughness": 0.15,
+        "MagicalIntensity": 0.25,
+        "CausticIntensity": 0.2,
+        "DripSpeed": 0.5,
+        "DripLength": 0.2
+      },
+      "notes": "Use for underwater or heavy-rain scenes only"
+    },
+    "dry": {
+      "display_name": "Dry Hair",
+      "description": "Zero water effect — resets all water parameters to minimum",
+      "scalars": {
+        "HairDripIntensity": 0.0,
+        "SplashForce": 0.0,
+        "WaterOpacity": 0.0,
+        "WaterRoughness": 0.4,
+        "MagicalIntensity": 0.0,
+        "CausticIntensity": 0.0,
+        "DripSpeed": 0.0,
+        "DripLength": 0.0
+      },
+      "notes": "Fully dry look for beauty stills or dry-environment scenes"
+    },
+    "magical_glow": {
+      "display_name": "Magical Glow",
+      "description": "Low water but high magical intensity for fantasy glow on damp hair",
+      "scalars": {
+        "HairDripIntensity": 0.2,
+        "SplashForce": 0.1,
+        "WaterOpacity": 0.4,
+        "WaterRoughness": 0.35,
+        "MagicalIntensity": 0.5,
+        "CausticIntensity": 0.3,
+        "DripSpeed": 0.1,
+        "DripLength": 0.05
+      },
+      "notes": "Use during magical ability activation or special sequences"
+    }
+  },
+  "parameter_descriptions": {
+    "HairDripIntensity": "0.0-1.0 — Overall visibility of water drip on hair strands. Higher = more visible droplets.",
+    "SplashForce": "0.0-2.0 — Force applied to water splash particles on hair. Higher = more energetic spray.",
+    "WaterOpacity": "0.0-1.0 — Opacity of the water layer on hair. 0 = invisible, 1 = fully opaque water coating.",
+    "WaterRoughness": "0.0-1.0 — Surface roughness of water layer. 0 = glossy wet, 1 = matte.",
+    "MagicalIntensity": "0.0-1.0 — Emissive magical glow intensity through the water layer.",
+    "CausticIntensity": "0.0-1.0 — Caustic light pattern intensity on water surface.",
+    "DripSpeed": "0.0-2.0 — Speed of drip sliding animation down hair strands.",
+    "DripLength": "0.0-0.5 — Length of individual drip trail segments on hair."
+  },
+  "parameter_ranges": {
+    "HairDripIntensity": {"min": 0.0, "max": 1.0, "step": 0.05, "default": 0.4},
+    "SplashForce": {"min": 0.0, "max": 2.0, "step": 0.05, "default": 0.5},
+    "WaterOpacity": {"min": 0.0, "max": 1.0, "step": 0.05, "default": 0.85},
+    "WaterRoughness": {"min": 0.0, "max": 1.0, "step": 0.01, "default": 0.25},
+    "MagicalIntensity": {"min": 0.0, "max": 1.0, "step": 0.05, "default": 0.15},
+    "CausticIntensity": {"min": 0.0, "max": 1.0, "step": 0.05, "default": 0.1},
+    "DripSpeed": {"min": 0.0, "max": 2.0, "step": 0.1, "default": 0.3},
+    "DripLength": {"min": 0.0, "max": 0.5, "step": 0.01, "default": 0.1}
+  }
+}

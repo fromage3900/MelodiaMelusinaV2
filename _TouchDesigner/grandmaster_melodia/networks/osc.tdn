@@ -1,0 +1,255 @@
+format: tdn
+version: '2.0'
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia7.7.toe
+exported_at: '2026-08-08T15:40:17Z'
+network_path: /project1/osc
+options:
+  include_dat_content: true
+  include_storage: true
+type_defaults:
+  oscoutCHOP:
+    parameters:
+      netaddress: 127.0.0.1
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  selectCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.3, 0.8, 0.3]
+comment: OSC ROUTING HUB — TD ↔ Blender (:9000) ↔ UE (:8000)
+operators:
+- name: out_ue
+  type: oscoutCHOP
+  parameters:
+    port: 8000
+  position: [1150, 175]
+  inputs:
+  - osc_out_merge
+- name: in_battle
+  type: oscinCHOP
+  parameters:
+    port: 9000
+    autoexportroot: =parent()
+  position: [100, -300]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: out_blender
+  type: oscoutCHOP
+  parameters:
+    port: 9001
+  position: [950, 0]
+  inputs:
+  - osc_out_merge
+- name: osc_out_merge
+  type: mergeCHOP
+  parameters:
+    autoexportroot: =parent()
+  position: [700, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - audio_bands_rename
+  - preset_signal
+- name: preset_matrix
+  type: tableDAT
+  position: [-200, 100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  dat_content:
+  - - preset
+    - name
+    - bloom_intensity
+    - bloom_threshold
+    - sparkle_pulse
+    - dream_intensity
+    - wind_strength
+    - global_opacity
+    - shadow_tint_r
+    - shadow_tint_b
+    - magical_transform
+    - saturation
+    - diffuse_wrap
+    - sparkle_visibility
+  - - '0'
+    - Nikki
+    - '5.0'
+    - '0.75'
+    - '0.8'
+    - '0.7'
+    - '0.4'
+    - '0.9'
+    - '0.21'
+    - '0.25'
+    - '0.25'
+    - '0.90'
+    - '0.50'
+    - '0.8'
+  - - '1'
+    - Madoka
+    - '3.0'
+    - '0.85'
+    - '1.0'
+    - '0.5'
+    - '0.3'
+    - '1.0'
+    - '0.15'
+    - '0.25'
+    - '0.60'
+    - '1.20'
+    - '0.30'
+    - '1.0'
+  - - '2'
+    - Celestial
+    - '4.0'
+    - '0.80'
+    - '0.5'
+    - '0.3'
+    - '0.2'
+    - '0.7'
+    - '0.08'
+    - '0.19'
+    - '0.40'
+    - '0.85'
+    - '0.40'
+    - '0.5'
+  - - '3'
+    - Itto
+    - '2.5'
+    - '0.90'
+    - '0.3'
+    - '0.4'
+    - '0.5'
+    - '0.6'
+    - '0.12'
+    - '0.06'
+    - '0.10'
+    - '0.75'
+    - '0.60'
+    - '0.3'
+  - - '4'
+    - Sakura
+    - '4.5'
+    - '0.78'
+    - '0.9'
+    - '0.6'
+    - '0.5'
+    - '0.95'
+    - '0.18'
+    - '0.20'
+    - '0.30'
+    - '0.95'
+    - '0.55'
+    - '0.9'
+  dat_content_format: table
+- name: preset_signal
+  type: constantCHOP
+  parameters:
+    rate: =me.time.rate
+    autoexportroot: =parent()
+  sequences:
+    const:
+    - name: bloom_intensity
+      value: 5
+    - name: bloom_threshold
+      value: 0.75
+    - name: sparkle_pulse
+      value: 0.8
+    - name: dream_intensity
+      value: 0.7
+    - name: wind_strength
+      value: 0.4
+    - name: global_opacity
+      value: 0.9
+    - name: shadow_tint_r
+      value: 0.21
+    - name: shadow_tint_b
+      value: 0.25
+    - name: magical_transform
+      value: 0.25
+    - name: saturation
+      value: 0.9
+    - name: diffuse_wrap
+      value: 0.5
+    - name: sparkle_visibility
+      value: 0.8
+  position: [300, -100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: beat_phase_sel
+  type: selectCHOP
+  parameters:
+    channames: rhythm/beat_phase
+  position: [450, 0]
+  inputs:
+  - in_battle
+- name: beat_pulse_map
+  type: expressionCHOP
+  parameters:
+    autoexportroot: =parent()
+  sequences:
+    expr:
+    - expr: =me.inputVal * 0.8 + 0.2
+  position: [900, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - beat_pulse_sel
+- name: beat_pulse_sel
+  type: selectCHOP
+  parameters:
+    channames: rhythm/beat_pulse
+  position: [300, 0]
+  inputs:
+  - in_battle
+- name: out_ue_presets
+  type: oscoutCHOP
+  parameters:
+    port: 8000
+  position: [950, -100]
+  inputs:
+  - preset_signal
+- name: audio_bands_sel
+  type: selectCHOP
+  parameters:
+    chops: /project1/audio/bands_merge
+    channames: band1 band2 band3 band4 band5
+  position: [300, 100]
+- name: beat_pulse_driver
+  type: nullCHOP
+  parameters:
+    autoexportroot: =parent()
+  position: [600, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - beat_pulse_sel
+- name: audio_bands_rename
+  type: renameCHOP
+  parameters:
+    renamefrom: band1 band2 band3 band4 band5
+    renameto: audio/band/sub audio/band/low audio/band/mid audio/band/high audio/band/air
+    autoexportroot: =parent()
+  position: [500, 100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - audio_bands_sel
+- name: preset_matrix_chop
+  type: dattoCHOP
+  parameters:
+    dat: /project1/osc/preset_matrix
+    rowindexend: =me.inputTable.numRows - 1
+    rowexpr: =re.match('.*',me.inputCell.val) != None
+    colindexend: =me.inputTable.numCols - 1
+    colexpr: =re.match('.*',me.inputCell.val) != None
+    firstrow: ignored
+    autoexportroot: =parent()
+  position: [100, -100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]

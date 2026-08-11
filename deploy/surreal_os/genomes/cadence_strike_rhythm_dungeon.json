@@ -1,0 +1,63 @@
+{
+  "id": "cadence_strike_rhythm_dungeon",
+  "name": "Cadence Strike — Rhythm Dungeon",
+  "description": "BPM-responsive dungeon generator for rhythm JRPG. Maps song tempo to architectural DNA parameters for procedurally-generated Persona-style palaces.",
+  "family": "Rhythm",
+  "default_graph": "greybox_room_kit",
+  "surreal_transform": "rhythm_branching",
+  "dna_defaults": {
+    "genome_verticality": 0.5,
+    "genome_symmetry": 0.5,
+    "genome_ornament_density": 0.5,
+    "genome_structural_logic": 0.6,
+    "genome_organic_growth": 0.3,
+    "genome_cosmic_influence": 0.2
+  },
+  "bpm_map": {
+    "ballad": {
+      "range": [80, 100],
+      "style": "zen",
+      "dna": { "genome_verticality": 0.3, "genome_ornament_density": 0.3, "genome_symmetry": 0.7 },
+      "mood": "Calm, exploratory — wide corridors, zen gardens"
+    },
+    "downtempo": {
+      "range": [100, 120],
+      "style": "civic",
+      "dna": { "genome_verticality": 0.4, "genome_ornament_density": 0.4, "genome_symmetry": 0.6 },
+      "mood": "Structured, ordered — town halls, public squares"
+    },
+    "pop_rock": {
+      "range": [120, 140],
+      "style": "gothic",
+      "dna": { "genome_verticality": 0.7, "genome_ornament_density": 0.5, "genome_symmetry": 0.5 },
+      "mood": "Dramatic, intense — cathedrals, pointed arches"
+    },
+    "house": {
+      "range": [140, 160],
+      "style": "baroque",
+      "dna": { "genome_verticality": 0.8, "genome_ornament_density": 0.7, "genome_symmetry": 0.4 },
+      "mood": "Grand, imposing — ornate halls, sweeping staircases"
+    },
+    "dnb": {
+      "range": [160, 180],
+      "style": "castle",
+      "dna": { "genome_verticality": 0.9, "genome_ornament_density": 0.2, "genome_symmetry": 0.3 },
+      "mood": "Chaotic, urgent — fortifications, tight corridors"
+    },
+    "speedcore": {
+      "range": [180, 300],
+      "style": "greybox",
+      "dna": { "genome_verticality": 0.9, "genome_ornament_density": 0.1, "genome_symmetry": 0.1, "genome_cosmic_influence": 0.8 },
+      "mood": "Surreal, psychedelic — impossible geometry, escher loops"
+    }
+  },
+  "room_types": ["combat_arena", "treasure_vault", "rest_sanctuary", "boss_throne", "puzzle_chamber", "corridor_bridge"],
+  "game_integration": {
+    "engine": "Unreal Engine 5.8",
+    "export_format": "FBX",
+    "collision": "auto_generate",
+    "snap_points": true,
+    "trim_sheet_bake": true,
+    "naming_prefix": "CS_Dungeon_"
+  }
+}

@@ -1,0 +1,669 @@
+{
+  "catalog": "T3D Material Baseline \u2014 BS_GodFile toon/material spine",
+  "generated": "2026-08-07",
+  "engine": "UE 5.8 (CL-55116800)",
+  "method": "Monolith project_query/export_asset_text, max_bytes=4194304, full_bytes==returned_bytes enforced",
+  "total_assets": 55,
+  "families": {
+    "Master Materials": {
+      "display": "Master Materials",
+      "assets": [
+        {
+          "name": "M_Master_Impressionist_Toon",
+          "ue_path": "/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon",
+          "file": "materials/M_Master_Impressionist_Toon.t3d",
+          "payload_bytes": 173699,
+          "nodes": 124,
+          "sha256": "b6c61396c8a958490e0252a2657a43a1cdbed0147ae25e8a2a79b443ad2572d7",
+          "tags": [
+            "impressionist"
+          ],
+          "lines": 1377
+        },
+        {
+          "name": "M_Master_Impressionist_Toon_Landscape",
+          "ue_path": "/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape",
+          "file": "materials/M_Master_Impressionist_Toon_Landscape.t3d",
+          "payload_bytes": 104535,
+          "nodes": 73,
+          "sha256": "3d3ee41dd64abe719ab79add957fdf97a36889b5d66ea917ef896f0ef6c2f2bc",
+          "tags": [
+            "impressionist",
+            "landscape"
+          ],
+          "lines": 752
+        },
+        {
+          "name": "M_Master_Nikki",
+          "ue_path": "/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki",
+          "file": "materials/M_Master_Nikki.t3d",
+          "payload_bytes": 129280,
+          "nodes": 108,
+          "sha256": "17802d68ca4cb18bc009417da1a2242fa2a46d4698898b71165e7b1d1aa76d36",
+          "tags": [
+            "nikki"
+          ],
+          "lines": 1210
+        },
+        {
+          "name": "M_Master_Nikki_Landscape",
+          "ue_path": "/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape",
+          "file": "materials/M_Master_Nikki_Landscape.t3d",
+          "payload_bytes": 150216,
+          "nodes": 117,
+          "sha256": "7b281a8fe5e55552488d2f9cfbfec45db18277f52c43376c921edb78aa0e71a0",
+          "tags": [
+            "landscape",
+            "nikki"
+          ],
+          "lines": 1305
+        },
+        {
+          "name": "M_Master_SDF_Toon",
+          "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_SDF_Toon",
+          "file": "materials/M_Master_SDF_Toon.t3d",
+          "payload_bytes": 51763,
+          "nodes": 46,
+          "sha256": "19bd7ed9b8480620e2759c3b62939b5d68d93937a29a19dfbb1c979fc3ee95a0",
+          "tags": [
+            "sdf"
+          ],
+          "lines": 486
+        },
+        {
+          "name": "M_Master_Simple_Universal",
+          "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal",
+          "file": "materials/M_Master_Simple_Universal.t3d",
+          "payload_bytes": 32305,
+          "nodes": 25,
+          "sha256": "0aafa2cdd29797f1e8cebdef85290de3a0fc47b9f93c70177acbd49a22d4bd9a",
+          "tags": [],
+          "lines": 257
+        },
+        {
+          "name": "M_Master_Toon_Cosmic",
+          "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Cosmic",
+          "file": "materials/M_Master_Toon_Cosmic.t3d",
+          "payload_bytes": 1318655,
+          "nodes": 1042,
+          "sha256": "805d0b585e0fd260c21786a509529f9c650243ecbef95a4eb3d3f513ac1c7bab",
+          "tags": [],
+          "lines": 11447
+        },
+        {
+          "name": "M_Master_Toon_Landscape_HeightBlend",
+          "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend",
+          "file": "materials/M_Master_Toon_Landscape_HeightBlend.t3d",
+          "payload_bytes": 442385,
+          "nodes": 301,
+          "sha256": "a6bf0f230b3af5f1272b3e2b6e3cf1cd8e2c3899e44e0748b329e39b8e71944f",
+          "tags": [
+            "landscape"
+          ],
+          "lines": 3508
+        },
+        {
+          "name": "M_Master_Toon_Unified",
+          "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified",
+          "file": "materials/M_Master_Toon_Unified.t3d",
+          "payload_bytes": 75110,
+          "nodes": 63,
+          "sha256": "61f70ece4ec96457a4268719ed2808d2130e5decacb2a5e5c52290a312bda872",
+          "tags": [],
+          "lines": 695
+        },
+        {
+          "name": "M_Master_Toon_Universal",
+          "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+          "file": "materials/M_Master_Toon_Universal.t3d",
+          "payload_bytes": 1571495,
+          "nodes": 1201,
+          "sha256": "06e6c46e482eb3e69c645d7114f3e9adc970d9ae61a71b8cd4edce9b61783d65",
+          "tags": [],
+          "lines": 13293
+        }
+      ],
+      "count": 10,
+      "payload_bytes": 4049443,
+      "nodes": 3100
+    },
+    "Material Functions": {
+      "display": "Material Functions",
+      "assets": [
+        {
+          "name": "MF_AnimeSkinWrap",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_AnimeSkinWrap",
+          "file": "materials/MF_AnimeSkinWrap.t3d",
+          "payload_bytes": 292197,
+          "nodes": 256,
+          "sha256": "ceee681817ef32794deac22545cf7e537413781a7421d54f58e50874ff17feb4",
+          "tags": [],
+          "lines": 2497
+        },
+        {
+          "name": "MF_ClothWindDrape",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape",
+          "file": "materials/MF_ClothWindDrape.t3d",
+          "payload_bytes": 15044,
+          "nodes": 13,
+          "sha256": "a77b7db98cf7076fd553f24912122fea8a17e0e3957e974c20e804d4edf5801f",
+          "tags": [
+            "wind"
+          ],
+          "lines": 141
+        },
+        {
+          "name": "MF_ColorRamp3",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3",
+          "file": "materials/MF_ColorRamp3.t3d",
+          "payload_bytes": 27812,
+          "nodes": 26,
+          "sha256": "44afb344a23b03c98111589d7f0f11ec02c5663e98c67ae41202d82ad5700e8d",
+          "tags": [],
+          "lines": 255
+        },
+        {
+          "name": "MF_Gemstone",
+          "ue_path": "/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone",
+          "file": "materials/MF_Gemstone.t3d",
+          "payload_bytes": 26834,
+          "nodes": 23,
+          "sha256": "71a0acf33947817112f99853ea9353e7cedea6592a9066f06fb5b0ad5b568477",
+          "tags": [
+            "gemstone"
+          ],
+          "lines": 234
+        },
+        {
+          "name": "MF_Impressionist_BrushStroke",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke",
+          "file": "materials/MF_Impressionist_BrushStroke.t3d",
+          "payload_bytes": 102519,
+          "nodes": 85,
+          "sha256": "ceed32f5eb6fbf9824ab59a39bde4c747569d48cfe8cf460585de191ba76d287",
+          "tags": [
+            "impressionist"
+          ],
+          "lines": 824
+        },
+        {
+          "name": "MF_Impressionist_Impasto",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto",
+          "file": "materials/MF_Impressionist_Impasto.t3d",
+          "payload_bytes": 71373,
+          "nodes": 59,
+          "sha256": "b310ed572339a62d8536aa1adfd15daeb5a57624cf6e17f91507db73c282d7bb",
+          "tags": [
+            "impressionist"
+          ],
+          "lines": 629
+        },
+        {
+          "name": "MF_Impressionist_InkPool",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_InkPool",
+          "file": "materials/MF_Impressionist_InkPool.t3d",
+          "payload_bytes": 101972,
+          "nodes": 85,
+          "sha256": "f4818939dddfcc5f634477045947d13d8b8e076656c113c3e92143ea2f6d25a7",
+          "tags": [
+            "impressionist"
+          ],
+          "lines": 861
+        },
+        {
+          "name": "MF_Impressionist_Temporal",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal",
+          "file": "materials/MF_Impressionist_Temporal.t3d",
+          "payload_bytes": 132979,
+          "nodes": 112,
+          "sha256": "fd0f264cb2c904232bc5aee783dece6a8303eb46e071507fa7cc80c5bde86cf2",
+          "tags": [
+            "impressionist"
+          ],
+          "lines": 1103
+        },
+        {
+          "name": "MF_IridescenceSheen",
+          "ue_path": "/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen",
+          "file": "materials/MF_IridescenceSheen.t3d",
+          "payload_bytes": 32219,
+          "nodes": 29,
+          "sha256": "0a20f159dac5298353768fc761afb2c3a664e7c45e8b2e75620b144fccd6fc40",
+          "tags": [
+            "iridescence"
+          ],
+          "lines": 284
+        },
+        {
+          "name": "MF_Itto",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Itto",
+          "file": "materials/MF_Itto.t3d",
+          "payload_bytes": 193795,
+          "nodes": 191,
+          "sha256": "a87755d99ce316b58a214dea6a7819c4ba039780f997c636e317a59ab691a850",
+          "tags": [],
+          "lines": 1836
+        },
+        {
+          "name": "MF_LandscapeStorybookSDF",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF",
+          "file": "materials/MF_LandscapeStorybookSDF.t3d",
+          "payload_bytes": 27243,
+          "nodes": 24,
+          "sha256": "753ffbe8a36597604bb09431dd0b7e7156a5b97cd6e3cc1f2a405a418c0f146e",
+          "tags": [
+            "landscape",
+            "sdf"
+          ],
+          "lines": 222
+        },
+        {
+          "name": "MF_Madoka",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Madoka",
+          "file": "materials/MF_Madoka.t3d",
+          "payload_bytes": 259607,
+          "nodes": 245,
+          "sha256": "a1dd8a06431b59aa194e1dbe1cf7f2f8ea7621b4ff59e899367bb03e383adb01",
+          "tags": [],
+          "lines": 2409
+        },
+        {
+          "name": "MF_MelodiaIridescenceSheen",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen",
+          "file": "materials/MF_MelodiaIridescenceSheen.t3d",
+          "payload_bytes": 26138,
+          "nodes": 20,
+          "sha256": "ca29f211a625c24d2b738b2d48cddd8db4499d8a7a712b241327d58356f4423b",
+          "tags": [
+            "iridescence",
+            "melusina"
+          ],
+          "lines": 200
+        },
+        {
+          "name": "MF_MeluPaintBase",
+          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase",
+          "file": "materials/MF_MeluPaintBase.t3d",
+          "payload_bytes": 31780,
+          "nodes": 27,
+          "sha256": "867cc6d2a95301df4d34a782fd032f86057da0aa3cf0c472919b72e5562365a6",
+          "tags": [
+            "melusina"
+          ],
+          "lines": 249
+        },
+        {
+          "name": "MF_MeluPaletteColors",
+          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors",
+          "file": "materials/MF_MeluPaletteColors.t3d",
+          "payload_bytes": 9319,
+          "nodes": 9,
+          "sha256": "ae5fad39db617db8eac08da324ca43652c1abf9dd5e7c72ce04fa1a812146307",
+          "tags": [
+            "melusina"
+          ],
+          "lines": 77
+        },
+        {
+          "name": "MF_MeluSparkle",
+          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle",
+          "file": "materials/MF_MeluSparkle.t3d",
+          "payload_bytes": 20093,
+          "nodes": 19,
+          "sha256": "782294f0905215586c2bb77f8fc8e6fcf053a8fb7ed3813d5064fb2bf747d0e1",
+          "tags": [
+            "melusina"
+          ],
+          "lines": 163
+        },
+        {
+          "name": "MF_MeluTemporalJitter",
+          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTemporalJitter",
+          "file": "materials/MF_MeluTemporalJitter.t3d",
+          "payload_bytes": 12641,
+          "nodes": 12,
+          "sha256": "24d54778a2dbbcb83e17b9dcb7694239453d768776da30148983f775cdb5e65f",
+          "tags": [
+            "melusina"
+          ],
+          "lines": 101
+        },
+        {
+          "name": "MF_MeluTriplanar",
+          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar",
+          "file": "materials/MF_MeluTriplanar.t3d",
+          "payload_bytes": 21970,
+          "nodes": 20,
+          "sha256": "b94258ba190bfd8c5a499708502f02cd05596f28bf06a5a57f0fcf2deae99cb3",
+          "tags": [
+            "melusina"
+          ],
+          "lines": 190
+        },
+        {
+          "name": "MF_MooaDecodeAttributes",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_MooaDecodeAttributes",
+          "file": "materials/MF_MooaDecodeAttributes.t3d",
+          "payload_bytes": 36239,
+          "nodes": 27,
+          "sha256": "ef4af10c293f54cd317057ac015f13d006de1e040ab397b62a26428d165807e7",
+          "tags": [
+            "mooatoon"
+          ],
+          "lines": 350
+        },
+        {
+          "name": "MF_MooaEncodeAttributes",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes",
+          "file": "materials/MF_MooaEncodeAttributes.t3d",
+          "payload_bytes": 36105,
+          "nodes": 27,
+          "sha256": "f39149a36d8800a39e8e2b2603a88a790d5b78fb3893fd500014ff237d745ccf",
+          "tags": [
+            "mooatoon"
+          ],
+          "lines": 344
+        },
+        {
+          "name": "MF_MooaToonBaseInput",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_MooaToonBaseInput_2.MF_MooaToonBaseInput",
+          "file": "materials/MF_MooaToonBaseInput.t3d",
+          "payload_bytes": 541839,
+          "nodes": 378,
+          "sha256": "71fa91a4c6a5e5a19d55790ec3288368c32ae84e876814f955301ee41371e7df",
+          "tags": [
+            "mooatoon"
+          ],
+          "lines": 4553
+        },
+        {
+          "name": "MF_NikkiDreamGrade",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade",
+          "file": "materials/MF_NikkiDreamGrade.t3d",
+          "payload_bytes": 72225,
+          "nodes": 64,
+          "sha256": "2e1edf08adf681d205b4efaec211437b6a4725046ef3e9c9dda5dbb24d3e2aa3",
+          "tags": [
+            "nikki"
+          ],
+          "lines": 627
+        },
+        {
+          "name": "MF_NikkiIridescenceSheen",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen",
+          "file": "materials/MF_NikkiIridescenceSheen.t3d",
+          "payload_bytes": 21383,
+          "nodes": 19,
+          "sha256": "6d39a9a4dce6e2b1f322cbd6e46dc66145608f8ec528f4f2ffd927db97d45f33",
+          "tags": [
+            "iridescence",
+            "nikki"
+          ],
+          "lines": 186
+        },
+        {
+          "name": "MF_NikkiRimGlow",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow",
+          "file": "materials/MF_NikkiRimGlow.t3d",
+          "payload_bytes": 19802,
+          "nodes": 19,
+          "sha256": "af3a4652f23d7da7dec2d5f13ec49c89bb66e8b3261dab31237f329c0f95b9a0",
+          "tags": [
+            "nikki"
+          ],
+          "lines": 187
+        },
+        {
+          "name": "MF_NikkiSparkle",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle",
+          "file": "materials/MF_NikkiSparkle.t3d",
+          "payload_bytes": 16178,
+          "nodes": 16,
+          "sha256": "319fb881b5b1f303386236abb10034184995ce9609c8ab2a27712eb1be54e839",
+          "tags": [
+            "nikki"
+          ],
+          "lines": 155
+        },
+        {
+          "name": "MF_SDF_BandRelief",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_SDF_BandRelief",
+          "file": "materials/MF_SDF_BandRelief.t3d",
+          "payload_bytes": 415727,
+          "nodes": 373,
+          "sha256": "36a7d245cbf048a55f828a7d06851dd2d0780482fc335b23b92446e02edac7d5",
+          "tags": [
+            "sdf"
+          ],
+          "lines": 3639
+        },
+        {
+          "name": "MF_Triplanar_Stable",
+          "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable",
+          "file": "materials/MF_Triplanar_Stable.t3d",
+          "payload_bytes": 7525,
+          "nodes": 7,
+          "sha256": "d49fd0aa59a8b1233e5343fae1c806a20f292f702e86db6a66b027f196f89851",
+          "tags": [],
+          "lines": 67
+        }
+      ],
+      "count": 27,
+      "payload_bytes": 2572558,
+      "nodes": 2185
+    },
+    "Parameter Collections": {
+      "display": "Parameter Collections",
+      "assets": [
+        {
+          "name": "MPC_Melodia_Palette",
+          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+          "file": "materials/MPC_Melodia_Palette.t3d",
+          "payload_bytes": 6287,
+          "nodes": 1,
+          "sha256": "02797a533979a3e6a6f244ca124489f7d3c272f8854e78721f4a4843c3a57fba",
+          "tags": [
+            "melusina"
+          ],
+          "lines": 56
+        }
+      ],
+      "count": 1,
+      "payload_bytes": 6287,
+      "nodes": 1
+    },
+    "Toon Profiles": {
+      "display": "Toon Profiles",
+      "assets": [
+        {
+          "name": "TP_Character",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Character",
+          "file": "materials/TP_Character.t3d",
+          "payload_bytes": 481,
+          "nodes": 1,
+          "sha256": "6fa4957b4f1939bf48fa2caa13d1ee7dce373a68d434e0d57bcc942ecf2f80b4",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Default",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Default",
+          "file": "materials/TP_Default.t3d",
+          "payload_bytes": 475,
+          "nodes": 1,
+          "sha256": "0d3fade46f6f3060aac6d4682578106e624ee9f303a9bc4c1b8a70552fb8385c",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Foliage",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Foliage",
+          "file": "materials/TP_Foliage.t3d",
+          "payload_bytes": 475,
+          "nodes": 1,
+          "sha256": "ded226e0a11ad3f90af0b820d984d5452e9a24e843876d4b7449624d6506e033",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Glass",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Glass",
+          "file": "materials/TP_Glass.t3d",
+          "payload_bytes": 469,
+          "nodes": 1,
+          "sha256": "9485f4b8f27f602e75bbb38b2e2990c88f70d6bef34e2876ccb8c5d1f7ebe55d",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Gold",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Gold",
+          "file": "materials/TP_Gold.t3d",
+          "payload_bytes": 466,
+          "nodes": 1,
+          "sha256": "43ca818c109f8d92816d32de2e8cd0d8a20b8518a854fbc3914a82b30d26248d",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Hero",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Hero",
+          "file": "materials/TP_Hero.t3d",
+          "payload_bytes": 466,
+          "nodes": 1,
+          "sha256": "8d78074fb8815c2eccbe8ab1a9d81bc2aa29ed5909749afd3178ed1a94deb0c7",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Impressionist_Dry",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Dry",
+          "file": "materials/TP_Impressionist_Dry.t3d",
+          "payload_bytes": 505,
+          "nodes": 1,
+          "sha256": "333438ad71d7a44baaed0ec8c4e9fdfda47b16bd1298e2d87b4cdf467c3c382f",
+          "tags": [
+            "impressionist"
+          ],
+          "lines": 5
+        },
+        {
+          "name": "TP_Impressionist_Impasto",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Impasto",
+          "file": "materials/TP_Impressionist_Impasto.t3d",
+          "payload_bytes": 517,
+          "nodes": 1,
+          "sha256": "2f9de60dd3aa87b93a46898da8338626415f7b8d4fe4c92280249fe82ebdaf21",
+          "tags": [
+            "impressionist"
+          ],
+          "lines": 5
+        },
+        {
+          "name": "TP_Impressionist_Wet",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Wet",
+          "file": "materials/TP_Impressionist_Wet.t3d",
+          "payload_bytes": 505,
+          "nodes": 1,
+          "sha256": "c9a2f6b676a564df435001f8e1a795a6e4061707e3f30972d7533e04d85ca426",
+          "tags": [
+            "impressionist"
+          ],
+          "lines": 5
+        },
+        {
+          "name": "TP_Melusina",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina",
+          "file": "materials/TP_Melusina.t3d",
+          "payload_bytes": 534,
+          "nodes": 1,
+          "sha256": "98db23d52aeed31efc8f114a8322bc6c884ffca23b968144010703a962055908",
+          "tags": [
+            "melusina"
+          ],
+          "lines": 4
+        },
+        {
+          "name": "TP_NikkiDream",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_NikkiDream",
+          "file": "materials/TP_NikkiDream.t3d",
+          "payload_bytes": 484,
+          "nodes": 1,
+          "sha256": "93573a3a51f404e56be5952a61ec18eaa753a3977b031633d9b9e42b2d1779df",
+          "tags": [
+            "nikki"
+          ],
+          "lines": 5
+        },
+        {
+          "name": "TP_Ornamental",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Ornamental",
+          "file": "materials/TP_Ornamental.t3d",
+          "payload_bytes": 484,
+          "nodes": 1,
+          "sha256": "d97cdd15bf8c6b39e95992274a83dd1a1c5328776f319e2d2a82b28a47851ce9",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Stone",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stone",
+          "file": "materials/TP_Stone.t3d",
+          "payload_bytes": 469,
+          "nodes": 1,
+          "sha256": "14790734f4e71e2d0413a59527cc3bcf7877e7616ae602414826e0a1a7422f23",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Stucco",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stucco",
+          "file": "materials/TP_Stucco.t3d",
+          "payload_bytes": 472,
+          "nodes": 1,
+          "sha256": "af36f59700af355a521c354793d90c0d0d11c53bebaeeb558de7b78b86d97da9",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Test",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Test",
+          "file": "materials/TP_Test.t3d",
+          "payload_bytes": 466,
+          "nodes": 1,
+          "sha256": "032b289510e0da9f64770433f7964c950d42b5541500bd5e07facc578c854e09",
+          "tags": [],
+          "lines": 5
+        },
+        {
+          "name": "TP_Water",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Water",
+          "file": "materials/TP_Water.t3d",
+          "payload_bytes": 469,
+          "nodes": 1,
+          "sha256": "f81cedf16cacd087aac9866ebfe0cdcb6aa233488a41ec66cd8689f351cd2daa",
+          "tags": [
+            "water"
+          ],
+          "lines": 5
+        },
+        {
+          "name": "TP_Wood",
+          "ue_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Wood",
+          "file": "materials/TP_Wood.t3d",
+          "payload_bytes": 466,
+          "nodes": 1,
+          "sha256": "636137a1533c4f478856bec1cc2e15d15e5284ee26a409008b85f18a04e1edbe",
+          "tags": [],
+          "lines": 5
+        }
+      ],
+      "count": 17,
+      "payload_bytes": 8203,
+      "nodes": 17
+    }
+  },
+  "total_payload_bytes": 6636491,
+  "total_nodes": 5303,
+  "format": "raw T3D payload text (LF). Metadata lives in this catalog, not in the files."
+}

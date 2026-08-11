@@ -1,0 +1,326 @@
+format: tdn
+version: '2.0'
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia7.7.toe
+exported_at: '2026-08-08T15:40:23Z'
+network_path: /project1/audio
+options:
+  include_dat_content: true
+  include_storage: true
+type_defaults:
+  audiofileinCHOP:
+    parameters:
+      file: =app.samplesFolder+'/Audio/JeremyCaulfield_www.dumb-unit.com.mp3'
+      index: =me.time.frame / root.time.rate
+      timecodeop: =tdu.Timecode()
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  lagCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  outCHOP:
+    parameters:
+      label: =me.name
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  audiofilterCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  analyzeCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  renameCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  mergeCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  scriptCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  textDAT:
+    parameters:
+      language: python
+    flags:
+    - viewer
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.9, 0.5, 0.1]
+comment: AUDIO ENGINE — Melusina VoiceSynth WAV → pitch/amp/beat CHOPs → OSC to UE
+operators:
+- name: ain
+  type: audiofileinCHOP
+- name: lag
+  type: lagCHOP
+  position: [200, 0]
+  inputs:
+  - analyze
+- name: aout
+  type: audiodeviceoutCHOP
+  parameters:
+    autoexportroot: =parent()
+  position: [400, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - ain
+- name: out1
+  type: outCHOP
+  position: [600, 0]
+  inputs:
+  - lag
+- name: afilter
+  type: audiofilterCHOP
+  parameters:
+    filter: highpass
+  position: [0, -200]
+  inputs:
+  - ain
+- name: analyze
+  type: analyzeCHOP
+  parameters:
+    function: minimum
+  position: [200, -200]
+  inputs:
+  - afilter
+- name: hsv_math
+  type: mathCHOP
+  parameters:
+    gain: 10
+    autoexportroot: =parent()
+  position: [1050, -110]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - bands_merge
+- name: band1_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [2550, 0]
+  inputs:
+  - band1_analyze
+- name: band2_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [2700, 0]
+  inputs:
+  - band2_analyze
+- name: band3_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [2850, 0]
+  inputs:
+  - band3_analyze
+- name: band4_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [600, -110]
+  inputs:
+  - band4_analyze
+- name: band5_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [750, -110]
+  inputs:
+  - band5_analyze
+- name: final_out
+  type: outCHOP
+  position: [1350, -110]
+  inputs:
+  - rename_hsv
+- name: rename_hsv
+  type: renameCHOP
+  parameters:
+    renamefrom: band1 band2 band3 band4 band5
+    renameto: beat h s v onset
+  position: [1200, -110]
+  inputs:
+  - hsv_math
+- name: bands_merge
+  type: mergeCHOP
+  position: [900, -110]
+  inputs:
+  - band1_lag
+  - band2_lag
+  - band3_lag
+  - band4_lag
+  - band5_lag
+- name: melusina_in
+  type: audiofileinCHOP
+  position: [400, -200]
+  comment: Load Melusina WAV from VoiceSynthResearch/
+- name: band1_filter
+  type: audiofilterCHOP
+  parameters:
+    cutofflog: 1.903
+  position: [1050, 0]
+  inputs:
+  - ain
+- name: band2_filter
+  type: audiofilterCHOP
+  parameters:
+    filter: bandpass
+    cutofflog: 2.397
+  position: [1200, 0]
+  inputs:
+  - ain
+- name: band3_filter
+  type: audiofilterCHOP
+  parameters:
+    filter: bandpass
+    cutofflog: 3
+  position: [1350, 0]
+  inputs:
+  - ain
+- name: band4_filter
+  type: audiofilterCHOP
+  parameters:
+    filter: bandpass
+    cutofflog: 3.602
+  position: [1500, 0]
+  inputs:
+  - ain
+- name: band5_filter
+  type: audiofilterCHOP
+  parameters:
+    filter: highpass
+    cutofflog: 3.903
+  position: [1650, 0]
+  inputs:
+  - ain
+- name: rename_chord
+  type: renameCHOP
+  parameters:
+    renamefrom: chan1 chan2
+    renameto: chord_root chord_quality
+  position: [800, -120]
+  inputs:
+  - chord_detector
+- name: rename_pitch
+  type: renameCHOP
+  parameters:
+    renamefrom: chan1 chan2
+    renameto: fundamental_pitch pitch_note
+  position: [550, 120]
+  inputs:
+  - pitch_analyzer
+- name: band1_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band1
+  position: [1800, 0]
+  inputs:
+  - band1_filter
+- name: band2_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band2
+  position: [1950, 0]
+  inputs:
+  - band2_filter
+- name: band3_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band3
+  position: [2100, 0]
+  inputs:
+  - band3_filter
+- name: band4_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band4
+  position: [2250, 0]
+  inputs:
+  - band4_filter
+- name: band5_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band5
+  position: [2400, 0]
+  inputs:
+  - band5_filter
+- name: preview_trail
+  type: trailCHOP
+  parameters:
+    rate: =me.time.rate
+    autoexportroot: =parent()
+  flags:
+  - viewer
+  position: [1250, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - audio_feature_merge
+- name: chord_detector
+  type: scriptCHOP
+  parameters:
+    callbacks: chord_detector_callbacks
+  position: [550, -120]
+  inputs:
+  - spectral_analyzer
+- name: pitch_analyzer
+  type: scriptCHOP
+  parameters:
+    callbacks: pitch_analyzer_callbacks
+  position: [300, 120]
+  inputs:
+  - ain
+- name: spectral_analyzer
+  type: audiospectrumCHOP
+  parameters:
+    autoexportroot: =parent()
+  position: [300, -120]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - ain
+- name: audio_feature_merge
+  type: mergeCHOP
+  position: [1000, 0]
+  inputs:
+  - rename_hsv
+  - rename_pitch
+  - rename_chord
+- name: chord_detector_callbacks
+  type: textDAT
+  position: [550, -240]
+  dock: chord_detector
+  dat_content: "import numpy as np\nimport math\n\ndef onCook(scriptOp):\n    scriptOp.clear()\n    in_chop = scriptOp.inputs[0] if len(scriptOp.inputs) > 0 else None\n    \n    chord_root = 0.0\n    chord_quality = 0.0\n    \n    if in_chop and len(in_chop.chans()) > 0:\n        spec = np.array(in_chop[0].vals, dtype=np.float32)\n        n_bins = len(spec)\n        sample_rate = 44100.0\n        \n        if n_bins > 1:\n            freqs = np.linspace(20.0, sample_rate / 2.0, n_bins)\n            chroma = np.zeros(12, dtype=np.float32)\n            \n            valid_idx = np.where((freqs >= 65.0) & (freqs <= 2000.0))[0]\n            for idx in valid_idx:\n                mag = float(spec[idx])\n                if mag > 0.0001:\n                    f = float(freqs[idx])\n                    midi_note = 69.0 + 12.0 * math.log2(f / 440.0)\n                    p_class = int(round(midi_note)) % 12\n                    chroma[p_class] += mag * mag\n                    \n            chroma_sum = float(np.sum(chroma))\n            if chroma_sum > 1e-6:\n                chroma /= chroma_sum\n                \n                best_score = -1.0\n                best_root = 0\n                best_quality = 0\n                \n                for root in range(12):\n                    maj_score = chroma[root] + chroma[(root + 4) % 12] + chroma[(root + 7) % 12]\n                    if maj_score > best_score:\n                        best_score = maj_score\n                        best_root = root\n                        best_quality = 0\n                        \n                    min_score = chroma[root] + chroma[(root + 3) % 12] + chroma[(root + 7) % 12]\n                    if min_score > best_score:\n                        best_score = min_score\n                        best_root = root\n                        best_quality = 1\n                        \n                chord_root = float(best_root)\n                chord_quality = float(best_quality)\n                \n    c1 = scriptOp.appendChan(\"chan1\")\n    c2 = scriptOp.appendChan(\"chan2\")\n    c1[0] = float(chord_root)\n    c2[0] = float(chord_quality)\n\ndef onGetCookLevel(scriptOp):\n    return CookLevel.ALWAYS\n"
+  dat_content_format: text
+- name: pitch_analyzer_callbacks
+  type: textDAT
+  position: [0, -120]
+  dock: pitch_analyzer
+  dat_content: "import numpy as np\nimport math\n\ndef onCook(scriptOp):\n    scriptOp.clear()\n    in_chop = scriptOp.inputs[0] if len(scriptOp.inputs) > 0 else None\n    \n    freq = 0.0\n    note = 0.0\n    \n    if in_chop and len(in_chop.chans()) > 0:\n        arr0 = np.array(in_chop[0].vals, dtype=np.float32)\n        if len(in_chop.chans()) > 1:\n            arr1 = np.array(in_chop[1].vals, dtype=np.float32)\n            samples = 0.5 * (arr0 + arr1)\n        else:\n            samples = arr0\n            \n        rate = float(in_chop.rate) if hasattr(in_chop, 'rate') and in_chop.rate > 0 else 44100.0\n        n_samples = len(samples)\n        \n        rms = math.sqrt(float(np.mean(samples**2))) if n_samples > 0 else 0.0\n        \n        if n_samples >= 64 and rms > 0.005:\n            window = np.hanning(n_samples)\n            fft_mag = np.abs(np.fft.rfft(samples * window))\n            freqs = np.fft.rfftfreq(n_samples, d=1.0/rate)\n            \n            valid = (freqs >= 40.0) & (freqs <= 4000.0)\n            valid_indices = np.where(valid)[0]\n            \n            if len(valid_indices) > 0:\n                peak_sub_idx = np.argmax(fft_mag[valid_indices])\n                peak_idx = valid_indices[peak_sub_idx]\n                freq = float(freqs[peak_idx])\n                \n                if 0 < peak_idx < len(fft_mag) - 1:\n                    alpha = float(fft_mag[peak_idx - 1])\n                    beta = float(fft_mag[peak_idx])\n                    gamma = float(fft_mag[peak_idx + 1])\n                    denom = (alpha - 2.0 * beta + gamma)\n                    if abs(denom) > 1e-6:\n                        delta = 0.5 * (alpha - gamma) / denom\n                        bin_width = rate / float(n_samples)\n                        freq += delta * bin_width\n                        \n                freq = max(0.0, freq)\n                if freq >= 20.0:\n                    note = max(0.0, min(127.0, 69.0 + 12.0 * math.log2(freq / 440.0)))\n                    \n    c1 = scriptOp.appendChan(\"chan1\")\n    c2 = scriptOp.appendChan(\"chan2\")\n    c1[0] = float(freq)\n    c2[0] = float(note)\n\ndef onGetCookLevel(scriptOp):\n    return CookLevel.ALWAYS\n"
+  dat_content_format: text

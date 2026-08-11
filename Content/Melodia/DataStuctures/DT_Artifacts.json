@@ -1,0 +1,33 @@
+{
+  "DataType": "RoguelikeArtifact",
+  "Rows": {
+    "BurningChord": {
+      "artifact_id": "BurningChord",
+      "display_name": "Burning Chord",
+      "description": "Skills deal +50% damage but cost +1 SP",
+      "modifier_id": "ResonantFocus",
+      "cost_golden_tokens": 3
+    },
+    "EchoingBeat": {
+      "artifact_id": "EchoingBeat",
+      "display_name": "Echoing Beat",
+      "description": "Perfect timing grants bonus damage",
+      "modifier_id": "Crescendo_Minor",
+      "cost_golden_tokens": 2
+    },
+    "SwiftTempo": {
+      "artifact_id": "SwiftTempo",
+      "display_name": "Swift Tempo",
+      "description": "+20% speed for this run",
+      "modifier_id": "HasteDance",
+      "cost_golden_tokens": 4
+    },
+    "StoneCarapace": {
+      "artifact_id": "StoneCarapace",
+      "display_name": "Stone Carapace",
+      "description": "Take 20% less damage",
+      "modifier_id": "GuardHymn",
+      "cost_golden_tokens": 3
+    }
+  }
+}

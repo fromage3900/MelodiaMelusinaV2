@@ -1,0 +1,1835 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_Itto" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_IttoEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MF_IttoEditorOnlyData'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_1" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_10" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_11" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_12" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_13" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_14" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_15" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_16" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_17" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_18" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_19" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_2" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_3" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_4" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_5" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_6" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_7" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_8" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_9" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_10" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_11" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_12" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_13" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_14" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_15" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_16" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_17" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_18" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_19" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_2" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_3" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_4" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_5" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_6" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_7" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_8" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_9" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAppendVector Name="MaterialExpressionAppendVector_0" ExportPath="/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAppendVector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAppendVector Name="MaterialExpressionAppendVector_1" ExportPath="/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAppendVector_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionArctangent2Fast Name="MaterialExpressionArctangent2Fast_0" ExportPath="/Script/Engine.MaterialExpressionArctangent2Fast'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionArctangent2Fast_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_10" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_2" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_3" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_4" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_5" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_6" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_7" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_8" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_9" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_2" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_3" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_4" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCosine Name="MaterialExpressionCosine_0" ExportPath="/Script/Engine.MaterialExpressionCosine'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionCosine_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDX Name="MaterialExpressionDDX_0" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDX Name="MaterialExpressionDDX_1" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDX Name="MaterialExpressionDDX_2" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDX Name="MaterialExpressionDDX_3" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDX Name="MaterialExpressionDDX_4" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDX Name="MaterialExpressionDDX_5" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDX Name="MaterialExpressionDDX_6" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDX Name="MaterialExpressionDDX_7" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDX Name="MaterialExpressionDDX_8" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDY Name="MaterialExpressionDDY_0" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDY Name="MaterialExpressionDDY_1" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDY Name="MaterialExpressionDDY_2" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDY Name="MaterialExpressionDDY_3" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDY Name="MaterialExpressionDDY_4" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDY Name="MaterialExpressionDDY_5" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDY Name="MaterialExpressionDDY_6" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDY Name="MaterialExpressionDDY_7" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDDY Name="MaterialExpressionDDY_8" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_10" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_7" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_8" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_9" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLength Name="MaterialExpressionLength_0" ExportPath="/Script/Engine.MaterialExpressionLength'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLength_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLinearInterpolate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_0" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMaterialFunctionCall_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_19" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_20" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_20'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_21" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_21'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_22" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_22'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_23" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_23'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_24" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_24'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_25" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_25'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_26" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_26'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_27" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_27'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_28" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_28'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_29" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_29'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_30" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_30'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_31" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_31'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_32" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_32'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_33" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_33'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_0" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_1" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_2" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_3" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_4" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_5" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_6" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_7" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionNoise Name="MaterialExpressionNoise_8" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_2" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_3" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_4" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_5" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_6" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_7" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_8" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_20'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_21" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_21'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_22" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_22'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_23" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_23'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_24" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_24'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_25" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_25'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_26" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_26'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_27" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_27'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_28" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_28'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_29" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_29'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSine_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSubtract_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionVectorParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionVectorParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_1" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_2" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_3" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_4" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_5" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_6" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_7" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_8" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_8'"
+   End Object
+   Begin Object Name="MF_IttoEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MF_IttoEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionVectorParameter_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_0'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_0'","/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_0'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_0'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_1'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_2'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSubtract_0'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_0'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_5'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMaterialFunctionCall_0'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_2'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_3'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_6'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_2'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_2'","/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAppendVector_0'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionArctangent2Fast'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionArctangent2Fast_0'","/Script/Engine.MaterialExpressionLength'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLength_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_7'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_3'","/Script/Engine.MaterialExpressionCosine'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionCosine_0'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSine_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_8'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_9'","/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAppendVector_1'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_1'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_2'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_1'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_10'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_1'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_1'","/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_1'","/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_1'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_4'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_5'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_4'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_11'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_12'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_5'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_3'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_2'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_10'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_11'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_13'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_2'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_2'","/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_2'","/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_2'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_6'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_7'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_6'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_14'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_15'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_7'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_4'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_3'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_12'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_13'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_14'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_16'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_3'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_3'","/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_3'","/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_3'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_8'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_9'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_8'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_17'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_18'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_9'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_5'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_4'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_15'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_16'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_17'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_19'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_4'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_4'","/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_4'","/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_4'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_10'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_11'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_10'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_20'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_21'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_11'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_6'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_5'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_18'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_19'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_20'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_22'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_5'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_5'","/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_5'","/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_5'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_12'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_13'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_12'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_23'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_24'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_13'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_7'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_6'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_21'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_22'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_23'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_25'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_6'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_6'","/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_6'","/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_6'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_14'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_15'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_14'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_26'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_27'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_15'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_8'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_7'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_24'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_25'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_26'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_28'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_7'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_7'","/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_7'","/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_7'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_16'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_17'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_16'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_29'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_30'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_17'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_9'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_8'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_10'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_27'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_28'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_29'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_31'","/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_8'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_8'","/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_8'","/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_8'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_18'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_19'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_18'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_32'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_33'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_19'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_10'"))
+   End Object
+   Begin Object Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_0'")
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=42C2C4BD407F1CF10401D9BCA025A9F8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_1" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_0'")
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=3702DEE8420AC0C702EE6185AA31BE09
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_10" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_10'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_4'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=B77F08924C54BFD61C881D88468C1CB9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_11" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_11'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_4'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=D855E2254274DBC321240EB6B1B82EF1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_12" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_12'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_5'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=3C0A964A472A4217069FCFB307C3B1BC
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_13" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_13'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_5'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=092506924638B52315F090A106F7FACD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_14" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_14'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_6'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=8CDDED5D48A2ECB1D5C84D879FD49CB3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_15" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_15'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_6'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=AF9159C546FF07E4A04AB285C9338B3D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_16" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_16'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_7'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=0D2FED7641C12ED9A0A862BFD9E57634
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_17" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_17'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_7'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=FD7978554BC4B66B907EC190EE95E92F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_18" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_18'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_8'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=A7644F5245BA3077249C5A8534A041F5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_19" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_19'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_8'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=3920D15F4A801B74FC20D4914D1B8D51
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_2" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_0'")
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=E673C7F7474C58F707C2889779BA732A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_3" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_3'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_0'")
+      MaterialExpressionEditorX=-160
+      MaterialExpressionEditorY=660
+      MaterialExpressionGuid=5171167242E3FC918CA785BDA3ACA814
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_4" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_4'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_1'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=755040094F9461518D2F1793FF3BA332
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_5" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_5'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_1'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=F558AC4B4B6954A3F1BD3A99DCF86392
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_6" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_6'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_2'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=2EF76E164101370CD773A293861B86DC
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_7" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_7'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_2'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=4B92CBE042377D9A7CD4788DD06CF0A5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_8" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_8'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_3'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=3DDF988C4B35B3A3E46DC58A4AD15F69
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_9" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_9'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_3'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=E692A7BB49CDF88E5CB3D49744DD0241
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_1'")
+      MaterialExpressionEditorX=160
+      MaterialExpressionEditorY=470
+      MaterialExpressionGuid=CE66970D462183337CDB11A4860BDBD3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_3'")
+      MaterialExpressionEditorX=240
+      MaterialExpressionEditorY=500
+      MaterialExpressionGuid=820E8B034F5CB1DA328A4FBBA4A3F5E3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_10" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_10'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_10'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_11'")
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=68B32B4D4995A43296BFF6976C2F4404
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_11" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_11'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_20'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_21'")
+      MaterialExpressionEditorX=600
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=CF1B89B94E60417074A55EBD17346153
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_12" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_12'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_12'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_13'")
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=5F23422142CA490C2E692981A05C2000
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_13" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_13'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_23'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_24'")
+      MaterialExpressionEditorX=600
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=C46853724A5D8A1AD33285AFF9F7F3EB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_14" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_14'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_14'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_15'")
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=0FA0FEB64891AB831475489FBC359F12
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_15" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_15'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_26'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_27'")
+      MaterialExpressionEditorX=600
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=537A0FB74C0D13796B9C03A2205B6C90
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_16" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_16'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_16'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_17'")
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=38B9DC8446A959D8F337F998B61EA43D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_17" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_17'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_29'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_30'")
+      MaterialExpressionEditorX=600
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=9F5290F44D0CBC427E860C8EA8185AFD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_18" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_18'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_18'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_19'")
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=678D7C1C40F8C37F859BDE90F909EE01
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_19" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_19'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_32'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_33'")
+      MaterialExpressionEditorX=600
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=B5D7A2E746B64DAF16FB65A3D534AE14
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_2" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=8318A64B440CAAF1B5995E97DDF789A0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_3" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionArctangent2Fast'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionArctangent2Fast_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_7'")
+      MaterialExpressionEditorX=-160
+      MaterialExpressionEditorY=980
+      MaterialExpressionGuid=3CCBF74E481CEADC089A1198052BC186
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_4" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_5'")
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=225601CC4A76CABD341D2596BD316AA9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_5" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_11'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_12'")
+      MaterialExpressionEditorX=600
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=1428E5874A6A0A4623A2CB813351777E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_6" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_7'")
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=F13027FC40CAF7614CFA92A39F7588BB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_7" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_7'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_14'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_15'")
+      MaterialExpressionEditorX=600
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=50EEC8804C38C8A411EB35B738F7682C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_8" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_8'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_9'")
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=1134E3674A352D0F173FA9A475771847
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_9" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_9'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_17'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_18'")
+      MaterialExpressionEditorX=600
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=1521DA334CF25A1FB61F878720221212
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAppendVector_0" ExportPath="/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAppendVector_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_4'")
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=5425D00049FB773D0E399289B37D26DE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionAppendVector_1" ExportPath="/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAppendVector_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_9'")
+      MaterialExpressionEditorX=320
+      MaterialExpressionEditorY=1000
+      MaterialExpressionGuid=27F642604AF54EA0D5F1BE924DE3F52D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionArctangent2Fast_0" ExportPath="/Script/Engine.MaterialExpressionArctangent2Fast'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionArctangent2Fast_0'"
+      Y=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_2'")
+      X=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_1'")
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=980
+      MaterialExpressionGuid=2C1D9B1E4EF049E1F37F98B21C42A9A0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=280
+      MaterialExpressionGuid=45033EF246C35AD9683E2F8386E52806
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_0'")
+      R=True
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=900
+      MaterialExpressionGuid=FB3B1F6C4B653640BD66E6BC10B24838
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_10" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_10'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_8'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-540
+      MaterialExpressionGuid=92AD60934EDF05933113F4A638D236A7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_2" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_0'")
+      G=True
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=940
+      MaterialExpressionGuid=D0C508BA4EA78EA4A179E9B470F405CF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_3" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_3'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-540
+      MaterialExpressionGuid=7094B64D4456FF92CF1022BA6D7F2174
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_4" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_4'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-540
+      MaterialExpressionGuid=7B04120E4C9906A26849549FB5BF5A97
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_5" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_5'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_3'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-540
+      MaterialExpressionGuid=34BA799F4C635C98042D0DA214ECDDCE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_6" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_6'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_4'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-540
+      MaterialExpressionGuid=7C5143934E9D2D1C94786CA79A77C333
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_7" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_7'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_5'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-540
+      MaterialExpressionGuid=260BB29F4379D41182FD3EABCE688911
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_8" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_8'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_6'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-540
+      MaterialExpressionGuid=BE5CDCC84B772745DFC3F0870634ABCD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_9" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_9'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_7'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-540
+      MaterialExpressionGuid=C52257DC46A800258745538543F41C15
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_0'"
+      R=0.500000
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=660
+      MaterialExpressionGuid=D808141D42B3E0554A0D4BAF809FCD30
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_1'"
+      R=0.080000
+      MaterialExpressionEditorX=240
+      MaterialExpressionEditorY=620
+      MaterialExpressionGuid=E99C10944386F3D48D03BE8FCE69E5F1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_2" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_2'"
+      R=0.500000
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=820
+      MaterialExpressionGuid=3FA3E6B84B749976A06DB59BC0647F88
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_3" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_3'"
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=900
+      MaterialExpressionGuid=130A90A541102E9138F9B7A7A807B68A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_4" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_4'"
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=F69A8E2E4CE8FDAB2631C6B1F7B35487
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionCosine_0" ExportPath="/Script/Engine.MaterialExpressionCosine'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionCosine_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_3'")
+      MaterialExpressionEditorY=960
+      MaterialExpressionGuid=BFC6CECA4E4603494FE401A861E60367
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDX_0" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_0'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_0'")
+      MaterialExpressionEditorX=-160
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=730787C7434C23CD95AD15B5EA7F920E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDX_1" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_1'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_1'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=84060B304632EF88DAFCA99BB0E319C3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDX_2" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_2'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_2'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=7E29A5A848C92C8EB98C49979E395D05
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDX_3" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_3'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_3'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=04202F4A47DA3BA8F8FFB3ABE1CDAF59
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDX_4" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_4'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_4'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=5A79D8BD4CBC97EF97AEC9B3EEE64ED4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDX_5" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_5'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_5'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=9418DBEF4848E0E17BB5D29B3320792E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDX_6" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_6'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_6'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=D14200A04EF04AA67337A49BAF1C10B7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDX_7" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_7'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_7'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=481EC3AE498A46B9ECD78DAD6DC30BCD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDX_8" ExportPath="/Script/Engine.MaterialExpressionDDX'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDX_8'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_8'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=A5C891EF47BA1DDFE92B7584539C0407
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDY_0" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_0'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_0'")
+      MaterialExpressionEditorX=-160
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=26B5DE42489622E811DFB9B65C9A1571
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDY_1" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_1'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_1'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=56D55A394570B191EFB0B1A281F9315D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDY_2" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_2'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_2'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=469EDD754897EA482BDDB8B324667A26
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDY_3" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_3'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_3'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=B3897F4C48EECC8CD2DB8B8D2A292504
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDY_4" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_4'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_4'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=614B456141D89D8D5D64F8B569930EAA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDY_5" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_5'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_5'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=EA77A3414C533B23BFBD4982B6299177
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDY_6" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_6'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_6'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=998D96A74C0F6764A051588D4ADBA5C7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDY_7" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_7'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_7'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=3B6564CE47A0587EF6E0679942284F89
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionDDY_8" ExportPath="/Script/Engine.MaterialExpressionDDY'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionDDY_8'"
+      Value=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_8'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=288C035F470B558E2F608181ED622FB8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionInput_0'"
+      InputName="BaseColor"
+      Id=8081634D437D7F3FA1C8EFA5128DA056
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=736A52F3497A014E347A03B7E33B1ADB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionInput_1'"
+      InputName="Normal"
+      Id=F997502A40BAC7B0E2B6CDB52B2A110C
+      SortPriority=1
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=17FEE3284C8506617AD3DCBC5E72368C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_0'"
+      OutputName="Color"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLinearInterpolate_0'")
+      Id=3354702D49A380383B6ACCA492F6B47D
+      MaterialExpressionEditorX=720
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=C2807DBA4F5E40D33D2FDCABA5BBBDC5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_1'"
+      OutputName="RoughnessAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_2'")
+      Id=C94BB8884ECF04688E4909A7996A6AAD
+      MaterialExpressionEditorX=720
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=48A5167448BF9C9E52F12B9F59D2EE52
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_10" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_10'"
+      OutputName="RoughnessAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_19'")
+      Id=BF5040B94229AD8170A8BEACC6C18F8B
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=DD4EDB2E4263A04200CDF5BFEA8175F4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_2'"
+      OutputName="HeightAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_5'")
+      Id=694FA9AB46EC307DB9ADCE905913CB02
+      MaterialExpressionEditorX=720
+      MaterialExpressionEditorY=640
+      MaterialExpressionGuid=56DBC4A04A1C0F5BE36E6CA9DEA61895
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_3'"
+      OutputName="RoughnessAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_5'")
+      Id=AC99F4E5483C678A533CD4ADD04B134F
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=ECDAFF404A5577F1C3561FAC7BDD0971
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_4'"
+      OutputName="RoughnessAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_7'")
+      Id=93FCC827473B76C83846EEB65E47AEF3
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=10E3EE004B8706EE55D639883D6F191E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_5'"
+      OutputName="RoughnessAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_9'")
+      Id=BCAD57D247D9B3B7C0EC92942968861E
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=EDBC9D9046E90CD7C0BF79A727425F82
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_6'"
+      OutputName="RoughnessAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_11'")
+      Id=846B0F5A466B3DBA7748C9A732DDB0A2
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=856E3EE74BA727DE561AF788D0A85D2A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_7" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_7'"
+      OutputName="RoughnessAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_13'")
+      Id=BAD162C743F338135501D6850E83163F
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=0990C87F49645B32DBA0CFA0777D131F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_8" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_8'"
+      OutputName="RoughnessAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_15'")
+      Id=2678951743E3B07CA7A8DDB2D579D6BE
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=A8E0F20E4E1EC97B7F058B97803556E1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_9" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionOutput_9'"
+      OutputName="RoughnessAdd"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_17'")
+      Id=1918EED1422B1B2A60318D8477B2C1BC
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=290
+      MaterialExpressionGuid=693BD566424DF4764B8EDAAAD6C9DC40
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionLength_0" ExportPath="/Script/Engine.MaterialExpressionLength'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLength_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_0'")
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=1060
+      MaterialExpressionGuid=63390E404C74BC6220378D80FD3AC074
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLinearInterpolate_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionFunctionInput_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMaterialFunctionCall_0'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_6'")
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=B672BA00417F8A3AEA1F3DA1322C5CEF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_0" ExportPath="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMaterialFunctionCall_0'"
+      MaterialFunction="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+      FunctionInputs(0)=(ExpressionInputId=9888C72C443E00F2579DD291CCADF350,Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionVectorParameter_0'",InputName="RampLow",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(1)=(ExpressionInputId=BAB3880A4F69B652FD96BC953C1125B2,Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionVectorParameter_1'",InputName="RampMid",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(2)=(ExpressionInputId=F0F07B5145940F476DBE0EA46BC7761A,Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionVectorParameter_1'",InputName="RampHigh",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(3)=(ExpressionInputId=D02E96D240B90ACD2BF20D8456917B23,Input=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_2'",InputName="RampPosMid"))
+      FunctionInputs(4)=(ExpressionInputId=C141EA4849D49347636C78A557F28F5D,Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_2'",InputName="Mask"))
+      FunctionInputs(5)=(ExpressionInputId=93E81A3349CE0D1C2421F18A7EA6861F,Input=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_3'",InputName="RampContrast"))
+      FunctionOutputs(0)=(ExpressionOutputId=A3575DC94E97AC84D167708066752825,Output=(OutputName="Color"))
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=720
+      MaterialExpressionGuid=36904F6D4CE0C3E416BF6A8465FAFAFF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+      Outputs(0)=(OutputName="Color")
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAppendVector_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=280
+      MaterialExpressionGuid=6053F965421441BBAC961DA6B1D9C5B4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_1'")
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=A35DB38340C394DCB0E5129388162381
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_10'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_6'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionGuid=395A118946775936E56B11BDCC08FDDF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_11'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_7'")
+      MaterialExpressionEditorX=440
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=5EDB171A40FE29BFACA455A318A24F20
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_12'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_8'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=B58E251549BCEFE71D690C9797838257
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_13'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_9'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionGuid=0E893F524B0E48838774A0A50DC83388
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_14'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_10'")
+      MaterialExpressionEditorX=440
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=DEE160854DD1DB89383C94AF46E83D24
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_15'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_11'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=DC795F9743F224FB4457129C603B0304
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_16'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_12'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionGuid=66F190F645AFEBADF3D02BB073949666
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_17'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_13'")
+      MaterialExpressionEditorX=440
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=49818BE9479693B18F09F59E25C62B7D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_18'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_14'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=583692F349C5AE5A7013B7AB6E995A25
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_19" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_19'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_15'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionGuid=21D702E6468F4DC2A39F048F560439EB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionEditorX=-160
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=AFEA904B4B502B2CCD7747A1C104BE4B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_20" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_20'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_10'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_16'")
+      MaterialExpressionEditorX=440
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=DAADBE9E4A38A47600F8509B0D538F0C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_21" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_21'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_17'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=F796B5CE4FD5475B16E5A8BEE1157572
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_22" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_22'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_7'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_18'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionGuid=BAC4BC974E74ACFDD5710BA7B6DB6063
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_23" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_23'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_12'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_19'")
+      MaterialExpressionEditorX=440
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=3EC9364F4B5DBCFD1183EBADF05FACD5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_24" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_24'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_20'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=60F8BABF421E9CB598A5148D1BF5EFEA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_25" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_25'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_21'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionGuid=644311604496C46CB28346858C862A2E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_26" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_26'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_14'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_22'")
+      MaterialExpressionEditorX=440
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=87935DD544B2B60E5C5725901C3AF6FE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_27" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_27'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_23'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=7F983024478DFA2505CCFB8841255AD1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_28" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_28'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_9'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_24'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionGuid=F5F7F820431E4C0AFE411D9087CCD339
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_29" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_29'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_16'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_25'")
+      MaterialExpressionEditorX=440
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=87FF9C7F49FD783B2D56409758D84652
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionEditorY=660
+      MaterialExpressionGuid=3166921F41C563FCB657F5874156C5E4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_30" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_30'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_7'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_26'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=635608CF4FA7DC04BACB1DB5D50EC172
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_31" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_31'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionComponentMask_10'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_27'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionGuid=E27CB53F46701D25412EFCB351AB32FD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_32" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_32'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_18'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_28'")
+      MaterialExpressionEditorX=440
+      MaterialExpressionEditorY=190
+      MaterialExpressionGuid=581193894F94B24DAC1197B8EBB5E243
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_33" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_33'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_29'")
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=585204E149ECAD84C8D361941C1F3C5E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_1'")
+      MaterialExpressionEditorX=400
+      MaterialExpressionEditorY=500
+      MaterialExpressionGuid=3676DE2C43E888F9A81BECAD3FB567F4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_3'")
+      MaterialExpressionEditorX=400
+      MaterialExpressionEditorY=640
+      MaterialExpressionGuid=3EAB07ED453706F85AA3DC9D389E7E11
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_4'")
+      MaterialExpressionEditorX=400
+      MaterialExpressionEditorY=820
+      MaterialExpressionGuid=C9DF02D34A2EFD30017123A744AD0036
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_7'"
+      A=(Expression="/Script/Engine.MaterialExpressionLength'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLength_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_5'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=1020
+      MaterialExpressionGuid=1990A9964803A6BF022E6596BD0823A8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_8'"
+      A=(Expression="/Script/Engine.MaterialExpressionCosine'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionCosine_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionLength'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLength_0'")
+      MaterialExpressionEditorX=160
+      MaterialExpressionEditorY=960
+      MaterialExpressionGuid=122304524E2529A0430400950B4075C3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMultiply_9'"
+      A=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSine_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionLength'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionLength_0'")
+      MaterialExpressionEditorX=160
+      MaterialExpressionEditorY=1040
+      MaterialExpressionGuid=5500587244906DEB99647BAF1576A8FD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_0" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_0'"
+      Position=(Expression="/Script/Engine.MaterialExpressionAppendVector'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAppendVector_0'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=280
+      MaterialExpressionGuid=89587E1549819DBE8C6350BCF6D478D6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_1" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_1'"
+      MaterialExpressionEditorX=-200
+      MaterialExpressionGuid=E55042A4449EEF02C899AC83DAA15164
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_2" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_2'"
+      MaterialExpressionEditorX=-200
+      MaterialExpressionGuid=E5A6FB914699F9E2FADBFD89A25C54A9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_3" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_3'"
+      MaterialExpressionEditorX=-200
+      MaterialExpressionGuid=4A763DE74A6F90CD59B067A404B2C628
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_4" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_4'"
+      MaterialExpressionEditorX=-200
+      MaterialExpressionGuid=20008F4F40D2A43481C975A96CC63B12
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_5" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_5'"
+      MaterialExpressionEditorX=-200
+      MaterialExpressionGuid=AE3D04A748E53477698FCDA53BE5EC9D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_6" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_6'"
+      MaterialExpressionEditorX=-200
+      MaterialExpressionGuid=987482214AC270501C75669ED10A8217
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_7" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_7'"
+      MaterialExpressionEditorX=-200
+      MaterialExpressionGuid=F7AD348F4E9E1CBCB7424DBB8ED4C7A5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionNoise_8" ExportPath="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_8'"
+      MaterialExpressionEditorX=-200
+      MaterialExpressionGuid=CD34577346213C64578E76992E873DD1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_0'")
+      MaterialExpressionEditorX=-160
+      MaterialExpressionEditorY=280
+      MaterialExpressionGuid=EA6E14954CD03DE3B5251E882216A50B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_1'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionGuid=32800BEC47EA8DF7911C1A8EE081D61A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_2" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_2'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionGuid=8C14930C4ABB7E4C0C5396835701E64F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_3" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_3'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_3'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionGuid=4AD8FB104238CF4165194F917A0C3AB6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_4" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_4'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_4'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionGuid=5766A4CB4D6A10E87189758F87DD4DA7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_5" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_5'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_5'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionGuid=8D7D966D415F9A0681CA9594AB7D8D1F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_6" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_6'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_6'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionGuid=F74CE7FA46B594F0E9CE2B9FAA940068
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_7" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_7'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_7'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionGuid=AC2A91D04B07F1754D282A83576D5EC2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_8" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSaturate_8'"
+      Input=(Expression="/Script/Engine.MaterialExpressionNoise'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionNoise_8'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionGuid=29ECE01A41004D8A70AE1AB04A3D448B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_0'"
+      DefaultValue=3.000000
+      ParameterName="IttoPatternScale"
+      ExpressionGUID=DFDB985D4F33CBD00757F2AB94BD00CD
+      Group="Itto"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=17D1023A404F27B8FD6BA5A459DDF323
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_1'"
+      ParameterName="IttoCrackDepth"
+      ExpressionGUID=1062704545488406EF5D919D1F803AE2
+      Group="Itto"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=993711FA4D596F6713F369951DBA4EB9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_10'"
+      ParameterName="IttoCrackDepth"
+      ExpressionGUID=CCED413C44C589D4E9C22CAB1F1EEAC2
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=E1A10EA34C701D49FC9828A353EAF875
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_11'"
+      ParameterName="IttoWearAmount"
+      ExpressionGUID=A89FE9FF48EFF76B595842B9F5A036BD
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=84EB712D46F3044DFE529A81C2EE7199
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_12'"
+      DefaultValue=3.000000
+      ParameterName="IttoPatternScale"
+      ExpressionGUID=880CB0FC44227B53A0B08AB955AA7506
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=960E3A344B2172460324E2A5C3FB6C89
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_13'"
+      ParameterName="IttoCrackDepth"
+      ExpressionGUID=65AFA13D49A1C605EFBF089C74B9936A
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=3F25B6D942E161DEA4B00CBE2EE7816D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_14'"
+      ParameterName="IttoWearAmount"
+      ExpressionGUID=A60E36844E7826EFAF892383DC236E32
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=4F2B1C3A4D123723B444D190D1F72B50
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_15'"
+      DefaultValue=3.000000
+      ParameterName="IttoPatternScale"
+      ExpressionGUID=C9ED74914D64FC8D7B46228D11FCCC29
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=F590B8734A9821D3CB908B9B41D46DE2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_16'"
+      ParameterName="IttoCrackDepth"
+      ExpressionGUID=7582BACD4E8FD187E4648286C89CAFDC
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=D8CFD26E4899276822A84A90C40E3EB1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_17'"
+      ParameterName="IttoWearAmount"
+      ExpressionGUID=5EEA06F64C0D46D414D668B62FFE6CEC
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=869958B647F248B1655F0B9CE6B87D06
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_18'"
+      DefaultValue=3.000000
+      ParameterName="IttoPatternScale"
+      ExpressionGUID=DC6208F0458A1F7593DA7CA18BE1D277
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=2D4D5C894C4931E4A9E01B9E0B7CB411
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_19'"
+      ParameterName="IttoCrackDepth"
+      ExpressionGUID=C36D29DC4895DFF8683F58AB19F3134A
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=149E3857416A5B58E7B812AC1781FAE7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_2'"
+      ParameterName="IttoWearAmount"
+      ExpressionGUID=9E7392544BECE4CE9F8225BFF3DF59A5
+      Group="Itto"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=440
+      MaterialExpressionGuid=F82D92114F3356E0D3387DBF1619661B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_20'"
+      ParameterName="IttoWearAmount"
+      ExpressionGUID=C0BDDA0E43969B27E7BBF9831813DA4E
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=D8F18F4E476AE8319288AD9AAB3F1C35
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_21" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_21'"
+      DefaultValue=3.000000
+      ParameterName="IttoPatternScale"
+      ExpressionGUID=0FBD41DD48134A79BEF5B48D20B4DED3
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=1C9DE2984979B929F653EAB604B77D9F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_22" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_22'"
+      ParameterName="IttoCrackDepth"
+      ExpressionGUID=2E4D260942C5A0FA844555A464EC63F4
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=6BF96ED5416C3433C1E34A823CF8F44C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_23" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_23'"
+      ParameterName="IttoWearAmount"
+      ExpressionGUID=E9B97F114179F56E14AC3F844E9E5FAC
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=6D0374004A5C48DF9687F3962B13777E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_24" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_24'"
+      DefaultValue=3.000000
+      ParameterName="IttoPatternScale"
+      ExpressionGUID=97B78F6A43865E34EBF48C99A88648B0
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=54CE330A41F663A94F938BBAA94F0B39
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_25" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_25'"
+      ParameterName="IttoCrackDepth"
+      ExpressionGUID=1008F3E1467D5CE47B460D9F51B0FC89
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=2E3DEC5446F8895985C9D097F93E6E9F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_26" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_26'"
+      ParameterName="IttoWearAmount"
+      ExpressionGUID=375BD9CB4EF8E4A99DD0BD89810FDF36
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=141CFF10497E4B6E193E2DA4F9C8B679
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_27" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_27'"
+      DefaultValue=3.000000
+      ParameterName="IttoPatternScale"
+      ExpressionGUID=E79B22894BDA2AD6738BD8B4F6798CCB
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=5EDC19FB46339C01E6E659BD0DABD0DF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_28" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_28'"
+      ParameterName="IttoCrackDepth"
+      ExpressionGUID=45ED323C4A3EABE5B349FBA69A41EA17
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=0807643743C90515A6C7F1A2B4A3D546
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_29" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_29'"
+      ParameterName="IttoWearAmount"
+      ExpressionGUID=A5E7727C452AA87C26731FBC571782BC
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=BA5D71DE4F95C583161ACBA903690D90
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_3'"
+      ParameterName="IttoBreakupAmount"
+      ExpressionGUID=8DFAC38041BFEEDE5D68E9B4A04C2A16
+      Group="Itto"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=540
+      MaterialExpressionGuid=8ED8FE6C4FDA4C2CAB41DAB62D13AF63
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_4'"
+      ParameterName="IttoInkStrength"
+      ExpressionGUID=1C91559A458C09E47E2893AF91FC74E3
+      Group="Itto"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=640
+      MaterialExpressionGuid=B4CD68E24806A3EFCBE6A5A901149EA0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_5'"
+      ParameterName="IttoSpiralIntensity"
+      ExpressionGUID=3A7E1DBC4FA551C0737CF58195B8E12E
+      Group="Itto"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=980
+      MaterialExpressionGuid=3817183B42F27600762B70971B15C685
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_6'"
+      DefaultValue=3.000000
+      ParameterName="IttoPatternScale"
+      ExpressionGUID=BA5AD50E4F3C294D63F558A33BC8406C
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=E5DEAEEE4002BC4D0D18CCB7D8704256
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_7'"
+      ParameterName="IttoCrackDepth"
+      ExpressionGUID=44643DB1489C82B83132F9AEBCF54867
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=A13D3D1A44CE4B4E7BEF268B0A64260B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_8'"
+      ParameterName="IttoWearAmount"
+      ExpressionGUID=D62572A045AFAE7705D56DB8001F4B0A
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=AB68EF19495489B2AEAC3C873143B66E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionScalarParameter_9'"
+      DefaultValue=3.000000
+      ParameterName="IttoPatternScale"
+      ExpressionGUID=FE8E371743D789A922C3A7B912461B4A
+      Group="Itto"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=37997FF646497AC137029B8812C658EE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSine_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAdd_3'")
+      MaterialExpressionEditorY=1040
+      MaterialExpressionGuid=8E914E9841745CCDE79B94AE9E7B863A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionSubtract_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionAbs_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionConstant_0'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=DC3A106C466C3E96DB47B49578266AB6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionVectorParameter_0'"
+      DefaultValue=(R=0.120000,G=0.100000,B=0.080000,A=1.000000)
+      ParameterName="IttoRampLow"
+      ExpressionGUID=E0EE04AB4416BD0B76BFABA5A02E283A
+      Group="Itto"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=760
+      MaterialExpressionGuid=7603D33243881F0EFD65A9AAB773C675
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionVectorParameter_1'"
+      DefaultValue=(R=0.450000,G=0.380000,B=0.320000,A=1.000000)
+      ParameterName="IttoRampHigh"
+      ExpressionGUID=3C5F0A0F4AEEE4F5AE859B94997E1C5F
+      Group="Itto"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=880
+      MaterialExpressionGuid=D0D72F9849904603F01EDD9EFAF3CF8A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_0'"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=280
+      MaterialExpressionGuid=C1A8A4DD4C508F6FDBB5F4B739C6DC09
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_1" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_1'"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=3B6D434243EF6077819D8ABEB1991A58
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_2" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_2'"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=D0FA629C493B716DE9F73BB576088E5C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_3" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_3'"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=C86A5CBB437B5DC2F51A5FA427D9E530
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_4" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_4'"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=35B8BCA044A80A4FFE073F885D41DF4E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_5" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_5'"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=9B486DAC4B1E32F537A2709AAC7E2737
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_6" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_6'"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=439FFCA442C1CE29BD44D4B0B63EC1F8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_7" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_7'"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=9D21B3AA4E023249B00E15857D63722B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_8" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionWorldPosition_8'"
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=AC1B4C3949EDF1DFFE4B97AD0C137723
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto'"
+   End Object
+   DependentFunctionExpressionCandidates(0)="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MaterialExpressionMaterialFunctionCall_0'"
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Itto.MF_Itto:MF_IttoEditorOnlyData'"
+   StateId=60D5BBF94B27FFC90543B184F2EC8D73
+   CombinedInputTypes=15
+End Object

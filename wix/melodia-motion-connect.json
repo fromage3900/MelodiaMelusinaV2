@@ -1,0 +1,52 @@
+{
+  "$schema": "https://melodia.dev/schemas/motion-connect.v1.json",
+  "description": "Code Connect map: Figma RhythmReactivityBoard Motion/* nodes -> web CSS selectors + @keyframes + reactivity channel. Keeps Figma <-> web <-> UE motion naming in lockstep. Motion stays Figma->code (get_motion_context 41:242), never video-as-SSOT.",
+  "figma": {
+    "fileKey": "Yx8ud7n39NdWZvnNvo4Xlf",
+    "page": "12 Game UI",
+    "board": "Game/RhythmReactivityBoard",
+    "boardNode": "41:242",
+    "timelineMs": 2400,
+    "loopMode": "loop"
+  },
+  "web": {
+    "css": "wix/melodia-game-ui.css",
+    "js": "wix/melodia-game-ui.js",
+    "channelSource": "startBeatBus() + RhythmStrip.registerJudgment() emit data-react-* on the strip root",
+    "tiers": { "attr": "data-mg", "values": ["full", "soft", "chrome", "off"] }
+  },
+  "channels": {
+    "Beat": "startBeatBus -> data-react-beat (120ms)",
+    "Bass": "startBeatBus -> data-react-bass (280ms, every 2nd beat)",
+    "Grade": "registerJudgment -> data-react-grade + .judged-<grade> on note",
+    "Streak": "updateCombo -> data-react-streak = 3|5|8",
+    "Break": "registerJudgment -> data-react-break (500ms one-shot at combo 8)",
+    "ULT": "updateCombo -> data-react-ult at combo >= 8",
+    "Phase": "initPhaseSwitch -> data-active-phase / .game-ui-highway-dim"
+  },
+  "map": [
+    { "node": "41:249", "component": "Motion/FiligreeBreathe", "channel": "Beat", "selector": ".game-ui-filigree.is-ornate, .game-ui-filigree.is-baroque", "keyframes": "filigree-breathe-ornate" },
+    { "node": "41:287", "component": "Motion/DividerScroll", "channel": "Beat", "selector": ".game-ui-filigree-divider", "keyframes": "divider-sheen" },
+    { "node": "95:1857", "component": "Motion/StaffShimmer", "channel": "Bass", "selector": "[data-react-bass=\"1\"] .game-ui-staff-ticks::after", "keyframes": "staff-shimmer-sweep", "authored": "2026-07-17" },
+    { "node": "41:313", "component": "Motion/BraceVolute", "channel": "Idle", "selector": ".game-ui-filigree-brace.is-baroque", "keyframes": null },
+    { "node": "41:341", "component": "Motion/GradeHalo/Perfect", "channel": "Grade", "selector": ".grade-pop.is-flourish.perfect", "keyframes": "grade-halo-expand" },
+    { "node": "41:354", "component": "Motion/GradePopLuxury", "channel": "Grade", "selector": ".grade-pop.perfect::before, .grade-pop.is-luxury::before", "keyframes": "grade-halo-expand" },
+    { "node": "41:357", "component": "Motion/StreakGlowEdge", "channel": "Streak", "selector": "[data-react-streak] .game-ui-streak-edge", "keyframes": "(transition: box-shadow/opacity per tier 3/5/8)" },
+    { "node": "95:1858", "component": "Motion/NoteTrailIri", "channel": "Grade", "selector": ".rhythm-note.judged-perfect::after", "keyframes": "note-trail-iri", "authored": "2026-07-17" },
+    { "node": "41:362", "component": "Motion/CrestBaroque", "channel": "Break", "selector": ".game-ui-crest-finale", "keyframes": "break-crest-reveal" },
+    { "node": "41:380", "component": "Motion/HitlinePulse", "channel": "Beat", "selector": "[data-react-beat=\"1\"] .game-ui-hitline", "keyframes": "hitline-glow" },
+    { "node": "41:381", "component": "Motion/PhaseDim", "channel": "Phase", "selector": ".game-ui-highway-dim, [data-active-phase] .game-ui-phase-panel:not(.is-active)", "keyframes": "(opacity 0.4)" },
+    { "node": "95:1859", "component": "Motion/BreakCrestReveal", "channel": "Break", "selector": "[data-react-break=\"1\"] .game-ui-crest-finale", "keyframes": "break-crest-reveal", "authored": "2026-07-17" },
+    { "node": "41:386", "component": "Motion/ULTArcPulse", "channel": "ULT", "selector": "[data-react-ult=\"1\"] .game-ui-ult-arc", "keyframes": "ult-arc-pulse" },
+    { "node": "41:388", "component": "Motion/SPMeterShimmer", "channel": "Bass", "selector": "[data-react-bass=\"1\"] .game-ui-meter.sp .fill, [data-react-bass=\"1\"] .game-ui-ink-meter.sp .ink-fill", "keyframes": "(filter/box-shadow)" },
+    { "node": "41:390", "component": "Motion/MobileLanePress", "channel": "Touch", "selector": ".game-ui-lane.lane-pressed, .game-ui-lane.lane-press-flash", "keyframes": "(transition box-shadow)" },
+    { "node": "58:721", "component": "Motion/PortraitIri", "channel": "Idle", "selector": ".game-eyebrow, [data-mg=\"soft\"] portrait chrome", "keyframes": "dream-iri-softmg" },
+    { "node": "58:760", "component": "Motion/BaroqueMedallion", "channel": "Idle", "selector": ".game-ui-shrine-medallion.is-baroque", "keyframes": "shrine-medallion-lift" },
+    { "node": "58:783", "component": "Motion/BraceVoluteSheen", "channel": "Idle", "selector": ".game-ui-shrine-brace.is-baroque", "keyframes": "dream-iri-softmg" }
+  ],
+  "coverage": {
+    "figmaCohortMembers": 19,
+    "mappedComponents": 18,
+    "note": "Two CornerBaroque instances (41:249, 41:268) share one FiligreeBreathe row; mapped once."
+  }
+}

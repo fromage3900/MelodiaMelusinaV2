@@ -1,0 +1,215 @@
+/* Melodia Fashion Editorial — luxury lookbook layer (LV/Gucci-adjacent, magical) */
+
+:root {
+  --fashion-ink: #1a1520;
+  --fashion-cream: #f3ece1;
+  --fashion-champagne: #d4b87a;
+  --fashion-rose: #c9a0a8;
+  --fashion-rule: rgba(26, 21, 32, 0.14);
+  --fashion-foil: linear-gradient(118deg, #e8d5a8 0%, #c8a45e 38%, #f0e6c8 62%, #a8864a 100%);
+}
+
+.melodia-shell.fashion-mode,
+.fashion-mode .melodia-shell {
+  background:
+    radial-gradient(circle at 8% 12%, rgba(201, 160, 168, 0.10), transparent 22%),
+    radial-gradient(circle at 92% 8%, rgba(212, 184, 122, 0.08), transparent 26%),
+    radial-gradient(circle at 50% 80%, rgba(102, 217, 255, 0.06), transparent 40%),
+    linear-gradient(180deg, var(--night-void, #070912) 0%, var(--night-astral, #101736) 48%, var(--night-ink, #0b0f1f) 100%);
+}
+
+.editorial-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 28px;
+  color: var(--fashion-champagne);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.editorial-rule::before,
+.editorial-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--fashion-rule), transparent);
+}
+
+.editorial-rule .diamond {
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: var(--fashion-foil);
+  box-shadow: 0 0 0 1px rgba(200, 164, 94, 0.4);
+}
+
+.monogram-stamp {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(200, 164, 94, 0.45);
+  border-radius: 50%;
+  color: var(--fashion-champagne);
+  font-family: var(--font-brand);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.5), transparent 55%);
+}
+
+.magazine-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.magazine-kicker::before {
+  content: "—";
+  color: var(--fashion-champagne);
+  opacity: 0.8;
+}
+
+.fashion-band {
+  position: relative;
+  overflow: hidden;
+}
+
+.fashion-band::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: var(--fashion-foil);
+  opacity: 0.55;
+}
+
+.section-orrery {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.22;
+  transform: translate3d(calc(var(--mouse-x) * 0.12), calc(var(--scroll-shift) * -0.04), 0);
+}
+
+.section-orrery.atelier-slot {
+  right: max(-40px, -4vw);
+  top: 12%;
+  width: min(42vw, 380px);
+  aspect-ratio: 1;
+}
+
+.section-orrery.constellation-slot {
+  left: max(12px, 2vw);
+  bottom: 18%;
+  width: 180px;
+  aspect-ratio: 1;
+  opacity: 0.16;
+}
+
+.orrery-mount svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.orrery-atelier .orbit.ellipse {
+  fill: none;
+  stroke: rgba(200, 164, 94, 0.42);
+  stroke-width: 0.65;
+}
+
+.orrery-atelier .orbit.ellipse.thin {
+  stroke-width: 0.45;
+  stroke-dasharray: 4 6;
+}
+
+.orrery-atelier .node.quatrefoil {
+  fill: rgba(228, 201, 144, 0.85);
+  opacity: 0.95;
+}
+
+.orrery-atelier .fashion-cross {
+  stroke: rgba(233, 229, 242, 0.2);
+  stroke-width: 0.5;
+}
+
+.orrery-atelier .ring,
+.orrery-constellation .ring {
+  transform-origin: 50% 50%;
+  animation: melodia-orbit 72s linear infinite;
+}
+
+.orrery-atelier .ring:nth-child(2) {
+  animation-duration: 54s;
+  animation-direction: reverse;
+}
+
+.foil-caption {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid rgba(200, 164, 94, 0.4);
+  background: linear-gradient(180deg, rgba(16, 23, 54, 0.92), rgba(7, 9, 18, 0.88));
+  color: rgba(236, 234, 244, 0.88);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.image-card.fashion-frame {
+  border: 1px solid rgba(200, 164, 94, 0.38);
+  box-shadow: inset 0 0 0 8px rgba(16, 23, 54, 0.22);
+}
+
+.image-card.fashion-frame::after {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(200, 164, 94, 0.22);
+  pointer-events: none;
+}
+
+.image-card.fashion-frame { position: relative; }
+
+/* Keep Melusina / character heads readable — no heavy inset wash */
+.image-card.fashion-frame img,
+.lookbook-grid .image-card img {
+  opacity: 1;
+  filter: none;
+}
+
+.fashion-mode .parallax-layer-7 img[data-hero-lock="melusina"],
+.fashion-mode #heroLeadImage[data-hero-lock="melusina"] {
+  opacity: 1;
+  filter: saturate(1.04) contrast(1.03) brightness(1);
+}
+
+.lookbook-grid .image-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.human-lede {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.48;
+  color: var(--muted);
+}
+
+.astral .human-lede { color: rgba(233, 229, 242, 0.78); }
+
+@media (prefers-reduced-motion: reduce) {
+  .orrery-atelier .ring,
+  .orrery-constellation .ring,
+  .section-orrery { animation: none !important; transform: none !important; }
+}

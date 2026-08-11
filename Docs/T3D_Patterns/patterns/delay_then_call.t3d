@@ -1,0 +1,16 @@
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="TheDelay"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetSystemLibrary"',MemberName="Delay")
+   NodePosX=0
+   NodePosY=0
+   NodeGuid={{GUID:delay}}
+   CustomProperties Pin (PinId={{GUID:delayin}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:delayout}},PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(AfterDelay {{GUID:callin}},),)
+   CustomProperties Pin (PinId={{GUID:dur}},PinName="Duration",Direction="EGPD_Input",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,DefaultValue="{{duration}}",)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="AfterDelay"
+   FunctionReference=(MemberParent=Class'"{{target_class}}"',MemberName="{{function}}")
+   NodePosX=400
+   NodePosY=0
+   NodeGuid={{GUID:call}}
+   CustomProperties Pin (PinId={{GUID:callin}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(TheDelay {{GUID:delayout}},),)
+End Object

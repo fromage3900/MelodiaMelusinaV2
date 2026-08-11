@@ -1,0 +1,23 @@
+# Code owners -- auto-assigned reviewers for PRs
+# Order matters; last match wins
+
+# Core platform
+deploy/surreal_arch/        @fromage3900
+deploy/surreal_world/       @fromage3900
+deploy/surreal_os/          @fromage3900
+deploy/surreal_greybox/     @fromage3900
+
+# Game systems
+Content/Python/gmm/         @fromage3900
+Plugins/MelodiaCore/        @fromage3900
+
+# Material pipeline
+Content/Python/setup_material_*  @fromage3900
+Content/Python/setup_master_*    @fromage3900
+Content/Python/material_lib.py   @fromage3900
+
+# Documentation
+README.md       @fromage3900
+DOC_INDEX.md    @fromage3900
+PIPELINE.md     @fromage3900
+Docs/**         @fromage3900

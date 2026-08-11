@@ -1,0 +1,14 @@
+{
+  "id": "MOORISH_COURTYARD",
+  "label": "Moorish Courtyard Colonnade",
+  "description": "Horseshoe portal, arabesque screen, arcade bays, fountain court terminus",
+  "style": "moorish",
+  "modules": [
+    {"arch_type": "ARCHWAY_ADV", "overrides": {"archway_style": "HORSESHOE", "archway_width": 2.6, "archway_height": 2.2, "archway_depth": 0.55, "material_choice": "AUTO"}},
+    {"arch_type": "FILIGREE_PANEL", "overrides": {"filigree_style": "GEOMETRIC_ARABESQUE", "filigree_width": 1.6, "filigree_height": 2.2, "filigree_density": 0.75, "material_choice": "AUTO"}},
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {"gb_width": 3.2, "gb_height": 4.0, "gb_trim_mode": "RECESS", "unit_size": 3.2, "material_choice": "AUTO"}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 8.0, "gb_trim_mode": "RECESS", "gb_wainscot_height": 0.4, "material_choice": "STONE"}},
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {"gb_width": 3.2, "gb_height": 4.0, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "PUBLIC_FOUNTAIN", "overrides": {"fountain_radius": 1.4, "fountain_tiers": 2, "material_choice": "MARBLE"}}
+  ]
+}

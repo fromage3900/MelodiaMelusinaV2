@@ -1,0 +1,21 @@
+{
+  "id": "gothic_cloister_v1",
+  "family": "Gothic",
+  "verticality": 0.88,
+  "symmetry": 0.82,
+  "ornament_density": 0.72,
+  "structural_logic": 0.85,
+  "organic_growth": 0.25,
+  "cosmic_influence": 0.35,
+  "sacred_sequence": [],
+  "compose_style": "GOTHIC_CLOISTER",
+  "default_graph": "CLOISTER",
+  "grammar_id": "CLOISTER",
+  "surreal_transform": "recursive_interior",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "material_choice": "STONE",
+    "unit_size": 2.0
+  }
+}

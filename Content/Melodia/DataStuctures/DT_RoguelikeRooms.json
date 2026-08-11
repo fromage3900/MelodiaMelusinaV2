@@ -1,0 +1,119 @@
+{
+  "DataType": "RoguelikeRoom",
+  "Rows": {
+    "start": {
+      "room_id": "start",
+      "display_name": "Melodia Grove",
+      "enemy_pool": [
+        "CrystalShard",
+        "SakuraPhantom"
+      ],
+      "token_shrine_chance": 0.3,
+      "is_boss_room": false,
+      "is_shop_room": false,
+      "is_treasure_room": false
+    },
+    "standard": {
+      "room_id": "standard",
+      "display_name": "Whispering Grove",
+      "enemy_pool": [
+        "CrystalShard",
+        "StoneGolem",
+        "VoidWraith",
+        "SakuraPhantom",
+        "StormFalcon",
+        "SlimeForteFestivo",
+        "SlimeForteFugue",
+        "SlimeFortePresto",
+        "SlimeForteRondo",
+        "SlimeGaleBurst",
+        "SlimeGaleTroupe",
+        "SlimeGaleWhirl",
+        "SlimeStoneBulwark",
+        "SlimeStonemaw",
+        "SlimeStoneStalwart",
+        "SlimeRadiantHarmony",
+        "SlimeRadianceSpark",
+        "SlimeRadiantSparkle",
+        "SlimeUmbralHarmony",
+        "SlimeUmbralFugue",
+        "SlimeUmbralMishmash",
+        "SlimeMelodicHarmony",
+        "SlimeStarfall",
+        "SlimeSorcererSweep",
+        "SlimeTideChord",
+        "SlimeTideCurrent",
+        "SlimeTideSurge"
+      ],
+      "token_shrine_chance": 0.3,
+      "is_boss_room": false,
+      "is_shop_room": false,
+      "is_treasure_room": false
+    },
+    "elite": {
+      "room_id": "elite",
+      "display_name": "Everburning Clearing",
+      "enemy_pool": [
+        "FireDrake",
+        "ShadowWraith",
+        "ArcaneGolem",
+        "AbyssalKraken",
+        "SlimeMelodicStorm",
+        "SlimeFortePhenomenon",
+        "SlimeForteFestivo",
+        "SlimeGaleToccata",
+        "SlimeGaleHarbinger",
+        "SlimeGaleHarmonia",
+        "SlimeStonetide",
+        "SlimeStonemaul",
+        "SlimeStoneBrawler",
+        "SlimeRadianceDuet",
+        "SlimeRadianceWaltz",
+        "SlimeUmbralHarbinger",
+        "SlimeShadowWaltz",
+        "SlimeMelodrone",
+        "SlimeForteTide",
+        "SlimeTidalWave",
+        "SlimeTidalHarmony",
+        "SlimeFurvor"
+      ],
+      "token_shrine_chance": 0.3,
+      "is_boss_room": false,
+      "is_shop_room": false,
+      "is_treasure_room": false
+    },
+    "boss": {
+      "room_id": "boss",
+      "display_name": "Boss Arena",
+      "enemy_pool": [
+        "TitanPrime",
+        "HarmonyVoid"
+      ],
+      "token_shrine_chance": 0.3,
+      "is_boss_room": true,
+      "is_shop_room": false,
+      "is_treasure_room": false
+    },
+    "shop": {
+      "room_id": "shop",
+      "display_name": "Token Shrine",
+      "enemy_pool": [],
+      "token_shrine_chance": 0.3,
+      "is_boss_room": false,
+      "is_shop_room": true,
+      "is_treasure_room": false
+    },
+    "treasure": {
+      "room_id": "treasure",
+      "display_name": "Abandoned Cache",
+      "enemy_pool": [
+        "FireDrake",
+        "StoneGolem"
+      ],
+      "token_shrine_chance": 0.3,
+      "is_boss_room": false,
+      "is_shop_room": false,
+      "is_treasure_room": true
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "character": "Metan",
+  "speaker_id": 2,
+  "voice_style": "ノーマル",
+  "total": 7,
+  "generated": 7,
+  "cached": 0,
+  "errors": 0,
+  "lines": [
+    {
+      "id": "met_first_meet_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Metan\\Audio\\met_first_meet_01.wav",
+      "size_kb": 297.04296875
+    },
+    {
+      "id": "met_shop_open_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Metan\\Audio\\met_shop_open_01.wav",
+      "size_kb": 250.04296875
+    },
+    {
+      "id": "met_craft_intro_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Metan\\Audio\\met_craft_intro_01.wav",
+      "size_kb": 276.04296875
+    },
+    {
+      "id": "met_quest_explosive_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Metan\\Audio\\met_quest_explosive_01.wav",
+      "size_kb": 295.54296875
+    },
+    {
+      "id": "met_bond_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Metan\\Audio\\met_bond_01.wav",
+      "size_kb": 268.04296875
+    },
+    {
+      "id": "met_party_join_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Metan\\Audio\\met_party_join_01.wav",
+      "size_kb": 165.54296875
+    },
+    {
+      "id": "met_ending_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Metan\\Audio\\met_ending_01.wav",
+      "size_kb": 179.04296875
+    }
+  ]
+}

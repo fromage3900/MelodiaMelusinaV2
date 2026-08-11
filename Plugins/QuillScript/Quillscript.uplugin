@@ -1,0 +1,46 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "2.5",
+	"FriendlyName": "Quillscript",
+	"Description": "Quillscript is a text-based scripting language to write dialogues and scenes, providing player options, story branching, flow control and much more.",
+	"Category": "Gameplay",
+	"CreatedBy": "Bruno Caxito",
+	"CreatedByURL": "https://github.com/BrunoCaxito",
+	"DocsURL": "https://quillscript.ink/",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/194bb68ad2204f65bb7b646b5b982b35",
+	"SupportURL": "https://quillscript.ink/contact",
+	"EngineVersion": "5.8.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "Quillscript",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Linux",
+				"Mac",
+				"Android"
+			]
+		},
+		{
+			"Name": "QuillscriptEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64",
+				"Linux",
+				"Mac",
+				"Android"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "Paper2D",
+			"Enabled": true
+		}
+	]
+}

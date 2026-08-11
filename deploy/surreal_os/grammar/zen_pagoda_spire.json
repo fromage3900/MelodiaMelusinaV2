@@ -1,0 +1,15 @@
+{
+  "id": "ZEN_PAGODA_SPIRE",
+  "label": "Zen Pagoda Spire",
+  "description": "Torii, sando ascent, goju pagoda, tahoto treasure tower, honden sanctuary, lantern",
+  "style": "zen",
+  "modules": [
+    {"arch_type": "GB_ZEN_TORII_GATE", "overrides": {"torii_width": 3.6, "torii_height": 4.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_SANDO", "overrides": {"gb_length": 8.0, "gb_width": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_SANDO", "overrides": {"gb_length": 6.0, "gb_width": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_GOJU_PAGODA", "overrides": {"pagoda_tiers": 5, "pagoda_base_radius": 2.0, "pagoda_tier_height": 1.2, "pagoda_taper": 0.82, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_TAHOTO", "overrides": {"gb_width": 3.2, "gb_height": 6.5, "zen_tahoto_roof_span": 0.35, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_HONDEN", "overrides": {"gb_width": 5.5, "gb_depth": 4.5, "gb_height": 3.6, "zen_honden_platform_rise": 0.55, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_LANTERN", "overrides": {"zen_lantern_height": 1.5, "zen_lantern_style": "KASUGA", "gb_trim_mode": "RECESS"}}
+  ]
+}

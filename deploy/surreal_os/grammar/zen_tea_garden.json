@@ -1,0 +1,15 @@
+{
+  "id": "ZEN_TEA_GARDEN",
+  "label": "Zen Tea Garden",
+  "description": "Torii, tobi-ishi, bamboo fence, tsukubai, engawa, teahouse, lantern",
+  "style": "zen",
+  "modules": [
+    {"arch_type": "GB_ZEN_TORII_GATE", "overrides": {"torii_width": 3.2, "torii_height": 3.8, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_TOBIISHI", "overrides": {"gb_length": 6.0, "gb_width": 1.8, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_BAMBOO_FENCE", "overrides": {"gb_length": 6.0, "zen_fence_height": 1.1, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_TSUKUBAI", "overrides": {"gb_width": 1.4, "gb_depth": 1.4, "gb_height": 0.4, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_ENGAWA", "overrides": {"gb_width": 4.5, "gb_depth": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "ZEN_TEAHOUSE", "overrides": {"teahouse_depth": 4.0, "teahouse_width": 4.5}},
+    {"arch_type": "GB_ZEN_LANTERN", "overrides": {"zen_lantern_height": 1.2, "gb_trim_mode": "RECESS"}}
+  ]
+}

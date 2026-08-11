@@ -1,0 +1,147 @@
+/* Cosmic Instruments — clock + compass + surreal UI widgets */
+
+.cosmic-instruments {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 48;
+  pointer-events: auto;
+  opacity: 0.62;
+}
+
+.cosmic-instruments.is-collapsed {
+  opacity: 0.22;
+}
+
+.cosmic-instruments.is-collapsed .instrument {
+  pointer-events: none;
+}
+
+.instrument {
+  pointer-events: auto;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 106, 0.28);
+  background:
+    radial-gradient(circle at 40% 30%, rgba(255, 255, 255, 0.06), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(102, 217, 255, 0.05), transparent 62%),
+    rgba(7, 9, 18, 0.58);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 14px 42px rgba(7, 9, 18, 0.42),
+    inset 0 0 0 1px rgba(102, 217, 255, 0.08),
+    0 0 18px rgba(204, 153, 255, 0.06);
+  overflow: hidden;
+  position: relative;
+}
+
+.instrument .label {
+  display: none;
+}
+
+.instrument svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.instrument .click {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.instrument .click:focus-visible {
+  outline: 2px solid rgba(201, 168, 106, 0.55);
+  outline-offset: 3px;
+}
+
+.cosmic-clock .tick {
+  stroke: rgba(236, 234, 244, 0.18);
+  stroke-width: 1;
+}
+
+.cosmic-clock .ring {
+  fill: none;
+  stroke: rgba(201, 168, 106, 0.26);
+  stroke-width: 1;
+}
+
+.cosmic-clock .hand {
+  stroke-linecap: round;
+}
+
+.cosmic-clock .hand.hour { stroke: rgba(255, 230, 102, 0.78); stroke-width: 2.2; }
+.cosmic-clock .hand.min  { stroke: rgba(204, 153, 255, 0.72); stroke-width: 1.8; }
+.cosmic-clock .hand.sec  { stroke: rgba(102, 217, 255, 0.78); stroke-width: 1.2; }
+
+.cosmic-clock .core {
+  fill: rgba(255, 255, 255, 0.9);
+}
+
+.cosmic-compass .rose {
+  fill: none;
+  stroke: rgba(236, 234, 244, 0.18);
+  stroke-width: 1;
+}
+
+.cosmic-compass .bearing {
+  fill: none;
+  stroke: rgba(102, 217, 255, 0.6);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  animation: compass-needle-wink 7s ease-in-out infinite;
+}
+
+.cosmic-clock .hand.sec {
+  animation: pointer-glimmer 6.5s ease-in-out infinite;
+}
+
+@keyframes pointer-glimmer {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+@keyframes compass-needle-wink {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+.cosmic-compass .cardinal {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  fill: rgba(236, 234, 244, 0.75);
+}
+
+.instrument .nasa {
+  position: absolute;
+  inset: 0;
+  opacity: 0.0;
+  pointer-events: none;
+}
+
+.instrument:hover { opacity: 0.92; }
+
+@media (max-width: 680px) {
+  .cosmic-instruments {
+    right: 10px;
+    bottom: 10px;
+    gap: 8px;
+  }
+  .instrument {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instrument { backdrop-filter: blur(10px); }
+  .cosmic-compass .bearing,
+  .cosmic-clock .hand.sec { animation: none !important; }
+}
+

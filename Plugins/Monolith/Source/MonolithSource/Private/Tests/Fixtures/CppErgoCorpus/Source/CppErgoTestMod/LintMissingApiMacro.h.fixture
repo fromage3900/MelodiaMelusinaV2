@@ -1,0 +1,13 @@
+// Fixture: rule (d) missing <MODULE>_API export macro.
+// The UCLASS-declared type has no CPPERGOTESTMOD_API macro. NOT compiled.
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "LintMissingApiMacro.generated.h"
+
+UCLASS()
+class ULintMissingApiMacro : public UActorComponent
+{
+	GENERATED_BODY()
+};
