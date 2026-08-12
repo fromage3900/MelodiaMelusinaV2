@@ -93,6 +93,8 @@ they confirm the evidence standard, they do not replace it.
     the fix (audit JSONs already rule that out). Interactive runtime evidence remains user-owned.
     This is gameplay-blocking and sits outside the four closeout gates — flag for the gameplay
     lane. (Companion: `Docs/GIT_BATCH_DISCIPLINE.md` exists on disk.)
+    **RESOLVED 2026-08-12 (owner):** "she walks fine now" — locomotion is working in current play;
+    the spec's premise (pawn doesn't walk) is stale. Keep the `.kiro` spec as archive; no action.
 
 ---
 
