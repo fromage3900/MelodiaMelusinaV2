@@ -15,9 +15,12 @@ Policy-based model selection with cost ledger and fallback.
 | `python Tools/model_router.py test [--class <class>]` | Health-check each lane candidate |
 | `python Tools/model_router.py cost` / `ledger` | Per-model spend, call ledger |
 
-Task classes: `triage audit code author review orchestrator vision`.
-Keys: env `OPENROUTER_API_KEY` / `TOKENROUTER_API_KEY`, else read from root
-`.mcp.json` at runtime (no key duplication). Ledger: `Saved/router_ledger.jsonl`.
+Task classes (2026-08-12): `triage audit code cpp mcp playtest author deep review
+orchestrator vision daemon docs`. See
+[`MODEL_LANES_2026-08-12.md`](MODEL_LANES_2026-08-12.md) for cloud vs local policy.
+Keys: env `OPENROUTER_API_KEY` / `TOKENROUTER_API_KEY` / `LOCAL_LLM_BASE_URL` (+
+`LOCAL_LLM_API_KEY`, default `ollama`), else legacy read from root `.mcp.json`.
+Ledger: `Saved/router_ledger.jsonl`. `daemon` class is **local-only** (no silent cloud bill).
 
 ## Playtest Harness — `Tools/playtest_harness.py`
 
@@ -55,10 +58,11 @@ Keyword/structural index over `Docs/`, root docs, ledger, playtest reports.
 
 ## Lane Dispatcher — `Tools/lane_dispatcher.py`
 
-Reads the queue authority (`NEXT_ACTIONS.md`), classifies each item
-(code/audit/author/orchestrator/vision/review), assigns the best model lane via
-the router policy, writes `Saved/dispatch_report.md`. Read-only — never mutates
-the queue.
+Reads **gameplay** queue authority first (closeout plan → core systems handoff →
+vertical slice), and only falls back to `NEXT_ACTIONS.md` (platform/website).
+Classifies into the finer router classes (`cpp`/`mcp`/`playtest`/`daemon`/…),
+assigns lanes via `model_router` policy, writes `Saved/dispatch_report.md`.
+Read-only — never mutates the queue. Override: `--queue <path>`.
 
 ## Notes
 
