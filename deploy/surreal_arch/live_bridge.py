@@ -19,14 +19,15 @@ import bpy
 from bpy.props import BoolProperty, StringProperty, IntProperty, FloatProperty, PointerProperty
 from bpy.types import Panel, Operator, PropertyGroup
 
-from ..branding import N_PANEL_CATEGORY
+from .branding import N_PANEL_CATEGORY
+import os
 
 
 # Material bridge cross-integration
 def _get_material_crosswalk_status() -> str:
     """Read the material crosswalk file and return a status summary."""
     try:
-        from ..material_bridge import load_crosswalk, _crosswalk_path
+        from .material_bridge import load_crosswalk, _crosswalk_path
         cw = load_crosswalk()
         path = _crosswalk_path()
         stem = os.path.basename(path) if os.path.isfile(path) else "no file"
@@ -93,7 +94,7 @@ def _ping_http(url: str, timeout: float = 2.0) -> tuple[bool, str]:
 def _get_livelink_status() -> dict:
     """Get LiveLink (port 9876) bridge status."""
     try:
-        from ..livelink_bridge import is_connected, get_status, ensure_livelink
+        from .livelink_bridge import is_connected, get_status, ensure_livelink
         available = ensure_livelink()
         connected = is_connected() if available else False
         status_str = get_status() if available else "Not installed"
@@ -172,7 +173,7 @@ class BRIB_OT_start_livelink(Operator):
 
     def execute(self, context):
         try:
-            from ..livelink_bridge import ensure_livelink, start_server
+            from .livelink_bridge import ensure_livelink, start_server
             ensure_livelink()
             result = start_server()
             if result:
@@ -196,7 +197,7 @@ class BRIB_OT_stop_livelink(Operator):
 
     def execute(self, context):
         try:
-            from ..livelink_bridge import stop_server
+            from .livelink_bridge import stop_server
             stop_server()
             self.report({"INFO"}, "LiveLink server stopped")
         except Exception as e:
@@ -215,7 +216,7 @@ class BRIB_OT_send_scene(Operator):
 
     def execute(self, context):
         try:
-            from ..livelink_bridge import ensure_livelink, send_scene_to_unreal, is_connected
+            from .livelink_bridge import ensure_livelink, send_scene_to_unreal, is_connected
             ensure_livelink()
             if not is_connected():
                 self.report({"WARNING"}, "LiveLink not connected. Start it first.")
@@ -241,7 +242,7 @@ class BRIB_OT_send_selected(Operator):
 
     def execute(self, context):
         try:
-            from ..livelink_bridge import ensure_livelink, send_selected_to_unreal, is_connected
+            from .livelink_bridge import ensure_livelink, send_selected_to_unreal, is_connected
             ensure_livelink()
             if not is_connected():
                 self.report({"WARNING"}, "LiveLink not connected. Start it first.")
@@ -263,7 +264,7 @@ class BRIB_OT_send_outfit(Operator):
 
     def execute(self, context):
         try:
-            from ..livelink_bridge import ensure_livelink, send_melusina_outfit, is_connected
+            from .livelink_bridge import ensure_livelink, send_melusina_outfit, is_connected
             ensure_livelink()
             if not is_connected():
                 self.report({"WARNING"}, "LiveLink not connected. Start it first.")
@@ -289,7 +290,7 @@ class BRIB_OT_toggle_live_sync(Operator):
 
         if settings.live_sync_enabled:
             try:
-                from ..livelink_bridge import ensure_livelink, start_server
+                from .livelink_bridge import ensure_livelink, start_server
                 ensure_livelink()
                 start_server()
                 self.report({"INFO"}, f"Live sync enabled ({settings.sync_interval}s interval)")
@@ -332,7 +333,7 @@ class BRIB_OT_send_with_materials(Operator):
     bl_options = {"REGISTER"}
 
     def execute(self, context):
-        from ..material_bridge import auto_crosswalk_object, save_crosswalk
+        from .material_bridge import auto_crosswalk_object, save_crosswalk
 
         all_map: dict[str, str] = {}
         for o in context.scene.objects:
@@ -345,7 +346,7 @@ class BRIB_OT_send_with_materials(Operator):
         else:
             self.report({"INFO"}, "No new material mappings found")
 
-        from ..livelink_bridge import ensure_livelink, send_scene_to_unreal, is_connected
+        from .livelink_bridge import ensure_livelink, send_scene_to_unreal, is_connected
         ensure_livelink()
         if not is_connected():
             self.report({"WARNING"}, "LiveLink not connected. Start it first.")

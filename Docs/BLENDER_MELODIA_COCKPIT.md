@@ -9,11 +9,18 @@
 **Character / wardrobe:** [`Docs/MELUSINA_BLENDER_WARDROBE_SSOT.md`](MELUSINA_BLENDER_WARDROBE_SSOT.md)  
 **Live Link** (`Docs/BLENDER_LIVELINK.md`) stays scratch-only → `/Game/LiveLink/` — never Ornament SKU or wardrobe.  
 **MCP (new, 2026-08-06):** `deploy/blender_5.2_mcp.py` — stdio MCP server via `.mcp.json` server `"blender-5.2"`. Launches headless `blender.exe --factory-startup` per tool call. Tools: `get_scene_info`, `get_active_object`, `execute_blender_code`, `list_genomes` (56 styles across 8 groups), `apply_style`, `create_mesh`, `list_materials`, `export_fbx`. No persistent daemon, no TCP sockets.  
-**Legacy MCP (deprecated):** port 9877 TCP socket adapter at `deploy/surreal_arch_mcp_adapter.py` — old 5.1 pattern, kept for reference only.
+**Live GUI MCP (optional):** Cursor `user-blender` / `uvx blender-mcp` on port **9876** (same port as LiveLink TCP — enable BlenderMCP addon in the open 5.2 session).  
+**Legacy MCP (deprecated):** port 9877 TCP socket adapter at `deploy/surreal_arch_mcp_adapter.py` — old 5.1 pattern, kept for reference only. Port **9317** HTTP claims in older docs are not the classroom default.
 
-**Master studio:** Fade Assets Sky Night (`W_MelodiaStudio_Fade`) + Komikaze on `Studio_FloorCard` / diorama (Lane B) + Melusina-framed cams — `Tools/setup_melusina_master_studio.py` (re-run after rig/scale changes; **never move FloorCard** — boot contact). Melusina hair/clothes already use Lane A Komikaze hybrids — see wardrobe SSOT.
+**School install / verify (no AI chat required):**
+```powershell
+cd deploy
+.\install_melodia_studio.ps1
+.\verify_melodia_studio.ps1
+.\run_blender_smoke_queue.ps1
+```
 
-**Melodia Studio / GN status (2026-08-06):** deploy is synced to live Blender 5.2 with music builders, sheet rail, ornament builders, and surreal_arch style registry (56 styles across 8 groups + 18 Escher presets). The GN catalog (`Saved/Audit/melodia_gn_builder_catalog.md`) reports 39/39 registered builders gold/works. Studio review additions: Solo Object (`surreal_arch.solo_object`) and Ivy (Bagapie). `FILIGREE_*` monolith rewrites remain deferred.
+**Melodia Studio / GN status (2026-08-12):** deploy targets Blender 5.2 with **165** registered GN builders (12 categories). Hub panel `SURREAL_ARCH_PT_genome_carousel` nests GN Stack, Stage, bridges, and Living Portrait. Studio review additions: Solo Object (`surreal_arch.solo_object`) and Ivy (Bagapie). `FILIGREE_*` monolith rewrites remain deferred.
 
 ## Core commands
 
@@ -24,7 +31,7 @@
 | Plate batch (musical / hero / outfit) | `… 5.2\blender.exe … -P Tools/run_melodia_plate_batch.py -- --musical --hero --outfit fv2_accordion` |
 | Outfit plate | `… melodia_stage_shot.py -- --preset beauty --lights nikki --subject outfit:<OutfitId>` |
 | Inventory Melusina meshes | `… inventory_melusina_stage_meshes.py` → `Saved/Audit/melusina_stage_mesh_inventory.json` |
-| Ensure Wardrobe_* + import outfit | `… populate_stage_review_queue.py -- --ensure-wardrobe-only` · or `-- --outfit <fbx> --outfit-id <id>` |
+| Ensure Wardrobe_* + import outfit | Prefer `Tools/populate_cathedral_review_queue.py` / `Tools/populate_musical_ornament_review.py` (legacy doc name `populate_stage_review_queue.py` is absent — do not invent it) |
 | Export wardrobe FBX | `… export_melusina_wardrobe.py -- --outfit-id <OutfitId>` → `Exports/MelusinaClothes/` |
 | **Prep ornament + musical authoring** | `python Tools/prep_ornament_music_mesh_session.py` then open stage with `-P Tools/prep_ornament_music_mesh_session.py` (EXPORT + Melodia GN + review grid). Queue: `Saved/Audit/ornament_music_authoring_queue.json` |
 | Cute ornament bake | `blender --factory-startup -b -P Tools/test_cute_gn_ornaments.py` |
@@ -38,7 +45,7 @@
 | Goal | Command |
 |------|---------|
 | Inventory meshes | `blender KitbashExport/Melodia_Portfolio_Stage_v4.blend -b -P Tools/inventory_melusina_stage_meshes.py -- --ensure-wardrobe --save` |
-| Import outfit pack | `… -P Tools/populate_stage_review_queue.py -- --outfit <path.fbx> --outfit-id <id>` |
+| Import outfit pack | Prefer wardrobe inventory + FBX import scripts in wardrobe SSOT; legacy `populate_stage_review_queue.py` is not in repo |
 | Outfit beauty plate | `… -P Tools/melodia_stage_shot.py -- --preset beauty --lights nikki --subject outfit:<id>` |
 | Export clothes FBX | `… -P Tools/export_melusina_wardrobe.py -- --outfit-id <id>` |
 

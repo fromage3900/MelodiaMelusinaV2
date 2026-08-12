@@ -36,7 +36,7 @@ def build_water_gerstner(group_name="MEL_water_gerstner"):
     sep = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 1000, by))
     link_sockets(tree, pos.outputs["Position"], sep.inputs["Vector"])
 
-    time_node = safe_node(tree, "ShaderNodeTime", (bx - 1000, by - 300))
+    time_node = safe_node(tree, "GeometryNodeInputSceneTime", (bx - 1000, by - 300))
     time_sec = safe_node(tree, "ShaderNodeMath", (bx - 900, by - 300))
     time_sec.operation = "MULTIPLY"
     time_sec.inputs[1].default_value = 1.0
@@ -162,7 +162,7 @@ def build_water_ripples(group_name="MEL_water_ripples"):
     dist_root.operation = "SQRT"
     link_sockets(tree, dist.outputs[0], dist_root.inputs[0])
 
-    time_node = safe_node(tree, "ShaderNodeTime", (bx - 1000, by - 400))
+    time_node = safe_node(tree, "GeometryNodeInputSceneTime", (bx - 1000, by - 400))
     time_sec = safe_node(tree, "ShaderNodeMath", (bx - 800, by - 400))
     time_sec.operation = "MULTIPLY"
     time_sec.inputs[1].default_value = 1.0
@@ -188,7 +188,7 @@ def build_water_ripples(group_name="MEL_water_ripples"):
         link_sockets(tree, dist_root.outputs[0], offset.inputs[0])
         link_sockets(tree, ring_r3.outputs[0], offset.inputs[1])
         offset_abs = safe_node(tree, "ShaderNodeMath", (bx + 400, by - 200 - i * 60))
-        offset_abs.operation = "ABS"
+        offset_abs.operation = "ABSOLUTE"
         link_sockets(tree, offset.outputs[0], offset_abs.inputs[0])
 
         width = safe_node(tree, "ShaderNodeMath", (bx + 550, by - 200 - i * 60))

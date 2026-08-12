@@ -7,7 +7,9 @@ param(
 $ErrorActionPreference = "Stop"
 $deploy = $PSScriptRoot
 $blender = @(
+    "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe",
     "C:\Program Files\Blender Foundation\Blender 5.1\blender.exe",
+    "C:\Program Files\Blender Foundation\Blender 4.5\blender.exe",
     "C:\Program Files\Blender Foundation\Blender 4.2\blender.exe"
 ) | Where-Object { Test-Path $_ } | Select-Object -First 1
 
