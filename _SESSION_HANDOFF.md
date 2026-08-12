@@ -1,4 +1,68 @@
-# Session Handoff — 2026-08-11 (agent infrastructure, intake, repo v2, UI fix)
+# Session Handoff — 2026-08-12 (source-control hardening + lane dispatch)
+
+**Session type:** repo/backup audit, gitignore fix, agent handoffs. **No editor or UE writes.**
+**Repo:** `main` @ `43d0a9ae`, tracking `v2/main`. **Two writers active this session** (this lane
++ Muse). Read `Docs/Reports/BACKUP_SYNC_AUDIT_2026-08-12.md` first.
+
+## What changed
+
+- **`43d0a9ae` — the playable route levels are now under version control.** `L_MelusinaMorning`
+  and `L_KaleidoNave` had **no history at all**; the `Content/*` blanket in `.gitignore` never had
+  a matching un-ignore. KaleidoNave is the only level in which a battle has ever started. Also
+  tracked: `Content/Melodia/{Levels,PCG}/**`, `Content/EnvSandbox/{Environments,PCG}/**` —
+  214 files, ~48 MB LFS. Bulk EnvSandbox art (~4.6 GB) stays ignored on purpose; the reasoning is
+  written into `.gitignore` so a future cleanup does not undo it.
+- **`0e34eaed` (Muse lane) — `static_gates` moved from FAIL to PASSING.** 12 material drifts
+  accepted, graph_reachability/bp_sweep scoped to shipped defects.
+- **LFS budget funded** — ~$10 ≈ 50 GB as of today. The 512 MB per-change CI gate still applies.
+
+## Two corrections to earlier docs on this date
+
+1. **`BP_BattleController` and `BP_BattleUI` were always tracked** (`.gitignore:128-134`). The
+   first version of the backup audit said otherwise; that came from a `git check-ignore` against a
+   path missing the `/Battle/` segment. No asset was ever at risk.
+2. **`SK_Melusina` needed nothing.** One live mesh, at `Content/Characters/Melusina/`, already
+   tracked. The `Content/Art/` and `Content/Melodia/Characters/` copies are stale leftovers.
+
+## Gates
+
+`runtime` **fail** (honest) · `static_gates` **pass** (new today) · `save_load`,
+`repeat_consume`, `package_launch` **open**. 13 earlier gates pass. `release_tag.yml` correctly
+refuses to cut a release until the four completion gates have rows.
+
+**The `runtime` gate needs the editor and real Q/W/O/P keys through `BP_BattleUI::OnKeyDown`.**
+No agent lane can close it. Everything dispatched below exists to shorten that editor session.
+
+## Active lanes
+
+| Lane | Handoff | Owns |
+|---|---|---|
+| **Muse** (WSL2, host) | `Docs/Handoffs/MUSE_HANDOFF_2026-08-12.md` | Code edits. M1 wire `RestorePartyAfterBattle` (zero callers today — the real gap), M2 `lane_dispatcher.py` queue, M3 memory index, M4 split AGENTS.md, M5 commit 13 loose `surreal_arch` modules |
+| **DeepSeek** (cloud, read-only) | `Docs/Handoffs/DEEPSEEK_HANDOFF_2026-08-12.md` | Verdicts only. D1 save idempotency, D2 result matrix, D3 input-path chain for `MELODIA_RHYTHM session=`, D4 Q/W/O/P ergonomics |
+
+Lane separation table is in the DeepSeek handoff §"Lane separation". Muse owns `Source/**` and
+`Tools/**`; DeepSeek writes new `Docs/Reports/*_VERDICT_*.md` files only.
+
+## Open owner decisions
+
+1. **Rotate the Figma API key** — public on v2, doc redacted in `87b2938d`, live key still valid.
+   Carried from 08-11, still open.
+2. **Four `WP/` portfolio levels are G:-only** — BaroqueGrotto, CosmicOrrery, SakuraDream,
+   SpaceCathedral. No version history, no C: copy. Cheap to promote now the budget is funded;
+   needs a call on whether they are current or superseded.
+3. **`G:` has 2.1 GB free of 1 TB.** The next mirror pass will fail partway.
+4. **Two Quaternius animation dependencies are absent** from every C: and G: copy searched and
+   from the tracked tree. These appear genuinely lost.
+
+## Working-tree leftovers (not committed)
+
+13 new + 3 modified `deploy/surreal_arch/melodia_gn/` Python modules (Muse M5), `.agents/`, and
+~15 root scratch scripts (`check_bp*.py`, `fix_rhythm*.py`, `pie_*.py`, `pie_smoke_*.json`) —
+session debris, propose a `.gitignore` line rather than deleting.
+
+---
+
+# Previous session (2026-08-11) — agent infrastructure, intake, repo v2, UI fix
 
 **Session type:** Multi-agent infra expansion + read-only intake + repo migration + editor fix
 **Project phase:** UE 5.8 production JRPG + QuillScript integration
