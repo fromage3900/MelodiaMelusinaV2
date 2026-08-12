@@ -52,9 +52,12 @@ Content/ZenForestTest_HLODLayer_*
 Content/__ExternalActors__/ZenForestTest/
 Content/__ExternalActors__/ZenForestTest_WP/
 
-# Python cache
+# Python cache / Blender autosave junk
 Content/Python/__pycache__/
+**/__pycache__/
 *.pyc
+*.pyo
+*.blend1
 **/.venv/
 .env.local
 # Unreal scratch assets created by editor-analysis scripts; these are not project source.
