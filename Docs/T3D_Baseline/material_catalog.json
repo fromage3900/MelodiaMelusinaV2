@@ -12,13 +12,13 @@
           "name": "M_Master_Impressionist_Toon",
           "ue_path": "/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon",
           "file": "materials/M_Master_Impressionist_Toon.t3d",
-          "payload_bytes": 173699,
+          "payload_bytes": 170067,
           "nodes": 124,
-          "sha256": "b6c61396c8a958490e0252a2657a43a1cdbed0147ae25e8a2a79b443ad2572d7",
+          "sha256": "dc544ab58a8c9852e235f4323141ff0ee07d94809ced0eae0db829e4d21f0912",
           "tags": [
             "impressionist"
           ],
-          "lines": 1377
+          "lines": 1329
         },
         {
           "name": "M_Master_Impressionist_Toon_Landscape",
@@ -37,13 +37,13 @@
           "name": "M_Master_Nikki",
           "ue_path": "/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki",
           "file": "materials/M_Master_Nikki.t3d",
-          "payload_bytes": 129280,
-          "nodes": 108,
-          "sha256": "17802d68ca4cb18bc009417da1a2242fa2a46d4698898b71165e7b1d1aa76d36",
+          "payload_bytes": 121788,
+          "nodes": 102,
+          "sha256": "6db9f516af4dbe1a8767a417474830473e61000d6e4026507683b39dacabf192",
           "tags": [
             "nikki"
           ],
-          "lines": 1210
+          "lines": 1142
         },
         {
           "name": "M_Master_Nikki_Landscape",
@@ -94,13 +94,13 @@
           "name": "M_Master_Toon_Landscape_HeightBlend",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend",
           "file": "materials/M_Master_Toon_Landscape_HeightBlend.t3d",
-          "payload_bytes": 442385,
-          "nodes": 301,
-          "sha256": "a6bf0f230b3af5f1272b3e2b6e3cf1cd8e2c3899e44e0748b329e39b8e71944f",
+          "payload_bytes": 427468,
+          "nodes": 290,
+          "sha256": "425ad0d5356bab2c7ac22b45a1b756bd9c0e620e9ad001933b9ce394f4a499d1",
           "tags": [
             "landscape"
           ],
-          "lines": 3508
+          "lines": 3374
         },
         {
           "name": "M_Master_Toon_Unified",
@@ -118,14 +118,14 @@
           "file": "materials/M_Master_Toon_Universal.t3d",
           "payload_bytes": 1571495,
           "nodes": 1201,
-          "sha256": "06e6c46e482eb3e69c645d7114f3e9adc970d9ae61a71b8cd4edce9b61783d65",
+          "sha256": "bdb4ad27dbd83742f6d14c40ce63c9afdbf5cf2bf0a9f11f67e46f2b8e8382de",
           "tags": [],
           "lines": 13293
         }
       ],
       "count": 10,
-      "payload_bytes": 4049443,
-      "nodes": 3100
+      "payload_bytes": 4023402,
+      "nodes": 3083
     },
     "Material Functions": {
       "display": "Material Functions",
@@ -134,11 +134,11 @@
           "name": "MF_AnimeSkinWrap",
           "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_AnimeSkinWrap",
           "file": "materials/MF_AnimeSkinWrap.t3d",
-          "payload_bytes": 292197,
-          "nodes": 256,
-          "sha256": "ceee681817ef32794deac22545cf7e537413781a7421d54f58e50874ff17feb4",
+          "payload_bytes": 163367,
+          "nodes": 144,
+          "sha256": "70aa22f03316a41520d4fc668e52d712267c3ba5b9f525f8abc343be4c638c28",
           "tags": [],
-          "lines": 2497
+          "lines": 1401
         },
         {
           "name": "MF_ClothWindDrape",
@@ -178,13 +178,13 @@
           "name": "MF_Impressionist_BrushStroke",
           "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke",
           "file": "materials/MF_Impressionist_BrushStroke.t3d",
-          "payload_bytes": 102519,
-          "nodes": 85,
-          "sha256": "ceed32f5eb6fbf9824ab59a39bde4c747569d48cfe8cf460585de191ba76d287",
+          "payload_bytes": 14391,
+          "nodes": 13,
+          "sha256": "34e6acb3f88db72507fa60fc8d37d6dce5fcf777a74217a3b5a951b1bfccc358",
           "tags": [
             "impressionist"
           ],
-          "lines": 824
+          "lines": 120
         },
         {
           "name": "MF_Impressionist_Impasto",
@@ -202,25 +202,25 @@
           "name": "MF_Impressionist_InkPool",
           "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_InkPool",
           "file": "materials/MF_Impressionist_InkPool.t3d",
-          "payload_bytes": 101972,
-          "nodes": 85,
-          "sha256": "f4818939dddfcc5f634477045947d13d8b8e076656c113c3e92143ea2f6d25a7",
+          "payload_bytes": 14250,
+          "nodes": 13,
+          "sha256": "1f06e2770477db8f1bc821cb87f5f6cd12d9e8af0d7c5ddf24fc69467206c8c0",
           "tags": [
             "impressionist"
           ],
-          "lines": 861
+          "lines": 125
         },
         {
           "name": "MF_Impressionist_Temporal",
           "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal",
           "file": "materials/MF_Impressionist_Temporal.t3d",
-          "payload_bytes": 132979,
-          "nodes": 112,
-          "sha256": "fd0f264cb2c904232bc5aee783dece6a8303eb46e071507fa7cc80c5bde86cf2",
+          "payload_bytes": 17689,
+          "nodes": 16,
+          "sha256": "c3a7d5044930f0e9367b1c9608e9b312c586bfa662e61005cb553deb9694370f",
           "tags": [
             "impressionist"
           ],
-          "lines": 1103
+          "lines": 151
         },
         {
           "name": "MF_IridescenceSheen",
@@ -296,25 +296,25 @@
           "name": "MF_MeluPaletteColors",
           "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors",
           "file": "materials/MF_MeluPaletteColors.t3d",
-          "payload_bytes": 9319,
+          "payload_bytes": 9715,
           "nodes": 9,
-          "sha256": "ae5fad39db617db8eac08da324ca43652c1abf9dd5e7c72ce04fa1a812146307",
+          "sha256": "8ee3b1bbcb3c9a6770efc5a8eb2757c2650f6229a0dd78c6da64a8f8fd346de1",
           "tags": [
             "melusina"
           ],
-          "lines": 77
+          "lines": 80
         },
         {
           "name": "MF_MeluSparkle",
           "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle",
           "file": "materials/MF_MeluSparkle.t3d",
-          "payload_bytes": 20093,
+          "payload_bytes": 20229,
           "nodes": 19,
-          "sha256": "782294f0905215586c2bb77f8fc8e6fcf053a8fb7ed3813d5064fb2bf747d0e1",
+          "sha256": "7746e341c1638cbaab9e1477f114531ac6382d77181accf30882d6701e6ec451",
           "tags": [
             "melusina"
           ],
-          "lines": 163
+          "lines": 164
         },
         {
           "name": "MF_MeluTemporalJitter",
@@ -429,13 +429,13 @@
           "name": "MF_SDF_BandRelief",
           "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_SDF_BandRelief",
           "file": "materials/MF_SDF_BandRelief.t3d",
-          "payload_bytes": 415727,
-          "nodes": 373,
-          "sha256": "36a7d245cbf048a55f828a7d06851dd2d0780482fc335b23b92446e02edac7d5",
+          "payload_bytes": 335121,
+          "nodes": 301,
+          "sha256": "f7acb0099de691125d33ec12197beb3055d7b3baf166ca95d5fef9f879b55e83",
           "tags": [
             "sdf"
           ],
-          "lines": 3639
+          "lines": 2935
         },
         {
           "name": "MF_Triplanar_Stable",
@@ -449,8 +449,8 @@
         }
       ],
       "count": 27,
-      "payload_bytes": 2572558,
-      "nodes": 2185
+      "payload_bytes": 2072514,
+      "nodes": 1761
     },
     "Parameter Collections": {
       "display": "Parameter Collections",
@@ -459,17 +459,17 @@
           "name": "MPC_Melodia_Palette",
           "ue_path": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
           "file": "materials/MPC_Melodia_Palette.t3d",
-          "payload_bytes": 6287,
+          "payload_bytes": 7198,
           "nodes": 1,
-          "sha256": "02797a533979a3e6a6f244ca124489f7d3c272f8854e78721f4a4843c3a57fba",
+          "sha256": "d13e128e734559e97ea2776de72505e1a45122f752521926af1bb3e4e0feeaab",
           "tags": [
             "melusina"
           ],
-          "lines": 56
+          "lines": 65
         }
       ],
       "count": 1,
-      "payload_bytes": 6287,
+      "payload_bytes": 7198,
       "nodes": 1
     },
     "Toon Profiles": {
@@ -663,7 +663,7 @@
       "nodes": 17
     }
   },
-  "total_payload_bytes": 6636491,
-  "total_nodes": 5303,
+  "total_payload_bytes": 6111317,
+  "total_nodes": 4862,
   "format": "raw T3D payload text (LF). Metadata lives in this catalog, not in the files."
 }
