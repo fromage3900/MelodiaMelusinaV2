@@ -230,7 +230,6 @@ def build_instance_on_spline(group_name="MEL_instance_on_spline"):
     link_sockets(tree, spline_sock, resample.inputs["Curve"])
     if count_n:
         try:
-            resample.mode = "COUNT"
             link_sockets(tree, count_n, resample.inputs["Count"])
         except Exception:
             res_in = resample.inputs.get("Count")
@@ -283,8 +282,8 @@ def build_spiral_array(group_name="MEL_spiral_array"):
     if curve:
         link_sockets(tree, gin.outputs["Count"], curve.inputs["Resolution"])
         link_sockets(tree, gin.outputs["Turns"], curve.inputs["Rotations"])
-        link_sockets(tree, gin.outputs["Radius"], curve.inputs["Radius"])
-        link_sockets(tree, gin.outputs["Radius Growth"], curve.inputs["Radius Growth"])
+        link_sockets(tree, gin.outputs["Radius"], curve.inputs["Start Radius"])
+        link_sockets(tree, gin.outputs["Radius Growth"], curve.inputs["End Radius"])
         link_sockets(tree, gin.outputs["Height"], curve.inputs["Height"])
         color_node(curve, "curve")
 
@@ -381,7 +380,6 @@ def build_weighted_array(group_name="MEL_weighted_array"):
 
     dist_points = safe_node(tree, "GeometryNodeDistributePointsOnFaces", (bx - 200, by + 150))
     if dist_points:
-        dist_points.distribute_method = "POISSON"
         link_sockets(tree, gin.outputs["Geometry"], dist_points.inputs["Mesh"])
         link_sockets(tree, gin.outputs["Count"], dist_points.inputs["Density"])
         link_sockets(tree, gin.outputs["Random Seed"], dist_points.inputs["Seed"])
@@ -448,7 +446,6 @@ def build_curve_array(group_name="MEL_curve_array"):
 
     resample = safe_node(tree, "GeometryNodeResampleCurve", (bx - 300, by + 150))
     if resample:
-        resample.mode = "COUNT"
         link_sockets(tree, geo_in, resample.inputs["Curve"])
         link_sockets(tree, gin.outputs["Count"], resample.inputs["Count"])
         color_node(resample, "curve")

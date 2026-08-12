@@ -32,13 +32,13 @@ def build_bevel_profile(group_name="MEL_bevel_profile"):
     add_bool_param(tree, "Only Vertices", False)
     add_bool_param(tree, "Limit to Selected", False)
 
-    bevel = safe_node(tree, "GeometryNodeBevelMesh", (bx, by))
+    bevel = safe_node(tree, "GeometryNodeMeshBevel", (bx, by))
     if bevel:
-        link_sockets(tree, gin.outputs["Geometry"], bevel.inputs["Geometry"])
-        link_sockets(tree, gin.outputs["Width"], bevel.inputs["Radius"])
+        link_sockets(tree, gin.outputs["Geometry"], bevel.inputs["Mesh"])
+        link_sockets(tree, gin.outputs["Width"], bevel.inputs["Offset"])
         link_sockets(tree, gin.outputs["Segments"], bevel.inputs["Segments"])
         link_sockets(tree, gin.outputs["Profile"], bevel.inputs["Profile"])
-        if "Only Vertices" in gin.outputs:
+        if "Only Vertices" in gin.outputs and "Only Vertices" in bevel.inputs:
             link_sockets(tree, gin.outputs["Only Vertices"], bevel.inputs["Only Vertices"])
         if "Limit to Selected" in gin.outputs and "Selection" in bevel.inputs:
             link_sockets(tree, gin.outputs["Limit to Selected"], bevel.inputs["Selection"])
@@ -68,20 +68,8 @@ def build_weighted_bevel(group_name="MEL_weighted_bevel"):
     add_float_param(tree, "Weight Scale", 1.0, 0.0, 5.0)
     add_bool_param(tree, "Use Bevel Weight", True)
 
-    # Capture bevel_weight attribute if it exists
-    cap_weight = safe_node(tree, "GeometryNodeCaptureAttribute", (bx - 300, by + 100))
-    if cap_weight:
-        cap_weight.data_type = "FLOAT"
-        cap_weight.domain = "EDGE"
-        link_sockets(tree, gin.outputs["Geometry"], cap_weight.inputs["Geometry"])
-        weight_sock = cap_weight.inputs.get("Value")
-        if weight_sock is not None:
-            bevel_weight_exists = False
-            for attr in bpy.data.node_groups.get(tree.name, bpy.data.node_groups.get(group_name)):
-                pass
-            weight_sock.default_value = 1.0
-
-    named = safe_node(tree, "GeometryNodeNamedAttribute", (bx - 300, by - 50))
+    # Bevel-weight fallback: InputNamedAttribute + Mix, or uniform width.
+    named = safe_node(tree, "GeometryNodeInputNamedAttribute", (bx - 300, by - 50))
     if named:
         named.data_type = "FLOAT"
         named.inputs["Name"].default_value = "bevel_weight"
@@ -105,10 +93,10 @@ def build_weighted_bevel(group_name="MEL_weighted_bevel"):
         else:
             weighted.inputs[1].default_value = 1.0
 
-    bevel = safe_node(tree, "GeometryNodeBevelMesh", (bx + 300, by))
+    bevel = safe_node(tree, "GeometryNodeMeshBevel", (bx + 300, by))
     if bevel:
-        link_sockets(tree, gin.outputs["Geometry"], bevel.inputs["Geometry"])
-        link_sockets(tree, weighted.outputs[0], bevel.inputs["Radius"])
+        link_sockets(tree, gin.outputs["Geometry"], bevel.inputs["Mesh"])
+        link_sockets(tree, weighted.outputs[0], bevel.inputs["Offset"])
         link_sockets(tree, gin.outputs["Segments"], bevel.inputs["Segments"])
         link_sockets(tree, bevel.outputs["Mesh"], gout.inputs["Geometry"])
         color_node(bevel, "geometry")
@@ -133,20 +121,20 @@ def build_multi_bevel(group_name="MEL_multi_bevel"):
     geo = gin.outputs["Geometry"]
 
     # First bevel — main chamfer
-    bevel_1 = safe_node(tree, "GeometryNodeBevelMesh", (bx - 100, by + 100))
+    bevel_1 = safe_node(tree, "GeometryNodeMeshBevel", (bx - 100, by + 100))
     if bevel_1:
-        link_sockets(tree, geo, bevel_1.inputs["Geometry"])
-        link_sockets(tree, gin.outputs["Main Bevel"], bevel_1.inputs["Radius"])
+        link_sockets(tree, geo, bevel_1.inputs["Mesh"])
+        link_sockets(tree, gin.outputs["Main Bevel"], bevel_1.inputs["Offset"])
         link_sockets(tree, gin.outputs["Main Segments"], bevel_1.inputs["Segments"])
         link_sockets(tree, gin.outputs["Main Profile"], bevel_1.inputs["Profile"])
         geo = bevel_1.outputs["Mesh"]
         color_node(bevel_1, "geometry")
 
     # Second bevel — micro chamfer on remaining sharp edges
-    bevel_2 = safe_node(tree, "GeometryNodeBevelMesh", (bx + 150, by - 50))
+    bevel_2 = safe_node(tree, "GeometryNodeMeshBevel", (bx + 150, by - 50))
     if bevel_2:
-        link_sockets(tree, geo, bevel_2.inputs["Geometry"])
-        link_sockets(tree, gin.outputs["Micro Bevel"], bevel_2.inputs["Radius"])
+        link_sockets(tree, geo, bevel_2.inputs["Mesh"])
+        link_sockets(tree, gin.outputs["Micro Bevel"], bevel_2.inputs["Offset"])
         link_sockets(tree, gin.outputs["Micro Segments"], bevel_2.inputs["Segments"])
         link_sockets(tree, gin.outputs["Micro Profile"], bevel_2.inputs["Profile"])
         geo = bevel_2.outputs["Mesh"]
@@ -185,8 +173,7 @@ def build_inset_faces(group_name="MEL_inset_faces"):
     # Scale the extruded top faces inward to create the inset
     scale = safe_node(tree, "GeometryNodeScaleElements", (bx + 200, by))
     if scale:
-        scale.domain = "FACE"
-        scale.scale = 0.8
+        scale.inputs["Scale"].default_value = 0.8
         if gin.outputs["Individual Faces"]:
             scale_mul = safe_node(tree, "ShaderNodeMath", (bx, by - 100))
             scale_mul.operation = "MULTIPLY"
@@ -250,7 +237,7 @@ def build_poke_faces(group_name="MEL_poke_faces"):
     scale_elems = safe_node(tree, "GeometryNodeScaleElements", (bx + 200, by))
     if scale_elems:
         scale_elems.domain = "FACE"
-        scale_elems.scale = 0.01
+        scale_elems.inputs["Scale"].default_value = 0.01
         link_sockets(tree, geo, scale_elems.inputs["Geometry"])
         link_sockets(tree, scale_elems.outputs["Geometry"], gout.inputs["Geometry"])
         color_node(scale_elems, "geometry")
@@ -340,7 +327,7 @@ def build_remesh_dual(group_name="MEL_remesh_dual"):
     add_bool_param(tree, "Preserve Crease", True)
     add_bool_param(tree, "Smooth Result", True)
 
-    dual = safe_node(tree, "GeometryNodeMeshToDualMesh", (bx, by))
+    dual = safe_node(tree, "GeometryNodeDualMesh", (bx, by))
     if dual:
         link_sockets(tree, gin.outputs["Geometry"], dual.inputs["Mesh"])
         if gin.outputs["Preserve Crease"] and "Crease" in dual.inputs:
@@ -382,7 +369,6 @@ def build_smooth_laplacian(group_name="MEL_smooth_laplacian"):
             link_sockets(tree, factor, blur.inputs["Weight"])
 
         link_sockets(tree, pos.outputs["Position"], blur.inputs["Value"])
-        link_sockets(tree, gin.outputs["Geometry"], blur.inputs["Geometry"])
 
         set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx + 100, by))
         if set_pos:

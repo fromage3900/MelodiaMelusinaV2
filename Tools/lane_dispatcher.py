@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from model_router import POLICY, BLOCKED  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-QUEUE = os.path.join(ROOT, "NEXT_ACTIONS.md")
+QUEUE = os.path.join(ROOT, "_VERTICAL_SLICE_SCOPE.md")
 REPORT = os.path.join(ROOT, "Saved", "dispatch_report.md")
 
 CLASSIFIER = {
