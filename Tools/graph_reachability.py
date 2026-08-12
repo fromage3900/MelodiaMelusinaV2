@@ -104,7 +104,14 @@ def _is_editor_only_class(cls_name: str) -> bool:
 def _looks_like_event(node: dict, graph_name: str = "") -> bool:
     cls = node.get("class", "")
     title = node.get("title", node.get("name", "")) or ""
-    if cls in ("K2Node_Event", "K2Node_CustomEvent"):
+    if cls in ("K2Node_Event", "K2Node_CustomEvent", "K2Node_ComponentBoundEvent"):
+        return True
+    # Input action/key/touch/axis nodes are event entries: the input system
+    # fires them, so they have no upstream exec path. Missing them flagged live
+    # input chains (e.g. BP_PlayerUnitBase Attack/Skill/Item/Flee) as dead
+    # islands (2026-08-11).
+    if cls in ("K2Node_InputAction", "K2Node_InputKey", "K2Node_InputTouch",
+               "K2Node_InputAxisEvent"):
         return True
     if cls == "K2Node_FunctionEntry":
         return True
@@ -284,58 +291,68 @@ def _scan_graph(graph: dict, asset_path: str, result: LintResult) -> list[Violat
 def lint_blueprint(asset_path: str) -> LintResult:
     result = LintResult(asset_path=asset_path)
 
+    # Enumerate graphs first. export_graph without a graph_name only works
+    # for assets whose primary graph is EventGraph; function libraries and
+    # AnimNotifies have only named function graphs ("Graph not found").
     try:
-        resp = monolith("blueprint_query", {"action": "export_graph", "asset_path": asset_path})
-        raw = json.loads(resp) if isinstance(resp, str) else resp
-        data = raw if isinstance(raw, dict) else {}
-    except Exception as e:
-        result.violations.append(Violation(
-            bp=asset_path,
-            graph="?",
-            node="?",
-            check="connectivity",
-            message=f"Failed to export graph: {e}",
-        ))
+        resp0 = monolith("blueprint_query", {"action": "list_graphs", "asset_path": asset_path}, timeout=60)
+        raw0 = json.loads(resp0) if isinstance(resp0, str) else resp0
+        raw_graphs = raw0.get("graphs", []) if isinstance(raw0, dict) else raw0
+        graph_names = [g["name"] if isinstance(g, dict) else g for g in raw_graphs]
+        listed = True
+    except Exception:
+        graph_names = []
+        listed = False
+
+    graphs: list[dict] = []
+    seen: set[str] = set()
+
+    if listed and not graph_names:
+        # Asset has no graphs at all (e.g. an empty function library) —
+        # nothing to scan, and an empty graph list is not an export failure.
         return result
 
-    # Collect all graphs — export_graph returns one, but we can also
-    # request all functions via export_all
-    graphs = data.get("graphs", data.get("graphs_data", []))
-    if isinstance(graphs, dict):
-        graphs = [graphs]
-
-    # Single graph result (just EventGraph) — try to get more
-    if not graphs and data.get("nodes"):
-        graphs = [data]
-
-    # If only EventGraph was returned, also try to discover other function graphs
-    graph_names_seen = {g.get("name", g.get("graph_name", "")) for g in graphs}
-
-    # Try alternate endpoint to list all function graphs
-    try:
-        resp2 = monolith("blueprint_query", {"action": "list_graphs", "asset_path": asset_path})
-        raw2 = json.loads(resp2) if isinstance(resp2, str) else resp2
-        all_graph_names_raw = raw2 if isinstance(raw2, list) else raw2.get("graphs", raw2.get("graph_names", []))
-        all_graph_names = [g["name"] if isinstance(g, dict) else g for g in all_graph_names_raw]
-    except Exception:
-        all_graph_names = []
-
-    for gname in all_graph_names:
-        if gname in graph_names_seen:
-            continue
+    for gname in (graph_names if graph_names else [None]):
         try:
-            resp3 = monolith("blueprint_query", {
-                "action": "export_graph",
-                "asset_path": asset_path,
-                "graph_name": gname,
-            })
-            raw3 = json.loads(resp3) if isinstance(resp3, str) else resp3
-            gdata = raw3 if isinstance(raw3, dict) else {}
-            if gdata.get("nodes"):
-                graphs.append(gdata)
-                graph_names_seen.add(gname)
-        except Exception:
-            pass
+            params = {"action": "export_graph", "asset_path": asset_path}
+            if gname is not None:
+                params["graph_name"] = gname
+            resp = monolith("blueprint_query", params, timeout=60)
+            raw = json.loads(resp) if isinstance(resp, str) else resp
+            gdata = raw if isinstance(raw, dict) else {}
+            nodes = gdata.get("nodes") or []
+            if nodes:
+                # export_graph may return one graph or a list under "graphs"
+                if gdata.get("graphs"):
+                    graphs.extend(gdata["graphs"])
+                else:
+                    graphs.append(gdata)
+                    seen.add(gname)
+        except Exception as e:
+            result.violations.append(Violation(
+                bp=asset_path,
+                graph=gname or "?",
+                node="?",
+                check="connectivity",
+                message=f"Failed to export graph: {e}",
+            ))
+
+    # Single-graph legacy result without graph_name (no list_graphs support)
+    if not graphs and not listed:
+        try:
+            resp = monolith("blueprint_query", {"action": "export_graph", "asset_path": asset_path}, timeout=60)
+            raw = json.loads(resp) if isinstance(resp, str) else resp
+            data = raw if isinstance(raw, dict) else {}
+            if data.get("nodes"):
+                graphs = [data]
+        except Exception as e:
+            result.violations.append(Violation(
+                bp=asset_path,
+                graph="?",
+                node="?",
+                check="connectivity",
+                message=f"Failed to export graph: {e}",
+            ))
 
     for graph in graphs:
         violations = _scan_graph(graph, asset_path, result)
@@ -348,12 +365,36 @@ def lint_blueprint(asset_path: str) -> LintResult:
 # Discover Melodia blueprints
 # ---------------------------------------------------------------------------
 
+# Same prefixes as bp_regression_checker.py --all scans.
+SCAN_PREFIXES = ("/Game/TurnBasedJRPGTemplate", "/Game/MelodiaIntegration", "/Game/Melodia")
+
+
 def _discover_melodia_bps() -> list[str]:
+    """Discover Blueprints via the AssetRegistry (same path as bp_sweep.py).
+
+    project_query search caps at 50 results and does not scope by path, so it
+    is not usable for discovery (schema drift 2026-08-11). This path reads
+    /Game recursively and filters client-side to SCAN_PREFIXES.
+    """
     try:
-        resp = monolith("project_query", {"action": "search", "type": "Blueprint", "path": "/Game/Melodia"})
+        code = (
+            "import json, unreal\n"
+            "ar = unreal.AssetRegistryHelpers.get_asset_registry()\n"
+            "f = unreal.ARFilter(package_paths=['/Game'], recursive_paths=True,\n"
+            "                    class_names=['Blueprint','WidgetBlueprint'])\n"
+            "out = [str(a.package_name) for a in ar.get_assets(f)]\n"
+            'print("__REACH__" + json.dumps(out))\n'
+        )
+        resp = monolith("editor_query", {"action": "run_python", "params": {"command": code}})
         raw = json.loads(resp) if isinstance(resp, str) else resp
-        assets = raw if isinstance(raw, list) else raw.get("results", raw.get("assets", []))
-        return [a.get("path", a) if isinstance(a, dict) else a for a in assets]
+        if not raw.get("ok", raw.get("success")):
+            raise RuntimeError(json.dumps(raw)[:200])
+        for item in raw.get("output", []):
+            for line in str(item.get("output", "")).splitlines():
+                if line.startswith("__REACH__"):
+                    assets = json.loads(line[len("__REACH__"):])
+                    return [a for a in assets if a.startswith(SCAN_PREFIXES)]
+        raise RuntimeError("no result marker")
     except Exception as e:
         print(f"Failed to discover Melodia Blueprints: {e}", file=sys.stderr)
         return []

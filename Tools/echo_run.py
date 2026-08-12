@@ -291,7 +291,7 @@ def run_bp_live_path(timeout: int = 600) -> bool:
     """Check configured live-path targets, failing on ORPHAN/AMBIGUOUS."""
     raw_targets = os.environ.get(
         "MELODIA_ECHO_LIVE_PATH_ASSETS",
-        "BP_BattleUI,BP_MelodiaJRPGGameMode",
+        "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_BattleUI,BP_MelodiaJRPGGameMode",
     )
     targets = [target.strip() for target in raw_targets.split(",") if target.strip()]
     if not targets:
