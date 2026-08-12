@@ -4,11 +4,11 @@ Simple queue for phone agents. Prefer updating this file over inventing parallel
 
 ## Now
 
-1. **Merge prep (GitHub):** [#4](https://github.com/fromage3900/MelodiaMelusinaV2/pull/4) git health → slim RestoreParty PR (`cursor/restore-party-controller-e6ac`) → optional [#3](https://github.com/fromage3900/MelodiaMelusinaV2/pull/3) phone handoff. Prefer slim restore over full [#1](https://github.com/fromage3900/MelodiaMelusinaV2/pull/1) if foundation conflicts.
-2. **PC sync:** on `C:\EnvironmentPortfolio\BS_GodFile`, fetch/pull `main`; one UnrealEditor + Monolith `:9316`.
-3. **Closed-editor build** then PIE: highway ownership (`bExecutionDrivingHighway`) + RestoreParty log (`MELODIA_RECOVERY restored…`).
-4. **Runtime gate:** `python Tools/playtest_harness.py` real keys (not probe); assertion JSON + `record_gate.py runtime pass|fail`.
-5. Maintain `Docs/PhoneOps/` as the mobile entry; jcode Recipe A/B only if swarm is the day’s side lane.
+1. **Merge on GitHub (still open):** [#4](https://github.com/fromage3900/MelodiaMelusinaV2/pull/4) git health → [#6](https://github.com/fromage3900/MelodiaMelusinaV2/pull/6) RestoreParty (rebased). Then pull `C:\EnvironmentPortfolio\BS_GodFile`.
+2. **PIE board:** [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](../Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) — Quill/WillScript verify; fix dreamstate/collider battle path; rhythm highway PIE.
+3. **Closed-editor build** → RestoreParty log + highway ownership observation.
+4. **Runtime gate:** `playtest_harness.py` real keys → assertion JSON → `record_gate.py runtime`.
+5. Maintain PhoneOps; optional [#3](https://github.com/fromage3900/MelodiaMelusinaV2/pull/3) / [#5](https://github.com/fromage3900/MelodiaMelusinaV2/pull/5).
 
 ## Next
 

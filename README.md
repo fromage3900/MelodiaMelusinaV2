@@ -43,7 +43,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 
 ## 🎮 Primary Track: First Dream Vertical Slice
 
-> **Status (2026-08-12):** Core loop is implemented. Closeout source checks: damage-scalar sequencing **PASS**; `curentMP` spelling **RESOLVED**; RestoreParty call site ready on **PR #6** (not yet on `main`). Rhythm HUD text opacity fixed in-editor (Content often untracked). Highway ownership (`bExecutionDrivingHighway`) is in MelodiaCore source but needs a closed-editor build + PIE. Per the evidence standard, the `runtime` gate stays **OPEN** until real keyboard input through `BP_BattleUI::OnKeyDown` is recorded with assertion JSON + a ledger row — probe-only runs are not play evidence.
+> **Status (2026-08-12 evening):** `static_gates` **PASS**. `runtime` still **OPEN/FAIL** until real-input ledger. Playable levels now tracked on `main`. RestoreParty on **PR #6** (rebased, not merged). Owner: Quill/WillScript updated (verify owed); P0 battles still broken on dreamstate/collider paths; rhythm highway unverified. Board: [PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
 
 ### The loop
 
