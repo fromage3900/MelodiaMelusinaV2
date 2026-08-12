@@ -1,16 +1,14 @@
-# Session Handoff — 2026-08-12 evening (cloud rebase + PIE/runtime notes)
+# Session Handoff — 2026-08-12 late (merge blocked + PIE board)
 
-**Cloud agent refresh after PC day.** Full git-health record:
-[`Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md`](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md).
-PIE/runtime board: [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
+**PIE board (living):** [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
+Git-health: [`Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md`](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md).
 
-- **PRs #4 / #6 still OPEN on GitHub** (not merged into `main` yet). #6 rebased onto tip-of-`main`.
-  Merge order remains #4 → #6. Prefer #6 over #1 for RestoreParty.
-- **Owner progress (ground truth):** Quill/WillScript updated — expected to work at runtime,
-  **verify owed**. P0 battles still broken on dreamstate path / collider-name level — working.
-  Rhythm highway ownership still **unverified in PIE**.
-- **`main` tip gains today:** playable levels tracked (`43d0a9ae`), `static_gates` PASS (`0e34eaed`),
-  Muse/DeepSeek lane handoffs.
+- **Merge / pull NOT done.** PRs #4 and #6 stay OPEN. Cloud cannot squash-merge: branch
+  policy needs **1 approving review** (write access). Prefer squash (#4 then #6). CI reds on
+  #4 were self-hosted runner network to GitHub, not code defects.
+- **Owner ground truth:** WillScript updated → runtime verify owed. P0 battles still broken on
+  dreamstate path / collider-name level (working through). Rhythm highway still unverified in PIE.
+- **`main` tip:** playable levels (`43d0a9ae`), `static_gates` PASS (`0e34eaed`).
 
 ---
 

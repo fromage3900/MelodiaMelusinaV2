@@ -4,8 +4,8 @@ Simple queue for phone agents. Prefer updating this file over inventing parallel
 
 ## Now
 
-1. **Merge on GitHub (still open):** [#4](https://github.com/fromage3900/MelodiaMelusinaV2/pull/4) git health → [#6](https://github.com/fromage3900/MelodiaMelusinaV2/pull/6) RestoreParty (rebased). Then pull `C:\EnvironmentPortfolio\BS_GodFile`.
-2. **PIE board:** [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](../Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) — Quill/WillScript verify; fix dreamstate/collider battle path; rhythm highway PIE.
+1. **Owner: approve + squash-merge** [#4](https://github.com/fromage3900/MelodiaMelusinaV2/pull/4) → [#6](https://github.com/fromage3900/MelodiaMelusinaV2/pull/6) (cloud blocked on review policy). Then pull `C:\EnvironmentPortfolio\BS_GodFile`.
+2. **PIE board:** [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](../Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) — WillScript runtime verify; dreamstate/collider battles still broken; rhythm highway PIE.
 3. **Closed-editor build** → RestoreParty log + highway ownership observation.
 4. **Runtime gate:** `playtest_harness.py` real keys → assertion JSON → `record_gate.py runtime`.
 5. Maintain PhoneOps; optional [#3](https://github.com/fromage3900/MelodiaMelusinaV2/pull/3) / [#5](https://github.com/fromage3900/MelodiaMelusinaV2/pull/5).

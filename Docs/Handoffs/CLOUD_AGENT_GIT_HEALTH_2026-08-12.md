@@ -38,7 +38,8 @@ Cloud /workspace                         ★ same remote, asset-light clone
 1. Merge **#4** → pull on `BS_GodFile`
 2. Merge **#6** → closed-editor build → one battle end → log `MELODIA_RECOVERY…`
 3. Optional #3 / #5; rebase #1 later and drop duplicate restore hunk
-4. PIE: highway ownership (`bExecutionDrivingHighway`) + `playtest_harness` real-input runtime gate
+4. **Owner must approve + squash-merge #4 then #6** (cloud blocked: review required; merge commits disallowed). Then pull PC worktree.
+5. PIE: highway ownership (`bExecutionDrivingHighway`) + WillScript verify + dreamstate/collider battle path + `playtest_harness` real-input runtime gate — living board `Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`
 
 ## Explicitly not done from cloud
 
