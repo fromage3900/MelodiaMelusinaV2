@@ -2,14 +2,19 @@
 
 Front door for driving MelodiaMelusina from iOS / Cursor mobile.
 
+**Artist bridge (read first on phone):**
+[PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md)
+— what phone Cursor is for (Drive + git + Remote Control), not sandbox ops.
+
 ## Start here (order)
 
-1. [SETUP.md](SETUP.md) — SuperGrok + Cursor Pro + phone/GitHub agents
-2. [NORTH_STAR.md](NORTH_STAR.md) — goal, this-week focus, milestones, open decisions
-3. [BACKLOG.md](BACKLOG.md) — Now / Next / Backlog
-4. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory
-5. [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) — **Implemented** jcode swarm install + Recipes A/B
-6. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
+1. [../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md) — phone artist intent + Drive-ready protocol
+2. [SETUP.md](SETUP.md) — SuperGrok + Cursor Pro + phone/GitHub agents
+3. [NORTH_STAR.md](NORTH_STAR.md) — goal, this-week focus, milestones, open decisions
+4. [BACKLOG.md](BACKLOG.md) — Now / Next / Backlog
+5. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory
+6. [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) — **Implemented** jcode swarm install + Recipes A/B
+7. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
 
 Harness files: [`.jcode/README.md`](../../.jcode/README.md) · `.\deploy\start_jcode_swarm.ps1`
 
@@ -24,6 +29,7 @@ Then, if you need deeper truth:
 | [../../AGENTS.md](../../AGENTS.md) | Multi-agent ownership |
 | [../../PIPELINE.md](../../PIPELINE.md) | Blender ↔ UE ↔ portfolio map |
 | [../AgentMemory/Decisions.md](../AgentMemory/Decisions.md) | Locked decisions |
+| [../Production/MODEL_LANES_2026-08-12.md](../Production/MODEL_LANES_2026-08-12.md) | Model lanes + local daemon policy |
 
 ## How to use from phone
 
@@ -32,7 +38,12 @@ Then, if you need deeper truth:
 Paste one of these:
 
 ```text
-You are on MelodiaMelusina. Read Docs/PhoneOps/NORTH_STAR.md and Docs/PhoneOps/BACKLOG.md.
+Read Docs/Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md.
+Drive is connected. Pull my Melodia scan/research folder, consolidate into the repo, open one draft PR. No process docs. No UE/Blender from cloud unless Remote Control is on.
+```
+
+```text
+You are on MelodiaMelusinaV2. Read Docs/PhoneOps/NORTH_STAR.md and Docs/PhoneOps/BACKLOG.md.
 Do only the first Now item. Stay Green/Yellow autonomy. No Sakura level edits. PR when done.
 ```
 
@@ -66,7 +77,7 @@ and reconcile with CURRENT_STATE.md / NEXT_ACTIONS.md. Open a draft PR.
 Blender surreal_os/arch  →  world.json  →  UE import/HISM
 Material masters/MIs     →  manifests   →  portfolio_package → website configs
 PCG graphs               →  EnvSandbox scatter
-MelodiaCore / Melodia    →  playable slice (C++ rules)
+JRPG + MelodiaIntegration →  playable First Dream loop (not MelodiaCore combat)
 PhoneOps docs            →  your mobile control plane
 ```
 
@@ -76,3 +87,4 @@ PhoneOps docs            →  your mobile control plane
 - Do not write into `Content/_PROJECT/`.
 - Do not publish externally without explicit approval.
 - Prefer `EnvSandbox`, `deploy/`, `Docs/`, `Content/Python/` for agent work.
+- Do not rebuild JRPG combat authority in MelodiaCore this phase.
