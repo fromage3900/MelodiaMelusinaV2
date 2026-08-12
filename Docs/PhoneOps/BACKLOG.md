@@ -4,11 +4,11 @@ Simple queue for phone agents. Prefer updating this file over inventing parallel
 
 ## Now
 
-1. On Windows UE box: install jcode, run `.\deploy\start_jcode_swarm.ps1`, paste `.jcode/coordinator-bootstrap.md`, complete **Recipe A** then **Recipe B** (see `JCODE_SWARM_PIPELINE.md` acceptance checklists).
-2. Finish Git LFS push of pending Content; confirm `origin/main` advances past 2026-07-24 tip.
-3. Maintain `Docs/PhoneOps/` as the mobile entry.
-4. Generic look-dev capture pass on `L_Template` when UE desktop/MCP is available.
-5. MelodiaCore GS-001 / GS-002 when in gameplay lane.
+1. **Owner: approve + squash-merge** [#4](https://github.com/fromage3900/MelodiaMelusinaV2/pull/4) → [#6](https://github.com/fromage3900/MelodiaMelusinaV2/pull/6) (cloud blocked on review policy). Then pull `C:\EnvironmentPortfolio\BS_GodFile`.
+2. **PIE board:** [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](../Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) — WillScript runtime verify; dreamstate/collider battles still broken; rhythm highway PIE.
+3. **Closed-editor build** → RestoreParty log + highway ownership observation.
+4. **Runtime gate:** `playtest_harness.py` real keys → assertion JSON → `record_gate.py runtime`.
+5. Maintain PhoneOps; optional [#3](https://github.com/fromage3900/MelodiaMelusinaV2/pull/3) / [#5](https://github.com/fromage3900/MelodiaMelusinaV2/pull/5).
 
 ## Next
 

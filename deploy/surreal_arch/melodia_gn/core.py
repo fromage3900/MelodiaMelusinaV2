@@ -1,4 +1,4 @@
-﻿"""Core GN tree builder utilities -- safe node creation, linking, coloring."""
+"""Core GN tree builder utilities -- safe node creation, linking, coloring."""
 
 from __future__ import annotations
 
@@ -6,19 +6,92 @@ import bpy
 
 from .logging import log
 
+# Blender 5.x renames / domain moves. Applied when bpy.app.version >= (5, 0, 0).
+NODE_REMAP_52 = {
+    "GeometryNodeCube": "GeometryNodeMeshCube",
+    "GeometryNodeUVSphere": "GeometryNodeMeshUVSphere",
+    "GeometryNodeBevelMesh": "GeometryNodeMeshBevel",
+    "GeometryNodeMeshToDualMesh": "GeometryNodeDualMesh",
+    "GeometryNodeSeparateXYZ": "ShaderNodeSeparateXYZ",
+    "GeometryNodeCombineXYZ": "ShaderNodeCombineXYZ",
+    "ShaderNodeCombineColor": "FunctionNodeCombineColor",
+    "ShaderNodeSeparateColor": "FunctionNodeSeparateColor",
+    "ShaderNodeTime": "GeometryNodeInputSceneTime",
+}
+
+
+def _resolve_bl_idname(bl_idname: str) -> str:
+    if bpy.app.version >= (5, 0, 0):
+        return NODE_REMAP_52.get(bl_idname, bl_idname)
+    return bl_idname
+
+
+def sock(node, *names, outputs=False):
+    """Return the first matching input/output socket by name, or None."""
+    if node is None:
+        return None
+    collection = node.outputs if outputs else node.inputs
+    for name in names:
+        try:
+            s = collection.get(name)
+        except Exception:
+            s = None
+        if s is not None:
+            return s
+    for name in names:
+        for s in collection:
+            if getattr(s, "name", None) == name:
+                return s
+    return None
+
+
+def set_resample_count(resample, count_socket_or_value=None):
+    """Map legacy ResampleCurve COUNT semantics onto Blender 5.x sockets."""
+    if resample is None:
+        return
+    # 5.x: mode is often a menu socket defaulting to Count; property may be gone.
+    try:
+        resample.mode = "COUNT"
+    except Exception:
+        try:
+            resample.mode = "OFFSET"
+        except Exception:
+            pass
+    if count_socket_or_value is None:
+        return
+    target = sock(resample, "Count", "Offset", "Length")
+    if target is None:
+        return
+    if hasattr(count_socket_or_value, "id_data"):
+        # Linked as a socket elsewhere — caller should use link_sockets.
+        return
+    try:
+        target.default_value = count_socket_or_value
+    except Exception:
+        pass
+
 
 def safe_node(tree, bl_idname, loc, fallback_callable=None):
     """Create a node, returns None on failure. Optionally call fallback.
 
     Logs failure at WARNING level so users can trace missing-node issues.
+    On Blender 5.x, remaps known legacy bl_idnames via NODE_REMAP_52.
     """
+    resolved = _resolve_bl_idname(bl_idname)
     try:
-        n = tree.nodes.new(bl_idname)
+        n = tree.nodes.new(resolved)
         n.location = loc
         return n
     except Exception as exc:
+        if resolved != bl_idname:
+            try:
+                n = tree.nodes.new(bl_idname)
+                n.location = loc
+                return n
+            except Exception:
+                pass
         log.warning(
-            "safe_node: '%s' not available in %s ΓÇö %s",
+            "safe_node: '%s' not available in %s — %s",
             bl_idname, tree.name, exc,
         )
         if fallback_callable:
@@ -27,7 +100,7 @@ def safe_node(tree, bl_idname, loc, fallback_callable=None):
                 return fallback_callable()
             except Exception as fb_exc:
                 log.warning(
-                    "safe_node: fallback also failed for '%s' ΓÇö %s",
+                    "safe_node: fallback also failed for '%s' — %s",
                     bl_idname, fb_exc,
                 )
         return None
@@ -631,6 +704,52 @@ def add_vector_param(tree, name, default=(0.0, 0.0, 0.0), description=""):
     return make_group_input(tree, "NodeSocketVector", name, default)
 
 
+def add_mesh_torus(tree, loc, major_radius=1.5, minor_radius=0.25,
+                   major_segments=48, minor_segments=12):
+    """Blender 5.x replacement for the removed MeshTorus node.
+
+    Builds a torus-shaped mesh from two curve circles (path + profile)
+    swept through Curve-to-Mesh. Returns the CurveToMesh node so callers
+    can wire ``outputs["Mesh"]`` as before.
+    """
+    path = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (loc[0] - 200, loc[1]))
+    profile = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (loc[0] - 200, loc[1] - 140))
+    sweep = safe_node(tree, "GeometryNodeCurveToMesh", (loc[0], loc[1]))
+    if not (path and profile and sweep):
+        return None
+    path.inputs["Resolution"].default_value = major_segments
+    profile.inputs["Resolution"].default_value = minor_segments
+    path.inputs["Radius"].default_value = major_radius
+    profile.inputs["Radius"].default_value = minor_radius
+    link_sockets(tree, path.outputs["Curve"], sweep.inputs["Curve"])
+    link_sockets(tree, profile.outputs["Curve"], sweep.inputs["Profile Curve"])
+    return sweep
+
+
+def add_mesh_torus_linked(tree, loc, major_radius_sock, minor_radius_sock,
+                          major_segments_sock=None, minor_segments_sock=None,
+                          major_segments=48, minor_segments=12):
+    """MeshTorus replacement with group-input socket links instead of defaults."""
+    path = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (loc[0] - 200, loc[1]))
+    profile = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (loc[0] - 200, loc[1] - 140))
+    sweep = safe_node(tree, "GeometryNodeCurveToMesh", (loc[0], loc[1]))
+    if not (path and profile and sweep):
+        return None
+    link_sockets(tree, major_radius_sock, path.inputs["Radius"])
+    link_sockets(tree, minor_radius_sock, profile.inputs["Radius"])
+    if major_segments_sock is not None:
+        link_sockets(tree, major_segments_sock, path.inputs["Resolution"])
+    else:
+        path.inputs["Resolution"].default_value = major_segments
+    if minor_segments_sock is not None:
+        link_sockets(tree, minor_segments_sock, profile.inputs["Resolution"])
+    else:
+        profile.inputs["Resolution"].default_value = minor_segments
+    link_sockets(tree, path.outputs["Curve"], sweep.inputs["Curve"])
+    link_sockets(tree, profile.outputs["Curve"], sweep.inputs["Profile Curve"])
+    return sweep
+
+
 # ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 # Builder registry ΓÇö populated by each module via register_builder()
 # ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
@@ -650,6 +769,7 @@ CATEGORY_META: dict[str, dict] = {
     "castle":      {"label": "Castle Kit",           "icon": "MOD_BUILD"},
     "operations":  {"label": "Operations",           "icon": "AUTOMERGE_ON"},
     "mesh_tools":  {"label": "Mesh Tools",           "icon": "EDITMODE_HLT"},
+    "set_dressing": {"label": "Set Dressing",        "icon": "PLUGIN"},
 }
 
 

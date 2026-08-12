@@ -1,7 +1,9 @@
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 
 #include "Engine/GameInstance.h"
+#include "Engine/World.h"
 #include "EngineUtils.h"
+#include "MelodiaJRPGPostBattleLibrary.h"
 #include "MelodiaSaveRecoverySubsystem.h"
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaNarrativeTypes.h"
@@ -171,6 +173,32 @@ void UMelodiaExternalJRPGBridgeSubsystem::HandleNarrativeBattleRequested(FName E
 
 void UMelodiaExternalJRPGBridgeSubsystem::HandleBattleOver(uint8 BattleResult)
 {
+	// Restore party before the stock sync writes battle state back. This is the
+	// proven CompleteBattle -> ResumeQuillOnce path (M1) - heal only, curentMP
+	// spelling is the stock struct's typo.
+	if (IsValid(ActiveBattleActor))
+	{
+		UObject* BattleController = nullptr;
+		if (FObjectPropertyBase* BattleControllerProp = FindFProperty<FObjectPropertyBase>(ActiveBattleActor->GetClass(), TEXT("battleController")))
+		{
+			BattleController = BattleControllerProp->GetObjectPropertyValue_InContainer(ActiveBattleActor);
+		}
+		if (!IsValid(BattleController) && GetWorld())
+		{
+			for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+			{
+				if (It->GetClass()->GetName().Contains(TEXT("BattleController")))
+				{
+					BattleController = *It;
+					break;
+				}
+			}
+		}
+		if (IsValid(BattleController))
+		{
+			UMelodiaJRPGPostBattleLibrary::RestorePartyAfterBattle(BattleController);
+		}
+	}
 	// The stock battle actor has already resolved its terminal result when this
 	// delegate fires. Clear only the non-authoritative rhythm transient state
 	// around the relay; do not classify the result, grant rewards, or restart the
@@ -186,6 +214,30 @@ void UMelodiaExternalJRPGBridgeSubsystem::HandleBattleOver(uint8 BattleResult)
 	}
 
 	OnJRPGBattleEnded.Broadcast(BattleResult);
+
+	// Heal-only party restore before narrative resume (owner decision: no
+	// retry-on-defeat). Find the live BP_BattleController the same way the UI
+	// bridge does — ActiveBattleActor is the tagged encounter, not the controller.
+	if (UWorld* World = GetWorld())
+	{
+		AActor* BattleController = nullptr;
+		for (TActorIterator<AActor> It(World); It; ++It)
+		{
+			if (It->GetClass()->GetName().StartsWith(TEXT("BP_BattleController")))
+			{
+				BattleController = *It;
+				break;
+			}
+		}
+		if (BattleController)
+		{
+			UMelodiaJRPGPostBattleLibrary::RestorePartyAfterBattle(BattleController);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_RECOVERY no BP_BattleController in world at battle-over; party not restored."));
+		}
+	}
 
 	if (NarrativeSubsystem)
 	{

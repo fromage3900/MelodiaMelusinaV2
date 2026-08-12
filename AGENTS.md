@@ -2,25 +2,7 @@
 
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
-**This is a working portfolio and a livelihood, not a technical sandbox.** The owner wants the task
-done — not an analysis, a framework, or a discussion about it.
-Full text: [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md).
-
-1. **Do the job asked. Ship it. Stop.** The request is the scope — not the request plus what you
-   noticed on the way.
-2. **Never add a mechanism to compensate for a problem.** A fix that needs a new flag, property or
-   branch whose only job is to cancel out other behaviour is the wrong fix. Delete the cause.
-3. **"Kill it" means delete it and rebuild** — not deprecate, not gate behind a flag, not stub.
-4. **Do not verify what the owner has already told you.** Their statements about their own rig,
-   assets and files are ground truth. Act on them.
-5. **A fix request is not a review request.** Note anything real in one sentence at the end; move on.
-
-You are scope-creeping if: three tool calls in and nothing has changed yet; you are reading logs to
-confirm something you were told; you are producing a ranking or comparison table for a one-line fix;
-you are designing where a repair was asked for.
-→ Stop, make the change, build it, report in three lines.
-
-**Done = the change is made, it builds, you said what you changed.**
+See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
 
 ---
 

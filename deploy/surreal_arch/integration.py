@@ -616,6 +616,12 @@ def register_overhaul(monolith):
     from .solo_object import SOLO_OBJECT_CLASSES
     from .bagapie_bridge import BAGAPIE_BRIDGE_CLASSES
     from .nikki_materials import NIKKI_MATERIAL_CLASSES
+    from .genome_carousel import CLASSES as GENOME_CAROUSEL_CLASSES
+    from .live_bridge import CLASSES as LIVE_BRIDGE_CLASSES, register_props as register_live_bridge_props
+    from .material_bridge import CLASSES as MATERIAL_BRIDGE_CLASSES, register_props as register_material_bridge_props
+    from .melusina_portrait import CLASSES as MELUSINA_PORTRAIT_CLASSES, register_props as register_portrait_props
+    from .pie_menu import register_pie_menu
+    from .stage_publish import CLASSES as STAGE_PUBLISH_CLASSES, register_props as register_stage_publish_props
 
     patch_workflow_polls(monolith)
     register_preferences()
@@ -623,7 +629,8 @@ def register_overhaul(monolith):
     _REGISTERED_MONOLITH = monolith
 
     global _EXTRA_CLASSES
-    _EXTRA_CLASSES = list(make_view3d_panels(monolith))
+    _EXTRA_CLASSES = list(GENOME_CAROUSEL_CLASSES)
+    _EXTRA_CLASSES.extend(list(make_view3d_panels(monolith)))
     _EXTRA_CLASSES.extend(list(register_graph_operators(monolith)))
     _EXTRA_CLASSES.extend(register_research_preset_operators(monolith))
     _EXTRA_CLASSES.extend(register_asset_ops(monolith))
@@ -635,6 +642,11 @@ def register_overhaul(monolith):
     _EXTRA_CLASSES.extend(SOLO_OBJECT_CLASSES)
     _EXTRA_CLASSES.extend(BAGAPIE_BRIDGE_CLASSES)
     _EXTRA_CLASSES.extend(NIKKI_MATERIAL_CLASSES)
+    _EXTRA_CLASSES.extend(LIVE_BRIDGE_CLASSES)
+    _EXTRA_CLASSES.extend(MATERIAL_BRIDGE_CLASSES)
+    _EXTRA_CLASSES.extend(MELUSINA_PORTRAIT_CLASSES)
+    _EXTRA_CLASSES.extend(list(register_pie_menu()))
+    _EXTRA_CLASSES.extend(STAGE_PUBLISH_CLASSES)
 
     try:
         from surreal_world.patch import register_world_operators
@@ -677,7 +689,6 @@ def register_overhaul(monolith):
         def execute(self, context):
             from .higgsas_bridge import load_arch_nodes, library_path
             import os
-
             if not os.path.exists(library_path()):
                 self.report({"ERROR"}, f"Higgsas library not found:\n{library_path()}")
                 return {"CANCELLED"}
@@ -766,9 +777,29 @@ def register_overhaul(monolith):
             # Blender may retain registered classes across hot reload/disable-enable cycles.
             # Treat as idempotent for nap-loop stability.
             pass
+    try:
+        register_live_bridge_props()
+    except Exception as exc:
+        print(f"[Surreal Architecture] live_bridge props skipped: {exc}")
+    try:
+        register_material_bridge_props()
+    except Exception as exc:
+        print(f"[Surreal Architecture] material_bridge props skipped: {exc}")
+    try:
+        register_portrait_props()
+    except Exception as exc:
+        print(f"[Surreal Architecture] melusina_portrait props skipped: {exc}")
+    try:
+        register_stage_publish_props()
+    except Exception as exc:
+        print(f"[Surreal Architecture] stage_publish props skipped: {exc}")
     if not hasattr(bpy.types.Object, "mel_gn_stack"):
         melodia_gn.register_props()
     enable_overlay()
+    try:
+        unify_npanel_categories()
+    except Exception as exc:
+        print(f"[Surreal Architecture] unify_npanel_categories skipped: {exc}")
 
 
 def unregister_overhaul():

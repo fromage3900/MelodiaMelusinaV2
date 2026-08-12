@@ -2,12 +2,22 @@
 
 This is the front door for project documentation. Prefer updating this index over creating another floating status document.
 
-## Latest environment checkpoint — 2026-08-11
+## Latest checkpoint — 2026-08-12 (cloud git-health prep)
+
+| Doc | Purpose |
+|---|---|
+| [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) | P0 PIE/runtime board — Quill/WillScript, battles, highway verify |
+| [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) | Tonight’s cloud work: PRs #4/#6, untrack/ignore, tomorrow merge order |
+| [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) | Phone/cloud Now list aligned to merge → build → playtest |
+| [README.md](README.md) | Front-door project status refreshed 2026-08-12 |
+
+## Environment checkpoint — 2026-08-11
 
 Read these before changing setup, ECHO, or cross-checkout tooling:
 
 | Doc | Purpose |
 |---|---|
+| [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) | **Start here for Blender / Melodia Studio** — install, stage shots, GN hub, ports |
 | [Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md](Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md) | Workspace topology, authority boundaries, service contract, and drift register |
 | [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) | Portable Windows setup and execution path |
 | [Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md](Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md) | Evidence from the implemented environment and remaining blockers |

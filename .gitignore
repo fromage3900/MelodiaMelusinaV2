@@ -136,6 +136,28 @@ Content/TurnBasedJRPGTemplate/Blueprints/*
 Content/TurnBasedJRPGTemplate/Blueprints/Battle/*
 !Content/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController.uasset
 
+# --- PLAYABLE ROUTE LEVELS — tracked (2026-08-12) ---
+# The `Content/*` blanket meant the two levels that ARE the vertical slice had no
+# version history: L_MelusinaMorning and L_KaleidoNave. KaleidoNave is the only
+# level in which a battle has ever started (the BP_BattleController placement on
+# 2026-08-10). Losing either one loses the loop, and neither can be re-downloaded.
+#
+# Authored PCG graphs come with them -- they are logic, not art, and they are what
+# the levels reference. Bulk EnvSandbox art (meshes, textures, Megascans, ~4.6 GB)
+# stays ignored on purpose, same reasoning as the 2026-08-08 block above.
+# Added here: ~48 MB, well inside the 512 MB CI budget gate.
+!Content/Melodia/Levels/
+!Content/Melodia/Levels/**
+!Content/Melodia/PCG/
+!Content/Melodia/PCG/**
+
+!Content/EnvSandbox/
+Content/EnvSandbox/*
+!Content/EnvSandbox/Environments/
+!Content/EnvSandbox/Environments/**
+!Content/EnvSandbox/PCG/
+!Content/EnvSandbox/PCG/**
+
 # Nested site repo + deploy staging dir (mirrors, not tracked content)
 my-site-clean/
 _github_deploy/
@@ -194,6 +216,11 @@ Tools/BlenderAddons/**/*.pyo
 Tools/BlenderAddons/**/*.blend1
 # Local Blender brush packs / side trees — keep on disk, do not track
 86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/
+# Melodia Studio / stage SSOT + Review_Queue populate
+!Tools/melodia_stage_paths.py
+!Tools/melodia_website_root.py
+!Tools/populate_gn_builders_review_queue.py
+!Tools/melodia_stage_shot.py
 melodia-design-system/
 KitbashExport/
 research/

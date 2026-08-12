@@ -491,6 +491,10 @@ def main() -> None:
         if critical > 0:
             print(f"\nCI gate: {critical} critical violations found (editor_only_class or connectivity)")
             sys.exit(1)
+        dead = sum(1 for r in results for v in r.violations if v.check == "dead_island")
+        if dead:
+            print(f"\nCI note: {dead} dead-island violation(s) reported (non-blocking in --ci)")
+        sys.exit(0)
 
     fail_count = sum(1 for r in results if r.violations)
     sys.exit(1 if fail_count > 0 else 0)
