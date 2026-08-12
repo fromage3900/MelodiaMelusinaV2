@@ -308,7 +308,12 @@ def main():
     if args.json:
         print(json.dumps({"anchors": anchors, "copies": copies, "results": results}, indent=2))
 
-    ambiguous = len(copies) > 1
+    # AMBIGUOUS applies only when the caller used a bare short name. An explicit
+    # /Game/... path IS the disambiguation (reconciliation doc: "resolve the n
+    # entry points first") -- report that copy's verdict and list the others as
+    # informational. The duplicate _ThirdParty island (retired GameMode chain,
+    # Decision 029a) must not fail the canonical BP_BattleUI check.
+    ambiguous = len(copies) > 1 and not args.asset.startswith("/")
     verdicts = []
     for target in targets:
         r = results.get(target, {})

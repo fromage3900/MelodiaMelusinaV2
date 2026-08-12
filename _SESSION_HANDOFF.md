@@ -3,6 +3,31 @@
 **Session type:** Multi-agent infra expansion + read-only intake + repo migration + editor fix
 **Project phase:** UE 5.8 production JRPG + QuillScript integration
 
+---
+
+# Evening fold-in (2026-08-11, git reconciliation + cloud-research fold-in)
+
+Full record: `Docs/Handoffs/CLOUD_RESEARCH_FOLD_IN_2026-08-11.md` — read that first.
+
+- **Git:** `main` @ `69f76813`, 4 ahead of `v2/main`, 0 behind. Working tree clean of real changes.
+  14 MeshBlend LFS pointers were cosmetic-only (identical OIDs) — un-staged, never committed.
+  3 nebula LFS blobs still pending push to v2 (`Blue_Nebula_8`, `Purple_Nebula_6/7`).
+- **Committed this session:** `69f76813` — tool hardening (input-node ENTRYISH, AssetRegistry
+  discovery, canonical live-path, named-graph reachability) across bp_live_path/bp_sweep/echo_run/
+  graph_reachability/ui_lint. Addresses several `ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md`
+  static-gate findings (AMBIGUOUS on canonical path, input-chain dead islands).
+- **Cloud-research lanes folded in:** SuperGrok planning docs (recreated in `Docs/PhoneOps/` by
+  Cursor iOS), 6-lane intake fan-out (`Saved/Intake/`), jcode study + acceptance
+  (`Docs/Reports/`), cathedral rig correction (**target v22, NOT FinalUERig43**), setup validation.
+- **Loose ends recorded (§3 of fold-in):** `lane_dispatcher.py` reads the wrong queue
+  (`NEXT_ACTIONS.md` is platform, not gameplay); `Saved/memory_index.json` stale; `dispatch_report.md`
+  never generated; **Figma key rotation required by owner**; AGENTS.md >32 KB subagent cap;
+  video_review_lane free-tier vision 402s; Q/W/O/P 6-key hand-shift → test in Campaign 1.
+- **Branches:** all `origin/*` = website repo (not v2). `recovery/melodia-main-sync-20260811` is a
+  STALE cold snapshot (would revert quarantine + delete .jcode/.opencode) — keep as backup, never
+  merge. `fix-melodiacore-source` already merged via PR #54. Surreal slices = loop spam, #80 open.
+- **Ledger unchanged:** `runtime` = FAIL honest, three gates OPEN. No row written by this pass.
+
 ## Agent infrastructure (new, all committed to v2)
 
 - **Model fleet (9 MCP servers in root `.mcp.json` + 11-model router fleet in `Tools/model_router.py`):** fixed `kimi-k3-free`
