@@ -23,13 +23,17 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 >
 > **Most recent session?** [_SESSION_HANDOFF.md](_SESSION_HANDOFF.md) — read fresh every time.
 >
+> **Tonight’s cloud prep?** [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) — git health + RestoreParty PRs, merge order for the PC.
+>
+> **Phone / cloud queue?** [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) — Now/Next for Cursor iOS + cloud agents.
+>
 > **Live task tracker?** [_TASK_QUEUE.md](_TASK_QUEUE.md) — P0/P1/P2/P3, per-task status/agent.
 >
 > **Architecture overview?** [PIPELINE.md](PIPELINE.md) — full system map.
 >
 > **Machine setup?** [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) — portable Windows environment.
 >
-> **Repo status:** Private V2 repository at `https://github.com/fromage3900/MelodiaMelusinaV2` — rebuilt 2026-08-11 from the verified snapshot tree (`763b013b` lineage) after the original repo's LFS budget block and corrupt 144-commit history. HEAD `fbc1b178` on `main` (protected: PR review + linear history). Self-hosted runner `melodia-v2-win` online. Local `.git` healthy, fsck-clean, LFS-pruned (64 GB → 18 GB). Releases cut on demand via the `Release Tag` workflow; LFS is metered billing — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
+> **Repo status (2026-08-12):** Private V2 at `https://github.com/fromage3900/MelodiaMelusinaV2`. `main` protected (PR + linear history); self-hosted runner `melodia-v2-win`. Production UE worktree on PC: `C:\EnvironmentPortfolio\BS_GodFile` (same remote). Cloud/phone agents use this GitHub clone — not a live editor. LFS is metered — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md). Ready PRs for tomorrow: **#4** (git health / LFS gate / untrack junk), **#6** (slim `RestorePartyAfterBattle` call site).
 
 ```
  ◇─◇──◇──◇─◇
@@ -39,7 +43,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 
 ## 🎮 Primary Track: First Dream Vertical Slice
 
-> **Status (2026-08-11):** The core loop is implemented and the rhythm→damage runtime gate work is in flight (see `Docs/ECHO/`). Per the evidence standard, the `runtime` gate is **OPEN until real keyboard input through `BP_BattleUI::OnKeyDown` is recorded with a ledger row** — probe-injected runs are not play evidence. Treat "proven" claims without a ledger row or PIE capture as **unverified**.
+> **Status (2026-08-12):** Core loop is implemented. Closeout source checks: damage-scalar sequencing **PASS**; `curentMP` spelling **RESOLVED**; RestoreParty call site ready on **PR #6** (not yet on `main`). Rhythm HUD text opacity fixed in-editor (Content often untracked). Highway ownership (`bExecutionDrivingHighway`) is in MelodiaCore source but needs a closed-editor build + PIE. Per the evidence standard, the `runtime` gate stays **OPEN** until real keyboard input through `BP_BattleUI::OnKeyDown` is recorded with assertion JSON + a ledger row — probe-only runs are not play evidence.
 
 ### The loop
 
@@ -55,12 +59,17 @@ sanctuary conversation
 
 ### Playable route (target)
 
-`L_MelusinaMorning` → `L_Melodia_Dreamstate` → `L_KaleidoNave`
+`L_MelusinaMorning` → dream traversal → `L_KaleidoNave` (boss / stock rhythm encounter)
 
 Real paths:
 - `/Game/Melodia/Levels/Opening/L_MelusinaMorning`
-- `/Game/Melodia/Levels/Opening/L_Melodia_Dreamstate`
-- `/Game/EnvSandbox/Environments/L_KaleidoNave`
+- `/Game/EnvSandbox/Environments/L_KaleidoNave` (includes merged dreamstate content; old `L_Melodia_Dreamstate` allowlist entry stripped — backup under `Saved/Recovery/`)
+
+### Tomorrow on the PC (after merging #4 + #6)
+
+1. Pull `main` on `C:\EnvironmentPortfolio\BS_GodFile` — **one** UnrealEditor + Monolith `:9316`
+2. Full closed-editor build → PIE: highway survives both HUD writers; battle-end logs `MELODIA_RECOVERY…`
+3. `python Tools/playtest_harness.py` with real keys → assertion JSON beside frames → `record_gate.py runtime pass|fail`
 
 ### Core systems
 
@@ -156,6 +165,8 @@ Full guide: [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md)
 **Gameplay (read these first):**
 - [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority
 - [_SESSION_HANDOFF.md](_SESSION_HANDOFF.md) — most recent session state
+- [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) — 2026-08-12 cloud git-health prep
+- [Docs/PhoneOps/INDEX.md](Docs/PhoneOps/INDEX.md) — phone / Cursor iOS entry
 - [_TASK_QUEUE.md](_TASK_QUEUE.md) — live task tracker
 - [_DECISION_LOG.md](_DECISION_LOG.md) — append-only strategic decisions
 - [DOC_INDEX.md](DOC_INDEX.md) — complete documentation map
