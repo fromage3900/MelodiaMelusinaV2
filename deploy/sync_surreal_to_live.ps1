@@ -1,14 +1,11 @@
 # Sync Melodia Studio (surreal_arch) deploy tree to a live Blender addons folder.
 #
-# Blender version is a parameter as of 2026-07-30. 5.1 remains the default because
-# Docs/MELODIA_STUDIO_SHIP_CHECKLIST.md names Blender 5.1 as the product target;
-# pass -BlenderVersion 5.2 to install into 5.2 instead. Changing the DEFAULT is a
-# product decision, not a path fix -- update the ship checklist if you do.
+# Docs/MELODIA_STUDIO_SHIP_CHECKLIST.md names Blender 5.2 as the product target.
 #
-#   .\sync_surreal_to_live.ps1                     # -> 5.1 (product target)
-#   .\sync_surreal_to_live.ps1 -BlenderVersion 5.2 # -> 5.2
+#   .\sync_surreal_to_live.ps1                     # -> 5.2 (product target)
+#   .\sync_surreal_to_live.ps1 -BlenderVersion 5.1 # -> 5.1 legacy
 param(
-    [string]$BlenderVersion = "5.1"
+    [string]$BlenderVersion = "5.2"
 )
 
 $ErrorActionPreference = "Stop"

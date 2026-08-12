@@ -198,6 +198,11 @@ Tools/*
 !Tools/lane_dispatcher.py
 !Tools/BlenderAddons/
 !Tools/BlenderAddons/**
+# Melodia Studio / stage SSOT + Review_Queue populate
+!Tools/melodia_stage_paths.py
+!Tools/melodia_website_root.py
+!Tools/populate_gn_builders_review_queue.py
+!Tools/melodia_stage_shot.py
 melodia-design-system/
 KitbashExport/
 research/

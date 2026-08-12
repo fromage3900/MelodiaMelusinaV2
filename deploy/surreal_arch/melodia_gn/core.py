@@ -1,4 +1,4 @@
-﻿"""Core GN tree builder utilities -- safe node creation, linking, coloring."""
+"""Core GN tree builder utilities -- safe node creation, linking, coloring."""
 
 from __future__ import annotations
 
@@ -6,19 +6,92 @@ import bpy
 
 from .logging import log
 
+# Blender 5.x renames / domain moves. Applied when bpy.app.version >= (5, 0, 0).
+NODE_REMAP_52 = {
+    "GeometryNodeCube": "GeometryNodeMeshCube",
+    "GeometryNodeUVSphere": "GeometryNodeMeshUVSphere",
+    "GeometryNodeBevelMesh": "GeometryNodeMeshBevel",
+    "GeometryNodeMeshToDualMesh": "GeometryNodeDualMesh",
+    "GeometryNodeSeparateXYZ": "ShaderNodeSeparateXYZ",
+    "GeometryNodeCombineXYZ": "ShaderNodeCombineXYZ",
+    "ShaderNodeCombineColor": "FunctionNodeCombineColor",
+    "ShaderNodeSeparateColor": "FunctionNodeSeparateColor",
+    "ShaderNodeTime": "GeometryNodeInputSceneTime",
+}
+
+
+def _resolve_bl_idname(bl_idname: str) -> str:
+    if bpy.app.version >= (5, 0, 0):
+        return NODE_REMAP_52.get(bl_idname, bl_idname)
+    return bl_idname
+
+
+def sock(node, *names, outputs=False):
+    """Return the first matching input/output socket by name, or None."""
+    if node is None:
+        return None
+    collection = node.outputs if outputs else node.inputs
+    for name in names:
+        try:
+            s = collection.get(name)
+        except Exception:
+            s = None
+        if s is not None:
+            return s
+    for name in names:
+        for s in collection:
+            if getattr(s, "name", None) == name:
+                return s
+    return None
+
+
+def set_resample_count(resample, count_socket_or_value=None):
+    """Map legacy ResampleCurve COUNT semantics onto Blender 5.x sockets."""
+    if resample is None:
+        return
+    # 5.x: mode is often a menu socket defaulting to Count; property may be gone.
+    try:
+        resample.mode = "COUNT"
+    except Exception:
+        try:
+            resample.mode = "OFFSET"
+        except Exception:
+            pass
+    if count_socket_or_value is None:
+        return
+    target = sock(resample, "Count", "Offset", "Length")
+    if target is None:
+        return
+    if hasattr(count_socket_or_value, "id_data"):
+        # Linked as a socket elsewhere — caller should use link_sockets.
+        return
+    try:
+        target.default_value = count_socket_or_value
+    except Exception:
+        pass
+
 
 def safe_node(tree, bl_idname, loc, fallback_callable=None):
     """Create a node, returns None on failure. Optionally call fallback.
 
     Logs failure at WARNING level so users can trace missing-node issues.
+    On Blender 5.x, remaps known legacy bl_idnames via NODE_REMAP_52.
     """
+    resolved = _resolve_bl_idname(bl_idname)
     try:
-        n = tree.nodes.new(bl_idname)
+        n = tree.nodes.new(resolved)
         n.location = loc
         return n
     except Exception as exc:
+        if resolved != bl_idname:
+            try:
+                n = tree.nodes.new(bl_idname)
+                n.location = loc
+                return n
+            except Exception:
+                pass
         log.warning(
-            "safe_node: '%s' not available in %s ΓÇö %s",
+            "safe_node: '%s' not available in %s — %s",
             bl_idname, tree.name, exc,
         )
         if fallback_callable:
@@ -27,7 +100,7 @@ def safe_node(tree, bl_idname, loc, fallback_callable=None):
                 return fallback_callable()
             except Exception as fb_exc:
                 log.warning(
-                    "safe_node: fallback also failed for '%s' ΓÇö %s",
+                    "safe_node: fallback also failed for '%s' — %s",
                     bl_idname, fb_exc,
                 )
         return None

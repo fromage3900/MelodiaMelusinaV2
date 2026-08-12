@@ -1,58 +1,70 @@
 # Melodia Studio
 
-Procedural architecture, ornament, and music-motif generator for Blender 5.1. Generates geometry via Geometry Nodes, exports flat FBX for Unreal/UE5, and includes stage visibility controls meant for portfolio and kitbash workflows.
+Procedural architecture, ornament, and music-motif generator for **Blender 5.2**.
+Generates geometry via Geometry Nodes, exports flat FBX for Unreal/UE5, and includes
+stage visibility controls for portfolio and kitbash workflows.
 
-**Product:** Melodia Studio
-**Module id:** `melodia_studio`
-**Operators:** `surreal_arch.*`
-**Install folder:** `surreal_arch/`
+**Product:** Melodia Studio  
+**Preferences id:** `melodia_studio`  
+**Enable as:** `surreal_architecture_gen` (monolith file name)  
+**Operators:** `surreal_arch.*` / `mel_gn.*`  
+**SSOT:** `deploy/surreal_arch/` + `deploy/surreal_architecture_gen.py`
 
 ---
 
-## Install
+## Install (school-ready)
 
-1. Copy the folder `deploy/surreal_arch/` into Blender’s addons directory:
-   - `%APPDATA%\Blender Foundation\Blender\5.1\scripts\addons\surreal_arch\`
-2. In Blender: `Edit → Preferences → Add-ons → Search "Melodia Studio" → Enable`.
-3. If you had the old `surreal_architecture_gen` addon enabled before, your Higgsas/Synthia paths migrate automatically on first enable.
+```powershell
+cd C:\EnvironmentPortfolio\BS_GodFile\deploy
+.\install_melodia_studio.ps1          # default Blender 5.2
+.\verify_melodia_studio.ps1 -SkipSmoke  # or full smoke queue
+```
+
+Manual equivalent: copy **both** `surreal_architecture_gen.py` and the `surreal_arch/`
+package (plus `surreal_greybox/`, `surreal_world/`, `surreal_os/` siblings) into:
+
+`%APPDATA%\Blender Foundation\Blender\5.2\scripts\addons\`
+
+Then enable **Melodia Studio** / `surreal_architecture_gen` in Preferences.
+
+Do **not** copy only `surreal_arch/` — the monolith entry module is required.
 
 ---
 
 ## First generation
 
-1. Open `Melodia_Portfolio_Stage_v4.blend` or any `.blend` with a mesh object selected.
-2. Press `N` → `Melodia Studio` tab.
-3. Use **Architecture Picker** to choose an arch type, then press **Generate**.
-4. For music/ornament motifs, route through the Melodia GN path in the Genome Carousel.
+1. Open a portfolio stage `.blend` or any mesh scene.
+2. Press `N` → **Melodia Studio** tab.
+3. Hub panel (Genome Carousel) → **Generate** / **Starlight** / **Sync & Reload** / **Studio Health**.
+4. Nested: **GN Stack**, **Stage**, bridges, Living Portrait.
 
 ---
 
 ## N-panel tour
 
-- **Genome Carousel** — top-level panel; generate, starlight stage preset, solo object.
-- **Architecture Picker** — search/filtered browser for arch types, style genomes, and categories.
-- **Level Design** — greybox room tools, trim modes, snap metadata, QA validation.
-- **Style Genome (OS)** — active genome, catalog, apply/spawn graph.
-- **UV / Trimsheet** — UV proxy, MioUV / UVPM pack, bake trim colors.
-- **Asset Browser** — publish greybox assets, export catalog enum stub.
-- **Research presets** — romanesque, brutalist, venetian, scifi airlock presets.
-- **Export** — UE5 bake/export, snap JSON, trim attributes, Beavel Pro.
-- **Viewport** — toggle snap overlay.
+- **Genome Carousel** — hub; generate, starlight, solo, sync/reload, health.
+- **GN Stack** — 165 Melodia GN builders + curated presets.
+- **Stage** — Solo / Starlight / Beauty / Review Queue.
+- **Site Publish** — Render & Upload beauty plate → `my-site-clean` + `site-plates.json` (optional git push OFF by default).
+- **Live Bridge / Material Bridge** — LiveLink + material crosswalk status.
+- **Living Portrait** — Melusina voice/viseme tools.
+- **Architecture Picker / Level Design / Style Genome / UV / Export** — overhaul tools.
 
 ---
 
-## Known limitations
+## Verify without AI chat
 
-- Melodia Studio is a Blender 5.1 addon. Other Blender versions are not supported.
-- Optional dependencies are not required for core generation: Higgsas, Synthia, Beavel Pro, Sverchok, and MioUV/UVPM unlock additional workflows but are not installed by default.
-- `NOTE_HEAD` and `SHEET_MUSIC_RAIL` Melodia GN bake may require Blender 5.1-specific Vector/Translation API handling; verify in your environment before relying on it for productionFBX export.
-- FILIGREE_* monolith rewrites are deferred post-v1. If your workflow depends on filigree generators, treat them as planned, not shipped.
+```powershell
+.\verify_melodia_studio.ps1
+.\run_blender_smoke_queue.ps1
+```
+
+Failures write JSON under `Saved/Audit/` (`gn_builder_health_last.json`, `blender_smoke_last.json`).
 
 ---
 
-## Support
+## Notes
 
-For project context, see:
-- `Docs/MELODIA_STUDIO_SHIP_CHECKLIST.md`
-- `Docs/BLENDER_MELODIA_COCKPIT.md`
-- `Docs/HANDOFF_SURREAL_TO_MELODIA_SYSTEM_2026-07-12.md`
+- Target Blender: **5.2**. Legacy 5.1 AppData installs are stale — re-run `install_melodia_studio.ps1`.
+- MCP is optional (classroom default = install + verify). Live BlenderMCP uses port **9876**.
+- Do not use `G:\EnvironmentPortfolio` mirrors as SSOT.
