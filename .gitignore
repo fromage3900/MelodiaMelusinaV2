@@ -187,6 +187,8 @@ Tools/*
 !Tools/t3d_dashboard.py
 !Tools/BlenderAddons/
 !Tools/BlenderAddons/**
+# Local Blender brush packs / side trees — keep on disk, do not track
+86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/
 melodia-design-system/
 KitbashExport/
 research/
