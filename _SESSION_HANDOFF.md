@@ -53,9 +53,11 @@ Content/ stays untracked (no LFS) — v2 is asset-light by design.
   PendingDamageMultiplier → OnRhythmComplete.Broadcast → deferred InvokeStockUseSkill →
   montage notify (0.5s) reads latched scalar. The old 2.5s gap applied only to the
   replaced parallel-start pattern. A/B meaningful.
-- **Step 5 (RestorePartyAfterBattle): HOLD.** Implementation complete, zero callers;
-  reads `curentMP` (typo form) via FindAuthoredStructMember — confirm the stock struct's
-  real spelling via Monolith reflection before wiring (heal-only decision stands).
+- **Step 5 (RestorePartyAfterBattle): spelling RESOLVED; call site on open PRs.**
+  Live reflection confirmed stock `S_PlayerUnitData` really spells `curentMP`. Library
+  match is correct. Wiring is **not on main yet** — prefer [PR #1](https://github.com/fromage3900/MelodiaMelusinaV2/pull/1)
+  (world-iterates `BP_BattleController`). [PR #2](https://github.com/fromage3900/MelodiaMelusinaV2/pull/2)
+  passes `ActiveBattleActor` (tagged encounter) and is the wrong target for the library.
 - **UI transparency audit: FIXED.** `WBP_Battle_Rhythm` JudgementText/ComboText/
   ClockSourceText were authored A=0 and nothing ever set their color → grade/combo/clock
   text permanently invisible. Fixed to opaque white (flat rgba JSON write shape — the

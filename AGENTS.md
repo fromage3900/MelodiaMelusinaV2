@@ -548,8 +548,8 @@ Full detail: `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md`.
    may fire ~2.5s before the scalar latches.
 5. **Highway note rendering** — the one genuine T3D target. Re-export baselines and resolve
    `unresolved_member_parent` first.
-6. Wire a call site for `RestorePartyAfterBattle` (compiles, zero callers). Check the
-   `curentMP` spelling against the stock struct first.
+6. Wire a call site for `RestorePartyAfterBattle` (compiles, zero callers on `main`).
+   `curentMP` spelling confirmed via live reflection — merge PR #1 (not PR #2).
 7. Re-run `python Tools/bp_sweep.py` project-wide. It died mid-run during the three-editor
    incident; scoped runs are clean.
 8. Damage progression smoothing — owner has a recorded contact sheet. Ask for it; do not
