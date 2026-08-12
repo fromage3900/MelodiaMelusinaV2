@@ -10,6 +10,8 @@ on:
       - 'Plugins/**/Source/**'
       - 'Content/Python/**'
       - 'specs/**'
+      - 'Tools/**'
+      - '.github/workflows/echo_gates.yml'
   workflow_dispatch:
 
 jobs:
@@ -56,25 +58,28 @@ jobs:
           }
           Write-Host "Static gates passed."
 
-      - name: LFS budget gate (no >512MB new LFS per change)
+      - name: LFS budget gate (PR base..head; 50 MB on collab/cursor)
         shell: powershell
         run: |
-          python Tools/git_safe_push.ps1 -LimitMB 512 -Remote origin -Branch $env:GITHUB_HEAD_REF
+          $base = "${{ github.event.pull_request.base.sha }}"
+          if (-not $base) { $base = "origin/main" }
+          git fetch origin main --depth=50 2>$null
+          $limit = 512
+          $ref = "${{ github.head_ref }}"
+          if ($ref -match '^(collab|cursor|docs)/') { $limit = 50 }
+          python Tools/git_safe_push.py --range "$base..HEAD" --limit-mb $limit --check-only
           if ($LASTEXITCODE -ne 0) {
-            Write-Host "##[error]LFS batch exceeds 512 MB budget"
+            Write-Host "##[error]LFS batch exceeds $limit MB budget"
             exit $LASTEXITCODE
           }
+          python Tools/lfs_health_audit.py --game-paths-only
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-      - name: Record gate row
+      - name: Record gate row (artifact only; do not push from CI)
         shell: powershell
         run: |
           python Tools/record_gate.py static_gates pass --note "CI echo_gates.yml ${{ github.sha }}"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          git diff --quiet -- Saved/gate_ledger.json
-          if ($LASTEXITCODE -ne 0) {
-            git config user.name "melodia-ci"
-            git config user.email "ci@melodia.local"
-            git add Saved/gate_ledger.json
-            git commit -m "chore: ledger row static_gates pass (CI ${{ github.sha }})"
-            git push origin HEAD:${{ github.head_ref }} || Write-Host "ledger push skipped (head ref may be detached)"
+          if (Test-Path Saved/gate_ledger.json) {
+            Write-Host "Ledger updated locally in the runner workspace."
           }

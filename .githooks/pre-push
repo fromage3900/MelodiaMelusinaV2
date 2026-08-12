@@ -1,38 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Pre-push hook: branch naming + LFS pointer validation
-# Enforces collab/[role]/[feature] branch naming convention.
+# Pre-push: branch naming + LFS budget (Echo promote hygiene).
+# Collab/cursor/docs branches: 50 MB batch. Other feature branches: 512 MB.
+# Override: MELODIA_LFS_LIMIT_MB=<n>
 
-echo "==> [pre-push] Running branch naming + LFS validation..."
+echo "==> [pre-push] Running branch naming + LFS budget validation..."
 
-# 1. Validate branch naming convention
 BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || echo "")
 if [ -n "$BRANCH" ] && [ "$BRANCH" != "main" ]; then
   case "$BRANCH" in
-    feature/*|fix/*|docs/*|cleanup/*|collab/*|codex/*|recovery/*)
+    feature/*|fix/*|docs/*|cleanup/*|collab/*|codex/*|recovery/*|cursor/*)
       echo "==> [pre-push] Branch '$BRANCH' follows naming convention."
       ;;
     *)
       echo "ERROR: [pre-push] Branch '$BRANCH' does not follow naming convention."
-      echo ""
-      echo "Allowed prefixes: feature/, fix/, docs/, cleanup/, collab/, codex/, recovery/"
-      echo "Examples:"
-      echo "  feature/zundamon-npc"
-      echo "  fix/modifier-stacking"
-      echo "  docs/collab-guide"
-      echo "  collab/level-design/kaleido-nave"
-      echo ""
-      echo "Fix: git branch -m <new-name>"
+      echo "Allowed: feature/ fix/ docs/ cleanup/ collab/ codex/ recovery/ cursor/"
       exit 1
       ;;
   esac
 fi
 
-# 2. Check for LFS pointer files that are actually large binaries
-# (files tracked by LFS but with the real content staged instead of a pointer)
-echo "==> [pre-push] Checking for LFS pointer integrity..."
-git lfs pointer --check --stdin >/dev/null 2>&1 || true
+LIMIT="${MELODIA_LFS_LIMIT_MB:-}"
+if [ -z "$LIMIT" ]; then
+  case "$BRANCH" in
+    collab/*|cursor/*|docs/*) LIMIT=50 ;;
+    *) LIMIT=512 ;;
+  esac
+fi
 
+echo "==> [pre-push] LFS budget limit: ${LIMIT} MB (branch=${BRANCH:-detached})"
+ROOT="$(git rev-parse --show-toplevel)"
+python3 "$ROOT/Tools/git_safe_push.py" --limit-mb "$LIMIT" --check-only
 echo "==> [pre-push] Validation passed."
 exit 0
