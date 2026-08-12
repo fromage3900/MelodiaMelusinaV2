@@ -52,9 +52,12 @@ Content/ZenForestTest_HLODLayer_*
 Content/__ExternalActors__/ZenForestTest/
 Content/__ExternalActors__/ZenForestTest_WP/
 
-# Python cache
+# Python cache / Blender autosave junk
 Content/Python/__pycache__/
+**/__pycache__/
 *.pyc
+*.pyo
+*.blend1
 **/.venv/
 .env.local
 # Unreal scratch assets created by editor-analysis scripts; these are not project source.
@@ -196,8 +199,23 @@ Tools/*
 !Tools/video_review_lane.py
 !Tools/memory_index.py
 !Tools/lane_dispatcher.py
+!Tools/git_safe_push.py
+!Tools/lfs_health_audit.py
+!Tools/bp_live_path.py
+!Tools/bp_sweep.py
+!Tools/project_state.py
+!Tools/ui_style_audit.py
+!Tools/test_ui_style_audit.py
+!Tools/t3d_dashboard.py
 !Tools/BlenderAddons/
 !Tools/BlenderAddons/**
+# Negation above re-includes junk — put it back out
+Tools/BlenderAddons/**/__pycache__/
+Tools/BlenderAddons/**/*.pyc
+Tools/BlenderAddons/**/*.pyo
+Tools/BlenderAddons/**/*.blend1
+# Local Blender brush packs / side trees — keep on disk, do not track
+86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/
 # Melodia Studio / stage SSOT + Review_Queue populate
 !Tools/melodia_stage_paths.py
 !Tools/melodia_website_root.py
