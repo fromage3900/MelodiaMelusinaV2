@@ -631,6 +631,52 @@ def add_vector_param(tree, name, default=(0.0, 0.0, 0.0), description=""):
     return make_group_input(tree, "NodeSocketVector", name, default)
 
 
+def add_mesh_torus(tree, loc, major_radius=1.5, minor_radius=0.25,
+                   major_segments=48, minor_segments=12):
+    """Blender 5.x replacement for the removed MeshTorus node.
+
+    Builds a torus-shaped mesh from two curve circles (path + profile)
+    swept through Curve-to-Mesh. Returns the CurveToMesh node so callers
+    can wire ``outputs["Mesh"]`` as before.
+    """
+    path = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (loc[0] - 200, loc[1]))
+    profile = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (loc[0] - 200, loc[1] - 140))
+    sweep = safe_node(tree, "GeometryNodeCurveToMesh", (loc[0], loc[1]))
+    if not (path and profile and sweep):
+        return None
+    path.inputs["Resolution"].default_value = major_segments
+    profile.inputs["Resolution"].default_value = minor_segments
+    path.inputs["Radius"].default_value = major_radius
+    profile.inputs["Radius"].default_value = minor_radius
+    link_sockets(tree, path.outputs["Curve"], sweep.inputs["Curve"])
+    link_sockets(tree, profile.outputs["Curve"], sweep.inputs["Profile Curve"])
+    return sweep
+
+
+def add_mesh_torus_linked(tree, loc, major_radius_sock, minor_radius_sock,
+                          major_segments_sock=None, minor_segments_sock=None,
+                          major_segments=48, minor_segments=12):
+    """MeshTorus replacement with group-input socket links instead of defaults."""
+    path = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (loc[0] - 200, loc[1]))
+    profile = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (loc[0] - 200, loc[1] - 140))
+    sweep = safe_node(tree, "GeometryNodeCurveToMesh", (loc[0], loc[1]))
+    if not (path and profile and sweep):
+        return None
+    link_sockets(tree, major_radius_sock, path.inputs["Radius"])
+    link_sockets(tree, minor_radius_sock, profile.inputs["Radius"])
+    if major_segments_sock is not None:
+        link_sockets(tree, major_segments_sock, path.inputs["Resolution"])
+    else:
+        path.inputs["Resolution"].default_value = major_segments
+    if minor_segments_sock is not None:
+        link_sockets(tree, minor_segments_sock, profile.inputs["Resolution"])
+    else:
+        profile.inputs["Resolution"].default_value = minor_segments
+    link_sockets(tree, path.outputs["Curve"], sweep.inputs["Curve"])
+    link_sockets(tree, profile.outputs["Curve"], sweep.inputs["Profile Curve"])
+    return sweep
+
+
 # ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 # Builder registry ΓÇö populated by each module via register_builder()
 # ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
@@ -650,6 +696,7 @@ CATEGORY_META: dict[str, dict] = {
     "castle":      {"label": "Castle Kit",           "icon": "MOD_BUILD"},
     "operations":  {"label": "Operations",           "icon": "AUTOMERGE_ON"},
     "mesh_tools":  {"label": "Mesh Tools",           "icon": "EDITMODE_HLT"},
+    "set_dressing": {"label": "Set Dressing",        "icon": "PLUGIN"},
 }
 
 
