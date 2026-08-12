@@ -4,11 +4,11 @@ Simple queue for phone agents. Prefer updating this file over inventing parallel
 
 ## Now
 
-1. On Windows UE box: install jcode, run `.\deploy\start_jcode_swarm.ps1`, paste `.jcode/coordinator-bootstrap.md`, complete **Recipe A** then **Recipe B** (see `JCODE_SWARM_PIPELINE.md` acceptance checklists).
-2. Finish Git LFS push of pending Content; confirm `origin/main` advances past 2026-07-24 tip.
-3. Maintain `Docs/PhoneOps/` as the mobile entry.
-4. Generic look-dev capture pass on `L_Template` when UE desktop/MCP is available.
-5. MelodiaCore GS-001 / GS-002 when in gameplay lane.
+1. **Merge prep (GitHub):** [#4](https://github.com/fromage3900/MelodiaMelusinaV2/pull/4) git health → slim RestoreParty PR (`cursor/restore-party-controller-e6ac`) → optional [#3](https://github.com/fromage3900/MelodiaMelusinaV2/pull/3) phone handoff. Prefer slim restore over full [#1](https://github.com/fromage3900/MelodiaMelusinaV2/pull/1) if foundation conflicts.
+2. **PC sync:** on `C:\EnvironmentPortfolio\BS_GodFile`, fetch/pull `main`; one UnrealEditor + Monolith `:9316`.
+3. **Closed-editor build** then PIE: highway ownership (`bExecutionDrivingHighway`) + RestoreParty log (`MELODIA_RECOVERY restored…`).
+4. **Runtime gate:** `python Tools/playtest_harness.py` real keys (not probe); assertion JSON + `record_gate.py runtime pass|fail`.
+5. Maintain `Docs/PhoneOps/` as the mobile entry; jcode Recipe A/B only if swarm is the day’s side lane.
 
 ## Next
 
