@@ -1,6 +1,7 @@
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 
 #include "Engine/GameInstance.h"
+#include "Engine/World.h"
 #include "EngineUtils.h"
 #include "MelodiaJRPGPostBattleLibrary.h"
 #include "MelodiaSaveRecoverySubsystem.h"
@@ -213,6 +214,30 @@ void UMelodiaExternalJRPGBridgeSubsystem::HandleBattleOver(uint8 BattleResult)
 	}
 
 	OnJRPGBattleEnded.Broadcast(BattleResult);
+
+	// Heal-only party restore before narrative resume (owner decision: no
+	// retry-on-defeat). Find the live BP_BattleController the same way the UI
+	// bridge does — ActiveBattleActor is the tagged encounter, not the controller.
+	if (UWorld* World = GetWorld())
+	{
+		AActor* BattleController = nullptr;
+		for (TActorIterator<AActor> It(World); It; ++It)
+		{
+			if (It->GetClass()->GetName().StartsWith(TEXT("BP_BattleController")))
+			{
+				BattleController = *It;
+				break;
+			}
+		}
+		if (BattleController)
+		{
+			UMelodiaJRPGPostBattleLibrary::RestorePartyAfterBattle(BattleController);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_RECOVERY no BP_BattleController in world at battle-over; party not restored."));
+		}
+	}
 
 	if (NarrativeSubsystem)
 	{

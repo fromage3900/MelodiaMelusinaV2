@@ -2,7 +2,16 @@
 
 This is the front door for project documentation. Prefer updating this index over creating another floating status document.
 
-## Latest environment checkpoint — 2026-08-11
+## Latest checkpoint — 2026-08-12 (cloud git-health prep)
+
+| Doc | Purpose |
+|---|---|
+| [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) | P0 PIE/runtime board — Quill/WillScript, battles, highway verify |
+| [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) | Tonight’s cloud work: PRs #4/#6, untrack/ignore, tomorrow merge order |
+| [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) | Phone/cloud Now list aligned to merge → build → playtest |
+| [README.md](README.md) | Front-door project status refreshed 2026-08-12 |
+
+## Environment checkpoint — 2026-08-11
 
 Read these before changing setup, ECHO, or cross-checkout tooling:
 

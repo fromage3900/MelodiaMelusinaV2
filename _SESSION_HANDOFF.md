@@ -1,3 +1,17 @@
+# Session Handoff — 2026-08-12 late (merge blocked + PIE board)
+
+**PIE board (living):** [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
+Git-health: [`Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md`](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md).
+
+- **Merge / pull NOT done.** PRs #4 and #6 stay OPEN. Cloud cannot squash-merge: branch
+  policy needs **1 approving review** (write access). Prefer squash (#4 then #6). CI reds on
+  #4 were self-hosted runner network to GitHub, not code defects.
+- **Owner ground truth:** WillScript updated → runtime verify owed. P0 battles still broken on
+  dreamstate path / collider-name level (working through). Rhythm highway still unverified in PIE.
+- **`main` tip:** playable levels (`43d0a9ae`), `static_gates` PASS (`0e34eaed`).
+
+---
+
 # Session Handoff — 2026-08-12 (source-control hardening + lane dispatch)
 
 **Session type:** repo/backup audit, gitignore fix, agent handoffs. **No editor or UE writes.**
