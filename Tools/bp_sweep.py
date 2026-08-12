@@ -52,7 +52,13 @@ from mcp_client import monolith  # noqa: E402
 
 WIDTH = 82
 EVENTISH = ("K2Node_Event", "K2Node_CustomEvent", "K2Node_ComponentBoundEvent")
-ENTRYISH = EVENTISH + ("K2Node_FunctionEntry", "K2Node_Tunnel", "K2Node_TunnelBoundary")
+# Input action/key/touch/axis nodes are event entries: the input system fires
+# them, so they have no upstream exec path. Missing them flagged live input
+# chains (e.g. BP_PlayerUnitBase Attack/Skill/Item/Flee) as dead islands
+# (2026-08-11).
+ENTRYISH = EVENTISH + ("K2Node_FunctionEntry", "K2Node_Tunnel", "K2Node_TunnelBoundary",
+                       "K2Node_InputAction", "K2Node_InputKey", "K2Node_InputTouch",
+                       "K2Node_InputAxisEvent")
 SKIP_NODE_CLASSES = ("K2Node_Comment", "K2Node_Reroute", "K2Node_Knot",
                      "K2Node_TunnelBoundary", "K2Node_Tunnel")
 
