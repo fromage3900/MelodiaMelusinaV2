@@ -5,7 +5,7 @@
 | Checkout | Remote | Role |
 |----------|--------|------|
 | `C:\EnvironmentPortfolio\BS_GodFile` | `v2` → MelodiaMelusinaV2 | Primary Unreal working tree |
-| `C:\EnvironmentPortfolio\MelodiaMelusinaV2` | `origin` → MelodiaMelusinaV2 | Published V2 mirror / push target |
+| ~~`C:\EnvironmentPortfolio\MelodiaMelusinaV2`~~ | ~~`origin` → MelodiaMelusinaV2~~ | **DOES NOT EXIST on disk (verified 2026-08-11 evening)** — this row was aspirational; the published V2 push target is the `v2` remote itself. Do not assume a second checkout. |
 | `C:\EnvironmentPortfolio\my-site-clean` | `origin` → my-site | Website (separate) |
 
 ## Keep offline / do not treat as trunk
@@ -27,3 +27,7 @@
 - Untracked Melusina/SirMelodious FBX drops under V2 `Content/Melodia/Characters/` (separate content intake).
 - Diverged `my-site-clean` ahead/behind remote.
 - Force-push to legacy `MelodiaMelusina` `origin/main` (non-ff; left alone).
+- Local branch `recovery/melodia-main-sync-20260811` (`2fce475a`) — **STALE cold snapshot** rebuilt
+  from website `origin/main` + working tree; it would revert the 33-asset quarantine and delete
+  `.jcode`/`.opencode`/Echo workflows if merged. Keep as backup only. See
+  `Docs/Handoffs/CLOUD_RESEARCH_FOLD_IN_2026-08-11.md` §4.
