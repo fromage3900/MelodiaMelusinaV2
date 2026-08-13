@@ -23,7 +23,7 @@ Older checklists still apply as walk scripts (do not duplicate status into them)
 |------|--------|-------|
 | `static_gates` | **PASS** (`0e34eaed`) | Material drifts accepted; sweeps scoped |
 | **Rhythm game (owner lock)** | **WORKED** | Live PIE owner confirm 2026-08-12 — highway playable; see rhythm lock file |
-| **QuillScript / WillScript (owner lock)** | **WORKED** | Owner “yes” 2026-08-12 — see Quill lock file |
+| **QuillScript (owner lock)** | **WORKED** | Owner “yes” 2026-08-12 — see Quill lock file |
 | `runtime` | **OPEN** for formal harness row | Rhythm + Quill play locked; still owe harness JSON + `record_gate.py runtime` (and stock battle path) |
 | `save_load` | OPEN | Never closed |
 | `repeat_consume` | OPEN | |
