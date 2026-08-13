@@ -10,6 +10,21 @@
 **Priorities:** P0 = blocking everything, P1 = should do this week, P2 = nice to have, P3 = parked
 **Statuses:** `Available` / `In Progress` / `Done` / `Blocked` / `Parked`
 
+## Tonight continuation — 2026-08-12 ~20:40 ET
+
+Handoff: `Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md`. UnrealEditor PID 38184 = A1. Loop 26352 = leave running.
+
+| Task | Phase | Priority | Status | Agent | Notes |
+|---|---|---|---|---|---|
+| Handpainted channel hunt | Tonight | P0 | **Done** | parent | 1208 hits; inventory JSON/md |
+| T1 `assign_hero_zentrim.py` disk inventory | Tonight | P0 | **Done** | parent | `--apply` blocked on A1 |
+| T1 `--apply` wand + StreetLamp MI_ZenTrim_Base4K | Tonight | P0 | **Blocked** | — | In already-open editor only |
+| T2 P0 mesh gap inventory | Tonight | P0 | **Done** | subagent | Cathedral 41 FBX not imported |
+| T2 import CathedralKit FBX | Tonight | P1 | **Available** | — | When A idle |
+| T3 Flip bake 1–96 + alembic | Tonight | P0 | **Blocked** | — | Blender MCP down; 0 `.bobj` |
+| T4 lean cross FBX from v22 | Tonight | P1 | **Blocked** | — | Needs 5.2; never T_Hatch_Cross |
+| D1 harness BP_MelodiaBattleUI | VS | P0 | **Done** | parent | `Saved/Audit/harness_battleui_paths_2026-08-12.md` |
+
 ## State updates — 2026-08-05
 - Git recovery complete: `BS_GodFile/.git` healthy at repo root on `main`; latest local commit `ec20b015`; checkpoint commit `6154cc1e` captures full live working tree on recovered history.
 - Push to `origin` is currently blocked by network connectivity to `github.com:443`.

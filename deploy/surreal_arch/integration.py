@@ -793,8 +793,11 @@ def register_overhaul(monolith):
         register_stage_publish_props()
     except Exception as exc:
         print(f"[Surreal Architecture] stage_publish props skipped: {exc}")
-    if not hasattr(bpy.types.Object, "mel_gn_stack"):
-        melodia_gn.register_props()
+    try:
+        if not hasattr(bpy.types.Object, "mel_gn_stack"):
+            melodia_gn.register_props()
+    except Exception as exc:
+        print(f"[Surreal Architecture] mel_gn_stack props skipped: {exc}")
     enable_overlay()
     try:
         unify_npanel_categories()

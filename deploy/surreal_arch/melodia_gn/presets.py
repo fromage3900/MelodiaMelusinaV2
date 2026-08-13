@@ -575,6 +575,233 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             },
         },
     },
+
+    # effects.py — MEL_effect_magic (effects) — 3 of 10 legacy looks
+    "MEL_effect_magic": {
+        "label": "Magic Distortion",
+        "preset_labels": {
+            "LIQUID": "Liquid",
+            "CRYSTAL": "Crystal",
+            "GRAVITY_WELL": "Gravity Well",
+        },
+        "preset_descriptions": {
+            "LIQUID": "Flowing animated noise, mid intensity — liquid-surface read.",
+            "CRYSTAL": "High-frequency chromatic facets, static — gem/ice read.",
+            "GRAVITY_WELL": "Low-frequency pull toward a downward attractor.",
+        },
+        "presets": {
+            "LIQUID": {
+                "Intensity": 0.8, "Frequency": 3.5, "Phase": 0.0,
+                "Noise Scale": 2.0, "Layers": 3, "Chromatic": False,
+                "Animate": True, "Attractor": [0.0, 0.0, 1.0],
+            },
+            "CRYSTAL": {
+                "Intensity": 1.4, "Frequency": 12.0, "Phase": 1.5708,
+                "Noise Scale": 0.4, "Layers": 5, "Chromatic": True,
+                "Animate": False, "Attractor": [0.0, 0.0, 1.0],
+            },
+            "GRAVITY_WELL": {
+                "Intensity": 2.4, "Frequency": 0.6, "Phase": 0.0,
+                "Noise Scale": 4.0, "Layers": 4, "Chromatic": False,
+                "Animate": True, "Attractor": [0.0, 0.0, -1.0],
+            },
+        },
+    },
+
+    # music.py — MEL_music_harmonic (music)
+    "MEL_music_harmonic": {
+        "label": "Harmonic Driver",
+        "preset_labels": {
+            "SOLO_FUNDAMENTAL": "Solo Fundamental",
+            "CHOIR_STACK": "Choir Stack",
+            "PHRASE_SWELL": "Phrase Swell",
+        },
+        "preset_descriptions": {
+            "SOLO_FUNDAMENTAL": "Single-voice fundamental, short phrase, almost no overtones.",
+            "CHOIR_STACK": "Five-voice stack with strong harmonic and octave mix.",
+            "PHRASE_SWELL": "Mid ensemble with long fade-in/out envelope.",
+        },
+        "presets": {
+            "SOLO_FUNDAMENTAL": {
+                "Base Frequency": 1.0, "Harmonic Blend": 0.1, "Octave Mix": 0.0,
+                "Voice Count": 1.0, "Amplitude": 0.6, "Fade In": 0.05,
+                "Fade Out": 0.05, "Note Count": 8,
+            },
+            "CHOIR_STACK": {
+                "Base Frequency": 2.5, "Harmonic Blend": 0.85, "Octave Mix": 0.7,
+                "Voice Count": 5.0, "Amplitude": 0.9, "Fade In": 0.15,
+                "Fade Out": 0.2, "Note Count": 32,
+            },
+            "PHRASE_SWELL": {
+                "Base Frequency": 3.0, "Harmonic Blend": 0.5, "Octave Mix": 0.4,
+                "Voice Count": 3.0, "Amplitude": 1.2, "Fade In": 0.4,
+                "Fade Out": 0.5, "Note Count": 24,
+            },
+        },
+    },
+
+    # music.py — MEL_music_treble_clef (music)
+    "MEL_music_treble_clef": {
+        "label": "Treble Clef",
+        "preset_labels": {
+            "STAFF_MARK": "Staff Mark",
+            "RAIL_ORNAMENT": "Rail Ornament",
+            "TIGHT_CURL": "Tight Curl",
+        },
+        "preset_descriptions": {
+            "STAFF_MARK": "Default G-clef scale for staff heads.",
+            "RAIL_ORNAMENT": "Large thick clef for balcony rails.",
+            "TIGHT_CURL": "Compact high-tightness ornamental curl.",
+        },
+        "presets": {
+            "STAFF_MARK": {
+                "Scale": 1.0, "Thickness": 0.018,
+                "Spiral Tightness": 0.5, "Body Curve": 0.5,
+            },
+            "RAIL_ORNAMENT": {
+                "Scale": 2.2, "Thickness": 0.05,
+                "Spiral Tightness": 0.7, "Body Curve": 0.35,
+            },
+            "TIGHT_CURL": {
+                "Scale": 0.6, "Thickness": 0.012,
+                "Spiral Tightness": 0.95, "Body Curve": 0.8,
+            },
+        },
+    },
+
+    # filigree.py — MEL_filigree_spiral (filigree)
+    "MEL_filigree_spiral": {
+        "label": "Filigree Spiral",
+        "preset_labels": {
+            "TIGHT_SCROLL": "Tight Scroll",
+            "NOUVEAU_VOLUTE": "Nouveau Volute",
+            "HELIX_CREST": "Helix Crest",
+        },
+        "preset_descriptions": {
+            "TIGHT_SCROLL": "Small flat scroll for corners and insets.",
+            "NOUVEAU_VOLUTE": "Classic Art Nouveau volute, modest lift.",
+            "HELIX_CREST": "Tall many-turn helix for cresting.",
+        },
+        "presets": {
+            "TIGHT_SCROLL": {
+                "Inner Radius": 0.03, "Outer Radius": 0.35, "Turns": 1.5,
+                "Taper Power": 1.2, "Profile Radius": 0.012, "Spiral Height": 0.0,
+                "Resolution": 48, "Profile Resolution": 6,
+            },
+            "NOUVEAU_VOLUTE": {
+                "Inner Radius": 0.05, "Outer Radius": 0.8, "Turns": 3.0,
+                "Taper Power": 0.8, "Profile Radius": 0.02, "Spiral Height": 0.05,
+                "Resolution": 96, "Profile Resolution": 10,
+            },
+            "HELIX_CREST": {
+                "Inner Radius": 0.08, "Outer Radius": 1.4, "Turns": 6.0,
+                "Taper Power": 0.4, "Profile Radius": 0.03, "Spiral Height": 0.7,
+                "Resolution": 160, "Profile Resolution": 12,
+            },
+        },
+    },
+
+    # escher_belvedere.py — MEL_escher_belvedere (castle)
+    "MEL_escher_belvedere": {
+        "label": "Escher Belvedere",
+        "preset_labels": {
+            "CANONICAL_LOGGIA": "Canonical Loggia",
+            "QUIET_PAVILION": "Quiet Pavilion",
+            "TWISTED_TOWER": "Twisted Tower",
+        },
+        "preset_descriptions": {
+            "CANONICAL_LOGGIA": "45-degree upper rotation with staircase, vines, threading columns.",
+            "QUIET_PAVILION": "Unrotated two-story read, no fixtures.",
+            "TWISTED_TOWER": "90-degree upper, dense columns, high wobble.",
+        },
+        "presets": {
+            "CANONICAL_LOGGIA": {
+                "Lower Width": 5.0, "Lower Depth": 4.0, "Upper Width": 3.0,
+                "Upper Depth": 2.4, "Upper Height": 2.6, "Upper Rotation": 45.0,
+                "Column Count X": 2, "Column Count Y": 2, "Column Radius": 0.08,
+                "Floor Thickness": 0.2, "Staircase": True, "Vines": True,
+                "Tall Threading Columns": True, "Wobble": 0.05, "Seed": 11,
+            },
+            "QUIET_PAVILION": {
+                "Lower Width": 4.2, "Lower Depth": 3.4, "Upper Width": 2.4,
+                "Upper Depth": 2.0, "Upper Height": 2.2, "Upper Rotation": 0.0,
+                "Column Count X": 2, "Column Count Y": 2, "Column Radius": 0.06,
+                "Floor Thickness": 0.16, "Staircase": False, "Vines": False,
+                "Tall Threading Columns": False, "Wobble": 0.02, "Seed": 3,
+            },
+            "TWISTED_TOWER": {
+                "Lower Width": 6.5, "Lower Depth": 5.5, "Upper Width": 4.5,
+                "Upper Depth": 3.6, "Upper Height": 3.4, "Upper Rotation": 90.0,
+                "Column Count X": 4, "Column Count Y": 4, "Column Radius": 0.12,
+                "Floor Thickness": 0.28, "Staircase": True, "Vines": True,
+                "Tall Threading Columns": True, "Wobble": 0.18, "Seed": 77,
+            },
+        },
+    },
+
+    # escher_penrose_stairs.py — MEL_escher_penrose_stairs (castle)
+    "MEL_escher_penrose_stairs": {
+        "label": "Escher Penrose Stairs",
+        "preset_labels": {
+            "CLASSIC_LOOP": "Classic Loop",
+            "BARE_ASCENT": "Bare Ascent",
+            "DOUBLE_CHAOS": "Double Chaos",
+        },
+        "preset_descriptions": {
+            "CLASSIC_LOOP": "Four-run loop with railings and second tier.",
+            "BARE_ASCENT": "Minimal three-run loop, no railings or second loop.",
+            "DOUBLE_CHAOS": "Eight-run dense loop, high wobble, both tiers.",
+        },
+        "presets": {
+            "CLASSIC_LOOP": {
+                "Runs": 4, "Run Length": 4.0, "Run Width": 1.6,
+                "Steps per Run": 5, "Step Rise": 0.22, "Step Depth": 0.45,
+                "Railings": True, "Second Loop": True, "Loop Offset": 0.9,
+                "Wobble": 0.05, "Seed": 7,
+            },
+            "BARE_ASCENT": {
+                "Runs": 3, "Run Length": 3.2, "Run Width": 1.2,
+                "Steps per Run": 4, "Step Rise": 0.18, "Step Depth": 0.35,
+                "Railings": False, "Second Loop": False, "Loop Offset": 0.0,
+                "Wobble": 0.02, "Seed": 2,
+            },
+            "DOUBLE_CHAOS": {
+                "Runs": 8, "Run Length": 5.5, "Run Width": 2.2,
+                "Steps per Run": 8, "Step Rise": 0.32, "Step Depth": 0.7,
+                "Railings": True, "Second Loop": True, "Loop Offset": 1.6,
+                "Wobble": 0.22, "Seed": 101,
+            },
+        },
+    },
+
+    # castle.py — MEL_castle_assembler (castle) — scalar sockets only
+    "MEL_castle_assembler": {
+        "label": "Castle Full Assembler",
+        "preset_labels": {
+            "KEEP_COURT": "Keep Court",
+            "WIDE_BAILEY": "Wide Bailey",
+            "COMPACT_CITADEL": "Compact Citadel",
+        },
+        "preset_descriptions": {
+            "KEEP_COURT": "Default courtyard with complete walls and corner towers.",
+            "WIDE_BAILEY": "Large scaled bailey, full curtain and corners.",
+            "COMPACT_CITADEL": "Tight site, complete walls, no corner towers.",
+        },
+        "presets": {
+            "KEEP_COURT": {
+                "Site Scale": 1.0, "Courtyard Width": 20.0, "Courtyard Depth": 15.0,
+                "Complete Walls": True, "Corner Towers": True,
+            },
+            "WIDE_BAILEY": {
+                "Site Scale": 2.2, "Courtyard Width": 48.0, "Courtyard Depth": 36.0,
+                "Complete Walls": True, "Corner Towers": True,
+            },
+            "COMPACT_CITADEL": {
+                "Site Scale": 0.6, "Courtyard Width": 10.0, "Courtyard Depth": 8.0,
+                "Complete Walls": True, "Corner Towers": False,
+            },
+        },
+    },
 }
 
 # —————————————————————————————————————————————————————————————————————————————

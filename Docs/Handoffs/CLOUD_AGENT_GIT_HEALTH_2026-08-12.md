@@ -33,19 +33,19 @@ C:\EnvironmentPortfolio\                 (not a live git root)
 Cloud /workspace                         ★ same remote, asset-light clone
 ```
 
-## Tomorrow merge order (PC)
+## Merge order — DONE on PC (2026-08-12)
 
-1. Merge **#4** → pull on `BS_GodFile`
-2. Merge **#6** → closed-editor build → one battle end → log `MELODIA_RECOVERY…`
-3. Optional #3 / #5; rebase #1 later and drop duplicate restore hunk
-4. **Owner must approve + squash-merge #4 then #6** (cloud blocked: review required; merge commits disallowed). Then pull PC worktree.
-5. PIE: highway ownership (`bExecutionDrivingHighway`) + WillScript verify + dreamstate/collider battle path + `playtest_harness` real-input runtime gate — living board `Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`
+1. ~~Merge #4 / #6 + pull~~ **DONE** (`main` @ `2e3c893d`; admin squash).
+2. ~~Closed-editor build~~ **DONE**.
+3. ~~PIE highway / rhythm game~~ **OWNER LOCK — WORKED** → `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`
+4. Still owed: ~~WillScript verify~~ **OWNER LOCK — WORKED** (`Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`) + KaleidoNave collider battle path (Dreamstate merged into KaleidoNave 2026-08-10) + `MELODIA_RECOVERY…` + formal `playtest_harness` / `record_gate.py runtime` packaging — living board `Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`
+5. Optional #3 / #5; rebase #1 later and drop duplicate restore hunk
 
-## Explicitly not done from cloud
+## Explicitly not done from cloud (historical — evening update)
 
-- Runtime ledger row (needs real keys + editor)
+- Formal runtime ledger row (needs harness JSON packaging; **rhythm play itself is owner-locked WORKED**)
 - Google Drive comparison (MCP needs desktop auth)
-- Merging PRs (owner click)
+- ~~Merging PRs (owner click)~~ **DONE on PC via admin squash**
 - Full LFS migration of historical brush-pack blobs already pushed (untrack stops new growth; old objects may still bill until GC/month rollover)
 
 ## Phone queue

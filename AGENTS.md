@@ -521,11 +521,10 @@ Full detail: `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md`.
    widget and inject real `InputKey` events (or document the exact focus path), (c) run the
    A/B on `melodia.Rhythm.Disable 1` (Decision 024 — *not* Perfect-vs-Miss, Decision 016 sets
    no miss penalty), (d) save the assertion report JSON next to the frames, (e) `record_gate.py runtime pass|fail`.
-3. **Build and verify the highway-ownership fix.** `MelodiaRhythmHUDWidget.cpp` was changed
-   2026-08-11 so the ambient execution lane only clears a highway it set
-   (`bExecutionDrivingHighway`); the DLL was locked by a running editor, so this has NOT been
-   compiled or observed yet. Full closed-editor build, then PIE with the stock rhythm session
-   to confirm the highway survives both tick paths.
+3. ~~**Build and verify the highway-ownership fix.**~~ **OWNER LOCK 2026-08-12 — RHYTHM GAME WORKED.**
+   `bExecutionDrivingHighway` compiled; closed-editor build after #4/#6; **owner confirmed rhythm
+   game / highway in live PIE.** Canonical: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`.
+   Do not reopen “highway unverified / never observed.”
 4. **Verify the damage-scalar sequencing** before trusting any A/B numbers — the damage notify
    may fire ~2.5s before the scalar latches.
 5. **Highway note rendering** — the one genuine T3D target. Re-export baselines and resolve
@@ -548,7 +547,9 @@ Done 2026-08-11: beat map; `rhythm_battle_runtime_probe.py` made runnable
 see evidence standard §1).
 
 Parallel work for other agents, partitioned by contended resource:
-`Docs/Handoffs/PARALLEL_LANES_2026-08-08.md`.
+**current** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md)
++ paste prompts [`Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md`](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md)
+(history: `PARALLEL_LANES_2026-08-08.md`). Rhythm + Quill are owner-locked WORKED — do not reopen.
 
 ---
 

@@ -1,14 +1,77 @@
-# Session Handoff — 2026-08-12 late (merge blocked + PIE board)
+# Session Handoff — 2026-08-12 ~23:36 ET (UE idle apply)
 
-**PIE board (living):** [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
-Git-health: [`Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md`](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md).
+Owner released A1. **T1/T2/T3 landed** in PID **38184**. Evidence: [`Saved/Audit/ue_idle_apply_2026-08-12.md`](Saved/Audit/ue_idle_apply_2026-08-12.md).
 
-- **Merge / pull NOT done.** PRs #4 and #6 stay OPEN. Cloud cannot squash-merge: branch
-  policy needs **1 approving review** (write access). Prefer squash (#4 then #6). CI reds on
-  #4 were self-hosted runner network to GitHub, not code defects.
-- **Owner ground truth:** WillScript updated → runtime verify owed. P0 battles still broken on
-  dreamstate path / collider-name level (working through). Rhythm highway still unverified in PIE.
-- **`main` tip:** playable levels (`43d0a9ae`), `static_gates` PASS (`0e34eaed`).
+- `MI_ZenTrim_Base4K` on wand + StreetLamp. Magicians skipped.
+- Cathedral **41/41** under `/Game/EnvSandbox/Meshes/Cathedral/`. KaleidoNave folder `CathedralKit_Review` (8 pieces, Y=4500) **unsaved**.
+- Geometry Cache `/Game/Cinematics/MelusinaWaterHair/GC_MelusinaHairFlip_v22`. Do not replace `SK_MelusinaHair`.
+- Save KaleidoNave if the strip should persist. Socket a new cine GC actor to head.
+
+---
+
+# Session Handoff — 2026-08-12 ~23:20 ET (Website Overhaul & Security)
+
+**Pick up:** [`Docs/Handoffs/SESSION_HANDOFF_2026-08-12_WEBSITE_OVERHAUL.md`](Docs/Handoffs/SESSION_HANDOFF_2026-08-12_WEBSITE_OVERHAUL.md)
+
+- **Website Overhaul & Security:** 100% AI purge, meta CSP headers, 232 hex errors resolved (0 token errors), Figma UI suite integrated (15 icons, combat cards, swatch boards, mobile viewport frame), Vite MPA config + TS modules (`src/ts/`).
+- **Gates:** `npm run verify:all` **PASSED** (0 errors, 0 facts issues).
+
+---
+
+# Session Handoff — 2026-08-12 ~22:53 ET (live 5.2 MCP)
+
+Blender **5.2** PID **27644**, MCP **9876** connected. v22 open. **Not saved.**
+
+- Health: `builders=165 menu=165 sections=12/12 section_trees=165` presets 24/0 orphans.
+- Smoke: `MEL_effect_magic` LIQUID applied (`MEL_Smoke_EffectMagic_LIQUID` cube — undo before plates).
+- Hair tune: `drip_inside_domain=true`. Domain moved ΔZ **-1.34**. Strand.002 is CURVES (script patched). **0 `.bobj`** — bake still owner step.
+- **GN background:** `GN_BG_Prototype` 15 builders (frame rebuilt as plane). **Not saved.**
+- **Flip bake:** 480 `.bobj` frames 1–240. Alembic `Exports/MelusinaWaterHair/GC_MelusinaHairFlip_v22.abc` (1–96). Import as Geometry Cache cine actor when A1 idle.
+
+---
+
+# Session Handoff — 2026-08-12 ~20:40 ET (tonight continuation)
+
+**Pick up:** [`Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md`](Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md)
+
+- Handpainted hunt **done** (1208 hits). Komikaze stills are not albedo.
+- P0 umaps exist. Cathedral kit = 41 FBX, **0** uassets. No vow-cross mesh.
+- `assign_hero_zentrim.py` disk inventory written. `--apply` waits — UnrealEditor **PID 38184** (A1).
+- Flip cache still **0 `.bobj`**. Alembic helper: `Tools/export_melusina_hair_flip_alembic.py`.
+- D1: `playtest_harness.py` now tries `BP_MelodiaBattleUI` first.
+- Blender MCP **down**. Loop PID **26352** — do not start a second.
+- Do not save v22 without `MELODIA_ALLOW_STAGE_SAVE=1`. Rhythm + Quill still LOCKED WORKED.
+
+---
+
+# Session Handoff — 2026-08-12 evening (Blender Melodia Studio)
+
+**Blender start-here:** [`Docs/BLENDER_MELODIA_COCKPIT.md`](Docs/BLENDER_MELODIA_COCKPIT.md)
+
+- **B0/B1/B3 DONE.** Live v22 Health: `sections=12/12 section_trees=165`. `RQ_MEL_*=165`. Audits under `Saved/Audit/melodia_studio_*_2026-08-12_1948.md`.
+- **Do not** click **Sync & Reload** until the next 5.2 restart (old operator crashed the GUI; timer fix is on disk + AppData).
+- After restart: **N → BlenderMCP → Connect** on **9876** (not Live Bridge).
+- Stage: `G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend`. No agent save without `MELODIA_ALLOW_STAGE_SAVE=1`.
+- Still open on Blender: **B2** website plate dry-run (git push off).
+- Builder click: `mel_gn.stack_add` no longer requires `Object.mel_gn_stack` (modifier still applies).
+
+---
+
+# Session Handoff — 2026-08-12 evening (RHYTHM + QUILL LOCKED)
+
+```
+✧ RHYTHM + QUILLSCRIPT WORKED — tell the whole family ✧
+```
+
+**Rhythm lock:** [`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md)  
+**Quill lock:** [`Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md)  
+**PIE board (living):** [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).  
+**Parallel spawns:** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md) · paste prompts [`PARALLEL_SESSIONS_2026-08-12.md`](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md).
+
+- **Owner LOCK:** Rhythm game **WORKED** · QuillScript / WillScript **WORKED** (owner “yes”). Do not reopen either.
+- **Merge / pull DONE.** #4 + #6 squash-merged; `main` @ `2e3c893d`; closed-editor build PASS.
+- **Still open:** P0 stock battles (Morning → KaleidoNave / collider); formal `record_gate.py runtime` packaging; `MELODIA_RECOVERY…`.
+- **`static_gates` PASS** (`0e34eaed`). Playable levels on `main` (`43d0a9ae`).
 
 ---
 
@@ -135,9 +198,11 @@ Full record: `Docs/Handoffs/CLOUD_RESEARCH_FOLD_IN_2026-08-11.md` — read that 
 All reports + cross-lane synthesis: `Saved/Intake/INTAKE_SYNTHESIS_2026-08-11.md`.
 Consensus: (1) runtime gate is THE blocker (probe-only = HOLD; real keys never tested
 through BP_BattleUI::OnKeyDown); (2) queue-authority mismatch; (3) HUD dual-writer
-fix compiled but never observed in PIE; (4) don't push GitHub before Content/LFS secured
-(partially superseded — v2 push happened below); (5) best single finding: Q/W/O/P has a
-6-key W→O hand shift (spatial playability risk for dense notes).
+fix compiled but never observed in PIE — **superseded 2026-08-12: owner confirmed rhythm
+highway WORKED in live PIE** (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`); (4) don't
+push GitHub before Content/LFS secured (partially superseded — v2 push happened below);
+(5) best single finding: Q/W/O/P has a 6-key W→O hand shift (spatial playability risk for
+dense notes).
 
 ## Repo: v2 canonical
 

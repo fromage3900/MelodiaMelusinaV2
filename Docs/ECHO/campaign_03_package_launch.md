@@ -18,7 +18,7 @@ maps) but packaging is not launching.
 ## Run
 
 1. Launch `BS_GodFile.exe` (Development) outside the editor.
-2. Walk the route: Morning → Dreamstate → KaleidoNave.
+2. Walk the route: Morning → KaleidoNave (Dreamstate merged into KaleidoNave on 2026-08-10).
 3. Confirm the three maps load, Quill dialogue shows, and the battle chain
    starts.
 4. **Known failure class:** cook exit 25 / modal-hang / shader compile stalls —
@@ -28,7 +28,7 @@ maps) but packaging is not launching.
 ## Record
 
 ```text
-python Tools/echo_run.py record package_launch pass --note "Development build launched; Morning -> Dreamstate -> KaleidoNave walked"
+python Tools/echo_run.py record package_launch pass --note "Development build launched; Morning -> KaleidoNave walked"
 ```
 
 ## If packaging is not launching (the standing failure)

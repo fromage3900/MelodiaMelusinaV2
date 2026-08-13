@@ -36,6 +36,7 @@ BATTLE_UI = "/Game/MelodiaIntegration/UI/BP_BattleUI"
 CONSOLE_RHYTHM_TOGGLE = "melodia.Rhythm.Disable"
 
 BP_TRIES = [
+    "/Game/MelodiaIntegration/UI/BP_MelodiaBattleUI",
     "/Game/MelodiaIntegration/UI/BP_BattleUI",
     "/Game/Melodia/UI/BP_BattleUI",
     "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleUI",
