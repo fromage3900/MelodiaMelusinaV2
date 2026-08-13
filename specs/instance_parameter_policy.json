@@ -1,0 +1,75 @@
+{
+  "_meta": {
+    "doc": "Instance parameter variance policy (fold-in v1).",
+    "lens": "Infinity-Nikki-style material dev: dreamy pastel palettes, soft glows, iridescent hints, whimsical accents, tasteful sparkle; hero materials get restraint, utility materials get variety.",
+    "grounding": "Parameter substrings must match a parameter that provably exists on the parent master (the applicator never invents names; it matches substrings against the parent's live parameter list and skips unmatched entries). Value ranges are authored here; concrete per-instance values are deterministically seeded by asset name so re-runs are idempotent.",
+    "specimen": "Saved/Audit/owner_instance_profiles.json holds the owner's hand-tuned instances; when it exists the applicator reports how many policy parameters coincide with the owner's vocabulary.",
+    "version": 1
+  },
+  "palettes": {
+    "nikki_pastel": [
+      [0.92, 0.88, 0.95, 1.0],
+      [0.90, 0.95, 0.93, 1.0],
+      [0.96, 0.90, 0.86, 1.0],
+      [0.88, 0.92, 0.97, 1.0]
+    ],
+    "dream_iridescent": [
+      [0.90, 0.75, 0.95, 1.0],
+      [0.70, 0.85, 0.98, 1.0],
+      [0.95, 0.80, 0.88, 1.0],
+      [0.75, 0.95, 0.90, 1.0]
+    ],
+    "crystal_glow": [
+      [0.75, 0.95, 1.0, 1.0],
+      [1.0, 0.90, 0.75, 1.0],
+      [0.85, 1.0, 0.95, 1.0]
+    ]
+  },
+  "variance": {
+    "_rules": [
+      "Scalar names containing the substring match case-insensitively; first matching rule wins; remaining entries are skipped.",
+      "Multipliers apply to the parent's default value when the instance has no override (read default via MaterialEditingLibrary), never to an existing authored override.",
+      "Vector rules set palette colors with optional per-instance hue jitter (seeded, within +/- 4%) so siblings vary without breaking family identity.",
+      "Emission/Glow intensity rules only apply when the parent exposes an emission-ish parameter (substring match); they scale with a small per-instance factor 0.8-1.25."
+    ],
+    "scalars": [
+      { "match": "tiling", "mode": "multiply_default", "factor_range": [1.0, 1.8], "note": "Tasteful tiling variance so swatches read differently." },
+      { "match": "roughness", "mode": "multiply_default", "factor_range": [0.9, 1.25], "note": "Satin/velvet roughness band, Nikki-restrained." },
+      { "match": "gloss", "mode": "multiply_default", "factor_range": [0.9, 1.15], "note": "Subtle sheen lift." },
+      { "match": "emissive_intensity", "mode": "multiply_default", "factor_range": [0.85, 1.3], "note": "Soft dream glow." },
+      { "match": "emission_intensity", "mode": "multiply_default", "factor_range": [0.85, 1.3] },
+      { "match": "glow", "mode": "multiply_default", "factor_range": [0.9, 1.35], "note": "Whimsical glow accents." },
+      { "match": "opacity", "mode": "multiply_default", "factor_range": [0.85, 1.0], "note": "Never above default; translucency stays subtle." },
+      { "match": "metallic", "mode": "set_override", "value": 0.0, "note": "Enforce non-metallic dream look on toon materials." },
+      { "match": "ao_strength", "mode": "multiply_default", "factor_range": [0.9, 1.1] },
+      { "match": "normal_strength", "mode": "multiply_default", "factor_range": [0.85, 1.15] },
+      { "match": "displacement", "mode": "multiply_default", "factor_range": [0.9, 1.1], "note": "Parallax stays gentle." }
+    ],
+    "vectors": [
+      { "match": "base_color", "palette": "nikki_pastel", "jitter": 0.04 },
+      { "match": "basecolor", "palette": "nikki_pastel", "jitter": 0.04 },
+      { "match": "albedo", "palette": "nikki_pastel", "jitter": 0.04 },
+      { "match": "tint", "palette": "dream_iridescent", "jitter": 0.03 },
+      { "match": "emissive", "palette": "crystal_glow", "jitter": 0.03 },
+      { "match": "emission_color", "palette": "crystal_glow", "jitter": 0.03 },
+      { "match": "glow_color", "palette": "crystal_glow", "jitter": 0.03 },
+      { "match": "iridescence", "palette": "dream_iridescent", "jitter": 0.02 },
+      { "match": "rim_color", "palette": "dream_iridescent", "jitter": 0.03 },
+      { "match": "subsurface", "palette": "nikki_pastel", "jitter": 0.04 }
+    ]
+  },
+  "family_policies": {
+    "_families": {
+      "SDF":    { "scalars": ["tiling", "roughness", "emissive_intensity", "emission_intensity", "glow"], "vectors": ["base_color", "emissive", "glow_color", "rim_color"], "palette_bias": "dream_iridescent" },
+      "Baroque": { "scalars": ["tiling", "roughness", "gloss"], "vectors": ["base_color", "tint", "gold"], "palette_bias": "nikki_pastel" },
+      "Crystal": { "scalars": ["tiling", "roughness", "emission_intensity"], "vectors": ["base_color", "emissive"], "palette_bias": "crystal_glow" },
+      "Halftone": { "scalars": ["tiling", "roughness", "emissive_intensity"], "vectors": ["base_color", "tint"], "palette_bias": "nikki_pastel" },
+      "Glitter": { "scalars": ["tiling", "glow", "emission_intensity"], "vectors": ["base_color", "iridescence", "glow_color"], "palette_bias": "dream_iridescent" },
+      "Landscape": { "scalars": ["tiling"], "vectors": ["base_color"], "palette_bias": "nikki_pastel" },
+      "Water": { "scalars": ["tiling", "gloss", "opacity"], "vectors": ["base_color", "subsurface"], "palette_bias": "crystal_glow" },
+      "Utility": { "scalars": ["tiling"], "vectors": [], "palette_bias": "nikki_pastel" },
+      "Impressionist": { "scalars": ["tiling", "roughness"], "vectors": ["base_color"], "palette_bias": "nikki_pastel" }
+    },
+    "notes": "Family selection is by asset-name prefix match (MI_<Family>_... or folder name); the applicator logs each family's matched-vs-skipped parameter names so the policy stays grounded in reality."
+  }
+}

@@ -5,9 +5,6 @@ Intermediate/
 Saved/
 !Saved/Portfolio/
 !Saved/Audit/
-!Saved/gate_ledger.json
-!Saved/Echo/
-!Saved/Echo/**
 Build/
 .vs/
 *.sln
@@ -55,9 +52,12 @@ Content/ZenForestTest_HLODLayer_*
 Content/__ExternalActors__/ZenForestTest/
 Content/__ExternalActors__/ZenForestTest_WP/
 
-# Python cache
+# Python cache / Blender autosave junk
 Content/Python/__pycache__/
+**/__pycache__/
 *.pyc
+*.pyo
+*.blend1
 **/.venv/
 .env.local
 # Unreal scratch assets created by editor-analysis scripts; these are not project source.
@@ -136,6 +136,28 @@ Content/TurnBasedJRPGTemplate/Blueprints/*
 Content/TurnBasedJRPGTemplate/Blueprints/Battle/*
 !Content/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController.uasset
 
+# --- PLAYABLE ROUTE LEVELS — tracked (2026-08-12) ---
+# The `Content/*` blanket meant the two levels that ARE the vertical slice had no
+# version history: L_MelusinaMorning and L_KaleidoNave. KaleidoNave is the only
+# level in which a battle has ever started (the BP_BattleController placement on
+# 2026-08-10). Losing either one loses the loop, and neither can be re-downloaded.
+#
+# Authored PCG graphs come with them -- they are logic, not art, and they are what
+# the levels reference. Bulk EnvSandbox art (meshes, textures, Megascans, ~4.6 GB)
+# stays ignored on purpose, same reasoning as the 2026-08-08 block above.
+# Added here: ~48 MB, well inside the 512 MB CI budget gate.
+!Content/Melodia/Levels/
+!Content/Melodia/Levels/**
+!Content/Melodia/PCG/
+!Content/Melodia/PCG/**
+
+!Content/EnvSandbox/
+Content/EnvSandbox/*
+!Content/EnvSandbox/Environments/
+!Content/EnvSandbox/Environments/**
+!Content/EnvSandbox/PCG/
+!Content/EnvSandbox/PCG/**
+
 # Nested site repo + deploy staging dir (mirrors, not tracked content)
 my-site-clean/
 _github_deploy/
@@ -149,24 +171,6 @@ Imports/Animations/Cascadeur/*
 !Imports/Animations/Cascadeur/Inbox/
 Imports/Animations/Cascadeur/Inbox/*
 !Imports/Animations/Cascadeur/Inbox/README.md
-!Imports/Sculpt/
-Imports/Sculpt/*
-!Imports/Sculpt/Inbox/
-!Imports/Sculpt/Archive/
-Imports/Sculpt/Inbox/*
-Imports/Sculpt/Archive/*
-!Imports/Sculpt/Inbox/README.md
-!Imports/Sculpt/Archive/README.md
-!Imports/Mocap/
-Imports/Mocap/*
-!Imports/Mocap/Rokoko/
-Imports/Mocap/Rokoko/*
-!Imports/Mocap/Rokoko/Inbox/
-!Imports/Mocap/Rokoko/CharacterRef/
-Imports/Mocap/Rokoko/Inbox/*
-Imports/Mocap/Rokoko/CharacterRef/*
-!Imports/Mocap/Rokoko/Inbox/README.md
-!Imports/Mocap/Rokoko/CharacterRef/README.md
 Tools/*
 !Tools/Cascadeur/
 !Tools/Cascadeur/Melusina/
@@ -197,7 +201,6 @@ Tools/*
 !Tools/lane_dispatcher.py
 !Tools/git_safe_push.py
 !Tools/lfs_health_audit.py
-!Tools/sculpt_intake_check.py
 !Tools/bp_live_path.py
 !Tools/bp_sweep.py
 !Tools/project_state.py
@@ -206,8 +209,18 @@ Tools/*
 !Tools/t3d_dashboard.py
 !Tools/BlenderAddons/
 !Tools/BlenderAddons/**
-# Local Blender brush packs — not game content (keep on disk, do not re-add)
+# Negation above re-includes junk — put it back out
+Tools/BlenderAddons/**/__pycache__/
+Tools/BlenderAddons/**/*.pyc
+Tools/BlenderAddons/**/*.pyo
+Tools/BlenderAddons/**/*.blend1
+# Local Blender brush packs / side trees — keep on disk, do not track
 86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/
+# Melodia Studio / stage SSOT + Review_Queue populate
+!Tools/melodia_stage_paths.py
+!Tools/melodia_website_root.py
+!Tools/populate_gn_builders_review_queue.py
+!Tools/melodia_stage_shot.py
 melodia-design-system/
 KitbashExport/
 research/

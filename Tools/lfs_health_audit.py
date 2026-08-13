@@ -20,9 +20,9 @@ import sys
 from pathlib import Path
 
 POINTER_RE = re.compile(
-    rb"^version https://git-lfs\.github\.com/spec/v1\n"
-    rb"oid sha256:([0-9a-f]{64})\n"
-    rb"size (\d+)\n",
+    rb"^version https://git-lfs\.github\.com/spec/v1\r?\n"
+    rb"oid sha256:([0-9a-f]{64})\r?\n"
+    rb"size (\d+)\r?\n",
     re.MULTILINE,
 )
 

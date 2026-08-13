@@ -10,6 +10,8 @@ on:
       - 'Plugins/**/Source/**'
       - 'Content/Python/**'
       - 'specs/**'
+      - 'Tools/**'
+      - '.github/workflows/echo_gates.yml'
   workflow_dispatch:
 
 jobs:

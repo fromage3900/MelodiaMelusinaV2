@@ -2,29 +2,46 @@
 
 This is the front door for project documentation. Prefer updating this index over creating another floating status document.
 
-## Latest handoff checkpoint — 2026-08-11 (V2)
+## Latest checkpoint — 2026-08-12 (cloud git-health prep)
 
-Read [`Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`](Docs/GAME_FOUNDATION_PLAN_2026-08-11.md) and
-[`Docs/LIVEOPS_GIT_SOP_2026-08-11.md`](Docs/LIVEOPS_GIT_SOP_2026-08-11.md) first.
-Owner PIE: [`Docs/Handoffs/PIE_2026-08-11.md`](Docs/Handoffs/PIE_2026-08-11.md) ·
-PhoneOps: [`Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md`](Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md).
-Sculpt / scan: [`Docs/SCULPT_ASSET_INTAKE_2026-08-11.md`](Docs/SCULPT_ASSET_INTAKE_2026-08-11.md),
-[`Docs/MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md`](Docs/MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md).
-Echo manifest: [`specs/echo_pipeline.json`](specs/echo_pipeline.json).
-Then [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md).
+| Doc | Purpose |
+|---|---|
+| [Saved/Audit/ue_idle_apply_2026-08-12.md](Saved/Audit/ue_idle_apply_2026-08-12.md) | A-idle: T1 ZenTrim applied, T2 41 Cathedral uassets, T3 Geometry Cache imported |
+| [Saved/Audit/flip_hair_bake_2026-08-12.md](Saved/Audit/flip_hair_bake_2026-08-12.md) | Flip bake 1–240 (480 `.bobj`); ABC `GC_MelusinaHairFlip_v22.abc` frames 1–96 |
+| [Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md](Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md) | After live v22: five doors, three session types, GN visual review (not more trees) |
+| [Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) | **OWNER LOCK — rhythm game WORKED** |
+| [Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md) | **OWNER LOCK — QuillScript WORKED** |
+| [Docs/Handoffs/PARALLEL_LANES_2026-08-12.md](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md) | **Parallel agent lanes** (post rhythm+Quill locks) — claim table |
+| [Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md) | **Paste-ready session prompts** for each lane |
+| [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) | **Start here for Blender / Melodia Studio** — v22 path, MCP 9876, Health `12/12` / `165` |
+| [Docs/Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md](Docs/Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md) | Blender lanes — **B0/B1/B3 done**; B2 plate dry-run still open |
+| [Saved/Audit/gn_library_audit_2026-08-12.md](Saved/Audit/gn_library_audit_2026-08-12.md) | **GN library audit** — 165 construct; P0 presets **24/165 (14.5%)** |
+| [Saved/Audit/gn_presets_audit_2026-08-12.json](Saved/Audit/gn_presets_audit_2026-08-12.json) | P0 preset inventory — 24 builders / 73 looks, 0 orphans |
+| [Saved/Audit/melusina_needed_work_2026-08-12.md](Saved/Audit/melusina_needed_work_2026-08-12.md) | Melusina wardrobe SSOT retargeted to v22 / MCP 9876; live 5.2 still needed |
+| [Saved/Audit/handpainted_texture_inventory_2026-08-12.md](Saved/Audit/handpainted_texture_inventory_2026-08-12.md) | Owner handpaint hunt — 1208 hits; no named lantern/wand/cross maps |
+| [Saved/Audit/p0_level_mesh_gaps_2026-08-12.md](Saved/Audit/p0_level_mesh_gaps_2026-08-12.md) | Four P0 umaps exist; Cathedral 41 FBX not imported; no vow-cross SM |
+| [Saved/Audit/water_hair_layer_c_runbook_2026-08-12.md](Saved/Audit/water_hair_layer_c_runbook_2026-08-12.md) | Layer C: 0 `.bobj`; tune+alembic helpers ready; bake blocked on 5.2 |
+| [Saved/Audit/hero_zentrim_assign.json](Saved/Audit/hero_zentrim_assign.json) | `--apply` **done** — `MI_ZenTrim_Base4K` on wand + StreetLamp |
+| [Saved/Audit/cathedral_fbx_import.json](Saved/Audit/cathedral_fbx_import.json) | Cathedral kit **41/41** imported to `/Game/EnvSandbox/Meshes/Cathedral/` |
+| [Saved/Audit/hair_flip_geometry_cache_import.json](Saved/Audit/hair_flip_geometry_cache_import.json) | Layer C Geometry Cache at `/Game/Cinematics/MelusinaWaterHair/GC_MelusinaHairFlip_v22` |
+| [Docs/Handoffs/TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md](Docs/Handoffs/TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md) | **Tonight board** — P0 levels, ZenTrim on heroes, water-hair Geometry Cache |
+| [deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md](deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md) | **GN expansion** — P0 landed closed-editor; water-hair cache is cine-only |
+| [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) | P0 PIE/runtime board — rhythm + Quill locked WORKED; battles still open |
+| [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) | Tonight’s cloud work: PRs #4/#6, untrack/ignore, tomorrow merge order |
+| [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) | Phone/cloud Now list aligned to merge → build → playtest |
+| [README.md](README.md) | Front-door project status refreshed 2026-08-12 |
 
-## Latest environment checkpoint — 2026-08-11
+## Environment checkpoint — 2026-08-11
 
 Read these before changing setup, ECHO, or cross-checkout tooling:
 
 | Doc | Purpose |
 |---|---|
+| [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) | **Start here for Blender / Melodia Studio** — v22 path, MCP 9876, Health `12/12` / `165` |
 | [Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md](Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md) | Workspace topology, authority boundaries, service contract, and drift register |
 | [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) | Portable Windows setup and execution path |
 | [Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md](Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md) | Evidence from the implemented environment and remaining blockers |
 | [Docs/ECHO_PIPELINE_2026-08-09.md](Docs/ECHO_PIPELINE_2026-08-09.md) | ECHO stages, evidence rules, and campaign contract |
-
-## Latest handoff checkpoint — 2026-08-09
 
 Read [`Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md`](Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md) first when
 resuming gameplay work from another session. It records the earlier local Git

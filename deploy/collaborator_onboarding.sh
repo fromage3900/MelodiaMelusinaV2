@@ -1,133 +1,128 @@
 #!/usr/bin/env bash
-# Collaborator Onboarding — MelodiaMelusinaV2
-# Usage: ./deploy/collaborator_onboarding.sh [tier] [repo_dir]
-# Tiers:
-#   docs50      — ≤50 MB docs/source/Python (Echo author/spec text)
-#   slice50     — ≤50 MB MelodiaIntegration BP slice
-#   placement50 — Universal BP physics placement (target ≤50 MB; EnvSandbox may be missing on cloud)
-#   gameplay    — Melodia+EnvSandbox+JRPG (~2 GB)  [alias: lightweight]
-#   full        — all LFS
-#   docs        — alias of docs50
-# Default: docs50
-
 set -euo pipefail
+
+# Collaborator Onboarding Script
+# Usage: ./collaborator_onboarding.sh [tier] [repo_dir]
+# Tiers: lightweight (UE plugins) | blender (Blender-only) | full | docs
+# Default: lightweight
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
-TIER="${1:-docs50}"
+TIER="${1:-lightweight}"
 REPO_DIR="${2:-$PROJECT_ROOT}"
-MANIFEST_DIR="$REPO_DIR/specs/collab_slices"
 
-# Aliases
-case "$TIER" in
-  docs) TIER=docs50 ;;
-  lightweight) TIER=gameplay ;;
-esac
-# normalize case for legacy callers
-TIER="$(printf '%s' "$TIER" | tr '[:upper:]' '[:lower:]')"
-
-case "$TIER" in
-  docs50|slice50|placement50|gameplay|full)
+case "${TIER,,}" in
+  lightweight|blender|full|docs)
+    TIER="${TIER,,}"
     ;;
   *)
     echo "Unknown tier: $TIER"
-    echo "Supported: docs50 slice50 placement50 gameplay full"
+    echo "Supported: lightweight, blender, full, docs"
     exit 1
     ;;
 esac
 
 if ! git -C "$REPO_DIR" rev-parse --show-toplevel >/dev/null 2>&1; then
   echo "Repository is not a Git checkout: $REPO_DIR"
-  echo "Usage: $0 [docs50|slice50|placement50|gameplay|full] [repo_dir]"
+  echo "Usage: $0 [lightweight|full|docs] [repo_dir]"
   exit 2
 fi
 
 echo "==> Tier: $TIER"
-echo "==> Repo: $(git -C "$REPO_DIR" rev-parse --show-toplevel) (public: https://github.com/fromage3900/MelodiaMelusinaV2)"
-echo "==> Tip: git config core.hooksPath .githooks"
+echo "==> Repo: $(git -C "$REPO_DIR" rev-parse --show-toplevel)"
 
 cd "$REPO_DIR"
-git lfs install || true
-
-apply_manifest() {
-  local id="$1"
-  local man="$MANIFEST_DIR/${id}.json"
-  if [ ! -f "$man" ]; then
-    echo "ERROR: missing manifest $man"
-    exit 1
-  fi
-  echo "==> Using manifest $man"
-  # sparse paths
-  python3 - <<PY
-import json
-from pathlib import Path
-man = json.loads(Path("$man").read_text())
-paths = man.get("sparse_checkout", [])
-print("\n".join(paths))
-PY
-  mapfile -t SPARSE < <(python3 - <<PY
-import json
-from pathlib import Path
-man = json.loads(Path("$man").read_text())
-for p in man.get("sparse_checkout", []):
-    print(p)
-PY
-)
-  git sparse-checkout init --cone || true
-  git sparse-checkout set "${SPARSE[@]}" || true
-
-  INCLUDE=$(python3 - <<PY
-import json
-from pathlib import Path
-man = json.loads(Path("$man").read_text())
-print(",".join(man.get("lfs_include", [])))
-PY
-)
-  if [ -n "$INCLUDE" ]; then
-    echo "==> git lfs pull --include=$INCLUDE"
-    git lfs pull --include="$INCLUDE" || true
-  fi
-  python3 "$REPO_DIR/Tools/lfs_health_audit.py" --manifest "$man" || {
-    echo "WARN: manifest budget/required check returned non-zero (see above)."
-    # docs50/slice50 should hard-fail on budget; placement50 may miss EnvSandbox on cloud
-    if [ "$id" != "placement50" ]; then
-      exit 1
-    fi
-  }
-}
 
 if [ "$TIER" = "full" ]; then
-  echo "==> Full LFS pull"
+  echo "==> Full clone workflow"
+  git sparse-checkout disable || true
+  git lfs install
   git lfs pull
-  echo "==> Onboarding complete for tier: $TIER"
-  if [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
-    echo "Run: powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1 -SkipServices"
-  fi
   exit 0
 fi
 
-if [ "$TIER" = "gameplay" ]; then
-  echo "==> Gameplay tier (~2 GB Melodia+EnvSandbox+JRPG) — not a 50 MB slice"
-  git sparse-checkout init --cone || true
-  git sparse-checkout set \
-    Content/Melodia \
-    Content/EnvSandbox \
-    Content/MelodiaIntegration \
-    Content/TurnBasedJRPGTemplate \
-    Plugins/MelodiaCore/Source \
-    Docs Source Config Tools deploy specs Content/Python || true
-  git lfs pull --include="Content/Melodia/**,Content/EnvSandbox/**,Content/MelodiaIntegration/**,Content/TurnBasedJRPGTemplate/**" || true
-  echo "==> Onboarding complete for tier: $TIER"
-  if [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
-    echo "Run: powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1 -SkipServices"
-  fi
+if [ "$TIER" = "blender" ]; then
+  echo "==> Blender-only sparse workflow (no Unreal project/plugins)"
+  git lfs install
+  git sparse-checkout init --no-cone
+  git sparse-checkout set --no-cone \
+    /deploy/surreal_arch/ \
+    /deploy/surreal_world/ \
+    /deploy/surreal_os/ \
+    /deploy/surreal_greybox/ \
+    /deploy/surreal_architecture_gen.py \
+    /Content/Python/gmm/ \
+    /Content/Python/material_lib.py \
+    /Tools/ \
+    /Docs/ONBOARDING_LIVE_COLLAB.md \
+    /Docs/ZUNZUN_FAMILY_INTEGRATION.md \
+    /Docs/ZUNDAMON_DESIGN_BIBLE.md \
+    /Docs/ZUNDAMON_NPC_SPEC.md \
+    /README.md \
+    /DOC_INDEX.md
+  echo "==> Blender-only checkout ready"
+  echo "Install the addon under Blender 5.2, then use Docs/ONBOARDING_LIVE_COLLAB.md."
   exit 0
 fi
 
-apply_manifest "$TIER"
+if [ "$TIER" = "docs" ]; then
+  echo "==> Docs/code-only workflow"
+  git lfs install || true
+  exit 0
+fi
+
+echo "==> Lightweight collaborator workflow"
+git lfs install
+
+MANIFEST="$SCRIPT_DIR/collaborator_ue_manifest.txt"
+if [ ! -f "$MANIFEST" ]; then
+  echo "UE collaborator manifest missing: $MANIFEST"
+  exit 3
+fi
+
+SPARSE_PATHS=()
+LFS_PATHS=()
+PLUGIN_PATHS=()
+while read -r record path label; do
+  case "$record" in
+    SPARSE) SPARSE_PATHS+=("$path") ;;
+    LFS) LFS_PATHS+=("$path") ;;
+    PLUGIN) PLUGIN_PATHS+=("$label") ;;
+  esac
+done < <(awk 'NF && $1 !~ /^#/ { print $1, $2, $3 }' "$MANIFEST")
+
+echo "==> Enabling UE-capable sparse checkout"
+git sparse-checkout init --no-cone
+git sparse-checkout set --no-cone "${SPARSE_PATHS[@]}"
+
+echo "==> Hydrating UE plugin and gameplay LFS payloads"
+LFS_INCLUDE="$(IFS=,; printf '%s' "${LFS_PATHS[*]}")"
+git lfs pull --include="$LFS_INCLUDE"
+
+echo "==> Checking required project and plugin manifests"
+REQUIRED_PATHS=("BS_GodFile.uproject")
+for sparse_path in "${SPARSE_PATHS[@]}"; do
+  REQUIRED_PATHS+=("${sparse_path#/}")
+done
+REQUIRED_PATHS+=("${PLUGIN_PATHS[@]}")
+missing=0
+for required_path in "${REQUIRED_PATHS[@]}"; do
+  if [ ! -e "$required_path" ]; then
+    echo "FAIL: required path missing: $required_path"
+    missing=$((missing + 1))
+  else
+    echo "OK: $required_path"
+  fi
+done
+if [ "$missing" -ne 0 ]; then
+  echo "Lightweight UE checkout is incomplete; rerun sparse checkout before opening Unreal."
+  exit 4
+fi
+
 echo "==> Onboarding complete for tier: $TIER"
-echo "==> Echo: gameplay claims need ledger rows (python Tools/echo_run.py status)"
-echo "==> Lock binaries before edit: git lfs lock <path>"
+echo "Plugins are source-only; compile them before opening the project:"
+echo '  "<UE_ROOT>\\Engine\\Build\\BatchFiles\\Build.bat" BS_GodFileEditor Win64 Development -Project="<checkout>\\BS_GodFile.uproject" -NoUBA -MaxParallelActions=1'
 if [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then
-  echo "Run: powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1 -SkipServices"
+  echo "Validate with:"
+  echo "  powershell -ExecutionPolicy Bypass -File .\\deploy\\validate_setup.ps1 -SkipServices -CheckLfsHydration"
 fi

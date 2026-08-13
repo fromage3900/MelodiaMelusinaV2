@@ -301,11 +301,30 @@ def lint_online(asset_path: str) -> LintResult:
 # ---------------------------------------------------------------------------
 
 def _discover_melodia_widgets() -> list[str]:
+    """Discover widgets via the AssetRegistry (same path as bp_sweep.py).
+
+    project_query search caps at 50 results and does not scope by path, so it
+    is not usable for discovery (schema drift 2026-08-11).
+    """
     try:
-        resp = monolith("project_query", {"action": "search", "type": "WidgetBlueprint", "path": "/Game/Melodia"})
+        code = (
+            "import json, unreal\n"
+            "ar = unreal.AssetRegistryHelpers.get_asset_registry()\n"
+            "f = unreal.ARFilter(package_paths=['/Game'], recursive_paths=True,\n"
+            "                    class_names=['WidgetBlueprint'])\n"
+            "out = [str(a.package_name) for a in ar.get_assets(f)]\n"
+            'print("__LINT__" + json.dumps(out))\n'
+        )
+        resp = monolith("editor_query", {"action": "run_python", "params": {"command": code}})
         raw = json.loads(resp) if isinstance(resp, str) else resp
-        assets = raw if isinstance(raw, list) else raw.get("results", raw.get("assets", []))
-        return [a.get("path", a) if isinstance(a, dict) else a for a in assets]
+        if not raw.get("ok", raw.get("success")):
+            raise RuntimeError(json.dumps(raw)[:200])
+        for item in raw.get("output", []):
+            for line in str(item.get("output", "")).splitlines():
+                if line.startswith("__LINT__"):
+                    assets = json.loads(line[len("__LINT__"):])
+                    return [a for a in assets if a.startswith(("/Game/Melodia", "/Game/MelodiaIntegration"))]
+        raise RuntimeError("no result marker")
     except Exception as e:
         print(f"Failed to discover melodia widgets: {e}", file=sys.stderr)
         return []

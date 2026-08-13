@@ -741,6 +741,38 @@ def _cmd_geometry_reset_preview(params: dict) -> CommandResult:
     return CommandResult(bool(result.get("ok")), "Preview reset" if result.get("ok") else "Preview reset unavailable", outputs=result, error=str(error) if error else None)
 
 
+def _cmd_geometry_boolean_preview(params: dict) -> CommandResult:
+    from gmm.geometry.schemas import validate_boolean_parameters
+    from gmm.geometry.ue_adapter import preview_boolean
+
+    modifier_type = str(params.get("modifier_type", "boolean_difference"))
+    values = dict(params.get("parameters", {}))
+    errors = validate_boolean_parameters(modifier_type, values)
+    if errors:
+        return CommandResult(False, "Invalid boolean parameters", outputs={"errors": errors}, error="invalid_boolean_parameters")
+    result = preview_boolean(
+        str(params.get("asset_path", "")),
+        values,
+        preview_actor=str(params.get("preview_actor", "")),
+    )
+    error = result.get("error")
+    return CommandResult(bool(result.get("ok")), "Boolean preview applied" if result.get("ok") else "Boolean preview unavailable", outputs=result, error=str(error) if error else None)
+
+
+def _cmd_geometry_boolean_apply(params: dict) -> CommandResult:
+    from gmm.geometry.schemas import validate_boolean_parameters
+    from gmm.geometry.ue_adapter import apply_boolean
+
+    modifier_type = str(params.get("modifier_type", "boolean_difference"))
+    values = dict(params.get("parameters", {}))
+    errors = validate_boolean_parameters(modifier_type, values)
+    if errors:
+        return CommandResult(False, "Invalid boolean parameters", outputs={"errors": errors}, error="invalid_boolean_parameters")
+    result = apply_boolean(str(params.get("asset_path", "")), values)
+    error = result.get("error")
+    return CommandResult(bool(result.get("ok")), "Boolean modifier applied" if result.get("ok") else "Boolean modifier unavailable", outputs=result, error=str(error) if error else None)
+
+
 # NPC Pipeline Commands
 
 def _cmd_npc_vrm4u_capabilities(_: dict) -> CommandResult:
@@ -1038,6 +1070,8 @@ GMM_COMMANDS: dict[str, tuple[str, Callable]] = {
     "gmm.geometry.describe_target": (GMM_SECTION, _cmd_geometry_describe_target),
     "gmm.geometry.bevel_preview": (GMM_SECTION, _cmd_geometry_bevel_preview),
     "gmm.geometry.reset_preview": (GMM_SECTION, _cmd_geometry_reset_preview),
+    "gmm.geometry.boolean_preview": (GMM_SECTION, _cmd_geometry_boolean_preview),
+    "gmm.geometry.boolean_apply": (GMM_SECTION, _cmd_geometry_boolean_apply),
     "gmm.melodia.enemies": (GMM_SECTION, _cmd_melodia_enemies),
     "gmm.melodia.skills": (GMM_SECTION, _cmd_melodia_skills),
     "gmm.melusina.rig_assess": (GMM_SECTION, _cmd_melusina_rig_assess),

@@ -1,5 +1,10 @@
 # Parallel agent lanes — core gameplay loop closeout (2026-08-08, updated 2026-08-09)
 
+> **Superseded for new spawns (2026-08-12 evening):** use
+> [`PARALLEL_LANES_2026-08-12.md`](PARALLEL_LANES_2026-08-12.md) +
+> [`PARALLEL_SESSIONS_2026-08-12.md`](PARALLEL_SESSIONS_2026-08-12.md).
+> Rhythm + Quill are **OWNER LOCKED WORKED** — do not start A1 “observe rhythm” from this file.
+
 ## The rule that makes this safe
 
 **The Unreal editor is an exclusive resource. Exactly one lane may hold it at a time.**

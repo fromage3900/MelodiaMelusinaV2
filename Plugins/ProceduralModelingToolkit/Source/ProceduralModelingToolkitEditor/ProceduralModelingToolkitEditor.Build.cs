@@ -17,6 +17,7 @@ public class ProceduralModelingToolkitEditor : ModuleRules
 				"CollectionManager",
 				"EditorScriptingUtilities",
 				"GeometryFramework",
+				"GeometryCore",
 				"GeometryScriptingCore",
 				"Json",
 				"JsonUtilities",

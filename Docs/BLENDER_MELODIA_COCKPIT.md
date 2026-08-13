@@ -1,21 +1,69 @@
 # Melodia Melusina — Blender cockpit (cine + assets)
 
-**Addon:** Preferences name **Melodia Studio** (module id `surreal_architecture_gen`; operators remain `surreal_arch.*`). Sidebar category: **Melodia Studio**.
+**Start here for any Blender / Melodia Studio session.** Gameplay/UE work stays on [`_SESSION_HANDOFF.md`](../_SESSION_HANDOFF.md).
 
-**SSOT stage:** `KitbashExport/Melodia_Portfolio_Stage_v4.blend`  
-**Blender:** **5.2** (`C:\Program Files\Blender Foundation\Blender 5.2\blender.exe`)  
-**Game mesh bus:** `KitbashExport/OrnamentalMeshes/SM_Orn_*.fbx` (gothic v1, 15)  
-**Musical mesh bus:** `KitbashExport/MusicalOrnamentalMeshes/SM_Orn_*.fbx` (musical v1, 7)  
-**Character / wardrobe:** [`Docs/MELUSINA_BLENDER_WARDROBE_SSOT.md`](MELUSINA_BLENDER_WARDROBE_SSOT.md)  
-**Live Link** (`Docs/BLENDER_LIVELINK.md`) stays scratch-only → `/Game/LiveLink/` — never Ornament SKU or wardrobe.  
-**MCP (new, 2026-08-06):** `deploy/blender_5.2_mcp.py` — stdio MCP server via `.mcp.json` server `"blender-5.2"`. Launches headless `blender.exe --factory-startup` per tool call. Tools: `get_scene_info`, `get_active_object`, `execute_blender_code`, `list_genomes` (56 styles across 8 groups), `apply_style`, `create_mesh`, `list_materials`, `export_fbx`. No persistent daemon, no TCP sockets.  
-**Legacy MCP (deprecated):** port 9877 TCP socket adapter at `deploy/surreal_arch_mcp_adapter.py` — old 5.1 pattern, kept for reference only.
+## Open in 30 seconds
 
-**Master studio:** Fade Assets Sky Night (`W_MelodiaStudio_Fade`) + Komikaze on `Studio_FloorCard` / diorama (Lane B) + Melusina-framed cams — `Tools/setup_melusina_master_studio.py` (re-run after rig/scale changes; **never move FloorCard** — boot contact). Melusina hair/clothes already use Lane A Komikaze hybrids — see wardrobe SSOT.
+| | |
+|--|--|
+| **Blender** | **5.2** — `C:\Program Files\Blender Foundation\Blender 5.2\blender.exe` |
+| **Live stage (SSOT)** | `G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend` |
+| **Addon** | Preferences name **Melodia Studio** (module `surreal_architecture_gen`, operators `surreal_arch.*`). N-panel tab: **Melodia Studio**. |
+| **Do not save** the portfolio stage from an agent unless `MELODIA_ALLOW_STAGE_SAVE=1`. |
 
-**Melodia Studio / GN status (2026-08-06):** deploy is synced to live Blender 5.2 with music builders, sheet rail, ornament builders, and surreal_arch style registry (56 styles across 8 groups + 18 Escher presets). The GN catalog (`Saved/Audit/melodia_gn_builder_catalog.md`) reports 39/39 registered builders gold/works. Studio review additions: Solo Object (`surreal_arch.solo_object`) and Ivy (Bagapie). `FILIGREE_*` monolith rewrites remain deferred.
+```powershell
+& "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" "G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend"
+```
+
+After a crash or restart: **N → BlenderMCP → Connect to MCP server** (port **9876**). Melodia Studio **Live Bridge → Start Server** is LiveLink, not MCP — different button.
+
+Agent ping: `python Tools/blender_mcp_client.py get_scene_info`
+
+## Studio Health (2026-08-12 19:48 ET) — B0/B1 green
+
+```text
+GN builders=165 menu=165 sections=12/12 section_trees=165
+Review_Queue RQ_MEL_* = 165
+```
+
+Evidence: [`Saved/Audit/melodia_studio_sections_2026-08-12_1948.md`](../Saved/Audit/melodia_studio_sections_2026-08-12_1948.md) · [`…parity_2026-08-12_1948.md`](../Saved/Audit/melodia_studio_parity_2026-08-12_1948.md).
+
+**GN library audit (closed-editor):** [`Saved/Audit/gn_library_audit_2026-08-12.md`](../Saved/Audit/gn_library_audit_2026-08-12.md) — 165 construct, **P0 presets 24/165 (14.5%)**, stop adding volume. **Expansion:** [`deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md`](../deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md).
+
+**GN Stack smoke (expand the panel; ≥1 builder each):** Castle Kit · Musical Notation · Ornament · Magic Effects. Click **Circular Array** on a selected mesh — a Geometry Nodes modifier should appear.
+
+**Sync & Reload:** only after `deploy\sync_surreal_to_live.ps1` when Blender was *already* open. A fresh start already loads AppData. The old operator crashed 5.2 by reloading itself; the timer fix is on disk — **restart Blender once** before using that button again.
+
+**Sections bug (fixed):** Health could show `builders=165` while GN Stack categories stayed empty (`TREE_CATEGORIES` import alias). Rebuild now mutates containers in place; `stack.py` reads `core.TREE_*`.
+
+**Workflow after live v22:** [`Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md`](Handoffs/WORKFLOW_UNIFY_2026-08-12.md) — five doors, GN visual review on `GN_Review_Grid`, freeze Set Dressing.
+
+Lanes: [BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md](Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md). Remaining: **B2** website plate dry-run (git push off).
+
+## Ports (do not mix these up)
+
+| Port | What | When |
+|------|------|------|
+| **9876** | **BlenderMCP** — Cursor/agent ↔ the *open* 5.2 GUI (`Tools/blender_mcp_client.py`, `uvx blender-mcp`) | Enable addon, then **Connect to MCP server** after every restart |
+| **9876** | **LiveLink** TCP — Blender → UE `/Game/LiveLink/` scratch only | Melodia Studio → Live Bridge → Start Server. Never ornament/wardrobe SSOT. See [`BLENDER_LIVELINK.md`](BLENDER_LIVELINK.md) |
+| Headless | `deploy/blender_5.2_mcp.py` — new `blender.exe --factory-startup` per call | No TCP. Not the live v22 session |
+| 9877 / 9317 | Legacy adapters | Do not use |
+
+**Kitbash buses (not the live stage):** gothic `KitbashExport/OrnamentalMeshes/SM_Orn_*.fbx` (15) · musical `KitbashExport/MusicalOrnamentalMeshes/SM_Orn_*.fbx` (7). Older plate scripts still point at `KitbashExport/Melodia_Portfolio_Stage_v4.blend`. Wardrobe: [`MELUSINA_BLENDER_WARDROBE_SSOT.md`](MELUSINA_BLENDER_WARDROBE_SSOT.md).
+
+**School install / verify (no AI chat required):**
+```powershell
+cd deploy
+.\install_melodia_studio.ps1
+.\verify_melodia_studio.ps1
+.\run_blender_smoke_queue.ps1
+```
+
+Hub panel `SURREAL_ARCH_PT_genome_carousel` nests GN Stack, Stage, bridges, and Living Portrait. Solo Object (`surreal_arch.solo_object`) and Ivy (Bagapie) are in the review tools. `FILIGREE_*` monolith rewrites remain deferred.
 
 ## Core commands
+
+Beauty-plate / wardrobe commands below still point at historical `KitbashExport/Melodia_Portfolio_Stage_v4.blend`. Live portfolio stage is **v22** (see Open in 30 seconds); v4 is not the pin.
 
 | Goal | Command |
 |------|---------|
@@ -24,7 +72,7 @@
 | Plate batch (musical / hero / outfit) | `… 5.2\blender.exe … -P Tools/run_melodia_plate_batch.py -- --musical --hero --outfit fv2_accordion` |
 | Outfit plate | `… melodia_stage_shot.py -- --preset beauty --lights nikki --subject outfit:<OutfitId>` |
 | Inventory Melusina meshes | `… inventory_melusina_stage_meshes.py` → `Saved/Audit/melusina_stage_mesh_inventory.json` |
-| Ensure Wardrobe_* + import outfit | `… populate_stage_review_queue.py -- --ensure-wardrobe-only` · or `-- --outfit <fbx> --outfit-id <id>` |
+| Ensure Wardrobe_* + import outfit | Prefer `Tools/populate_cathedral_review_queue.py` / `Tools/populate_musical_ornament_review.py` (legacy doc name `populate_stage_review_queue.py` is absent — do not invent it) |
 | Export wardrobe FBX | `… export_melusina_wardrobe.py -- --outfit-id <OutfitId>` → `Exports/MelusinaClothes/` |
 | **Prep ornament + musical authoring** | `python Tools/prep_ornament_music_mesh_session.py` then open stage with `-P Tools/prep_ornament_music_mesh_session.py` (EXPORT + Melodia GN + review grid). Queue: `Saved/Audit/ornament_music_authoring_queue.json` |
 | Cute ornament bake | `blender --factory-startup -b -P Tools/test_cute_gn_ornaments.py` |
@@ -38,7 +86,7 @@
 | Goal | Command |
 |------|---------|
 | Inventory meshes | `blender KitbashExport/Melodia_Portfolio_Stage_v4.blend -b -P Tools/inventory_melusina_stage_meshes.py -- --ensure-wardrobe --save` |
-| Import outfit pack | `… -P Tools/populate_stage_review_queue.py -- --outfit <path.fbx> --outfit-id <id>` |
+| Import outfit pack | Prefer wardrobe inventory + FBX import scripts in wardrobe SSOT; legacy `populate_stage_review_queue.py` is not in repo |
 | Outfit beauty plate | `… -P Tools/melodia_stage_shot.py -- --preset beauty --lights nikki --subject outfit:<id>` |
 | Export clothes FBX | `… -P Tools/export_melusina_wardrobe.py -- --outfit-id <id>` |
 
@@ -84,8 +132,9 @@ Passport sidecars land in `my-site-clean/generated/passports/`.
 ## Review Queue / authoring smoke
 
 Before packaging or store screenshots:
-- Open Blender 5.2 with the stage and confirm Melodia Studio N-panel draws.
-- In Melodia Studio, smoke-test `SHEET_MUSIC_RAIL`, `TREBLE_CLEF`, `NOTE_HEAD`, one ornament builder, `ARCH`, and one registered `CASTLE_*` route.
+- Open **v22** in Blender 5.2. N-panel **Melodia Studio** must draw. **Studio Health** → `sections=12/12 section_trees=165`.
+- Expand **GN Stack** and confirm ≥1 builder in Castle Kit, Musical Notation, Ornament, and Magic Effects.
+- Click **Circular Array** (or `SHEET_MUSIC_RAIL` / `TREBLE_CLEF` / `NOTE_HEAD` / one ornament / `ARCH` / one `CASTLE_*`).
 - Confirm Review Queue Prev / Solo / Next, Solo Object, and Ivy (Bagapie) use soft visibility/local view only.
 - Do not save over `Melodia_Portfolio_Stage_*.blend` from agent automation; the artist owns stage saves.
 

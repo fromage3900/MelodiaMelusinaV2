@@ -1,100 +1,79 @@
-# Collaborator Setup Guide — MelodiaMelusinaV2
+# 👥 Collaborator Setup Guide
 
-**Public repo:** https://github.com/fromage3900/MelodiaMelusinaV2  
-**Live-ops + Echo:** [Docs/LIVEOPS_GIT_SOP_2026-08-11.md](Docs/LIVEOPS_GIT_SOP_2026-08-11.md)  
-**Full clone is huge.** Use a ≤50 MB slice unless you need gameplay assets.
+**Work together without downloading the full 300GB project.**
 
-## Quick start (recommended)
+This guide covers Unreal-capable collaboration. For a Blender-only bridge
+checkout with no Unreal project or plugin content, use
+[Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) and the `blender` onboarding tier.
 
-```bash
-git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
-cd MelodiaMelusinaV2
-git config core.hooksPath .githooks
-
-# ≤50 MB — pick one
-bash deploy/collaborator_onboarding.sh docs50        # source/docs/Python
-bash deploy/collaborator_onboarding.sh slice50       # MelodiaIntegration BPs (~10 MB LFS)
-bash deploy/collaborator_onboarding.sh placement50   # Universal placement (needs EnvSandbox on workstation)
-
-# ~2 GB Melodia+EnvSandbox+JRPG (formerly misnamed "lightweight")
-bash deploy/collaborator_onboarding.sh gameplay
-
-# Everything
-bash deploy/collaborator_onboarding.sh full
 ```
-
-Lock before editing binaries:
-
-```bash
-git lfs lock Content/MelodiaIntegration/Blueprints/BP_MelodiaTravelVolume.uasset
-# ... edit in UE ...
-git lfs unlock Content/MelodiaIntegration/Blueprints/BP_MelodiaTravelVolume.uasset
+✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
 ```
-
-Push budgets (hooks enforce): `collab/` `cursor/` `docs/` → **50 MB** LFS batch; other branches → **512 MB**. Override: `MELODIA_LFS_LIMIT_MB=50`.
-
-## Sculpting right now?
-
-Export finished meshes to `Imports/Sculpt/Inbox/` (versioned `SM_|SK_|…_v01.fbx`), then:
-
-```bash
-python Tools/sculpt_intake_check.py --limit-mb 50
-```
-
-Full intake: [Docs/SCULPT_ASSET_INTAKE_2026-08-11.md](Docs/SCULPT_ASSET_INTAKE_2026-08-11.md).
-
-## Echo reminder
-
-Gameplay claims need ledger rows (`python Tools/echo_run.py status`). A green clone is not a `runtime` pass.
-
-## Tier table
-
-| Tier | Size | Use |
-|------|------|-----|
-| `docs50` | ≤50 MB | Code/docs/Python review |
-| `slice50` | ≤50 MB | Integration travel/UI/water BPs |
-| `placement50` | target ≤50 MB | Universal PCG + physics placement |
-| `gameplay` | ~2 GB | Level/material work with Melodia+EnvSandbox+JRPG |
-| `full` | full LFS | Build / PIE / cook |
-
-Manifests: `specs/collab_slices/*.json` (see `specs/collab_slices/README.md`). Blender-only sparse kit also documented in [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md).
 
 ---
 
-## Older notes
+## 🎯 Problem: Full Clone = 300GB Download
 
-The sections below retain historical detail. Prefer the Quick Start tiers above when they conflict.
+The current project tracks all binary files in Git LFS (textures, models, audio, etc.), which means a full clone is ~300GB. For collaborators working on specific tasks, this is overkill.
+
+## ✅ Solution: Tiered Onboarding
+
+Pick the tier that matches your role. Each tier downloads only what you need.
+
+| Tier | Role | Clone Size | Setup Time |
+|------|------|-----------|------------|
+| **Tier 1 — Lightweight UE** | Level design, material art, UI work with project plugins | 2–10 GB | 10–15 min + first C++ build |
+| **Tier 2 — Full Build** | Build engineer, packaging, PIE testing | ~300 GB | 1–2 hours |
+| **Tier 3 — Code/Docs Reviewer** | Code review, planning, documentation review | ~50 MB | ~1 minute |
+
+---
+
+## 🚀 Quick Start
+
+Use the tiered onboarding scripts:
 
 ```bash
-# 1. Clone the repo (skip LFS download — ~50MB)
-git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+# Tier 1: Lightweight (level design, materials, UI)
+bash deploy/collaborator_onboarding.sh lightweight
+
+# Tier 2: Full build (build engineer, PIE testing)
+bash deploy/collaborator_onboarding.sh full
+
+# Tier 3: Docs/code-only (reviewers, planners)
+bash deploy/collaborator_onboarding.sh docs
+
+# Validate the UE-capable checkout
+bash deploy/validate_collaborator_setup.sh . ue
+powershell -ExecutionPolicy Bypass -File .\deploy\validate_setup.ps1 -SkipServices -CheckLfsHydration
+```
+
+---
+
+## Tier 1: Lightweight UE Collaborator
+
+**Best for:** Level design, material art, UI work, documentation
+
+```bash
+# 1. Clone without hydrating the full LFS library
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
 cd MelodiaCollab
 
 # 2. Install Git LFS
 git lfs install
 
-# 3. Enable sparse checkout (only needed folders)
-git sparse-checkout init --cone
-git sparse-checkout set \
-  Content/Melodia/Levels \
-  Content/EnvSandbox \
-  Plugins/MelodiaCore/Source \
-  Docs \
-  Source \
-  Config \
-  deploy
+# 3. Apply the plugin-capable sparse manifest
+bash deploy/collaborator_onboarding.sh lightweight
 
-# 4. Pull targeted LFS assets for your work
+# 4. The manifest includes BS_GodFile.uproject, full tracked Plugins/,
+#    plugin source, Content/Python, and the tracked gameplay paths.
+#    It intentionally does not pull the full 300 GB content library.
 ```
 
 ### For Level Designers (Geometry/Levels):
 ```bash
-git lfs pull --include="*.umap"
-git lfs pull --include="Content/Melodia/Levels/*.umap"
-git lfs pull --include="Content/EnvSandbox/Levels/*.umap"
-git lfs pull --include="Content/EnvSandbox/Meshes/*.uasset"
-git lfs pull --include="Content/EnvSandbox/Materials/*.uasset"
-# Total: ~2-5GB instead of 300GB!
+# The lightweight onboarding script already hydrates the tracked route paths.
+git lfs pull --include="Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**"
+# Do not use the old Content/EnvSandbox/Levels path; it is not the tracked route.
 ```
 
 ### For Material Artists:
@@ -129,7 +108,13 @@ git lfs install
 git lfs pull
 
 # 3. Open BS_GodFile.uproject in UE 5.8
-# 4. Build the editor (Development)
+# 4. Install VS 2022 Desktop development with C++ and the Windows SDK
+# 5. Build the source-only plugins with the editor closed:
+powershell -ExecutionPolicy Bypass -File .\deploy\validate_setup.ps1 -SkipServices -CheckLfsHydration
+$ueRoot = if ($env:MELODIA_UNREAL_ROOT) { $env:MELODIA_UNREAL_ROOT } else { "C:\Program Files\Epic Games\UE_5.8" }
+& "$ueRoot\Engine\Build\BatchFiles\Build.bat" BS_GodFileEditor Win64 Development -Project="$PWD\BS_GodFile.uproject" -NoUBA -MaxParallelActions=1
+# 6. Confirm compiled plugin binaries:
+powershell -ExecutionPolicy Bypass -File .\deploy\validate_setup.ps1 -SkipServices -CheckLfsHydration -RequirePluginBinaries
 ```
 
 ---
@@ -215,13 +200,20 @@ git lfs pull --include="Content/Audio/**"
 
 ## ✅ Validation
 
-Run the setup validator to confirm your environment is healthy:
+Run the UE validator to confirm the project and plugin checkout is healthy:
 
 ```bash
-bash deploy/validate_collaborator_setup.sh
+bash deploy/validate_collaborator_setup.sh . ue
 ```
 
-Expected output: exit code `0` with all checks passing.
+Then run the strict Windows validator:
+
+```powershell
+.\deploy\validate_setup.ps1 -SkipServices -CheckLfsHydration
+```
+
+Source-only plugin binaries are expected to warn before the first build.
+After compiling, add `-RequirePluginBinaries` and require an exit code of `0`.
 
 ---
 
@@ -230,8 +222,18 @@ Expected output: exit code `0` with all checks passing.
 **Problem:** "Asset appears as pink/missing in Unreal"
 **Solution:**
 ```bash
-git lfs pull --include="Content/Path/To/Missing/Asset/*"
+git lfs pull --include="Content/Path/To/Missing/Asset/**"
 ```
+
+**Problem:** "MeshBlend, PCGEx, or another plugin is missing"
+**Solution:** Confirm the collaborator used the `lightweight` UE tier, not the
+Blender-only sparse tier. Verify `BS_GodFile.uproject` and the complete
+`Plugins/` tree are present, then run the closed-editor UE 5.8 source build.
+
+**Problem:** "Plugin module DLL could not be loaded"
+**Solution:** Plugin binaries are intentionally not tracked. Install VS 2022
+Desktop development with C++, close Unreal, run the `Build.bat` command above,
+and rerun `validate_setup.ps1 -RequirePluginBinaries`.
 
 **Problem:** "Git LFS not working"
 **Solution:**

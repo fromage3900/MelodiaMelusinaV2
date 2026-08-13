@@ -1,6 +1,11 @@
 ﻿# Live Collaborative Level Designer -- 5-Minute Setup
 
-> **No 300 GB download. No Unreal content.** Set up Blender <-> UE5 live bridge for collaborative level design using sparse checkout. Only downloads the scripts, addons, and tools you need -- ~120 MB total (verified 2026-08-11). Portfolio stage .blend files live in `Exports/PortfolioStages/` and are excluded from the sparse cone.
+> **Blender-only checkout. No Unreal project or plugin content.** Set up the
+> Blender <-> UE5 live bridge for collaborative level design using sparse
+> checkout. Only downloads the scripts, addons, and tools you need -- ~120 MB
+> total. For MeshBlend, PCGEx, or any Unreal plugin work, use
+> `bash deploy/collaborator_onboarding.sh lightweight` from
+> [COLLABORATOR_SETUP.md](../COLLABORATOR_SETUP.md).
 
 ---
 
@@ -54,6 +59,13 @@ The `deploy/surreal_arch/` folder IS the Blender addon. Copy it to:
 C:\Users\<you>\AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons\surreal_arch\
 ```
 
+Also copy the root registration module:
+
+```
+deploy/surreal_architecture_gen.py
+  -> Blender addons/surreal_architecture_gen.py
+```
+
 Then copy the companion folders:
 ```
 deploy/surreal_world/  -> Blender addons/surreal_world/
@@ -76,17 +88,20 @@ deploy/surreal_greybox/-> Blender addons/surreal_greybox/
 
 ## Step-by-Step
 
-### 1. Open the Unreal Project
+### 1. Optional Unreal host
 ```
-C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject
+Use a separate full or UE-capable lightweight checkout for the Unreal host.
 ```
-Wait for shader compilation. The Monolith MCP starts automatically on port `:9316`.
+This Blender-only checkout intentionally does not contain
+`BS_GodFile.uproject` or the project plugins. Do not use it to diagnose
+MeshBlend or PCGEx installation failures.
 
 ### 2. Open Blender -- Verify the Addon
 ```
 Open any .blend -> N-panel -> "Melodia Studio" tab should appear.
 ```
-If it doesn't: Edit -> Preferences -> Add-ons -> search "surreal_arch" -> enable.
+If it doesn't: Edit -> Preferences -> Add-ons -> search
+`surreal_architecture_gen` -> enable **Melodia Studio**.
 
 ### 3. Start the Bridge
 ```
@@ -117,9 +132,9 @@ You should see: `Γ£ô LiveLink  Γ£ô BL MCP  Γ£ô UE MCP`
 
 | Port | Service | Direction |
 |------|---------|-----------|
-| `9876` | LiveLink -- FBX streaming | Blender -> UE |
-| `9316` | UE MCP -- Python execution | Any -> UE |
-| `9317` | Blender MCP -- genome control | Any -> Blender |
+| `9876` | BlenderMCP and LiveLink (shared port; use one live bridge at a time) | Blender <-> UE |
+| `9316` | Monolith MCP | Any -> UE |
+| `9317` | Legacy adapter | Do not use |
 | `50021` | VOICEVOX -- NPC voices | Any -> VOICEVOX |
 
 ---
@@ -128,7 +143,7 @@ You should see: `Γ£ô LiveLink  Γ£ô BL MCP  Γ£ô UE MCP`
 
 | Problem | Fix |
 |---------|-----|
-| Melodia Studio tab missing | Enable surreal_arch addon in Blender preferences |
+| Melodia Studio tab missing | Enable `surreal_architecture_gen` / **Melodia Studio** in Blender preferences |
 | Port 9876 "in use" | Close extra Blender instances via Task Manager |
 | Materials gray in UE | `resolve_material_crosswalk.resolve_all()` in UE Python |
 | No voices | Start VOICEVOX, run `Tools/generate_all_voices.py` |

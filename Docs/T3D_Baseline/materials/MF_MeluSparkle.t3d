@@ -146,6 +146,7 @@ Begin Object Class=/Script/Engine.MaterialFunction Name="MF_MeluSparkle" ExportP
       Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
    End Object
    Begin Object Name="MaterialExpressionCollectionParameter_0" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionCollectionParameter_0'"
+      Collection="/Script/Engine.MaterialParameterCollection'/Game/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'"
       MaterialExpressionGuid=9B368D424BC931617674C4A4DFBDE67A
       Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
    End Object

@@ -2,25 +2,7 @@
 
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
-**This is a working portfolio and a livelihood, not a technical sandbox.** The owner wants the task
-done — not an analysis, a framework, or a discussion about it.
-Full text: [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md).
-
-1. **Do the job asked. Ship it. Stop.** The request is the scope — not the request plus what you
-   noticed on the way.
-2. **Never add a mechanism to compensate for a problem.** A fix that needs a new flag, property or
-   branch whose only job is to cancel out other behaviour is the wrong fix. Delete the cause.
-3. **"Kill it" means delete it and rebuild** — not deprecate, not gate behind a flag, not stub.
-4. **Do not verify what the owner has already told you.** Their statements about their own rig,
-   assets and files are ground truth. Act on them.
-5. **A fix request is not a review request.** Note anything real in one sentence at the end; move on.
-
-You are scope-creeping if: three tool calls in and nothing has changed yet; you are reading logs to
-confirm something you were told; you are producing a ranking or comparison table for a one-line fix;
-you are designing where a repair was asked for.
-→ Stop, make the change, build it, report in three lines.
-
-**Done = the change is made, it builds, you said what you changed.**
+See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
 
 ---
 
@@ -539,17 +521,16 @@ Full detail: `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md`.
    widget and inject real `InputKey` events (or document the exact focus path), (c) run the
    A/B on `melodia.Rhythm.Disable 1` (Decision 024 — *not* Perfect-vs-Miss, Decision 016 sets
    no miss penalty), (d) save the assertion report JSON next to the frames, (e) `record_gate.py runtime pass|fail`.
-3. **Build and verify the highway-ownership fix.** `MelodiaRhythmHUDWidget.cpp` was changed
-   2026-08-11 so the ambient execution lane only clears a highway it set
-   (`bExecutionDrivingHighway`); the DLL was locked by a running editor, so this has NOT been
-   compiled or observed yet. Full closed-editor build, then PIE with the stock rhythm session
-   to confirm the highway survives both tick paths.
+3. ~~**Build and verify the highway-ownership fix.**~~ **OWNER LOCK 2026-08-12 — RHYTHM GAME WORKED.**
+   `bExecutionDrivingHighway` compiled; closed-editor build after #4/#6; **owner confirmed rhythm
+   game / highway in live PIE.** Canonical: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`.
+   Do not reopen “highway unverified / never observed.”
 4. **Verify the damage-scalar sequencing** before trusting any A/B numbers — the damage notify
    may fire ~2.5s before the scalar latches.
 5. **Highway note rendering** — the one genuine T3D target. Re-export baselines and resolve
    `unresolved_member_parent` first.
-6. Wire a call site for `RestorePartyAfterBattle` (compiles, zero callers). Check the
-   `curentMP` spelling against the stock struct first.
+6. Wire a call site for `RestorePartyAfterBattle` (compiles, zero callers on `main`).
+   `curentMP` spelling confirmed via live reflection — merge PR #1 (not PR #2).
 7. Re-run `python Tools/bp_sweep.py` project-wide. It died mid-run during the three-editor
    incident; scoped runs are clean.
 8. Damage progression smoothing — owner has a recorded contact sheet. Ask for it; do not
@@ -566,7 +547,9 @@ Done 2026-08-11: beat map; `rhythm_battle_runtime_probe.py` made runnable
 see evidence standard §1).
 
 Parallel work for other agents, partitioned by contended resource:
-`Docs/Handoffs/PARALLEL_LANES_2026-08-08.md`.
+**current** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md)
++ paste prompts [`Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md`](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md)
+(history: `PARALLEL_LANES_2026-08-08.md`). Rhythm + Quill are owner-locked WORKED — do not reopen.
 
 ---
 
