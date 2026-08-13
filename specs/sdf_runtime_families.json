@@ -1,6 +1,6 @@
 {
   "schema": "sdf_runtime_families.v1",
-  "generated": "2026-08-13T03:05:40.346366+00:00",
+  "generated": "2026-08-13T03:22:30.968588+00:00",
   "project_material_root": "/Game/_PROJECT/04_Materials",
   "env_sandbox_material_root": "/Game/EnvSandbox/Materials",
   "policy": {
@@ -17,7 +17,7 @@
     "Cathedral.master": 8,
     "Cosmic.instance": 6,
     "Cosmic.master": 7,
-    "Dead.master": 92,
+    "Dead.master": 83,
     "Dev.master": 1,
     "EnhancedMaster.master": 5,
     "Escher.instance": 1,
@@ -35,11 +35,12 @@
     "SDF.other": 730,
     "SDF.instance": 8,
     "SDF.master": 8,
+    "Salvaged.master": 9,
     "Stone.instance": 1,
     "Stone.master": 1,
     "Water.master": 1
   },
-  "master_gap_count": 92,
+  "master_gap_count": 83,
   "entries": [
     {
       "name": "MI_SDF_AbyssalVent",
@@ -995,17 +996,6 @@
       "port_state": "gap"
     },
     {
-      "name": "M_AudioReactive_BaseMaster",
-      "path": "/Game/_PROJECT/04_Materials/MooaToon/AudioReactive/M_AudioReactive_BaseMaster.M_AudioReactive_BaseMaster",
-      "folder": "MooaToon",
-      "family": "Dead",
-      "role": "dead",
-      "kind": "master",
-      "dead": true,
-      "port_target": null,
-      "port_state": "gap"
-    },
-    {
       "name": "M_AudioReactive_CrystalChime",
       "path": "/Game/_PROJECT/04_Materials/MooaToon/M_AudioReactive_CrystalChime.M_AudioReactive_CrystalChime",
       "folder": "MooaToon",
@@ -1019,17 +1009,6 @@
     {
       "name": "M_BeatSync_EmissionGlow",
       "path": "/Game/_PROJECT/04_Materials/MooaToon/M_BeatSync_EmissionGlow.M_BeatSync_EmissionGlow",
-      "folder": "MooaToon",
-      "family": "Dead",
-      "role": "dead",
-      "kind": "master",
-      "dead": true,
-      "port_target": null,
-      "port_state": "gap"
-    },
-    {
-      "name": "M_Bookshelf_Standard",
-      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_Bookshelf_Standard.M_Bookshelf_Standard",
       "folder": "MooaToon",
       "family": "Dead",
       "role": "dead",
@@ -1063,17 +1042,6 @@
     {
       "name": "M_ColorPalette_Reverse1999",
       "path": "/Game/_PROJECT/04_Materials/MooaToon/ColorPalette/M_ColorPalette_Reverse1999.M_ColorPalette_Reverse1999",
-      "folder": "MooaToon",
-      "family": "Dead",
-      "role": "dead",
-      "kind": "master",
-      "dead": true,
-      "port_target": null,
-      "port_state": "gap"
-    },
-    {
-      "name": "M_Crystal_Clear_Toon",
-      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_Crystal_Clear_Toon.M_Crystal_Clear_Toon",
       "folder": "MooaToon",
       "family": "Dead",
       "role": "dead",
@@ -1160,41 +1128,8 @@
       "port_state": "gap"
     },
     {
-      "name": "M_Glitter_UltimateSparkling",
-      "path": "/Game/_PROJECT/04_Materials/MooaToon/Glitter/M_Glitter_UltimateSparkling.M_Glitter_UltimateSparkling",
-      "folder": "MooaToon",
-      "family": "Dead",
-      "role": "dead",
-      "kind": "master",
-      "dead": true,
-      "port_target": null,
-      "port_state": "gap"
-    },
-    {
-      "name": "M_Glitter_WorldAligned",
-      "path": "/Game/_PROJECT/04_Materials/MooaToon/Glitter/M_Glitter_WorldAligned.M_Glitter_WorldAligned",
-      "folder": "MooaToon",
-      "family": "Dead",
-      "role": "dead",
-      "kind": "master",
-      "dead": true,
-      "port_target": null,
-      "port_state": "gap"
-    },
-    {
       "name": "M_InkWash_Impressionist",
       "path": "/Game/_PROJECT/04_Materials/MooaToon/M_InkWash_Impressionist.M_InkWash_Impressionist",
-      "folder": "MooaToon",
-      "family": "Dead",
-      "role": "dead",
-      "kind": "master",
-      "dead": true,
-      "port_target": null,
-      "port_state": "gap"
-    },
-    {
-      "name": "M_IridescentMystical",
-      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_IridescentMystical.M_IridescentMystical",
       "folder": "MooaToon",
       "family": "Dead",
       "role": "dead",
@@ -1666,17 +1601,6 @@
       "port_state": "gap"
     },
     {
-      "name": "M_RhythmSurface_Pulse",
-      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_RhythmSurface_Pulse.M_RhythmSurface_Pulse",
-      "folder": "MooaToon",
-      "family": "Dead",
-      "role": "dead",
-      "kind": "master",
-      "dead": true,
-      "port_target": null,
-      "port_state": "gap"
-    },
-    {
       "name": "M_Sand_Toon",
       "path": "/Game/_PROJECT/04_Materials/MooaToon/M_Sand_Toon.M_Sand_Toon",
       "folder": "MooaToon",
@@ -1712,17 +1636,6 @@
     {
       "name": "M_StardustParticle_Glow",
       "path": "/Game/_PROJECT/04_Materials/MooaToon/M_StardustParticle_Glow.M_StardustParticle_Glow",
-      "folder": "MooaToon",
-      "family": "Dead",
-      "role": "dead",
-      "kind": "master",
-      "dead": true,
-      "port_target": null,
-      "port_state": "gap"
-    },
-    {
-      "name": "M_Stone_Rough_Toon",
-      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_Stone_Rough_Toon.M_Stone_Rough_Toon",
       "folder": "MooaToon",
       "family": "Dead",
       "role": "dead",
@@ -1778,17 +1691,6 @@
     {
       "name": "M_VolumetricInk_Accumulation",
       "path": "/Game/_PROJECT/04_Materials/MooaToon/M_VolumetricInk_Accumulation/M_VolumetricInk_Accumulation.M_VolumetricInk_Accumulation",
-      "folder": "MooaToon",
-      "family": "Dead",
-      "role": "dead",
-      "kind": "master",
-      "dead": true,
-      "port_target": null,
-      "port_state": "gap"
-    },
-    {
-      "name": "M_Wood_Toon",
-      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_Wood_Toon.M_Wood_Toon",
       "folder": "MooaToon",
       "family": "Dead",
       "role": "dead",
@@ -9801,6 +9703,105 @@
       "kind": "other",
       "dead": false,
       "port_target": null
+    },
+    {
+      "name": "M_AudioReactive_BaseMaster",
+      "path": "/Game/_PROJECT/04_Materials/MooaToon/AudioReactive/M_AudioReactive_BaseMaster.M_AudioReactive_BaseMaster",
+      "folder": "MooaToon",
+      "family": "Salvaged",
+      "role": "dead",
+      "kind": "master",
+      "dead": false,
+      "port_target": "/Game/EnvSandbox/Materials/Masters/M_AudioReactive_BaseMaster",
+      "port_state": "present"
+    },
+    {
+      "name": "M_Bookshelf_Standard",
+      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_Bookshelf_Standard.M_Bookshelf_Standard",
+      "folder": "MooaToon",
+      "family": "Salvaged",
+      "role": "dead",
+      "kind": "master",
+      "dead": false,
+      "port_target": "/Game/EnvSandbox/Materials/Masters/M_Bookshelf_Standard",
+      "port_state": "present"
+    },
+    {
+      "name": "M_Crystal_Clear_Toon",
+      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_Crystal_Clear_Toon.M_Crystal_Clear_Toon",
+      "folder": "MooaToon",
+      "family": "Salvaged",
+      "role": "dead",
+      "kind": "master",
+      "dead": false,
+      "port_target": "/Game/EnvSandbox/Materials/Masters/M_Crystal_Clear_Toon",
+      "port_state": "present"
+    },
+    {
+      "name": "M_Glitter_UltimateSparkling",
+      "path": "/Game/_PROJECT/04_Materials/MooaToon/Glitter/M_Glitter_UltimateSparkling.M_Glitter_UltimateSparkling",
+      "folder": "MooaToon",
+      "family": "Salvaged",
+      "role": "dead",
+      "kind": "master",
+      "dead": false,
+      "port_target": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+      "port_state": "present"
+    },
+    {
+      "name": "M_Glitter_WorldAligned",
+      "path": "/Game/_PROJECT/04_Materials/MooaToon/Glitter/M_Glitter_WorldAligned.M_Glitter_WorldAligned",
+      "folder": "MooaToon",
+      "family": "Salvaged",
+      "role": "dead",
+      "kind": "master",
+      "dead": false,
+      "port_target": "/Game/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned",
+      "port_state": "present"
+    },
+    {
+      "name": "M_IridescentMystical",
+      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_IridescentMystical.M_IridescentMystical",
+      "folder": "MooaToon",
+      "family": "Salvaged",
+      "role": "dead",
+      "kind": "master",
+      "dead": false,
+      "port_target": "/Game/EnvSandbox/Materials/Masters/M_IridescentMystical",
+      "port_state": "present"
+    },
+    {
+      "name": "M_RhythmSurface_Pulse",
+      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_RhythmSurface_Pulse.M_RhythmSurface_Pulse",
+      "folder": "MooaToon",
+      "family": "Salvaged",
+      "role": "dead",
+      "kind": "master",
+      "dead": false,
+      "port_target": "/Game/EnvSandbox/Materials/Masters/M_RhythmSurface_Pulse",
+      "port_state": "present"
+    },
+    {
+      "name": "M_Stone_Rough_Toon",
+      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_Stone_Rough_Toon.M_Stone_Rough_Toon",
+      "folder": "MooaToon",
+      "family": "Salvaged",
+      "role": "dead",
+      "kind": "master",
+      "dead": false,
+      "port_target": "/Game/EnvSandbox/Materials/Masters/M_Stone_Rough_Toon",
+      "port_state": "present"
+    },
+    {
+      "name": "M_Wood_Toon",
+      "path": "/Game/_PROJECT/04_Materials/MooaToon/M_Wood_Toon.M_Wood_Toon",
+      "folder": "MooaToon",
+      "family": "Salvaged",
+      "role": "dead",
+      "kind": "master",
+      "dead": false,
+      "port_target": "/Game/EnvSandbox/Materials/Masters/M_Wood_Toon",
+      "port_state": "present"
     },
     {
       "name": "MI_HybridStone_SDF",
