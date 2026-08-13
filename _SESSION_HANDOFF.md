@@ -1,3 +1,17 @@
+# Session Handoff — 2026-08-13 (owner PIE: rhythm highway alive)
+
+**PIE board (living):** [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
+
+- **Owner PIE (ground truth):** After casting Melusina's unique skill, the rhythm highway
+  **worked** (felt clunky), **procced damage**, and **next turn applied on skill finish**.
+- Rhythm + Quill remain **LOCKED WORKED** — do not reopen as P0.
+- **`runtime` gate still OPEN** — no ledger row / Decision 024 A/B / harness JSON yet. Do not
+  record `runtime pass` from this note alone.
+- **Merged on `main`:** #4 git health (`2e3c893`), #6 RestoreParty (`6715d51`).
+- Still broken / working through: dreamstate-path + collider-name stock battle entry paths.
+
+---
+
 # Session Handoff — 2026-08-12 ~23:36 ET (UE idle apply)
 
 Owner released A1. **T1/T2/T3 landed** in PID **38184**. Evidence: [`Saved/Audit/ue_idle_apply_2026-08-12.md`](Saved/Audit/ue_idle_apply_2026-08-12.md).
@@ -70,7 +84,7 @@ Blender **5.2** PID **27644**, MCP **9876** connected. v22 open. **Not saved.**
 
 - **Owner LOCK:** Rhythm game **WORKED** · QuillScript / WillScript **WORKED** (owner “yes”). Do not reopen either.
 - **Merge / pull DONE.** #4 + #6 squash-merged; `main` @ `2e3c893d`; closed-editor build PASS.
-- **Still open:** P0 stock battles (Morning → KaleidoNave / collider); formal `record_gate.py runtime` packaging; `MELODIA_RECOVERY…`.
+- **Still open:** stock battles (Morning → KaleidoNave / collider); formal `record_gate.py runtime` packaging; `MELODIA_RECOVERY…`.
 - **`static_gates` PASS** (`0e34eaed`). Playable levels on `main` (`43d0a9ae`).
 
 ---

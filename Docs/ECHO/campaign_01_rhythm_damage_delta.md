@@ -18,8 +18,11 @@ input path:
 - Real keys through `BP_BattleUI::OnKeyDown` (Q/W/O/P → `RegisterLaneHit`), or
   a documented `InputKey` injection into the focused widget. Calling
   `subsystem.register_lane_hit()` straight from Python proves the native seam
-  responds; it does not prove a player pressing keys sees a highway. That has
-  never been demonstrated — `runtime` is OPEN and the ledger has no row for it.
+  responds; it does not prove a player pressing keys sees a highway.
+- **Owner PIE 2026-08-13 (ground truth):** after casting Melusina's unique skill,
+  the highway appeared (clunky), damage procced, and next turn applied on skill
+  finish. That demonstrates the player-facing seam is alive. `runtime` remains
+  OPEN until Decision 024 A/B + assertion JSON + a ledger row exist.
 
 ## Preconditions
 
@@ -73,10 +76,10 @@ python Tools/echo_run.py record runtime pass --note "rhythm on dmg=A, off dmg=B,
 or `fail` with the delta and the log excerpt. A pass with two equal numbers is
 a corrupted record — the ledger is only as honest as the row.
 
-Status 2026-08-12: **PASS recorded in ledger** for the result-matrix/restoration
-path (`Restoration wired in CompleteBattle & PIE smoke session verified on
-L_KaleidoNave`). The rhythm on/off A-B damage-delta campaign described above is
-still the canonical evidence standard for *this* campaign; if the recorded pass
-did not include a real-key A/B delta, treat the gate as conditionally closed and
-re-run with the damage-delta evidence before claiming the highway input path is
-fully ledger-backed.
+Status 2026-08-13: **OPEN** for this campaign's rhythm on/off A/B (owner play
+seen; not ledger-closed). Owner PIE showed Melusina unique → highway → damage →
+turn on skill finish. Still owed: `melodia.Rhythm.Disable 1` damage delta,
+harness JSON + frames, `record_gate.py runtime`. A separate restoration/result-
+matrix ledger pass (2026-08-12, CompleteBattle on L_KaleidoNave) does **not**
+close this campaign. The 2026-08-10 "certified" claim was probe-only and
+invalid. Do not reopen Rhythm as P0; do not treat owner notes as `record_gate.py`.
