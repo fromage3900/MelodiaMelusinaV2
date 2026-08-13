@@ -4,6 +4,7 @@
 #include "ProceduralModelingToolkitModifier.h"
 
 #include "Engine/StaticMesh.h"
+#include "BoxTypes.h"
 #include "GeometryScript/GeometryScriptTypes.h"
 #include "GeometryScript/MeshAssetFunctions.h"
 #include "GeometryScript/MeshBooleanFunctions.h"
@@ -68,7 +69,7 @@ bool FProceduralModelingToolkitBooleanModifierTest::RunTest(const FString& Param
 	TestTrue(TEXT("Target cube has triangles"), TargetTriangleCount > 0);
 
 	// Build a smaller cutter cube Static Mesh asset in a transient package so the modifier can load it by path.
-	UPackage* CutterPackage = CreatePackage(*TEXT("/Temp/PMT_BooleanTest_CutterPackage"));
+	UPackage* CutterPackage = CreatePackage(TEXT("/Temp/PMT_BooleanTest_CutterPackage"));
 	CutterPackage->SetFlags(RF_Public | RF_Transient);
 	UStaticMesh* CutterStaticMesh = NewObject<UStaticMesh>(CutterPackage, TEXT("SM_BooleanTest_Cutter"), RF_Public | RF_Transient);
 	TestNotNull(TEXT("Cutter Static Mesh created"), CutterStaticMesh);
@@ -104,7 +105,7 @@ bool FProceduralModelingToolkitBooleanModifierTest::RunTest(const FString& Param
 	TestTrue(TEXT("Cutter Static Mesh has triangles"), CutterStaticMesh->GetNumTriangles(0) > 0);
 
 	// Capture input bounds before the boolean.
-	const FAxisAlignedBox3d InputBounds = TargetMesh->GetMeshRef().GetBounds();
+	const UE::Geometry::FAxisAlignedBox3d InputBounds = TargetMesh->GetMeshRef().GetBounds();
 
 	// Position the cutter in the center of the target and scale it down so it removes a smaller box.
 	UProceduralModelingToolkitBooleanModifier* BooleanModifier = NewObject<UProceduralModelingToolkitBooleanModifier>(GetTransientPackageAsObject(), NAME_None, RF_Transient);
@@ -144,7 +145,7 @@ bool FProceduralModelingToolkitBooleanModifierTest::RunTest(const FString& Param
 	TestTrue(TEXT("Result triangle count changed after boolean"), ResultTriangleCount != TargetTriangleCount);
 
 	// Bounds should remain valid; shrink assertions only hold when the cutter extends beyond a face.
-	const FAxisAlignedBox3d ResultBounds = TargetMesh->GetMeshRef().GetBounds();
+	const UE::Geometry::FAxisAlignedBox3d ResultBounds = TargetMesh->GetMeshRef().GetBounds();
 	TestTrue(TEXT("Result bounds are valid"), !ResultBounds.IsEmpty());
 	TestTrue(TEXT("Result bounds have positive extents"), ResultBounds.Extents().X > 0.0 && ResultBounds.Extents().Y > 0.0 && ResultBounds.Extents().Z > 0.0);
 

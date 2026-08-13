@@ -4,16 +4,18 @@ This is the shortest safe path from checkout to a validated greybox contribution
 
 ## Start
 
-1. Install UE 5.8 and Git LFS.
-2. Clone the repository and run `git lfs pull`.
+1. Install UE 5.8, Git LFS, and VS 2022 Desktop development with C++.
+2. Clone the repository and run `bash deploy/collaborator_onboarding.sh lightweight`.
 3. Open `BS_GodFile.uproject`.
 4. Read [COLLABORATION_WORKFLOW.md](COLLABORATION_WORKFLOW.md).
-5. Open `ZenForestTest` for gameplay smoke or `L_Template` for neutral PCG/look-dev work.
+5. Use `L_MelusinaMorning` for the opening route or
+   `L_KaleidoNave` for tracked PCG/look-dev work.
 
 ## Ownership
 
-- `ZenForestTest` owns the playable Melodia smoke loop.
-- `L_Template` owns neutral material, PCG, water, and Niagara proving.
+- `L_MelusinaMorning` and `L_KaleidoNave` are the tracked playable route maps.
+- `L_KaleidoNave` is the tracked PCG/look-dev proving surface; old local-only
+  `L_Template` and `ZenForestTest` copies are not required by the lightweight tier.
 - Greybox Kit assets are reusable blockout tools; do not edit them for one level.
 - Hero landmarks, final composition, and Sakura art direction remain human-owned.
 - PCG places static support dressing. Niagara owns motion. WaterBody and spline

@@ -1,5 +1,10 @@
 # Cloud agent session — git health + tomorrow prep (2026-08-12)
 
+> **Current-tip note (2026-08-13):** This is a historical 2026-08-12
+> snapshot. The current Unreal branch and remote are synchronized at
+> `840b7650`; see
+> [SOURCE_CONTROL_STATUS_2026-08-13.md](SOURCE_CONTROL_STATUS_2026-08-13.md).
+
 Cloud-only lane on `MelodiaMelusinaV2` (Linux VM). No Unreal editor. Production UE root on PC remains `C:\EnvironmentPortfolio\BS_GodFile` (same GitHub remote).
 
 ## What landed (PRs)
