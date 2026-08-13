@@ -207,6 +207,7 @@ Tools/*
 !Tools/ui_style_audit.py
 !Tools/test_ui_style_audit.py
 !Tools/t3d_dashboard.py
+!Tools/echo_topo.py
 !Tools/BlenderAddons/
 !Tools/BlenderAddons/**
 # Negation above re-includes junk — put it back out
@@ -230,3 +231,16 @@ pipeline/
 Samples/
 .kiro/
 .junie/
+
+# --- Session scratch scripts at repo root (never commit — 2026-08-13) ---
+check_bp*.py
+check_fix*.py
+check_discover2.py
+check_live.py
+fix_rhythm*.py
+fix_var*.py
+pie_*.py
+pie_*.json
+deploy/_stub_*
+.agents/
+_Quarantine_*/
