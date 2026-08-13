@@ -26,6 +26,20 @@ OUT_PATH = Path(__file__).resolve().parents[2] / "specs" / "sdf_runtime_families
 
 DEAD_FAMILIES = {"MooaToon"}  # owner decision 2026-08-12: dead, use Substrate Toon
 
+# Salvaged from MooaToon to the Substrate Toon spine (owner review 2026-08-12).
+# These names are no longer treated as dead when regenerating the manifest.
+SALVAGED_MOOATOON = {
+    "M_RhythmSurface_Pulse",
+    "M_AudioReactive_BaseMaster",
+    "M_Crystal_Clear_Toon",
+    "M_Bookshelf_Standard",
+    "M_Stone_Rough_Toon",
+    "M_Wood_Toon",
+    "M_Glitter_UltimateSparkling",
+    "M_Glitter_WorldAligned",
+    "M_IridescentMystical",
+}
+
 # Family classification by path fragment -> (family, runtime role)
 FAMILY_BY_FRAGMENT: list[tuple[str, str, str]] = [
     ("Underwater", "Aquatic", "environment"),
@@ -107,6 +121,9 @@ def classify(asset_path: str) -> dict:
                 family, role = fam, rl
                 break
     is_dead = family == "Dead"
+    if is_dead and name in SALVAGED_MOOATOON:
+        is_dead = False
+        family = "Salvaged"
     is_master = name.startswith("M_") and not name.startswith("MI_")
     is_instance = name.startswith("MI_")
     kind = "master" if is_master else ("instance" if is_instance else "other")
