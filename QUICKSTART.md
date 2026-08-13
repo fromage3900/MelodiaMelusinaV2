@@ -26,7 +26,9 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 
 ## 🎮 I Want to Play the Vertical Slice (First Dream)
 
-> **Status (2026-08-07):** The gameplay is **not yet playable**. Per the owner's live verification on 2026-08-06, Quill dialogue is not visible, battle systems are non-functional, and the game is unplayable. The 12 P0 foundation gates are unclaimed, Live Coding is currently blocked, and push to `origin` is blocked by network connectivity to `github.com:443`. Treat the "proven" bullets in older docs as **unverified** until PIE proof is recorded.
+> **Status (2026-08-13):** The game **is playable** in PIE. Owner verified: after casting Melusina's unique skill, the rhythm highway works (feel is still clunky), damage procs, and the next turn applies on skill finish. Formal Echo `runtime` ledger certification (A/B + harness JSON) is still open — that does **not** mean the loop is dead.
+>
+> Living play board: [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md)
 
 ### Step 1: Install Unreal Engine 5.8
 ```
@@ -38,25 +40,39 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 ```
 📂 Open: BS_GodFile.uproject
 ⏳ Wait for shaders to compile (first run only)
+📌 Prefer a fresh pull of main (RestoreParty + playable levels are on main)
 ```
 
-### Step 3: Understand the Target Route
+### Step 3: Play the Live Route
 ```
-🎮 Target route: L_MelusinaMorning → L_Melodia_Dreamstate → L_KaleidoNave
+🎮 Route: L_MelusinaMorning → L_KaleidoNave
+   (L_Melodia_Dreamstate was merged into KaleidoNave — do not hunt a live Dreamstate map)
+
 📂 Real paths:
    /Game/Melodia/Levels/Opening/L_MelusinaMorning
-   /Game/Melodia/Levels/Opening/L_Melodia_Dreamstate
    /Game/EnvSandbox/Environments/L_KaleidoNave
+
+▶️ PIE from Morning (or open KaleidoNave if you only want the battle space)
+⚔️ Reach the encounter → start battle → cast Melusina's unique skill
+🎹 Rhythm highway appears (clunky OK) → hit lanes → damage should proc
+⏭️ Next turn should apply when the skill finishes
 ```
 
-### Step 4: Read the Current State
+### Step 4: Known Rough Edges (still playable)
 ```
-📖 _VERTICAL_SLICE_SCOPE.md — current scope authority
+• Rhythm highway feel is clunky — expected for now
+• Some alternate battle entry paths (old dreamstate / collider-name) are still being worked
+• Formal runtime gate needs Decision 024 A/B + record_gate.py before release claims
+```
+
+### Step 5: Current State Docs
+```
+📖 Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md — living PIE board
 📖 _SESSION_HANDOFF.md — most recent session state
-📖 _TASK_QUEUE.md — live task tracker (P0/P1/P2/P3)
+📖 _VERTICAL_SLICE_SCOPE.md — scope authority
 ```
 
-**✅ Done!** You understand where the vertical slice stands.
+**✅ Done!** You've got a playable First Dream loop in PIE.
 
 ---
 
@@ -182,7 +198,7 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 
 | Task | Command / Location |
 |------|-------------------|
-| 🎮 Play vertical slice | Target route: `L_MelusinaMorning` → `L_Melodia_Dreamstate` → `L_KaleidoNave` (not yet playable) |
+| 🎮 Play vertical slice | `L_MelusinaMorning` → `L_KaleidoNave` — **playable** (Melusina unique → rhythm → damage → next turn) |
 | 🏗️ Test geometry | Open `/Game/EnvSandbox/Levels/L_Template` |
 | 🎨 Test materials | Create instance from `M_Master_Toon_Universal` |
 | 🔧 Check services | Run `deploy/status.ps1` in terminal |
@@ -190,6 +206,6 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 
 ---
 
-**💡 Tip:** Start with Viewer Mode, then try Geometry Mode when you're comfortable. Take it step by step!
+**💡 Tip:** Want the game first? Use the vertical-slice path above. For art/tools, start with Viewer Mode, then Geometry Mode.
 
 **🎉 Welcome to the team!**
