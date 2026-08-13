@@ -4,10 +4,10 @@ Simple queue for phone agents. Prefer updating this file over inventing parallel
 
 ## Now
 
-1. **Owner: approve + squash-merge** [#4](https://github.com/fromage3900/MelodiaMelusinaV2/pull/4) → [#6](https://github.com/fromage3900/MelodiaMelusinaV2/pull/6) (cloud blocked on review policy). Then pull `C:\EnvironmentPortfolio\BS_GodFile`.
-2. **PIE board:** [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](../Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) — WillScript runtime verify; dreamstate/collider battles still broken; rhythm highway PIE.
-3. **Closed-editor build** → RestoreParty log + highway ownership observation.
-4. **Runtime gate:** `playtest_harness.py` real keys → assertion JSON → `record_gate.py runtime`.
+1. **Pull `main`** on the UE box if needed (#4 git health + #6 RestoreParty already merged).
+2. **PIE board:** [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](../Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) — Owner 2026-08-13: rhythm highway **worked** after Melusina unique (clunky), damage procced, next turn on skill finish. Dreamstate/collider entry paths still broken.
+3. **Runtime gate (formal):** Decision 024 A/B + `playtest_harness.py` → assertion JSON → `record_gate.py runtime`. Owner play ≠ ledger row.
+4. Highway **feel** / clunk polish (optional next) once formal evidence is in.
 5. Maintain PhoneOps; optional [#3](https://github.com/fromage3900/MelodiaMelusinaV2/pull/3) / [#5](https://github.com/fromage3900/MelodiaMelusinaV2/pull/5).
 
 ## Next

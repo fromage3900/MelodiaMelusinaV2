@@ -1,14 +1,26 @@
-# Session Handoff — 2026-08-12 late (merge blocked + PIE board)
+# Session Handoff — 2026-08-13 (owner PIE: rhythm highway alive)
+
+**PIE board (living):** [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
+
+- **Owner PIE (ground truth):** After casting Melusina's unique skill, the rhythm highway
+  **worked** (felt clunky), **procced damage**, and **next turn applied on skill finish**.
+- **`runtime` gate still OPEN** — no ledger row / Decision 024 A/B / harness JSON yet. Do not
+  record `runtime pass` from this note alone.
+- **Merged on `main`:** #4 git health (`2e3c893`), #6 RestoreParty (`6715d51`). CI reds remain
+  self-hosted network to `codeload.github.com`, not code.
+- Still broken / working through: dreamstate-path + collider-name P0 battle entry paths.
+- **`main` tip:** `2e3c893`; playable levels `43d0a9ae`; `static_gates` PASS (`0e34eaed`).
+
+---
+
+# Session Handoff — 2026-08-12 late (merge blocked + PIE board) — SUPERSEDED on merge status + highway
 
 **PIE board (living):** [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
 Git-health: [`Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md`](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md).
 
-- **Merge / pull NOT done.** PRs #4 and #6 stay OPEN. Cloud cannot squash-merge: branch
-  policy needs **1 approving review** (write access). Prefer squash (#4 then #6). CI reds on
-  #4 were self-hosted runner network to GitHub, not code defects.
-- **Owner ground truth:** WillScript updated → runtime verify owed. P0 battles still broken on
-  dreamstate path / collider-name level (working through). Rhythm highway still unverified in PIE.
-- **`main` tip:** playable levels (`43d0a9ae`), `static_gates` PASS (`0e34eaed`).
+- ~~Merge / pull NOT done. PRs #4 and #6 stay OPEN.~~ **Superseded 2026-08-13:** both merged.
+- ~~Rhythm highway still unverified in PIE.~~ **Superseded 2026-08-13:** owner saw it work after Melusina unique (clunky; damage + turn on finish).
+- **`main` tip (at time of writing):** playable levels (`43d0a9ae`), `static_gates` PASS (`0e34eaed`).
 
 ---
 

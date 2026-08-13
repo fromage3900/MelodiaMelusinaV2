@@ -512,26 +512,21 @@ Full detail: `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md`.
 1. ~~**Give the song map a beat map.**~~ **DONE 2026-08-11** — `MelodiaMusicClockSubsystem`
    loads the imported `128BPMarpeggiomelody_beatgrid` MIDI (tempo+bar+beat maps validated,
    never hand-built).
-2. **Certify the `runtime` gate with REAL INPUT — the loop is still not proven to PLAY.**
-   Probe-injected runs (subsystem calls straight from Python) reached a battle, spawned the
-   boss and Melusina, and graded `register_lane_hit` calls — but no run has pressed real keys
-   through `BP_BattleUI::OnKeyDown`, so per the evidence standard the gate stays OPEN and the
-   ledger has no row. Sequence: (a) export `BP_BattleUI` and verify the OnKeyDown→
-   `RegisterLaneHit` + `BindRhythmHUD` wiring exists via reflection (rule 20), (b) focus the
-   widget and inject real `InputKey` events (or document the exact focus path), (c) run the
-   A/B on `melodia.Rhythm.Disable 1` (Decision 024 — *not* Perfect-vs-Miss, Decision 016 sets
-   no miss penalty), (d) save the assertion report JSON next to the frames, (e) `record_gate.py runtime pass|fail`.
-3. **Build and verify the highway-ownership fix.** `MelodiaRhythmHUDWidget.cpp` was changed
-   2026-08-11 so the ambient execution lane only clears a highway it set
-   (`bExecutionDrivingHighway`); the DLL was locked by a running editor, so this has NOT been
-   compiled or observed yet. Full closed-editor build, then PIE with the stock rhythm session
-   to confirm the highway survives both tick paths.
+2. **Certify the `runtime` gate with formal evidence — owner PIE saw it PLAY; ledger still OPEN.**
+   Owner PIE 2026-08-13: after Melusina's unique skill, rhythm highway worked (clunky), damage
+   procced, next turn applied on skill finish. That is play evidence; it is **not** a ledger row.
+   Still owed: (a) Decision 024 A/B on `melodia.Rhythm.Disable 1`, (b) assertion report JSON
+   next to frames from the committed harness, (c) `record_gate.py runtime pass|fail`. Probe-only
+   Python hits remain non-evidence.
+3. ~~**Build and verify the highway-ownership fix.**~~ **Owner PIE 2026-08-13 observed a working
+   highway** after Melusina unique. If clunk/wipe recurs, confirm `bExecutionDrivingHighway` is
+   in the running binary (closed-editor build) before redesigning feel.
 4. **Verify the damage-scalar sequencing** before trusting any A/B numbers — the damage notify
-   may fire ~2.5s before the scalar latches.
-5. **Highway note rendering** — the one genuine T3D target. Re-export baselines and resolve
-   `unresolved_member_parent` first.
-6. Wire a call site for `RestorePartyAfterBattle` (compiles, zero callers on `main`).
-   `curentMP` spelling confirmed via live reflection — merge PR #1 (not PR #2).
+   may fire ~2.5s before the scalar latches. Owner saw damage proc; A/B delta still unrecorded.
+5. **Highway note rendering / feel** — clunk reported in owner PIE; genuine T3D target for note
+   presentation. Re-export baselines and resolve `unresolved_member_parent` first.
+6. ~~Wire a call site for `RestorePartyAfterBattle`.~~ **DONE on `main` via #6** (`6715d51`) —
+   `BP_BattleController` lookup path. Confirm `MELODIA_RECOVERY` log in a battle-end PIE.
 7. Re-run `python Tools/bp_sweep.py` project-wide. It died mid-run during the three-editor
    incident; scoped runs are clean.
 8. Damage progression smoothing — owner has a recorded contact sheet. Ask for it; do not
@@ -544,8 +539,10 @@ Done 2026-08-09/10: Sir rescue trigger (A4); `StockSkillRhythmIds` populated;
 `L_KaleidoNave` and deleted (allowlist stripped; backup in `Saved/Recovery/`).
 Done 2026-08-11: beat map; `rhythm_battle_runtime_probe.py` made runnable
 (`skill_class` NameError fixed); highway-ownership fix staged in
-`MelodiaRhythmHUDWidget` (unbuilt); ledger truth recorded (no rhythm gate row exists —
+`MelodiaRhythmHUDWidget`; ledger truth recorded (no rhythm gate row exists —
 see evidence standard §1).
+Done 2026-08-12/13: #4+#6 on `main`; owner PIE — Melusina unique → highway (clunky) →
+damage → next turn on skill finish.
 
 Parallel work for other agents, partitioned by contended resource:
 `Docs/Handoffs/PARALLEL_LANES_2026-08-08.md`.
