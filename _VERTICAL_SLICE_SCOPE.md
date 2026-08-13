@@ -2,17 +2,17 @@
 
 **Status:** production-foundation closeout before combat expansion  
 **Authority:** `Docs/MELODIA_SOLO_GAMEPLAY_CONSTITUTION_2026-07-27.md`  
-**Playable route:** `L_MelusinaMorning` → `L_Melodia_Dreamstate` → `/Game/EnvSandbox/Environments/L_KaleidoNave`  
-**Real paths:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/Melodia/Levels/Opening/L_Melodia_Dreamstate` → `/Game/EnvSandbox/Environments/L_KaleidoNave`  
-**KaleidoNave transition:** Travel node retargeted 2026-07-30 from `/Game/ZenForestTest`; `+MapsToCook` added to `DefaultGame.ini`. Open item: KaleidoNave's merged Dreamstate BPs don't function on arrival (`_DECISION_LOG.md` 021b) — diagnose before routing the playtest through it.
+**Playable route (current target):** `L_MelusinaMorning` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
+**Real paths:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
+**KaleidoNave transition:** Travel node retargeted from `/Game/ZenForestTest`; Dreamstate content was merged into KaleidoNave on 2026-08-10 and `+MapsToCook` was added to `DefaultGame.ini`. `L_Melodia_Dreamstate` is not a live route. Open item: KaleidoNave's merged Dreamstate BPs don't function on arrival (`_DECISION_LOG.md` 021b) — diagnose before routing the playtest through it.
 
 > **Corrected 2026-07-31.** This line previously read *"DefaultGame.ini intentionally NOT modified."*
 > That is no longer true: `+MapsToCook=(FilePath="/Game/EnvSandbox/Environments/L_KaleidoNave")` **was**
 > added to `DefaultGame.ini` (see `_SESSION_HANDOFF.md`, "Route change"). The intent behind the
 > original sentence still holds — the Blueprint travel node, not the config, decides the
 > *destination*; `MapsToCook` only ensures the cook covers the route however it is sequenced.
-> The "Playable route" lines above are now synced (2026-07-31) to the KaleidoNave destination;
-> the open item is the arrival-side BP fallout (021b), not the destination itself.
+> The current route lines above target KaleidoNave after the 2026-08-10 content
+> merge; the open item is the arrival-side BP fallout (021b), not the destination itself.
 
 > This document supersedes the historical Phase 2/SakuraDream/MelodiaCore scope. That plan predated the working JRPG/Quill route and is not an active implementation instruction.
 
@@ -48,6 +48,11 @@ The loop is allowed to stay small. If a mechanic does not improve the player’s
 > Melodia integration and the UI overhaul. Until PIE proof is recorded, every bullet above is
 > re-tagged as **unverified** — treat none of them as current runtime fact. The bullets themselves are
 > left unchanged as the historical record; do not rewrite them.
+>
+> **Updated 2026-08-12.** Owner-locked PIE proof now exists for the rhythm highway and QuillScript
+> resume-once paths: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md` and
+> `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`. This does not retroactively verify the historical
+> "Proven now" bullets above, but it does mean rhythm and Quill are no longer P0 unknowns.
 
 ## Foundation gate before combat expansion
 

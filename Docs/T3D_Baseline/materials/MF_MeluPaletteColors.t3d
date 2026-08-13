@@ -49,18 +49,21 @@ Begin Object Class=/Script/Engine.MaterialFunction Name="MF_MeluPaletteColors" E
       Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
    End Object
    Begin Object Name="MaterialExpressionCollectionParameter_2" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_2'"
+      Collection="/Script/Engine.MaterialParameterCollection'/Game/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'"
       MaterialExpressionEditorX=-400
       MaterialExpressionEditorY=240
       MaterialExpressionGuid=140B17C34B65870FA7FBB5B4CB036A70
       Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
    End Object
    Begin Object Name="MaterialExpressionCollectionParameter_1" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_1'"
+      Collection="/Script/Engine.MaterialParameterCollection'/Game/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'"
       MaterialExpressionEditorX=-400
       MaterialExpressionEditorY=120
       MaterialExpressionGuid=83C4D7824190880C986E19A711595CBB
       Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
    End Object
    Begin Object Name="MaterialExpressionCollectionParameter_0" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_0'"
+      Collection="/Script/Engine.MaterialParameterCollection'/Game/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'"
       MaterialExpressionEditorX=-400
       MaterialExpressionGuid=317ECE2A45374DA788634D93E91A0D3C
       Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"

@@ -17,11 +17,17 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
  ◇─◇──◇──◇─◇
 ```
 
-> **New here?** [QUICKSTART.md](QUICKSTART.md) — 5 minutes to first demo.
+> **Blender / Melodia Studio?** [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) — v22 stage, MCP **9876**, Health `12/12` / `165`.
 >
 > **Gameplay scope?** [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority.
 >
 > **Most recent session?** [_SESSION_HANDOFF.md](_SESSION_HANDOFF.md) — read fresh every time.
+>
+> **Tonight’s cloud prep?** [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) — git health + RestoreParty PRs, merge order for the PC.
+>
+> **Phone / cloud queue?** [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) — Now/Next for Cursor iOS + cloud agents.
+>
+> **Parallel agents tonight?** [PARALLEL_LANES…](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md) · [paste sessions…](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md).
 >
 > **Live task tracker?** [_TASK_QUEUE.md](_TASK_QUEUE.md) — P0/P1/P2/P3, per-task status/agent.
 >
@@ -29,7 +35,13 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 >
 > **Machine setup?** [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) — portable Windows environment.
 >
-> **Repo status:** Private V2 repository at `https://github.com/fromage3900/MelodiaMelusinaV2` — rebuilt 2026-08-11 from the verified snapshot tree (`763b013b` lineage) after the original repo's LFS budget block and corrupt 144-commit history. HEAD `fbc1b178` on `main` (protected: PR review + linear history). Self-hosted runner `melodia-v2-win` online. Local `.git` healthy, fsck-clean, LFS-pruned (64 GB → 18 GB). Releases cut on demand via the `Release Tag` workflow; LFS is metered billing — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
+> **Source control (2026-08-13):** See [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL_STATUS_2026-08-13.md) for the authoritative multi-repo checkpoint.
+>
+> **Unreal repo:** Private V2 at `https://github.com/fromage3900/MelodiaMelusinaV2`. `main` and `v2/main` are synchronized at `840b7650`; PRs **#4** + **#6** are squash-merged. The working tree still contains uncommitted editor/agent artifacts. LFS is metered — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
+>
+> **Website repo:** `C:\EnvironmentPortfolio\my-site-clean` has local tip `3cfa5f0`, but its configured remote has unrelated history and remains intentionally unsynchronized. Do not force-push or merge unrelated histories.
+>
+> **RHYTHM + QUILL WORKED (owner locks):** [RHYTHM…](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md) — tell the family; do not reopen highway or Quill as unverified.
 
 ```
  ◇─◇──◇──◇─◇
@@ -39,7 +51,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 
 ## 🎮 Primary Track: First Dream Vertical Slice
 
-> **Status (2026-08-11):** The core loop is implemented and the rhythm→damage runtime gate work is in flight (see `Docs/ECHO/`). Per the evidence standard, the `runtime` gate is **OPEN until real keyboard input through `BP_BattleUI::OnKeyDown` is recorded with a ledger row** — probe-injected runs are not play evidence. Treat "proven" claims without a ledger row or PIE capture as **unverified**.
+> **Status (2026-08-13):** `static_gates` **PASS**. **Rhythm WORKED** · **QuillScript WORKED** (owner locks). Formal `runtime` harness row still **OPEN**. Stock battles still broken. Board: [PIE…](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) · [RHYTHM…](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
 
 ### The loop
 
@@ -55,20 +67,26 @@ sanctuary conversation
 
 ### Playable route (target)
 
-`L_MelusinaMorning` → `L_Melodia_Dreamstate` → `L_KaleidoNave`
+`L_MelusinaMorning` → dream traversal → `L_KaleidoNave` (boss / stock rhythm encounter)
 
 Real paths:
 - `/Game/Melodia/Levels/Opening/L_MelusinaMorning`
-- `/Game/Melodia/Levels/Opening/L_Melodia_Dreamstate`
-- `/Game/EnvSandbox/Environments/L_KaleidoNave`
+- `/Game/EnvSandbox/Environments/L_KaleidoNave` (includes merged dreamstate content; old `L_Melodia_Dreamstate` allowlist entry stripped — backup under `Saved/Recovery/`)
+
+### Next on the PC (post rhythm lock)
+
+1. ~~Pull + closed-editor build + rhythm highway~~ **DONE — owner confirmed rhythm game WORKED**
+2. ~~WillScript / QuillScript~~ **DONE — owner confirmed WORKED**
+3. Stock battle path Morning → KaleidoNave; battle-end logs `MELODIA_RECOVERY…`
+4. `python Tools/playtest_harness.py` with real keys → assertion JSON beside frames → `record_gate.py runtime pass|fail`
 
 ### Core systems
 
 | System | What it is |
 |--------|-----------|
-| **QuillScript dialogue** | Narrative authority; NPC interaction + typed terminal results |
+| **QuillScript dialogue** | Narrative authority — **OWNER LOCK 2026-08-12: WORKED in PIE** |
 | **Stock JRPG combat** | Turn/target/damage/result authority (TurnBasedJRPGTemplate) |
-| **Rhythm combat** | Harmonix music clock + `UMelodiaRhythmCombatSubsystem`; optional, not mandatory |
+| **Rhythm combat** | Harmonix music clock + `UMelodiaRhythmCombatSubsystem` — **OWNER LOCK 2026-08-12: WORKED in PIE** |
 | **Canonical save/load** | `BP_JRPGSaveGame` slot across process restart |
 | **Travel authority** | `UMelodiaTravelSubsystem` — single travel path with allowlist validation |
 | **Input authority** | `UMelodiaInputContextSubsystem` — push/pop context stack |
@@ -104,9 +122,9 @@ Run setup check: `.\deploy\validate_collaborator_setup.sh`
 
 | Port | Service | Direction |
 |------|---------|-----------|
-| `9876` | LiveLink — FBX/texture/animation stream | Blender → UE |
+| `9876` | **BlenderMCP** (agent ↔ open 5.2 GUI) **and** LiveLink TCP — do not run both | See [cockpit](Docs/BLENDER_MELODIA_COCKPIT.md) |
 | `9316` | UE Monolith MCP — Python execution | Any → UE |
-| `9317` | Blender MCP — genome/agent control | Any → Blender |
+| `9317` | Legacy Blender HTTP claims — **not** the live GUI MCP | Do not use |
 | `50021` | VOICEVOX — TTS (7 characters) | Any → VOICEVOX |
 | `50022` | Melusina Voice — custom SBV2 | Any → Melusina |
 
@@ -114,7 +132,7 @@ Run setup check: `.\deploy\validate_collaborator_setup.sh`
 
 | Problem | Fix |
 |---------|-----|
-| Port 9876 "in use" | Close extra Blender instances (Task Manager) |
+| Port 9876 "in use" | Close extra Blender **or** stop LiveLink if you need BlenderMCP (same port) |
 | Materials gray in UE | `resolve_material_crosswalk.resolve_all()` |
 | Speaker not found | VOICEVOX Settings -> Manage Voice Libraries -> download |
 | PIE crash | Rebuild MelodiaCore (.dll) |
@@ -156,6 +174,8 @@ Full guide: [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md)
 **Gameplay (read these first):**
 - [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority
 - [_SESSION_HANDOFF.md](_SESSION_HANDOFF.md) — most recent session state
+- [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) — 2026-08-12 cloud git-health prep
+- [Docs/PhoneOps/INDEX.md](Docs/PhoneOps/INDEX.md) — phone / Cursor iOS entry
 - [_TASK_QUEUE.md](_TASK_QUEUE.md) — live task tracker
 - [_DECISION_LOG.md](_DECISION_LOG.md) — append-only strategic decisions
 - [DOC_INDEX.md](DOC_INDEX.md) — complete documentation map

@@ -16,7 +16,7 @@ everything marked DONE below; the rest inherits it.
 | Module load | **FIXED** — `MelodiaCore` enabled in `BS_GodFile.uproject`; headless editor launch: `InternalLoadLibrary: 'BS_GodFile'` + MelodiaCore mount, no "could not be loaded" |
 | Build blockers fixed today | `MelodiaBattleMapConfig.h/.cpp` were UTF-16 blobs (even in git) → UHT "GENERATED_BODY in skipped block"; re-encoded to UTF-8 BOM |
 | Beat map | **DONE** — `MelodiaMusicClockSubsystem.cpp:50-51,167-179` loads `128BPMarpeggiomelody_beatgrid` MIDI with full tempo/bar/beat maps; never hand-built |
-| Highway-ownership fix | **COMPILED** — `bExecutionDrivingHighway` in `MelodiaRhythmHUDWidget.cpp:146-151`; source 2:06 PM < `MelodiaCore.dll` 2:21 PM. **Never observed in PIE** |
+| Highway-ownership fix | **OWNER LOCK 2026-08-12 — RHYTHM GAME WORKED in PIE.** `bExecutionDrivingHighway` live; see `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md` |
 | `melodia.Rhythm.Disable 1` cvar | **EXISTS** — `MelodiaMusicClockSubsystem.cpp:25-33`, the A/B control |
 | Probe | `Content/Python/rhythm_battle_runtime_probe.py` — `skill_class` NameError fixed, committed (lines 18,188-193) |
 | Ledger | `runtime` = FAIL (honest row, 2026-08-11); `save_load`, `repeat_consume`, `package_launch` = OPEN. `Saved/Echo/state.txt` matches |
@@ -37,13 +37,10 @@ has a row. Prose in a session log is not a row.**
 - `python Tools/bp_sweep.py` scoped re-run (project-wide version died in the three-editor
   incident on 08-08; scoped runs are clean).
 
-### Step 2 — Observe the highway-ownership fix in PIE (was: "build and verify")
-The fix is compiled; the second half (observe both tick paths) has never run.
-- PIE `L_KaleidoNave` with the stock rhythm session: confirm the highway pushed by
-  `PushHighwayToHUD` survives the ambient execution lane's tick — one frame of ambient
-  `SetNoteHighwayActive(false)` after a stock push would prove the fix is live.
-- Also confirm for the first time: beat advances (`OnMelodiaBeat`), 128 BPM, `cos²`
-  pulse landing on the beat.
+### Step 2 — Observe the highway-ownership fix in PIE — **DONE / OWNER LOCK 2026-08-12**
+**RHYTHM GAME WORKED.** Owner confirmed live PIE. Canonical lock:
+`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`. Do not reopen this step as a P0 blocker.
+(Formal Campaign 1 harness packaging remains Step 4.)
 
 ### Step 3 — Verify the damage-scalar sequencing (before any A/B)
 - Read the live `UseSkill` → montage damage notify (~2.5 s) → `FinishSession` latch

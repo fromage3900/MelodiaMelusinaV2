@@ -34,3 +34,41 @@ def validate_bevel_parameters(parameters: Mapping[str, object]) -> list[str]:
     if not isinstance(clamp_overlap, bool):
         errors.append("clamp_overlap must be a boolean")
     return errors
+
+
+def validate_boolean_parameters(modifier_type: str, parameters: Mapping[str, object]) -> list[str]:
+    """Return validation errors for boolean-difference/union/intersect modifiers."""
+    errors: list[str] = []
+    expected_operation = modifier_type.removeprefix("boolean_")
+    operation = parameters.get("operation", expected_operation)
+    if operation != expected_operation:
+        errors.append(f"operation '{operation}' does not match modifier_type '{modifier_type}'")
+
+    cutter_path = parameters.get("cutter_mesh_path", "")
+    if not isinstance(cutter_path, str) or not cutter_path.strip():
+        errors.append("cutter_mesh_path must be a non-empty Unreal asset path string")
+
+    for vector_name in ("cutter_location", "cutter_scale"):
+        vector = parameters.get(vector_name, {})
+        if not isinstance(vector, Mapping):
+            errors.append(f"{vector_name} must be a mapping with x/y/z keys")
+            continue
+        for axis in ("x", "y", "z"):
+            value = vector.get(axis, 0.0)
+            if not isinstance(value, (int, float)) or isinstance(value, bool):
+                errors.append(f"{vector_name}.{axis} must be a number")
+
+    rotation = parameters.get("cutter_rotation", {})
+    if not isinstance(rotation, Mapping):
+        errors.append("cutter_rotation must be a mapping with pitch/yaw/roll keys")
+    else:
+        for axis in ("pitch", "yaw", "roll"):
+            value = rotation.get(axis, 0.0)
+            if not isinstance(value, (int, float)) or isinstance(value, bool):
+                errors.append(f"cutter_rotation.{axis} must be a number")
+
+    for flag in ("show_preview", "preserve_cutter"):
+        value = parameters.get(flag, False)
+        if not isinstance(value, bool):
+            errors.append(f"{flag} must be a boolean")
+    return errors

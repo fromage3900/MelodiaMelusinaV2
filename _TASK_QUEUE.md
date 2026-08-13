@@ -10,6 +10,66 @@
 **Priorities:** P0 = blocking everything, P1 = should do this week, P2 = nice to have, P3 = parked
 **Statuses:** `Available` / `In Progress` / `Done` / `Blocked` / `Parked`
 
+## Highest-leverage queue — 2026-08-13 ~01:45 ET
+
+**Pick up:** `Docs/Handoffs/SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md` (still valid as evidence path; process facts below supersede its PID table).
+
+**Live state (verified 01:45):** One UnrealEditor **PID 48864** (replaced 38184), owns :9316. Owner is importing ElectricDreams_Env assets in-editor right now (`Levels/ElectricDreams_Env.umap` + 2,339 `__ExternalActors__` + 6 PCG levels were G:-only; C: had none). `MODAL_OPEN` 01:31:55 → **MCP is unresponsive to all lanes until the import modal dismisses — do not queue editor work behind it.** Rhythm + Quill locks hold. Stash `wip-before-pr4-pr6-pull` reconciled (see checkpoint below).
+
+| Task | Phase | Priority | Status | Agent | Notes |
+|---|---|---|---|---|---|
+| Wait for owner import modal to clear | Tonight | P0 | **In Progress** | owner | Do not touch Content/ or :9316 until dismissed |
+| N1 Save `L_KaleidoNave` (Cathedral strip + V2-test actors unsaved) | Tonight | P0 | **Available** | owner | After import clears; one editor |
+| A1 stock battle real-key Q/W/O/P — Morning → KaleidoNave | VS | P0 | **Available** | — | Tag `melodia_smoke_encounter`; real keys through `BP_BattleUI::OnKeyDown`; A/B `melodia.Rhythm.Disable 1`; assertion JSON next to frames; then `Tools/playtest_harness.py record runtime pass/fail` (S1–S2, per NEXT_PROMPTS order) |
+| Verify `runtime` ledger PASS row (08-12 18:57, `pie_smoke_1_145605`) | VS | P0 | **Available** | — | Row exists but is a pie_smoke session; must meet real-key standard before trusted (08-11 FAIL row is the precedent) |
+| B4 battle-result closure — Victory/Defeat/Fled/unavailable each resume/abort Quill exactly once | VS | P0 | **Available** | — | `E_BattleResult` → `CompleteBattle`; restoration wired at bridge (PR #6) |
+| B7 `ShowRhythmGrade` display after rhythm works | VS | P0 | **Available** | — | Grade HUD text verified invisible 08-11 — recheck Alpha/vis flags when A1 passes |
+| N2 Socket GC cine actor to Melusina head | Tonight | P1 | **Available** | — | Do not replace `SK_MelusinaHair`; flip cache on G: `KitbashExport/flip_cache_melusina_waterhair` |
+| N3 Blender idle `A_BL_Melusina_Idle_Loop` second pass | Tonight | P1 | **Parked** | — | Only after N1 proves mocap idle looks normal (unit mismatch burned once) |
+| T4 lean vow-cross FBX from v22 | Tonight | P1 | **Blocked** | — | Never `T_Hatch_Cross`; needs 5.2 |
+| Stale-ref closeout verify | Sync | P1 | **In Progress** | build | Re-run `Saved/scan_stale_strings_20260812.py` post-import; 19-layer + ElectricDreams expect 0 |
+| Decide `l_melodia_dreamstate..umap` (copy-bug leftover, owner call) | Sync | P1 | **Blocked** | build | Rename to `.umap` (resurrects merged-out level) or delete; not touching without assent |
+| Refresh `Exports/bp_battlecontroller_eventgraph_live.json` from live BP | Sync | P1 | **Available** | — | Committed export is stale (still `BP_MelodiaVictoryDialogue`); stash holds the newer snapshot; regenerable post-modal |
+| Drop stash `wip-before-pr4-pr6-pull` | Sync | P2 | **Available** | — | Verified: nothing sole-copy in it (restore superseded by PR #6 bridge call; harness line already in worktree) |
+| save_load / repeat_consume / package_launch gates | VS | P0 | **Available** | — | The three remaining runtime completion gates; canonical-slot round trip first |
+| Re-run `Tools/bp_sweep.py` + static gates | VS | P1 | **Available** | — | `static_gates` ledger FAIL since 08-11; one-editor rules apply |
+| LFS lock discipline before any Content push | Sync | P1 | **Available** | — | 2,224 lockable files, **0 locks held**, Cursor lane pushing `pie-rhythm-highway-notes-1a53` — hold locks on files you modify |
+| Quarantine stray root probes (`check_*.py`, `fix_*.py`, `pie_*`) | Tonight | P2 | **Available** | — | Owner sign-off required for delete; `_Quarantine_ThirdPartyFix_20260812/` is the pattern |
+
+## Source-control checkpoint — 2026-08-13 (reviewed ~01:45)
+
+- Unreal `main` = `v2/main` = `840b7650`; fetched 00:47. Working tree: 56 paths dirty
+  (24 M + 32 ??). No MERGE_HEAD/REBASE_HEAD. Hooks live via `core.hooksPath=.githooks`
+  (pre-commit protects .gitignore/.gitattributes/Config INI/run_verify.ps1).
+- LFS 3.6.1: 2,224 lockable files; **0 locks held** — hold a lock before modifying
+  Content assets (Cursor lane is pushing `v2/cursor/pie-rhythm-highway-notes-1a53`,
+  fetched 00:44, unmerged).
+- **Stash `wip-before-pr4-pr6-pull` reconciled — safe to drop.** (1) NarrativeSubsystem
+  restore edit is SUPERSEDED by PR #6's bridge call (`MelodiaExternalJRPGBridgeSubsystem
+  ::HandleBattleOver` → lines 199/234 on HEAD; the stash's CompleteBattle placement
+  would double-heal — do NOT apply). (2) harness BP_TRIES line already in worktree.
+  (3) export JSON's newer snapshot is regenerable.
+- `origin/main` (old MelodiaMelusina) diverged 367/35 from `v2/main` — intentional split;
+  do not merge. `recovery/melodia-main-sync-20260811` tracks origin/main (ahead 2).
+- Website repo (`my-site-clean`) remote history still unrelated — owner decision pending.
+- **Ledger:** `runtime` PASS row added 08-12 18:57 (`pie_smoke_1_145605`) — verify it
+  against the real-input standard before trusting. `static_gates` FAIL since 08-11.
+
+## Tonight continuation — 2026-08-12 ~20:40 ET
+
+Handoff: `Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md`. UnrealEditor PID 38184 = A1. Loop 26352 = leave running.
+
+| Task | Phase | Priority | Status | Agent | Notes |
+|---|---|---|---|---|---|
+| Handpainted channel hunt | Tonight | P0 | **Done** | parent | 1208 hits; inventory JSON/md |
+| T1 `assign_hero_zentrim.py` disk inventory | Tonight | P0 | **Done** | parent | `--apply` blocked on A1 |
+| T1 `--apply` wand + StreetLamp MI_ZenTrim_Base4K | Tonight | P0 | **Blocked** | — | In already-open editor only |
+| T2 P0 mesh gap inventory | Tonight | P0 | **Done** | subagent | Cathedral 41 FBX not imported |
+| T2 import CathedralKit FBX | Tonight | P1 | **Available** | — | When A idle |
+| T3 Flip bake 1–96 + alembic | Tonight | P0 | **Blocked** | — | Blender MCP down; 0 `.bobj` |
+| T4 lean cross FBX from v22 | Tonight | P1 | **Blocked** | — | Needs 5.2; never T_Hatch_Cross |
+| D1 harness BP_MelodiaBattleUI | VS | P0 | **Done** | parent | `Saved/Audit/harness_battleui_paths_2026-08-12.md` |
+
 ## State updates — 2026-08-05
 - Git recovery complete: `BS_GodFile/.git` healthy at repo root on `main`; latest local commit `ec20b015`; checkpoint commit `6154cc1e` captures full live working tree on recovered history.
 - Push to `origin` is currently blocked by network connectivity to `github.com:443`.

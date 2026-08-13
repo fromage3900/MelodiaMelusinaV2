@@ -2,7 +2,8 @@ import unittest
 from typing import cast
 
 from gmm.geometry.modifiers import GeometryModifier, ModifierStack
-from gmm.geometry.schemas import validate_bevel_parameters
+from gmm.geometry.procedural_window import WindowSpec, build_window_cutters, build_window_stack
+from gmm.geometry.schemas import validate_bevel_parameters, validate_boolean_parameters
 from gmm.ui.commands import run_gmm
 
 
@@ -98,6 +99,74 @@ class TestGeometryModifiers(unittest.TestCase):
         self.assertEqual(stack.lifecycle, "committed")
         stack.mark_baked()
         self.assertEqual(stack.lifecycle, "baked")
+
+    def test_boolean_modifier_types_are_supported(self):
+        for modifier_type in ("boolean_difference", "boolean_union", "boolean_intersect"):
+            with self.subTest(modifier_type=modifier_type):
+                modifier = GeometryModifier(
+                    "bool_test",
+                    modifier_type,
+                    parameters={"cutter_mesh_path": "/Game/Test/SM_Cutter"},
+                )
+                self.assertEqual(modifier.validate(), [])
+
+    def test_boolean_parameters_are_validated(self):
+        errors = validate_boolean_parameters("boolean_difference", {
+            "operation": "union",
+            "cutter_mesh_path": "",
+            "cutter_location": {"x": 0, "y": "bad", "z": 0},
+            "cutter_rotation": {"pitch": 0, "yaw": 0, "roll": 0},
+            "cutter_scale": {"x": 1, "y": 1, "z": 1},
+            "show_preview": "yes",
+            "preserve_cutter": False,
+        })
+        self.assertIn("operation 'union' does not match modifier_type 'boolean_difference'", errors)
+        self.assertIn("cutter_mesh_path must be a non-empty Unreal asset path string", errors)
+        self.assertIn("cutter_location.y must be a number", errors)
+        self.assertIn("show_preview must be a boolean", errors)
+
+    def test_procedural_window_produces_expected_cutters(self):
+        spec = WindowSpec(
+            wall_width=8.0,
+            wall_height=3.5,
+            wall_thickness=0.3,
+            window_width=1.2,
+            window_height=1.4,
+            window_sill_height=1.0,
+            count=3,
+        )
+        cutters = build_window_cutters(spec)
+        self.assertEqual(len(cutters), 3)
+        self.assertEqual(cutters[0].modifier_type, "boolean_difference")
+        self.assertEqual(cutters[0].parameters["cutter_mesh_path"], "/Game/EnvSandbox/Meshes/Primitives/SM_WindowCutter")
+        self.assertEqual(cutters[0].parameters["operation"], "difference")
+
+        stack = build_window_stack("/Game/Test/SM_Wall", spec)
+        self.assertEqual(stack.target, "/Game/Test/SM_Wall")
+        self.assertEqual(len(stack.items), 3)
+        self.assertEqual(stack.validate(), [])
+
+    def test_procedural_window_rejects_invalid_spec(self):
+        with self.assertRaises(ValueError):
+            WindowSpec(count=-1)
+
+    def test_boolean_preview_command_is_fail_closed_outside_unreal(self):
+        result = run_gmm("gmm.geometry.boolean_preview", {
+            "asset_path": "/Game/Test/SM_Wall",
+            "modifier_type": "boolean_difference",
+            "parameters": {"cutter_mesh_path": "/Game/Test/SM_Cutter"},
+        })
+        self.assertFalse(result.ok)
+        self.assertEqual(result.outputs["state"], "unavailable")
+
+    def test_boolean_apply_command_is_fail_closed_outside_unreal(self):
+        result = run_gmm("gmm.geometry.boolean_apply", {
+            "asset_path": "/Game/Test/SM_Wall",
+            "modifier_type": "boolean_difference",
+            "parameters": {"cutter_mesh_path": "/Game/Test/SM_Cutter"},
+        })
+        self.assertFalse(result.ok)
+        self.assertEqual(result.outputs["state"], "unavailable")
 
 
 if __name__ == "__main__":

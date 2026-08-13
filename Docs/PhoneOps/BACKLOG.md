@@ -4,11 +4,12 @@ Simple queue for phone agents. Prefer updating this file over inventing parallel
 
 ## Now
 
-1. On Windows UE box: install jcode, run `.\deploy\start_jcode_swarm.ps1`, paste `.jcode/coordinator-bootstrap.md`, complete **Recipe A** then **Recipe B** (see `JCODE_SWARM_PIPELINE.md` acceptance checklists).
-2. Finish Git LFS push of pending Content; confirm `origin/main` advances past 2026-07-24 tip.
-3. Maintain `Docs/PhoneOps/` as the mobile entry.
-4. Generic look-dev capture pass on `L_Template` when UE desktop/MCP is available.
-5. MelodiaCore GS-001 / GS-002 when in gameplay lane.
+0. **FAMILY LOCKS — RHYTHM + QUILLSCRIPT WORKED**. [RHYTHM…](../Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](../Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
+1. **Parallel fan-out:** [PARALLEL_LANES…](../Handoffs/PARALLEL_LANES_2026-08-12.md) · [PARALLEL_SESSIONS…](../Handoffs/PARALLEL_SESSIONS_2026-08-12.md). **Blender B0/B1/B3 DONE**. Remaining Blender: **B2** plate dry-run. **Tonight T1–T4:** [TONIGHT_CONTINUATION…](../Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md). D1 harness path **done**. **one** UE editor (PID 38184) for A1→A2→A3.
+2. ~~#4/#6 merge + pull + cold build~~ **DONE** (`main` @ `840b7650`; remote synchronized).
+3. **Editor P0:** stock battles Morning → KaleidoNave + `MELODIA_RECOVERY…` (lanes A1/A2).
+4. **Formal runtime packaging:** harness paths (D1) then A3 `record_gate.py runtime`.
+5. Optional [#3](https://github.com/fromage3900/MelodiaMelusinaV2/pull/3) / [#5](https://github.com/fromage3900/MelodiaMelusinaV2/pull/5) — lane C1.
 
 ## Next
 

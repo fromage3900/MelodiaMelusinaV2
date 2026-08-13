@@ -1,4 +1,145 @@
-# Session Handoff — 2026-08-11 (agent infrastructure, intake, repo v2, UI fix)
+# Session Handoff — 2026-08-12 ~23:36 ET (UE idle apply)
+
+Owner released A1. **T1/T2/T3 landed** in PID **38184**. Evidence: [`Saved/Audit/ue_idle_apply_2026-08-12.md`](Saved/Audit/ue_idle_apply_2026-08-12.md).
+
+- `MI_ZenTrim_Base4K` on wand + StreetLamp. Magicians skipped.
+- Cathedral **41/41** under `/Game/EnvSandbox/Meshes/Cathedral/`. KaleidoNave folder `CathedralKit_Review` (8 pieces, Y=4500) **unsaved**.
+- Geometry Cache `/Game/Cinematics/MelusinaWaterHair/GC_MelusinaHairFlip_v22`. Do not replace `SK_MelusinaHair`.
+- Save KaleidoNave if the strip should persist. Socket a new cine GC actor to head.
+
+---
+
+# Session Handoff — 2026-08-12 ~23:20 ET (Website Overhaul & Security)
+
+**Pick up:** [`Docs/Handoffs/SESSION_HANDOFF_2026-08-12_WEBSITE_OVERHAUL.md`](Docs/Handoffs/SESSION_HANDOFF_2026-08-12_WEBSITE_OVERHAUL.md)
+
+- **Website Overhaul & Security:** 100% AI purge, meta CSP headers, 232 hex errors resolved (0 token errors), Figma UI suite integrated (15 icons, combat cards, swatch boards, mobile viewport frame), Vite MPA config + TS modules (`src/ts/`).
+- **Gates:** `npm run verify:all` **PASSED** (0 errors, 0 facts issues).
+
+---
+
+# Session Handoff — 2026-08-12 ~22:53 ET (live 5.2 MCP)
+
+Blender **5.2** PID **27644**, MCP **9876** connected. v22 open. **Not saved.**
+
+- Health: `builders=165 menu=165 sections=12/12 section_trees=165` presets 24/0 orphans.
+- Smoke: `MEL_effect_magic` LIQUID applied (`MEL_Smoke_EffectMagic_LIQUID` cube — undo before plates).
+- Hair tune: `drip_inside_domain=true`. Domain moved ΔZ **-1.34**. Strand.002 is CURVES (script patched). **0 `.bobj`** — bake still owner step.
+- **GN background:** `GN_BG_Prototype` 15 builders (frame rebuilt as plane). **Not saved.**
+- **Flip bake:** 480 `.bobj` frames 1–240. Alembic `Exports/MelusinaWaterHair/GC_MelusinaHairFlip_v22.abc` (1–96). Import as Geometry Cache cine actor when A1 idle.
+
+---
+
+# Session Handoff — 2026-08-12 ~20:40 ET (tonight continuation)
+
+**Pick up:** [`Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md`](Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md)
+
+- Handpainted hunt **done** (1208 hits). Komikaze stills are not albedo.
+- P0 umaps exist. Cathedral kit = 41 FBX, **0** uassets. No vow-cross mesh.
+- `assign_hero_zentrim.py` disk inventory written. `--apply` waits — UnrealEditor **PID 38184** (A1).
+- Flip cache still **0 `.bobj`**. Alembic helper: `Tools/export_melusina_hair_flip_alembic.py`.
+- D1: `playtest_harness.py` now tries `BP_MelodiaBattleUI` first.
+- Blender MCP **down**. Loop PID **26352** — do not start a second.
+- Do not save v22 without `MELODIA_ALLOW_STAGE_SAVE=1`. Rhythm + Quill still LOCKED WORKED.
+
+---
+
+# Session Handoff — 2026-08-12 evening (Blender Melodia Studio)
+
+**Blender start-here:** [`Docs/BLENDER_MELODIA_COCKPIT.md`](Docs/BLENDER_MELODIA_COCKPIT.md)
+
+- **B0/B1/B3 DONE.** Live v22 Health: `sections=12/12 section_trees=165`. `RQ_MEL_*=165`. Audits under `Saved/Audit/melodia_studio_*_2026-08-12_1948.md`.
+- **Do not** click **Sync & Reload** until the next 5.2 restart (old operator crashed the GUI; timer fix is on disk + AppData).
+- After restart: **N → BlenderMCP → Connect** on **9876** (not Live Bridge).
+- Stage: `G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend`. No agent save without `MELODIA_ALLOW_STAGE_SAVE=1`.
+- Still open on Blender: **B2** website plate dry-run (git push off).
+- Builder click: `mel_gn.stack_add` no longer requires `Object.mel_gn_stack` (modifier still applies).
+
+---
+
+# Session Handoff — 2026-08-12 evening (RHYTHM + QUILL LOCKED)
+
+```
+✧ RHYTHM + QUILLSCRIPT WORKED — tell the whole family ✧
+```
+
+**Rhythm lock:** [`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md)  
+**Quill lock:** [`Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md)  
+**PIE board (living):** [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).  
+**Parallel spawns:** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md) · paste prompts [`PARALLEL_SESSIONS_2026-08-12.md`](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md).
+
+- **Owner LOCK:** Rhythm game **WORKED** · QuillScript / WillScript **WORKED** (owner “yes”). Do not reopen either.
+- **Merge / pull DONE.** #4 + #6 squash-merged; `main` @ `2e3c893d`; closed-editor build PASS.
+- **Still open:** P0 stock battles (Morning → KaleidoNave / collider); formal `record_gate.py runtime` packaging; `MELODIA_RECOVERY…`.
+- **`static_gates` PASS** (`0e34eaed`). Playable levels on `main` (`43d0a9ae`).
+
+---
+
+# Session Handoff — 2026-08-12 (source-control hardening + lane dispatch)
+
+**Session type:** repo/backup audit, gitignore fix, agent handoffs. **No editor or UE writes.**
+**Repo:** `main` @ `43d0a9ae`, tracking `v2/main`. **Two writers active this session** (this lane
++ Muse). Read `Docs/Reports/BACKUP_SYNC_AUDIT_2026-08-12.md` first.
+
+## What changed
+
+- **`43d0a9ae` — the playable route levels are now under version control.** `L_MelusinaMorning`
+  and `L_KaleidoNave` had **no history at all**; the `Content/*` blanket in `.gitignore` never had
+  a matching un-ignore. KaleidoNave is the only level in which a battle has ever started. Also
+  tracked: `Content/Melodia/{Levels,PCG}/**`, `Content/EnvSandbox/{Environments,PCG}/**` —
+  214 files, ~48 MB LFS. Bulk EnvSandbox art (~4.6 GB) stays ignored on purpose; the reasoning is
+  written into `.gitignore` so a future cleanup does not undo it.
+- **`0e34eaed` (Muse lane) — `static_gates` moved from FAIL to PASSING.** 12 material drifts
+  accepted, graph_reachability/bp_sweep scoped to shipped defects.
+- **LFS budget funded** — ~$10 ≈ 50 GB as of today. The 512 MB per-change CI gate still applies.
+
+## Two corrections to earlier docs on this date
+
+1. **`BP_BattleController` and `BP_BattleUI` were always tracked** (`.gitignore:128-134`). The
+   first version of the backup audit said otherwise; that came from a `git check-ignore` against a
+   path missing the `/Battle/` segment. No asset was ever at risk.
+2. **`SK_Melusina` needed nothing.** One live mesh, at `Content/Characters/Melusina/`, already
+   tracked. The `Content/Art/` and `Content/Melodia/Characters/` copies are stale leftovers.
+
+## Gates
+
+`runtime` **fail** (honest) · `static_gates` **pass** (new today) · `save_load`,
+`repeat_consume`, `package_launch` **open**. 13 earlier gates pass. `release_tag.yml` correctly
+refuses to cut a release until the four completion gates have rows.
+
+**The `runtime` gate needs the editor and real Q/W/O/P keys through `BP_BattleUI::OnKeyDown`.**
+No agent lane can close it. Everything dispatched below exists to shorten that editor session.
+
+## Active lanes
+
+| Lane | Handoff | Owns |
+|---|---|---|
+| **Muse** (WSL2, host) | `Docs/Handoffs/MUSE_HANDOFF_2026-08-12.md` | Code edits. M1 wire `RestorePartyAfterBattle` (zero callers today — the real gap), M2 `lane_dispatcher.py` queue, M3 memory index, M4 split AGENTS.md, M5 commit 13 loose `surreal_arch` modules |
+| **DeepSeek** (cloud, read-only) | `Docs/Handoffs/DEEPSEEK_HANDOFF_2026-08-12.md` | Verdicts only. D1 save idempotency, D2 result matrix, D3 input-path chain for `MELODIA_RHYTHM session=`, D4 Q/W/O/P ergonomics |
+
+Lane separation table is in the DeepSeek handoff §"Lane separation". Muse owns `Source/**` and
+`Tools/**`; DeepSeek writes new `Docs/Reports/*_VERDICT_*.md` files only.
+
+## Open owner decisions
+
+1. **Rotate the Figma API key** — public on v2, doc redacted in `87b2938d`, live key still valid.
+   Carried from 08-11, still open.
+2. **Four `WP/` portfolio levels are G:-only** — BaroqueGrotto, CosmicOrrery, SakuraDream,
+   SpaceCathedral. No version history, no C: copy. Cheap to promote now the budget is funded;
+   needs a call on whether they are current or superseded.
+3. **`G:` has 2.1 GB free of 1 TB.** The next mirror pass will fail partway.
+4. **Two Quaternius animation dependencies are absent** from every C: and G: copy searched and
+   from the tracked tree. These appear genuinely lost.
+
+## Working-tree leftovers (not committed)
+
+13 new + 3 modified `deploy/surreal_arch/melodia_gn/` Python modules (Muse M5), `.agents/`, and
+~15 root scratch scripts (`check_bp*.py`, `fix_rhythm*.py`, `pie_*.py`, `pie_smoke_*.json`) —
+session debris, propose a `.gitignore` line rather than deleting.
+
+---
+
+# Previous session (2026-08-11) — agent infrastructure, intake, repo v2, UI fix
 
 **Session type:** Multi-agent infra expansion + read-only intake + repo migration + editor fix
 **Project phase:** UE 5.8 production JRPG + QuillScript integration
@@ -57,9 +198,11 @@ Full record: `Docs/Handoffs/CLOUD_RESEARCH_FOLD_IN_2026-08-11.md` — read that 
 All reports + cross-lane synthesis: `Saved/Intake/INTAKE_SYNTHESIS_2026-08-11.md`.
 Consensus: (1) runtime gate is THE blocker (probe-only = HOLD; real keys never tested
 through BP_BattleUI::OnKeyDown); (2) queue-authority mismatch; (3) HUD dual-writer
-fix compiled but never observed in PIE; (4) don't push GitHub before Content/LFS secured
-(partially superseded — v2 push happened below); (5) best single finding: Q/W/O/P has a
-6-key W→O hand shift (spatial playability risk for dense notes).
+fix compiled but never observed in PIE — **superseded 2026-08-12: owner confirmed rhythm
+highway WORKED in live PIE** (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`); (4) don't
+push GitHub before Content/LFS secured (partially superseded — v2 push happened below);
+(5) best single finding: Q/W/O/P has a 6-key W→O hand shift (spatial playability risk for
+dense notes).
 
 ## Repo: v2 canonical
 
@@ -78,9 +221,11 @@ Content/ stays untracked (no LFS) — v2 is asset-light by design.
   PendingDamageMultiplier → OnRhythmComplete.Broadcast → deferred InvokeStockUseSkill →
   montage notify (0.5s) reads latched scalar. The old 2.5s gap applied only to the
   replaced parallel-start pattern. A/B meaningful.
-- **Step 5 (RestorePartyAfterBattle): HOLD.** Implementation complete, zero callers;
-  reads `curentMP` (typo form) via FindAuthoredStructMember — confirm the stock struct's
-  real spelling via Monolith reflection before wiring (heal-only decision stands).
+- **Step 5 (RestorePartyAfterBattle): spelling RESOLVED; call site on open PRs.**
+  Live reflection confirmed stock `S_PlayerUnitData` really spells `curentMP`. Library
+  match is correct. Wiring is **not on main yet** — prefer [PR #1](https://github.com/fromage3900/MelodiaMelusinaV2/pull/1)
+  (world-iterates `BP_BattleController`). [PR #2](https://github.com/fromage3900/MelodiaMelusinaV2/pull/2)
+  passes `ActiveBattleActor` (tagged encounter) and is the wrong target for the library.
 - **UI transparency audit: FIXED.** `WBP_Battle_Rhythm` JudgementText/ComboText/
   ClockSourceText were authored A=0 and nothing ever set their color → grade/combo/clock
   text permanently invisible. Fixed to opaque white (flat rgba JSON write shape — the

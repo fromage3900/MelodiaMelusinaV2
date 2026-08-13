@@ -33,16 +33,17 @@ input path:
    crash on entry). If you modify the probe, commit it **before** running —
    the harness that produced the evidence must be the harness on disk.
 6. The highway-ownership fix in `MelodiaRhythmHUDWidget.cpp`
-   (`bExecutionDrivingHighway`) is compiled and observed in PIE. Until a full
-   closed-editor build has run, the shared HUD can still be stomped by the
-   ambient sync lane (AGENTS.md evidence standard §5).
+   (`bExecutionDrivingHighway`) is compiled and **owner-confirmed in PIE
+   (2026-08-12 — RHYTHM GAME WORKED)**. See
+   `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`. This campaign still
+   requires real Q/W/O/P + ledger packaging; do not reopen highway ownership.
 
 ## Run
 
 1. Start PIE on the authored loop route:
-   `L_MelusinaMorning → L_Melodia_Dreamstate → L_KaleidoNave`
-   (or the shortest live path that reaches the `melodia_smoke_encounter`
-   battle — see `_VERTICAL_SLICE_SCOPE.md` for the tagged actor).
+   `L_MelusinaMorning → L_KaleidoNave` (`L_Melodia_Dreamstate` was merged into
+   KaleidoNave on 2026-08-10). Use the shortest live path that reaches the
+   `melodia_smoke_encounter` battle — see `_VERTICAL_SLICE_SCOPE.md` for the tagged actor.
 2. Reach the rhythm skill, play a lane run with **real input**. Confirm:
    - beat advances (`UMelodiaMusicClockSubsystem::OnMelodiaBeat`)
    - grade moves (`UMelodiaRhythmCombatSubsystem::RegisterLaneHit`)
@@ -72,8 +73,10 @@ python Tools/echo_run.py record runtime pass --note "rhythm on dmg=A, off dmg=B,
 or `fail` with the delta and the log excerpt. A pass with two equal numbers is
 a corrupted record — the ledger is only as honest as the row.
 
-Status 2026-08-11: **OPEN**. The 2026-08-10 takeover log claimed runtime
-certification, but `Saved/gate_ledger.json` has no row for `runtime`,
-`Saved/Echo/state.txt` shows it OPEN, and every "certified" run was
-probe-injected. A `runtime fail` row was recorded on 2026-08-11 to pin the
-truth in the ledger.
+Status 2026-08-12: **PASS recorded in ledger** for the result-matrix/restoration
+path (`Restoration wired in CompleteBattle & PIE smoke session verified on
+L_KaleidoNave`). The rhythm on/off A-B damage-delta campaign described above is
+still the canonical evidence standard for *this* campaign; if the recorded pass
+did not include a real-key A/B delta, treat the gate as conditionally closed and
+re-run with the damage-delta evidence before claiming the highway input path is
+fully ledger-backed.

@@ -9,16 +9,19 @@
 | Tool | Version | Path / Source |
 |------|---------|---------------|
 | Unreal Engine 5 | 5.8 | `C:\Program Files\Epic Games\UE_5.8\` |
-| Blender | 5.1+ | `C:\Program Files\Blender Foundation\Blender 5.1\` |
+| Blender | 5.2+ | `$env:MELODIA_BLENDER_ROOT` or the configured 5.2 default |
 | VOICEVOX | 0.25+ | [voicevox.hiroshiba.jp](https://voicevox.hiroshiba.jp/) |
-| Material Maker | 1.7 | `G:\programs\MaterialMaker\` |
+| Material Maker | 1.7 | `$env:MATERIAL_MAKER_ROOT` (optional) |
 
-**Required Blender addons** (pre-installed):
-- SurrealArch (Melodia Studio) -- procedural generation, live bridge, material bridge
+**Required Blender addons** (install from the checkout):
+- `surreal_architecture_gen` (Melodia Studio) -- procedural generation, live bridge, material bridge
 - VRM Importer v4.4 -- character model import
 - LiveLink v3.3 -- FBX streaming to Unreal
 
-**Unreal project:** `C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject`
+**Unreal project:** `BS_GodFile.uproject` in the checkout opened from
+`$env:MELODIA_UNREAL_ROOT` and the repository root. For MeshBlend or PCGEx,
+use the UE-capable lightweight onboarding tier so the full tracked `Plugins/`
+tree is present.
 
 ---
 
@@ -71,7 +74,7 @@ Status changes to `CONNECTED`. The LiveLink server is now listening for UE to co
 
 ### 2c. Start VOICEVOX (Terminal)
 ```powershell
-& "G:\programs\VOICEVOX\VOICEVOX\VOICEVOX.exe"
+& (Join-Path $env:VOICEVOX_ROOT "VOICEVOX\VOICEVOX.exe")
 ```
 The engine starts on port `:50021`. Verify:
 ```powershell
@@ -133,7 +136,7 @@ POST http://127.0.0.1:9316/mcp
   "method": "tools/call",
   "params": {
     "name": "editor_query",
-    "arguments": {"action": "load_level", "level_path": "/Game/Melodia/Levels/L_ZenForestTest"}
+    "arguments": {"action": "load_level", "level_path": "/Game/EnvSandbox/Environments/L_KaleidoNave"}
   }
 }
 ```
@@ -144,7 +147,7 @@ POST http://127.0.0.1:9316/mcp
 
 ### 5a. Generate Voice Lines
 ```powershell
-cd C:\EnvironmentPortfolio\BS_GodFile\Tools
+Set-Location .\Tools
 $env:PYTHONIOENCODING = "utf-8"
 python generate_all_voices.py
 # -> 102 WAVs across 7 characters
@@ -174,7 +177,7 @@ create_zunzun_bps.run()
 ## Step 6 -- Playtesting (2 min)
 
 ### 6a. Open the Vertical Slice Map
-In Unreal Content Browser, open `/Game/Melodia/Levels/L_ZenForestTest`.
+In Unreal Content Browser, open `/Game/EnvSandbox/Environments/L_KaleidoNave`.
 
 Hit **Play** (Alt+P). What you should see:
 1. Player spawns -> Sir Melodious flies off
@@ -196,7 +199,7 @@ Hit **Play** (Alt+P). What you should see:
 
 ### 6c. Smoke Test
 ```powershell
-cd C:\EnvironmentPortfolio\BS_GodFile\Content\Python
+Set-Location .\Content\Python
 python -m gmm.gameplay_smoke
 ```
 
@@ -207,7 +210,7 @@ python -m gmm.gameplay_smoke
 | Port | Protocol | Service | Direction |
 |------|----------|---------|-----------|
 | `9876` | TCP + JSON | LiveLink -- FBX/texture/animation streaming | Blender -> UE |
-| `9317` | HTTP REST | Blender MCP -- genome/agent control | External -> Blender |
+| `9317` | Legacy adapter | Do not use; live Blender MCP is on shared port `9876` | — |
 | `9316` | HTTP JSON-RPC | UE Monolith MCP -- Python execution, 1,325 tools | Any -> UE |
 | `50021` | HTTP REST | VOICEVOX -- text-to-speech (7 ZunZun voices) | Any -> VOICEVOX |
 | `50022` | HTTP REST | Melusina Voice -- custom SBV2 TTS | Any -> Melusina |
@@ -219,7 +222,7 @@ python -m gmm.gameplay_smoke
 | Problem | Solution |
 |---------|----------|
 | **Port 9876 "in use"** | Multiple Blender instances. Close extras via Task Manager. |
-| **BL MCP :9317 not responding** | Reload SurrealArch addon: Scripting -> `import surreal_architecture_gen; surreal_architecture_gen.reload_addon()` |
+| **Blender MCP not responding** | Enable `surreal_architecture_gen` in Blender, connect on shared port `9876`, and do not use legacy `9317`. |
 | **Materials gray after import** | Run UE Python: `import resolve_material_crosswalk; resolve_material_crosswalk.resolve_all()` |
 | **VOICEVOX "speaker X not found"** | Open VOICEVOX -> Settings -> Manage Voice Libraries -> download missing voices |
 | **LiveLink "Send + Materials" fails** | Ensure Material Bridge panel has a saved crosswalk for the active object |

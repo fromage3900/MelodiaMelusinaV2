@@ -78,22 +78,36 @@ From Git Bash:
 
 ```bash
 bash deploy/collaborator_onboarding.sh docs
+bash deploy/collaborator_onboarding.sh blender
 bash deploy/collaborator_onboarding.sh lightweight
 bash deploy/collaborator_onboarding.sh full
-bash deploy/validate_collaborator_setup.sh
+bash deploy/validate_collaborator_setup.sh . ue
 ```
 
-The `docs` tier does not pull LFS content. The `lightweight` tier sparse-checks
-the level/material/source paths and pulls targeted assets. The `full` tier is
-for build, PIE, and packaging work and may require the full LFS checkout.
+The `docs` tier does not pull LFS content. The `blender` tier is intentionally
+Blender-only and does not include `BS_GodFile.uproject` or Unreal plugins. The
+`lightweight` tier is the UE-capable plugin tier: it includes the project file,
+tracked plugin source/manifests, and targeted gameplay/plugin LFS content. The
+`full` tier is for build, PIE, and packaging work and may require the full LFS
+checkout.
+
+UE plugin binaries are not tracked. After a `lightweight` or `full` checkout,
+install VS 2022 Desktop development with C++ and the Windows SDK, close Unreal,
+and build:
+
+```powershell
+$ueRoot = if ($env:MELODIA_UNREAL_ROOT) { $env:MELODIA_UNREAL_ROOT } else { "C:\Program Files\Epic Games\UE_5.8" }
+& "$ueRoot\Engine\Build\BatchFiles\Build.bat" BS_GodFileEditor Win64 Development -Project="$PWD\BS_GodFile.uproject" -NoUBA -MaxParallelActions=1
+.\deploy\validate_setup.ps1 -SkipServices -CheckLfsHydration -RequirePluginBinaries
+```
 
 ## 5. Start the Unreal lane
 
 1. Open `BS_GodFile.uproject` in Unreal Engine 5.8.
 2. Allow shaders, asset discovery, and Monolith indexing to finish.
 3. Confirm exactly one editor instance exposes Monolith on `9316`.
-4. Start with `L_Template` for generic environment validation and the authored
-   route only for gameplay evidence.
+4. Start with the tracked `L_KaleidoNave` or `L_MelusinaMorning` route; do not
+   assume the old local-only `L_Template` map is present in a sparse checkout.
 
 The ECHO control commands are:
 
@@ -142,7 +156,7 @@ Blender style/genome
   -> LiveLink :9876
   -> Unreal /Game/LiveLink
   -> material crosswalk and PCG
-  -> L_Template or neutral validation map
+  -> tracked L_KaleidoNave route or another checked-in validation map
   -> capture/statistics manifests
   -> portfolio_package.json
   -> website handoff JSON

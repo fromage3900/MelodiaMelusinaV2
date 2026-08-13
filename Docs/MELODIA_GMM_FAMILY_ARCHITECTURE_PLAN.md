@@ -330,6 +330,8 @@ Expand one vertical slice at a time:
 
 Each slice must include Blender builder, GMM adapter, fixture, manifest, audit, and documentation before the next slice begins.
 
+**Update (2026-08-12):** `boolean_difference` and `procedural_window` are now scaffolded/implemented in the Procedural Modeling Toolkit and the `gmm.geometry` contract. They mirror the Blender `GeometryNodeMeshBoolean` DIFFERENCE workflow used by `deploy/surreal_greybox/primitives.py` and are ready for closed-editor build verification.
+
 ## 9. Highest-leverage immediate tasks
 
 1. **Create the shared contract package and fixture.** This is the foundation for every future bridge and prevents divergent path/style vocabularies.
