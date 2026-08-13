@@ -22,7 +22,7 @@ from .escher_belvedere import build_escher_belvedere
 from .escher_penrose_stairs import build_escher_penrose_stairs
 from .escher_waterfall import build_escher_waterfall
 from .sky_observatory import build_sky_observatory
-from .stack import CLASSES, register_props, unregister_props, MEL_GN_PT_stack, TREE_CATEGORIES as _STACK_CATS, TREE_DESCRIPTIONS as _STACK_DESC, TREE_CATEGORY_MAP as _STACK_CATMAP, TREE_LABEL_MAP as _STACK_LABMAP
+from .stack import CLASSES, register_props, unregister_props, MEL_GN_PT_stack
 from .bake import bake_all, save_library, load_library
 from .water import (
     build_water_gerstner, build_water_ripples, build_water_foam, build_water_current_markers,
@@ -62,6 +62,18 @@ from .presets import (
 )
 
 # Rebuild derived lookup tables now that all builder modules
-# have imported and called register_builder()
+# have imported and called register_builder(). Mutates core containers
+# in place so early importers (stack UI) see live catalog sections.
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
+
+# Back-compat aliases for anything that imported stack.TREE_* historically
+from . import stack as _stack_mod
+from . import core as _core_mod
+_stack_mod.ALL_TREE_NAMES.clear()
+_stack_mod.ALL_TREE_NAMES.extend(name for name, _ in _core_mod.TREE_TYPES)
+# Prefer core.TREE_* — these names track the rebuilt containers
+_STACK_CATS = _core_mod.TREE_CATEGORIES
+_STACK_DESC = _core_mod.TREE_DESCRIPTIONS
+_STACK_CATMAP = _core_mod.TREE_CATEGORY_MAP
+_STACK_LABMAP = _core_mod.TREE_LABEL_MAP

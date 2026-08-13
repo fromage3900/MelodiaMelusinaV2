@@ -517,10 +517,11 @@ Full detail: `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md`.
    procced, next turn applied on skill finish. That is play evidence; it is **not** a ledger row.
    Still owed: (a) Decision 024 A/B on `melodia.Rhythm.Disable 1`, (b) assertion report JSON
    next to frames from the committed harness, (c) `record_gate.py runtime pass|fail`. Probe-only
-   Python hits remain non-evidence.
-3. ~~**Build and verify the highway-ownership fix.**~~ **Owner PIE 2026-08-13 observed a working
-   highway** after Melusina unique. If clunk/wipe recurs, confirm `bExecutionDrivingHighway` is
-   in the running binary (closed-editor build) before redesigning feel.
+   Python hits remain non-evidence. Do **not** reopen Rhythm/Quill as P0.
+3. ~~**Build and verify the highway-ownership fix.**~~ **OWNER LOCK 2026-08-12 — RHYTHM GAME WORKED**
+   (reconfirmed PIE 2026-08-13 after Melusina unique; clunk is feel, not absence).
+   Canonical: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`.
+   Do not reopen “highway unverified / never observed.”
 4. **Verify the damage-scalar sequencing** before trusting any A/B numbers — the damage notify
    may fire ~2.5s before the scalar latches. Owner saw damage proc; A/B delta still unrecorded.
 5. **Highway note rendering / feel** — clunk reported in owner PIE; genuine T3D target for note
@@ -545,7 +546,9 @@ Done 2026-08-12/13: #4+#6 on `main`; owner PIE — Melusina unique → highway (
 damage → next turn on skill finish.
 
 Parallel work for other agents, partitioned by contended resource:
-`Docs/Handoffs/PARALLEL_LANES_2026-08-08.md`.
+**current** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md)
++ paste prompts [`Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md`](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md)
+(history: `PARALLEL_LANES_2026-08-08.md`). Rhythm + Quill are owner-locked WORKED — do not reopen.
 
 ---
 

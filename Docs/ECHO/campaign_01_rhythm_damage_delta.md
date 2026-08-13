@@ -36,16 +36,17 @@ input path:
    crash on entry). If you modify the probe, commit it **before** running —
    the harness that produced the evidence must be the harness on disk.
 6. The highway-ownership fix in `MelodiaRhythmHUDWidget.cpp`
-   (`bExecutionDrivingHighway`) is compiled and observed in PIE. Until a full
-   closed-editor build has run, the shared HUD can still be stomped by the
-   ambient sync lane (AGENTS.md evidence standard §5).
+   (`bExecutionDrivingHighway`) is compiled and **owner-confirmed in PIE
+   (2026-08-12 — RHYTHM GAME WORKED)**. See
+   `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`. This campaign still
+   requires real Q/W/O/P + ledger packaging; do not reopen highway ownership.
 
 ## Run
 
 1. Start PIE on the authored loop route:
-   `L_MelusinaMorning → L_Melodia_Dreamstate → L_KaleidoNave`
-   (or the shortest live path that reaches the `melodia_smoke_encounter`
-   battle — see `_VERTICAL_SLICE_SCOPE.md` for the tagged actor).
+   `L_MelusinaMorning → L_KaleidoNave` (`L_Melodia_Dreamstate` was merged into
+   KaleidoNave on 2026-08-10). Use the shortest live path that reaches the
+   `melodia_smoke_encounter` battle — see `_VERTICAL_SLICE_SCOPE.md` for the tagged actor.
 2. Reach the rhythm skill, play a lane run with **real input**. Confirm:
    - beat advances (`UMelodiaMusicClockSubsystem::OnMelodiaBeat`)
    - grade moves (`UMelodiaRhythmCombatSubsystem::RegisterLaneHit`)
@@ -75,8 +76,10 @@ python Tools/echo_run.py record runtime pass --note "rhythm on dmg=A, off dmg=B,
 or `fail` with the delta and the log excerpt. A pass with two equal numbers is
 a corrupted record — the ledger is only as honest as the row.
 
-Status 2026-08-13: **OPEN** (owner play seen; not ledger-closed). Owner PIE
-showed Melusina unique → highway → damage → turn on skill finish. Still owed:
-rhythm-on vs `melodia.Rhythm.Disable 1` damage delta, harness JSON + frames,
-`record_gate.py runtime`. The 2026-08-10 "certified" claim was probe-only and
-invalid; do not treat owner notes as a substitute for the record command.
+Status 2026-08-13: **OPEN** for this campaign's rhythm on/off A/B (owner play
+seen; not ledger-closed). Owner PIE showed Melusina unique → highway → damage →
+turn on skill finish. Still owed: `melodia.Rhythm.Disable 1` damage delta,
+harness JSON + frames, `record_gate.py runtime`. A separate restoration/result-
+matrix ledger pass (2026-08-12, CompleteBattle on L_KaleidoNave) does **not**
+close this campaign. The 2026-08-10 "certified" claim was probe-only and
+invalid. Do not reopen Rhythm as P0; do not treat owner notes as `record_gate.py`.

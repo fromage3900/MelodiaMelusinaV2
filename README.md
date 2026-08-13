@@ -17,7 +17,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
  ◇─◇──◇──◇─◇
 ```
 
-> **New here?** [QUICKSTART.md](QUICKSTART.md) — 5 minutes to first demo.
+> **Blender / Melodia Studio?** [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) — v22 stage, MCP **9876**, Health `12/12` / `165`.
 >
 > **Gameplay scope?** [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority.
 >
@@ -27,13 +27,21 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 >
 > **Phone / cloud queue?** [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) — Now/Next for Cursor iOS + cloud agents.
 >
+> **Parallel agents tonight?** [PARALLEL_LANES…](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md) · [paste sessions…](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md).
+>
 > **Live task tracker?** [_TASK_QUEUE.md](_TASK_QUEUE.md) — P0/P1/P2/P3, per-task status/agent.
 >
 > **Architecture overview?** [PIPELINE.md](PIPELINE.md) — full system map.
 >
 > **Machine setup?** [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) — portable Windows environment.
 >
-> **Repo status (2026-08-12):** Private V2 at `https://github.com/fromage3900/MelodiaMelusinaV2`. `main` protected (PR + linear history); self-hosted runner `melodia-v2-win`. Production UE worktree on PC: `C:\EnvironmentPortfolio\BS_GodFile` (same remote). Cloud/phone agents use this GitHub clone — not a live editor. LFS is metered — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md). Ready PRs for tomorrow: **#4** (git health / LFS gate / untrack junk), **#6** (slim `RestorePartyAfterBattle` call site).
+> **Source control (2026-08-13):** See [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL_STATUS_2026-08-13.md) for the authoritative multi-repo checkpoint.
+>
+> **Unreal repo:** Private V2 at `https://github.com/fromage3900/MelodiaMelusinaV2`. `main` and `v2/main` are synchronized at `840b7650`; PRs **#4** + **#6** are squash-merged. The working tree still contains uncommitted editor/agent artifacts. LFS is metered — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
+>
+> **Website repo:** `C:\EnvironmentPortfolio\my-site-clean` has local tip `3cfa5f0`, but its configured remote has unrelated history and remains intentionally unsynchronized. Do not force-push or merge unrelated histories.
+>
+> **RHYTHM + QUILL WORKED (owner locks):** [RHYTHM…](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md) — tell the family; do not reopen highway or Quill as unverified.
 
 ```
  ◇─◇──◇──◇─◇
@@ -43,7 +51,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 
 ## 🎮 Primary Track: First Dream Vertical Slice
 
-> **Status (2026-08-12 late):** `static_gates` **PASS**. `runtime` **OPEN/FAIL**. PRs **#4/#6 still open** — cloud cannot merge (needs your approving review; use squash). WillScript updated (verify owed); dreamstate/collider battles still broken; highway unverified. Board: [PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
+> **Status (2026-08-13):** `static_gates` **PASS**. **Rhythm WORKED** · **QuillScript WORKED** (owner locks). Formal `runtime` harness row still **OPEN**. Stock battles still broken. Board: [PIE…](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) · [RHYTHM…](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
 
 ### The loop
 
@@ -65,19 +73,20 @@ Real paths:
 - `/Game/Melodia/Levels/Opening/L_MelusinaMorning`
 - `/Game/EnvSandbox/Environments/L_KaleidoNave` (includes merged dreamstate content; old `L_Melodia_Dreamstate` allowlist entry stripped — backup under `Saved/Recovery/`)
 
-### Tomorrow on the PC (after merging #4 + #6)
+### Next on the PC (post rhythm lock)
 
-1. Pull `main` on `C:\EnvironmentPortfolio\BS_GodFile` — **one** UnrealEditor + Monolith `:9316`
-2. Full closed-editor build → PIE: highway survives both HUD writers; battle-end logs `MELODIA_RECOVERY…`
-3. `python Tools/playtest_harness.py` with real keys → assertion JSON beside frames → `record_gate.py runtime pass|fail`
+1. ~~Pull + closed-editor build + rhythm highway~~ **DONE — owner confirmed rhythm game WORKED**
+2. ~~WillScript / QuillScript~~ **DONE — owner confirmed WORKED**
+3. Stock battle path Morning → KaleidoNave; battle-end logs `MELODIA_RECOVERY…`
+4. `python Tools/playtest_harness.py` with real keys → assertion JSON beside frames → `record_gate.py runtime pass|fail`
 
 ### Core systems
 
 | System | What it is |
 |--------|-----------|
-| **QuillScript dialogue** | Narrative authority; NPC interaction + typed terminal results |
+| **QuillScript dialogue** | Narrative authority — **OWNER LOCK 2026-08-12: WORKED in PIE** |
 | **Stock JRPG combat** | Turn/target/damage/result authority (TurnBasedJRPGTemplate) |
-| **Rhythm combat** | Harmonix music clock + `UMelodiaRhythmCombatSubsystem`; optional, not mandatory |
+| **Rhythm combat** | Harmonix music clock + `UMelodiaRhythmCombatSubsystem` — **OWNER LOCK 2026-08-12: WORKED in PIE** |
 | **Canonical save/load** | `BP_JRPGSaveGame` slot across process restart |
 | **Travel authority** | `UMelodiaTravelSubsystem` — single travel path with allowlist validation |
 | **Input authority** | `UMelodiaInputContextSubsystem` — push/pop context stack |
@@ -113,9 +122,9 @@ Run setup check: `.\deploy\validate_collaborator_setup.sh`
 
 | Port | Service | Direction |
 |------|---------|-----------|
-| `9876` | LiveLink — FBX/texture/animation stream | Blender → UE |
+| `9876` | **BlenderMCP** (agent ↔ open 5.2 GUI) **and** LiveLink TCP — do not run both | See [cockpit](Docs/BLENDER_MELODIA_COCKPIT.md) |
 | `9316` | UE Monolith MCP — Python execution | Any → UE |
-| `9317` | Blender MCP — genome/agent control | Any → Blender |
+| `9317` | Legacy Blender HTTP claims — **not** the live GUI MCP | Do not use |
 | `50021` | VOICEVOX — TTS (7 characters) | Any → VOICEVOX |
 | `50022` | Melusina Voice — custom SBV2 | Any → Melusina |
 
@@ -123,7 +132,7 @@ Run setup check: `.\deploy\validate_collaborator_setup.sh`
 
 | Problem | Fix |
 |---------|-----|
-| Port 9876 "in use" | Close extra Blender instances (Task Manager) |
+| Port 9876 "in use" | Close extra Blender **or** stop LiveLink if you need BlenderMCP (same port) |
 | Materials gray in UE | `resolve_material_crosswalk.resolve_all()` |
 | Speaker not found | VOICEVOX Settings -> Manage Voice Libraries -> download |
 | PIE crash | Rebuild MelodiaCore (.dll) |

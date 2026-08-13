@@ -73,3 +73,13 @@ public:
 	UProceduralModelingToolkitInflateModifier();
 	virtual FProceduralModelingToolkitModifierResult Execute(UDynamicMesh* TargetMesh, const FProceduralModelingToolkitModifierExecutionContext& Context) override;
 };
+
+UCLASS(BlueprintType, EditInlineNew, DefaultToInstanced)
+class UProceduralModelingToolkitBooleanModifier : public UProceduralModelingToolkitModifier
+{
+	GENERATED_BODY()
+
+public:
+	UProceduralModelingToolkitBooleanModifier();
+	virtual FProceduralModelingToolkitModifierResult Execute(UDynamicMesh* TargetMesh, const FProceduralModelingToolkitModifierExecutionContext& Context) override;
+};

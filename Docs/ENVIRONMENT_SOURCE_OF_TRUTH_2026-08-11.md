@@ -31,7 +31,6 @@ The target gameplay route is:
 
 ```text
 /Game/Melodia/Levels/Opening/L_MelusinaMorning
-  -> /Game/Melodia/Levels/Opening/L_Melodia_Dreamstate
   -> /Game/EnvSandbox/Environments/L_KaleidoNave
 ```
 
@@ -82,7 +81,7 @@ style/biome brief
   -> Blender procedural or imported modular assets
   -> LiveLink FBX/material/animation transport
   -> Unreal import and material crosswalk
-  -> universal PCG/material validation in L_Template or another neutral map
+  -> universal PCG/material validation in the tracked L_KaleidoNave route
   -> captures, statistics, and manifests
   -> portfolio package
   -> website/Figma/ArtStation handoff
@@ -104,7 +103,7 @@ The principal code path is:
 |---|---:|---|---|
 | Unreal Monolith MCP | 9316 | ECHO editor gates, Blueprint queries, PIE orchestration | HTTP `/health` and a successful JSON-RPC call |
 | Blender LiveLink | 9876 | Blender-to-Unreal geometry/material/animation transport | TCP listener and a test transfer |
-| Blender MCP | 9317 | Genome and agent-side Blender control | HTTP health/tool call |
+| Blender MCP | 9876 | Genome and agent-side Blender control (shared with LiveLink; one live bridge at a time) | HTTP health/tool call |
 | VOICEVOX | 50021 | Voice generation only | HTTP `/version` |
 | Melusina Voice | 50022 | Custom Melusina voice only | Service-specific health endpoint |
 | Ollama | 11434 | Optional local model generation/quantum support | HTTP service check |
@@ -121,8 +120,8 @@ An editor or DCC service being down is an explicit `HOLD` for the gates that nee
 | `my-site-clean` historically lacked a lockfile while its workflow runs `npm ci` | Reproducible Wix install can fail | Generate and validate a lockfile in the selected website checkout |
 | `tools/verify_deployment_manifest.py` used the hyphenated filename while the producer writes `deployment_manifest.json` | Deployment verification can silently skip the real manifest | Support the canonical underscore name and legacy alias |
 | `tools/_verify_site_facts.py` used a fixed `G:\EnvironmentPortfolio` path | Validation fails or checks the wrong checkout on this machine | Resolve `MELODIA_WEBSITE_ROOT`, CLI input, then workspace-relative defaults |
-| Setup docs and scripts disagree between Blender 5.1 and 5.2 | Collaborators install different DCC versions | Use 5.2 as the production default with an explicit configurable override |
-| `deploy/collaborator_onboarding.sh` referenced unset variables and had malformed control flow | Tiered onboarding fails before doing useful work | Repair argument/default handling and validate the target repository |
+| Setup docs and scripts previously disagreed between Blender 5.1 and 5.2 | Collaborators installed different DCC versions | 5.2 is now the production default with configurable environment paths |
+| Lightweight onboarding previously omitted the project file and most plugins | MeshBlend/PCGEx could not activate from a sparse checkout | Use the UE-capable manifest and strict validator in `deploy/` |
 | `deploy/deploy_all.ps1` is documented but absent | “Full environment” cannot be reproduced from docs alone | Treat autonomous loops as optional; do not claim this launcher exists |
 | Production docs claim ECHO tools were removed while the tools are present | Agents can follow an obsolete deletion claim | Derive tool availability from the filesystem and current runner |
 | Portfolio aggregation can produce a package with warnings | Package existence alone can look like a successful export | Return failure when required pipeline steps fail; preserve warning details |
