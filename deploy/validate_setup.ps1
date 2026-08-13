@@ -10,6 +10,8 @@ param(
     [switch]$StrictOptional,
     [switch]$SkipServices,
     [switch]$CheckWebsite,
+    [switch]$CheckLfsHydration,
+    [switch]$RequirePluginBinaries,
     [string]$WebsiteRoot
 )
 
@@ -145,6 +147,15 @@ function Test-CommandVersion {
     }
 }
 
+function Test-LfsPointer {
+    param([string]$Path)
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+        return $false
+    }
+    $firstLine = Get-Content -LiteralPath $Path -TotalCount 1 -ErrorAction SilentlyContinue
+    return $firstLine -eq "version https://git-lfs.github.com/spec/v1"
+}
+
 try {
     $script:config = if (Test-Path $configPath) {
         Get-Content $configPath -Raw | ConvertFrom-Json
@@ -165,6 +176,7 @@ $website = Resolve-ConfiguredPath "website" $WebsiteRoot (Join-Path $workspaceRo
 $ueExe = Join-Path $ueRoot "Engine\Binaries\Win64\UnrealEditor.exe"
 $blenderExe = Join-Path $blenderRoot "blender.exe"
 $projectFile = Join-Path $projectRoot "BS_GodFile.uproject"
+$collaboratorManifest = Join-Path $projectRoot "deploy\collaborator_ue_manifest.txt"
 
 Write-Host "========================================="
 Write-Host " MELODIA PORTABLE SETUP CHECK"
@@ -208,20 +220,117 @@ if ($null -eq $git) {
 
 Write-Host ""
 Write-Host "Project plugins" -ForegroundColor Cyan
-$expectedPlugins = @(
-    "Monolith", "MelodiaCore", "QuillScript", "PCGExtendedToolkit",
-    "ProceduralModelingToolkit", "ProceduralDungeon", "MeshBlend",
-    "KawaiiPhysics", "UEBlueprintMCP", "UnrealMCP"
-)
-foreach ($plugin in $expectedPlugins) {
-    $manifest = Get-ChildItem (Join-Path $projectRoot "Plugins") -Recurse `
-        -Filter "$plugin.uplugin" -File -ErrorAction SilentlyContinue |
-        Select-Object -First 1
-    if ($manifest) {
-        Write-Check "Plugin $plugin" "OK" $manifest.FullName
+$manifestRecords = @()
+$requiredPluginManifests = @()
+if (Test-Path -LiteralPath $collaboratorManifest -PathType Leaf) {
+    $manifestRecords = @(
+        Get-Content -LiteralPath $collaboratorManifest |
+            Where-Object { $_ -and -not $_.Trim().StartsWith("#") } |
+            ForEach-Object {
+                $parts = $_.Trim() -split "\s+"
+                if ($parts.Count -ge 2) {
+                    [pscustomobject]@{ Type = $parts[0]; Name = $parts[1]; Path = $(if ($parts.Count -ge 3) { $parts[2] } else { "" }) }
+                }
+            }
+    )
+    $requiredPluginManifests = @(
+        $manifestRecords | Where-Object { $_.Type -eq "PLUGIN" } |
+            ForEach-Object { @{ Name = $_.Name; Path = $_.Path } }
+    )
+} else {
+    Write-Check "Collaborator manifest" "FAIL" "missing $collaboratorManifest"
+}
+Write-Host "Required sparse paths" -ForegroundColor Cyan
+$requiredSparsePaths = @($manifestRecords | Where-Object { $_.Type -eq "SPARSE" })
+foreach ($sparse in $requiredSparsePaths) {
+    $relativeSparsePath = $sparse.Name.TrimStart("/") -replace "/", "\"
+    $absoluteSparsePath = Join-Path $projectRoot $relativeSparsePath
+    Write-Check "Sparse path $($sparse.Name)" $(if (Test-Path -LiteralPath $absoluteSparsePath) { "OK" } else { "FAIL" }) `
+        $(if (Test-Path -LiteralPath $absoluteSparsePath) { $absoluteSparsePath } else { "missing; rerun the UE-capable sparse checkout" })
+}
+foreach ($plugin in $requiredPluginManifests) {
+    $manifestPath = Join-Path $projectRoot $plugin.Path
+    if (Test-Path -LiteralPath $manifestPath -PathType Leaf) {
+        Write-Check "Plugin $($plugin.Name) manifest" "OK" $manifestPath
     } else {
-        Write-Check "Plugin $plugin" "WARN" "not found locally; verify engine/Marketplace installation"
+        Write-Check "Plugin $($plugin.Name) manifest" "FAIL" "missing $manifestPath; rerun the UE-capable sparse checkout"
+        continue
     }
+
+    $pluginRoot = Split-Path -Parent $manifestPath
+    $sourcePath = Join-Path $pluginRoot "Source"
+    if (Test-Path -LiteralPath $sourcePath -PathType Container) {
+        Write-Check "Plugin $($plugin.Name) source" "OK" $sourcePath
+    } else {
+        Write-Check "Plugin $($plugin.Name) source" "FAIL" "missing $sourcePath"
+    }
+
+    $binaryPath = Join-Path $pluginRoot "Binaries\Win64"
+    $pluginDlls = if (Test-Path -LiteralPath $binaryPath -PathType Container) {
+        @(Get-ChildItem -LiteralPath $binaryPath -Filter "*.dll" -File -ErrorAction SilentlyContinue)
+    } else {
+        @()
+    }
+    if ($pluginDlls.Count -gt 0) {
+        Write-Check "Plugin $($plugin.Name) binaries" "OK" "$($pluginDlls.Count) Win64 DLL(s)"
+    } elseif ($RequirePluginBinaries) {
+        Write-Check "Plugin $($plugin.Name) binaries" "FAIL" "not built; run the closed-editor UE 5.8 -NoUBA build"
+    } else {
+        Write-Check "Plugin $($plugin.Name) binaries" "WARN" "source-only checkout; run the closed-editor UE 5.8 -NoUBA build before opening the project"
+    }
+}
+
+if ($CheckLfsHydration) {
+    Write-Host ""
+    Write-Host "Required LFS hydration" -ForegroundColor Cyan
+    $requiredLfsPrefixes = @()
+    if (Test-Path -LiteralPath $collaboratorManifest -PathType Leaf) {
+        $requiredLfsPrefixes = @(
+            Get-Content -LiteralPath $collaboratorManifest |
+                Where-Object { $_ -and -not $_.Trim().StartsWith("#") } |
+                ForEach-Object {
+                    $parts = $_.Trim() -split "\s+"
+                    if ($parts.Count -ge 2 -and $parts[0] -eq "LFS") {
+                        $parts[1] -replace "/\*\*$", "/"
+                    }
+                }
+        )
+    }
+    $trackedLfsFiles = @(git -C $projectRoot lfs ls-files --name-only 2>$null)
+    $lfsMissing = 0
+    $lfsFailurePaths = @()
+    foreach ($relativePath in $trackedLfsFiles) {
+        $normalizedPath = ([string]$relativePath).Trim()
+        if ([string]::IsNullOrWhiteSpace($normalizedPath)) { continue }
+        $isRequired = $false
+        foreach ($prefix in $requiredLfsPrefixes) {
+            if ($normalizedPath.StartsWith($prefix, [StringComparison]::OrdinalIgnoreCase)) {
+                $isRequired = $true
+                break
+            }
+        }
+        if (-not $isRequired) { continue }
+        $absolutePath = Join-Path $projectRoot ($normalizedPath -replace "/", "\")
+        if (-not (Test-Path -LiteralPath $absolutePath -PathType Leaf)) {
+            $lfsMissing++
+            $lfsFailurePaths += "$normalizedPath (missing)"
+            continue
+        }
+        if (Test-LfsPointer $absolutePath) {
+            $lfsMissing++
+            $lfsFailurePaths += "$normalizedPath (pointer)"
+        }
+    }
+    if ($lfsMissing -eq 0) {
+        Write-Check "Required LFS files" "OK" "hydrated"
+    } else {
+        Write-Check "Required LFS files" "FAIL" "$lfsMissing pointer or missing file(s); run git lfs pull with the collaborator tier includes"
+        $lfsFailurePaths | Select-Object -First 10 | ForEach-Object {
+            Write-Host "    - $_" -ForegroundColor Yellow
+        }
+    }
+} else {
+    Write-Check "Required LFS files" "WARN" "not checked; rerun with -CheckLfsHydration after git lfs pull"
 }
 
 if (Test-Path $website) {
@@ -248,7 +357,6 @@ if (-not $SkipServices) {
     $services = @(
         @{ Name = "Monolith MCP"; Port = 9316; Uri = "http://127.0.0.1:9316/health" },
         @{ Name = "LiveLink"; Port = 9876; Uri = $null },
-        @{ Name = "Blender MCP"; Port = 9317; Uri = "http://127.0.0.1:9317/health" },
         @{ Name = "VOICEVOX"; Port = 50021; Uri = "http://127.0.0.1:50021/version" },
         @{ Name = "Melusina Voice"; Port = 50022; Uri = $null },
         @{ Name = "Ollama"; Port = 11434; Uri = "http://127.0.0.1:11434" },

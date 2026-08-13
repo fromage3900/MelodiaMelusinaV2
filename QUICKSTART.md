@@ -14,19 +14,38 @@ bash deploy/collaborator_onboarding.sh lightweight
 # Docs/code-only
 bash deploy/collaborator_onboarding.sh docs
 
-# Validate setup
-bash deploy/validate_collaborator_setup.sh
+# Validate the UE-capable checkout
+bash deploy/validate_collaborator_setup.sh . ue
 ```
 
 This downloads only ~2-10GB instead of 300GB! 🎉
 
 **📖 Full guide:** [COLLABORATOR_SETUP.md](COLLABORATOR_SETUP.md)
 
+### If plugins such as MeshBlend or PCGEx are missing
+
+The Blender-only sparse checkout does not contain the Unreal project or its
+plugins. Use the UE-capable lightweight tier instead:
+
+```bash
+bash deploy/collaborator_onboarding.sh lightweight
+bash deploy/validate_collaborator_setup.sh . ue
+```
+
+The project plugins are source-only. Install UE 5.8 and Visual Studio 2022
+Desktop development with C++, then build with Unreal closed:
+
+```powershell
+$ueRoot = if ($env:MELODIA_UNREAL_ROOT) { $env:MELODIA_UNREAL_ROOT } else { "C:\Program Files\Epic Games\UE_5.8" }
+& "$ueRoot\Engine\Build\BatchFiles\Build.bat" BS_GodFileEditor Win64 Development -Project="$PWD\BS_GodFile.uproject" -NoUBA -MaxParallelActions=1
+.\deploy\validate_setup.ps1 -SkipServices -CheckLfsHydration -RequirePluginBinaries
+```
+
 ---
 
 ## 🎮 I Want to Play the Vertical Slice (First Dream)
 
-> **Status (2026-08-12):** Rhythm combat and QuillScript are **owner-locked WORKED** in live PIE (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`, `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`). The remaining P0 blocker is the **stock battle path** from `L_MelusinaMorning` → `L_KaleidoNave` (Dreamstate was merged into KaleidoNave on 2026-08-10). The 12 foundation gates are still being closed; see `_VERTICAL_SLICE_SCOPE.md` and `_TASK_QUEUE.md`. Push to remote remains subject to network connectivity.
+> **Status (2026-08-13):** Rhythm combat and QuillScript are **owner-locked WORKED** in live PIE (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`, `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`). The remaining P0 blocker is the **stock battle path** from `L_MelusinaMorning` → `L_KaleidoNave` (Dreamstate was merged into KaleidoNave on 2026-08-10). The 12 foundation gates are still being closed; see `_VERTICAL_SLICE_SCOPE.md` and `_TASK_QUEUE.md`. Unreal `main` is synchronized with `MelodiaMelusinaV2/main` at `840b7650`; the website checkout has a separate remote-history blocker. See [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL_STATUS_2026-08-13.md).
 
 ### Step 1: Install Unreal Engine 5.8
 ```
@@ -77,7 +96,7 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 ```
 🎮 Open: /Game/Melodia/Levels/L_MelusinaMorning
 🎮 Open: /Game/EnvSandbox/Environments/L_KaleidoNave
-🎮 Open: /Game/EnvSandbox/Levels/L_Template
+🎮 Open: /Game/EnvSandbox/Environments/L_KaleidoNave
 🎮 Open: /Game/EnvSandbox/Environments/WP/L_WP_SakuraDream
 ```
 
@@ -120,7 +139,7 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 ```
 🎮 In Unreal:
 ├── Find your asset in /Game/LiveLink/
-├── Drag it into /Game/EnvSandbox/Levels/L_Template
+├── Drag it into /Game/EnvSandbox/Environments/L_KaleidoNave
 └── Position it where you want!
 ```
 
@@ -132,7 +151,7 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 
 ### Step 1: Open Test Level
 ```
-🎮 Open: /Game/EnvSandbox/Levels/L_Template
+🎮 Open: /Game/EnvSandbox/Environments/L_KaleidoNave
 ```
 
 ### Step 2: Create Material Instance
@@ -161,7 +180,7 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 | Problem | Quick Fix |
 |---------|-----------|
 | 🔴 Unreal won't open | Make sure UE 5.8 is installed |
-| 🔴 Can't find Melodia Studio | Reload SurrealArch addon in Blender |
+| 🔴 Can't find Melodia Studio | Enable `surreal_architecture_gen` / **Melodia Studio** in Blender preferences |
 | 🔴 Port 9876 in use | Close other Blender instances |
 | 🔴 Materials look gray | Run this in UE Python: `import resolve_material_crosswalk; resolve_material_crosswalk.resolve_all()` |
 
@@ -181,8 +200,8 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 
 | Task | Command / Location |
 |------|-------------------|
-| 🎮 Play vertical slice | Target route: `L_MelusinaMorning` → `L_Melodia_Dreamstate` → `L_KaleidoNave` (not yet playable) |
-| 🏗️ Test geometry | Open `/Game/EnvSandbox/Levels/L_Template` |
+| 🎮 Play vertical slice | Target route: `L_MelusinaMorning` → `L_KaleidoNave` (Dreamstate content is merged into KaleidoNave; the stock battle path is not yet playable) |
+| 🏗️ Test geometry | Open `/Game/EnvSandbox/Environments/L_KaleidoNave` |
 | 🎨 Test materials | Create instance from `M_Master_Toon_Universal` |
 | 🔧 Check services | Run `deploy/status.ps1` in terminal |
 | 📖 View documentation | Open [DOC_INDEX.md](DOC_INDEX.md) |

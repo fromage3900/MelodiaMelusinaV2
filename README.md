@@ -35,7 +35,11 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 >
 > **Machine setup?** [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) — portable Windows environment.
 >
-> **Repo status (2026-08-12 evening):** Private V2 at `https://github.com/fromage3900/MelodiaMelusinaV2`. `main` @ `2e3c893d` (PRs **#4** + **#6** squash-merged). Production UE worktree: `C:\EnvironmentPortfolio\BS_GodFile`. LFS is metered — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
+> **Source control (2026-08-13):** See [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL_STATUS_2026-08-13.md) for the authoritative multi-repo checkpoint.
+>
+> **Unreal repo:** Private V2 at `https://github.com/fromage3900/MelodiaMelusinaV2`. `main` and `v2/main` are synchronized at `840b7650`; PRs **#4** + **#6** are squash-merged. The working tree still contains uncommitted editor/agent artifacts. LFS is metered — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
+>
+> **Website repo:** `C:\EnvironmentPortfolio\my-site-clean` has local tip `3cfa5f0`, but its configured remote has unrelated history and remains intentionally unsynchronized. Do not force-push or merge unrelated histories.
 >
 > **RHYTHM + QUILL WORKED (owner locks):** [RHYTHM…](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md) — tell the family; do not reopen highway or Quill as unverified.
 
@@ -47,7 +51,7 @@ UE 5.8 + Blender 5.2 production project with two active tracks:
 
 ## 🎮 Primary Track: First Dream Vertical Slice
 
-> **Status (2026-08-12 evening):** `static_gates` **PASS**. **Rhythm WORKED** · **QuillScript WORKED** (owner locks). Formal `runtime` harness row still **OPEN**. Stock battles still broken. Board: [PIE…](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) · [RHYTHM…](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
+> **Status (2026-08-13):** `static_gates` **PASS**. **Rhythm WORKED** · **QuillScript WORKED** (owner locks). Formal `runtime` harness row still **OPEN**. Stock battles still broken. Board: [PIE…](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) · [RHYTHM…](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
 
 ### The loop
 
