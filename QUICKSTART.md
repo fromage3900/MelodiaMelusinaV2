@@ -26,7 +26,7 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 
 ## 🎮 I Want to Play the Vertical Slice (First Dream)
 
-> **Status (2026-08-07):** The gameplay is **not yet playable**. Per the owner's live verification on 2026-08-06, Quill dialogue is not visible, battle systems are non-functional, and the game is unplayable. The 12 P0 foundation gates are unclaimed, Live Coding is currently blocked, and push to `origin` is blocked by network connectivity to `github.com:443`. Treat the "proven" bullets in older docs as **unverified** until PIE proof is recorded.
+> **Status (2026-08-12):** Rhythm combat and QuillScript are **owner-locked WORKED** in live PIE (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`, `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`). The remaining P0 blocker is the **stock battle path** from `L_MelusinaMorning` → `L_KaleidoNave` (Dreamstate was merged into KaleidoNave on 2026-08-10). The 12 foundation gates are still being closed; see `_VERTICAL_SLICE_SCOPE.md` and `_TASK_QUEUE.md`. Push to remote remains subject to network connectivity.
 
 ### Step 1: Install Unreal Engine 5.8
 ```
@@ -42,10 +42,9 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 
 ### Step 3: Understand the Target Route
 ```
-🎮 Target route: L_MelusinaMorning → L_Melodia_Dreamstate → L_KaleidoNave
+🎮 Target route: L_MelusinaMorning → L_KaleidoNave (L_Melodia_Dreamstate merged into KaleidoNave on 2026-08-10)
 📂 Real paths:
    /Game/Melodia/Levels/Opening/L_MelusinaMorning
-   /Game/Melodia/Levels/Opening/L_Melodia_Dreamstate
    /Game/EnvSandbox/Environments/L_KaleidoNave
 ```
 

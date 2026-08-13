@@ -7,6 +7,8 @@ registry (set_dressing, pcg_integration, water, ribbon, instruments).
 
 from __future__ import annotations
 
+import re
+
 PARAM_NAMING_CONVENTIONS = {
     "R": "radius",
     "radii": "radius",
@@ -47,14 +49,22 @@ def aaq_quality_checklist(builder_name: str) -> dict:
     }
 
 
+_MEL_SNAKE_RE = re.compile(r"^MEL_[a-z][a-z0-9_]*$")
+
+
 def naming_convention_audit(registered: list[str]) -> dict:
-    """Audit builder ids against the MEL_<category>_<snake_case> convention."""
+    """Audit builder ids: MEL_ prefix then snake_case rest (letters, digits, underscores).
+
+    Short ids such as MEL_arch / MEL_column / MEL_gazebo are valid. Do not
+    require a category segment or a second underscore. Do not rename builders
+    to satisfy an older MEL_<cat>_<name> rule.
+    """
     bad = []
     for bid in registered:
         if not bid.startswith("MEL_"):
             bad.append((bid, "missing MEL_ prefix"))
-        elif bid.count("_") < 2:
-            bad.append((bid, "missing category segment"))
+        elif not _MEL_SNAKE_RE.fullmatch(bid):
+            bad.append((bid, "rest after MEL_ is not snake_case"))
     return {
         "total": len(registered),
         "conforming": len(registered) - len(bad),

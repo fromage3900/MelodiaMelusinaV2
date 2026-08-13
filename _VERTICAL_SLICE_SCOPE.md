@@ -48,6 +48,11 @@ The loop is allowed to stay small. If a mechanic does not improve the player’s
 > Melodia integration and the UI overhaul. Until PIE proof is recorded, every bullet above is
 > re-tagged as **unverified** — treat none of them as current runtime fact. The bullets themselves are
 > left unchanged as the historical record; do not rewrite them.
+>
+> **Updated 2026-08-12.** Owner-locked PIE proof now exists for the rhythm highway and QuillScript
+> resume-once paths: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md` and
+> `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`. This does not retroactively verify the historical
+> "Proven now" bullets above, but it does mean rhythm and Quill are no longer P0 unknowns.
 
 ## Foundation gate before combat expansion
 

@@ -4,10 +4,21 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import ClassVar
 
-from .schemas import BEVEL_DEFAULTS, validate_bevel_parameters
+from .schemas import BEVEL_DEFAULTS, validate_bevel_parameters, validate_boolean_parameters
 
 # Extended mesh tool parameter defaults
 INSET_DEFAULTS: dict[str, object] = {"thickness": 0.2, "depth": 0.0, "individual": True}
+BOOLEAN_DIFFERENCE_DEFAULTS: dict[str, object] = {
+    "operation": "difference",
+    "cutter_mesh_path": "",
+    "cutter_location": {"x": 0.0, "y": 0.0, "z": 0.0},
+    "cutter_rotation": {"pitch": 0.0, "yaw": 0.0, "roll": 0.0},
+    "cutter_scale": {"x": 1.0, "y": 1.0, "z": 1.0},
+    "show_preview": False,
+    "preserve_cutter": False,
+}
+BOOLEAN_UNION_DEFAULTS: dict[str, object] = {**BOOLEAN_DIFFERENCE_DEFAULTS, "operation": "union"}
+BOOLEAN_INTERSECT_DEFAULTS: dict[str, object] = {**BOOLEAN_DIFFERENCE_DEFAULTS, "operation": "intersect"}
 POKE_DEFAULTS: dict[str, object] = {"height": 0.5, "inset": 0.0}
 SUBDIVISION_DEFAULTS: dict[str, object] = {"levels": 2, "edge_crease": 0.0, "vert_crease": 0.0}
 MULTI_BEVEL_DEFAULTS: dict[str, object] = {"main_width": 0.1, "micro_width": 0.01, "main_segments": 3, "micro_segments": 1}
@@ -32,6 +43,7 @@ class GeometryModifier:
         "weighted_normal", "subdivision", "transform", "mirror",
         "array", "spiral_array", "radial_array", "weighted_array", "curve_array",
         "displace", "smooth", "material_override", "collision",
+        "boolean_difference", "boolean_union", "boolean_intersect",
     })
 
     def validate(self) -> list[str]:
@@ -44,6 +56,8 @@ class GeometryModifier:
             errors.append(f"unsupported scope: {self.scope}")
         if self.modifier_type == "bevel":
             errors.extend(validate_bevel_parameters(self.parameters))
+        if self.modifier_type.startswith("boolean_"):
+            errors.extend(validate_boolean_parameters(self.modifier_type, self.parameters))
         if self.modifier_type == "inset" and not self.parameters:
             self.parameters.update(INSET_DEFAULTS)
         if self.modifier_type == "poke" and not self.parameters:
@@ -56,6 +70,12 @@ class GeometryModifier:
             self.parameters.update(WEIGHTED_BEVEL_DEFAULTS)
         if self.modifier_type == "bevel_profile" and not self.parameters:
             self.parameters.update(BEVEL_PROFILE_DEFAULTS)
+        if self.modifier_type == "boolean_difference" and not self.parameters:
+            self.parameters.update(BOOLEAN_DIFFERENCE_DEFAULTS)
+        if self.modifier_type == "boolean_union" and not self.parameters:
+            self.parameters.update(BOOLEAN_UNION_DEFAULTS)
+        if self.modifier_type == "boolean_intersect" and not self.parameters:
+            self.parameters.update(BOOLEAN_INTERSECT_DEFAULTS)
         return errors
 
     def to_dict(self, order: int) -> dict[str, object]:
@@ -90,6 +110,12 @@ class ModifierStack:
             raise ValueError(f"duplicate modifier_id: {modifier.modifier_id}")
         if modifier.modifier_type == "bevel" and not modifier.parameters:
             modifier.parameters.update(BEVEL_DEFAULTS)
+        if modifier.modifier_type == "boolean_difference" and not modifier.parameters:
+            modifier.parameters.update(BOOLEAN_DIFFERENCE_DEFAULTS)
+        if modifier.modifier_type == "boolean_union" and not modifier.parameters:
+            modifier.parameters.update(BOOLEAN_UNION_DEFAULTS)
+        if modifier.modifier_type == "boolean_intersect" and not modifier.parameters:
+            modifier.parameters.update(BOOLEAN_INTERSECT_DEFAULTS)
         self._items.append(modifier)
 
     def remove(self, modifier_id: str) -> GeometryModifier:
@@ -111,7 +137,12 @@ class ModifierStack:
         item = self._find(modifier_id)
         candidate = dict(item.parameters)
         candidate[name] = value
-        errors = validate_bevel_parameters(candidate) if item.modifier_type == "bevel" else []
+        if item.modifier_type == "bevel":
+            errors = validate_bevel_parameters(candidate)
+        elif item.modifier_type.startswith("boolean_"):
+            errors = validate_boolean_parameters(item.modifier_type, candidate)
+        else:
+            errors = []
         if errors:
             raise ValueError("; ".join(errors))
         item.parameters[name] = value

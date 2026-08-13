@@ -181,3 +181,53 @@ def reset_preview(preview_actor: str) -> dict[str, object]:
         "preview_actor": preview_actor,
         "error": "Preview reset requires a live UE preview actor",
     }
+
+
+def preview_boolean(
+    asset_path: str,
+    parameters: Mapping[str, object],
+    *,
+    preview_actor: str = "",
+) -> dict[str, object]:
+    """Request a non-destructive boolean preview in Unreal.
+
+    This is intentionally fail-closed until a live UE adapter is selected and
+    verified. It prevents a command from silently baking or mutating assets.
+    """
+    if not unreal_available():
+        return {
+            "ok": False,
+            "state": "unavailable",
+            "asset_path": asset_path,
+            "error": "UE editor is required for boolean preview",
+        }
+    return {
+        "ok": False,
+        "state": "adapter_pending",
+        "asset_path": asset_path,
+        "preview_actor": preview_actor,
+        "parameters": dict(parameters),
+        "error": "Geometry Script boolean backend requires live UE API verification",
+    }
+
+
+def apply_boolean(asset_path: str, parameters: Mapping[str, object]) -> dict[str, object]:
+    """Apply a boolean modifier to an asset in Unreal.
+
+    Like preview_boolean, this is fail-closed outside the editor and will only
+    be wired to live Geometry Script calls after the adapter path is verified.
+    """
+    if not unreal_available():
+        return {
+            "ok": False,
+            "state": "unavailable",
+            "asset_path": asset_path,
+            "error": "UE editor is required for boolean application",
+        }
+    return {
+        "ok": False,
+        "state": "adapter_pending",
+        "asset_path": asset_path,
+        "parameters": dict(parameters),
+        "error": "Geometry Script boolean backend requires live UE API verification",
+    }

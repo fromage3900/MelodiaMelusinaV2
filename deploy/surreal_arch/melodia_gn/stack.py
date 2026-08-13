@@ -18,14 +18,7 @@ from bpy.props import (
 )
 from bpy.types import Panel, PropertyGroup, Operator
 
-from .core import (
-    TREE_TYPES,
-    TREE_LABEL_MAP,
-    TREE_DESCRIPTIONS,
-    TREE_CATEGORY_MAP,
-    TREE_CATEGORIES,
-    CATEGORY_META,
-)
+from . import core as _gn_core
 from ..branding import N_PANEL_CATEGORY
 
 
@@ -34,12 +27,17 @@ def _filter_tree(tree_name: str, filter_text: str) -> bool:
     if not filter_text:
         return True
     ft = filter_text.lower()
-    label = TREE_LABEL_MAP.get(tree_name, tree_name).lower()
-    desc = TREE_DESCRIPTIONS.get(tree_name, "").lower()
+    label = _gn_core.TREE_LABEL_MAP.get(tree_name, tree_name).lower()
+    desc = _gn_core.TREE_DESCRIPTIONS.get(tree_name, "").lower()
     return ft in tree_name.lower() or ft in label or ft in desc
 
 
-ALL_TREE_NAMES: list[str] = [name for name, _ in TREE_TYPES]
+def _all_tree_names() -> list[str]:
+    return [name for name, _ in _gn_core.TREE_TYPES]
+
+
+# Back-compat alias (prefer _all_tree_names() — catalog rebuilds after import)
+ALL_TREE_NAMES: list[str] = []
 
 
 # ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
@@ -204,15 +202,20 @@ class MEL_GN_OT_stack_add(Operator):
         mod = obj.modifiers.new(name=nt.name, type="NODES")
         mod.node_group = nt
 
-        stack = obj.mel_gn_stack
-        item = stack.items.add()
-        item.name = nt.name
-        item.modifier_name = mod.name
-        item.tree_name = nt.name
-        stack.active_index = len(stack.items) - 1
-
-        # Expand the newly added item
-        item.expand = True
+        stack = getattr(obj, "mel_gn_stack", None)
+        if stack is None:
+            try:
+                register_props()
+            except Exception:
+                pass
+            stack = getattr(obj, "mel_gn_stack", None)
+        if stack is not None:
+            item = stack.items.add()
+            item.name = nt.name
+            item.modifier_name = mod.name
+            item.tree_name = nt.name
+            stack.active_index = len(stack.items) - 1
+            item.expand = True
 
         self.report({"INFO"}, f"Added '{nt.name}' to modifier stack")
         return {"FINISHED"}
@@ -406,17 +409,28 @@ class MEL_GN_PT_stack(Panel):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object is not None
+        # Always show under Melodia Studio — categories must remain browsable
+        # even before an object is selected (stack apply still needs an object).
+        return True
 
     def draw(self, context):
         layout = self.layout
         obj = context.active_object
 
-        if obj is None or not hasattr(obj, "mel_gn_stack"):
-            layout.label(text="Select an object (GN Stack not registered)", icon="INFO")
-            return
+        # Catalog browser is always drawn from live core.TREE_* (post-rebuild).
+        class _EmptyStack:
+            filter_text = ""
+            items = []
+            active_index = 0
 
-        stack = obj.mel_gn_stack
+        stack = getattr(obj, "mel_gn_stack", None) if obj is not None else None
+        if stack is None:
+            layout.label(text="Select a mesh/curve to add GN builders", icon="INFO")
+            self._draw_tree_browser(layout, _EmptyStack())
+            n_trees = len(_gn_core.TREE_TYPES)
+            n_cats = sum(1 for c in _gn_core.TREE_CATEGORIES.values() if c.get("trees"))
+            layout.label(text=f"Catalog: {n_trees} builders · {n_cats} sections", icon="NODETREE")
+            return
 
         # ΓöÇΓöÇ Header row: search + stats ΓöÇΓöÇ
         self._draw_header(layout, stack)
@@ -470,9 +484,9 @@ class MEL_GN_PT_stack(Panel):
             row.label(text=f"Stack: {item_count} modifier{'s' if item_count != 1 else ''}", icon="MODIFIER")
             if stack.active_index < item_count:
                 active_item = stack.items[stack.active_index]
-                category_id = TREE_CATEGORY_MAP.get(active_item.tree_name)
+                category_id = _gn_core.TREE_CATEGORY_MAP.get(active_item.tree_name)
                 if category_id:
-                    cat_info = TREE_CATEGORIES.get(category_id, {})
+                    cat_info = _gn_core.TREE_CATEGORIES.get(category_id, {})
                     row.label(text=f"  |  {cat_info.get('label', '')}", icon=cat_info.get("icon", "DOT"))
 
     def _draw_tree_browser(self, layout, stack):
@@ -490,8 +504,11 @@ class MEL_GN_PT_stack(Panel):
         # ΓöÇΓöÇ Categorised sections ΓöÇΓöÇ
         box = layout.box()
         any_visible = False
-        for category_id, cat_info in TREE_CATEGORIES.items():
+        for category_id, cat_info in _gn_core.TREE_CATEGORIES.items():
             trees = cat_info["trees"]
+            # Skip empty category shells (keeps panel focused on live sections)
+            if not trees and not ft:
+                continue
             # Filter
             if ft:
                 matching = [t for t in trees if _filter_tree(t, ft)]
@@ -516,14 +533,8 @@ class MEL_GN_PT_stack(Panel):
             flow = col.box()
             sub = flow.column(align=True)
             for i, tree_name in enumerate(matching):
-                for _label_pair in TREE_TYPES:
-                    if _label_pair[0] == tree_name:
-                        display_label = _label_pair[1]
-                        break
-                else:
-                    display_label = tree_name
-
-                desc = TREE_DESCRIPTIONS.get(tree_name, "")
+                display_label = _gn_core.TREE_LABEL_MAP.get(tree_name, tree_name)
+                desc = _gn_core.TREE_DESCRIPTIONS.get(tree_name, "")
                 exists = tree_name in bpy.data.node_groups
                 status_icon = "CHECKBOX_HLT" if exists else "CHECKBOX_DEHLT"
 
@@ -582,8 +593,8 @@ class MEL_GN_PT_stack(Panel):
         for i, item in enumerate(stack.items):
             is_active = (i == stack.active_index)
             mod = obj.modifiers.get(item.modifier_name)
-            category_id = TREE_CATEGORY_MAP.get(item.tree_name, "")
-            cat_info = TREE_CATEGORIES.get(category_id, {})
+            category_id = _gn_core.TREE_CATEGORY_MAP.get(item.tree_name, "")
+            cat_info = _gn_core.TREE_CATEGORIES.get(category_id, {})
 
             # ΓöÇΓöÇ Item row ΓöÇΓöÇ
             item_box = col.box()
@@ -648,7 +659,7 @@ class MEL_GN_PT_stack(Panel):
                 info_col = item_box.column(align=True)
 
                 # Description
-                desc = TREE_DESCRIPTIONS.get(item.tree_name, "")
+                desc = _gn_core.TREE_DESCRIPTIONS.get(item.tree_name, "")
                 if desc:
                     info_col.label(text=desc, icon="INFO")
 

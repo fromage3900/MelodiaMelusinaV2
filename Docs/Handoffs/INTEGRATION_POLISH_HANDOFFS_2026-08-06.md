@@ -55,7 +55,7 @@ Gotchas already paid for: `GetKey`'s input pin is `Input`, not `Key`. `blueprint
 
 `BP_ActionButton`'s `IsFocusable` default was never confirmed. `UButton` defaults to focusable. If a command button holds focus during a rhythm session it will **swallow D/F/J/K before `OnKeyDown` ever fires**.
 
-Check `BP_ActionButton` + `BP_ActionsUI` for `IsFocusable` and any `SetKeyboardFocus`. If focusable, either un-focus them while `EMelodiaInputContext::Rhythm` is active, or call `SetKeyboardFocus` on the battle UI at session start. **This is the single biggest unverified risk in the rhythm path.**
+Check `BP_ActionButton` + `BP_ActionsUI` for `IsFocusable` and any `SetKeyboardFocus`. If focusable, either un-focus them while `EMelodiaInputContext::Rhythm` is active, or call `SetKeyboardFocus` on the battle UI at session start. **This was the single biggest unverified risk in the rhythm path as of 2026-08-06 — superseded by the 2026-08-12 owner lock confirming rhythm input WORKED in live PIE.**
 
 ## Lane C — Skill→SkillId mapping — PLUMBING DONE, DATA EMPTY (P0)
 

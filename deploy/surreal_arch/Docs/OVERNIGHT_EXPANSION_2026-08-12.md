@@ -1,5 +1,8 @@
 # Melodia GN — Overnight Expansion: Presets + Infrastructure Audit (2026-08-12)
 
+> **STALE COUNTS.** Live registry is **165** (not 119). `geometry_extras` is imported. Preset apply is wired.  
+> Use [`GN_EXPANSION_PLAN_2026-08-12.md`](GN_EXPANSION_PLAN_2026-08-12.md) and [`Saved/Audit/gn_library_audit_2026-08-12.md`](../../../Saved/Audit/gn_library_audit_2026-08-12.md). Keep this file for the original preset-layer writeup only.
+
 Lane: INFRASTRUCTURE + PRESETS + QA. Package: `melodia_gn` (subpackage of `surreal_arch`).
 Files touched this session: `melodia_gn/presets.py` (new), `melodia_gn/aaa_quality.py`
 (BUILDER_PRIORITY snapshot extended), this report. `core.py`, `stack.py`, `bake.py`,

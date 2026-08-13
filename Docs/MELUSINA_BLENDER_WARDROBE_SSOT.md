@@ -1,24 +1,28 @@
 # Melusina Blender — Wardrobe + Stage SSOT
 
-**Updated:** 2026-07-13  
+**Updated:** 2026-08-12  
+**Start here:** [`Docs/BLENDER_MELODIA_COCKPIT.md`](BLENDER_MELODIA_COCKPIT.md) — live stage, ports, Studio Health, do-not-save.  
 **Purpose:** One page that answers “which blend / which lane?” and how Melusina is actually shaded and dressed on the live portfolio stage — without polluting ornament buses.
+
+**Live portfolio stage (pin):** `G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend`  
+Historical: `KitbashExport/Melodia_Portfolio_Stage_v10.blend` (retired as the Lane A pin). v4 plate scripts are historical. After restart: **N → BlenderMCP → Connect** (port **9876**). Do not save the live stage without `MELODIA_ALLOW_STAGE_SAVE=1`.
 
 ## Four lanes (do not mix)
 
 | Lane | Canonical artifact | Purpose | Not for |
 |------|-------------------|---------|---------|
-| **A — Portfolio stage** | `KitbashExport/Melodia_Portfolio_Stage_v10.blend` + `STAGE_README_v4.md` | Melusina beauty/cine stills, FX tiers, passports, site plates | Game mesh SKU export |
+| **A — Portfolio stage** | `G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend` + cockpit. Historical: `KitbashExport/Melodia_Portfolio_Stage_v10.blend` + `STAGE_README_v4.md` | Melusina beauty/cine stills, FX tiers, passports, site plates | Game mesh SKU export |
 | **B — Ornament factory** | `KitbashExport/OrnamentalMeshes/SM_Orn_*.fbx` | Procedural ornaments → UE `/Game/EnvSandbox/Meshes/Ornament/` | Character clothes |
 | **C — Live Link** | `Docs/BLENDER_LIVELINK.md` (port **9876**) | Interactive scene sync → `/Game/LiveLink/` | Ornament SKU or wardrobe SSOT |
 | **D — Character / wardrobe** | External `G:\MelodiaMelusina\MelusinaFinalRig\` + this doc | Rig/skin; stage **links** Melusina; new outfits → `Wardrobe_*` + `Exports/MelusinaClothes/` | Live Link dumps, `SM_Orn_*` |
 
-Cockpit commands: [`Docs/BLENDER_MELODIA_COCKPIT.md`](BLENDER_MELODIA_COCKPIT.md).
+Cockpit (start-here): [`Docs/BLENDER_MELODIA_COCKPIT.md`](BLENDER_MELODIA_COCKPIT.md).
 
 ## Pins (do not silently swap)
 
 | Pin | Value | Notes |
 |-----|-------|-------|
-| Stage file | **`Melodia_Portfolio_Stage_v10.blend` only** | v4–v9 historical; old hair restored for soft physics + LiquiFeel tip drip |
+| Stage file | **`Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend`** | Live pin. v10 (soft physics + LiquiFeel tip drip restore) and v4–v9 are historical — do not silently swap back |
 | Rig source (stage link) | **`G:\MelodiaMelusina\MelusinaFinalRig\FinalUERig43.blend`** | Keep until `SKM_character_rig.fbx` is proven to supersede |
 | UE body | `/Game/Melodia/Characters/Melusina/SK_Melusina` | Clothes today = **material slots on one mesh**, not modular outfits |
 | UE hair | `/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair` | Separate import path |
@@ -29,7 +33,7 @@ Cockpit commands: [`Docs/BLENDER_MELODIA_COCKPIT.md`](BLENDER_MELODIA_COCKPIT.md
 | LiquiFeel | Elixir glass + tip drip proxies | Glass: `melusina_ElixirGlass`. Hair drip: `Melusina_HairDrip` tip proxies only — **never** replace strands or put under `FX_Hero` |
 | Stage world | **`W_Melodia_FadeDayNight`** (Fade Day↔Night mix) | Rebuild: `Tools/setup_melusina_fade_daynight_sky.py`; fallback `W_MelodiaStudio_Fade` |
 | Eyes | Both `R_Iris.001` + `R_Iris.002` → **`Material.020_*`** | UV-matched Blender set. `M_Iris_front/Back_*` = UE only. See `Docs/MELUSINA_IRIS_POSTMORTEM_2026-07-13.md` |
-| MCP vs Live Link | MCP **9877** · Live Link **9876** | Different ports |
+| MCP vs Live Link | MCP **9876** (N → BlenderMCP → Connect) · Live Link **9876** (Studio **Live Bridge → Start Server** — different button) | Same port, different Studio buttons. **9877 / 9317** are legacy — do not use |
 
 Live inventory of hybrid mats: [`Saved/Audit/melusina_komikaze_hybrid_inventory.json`](../Saved/Audit/melusina_komikaze_hybrid_inventory.json).
 
@@ -85,6 +89,8 @@ Used on **`Studio_FloorCard`**, backdrop (when visible), `Set_Diorama`, kitbash 
 **Rule:** do **not** re-parent baked dress / `Melusina_Skirt` into `Wardrobe_Base`. New pieces → `Wardrobe_<OutfitId>`.
 
 ## Operator recipes
+
+Headless commands below still name `KitbashExport/Melodia_Portfolio_Stage_v4.blend` (historical). Live portfolio stage is **v22** — retarget beauty/inventory to v22 in a live 5.2 session; do not treat v4 as the pin. Stage save still requires `MELODIA_ALLOW_STAGE_SAVE=1`.
 
 ### Inventory (read-only)
 

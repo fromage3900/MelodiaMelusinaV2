@@ -55,7 +55,7 @@ Thirteen earlier gates pass (`jump_windup`, `sprint_speed`, `material_slots`, `s
 | `PendingDamageMultiplier` must **not** be reset on invalidate — `StartSession` owns the reset. This is deliberate. Do not flag it. | closeout plan §Step 3 |
 | Route is Morning → KaleidoNave; Dreamstate merged out | closeout plan §Step 4 |
 | Beat map is loaded from the `128BPMarpeggiomelody_beatgrid` MIDI, never hand-built | `MelodiaMusicClockSubsystem.cpp:50-51,167-179` |
-| Highway-ownership fix is **compiled but never observed in PIE** | `MelodiaRhythmHUDWidget.cpp:146-151` |
+| Highway-ownership fix is **compiled** | `MelodiaRhythmHUDWidget.cpp:146-151` | **Superseded:** owner confirmed rhythm highway WORKED in live PIE on 2026-08-12. See `RHYTHM_GAME_LOCKED_2026-08-12.md`. |
 
 ---
 

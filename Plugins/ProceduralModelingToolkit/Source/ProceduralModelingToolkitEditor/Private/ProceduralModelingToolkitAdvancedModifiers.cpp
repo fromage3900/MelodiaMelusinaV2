@@ -1,10 +1,13 @@
 #include "ProceduralModelingToolkitAdvancedModifiers.h"
 
 #include "GeometryScript/GeometryScriptSelectionTypes.h"
+#include "GeometryScript/MeshAssetFunctions.h"
+#include "GeometryScript/MeshBooleanFunctions.h"
 #include "GeometryScript/MeshDeformFunctions.h"
 #include "GeometryScript/MeshModelingFunctions.h"
 #include "GeometryScript/MeshRemeshFunctions.h"
 #include "GeometryScript/MeshSimplifyFunctions.h"
+#include "Engine/StaticMesh.h"
 #include "UDynamicMesh.h"
 
 namespace ProceduralModelingToolkit::AdvancedModifierParams
@@ -35,6 +38,13 @@ namespace ProceduralModelingToolkit::AdvancedModifierParams
 	static const FName SolveSteps(TEXT("SolveSteps"));
 	static const FName SmoothAlpha(TEXT("SmoothAlpha"));
 	static const FName FixedBoundary(TEXT("FixedBoundary"));
+	static const FName Operation(TEXT("Operation"));
+	static const FName CutterMeshPath(TEXT("CutterMeshPath"));
+	static const FName CutterLocation(TEXT("CutterLocation"));
+	static const FName CutterRotation(TEXT("CutterRotation"));
+	static const FName CutterScale(TEXT("CutterScale"));
+	static const FName bShowPreview(TEXT("bShowPreview"));
+	static const FName bPreserveCutter(TEXT("bPreserveCutter"));
 
 	static FProceduralModelingToolkitModifierResult ValidateMesh(UDynamicMesh* TargetMesh, const TCHAR* ModifierName)
 	{
@@ -285,4 +295,99 @@ FProceduralModelingToolkitModifierResult UProceduralModelingToolkitInflateModifi
 
 	UGeometryScriptLibrary_MeshModelingFunctions::ApplyMeshOffset(TargetMesh, Options);
 	return FProceduralModelingToolkitModifierResult::Success(TEXT("Inflate modifier applied."));
+}
+
+UProceduralModelingToolkitBooleanModifier::UProceduralModelingToolkitBooleanModifier()
+{
+	ModifierId = TEXT("Boolean");
+	DisplayName = FText::FromString(TEXT("Boolean"));
+	Parameters.AddInt(ProceduralModelingToolkit::AdvancedModifierParams::Operation, static_cast<int32>(EGeometryScriptBooleanOperation::Subtract));
+	Parameters.AddString(ProceduralModelingToolkit::AdvancedModifierParams::CutterMeshPath, TEXT(""));
+	Parameters.AddVector(ProceduralModelingToolkit::AdvancedModifierParams::CutterLocation, FVector::ZeroVector);
+	Parameters.AddRotator(ProceduralModelingToolkit::AdvancedModifierParams::CutterRotation, FRotator::ZeroRotator);
+	Parameters.AddVector(ProceduralModelingToolkit::AdvancedModifierParams::CutterScale, FVector::OneVector);
+	Parameters.AddBool(ProceduralModelingToolkit::AdvancedModifierParams::bShowPreview, false);
+	Parameters.AddBool(ProceduralModelingToolkit::AdvancedModifierParams::bPreserveCutter, false);
+}
+
+FProceduralModelingToolkitModifierResult UProceduralModelingToolkitBooleanModifier::Execute(UDynamicMesh* TargetMesh, const FProceduralModelingToolkitModifierExecutionContext& Context)
+{
+	const FProceduralModelingToolkitModifierResult Validation = ProceduralModelingToolkit::AdvancedModifierParams::ValidateMesh(TargetMesh, TEXT("Boolean"));
+	if (!Validation.bSuccess)
+	{
+		return Validation;
+	}
+
+	const FString CutterPath = Parameters.GetString(ProceduralModelingToolkit::AdvancedModifierParams::CutterMeshPath, FString());
+	if (CutterPath.IsEmpty())
+	{
+		return FProceduralModelingToolkitModifierResult::Failure(TEXT("Boolean modifier failed: CutterMeshPath is empty."));
+	}
+
+	UStaticMesh* CutterStaticMesh = LoadObject<UStaticMesh>(nullptr, *CutterPath, nullptr, LOAD_None, nullptr);
+	if (!CutterStaticMesh)
+	{
+		return FProceduralModelingToolkitModifierResult::Failure(FString::Printf(TEXT("Boolean modifier failed: could not load cutter Static Mesh at '%s'."), *CutterPath));
+	}
+
+	UDynamicMesh* CutterDynamicMesh = NewObject<UDynamicMesh>(GetTransientPackage(), NAME_None, RF_Transient);
+	CutterDynamicMesh->Reset();
+
+	FGeometryScriptCopyMeshFromAssetOptions CopyFromOptions;
+	CopyFromOptions.bApplyBuildSettings = true;
+	CopyFromOptions.bRequestTangents = true;
+	CopyFromOptions.bIgnoreRemoveDegenerates = true;
+	CopyFromOptions.bUseBuildScale = true;
+
+	const FGeometryScriptMeshReadLOD ReadLOD(EGeometryScriptLODType::SourceModel, 0);
+	EGeometryScriptOutcomePins CopyFromOutcome = EGeometryScriptOutcomePins::Failure;
+	UGeometryScriptDebug* Debug = NewObject<UGeometryScriptDebug>(GetTransientPackage(), NAME_None, RF_Transient);
+
+	UGeometryScriptLibrary_StaticMeshFunctions::CopyMeshFromStaticMeshV2(
+		CutterStaticMesh,
+		CutterDynamicMesh,
+		CopyFromOptions,
+		ReadLOD,
+		CopyFromOutcome,
+		/*bUseSectionMaterials=*/true,
+		Debug
+	);
+
+	if (CopyFromOutcome == EGeometryScriptOutcomePins::Failure || CutterDynamicMesh->IsEmpty())
+	{
+		return FProceduralModelingToolkitModifierResult::Failure(FString::Printf(TEXT("Boolean modifier failed: could not convert cutter '%s' to Dynamic Mesh."), *CutterPath));
+	}
+
+	const int32 OperationValue = Parameters.GetInt(ProceduralModelingToolkit::AdvancedModifierParams::Operation, static_cast<int32>(EGeometryScriptBooleanOperation::Subtract));
+	const EGeometryScriptBooleanOperation BooleanOperation = static_cast<EGeometryScriptBooleanOperation>(FMath::Clamp(OperationValue, 0, static_cast<int32>(EGeometryScriptBooleanOperation::NewPolyGroupOutside)));
+
+	const FVector CutterLocationValue = Parameters.GetVector(ProceduralModelingToolkit::AdvancedModifierParams::CutterLocation, FVector::ZeroVector);
+	const FRotator CutterRotationValue = Parameters.GetRotator(ProceduralModelingToolkit::AdvancedModifierParams::CutterRotation, FRotator::ZeroRotator);
+	const FVector CutterScaleValue = Parameters.GetVector(ProceduralModelingToolkit::AdvancedModifierParams::CutterScale, FVector::OneVector);
+	const FTransform CutterTransform(CutterRotationValue, CutterLocationValue, CutterScaleValue);
+
+	FGeometryScriptMeshBooleanOptions BooleanOptions;
+	BooleanOptions.bFillHoles = true;
+	BooleanOptions.bSimplifyOutput = true;
+	BooleanOptions.SimplifyPlanarTolerance = 0.01f;
+	BooleanOptions.bAllowEmptyResult = false;
+	BooleanOptions.OutputTransformSpace = EGeometryScriptBooleanOutputSpace::TargetTransformSpace;
+
+	UGeometryScriptLibrary_MeshBooleanFunctions::ApplyMeshBoolean(
+		TargetMesh,
+		FTransform::Identity,
+		CutterDynamicMesh,
+		CutterTransform,
+		BooleanOperation,
+		BooleanOptions,
+		Debug
+	);
+
+	const bool bPreserveCutterValue = Parameters.GetBool(ProceduralModelingToolkit::AdvancedModifierParams::bPreserveCutter, false);
+	if (!bPreserveCutterValue)
+	{
+		CutterDynamicMesh->Reset();
+	}
+
+	return FProceduralModelingToolkitModifierResult::Success(TEXT("Boolean modifier applied."));
 }

@@ -465,6 +465,24 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "panel_hint": "Breathtaking floating observatory hero: island, dome, "
                     "orrery rings, planets, lanterns, deck railing.",
     },
+    "EFFECT_MAGIC": {
+        "ui_label": "Magic Distortion",
+        "mel_tree": "MEL_effect_magic",
+        "category": "Magic Effects",
+        "panel_hint": "Combined magical distortion — intensity, noise, layers, chromatic, attractor.",
+    },
+    "EFFECT_WAVE": {
+        "ui_label": "Wave Effect",
+        "mel_tree": "MEL_effect_wave",
+        "category": "Magic Effects",
+        "panel_hint": "Sine-wave displacement along an axis, with normal-space toggle.",
+    },
+    "FILIGREE_SPIRAL": {
+        "ui_label": "Filigree Spiral",
+        "mel_tree": "MEL_filigree_spiral",
+        "category": "Filigree and Crests",
+        "panel_hint": "Art Nouveau logarithmic filigree scroll with tapered profile.",
+    },
 }
 
 
@@ -808,36 +826,68 @@ def _rebuild_derived_data():
     """Rebuild all lookup tables from GROUP_METADATA after all registrations.
 
     Called once by __init__.py after importing every builder module.
-    Idempotent ΓÇö safe to call on addon reload.
+    Idempotent — safe to call on addon reload.
+
+    IMPORTANT: mutate existing container objects in place. Other modules
+    (e.g. stack.py) bind names via `from .core import TREE_CATEGORIES` at
+    import time — rebinding these globals would leave those aliases empty
+    forever (Studio Health shows 165 builders while GN Stack sections stay blank).
     """
     global TREE_TYPES, TREE_LABEL_MAP, TREE_DESCRIPTIONS, TREE_CATEGORY_MAP, TREE_CATEGORIES
 
-    TREE_TYPES = sorted(
+    new_types = sorted(
         [(name, meta["label"]) for name, meta in GROUP_METADATA.items()],
         key=lambda x: x[1],
     )
-    TREE_LABEL_MAP = {name: meta["label"] for name, meta in GROUP_METADATA.items()}
-    TREE_DESCRIPTIONS = {
-        name: meta["description"]
-        for name, meta in GROUP_METADATA.items()
-        if meta["description"]
-    }
-    TREE_CATEGORY_MAP = {
-        name: meta["category"]
-        for name, meta in GROUP_METADATA.items()
-        if meta["category"]
-    }
+    TREE_TYPES.clear()
+    TREE_TYPES.extend(new_types)
 
-    # Build categorized lookup (category_id ΓåÆ {label, icon, trees})
+    TREE_LABEL_MAP.clear()
+    TREE_LABEL_MAP.update({name: meta["label"] for name, meta in GROUP_METADATA.items()})
+
+    TREE_DESCRIPTIONS.clear()
+    TREE_DESCRIPTIONS.update(
+        {
+            name: meta["description"]
+            for name, meta in GROUP_METADATA.items()
+            if meta["description"]
+        }
+    )
+
+    TREE_CATEGORY_MAP.clear()
+    TREE_CATEGORY_MAP.update(
+        {
+            name: meta["category"]
+            for name, meta in GROUP_METADATA.items()
+            if meta["category"]
+        }
+    )
+
+    # Build categorized lookup (category_id → {label, icon, trees})
     cats: dict[str, dict] = {}
     for cid, cinfo in CATEGORY_META.items():
         cats[cid] = {
             "label": cinfo["label"],
-            "icon":  cinfo["icon"],
+            "icon": cinfo["icon"],
             "trees": [],
         }
+    uncategorized: list[str] = []
     for name, meta in GROUP_METADATA.items():
         cid = meta.get("category", "")
         if cid in cats:
             cats[cid]["trees"].append(name)
-    TREE_CATEGORIES = cats
+        elif cid:
+            uncategorized.append(name)
+    # Keep unknown category ids visible in the N-panel instead of dropping them.
+    for name in uncategorized:
+        cid = GROUP_METADATA[name]["category"]
+        if cid not in cats:
+            cats[cid] = {
+                "label": cid.replace("_", " ").title(),
+                "icon": "NODETREE",
+                "trees": [],
+            }
+        cats[cid]["trees"].append(name)
+
+    TREE_CATEGORIES.clear()
+    TREE_CATEGORIES.update(cats)
