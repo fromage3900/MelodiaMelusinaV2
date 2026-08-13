@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Lane Dispatcher — route queue items to the right model lane.
 
-Reads NEXT_ACTIONS.md (queue authority), classifies each item, and assigns the
-best model lane via model_router policy. Read-only by default: writes an
+Reads _VERTICAL_SLICE_SCOPE.md (queue authority) and specs/echo_topo.json
+(topo DAG), classifies each item, and assigns the best model lane via
+model_router policy. Read-only by default: writes an
 assignment report to Saved/dispatch_report.md, never mutates the queue.
 
 Usage:

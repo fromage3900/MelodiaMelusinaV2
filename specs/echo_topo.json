@@ -1,0 +1,200 @@
+{
+  "$schema": "echo_topo.v1",
+  "name": "melodia_echo_topo",
+  "version": "1.0",
+  "generated_by": "echo-topo-layer, 2026-08-13",
+  "purpose": "Topological DAG of Echo gates across agent lanes. Each gate is a node with explicit predecessor edges. The scheduler computes in-degree and dispatches eligible nodes to the model lane whose task class matches. Chapter 1 (First Dream) gates are the root layer; Chapter 2 (ecosystem expansion) layers fan out from their completion.",
+
+  "layers": {
+    "ch1_gameplay": {
+      "label": "Chapter 1 — First Dream vertical slice",
+      "description": "The core gameplay loop: sanctuary dialogue -> departure -> dream traversal -> one JRPG encounter -> typed result -> narrative consequence -> save. This is the linear Echo chain that existed as echo_pipeline.json. Chapter 2 layers depend on these gates' promote node.",
+      "chapter": 1,
+      "gates": {
+        "runtime": {
+          "label": "Runtime — real input",
+          "contract": "Q/W/O/P through BP_BattleUI::OnKeyDown, damage delta recorded, assertion JSON next to frames.",
+          "predecessors": [],
+          "lane": "gameplay",
+          "campaign": "Docs/ECHO/campaign_01_rhythm_damage_delta.md"
+        },
+        "save_load": {
+          "label": "Save/load round-trip",
+          "contract": "Canonical BP_JRPGSaveGame slot survives a full process restart.",
+          "predecessors": ["runtime"],
+          "lane": "gameplay",
+          "campaign": "Docs/ECHO/campaign_02_save_load.md"
+        },
+        "repeat_consume": {
+          "label": "Repeat-consume idempotency",
+          "contract": "Flag + reward restore without duplication; melodia:stat idempotent per IntentId.",
+          "predecessors": ["save_load"],
+          "lane": "gameplay",
+          "campaign": "Docs/ECHO/campaign_03_repeat_consume.md"
+        },
+        "package_launch": {
+          "label": "Package launch outside editor",
+          "contract": "Development-packaged build launches outside the editor and the First Dream route is walkable.",
+          "predecessors": ["repeat_consume"],
+          "lane": "gameplay",
+          "campaign": "Docs/ECHO/campaign_04_package_launch.md"
+        },
+        "promote": {
+          "label": "Promote Chapter 1",
+          "contract": "All four completion gates pass. git add for exact paths only, baseline fingerprints updated, AGENTS.md next-work tick advanced.",
+          "predecessors": ["runtime", "save_load", "repeat_consume", "package_launch"],
+          "lane": "gameplay",
+          "is_promote": true
+        }
+      }
+    },
+
+    "ch2_environment": {
+      "label": "Chapter 2 — Environment art pipeline",
+      "description": "Blender generative design -> T3D injection -> UE material compile -> portfolio render capture. Independent of gameplay execution once Ch1 promote passes, but converges at the project-level promote gate.",
+      "chapter": 2,
+      "gates": {
+        "env_asset_author": {
+          "label": "Environment asset authored",
+          "contract": "Blender GN produces a candidate asset with documented provenance.",
+          "predecessors": ["ch1_gameplay.promote"],
+          "lane": "vision",
+          "campaign": "Docs/ECHO/campaign_05_environment_art.md"
+        },
+        "env_asset_inject": {
+          "label": "Environment asset injected + compiled",
+          "contract": "T3D inject succeeds, material compiles 0 errors, shader instructions <= 150.",
+          "predecessors": ["env_asset_author"],
+          "lane": "code",
+          "quality_gate": "material_compile"
+        },
+        "env_render_capture": {
+          "label": "Environment render captured",
+          "contract": "Beauty + wireframe + material grid renders saved with assertion metadata.",
+          "predecessors": ["env_asset_inject"],
+          "lane": "vision"
+        },
+        "env_promote": {
+          "label": "Promote environment asset",
+          "contract": "Asset committed via git add <exact path>, LFS pointer verified, render archived.",
+          "predecessors": ["env_render_capture"],
+          "lane": "orchestrator",
+          "is_promote": true
+        }
+      }
+    },
+
+    "ch2_website": {
+      "label": "Chapter 2 — Portfolio website",
+      "description": "my-site-clean / wix / Vite MPA. Gated on renders from the environment layer producing them, but the build/deploy pipeline gates are independent.",
+      "chapter": 2,
+      "gates": {
+        "site_build": {
+          "label": "Website builds clean",
+          "contract": "Vite build succeeds, 0 errors.",
+          "predecessors": [],
+          "lane": "code"
+        },
+        "site_lint": {
+          "label": "Website lints clean",
+          "contract": "markdownlint + stylelint + eslint pass with 0 errors.",
+          "predecessors": ["site_build"],
+          "lane": "audit"
+        },
+        "site_security": {
+          "label": "Security audit",
+          "contract": "No exposed secrets, no vulnerable deps, link-check passes.",
+          "predecessors": ["site_lint"],
+          "lane": "audit"
+        },
+        "site_assets": {
+          "label": "Renders ingested",
+          "contract": "Hero renders from env_render_capture placed in asset paths, metadata JSON valid.",
+          "predecessors": ["env_render_capture"],
+          "lane": "vision"
+        },
+        "site_deploy": {
+          "label": "Website deployed",
+          "contract": "Production build deployed to Wix/GitHub Pages, live URL verified.",
+          "predecessors": ["site_security", "site_assets"],
+          "lane": "orchestrator",
+          "is_promote": true
+        }
+      }
+    },
+
+    "ch2_audiovisual": {
+      "label": "Chapter 2 — Audiovisual system",
+      "description": "TouchDesigner audiovisual pipeline via Envoy MCP bridge. Produces renders and composition data for the website and the in-game rhythm presentation layer.",
+      "chapter": 2,
+      "gates": {
+        "td_network_build": {
+          "label": "TD network builds",
+          "contract": "TouchDesigner network compiles, all TOPs/DATs connected.",
+          "predecessors": [],
+          "lane": "code"
+        },
+        "td_osc_validate": {
+          "label": "OSC bridge validates",
+          "contract": "Envoy bridge sends/recv OSC, Melodia pulse matches TD time.",
+          "predecessors": ["td_network_build"],
+          "lane": "code"
+        },
+        "td_render_capture": {
+          "label": "TD render captured",
+          "contract": "Audiovisual render saved with frame metadata, archived.",
+          "predecessors": ["td_osc_validate"],
+          "lane": "vision"
+        }
+      }
+    },
+
+    "ch2_second_dream": {
+      "label": "Chapter 2 — Second Dream expansion",
+      "description": "The next narrative gameplay loop beyond Chapter 1's First Dream. Depends on all Chapter 1 completion gates being promoted.",
+      "chapter": 2,
+      "gates": {
+        "dream2_author": {
+          "label": "Second Dream authored",
+          "contract": "New level + narrative content authored, spec validated against allowlist.",
+          "predecessors": ["ch1_gameplay.promote"],
+          "lane": "author",
+          "campaign": "Docs/ECHO/campaign_06_second_dream.md"
+        },
+        "dream2_runtime": {
+          "label": "Second Dream runtime",
+          "contract": "PIE-walkable, 0 crashes, real input through the loop.",
+          "predecessors": ["dream2_author", "runtime"],
+          "lane": "gameplay"
+        },
+        "dream2_promote": {
+          "label": "Promote Second Dream",
+          "contract": "All Second Dream gates pass, committed via scoped git add.",
+          "predecessors": ["dream2_runtime"],
+          "lane": "orchestrator",
+          "is_promote": true
+        }
+      }
+    }
+  },
+
+  "project_promote": {
+    "label": "Project-level promote gate",
+    "description": "Converges all Chapter 2 layer promote gates. A project-level commit/release may only happen when every eligible layer's promote node is PASS.",
+    "predecessors": [
+      "ch2_environment.env_promote",
+      "ch2_website.site_deploy"
+    ],
+    "lane": "orchestrator",
+    "is_promote": true,
+    "optional": true
+  },
+
+  "scheduler_contract": {
+    "topological": "Nodes with in_degree 0 are eligible. Recording a pass decrements the in_degree of dependents.",
+    "parallel_lanes": "Independent layers (website build, TD network) run simultaneously. Dependent layers (website assets <- environment renders) serialize on their edges.",
+    "record_command": "python Tools/echo_run.py record <gate-id> pass|fail --note \"...\" [--layer <layer>] [--lane <lane>]",
+    "promote_rule": "A promote gate may only record pass when ALL its predecessors have a ledger row with status=pass in the current or earlier session.",
+    "predecessor_syntax": "Gates in the same layer reference by bare id. Gates in other layers use dot notation: layer_id.gate_id."
+  }
+}
