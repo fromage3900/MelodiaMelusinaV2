@@ -9,6 +9,7 @@
 | **C (editor closed)** | Owner | Claireon worktree + build + connect |
 | **D (new session)** | After Claireon | T8 context cost (Monolith vs Claireon, alternate sessions) + GH issue |
 | **E (PIE window)** | When free | VS P0 real-key runtime gate |
+| **F (mobile)** | Parallel A/B | [opencode-mobile-client](https://github.com/bmpenuelas/opencode-mobile-client) + `opencode serve 0.0.0.0:4096` |
 
 Research: [`NEMOTRON_OPENCODE_UE_RESEARCH_2026-08-19.md`](Docs/Handoffs/NEMOTRON_OPENCODE_UE_RESEARCH_2026-08-19.md) · Spec: `specs/nemotron_experiment_harness.json` · T3 ground truth: `Saved/Audit/nemotron_harness_2026-08-19/ground_truth/T3_handle_quill_notification.json`
 

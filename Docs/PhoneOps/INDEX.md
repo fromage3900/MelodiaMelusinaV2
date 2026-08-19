@@ -9,7 +9,8 @@ Front door for driving MelodiaMelusina from iOS / Cursor mobile.
 3. [BACKLOG.md](BACKLOG.md) — Now / Next / Backlog
 4. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory
 5. [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) — **Implemented** jcode swarm install + Recipes A/B
-6. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
+6. [OPENCODE_MOBILE_CLIENT_2026-08-19.md](OPENCODE_MOBILE_CLIENT_2026-08-19.md) — phone → workstation OpenCode Web UI (Lane F)
+7. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
 
 Harness files: [`.jcode/README.md`](../../.jcode/README.md) · `.\deploy\start_jcode_swarm.ps1`
 

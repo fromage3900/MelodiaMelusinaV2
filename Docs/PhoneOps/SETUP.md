@@ -7,6 +7,7 @@ How this MelodiaMelusina workspace is driven from phone, GitHub cloud agents, an
 | Layer | Tool | Role |
 |---|---|---|
 | Phone UI | Cursor iOS / mobile agents | Kick off cloud runs, review diffs, steer priorities |
+| Phone UI | [OpenCode Mobile Client](https://github.com/bmpenuelas/opencode-mobile-client) | Native shell → workstation `opencode serve` (LAN/Tailscale); monitor Lane B Nemotron runs — see [OPENCODE_MOBILE_CLIENT_2026-08-19.md](OPENCODE_MOBILE_CLIENT_2026-08-19.md) |
 | Cloud code | Cursor Cloud Agents (`MelodiaMelusina`) | Read/write repo, PRs, docs, audits |
 | Deep research | SuperGrok (or similar) | Scratchpads, strategy, cross-tool synthesis — often no git push |
 | Local production | UE 5.8 + Blender 5.1 + MCP | Materials, PCG, Live Link, capture (desktop) |

@@ -19,7 +19,11 @@
 | **D — Claireon session** | After C connects | New session | Yes (one UE) |
 | **E — VS P0** | When editor free for PIE | Owner | Yes — **still P0 for livelihood** |
 
+| **F — Mobile client** | Parallel to A/B | Phone + workstation | OpenCode Mobile → `opencode serve 0.0.0.0:4096` |
+
 Rhythm + Quill remain **LOCKED WORKED**. Runtime ledger (real keys) is still VS P0 when you have a PIE window — it does not wait for Nemotron.
+
+**Mobile setup:** [`Docs/PhoneOps/OPENCODE_MOBILE_CLIENT_2026-08-19.md`](../PhoneOps/OPENCODE_MOBILE_CLIENT_2026-08-19.md)
 
 ---
 
@@ -43,6 +47,15 @@ pull main
 - [ ] Phase 1a record → `run_nemotron_super_1a_smoke.json`
 - [ ] T3: run grep path in OpenCode **or** score agent output against `ground_truth/T3_handle_quill_notification.json`
 - [ ] Optional: send **Digital Extremes** + **Promethean AI** applications (75 min, no UE)
+
+### Lane F — OpenCode Mobile (parallel to A/B)
+
+- [ ] Workstation: `OPENCODE_SERVER_PASSWORD` + `opencode serve --hostname 0.0.0.0 --port 4096`
+- [ ] Firewall: allow TCP 4096 Private profile
+- [ ] Clone [opencode-mobile-client](https://github.com/bmpenuelas/opencode-mobile-client) → `npm install && npm run build` → Capacitor Android/iOS
+- [ ] App profile: `http://<LAN-or-Tailscale-IP>:4096`, user `opencode`, password set
+- [ ] Smoke: phone loads Web UI; optional watch Lane B Nemotron session
+- [ ] Guide: [`Docs/PhoneOps/OPENCODE_MOBILE_CLIENT_2026-08-19.md`](../PhoneOps/OPENCODE_MOBILE_CLIENT_2026-08-19.md)
 
 ### T3 scoring (no MCP required)
 
