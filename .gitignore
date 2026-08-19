@@ -313,3 +313,4 @@ Samples/
 
 /Plugins/Oceanology_Plugin/
 *.log
+.venv-guardrails/
