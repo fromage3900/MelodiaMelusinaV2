@@ -112,7 +112,7 @@ This ensures that automated agents cannot mutate production assets without expli
 - **Safe, auditable Blueprint injection** with full rollback capability
 - **Plugin-first UE5 architecture** with 7+ operational modules
 - **Deterministic authorization** for automated mutation
-- **Empirical evidence**: 98.8% TCA, 100% PAR across 13/13 standalone tests
+- **Empirical evidence**: 13/13 MCP contract suite passing (`Tools/test_melodia_mcp.py`) plus 28/28 MATH tool-surface eval; model scorecards (98.8% TCA label) withdrawn 2026-08-19 — they were never backed by a run log. Live evidence: `generated/melodia/status/math_run_latest.json`.
 - **No vaporware**: Everything is committed, compiled, and benchmarked
 
 ---

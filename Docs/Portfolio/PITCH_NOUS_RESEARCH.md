@@ -43,15 +43,32 @@ Most RL environments for LLMs (SWE-bench, WebArena, MineDojo) operate on static 
 
 ## 3. Alignment with Nous Research's Model Portfolio
 
+> **Withdrawal note (2026-08-19):** the 98.8% / 99.2% figures cited below come
+> from the unpublished 100-task dataset, were never backed by a committed run
+> log, and are **not claimed**. The harness, metrics, and tracks are real and
+> reproducible; scores publish per run JSON in
+> `generated/melodia/status/math_run_models_latest.json`. Current public
+> evidence: 13/13 MCP contract suite, 28/28 MATH tool-surface eval, 20/20
+> offline contract suites, 25 read-only tools, ledger-backed runtime gates.
+
 ### Hermes 3 8B as a Constrained RL Policy
 
-The MATH benchmark demonstrates that **Hermes 3 8B under MCP achieves 98.8% TCA, 100.0% PAR, 95.5% SCR, and 91.0% RCF** — all while consuming 85% fewer tokens than unconstrained prompting (TER = 0.15).
-
-This is precisely the profile Nous Research has championed: a small, efficient, open-weights model that achieves frontier-class reliability **not through scale, but through architectural constraint**.
+The MATH harness exists to measure whether **Hermes 3 8B under MCP** reaches
+frontier-class reliability on tool-call accuracy, policy adherence, state
+convergence, and recovery — not through scale, but through architectural
+constraint. That is precisely the profile Nous Research has championed. The
+harness is reproducible and the metric contract is documented; a Hermes 3 8B
+run log is publishable the moment the weight is available locally or via
+OpenRouter.
 
 ### LongCat as a Spatial Reasoner
 
-LongCat's Tier-2 role in MATH — spatial scene bounding, quaternion mathematics, Blueprint graph topology — positions it as a strong candidate for **multi-step geometric reasoning within the RL loop**. Its 99.2% TCA and 97.5% SCR on Track 2 (camera framing) and Track 4 (Blueprint wiring) validate its capability in structured spatial tasks.
+LongCat's Tier-2 role in MATH — spatial scene bounding, quaternion
+mathematics, Blueprint graph topology — positions it as a strong candidate
+for **multi-step geometric reasoning within the RL loop**, with Track 2
+(camera framing) and Track 4 (Blueprint wiring) as the structured spatial
+tasks. Per-task rows for any model are in its run JSON; no aggregate score is
+published without one.
 
 ### The Three-Tier Topology as Model Routing
 

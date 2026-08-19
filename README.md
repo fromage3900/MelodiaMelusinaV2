@@ -1,4 +1,4 @@
-# Melodia — Gameplay Vertical Slice + Environment Art Platform
+﻿# Melodia — Gameplay Vertical Slice + Environment Art Platform
 
 ```
 ✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧  ┊ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
@@ -88,17 +88,28 @@ $$\begin{aligned}
 \text{TER (Token Efficiency Ratio)} &\le 0.20 \quad \text{(85\% context token reduction vs unconstrained prompts)}
 \end{aligned}$$
 
-### Model Benchmark Matrix (100 Standardized UE5 Tasks)
+> **2026-08-19 — Withdrawal notice:** The 100-task / 98.8% TCA model
+> scorecard below is **unpublished and withdrawn**. It was never backed by a
+> committed run log. Public evidence is the live harness runs:
+> `generated/melodia/status/math_run_latest.json` (32/32 tool-surface),
+> `math_run_models_latest.json` (per-model runs, each with a run JSON),
+> `project_health_claims.json`, and the Echo gate ledger. No model score is
+> published until its run JSON exists.
 
-| Model / Configuration | TCA (%) | PAR (%) | SCR (%) | RCF (%) | TER Ratio |
-|:----------------------|:-------:|:-------:|:-------:|:-------:|:---------:|
-| Unconstrained 7B Baseline | 42.3% | 68.0% | 31.0% | 18.5% | 1.00 (Base) |
-| Unconstrained 14B Baseline | 58.7% | 74.5% | 49.0% | 32.0% | 1.00 (Base) |
-| Qwen 2.5-Coder 7B (MCP) | 98.4% | 100.0% | 94.0% | 88.5% | 0.16 (84%↓) |
-| DeepSeek-R1 14B (MCP) | 99.1% | 100.0% | 96.5% | 94.0% | 0.18 (82%↓) |
-| **Nous Hermes 3 8B (Melusina MCP)** | **98.8%** | **100.0%** | **95.5%** | **91.0%** | **0.15 (85%↓)** |
-| **Nous Hermes 3 70B (Melusina MCP)** | **99.7%** | **100.0%** | **99.0%** | **98.0%** | **0.14 (86%↓)** |
-| **Nous LongCat (Spatial MCP Track)** | **99.2%** | **100.0%** | **97.5%** | **95.0%** | **0.17 (83%↓)** |
+### Public model lanes (run-logged, no unpublished scoreboard)
+
+| Model / Configuration | Lane | Status |
+|:----------------------|:-----|:------:|
+| Qwen 2.5-Coder 7B | MATH harness (25 typed MCP tools) | run JSON 2026-08-19 |
+| Qwen 3.8-27B (local, qwen35) | MATH harness | run log per completion |
+| Muse Glimmer 30B (local Q4_K_M) | MATH harness | run log per completion |
+| DeepSeek-R1 7B / 14B | MATH harness | run log per completion |
+| Q# / QDK quantum lane | quantum-contract tasks (7 tasks, rank_layouts) | run JSON 2026-08-19 |
+| NeMo Guardrails policy baseline | adversarial probe set (10 probes) | artifact 2026-08-19 |
+| Cohere Command (API) | MATH harness | held until COHERE_API_KEY run JSON |
+
+The five metrics below are the documented contract; the numbers land in
+`generated/melodia/status/math_run_models_latest.json` the moment a run completes.
 
 Full whitepaper and case studies: **[Docs/MELUSINA_AGENT_TEST_HARNESS.md](Docs/MELUSINA_AGENT_TEST_HARNESS.md)**
 
@@ -128,7 +139,7 @@ cd MelodiaMelusinaV2
 git config core.hooksPath .githooks
 powershell -ExecutionPolicy Bypass -File .\deploy\validate_setup.ps1
 
-# Run standalone MCP contract test suite (13/13 passing)
+# Run standalone MCP contract test suite (26/26 passing)
 python Tools/test_melodia_mcp.py
 ```
 
@@ -211,3 +222,4 @@ Please see **[Docs/CREDITS.md](Docs/CREDITS.md)** for individual creator links, 
 ```
 ✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧  ┊ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
 ```
+

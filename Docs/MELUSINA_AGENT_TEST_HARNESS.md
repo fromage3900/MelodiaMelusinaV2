@@ -1,4 +1,4 @@
-# Melusina Agent Test Harness (MATH)
+﻿# Melusina Agent Test Harness (MATH)
 
 > **2026-08-19:** Unpublished 100-task / 98.8% TCA model scores are withdrawn.
 > Public evidence is the MCP + contract test run and Echo runtime ledger.
@@ -331,11 +331,26 @@ $$\begin{aligned}
 
 ## 6. Empirical Study & Benchmark Results
 
-We conducted extensive benchmark evaluations comparing **Nous Hermes 3 (8B / 70B)** and **Nous LongCat** against baseline unconstrained generation across 100 standardized Unreal Engine 5.8 authoring tasks.
+> **Withdrawn 2026-08-19.** The 100-task / 98.8% TCA benchmark table below
+> was **never backed by a committed run log** and is unpublished. The claim
+> standard of this document is: **a number is not evidence until its run JSON
+> exists.** Public evidence is:
+>
+> - `generated/melodia/status/math_run_latest.json` — 32/32 tool-surface MATH run (2026-08-19)
+> - `generated/melodia/status/math_run_models_latest.json` — per-model runs with captured_at + task rows
+> - `generated/melodia/status/project_health_claims.json` — ledger-backed claim gates
+> - `Saved/Echo/state.txt` — Echo gate ledger (runtime, save_load, repeat_consume, package_launch PASS)
+>
+> Evaluated model classes (each scored only when a run JSON exists): **Nous
+> Hermes 3 (8B / 70B), LongCat, Qwen 2.5-Coder (7B / 14B), Qwen 3.8-27B,
+> DeepSeek-R1 (7B / 14B), Muse Glimmer 30B**. The four benchmark tracks remain
+> **Lighting, Camera, Narrative, Blueprint wiring**; their results are emitted
+> per-run, never as a static table.
 
 ```
 ===================================================================================================
-               BENCHMARK EVALUATION RESULTS: CONSTRAINED MCP VS UNCONSTRAINED PROMPTS
+  DEPRECATED BENCHMARK TABLE — 100-task / 98.8% DATASET WITHDRAWN 2026-08-19
+  These figures were never backed by a committed run log. Do not cite.
 ===================================================================================================
  Model / Configuration            TCA (%)      PAR (%)      SCR (%)      RCF (%)      TER Ratio
 ---------------------------------------------------------------------------------------------------
@@ -350,6 +365,9 @@ We conducted extensive benchmark evaluations comparing **Nous Hermes 3 (8B / 70B
 ```
 
 ```
+===================================================================================================
+  DEPRECATED FINDINGS BLOCK — SAME WITHDRAWN DATASET. Superseded by per-run evidence JSONs.
+===================================================================================================
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
 │                               KEY EMPIRICAL FINDINGS FOR NOUS RESEARCH                          │
 ├─────────────────────────────────────────────────────────────────────────────────────────────────┤
@@ -429,7 +447,7 @@ The Melusina Agent Test Harness includes automated standalone test runners and M
 To verify the complete 13-tool MCP registry, schema validation contracts, and offline fallbacks:
 
 ```bash
-# Execute standalone test suite (13/13 tests)
+# Execute standalone test suite (26/26 tests)
 python Tools/test_melodia_mcp.py
 
 # Expected Output:
@@ -483,3 +501,5 @@ The **Melusina Agent Test Harness** confirms that open-weights foundation models
 
 ---
 *Melusina Agent Test Harness authored and published for Nous Research Collaboration Portfolio.*
+
+

@@ -33,16 +33,27 @@ Long-horizon software engineering — the kind where an agent must hold a 50-ste
 | **Non-Idempotent Loops** | The agent re-spawns the same actor, re-grants the same quest reward, or re-runs the same compile step because it cannot distinguish "done" from "not done." | `ConsumeOnce` transactional state seams + allowlist seed verification enforce deterministic replay safety. |
 | **Fatal Compiler Regressions** | A C++ change breaks the build, the agent retries blindly, and the codebase is now further from green than when it started. | FastMCP closed-loop compiler feedback with AST-diff error parsing — the agent reads Clang/MSVC diagnostics as structured data and self-corrects in ≤2 iterations. |
 
-### Empirical Results (100-task benchmark, UE 5.8)
+### Empirical Results (withdrawn 2026-08-19 — see note)
 
-| Model / Config | TCA | PAR | SCR | RCF | TER |
-|---|---|---|---|---|---|
-| Unconstrained 7B Baseline | 42.3% | 68.0% | 31.0% | 18.5% | 1.00 |
-| Qwen 2.5-Coder 7B (MCP) | 98.4% | 100.0% | 94.0% | 88.5% | 0.16 |
-| Nous LongCat (Spatial MCP) | **99.2%** | **100.0%** | **97.5%** | **95.0%** | **0.17** |
-| Nous Hermes 3 8B (Melusina MCP) | 98.8% | 100.0% | 95.5% | 91.0% | 0.15 |
+> **Withdrawal note:** the 100-task model scorecard below was never backed by
+> a committed run log and is **not published**. Current public evidence:
+> 13/13 MCP contract suite, 28/28 MATH tool-surface eval
+> (`generated/melodia/status/math_run_latest.json`), 20/20 offline contract
+> suites, 25 read-only tools, and per-model run logs in
+> `generated/melodia/status/math_run_models_latest.json`. Model classes under
+> evaluation: Qwen 2.5-Coder / Qwen 3.8-27B, LongCat, DeepSeek-R1, Muse
+> Glimmer 30B, Nous Hermes 3.
 
-**TER ≤ 0.20 target hit.** The constrained MCP path uses ≤20% of the token budget of unconstrained prompting — directly translating to cost-efficiency at scale.
+| Model / Config | Lane | Evidence |
+|---|---|---|
+| Unconstrained 7B Baseline | unconstrained prompt | withdrawn — no run log |
+| Qwen 2.5-Coder 7B (MCP) | MATH harness | run JSON 2026-08-19 |
+| Nous LongCat (Spatial MCP) | MATH harness | run log per completion |
+| Nous Hermes 3 8B (Melusina MCP) | MATH harness | run log per completion |
+
+**TER (token efficiency) is measured per run** — `ter_ratio` and
+`ter_meets_target` land in each run JSON the moment a model run completes, not
+as a static claim.
 
 ---
 

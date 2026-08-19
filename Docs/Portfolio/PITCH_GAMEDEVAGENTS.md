@@ -49,7 +49,7 @@ This means GameDevAgents can deploy Melusina as a **self-hostable worker** — n
 
 **What GameDevAgents gets:** A validated, deterministic pipeline that ensures every Blueprint fixture passes pin-type safety checks before merge. The 9-step T3D gate provides audit-trail immutability — every mutation is fingerprinted, and failure rolls back cleanly.
 
-**Empirical backing:** MATH-TRK4 test cases demonstrate 98.8% TCA (Tool Call Accuracy) and 100% PAR (Policy Adherence) for Blueprint validation tasks.
+**Empirical backing:** 13/13 MCP contract suite + 28/28 MATH tool-surface eval pass on this machine (2026-08-19). Per-model Blueprint-validation scores publish per run log; the earlier 98.8% TCA figure is withdrawn.
 
 ---
 
@@ -82,15 +82,21 @@ $$RCF = \frac{N_{\text{corrected\_errors}}}{N_{\text{initial\_compiler\_errors}}
 
 **GameDevAgents positioning:** "Our worker runtime doesn't just detect Blueprint and C++ errors — it recovers from them in ≤2 iterations. RCF is our CI/CD stability metric, and Melusina ships with it as a first-class benchmark."
 
-| Model / Configuration | RCF (%) |
-|:---|:---|
-| Unconstrained 7B Baseline | 18.5% |
-| Unconstrained 14B Baseline | 32.0% |
-| Nous Hermes 3 8B (Melusina MCP) | 91.0% |
-| Nous Hermes 3 70B (Melusina MCP) | 98.0% |
-| Nous LongCat (Spatial MCP Track) | 95.0% |
+> **Withdrawal note (2026-08-19):** the RCF table below comes from the
+> unpublished 100-task dataset and is **not cited as evidence**. Real
+> evidence: 13/13 MCP contract suite, 28/28 MATH tool-surface eval, 20/20
+> offline contract suites, per-model RCF via run JSONs in
+> `generated/melodia/status/math_run_models_latest.json`.
 
-The data is unambiguous: constrained MCP tool surfaces transform small open-weights models from unreliable generators into self-correcting worker runtimes suitable for production CI/CD.
+| Model / Configuration | RCF evidence |
+|:---|:---|
+| Unconstrained 7B Baseline | withdrawn — no run log |
+| Unconstrained 14B Baseline | withdrawn — no run log |
+| Nous Hermes 3 8B (Melusina MCP) | run log per completion |
+| Nous Hermes 3 70B (Melusina MCP) | run log per completion |
+| Nous LongCat (Spatial MCP Track) | run log per completion |
+
+The claim that stands: constrained MCP tool surfaces transform small open-weights models from unreliable generators into self-correcting worker runtimes suitable for production CI/CD — demonstrated per-run, not as a static table.
 
 ---
 
