@@ -416,7 +416,18 @@ def check_hermes_harness(_ledger=None) -> Claim:
     if mcp.is_file() and daemon.is_file() and server.is_file():
         c.status = "pass"
         c.evidence = "deploy/hermes_mcp.py + hermes_daemon.py + melodia_mcp_server.py"
-        c.detail = "MATH 16/16 scores this harness. Do not ollama pull hermes3."
+        latest = AUDIT / "math_run_latest.json"
+        if latest.is_file():
+            try:
+                run = json.loads(latest.read_text(encoding="utf-8"))
+                c.detail = (
+                    f"MATH {run.get('passed')}/{run.get('total')} scores this harness "
+                    f"({run.get('captured_at')}). Do not ollama pull hermes3."
+                )
+            except json.JSONDecodeError:
+                c.detail = "MATH run JSON unparseable; do not ollama pull hermes3."
+        else:
+            c.detail = "no MATH run JSON yet; do not ollama pull hermes3."
     else:
         c.status = "fail"
         c.evidence = "Hermes harness files missing under deploy/"
@@ -453,6 +464,66 @@ def check_orchestrator(_ledger=None) -> Claim:
     return c
 
 
+def _completed_model_runs() -> dict[str, dict]:
+    """Return {model: report} for completed model-via-harness runs on disk.
+
+    A run counts only when the report kind is 'model_via_hermes_harness'
+    (i.e. the model actually went through the harness). Tag presence in
+    ollama is installation, not evidence.
+    """
+    runs: dict[str, dict] = {}
+    latest = AUDIT / "math_run_models_latest.json"
+    candidates: list[dict] = []
+    if latest.is_file():
+        try:
+            bundle = json.loads(latest.read_text(encoding="utf-8"))
+            candidates.extend(bundle.get("runs") or [])
+        except json.JSONDecodeError:
+            pass
+    for path in sorted(AUDIT.glob("math_run_*.json")):
+        if path.name == "math_run_models_latest.json":
+            continue
+        try:
+            body = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if isinstance(body, dict) and body.get("kind") == "model_via_hermes_harness":
+            candidates.append(body)
+    for report in candidates:
+        model = report.get("model")
+        if not model:
+            continue
+        prev = runs.get(model)
+        if prev is None or (report.get("captured_at") or "") >= (prev.get("captured_at") or ""):
+            runs[model] = report
+    return runs
+
+
+def check_run_evidence_consistency(_ledger=None) -> Claim:
+    """Gate: a PASS claim must be backed by a completed run JSON, not a marker."""
+    c = Claim("run_evidence_consistency", "Run evidence consistency (no PASS without run JSON)")
+    markers = sorted(AUDIT.glob("math_run_*_in_progress.json"))
+    skips = sorted(AUDIT.glob("math_run_*_skipped.json"))
+    completed = _completed_model_runs()
+    problems: list[str] = []
+    if markers:
+        problems.append(f"in_progress: {', '.join(p.name for p in markers)}")
+    if skips and not completed:
+        problems.append(f"skipped runs are the newest evidence: {', '.join(p.name for p in skips)}")
+    if not completed:
+        problems.append("no completed model run JSONs on disk")
+    if problems:
+        c.status = "hold"
+        c.evidence = "Saved/Audit/math_run_*.json scan"
+        c.detail = "; ".join(problems[:3])
+        return c
+    models = sorted(completed)
+    c.status = "pass"
+    c.evidence = f"{len(completed)} completed run JSON(s): {', '.join(models)}"
+    c.detail = "every model claim above is PASS only because a run JSON exists"
+    return c
+
+
 def check_qwen_local(_ledger=None) -> Claim:
     c = Claim("model_qwen_local", "Local Qwen for Hermes-harness eval")
     try:
@@ -464,9 +535,18 @@ def check_qwen_local(_ledger=None) -> Claim:
         c.evidence = f"ollama /api/tags unreachable: {exc}"
         return c
     qwen = [n for n in names if "qwen" in n.lower()]
+    runs = {m: r for m, r in _completed_model_runs().items() if "qwen" in m.lower()}
     c.evidence = ", ".join(qwen) if qwen else "no qwen tags"
-    c.status = "pass" if qwen else "hold"
-    c.detail = "python Tools/run_math_models.py --model qwen2.5-coder:7b"
+    if runs:
+        best = max(runs.values(), key=lambda r: (r.get("captured_at") or ""))
+        c.status = "pass"
+        c.detail = f"run JSON {best.get('captured_at')}: TCA={best.get('tca_pct')}% EXEC={best.get('exec_pct')}%"
+    elif qwen:
+        c.status = "hold"
+        c.detail = "tags installed; no completed run JSON yet — run python Tools/run_math_models.py --model qwen3.8-27b"
+    else:
+        c.status = "open"
+        c.detail = "no qwen tag; run Tools/setup_muse_glimmer.py or ollama pull"
     return c
 
 
@@ -479,10 +559,17 @@ def check_muse_glimmer(_ledger=None) -> Claim:
     except Exception:
         names = []
     muse = [n for n in names if "muse" in n.lower() or "glimmer" in n.lower()]
-    if muse:
+    runs = {m: r for m, r in _completed_model_runs().items() if "muse" in m.lower() or "glimmer" in m.lower()}
+    if runs:
+        best = max(runs.values(), key=lambda r: (r.get("captured_at") or ""))
         c.status = "pass"
+        c.evidence = "run JSON: " + (best.get("captured_at") or "?")
+        c.detail = f"TCA={best.get('tca_pct')}% EXEC={best.get('exec_pct')}% (python Tools/run_math_models.py --run-muse)"
+        return c
+    if muse:
+        c.status = "hold"
         c.evidence = ", ".join(muse)
-        c.detail = "python Tools/run_math_models.py --run-muse"
+        c.detail = "tag installed 2026-08-19; PASS requires a completed run JSON (python Tools/run_math_models.py --run-muse)"
         return c
     try:
         import sys
@@ -493,9 +580,9 @@ def check_muse_glimmer(_ledger=None) -> Claim:
 
         probe = probe_muse(timeout=12.0)
         if probe.get("ok"):
-            c.status = "pass"
+            c.status = "hold"
             c.evidence = f"openrouter {probe.get('model')}"
-            c.detail = "python Tools/run_math_models.py --run-muse --backend openrouter"
+            c.detail = "reachable; PASS requires a completed run JSON"
             return c
     except Exception:
         pass
@@ -511,6 +598,52 @@ def check_muse_glimmer(_ledger=None) -> Claim:
         c.status = "open"
         c.evidence = "no ollama tag; OPENROUTER probe failed; run Tools/setup_muse_glimmer.py"
     c.detail = "python Tools/setup_muse_glimmer.py  OR  set OPENROUTER_API_KEY + 18+ attestation"
+    return c
+
+
+def check_toronto_lanes(_ledger=None) -> Claim:
+    """Toronto product-integration lanes: artifact gates, same run-JSON rule."""
+    c = Claim("toronto_lanes", "Toronto integration lanes (Cohere / Q# / NeMo Guardrails)")
+
+    def newest(prefix: str) -> dict | None:
+        hits = sorted(AUDIT.glob(f"{prefix}*.json"))
+        if not hits:
+            return None
+        return json.loads(hits[-1].read_text(encoding="utf-8"))
+
+    def status_of(artifact: dict | None, *, run_kinds: tuple[str, ...]) -> str:
+        if artifact is None:
+            return "open"
+        if artifact.get("kind") in run_kinds and artifact.get("status") != "held":
+            return "pass"
+        return "hold"
+
+    qsharp = newest("math_run_qsharp_")
+    guardrails = newest("guardrails_")
+    cohere = newest("cohere_lane_held_") or newest("math_run_cohere_")
+    parts = [
+        ("qsharp", status_of(qsharp, run_kinds=("model_via_qsharp",)), qsharp),
+        ("guardrails", status_of(guardrails, run_kinds=("guardrails_lane",)), guardrails),
+        ("cohere", status_of(cohere, run_kinds=("model_via_cohere",)), cohere),
+    ]
+    held = [name for name, st, _art in parts if st == "hold"]
+    op = [name for name, st, _art in parts if st == "open"]
+    if op:
+        c.status = "open"
+        c.evidence = "no artifact: " + ", ".join(op)
+        c.detail = "run Tools/run_qsharp_lane.py, Tools/run_guardrails_lane.py, or set COHERE_API_KEY + Tools/run_cohere_lane.py"
+        return c
+    if held:
+        c.status = "hold"
+        c.evidence = "artifact present, no completed run: " + ", ".join(held)
+        c.detail = "held until a run JSON exists (see Saved/Audit)"
+        return c
+    c.status = "pass"
+    c.evidence = "artifacts: " + ", ".join(name for name, _st, _art in parts)
+    c.detail = (
+        f"qsharp {qsharp.get('passed')}/{qsharp.get('total')} · guardrails "
+        f"{(guardrails.get('stats') or {}).get('pass_rate')}% · cohere {cohere.get('passed')}/{cohere.get('total')}"
+    )
     return c
 
 
@@ -530,6 +663,8 @@ CHECKERS = [
     check_orchestrator,
     check_qwen_local,
     check_muse_glimmer,
+    check_toronto_lanes,
+    check_run_evidence_consistency,
 ]
 
 STATUS_RANK = {"pass": 0, "hold": 1, "warn": 1, "open": 2, "fail": 3}
