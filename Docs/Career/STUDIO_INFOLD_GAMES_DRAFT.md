@@ -26,7 +26,47 @@ Apply via: https://career.infoldgames.com/EN/m/home and LinkedIn. Los Angeles, C
 - [Portfolio site URL]
 - [ArtStation link — concept/painting work specifically if you have any, given the role's hand-drawing requirement]
 
+## 🔥 2027 Campus Recruitment — OPEN NOW (posted 2026-08-13)
+
+**Infold Games 2027 Campus Recruitment is live.** This is the correct path —
+not the Senior Concept Artist posting.
+
+- **Openings:** Art & Visual Design, Engineering & Programming, Game Design,
+  Audio & Sound Design, Marketing & Operations, Corporate Functions
+- **Target audience:** Class of 2027 (you)
+- **Deadline:** October 31, 2026
+- **What they offer:** Creator Camp, ongoing mentorship, creative exchange
+  with experienced creators
+- **Apply:** https://lnkd.in/g8za_gzD (campus recruitment portal)
+- **Source:** LinkedIn post, 232 reactions, posted Aug 13 2026
+
+This solves the seniority mismatch entirely. The campus recruitment "Art &
+Visual Design" track is exactly what you'd target — environment art, 3D
+content, visual design at a level appropriate for a graduating student.
+
+### Updated strategy
+1. **Apply through the campus recruitment portal** (not the Senior Concept
+   posting). The campus track has mentorship built in and expects student-level
+   experience.
+2. **Lead with Love and Deepspace-adjacent work** — Sakura moonlit garden,
+   Zen garden family, Baroque gilded ornament. These match their
+   cinematic-romantic visual target.
+3. **Mention the UE5.8 pipeline in the technical section** — Infold uses UE5
+   for their new AAA project. Procedural materials, Substrate Toon, PCG scatter
+   are differentiators against other campus applicants.
+4. **Be honest about concept vs. 3D strength** — campus recruitment has
+   multiple art tracks, not just concept. Check the portal for a 3D Environment
+   Artist track specifically.
+
+### Timeline
+| When | Action |
+|------|--------|
+| **Now** | Visit campus recruitment portal, identify Art & Visual Design roles |
+| **Sep 2026** | Prepare portfolio reel targeting Love and Deepspace aesthetic |
+| **Oct 2026** | Submit by Oct 31 deadline |
+
 ## Before you submit
-1. **Re-check `career.infoldgames.com` for a Junior/Mid environment role** before committing to the Senior Concept posting — this is the single highest-value thing to verify before drafting further, given the seniority/skillset mismatch flagged above.
+1. ~~Re-check for a Junior/Mid role~~ → **Use the 2027 campus recruitment portal instead.**
 2. Be honest in the letter about 3D-pipeline strength vs. traditional concept/hand-drawing strength — don't imply concept-art credentials you don't have.
 3. Lead with the most anime/stylized-adjacent renders in your portfolio (Sakura, gilded/Baroque ornament work) — this is your strongest match to their visual identity.
+4. **The new AAA project** they're hiring for uses UE5 with rigging, Chaos cloth, NvCloth — mention your UE5.8 production experience explicitly.
