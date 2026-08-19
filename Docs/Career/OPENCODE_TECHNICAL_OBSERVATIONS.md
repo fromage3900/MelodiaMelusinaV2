@@ -357,6 +357,37 @@ commit history, or documented incidents behind it.
 
 ---
 
+## Why not Claireon?
+
+A reasonable engineer would ask: "Believer.gg open-sourced Claireon with 600+
+tools and crash-survival infrastructure. Why aren't you using that instead of
+documenting OpenCode's gaps?"
+
+Short answer: wrong version, wrong agent — and that gap is itself useful data.
+
+- Claireon is tested on UE 5.5.4. This project is on UE 5.8. There is an open
+  build bug (#6 in believer-oss/Claireon) for UE 5.7 that was still unresolved
+  as of the date this document was written. No confirmed 5.8 build exists.
+- Claireon's documentation targets Claude Code exclusively. This project uses
+  OpenCode in Rider. Claireon says "or any MCP-compatible client" which is
+  technically true, but the session proxy, workflow state machine, and all
+  example scripts are Claude Code-specific.
+
+The entire high-quality UE5+MCP ecosystem assumes Claude Code:
+- StraySpark: Claude-first
+- Claireon: Claude-first
+- Claude Assistant: Claude-first (literally Claude)
+- UAIP: "Claude Code, Codex CLI, Cursor, Windsurf, GitHub Copilot"
+- Epic's own tutorial: Claude Code
+
+OpenCode is not in any of those lists. This project is on the underserved path.
+The observations in this document come from exactly the environment nobody has
+documented: OpenCode + UE 5.8 + three MCP surfaces, four months continuous.
+
+A Claireon test on OpenCode + UE 5.8 is planned (see
+`Docs/Research/CLAIREON_EVALUATION_2026-08-19.md`). The outcome — pass or fail
+— would itself be useful data for this document and for a Claireon GitHub issue.
+
 *Author: 4th-year 3D major, University of [X]*
 *Duration: April–August 2026*
 *Setup: OpenCode in JetBrains Rider, DeepSeek primary model, UE5.8 +
