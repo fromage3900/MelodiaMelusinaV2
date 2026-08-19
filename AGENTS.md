@@ -6,6 +6,34 @@ See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do
 
 ---
 
+## Core vision (stick to this)
+
+Ship a small Persona-lite First Dream loop — not a systems demo:
+
+```text
+Quill dialogue → allowlisted encounter → JRPG battle (Melusina)
+  → typed result → Quill resumes once → exploration / checkpoint
+```
+
+JRPG template owns party/turns/skills/damage/saves. `UMelodiaNarrativeSubsystem` is only the
+narrow Quill bridge. MelodiaCore is presentation-only this phase. Do not invent parallel combat
+authority. Full product scope: `_VERTICAL_SLICE_SCOPE.md`.
+
+**Model lanes:** pick a task class before writing (`triage|audit|code|cpp|mcp|playtest|author|
+deep|review|orchestrator|vision|daemon|docs`). Router: `python Tools/model_router.py pick <class>
+--detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
+Gameplay queue ≠ `NEXT_ACTIONS.md` (that is platform); use vertical-slice / core-systems handoffs.
+
+| Class | Use for | Must not |
+|---|---|---|
+| `cpp` | MelodiaIntegration C++ | Rebuild JRPG in MelodiaCore |
+| `mcp` | Monolith multi-step (one editor) | Second MCP surface on same graph |
+| `playtest` | Real-input `runtime` gate | Probe-only ledger `pass` |
+| `daemon` | Overnight local loops (Ollama) | `.uasset` writes / gate certification |
+| `audit` | bp_sweep / static gates | Compensating flags for real defects |
+
+---
+
 ## T3D Wiring Pipeline (Automation Pipeline)
 
 ### Pipeline Overview
@@ -112,170 +140,11 @@ looked correct in every graph read:
 - **Silent no-op.** Travel via allowlist, `StartSession` on an unregistered skill, and an
   unallowlisted Quill id all fail by returning nothing.
 
-### Declarative Spec Format
+### Specs, injection recipes, CI gates, Monolith action tables
 
-#### Toon Profile Spec (`specs/toon_profiles/tp_melusina.json`)
-```json
-{
-  "asset_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina",
-  "class": "ToonProfile",
-  "settings": {
-    "DiffuseIndirectScale": 0.3,
-    "SpecularIndirectScale": 0.3,
-    "ShadowExtinctionCoefficient": 0.3,
-    "DiffuseRamp": [
-      {"time": 0.0, "color": {"r": 0.034, "g": 0.022, "b": 0.047, "a": 1.0}},
-      {"time": 0.3, "color": {"r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0}},
-      {"time": 1.0, "color": {"r": 1.08, "g": 1.04, "b": 0.98, "a": 1.0}}
-    ],
-    "SpecularRamp": [
-      {"time": 0.9, "color": {"r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0}}
-    ],
-    "ShadowHatchingPattern": "/Game/EnvSandbox/Materials/ToonProfiles/T_HatchPattern",
-    "ShadowingExtinction": 0.3
-  }
-}
-```
-
-#### Niagara MPC Binding (`specs/niagara_mpc_bindings.json`)
-```json
-{
-  "NS_Uni_WaterMist": {
-    "WaterMist": {
-      "emitter_update": {
-        "ProximityDriver": {
-          "type": "ModuleScript",
-          "source": "MPC_ScalarParameterCollection = Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette';\nfloat Proximity = MPC_ScalarParameterCollection.GetScalarParameterValue('PlayerProximity');\nProximitySpawnRateMultiplier = 1.0 + (1.0 - Proximity) * 4.0;"
-        }
-      }
-    }
-  }
-}
-```
-
-### Injection Workflow
-
-#### Blueprint Graph Injection
-```python
-# 1. Load spec
-spec = json.load(open("specs/toon_profiles/tp_melusina.json"))
-
-# 2. Inject via Monolith
-monolith("blueprint_query", {"action": "build_blueprint_from_spec", "spec": spec})
-
-# 3. Compile & verify
-monolith("blueprint_query", {"action": "compile_blueprint", "asset_path": spec["asset_path"]})
-
-# 4. Fingerprint & assert
-monolith("blueprint_query", {"action": "get_graph_fingerprint", "asset_path": spec["asset_path"]})
-monolith("blueprint_query", {"action": "assert_graph_matches", "asset_path": spec["asset_path"], "expected_fingerprint": "..."})
-```
-
-#### Material Curve Injection (Toon Profiles, MPCs)
-```python
-from t3d_material_curve_injector import T3DMaterialCurveInjector
-
-inj = T3DMaterialCurveInjector()
-
-# Apply full toon profile spec (curves + scalars + textures in one pass)
-result = inj.apply_toon_profile_spec(spec)
-
-# Or individual operations:
-inj.set_scalar_parameter(asset_path, "DiffuseIndirectScale", 0.3)
-inj.set_color_parameter(asset_path, "SomeColor", {"r": 1.0, "g": 0.5, "b": 0.0, "a": 1.0})
-inj.write_curve_to_asset(asset_path, "DiffuseRamp", curve_points)
-inj.compile_and_verify(asset_path)
-
-# CLI mode:
-# python Tools/t3d_material_curve_injector.py --spec specs/toon_profiles/tp_melusina.json
-# python Tools/t3d_material_curve_injector.py --asset <path> --set-scalar Brightness=0.5
-# python Tools/t3d_material_curve_injector.py --asset <path> --read-curve DiffuseRamp
-```
-
-### CI/CD Pipeline (`.github/workflows/melodia_ci.yml`)
-```yaml
-name: Melodia CI
-on: [push, pull_request]
-jobs:
-  verify:
-    runs-on: windows-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-      - name: Start Monolith
-        run: |
-          Start-Process "Plugins/Monolith/Binaries/monolith_proxy.exe" -WorkingDirectory "BS_GodFile"
-          Start-Sleep 15
-      - name: Verify Blueprints
-        run: python Tools/bp_regression_checker.py --all
-      - name: Run Continuous Loop
-        run: python Tools/continuous_loop.py --max-failures 0
-      - name: Run Regression Suite
-        run: python Tools/regression_suite.py --full
-      - name: PIE Smoke Test
-        run: python Tools/pie_smoke_runner.py --smoke
-```
-
-### Quality Gates (from `ci_gates.json`)
-```json
-{
-  "graph_fingerprint": "exact_match",
-  "blueprint_compile": "0_errors",
-  "material_compile": "0_errors", 
-  "shader_instructions": "max_150",
-  "triangle_budget": "max_250k",
-  "pie_smoke": "0_crashes",
-  "animation_delta": "threshold_0.05",
-  "accessibility": "pass"
-}
-```
-
-### Monolith MCP Commands Reference
-
-#### Blueprint
-| Action | Purpose |
-|--------|---------|
-| `blueprint_query:build_blueprint_from_spec` | Inject T3D spec in single transaction |
-| `blueprint_query:compile_blueprint` | Compile Blueprint |
-| `blueprint_query:get_graph_fingerprint` | Topology fingerprint |
-| `blueprint_query:assert_graph_matches` | Verify no unintended rewire |
-| `blueprint_query:get_cdo_properties` | Read CDO property values |
-
-#### Material (63 actions)
-| Action | Purpose |
-|--------|---------|
-| `material_query:set_instance_parameter` | Set scalar/vector/texture on material instance |
-| `material_query:set_instance_parameters` | Batch-set, single recompile |
-| `material_query:get_instance_parameters` | Read all overrides from instance |
-| `material_query:recompile_material` | Force material recompile |
-| `material_query:get_compilation_stats` | VS/PS instruction counts, compile status |
-| `material_query:build_material_graph` | Build material graph from JSON spec |
-| `material_query:get_material_properties` | Read material settings (blend, shading, etc.) |
-| `material_query:validate_material` | Check for broken connections, unused nodes |
-| `material_query:get_all_expressions` | List all expression nodes |
-| `material_query:export_material_graph` | Serialize graph to JSON |
-| `material_query:import_material_graph` | Import graph from JSON |
-| `material_query:begin_transaction` | Start undo group |
-| `material_query:end_transaction` | End undo group |
-
-#### Editor
-| Action | Purpose |
-|--------|---------|
-| `editor_query:run_python` | Run headless Python scripts |
-| `editor_query:trigger_build` | Trigger full C++ build |
-| `editor_query:run_pie_smoke` | Headless PIE smoke test |
-
-#### Project
-| Action | Purpose |
-|--------|---------|
-| `project_query:export_asset_text` | Export asset as T3D text (universal escape hatch) |
-| `project_query:search` | Find assets by name/type |
-| `project_query:get_asset_details` | Get indexed asset metadata |
-
-#### Niagara
-| Action | Purpose |
-|--------|---------|
-| `niagara_query:add_module` | Add ModuleScript to Niagara |
+Full reference (toon profiles, Niagara MPC, inject snippets, `ci_gates.json`, Monolith
+blueprint/material/editor/project/niagara actions):  
+[`Docs/Production/T3D_MONOLITH_REFERENCE.md`](Docs/Production/T3D_MONOLITH_REFERENCE.md).
 
 ---
 
@@ -535,16 +404,13 @@ Full detail: `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md`.
    incident; scoped runs are clean.
 8. Damage progression smoothing — owner has a recorded contact sheet. Ask for it; do not
    guess at the curve, and do not add a multiplier that cancels out a bad one.
-9. Resolve the duplicate content trees (two `BP_BattleUI`, the 33-asset mirror). Owner
-   sign-off before deleting — the mirror is untracked and unrecoverable.
+9. Duplicate `BP_BattleUI` paths — mirror quarantined 2026-08-11; confirm no remaining
+   short-name collisions before delete of quarantine tree.
 
-Done 2026-08-09/10: Sir rescue trigger (A4); `StockSkillRhythmIds` populated;
-`BP_BattleController` placed in `L_KaleidoNave`; `L_Melodia_Dreamstate` merged into
-`L_KaleidoNave` and deleted (allowlist stripped; backup in `Saved/Recovery/`).
-Done 2026-08-11: beat map; `rhythm_battle_runtime_probe.py` made runnable
-(`skill_class` NameError fixed); highway-ownership fix staged in
-`MelodiaRhythmHUDWidget` (unbuilt); ledger truth recorded (no rhythm gate row exists —
-see evidence standard §1).
+Done 2026-08-09/10: Sir rescue; StockSkillRhythmIds; BattleController in KaleidoNave;
+Dreamstate merge. Done 2026-08-11: beat map; probe runnable; highway-ownership staged
+(unbuilt); mirror quarantined; UI transparency fix. Done 2026-08-12: model lanes +
+AGENTS slim under 32 KB subagent cap.
 
 Parallel work for other agents, partitioned by contended resource:
 **current** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md)
