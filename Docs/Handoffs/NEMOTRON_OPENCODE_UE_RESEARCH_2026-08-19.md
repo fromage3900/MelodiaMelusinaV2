@@ -348,57 +348,19 @@ cost (Nemotron $ + Claude $ vs Claude alone), latency (does A finish before B ne
 
 ---
 
-## 8. Today's work plan (2026-08-19 evening)
+## 8. Today's work plan (2026-08-19)
 
-Ordered. Stop and record partial results if blocked — do not iterate blind on graph surgery.
+**Execution plan moved to:** [`TODAY_2026-08-19_PARALLEL_PLAN.md`](TODAY_2026-08-19_PARALLEL_PLAN.md)
 
-### Phase 0 — Setup (~30 min, no UE required)
+Summary:
 
-- [ ] Pin OpenCode version; note in audit folder
-- [ ] Set `OPENROUTER_API_KEY` in env (or `~/.config/opencode`)
-- [ ] Create `Saved/Audit/nemotron_harness_2026-08-19/` directory
-- [ ] Copy reference OpenRouter config from §2 into local opencode override (gitignored)
-- [ ] Confirm Claude control model still works: one trivial `plan` tab question
-
-### Phase 1 — Provider smoke (~45 min)
-
-- [ ] **Gate:** Nemotron Super via OpenRouter — single-turn "list files in Tools/" (no MCP)
-- [ ] **Gate:** Nemotron Super via OpenRouter — T1 with Monolith enabled (UE must be open, one instance, port 9316)
-- [ ] **Skip Ultra via NIM** unless explicitly debugging #34026
-- [ ] Optional: try Nemotron 3.5 Lightning via OpenCode Zen if `/models` lists it
-- [ ] Record: pass/fail, wall time, tool-call count, premature stop Y/N
-
-**Stop condition:** If Super cannot complete T1 on OpenRouter, defer Experiments 5–7; file
-issue notes in audit folder and stay on Claude for tonight's UE work.
-
-### Phase 2 — Harness subset (~2 hr, UE open)
-
-Run **T1, T4, T5** only (read-heavy, lowest risk) across:
-
-1. Claude Sonnet (control)
-2. Nemotron Super (OpenRouter)
-3. One of: Qwen3-Coder or DeepSeek (whichever is already configured)
-
-Fill `summary.csv` rows. Human-score planning 1–5 after each run.
-
-### Phase 3 — Write task probe (if Phase 2 clean)
-
-- [ ] T2 on **Claude only first** — establish ground-truth behavior
-- [ ] T2 on Nemotron Super — compare compile attempts and recovery
-- [ ] Do **not** run T2 on Nemotron if Phase 1 showed tool-call instability
-
-### Phase 4 — MCP gate (if time remains)
-
-- [ ] Monolith-only T1 (surface C minus VibeUE = single surface ~116 tools)
-- [ ] Compare tool-call count vs Phase 2 T1
-- [ ] Defer Claireon and Epic native MCP until Claireon plugin is installed/tested
-
-### Not tonight (unless Phases 1–3 finish early)
-
-- Experiment 5 long-context dumps (token cost + prep time)
-- Experiment 7 multi-session handoff (needs Phase 2 accuracy data)
-- Nemotron Ultra in timed comparison
-- Self-hosted vLLM setup
+| Lane | When | Work |
+|---|---|---|
+| A (no editor) | NOW | pull main → Phase 0 → 1a smoke → T3 grep |
+| B (editor open) | Background OC tabs | 1b T1 Monolith → Phase 2 T1/T4/T5 × 3 models |
+| C (editor closed) | Owner | Claireon worktree + build + connect |
+| D (new session) | After Claireon | T8 context cost Monolith vs Claireon → GH issue |
+| E | PIE window | VS P0 real-key runtime gate (unchanged) |
 
 ---
 

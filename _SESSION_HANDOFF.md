@@ -1,3 +1,21 @@
+# Session Handoff — 2026-08-19 (parallel day plan)
+
+**Execute:** [`Docs/Handoffs/TODAY_2026-08-19_PARALLEL_PLAN.md`](Docs/Handoffs/TODAY_2026-08-19_PARALLEL_PLAN.md)
+
+| Lane | Now | Work |
+|---|---|---|
+| **A (no editor)** | NOW | pull main → Nemotron Phase 0 → 1a smoke → T3 grep |
+| **B (editor open)** | Background OC | 1b T1 Monolith → Phase 2 T1/T4/T5 × 3 models |
+| **C (editor closed)** | Owner | Claireon worktree + build + connect |
+| **D (new session)** | After Claireon | T8 context cost (Monolith vs Claireon, alternate sessions) + GH issue |
+| **E (PIE window)** | When free | VS P0 real-key runtime gate |
+
+Research: [`NEMOTRON_OPENCODE_UE_RESEARCH_2026-08-19.md`](Docs/Handoffs/NEMOTRON_OPENCODE_UE_RESEARCH_2026-08-19.md) · Spec: `specs/nemotron_experiment_harness.json` · T3 ground truth: `Saved/Audit/nemotron_harness_2026-08-19/ground_truth/T3_handle_quill_notification.json`
+
+Applications today (parallel to A): **Digital Extremes** (Junior/Intermediate) + **Promethean AI**.
+
+---
+
 # Session Handoff — 2026-08-19 (Nemotron × OpenCode × Unreal research)
 
 **Pick up:** [`Docs/Handoffs/NEMOTRON_OPENCODE_UE_RESEARCH_2026-08-19.md`](Docs/Handoffs/NEMOTRON_OPENCODE_UE_RESEARCH_2026-08-19.md)
