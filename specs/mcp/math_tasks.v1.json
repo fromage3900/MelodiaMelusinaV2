@@ -202,28 +202,28 @@
       "tool": "melodia_ui_get_economy_hud",
       "args": {},
       "expect": { "schema": "melodia.ui.economy_hud.v1" },
-      "expect_keys": ["economy", "skill_availability", "scalar_tiers", "grief_hook"]
+      "expect_keys": ["healing", "mana", "utility", "grief", "can_cast_healing", "can_cast_mana", "can_cast_utility", "grief_active", "scalar_tiers"]
     },
     {
       "id": "encounter_start_p0",
       "tool": "melodia_encounter_start",
       "args": { "encounter_id": "p0_dungeon" },
-      "expect": { "schema": "melodia.encounter.start.v1", "grief_active": true },
-      "expect_keys": ["encounter_id", "enemy"]
+      "expect": { "schema": "melodia.encounter.start.v1", "status": "active", "grief_set_to": 30.0 },
+      "expect_keys": ["encounter_id", "enemy", "new_state"]
     },
     {
       "id": "encounter_resolve_p0",
       "tool": "melodia_encounter_resolve",
       "args": { "encounter_id": "p0_dungeon" },
-      "expect": { "schema": "melodia.encounter.resolve.v1" },
-      "expect_keys": ["resolved", "quest_progress"]
+      "expect": { "schema": "melodia.encounter.resolve.v1", "status": "resolved" },
+      "expect_keys": ["blocked_enemy", "cast_history", "quest_advancement"]
     },
     {
       "id": "quest_p0_status",
       "tool": "melodia_quest_check_p0",
       "args": { "quest_id": "p0_vertical_slice" },
       "expect": { "schema": "melodia.quest.check_p0.v1" },
-      "expect_keys": ["quest_id", "status", "requirements"]
+      "expect_keys": ["quest_id", "status", "cast_history", "resolved_encounters"]
     }
   ]
 }

@@ -607,7 +607,7 @@
       "input": {"type": "object", "properties": {}, "required": []},
       "output": {
         "schema": "melodia.ui.economy_hud.v1",
-        "fields": ["economy", "skill_availability", "scalar_tiers", "grief_hook"]
+        "fields": ["healing", "mana", "utility", "grief", "can_cast_healing", "can_cast_mana", "can_cast_utility", "grief_active", "scalar_tiers"]
       }
     },
     "melodia_encounter_start": {
@@ -624,7 +624,7 @@
       },
       "output": {
         "schema": "melodia.encounter.start.v1",
-        "fields": ["encounter_id", "grief_active", "enemy"]
+        "fields": ["encounter_id", "status", "enemy", "grief_set_to", "new_state"]
       }
     },
     "melodia_encounter_enemy_action": {
@@ -641,7 +641,7 @@
       },
       "output": {
         "schema": "melodia.encounter.enemy_action.v1",
-        "fields": ["encounter_id", "enemy_action", "mana_drained", "economy"]
+        "fields": ["encounter_id", "action", "mana_drained", "new_state"]
       }
     },
     "melodia_encounter_resolve": {
@@ -658,7 +658,7 @@
       },
       "output": {
         "schema": "melodia.encounter.resolve.v1",
-        "fields": ["encounter_id", "resolved", "quest_progress", "reason", "cast_history"]
+        "fields": ["encounter_id", "status", "blocked_enemy", "cast_history", "quest_advancement"]
       }
     },
     "melodia_quest_check_p0": {
@@ -675,7 +675,7 @@
       },
       "output": {
         "schema": "melodia.quest.check_p0.v1",
-        "fields": ["quest_id", "status", "requirements"]
+        "fields": ["quest_id", "status", "cast_history", "resolved_encounters", "has_combat_skills", "encounter_resolved"]
       }
     }
   },

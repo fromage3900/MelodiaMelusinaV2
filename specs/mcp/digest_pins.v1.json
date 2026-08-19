@@ -1,0 +1,27 @@
+{
+  "captured_at": "2026-08-19T09:37:22Z",
+  "evidence": {
+    "math_run_2026-08-19.json": "5ff00fc5573d4d0db630bc366702f0967b5fb07395776535035254c64ec106ae",
+    "math_run_latest.json": "5ff00fc5573d4d0db630bc366702f0967b5fb07395776535035254c64ec106ae",
+    "math_run_muse-glimmer_skipped.json": "1013b64f87f62355fd8780723bde5409eb50968678c9674aa9e97a7b6e8afd23",
+    "math_run_qsharp_2026-08-19.json": "c52a06036382f4e70232631bcc2be265dcf99925857a3394774484e95fc25e1c",
+    "math_run_qwen2.5-coder_7b_2026-08-19.json": "27bb0f5581bdcd04c5a37de9b494faf5f644cde7f9070ce0492d8b3c2f92756f",
+    "math_run_qwen3.8-27b_in_progress.json": "94b92cd4f182ba8100bcc21b79f13e43837a3aef69140bf370b9e34dd0d15680"
+  },
+  "models": {
+    "deepseek-coder:6.7b": "ce298d984115b93b",
+    "deepseek-r1:14b": "c333b7232bdb5212",
+    "deepseek-r1:7b": "755ced02ce7befdb",
+    "hf.co/bartowski/Muse-Glimmer-30B-GGUF:Q4_K_M": "3f8df8a4265768bc",
+    "muse-glimmer-30b:latest": "3f8df8a4265768bc",
+    "qwen2.5-coder:14b": "9ec8897f747e246e",
+    "qwen2.5-coder:7b": "dae161e27b0e90dd",
+    "qwen3.8-27b:latest": "c40b082f0d0fa133"
+  },
+  "schema": "melodia.digest_pins.v1",
+  "specs": {
+    "specs/mcp/guardrails_policy.v1.json": "6e0de9ea4bf90c917dd1757c03e6d44341c27ff1ffe5d56999ff22f90f8574a7",
+    "specs/mcp/math_tasks.v1.json": "e253a09c1301bc7abb4efc09dd52e1584f07060e5f44ea61b8e63a8c7a41448a",
+    "specs/mcp/qsharp_tasks.v1.json": "e7abdba69f9a630f2169de65fd9959e3f3170b0754bfb3a85944fdafc1a70c89"
+  }
+}
