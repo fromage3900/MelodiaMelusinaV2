@@ -61,13 +61,16 @@ def _resolve_muse_ollama() -> str | None:
     return None
 
 
-def _chat_ollama(model: str, user: str, timeout: float, system: str | None = None) -> tuple[str, str | None, int, int]:
+def _chat_ollama(model: str, user: str, timeout: float, system: str | None = None, cpu: bool = False) -> tuple[str, str | None, int, int]:
     """Return (text, error, prompt_tokens, completion_tokens)."""
+    options = {"temperature": 0, "num_predict": 256}
+    if cpu:
+        options["num_gpu"] = 0
     payload = json.dumps(
         {
             "model": model,
             "stream": False,
-            "options": {"temperature": 0, "num_predict": 256},
+            "options": options,
             "messages": [
                 {"role": "system", "content": system or SYSTEM},
                 {"role": "user", "content": user},
@@ -145,6 +148,7 @@ def run_model(
     *,
     backend: str = "ollama",
     measure_ter: bool = True,
+    cpu: bool = False,
 ) -> dict[str, Any]:
     from run_math_eval import _check
 
@@ -160,9 +164,9 @@ def run_model(
         backend_note = f"openrouter ({model})"
     else:
         def _call(user: str, system: str | None = None) -> tuple[str, str | None, int, int]:
-            return _chat_ollama(model, user, timeout, system=system)
+            return _chat_ollama(model, user, timeout, system=system, cpu=cpu)
 
-        backend_note = f"ollama ({model})"
+        backend_note = f"ollama ({model})" + (" cpu" if cpu else "")
 
     gold = json.loads(TASKS.read_text(encoding="utf-8"))
     prompt_spec = json.loads(PROMPTS.read_text(encoding="utf-8")) if PROMPTS.exists() else {"prompts": {}}
@@ -178,7 +182,7 @@ def run_model(
         "which API operation to call and its arguments. No markdown."
     )
 
-    for task in gold["tasks"]:
+    for i, task in enumerate(gold["tasks"]):
         if task.get("editor_required") and not editor_live:
             held += 1
             rows.append({
@@ -242,6 +246,7 @@ def run_model(
                 "detail": detail[:240],
             }
         )
+        print(f"  [{i+1}/{len(gold['tasks'])}] {task['id']}: {'PASS' if exec_ok else 'FAIL' if parsed else 'ERR'} {detail[:120]}", flush=True)
     n = len(gold["tasks"])
     scored = n - held
     ter_ratio = round(tokens_constrained / tokens_unconstrained, 4) if tokens_unconstrained > 0 else None
@@ -297,10 +302,34 @@ def _write(report: dict[str, Any], slug: str) -> Path:
     return path
 
 
-def _run_muse(timeout: float) -> tuple[int, dict[str, Any] | None]:
+def _marker(slug: str, *, clear: bool) -> Path:
+    path = AUDIT / f"math_run_{slug}_in_progress.json"
+    if clear:
+        if path.exists():
+            path.unlink()
+        return path
+    payload = {
+        "schema": "melodia.math_run.v1",
+        "kind": "in_progress",
+        "model": slug,
+        "status": "in_progress",
+        "reason": "run started; marker removed when the run JSON is written",
+        "captured_at": datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds"),
+    }
+    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    return path
+
+
+def _run_muse(timeout: float, cpu: bool = False) -> tuple[int, dict[str, Any] | None]:
     ollama_tag = _resolve_muse_ollama()
     if ollama_tag:
-        report = run_model(ollama_tag, timeout, backend="ollama")
+        _marker("muse-glimmer-30b", clear=False)
+        try:
+            report = run_model(ollama_tag, timeout, backend="ollama", cpu=cpu)
+        except Exception as exc:
+            print(f"muse-glimmer: ABORTED ({exc})", flush=True)
+            return 1, None
+        _marker("muse-glimmer-30b", clear=True)
         slug = "muse-glimmer-30b"
         path = _write(report, slug)
         print(
@@ -316,7 +345,13 @@ def _run_muse(timeout: float) -> tuple[int, dict[str, Any] | None]:
 
     probe = probe_muse(timeout=min(timeout, 25.0))
     if probe.get("ok"):
-        report = run_model(MUSE_OPENROUTER, timeout, backend="openrouter")
+        _marker("muse-spark-openrouter", clear=False)
+        try:
+            report = run_model(MUSE_OPENROUTER, timeout, backend="openrouter")
+        except Exception as exc:
+            print(f"muse-spark: ABORTED ({exc})", flush=True)
+            return 1, None
+        _marker("muse-spark-openrouter", clear=True)
         slug = "muse-spark-openrouter"
         path = _write(report, slug)
         print(
@@ -353,14 +388,27 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--run-muse", action="store_true", help="Also evaluate Muse Glimmer lane if available")
     parser.add_argument("--skip-muse", action="store_true", help="Deprecated; default is to skip muse unless --run-muse")
     parser.add_argument("--no-ter", action="store_true", help="Skip TER (token efficiency) measurement")
+    parser.add_argument(
+        "--cpu",
+        action="store_true",
+        help="Force CPU-only inference (num_gpu=0) for models too large for the GPU",
+    )
     args = parser.parse_args(argv)
 
     backend = args.backend
     if backend == "auto":
         backend = "openrouter" if args.model.startswith("meta/") else "ollama"
 
-    report = run_model(args.model, args.timeout, backend=backend, measure_ter=not args.no_ter)
     slug = args.model.replace(":", "_").replace("/", "_")
+    _marker(slug, clear=False)
+    try:
+        report = run_model(
+            args.model, args.timeout, backend=backend, measure_ter=not args.no_ter, cpu=args.cpu
+        )
+    except Exception as exc:
+        print(f"{args.model}: ABORTED ({exc})", flush=True)
+        return 1
+    _marker(slug, clear=True)
     path = _write(report, slug)
     ter_note = ""
     if report.get("ter_ratio") is not None:
@@ -375,7 +423,7 @@ def main(argv: list[str] | None = None) -> int:
 
     rc = 0 if report["failed"] == 0 else 1
     if args.run_muse:
-        muse_rc, _ = _run_muse(args.timeout)
+        muse_rc, _ = _run_muse(args.timeout, cpu=args.cpu)
         rc = max(rc, muse_rc)
     return rc
 

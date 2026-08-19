@@ -299,10 +299,10 @@ def test_encounter_start_schema() -> None:
     import deploy.melodia_mcp_server as server
     result = server.melodia_encounter_start("test_enc")
     assert result["schema"] == "melodia.encounter.start.v1"
-    assert result["status"] == "active"
+    assert result["grief_active"] is True
     assert result["enemy"]["type"] == "mana_drainer"
+    assert result["enemy"]["hp"] == 100
     assert "mana_drain" in result["enemy"]["abilities"]
-    assert result["grief_set_to"] == 30.0
 
 
 def test_encounter_enemy_action_schema() -> None:
@@ -312,7 +312,7 @@ def test_encounter_enemy_action_schema() -> None:
     result = server.melodia_encounter_enemy_action("test_drain_enc")
     assert result["schema"] == "melodia.encounter.enemy_action.v1"
     assert result["mana_drained"] == 15.0
-    assert "new_state" in result
+    assert "economy" in result
 
 
 def test_encounter_resolve_schema() -> None:

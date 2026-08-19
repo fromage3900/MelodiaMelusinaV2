@@ -451,7 +451,25 @@ class TestTier4MelusinaRegressionSuite(unittest.TestCase):
             result.returncode, 0,
             f"Tools/test_melodia_mcp.py failed with code {result.returncode}.\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
         )
-        self.assertIn("16/16 passed", result.stdout, "Expected '16/16 passed' in output")
+        m = re.search(r"(\d+)/(\d+) passed, (\d+)/(\d+) failed", result.stdout)
+        self.assertIsNotNone(
+            m,
+            "Expected MCP runner summary 'X/Y passed, Z/Y failed' in output\n"
+            f"STDOUT: {result.stdout[-2000:]}\nSTDERR: {result.stderr[-2000:]}",
+        )
+        passed, total, failed, failed_total = (int(g) for g in m.groups())
+        self.assertEqual(
+            total, failed_total,
+            f"MCP runner summary inconsistent: {m.group(0)}",
+        )
+        self.assertEqual(
+            failed, 0,
+            f"MCP runner reported failures: {m.group(0)}",
+        )
+        self.assertEqual(
+            passed, total,
+            f"MCP runner reported incomplete pass: {m.group(0)}",
+        )
 
     def test_02_regression_test_melodia_ollama_validation(self) -> None:
         """Execute Tools/test_melodia_ollama_validation.py and assert 6/6 passing."""

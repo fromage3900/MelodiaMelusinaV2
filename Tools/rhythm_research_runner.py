@@ -54,7 +54,7 @@ def query_ollama(model: str, prompt: str, temperature: float, max_tokens: int = 
         "stream": False,
     }
     try:
-        r = requests.post(OLLAMA_URL, json=payload, timeout=120)
+        r = requests.post(OLLAMA_URL, json=payload, timeout=300)
         r.raise_for_status()
         return r.json()["message"]["content"]
     except Exception as e:
