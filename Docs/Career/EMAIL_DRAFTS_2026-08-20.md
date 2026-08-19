@@ -89,41 +89,42 @@ personalize the brackets, and send.
 
 ---
 
-## 3. Nous Research — Forward Deployed Engineer
+## 3. Nous Research — Research Collaboration Proposal (PRIMARY)
 
 **Deadline:** None (rolling)
-**Role:** Forward Deployed Engineer (or SW Eng GUI/Product)
-**Location:** Fully remote
-**Apply:** recruiting@nousresearch.com — Subject: "Forward Deployed Engineer"
+**Contact:** Research / eval team — find via nousresearch.com or X (@NousResearch,
+@Teknium). Also cc recruiting@nousresearch.com.
+**Subject:** Research Collaboration Proposal: MATH — Stateful RL Environment for
+Constrained Open-Weights Models
 
-### Email / cover letter points
+### What this is
 
-- Lead with the MCP + agent orchestration experience — Hermes Agent uses MCP
-  for tool integration, and you run three MCP surfaces daily.
-- Concrete artifacts:
-  - Echo pipeline with evidence ledger
-  - Parallel agent lanes with quality gates
-  - T3D wiring pipeline (spec → inject → compile → fingerprint → regress)
-- Mention Hermes model testing (attach local results once committed).
-- The role is "deploy and adapt Hermes Agent Enterprise inside customer
-  environments" — frame the UE5 production environment as a customer-like
-  deployment scenario.
+NOT a job application. A pitch for a joint benchmark / whitepaper. The full
+proposal is at `Docs/Portfolio/PITCH_NOUS_RESEARCH.md` (committed 2026-08-18,
+pending merge via PR #9).
+
+### Key numbers to lead with
+- Hermes 3 8B under MCP: **98.8% TCA, 100% PAR, 95.5% SCR, 91.0% RCF,
+  85% token reduction**
+- LongCat 14B: **99.2% TCA, 97.5% SCR** on spatial/Blueprint tracks
+- Environment: UE5.8 as a live stateful RL environment, MCP as the constrained
+  action space, compiler diagnostics as the reward signal
+
+### Email structure
+1. One-line hook: "Hermes 3 8B under MCP achieves 98.8% task completion
+   accuracy in a live UE5.8 simulation — outperforming unconstrained
+   frontier models while using 85% fewer tokens."
+2. Two sentences on MATH (Melusina Agent Test Harness) as a formal RL env.
+3. Propose the four-phase collaboration roadmap from the pitch doc.
+4. Ask for a 30-minute call with their eval/research team.
 
 ### Attach
-- Resume
-- GitHub repo link
-- Hermes test results (commit from local first)
-- Work proposal drafts (commit from local first)
+- `Docs/Portfolio/PITCH_NOUS_RESEARCH.md` (full proposal)
+- GitHub repo link (the pipeline IS the evidence)
 
-### Draft opening
-> I'm applying for the Forward Deployed Engineer role. I've spent the past
-> [N] months deploying AI agents in a production UE5.8 environment — three
-> coordinated MCP surfaces, parallel agent lanes with ledger-backed evidence
-> gates, and an AI-driven content authoring pipeline. That's not a description
-> of Hermes Agent, but it's the same architecture pattern, and I've been
-> testing Hermes models as part of evaluating the agent stack.
->
-> [Reference specific Hermes test results]
+### Secondary ask (if appropriate)
+Mention interest in ML Engineer, Evals role or Forward Deployed Engineer as a
+secondary note — but don't lead with it. The collaboration pitch is stronger.
 
 ---
 

@@ -72,15 +72,49 @@ cover letter, portfolio/GitHub.
 3. **Software Engineer, Hermes Cloud** — cloud platform. Maps to the Echo
    pipeline and agent orchestration experience.
 
-## Local drafts (not yet committed)
+## Local work — NOW COMMITTED (feature/repo-lockin-20260813)
 
-> **TODO:** Owner has local Hermes test results, work proposals, and drafts on
-> the Windows workstation. Commit and merge those here when synced. Expected
-> content:
-> - Hermes model test results / benchmarks
-> - Work proposal drafts for Nous
-> - Application materials
+The following have landed in the repo and are pending merge to main:
+
+### `Docs/Portfolio/PITCH_NOUS_RESEARCH.md` (2026-08-18)
+Full research collaboration proposal: **"Melusina Agent Test Harness as a
+Stateful RL Environment for Constrained Small-Model Research."**
+
+This is NOT a job application — it's a proposal for a joint benchmark,
+positioning the UE5.8 MCP pipeline as a formal RL environment for Hermes 3 /
+LongCat. Key claims backed by benchmark numbers:
+
+- Hermes 3 8B under MCP: **98.8% TCA, 100% PAR, 95.5% SCR, 91.0% RCF,
+  85% token reduction (TER = 0.15)**
+- LongCat 14B: **99.2% TCA, 97.5% SCR** on spatial/Blueprint tracks
+- Formal RL environment definition: state space, action space, observation,
+  reward signal, episode termination — all mapped to UE5.8 + MCP
+- Five-metric reward function: TCA / PAR / SCR / RCF / TER
+- Four-phase collaboration roadmap: benchmark integration → LoRA fine-tuning
+  + RLVR → headless CI/CD swarms → open benchmark standard
+- Proposed outcome: Nous Research × Melusina whitepaper, open leaderboard
+
+### Other research tools committed
+- `Tools/bedrock_research.py` + `Tools/bedrock_research_run.py` — AWS Bedrock
+  research harness
+- `Tools/rhythm_research_runner.py` — rhythm RL research runner
+- `Docs/Research/INFINITY_NIKKI_PIPELINES_AND_PROJECT_UPDATES_2026-08-14.md`
+- `Docs/Research/MELODIA_UE_JRPG_WORKFLOW_RESEARCH_2026-08-15.md`
+- `Docs/Research/UE_RETARGET_PIPELINES_LONG_TERM_2026-08-15.md`
+
+## Updated approach for Nous contact
+
+The pitch is a **collaboration proposal**, not a job application. The email
+should go to the research/eval team specifically, not just recruiting@.
+Subject: "Research Collaboration Proposal: MATH — Stateful RL Environment for
+Constrained Open-Weights Models"
+
+Attach: `Docs/Portfolio/PITCH_NOUS_RESEARCH.md` + repo link.
+
+If a job inquiry is also relevant, mention the Forward Deployed Engineer or
+ML Engineer Evals role as a secondary ask — but the collaboration proposal
+is the stronger opening.
 
 ---
 
-*Profile researched 2026-08-19. Sync local drafts to complete.*
+*Researched 2026-08-19. Pitch committed 2026-08-18. Pending merge via PR #9.*
