@@ -1,4 +1,4 @@
-﻿"""Ornamental GN group builders ΓÇö vine, radial, grid, frame, panel with power/add/subtract/bbox/attr operations."""
+"""Ornamental GN group builders ΓÇö vine, radial, grid, frame, panel with power/add/subtract/bbox/attr operations."""
 
 from __future__ import annotations
 
@@ -9,7 +9,8 @@ import bpy
 from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, label_tree, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param, add_vector_param,
-    make_group_input,
+    make_group_input, mesh_line_to_curve, sweep_profile,
+    add_music_influence_params, apply_universal_music_pass,
 )
 
 
@@ -38,7 +39,8 @@ def build_ornament_vine(group_name="MEL_ornament_vine"):
     add_float_param(tree, "Thickness", 0.02, 0.005, 0.1)
     add_float_param(tree, "Wave Amp", 0.15, 0.0, 0.5)
     add_float_param(tree, "Wave Freq", 2.0, 0.5, 5.0)
-    add_int_param(tree, "Segments", 32, 8, 128)
+    add_int_param(tree, "Segments", 48, 8, 128)
+    add_music_influence_params(tree)
 
     # Base curve: Mesh Line along X
     base_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 600, by + 400))
@@ -69,16 +71,6 @@ def build_ornament_vine(group_name="MEL_ornament_vine"):
     link_sockets(tree, norm.outputs[0], taper.inputs[0])
     link_sockets(tree, gin.outputs["Taper Power"], taper.inputs[1])
 
-    # Store thickness attribute
-    store_thick = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 200, by))
-    link_sockets(tree, gin.outputs["Geometry"], store_thick.inputs["Geometry"])
-    link_sockets(tree, taper.outputs[0], store_thick.inputs["Value"])
-    store_thick.data_type = "FLOAT"
-    try:
-        store_thick.inputs["Name"].default_value = "vine_thickness"
-    except Exception:
-        pass
-
     # Sine wave Z displacement
     wave = safe_node(tree, "ShaderNodeMath", (bx - 200, by + 200))
     wave.operation = "MULTIPLY"
@@ -103,39 +95,45 @@ def build_ornament_vine(group_name="MEL_ornament_vine"):
     link_sockets(tree, base_line.outputs["Mesh"], set_pos.inputs["Geometry"])
     link_sockets(tree, combine.outputs["Vector"], set_pos.inputs["Position"])
 
-    # Sweep with circle profile
-    circle = safe_node(tree, "GeometryNodeMeshCircle", (bx + 600, by + 300))
-    link_sockets(tree, gin.outputs["Thickness"], circle.inputs["Radius"])
-    circle.inputs["Vertices"].default_value = 8
-    circle.fill_type = "NGON"
-
-    curve_to_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx + 800, by + 200))
-    link_sockets(tree, set_pos.outputs["Geometry"], curve_to_mesh.inputs["Curve"])
-    cm_prof = curve_to_mesh.inputs.get("Profile Curve") or curve_to_mesh.inputs.get("Profile")
-    link_sockets(tree, circle.outputs["Mesh"], cm_prof)
-
-    # Scale radius by taper along vine
-    set_rad = safe_node(tree, "GeometryNodeSetCurveRadius", (bx + 1000, by + 200))
+    vine_curve = mesh_line_to_curve(tree, (bx + 600, by + 50), set_pos.outputs["Geometry"])
+    rad_mul = safe_node(tree, "ShaderNodeMath", (bx + 600, by - 80))
+    rad_mul.operation = "MULTIPLY"
+    link_sockets(tree, taper.outputs[0], rad_mul.inputs[0])
+    link_sockets(tree, gin.outputs["Thickness"], rad_mul.inputs[1])
+    set_rad = safe_node(tree, "GeometryNodeSetCurveRadius", (bx + 800, by + 50))
     if set_rad is None:
-        set_rad = safe_node(tree, "GeometryNodeSetRadius", (bx + 1000, by + 200))
-    rad_geo_in = None
+        set_rad = safe_node(tree, "GeometryNodeSetRadius", (bx + 800, by + 50))
     if set_rad is not None:
         rad_geo_in = set_rad.inputs.get("Curve") or set_rad.inputs.get("Geometry")
         if rad_geo_in is not None:
-            link_sockets(tree, curve_to_mesh.outputs["Mesh"], rad_geo_in)
-        rad_out = set_rad.outputs.get("Curve") or set_rad.outputs.get("Geometry")
-    else:
-        rad_out = curve_to_mesh.outputs["Mesh"]
+            link_sockets(tree, vine_curve, rad_geo_in)
+        rad_in = set_rad.inputs.get("Radius")
+        if rad_in is not None:
+            link_sockets(tree, rad_mul.outputs[0], rad_in)
+        vine_curve = set_rad.outputs.get("Curve") or set_rad.outputs.get("Geometry") or vine_curve
 
-    shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 1200, by + 100))
+    swept = sweep_profile(tree, (bx + 1100, by + 50), vine_curve, gin.outputs["Thickness"],
+                          profile_res=10, already_curve=True)
+
+    store_thick = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 1300, by))
+    link_sockets(tree, swept, store_thick.inputs["Geometry"])
+    link_sockets(tree, taper.outputs[0], store_thick.inputs["Value"])
+    store_thick.data_type = "FLOAT"
+    try:
+        store_thick.inputs["Name"].default_value = "vine_thickness"
+    except Exception:
+        pass
+
+    shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 1500, by + 100))
     shade.inputs["Shade Smooth"].default_value = True
-    link_sockets(tree, rad_out, shade.inputs["Geometry"])
-    link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
+    link_sockets(tree, store_thick.outputs["Geometry"], shade.inputs["Geometry"])
+    music_geo = apply_universal_music_pass(tree, gin, shade.outputs["Geometry"], (bx + 1700, by))
+    link_sockets(tree, music_geo, gout.inputs["Geometry"])
 
     color_node(base_line, "curve")
     color_node(set_pos, "attribute")
     color_node(store_thick, "attribute")
-    color_node(curve_to_mesh, "geometry")
+    color_node(set_rad, "attribute")
     color_node(shade, "geometry")
 
     return label_tree(tree, "MEL_ornament_vine", [
@@ -159,6 +157,7 @@ def build_ornament_radial(group_name="MEL_ornament_radial"):
     add_int_param(tree, "Ring Count", 3, 1, 8)
     add_float_param(tree, "Profile Radius", 0.015, 0.005, 0.08)
     add_float_param(tree, "Center Void", 0.0, 0.0, 0.5)
+    add_music_influence_params(tree)
 
     # Spokes: linear array rotated by circular_array
     spoke_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 400, by + 400))
@@ -166,16 +165,9 @@ def build_ornament_radial(group_name="MEL_ornament_radial"):
     spoke_line.inputs["Count"].default_value = 2
     link_float_to_vector(tree, gin.outputs["Radius"], spoke_line, "Start Location", component=0)
 
-    # Sweep spoke with profile
-    spoke_circle = safe_node(tree, "GeometryNodeMeshCircle", (bx - 200, by + 400))
-    link_sockets(tree, gin.outputs["Profile Radius"], spoke_circle.inputs["Radius"])
-    spoke_circle.inputs["Vertices"].default_value = 6
-    spoke_circle.fill_type = "NGON"
-
-    spoke_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx, by + 400))
-    link_sockets(tree, spoke_line.outputs["Mesh"], spoke_mesh.inputs["Curve"])
-    sm_prof = spoke_mesh.inputs.get("Profile Curve") or spoke_mesh.inputs.get("Profile")
-    link_sockets(tree, spoke_circle.outputs["Mesh"], sm_prof)
+    spoke_mesh_sock = sweep_profile(
+        tree, (bx, by + 400), spoke_line.outputs["Mesh"], gin.outputs["Profile Radius"],
+        profile_res=8, already_curve=False)
 
     # Circular array of spokes -- use the shared Melodia primitive before export realization.
     try:
@@ -186,7 +178,7 @@ def build_ornament_radial(group_name="MEL_ornament_radial"):
     radial_spokes = None
     if spoke_radial and spoke_radial.node_tree:
         if spoke_radial.inputs.get("Geometry"):
-            link_sockets(tree, spoke_mesh.outputs["Mesh"], spoke_radial.inputs["Geometry"])
+            link_sockets(tree, spoke_mesh_sock, spoke_radial.inputs["Geometry"])
         if spoke_radial.inputs.get("Count"):
             link_sockets(tree, gin.outputs["Spoke Count"], spoke_radial.inputs["Count"])
         if spoke_radial.inputs.get("Radius"):
@@ -201,7 +193,7 @@ def build_ornament_radial(group_name="MEL_ornament_radial"):
 
     inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx, by + 200))
     link_sockets(tree, circle_pts.outputs["Mesh"], inst.inputs["Points"])
-    link_sockets(tree, spoke_mesh.outputs["Mesh"], inst.inputs["Instance"])
+    link_sockets(tree, spoke_mesh_sock, inst.inputs["Instance"])
 
     realize = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 200, by + 200))
     link_sockets(tree, inst.outputs["Instances"], realize.inputs["Geometry"])
@@ -213,16 +205,16 @@ def build_ornament_radial(group_name="MEL_ornament_radial"):
     link_sockets(tree, gin.outputs["Ring Count"], ring_line.inputs["Count"])
     link_float_to_vector(tree, gin.outputs["Radius"], ring_line, "Start Location", component=0)
 
-    # Instance ring profiles on each ring
-    ring_circle = safe_node(tree, "GeometryNodeMeshCircle", (bx - 200, by - 100))
-    link_sockets(tree, gin.outputs["Profile Radius"], ring_circle.inputs["Radius"])
-    ring_circle.inputs["Vertices"].default_value = 6
-    ring_circle.fill_type = "NGON"
+    ring_path = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (bx - 200, by - 100))
+    link_sockets(tree, gin.outputs["Radius"], ring_path.inputs["Radius"])
+    ring_path.inputs["Resolution"].default_value = 32
+    ring_mesh_sock = sweep_profile(
+        tree, (bx, by - 100), ring_path.outputs.get("Curve") or ring_path.outputs[0],
+        gin.outputs["Profile Radius"], profile_res=8, already_curve=True)
 
-    # For each ring point, instance a circle
-    ring_inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx, by - 100))
+    ring_inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx + 80, by - 100))
     link_sockets(tree, ring_line.outputs["Mesh"], ring_inst.inputs["Points"])
-    link_sockets(tree, ring_circle.outputs["Mesh"], ring_inst.inputs["Instance"])
+    link_sockets(tree, ring_mesh_sock, ring_inst.inputs["Instance"])
 
     realize_rings = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 200, by - 100))
     link_sockets(tree, ring_inst.outputs["Instances"], realize_rings.inputs["Geometry"])
@@ -232,27 +224,11 @@ def build_ornament_radial(group_name="MEL_ornament_radial"):
     link_sockets(tree, radial_spokes or realize.outputs["Geometry"], join.inputs["Geometry"])
     link_sockets(tree, realize_rings.outputs["Geometry"], join.inputs["Geometry"])
 
-    # Center void subtraction
-    if gin.outputs["Center Void"]:
-        void = safe_node(tree, "GeometryNodeMeshCircle", (bx + 400, by - 100))
-        link_sockets(tree, gin.outputs["Center Void"], void.inputs["Radius"])
-        void.inputs["Vertices"].default_value = 24
-        void.fill_type = "NGON"
-
-        diff = safe_node(tree, "GeometryNodeMeshBoolean", (bx + 600, by))
-        diff.operation = "DIFFERENCE"
-        link_sockets(tree, join.outputs["Geometry"], diff.inputs["Mesh 2"])
-        link_sockets(tree, void.outputs["Mesh"], diff.inputs["Mesh 1"])
-
-        shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 800, by))
-        shade.inputs["Shade Smooth"].default_value = True
-        link_sockets(tree, diff.outputs["Mesh"], shade.inputs["Geometry"])
-        link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
-    else:
-        shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 600, by + 100))
-        shade.inputs["Shade Smooth"].default_value = True
-        link_sockets(tree, join.outputs["Geometry"], shade.inputs["Geometry"])
-        link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
+    shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 600, by + 100))
+    shade.inputs["Shade Smooth"].default_value = True
+    link_sockets(tree, join.outputs["Geometry"], shade.inputs["Geometry"])
+    music_geo = apply_universal_music_pass(tree, gin, shade.outputs["Geometry"], (bx + 800, by))
+    link_sockets(tree, music_geo, gout.inputs["Geometry"])
 
     color_node(circle_pts, "curve")
     color_node(spoke_radial, "instance")
@@ -510,17 +486,17 @@ def build_ornament_panel(group_name="MEL_ornament_panel"):
 from .core import register_builder
 
 register_builder("MEL_ornament_vine", build_ornament_vine, "Ornament Vine (Art Nouveau)",
-    "Art Nouveau vine ΓÇö sinusoidal S-curve sweep with power-tapered thickness",
+    "Art Nouveau vine — sinusoidal S-curve sweep with power-tapered thickness",
     "ornament")
 register_builder("MEL_ornament_radial", build_ornament_radial, "Ornament Radial (Gothic)",
-    "Gothic radial ΓÇö circular spoke array with concentric rings",
+    "Gothic radial — circular spoke array with concentric rings",
     "ornament")
 register_builder("MEL_ornament_grid", build_ornament_grid, "Ornament Grid (Arabesque)",
-    "Arabesque geometric grid ΓÇö cells with edge power falloff",
+    "Arabesque geometric grid — cells with edge power falloff",
     "ornament")
 register_builder("MEL_ornament_frame", build_ornament_frame, "Ornament Frame",
-    "Rectangular picture frame ΓÇö bounding-box edges with corner taper",
+    "Rectangular picture frame — bounding-box edges with corner taper",
     "ornament")
 register_builder("MEL_ornament_panel", build_ornament_panel, "Ornament Panel (Composite)",
-    "Composite panel ΓÇö interior ornament + frame, material zone attribute",
+    "Composite panel — interior ornament + frame, material zone attribute",
     "ornament")

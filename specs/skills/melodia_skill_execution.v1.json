@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_native_authority_contract",
+  "contract_id": "melodia_skill_execution",
+  "status": "native_surface_verified_definition_bridge_required",
+  "purpose": "Keep skill definitions data-driven while routing execution, cost, cooldown, and result ownership through one battle authority.",
+  "bridge_contract": "specs/skills/melodia_skill_definition_bridge.v1.json",
+  "authorities": {
+    "definition": "UMelodiaRhythmSkillDefinition",
+    "rhythm_execution": "UMelodiaRhythmCombatSubsystem",
+    "battle_command": "UMelodiaBattleSession",
+    "resource_spend": "UMelodiaCombatStateComponent",
+    "presentation": "BP_MelodiaSkill_Base"
+  },
+  "current_native_surface": {
+    "definition_fields": [
+      "SkillId",
+      "DisplayName",
+      "Niche",
+      "EffectType",
+      "PatternAsset",
+      "BaseMagnitude",
+      "TargetMode",
+      "TargetCount",
+      "SPCost",
+      "Duration",
+      "grade_multipliers",
+      "presentation_theme"
+    ],
+    "execution_methods": [
+      "UMelodiaBattleSession::CanSubmitSkillCommand",
+      "UMelodiaBattleSession::SubmitSkillCommand",
+      "UMelodiaRhythmCombatSubsystem::StartSession",
+      "UMelodiaRhythmCombatSubsystem::SubmitRatedInput",
+      "UMelodiaRhythmCombatSubsystem::ConsumePendingRequest"
+    ],
+    "definition_path_alignment": "split_currently_battle_session_uses_UMelodiaSongSkillLibrary_while_rhythm_subsystem_uses_UMelodiaRhythmSkillDefinition",
+    "unified_definition_authority": false,
+    "cooldown_authority": false,
+    "request_id_journal": false,
+    "unlock_condition_authority": "outside_current_skill_definition",
+    "bridge_required_before_bp": true,
+    "bridge_gap": {
+      "rhythm_definition_fields_without_stock_recipe_equivalent": [
+        "PatternAsset",
+        "EffectType",
+        "TargetMode",
+        "TargetCount",
+        "Duration",
+        "grade_multipliers",
+        "MIDI_timing_fields"
+      ],
+      "stock_recipe_fields_without_rhythm_definition_equivalent": [
+        "NotePitches",
+        "NoteDurations",
+        "Instrument",
+        "Element",
+        "Materials",
+        "PowerScalar",
+        "ChartNotes"
+      ],
+      "resource_mismatch": "rhythm_subsystem_spends_token_wallet_mana_while_stock_execution_uses_combat_skill_points",
+      "decision": "no_guessed_adapter; define one_way_bridge_and_one_resource_authority_before_materializing_BP_MelodiaSkill_Base"
+    }
+  },
+  "required_future_native_contract": {
+    "request_id": "stable idempotency key per command",
+    "definition_alignment": "one SkillId must resolve to one cost/target/effect definition across battle and rhythm paths",
+    "cooldown": "battle-session-owned turns or phase tokens",
+    "cost_result": ["not_attempted", "spent", "rejected", "refunded"],
+    "failure_reason": ["invalid_target", "insufficient_sp", "cooldown_active", "blocked_context", "duplicate_request"],
+    "execution_invariant": "Blueprint requests stock session execution and never applies damage, reward, SP, or save state",
+    "reset_policy": "cancelled or interrupted request cannot spend cost or create a pending effect"
+  },
+  "blueprint_contract": {
+    "blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaSkill_Base",
+    "allowed_operations": [
+      "bind definition and presentation references",
+      "display target/cost/cooldown state",
+      "request battle-session execution",
+      "present success/failure/cancel result"
+    ],
+    "forbidden_operations": [
+      "direct damage or healing",
+      "direct SP mutation",
+      "direct save mutation",
+      "duplicate rhythm clock or grading rules",
+      "duplicate cooldown authority"
+    ]
+  },
+  "promotion_evidence": [
+    "definition path resolves and fields map to native properties",
+    "stock session rejects invalid target without spending SP",
+    "accepted request produces one rhythm session and one pending result",
+    "cooldown rejection is owned by a native authority",
+    "duplicate request id is replay-safe",
+    "cancel/reset leaves no cost or pending-result side effect"
+  ]
+}

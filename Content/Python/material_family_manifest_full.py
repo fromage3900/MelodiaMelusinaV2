@@ -215,6 +215,85 @@ def _entry(spec: dict[str, Any], *, source_module: str, fallback_folder: str | N
     }
 
 
+# Disk-scan roots for families the spec modules do not cover. Each entry maps a
+# Content/ folder to its shader family. Nonexistent folders are skipped silently.
+DISK_INSTANCE_ROOTS: list[tuple[str, str]] = [
+    (f"{MATERIALS_ROOT}/Instances/Water", "Water"),
+    (f"{MATERIALS_ROOT}/Instances/Landscape", "Landscape"),
+    (f"{MATERIALS_ROOT}/Instances/Sakura", "Sakura"),
+    (f"{MATERIALS_ROOT}/Instances/Character", "Character"),
+    (f"{MATERIALS_ROOT}/Instances/NikkiHero", "Nikki"),
+    (f"{MATERIALS_ROOT}/Instances/NikkiIntegrated", "Nikki"),
+    (f"{MATERIALS_ROOT}/Instances/Rhythm", "Rhythm"),
+    (f"{MATERIALS_ROOT}/Instances/MelodyTokens", "MelodyTokens"),
+    (f"{MATERIALS_ROOT}/Instances/Grotto", "Grotto"),
+    (f"{MATERIALS_ROOT}/Instances/Showcase", "Showcase"),
+    (f"{MATERIALS_ROOT}/SDF/Instances", "SDF"),
+    (f"{MATERIALS_ROOT}/Impressionist/Instances", "Impressionist"),
+    (f"{MATERIALS_ROOT}/Instances/Environment", "Universal"),
+]
+
+# Name-prefix overrides applied after the folder bucket: a MI_Trimsheet_* under
+# Environment/ is a Trimsheet, MI_Zen_* a Zen, etc. First match wins.
+NAME_FAMILY_OVERRIDES: list[tuple[str, str]] = [
+    ("MI_Show_", "Showcase"),
+    ("MI_ZenTrim_", "Trimsheet"),
+    ("MI_Trimsheet_", "Trimsheet"),
+    ("MI_Zen_", "Zen"),
+    ("MI_Baroque_", "Baroque"),
+    ("MI_Cathedral_", "Cathedral"),
+    ("MI_Landscape_", "Landscape"),
+    ("MI_GrandWater_", "Water"),
+    ("MI_Water_", "Water"),
+    ("MI_Sakura_", "Sakura"),
+    ("MI_Nikki_", "Nikki"),
+    ("MI_Flat_", "FlatColors"),
+    ("MI_Cosmo_", "Celestial"),
+    ("MI_Cosmic_", "Celestial"),
+    ("MI_Celestial_", "Celestial"),
+    ("MI_Rhythm_", "Rhythm"),
+    ("MI_SDF_", "SDF"),
+]
+
+
+def _family_for_disk(name: str, folder_family: str) -> str:
+    for prefix, family in NAME_FAMILY_OVERRIDES:
+        if name.startswith(prefix):
+            return family
+    return folder_family
+
+
+def _scan_disk_instances() -> list[dict[str, Any]]:
+    """Walk Content/ instance folders on disk and emit metadata-only entries."""
+    entries: list[dict[str, Any]] = []
+    for folder, family in DISK_INSTANCE_ROOTS:
+        rel = folder[len("/Game/"):]
+        disk = (PROJECT_ROOT / "Content" / rel.replace("/", "\\")).resolve()
+        if not disk.is_dir():
+            continue
+        for uasset in sorted(disk.rglob("*.uasset")):
+            name = uasset.stem
+            if name.endswith("_Inst") or name in {"M_ToonLayer"}:
+                continue
+            fam = _family_for_disk(name, family)
+            entries.append({
+                "material_name": name,
+                "asset_path": _asset_path(folder, name),
+                "parent_master": _parent_master(fam),
+                "shader_family": fam,
+                "material_type": _material_type(fam),
+                "parameter_groups": [fam],
+                "output_maps": _output_maps({}, fam),
+                "preview_path": None,
+                "status": "disk_scan",
+                "purpose": "",
+                "profile": None,
+                "key_params": None,
+                "source_module": "material_family_manifest_full.py:disk_scan",
+            })
+    return entries
+
+
 def build_manifest() -> dict[str, Any]:
     specs: list[tuple[str, list[dict[str, Any]], str | None]] = [
         ("starter_instances.py", _safe_list("starter_instances.py", "STARTER_INSTANCES"), f"{MATERIALS_ROOT}/Instances/Showcase"),
@@ -226,6 +305,12 @@ def build_manifest() -> dict[str, Any]:
     for source_module, items, fallback_folder in specs:
         for spec in items:
             entries.append(_entry(spec, source_module=source_module, fallback_folder=fallback_folder))
+
+    # Disk scan fills the families no spec module covers; spec entries win on
+    # name collision (they carry purpose/profile metadata).
+    disk_entries = _scan_disk_instances()
+    disk_names = {e["material_name"] for e in entries}
+    entries.extend(e for e in disk_entries if e["material_name"] not in disk_names)
 
     deduped: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -246,7 +331,7 @@ def build_manifest() -> dict[str, Any]:
         "ok": True,
         "schema_version": "1.0",
         "project_root": PROJECT_ROOT.as_posix(),
-        "source_modules": [name for name, _, _ in specs],
+        "source_modules": [name for name, _, _ in specs] + ["disk_scan"],
         "counts": {"materials": len(deduped), "families": families},
         "materials": deduped,
     }

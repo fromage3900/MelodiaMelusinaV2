@@ -1,0 +1,6 @@
+---
+Name,SkillId,DisplayName,Description,Niche,EffectType,TempoBPM,MusicalKey,TimeSignatureNumerator,TimeSignatureDenominator,PatternAsset,NoteDensity,IntroBeats,ActiveBeats,OutroBeats,BaseMagnitude,TargetMode,TargetCount,Duration,SPCost,MaxTurnShift,LaneColor,CrestTheme
+Skill_Hero_A01,Hero_Attack_01,"Crescendo Strike","A vigorous rhythmic attack that scales with perfect timing.",Vigorous,Damage,128.0,"C minor",4,4,"/Game/Audio/MIDI/Midi_Battle_Attack01.Midi_Battle_Attack01",2,2,4,1,1.5,SingleEnemy,1,0.0,5,0,"(R=1.0,G=0.2,B=0.2,A=1.0)",Theme_Sword
+Skill_Hero_H01,Hero_Heal_01,"Soothing Melody","A calm healing rhythm.",Calm,Heal,100.0,"G major",4,4,"/Game/Audio/MIDI/Midi_Battle_Heal01.Midi_Battle_Heal01",2,2,4,2,2.0,SingleAlly,1,0.0,10,0,"(R=0.2,G=1.0,B=0.2,A=1.0)",Theme_Shield
+Skill_Hero_D01,Hero_Debuff_01,"Sorrowful Dirge","A sad song that weakens the enemy's attack power.",Sad,Damage,90.0,"D minor",3,4,"/Game/Audio/MIDI/Midi_Battle_Debuff01.Midi_Battle_Debuff01",1,1,3,1,0.5,SingleEnemy,1,10.0,15,1,"(R=0.5,G=0.2,B=1.0,A=1.0)",Theme_Shadow
+---

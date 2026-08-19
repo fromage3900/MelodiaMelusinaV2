@@ -14,6 +14,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from melusina_anim_unit_guard import find_sidecar, forbidden_lane_a_reasons
+
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_INBOX = PROJECT_DIR / "Imports" / "Animations" / "Cascadeur" / "Inbox"
@@ -87,6 +89,8 @@ def _validate(path: Path, expected_skeleton: str) -> dict[str, Any]:
     if root_motion == "root_motion" and context in {"exploration", "battle"}:
         result["errors"].append("Exploration and battle clips must remain in_place")
 
+    result["errors"].extend(forbidden_lane_a_reasons(value, path.name))
+
     result["ok"] = not result["errors"]
     return result
 
@@ -103,9 +107,9 @@ def _collect_manifests(args: argparse.Namespace) -> tuple[list[Path], list[str]]
             return paths, errors
         fbxs = sorted(path for path in inbox.iterdir() if path.suffix.lower() == ".fbx")
         for fbx in fbxs:
-            sidecar = fbx.with_suffix(".json")
-            if not sidecar.is_file():
-                message = f"Missing sidecar for {fbx.name}: {sidecar.name}"
+            sidecar = find_sidecar(fbx)
+            if sidecar is None:
+                message = f"Missing sidecar for {fbx.name} (.json or .manifest.json)"
                 if args.require_sidecar:
                     errors.append(message)
                 else:

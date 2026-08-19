@@ -1,0 +1,18 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "Melodia NPR",
+	"Name": "MelodiaNPR",
+	"Description": "Melodia NPR clothing pipeline — toon shading parameters + modular clothing blendshape sync (Decisions 037, 044)",
+	"Category": "Rendering",
+	"Author": "Melodia Team",
+	"EngineVersion": "5.8",
+	"Modules": [
+		{
+			"Name": "MelodiaNPR",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

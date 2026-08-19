@@ -1,5 +1,5 @@
-ï»¿# ZunZun Project Î“Ã‡Ã¶ Complete Family Integration
-## 7 Characters â”œÃ¹ Melodia Game Blueprint Architecture
+# ZunZun Project GÇö Complete Family Integration
+## 7 Characters +ù Melodia Game Blueprint Architecture
 
 ---
 
@@ -8,28 +8,28 @@
 All characters are from the **Tohoku Zunko & Zundamon Project** (SSS LLC.).  
 Royalty-free for non-commercial use. VOICEVOX voices free for all use.
 
-### ZUNDAMON (Ï€Ã¼ÃœÏ€Ã©Ã´Ï€Ã¼Ã¡Ï€Ã©Ã©Ï€Ã©Ã´) Î“Ã‡Ã¶ The Mochi Merchant
+### ZUNDAMON (püÜpéôpüápéépéô) GÇö The Mochi Merchant
 ```
 Role:        First NPC / Questkeeper / Comic Relief / Shopkeeper
 Species:     Zunda Mochi Fairy
 Origin:      Green East (Tohoku analogue)
 VOICEVOX ID: 3  (childlike high voice)
 Weapon:      Zunda Arrow (magical mochi bow)
-Speech:      "~na no da" (Ï€Ã¼Â¬Ï€Ã¼Â«Ï€Ã¼Ã¡) suffix, uses "boku" pronoun
+Speech:      "~na no da" (pü¬pü«püá) suffix, uses "boku" pronoun
 Personality: Energetic, unlucky, earnest, hungry
 Game Role:   Quest hub vendor, early-game shop, tutorial guide
 Party Role:  Ranged support (Zunda Arrow), buff provider (mochi items)
 ```
-Î“Â£Ã  Assets: VRM, FBX, PMX, Blender scene, all textures, Unity package  
-Î“Â£Ã  Voice: VOICEVOX speaker 3  
-Î“Â£Ã  Dialogue: 20 lines written  
-Î“Â£Ã  Blueprint spec: complete  
+G£à Assets: VRM, FBX, PMX, Blender scene, all textures, Unity package  
+G£à Voice: VOICEVOX speaker 3  
+G£à Dialogue: 20 lines written  
+G£à Blueprint spec: complete  
 
-### TOHOKU ZUNKO (ÂµÂ¥â–’ÏƒÃ®Ã¹Ï€Ã¼ÃœÏ€Ã©Ã´ÏƒÂ¡Ã‰) Î“Ã‡Ã¶ The Celestial Baker
+### TOHOKU ZUNKO (µ¥¦sîùpüÜpéôs¡É) GÇö The Celestial Baker
 ```
 Role:        Town Elder / Master Baker / Party Leader Candidate
 Species:     Zunda Mochi Human (magical baker)
-Origin:      Green East (Tohoku analogue) Î“Ã‡Ã¶ the central town
+Origin:      Green East (Tohoku analogue) GÇö the central town
 VOICEVOX ID: 14 (gentle, warm maternal voice)
 Weapon:      Mochi Mallet (two-handed hammer, magical)
 Speech:      Polite, motherly, occasionally scolding
@@ -37,14 +37,14 @@ Personality: Warm, responsible, overworks herself, master chef
 Game Role:   Town leader, upgrades player's cooking/crafting, late-game party member
 Party Role:  Healer (mochi-based healing magic), buffer (food buffs), heavy melee
 ```
-â‰¡Æ’Ã¶Âº Assets needed: VRM download, textures, VOICEVOX speaker 14  
-â‰¡Æ’Ã´Ã¯ Voice actor: Satomi Satâ”¼Ã¬ (JP VA, known for Ritsu Tainaka in K-ON!)  
+=ƒöº Assets needed: VRM download, textures, VOICEVOX speaker 14  
+=ƒôï Voice actor: Satomi Sat+ì (JP VA, known for Ritsu Tainaka in K-ON!)  
 
-### TOHOKU KIRITAN (ÂµÂ¥â–’ÏƒÃ®Ã¹Ï€Ã¼Ã¬Ï€Ã©Ã¨Ï€Ã¼Æ’Ï€Ã©Ã´) Î“Ã‡Ã¶ The Blade Apprentice
+### TOHOKU KIRITAN (µ¥¦sîùpüìpéèpüƒpéô) GÇö The Blade Apprentice
 ```
 Role:        Blacksmith's Apprentice / Weapon Upgrader / Early Party Member
 Species:     Human (Zunko's younger sister)
-Origin:      Green East Î“Ã‡Ã¶ the town forge
+Origin:      Green East GÇö the town forge
 VOICEVOX ID: 5  (bright, earnest young voice)
 Weapon:      Kiritan Blade (single-edged short sword)
 Speech:      Energetic, uses "~ssu" informal suffix, tomboyish
@@ -52,14 +52,14 @@ Personality: Hardworking, competitive, loyal, slightly hot-headed
 Game Role:   Weapon/gear upgrades, joins party early (Quest 2 area)
 Party Role:  Melee DPS, fast attacker, armor-piercing
 ```
-â‰¡Æ’Ã¶Âº Assets needed: VRM download, textures, VOICEVOX speaker 5  
-â‰¡Æ’Ã´Ã¯ Voice actor: Eri Kitamura (JP VA, known for Sayaka Miki in Madoka Magica)  
+=ƒöº Assets needed: VRM download, textures, VOICEVOX speaker 5  
+=ƒôï Voice actor: Eri Kitamura (JP VA, known for Sayaka Miki in Madoka Magica)  
 
-### TOHOKU ITAKO (ÂµÂ¥â–’ÏƒÃ®Ã¹Ï€Ã©Ã±Ï€Ã©â”Ï€Ã©â”‚) Î“Ã‡Ã¶ The Spirit Guide
+### TOHOKU ITAKO (µ¥¦sîùpéñpé+pé¦) GÇö The Spirit Guide
 ```
 Role:        Mystical Guide / Skill Trainer / Late-Game Revelation
 Species:     Human (Zunko's older sister) + Itako spirit medium
-Origin:      Green East Î“Ã‡Ã¶ the mountain shrine
+Origin:      Green East GÇö the mountain shrine
 VOICEVOX ID: 6  (calm, ethereal adult female voice)
 Weapon:      Spirit Beads (ranged magical, channeled)
 Speech:      Mysterious, poetic, speaks in riddles, dots sentences with "..."
@@ -67,40 +67,40 @@ Personality: Serene, all-knowing, slightly eerie, protective of sisters
 Game Role:   Skill tree trainer, lore expositor, reveals Melusina connection
 Party Role:  Magic DPS, debuffer, spirit summoner
 ```
-â‰¡Æ’Ã¶Âº Assets needed: VRM download, textures, VOICEVOX speaker 6  
-â‰¡Æ’Ã´Ã¯ Voice actor: Asami Imai (JP VA, known for Kurisu Makise in Steins;Gate)  
+=ƒöº Assets needed: VRM download, textures, VOICEVOX speaker 6  
+=ƒôï Voice actor: Asami Imai (JP VA, known for Kurisu Makise in Steins;Gate)  
 
-### SHIKOKU METAN (ÏƒÂ¢Â¢ÏƒÂ¢â•œÏ€Ã©Ã¼Ï€Ã¼Æ’Ï€Ã©Ã´) Î“Ã‡Ã¶ The Tsundere Alchemist
+### SHIKOKU METAN (s¢¢s¢+péüpüƒpéô) GÇö The Tsundere Alchemist
 ```
 Role:        Potion Shop / Elemental Crafting / Ranged Party Member
 Species:     Human (from Shikoku region)
 Origin:      Southern Isles (Shikoku analogue)
 VOICEVOX ID: 2  (crisp, confident, slightly haughty voice)
 Weapon:      Alchemy Flask (thrown elemental bombs)
-Speech:      Tsundere Î“Ã‡Ã¶ "It's not like I made this for you or anything!"
+Speech:      Tsundere GÇö "It's not like I made this for you or anything!"
 Personality: Prickly exterior, secretly cares deeply, perfectionist
 Game Role:   Potion/elixir vendor, elemental crafting station
 Party Role:  Elemental mage (fire/ice/lightning bombs), AoE damage
 ```
-â‰¡Æ’Ã¶Âº Assets needed: VRM download, textures, VOICEVOX speaker 2  
-â‰¡Æ’Ã´Ã¯ Voice actor: Yuka â”¼Ã®tsubo (JP VA)  
+=ƒöº Assets needed: VRM download, textures, VOICEVOX speaker 2  
+=ƒôï Voice actor: Yuka +îtsubo (JP VA)  
 
-### KYUSHU SORA (Î£â•£Â¥Ïƒâ•–â‚§Ï€Ã¼Â¥Ï€Ã©Ã«) Î“Ã‡Ã¶ The Elegant Bard
+### KYUSHU SORA (S¦¥s+Ppü¥péë) GÇö The Elegant Bard
 ```
 Role:        Music Shop / Bard / Rhythm Minigame Host
 Species:     Human (from Kyushu region)
 Origin:      Southern Continent (Kyushu analogue)
 VOICEVOX ID: 16 (elegant, refined adult voice)
-Weapon:      Biwa (Japanese lute Î“Ã‡Ã¶ magical sound waves)
+Weapon:      Biwa (Japanese lute GÇö magical sound waves)
 Speech:      Elegant, poetic, uses honorifics, occasionally dramatic
 Personality: Refined, theatrical, secretly mischievous, loves music
 Game Role:   Music/soundtrack vendor, hosts GMM rhythm minigames
 Party Role:  Bard (buff/debuff through music), sound-wave attacks
 ```
-â‰¡Æ’Ã¶Âº Assets needed: VRM download, textures, VOICEVOX speaker 16  
-â‰¡Æ’Ã´Ã¯ Voice actor: Kikuko Inoue (JP VA, known for Belldandy in Oh My Goddess)  
+=ƒöº Assets needed: VRM download, textures, VOICEVOX speaker 16  
+=ƒôï Voice actor: Kikuko Inoue (JP VA, known for Belldandy in Oh My Goddess)  
 
-### CHUBU TSURUGI (Î£â••Â¡Î˜Ã¢Â¿Ï€Ã¼Ã±Ï€Ã©Ã¯Ï€Ã¼Ã„) Î“Ã‡Ã¶ The Stoic Guardian
+### CHUBU TSURUGI (S+¡Tâ¿püñpéïpüÄ) GÇö The Stoic Guardian
 ```
 Role:        Arena Master / Combat Trainer / Tank Party Member
 Species:     Human (from Chubu region)
@@ -112,36 +112,36 @@ Personality: Honorable, protective, speaks little, acts decisively
 Game Role:   Combat arena host, training dummy, boss rush mode
 Party Role:  Tank, damage absorber, counter-attacker
 ```
-â‰¡Æ’Ã¶Âº Assets needed: VRM download, textures, VOICEVOX speaker 17  
-â‰¡Æ’Ã´Ã¯ Voice actor: Sayaka Ohara (JP VA, known for Erza Scarlet in Fairy Tail)  
+=ƒöº Assets needed: VRM download, textures, VOICEVOX speaker 17  
+=ƒôï Voice actor: Sayaka Ohara (JP VA, known for Erza Scarlet in Fairy Tail)  
 
 ---
 
-## PART 2: Lore Î“Ã‡Ã¶ The Seven Realm Guardians
+## PART 2: Lore GÇö The Seven Realm Guardians
 
 ```
-MELODIA'S COSMOS Î“Ã‡Ã¶ SEVEN DIRECTIONAL REALMS
-Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰
+MELODIA'S COSMOS GÇö SEVEN DIRECTIONAL REALMS
+GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
 
-        North (Itako Î“Ã‡Ã¶ Spirit Shrine)
-             Î“Ã»â–“
-             Î“Ã¶Ã©
-West Î“Ã¹Ã¤Î“Ã¶Ã‡Î“Ã¶Ã‡Î“Ã¶Ã‡ [Astral Threshold] Î“Ã¶Ã‡Î“Ã¶Ã‡Î“Ã¶Ã‡Î“Ã»â•‘ East (Zundamon, Zunko, Kiritan)
-  (Metan)      Î“Ã»â–“  Melusina           (Green East Î“Ã‡Ã¶ Tohoku)
-             Î“Ã¶Ã©
-        South (Sora Î“Ã‡Ã¶ Music Pavilion)
-             Î“Ã¶Ã©
-             Î“Ã»â•
-        Center (Tsurugi Î“Ã‡Ã¶ Mountain Fortress)
+        North (Itako GÇö Spirit Shrine)
+             Gû¦
+             Göé
+West GùäGöÇGöÇGöÇ [Astral Threshold] GöÇGöÇGöÇGû¦ East (Zundamon, Zunko, Kiritan)
+  (Metan)      Gû¦  Melusina           (Green East GÇö Tohoku)
+             Göé
+        South (Sora GÇö Music Pavilion)
+             Göé
+             Gû+
+        Center (Tsurugi GÇö Mountain Fortress)
 ```
 
-Each of the **seven travelers** is unconsciously guarding one of the seven directional gateways to the Astral Threshold Î“Ã‡Ã¶ the boundary between worlds that **Melusina** protects.
+Each of the **seven travelers** is unconsciously guarding one of the seven directional gateways to the Astral Threshold GÇö the boundary between worlds that **Melusina** protects.
 
-- **Zundamon** guards the East gate Î“Ã‡Ã¶ but she didn't know it. Her Zunda Arrow accidentally pierced the gate, letting her cross into Melodia's realm.
+- **Zundamon** guards the East gate GÇö but she didn't know it. Her Zunda Arrow accidentally pierced the gate, letting her cross into Melodia's realm.
 - **Zunko, Kiritan, and Itako** are the Tohoku sisters who came looking for Zundamon. They discovered their own gate-guardian nature in the process.
 - **Metan, Sora, and Tsurugi** arrived from their respective regions, each drawn by the resonance of Melusina's celestial energy bleeding through the Threshold.
 
-Their convergence is NOT coincidence. Melusina's power is fading (the central conflict of the game), and the Threshold is cracking. The seven guardians are being pulled toward the center of the cosmos by an ancient pact Î“Ã‡Ã¶ if Melusina falls, one of them must take her place.
+Their convergence is NOT coincidence. Melusina's power is fading (the central conflict of the game), and the Threshold is cracking. The seven guardians are being pulled toward the center of the cosmos by an ancient pact GÇö if Melusina falls, one of them must take her place.
 
 **The game's true ending depends on which guardian the player has bonded with most.**
 
@@ -153,36 +153,36 @@ Their convergence is NOT coincidence. Melusina's power is fading (the central co
 
 ```
 BP_ZunZun_NPC_Base (Character)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BP_Zundamon_NPC
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BP_Zunko_NPC
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BP_Kiritan_NPC
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BP_Itako_NPC
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BP_Metan_NPC
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BP_Sora_NPC
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ BP_Tsurugi_NPC
+Gö£GöÇGöÇ BP_Zundamon_NPC
+Gö£GöÇGöÇ BP_Zunko_NPC
+Gö£GöÇGöÇ BP_Kiritan_NPC
+Gö£GöÇGöÇ BP_Itako_NPC
+Gö£GöÇGöÇ BP_Metan_NPC
+Gö£GöÇGöÇ BP_Sora_NPC
+GööGöÇGöÇ BP_Tsurugi_NPC
 ```
 
 ### 3.2 Component Architecture
 
 ```
 BP_ZunZun_NPC_Base
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ SkeletalMeshComponent        (SK_CharacterName)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ AnimationBP                  (ABP_CharacterName)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ DialogueComponent            (UZunZunDialogueComponent)
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ VOICEVOXAudioMap         (TMap<FName, USoundWave>)
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ SubtitleWidget           (UW_SubtitleBubble)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ QuestGiverInterface          (IZunZunQuestGiver)
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ QuestDataTable           (DT_CharacterName_Quests)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ ShopInventory (optional)     (DA_CharacterName_Shop)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ PartyMemberComponent (opt.)  (UPartyMemberComponent)
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ CombatStats              (FCharacterStats)
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ SkillSet                 (TArray<USkillDataAsset>)
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ EquipmentSlots           (FEquipmentLoadout)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BehaviorTree                 (BT_CharacterName)
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ InteractableTrigger          (USphereComponent)
+Gö£GöÇGöÇ SkeletalMeshComponent        (SK_CharacterName)
+Gö£GöÇGöÇ AnimationBP                  (ABP_CharacterName)
+Gö£GöÇGöÇ DialogueComponent            (UZunZunDialogueComponent)
+Göé   Gö£GöÇGöÇ VOICEVOXAudioMap         (TMap<FName, USoundWave>)
+Göé   GööGöÇGöÇ SubtitleWidget           (UW_SubtitleBubble)
+Gö£GöÇGöÇ QuestGiverInterface          (IZunZunQuestGiver)
+Göé   GööGöÇGöÇ QuestDataTable           (DT_CharacterName_Quests)
+Gö£GöÇGöÇ ShopInventory (optional)     (DA_CharacterName_Shop)
+Gö£GöÇGöÇ PartyMemberComponent (opt.)  (UPartyMemberComponent)
+Göé   Gö£GöÇGöÇ CombatStats              (FCharacterStats)
+Göé   Gö£GöÇGöÇ SkillSet                 (TArray<USkillDataAsset>)
+Göé   GööGöÇGöÇ EquipmentSlots           (FEquipmentLoadout)
+Gö£GöÇGöÇ BehaviorTree                 (BT_CharacterName)
+GööGöÇGöÇ InteractableTrigger          (USphereComponent)
 ```
 
-### 3.3 Dialogue Manager Î“Ã‡Ã¶ UZunZunDialogueComponent
+### 3.3 Dialogue Manager GÇö UZunZunDialogueComponent
 
 ```cpp
 // C++ base class (or Blueprint implementable)
@@ -192,10 +192,10 @@ class UZunZunDialogueComponent : public UActorComponent
     // VOICEVOX speaker ID for this character
     UPROPERTY(EditDefaultsOnly) int32 VOICEVOXSpeakerID;
     
-    // Map of TriggerName Î“Ã¥Ã† SoundWave (pre-generated WAVs)
+    // Map of TriggerName GåÆ SoundWave (pre-generated WAVs)
     UPROPERTY(EditDefaultsOnly) TMap<FName, USoundWave> VoiceLines;
     
-    // Map of TriggerName Î“Ã¥Ã† Localized subtitle text
+    // Map of TriggerName GåÆ Localized subtitle text
     UPROPERTY(EditDefaultsOnly) TMap<FName, FText> Subtitles;
     
     // Speak a line by trigger name
@@ -209,7 +209,7 @@ class UZunZunDialogueComponent : public UActorComponent
 };
 ```
 
-### 3.4 Quest Giver Interface Î“Ã‡Ã¶ IZunZunQuestGiver
+### 3.4 Quest Giver Interface GÇö IZunZunQuestGiver
 
 ```cpp
 UINTERFACE()
@@ -235,7 +235,7 @@ class UZunZunQuestGiver : public UInterface
 };
 ```
 
-### 3.5 Party Member Component Î“Ã‡Ã¶ UPartyMemberComponent
+### 3.5 Party Member Component GÇö UPartyMemberComponent
 
 ```cpp
 UCLASS()
@@ -264,78 +264,78 @@ class UPartyMemberComponent : public UActorComponent
 };
 ```
 
-### 3.6 Behavior Tree Î“Ã‡Ã¶ BT_ZunZun_Base
+### 3.6 Behavior Tree GÇö BT_ZunZun_Base
 
 ```
 Root (Selector)
-Î“Ã¶Ã©
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ [High Priority] Sequence: Combat
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Condition: IsInParty && EnemiesInRange
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: MoveToCover
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: UseSkill (pick from skill set)
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Wait (skill cooldown)
-Î“Ã¶Ã©
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Player Interaction
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Condition: PlayerWithinInteractRange
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: FacePlayer
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Selector:
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Quest Available
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: ShowQuestIndicator (!)
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Quest Complete
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: ShowCompletionIndicator (?)
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Shop/Chat
-Î“Ã¶Ã©   Î“Ã¶Ã©       Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: GenericGreet
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: WaitForInteraction
-Î“Ã¶Ã©
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Hub Routine (day cycle)
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Condition: TimeOfDay == config.HoursActive
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: MoveTo(HubLocation)
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: PlayAnimation(IdleActivity)
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Zundamon: PoundMochi, WanderAround
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Zunko:    Baking, Cleaning
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Kiritan:  ForgeHammer, PracticeSwing
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Itako:    Meditate, ReadScrolls
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Metan:    MixPotions, OrganizeShelves
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sora:     PlayBiwa, Compose
-Î“Ã¶Ã©   Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Tsurugi:  Train, PolishSword
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: IdleVoiceLine (random every 30-60s)
-Î“Ã¶Ã©
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Sleep
-    Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Condition: TimeOfDay == NightTime
-    Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: MoveTo(HomeLocation)
-    Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: FadeOut + wait
+Göé
+Gö£GöÇGöÇ [High Priority] Sequence: Combat
+Göé   Gö£GöÇGöÇ Condition: IsInParty && EnemiesInRange
+Göé   Gö£GöÇGöÇ Action: MoveToCover
+Göé   Gö£GöÇGöÇ Action: UseSkill (pick from skill set)
+Göé   GööGöÇGöÇ Action: Wait (skill cooldown)
+Göé
+Gö£GöÇGöÇ Sequence: Player Interaction
+Göé   Gö£GöÇGöÇ Condition: PlayerWithinInteractRange
+Göé   Gö£GöÇGöÇ Action: FacePlayer
+Göé   Gö£GöÇGöÇ Selector:
+Göé   Göé   Gö£GöÇGöÇ Sequence: Quest Available
+Göé   Göé   Göé   GööGöÇGöÇ Action: ShowQuestIndicator (!)
+Göé   Göé   Gö£GöÇGöÇ Sequence: Quest Complete
+Göé   Göé   Göé   GööGöÇGöÇ Action: ShowCompletionIndicator (?)
+Göé   Göé   GööGöÇGöÇ Sequence: Shop/Chat
+Göé   Göé       GööGöÇGöÇ Action: GenericGreet
+Göé   GööGöÇGöÇ Action: WaitForInteraction
+Göé
+Gö£GöÇGöÇ Sequence: Hub Routine (day cycle)
+Göé   Gö£GöÇGöÇ Condition: TimeOfDay == config.HoursActive
+Göé   Gö£GöÇGöÇ Action: MoveTo(HubLocation)
+Göé   Gö£GöÇGöÇ Action: PlayAnimation(IdleActivity)
+Göé   Göé   Gö£GöÇGöÇ Zundamon: PoundMochi, WanderAround
+Göé   Göé   Gö£GöÇGöÇ Zunko:    Baking, Cleaning
+Göé   Göé   Gö£GöÇGöÇ Kiritan:  ForgeHammer, PracticeSwing
+Göé   Göé   Gö£GöÇGöÇ Itako:    Meditate, ReadScrolls
+Göé   Göé   Gö£GöÇGöÇ Metan:    MixPotions, OrganizeShelves
+Göé   Göé   Gö£GöÇGöÇ Sora:     PlayBiwa, Compose
+Göé   Göé   GööGöÇGöÇ Tsurugi:  Train, PolishSword
+Göé   GööGöÇGöÇ Action: IdleVoiceLine (random every 30-60s)
+Göé
+GööGöÇGöÇ Sequence: Sleep
+    Gö£GöÇGöÇ Condition: TimeOfDay == NightTime
+    Gö£GöÇGöÇ Action: MoveTo(HomeLocation)
+    GööGöÇGöÇ Action: FadeOut + wait
 ```
 
 ### 3.7 Widget Architecture
 
 ```
 W_Hub_QuestBoard (umg)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Title: "Mochi Board" / NPC-specific name
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Available Quests List (vertical scroll box)
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ W_QuestCard â”œÃ¹ N
-Î“Ã¶Ã©       Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ QuestName, Description, Rewards
-Î“Ã¶Ã©       Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ [Accept] button
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Active Quests List
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ W_ActiveQuest â”œÃ¹ 3 max
-Î“Ã¶Ã©       Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ QuestName, Progress bar
-Î“Ã¶Ã©       Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ [Track] button
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ NPC Portrait (animated)
+Gö£GöÇGöÇ Title: "Mochi Board" / NPC-specific name
+Gö£GöÇGöÇ Available Quests List (vertical scroll box)
+Göé   GööGöÇGöÇ W_QuestCard +ù N
+Göé       Gö£GöÇGöÇ QuestName, Description, Rewards
+Göé       GööGöÇGöÇ [Accept] button
+Gö£GöÇGöÇ Active Quests List
+Göé   GööGöÇGöÇ W_ActiveQuest +ù 3 max
+Göé       Gö£GöÇGöÇ QuestName, Progress bar
+Göé       GööGöÇGöÇ [Track] button
+GööGöÇGöÇ NPC Portrait (animated)
 
 W_Shop (umg)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ NPC Name + Portrait
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Category Tabs (Consumable, Equipment, Material, Special)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Item Grid
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ W_ShopItem â”œÃ¹ N
-Î“Ã¶Ã©       Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Item Icon, Name, Price
-Î“Ã¶Ã©       Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Description tooltip
-Î“Ã¶Ã©       Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ [Buy] / [Sell] buttons
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Player Gold display
+Gö£GöÇGöÇ NPC Name + Portrait
+Gö£GöÇGöÇ Category Tabs (Consumable, Equipment, Material, Special)
+Gö£GöÇGöÇ Item Grid
+Göé   GööGöÇGöÇ W_ShopItem +ù N
+Göé       Gö£GöÇGöÇ Item Icon, Name, Price
+Göé       Gö£GöÇGöÇ Description tooltip
+Göé       GööGöÇGöÇ [Buy] / [Sell] buttons
+GööGöÇGöÇ Player Gold display
 
 W_DialogueBubble (umg)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ NPC Portrait (expression-driven)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Subtitle Text (typewriter effect)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Speaker Name + relationship meter
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Response Options (2-4 choices)
+Gö£GöÇGöÇ NPC Portrait (expression-driven)
+Gö£GöÇGöÇ Subtitle Text (typewriter effect)
+Gö£GöÇGöÇ Speaker Name + relationship meter
+GööGöÇGöÇ Response Options (2-4 choices)
 ```
 
 ---
@@ -346,23 +346,23 @@ W_DialogueBubble (umg)
 
 ```
 MMD Motion Data (.vmd)          VRM Model Animation
-        Î“Ã¶Ã©                              Î“Ã¶Ã©
-        Î“Ã»â•                              Î“Ã»â•
+        Göé                              Göé
+        Gû+                              Gû+
 Blender Import (MMD Tools / VRM Importer)
-        Î“Ã¶Ã©
-        Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Retarget to ZunZun skeleton
-        Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Clean up keyframes, adjust timing
-        Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Add root motion extraction
-        Î“Ã¶Ã©
-        Î“Ã»â•
+        Göé
+        Gö£GöÇGöÇ Retarget to ZunZun skeleton
+        Gö£GöÇGöÇ Clean up keyframes, adjust timing
+        Gö£GöÇGöÇ Add root motion extraction
+        Göé
+        Gû+
 FBX Export (per animation clip)
-        Î“Ã¶Ã©
-        Î“Ã»â•
-Unreal Import Î“Ã¥Ã† AnimSequence assets
-        Î“Ã¶Ã©
-        Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Add to Animation Blueprint (state machine)
-        Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Add to Blend Space (locomotion)
-        Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Add to Montage (combat / quest interactions)
+        Göé
+        Gû+
+Unreal Import GåÆ AnimSequence assets
+        Göé
+        Gö£GöÇGöÇ Add to Animation Blueprint (state machine)
+        Gö£GöÇGöÇ Add to Blend Space (locomotion)
+        GööGöÇGöÇ Add to Montage (combat / quest interactions)
 ```
 
 ### 4.2 Standard Animation Set (Per Character)
@@ -428,18 +428,18 @@ The existing `generate_zundamon_voice.py` can be extended to accept a `--speaker
 
 ```
 Tools/generate_all_voices.py
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Reads: Content/Melodia/Characters/Zundamon/zundamon_dialogue.json
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Reads: Content/Melodia/Characters/Zunko/zunko_dialogue.json
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Reads: Content/Melodia/Characters/Kiritan/kiritan_dialogue.json
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ ... (one per character)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Calls: VOICEVOX API per line with correct speaker ID
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Outputs: Content/Melodia/Characters/{Name}/Audio/*.wav
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Generates: voice_manifest.json per character
+Gö£GöÇGöÇ Reads: Content/Melodia/Characters/Zundamon/zundamon_dialogue.json
+Gö£GöÇGöÇ Reads: Content/Melodia/Characters/Zunko/zunko_dialogue.json
+Gö£GöÇGöÇ Reads: Content/Melodia/Characters/Kiritan/kiritan_dialogue.json
+Gö£GöÇGöÇ ... (one per character)
+Gö£GöÇGöÇ Calls: VOICEVOX API per line with correct speaker ID
+Gö£GöÇGöÇ Outputs: Content/Melodia/Characters/{Name}/Audio/*.wav
+GööGöÇGöÇ Generates: voice_manifest.json per character
 ```
 
 ---
 
-## PART 6: Asset Manifest Î“Ã‡Ã¶ What to Download
+## PART 6: Asset Manifest GÇö What to Download
 
 ### Already Owned
 
@@ -456,9 +456,9 @@ Tools/generate_all_voices.py
 
 | Character | Assets | Source | Priority |
 |-----------|--------|--------|----------|
-| **Tohoku Zunko** | VRM model, textures, MMD model | zunko.jp Î“Ã¥Ã† download page | P0 |
-| **Tohoku Kiritan** | VRM model, textures, MMD model | zunko.jp Î“Ã¥Ã† download page | P0 |
-| **Tohoku Itako** | VRM model, textures, MMD model | zunko.jp Î“Ã¥Ã† download page | P0 |
+| **Tohoku Zunko** | VRM model, textures, MMD model | zunko.jp GåÆ download page | P0 |
+| **Tohoku Kiritan** | VRM model, textures, MMD model | zunko.jp GåÆ download page | P0 |
+| **Tohoku Itako** | VRM model, textures, MMD model | zunko.jp GåÆ download page | P0 |
 | **Shikoku Metan** | VRM model | BOOTH / VRoid Hub | P1 |
 | **Kyushu Sora** | VRM model | BOOTH / VRoid Hub | P2 |
 | **Chubu Tsurugi** | VRM model | BOOTH / VRoid Hub | P2 |
@@ -472,8 +472,8 @@ Official site:     https://zunko.jp/
 Download page:     https://zunko.jp/con_download.html
 Guidelines:        https://zunko.jp/guideline.html
 VOICEVOX:          https://voicevox.hiroshiba.jp/
-BOOTH (VRM store): https://booth.pm/ (search: ÂµÂ¥â–’ÏƒÃ®Ã¹Ï€Ã¼ÃœÏ€Ã©Ã´ÏƒÂ¡Ã‰ VRM)
-MMD motions:       https://bowlroll.net/ (search: Ï€Ã¼ÃœÏ€Ã©Ã´Ï€Ã¼Ã¡Ï€Ã©Ã©Ï€Ã©Ã´ Ï€Ã¢Ã³Ï€Ã¢â•Ï€Ã©â•–Ï€Ã¢ÂºÏ€Ã¢â”‚)
+BOOTH (VRM store): https://booth.pm/ (search: µ¥¦sîùpüÜpéôs¡É VRM)
+MMD motions:       https://bowlroll.net/ (search: püÜpéôpüápéépéô pâópâ+pé+pâºpâ¦)
 ```
 
 ---
@@ -481,17 +481,17 @@ MMD motions:       https://bowlroll.net/ (search: Ï€Ã¼ÃœÏ€Ã©Ã´Ï€Ã¼Ã¡Ï€Ã©Ã©Ï€Ã©Ã´
 ## PART 7: Implementation Roadmap
 
 ```
-PHASE 1 Î“Ã‡Ã¶ Core Family (Zundamon + Zunko + Kiritan)     [NOW]
-Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰
-  [Î“Â£Ã´] Zundamon: FBX staged, dialogue written, BP spec done
-  [ ] Install VOICEVOX Î“Ã¥Ã† generate Zundamon voice WAVs
-  [ ] Run import_zundamon.py in UE Î“Ã¥Ã† SK + materials
+PHASE 1 GÇö Core Family (Zundamon + Zunko + Kiritan)     [NOW]
+GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
+  [G£ô] Zundamon: FBX staged, dialogue written, BP spec done
+  [ ] Install VOICEVOX GåÆ generate Zundamon voice WAVs
+  [ ] Run import_zundamon.py in UE GåÆ SK + materials
   [ ] Download Zunko VRM + Kiritan VRM
-  [ ] Convert to FBX Î“Ã¥Ã† stage in UE project
+  [ ] Convert to FBX GåÆ stage in UE project
   [ ] Create master dialogue JSON for Zunko + Kiritan (50+ lines)
   
-PHASE 2 Î“Ã‡Ã¶ Animation + Blueprint                        [WEEK 2-3]
-Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰
+PHASE 2 GÇö Animation + Blueprint                        [WEEK 2-3]
+GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
   [ ] Source MMD motions for idle/walk/greet per character
   [ ] Blender retarget to ZunZun skeleton
   [ ] Export to UE as AnimSequence assets
@@ -499,28 +499,28 @@ PHASE 2 Î“Ã‡Ã¶ Animation + Blueprint                        [WEEK 2-3]
   [ ] Build BP_Zundamon_NPC (first concrete implementation)
   [ ] Build ZunZunDialogueComponent (VOICEVOX playback)
   
-PHASE 3 Î“Ã‡Ã¶ Game Systems                                [WEEK 3-4]
-Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰
-  [ ] IZunZunQuestGiver interface Î“Ã¥Ã† quest data tables
+PHASE 3 GÇö Game Systems                                [WEEK 3-4]
+GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
+  [ ] IZunZunQuestGiver interface GåÆ quest data tables
   [ ] Shop inventory data assets per character
   [ ] Mochi Board quest UI widget
   [ ] Party member component (UPartyMemberComponent)
   [ ] Behavior trees per character
   [ ] Hub world placement (town layout with character positions)
   
-PHASE 4 Î“Ã‡Ã¶ Remaining Characters                        [WEEK 4-5]
-Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰
+PHASE 4 GÇö Remaining Characters                        [WEEK 4-5]
+GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
   [ ] Itako: Download + import + dialogue + quests (spirit shrine)
   [ ] Metan: Download + import + dialogue + quests (alchemy lab)
   [ ] Sora: Download + import + dialogue + quests (music pavilion)
   [ ] Tsurugi: Download + import + dialogue + quests (arena)
   
-PHASE 5 Î“Ã‡Ã¶ Bond System + Ending Routes                 [WEEK 5-6]
-Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰Î“Ã²Ã‰
+PHASE 5 GÇö Bond System + Ending Routes                 [WEEK 5-6]
+GòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉGòÉ
   [ ] Relationship/Bond level tracking per character
   [ ] Character-specific side quests (unlock at Bond Lv3, Lv5)
   [ ] Seven possible ending routes based on highest bond
-  [ ] Melusina threshold crisis Î“Ã¥Ã† guardian selection finale
+  [ ] Melusina threshold crisis GåÆ guardian selection finale
 ```
 
 ---
@@ -529,27 +529,27 @@ PHASE 5 Î“Ã‡Ã¶ Bond System + Ending Routes                 [WEEK 5-6]
 
 ```
 /Game/Melodia/Characters/
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Zundamon/
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ SK_Zundamon, ABP_Zundamon, BP_Zundamon_NPC
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Materials/, Textures/, Animations/, Audio/
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ DT_ZundamonQuests, DA_ZundamonShop
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Zunko/
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ SK_Zunko, ABP_Zunko, BP_Zunko_NPC
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Materials/, Textures/, Animations/, Audio/
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ DT_ZunkoQuests, DA_ZunkoShop
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Kiritan/     (same structure)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Itako/       (same structure)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Metan/       (same structure)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sora/        (same structure)
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Tsurugi/     (same structure)
+Gö£GöÇGöÇ Zundamon/
+Göé   Gö£GöÇGöÇ SK_Zundamon, ABP_Zundamon, BP_Zundamon_NPC
+Göé   Gö£GöÇGöÇ Materials/, Textures/, Animations/, Audio/
+Göé   GööGöÇGöÇ DT_ZundamonQuests, DA_ZundamonShop
+Gö£GöÇGöÇ Zunko/
+Göé   Gö£GöÇGöÇ SK_Zunko, ABP_Zunko, BP_Zunko_NPC
+Göé   Gö£GöÇGöÇ Materials/, Textures/, Animations/, Audio/
+Göé   GööGöÇGöÇ DT_ZunkoQuests, DA_ZunkoShop
+Gö£GöÇGöÇ Kiritan/     (same structure)
+Gö£GöÇGöÇ Itako/       (same structure)
+Gö£GöÇGöÇ Metan/       (same structure)
+Gö£GöÇGöÇ Sora/        (same structure)
+GööGöÇGöÇ Tsurugi/     (same structure)
 
 /Game/Melodia/Systems/
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BP_ZunZun_NPC_Base          (shared NPC base class)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ ZunZunDialogueComponent     (shared dialogue + VOICEVOX)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ IZunZunQuestGiver           (quest interface)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ PartyMemberComponent        (party system)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BondSystemComponent         (relationship tracking)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ DT_AllQuests                 (master quest table)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ DT_AllShopItems              (master item table)
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ W_Hub_QuestBoard             (shared quest UI widget)
+Gö£GöÇGöÇ BP_ZunZun_NPC_Base          (shared NPC base class)
+Gö£GöÇGöÇ ZunZunDialogueComponent     (shared dialogue + VOICEVOX)
+Gö£GöÇGöÇ IZunZunQuestGiver           (quest interface)
+Gö£GöÇGöÇ PartyMemberComponent        (party system)
+Gö£GöÇGöÇ BondSystemComponent         (relationship tracking)
+Gö£GöÇGöÇ DT_AllQuests                 (master quest table)
+Gö£GöÇGöÇ DT_AllShopItems              (master item table)
+GööGöÇGöÇ W_Hub_QuestBoard             (shared quest UI widget)
 ```

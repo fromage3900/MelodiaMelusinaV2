@@ -1,4 +1,4 @@
-﻿# QuillScript Grief Hook Review — 2026-08-03
+# QuillScript Grief Hook Review � 2026-08-03
 
 **Reviewer:** Narrative Systems Analysis
 **Date:** 2026-08-03

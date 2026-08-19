@@ -1,4 +1,4 @@
-﻿"""Structure GN group builders ΓÇö gazebo, column, arch, roof assemblies.
+"""Structure GN group builders ΓÇö gazebo, column, arch, roof assemblies.
 
 Composes primitives and profiles into reusable architectural structures.
 """
@@ -10,7 +10,7 @@ import bpy
 from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, label_tree, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param,
-    make_group_input,
+    make_group_input, add_music_influence_params, apply_universal_music_pass,
 )
 
 
@@ -34,6 +34,11 @@ def build_gazebo(group_name="MEL_gazebo"):
     add_float_param(tree, "Roof Pitch", 0.8, 0.1, 3.0)
     add_float_param(tree, "Beam Radius", 0.04, 0.01, 0.2)
     add_bool_param(tree, "Has Finial", True)
+    add_bool_param(tree, "Has Engawa", True)
+    add_float_param(tree, "Engawa Depth", 0.45, 0.0, 2.0)
+    add_bool_param(tree, "Has Irimoya", False)
+    add_bool_param(tree, "Use Default Column", True)
+    add_music_influence_params(tree)
 
     col_profile = gin.outputs["Column Profile"] if "Column Profile" in gin.outputs else None
     roof_profile = gin.outputs["Roof Profile"] if "Roof Profile" in gin.outputs else None
@@ -44,11 +49,28 @@ def build_gazebo(group_name="MEL_gazebo"):
     link_sockets(tree, gin.outputs["Column Count"], circle_col.inputs["Vertices"])
     circle_col.fill_type = "NONE"
 
+    # Default cylinder when Column Profile is empty (RQ seed)
+    def_col = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 400, by + 720))
+    def_col.inputs["Vertices"].default_value = 12
+    def_col.inputs["Radius"].default_value = 0.08
+    def_col.inputs["Depth"].default_value = 1.0
+    col_sw = safe_node(tree, "GeometryNodeSwitch", (bx - 200, by + 720))
+    try:
+        col_sw.input_type = "GEOMETRY"
+    except Exception:
+        pass
+    link_sockets(tree, gin.outputs["Use Default Column"], col_sw.inputs["Switch"])
+    true_in = col_sw.inputs.get("True") or col_sw.inputs.get("TRUE")
+    false_in = col_sw.inputs.get("False") or col_sw.inputs.get("FALSE")
+    link_sockets(tree, def_col.outputs["Mesh"], true_in)
+    if col_profile:
+        link_sockets(tree, col_profile, false_in)
+    col_instance = col_sw.outputs.get("Output") or col_sw.outputs.get("Geometry")
+
     # Instance column profile on circle points
     inst_col = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx, by + 600))
     link_sockets(tree, circle_col.outputs["Mesh"], inst_col.inputs["Points"])
-    if col_profile:
-        link_sockets(tree, col_profile, inst_col.inputs["Instance"])
+    link_sockets(tree, col_instance, inst_col.inputs["Instance"])
 
     # Scale column instances by height
     scale_col = safe_node(tree, "GeometryNodeScaleInstances", (bx + 200, by + 600))
@@ -162,18 +184,68 @@ def build_gazebo(group_name="MEL_gazebo"):
         pass
     link_sockets(tree, set_pos_fin.outputs["Geometry"], switch_finial.inputs.get("True") or switch_finial.inputs.get("TRUE"))
 
+    # Engawa veranda (zen teahouse language) — annular deck around the posts
+    engawa_r = safe_node(tree, "ShaderNodeMath", (bx - 300, by - 360))
+    engawa_r.operation = "ADD"
+    link_sockets(tree, gin.outputs["Radius"], engawa_r.inputs[0])
+    link_sockets(tree, gin.outputs["Engawa Depth"], engawa_r.inputs[1])
+    engawa = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 100, by - 360))
+    engawa.inputs["Vertices"].default_value = 24
+    engawa.inputs["Depth"].default_value = 0.08
+    link_sockets(tree, engawa_r.outputs[0], engawa.inputs["Radius"])
+    engawa_sw = safe_node(tree, "GeometryNodeSwitch", (bx + 120, by - 360))
+    try:
+        engawa_sw.input_type = "GEOMETRY"
+    except Exception:
+        pass
+    link_sockets(tree, gin.outputs["Has Engawa"], engawa_sw.inputs["Switch"])
+    link_sockets(tree, engawa.outputs["Mesh"], engawa_sw.inputs.get("True") or engawa_sw.inputs.get("TRUE"))
+
+    # Optional irimoya overlay — shallower second hip (teahouse concave roof)
+    iri = safe_node(tree, "GeometryNodeMeshCone", (bx + 200, by - 480))
+    iri.inputs["Vertices"].default_value = 12
+    link_sockets(tree, gin.outputs["Radius"], iri.inputs["Radius Bottom"])
+    iri_top = safe_node(tree, "ShaderNodeMath", (bx + 40, by - 480))
+    iri_top.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Radius"], iri_top.inputs[0])
+    iri_top.inputs[1].default_value = 0.55
+    link_sockets(tree, iri_top.outputs[0], iri.inputs["Radius Top"])
+    iri_h = safe_node(tree, "ShaderNodeMath", (bx + 40, by - 540))
+    iri_h.operation = "MULTIPLY"
+    link_sockets(tree, roof_height.outputs[0], iri_h.inputs[0])
+    iri_h.inputs[1].default_value = 0.45
+    link_sockets(tree, iri_h.outputs[0], iri.inputs["Depth"])
+    iri_pos = safe_node(tree, "GeometryNodeSetPosition", (bx + 360, by - 480))
+    link_sockets(tree, iri.outputs["Mesh"], iri_pos.inputs["Geometry"])
+    iri_z = safe_node(tree, "ShaderNodeMath", (bx + 200, by - 560))
+    iri_z.operation = "ADD"
+    link_sockets(tree, beam_z.outputs[0], iri_z.inputs[0])
+    iri_z.inputs[1].default_value = 0.12
+    iri_combine = safe_node(tree, "ShaderNodeCombineXYZ", (bx + 280, by - 560))
+    link_sockets(tree, iri_z.outputs[0], iri_combine.inputs["Z"])
+    link_sockets(tree, iri_combine.outputs["Vector"], iri_pos.inputs["Offset"])
+    iri_sw = safe_node(tree, "GeometryNodeSwitch", (bx + 520, by - 480))
+    try:
+        iri_sw.input_type = "GEOMETRY"
+    except Exception:
+        pass
+    link_sockets(tree, gin.outputs["Has Irimoya"], iri_sw.inputs["Switch"])
+    link_sockets(tree, iri_pos.outputs["Geometry"], iri_sw.inputs.get("True") or iri_sw.inputs.get("TRUE"))
+
     # ΓöÇΓöÇ Join everything ΓöÇΓöÇ
     join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 600, by - 100))
     link_sockets(tree, realize_col.outputs["Geometry"], join.inputs["Geometry"])
     link_sockets(tree, set_pos_beam.outputs["Geometry"], join.inputs["Geometry"])
     link_sockets(tree, solid_roof.outputs["Mesh"], join.inputs["Geometry"])
     link_sockets(tree, switch_finial.outputs["Output"], join.inputs["Geometry"])
+    link_sockets(tree, engawa_sw.outputs.get("Output") or engawa_sw.outputs[0], join.inputs["Geometry"])
+    link_sockets(tree, iri_sw.outputs.get("Output") or iri_sw.outputs[0], join.inputs["Geometry"])
 
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 800, by - 100))
     shade.inputs["Shade Smooth"].default_value = True
     link_sockets(tree, join.outputs["Geometry"], shade.inputs["Geometry"])
-
-    link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
+    music_geo = apply_universal_music_pass(tree, gin, shade.outputs["Geometry"], (bx + 1000, by - 100))
+    link_sockets(tree, music_geo, gout.inputs["Geometry"])
 
     color_node(circle_col, "curve")
     color_node(inst_col, "instance")
@@ -351,11 +423,11 @@ def build_portico(group_name="MEL_portico"):
 from .core import register_builder
 
 register_builder("MEL_gazebo", build_gazebo, "Gazebo",
-    "Full gazebo ΓÇö columns, beam ring, conical roof, star finial",
+    "Full gazebo — columns, beam ring, conical roof, star finial",
     "structures")
 register_builder("MEL_arch", build_arch, "Arch",
-    "Simple arch structure ΓÇö column pair with arc span",
+    "Simple arch structure — column pair with arc span",
     "structures")
 register_builder("MEL_portico", build_portico, "Portico",
-    "Portico assembly ΓÇö column grid with triangular pediment gable",
+    "Portico assembly — column grid with triangular pediment gable",
     "structures")

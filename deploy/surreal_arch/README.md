@@ -42,13 +42,13 @@ Do **not** copy only `surreal_arch/` — the monolith entry module is required.
 
 ## N-panel tour
 
-- **Genome Carousel** — hub; generate, starlight, solo, sync/reload, health.
-- **GN Stack** — 165 Melodia GN builders + curated presets.
+- **Genome Carousel** — hub; generate, starlight, solo, sync/reload, health. Shows live GN builder / category counts.
+- **GN Stack** — 173 Melodia GN builders (27 hidden factory/PCG aliases) + curated presets (42 builders / 127 looks).
 - **Stage** — Solo / Starlight / Beauty / Review Queue.
 - **Site Publish** — Render & Upload beauty plate → `my-site-clean` + `site-plates.json` (optional git push OFF by default).
-- **Live Bridge / Material Bridge** — LiveLink + material crosswalk status.
+- **Live Bridge / Material Bridge** — LiveLink TCP **9876** (Start Server) vs agent **BlenderMCP Connect** (also 9876 — do not run both). Unreal Python **9316**. Legacy 9317 retired.
 - **Living Portrait** — Melusina voice/viseme tools.
-- **Architecture Picker / Level Design / Style Genome / UV / Export** — overhaul tools.
+- **Architecture Picker / Level Design / Style Genome / UV / Export** — overhaul tools. The Modifier properties drawer is **legacy** (off unless Preferences → Show legacy Modifier panel).
 
 ---
 

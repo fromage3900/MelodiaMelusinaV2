@@ -1,0 +1,39 @@
+# EditorConfig: https://editorconfig.org
+# Added to cut down the CRLF/LF churn git warns about on nearly every
+# commit in this repo (mixed Windows tooling + cross-platform scripts).
+root = true
+
+[*]
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Cross-platform / CI-run text: normalize to LF
+[*.{py,md,json,sh}]
+end_of_line = lf
+indent_style = space
+indent_size = 4
+
+[*.yml]
+end_of_line = lf
+indent_style = space
+indent_size = 2
+
+# Windows-only tooling: CRLF is the native/expected line ending
+[*.{ps1,bat}]
+end_of_line = crlf
+indent_style = space
+indent_size = 4
+
+# C++/UE source: tabs, per existing Source/ convention
+[*.{cpp,h,hpp,cs}]
+indent_style = tab
+
+# Binary and generated/content assets: no text rules apply
+[*.{uasset,umap,blend,blend1,fbx,png,jpg,jpeg,exr,tga,wav,ogg,7z,zip,pdf}]
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+[Content/**]
+insert_final_newline = false
+trim_trailing_whitespace = false

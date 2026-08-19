@@ -164,13 +164,13 @@ proc_col (Rock↔Grass↔Mud height compete) ──► cliff_col (slope) ──�
 
 1. **Build + inspect in Editor**
    ```
-   py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py" --force
+   py "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py" --force
    ```
    Open `M_Master_Toon_Universal` → verify Madoka + Itto nodes appear after gilding (lower right).
 
 2. **Landscape re-build**
    ```
-   py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py" --force
+   py "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py" --force
    ```
    Spot-check `MI_Landscape_SakuraGarden` in material editor — Madoka should be active with default 0s (no visual change).
 

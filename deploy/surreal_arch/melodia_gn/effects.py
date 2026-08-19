@@ -1,4 +1,4 @@
-﻿"""Magic effect GN group builders ΓÇö displace, wave, cast, wireframe, smooth as Geometry Nodes.
+"""Magic effect GN group builders ΓÇö displace, wave, cast, wireframe, smooth as Geometry Nodes.
 
 Replaces the legacy modifier-based magic distortion system with composable GN groups.
 """
@@ -12,6 +12,7 @@ import bpy
 from .core import (
     safe_node, link_sockets, color_node, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param, add_vector_param,
+    input_geometry_with_default,
 )
 
 
@@ -23,6 +24,7 @@ def build_effect_displace(group_name="MEL_effect_displace"):
     add_float_param(tree, "Noise Scale", 1.0, 0.1, 10.0)
     add_float_param(tree, "Phase", 0.0, -6.283, 6.283)
     add_vector_param(tree, "Direction", (0.0, 0.0, 1.0))
+    src = input_geometry_with_default(tree, gin, (-800, 0))
 
     noise = safe_node(tree, "ShaderNodeTexNoise", (-200, 100))
     noise.inputs["Scale"].default_value = 1.0
@@ -40,7 +42,7 @@ def build_effect_displace(group_name="MEL_effect_displace"):
     link_sockets(tree, gin.outputs["Intensity"], int_mul.inputs["Scale"])
 
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (400, 100))
-    link_sockets(tree, gin.outputs["Geometry"], set_pos.inputs["Geometry"])
+    link_sockets(tree, src, set_pos.inputs["Geometry"])
     link_sockets(tree, int_mul.outputs["Vector"], set_pos.inputs["Offset"])
     link_sockets(tree, set_pos.outputs["Geometry"], gout.inputs["Geometry"])
 
@@ -59,6 +61,7 @@ def build_effect_wave(group_name="MEL_effect_wave"):
     add_float_param(tree, "Phase", 0.0, -6.283, 6.283)
     add_vector_param(tree, "Axis", (0.0, 0.0, 1.0))
     add_bool_param(tree, "Normal Space", True)
+    src = input_geometry_with_default(tree, gin, (-800, 0))
 
     pos = safe_node(tree, "GeometryNodeInputPosition", (-400, 100))
 
@@ -105,7 +108,7 @@ def build_effect_wave(group_name="MEL_effect_wave"):
         link_sockets(tree, mul_a.outputs[0], offset.inputs["Scale"])
 
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (600, 100))
-    link_sockets(tree, gin.outputs["Geometry"], set_pos.inputs["Geometry"])
+    link_sockets(tree, src, set_pos.inputs["Geometry"])
     link_sockets(tree, offset.outputs["Vector"], set_pos.inputs["Offset"])
     link_sockets(tree, set_pos.outputs["Geometry"], gout.inputs["Geometry"])
 
@@ -123,6 +126,7 @@ def build_effect_cast(group_name="MEL_effect_cast"):
     add_float_param(tree, "Factor", 0.5, -2.0, 2.0)
     add_float_param(tree, "Radius", 1.0, 0.1, 10.0)
     add_vector_param(tree, "Center", (0.0, 0.0, 0.0))
+    src = input_geometry_with_default(tree, gin, (-800, 0))
 
     pos = safe_node(tree, "GeometryNodeInputPosition", (-300, 100))
 
@@ -163,7 +167,7 @@ def build_effect_cast(group_name="MEL_effect_cast"):
     link_sockets(tree, scaled.outputs["Vector"], result.inputs[1])
 
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (900, 100))
-    link_sockets(tree, gin.outputs["Geometry"], set_pos.inputs["Geometry"])
+    link_sockets(tree, src, set_pos.inputs["Geometry"])
     link_sockets(tree, result.outputs["Vector"], set_pos.inputs["Position"])
     link_sockets(tree, set_pos.outputs["Geometry"], gout.inputs["Geometry"])
 
@@ -182,10 +186,11 @@ def build_effect_wireframe(group_name="MEL_effect_wireframe"):
     tree, gin, gout = new_geometry_tree(group_name)
 
     add_float_param(tree, "Thickness", 0.02, 0.001, 0.5)
+    src = input_geometry_with_default(tree, gin, (-800, 0))
 
     # Wireframe node
     wire = safe_node(tree, "GeometryNodeMeshToCurve", (-200, 100))
-    link_sockets(tree, gin.outputs["Geometry"], wire.inputs["Mesh"])
+    link_sockets(tree, src, wire.inputs["Mesh"])
 
     # Profile circle for curve sweep
     curve_circle = safe_node(tree, "GeometryNodeMeshCircle", (-200, -50))
@@ -200,7 +205,7 @@ def build_effect_wireframe(group_name="MEL_effect_wireframe"):
 
     # Join with original (wireframe replaces)
     join = safe_node(tree, "GeometryNodeJoinGeometry", (200, 100))
-    link_sockets(tree, gin.outputs["Geometry"], join.inputs["Geometry"])
+    link_sockets(tree, src, join.inputs["Geometry"])
     link_sockets(tree, curve_to_mesh.outputs["Mesh"], join.inputs["Geometry"])
 
     link_sockets(tree, join.outputs["Geometry"], gout.inputs["Geometry"])
@@ -218,13 +223,14 @@ def build_effect_smooth(group_name="MEL_effect_smooth"):
 
     add_float_param(tree, "Factor", 0.5, 0.0, 1.0)
     add_int_param(tree, "Iterations", 3, 1, 10)
+    src = input_geometry_with_default(tree, gin, (-800, 0))
 
     # Blur position attribute
     blur = safe_node(tree, "GeometryNodeBlurAttribute", (-200, 100))
     if blur is not None:
         geo_in = blur.inputs.get("Geometry") or blur.inputs.get("Mesh")
         if geo_in is not None:
-            link_sockets(tree, gin.outputs["Geometry"], geo_in)
+            link_sockets(tree, src, geo_in)
         weight_in = blur.inputs.get("Weight") or blur.inputs.get("Factor")
         if weight_in is not None:
             link_sockets(tree, gin.outputs["Factor"], weight_in)
@@ -266,6 +272,7 @@ def build_effect_magic(group_name="MEL_effect_magic"):
     add_bool_param(tree, "Chromatic", False)
     add_bool_param(tree, "Animate", False)
     add_vector_param(tree, "Attractor", (0.0, 0.0, 1.0))
+    src = input_geometry_with_default(tree, gin, (-800, 0))
 
     # For each layer, apply displace + wave
     # Layer 1: noise displace
@@ -294,7 +301,7 @@ def build_effect_magic(group_name="MEL_effect_magic"):
     link_sockets(tree, int_mul.outputs[0], offset.inputs["Scale"])
 
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (0, 400))
-    link_sockets(tree, gin.outputs["Geometry"], set_pos.inputs["Geometry"])
+    link_sockets(tree, src, set_pos.inputs["Geometry"])
     link_sockets(tree, offset.outputs["Vector"], set_pos.inputs["Offset"])
 
     # Wave displacement
@@ -393,19 +400,19 @@ from .core import register_builder
 
 register_builder("MEL_effect_displace", build_effect_displace, "Displace Effect",
     "Noise-based vertex displacement via Set Position + Noise Texture",
-    "effects")
+    "effects", role="modifier")
 register_builder("MEL_effect_wave", build_effect_wave, "Wave Effect",
     "Sine wave displacement along an axis, with normal-space toggle",
-    "effects")
+    "effects", role="modifier")
 register_builder("MEL_effect_cast", build_effect_cast, "Cast Effect",
-    "Pull mesh toward sphere or cylinder ΓÇö spherical/cylindrical cast",
-    "effects")
+    "Pull mesh toward sphere or cylinder — spherical/cylindrical cast",
+    "effects", role="modifier")
 register_builder("MEL_effect_wireframe", build_effect_wireframe, "Wireframe Effect",
-    "Wireframe overlay ΓÇö edges to curves swept with circle profile",
-    "effects")
+    "Wireframe overlay — edges to curves swept with circle profile",
+    "effects", role="modifier")
 register_builder("MEL_effect_smooth", build_effect_smooth, "Smooth Effect",
     "Geometry smoothing via Blur Attribute node",
-    "effects")
+    "effects", role="modifier")
 register_builder("MEL_effect_magic", build_effect_magic, "Magic Distortion",
-    "Combined magical distortion ΓÇö 8 params, 10 presets (Liquid, Crystal, Portal, etc.)",
-    "effects")
+    "Combined magical distortion — 8 params, 10 presets (Liquid, Crystal, Portal, etc.)",
+    "effects", role="modifier")

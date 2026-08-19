@@ -4,6 +4,10 @@ This is the cross-PC closeout record for the EnvironmentPortfolio workspace. It 
 short and operational: use it to resume work without guessing which checkout, branch, or status
 document is authoritative.
 
+> Correction 2026-08-13: the `MelodiaMelusina` remote/URL referenced throughout this historical
+> record is now the remote `legacy-melodia` and must not be pushed to. The current source of truth
+> is `origin` = `https://github.com/fromage3900/MelodiaMelusinaV2`.
+
 ## Source of truth
 
 - Primary local workspace: `C:\EnvironmentPortfolio`

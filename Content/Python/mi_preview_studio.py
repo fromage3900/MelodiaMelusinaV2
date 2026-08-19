@@ -110,7 +110,7 @@ NIKKI_HERO_BASE_TINTS: dict[str, tuple[float, float, float, float]] = {
     "MI_NikkiHero_BaroqueCastle": (0.95, 0.88, 0.72, 1.0),  # warm cream gold
 }
 
-PP_MELU_GRADE = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade"
+PP_MELU_GRADE = "/Game/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade"
 
 COSMIC_SDF_KEYWORDS = (
     "nebula",

@@ -21,11 +21,69 @@ namespace
 
 	constexpr TCHAR MelusinaUnitClassPath[] = TEXT("/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation.BP_MelusinaSwordsman_Presentation_C");
 
+	// LEGACY fallback only. Every entry here is a piece of equipment that cannot be
+	// authored without a C++ edit and a rebuild, which is why it never grew past
+	// three. Author FMelodiaEquipmentDefinition::StockItemClass instead; this table
+	// exists to keep already-authored StockItemAssetId content working and should
+	// shrink to empty, not grow.
 	const TMap<FName, FString> StockEquipmentPaths = {
 		{TEXT("BP_Rod"), TEXT("/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Weapons/BP_Rod.BP_Rod_C")},
 		{TEXT("BP_LeatherArmor"), TEXT("/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Armors/BP_LeatherArmor.BP_LeatherArmor_C")},
 		{TEXT("BP_LeatherBoots"), TEXT("/Game/TurnBasedJRPGTemplate/Blueprints/Items/Equipment/Boots/BP_LeatherBoots.BP_LeatherBoots_C")},
 	};
+
+	/**
+	 * One resolver for both equip paths. RequestEquip and HandleEquipmentRequested
+	 * previously duplicated this lookup, so they could disagree about whether a
+	 * definition was resolvable.
+	 *
+	 * Data-driven StockItemClass wins; the hardcoded table is the fallback.
+	 */
+	UClass* ResolveStockEquipmentClass(const FMelodiaEquipmentDefinition& Definition)
+	{
+		if (!Definition.StockItemClass.IsNull())
+		{
+			if (UClass* Loaded = Definition.StockItemClass.LoadSynchronous())
+			{
+				return Loaded;
+			}
+			UE_LOG(LogTemp, Warning,
+				TEXT("MELODIA_EQUIP '%s' StockItemClass '%s' failed to load; falling back to StockItemAssetId."),
+				*Definition.EquipmentId.ToString(), *Definition.StockItemClass.ToString());
+		}
+
+		if (const FString* Path = StockEquipmentPaths.Find(Definition.StockItemAssetId))
+		{
+			return LoadClass<UObject>(nullptr, **Path);
+		}
+
+		if (!Definition.StockItemAssetId.IsNone())
+		{
+			UE_LOG(LogTemp, Warning,
+				TEXT("MELODIA_EQUIP '%s' names StockItemAssetId '%s', which is not in the legacy path table. "
+					 "Author StockItemClass on the definition instead of extending that table."),
+				*Definition.EquipmentId.ToString(), *Definition.StockItemAssetId.ToString());
+		}
+		return nullptr;
+	}
+
+	/**
+	 * Unit id -> stock unit class. Only Melusina resolves today; every other party
+	 * member silently failed to equip because the null landed in a bStockContractReady
+	 * check that did not distinguish "unknown unit" from "stock contract missing".
+	 */
+	UClass* ResolveUnitClass(const FName UnitId)
+	{
+		if (UnitId == TEXT("melusina"))
+		{
+			return LoadClass<UObject>(nullptr, MelusinaUnitClassPath);
+		}
+		UE_LOG(LogTemp, Warning,
+			TEXT("MELODIA_EQUIP unit '%s' has no stock unit class mapping; only 'melusina' is mapped. "
+				 "Party equipment needs this widened before other members can equip."),
+			*UnitId.ToString());
+		return nullptr;
+	}
 }
 
 void UMelodiaPersonaSubsystem::Initialize(FSubsystemCollectionBase& Collection)
@@ -109,9 +167,8 @@ bool UMelodiaPersonaSubsystem::RequestEquip(const FName UnitId, const FName Equi
 {
 	const FMelodiaEquipmentDefinition* Definition = Content ? Content->Equipment.FindByPredicate(
 		[EquipmentId](const FMelodiaEquipmentDefinition& Entry) { return Entry.EquipmentId == EquipmentId; }) : nullptr;
-	const FString* EquipmentPath = Definition ? StockEquipmentPaths.Find(Definition->StockItemAssetId) : nullptr;
-	UClass* EquipmentClass = EquipmentPath ? LoadClass<UObject>(nullptr, **EquipmentPath) : nullptr;
-	UClass* UnitClass = UnitId == TEXT("melusina") ? LoadClass<UObject>(nullptr, MelusinaUnitClassPath) : nullptr;
+	UClass* EquipmentClass = Definition ? ResolveStockEquipmentClass(*Definition) : nullptr;
+	UClass* UnitClass = ResolveUnitClass(UnitId);
 	APlayerController* Controller = GetWorld() ? UGameplayStatics::GetPlayerController(GetWorld(), 0) : nullptr;
 	const bool bStockContractReady = Controller
 		&& EquipmentClass
@@ -322,12 +379,14 @@ void UMelodiaPersonaSubsystem::HandleJRPGBattleStarted(const FName EncounterId)
 
 void UMelodiaPersonaSubsystem::HandleJRPGBattleEnded(const uint8 BattleResult)
 {
-	// E_BattleResult's authored enum order is PlayerWon=0, EnemyWon=1, Fled=2.
-	constexpr uint8 PlayerWon = 0;
-	if (BattleResult == PlayerWon && ActiveBridgeEncounterId == TEXT("Encounter_CrystalShard"))
-	{
-		CompleteQuest(TEXT("melodia_q_echo_01"));
-	}
+	// Battle completion belongs to UMelodiaNarrativeSubsystem, which maps the
+	// typed result back to Quill exactly once. Quest progression is authored by
+	// the resumed Quill scene (the Smoke victory branch emits the quest intent);
+	// this presentation observer must not create an encounter-specific second
+	// quest authority.
+	UE_LOG(LogTemp, Verbose,
+		TEXT("Melodia Persona observed stock battle end encounter=%s result=%u; quest progression remains authored in Quill."),
+		*ActiveBridgeEncounterId.ToString(), static_cast<uint32>(BattleResult));
 	ActiveBridgeEncounterId = NAME_None;
 }
 
@@ -401,9 +460,8 @@ void UMelodiaPersonaSubsystem::HandleEquipmentRequested(const FName UnitId, cons
 		return;
 	}
 
-	const FString* EquipmentPath = StockEquipmentPaths.Find(Definition->StockItemAssetId);
-	UClass* EquipmentClass = EquipmentPath ? LoadClass<UObject>(nullptr, **EquipmentPath) : nullptr;
-	UClass* UnitClass = UnitId == TEXT("melusina") ? LoadClass<UObject>(nullptr, MelusinaUnitClassPath) : nullptr;
+	UClass* EquipmentClass = ResolveStockEquipmentClass(*Definition);
+	UClass* UnitClass = ResolveUnitClass(UnitId);
 	APlayerController* Controller = GetWorld() ? UGameplayStatics::GetPlayerController(GetWorld(), 0) : nullptr;
 	if (!Controller || !EquipmentClass || !UnitClass)
 	{
@@ -412,7 +470,24 @@ void UMelodiaPersonaSubsystem::HandleEquipmentRequested(const FName UnitId, cons
 		return;
 	}
 
-	if (UFunction* AddToInventory = Controller->FindFunction(TEXT("AddEquipmentToInventory")))
+	// This is the REWARD-GRANT path. Both stock calls below used to be bare
+	// `if (FindFunction(...))` with no else, so renaming either Blueprint function
+	// consumed the reward and silently dropped the equip -- the reward is gone and
+	// the item never arrives. RequestEquip already validated both up front; this
+	// path did not. Report the miss rather than returning as if it worked.
+	UFunction* AddToInventory = Controller->FindFunction(TEXT("AddEquipmentToInventory"));
+	UFunction* WearEquipment = Controller->FindFunction(TEXT("WearEquipmentOnUnit"));
+	if (!AddToInventory || !WearEquipment)
+	{
+		UE_LOG(LogTemp, Error,
+			TEXT("MELODIA_EQUIP stock contract missing on the reward path: unit=%s equipment=%s "
+				 "AddEquipmentToInventory=%d WearEquipmentOnUnit=%d. The reward was consumed but nothing was equipped. "
+				 "These are Blueprint functions on the PlayerController, resolved by name -- check for a rename."),
+			*UnitId.ToString(), *EquipmentId.ToString(),
+			AddToInventory != nullptr, WearEquipment != nullptr);
+		return;
+	}
+
 	{
 		struct FAddEquipmentParams
 		{
@@ -423,7 +498,6 @@ void UMelodiaPersonaSubsystem::HandleEquipmentRequested(const FName UnitId, cons
 		Controller->ProcessEvent(AddToInventory, &Params);
 	}
 
-	if (UFunction* WearEquipment = Controller->FindFunction(TEXT("WearEquipmentOnUnit")))
 	{
 		struct FWearEquipmentParams
 		{

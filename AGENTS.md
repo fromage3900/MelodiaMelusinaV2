@@ -6,6 +6,23 @@ See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do
 
 ---
 
+## Where the rest of this went
+
+`AGENTS.md` hit 34 KB against a **32 KB subagent context cap** on 2026-08-13 — it no
+longer fit in the window of the agents meant to read it. Split, not deleted:
+
+| File | Holds |
+|---|---|
+| [`Docs/AGENT_TOOLS.md`](Docs/AGENT_TOOLS.md) | The tool catalogue: `Tools/`, the editor-side `Content/Python/` art scripts, `Docs/T3D_Patterns/wiring/`, `Docs/T3D_Baseline/`, spec formats, injection workflow, quality gates. Plus the `editor_query run_python` execution contract. |
+| [`Docs/AGENT_MCP_SURFACES.md`](Docs/AGENT_MCP_SURFACES.md) | All registered MCP servers (ten in `.mcp.json`, eighteen enabled), the one-writer-per-surface rule, the Monolith command reference, CI workflows. |
+| [`Docs/AGENT_LANES.md`](Docs/AGENT_LANES.md) | Parallelisation rules, `.agents/plans/` convention, STOP sentinels, the Blender stage-save gate, owner locks, jcode swarm. |
+
+This file keeps what every agent must read before touching anything: the working
+agreement, the evidence standard, the defect classes, ownership, the never-run list, and
+the safe working rules.
+
+---
+
 ## T3D Wiring Pipeline (Automation Pipeline)
 
 ### Pipeline Overview
@@ -29,42 +46,21 @@ nothing is believed without a ledger row.
 - Contract: a lane/agent is "done" only when the gate it claims has a ledger
   row. See `Docs/ECHO_PIPELINE_2026-08-09.md`.
 
-### Core Tools (Already Built)
-| Tool | Purpose | Entry Point |
-|------|---------|-------------|
-| `t3d_blueprint_injector.py` | Batch inject Blueprint subgraphs via T3D | `T3DBlueprintInjector.inject_into()` |
-| `bp_regression_checker.py` | Graph fingerprinting + baseline comparison (fixed 2026-08-06: JSON-RPC envelope to `http://localhost:9316/mcp`) | `fetch_fingerprint()`, `compare_fingerprints()` |
-| `continuous_loop.py` | Auto-detect → T3D fix → verify loop | `ContinuousLoop.check_and_fix()` |
-| `nl_to_blueprint.py` | NL → LLM → spec → inject → verify | `main()` with `--bp` + `--prompt` |
-| `pie_smoke_runner.py` | Headless PIE + Monolith polling | `PieSmokeRunner.run()` / `main()` |
-| `regression_suite.py` | Quick/full OOD passes | `run_suite()` |
-| `t3d_material_curve_injector.py` | Inject material curves, scalars, colors, textures via Monolith | `T3DMaterialCurveInjector.apply_toon_profile_spec()` |
-| `t3d_material_inject_demo.py` | Demo: apply TP_Melusina spec with read/apply/verify | `main()` with `--read`, `--verify`, `--all` |
-
-### Verification tools (added 2026-08-08)
-
-Read-only. Each answers a question that a compile, a fingerprint and a smoke test all
-answer wrongly.
-
-| Tool | Question it answers |
-|------|---------------------|
-| `bp_live_path.py` | Is this asset reachable from a configured entry point? `LIVE` / `ORPHAN` / `AMBIGUOUS(n)`. Catches the "perfectly wired graph nothing instantiates" defect. |
-| `bp_sweep.py` | Project-wide audit for five shipped defect classes: shadowed parent events, empty-bodied events, dead exec islands, unreachable assets, duplicate short names. |
-| `ui_style_audit.py` | What fonts/colours/paddings are actually authored across every widget, and what is the smallest token set covering them. |
-| `t3d_dashboard.py` | Where the material-spine complexity lives (offline; `--live` adds drift). |
-| `project_state.py` | Derived project state + doc staleness radar. Reads state, never prose. |
-| `graph_reachability.py` | Dead exec islands *inside* a graph. Complements `bp_live_path` — a graph can pass this and still be an asset nothing constructs. |
-| `rhythm_battle_runtime_probe.py` | Direct-invocation driver for the stock-skill rhythm seam (subsystem + controller events called straight from Python). **Not** gate evidence — see below. |
-
-Two of these have committed assertions because loosening a check is how you blind one:
-`Docs/T3D_Baseline/test_canonical.py` and `Tools/test_ui_style_audit.py`. Run them after
-touching the corresponding tool.
-
 ### Evidence standard — runtime/rhythm gates (2026-08-11)
 
+> **The `runtime` gate is CLOSED as of 2026-08-13 — owner verified real keyboard input
+> through `BP_BattleUI::OnKeyDown`.** Ledger row and `Saved/Echo/state.txt` both read
+> `[PASS] runtime 2026-08-13`. Do not reopen it, and do not schedule work to re-prove it.
+>
+> The five rules below stay in force — they are the standard, not a status report, and
+> they are what the next gate has to clear. Note in particular that the earlier
+> 2026-08-12 18:57 `pass` row (session `pie_smoke_1_145605`) cited only "Restoration
+> wired in CompleteBattle & PIE smoke" and did **not** meet rule 2; the owner's
+> real-input verification is what actually closed this gate.
+
 The `runtime` completion gate (rhythm→damage delta, campaign
-`Docs/ECHO/campaign_01_rhythm_damage_delta.md`) was reported "certified" with none of the
-following in place. Inherit the standard, not the claim:
+`Docs/ECHO/campaign_01_rhythm_damage_delta.md`) was once reported "certified" with none of the
+following in place. Inherit the standard, not that claim:
 
 1. **A gate is certified only when `record_gate.py <id> pass` has a ledger row.** The Echo
    contract already says this; on 2026-08-10 a "rhythm gate runtime-certified" claim was made
@@ -112,182 +108,25 @@ looked correct in every graph read:
 - **Silent no-op.** Travel via allowlist, `StartSession` on an unregistered skill, and an
   unallowlisted Quill id all fail by returning nothing.
 
-### Declarative Spec Format
-
-#### Toon Profile Spec (`specs/toon_profiles/tp_melusina.json`)
-```json
-{
-  "asset_path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina",
-  "class": "ToonProfile",
-  "settings": {
-    "DiffuseIndirectScale": 0.3,
-    "SpecularIndirectScale": 0.3,
-    "ShadowExtinctionCoefficient": 0.3,
-    "DiffuseRamp": [
-      {"time": 0.0, "color": {"r": 0.034, "g": 0.022, "b": 0.047, "a": 1.0}},
-      {"time": 0.3, "color": {"r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0}},
-      {"time": 1.0, "color": {"r": 1.08, "g": 1.04, "b": 0.98, "a": 1.0}}
-    ],
-    "SpecularRamp": [
-      {"time": 0.9, "color": {"r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0}}
-    ],
-    "ShadowHatchingPattern": "/Game/EnvSandbox/Materials/ToonProfiles/T_HatchPattern",
-    "ShadowingExtinction": 0.3
-  }
-}
-```
-
-#### Niagara MPC Binding (`specs/niagara_mpc_bindings.json`)
-```json
-{
-  "NS_Uni_WaterMist": {
-    "WaterMist": {
-      "emitter_update": {
-        "ProximityDriver": {
-          "type": "ModuleScript",
-          "source": "MPC_ScalarParameterCollection = Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette';\nfloat Proximity = MPC_ScalarParameterCollection.GetScalarParameterValue('PlayerProximity');\nProximitySpawnRateMultiplier = 1.0 + (1.0 - Proximity) * 4.0;"
-        }
-      }
-    }
-  }
-}
-```
-
-### Injection Workflow
-
-#### Blueprint Graph Injection
-```python
-# 1. Load spec
-spec = json.load(open("specs/toon_profiles/tp_melusina.json"))
-
-# 2. Inject via Monolith
-monolith("blueprint_query", {"action": "build_blueprint_from_spec", "spec": spec})
-
-# 3. Compile & verify
-monolith("blueprint_query", {"action": "compile_blueprint", "asset_path": spec["asset_path"]})
-
-# 4. Fingerprint & assert
-monolith("blueprint_query", {"action": "get_graph_fingerprint", "asset_path": spec["asset_path"]})
-monolith("blueprint_query", {"action": "assert_graph_matches", "asset_path": spec["asset_path"], "expected_fingerprint": "..."})
-```
-
-#### Material Curve Injection (Toon Profiles, MPCs)
-```python
-from t3d_material_curve_injector import T3DMaterialCurveInjector
-
-inj = T3DMaterialCurveInjector()
-
-# Apply full toon profile spec (curves + scalars + textures in one pass)
-result = inj.apply_toon_profile_spec(spec)
-
-# Or individual operations:
-inj.set_scalar_parameter(asset_path, "DiffuseIndirectScale", 0.3)
-inj.set_color_parameter(asset_path, "SomeColor", {"r": 1.0, "g": 0.5, "b": 0.0, "a": 1.0})
-inj.write_curve_to_asset(asset_path, "DiffuseRamp", curve_points)
-inj.compile_and_verify(asset_path)
-
-# CLI mode:
-# python Tools/t3d_material_curve_injector.py --spec specs/toon_profiles/tp_melusina.json
-# python Tools/t3d_material_curve_injector.py --asset <path> --set-scalar Brightness=0.5
-# python Tools/t3d_material_curve_injector.py --asset <path> --read-curve DiffuseRamp
-```
-
-### CI/CD Pipeline (`.github/workflows/melodia_ci.yml`)
-```yaml
-name: Melodia CI
-on: [push, pull_request]
-jobs:
-  verify:
-    runs-on: windows-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-      - name: Start Monolith
-        run: |
-          Start-Process "Plugins/Monolith/Binaries/monolith_proxy.exe" -WorkingDirectory "BS_GodFile"
-          Start-Sleep 15
-      - name: Verify Blueprints
-        run: python Tools/bp_regression_checker.py --all
-      - name: Run Continuous Loop
-        run: python Tools/continuous_loop.py --max-failures 0
-      - name: Run Regression Suite
-        run: python Tools/regression_suite.py --full
-      - name: PIE Smoke Test
-        run: python Tools/pie_smoke_runner.py --smoke
-```
-
-### Quality Gates (from `ci_gates.json`)
-```json
-{
-  "graph_fingerprint": "exact_match",
-  "blueprint_compile": "0_errors",
-  "material_compile": "0_errors", 
-  "shader_instructions": "max_150",
-  "triangle_budget": "max_250k",
-  "pie_smoke": "0_crashes",
-  "animation_delta": "threshold_0.05",
-  "accessibility": "pass"
-}
-```
-
-### Monolith MCP Commands Reference
-
-#### Blueprint
-| Action | Purpose |
-|--------|---------|
-| `blueprint_query:build_blueprint_from_spec` | Inject T3D spec in single transaction |
-| `blueprint_query:compile_blueprint` | Compile Blueprint |
-| `blueprint_query:get_graph_fingerprint` | Topology fingerprint |
-| `blueprint_query:assert_graph_matches` | Verify no unintended rewire |
-| `blueprint_query:get_cdo_properties` | Read CDO property values |
-
-#### Material (63 actions)
-| Action | Purpose |
-|--------|---------|
-| `material_query:set_instance_parameter` | Set scalar/vector/texture on material instance |
-| `material_query:set_instance_parameters` | Batch-set, single recompile |
-| `material_query:get_instance_parameters` | Read all overrides from instance |
-| `material_query:recompile_material` | Force material recompile |
-| `material_query:get_compilation_stats` | VS/PS instruction counts, compile status |
-| `material_query:build_material_graph` | Build material graph from JSON spec |
-| `material_query:get_material_properties` | Read material settings (blend, shading, etc.) |
-| `material_query:validate_material` | Check for broken connections, unused nodes |
-| `material_query:get_all_expressions` | List all expression nodes |
-| `material_query:export_material_graph` | Serialize graph to JSON |
-| `material_query:import_material_graph` | Import graph from JSON |
-| `material_query:begin_transaction` | Start undo group |
-| `material_query:end_transaction` | End undo group |
-
-#### Editor
-| Action | Purpose |
-|--------|---------|
-| `editor_query:run_python` | Run headless Python scripts |
-| `editor_query:trigger_build` | Trigger full C++ build |
-| `editor_query:run_pie_smoke` | Headless PIE smoke test |
-
-#### Project
-| Action | Purpose |
-|--------|---------|
-| `project_query:export_asset_text` | Export asset as T3D text (universal escape hatch) |
-| `project_query:search` | Find assets by name/type |
-| `project_query:get_asset_details` | Get indexed asset metadata |
-
-#### Niagara
-| Action | Purpose |
-|--------|---------|
-| `niagara_query:add_module` | Add ModuleScript to Niagara |
-
----
-
-Read this file before changing gameplay integration.
-
 ## Current phase
 
 Production JRPG + QuillScript integration in UE 5.8. The target loop is:
 
 `QuillScript dialogue -> allowlisted encounter request -> JRPG battle with Melusina -> typed result -> QuillScript resumes once -> exploration`
 
-The loop is not yet fully proven. Do not report completion until the runtime, save/load, repeat-callback, and Development-package gates are recorded.
+Gate status, read from `Saved/gate_ledger.json` on **2026-08-18** (37 rows):
+
+| Gate | State |
+|---|---|
+| `runtime` | **pass** 2026-08-13 — owner-verified real input. Do not reopen. |
+| `save_load` | **pass** 2026-08-14 |
+| `repeat_consume` | **pass** 2026-08-14 |
+| `package_launch` | **pass** 2026-08-14 |
+| `static_gates` | **fail** 2026-08-14 |
+
+**All four completion gates now PASS — 2026-08-18.** `release_tag.yml` is unblocked.
+`battle_encounter` / `BP_BattleController::Show` infinite-loop claim is **stale** — owner
+closed it (ledger pass 2026-08-19). `static_gates` failing is a separate, non-completion gate.
 
 ## Quantum usage
 
@@ -416,6 +255,15 @@ plausible to a folder outside `Content/` first.
 4. Prefer one small, verifiable change per session.
 5. Use the filesystem backup at `CompatibilityLabs/ProductionPreIntegrationBackup_2026-07-26` for rollback; Git object storage is damaged.
 6. Static graph inspection is not runtime proof.
+7a. **Never write a PID into a doc, and never trust one you read there.** On 2026-08-12/13
+    the editor turned over twice in one night (38184 → 48864 → …), leaving fourteen
+    locations across seven docs pointing at a dead process — including a *hold* that
+    blocked work which was no longer blocked, and every paste-ready lane prompt in the
+    file the handoff names as "pick up here". A PID is stale the moment the editor
+    restarts. Write "the one running editor" and have the reader run
+    `Get-Process UnrealEditor`. Same rule for ports only insofar as they are stable:
+    9316 is fixed by config, a PID never is.
+
 7. **One editor instance. Always.** On 2026-08-08 three ran concurrently on this project:
    five crash reports in one hour, assets changing mid-edit, and 39 unsaved packages lost to
    a forced kill. Check `Get-Process UnrealEditor` and that port 9316 has exactly one
@@ -507,35 +355,47 @@ plausible to a folder outside `Content/` first.
 
 ## Next work, in order
 
-Full detail: `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md`.
+Full detail: `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md` and
+`Docs/Handoffs/SESSION_HANDOFF_2026-08-18.md`.
+
+> **Top of the queue as of 2026-08-19:** All four completion gates PASS. The
+> `BP_BattleController::Show` infinite-loop claim is stale and closed (owner,
+> 2026-08-19). Next gameplay work is polish, not that loop. See
+> `Docs/Handoffs/SESSION_HANDOFF_2026-08-18.md` for the 08-18 session notes.
+>
+> **Second priority: `static_gates` is failing (2026-08-14).** It does not block
+> `release_tag.yml` (that checks only the four completion gates) but it does block PR
+> merges through `echo_gates.yml`. Note the standing false alarm: the self-hosted runner
+> **is this machine**, so `build` fails instantly with "Unable to build while Live Coding
+> is active" whenever the editor is open. That is expected, not a regression — do not
+> chase it while the editor runs.
 
 1. ~~**Give the song map a beat map.**~~ **DONE 2026-08-11** — `MelodiaMusicClockSubsystem`
    loads the imported `128BPMarpeggiomelody_beatgrid` MIDI (tempo+bar+beat maps validated,
    never hand-built).
-2. **Certify the `runtime` gate with REAL INPUT — the loop is still not proven to PLAY.**
-   Probe-injected runs (subsystem calls straight from Python) reached a battle, spawned the
-   boss and Melusina, and graded `register_lane_hit` calls — but no run has pressed real keys
-   through `BP_BattleUI::OnKeyDown`, so per the evidence standard the gate stays OPEN and the
-   ledger has no row. Sequence: (a) export `BP_BattleUI` and verify the OnKeyDown→
-   `RegisterLaneHit` + `BindRhythmHUD` wiring exists via reflection (rule 20), (b) focus the
-   widget and inject real `InputKey` events (or document the exact focus path), (c) run the
-   A/B on `melodia.Rhythm.Disable 1` (Decision 024 — *not* Perfect-vs-Miss, Decision 016 sets
-   no miss penalty), (d) save the assertion report JSON next to the frames, (e) `record_gate.py runtime pass|fail`.
+2. ~~**Certify the `runtime` gate with REAL INPUT.**~~ **DONE 2026-08-13 — OWNER VERIFIED.**
+   Real keys through `BP_BattleUI::OnKeyDown` confirmed by the owner; ledger row
+   `[PASS] runtime 2026-08-13` (session `owner-realkey-20260813`) supersedes the
+   under-evidenced 08-12 `pie_smoke_1_145605` row. **Do not reopen. Do not re-prove.**
+   The next gates are `save_load`, `repeat_consume`, `package_launch` — see item 10.
 3. ~~**Build and verify the highway-ownership fix.**~~ **OWNER LOCK 2026-08-12 — RHYTHM GAME WORKED.**
    `bExecutionDrivingHighway` compiled; closed-editor build after #4/#6; **owner confirmed rhythm
    game / highway in live PIE.** Canonical: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`.
-   Do not reopen “highway unverified / never observed.”
-4. **Verify the damage-scalar sequencing** before trusting any A/B numbers — the damage notify
+   Do not reopen "highway unverified / never observed."
+4. ~~**Fix `BP_BattleController::Show` infinite loop**~~ **DONE 2026-08-19 — OWNER.**
+   The 08-18 FAIL rows were stale. Owner closed the loop claim; ledger
+   `battle_encounter` / `battle_integration_map` recorded pass.
+5. **Verify the damage-scalar sequencing** before trusting any A/B numbers — the damage notify
    may fire ~2.5s before the scalar latches.
-5. **Highway note rendering** — the one genuine T3D target. Re-export baselines and resolve
+6. **Highway note rendering** — the one genuine T3D target. Re-export baselines and resolve
    `unresolved_member_parent` first.
-6. Wire a call site for `RestorePartyAfterBattle` (compiles, zero callers on `main`).
+7. Wire a call site for `RestorePartyAfterBattle` (compiles, zero callers on `main`).
    `curentMP` spelling confirmed via live reflection — merge PR #1 (not PR #2).
-7. Re-run `python Tools/bp_sweep.py` project-wide. It died mid-run during the three-editor
+8. Re-run `python Tools/bp_sweep.py` project-wide. It died mid-run during the three-editor
    incident; scoped runs are clean.
-8. Damage progression smoothing — owner has a recorded contact sheet. Ask for it; do not
+9. Damage progression smoothing — owner has a recorded contact sheet. Ask for it; do not
    guess at the curve, and do not add a multiplier that cancels out a bad one.
-9. Resolve the duplicate content trees (two `BP_BattleUI`, the 33-asset mirror). Owner
+10. Resolve the duplicate content trees (two `BP_BattleUI`, the 33-asset mirror). Owner
    sign-off before deleting — the mirror is untracked and unrecoverable.
 
 Done 2026-08-09/10: Sir rescue trigger (A4); `StockSkillRhythmIds` populated;
@@ -545,6 +405,9 @@ Done 2026-08-11: beat map; `rhythm_battle_runtime_probe.py` made runnable
 (`skill_class` NameError fixed); highway-ownership fix staged in
 `MelodiaRhythmHUDWidget` (unbuilt); ledger truth recorded (no rhythm gate row exists —
 see evidence standard §1).
+Done 2026-08-14: `save_load`, `repeat_consume`, `package_launch` all pass.
+Done 2026-08-18: `MelodiaLocomotionAnimInstance.cpp` crash fixed (TScriptInterface
+constructor vs SetObject); all four completion gates verified PASS.
 
 Parallel work for other agents, partitioned by contended resource:
 **current** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md)
@@ -552,18 +415,3 @@ Parallel work for other agents, partitioned by contended resource:
 (history: `PARALLEL_LANES_2026-08-08.md`). Rhythm + Quill are owner-locked WORKED — do not reopen.
 
 ---
-
-## 5. jcode Swarm (parallel coding lane)
-
-Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm on the Windows UE workstation — not `deploy/cursor_*_loop.ps1` wake ticks.
-
-*   **Policy:** [`.jcode/swarm-prompt.md`](.jcode/swarm-prompt.md) — PGA/MPA/PPA/WIA/SQA/WEB/MUSE spawn scopes, concurrency cap 6, no recursive worker spawning.
-*   **Bootstrap:** `.\deploy\start_jcode_swarm.ps1` then paste [`.jcode/coordinator-bootstrap.md`](.jcode/coordinator-bootstrap.md).
-*   **MCP:** [`.jcode/mcp.json`](.jcode/mcp.json) → Monolith stdio proxy (`Plugins/Monolith/Scripts/monolith_proxy.bat`); requires Unreal open for editor tools.
-*   **Skills:** `.\deploy\install_jcode_melodia_skills.ps1` installs Monolith skills into `%USERPROFILE%\.jcode\skills\`.
-*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Docs/Production/MUSE_CODE_LANE_2026-08-11.md). Tonight prep: [`Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md`](Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md).
-*   **Keep running:** surreal/world/`run_verify` production loops.
-*   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1` (left in tree; do not start for new work).
-*   **Phone/Cursor cloud agents** remain the PR / mobile lane; do not overlap write paths with a live local swarm without coordination.
-
-Full guide: [Docs/PhoneOps/JCODE_SWARM_PIPELINE.md](Docs/PhoneOps/JCODE_SWARM_PIPELINE.md) · [`.jcode/README.md`](.jcode/README.md)

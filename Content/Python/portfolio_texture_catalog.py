@@ -107,14 +107,37 @@ PROCEDURAL: dict[str, dict[str, str] | str] = {
     "spokes_radial": f"{PROJ}/Spokes/512x512/Texture_512x512_1.Texture_512x512_1",
 }
 
+# Neutral utility textures — the healthy stable tileable defaults. These are
+# imported once (2026-08-14) and are the first-choice fallback for every map
+# role so no master/instance ever samples noise or color packs by default.
+NEUTRAL = {
+    "normal": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal",
+    "orm": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM",
+    "height": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height",
+    "roughness": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Roughness",
+    "metallic": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Metallic",
+}
+
 # Fallback chains (first existing wins in editor)
 def _chain(*paths: str) -> list[str]:
     return list(paths)
 
 
-# Normal fallbacks — marble albedo packs as tangent-ish placeholders (not Perlin noise)
+# Normal fallbacks — healthy order: flat neutral normal first, real project
+# normals next, then seamless texture packs ONLY as last-resort (they read as
+# smooth geometry, never as Perlin noise). Marble albedo is removed from the
+# normal chain entirely — color packs in a normal slot are a wrong-role defect.
 def _normal_chain() -> list[str]:
-    return _chain(COMPOSITING["abstract_a"], COMPOSITING["gradient_warm"], MARBLE["light"], MARBLE["warm_stone"])
+    return _chain(
+        NEUTRAL["normal"],
+        CUSTOM["soil_normal"],
+        CUSTOM["starry_normal"],
+        CUSTOM["bss_sand_normal"],
+        CUSTOM["landscape_gray_normal"],
+        COMPOSITING["noise_fine"],
+        COMPOSITING["abstract_a"],
+        COMPOSITING["gradient_warm"],
+    )
 
 
 # Param role hints for MI editor grouping (see organize_*_groups.py)
@@ -153,9 +176,11 @@ LANDSCAPE_TEXTURE_DEFAULTS: dict[str, list[str]] = {
     "Rock_Albedo": _chain(COMPOSITING["gradient_warm"], COMPOSITING["abstract_a"], MARBLE["warm_stone"]),
     "Rock_Normal": _normal_chain(),
     "Rock_Height": _chain(HEIGHT["perlin"], COMPOSITING["noise_fine"]),
+    "Rock_ORM": _chain(NEUTRAL["orm"]),
     "Grass_Albedo": _chain(CUSTOM["soil_albedo"], CUSTOM["landscape_gray_albedo"], COMPOSITING["abstract_a"]),
     "Grass_Normal": _chain(CUSTOM["soil_normal"], CUSTOM["landscape_gray_normal"], *_normal_chain()),
     "Grass_Height": _chain(COMPOSITING["noise_fine"], HEIGHT["perlin"]),
+    "Grass_ORM": _chain(NEUTRAL["orm"]),
     "Mud_Albedo": _chain(COMPOSITING["crack_heavy"], COMPOSITING["abstract_a"]),
     "Mud_Normal": _normal_chain(),
     "Mud_Height": _chain(
@@ -163,9 +188,11 @@ LANDSCAPE_TEXTURE_DEFAULTS: dict[str, list[str]] = {
         COMPOSITING["crack_overlay"],
         HEIGHT["perlin"],
     ),
+    "Mud_ORM": _chain(NEUTRAL["orm"]),
     "Path_Albedo": _chain(MARBLE["worn"], COMPOSITING["gradient_warm"]),
     "Path_Normal": _normal_chain(),
     "Path_Height": _chain(HEIGHT["perlin"], COMPOSITING["noise_fine"]),
+    "Path_ORM": _chain(NEUTRAL["orm"]),
     "PathMask": _chain(MASK["voronoi_crack"], COMPOSITING["crack_overlay"]),
     "SparkleMask": _chain(
         "/Game/Alphas_Sparkles/T_Spark_Twinkle8.T_Spark_Twinkle8",
@@ -180,30 +207,35 @@ LANDSCAPE_TEXTURE_DEFAULTS: dict[str, list[str]] = {
 
 
 MASTER_TEXTURE_DEFAULTS: dict[str, list[str]] = {
+    # Albedo: marble stone reads sane as an interim surface; abstract/gradient
+    # packs are only a last resort (they are still tileable, never placeholder).
     "Albedo": _chain(
-        COMPOSITING["abstract_a"],
-        COMPOSITING["gradient_warm"],
         MARBLE["warm_stone"],
         MARBLE["light"],
+        COMPOSITING["abstract_a"],
+        COMPOSITING["gradient_warm"],
     ),
     "NormalMap": _normal_chain(),
-    "ORM": _chain(COMPOSITING["gradient_warm"], COMPOSITING["abstract_a"]),
+    # ORM / Roughness / Metallic / Emissive: packed-neutral defaults first —
+    # color packs in these slots are wrong-role defects (see wrong_role audit).
+    "ORM": _chain(NEUTRAL["orm"], MARBLE["worn"], COMPOSITING["abstract_a"]),
     "HeightMap": _chain(HEIGHT["perlin"], COMPOSITING["noise_fine"], HEIGHT["perlin_sdf"]),
-    "RoughnessMap": _chain(MARBLE["worn"], MARBLE["dark"], COMPOSITING["abstract_a"]),
-    "MetallicMap": _chain(COMPOSITING["gradient_warm"], COMPOSITING["abstract_a"], MARBLE["dark"]),
+    "RoughnessMap": _chain(NEUTRAL["roughness"], MARBLE["worn"], MARBLE["dark"]),
+    "MetallicMap": _chain(NEUTRAL["metallic"], MARBLE["dark"], COMPOSITING["abstract_a"]),
+    "EmissiveMap": _chain(NEUTRAL["metallic"]),
     "LayerB_Albedo": _chain(COMPOSITING["crack_overlay"], MASK["voronoi_crack"]),
     "LayerB_NormalMap": _normal_chain(),
-    "LayerB_ORM": _chain(COMPOSITING["abstract_a"], COMPOSITING["gradient_warm"]),
+    "LayerB_ORM": _chain(NEUTRAL["orm"], COMPOSITING["abstract_a"]),
     "LayerB_HeightMap": _chain(COMPOSITING["crack_heavy"], HEIGHT["perlin"], MASK["voronoi_crack"]),
-    "LayerB_RoughnessMap": _chain(COMPOSITING["crack_overlay"], MARBLE["worn"], COMPOSITING["abstract_a"]),
-    "LayerB_MetallicMap": _chain(COMPOSITING["gradient_warm"], COMPOSITING["abstract_a"], MARBLE["dark"]),
+    "LayerB_RoughnessMap": _chain(NEUTRAL["roughness"], COMPOSITING["crack_overlay"], MARBLE["worn"]),
+    "LayerB_MetallicMap": _chain(NEUTRAL["metallic"], MARBLE["dark"], COMPOSITING["abstract_a"]),
     "LayerC_Albedo": _chain(MARBLE["light"], COMPOSITING["abstract_a"], COMPOSITING["gradient_warm"]),
     "LayerC_NormalMap": _normal_chain(),
-    "LayerC_ORM": _chain(COMPOSITING["abstract_a"], COMPOSITING["gradient_warm"]),
+    "LayerC_ORM": _chain(NEUTRAL["orm"], COMPOSITING["abstract_a"]),
     "LayerC_HeightMap": _chain(HEIGHT["perlin"], COMPOSITING["noise_fine"], MASK["voronoi_crack"]),
-    "LayerC_RoughnessMap": _chain(MARBLE["worn"], COMPOSITING["abstract_a"], COMPOSITING["noise_fine"]),
-    "LayerC_MetallicMap": _chain(COMPOSITING["gradient_warm"], COMPOSITING["abstract_a"], MARBLE["dark"]),
-    "DetailNormal": _chain(MARBLE["light"], MARBLE["worn"], COMPOSITING["noise_fine"]),
+    "LayerC_RoughnessMap": _chain(NEUTRAL["roughness"], MARBLE["worn"], COMPOSITING["noise_fine"]),
+    "LayerC_MetallicMap": _chain(NEUTRAL["metallic"], MARBLE["dark"], COMPOSITING["abstract_a"]),
+    "DetailNormal": _chain(NEUTRAL["normal"], MARBLE["worn"], COMPOSITING["noise_fine"]),
     "SparkleMask": _chain(
         "/Game/Alphas_Sparkles/T_Spark_Twinkle8.T_Spark_Twinkle8",
         "/Game/Alphas_Sparkles/T_Spark_Sparkle4.T_Spark_Sparkle4",
@@ -231,13 +263,43 @@ MASTER_TEXTURE_DEFAULTS: dict[str, list[str]] = {
         COMPOSITING["noise_fine"],
         COMPOSITING["space_nebula"],
     ),
+    # Gemstone / fabric / face-SDF stack slots: never /Engine placeholders.
+    "Stack2_Albedo": _chain(MARBLE["light"], MARBLE["warm_stone"], COMPOSITING["abstract_a"]),
+    "Stack2_Normal": _normal_chain(),
+    "Stack2_ORM": _chain(NEUTRAL["orm"]),
+    "Stack3_Albedo": _chain(MARBLE["dark"], MARBLE["warm_stone"], COMPOSITING["abstract_a"]),
+    "Stack3_Normal": _normal_chain(),
+    "Stack3_ORM": _chain(NEUTRAL["orm"]),
+    "FaceSDF_Texture": _chain(NEUTRAL["height"], COMPOSITING["noise_fine"], HEIGHT["perlin"]),
+    "TriplanarDetailMap": _chain(HEIGHT["perlin"], COMPOSITING["noise_fine"]),
 }
 
 # M_Master_Toon_Unified / M_Master_SDF_Toon (TextureSampleParameter2D, no Albedo slot)
 UNIFIED_SDF_TEXTURE_DEFAULTS: dict[str, list[str]] = {
     "NormalMap": _normal_chain(),
-    "RoughnessMap": _chain(MARBLE["worn"], MARBLE["dark"], COMPOSITING["abstract_a"]),
+    "RoughnessMap": _chain(NEUTRAL["roughness"], MARBLE["worn"], MARBLE["dark"]),
     "HeightMap": _chain(HEIGHT["perlin"], HEIGHT["perlin_sdf"], COMPOSITING["crack_overlay"]),
+}
+
+# M_Master_Nikki (lean companion master — live vocabulary confirmed 2026-08-16)
+NIKKI_MASTER_TEXTURE_DEFAULTS: dict[str, list[str]] = {
+    "Albedo": MASTER_TEXTURE_DEFAULTS["Albedo"],
+    "NormalMap": _normal_chain(),
+    "ORM": _chain(NEUTRAL["orm"]),
+    "HeightMap": _chain(HEIGHT["perlin"], COMPOSITING["noise_fine"]),
+    "EmissiveMap": _chain(NEUTRAL["metallic"]),
+}
+
+# M_Master_Nikki_Landscape — painted layers use Rock_/Ground_/Grass_ with
+# _NormalMap suffix (NOT the HeightBlend master's Rock_Normal naming).
+NIKKI_LANDSCAPE_TEXTURE_DEFAULTS: dict[str, list[str]] = {
+    "Albedo": MASTER_TEXTURE_DEFAULTS["Albedo"],
+    "Rock_Albedo": _chain(MARBLE["warm_stone"], COMPOSITING["gradient_warm"], COMPOSITING["abstract_a"]),
+    "Rock_NormalMap": _normal_chain(),
+    "Ground_Albedo": _chain(CUSTOM["soil_albedo"], CUSTOM["landscape_gray_albedo"], COMPOSITING["abstract_a"]),
+    "Ground_NormalMap": _normal_chain(),
+    "Grass_Albedo": _chain(CUSTOM["soil_albedo"], CUSTOM["landscape_gray_albedo"], COMPOSITING["abstract_a"]),
+    "Grass_NormalMap": _normal_chain(),
 }
 
 INSTANCE_TEXTURE_DEFAULTS: dict[str, dict[str, list[str]]] = {
@@ -399,12 +461,19 @@ INSTANCE_TEXTURE_DEFAULTS: dict[str, dict[str, list[str]]] = {
     },
 }
 
-# Any instance with TextureWeight / layer weights but no explicit textures gets base pack
+# Any instance with TextureWeight / layer weights but no explicit textures gets
+# the healthy default pack. ORM/Roughness/Metallic/Emissive are included so an
+# override on Albedo never drags noise/color defaults into the other slots.
 INSTANCE_FALLBACK_TEXTURES: dict[str, list[str]] = {
     "Albedo": MASTER_TEXTURE_DEFAULTS["Albedo"],
     "HeightMap": MASTER_TEXTURE_DEFAULTS["HeightMap"],
     "NormalMap": MASTER_TEXTURE_DEFAULTS["NormalMap"],
+    "ORM": MASTER_TEXTURE_DEFAULTS["ORM"],
+    "RoughnessMap": MASTER_TEXTURE_DEFAULTS["RoughnessMap"],
+    "MetallicMap": MASTER_TEXTURE_DEFAULTS["MetallicMap"],
+    "EmissiveMap": MASTER_TEXTURE_DEFAULTS["EmissiveMap"],
     "LayerB_Albedo": MASTER_TEXTURE_DEFAULTS["LayerB_Albedo"],
+    "LayerB_ORM": MASTER_TEXTURE_DEFAULTS["LayerB_ORM"],
     "LayerB_HeightMap": MASTER_TEXTURE_DEFAULTS["LayerB_HeightMap"],
     "DetailNormal": MASTER_TEXTURE_DEFAULTS["DetailNormal"],
     "SparkleMask": MASTER_TEXTURE_DEFAULTS["SparkleMask"],
@@ -642,6 +711,10 @@ def _master_default_map(material_path: str) -> dict[str, list[str]]:
         return MASTER_TEXTURE_DEFAULTS
     if stem in ("m_master_toon_unified", "m_master_sdf_toon"):
         return UNIFIED_SDF_TEXTURE_DEFAULTS
+    if "nikki_landscape" in stem:
+        return {**MASTER_TEXTURE_DEFAULTS, **NIKKI_LANDSCAPE_TEXTURE_DEFAULTS}
+    if "nikki" in stem:
+        return {**MASTER_TEXTURE_DEFAULTS, **NIKKI_MASTER_TEXTURE_DEFAULTS}
     return {**MASTER_TEXTURE_DEFAULTS, **UNIFIED_SDF_TEXTURE_DEFAULTS}
 
 
@@ -687,7 +760,27 @@ def scan_master_texture_violations(material) -> dict[str, list[str]]:
     banned: list[str] = []
     unwired: list[str] = []
     wrong_role: list[str] = []
+    # Height/noise maps in data slots read as artifacts, not maps. HeightMap
+    # slots are EXCLUDED — Perlin/height noise is the legitimate height default.
     height_noise_markers = ("Perlin", "Cracks", "Voronoi", "noise_texture_pack")
+    # Color packs (albedo/gradient/marble) in data slots are channel-packing
+    # defects: they make rough/metal/AO/normal read as painted color.
+    color_pack_markers = (
+        "seamless_abstract_pack",
+        "gradient_texture_pack",
+        "/Marble/",
+        "Marble_",
+        "sbs_-_",
+    )
+    # Slots that must carry packed data (never color). Matched by suffix so the
+    # Nikki-landscape vocabulary (Rock_NormalMap / Ground_ORM / Grass_NormalMap)
+    # is covered without hardcoding every layer prefix.
+    def _is_data_slot(pname: str) -> bool:
+        return pname.endswith(("ORM", "NormalMap", "RoughnessMap", "MetallicMap")) or pname == "DetailNormal"
+
+    # Noise in a normal/ORM/roughness slot is a defect; noise in a height slot is fine.
+    def _is_noise_defect_slot(pname: str) -> bool:
+        return pname.endswith(("ORM", "NormalMap", "RoughnessMap", "MetallicMap")) or pname == "DetailNormal"
 
     for expr, _owner in lib.iter_texture_parameter_expressions(material):
         pname = _param_name(expr)
@@ -707,7 +800,10 @@ def scan_master_texture_violations(material) -> dict[str, list[str]]:
         path = lib.texture_asset_path(tex) or ""
         if lib.is_banned_texture(tex):
             banned.append(pname)
-        if pname in ("ORM", "LayerB_ORM", "RoughnessMap") and any(m in path for m in height_noise_markers):
+        if _is_data_slot(pname) and (
+            (_is_noise_defect_slot(pname) and any(m in path for m in height_noise_markers))
+            or any(m in path for m in color_pack_markers)
+        ):
             wrong_role.append(pname)
 
     return {"banned": banned, "unwired": unwired, "wrong_role": wrong_role}
@@ -727,13 +823,15 @@ def apply_master_defaults(
             material_path = ""
     defaults = _master_default_map(material_path)
     wired: dict[str, str] = {}
-    param_exprs: dict[str, object] = {}
-    expr_owners: dict[str, object] = {}
+    # One name may have several expression nodes (duplicate_parameter_name).
+    # Wire ALL of them so no duplicate reads a placeholder /Engine texture.
+    param_exprs: dict[str, list[object]] = {}
+    expr_owners: dict[str, list[object]] = {}
     for expr, owner in lib.iter_texture_parameter_expressions(material):
         pname = _param_name(expr)
-        if pname and pname not in param_exprs:
-            param_exprs[pname] = expr
-            expr_owners[pname] = owner
+        if pname:
+            param_exprs.setdefault(pname, []).append(expr)
+            expr_owners.setdefault(pname, []).append(owner)
 
     texture_params = lib.texture_parameter_names(material)
     if not param_exprs and texture_params:
@@ -744,8 +842,8 @@ def apply_master_defaults(
 
     modified_owners: set[object] = set()
     for pname, candidates in defaults.items():
-        expr = param_exprs.get(pname)
-        if not expr:
+        exprs = param_exprs.get(pname)
+        if not exprs:
             continue
         current = None
         me = unreal.MaterialEditingLibrary
@@ -761,14 +859,14 @@ def apply_master_defaults(
         if not candidates:
             unreal.log_warning(f"[texture_catalog] no valid candidates for master {pname}")
             continue
-        path = lib.set_expression_texture(expr, candidates)
-        if path:
-            wired[pname] = path
-            owner = expr_owners.get(pname)
-            if owner:
-                modified_owners.add(owner)
-        else:
-            unreal.log_warning(f"[texture_catalog] no asset for master {pname} on {material_path}")
+        for expr, owner in zip(exprs, expr_owners.get(pname, [])):
+            path = lib.set_expression_texture(expr, candidates)
+            if path:
+                wired[pname] = path
+                if owner:
+                    modified_owners.add(owner)
+            else:
+                unreal.log_warning(f"[texture_catalog] no asset for master {pname} on {material_path}")
 
     for owner in modified_owners:
         lib.save_package(owner)

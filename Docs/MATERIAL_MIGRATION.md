@@ -209,7 +209,7 @@ Instance overrides: set `override_toon_profile=True` on each `MI_*` (see `INSTAN
 2. Confirm `Config/DefaultEngine.ini` has `r.Substrate=True`.
 3. **Tools → Execute Python Script** → `Content/Python/setup_sdf_materials.py`  
    Or Output Log:  
-   `py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py"`
+   `py "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py"`
 4. Assign `MI_Toon_SDF_Wall` to a test mesh; compare visually to Melodia `M_SDF_TrueParallax` reference screenshots.
 
 Safe to re-run: rebuilds master/instances; reuses existing Toon Profiles.

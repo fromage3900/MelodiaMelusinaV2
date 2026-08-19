@@ -1,0 +1,23 @@
+{
+  "$schema": "../schemas/t3d_mutation_request.v1.json",
+  "schema": "melodia.t3d_mutation_request.v1",
+  "request_id": "wardrobe-preview-001",
+  "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+  "expected_before_fingerprint": "REPLACE_FROM_LIVE_QUERY_123",
+  "operations": ["validate_wardrobe_nodes"],
+  "verification": {
+    "compile_zero_errors": true,
+    "assert_graph_match": true,
+    "reexport_after_save": true,
+    "dry_run": true
+  },
+  "payload": {
+    "graph": "EventGraph",
+    "pattern": "subsystem_call",
+    "placeholders": {
+      "subsystem_class": "/Script/MelodiaWardrobe.MelodiaWardrobeSubsystem",
+      "function": "GetState",
+      "target_class": "/Script/MelodiaWardrobe.MelodiaWardrobeSubsystem"
+    }
+  }
+}

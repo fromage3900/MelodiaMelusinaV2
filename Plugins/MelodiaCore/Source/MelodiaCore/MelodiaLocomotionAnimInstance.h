@@ -36,4 +36,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Locomotion")
 	bool bRuntimeIsGliding = false;
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Locomotion")
+	bool bRuntimeIsSprinting = false;
 };

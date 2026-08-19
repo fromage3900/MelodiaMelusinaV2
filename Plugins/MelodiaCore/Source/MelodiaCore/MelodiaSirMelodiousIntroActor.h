@@ -70,7 +70,7 @@ protected:
 	FVector DepartureOffset = FVector(650.0f, 0.0f, 260.0f);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Opening|Departure", meta=(AllowedClasses="/Script/Engine.World"))
-	FName DepartureDestinationLevel = TEXT("/Game/Melodia/Levels/Opening/L_Melodia_Dreamstate");
+	FName DepartureDestinationLevel = TEXT("/Game/EnvSandbox/Environments/L_KaleidoNave");
 
 	/** Dissonance procs from actual distance to Sir as he flies away, not a fixed
 	 * trigger volume - "losing power because she's away from her companion."

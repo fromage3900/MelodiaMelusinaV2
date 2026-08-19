@@ -1,6 +1,6 @@
 # Phone Ops Index
 
-Front door for driving MelodiaMelusina from iOS / Cursor mobile.
+Front door for driving MelodiaMelusinaV2 from iOS / Cursor mobile.
 
 ## Start here (order)
 
@@ -32,7 +32,7 @@ Then, if you need deeper truth:
 Paste one of these:
 
 ```text
-You are on MelodiaMelusina. Read Docs/PhoneOps/NORTH_STAR.md and Docs/PhoneOps/BACKLOG.md.
+You are on MelodiaMelusinaV2. Read Docs/PhoneOps/NORTH_STAR.md and Docs/PhoneOps/BACKLOG.md.
 Do only the first Now item. Stay Green/Yellow autonomy. No Sakura level edits. PR when done.
 ```
 

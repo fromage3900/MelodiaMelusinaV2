@@ -1,0 +1,209 @@
+{
+  "schema": "melodia.p0.task_ledger.v1",
+  "generated_at": "2026-08-19T03:33:17.8750280-04:00",
+  "p0_tasks": [
+    {
+      "id": "p0_001",
+      "name": "Define 4 global economy data structs/variables",
+      "system": "Global Economies",
+      "priority": 1,
+      "status": "open",
+      "notes": "HealingEconomy, ManaEconomy, UtilityEconomy, GriefEconomy as shared state"
+    },
+    {
+      "id": "p0_002",
+      "name": "Implement grief modifier on rhythm note hits",
+      "system": "Grief Hook",
+      "priority": 2,
+      "status": "open",
+      "notes": "GriefEconomy biases rhythm-yield math (more Mana gain, less Healing gain)"
+    },
+    {
+      "id": "p0_003",
+      "name": "Implement HealingSong (base + 1 scalar tier)",
+      "system": "Healing Song",
+      "priority": 3,
+      "status": "open",
+      "notes": "Consumes HealingEconomy, heals, grants small ManaEconomy (chain feed)"
+    },
+    {
+      "id": "p0_004",
+      "name": "Implement ManaSong (base + 1 scalar tier)",
+      "system": "Mana Song",
+      "priority": 4,
+      "status": "open",
+      "notes": "Consumes ManaEconomy, restores mana/resonance, reduces GriefEconomy (chain feed)"
+    },
+    {
+      "id": "p0_005",
+      "name": "Implement UtilitySong_Debuff (mana drain type)",
+      "system": "Utility Song",
+      "priority": 5,
+      "status": "open",
+      "notes": "Consumes UtilityEconomy, applies mana drain debuff that drains target ManaEconomy"
+    },
+    {
+      "id": "p0_006",
+      "name": "Wire HUD/WBP for all P0 economy inputs/indicators",
+      "system": "HUD/WBP",
+      "priority": 6,
+      "status": "open",
+      "notes": "4 economy display slots + cast buttons + grief indicator + scalar tier display"
+    },
+    {
+      "id": "p0_007",
+      "name": "Dungeon route: level entry, encounter trigger, grief hook activation",
+      "system": "Dungeon Route",
+      "priority": 7,
+      "status": "open",
+      "notes": "Single route/level entry that runs the P0 loop"
+    },
+    {
+      "id": "p0_008",
+      "name": "Enemy: debuff/status-pressure type (mana-drain reciprocal synergy)",
+      "system": "Enemy",
+      "priority": 8,
+      "status": "open",
+      "notes": "One enemy type that pressures via status/debuff behavior aligned with UtilitySong_Debuff"
+    },
+    {
+      "id": "p0_009",
+      "name": "Quest integration: gate completion on required skill usage + encounter resolution",
+      "system": "Quest Integration",
+      "priority": 9,
+      "status": "open",
+      "notes": "Quest chain tied to casting HealingSong, ManaSong, UtilitySong_Debuff at least once"
+    }
+  ],
+  "polish_tasks": [
+    {
+      "id": "polish_001",
+      "name": "Economy system idempotency (repeated casts do not corrupt state)",
+      "category": "Safety",
+      "priority": 1,
+      "status": "open",
+      "notes": "Verify repeated casts cannot underflow/overflow or double-apply effects"
+    },
+    {
+      "id": "polish_002",
+      "name": "Grief modifier edge cases (clamp min/max; no negative balances)",
+      "category": "Safety",
+      "priority": 2,
+      "status": "open",
+      "notes": "Explicit clamp behavior for all economy systems"
+    },
+    {
+      "id": "polish_003",
+      "name": "UtilitySong_Buff variant (PT2) extending from UtilityEconomy",
+      "category": "Utility",
+      "priority": 3,
+      "status": "open",
+      "notes": "Apply buff potency/duration scaling based on scalar tier"
+    },
+    {
+      "id": "polish_004",
+      "name": "UtilitySong_Cleanse variant (PT2) clearing debuffs from party",
+      "category": "Utility",
+      "priority": 4,
+      "status": "open",
+      "notes": "Remove debuffs from companion/party state"
+    },
+    {
+      "id": "polish_005",
+      "name": "Scalar tier 3 for all skill families",
+      "category": "Content",
+      "priority": 5,
+      "status": "open",
+      "notes": "Add tier 3 potency/duration scaling"
+    },
+    {
+      "id": "polish_006",
+      "name": "Rhythm hit accuracy -> economy yield validation (MATH-style eval)",
+      "category": "Math/Test",
+      "priority": 6,
+      "status": "open",
+      "notes": "Validate numeric yield outcomes from timing accuracy"
+    },
+    {
+      "id": "polish_007",
+      "name": "WBP: scalar tier UI update on economy threshold change",
+      "category": "HUD",
+      "priority": 7,
+      "status": "open",
+      "notes": "Update UI tier indicators when economy crosses thresholds"
+    },
+    {
+      "id": "polish_008",
+      "name": "Chain loop integration test (Heal -> Mana -> Grief -> more Healing)",
+      "category": "Integration",
+      "priority": 8,
+      "status": "open",
+      "notes": "Test full chain behavior: HealingSong -> ManaGain -> ManaSong -> GriefDrop -> HealingYieldEffect"
+    },
+    {
+      "id": "polish_009",
+      "name": "Enemy AI: scale mana drain potency by grief level",
+      "category": "Enemy AI",
+      "priority": 9,
+      "status": "open",
+      "notes": "Synergy with grief hook (heavier grief increases drain effects)"
+    },
+    {
+      "id": "polish_010",
+      "name": "Quest step UX: 'cast all 3 skill families at least once' completion condition",
+      "category": "Quest UX",
+      "priority": 10,
+      "status": "open",
+      "notes": "Explicit UX gate for P0 completion"
+    }
+  ],
+  "overnight_test_targets": [
+    {
+      "id": "test_001",
+      "name": "Grief modifier calculation unit test (grief 0 / 50 / 100)"
+    },
+    {
+      "id": "test_002",
+      "name": "HealingSong blueprint fixture execution"
+    },
+    {
+      "id": "test_003",
+      "name": "ManaSong blueprint fixture execution"
+    },
+    {
+      "id": "test_004",
+      "name": "UtilitySong_Debuff (mana drain) blueprint fixture execution"
+    },
+    {
+      "id": "test_005",
+      "name": "WBP binding checks (4 economy bindings + cast button events)"
+    },
+    {
+      "id": "test_006",
+      "name": "Quest progression check (skill cast count updates quest state)"
+    }
+  ],
+  "integration_touchpoints": [
+    {
+      "id": "touch_001",
+      "name": "New MATH harness tasks for each skill family"
+    },
+    {
+      "id": "touch_002",
+      "name": "New WBP fixture for HUD"
+    },
+    {
+      "id": "touch_003",
+      "name": "Policy entries for any new MCP tools"
+    },
+    {
+      "id": "touch_004",
+      "name": "Quest allowlist entries for new quest IDs"
+    },
+    {
+      "id": "touch_005",
+      "name": "Dungeon encounter fixture"
+    }
+  ]
+}
+

@@ -72,3 +72,31 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Input")
 	virtual bool IsSavingAllowed() const = 0;
 };
+
+UINTERFACE(MinimalAPI, BlueprintType, NotBlueprintable)
+class UMelodiaTraversalStateProvider : public UInterface
+{
+	GENERATED_BODY()
+};
+
+/** Query surface for the pawn's live traversal state, implemented by the game
+ * module's UMelodiaTraversalComponent. MelodiaCore anim instances use this to
+ * drive locomotion graph states (Glide, Sprint) without a circular dependency
+ * on BS_GodFile. Never call the old AMelodiaSmokeCharacter cast for this --
+ * no spawned pawn is a Smoke character anymore. */
+class MELODIACORE_API IMelodiaTraversalStateProvider
+{
+	GENERATED_BODY()
+
+public:
+	// BlueprintCallable, not BlueprintPure -- see IMelodiaTravelProvider::GetPendingSpawnTag
+	// for why. The concrete overrides in UMelodiaTraversalComponent keep BlueprintPure.
+	UFUNCTION(BlueprintCallable, Category = "Melodia|Traversal")
+	virtual bool IsGliding() const = 0;
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|Traversal")
+	virtual bool IsSprinting() const = 0;
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|Traversal")
+	virtual bool IsJumpWindingUp() const = 0;
+};

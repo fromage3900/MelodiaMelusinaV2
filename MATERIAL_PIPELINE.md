@@ -23,7 +23,7 @@ The project relies on four specialized master shaders under `/Game/EnvSandbox/Ma
 ```
 
 ### 1.1 `M_Master_Toon_Universal`
-The primary surface master for meshes, props, and architectural trims. It is programmatically built via [setup_master_universal.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py) and features 18 texture parameter slots.
+The primary surface master for meshes, props, and architectural trims. It is programmatically built via [setup_master_universal.py](Content/Python/setup_master_universal.py) and features 18 texture parameter slots.
 
 #### Parameter Group Hierarchy
 1.  **Textures / LayerA / LayerB**: Albedo, Normal, ORM (Occlusion/Roughness/Metallic), and Height.
@@ -40,7 +40,7 @@ The primary surface master for meshes, props, and architectural trims. It is pro
 12. **Magical**: Handles henshin transition wipes and palette shifts.
 
 ### 1.2 `M_Master_Toon_Landscape_HeightBlend`
-Built via [setup_landscape_height_blend.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py). It manages four painted texture layers (Rock, Grass, Mud, Path) and matches the style features of the Universal master.
+Built via [setup_landscape_height_blend.py](Content/Python/setup_landscape_height_blend.py). It manages four painted texture layers (Rock, Grass, Mud, Path) and matches the style features of the Universal master.
 
 *   **Height-Dot Competition**: Uses `MF_LandscapeHeightCompete` to calculate sharp, natural transitions between materials based on height maps.
 *   **Procedural Fallback**: Automatically activates height-based competition across layers if manual painting weights sum to zero.
@@ -48,12 +48,12 @@ Built via [setup_landscape_height_blend.py](file:///g:/EnvironmentPortfolio/BS_G
 *   **Weathering Layers**: Overlays a procedural snow cover mask on upward-facing normals.
 
 ### 1.3 `M_Water_Master_Grand_v6`
-A translucent water master built via [setup_master_water.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_water.py).
+A translucent water master built via [setup_master_water.py](Content/Python/setup_master_water.py).
 *   **Displacement**: Uses multi-octave Gerstner waves for physical vertex motion.
 *   **Rendering**: Project-caustics maps, shoreline depth-based color fades, and high-roughness sparkles matching the Nikki environment theme.
 
 ### 1.4 `M_Master_Impressionist_Toon`
-A specialized shader built via [setup_impressionist_materials.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py) that renders a painterly, textured oil-paint overlay onto assets.
+A specialized shader built via [setup_impressionist_materials.py](Content/Python/setup_impressionist_materials.py) that renders a painterly, textured oil-paint overlay onto assets.
 
 ---
 
@@ -139,9 +139,9 @@ Material Maker graphs under `Tools/MaterialMaker/` compile procedural textures f
 
 | Script | Purpose | Execution Command |
 | :--- | :--- | :--- |
-| [setup_master_universal.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py) | Builds/rebuilds the core universal master shader. | `py setup_master_universal.py` (use `BS_MASTER_FORCE=1` to override) |
-| [setup_landscape_height_blend.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py) | Compiles the 4-layer height-blend landscape shader. | `py setup_landscape_height_blend.py` |
-| [apply_starter_instances.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py) | Creates the 13 canonical showcase material instances. | `py apply_starter_instances.py --starters-only` |
-| [setup_trimsheet_instances.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_trimsheet_instances.py) | Builds Layer A/B blend trimsheet instance presets. | `py setup_trimsheet_instances.py` |
-| [audit_material_library.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py) | Scans for dead references, orphans, and invalid paths. | `py audit_material_library.py` |
-| [fix_migration_redirectors.py](file:///g:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py) | Programmatically resolves redirected uassets. | `py fix_migration_redirectors.py` |
+| [setup_master_universal.py](Content/Python/setup_master_universal.py) | Builds/rebuilds the core universal master shader. | `py setup_master_universal.py` (use `BS_MASTER_FORCE=1` to override) |
+| [setup_landscape_height_blend.py](Content/Python/setup_landscape_height_blend.py) | Compiles the 4-layer height-blend landscape shader. | `py setup_landscape_height_blend.py` |
+| [apply_starter_instances.py](Content/Python/apply_starter_instances.py) | Creates the 13 canonical showcase material instances. | `py apply_starter_instances.py --starters-only` |
+| [setup_trimsheet_instances.py](Content/Python/setup_trimsheet_instances.py) | Builds Layer A/B blend trimsheet instance presets. | `py setup_trimsheet_instances.py` |
+| [audit_material_library.py](Content/Python/audit_material_library.py) | Scans for dead references, orphans, and invalid paths. | `py audit_material_library.py` |
+| [fix_migration_redirectors.py](Content/Python/fix_migration_redirectors.py) | Programmatically resolves redirected uassets. | `py fix_migration_redirectors.py` |

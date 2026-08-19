@@ -1,17 +1,34 @@
 # -*- coding: utf-8 -*-
 """Import the live Blender idle NLA clip onto SK_Melusina_Skeleton.
 
+NOT Lane A. New ARP/Blender sources fail four axes (dots, bone count, meters,
+24 fps) unless remapped + cm-probed. See
+Saved/Audit/melusina_idle_retarget_rca_2026-08-13.md.
+
 Does not replace live SK meshes. Does not import inbox Quaternius takes.
-Does not save the Blender stage.
+Does not save the Blender stage. Does not wire locomotion unless
+MELUSINA_WIRE_BLENDER_IDLE=1 (owner-gated; H3 — wait for PIE mocap idle).
+Meter-scale imports are scaled x100 after import; a clip that stays in
+meters is rejected.
 """
 from __future__ import annotations
 
 import json
+import os
+import sys
 from pathlib import Path
 
 import unreal
 
-FBX = r"C:\EnvironmentPortfolio\BS_GodFile\Exports\MelusinaAnim\A_BL_Melusina_Idle_Loop.fbx"
+_TOOLS = Path(__file__).resolve().parents[2] / "Tools"
+if str(_TOOLS) not in sys.path:
+    sys.path.insert(0, str(_TOOLS))
+from melusina_anim_unit_guard import (  # noqa: E402
+    classify_spine_translation,
+    spine_matches_mocap_cm,
+)
+
+FBX = r"C:\EnvironmentPortfolio\BS_GodFile\Exports\MelusinaAnim\A_BL_Melusina_Idle_Loop_cm.fbx"
 DEST_DIR = "/Game/Melodia/Characters/Melusina/Animations/Cascadeur"
 DEST_NAME = "A_BL_Melusina_Idle_Loop"
 DEST = f"{DEST_DIR}/{DEST_NAME}"
@@ -83,9 +100,10 @@ def import_idle() -> dict:
             anim.set_editor_property("import_bone_tracks", True)
             anim.set_editor_property("do_not_import_curve_with_zero", False)
             anim.set_editor_property("remove_redundant_keys", False)
-            # Blender meters -> UE centimeters. Mocap rest for c_spine_02_x is ~-12.84.
+            # Header UnitScaleFactor is not trusted. Import 1:1, then probe
+            # c_spine_02_x and x100 the tracks if they landed in meters.
             try:
-                anim.set_editor_property("import_uniform_scale", 100.0)
+                anim.set_editor_property("import_uniform_scale", 1.0)
             except Exception:
                 pass
             try:
@@ -124,8 +142,71 @@ def import_idle() -> dict:
     if report["skeleton"] != SKELETON:
         report["error"] = f"wrong_skeleton:{report['skeleton']}"
         return report
+    unit = _ensure_cm_tracks(seq)
+    report["unit"] = unit
+    if unit.get("class") != "cm":
+        report["error"] = f"meter_scale_rejected:{unit.get('class')}:spine_y={unit.get('spine_y')}"
+        return report
     report["ok"] = True
     return report
+
+
+def _probe_spine_y(seq) -> float | None:
+    try:
+        pose = unreal.AnimationLibrary.get_bone_pose_for_frame(seq, "c_spine_02_x", 0, False)
+        return float(pose.translation.y)
+    except Exception:
+        return None
+
+
+def _scale_tracks_x100(seq) -> dict:
+    ctrl = seq.get_editor_property("controller")
+    iface = seq.get_editor_property("data_model_interface")
+    names = list(iface.get_bone_track_names())
+    nkeys = 0
+    if hasattr(iface, "get_number_of_keys"):
+        try:
+            nkeys = int(iface.get_number_of_keys())
+        except Exception:
+            nkeys = 0
+    if nkeys <= 1 and hasattr(seq, "get_number_of_sampled_keys"):
+        try:
+            nkeys = int(seq.get_number_of_sampled_keys())
+        except Exception:
+            nkeys = 0
+    if nkeys <= 1:
+        nkeys = 24
+    ctrl.open_bracket("Scale blender idle m to cm")
+    for bone in names:
+        positions, rotations, scales = [], [], []
+        for frame in range(nkeys):
+            pose = unreal.AnimationLibrary.get_bone_pose_for_frame(seq, bone, frame, False)
+            loc = pose.translation
+            positions.append(unreal.Vector(loc.x * 100.0, loc.y * 100.0, loc.z * 100.0))
+            rotations.append(pose.rotation)
+            scales.append(pose.scale3d)
+        ctrl.set_bone_track_keys(bone, positions, rotations, scales)
+    ctrl.close_bracket()
+    try:
+        unreal.EditorAssetLibrary.save_loaded_asset(seq, False)
+    except Exception:
+        pass
+    return {"scaled_tracks": len(names), "nkeys": nkeys}
+
+
+def _ensure_cm_tracks(seq) -> dict:
+    y = _probe_spine_y(seq)
+    unit = {"spine_y": y, "class": classify_spine_translation(y), "scaled_100": False}
+    if unit["class"] == "meters":
+        unit.update(_scale_tracks_x100(seq))
+        unit["scaled_100"] = True
+        y = _probe_spine_y(seq)
+        unit["spine_y"] = y
+        unit["class"] = classify_spine_translation(y)
+    unit["matches_mocap_cm"] = spine_matches_mocap_cm(y)
+    if unit["class"] == "cm" and not unit["matches_mocap_cm"]:
+        unit["warn"] = "cm_class_but_spine_y_not_near_mocap_-12.84"
+    return unit
 
 
 def wire_idle(dest_path: str) -> dict:
@@ -189,13 +270,31 @@ def wire_idle(dest_path: str) -> dict:
 
 def main() -> dict:
     imported = import_idle()
-    report = {"import": imported, "wire": None, "ok": False}
-    if imported.get("ok"):
-        report["wire"] = wire_idle(imported["sequence"])
-        report["ok"] = bool(report["wire"].get("ok"))
-    else:
+    report = {
+        "import": imported,
+        "wire": None,
+        "ok": False,
+        "wired": False,
+        "note": "Locomotion is not wired unless MELUSINA_WIRE_BLENDER_IDLE=1 after a cm probe.",
+    }
+    if not imported.get("ok"):
         report["error"] = imported.get("error")
-        report["note"] = "Blender clip did not land; locomotion speed-0 left as-is (Quaternius try still in editor if previously wired)."
+        report["note"] = (
+            "Blender clip did not land as cm on SK_Melusina_Skeleton; "
+            "locomotion speed-0 left as-is."
+        )
+    elif os.environ.get("MELUSINA_WIRE_BLENDER_IDLE", "0") == "1":
+        report["wire"] = wire_idle(imported["sequence"])
+        report["wired"] = bool(report["wire"].get("ok"))
+        report["ok"] = report["wired"]
+        if not report["ok"]:
+            report["error"] = report["wire"].get("error")
+    else:
+        report["ok"] = True
+        report["note"] = (
+            "Imported and cm-probed. Speed 0 stays A_Melusina_Idle_Mocap_RootX "
+            "until PIE proves mocap idle looks normal."
+        )
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     return report

@@ -1,4 +1,4 @@
-ï»¿# Zundamon Î“Ã‡Ã¶ Design Bible
+# Zundamon GÇö Design Bible
 ## Character Integration for Melodia / Melusina Game Project
 
 ---
@@ -7,18 +7,18 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Name** | Zundamon (Ï€Ã¼ÃœÏ€Ã©Ã´Ï€Ã¼Ã¡Ï€Ã©Ã©Ï€Ã©Ã´) |
+| **Name** | Zundamon (püÜpéôpüápéépéô) |
 | **Species** | Zunda Mochi Fairy |
 | **Origin** | The Green East (Tohoku-analogue region) |
 | **Age** | Appears young (ageless fairy) |
 | **Height** | ~140cm (child-sized) |
-| **Pronoun** | Boku (Ï€Ã¼â•Ï€Ã¼Ã…) Î“Ã‡Ã¶ androgynous, slightly tomboyish |
-| **Speech Quirk** | Ends sentences with "~na no da" (Ï€Ã¼Â¬Ï€Ã¼Â«Ï€Ã¼Ã¡) |
-| **Voice** | VOICEVOX Zundamon (speaker ID 3) Î“Ã‡Ã¶ childlike, high-pitched, energetic |
+| **Pronoun** | Boku (pü+püÅ) GÇö androgynous, slightly tomboyish |
+| **Speech Quirk** | Ends sentences with "~na no da" (pü¬pü«püá) |
+| **Voice** | VOICEVOX Zundamon (speaker ID 3) GÇö childlike, high-pitched, energetic |
 | **Birthday** | December 5th (canon) |
 | **Hobby** | Wandering aimlessly, making mochi, acting important |
 | **Weakness** | Extraordinarily unlucky (actually: uncontrolled dimensional magic) |
-| **Weapon** | Zunda Arrow (Ï€Ã¼ÃœÏ€Ã©Ã´Ï€Ã¼Ã¡Ï€Ã©Ã³Ï€Ã¢Â¡Ï€Ã¢â•) Î“Ã‡Ã¶ a bow that fires magical mochi projectiles |
+| **Weapon** | Zunda Arrow (püÜpéôpüápéópâ¡pâ+) GÇö a bow that fires magical mochi projectiles |
 | **Signature Item** | Mochi Board (quest and shop interface) |
 | **Designer** | Niniko Edomura (canon) |
 
@@ -40,7 +40,7 @@
 | **Non-Commercial Use** | Completely free, no application needed |
 | **Commercial Use** | Free for Tohoku-region registered companies. Non-Tohoku: separate license required |
 | **Derivative Works** | Explicitly allowed. Creators retain rights to their own derivatives |
-| **3D Model Modification** | Allowed and encouraged Î“Ã‡Ã¶ modify, retexture, redistribute freely |
+| **3D Model Modification** | Allowed and encouraged GÇö modify, retexture, redistribute freely |
 | **Voice Use** | VOICEVOX: free for commercial and non-commercial use |
 | **Attribution** | Not required but appreciated ("Tohoku Zunko & Zundamon Project") |
 | **Guidelines** | https://zunko.jp/guideline.html |
@@ -52,15 +52,15 @@
 ## 3. Lore Integration
 
 ### The Green East
-The Green East is one of the seven directional realms in Melodia's cosmos. While Melusina guards the Astral Threshold (the boundary between all worlds), the Green East is a realm where food and magic are one and the same. Every dish is a spell. Every ingredient holds latent power. The Zunda mochi is the region's most sacred confection Î“Ã‡Ã¶ said to grant wisdom to those who consume it.
+The Green East is one of the seven directional realms in Melodia's cosmos. While Melusina guards the Astral Threshold (the boundary between all worlds), the Green East is a realm where food and magic are one and the same. Every dish is a spell. Every ingredient holds latent power. The Zunda mochi is the region's most sacred confection GÇö said to grant wisdom to those who consume it.
 
 ### How Zundamon Entered Melodia's Realm
-Zundamon was the Green East's most enthusiastic (if clumsy) mochi merchant. One day, while experimenting with a new "dimensional mochi" recipe, her Zunda Arrow accidentally pierced a rift in reality. A single hyperactive mochi escaped through the portal. Zundamon chased it Î“Ã‡Ã¶ and found herself in Melodia's starting region, her arrow tangled in a sacred tree, three magical mochi scattered across the village square.
+Zundamon was the Green East's most enthusiastic (if clumsy) mochi merchant. One day, while experimenting with a new "dimensional mochi" recipe, her Zunda Arrow accidentally pierced a rift in reality. A single hyperactive mochi escaped through the portal. Zundamon chased it GÇö and found herself in Melodia's starting region, her arrow tangled in a sacred tree, three magical mochi scattered across the village square.
 
-The Player meets her in this exact moment Î“Ã‡Ã¶ stuck, confused, and very hungry.
+The Player meets her in this exact moment GÇö stuck, confused, and very hungry.
 
 ### Why She Stays
-Zundamon discovers that her "bad luck" Î“Ã‡Ã¶ the constant tripping, the escaped mochi, the kitchen accidents Î“Ã‡Ã¶ is actually her innate dimensional magic leaking uncontrollably. The Green East's ambient magic normally stabilizes her. In Melodia's realm, without that stabilizing field, her power fluctuates wildly.
+Zundamon discovers that her "bad luck" GÇö the constant tripping, the escaped mochi, the kitchen accidents GÇö is actually her innate dimensional magic leaking uncontrollably. The Green East's ambient magic normally stabilizes her. In Melodia's realm, without that stabilizing field, her power fluctuates wildly.
 
 She stays because:
 1. She can't go home until she stabilizes her power (late game quest)
@@ -71,7 +71,7 @@ She stays because:
 ### Connection to Melusina
 - Both are **guardian beings** tied to specific regions/realms
 - Both wield **magical archery** (Zunda Arrow / Melusina's celestial bow)
-- Both are **dimensionally aware** Î“Ã‡Ã¶ they can sense the Astral Threshold
+- Both are **dimensionally aware** GÇö they can sense the Astral Threshold
 - Melusina recognizes Zundamon's leaking magic as similar to her own celestial energy
 - Late-game dialogue: Melusina mentors Zundamon in power control
 - Zundamon's comic misfortune is the tonal counterbalance to Melusina's dignified presence
@@ -154,27 +154,27 @@ Examples:
 ### Already On Disk
 ```
 F:\Inbox\...\Zundamon\
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Zundamon.vrm              Î“Â£Ã´ VRM model (17.2 MB)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Zundamon.fbx              Î“Â£Ã´ FBX export (1.9 MB)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ zundamon.pmx              Î“Â£Ã´ MMD source model (2.8 MB)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ zundamon_005.blend        Î“Â£Ã´ Blender scene (9.5 MB)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Zundamon.unitypackage     Î“Â£Ã´ Unity package (35.3 MB)
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Textures (15 PNGs)        Î“Â£Ã´ All texture maps
+Gö£GöÇGöÇ Zundamon.vrm              G£ô VRM model (17.2 MB)
+Gö£GöÇGöÇ Zundamon.fbx              G£ô FBX export (1.9 MB)
+Gö£GöÇGöÇ zundamon.pmx              G£ô MMD source model (2.8 MB)
+Gö£GöÇGöÇ zundamon_005.blend        G£ô Blender scene (9.5 MB)
+Gö£GöÇGöÇ Zundamon.unitypackage     G£ô Unity package (35.3 MB)
+GööGöÇGöÇ Textures (15 PNGs)        G£ô All texture maps
 ```
 
 ### Copied to Unreal Project
 ```
 BS_GodFile/Content/Melodia/Characters/Zundamon/
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Zundamon.fbx              Î“Â£Ã´ (1.9 MB)
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Textures/ (15 PNGs)       Î“Â£Ã´ (3.5 MB total)
+Gö£GöÇGöÇ Zundamon.fbx              G£ô (1.9 MB)
+GööGöÇGöÇ Textures/ (15 PNGs)       G£ô (3.5 MB total)
 ```
 
 ### Scripts Written
 ```
-BS_GodFile/Content/Python/import_zundamon.py    Î“Â£Ã´ UE import script
-BS_GodFile/Tools/generate_zundamon_voice.py      Î“Â£Ã´ VOICEVOX batch generator
-BS_GodFile/Content/.../zundamon_dialogue.json    Î“Â£Ã´ 20 voice lines (Japanese)
-BS_GodFile/Docs/ZUNDAMON_NPC_SPEC.md             Î“Â£Ã´ Blueprint specification
+BS_GodFile/Content/Python/import_zundamon.py    G£ô UE import script
+BS_GodFile/Tools/generate_zundamon_voice.py      G£ô VOICEVOX batch generator
+BS_GodFile/Content/.../zundamon_dialogue.json    G£ô 20 voice lines (Japanese)
+BS_GodFile/Docs/ZUNDAMON_NPC_SPEC.md             G£ô Blueprint specification
 ```
 
 ### Still Needed
@@ -198,14 +198,14 @@ BS_GodFile/Docs/ZUNDAMON_NPC_SPEC.md             Î“Â£Ã´ Blueprint specification
 
 ```
 WEEK 1: Import & Setup
-  [1] Run import_zundamon.py Î“Ã¥Ã† SK_Zundamon + textures in UE
+  [1] Run import_zundamon.py GåÆ SK_Zundamon + textures in UE
   [2] Create physics asset
   [3] Assign materials to mesh slots
-  [4] Install VOICEVOX Î“Ã¥Ã† generate voice WAVs
+  [4] Install VOICEVOX GåÆ generate voice WAVs
   [5] Import WAVs to UE
 
 WEEK 2: Animation & Blueprint
-  [6] Import MMD motion data Î“Ã¥Ã† idle, walk, greet anims
+  [6] Import MMD motion data GåÆ idle, walk, greet anims
   [7] Create ABP_Zundamon Animation Blueprint
   [8] Create BP_Zundamon_NPC Blueprint
   [9] Write behavior tree BT_Zundamon_NPC

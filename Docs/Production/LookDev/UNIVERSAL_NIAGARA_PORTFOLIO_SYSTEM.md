@@ -1,4 +1,4 @@
-﻿# Universal Niagara Portfolio System
+# Universal Niagara Portfolio System
 
 ## Purpose
 

@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_state_anchor_adapter_contract",
+  "contract_id": "melodia_state_anchor_adapter",
+  "status": "native_adapter_source_wired_closed_editor_build_pending",
+  "purpose": "Provide a generic stable-key anchor adapter while keeping the opening-specific state anchor intact and preventing duplicate apply operations.",
+  "authority": {
+    "gate": "specs/capability/melodia_capability_gate.v1.json",
+    "canonical_state": "UMelodiaNarrativeSubsystem -> FMelodiaNarrativeRecord",
+    "opening_boundary": "AMelodiaOpeningStateAnchor remains opening-specific and is not the generic adapter",
+    "save_write": "canonical save contract owned by UMelodiaNarrativeSubsystem"
+  },
+  "required_native_surface": {
+    "read": "BlueprintPure IsStateAnchorApplied(AnchorId, PersistenceKey, ApplyIntentId)",
+    "apply": "BlueprintCallable ApplyStateAnchor(AnchorId, PersistenceKey, Operations, ApplyIntentId)",
+    "result": ["applied", "already_applied", "rejected", "inconsistent_state"],
+    "operation_types": ["set_narrative_flag", "set_quest_active"],
+    "failure_reason": [
+      "invalid_id",
+      "unknown_anchor",
+      "blocked_context",
+      "unknown_flag",
+      "unknown_quest",
+      "duplicate_intent",
+      "inconsistent_state",
+      "authority_unavailable"
+    ]
+  },
+  "apply_transaction": {
+    "preflight": [
+      "BP verifies an allowed shared capability-gate result using GateRequestId and EvaluationFingerprint before calling this adapter",
+      "validate stable AnchorId, PersistenceKey, and ApplyIntentId",
+      "validate AnchorId against UMelodiaIntegrationConfig.StateAnchorIds",
+      "validate every operation against existing narrative allowlists",
+      "reject duplicate or partially-applied state before mutation"
+    ],
+    "atomic_mutations": [
+      "apply the allowlisted flag/quest operations",
+      "record ApplyIntentId in ConsumedIntentIds",
+      "retain PersistenceKey as the stable diagnostic identity"
+    ],
+    "post_commit_events": ["broadcast changed flags or quest intents", "return one application fingerprint"],
+    "rollback_rule": "if any operation is invalid, change no canonical field",
+    "replay_rule": "the same ApplyIntentId returns already_applied and may replay presentation only"
+  },
+  "blueprint_invariants": {
+    "allowed": [
+      "read applied/unapplied state",
+      "show a preview",
+      "request one typed apply transaction",
+      "replay presentation after load without reapplying state"
+    ],
+    "forbidden": [
+      "write FMelodiaNarrativeRecord directly",
+      "call SetNarrativeFlag and SetQuestActive as independent unjournaled operations",
+      "erase canonical state during fixture reset",
+      "use a level-local boolean as the persistent source of truth",
+      "create a second save object or opening authority"
+    ]
+  },
+  "gate_boundary": {
+    "bp_obligation": "re-evaluate the shared capability gate on enter, context/progression/load/travel/reset changes and forward only an allowed result",
+    "native_obligation": "validate canonical IDs and apply atomically; do not claim to re-evaluate an uncompiled gate registry",
+    "promotion_requirement": "fresh evidence envelope contains GateRequestId, EvaluationFingerprint, and the matching native apply result"
+  },
+  "promotion_evidence": [
+    "native API is UHT/reflection visible",
+    "invalid operation leaves the record byte-equivalent",
+    "first apply commits all operations once",
+    "second apply is already_applied with no duplicate quest/flag event",
+    "save/load restores applied state",
+    "fixture route records the application and replay fingerprints"
+  ]
+}

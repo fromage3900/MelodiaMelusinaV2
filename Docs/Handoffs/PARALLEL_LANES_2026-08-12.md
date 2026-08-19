@@ -4,8 +4,9 @@
 
 **Living board:** [PIE_RUNTIME_NOTES_2026-08-12.md](PIE_RUNTIME_NOTES_2026-08-12.md)  
 **Locks (do not reopen):** [RHYTHM…](RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](QUILLSCRIPT_LOCKED_2026-08-12.md)  
-**Paste-ready sessions:** [PARALLEL_SESSIONS_2026-08-12.md](PARALLEL_SESSIONS_2026-08-12.md)  
-**Repo tip:** `main` @ `2e3c893d` · PC root `C:\EnvironmentPortfolio\BS_GodFile` · remote `MelodiaMelusinaV2`
+**Paste-ready sessions:** [PARALLEL_SESSIONS_2026-08-12.md](PARALLEL_SESSIONS_2026-08-12.md) · **Next session (2026-08-13):** [SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md](SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md)
+**Repo tip at current checkpoint:** `main` @ `840b7650` · PC root `C:\EnvironmentPortfolio\BS_GodFile` · remote `MelodiaMelusinaV2`
+Historical lane entries below retain their original timestamps and status.
 
 ---
 
@@ -182,8 +183,11 @@ Docs-only or graph work that does **not** require the gameplay editor session.
 | E2 PCG Ex | | open | | |
 | T1 ZenTrim heroes | parent | **applied** 23:28 | `Saved/Audit/hero_zentrim_assign.json` |
 | T2 P0 mesh gaps | parent | **41/41 imported** 23:35; KaleidoNave strip unsaved | `Saved/Audit/cathedral_fbx_import.json` |
-| T3 Water-hair C | parent | **GC imported** 23:28 | `Saved/Audit/hair_flip_geometry_cache_import.json` |
-| T4 Cross FBX | | blocked on 5.2 | | |
+| T3 Water-hair C | parent | **GC imported** 23:28; socket still open | `Saved/Audit/hair_flip_geometry_cache_import.json` |
+| T4 Cross FBX | | blocked on 5.2 | |
+| V2 test meshes | parent | **done** ~00:00 copies only | `Saved/Audit/melusina_v2_test_import.json` |
+| Blender idle wire | parent | **reverted** to mocap; clip on disk | `Saved/Audit/melusina_blender_idle_wire.md` |
+ |
 
 ---
 

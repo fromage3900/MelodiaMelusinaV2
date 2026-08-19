@@ -1,4 +1,4 @@
-﻿# MCP Surface Scan Report
+# MCP Surface Scan Report
 
 **Date:** 2026-08-03
 **Scope:** Full MCP infrastructure audit for Melodia (BS_GodFile)
@@ -73,7 +73,7 @@ All configured MCP servers, their statuses, and tool inventories.
 | **Config files** | .opencode.json, .mcp.json, .rider/mcp.json (NOT in BS_GodFile/.mcp.json) |
 | **Type** | Local stdio via npx figma-developer-mcp --stdio |
 | **Status** | **CONFIGURED** (stdio process -- cannot health-check via HTTP) |
-| **API Key** | figd_***REDACTED_2026-08-11*** (rotated — key was public on GitHub v2) |
+| **API Key** | figd_***REDACTED_2026-08-11*** (rotated � key was public on GitHub v2) |
 | **REST API direct test** | **WORKING** -- full file access confirmed |
 
 **Figma File: "MelodiaMelusina"**

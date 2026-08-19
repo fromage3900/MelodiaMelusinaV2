@@ -1,0 +1,16 @@
+{
+  "name": "melusina_hero",
+  "description": "Canonical Melusina hero plates: 8 cameras x key frames from the v23 water-hair bake, all accessories visible.",
+  "shots": [
+    {"name": "beauty_peak",  "camera": "Cam_Beauty",   "frame": 71, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"},
+    {"name": "front_peak",   "camera": "Cam_Front",    "frame": 71, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"},
+    {"name": "back_peak",    "camera": "Cam_Back",     "frame": 71, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"},
+    {"name": "macro_peak",   "camera": "Cam_Macro",    "frame": 71, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"},
+    {"name": "low_peak",     "camera": "Cam_Low",      "frame": 71, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"},
+    {"name": "beauty_swell", "camera": "Cam_Beauty",   "frame": 51, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"},
+    {"name": "beauty_crown", "camera": "Cam_Beauty",   "frame": 91, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"},
+    {"name": "turntable_a",  "camera": "Cam_Turntable", "frame": 71, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"},
+    {"name": "turntable_b",  "camera": "Cam_Turntable.001", "frame": 71, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"},
+    {"name": "portrait_face", "camera": "Cam_Macro",   "frame": 80, "accessories": "ALL_VISIBLE", "template": "melusina_{shot}_{frame}"}
+  ]
+}

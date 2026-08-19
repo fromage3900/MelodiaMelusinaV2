@@ -123,3 +123,23 @@ individually competent. Cost is measured in the owner's time and attention, not 
 calls.
 
 The correct response to "just fix X" is a fixed X.
+
+---
+
+## P0 Finalization rules (2026-08-17) — binding while P0 is open
+
+1. **Ship the task asked, then stop.** Scope is the queue row, nothing else. No "while I was in
+   here" work. Finishing early is the goal.
+2. **No compensation layers.** A fix that adds a property, flag, branch, or corrective step whose
+   only purpose is to cancel another system's behaviour is wrong. Delete the cause.
+3. **No new BP authorities or systems during P0.** The integration foundation is closed. Nothing
+   new is introduced until the Core P0 golden run is accepted.
+4. **One editor. Always.** Verify `Get-Process UnrealEditor` and one listener on 9316 before any
+   editor work. Never start a second editor or second MCP surface.
+5. **Ledger or it did not happen.** A task is done only when a ledger row or a `Saved/` evidence
+   envelope exists. Prose in a session log is not evidence.
+6. **Never destructive.** No `git clean`, no `git checkout -- .`, no `delete_asset` on work you did
+   not create. No commits or pushes unless the owner asks.
+7. **Fail = record and stop, never mask.** A golden-run failure is captured with evidence and
+   reported. Gameplay BPs are never edited to hide a route failure (contract
+   `forbidden_shortcuts`).

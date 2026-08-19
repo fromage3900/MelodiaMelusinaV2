@@ -277,5 +277,5 @@ register_builder("MEL_op_iterate", build_op_iterate, "Iterate + Power Falloff",
     "Multi-iteration instancer with power-scale falloff along a direction",
     "operations")
 register_builder("MEL_op_bounded", build_op_bounded, "Bounded Auto-Fit",
-    "Auto-fit ΓÇö scale source to match target bounding box (uniform or per-axis)",
+    "Auto-fit — scale source to match target bounding box (uniform or per-axis)",
     "operations")

@@ -1,7 +1,15 @@
 # Campaign 1 — Rhythm→Damage Delta in PIE
 
+> **STATUS 2026-08-13: gate CLOSED. Owner verified real keyboard input through
+> `BP_BattleUI::OnKeyDown`.** Ledger row `[PASS] runtime 2026-08-13`, session
+> `owner-realkey-20260813`. This campaign is retained as the **method** for a
+> rhythm-on/off damage-delta measurement, not as an open gate. Do not re-run it to
+> "prove the loop plays" — that question is settled. Re-run it only if you want the
+> A/B damage numbers themselves (e.g. for item 4 of AGENTS.md "Next work", the
+> damage-scalar sequencing check).
+
 **Gate id:** `runtime`
-**Blocks:** everything downstream; this is the "never seen to PLAY" claim
+**Blocks:** nothing — closed 2026-08-13. Was: "everything downstream"
 **A/B rule:** Decision 024 — rhythm on vs `melodia.Rhythm.Disable 1`, NOT
 full-Perfect vs full-Miss (Decision 016 sets no miss penalty, that delta is
 zero by design).
@@ -18,8 +26,9 @@ input path:
 - Real keys through `BP_BattleUI::OnKeyDown` (Q/W/O/P → `RegisterLaneHit`), or
   a documented `InputKey` injection into the focused widget. Calling
   `subsystem.register_lane_hit()` straight from Python proves the native seam
-  responds; it does not prove a player pressing keys sees a highway. That has
-  never been demonstrated — `runtime` is OPEN and the ledger has no row for it.
+  responds; it does not prove a player pressing keys sees a highway. **That was
+  demonstrated by the owner on 2026-08-13**, which is what closed the gate; the
+  distinction above remains the standard any future gate must clear.
 
 ## Preconditions
 
@@ -73,10 +82,18 @@ python Tools/echo_run.py record runtime pass --note "rhythm on dmg=A, off dmg=B,
 or `fail` with the delta and the log excerpt. A pass with two equal numbers is
 a corrupted record — the ledger is only as honest as the row.
 
-Status 2026-08-12: **PASS recorded in ledger** for the result-matrix/restoration
-path (`Restoration wired in CompleteBattle & PIE smoke session verified on
-L_KaleidoNave`). The rhythm on/off A-B damage-delta campaign described above is
-still the canonical evidence standard for *this* campaign; if the recorded pass
-did not include a real-key A/B delta, treat the gate as conditionally closed and
-re-run with the damage-delta evidence before claiming the highway input path is
-fully ledger-backed.
+**Status 2026-08-13: CLOSED, unconditionally.** The owner verified real keyboard
+input through `BP_BattleUI::OnKeyDown`; ledger row `[PASS] runtime 2026-08-13`,
+session `owner-realkey-20260813`. Owner statements are ground truth
+(`_AGENT_WORKING_AGREEMENT.md` rule 4) — do not go verify it.
+
+History, so the row is readable later: an earlier `pass` was recorded 2026-08-12
+18:57 (session `pie_smoke_1_145605`) whose note read *"Restoration wired in
+CompleteBattle & PIE smoke session verified on L_KaleidoNave"*. That evidence was
+about the result-matrix/restoration path, not real input, so it did not meet this
+campaign's own standard. The 08-13 owner verification is what actually closed the
+gate; the 08-12 row should be read as a restoration-path record, not an input-path one.
+
+The A/B damage-delta procedure above is still worth running once for the **numbers**
+(AGENTS.md "Next work" item 4 — the damage notify may fire ~2.5 s before the scalar
+latches). That is a measurement, not a gate.

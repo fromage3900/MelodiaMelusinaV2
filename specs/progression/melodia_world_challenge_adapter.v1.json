@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_world_challenge_adapter_contract",
+  "contract_id": "melodia_world_challenge_adapter",
+  "status": "native_adapter_source_wired_closed_editor_build_pending",
+  "purpose": "Give world-challenge Blueprints one atomic, idempotent route to canonical completion and reward intents.",
+  "authority": {
+    "gate": "specs/capability/melodia_capability_gate.v1.json",
+    "runtime_attempt": "BP_MelodiaWorldChallenge child; transient attempt state only",
+    "canonical_state": "UMelodiaNarrativeSubsystem -> FMelodiaNarrativeRecord",
+    "reward_dispatch": "UMelodiaNarrativeSubsystem allowlisted reward event",
+    "save_write": "canonical save contract owned by UMelodiaNarrativeSubsystem"
+  },
+  "required_native_surface": {
+    "read_completion": "BlueprintPure IsWorldChallengeCompleted(ChallengeId, CompletionFlagId)",
+    "commit": "BlueprintCallable CommitWorldChallenge(ChallengeId, CompletionFlagId, RewardId, CompletionIntentId)",
+    "result": ["applied", "already_applied", "rejected", "inconsistent_state"],
+    "failure_reason": [
+      "invalid_id",
+      "unknown_challenge",
+      "blocked_context",
+      "unknown_flag",
+      "unknown_reward",
+      "duplicate_intent",
+      "reward_already_consumed",
+      "completion_already_set",
+      "authority_unavailable"
+    ]
+  },
+  "transient_attempt_surface": {
+    "owner": "BP_MelodiaWorldChallenge child",
+    "begin": "BP-local BeginAttempt after shared capability gate allows the request",
+    "reset": "BP-local discard of uncommitted attempt state",
+    "persistence_rule": "never write attempt progress to FMelodiaNarrativeRecord",
+    "native_adapter_required": false
+  },
+  "commit_transaction": {
+    "preflight": [
+      "BP verifies an allowed shared capability-gate result using GateRequestId and EvaluationFingerprint before calling this adapter",
+      "validate all native stable IDs",
+      "validate ChallengeId against UMelodiaIntegrationConfig.WorldChallengeIds",
+      "validate completion flag and reward against existing narrative allowlists",
+      "reject inconsistent prior flag/reward/intent combinations before mutation"
+    ],
+    "atomic_mutations": [
+      "set the completion flag true",
+      "record CompletionIntentId in ConsumedIntentIds",
+      "record RewardId in ConsumedRewardIds"
+    ],
+    "post_commit_events": [
+      "broadcast flag change",
+      "broadcast allowlisted reward request",
+      "return applied result with one evaluation fingerprint"
+    ],
+    "rollback_rule": "if any preflight check fails, change no canonical field and emit no reward event",
+    "replay_rule": "the same CompletionIntentId returns already_applied without another flag or reward mutation"
+  },
+  "blueprint_invariants": {
+    "allowed": [
+      "hold attempt progress in transient variables",
+      "request a gate evaluation",
+      "present preview, blocked, available, or completed state",
+      "submit one typed completion request"
+    ],
+    "forbidden": [
+      "write FMelodiaNarrativeRecord directly",
+      "call SetNarrativeFlag and GrantDialogueReward as separate unsynchronized completion steps",
+      "grant a reward before committed completion",
+      "persist attempt progress as if it were completion",
+      "create a challenge-specific save object or GameMode"
+    ]
+  },
+  "gate_boundary": {
+    "bp_obligation": "re-evaluate the shared capability gate on enter, context/progression/load/travel/reset changes and forward only an allowed result",
+    "native_obligation": "validate canonical IDs and commit atomically; do not claim to re-evaluate an uncompiled gate registry",
+    "promotion_requirement": "fresh evidence envelope contains GateRequestId, EvaluationFingerprint, and the matching native commit result"
+  },
+  "promotion_evidence": [
+    "native API is UHT/reflection visible",
+    "blocked or invalid request leaves the record byte-equivalent",
+    "first commit changes flag/intent/reward exactly once",
+    "duplicate commit is already_applied with no second reward",
+    "save/load preserves completed state",
+    "fixture route records the gate and transaction fingerprints"
+  ]
+}

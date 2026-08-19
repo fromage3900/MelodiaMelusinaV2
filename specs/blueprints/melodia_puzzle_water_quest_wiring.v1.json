@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_puzzle_water_quest_wiring_contract",
+  "contract_id": "melodia_puzzle_water_quest_wiring",
+  "status": "offline_preconditions_ready_live_graph_and_save_readback_pending",
+  "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "driver": "Tools/wire_melusina_spatial_puzzles.py",
+  "chain": [
+    {
+      "step": 1,
+      "id": "puzzle_event",
+      "source": "BP_MelodiaPuzzleRelay_FirstResonance.OnPuzzleActivated",
+      "operation": "receive_one_event",
+      "defaults": {
+        "PuzzleId": "first_resonance_relay",
+        "bRequireMelusina": true,
+        "bOneShot": true
+      },
+      "preconditions": [
+        "The child Blueprint exists and its CDO defaults are read back.",
+        "Exactly one binding consumes OnPuzzleActivated in the fixture graph.",
+        "The graph checks the canonical solved state before replaying downstream effects."
+      ]
+    },
+    {
+      "step": 2,
+      "id": "water_route",
+      "source": "UMelodiaWaterGameplayControllerComponent",
+      "operation": "SetRouteOpen(true, first_resonance_route)",
+      "route_id": "first_resonance_route",
+      "preconditions": [
+        "The controller owns a valid NodeConfig with non-empty NetworkId and NodeId.",
+        "RegisterConfiguredNode has succeeded before the event path can fire.",
+        "The route id matches the authored water link route id.",
+        "The graph branches on the returned bool and does not write water state directly."
+      ]
+    },
+    {
+      "step": 3,
+      "id": "narrative_flag",
+      "source": "UMelodiaNarrativeSubsystem",
+      "operation": "SetNarrativeFlag(first_resonance_solved, true)",
+      "flag_id": "first_resonance_solved",
+      "preconditions": [
+        "The narrative subsystem resolves from the current GameInstance.",
+        "first_resonance_solved is present in the canonical allowlist.",
+        "The flag is requested only after SetRouteOpen returns true.",
+        "No parallel Blueprint-local flag or save field is written."
+      ]
+    },
+    {
+      "step": 4,
+      "id": "quest_objective",
+      "source": "UMelodiaNarrativeSubsystem",
+      "operation": "CompleteQuest(quest.first_dream)",
+      "quest_id": "quest.first_dream",
+      "preconditions": [
+        "quest.first_dream is present in the canonical allowlist.",
+        "The quest transition is requested through the narrative subsystem only.",
+        "A duplicate request is rejected or is an idempotent no-op."
+      ]
+    },
+    {
+      "step": 5,
+      "id": "save_readback",
+      "source": "canonical water and narrative save contracts",
+      "operation": "capture_save_reload_readback",
+      "preconditions": [
+        "Water route state and completed puzzle state are captured through CaptureSaveState.",
+        "RestoreSaveState rebinds the registered network before state is inspected.",
+        "Narrative flag and quest state are restored from the canonical save record.",
+        "The post-save graph/export and disk mtime are independently verified."
+      ]
+    }
+  ],
+  "source_contracts": [
+    {
+      "path": "Tools/wire_melusina_spatial_puzzles.py",
+      "required_markers": [
+        "OnPuzzleActivated",
+        "BP_MelodiaPuzzleRelay_FirstResonance",
+        "BP_MelodiaInteraction_DreamAnchor",
+        "MelodiaIntegrationMap"
+      ],
+      "forbidden_markers": [
+        "OpenLevel",
+        "direct save-file mutation"
+      ]
+    },
+    {
+      "path": "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterGameplayControllerComponent.h",
+      "required_markers": [
+        "RegisterConfiguredNode",
+        "SetRouteOpen"
+      ]
+    },
+    {
+      "path": "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterGameplaySubsystem.h",
+      "required_markers": [
+        "IsWaterRouteOpen",
+        "IsPuzzleSolved",
+        "CaptureSaveState",
+        "RestoreSaveState",
+        "OnPuzzleSolved"
+      ]
+    },
+    {
+      "path": "Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeSubsystem.h",
+      "required_markers": [
+        "CompleteQuest",
+        "SetNarrativeFlag",
+        "GetNarrativeRecord"
+      ]
+    },
+    {
+      "path": "specs/progression/melodia_integration_allowlist_seed.v1.json",
+      "required_markers": [
+        "first_resonance_solved",
+        "quest.first_dream"
+      ]
+    }
+  ],
+  "safe_mutation_preconditions": [
+    "One editor instance owns the map and Monolith is reachable.",
+    "get_graph_fingerprint twice on the untouched graph returns identical hashes.",
+    "export_graph is saved as the rollback and assertion baseline.",
+    "Every pin default and event binding is read before mutation.",
+    "One graph is mutated per transaction; compile must be clean.",
+    "assert_graph_matches checks the expected event/route/flag/quest delta.",
+    "save_asset is followed by disk-mtime verification and an independent re-export.",
+    "A failed compile, assertion, save, mtime, or re-export is a hard stop; no retry on an unverified graph."
+  ],
+  "forbidden_ownership": [
+    "direct OpenLevel travel",
+    "direct save-object mutation",
+    "parallel narrative flag path",
+    "second water gameplay subsystem",
+    "second quest/objective authority",
+    "claiming a saved transport response as persistence proof"
+  ],
+  "offline_evidence_policy": {
+    "source_markers_can_prove": [
+      "The native APIs exist in source.",
+      "The driver names the disposable proof map and puzzle child.",
+      "The intended identifiers are represented in the offline allowlist seed."
+    ],
+    "source_markers_cannot_prove": [
+      "Blueprint event bindings",
+      "pin defaults",
+      "effective map WorldSettings",
+      "compile/save/mtime/readback",
+      "map placement",
+      "PIE route behavior"
+    ]
+  },
+  "current_audit_inputs": [
+    {
+      "path": "Saved/Audit/_puzzle_water_nodes.json",
+      "status": "node_id_snapshot_only",
+      "must_not_be_promoted_to": "saved_graph_or_runtime_proof"
+    },
+    {
+      "path": "Saved/Audit/melusina_spatial_puzzle_audit.json",
+      "status": "asset_existence_only",
+      "must_not_be_promoted_to": "map_placement_or_event_binding_proof"
+    }
+  ],
+  "live_blockers": [
+    "Current Monolith/editor endpoint is unavailable for graph readback.",
+    "Puzzle pin defaults and save/readback remain editor-owned.",
+    "The existing node-id snapshot has no fingerprint, compile, mtime, or re-export equality evidence.",
+    "The current map placement and effective authority set are not represented by the class-count audit."
+  ]
+}

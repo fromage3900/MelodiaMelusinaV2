@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "clip_id": "LIB_BLENDER_A_BL_SOURCE_IDLE_LOOP_CA7DD1DE",
+  "clip_name": "A_BL_Source_Idle_Loop",
+  "display_name": "Melusina v22 ARP source idle",
+  "source_type": "blender",
+  "source_file": "Exports/AnimationLibrary/Blender/A_BL_Source_Idle_Loop.fbx",
+  "source_name": "Melusina v22 ARP stage idle",
+  "provenance": "Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend:character_rigAction",
+  "license": "project-authored",
+  "canonical_rig": "SK_Source_Melusina",
+  "canonical_skeleton": "/Game/Melodia/Mocap/Source/SK_Source_Melusina",
+  "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+  "target_mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina",
+  "retarget_profile": "RTG_Source_to_Melusina",
+  "fps": 30,
+  "units": "cm",
+  "frame_start": 1,
+  "frame_end": 30,
+  "loop": true,
+  "root_motion": "in_place",
+  "context": "locomotion",
+  "consumer": "blendspace",
+  "animation_only": true,
+  "one_clip_per_file": true,
+  "status": "promoted",
+  "status_reasons": [
+    "v22 ARP operator baked controller action",
+    "ARP output normalized to the 464-bone SK_Source_Melusina contract",
+    "verified by Blender scanner: 30 FPS, 464 bones, no meshes, centimetre header"
+  ],
+  "promotion_target": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_MUAL_Source_Idle",
+  "notify_contract": [],
+  "speed_evidence": {
+    "mode": "static_pose",
+    "status": "declared",
+    "speed_cm_s": 0.0,
+    "method": "static_pose_root_track_requires_ue_constancy_probe",
+    "evidence_report": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\mual_foot_contact_audit_blendspace.json"
+  },
+  "foot_contact_audit": {
+    "status": "passed",
+    "required_for_promotion": true,
+    "method": "footspeed",
+    "left_count": 0,
+    "right_count": 0,
+    "audited_consumer": "blendspace",
+    "mode": "static_pose",
+    "evidence_report": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\mual_foot_contact_audit_blendspace.json"
+  }
+}

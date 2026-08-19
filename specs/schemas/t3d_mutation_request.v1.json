@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/t3d_mutation_request.v1.json",
+  "title": "Melodia T3D Mutation Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "request_id", "asset_path", "expected_before_fingerprint", "operations", "verification"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema": {"const": "melodia.t3d_mutation_request.v1"},
+    "request_id": {"type": "string", "minLength": 8},
+    "asset_path": {"type": "string", "pattern": "^/Game/"},
+    "expected_before_fingerprint": {"type": "string", "minLength": 8},
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {"type": "string", "minLength": 1},
+          {"type": "object", "required": ["verb"], "properties": {"verb": {"type": "string", "minLength": 1}}, "additionalProperties": true}
+        ]
+      }
+    },
+    "graph_name": {"type": "string", "minLength": 1},
+    "nodes": {
+      "type": "array",
+      "items": {"type": "object", "required": ["id"], "properties": {"id": {"type": "string", "minLength": 1}}, "additionalProperties": true}
+    },
+    "connections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target"],
+        "properties": {
+          "source": {"type": "string", "minLength": 1},
+          "source_pin": {"type": "string"},
+          "target": {"type": "string", "minLength": 1},
+          "target_pin": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "pin_defaults": {
+      "type": "array",
+      "items": {"type": "object", "required": ["node_id", "pin_name"], "properties": {"node_id": {"type": "string"}, "pin_name": {"type": "string"}}, "additionalProperties": true}
+    },
+    "expected_postconditions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_nodes", "forbidden_nodes", "required_connections", "expected_delta", "compile_error_count", "reexport_after_save"],
+      "properties": {
+        "required_nodes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "forbidden_nodes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "required_connections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["source", "target"],
+            "properties": {
+              "source": {"type": "string", "minLength": 1},
+              "source_pin": {"type": "string"},
+              "target": {"type": "string", "minLength": 1},
+              "target_pin": {"type": "string"}
+            },
+            "additionalProperties": true
+          }
+        },
+        "expected_delta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["new_nodes", "new_connections"],
+          "properties": {
+            "new_nodes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+            "new_connections": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["source", "target"],
+                "properties": {
+                  "source": {"type": "string", "minLength": 1},
+                  "source_pin": {"type": "string"},
+                  "target": {"type": "string", "minLength": 1},
+                  "target_pin": {"type": "string"}
+                },
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "compile_error_count": {"type": "integer", "minimum": 0},
+        "reexport_after_save": {"const": true}
+      }
+    },
+    "t3d": {"type": "string"},
+    "placeholders": {"type": "object", "additionalProperties": true},
+    "dry_run": {"type": "boolean"},
+    "auto_layout": {"type": "boolean"},
+    "position": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}},
+    "compile": {"type": "boolean"},
+    "payload": {"type": "object", "additionalProperties": true},
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["compile_zero_errors", "assert_graph_match", "reexport_after_save"],
+      "properties": {
+        "compile_zero_errors": {"const": true},
+        "assert_graph_match": {"const": true},
+        "reexport_after_save": {"const": true},
+        "dry_run": {"type": "boolean"}
+      }
+    },
+    "metadata": {"type": "object", "additionalProperties": true}
+  },
+  "allOf": [
+    {
+      "if": {"required": ["expected_postconditions"]},
+      "then": {"required": ["nodes"]}
+    }
+  ]
+}

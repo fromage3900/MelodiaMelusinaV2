@@ -497,13 +497,22 @@ def _build_pavilion(tree, gin, loc):
     bx, by = loc
 
     plat = safe_node(tree, "GeometryNodeMeshCube", (bx - 600, by))
-    plat_w = _math(tree, "ADD", (bx - 800, by), gin.outputs["Pavilion Width"], 0.4)
-    plat_d = _math(tree, "ADD", (bx - 800, by - 60), gin.outputs["Pavilion Depth"], 0.4)
+    plat_w = _math(tree, "ADD", (bx - 800, by), gin.outputs["Pavilion Width"], 0.9)
+    plat_d = _math(tree, "ADD", (bx - 800, by - 60), gin.outputs["Pavilion Depth"], 0.9)
     plat_size = _combine(tree, (bx - 800, by - 120), plat_w.outputs[0], plat_d.outputs[0], 0.15)
     link_sockets(tree, plat_size.outputs["Vector"], plat.inputs["Size"])
     plat_out = _position_piece(tree, (bx - 400, by), plat.outputs["Mesh"],
-                               x=0.0, y=0.0, z=0.075)
+                               x=0.0, y=0.0, z=0.04)
     pieces = [plat_out]
+
+    # Engawa step (zen teahouse language) — thinner inner floor above the deck
+    engawa = safe_node(tree, "GeometryNodeMeshCube", (bx - 600, by + 160))
+    eng_size = _combine(tree, (bx - 800, by + 160),
+                        gin.outputs["Pavilion Width"], gin.outputs["Pavilion Depth"], 0.06)
+    link_sockets(tree, eng_size.outputs["Vector"], engawa.inputs["Size"])
+    eng_out = _position_piece(tree, (bx - 400, by + 160), engawa.outputs["Mesh"],
+                              x=0.0, y=0.0, z=0.11)
+    pieces.append(eng_out)
 
     # corner posts
     grid = safe_node(tree, "GeometryNodeMeshGrid", (bx - 800, by - 200))
@@ -927,7 +936,7 @@ def build_nikki_quarter(group_name="MEL_nikki_quarter"):
     # -- townhouse params -----------------------------------------------------
     add_float_param(tree, "Width", 4.0, 2.0, 8.0)
     add_float_param(tree, "Depth", 3.5, 1.5, 6.0)
-    add_int_param(tree, "Floors", 2, 1, 4)
+    add_int_param(tree, "Floors", 3, 1, 4)
     add_float_param(tree, "Floor Height", 2.7, 1.8, 3.5)
     add_int_param(tree, "Window Count", 3, 1, 5)
     add_int_param(tree, "Roof Mode", 0, 0, 3)

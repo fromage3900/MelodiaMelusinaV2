@@ -1,4 +1,4 @@
-"""Convert portfolio material masters to UE 5.8 Substrate Toon BSDF output.
+﻿"""Convert portfolio material masters to UE 5.8 Substrate Toon BSDF output.
 
 Strategy C: preserve existing graph logic; replace shading root with
 MaterialExpressionSubstrateToonBSDF wired to MP_FRONT_MATERIAL.
@@ -45,7 +45,7 @@ ALREADY_TOON = {
     f"{MATERIALS_ROOT}/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape",
 }
 
-# Batch 1 — copied Melodia SDF masters (Strategy C priority)
+# Batch 1 â€” copied Melodia SDF masters (Strategy C priority)
 BATCH_1 = [
     f"{MATERIALS_ROOT}/Masters/M_SDF_TrueParallax",
     f"{MATERIALS_ROOT}/Masters/M_SDF_GildedStucco",
@@ -59,37 +59,33 @@ BATCH_1 = [
     f"{MATERIALS_ROOT}/Masters/M_SDF_RayMarch_Gothic",
 ]
 
-# Batch 2 — hybrid stone + MCP-built masters still on Default Lit root
+# Batch 2 â€” hybrid stone + MCP-built masters still on Default Lit root
 BATCH_2 = [
     f"{MATERIALS_ROOT}/Masters/M_HybridStone_SDF",
-    f"{MATERIALS_ROOT}/Masters/M_SDF_ReliefPanel",
-    f"{MATERIALS_ROOT}/Masters/M_SDF_FiligreeRim",
-    f"{MATERIALS_ROOT}/Masters/M_SDF_GothicTracery",
-    f"{MATERIALS_ROOT}/Masters/M_SDF_HybridStone",
     f"{MATERIALS_ROOT}/Masters/M_SDF_ParallaxPulse",
 ]
 
-# Batch 3 — aquatic / underwater SDF (_PROJECT/SDF/Underwater)
+# Batch 3 â€” aquatic / underwater SDF (live copies live under Materials/SDF/, not Masters/)
 BATCH_3_AQUATIC = [
     f"{MATERIALS_ROOT}/Masters/M_SDF_AbyssalVent",
     f"{MATERIALS_ROOT}/Masters/M_SDF_Anemone",
-    f"{MATERIALS_ROOT}/Masters/M_SDF_Bioluminescence",
-    f"{MATERIALS_ROOT}/Masters/M_SDF_BubbleColumn",
+    f"{MATERIALS_ROOT}/SDF/M_SDF_Bioluminescence",
+    f"{MATERIALS_ROOT}/SDF/M_SDF_BubbleColumn",
     f"{MATERIALS_ROOT}/Masters/M_SDF_Caustics_Underwater",
-    f"{MATERIALS_ROOT}/Masters/M_SDF_CoralBranching",
+    f"{MATERIALS_ROOT}/SDF/M_SDF_CoralBranching",
     f"{MATERIALS_ROOT}/Masters/M_SDF_FishSchool_Caustics",
     f"{MATERIALS_ROOT}/Masters/M_SDF_KelpCurtain",
     f"{MATERIALS_ROOT}/Masters/M_SDF_ThermalGlow",
 ]
 
-# Batch 4 — math-art, musical, cathedral expansion (ported via port_sdf_expansion.py)
+# Batch 4 â€” math-art, musical, cathedral expansion (ported via port_sdf_expansion.py)
 BATCH_4_EXPANSION = [
     f"{MATERIALS_ROOT}/Masters/M_SDF_BaroqueColumn",
     f"{MATERIALS_ROOT}/Masters/M_SDF_CathedralVault",
     f"{MATERIALS_ROOT}/Masters/M_SDF_CosmicPortal",
     f"{MATERIALS_ROOT}/Masters/M_SDF_CrystallineSpire",
     f"{MATERIALS_ROOT}/Masters/M_SDF_EscherGeometry_Enhanced",
-    f"{MATERIALS_ROOT}/Masters/M_SDF_FloatingNotes",
+    
     f"{MATERIALS_ROOT}/Masters/M_SDF_FloralMagic",
     f"{MATERIALS_ROOT}/Masters/M_SDF_FlyingButtress",
     f"{MATERIALS_ROOT}/Masters/M_SDF_FractalOrnament",
@@ -316,7 +312,7 @@ def _ensure_assets_available(paths: list[str], timeout: float = 60.0) -> None:
 
 
 def _get_expressions(material: unreal.Material) -> list:
-    """UE 5.8: Material.expressions is protected — use MaterialEditingLibrary."""
+    """UE 5.8: Material.expressions is protected â€” use MaterialEditingLibrary."""
     try:
         return list(unreal.MaterialEditingLibrary.get_material_expressions(material))
     except Exception:
@@ -897,7 +893,7 @@ def main() -> int:
         f"skipped: {skipped} | failed: {failed} | incomplete_found: {incomplete_count}"
     )
     for r in results:
-        unreal.log(f"  [{r['status']}] {r['path']}" + (f" — {r.get('error')}" if r.get("error") else ""))
+        unreal.log(f"  [{r['status']}] {r['path']}" + (f" â€” {r.get('error')}" if r.get("error") else ""))
     unreal.log(f"Report: {REPORT_PATH}")
 
     try:

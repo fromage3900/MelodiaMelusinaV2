@@ -77,6 +77,40 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration")
 	bool GrantDialogueReward(FName RewardId);
 
+	/** Read-only completion query for a data-driven world challenge. */
+	UFUNCTION(BlueprintPure, Category = "Melodia|Integration|World Challenge")
+	bool IsWorldChallengeCompleted(FName ChallengeId, FName CompletionFlagId) const;
+
+	/**
+	 * Atomically commits a world-challenge completion, consumed intent, and
+	 * allowlisted reward. Blueprint children must use this transaction rather
+	 * than calling SetNarrativeFlag and GrantDialogueReward independently.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration|World Challenge")
+	EMelodiaContentCommitResult CommitWorldChallenge(
+		FName ChallengeId,
+		FName CompletionFlagId,
+		FName RewardId,
+		FName CompletionIntentId,
+		EMelodiaContentCommitFailure& OutFailure);
+
+	/** Read-only canonical state query for a generic stable-key StateAnchor. */
+	UFUNCTION(BlueprintPure, Category = "Melodia|Integration|State Anchor")
+	bool IsStateAnchorApplied(FName AnchorId, FName PersistenceKey, FName ApplyIntentId) const;
+
+	/**
+	 * Applies an allowlisted StateAnchor operation list once through the
+	 * narrative record. Invalid or partially-applied transactions make no
+	 * canonical mutation.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration|State Anchor")
+	EMelodiaContentCommitResult ApplyStateAnchor(
+		FName AnchorId,
+		FName PersistenceKey,
+		const TArray<FMelodiaStateAnchorOperation>& Operations,
+		FName ApplyIntentId,
+		EMelodiaContentCommitFailure& OutFailure);
+
 	/**
 	 * Raises a Persona-lite social stat from an allowlisted dialogue choice
 	 * (Decision 018 -- dialogue is the only source).

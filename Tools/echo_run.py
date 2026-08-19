@@ -494,7 +494,12 @@ def cmd_list(manifest: dict) -> None:
 
 def cmd_status() -> None:
     latest = _ledger_latest()
+    live = editor_live()
     print("# Completion gates (ledger-backed)")
+    if not live:
+        print("  NOTE: editor is not reachable on 9316 right now. Rows below are the LAST")
+        print("  recorded ledger observation, not a live re-check -- a PASS here means")
+        print("  'passed as of its date', not 'passing right now'.")
     for gid, what in _load_manifest_completions().items():
         rec = latest.get(gid)
         if rec and rec.get("status") == "pass":
@@ -505,8 +510,7 @@ def cmd_status() -> None:
             mark = "OPEN"
         date = rec.get("date", "") if rec else ""
         print(f"  [{mark:<4}] {gid:<18} {date:<12} {what}")
-    live = editor_live()
-    print(f"\n  editor reachable on 9316: {'yes' if live else 'no (editor gates HOLD)'}")
+    print(f"\n  editor reachable on 9316: {'yes' if live else 'no (editor gates HOLD; ledger rows above are historical, not re-verified)'}")
 
 
 def _load_manifest_completions() -> dict:

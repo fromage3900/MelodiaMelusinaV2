@@ -99,6 +99,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Melodia|Wallet")
 	bool TrySpendGolden(int32 Amount);
 
+	/** Refund a previously accepted Golden spend after a downstream operation fails. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Wallet")
+	bool TryRefundGolden(int32 Amount);
+
 	/** True if this grant has already been consumed (and therefore would be rejected). */
 	UFUNCTION(BlueprintPure, Category="Melodia|Wallet")
 	bool IsGrantConsumed(FName GrantId) const;

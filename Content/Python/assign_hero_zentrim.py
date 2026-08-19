@@ -45,10 +45,10 @@ HERO_MESHES = {
         "note": "Marketplace silhouette only. Do not wire T_Lantern_*. Optional --include-magicians.",
     },
     "cross": {
-        "game": None,
-        "disk": None,
-        "assign": False,
-        "note": "No SM. StylizedCrossProp_FBX.fbx missing. Never T_Hatch_Cross.",
+        "game": "/Game/EnvSandbox/Greybox_Kit/StylizedCrossProp_FBX.StylizedCrossProp_FBX",
+        "disk": CONTENT / "EnvSandbox" / "Greybox_Kit" / "StylizedCrossProp_FBX.uasset",
+        "assign": True,
+        "note": "Imported 2026-08-13 from G:\\stylizedcrossprop\\stylizedcrossprop_fromage39.zip (owner asset). Textures at /Game/EnvSandbox/Textures/cross_*. Never T_Hatch_Cross.",
     },
 }
 

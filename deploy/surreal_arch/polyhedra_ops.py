@@ -67,10 +67,5 @@ def patch_kepler_panel(monolith):
 
 def register_polyhedra_operators(monolith):
     patch_kepler_panel(monolith)
-    registered = []
-    try:
-        bpy.utils.register_class(SURREAL_ARCH_OT_spawn_polyhedron)
-        registered.append(SURREAL_ARCH_OT_spawn_polyhedron)
-    except RuntimeError:
-        pass
-    return registered
+    # Do not register here — integration._register_class_once owns first-run hygiene.
+    return [SURREAL_ARCH_OT_spawn_polyhedron]

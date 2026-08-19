@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_player_facing_playtest_contract",
+  "contract_id": "core_p0_dream_golden_run",
+  "status": "owner_run_required",
+  "purpose": "One fresh-slot, player-facing First Dream route that proves readability, encounter return, persistence, and repeatability before BP expansion.",
+  "map_authority": {
+    "integration_proof_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "player_route": [
+      "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+      "/Game/EnvSandbox/Environments/L_KaleidoNave"
+    ],
+    "retired_route_legs": ["/Game/L_Melodia_Dreamstate"],
+    "map_separation_rule": "integration_proof_map_is_not_a_substitute_for_player_route"
+  },
+  "owner_boundary": {
+    "required_editor_writers": 1,
+    "fresh_slot_required": true,
+    "no_modal_editor": true,
+    "no_duplicate_editor_or_proxy_owner": true,
+    "task_ledger_write_policy": "owner_reconciles_current_row_without_overwriting_parallel_edits"
+  },
+  "route_phases": [
+    {
+      "id": "new_game",
+      "map": "player_route[0]",
+      "required_observations": ["new_game_entry", "fresh_slot_id", "normal_input_available"]
+    },
+    {
+      "id": "morning_quill_beat",
+      "map": "player_route[0]",
+      "required_observations": ["authored_petal_priestess_beat_visible", "choice_readable", "harmony_intent_emitted_once"]
+    },
+    {
+      "id": "kaleido_nave_departure",
+      "map": "player_route[1]",
+      "required_observations": ["authored_departure_completes", "merged_dreamstate_presentation_reached", "input_restored"]
+    },
+    {
+      "id": "stock_encounter",
+      "map": "player_route[1]",
+      "required_observations": ["one_encounter_starts", "stock_battle_authority_used", "typed_result_selected"]
+    },
+    {
+      "id": "consequence_and_save",
+      "map": "player_route[1]",
+      "required_observations": ["authored_consequence_resumes", "normal_save_authority_used", "save_boundary_recorded"]
+    },
+    {
+      "id": "process_restart_continue",
+      "map": "integration_proof_map",
+      "required_observations": ["editor_process_exited", "editor_restarted", "continue_slot_loaded", "spawn_context_restored"]
+    },
+    {
+      "id": "repeatability_check",
+      "map": "integration_proof_map",
+      "required_observations": ["harmony_not_duplicated", "quest_not_duplicated", "reward_not_duplicated", "encounter_state_consistent"]
+    }
+  ],
+  "required_record_fields": [
+    "run_id",
+    "fresh_slot_id",
+    "editor_owner",
+    "editor_process_ids_before_and_after",
+    "route_maps",
+    "harmony_intent_id",
+    "encounter_id",
+    "typed_battle_result",
+    "save_boundary",
+    "restart_timestamp_utc",
+    "continue_spawn_context",
+    "idempotency_observations",
+    "evidence_artifacts"
+  ],
+  "exit_criteria": [
+    "one owner completes the route without a modal or duplicate writer",
+    "the authored Quill beat is visible and advances once per action",
+    "the encounter returns control to the authored route after one typed result",
+    "save/restart/Continue preserves context and does not duplicate state",
+    "the run is repeatable from a fresh slot",
+    "no new system is required to explain a route failure"
+  ],
+  "forbidden_shortcuts": [
+    "claiming the player route from integration-map PIE alone",
+    "using historical runtime/save/package envelopes as the golden-run result",
+    "performing the run with two editor writers or ambiguous Monolith ownership",
+    "editing gameplay BPs to hide a route failure before recording it",
+    "expanding into new BP authorities before the exit criteria pass"
+  ],
+  "evidence_policy": {
+    "envelope_schema": "melodia.evidence_envelope.v1",
+    "required_artifact_kinds": ["runtime", "package", "save_load", "repeat_consume"],
+    "historical_artifacts_are_context_only": true,
+    "fresh_run_must_link_each_phase": true
+  }
+}

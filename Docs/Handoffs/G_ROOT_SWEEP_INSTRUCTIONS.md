@@ -12,7 +12,7 @@ Recommended workflow
 1. Run scan (dry-run):
 
 ```powershell
-python tools/safe_root_sweep.py --old "G:/EnvironmentPortfolio" --new "C:/EnvironmentPortfolio" --extensions ".py,.ps1,.json,.md" --out tools/g_root_report.json --diffs tools/diffs.patch
+python tools/safe_root_sweep.py --old "C:/EnvironmentPortfolio" --new "C:/EnvironmentPortfolio" --extensions ".py,.ps1,.json,.md" --out tools/g_root_report.json --diffs tools/diffs.patch
 ```
 
 2. Inspect `tools/g_root_report.json` and `tools/diffs.patch`. Confirm intended changes.
@@ -21,7 +21,7 @@ python tools/safe_root_sweep.py --old "G:/EnvironmentPortfolio" --new "C:/Enviro
 5. If reviewers approve, apply changes locally (must have clean git state):
 
 ```powershell
-python tools/safe_root_sweep.py --old "G:/EnvironmentPortfolio" --new "C:/EnvironmentPortfolio" --extensions ".py,.ps1,.json,.md" --apply --backup-dir tools/g_root_backups
+python tools/safe_root_sweep.py --old "C:/EnvironmentPortfolio" --new "C:/EnvironmentPortfolio" --extensions ".py,.ps1,.json,.md" --apply --backup-dir tools/g_root_backups
 ```
 
 6. Inspect backups, run tests, commit the patched files, push and update PR.

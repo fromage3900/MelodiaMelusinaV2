@@ -1,4 +1,4 @@
-﻿# PCG Production Docs
+# PCG Production Docs
 
 Home for generic PCG scatter standards, validation reports, and reusable biome/style wrappers.
 

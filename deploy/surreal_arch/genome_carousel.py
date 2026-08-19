@@ -30,6 +30,13 @@ class SURREAL_ARCH_PT_genome_carousel(Panel):
         col = layout.column(align=True)
         col.label(text=product_label())
         col.label(text=PRODUCT_SUBTITLE, icon="BLANK1")
+        try:
+            from .melodia_gn.core import GROUP_BUILDERS, CATEGORY_META
+            n_build = len(GROUP_BUILDERS)
+            n_cat = len(CATEGORY_META)
+            col.label(text=f"{n_build} GN builders · {n_cat} stack categories")
+        except Exception:
+            pass
 
         row = layout.row(align=True)
         row.scale_y = 1.2

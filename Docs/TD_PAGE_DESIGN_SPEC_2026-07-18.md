@@ -1,7 +1,7 @@
 # TouchDesigner Page — Design Spec (distilled from my-site-clean)
 
 Date: 2026-07-18 · Prepared by: Site_Design_Analyst (read-only analysis)
-Source of truth: `G:/EnvironmentPortfolio/BS_GodFile/my-site-clean/` — **do not modify**; this doc is the contract for whoever authors the new page.
+Source of truth: `C:/EnvironmentPortfolio/BS_GodFile/my-site-clean/` — **do not modify**; this doc is the contract for whoever authors the new page.
 
 Proposed new page: `wix/touchdesigner-architecture.html`
 Working title: **"Surreal Architecture Lookbook — TouchDesigner"** (editorial, magical-girl-ready lookbook for the 13 Escher-inspired worldgen pieces).

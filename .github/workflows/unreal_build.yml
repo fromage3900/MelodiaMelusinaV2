@@ -1,3 +1,9 @@
+# Runner requirement: this job needs a self-hosted runner labeled
+# [self-hosted, Windows, UE58] -- a Windows machine with UE 5.8 installed
+# at UE_ROOT below, plus Python/ruff on PATH. If no matching runner is
+# registered under this repo, the job stays QUEUED forever rather than
+# failing outright. Check Settings > Actions > Runners first if a run
+# never starts.
 name: Unreal Build + Tests
 
 on:
@@ -13,6 +19,15 @@ on:
 
 env:
   UE_ROOT: C:\Program Files\Epic Games\UE_5.8
+  # NOTE: hardcoded to this exact machine/path. This only works because
+  # the self-hosted runner IS this checkout at this exact location; it is
+  # not derived from ${{ github.workspace }}. Switching to
+  # "${{ github.workspace }}\BS_GodFile.uproject" would be more portable
+  # and should be safe (self-hosted runners check out into their own
+  # workspace dir, and BS_GodFile.uproject lives at repo root) -- left
+  # as-is here since changing the physical runner path is out of scope
+  # for this pass, but do this if/when a second self-hosted runner or a
+  # different checkout path is ever introduced.
   PROJECT_PATH: C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject
 
 jobs:
@@ -59,12 +74,12 @@ jobs:
       - name: Ruff lint + format check
         shell: powershell
         run: |
-          ruff check Content/Python deploy tools
+          ruff check Content/Python deploy Tools
           if ($LASTEXITCODE -ne 0) {
             Write-Host "##[error]Ruff lint failed"
             exit $LASTEXITCODE
           }
-          ruff format --check Content/Python deploy tools
+          ruff format --check Content/Python deploy Tools
           if ($LASTEXITCODE -ne 0) {
             Write-Host "##[error]Ruff format check failed"
             exit $LASTEXITCODE

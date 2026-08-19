@@ -1,7 +1,7 @@
 # Portfolio Pipeline Audit — Architecture Review
 
 > Read-only audit. 2026-06-25. Scope: the `Unreal → portfolio_package.json → Figma` loop.
-> Companion docs: [CURRENT_SYSTEM_MAP.md](CURRENT_SYSTEM_MAP.md), [NEXT_HIGHEST_LEVERAGE_TASK.md](NEXT_HIGHEST_LEVERAGE_TASK.md).
+> Companion docs: [CURRENT_SYSTEM_MAP.md](CURRENT_SYSTEM_MAP.md), [NEXT_HIGHEST_LEVERAGE_TASK.md](Docs/_Superseded/NEXT_HIGHEST_LEVERAGE_TASK.md).
 
 ## Executive summary
 
@@ -71,4 +71,4 @@ The entire "usable portfolio" outcome is bottlenecked on **one thing: the captur
 
 ## 9. Verdict
 
-Do **not** redesign anything. The architecture is correct and the compiler is excellent. The work is to *feed* the existing machine and to *connect* its output. The smallest change that turns the all-null package into a genuinely usable one is identified in [NEXT_HIGHEST_LEVERAGE_TASK.md](NEXT_HIGHEST_LEVERAGE_TASK.md).
+Do **not** redesign anything. The architecture is correct and the compiler is excellent. The work is to *feed* the existing machine and to *connect* its output. The smallest change that turns the all-null package into a genuinely usable one is identified in [NEXT_HIGHEST_LEVERAGE_TASK.md](Docs/_Superseded/NEXT_HIGHEST_LEVERAGE_TASK.md).

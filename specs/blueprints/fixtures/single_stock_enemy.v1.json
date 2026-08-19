@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "single_stock_enemy",
+  "status": "contract_spec_only",
+  "owner": "Melodia battle integration",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.enemy.single_stock_fixture",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "enemy",
+    "DisplayName": "Single Stock Enemy",
+    "Tags": [
+      "fixture",
+      "enemy",
+      "stock_battle",
+      "deterministic",
+      "resettable"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "fixture_always_unlocked"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "none",
+    "AllowedContexts": [
+      "battle_session",
+      "enemy_fixture"
+    ],
+    "BlockedContexts": [
+      "cutscene",
+      "menu",
+      "travel",
+      "open_world"
+    ],
+    "ContextPolicy": "fail_closed_and_report_block_reason",
+    "ModeSet": [
+      "unspawned",
+      "available",
+      "engaged",
+      "defeated",
+      "reset"
+    ],
+    "EnterPolicy": "resolve_stock_unit_definition_before_encounter_spawn",
+    "UpdatePolicy": "stock_battle_session_owns_turn_and_threat_updates",
+    "ExitPolicy": "observe_stock_defeat_then_request_allowlisted_reward",
+    "InterruptPolicy": "abort_fixture_without_defeat_or_reward",
+    "ResetPolicy": "clear_fixture_instance_and_restore_available_state",
+    "VariantSet": [
+      "single_stock_enemy_default",
+      "single_stock_enemy_preview"
+    ],
+    "EquippedVariantId": "single_stock_enemy_default",
+    "FallbackVariantId": "single_stock_enemy_preview",
+    "AnimationProfile": "optional_stock_enemy_animation",
+    "VfxProfile": "optional_stock_enemy_vfx",
+    "AudioProfile": "optional_stock_enemy_audio",
+    "UiPresentation": "stock_enemy_fixture_status",
+    "PreviewPolicy": "show_threat_profile_without_starting_battle",
+    "EffectTogglePolicy": "presentation_only",
+    "UnavailableVariantPolicy": "use_preview_variant_without_execution",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "stock_enemy_idle",
+    "CanonicalStateKey": "melodia.fixture.enemy.single_stock_enemy",
+    "IdempotencyKey": "enemy.single_stock_enemy.defeat_instance_id",
+    "SaveWritePolicy": "narrative_subsystem_adapter_only",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "single_stock_enemy_encounter_defeat_reset",
+    "ExpectedEvidence": "definition_compile_stock_spawn_defeat_reward_reset",
+    "ReadinessLevel": "L1"
+  },
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEnemy_SingleStock",
+    "parent_template": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEnemy_Base",
+    "runtime_authority": "stock_turn_based_jrpg_session_and_canonical_reward_adapter",
+    "definition_asset": "/Game/MelodiaIntegration/Definitions/DA_MelodiaEnemy_SingleStock"
+  },
+  "definition_contract": {
+    "enemy_id": "enemy.single_stock_fixture",
+    "stock_unit_data_id": "stock_unit.single_stock_fixture",
+    "threat_profile_id": "threat.single_target_basic",
+    "defeat_event_id": "enemy.single_stock_fixture.defeated",
+    "reward_id": "reward.single_stock_fixture",
+    "stock_session_owns_execution": true,
+    "reward_requires_observed_defeat": true,
+    "adapter_must_not_write_save_object_directly": true
+  },
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "resolve_stock_unit",
+      "spawn_through_encounter",
+      "observe_stock_threat_profile",
+      "enter_stock_battle"
+    ],
+    "success_route": [
+      "observe_typed_defeat",
+      "request_allowlisted_reward_once",
+      "return_control_to_encounter"
+    ],
+    "reset_route": [
+      "abort_or_complete_stock_session",
+      "clear_fixture_instance",
+      "restore_available_state"
+    ],
+    "failure_routes": [
+      "missing_stock_unit_fails_closed",
+      "invalid_context_does_not_spawn",
+      "duplicate_defeat_does_not_duplicate_reward"
+    ]
+  },
+  "failure_routes": [
+    "missing_definition_does_not_create_fallback_authority",
+    "invalid_context_does_not_start_stock_battle",
+    "aborted_battle_does_not_emit_defeat_reward",
+    "replayed_defeat_instance_is_idempotent",
+    "reset_restores_fixture_without_persisting_runtime_only_state"
+  ],
+  "evidence_required": [
+    "definition_path_resolves",
+    "blueprint_compiles_without_new_battle_authority",
+    "stock_unit_and_threat_profile_are read back independently",
+    "encounter reaches stock battle through the canonical bridge",
+    "typed defeat produces one reward request",
+    "abort_and_reset_are_side_effect_safe",
+    "fresh_evidence_envelope_records_enemy_id_and_defeat_instance_id"
+  ],
+  "readiness_level": "L1",
+  "readiness": "L1"
+}

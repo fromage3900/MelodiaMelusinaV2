@@ -1,17 +1,14 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
-Surreal Architecture Generator - Geometry Node System for Blender 5.1
+Melodia Studio — Surreal Architecture generator for Blender 5.2.
 
-Procedural surreal architecture with towers, organic forms, railings, staircases,
-arches, flying buttresses, full buildings, M.C. Escher-style impossible stairs,
-classical pillars, domes, castle crenellations, and fractal towers — with
-whimsical musical ornamentation, harmonic notation rhythms, curved roof generator
-(12 roof types incl. pagoda/onion/geodesic), bounding-box grow system (6 modes),
-one-click magical distortion presets (liquid/crystal/portal/aurora + 6 more),
-and full Bevel add-on integration (profile, miters, smart edge detection).
+Procedural architecture, ornament, and music-motif Geometry Nodes: 173 GN
+builders across 12 stack categories, style genomes, greybox kits, and a
+UE5 export path. N-panel tab is Melodia Studio; the Modifier properties
+drawer is legacy (off unless enabled in addon preferences).
 
-Author: Claude Code
-Blender: 5.1.0+
+Author: Melodia Team
+Blender: 5.2.0
 License: GPL
 """
 
@@ -23,7 +20,7 @@ bl_info = {
     "name": "Melodia Studio — Surreal Architecture",
     "blender": (5, 2, 0),
     "author": "Melodia Team",
-    "description": "Procedural surreal architecture with style genomes, greybox kits, GN builders, and game pipeline. 56 styles, 49 GN builders, 8 architectural groups.",
+    "description": "Procedural surreal architecture with style genomes, greybox kits, GN builders, and game pipeline. 56 styles, 173 GN builders, 12 GN Stack categories, 8 architectural groups.",
     "version": (2, 131, 0),
     "location": "View3D > Sidebar > Melodia Studio",
     "category": "Geometry Nodes",
@@ -33026,12 +33023,13 @@ def _draw_arch_params_dynamic(layout, props, arch_type):
 
 
 class SURREAL_ARCH_PT_panel(bpy.types.Panel):
-    """Main parent panel — workflow hub for environment blockout → UE export."""
-    bl_label       = f"Surreal Architecture ({_bl_version_string()})"
+    """Legacy Modifier-tab hub. N → Melodia Studio is the product UI."""
+    bl_label       = f"Melodia Studio · Modifier ({_bl_version_string()})"
     bl_idname      = "SURREAL_ARCH_PT_panel"
     bl_space_type  = 'PROPERTIES'
     bl_region_type = 'WINDOW'
     bl_context     = "modifier"
+    bl_options     = {'DEFAULT_CLOSED'}
     bl_order       = 0
 
     @classmethod
@@ -33040,6 +33038,8 @@ class SURREAL_ARCH_PT_panel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        hint = layout.box()
+        hint.label(text="Use N → Melodia Studio. This Modifier drawer is legacy.", icon="INFO")
         obj = context.active_object
         props = obj.surreal_arch_props
 
@@ -38198,7 +38198,7 @@ classes = (
     SURREAL_ARCH_OT_preset_wall_multi,
     SURREAL_ARCH_OT_preset_wall_arched,
     SURREAL_ARCH_OT_preset_wall_bay,
-    # SURREAL_ARCH_OT_toggle_genshin,   # removed v2.28 (UI button cut)
+    SURREAL_ARCH_OT_toggle_genshin,   # re-registered 2026-08-17 (UI buttons live at 33391/33393)
     SURREAL_ARCH_OT_compose_scene,
     SURREAL_ARCH_OT_sv_spiral,
     SURREAL_ARCH_OT_sv_torus_knot,

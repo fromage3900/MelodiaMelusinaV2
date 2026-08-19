@@ -1,0 +1,29 @@
+{
+  "$schema": "../specs/schemas/jcode_permissions.v1.json",
+  "schema": "melodia.jcode_permissions.v1",
+  "coordinator": {
+    "max_workers": 6,
+    "recursive_spawning": false,
+    "shared_checkout": true,
+    "one_writer_per_surface": true
+  },
+  "unreal_editor": {
+    "owner": "WIA / Integration",
+    "writer_count": 1,
+    "authoritative_surface": "monolith",
+    "mutation_entrypoint": "Tools/t3d_safe_wire.py",
+    "raw_ue_command": "deny",
+    "required_evidence": ["fingerprint_before", "validate", "compile", "assert_graph_matches", "save", "re_export"]
+  },
+  "write_scopes": {
+    "green": ["Tools/**", "specs/**", "Docs/Reports/**", "deploy/BuildGraph/**", ".jcode/**"],
+    "yellow": ["deploy/**", "Content/Python/**", "Content/MelodiaIntegration/**"],
+    "red": ["Content/_PROJECT/**", "Content/**/*.uasset", "Content/**/*.umap", "Sakura/**", "L_SakuraPath/**", "credentials/**"]
+  },
+  "approval_rules": {
+    "green": "none",
+    "yellow": "editor",
+    "red": "owner plus explicit rescope; default deny"
+  },
+  "handoff_contract": ["outcome", "changes", "validation", "blockers_followups"]
+}

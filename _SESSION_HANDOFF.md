@@ -1,748 +1,306 @@
-# Session Handoff — 2026-08-12 ~23:36 ET (UE idle apply)
+> **TOP 2026-08-18 ~11:00 ET — read first:** overall status + next-agent handoff is
+> [`Docs/Handoffs/OVERALL_STATUS_2026-08-18.md`](Docs/Handoffs/OVERALL_STATUS_2026-08-18.md).
+> Studio registry **173/12** (toggleables P1-P4 + Komikaze tiler + audit engine added 08-17).
+> AppData is **not** synced (CHANGELOG still v2.68.0). Hung: blender **45856**,
+> UnrealEditor **2320** (both new 08-18, unknown responding). Do not spawn Blender/UE. Do not save v22.
+> Game HEAD `02910d70` is **12 ahead** of origin `d37fde7f`.
+> Live site https://fromage3900.github.io/my-site/ (PR #1+#2). Rhythm/Quill locked. MCP 9876.
+> This 08-16 Melusina/Oceanology body below is still the UE SSOT; it does not include Studio 173.
 
-Owner released A1. **T1/T2/T3 landed** in PID **38184**. Evidence: [`Saved/Audit/ue_idle_apply_2026-08-12.md`](Saved/Audit/ue_idle_apply_2026-08-12.md).
+# Session Handoff — 2026-08-16 (Melusina locomotion staged, editor-blocked)
 
-- `MI_ZenTrim_Base4K` on wand + StreetLamp. Magicians skipped.
-- Cathedral **41/41** under `/Game/EnvSandbox/Meshes/Cathedral/`. KaleidoNave folder `CathedralKit_Review` (8 pieces, Y=4500) **unsaved**.
-- Geometry Cache `/Game/Cinematics/MelusinaWaterHair/GC_MelusinaHairFlip_v22`. Do not replace `SK_MelusinaHair`.
-- Save KaleidoNave if the strip should persist. Socket a new cine GC actor to head.
-
----
-
-# Session Handoff — 2026-08-12 ~23:20 ET (Website Overhaul & Security)
-
-**Pick up:** [`Docs/Handoffs/SESSION_HANDOFF_2026-08-12_WEBSITE_OVERHAUL.md`](Docs/Handoffs/SESSION_HANDOFF_2026-08-12_WEBSITE_OVERHAUL.md)
-
-- **Website Overhaul & Security:** 100% AI purge, meta CSP headers, 232 hex errors resolved (0 token errors), Figma UI suite integrated (15 icons, combat cards, swatch boards, mobile viewport frame), Vite MPA config + TS modules (`src/ts/`).
-- **Gates:** `npm run verify:all` **PASSED** (0 errors, 0 facts issues).
+**Nothing was written to any `.uasset` this session.** The interactive editor was never
+available — a `--pack all --force` underwater/kitbash ingest held the machine for the
+whole window and then died. All Melusina work is authored, dry-run verified, and waiting
+on an editor. Treat every claim below as offline-derived unless marked owner-verified.
 
 ---
 
-# Session Handoff — 2026-08-12 ~22:53 ET (live 5.2 MCP)
+## 1. Root cause of the Melusina animation failure — identified
 
-Blender **5.2** PID **27644**, MCP **9876** connected. v22 open. **Not saved.**
+`Content/Exports/battle_anim_ui_export/2_ABP_Melusina_Current_state_machines.json` shows
+`MelusinaLocomotion` holding exactly four states:
 
-- Health: `builders=165 menu=165 sections=12/12 section_trees=165` presets 24/0 orphans.
-- Smoke: `MEL_effect_magic` LIQUID applied (`MEL_Smoke_EffectMagic_LIQUID` cube — undo before plates).
-- Hair tune: `drip_inside_domain=true`. Domain moved ΔZ **-1.34**. Strand.002 is CURVES (script patched). **0 `.bobj`** — bake still owner step.
-- **GN background:** `GN_BG_Prototype` 15 builders (frame rebuilt as plane). **Not saved.**
-- **Flip bake:** 480 `.bobj` frames 1–240. Alembic `Exports/MelusinaWaterHair/GC_MelusinaHairFlip_v22.abc` (1–96). Import as Geometry Cache cine actor when A1 idle.
+    Idle -> JumpStart -> Airborne -> Land -> Idle
 
----
+**There is no ground-locomotion state, and `BS_Melusina_Locomotion` is not referenced by
+the AnimGraph at all.** Walk/run cannot trigger because nothing consumes velocity. This
+is one defect, not two — the T-pose is the same wound one layer up.
 
-# Session Handoff — 2026-08-12 ~20:40 ET (tonight continuation)
+Caveat: only `_state_machines.json` in that export directory holds real data. Its
+siblings (`_abp_info`, `_variables`, `_graphs`, `_linked_layers`) are all Monolith
+connection-error stubs. Do not trust them; Phase 0 re-reads live.
 
-**Pick up:** [`Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md`](Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md)
+## 2. Three review findings that changed the work
 
-- Handpainted hunt **done** (1208 hits). Komikaze stills are not albedo.
-- P0 umaps exist. Cathedral kit = 41 FBX, **0** uassets. No vow-cross mesh.
-- `assign_hero_zentrim.py` disk inventory written. `--apply` waits — UnrealEditor **PID 38184** (A1).
-- Flip cache still **0 `.bobj`**. Alembic helper: `Tools/export_melusina_hair_flip_alembic.py`.
-- D1: `playtest_harness.py` now tries `BP_MelodiaBattleUI` first.
-- Blender MCP **down**. Loop PID **26352** — do not start a second.
-- Do not save v22 without `MELODIA_ALLOW_STAGE_SAVE=1`. Rhythm + Quill still LOCKED WORKED.
+1. **The input blocker in `.kiro/specs/.../bugfix.md` is STALE.** That spec names missing
+   `MoveForward`/`MoveRight` mappings as the strongest cause. `Config/DefaultInput.ini:79–84`
+   now defines both (W/S/A/D + gamepad `LeftY`/`LeftX`), 10 axis mappings total. Input
+   reaches the pawn. The animation layer is the remaining blocker. **Do not re-chase the
+   input path.**
 
----
+2. **The T-pose is probably a bad idle binding, not an empty state.**
+   `melusina_idle_restore_mocap_2026-08-13.md` names `A_Melusina_Idle_Mocap_RootX` as the
+   owner-approved speed-0 clip, restored because the prior sample was "collapsed / wrong
+   pose". `melusina_idle_retarget_rca_2026-08-13.md` explains why mocap is the only chain
+   that reaches `SK_Melusina_Skeleton` correctly (via `RTG_Mocap_to_Melusina`); direct Lane
+   A imports miss the contract on four axes at once. Yet `A_Melusina_Idle` (unsuffixed,
+   dated **2026-08-08**, older than both the 08-13 restore and the 08-14 mocap asset) is
+   what currently sits at speed 0. All specs now point at the mocap clip.
 
-# Session Handoff — 2026-08-12 evening (Blender Melodia Studio)
+3. **The approved idle is 0.5s**, so baked blinks are impossible (5 blinks = 10/second).
+   Blinks on a short loop need an AnimBP randomised timer driving `eyesCloseL/R`. Noted,
+   not built.
 
-**Blender start-here:** [`Docs/BLENDER_MELODIA_COCKPIT.md`](Docs/BLENDER_MELODIA_COCKPIT.md)
+## 3. Morph-target naming trap (worth keeping)
 
-- **B0/B1/B3 DONE.** Live v22 Health: `sections=12/12 section_trees=165`. `RQ_MEL_*=165`. Audits under `Saved/Audit/melodia_studio_*_2026-08-12_1948.md`.
-- **Do not** click **Sync & Reload** until the next 5.2 restart (old operator crashed the GUI; timer fix is on disk + AppData).
-- After restart: **N → BlenderMCP → Connect** on **9876** (not Live Bridge).
-- Stage: `G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend`. No agent save without `MELODIA_ALLOW_STAGE_SAVE=1`.
-- Still open on Blender: **B2** website plate dry-run (git push off).
-- Builder click: `mel_gn.stack_add` no longer requires `Object.mel_gn_stack` (modifier still applies).
+Only 68 of 103 morph targets carry real deltas; the 52-key ARKit block is bit-identical to
+Basis and Unreal discards it. Two names that look right are inert:
 
----
+| Looks right | Actually imports |
+|---|---|
+| `eyeBlinkLeft` / `eyeBlinkRight` | `eyesCloseL` / `eyesCloseR` |
+| `browInnerUp` | `innerBrowRaiserL` / `innerBrowRaiserR` |
 
-# Session Handoff — 2026-08-12 evening (RHYTHM + QUILL LOCKED)
+A curve on an ARKit name compiles clean and does nothing. `--check-names` now hard-blocks
+this before any write.
 
-```
-✧ RHYTHM + QUILLSCRIPT WORKED — tell the whole family ✧
-```
+## 4. Leader Pose / KawaiiPhysics — answered, no code change needed
 
-**Rhythm lock:** [`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md)  
-**Quill lock:** [`Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md)  
-**PIE board (living):** [`Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md`](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).  
-**Parallel spawns:** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md) · paste prompts [`PARALLEL_SESSIONS_2026-08-12.md`](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md).
+`MelodiaWardrobeComponent.cpp:136` and `MelodiaOutfitComponent.cpp:35` call
+`SetLeaderPoseComponent(BodyMesh)` unconditionally. Leader-posed children do not evaluate
+their own AnimInstance, so a garment can never simulate its own physics. But `c_kilt_*`
+lives in the 465-bone **body** skeleton, so simulating it in the **body ABP** propagates
+through leader pose to every garment automatically. That is the correct architecture and
+it scales to more outfits. Hair stays separate (distinct 148-bone skeleton; it already
+sets leader pose to `nullptr` deliberately).
 
-- **Owner LOCK:** Rhythm game **WORKED** · QuillScript / WillScript **WORKED** (owner “yes”). Do not reopen either.
-- **Merge / pull DONE.** #4 + #6 squash-merged; `main` @ `2e3c893d`; closed-editor build PASS.
-- **Still open:** P0 stock battles (Morning → KaleidoNave / collider); formal `record_gate.py runtime` packaging; `MELODIA_RECOVERY…`.
-- **`static_gates` PASS** (`0e34eaed`). Playable levels on `main` (`43d0a9ae`).
+## 5. Staged work — 5 drivers, all dry-run clean, 0 applied
 
----
-
-# Session Handoff — 2026-08-12 (source-control hardening + lane dispatch)
-
-**Session type:** repo/backup audit, gitignore fix, agent handoffs. **No editor or UE writes.**
-**Repo:** `main` @ `43d0a9ae`, tracking `v2/main`. **Two writers active this session** (this lane
-+ Muse). Read `Docs/Reports/BACKUP_SYNC_AUDIT_2026-08-12.md` first.
-
-## What changed
-
-- **`43d0a9ae` — the playable route levels are now under version control.** `L_MelusinaMorning`
-  and `L_KaleidoNave` had **no history at all**; the `Content/*` blanket in `.gitignore` never had
-  a matching un-ignore. KaleidoNave is the only level in which a battle has ever started. Also
-  tracked: `Content/Melodia/{Levels,PCG}/**`, `Content/EnvSandbox/{Environments,PCG}/**` —
-  214 files, ~48 MB LFS. Bulk EnvSandbox art (~4.6 GB) stays ignored on purpose; the reasoning is
-  written into `.gitignore` so a future cleanup does not undo it.
-- **`0e34eaed` (Muse lane) — `static_gates` moved from FAIL to PASSING.** 12 material drifts
-  accepted, graph_reachability/bp_sweep scoped to shipped defects.
-- **LFS budget funded** — ~$10 ≈ 50 GB as of today. The 512 MB per-change CI gate still applies.
-
-## Two corrections to earlier docs on this date
-
-1. **`BP_BattleController` and `BP_BattleUI` were always tracked** (`.gitignore:128-134`). The
-   first version of the backup audit said otherwise; that came from a `git check-ignore` against a
-   path missing the `/Battle/` segment. No asset was ever at risk.
-2. **`SK_Melusina` needed nothing.** One live mesh, at `Content/Characters/Melusina/`, already
-   tracked. The `Content/Art/` and `Content/Melodia/Characters/` copies are stale leftovers.
-
-## Gates
-
-`runtime` **fail** (honest) · `static_gates` **pass** (new today) · `save_load`,
-`repeat_consume`, `package_launch` **open**. 13 earlier gates pass. `release_tag.yml` correctly
-refuses to cut a release until the four completion gates have rows.
-
-**The `runtime` gate needs the editor and real Q/W/O/P keys through `BP_BattleUI::OnKeyDown`.**
-No agent lane can close it. Everything dispatched below exists to shorten that editor session.
-
-## Active lanes
-
-| Lane | Handoff | Owns |
+| Script | Steps | Owns |
 |---|---|---|
-| **Muse** (WSL2, host) | `Docs/Handoffs/MUSE_HANDOFF_2026-08-12.md` | Code edits. M1 wire `RestorePartyAfterBattle` (zero callers today — the real gap), M2 `lane_dispatcher.py` queue, M3 memory index, M4 split AGENTS.md, M5 commit 13 loose `surreal_arch` modules |
-| **DeepSeek** (cloud, read-only) | `Docs/Handoffs/DEEPSEEK_HANDOFF_2026-08-12.md` | Verdicts only. D1 save idempotency, D2 result matrix, D3 input-path chain for `MELODIA_RHYTHM session=`, D4 Q/W/O/P ergonomics |
-
-Lane separation table is in the DeepSeek handoff §"Lane separation". Muse owns `Source/**` and
-`Tools/**`; DeepSeek writes new `Docs/Reports/*_VERDICT_*.md` files only.
-
-## Open owner decisions
-
-1. **Rotate the Figma API key** — public on v2, doc redacted in `87b2938d`, live key still valid.
-   Carried from 08-11, still open.
-2. **Four `WP/` portfolio levels are G:-only** — BaroqueGrotto, CosmicOrrery, SakuraDream,
-   SpaceCathedral. No version history, no C: copy. Cheap to promote now the budget is funded;
-   needs a call on whether they are current or superseded.
-3. **`G:` has 2.1 GB free of 1 TB.** The next mirror pass will fail partway.
-4. **Two Quaternius animation dependencies are absent** from every C: and G: copy searched and
-   from the tracked tree. These appear genuinely lost.
-
-## Working-tree leftovers (not committed)
-
-13 new + 3 modified `deploy/surreal_arch/melodia_gn/` Python modules (Muse M5), `.agents/`, and
-~15 root scratch scripts (`check_bp*.py`, `fix_rhythm*.py`, `pie_*.py`, `pie_smoke_*.json`) —
-session debris, propose a `.gitignore` line rather than deleting.
-
----
-
-# Previous session (2026-08-11) — agent infrastructure, intake, repo v2, UI fix
-
-**Session type:** Multi-agent infra expansion + read-only intake + repo migration + editor fix
-**Project phase:** UE 5.8 production JRPG + QuillScript integration
-
----
-
-# Evening fold-in (2026-08-11, git reconciliation + cloud-research fold-in)
-
-Full record: `Docs/Handoffs/CLOUD_RESEARCH_FOLD_IN_2026-08-11.md` — read that first.
-
-- **Git:** `main` @ `69f76813`, 4 ahead of `v2/main`, 0 behind. Working tree clean of real changes.
-  14 MeshBlend LFS pointers were cosmetic-only (identical OIDs) — un-staged, never committed.
-  3 nebula LFS blobs still pending push to v2 (`Blue_Nebula_8`, `Purple_Nebula_6/7`).
-- **Committed this session:** `69f76813` — tool hardening (input-node ENTRYISH, AssetRegistry
-  discovery, canonical live-path, named-graph reachability) across bp_live_path/bp_sweep/echo_run/
-  graph_reachability/ui_lint. Addresses several `ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md`
-  static-gate findings (AMBIGUOUS on canonical path, input-chain dead islands).
-- **Cloud-research lanes folded in:** SuperGrok planning docs (recreated in `Docs/PhoneOps/` by
-  Cursor iOS), 6-lane intake fan-out (`Saved/Intake/`), jcode study + acceptance
-  (`Docs/Reports/`), cathedral rig correction (**target v22, NOT FinalUERig43**), setup validation.
-- **Loose ends recorded (§3 of fold-in):** `lane_dispatcher.py` reads the wrong queue
-  (`NEXT_ACTIONS.md` is platform, not gameplay); `Saved/memory_index.json` stale; `dispatch_report.md`
-  never generated; **Figma key rotation required by owner**; AGENTS.md >32 KB subagent cap;
-  video_review_lane free-tier vision 402s; Q/W/O/P 6-key hand-shift → test in Campaign 1.
-- **Branches:** all `origin/*` = website repo (not v2). `recovery/melodia-main-sync-20260811` is a
-  STALE cold snapshot (would revert quarantine + delete .jcode/.opencode) — keep as backup, never
-  merge. `fix-melodiacore-source` already merged via PR #54. Surreal slices = loop spam, #80 open.
-- **Ledger unchanged:** `runtime` = FAIL honest, three gates OPEN. No row written by this pass.
-
-## Agent infrastructure (new, all committed to v2)
-
-- **Model fleet (9 MCP servers in root `.mcp.json` + 11-model router fleet in `Tools/model_router.py`):** fixed `kimi-k3-free`
-  (host is `api.tokenrouter.com/v1`, NOT the dead `tokenrouter.ai`), fixed stale slug
-  `deepseek/deepseek-v4` → `deepseek/deepseek-v4-flash`, added Mistral Medium 3.5, Grok 4.5,
-  Grok 4.20 multi-agent, Meta Muse Spark 1.2 (age-confirm blocked), Nemotron Ultra free
-  (1M ctx), gpt-oss-20b free. `Saved/router_ledger.jsonl` tracks per-model cost.
-- **Tools (5 new in `Tools/`, .gitignore carve-out):** `model_router.py` (7 task classes
-  + `deep` for slow-strong Kimi; keys read from .mcp.json at runtime; UTF-8 stdout fixed),
-  `playtest_harness.py` (real-input runtime gate: slate-sendinput / pie-inject-input /
-  probe backends, `record pass|fail` writes gate_ledger rows), `video_review_lane.py`
-  (free Nemotron VL vision review — paid-model image input 402s on the free-tier key),
-  `memory_index.py` (730-file keyword index), `lane_dispatcher.py` (queue→lane, READ
-  ONLY; CAVEAT: currently routes against NEXT_ACTIONS.md which is the platform queue —
-  gameplay queue lives in `_VERTICAL_SLICE_SCOPE.md`/handoffs; fix before relying on it).
-- **New agent hosts:** Muse Code (Meta, WSL2, v0.1.0, API key auth via
-  `~/.config/muse/auth.json` schema `{schema_version, providers.meta.{mechanism,api_key,
-  obtained_via}}`, smoke test PASSED, reads AGENTS.md + .mcp.json). Junie CLI v26.8.3
-  BYOK OpenRouter configured (`~/.junie/config.json`); **headless non-interactive is
-  broken on Windows** (readPipedInput IOException "Incorrect function") — interactive only.
-- **Free-tier reality:** OpenRouter key is free tier — paid-model daily quota exhausts
-  mid-day (Grok/DeepSeek/Mistral 402); TokenRouter (kimi) drops out sporadically. Free
-  models unaffected. Plan paid work early in the day or add credits.
-
-## Read-only intake fan-out (6 lanes, ~$0.0014 total)
-
-All reports + cross-lane synthesis: `Saved/Intake/INTAKE_SYNTHESIS_2026-08-11.md`.
-Consensus: (1) runtime gate is THE blocker (probe-only = HOLD; real keys never tested
-through BP_BattleUI::OnKeyDown); (2) queue-authority mismatch; (3) HUD dual-writer
-fix compiled but never observed in PIE — **superseded 2026-08-12: owner confirmed rhythm
-highway WORKED in live PIE** (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`); (4) don't
-push GitHub before Content/LFS secured (partially superseded — v2 push happened below);
-(5) best single finding: Q/W/O/P has a 6-key W→O hand shift (spatial playability risk for
-dense notes).
-
-## Repo: v2 canonical
-
-`v2` remote = `github.com/fromage3900/MelodiaMelusinaV2` (fresh 4-commit history +
-lane's follow-ups; old `origin` is the website repo — leave it). My commits:
-`87b2938d` (tools + Figma key redaction), `2770c0e9` (UI transparency audit).
-**SECURITY:** Figma API key was public on v2 in `Docs/Reviews/MCP_SURFACE_SCAN_2026-08-03.md`
-— redacted in the doc; **OWNER MUST ROTATE the live key at figma.com** and update root
-`.mcp.json`/`.opencode.json`. OpenRouter/TokenRouter/Muse keys verified NOT in v2.
-Pushes intermittently blocked by GitHub connectivity — retry; commit is safe locally.
-Content/ stays untracked (no LFS) — v2 is asset-light by design.
-
-## Closeout source verdicts (`Docs/Handoffs/CLOSEOUT_SOURCE_VERDICTS_2026-08-11.md`)
-
-- **Step 3 (damage-scalar sequencing): PASS by design.** FinishSession latches
-  PendingDamageMultiplier → OnRhythmComplete.Broadcast → deferred InvokeStockUseSkill →
-  montage notify (0.5s) reads latched scalar. The old 2.5s gap applied only to the
-  replaced parallel-start pattern. A/B meaningful.
-- **Step 5 (RestorePartyAfterBattle): spelling RESOLVED; call site on open PRs.**
-  Live reflection confirmed stock `S_PlayerUnitData` really spells `curentMP`. Library
-  match is correct. Wiring is **not on main yet** — prefer [PR #1](https://github.com/fromage3900/MelodiaMelusinaV2/pull/1)
-  (world-iterates `BP_BattleController`). [PR #2](https://github.com/fromage3900/MelodiaMelusinaV2/pull/2)
-  passes `ActiveBattleActor` (tagged encounter) and is the wrong target for the library.
-- **UI transparency audit: FIXED.** `WBP_Battle_Rhythm` JudgementText/ComboText/
-  ClockSourceText were authored A=0 and nothing ever set their color → grade/combo/clock
-  text permanently invisible. Fixed to opaque white (flat rgba JSON write shape — the
-  import-text shape does NOT persist; this was the line-228 quirk), compiled, saved,
-  readback verified. Flags: `RhythmPrompt` Collapsed by default (verify shown on rhythm
-  start); `WBP_MelodiaRhythmHighway` = duplicate-tree candidate for closeout Step 9.
-
-## Next work (per CORE_GAMEPLAY_CLOSEOUT_PLAN_2026-08-11.md)
-
-Four gates: `runtime`, `save_load`, `repeat_consume`, `package_launch` (runtime FAIL row
-is honest). Campaign 1 (real-input rhythm→damage A/B) maps exactly onto
-`playtest_harness.py` (slate-sendinput, assertion JSON next to frames, `record pass`).
-One editor + Monolith 9316 are up now. Editor was restarted mid-session (two-instance
-violation observed at 15:02 — resolved by owner closing one).
-
----
-
-# Session Handoff - 2026-08-08 (prep for P0 work)
-
-**Session type:** Closed-editor prep: TD preservation, gate trust, git organization
-**Project phase:** UE 5.8 production JRPG + QuillScript integration
-
-## Mid-session update (2026-08-08, editor live) — verified wiring findings
-
-The editor is up (Monolith 9316 live). Live-graph audits moved three P0 items to DONE and resolved
-one decision:
-
-- **B3 (rhythm cluster) — DONE in live.** `Use Skill with Rhythm`(194) wired: UseMP(115).then ->
-  node -> HideSkillActionButtons(110), StockSkill <- Get currentSkill(116). Double-fire
-  StartSession/Branch/UseSkill cluster absent. Damage latch (Get/Clear Pending Damage Multiplier)
-  wired. Audit: `Docs/T3D_Patterns/wiring/verify_battle_closure.py` — 10/10 invariants PASS.
-- **B4 (battle-result closure) — DONE in live.** Switch on E_BattleResult -> Sequence_3/4/5 ->
-  CompleteBattle(45/49/51) + PlayerWon(204)/EnemyWon(205)/Keys(99) legs; Keys(99) on the Fled leg
-  is the authored design (dead-unit rewards). Nothing dangles.
-- **B7 (grade display) — DONE in live.** `ShowRhythmGrade` function graph implemented (4 nodes:
-  Entry -> ToText -> SetText on RhythmGradeText TextBlock), exact C++-expected signature.
-- **Sir departure — RESOLVED (option a).** Compiled MorningIntro script is the departure
-  authority (`melodia:battle:melodia_smoke_encounter`, then typed result branches, then
-  `melodia:flag:melodia_smoke_complete`, `$ End`). No travel / BeginWindowDeparture path exists.
-  `HandleMorningIntroEnded` + `Begin Window Departure` verified disconnected — safe to delete via
-  `Docs/T3D_Patterns/wiring/sir_cleanup.py` (dry-run verified).
-- **Wiring audit committed:** `Exports/bp_battlecontroller_eventgraph_live.json` is the fresh
-  evidence source; the older `_postfix.json` export is stale (predates the sequence fan-out).
-- **Material baseline:** 2 impressionist assets drifted (metadata-only, node counts identical);
-  accepted via `--update`, re-committed. Gate: 55 clean.
-- **Orphans noted (cleanup candidates):** Get currentBattle (VariableGet_1), Get currentSkill
-  (VariableGet_97) in BP_BattleController.
-
-Remaining editor-session work (in order): run the fixed PIE smoke gate on the authored loop
-(L_MelusinaMorning route), save-chain fixes, input parity, packaged-build launch.
-
----
-
-# Session Handoff - 2026-08-08 (prep for P0 work)
-
-**Session type:** Closed-editor prep: TD preservation, gate trust, git organization
-**Project phase:** UE 5.8 production JRPG + QuillScript integration
-
-## Verified state (2026-08-08, before editor relaunch)
-
-- **TouchDesigner preserved (A0 done, commit `4f0d1ede`).** The live project was saved
-  (`C:\EnvironmentPortfolio\_TouchDesigner\grandmaster_melodia\grandmaster_melodia7.9.toe`) and
-  exported to tracked, diffable `.tdn` files:
-  `_TouchDesigner/grandmaster_melodia/networks/{project1_full,osc,audio,postfx}.tdn`
-  (project1_full = 2.68 MB, full embed incl. DAT code). Canonical
-  `grandmaster_melodia.toe` in the repo refreshed from the live save (706,876 B, was 07-24 stale).
-  Embody scope was claimed and released; no peer sessions present.
-- **Build state: all C++ current.** DLLs compiled 2026-08-08 01:49
-  (`UnrealEditor-MelodiaCore.dll`, `UnrealEditor-BS_GodFile.dll`,
-  `UnrealEditor-MonolithBlueprint.dll`). UBT reports "Target is up to date" — includes the
-  Sir-rescue fix, the UE→TD reactivity edge + heartbeat, and atomic T3D injection.
-- **Verification gates fixed and TRUSTED (the ok:true-with-errors false positive is gone):**
-  - `Tools/pie_smoke_runner.py` — `ok` now mirrors the server rule
-    (`MonolithEditorActions.cpp` #3): active-bucket `must_absent` hits fail; `missing_must_present`
-    fails; teardown exempt. Report includes `ok_reason`, `must_absent_hits`, `missing_must_present`.
-  - `Tools/regression_suite.py` — fixed the `int + dict` poll crash (grouped_counts is
-    bucket→category→pattern) and applied the same ok rule.
-  - Both committed: `a0e2b00b` (tools tracking + smoke runner), `0a2e688a` (regression suite).
-- **Pipeline core now versioned** (`a0e2b00b`): mcp_client, t3d_* injectors, nl_to_blueprint,
-  bp_regression_checker, continuous_loop, pie_smoke_runner, regression_suite, graph_reachability,
-  ui_lint, record_gate — previously untracked under `Tools/*`.
-- **Git: main is clean of tracked dirt.** 15 commits since `ba8a6f41` (9-way logical split of the
-  dirty tree + TD preservation + gate fixes + tool tracking). `.mcp.json` untracked (API keys);
-  `CompatibilityLabs/Snapshot_2026-08-06/` (2.6 GB) and `PR_DRAFT/` remain untracked by policy.
-  Push to `origin` still blocked (network).
-- **Known TD content errors (pre-existing, not blocking):** `shrine_mesh` FBX unreadable
-  (g:\...\SM_Orn_RoseWindow_8Petal.fbx missing); render-mat tangent warnings on
-  `magical_visuals/main_render`.
-
-## Relaunch sequence (today)
-
-1. Launch exactly one UE 5.8 editor with `-unattended` (known modal/hang history).
-2. Confirm Monolith `9316` reachable, `list_errored_blueprints` + dirty packages clean.
-3. Run `python Docs/T3D_Baseline/verify_baseline.py` (expect 55 clean).
-4. Then the P0 gates in dependency order (B4 closure → B3 rhythm cluster → B7 grade display →
-   Sir departure → save chain → input parity → packaged-build launch), each claimed only with a
-   capture artifact from the fixed smoke runner.
-
----
-
-# Session Handoff - 2026-08-07
-
-**Session type:** Integration pipeline research and PC restart closeout  
-**Primary track:** Text injection pipeline first; then Blueprint wiring and runtime proof  
-**Project phase:** UE 5.8 production JRPG + QuillScript integration  
-
-## Session Result
-
-This session was research-only for project content and editor assets. No Blueprint, C++, Quill,
-map, material, Niagara, or save asset was intentionally changed.
-
-The repository was studied across:
-
-- Monolith, UEBlueprintMCP, UnrealMCP, it-is-unreal, Ollama, and project MCP configuration
-- Local model availability and current model-calling scripts
-- Monolith Blueprint/T3D implementation and verification source
-- TurnBasedJRPGTemplate battle contracts
-- MelodiaCore authority boundaries and quarantined systems
-- QuillScript notification, interpreter, widget, and persistence contracts
-- Existing runtime, PIE, screenshot, and gate-recording workflows
-
-The central finding is unchanged: the project has enough editor capability, but the shared text
-injection path is not yet a safe production tool. Agents are failing because the repository mixes
-incompatible MCP contracts, stale examples, transport-level success with operation success, and
-Blueprint graph writes without mandatory readback.
-
-## Editor Shutdown State
-
-- The older Unreal Editor PID `7204` was terminated.
-- Its visible window remained as an OS ghost after the process exited; `EndTask` and
-  `DestroyWindow` were rejected by Windows because the owner was already gone.
-- The newer editor process also disappeared during the shutdown sequence.
-- Final check: no trusted live Unreal editor and no active Monolith `9316` or UEBlueprintMCP
-  `55558` listener. Treat the editor as fully stopped.
-- Do not trust any older handoff that says the editor is currently open or that a live MCP call is
-  available.
-
-After reboot, launch exactly one UE 5.8 editor with `-unattended`. Confirm the process and ports
-before any write. The known startup modal/hang history is documented in `CURRENT_STATE.md`; the
-unattended flag is required for unattended recovery.
-
-## MCP Inventory
-
-### Monolith
-
-- Config: `.mcp.json`, command `Plugins/Monolith/Binaries/monolith_proxy.exe`
-- Live transport: HTTP JSON-RPC at `http://127.0.0.1:9316/mcp`
-- In-process with Unreal Editor
-- Current source/docs describe roughly 1400 in-tree actions, including Blueprint, editor, project,
-  source, material, UI, animation, Niagara, and capture actions
-- Blueprint surface includes `export_graph`, `get_graph_fingerprint`, `assert_graph_matches`,
-  `add_node`, `add_nodes_bulk`, `connect_pins`, `connect_pins_bulk`, `batch_execute`,
-  `set_pin_default`, `set_node_property`, `compile_blueprint`, `validate_blueprint`, and
-  `save_asset`
-- It is the only inspected surface that currently provides the complete graph readback and
-  fingerprint/assertion primitives needed for a safe wiring transaction
-- `project_query:export_asset_text` is read-only asset-text export; it is not an arbitrary text
-  import endpoint
-
-### UEBlueprintMCP
-
-- Config: `.mcp.json`, Python stdio server
-- Python bridge connects to the Unreal plugin at TCP port `55558`
-- README claims 60+ commands, persistent connection, validation, and auto-save
-- Strong node-operation surface: find nodes, inspect pins, add nodes, connect pins, dispatchers,
-  UMG, Enhanced Input, compile, and viewport/editor actions
-- No inspected equivalent of Monolith's semantic graph fingerprint and assertion contract
-- Current repository wiring docs call this the only valid Blueprint writer, but that claim conflicts
-  with the actual Monolith source and the older Monolith verification procedure. Resolve this
-  policy before asking agents to mutate graphs.
-
-### UnrealMCP
-
-- Plugin source binds its legacy socket bridge to port `55557`
-- `.mcp.json` does not configure it as the active Blueprint server
-- Do not assume it is the same service as UEBlueprintMCP `55558`
-- The port mismatch is a live configuration drift item, not a reason to add a third graph writer
-
-### it-is-unreal
-
-- Configured as HTTP MCP at `http://127.0.0.1:8088/mcp`
-- Keep for general editor, asset, level, and runtime queries only
-- Do not use it as the authoritative Blueprint graph writer or verifier
-
-### Ollama and other MCP entries
-
-- Ollama host: `http://localhost:11434`
-- Ollama MCP is configured in `.mcp.json`, `.opencode.json`, and `.claude.json`
-- OpenCode and Claude project configs currently expose different server sets from `.mcp.json`;
-  agents do not receive a uniform UE tool surface
-- `cpp-compile-feedback` and Blender MCP entries are present in `.mcp.json` but are not part of the
-  first Blueprint text-injection milestone
-- `deepseek-v4` and `kimi-k3` cloud MCP entries exist in `.mcp.json`
-- Cloud API credentials are exposed in the repository configuration/history. Do not use those
-  entries until the owner rotates the credentials. Do not copy or print the values.
-
-## Local Models Confirmed
-
-`ollama list` confirmed only these installed models at the end of this session:
-
-| Model | Size | Context | Relevant use |
-|---|---:|---:|---|
-| `deepseek-r1:14b` | 9.0 GB | 131072 | Complex graph reasoning, contract analysis, patch planning |
-| `qwen2.5-coder:7b` | 4.7 GB | 32768 | JSON/spec generation, Python/C++ tool work, schema transformation |
-
-Important drift:
-
-- Older handoffs claim `qwen3:8b` was installed and verified, but it was absent from the current
-  `ollama list`.
-- `Tools/nl_to_blueprint.py` hardcodes `qwen3:8b`, so its default local path is currently stale.
-- `nl_to_blueprint.py` also references cloud `deepseek/deepseek-v4`, uses an environment key, and
-  does not enforce a successful result.
-
-Recommended model role, once the pipeline exists:
-
-1. Use DeepSeek locally for graph-context interpretation and patch planning.
-2. Use Qwen Coder locally for strict JSON transformation, schema repair, and tool code generation.
-3. Require both models to emit a versioned patch/spec only. Neither model should call an editor
-   mutation directly.
-4. Validate the generated patch deterministically before any MCP write.
-
-## Text Injection Findings
-
-### Current tool is not literal T3D injection
-
-`Tools/t3d_blueprint_injector.py` is a small Python wrapper around
-`blueprint_query:build_blueprint_from_spec`.
-
-It currently:
-
-- Is library-only and has no usable CLI
-- Sends a hardcoded Monolith URL
-- Emits unsupported `type: "function_call"` in its helper methods
-- Does not handle JSON-RPC errors or MCP `isError`
-- Does not inspect the nested compile result
-- Does not save
-- Does not export/read back
-- Does not fingerprint or assert
-- Cannot reference existing graph nodes in the builder's local ID map
-- Cannot safely connect the injected subgraph to existing stock nodes
-- Cannot roll back a partially applied transaction
-
-The name should be split into two concepts:
-
-- **Blueprint graph patching:** structured JSON operations against an existing graph
-- **Literal T3D text import:** a separate native import action, if raw editor text is truly needed
-
-### `build_blueprint_from_spec` limitations
-
-Source: `Plugins/Monolith/Source/MonolithBlueprint/Private/MonolithBlueprintBuildActions.cpp`.
-
-- It loads an existing Blueprint; it does not create a new parent/class despite broad documentation
-  claims.
-- Its `IdMap` contains only nodes created in that request. Existing nodes cannot be referenced.
-- It copies only a limited set of node fields. Delegate-specific fields, function reference fields,
-  titles, and several node properties are not forwarded.
-- Pin defaults are read with `TryGetStringField`, so numeric/boolean JSON values are not accepted as
-  typed defaults.
-- Duplicate spec IDs overwrite the previous ID mapping.
-- Re-running a request is not idempotent and generally creates duplicate nodes.
-- The transaction is ended even after partial errors; it is not a rollback transaction.
-- Auto-compile uses the outer action result. The compiler action returns an outer success envelope
-  while compiler failure is represented in the nested `compile_result.success`; callers must inspect
-  the nested result and `error_count`.
-- It does not save the asset.
-
-### Native T3D support is narrower than documentation implies
-
-`copy_nodes` uses Unreal's `ExportNodesToText` and `ImportNodesFromText`, but:
-
-- It copies selected nodes between graphs rather than accepting arbitrary caller-provided T3D text
-- Internal links are preserved
-- External links are dropped
-- Imported IDs change
-- It does not compile or save
-- `project_query:export_asset_text` is read-only
-
-If raw text injection is required, implement a separate native action around
-`FEdGraphUtilities::ImportNodesFromText` with explicit target graph, imported-node mapping,
-connection policy, compile, save, and readback. Do not pretend the current JSON builder is that tool.
-
-### Existing verification is useful but not yet composed
-
-Monolith already has the primitives for:
-
-```text
-export_graph
--> get_graph_fingerprint
--> mutate
--> compile_blueprint
--> assert_graph_matches
--> get_graph_fingerprint
--> save_asset
--> export_graph/readback
+| `Tools/build_melusina_locomotion_stack.py` | 34 | State machine, `Locomotion` state, `JumpWindup`, `DefaultSlot`, variables, blendspace axis |
+| `Tools/build_melusina_foot_ik.py` | 9 | `IK_Melusina_Body` chains/solver/goals + graph pass |
+| `Tools/wire_melusina_quaternius_actions.py` | 20 | 7 montages rebound, 3 created |
+| `Tools/build_melusina_idle_life.py` | 8 | Blink + brow curves (guards short loops) |
+| `Tools/wire_melusina_jump_windup.py` | 6 | Pawn-side `bJumpWindup` events |
+
+Specs: `specs/anim_presets/melusina_locomotion_state_machine.json` (new),
+`melusina_locomotion_blend.json` (**fixed**: pointed at `Animations/Mocap_RootX/`, a
+directory that has never existed, and at the wrong blendspace path — every sample write
+was failing silently; axis max also raised 630 → 750 so the 714 uu/s sprint gate stops
+clamping).
+
+**Jump wind-up requirement (owner, explicit):** the *initial hold* of SpaceBar triggers the
+wind-up. `MelodiaTraversalJump` is on SpaceBar (`DefaultInput.ini:115`). Press sets
+`bJumpWindup` and does **not** call `Jump()`; the `JumpLaunch` notify inside
+`A_Q_Melusina_Jump_Start` does. State entry keys on `bJumpWindup`, **not** `bIsFalling` —
+keying off IsFalling means the wind-up can only start after she has already left the ground.
+
+## 6. Run order
+
+    python Tools/build_melusina_locomotion_stack.py --preflight
+    python Tools/build_melusina_locomotion_stack.py --measure --apply --verify
+    python Tools/build_melusina_foot_ik.py --inspect --apply
+    python Tools/wire_melusina_quaternius_actions.py --apply
+    python Tools/build_melusina_idle_life.py --check-names --breath-only --apply
+    python Tools/wire_melusina_jump_windup.py --live-path --apply
+
+**Standing risk:** action names came from live tool enumeration; **parameter schemas were
+guessed**. Expect the first `--apply` of each script to abort on a schema mismatch. That is
+designed for — mutations abort on the first failure, print the `describe_query
+action_schema` call to run, and leave the graph untouched. Correct the params from the real
+schema; do not guess twice.
+
+**Known gap:** `wire_melusina_jump_windup.py --apply` spawns the event nodes but cannot
+blind-wire the Set/Cast/Jump pins — `connect_pins` needs node ids that only exist after the
+events spawn. Run `--emit-contract` for the exact target shape, then wire from a graph read
+or capture by hand per MONOLITH_GUIDE Recipe 16.
+
+## 7. Underwater / KitBash3D ingest — one crash, one run in flight
+
+- `--pack all --force` (PID 42388, 23:24–00:16) died of **OutOfMemory**:
+  `CrashType: OutOfMemory`, 68.5 GB total, 0.72 GB free at crash, 35 GB working set.
+  Nothing saved. Crash dump: `Saved/Crashes/UECC-Windows-D8BFC1A5...`.
+- `--pack atlantis --force` relaunched with stdout captured to
+  `Saved/Logs/atlantis_ingest_stdout.log` and was actively triangulating KB3D_ATL meshes at
+  handoff. **Kenney's 6,059 files must run as a separate process**, possibly split further —
+  that pack is what blew the memory ceiling.
+- The script hands args to the child editor via `UNDERWATER_INGEST_ARGS`
+  (`ingest_aaa_underwater_packs.py:623`, set at `:657`), so the child's `sys.argv` is empty
+  by design. Reading it as a dry-run is wrong; check `Saved/Audit/ingest_bootstrap.txt`.
+- `-log=` never produces a file when `-stdout` is set; the output goes to the launching
+  process's pipe. Always redirect stdout or you get no log.
+
+## 7b. Water gameplay is NOT blocked on Oceanology — they are different layers
+
+Read this before treating the Oceanology port as a water blocker.
+
+A complete water **gameplay authority** already exists in native C++ under
+`Source/BS_GodFile/MelodiaIntegration/`, and it is compiled and current (it lives in
+`UnrealEditor-BS_GodFile.dll`, rebuilt 2026-08-16 01:04):
+
+- `UMelodiaWaterGameplaySubsystem`, `UMelodiaWaterGameplayControllerComponent`
+- `UMelodiaPCGWaterGameplayBridgeComponent`
+- `AMelodiaWaterPlatform` + `UMelodiaWaterPlatformMotionComponent`
+- `UMelodiaWaterBuoyancyComponent` (gated on `HasAuthoritativeWaterSample`)
+- water snapshot capture/restore through the canonical save adapter
+
+`Docs/T3D_Patterns/INTEGRATED_PCG_WATER_GAMEPLAY_MANIFEST_2026-08-10.md` defines an
+11-target T3D wiring lane over it, implemented by `Tools/melodia_water_gameplay_t3d.py`
+(2026-08-10). Two of those targets are exactly the water↔spatial-puzzle bridge:
+
+- `pattern_completed_puzzle` → bridge `HandlePatternCompleted` → `OnPuzzleSolved` fires
+  once, optional route opens
+- `platform_route_activation` → `AMelodiaWaterPlatform` gate/pressure/flow response
+
+**Oceanology is a rendering/simulation layer, not the gameplay authority.** Its own
+provenance file says as much: keep its ocean surface shader as the simulation authority,
+apply `TP_*` toon profiles at the material-instance layer, and let its underwater
+post-process *coexist* with `UMelodiaWaterUnderwaterPostProcessComponent`.
+
+So the 5.4 → 5.8 port gates ocean *look and simulation*, not water *gameplay*. The puzzle
+and platform wiring can proceed now against the native authority. Do not wait on the port,
+and do not rebuild any of this inside Oceanology when it lands.
+
+## 7c. Oceanology 5.4 → 5.8 port — in progress, converging
+
+Plugin is at `Plugins/Oceanology_Plugin` (11 GB, 1500 files, Binaries/Intermediate
+deliberately not copied). **`"Enabled": false` in the uproject** — re-enable only to test a
+build, and disable again before starting an editor, because a missing-modules modal blocks
+the game thread (this cost one wedged editor on 2026-08-16).
+
+First build: 90 error instances / 34 unique / 7 files. Applied since:
+
+| Fix | Sites | Killed |
+|---|---|---|
+| Removed legacy IWYU tails `#if defined(UE_ENABLE_INCLUDE_ORDER_DEPRECATED_IN_5_2)` — macro retired after 5.4, warnings-as-errors made each one fatal | 5 | 21 × C4668 |
+| `CreateShaderResourceView(buf, stride, format)` → `FRHIViewDesc::CreateBufferSRV()...` (5.5+ form) in `OceanologyWaterVertexFactory.h` | 1 | ~11 arg-count errors |
+| `FRHITexture2D*` → `FRHITexture*` and dropped `->GetTexture2D()` in `OceanologyRVTBaker.cpp` (5.5 unified the RHI texture hierarchy) | 2 | ~40 RVTBaker instances, incl. the cascaded `GetRenderTarget`/`GetStagingTexture`/`CopyTexture` failures |
+
+Verified NOT broken (checked against `Engine/Source/Runtime/RHI/Public/RHICommandList.h:5351`):
+`RHIAsyncCreateTexture2D`'s 10-arg signature is unchanged in 5.8 and the call site matches.
+Do not "fix" it.
+
+### Buffer/RHI layer — DONE (2026-08-16, all verified against 5.8 engine headers)
+
+Every replacement below was checked against
+`Engine/Source/Runtime/RHI/Public/RHIResources.h` or the engine's own usage in
+`RenderCore/Private/GlobalRenderResources.cpp` — none were written from memory.
+
+| Site | Change |
+|---|---|
+| `WaterInstanceDataBuffer.h` ×2 (init + resize) | `CreateVertexBuffer(size,usage,CreateInfo)` → `CreateBuffer(FRHIBufferCreateDesc::CreateVertex(name,size).AddUsage(BUF_Dynamic).DetermineInitialState())` |
+| `WaterVertexFactory.h` index buffer | `CreateIndexBuffer(Stride,Size,BUF_Static,CreateInfo)` → `CreateIndex(name,Size,Stride).AddUsage(BUF_Static).SetInitActionResourceArray(&Indices).DetermineInitialState()` |
+| `WaterVertexFactory.h` vertex buffer | old 5-arg `CreateBuffer` overload → `CreateVertex(...).AddUsage(...).SetInitialState(...)` |
+| `WaterVertexFactory.h` SRV | `.SetType(Typed).SetFormat(PF_R32_FLOAT)` — **no `SetStride`**; format implies it for a Typed view, matching engine usage |
+| `RVTBaker.cpp` ×2 | `FRHITexture2D*`/`GetTexture2D()` → `FRHITexture*` + the ref itself |
+
+Residual sweep is clean: 0 × `CreateVertexBuffer(`, `CreateIndexBuffer(Stride`,
+`FRHIResourceCreateInfo`, `FRHITexture2D`, `GetTexture2D()`, `UE_ENABLE_INCLUDE_ORDER`.
+
+Note: the index/vertex-buffer sites never appeared in the first build log — compilation
+aborted before reaching them. They were found by sweeping for removed APIs rather than by
+waiting for the next build round.
+
+### What is left — ray tracing only
+
+Not a rename; the API was restructured:
+
+```cpp
+// plugin (5.4)
+GetDynamicRayTracingInstances(FRayTracingMaterialGatheringContext& Context,
+                              TArray<FRayTracingInstance>& OutRayTracingInstances)
+// engine 5.8  (PrimitiveSceneProxy.h:458)
+GetDynamicRayTracingInstances(FRayTracingInstanceCollector& Collector)
 ```
 
-The missing work is a single agent-facing operation that enforces this sequence and fails closed.
+Two parameters collapsed into one collector. The body is a **168-line function** in
+`OceanologyWaterMeshSceneProxy.cpp` with six touchpoints to migrate:
 
-Required behavior for the future composite operation:
+| Current | Needs |
+|---|---|
+| `Context.ReferenceView` | collector equivalent |
+| `Context.GraphBuilder.RHICmdList` | collector equivalent |
+| `Context.RayTracingMeshResourceCollector` | collector equivalent |
+| `OutRayTracingInstances.Add(...)` | `Collector.AddRayTracingInstance(...)` |
+| `Context.DynamicRayTracingGeometriesToUpdate.Add(...)` | collector equivalent |
+| `FRayTracingDynamicGeometryUpdateParams{...}` init-list | struct changed shape |
 
-- Explicit target asset and graph
-- Explicit expected pre-edit fingerprint
-- Full pre-edit export, including hidden pins
-- Existing-node references resolved from live node IDs/GUIDs
-- New-node references scoped to the current patch
-- Deterministic duplicate-ID rejection
-- Dry-run schema/pin/class validation
-- One asset per transaction
-- Stop on any operation failure
-- Compile and inspect nested compiler status/error count
-- Assert intended nodes, edges, defaults, and forbidden old nodes
-- Save the exact target asset
-- Re-export and compare post-save state
-- Return a structured evidence manifest
+**Do not compile the RT path out.** `Config/DefaultEngine.ini:37` sets `r.RayTracing=True`,
+so `#if 0`-ing it would silently degrade water rendering rather than port it. That is the
+"add a mechanism to cancel a mechanism" failure the working agreement forbids.
 
-## Current Wrapper Defects
+This edit was deliberately NOT made blind — it cannot be compile-checked while the editor
+holds the build lock, and a wrong rendering port is worse than a clearly-marked unported
+one. Apply it in a session that can build and verify in the same pass.
 
-### `Tools/mcp_client.py`
+Pattern so far: ~11 lines of edit removed ~80% of 90 error instances. The remainder is one
+contained rendering migration, not a rewrite.
 
-- Hardcoded URL instead of honoring configured `MONOLITH_URL`
-- Fixed JSON-RPC request ID
-- Does not inspect `result.isError`
-- Returns only the first text content item
-- `discover()` first tries an unsupported raw `monolith_discover` method and its fallback is not
-  the live namespace action catalog
+## 7d. Editor accepted edits but persisted NOTHING — read before trusting any 08-16 claim
 
-### `Tools/nl_to_blueprint.py`
+The editor (PID 45436, started 04:56) never reached `Responding = True`. Monolith answered
+and executed graph edits correctly, but **no package write ever completed**.
 
-- Reads `graph_data` but does not include it in the model prompt
-- Tells the model to emit `function_class`, while the builder forwards `target_class`
-- Has no JSON schema validation or patch preflight
-- Does not support existing-node references
-- Returns success after injection/compile failures in several paths
-- Does not save, assert, fingerprint, or perform independent readback
-- Uses unavailable `qwen3:8b` by default
+`ABP_Melusina_Current.uasset` is still **2026-08-14 20:04, 458641 bytes** after a full
+locomotion repair. All six spatial-puzzle assets exist in the asset registry at their
+correct `/Game/...` paths and are absent from disk. `save_asset` returned
+`{"saved": true, "was_dirty": true}` every time. **That response is not proof of a write.**
 
-### Documentation drift
+So the 08-16 AnimGraph work is real but **in-memory only** and dies with the process.
+It is cheap to redo: every schema is now encoded in the driver.
 
-The following sources disagree and must be reconciled before the next agent session:
+### Three tooling bugs found and fixed (2026-08-16)
 
-- `AGENTS.md` examples use an incorrect spec wrapper and an incorrect `expected_fingerprint`
-  assertion shape
-- `Docs/BLUEPRINT_WIRING_SKILL_2026-08-07.md` says UEBlueprintMCP is the only Blueprint writer
-- `Plugins/Monolith/Docs/MONOLITH_GUIDE.md` and live Monolith source provide a full Blueprint write
-  and verification surface
-- Older handoffs use stale parameter names and direct ad-hoc calls
-- Monolith documentation often says UE 5.7 while this project runs UE 5.8
+1. **Silent failures.** `call()` only raised when the response *string* began with
+   `ERROR:`. A JSON body carrying `success:false` / `ok:false` passed as success, so three
+   `--apply` runs reported clean while leaving the graph half-authored. Now raises on
+   `success`/`ok` false or a populated `error` field.
+2. **`add_transition` is not idempotent.** Re-running apply after a partial abort produced
+   **3 duplicate transitions** (`Idle->Locomotion`, `Airborne->Land`, `Land->Idle`). Each
+   duplicate compiles to *"will never be taken"* because only one of the pair carries the
+   rule. Two of those pairs already existed in the baseline. The driver now reads existing
+   pairs from preflight and skips them; `--verify` asserts none exist.
+3. **Save was never verified against the artifact.** `--apply` now stats the `.uasset` and
+   fails the run if it was not written in the last 10 minutes, printing that the work is
+   in-memory only.
 
-Do not let a model choose between these documents. Establish one project policy and link it from
-`AGENTS.md`, the wiring skill, the contract, and the session template.
+### Monolith schemas (discovered the hard way — do not guess these)
 
-## Runtime Integration Contract
+| Wrong | Right |
+|---|---|
+| `blueprint_path` | `asset_path` (everywhere except `create_blueprint` → `save_path`, `spawn_blueprint_actor` → `blueprint`) |
+| `variable_name` / `variable_type` | `name` / `type` |
+| `state_machine` | `machine_name` |
+| `animation` | `anim_asset_path` |
+| `position: [x,y]` | `position_x`, `position_y` |
+| `axis: "horizontal"` | `axis: "X"` |
+| `min_value`/`max_value` | `min`/`max` |
+| rule as `"Speed > 10.0"` | `{"kind":"compare","lhs":"Speed","op":">","rhs":10.0}` — also `{"kind":"bool","variable":"X"}`, `{"kind":"auto"}`, `{"kind":"expression",...}` |
 
-The production text path remains:
+`set_anim_state_always_reset_on_entry` does not exist in the `animation` namespace.
+`describe_query action_schema` needs `target_action`, not `target`.
 
-```text
-.qsc source
--> QuillScript asset/interpreter
--> UMelodiaNarrativeSubsystem
--> allowlisted typed intent
--> stock JRPG / project travel / Persona adapter
--> typed result
--> Quill Restore()
--> Quill Next()
-```
+### The 42 Quaternius clips do not load
 
-### QuillScript source
+`Content/.../QuaterniusRetargeted/A_Q_Melusina_*.uasset` — 42 files, ~883 KB each, real
+binary (not LFS pointers). The asset registry finds **zero** of them, and
+`project_query refresh_assets` on that directory returns `packages_scanned: 0`. The editor
+cannot see them as packages at all.
 
-- Source path: `Content/MelodiaIntegration/Narrative/*.qsc`
-- Compile helper: `Content/Python/compile_melodia_quill_battle.py`
-- Native editor seam: `UMelodiaNarrativeSubsystem::CompileQuillSource`
-- Stable notification verbs are battle, quest, flag, travel, reward, stat, and item
-- IDs must be checked against `DA_MelodiaIntegrationConfig` before runtime
-- Persistent authored variables use the `melodia_` prefix
-- `melodia:item:give` is still a logging stub and must not be authored as a real inventory grant
+Consequence: the jump states were repointed to the registered
+`A_Melusina_JumpStart/JumpLoop/Land_Mocap_RootX` clips, and
+`Tools/wire_melusina_quaternius_actions.py` (10 montages) is built on unloadable assets and
+**needs rework before use**. Root cause of the unloadable packages is not yet established.
 
-### Authoritative battle path
+## 8. Not done / deliberately out of scope
 
-```text
-Quill Notify
--> UMelodiaNarrativeSubsystem::StartBattle
--> OnBattleRequested
--> UMelodiaExternalJRPGBridgeSubsystem
--> exactly one tagged stock battle actor
--> reflected StartBattle/offLevelBattleData/OnBattleOver contract
--> typed EMelodiaBattleResult
--> CompleteBattle
--> one Restore()
--> one Next()
-```
-
-Do not inject another battle starter or another resume path.
-
-Safe observer hooks:
-
-- `OnBattleRequested`: presentation/input observation only
-- `OnJRPGBattleStarted`: presentation/diagnostics only
-- `OnJRPGBattleEnded`: raw result observation only; do not call `CompleteBattle`
-- `OnBattleCompleted`: cleanup/results presentation only; do not resume Quill again
-- `OnBattleAborted`: cleanup and failure UI only; do not fabricate a result
-
-Do not use the MelodiaCore legacy `UMelodiaBattleSession` as the Quill/stock-JRPG bridge. Do not
-put project encounter IDs, Quill parsing, canonical saves, project rewards, or stock JRPG
-reflection into MelodiaCore. MelodiaCore remains presentation/neutral capability code here.
-
-### Quill hooks that are not safe assumptions
-
-- `OnResumed` and `BeforeResume` are declared but not broadcast/called by the current Quill runtime
-- `OnScriptPlay` is safe for capturing the active interpreter, not for forcing UI/input or advancing
-  dialogue
-- Never restore a live widget/typewriter/battle state; resume at authored boundaries
-
-## Loose Ends To Carry Forward
-
-### P0: text pipeline
-
-1. Ratify the single graph-authoring authority. Recommended direction: a shared project wrapper
-   uses Monolith for graph export/fingerprint/assert/readback, with an explicit exception path for
-   operations only UEBlueprintMCP can express. No agent should make raw ad-hoc graph calls.
-2. Build the wrapper in stages: read-only preflight, dry-run patch validation, one-asset apply,
-   compile/assert/save/readback, then literal T3D import only if required.
-3. Add existing-node references and a patch-to-live-node mapping.
-4. Make failures fail closed; never treat MCP transport success, outer action success, or a printed
-   node count as graph success.
-5. Persist raw request/response evidence, before/after exports, fingerprints, compile output,
-   assertion output, save result, and dirty/error state under `Saved/T3D/`.
-6. Replace stale `t3d_blueprint_injector.py` and `nl_to_blueprint.py` paths only after the wrapper
-   has a disposable Blueprint proof.
-
-### P0: runtime proof
-
-The authoritative current state says the gameplay is not yet playable and the following remain
-runtime-unproven:
-
-- Dialogue visible and input/focus ownership
-- Exactly one battle request
-- Victory, defeat, fled, and unavailable result matrix
-- Exactly one Quill restore/next
-- Canonical save creation and process-restart load
-- Narrative flag/reward persistence and idempotence
-- Load with Quill unavailable
-- Interpreter invalidation during terminal result
-- Manual save blocked during active battle
-- Main Menu New Game/Continue/Load
-- Instantiated stock battle widget identity
-- Development-package launch outside the editor
-
-### Conflicting status claims to resolve by live readback
-
-- `_SESSION_HANDOFF.md` previously called save creation/slot naming fixed; the full runtime
-  save/restart gate was still owed.
-- `PROJECT_SCOPE_AND_WORKFLOW_PLAN_2026-08-06.md` still describes the old save defects.
-- `_TASK_QUEUE.md` says the rhythm StartSession/SubmitRatedInput nodes are absent, while
-  `INTEGRATION_POLISH_HANDOFFS_2026-08-06.md` says parts of that lane are built.
-- Older handoffs claim dialogue/battle success, while `CURRENT_STATE.md` records the owner's later
-  live result that dialogue is not visible and battle is non-functional.
-- Treat live owner-confirmed runtime behavior as truth; re-export the current graph before deciding
-  which static claim is stale.
-
-### P1/P2 integration loose ends
-
-- Live Coding/build path remains blocked; use a closed-editor UE 5.8 `-NoUBA` build until repaired
-- Battle UI has multiple possible owners and a documented path mismatch; identify the instantiated
-  stock widget and choose one Melodia overlay owner
-- Verify input-context push/pop balance and interaction blocking, not just consumer presence
-- Verify all active travel routes use the authority and that tagged PlayerStart placement succeeds
-- Melody Token pickup/HUD lane remains in progress
-- Co-op conditional bonus remains unwired
-- Rhythm chart/skill mapping and rhythm-to-stock timing remain disputed until live graph readback
-- Packaged Development traversal remains open
-- Owner must rotate exposed cloud MCP credentials
-
-### Explicitly do not reopen in the next pipeline session
-
-- Portfolio material/PCG cleanup
-- Legacy MelodiaCore battle/save lane
-- Quarantined orphaned-script reconstructions
-- Website/render capture work unrelated to the text-injection proof
-- New gameplay mechanics before the bridge and evidence loop are proven
-
-## Files and Worktree
-
-Intentional file change in this closeout:
-
-- `_SESSION_HANDOFF.md`
-
-No gameplay/editor asset was changed by this session. The repository was already dirty with many
-parallel-agent changes before this session; do not revert, reset, or clean unrelated work.
-
-## Next Session MUST Start With
-
-1. Relaunch exactly one UE 5.8 editor with `-unattended`; confirm one process and live ports `9316`
-   and `55558`. Do not mutate if either server is unavailable or a second editor is present.
-2. Read this handoff, `AGENTS.md`, `CURRENT_STATE.md`,
-   `Docs/BLUEPRINT_WIRING_SKILL_2026-08-07.md`, and
-   `Docs/BLUEPRINT_WIRING_CONTRACT_2026-08-07.md`. Reconcile the conflicting writer policy before
-   using any existing wiring command.
-3. Run read-only preflight: editor status, errored Blueprints, dirty packages, exact graph list,
-   and live action schemas. Preserve raw responses.
-4. Select one disposable or duplicated Blueprint for the injection proof. Export the full target
-   graph with hidden pins and record `topology` fingerprint twice, then no-op save and fingerprint
-   again. Stop if the hash is not byte-stable.
-5. Implement/test the shared wrapper's read-only and dry-run phases before any production graph
-   write. The first write must be one asset, one patch, one compile/assert/save/readback manifest.
-6. Only after the tool proof passes, target the smallest real integration seam. Do not begin with
-   the entire battle controller or a generated multi-agent batch.
-7. Record each live result in `Saved/gate_ledger.json`; static graph presence is never a runtime
-   completion claim.
-
-## Definition Of Done For The Next Pipeline Session
-
-The session is not complete until one controlled Blueprint patch has:
-
-- A saved pre-edit export and stable baseline fingerprint
-- A validated patch with explicit existing-node references
-- Compile result with zero errors and understood warnings
-- Reachability and intended-edge assertion with `matched: true`
-- Exact asset save result and clean package readback
-- Post-save export/fingerprint matching the asserted state
-- A complete evidence manifest in `Saved/T3D/`
+- No `.uasset` written, no compile, no PIE, no owner runtime verification.
+- ARKit shapekey completion (52 empty keys) — deferred by owner decision.
+- Quaternius clips left unwired on purpose: Driving, Fixing_Kneeling, Pistol_*, Punch_*,
+  Push, Swim, Sitting, Walk_Formal, Idle_Torch, Crouch, Spell_Simple_Enter/Exit/Idle.
+- Blendspace sample repositioning onto measured root speeds — `--measure` needs the editor.
+- Nothing committed. Working tree carries 142 dirty paths, mostly pre-existing `.uasset`
+  material edits from earlier sessions that are **not** this session's work. Branch:
+  `feature/repo-lockin-20260813`.

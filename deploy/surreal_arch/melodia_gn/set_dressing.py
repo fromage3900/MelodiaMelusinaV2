@@ -403,9 +403,9 @@ for _kind in _WATER_TYPES:
     register_builder(
         "MEL_water_them_" + _kind, WATER_BUILDERS[_kind],
         "Water-Themed " + _kind.replace("_", " ").title(),
-        _WATER_DESC[_kind], "set_dressing")
+        _WATER_DESC[_kind], "set_dressing", hidden=True, role="factory")
 for _kind in _MUSIC_TYPES:
     register_builder(
         "MEL_music_them_" + _kind, MUSIC_BUILDERS[_kind],
         "Music-Themed " + _kind.replace("_", " ").title(),
-        _MUSIC_DESC[_kind], "set_dressing")
+        _MUSIC_DESC[_kind], "set_dressing", hidden=True, role="factory")

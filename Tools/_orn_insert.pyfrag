@@ -1,0 +1,75 @@
+﻿def ensure_surreal_arch() -> bool:
+    import importlib.util, sys, traceback
+    if hasattr(bpy.ops, "surreal_arch") and hasattr(bpy.ops.surreal_arch, "generate"):
+        log("SurrealArch already available")
+        return True
+    ADDON = os.path.join(ROOT, "deploy", "surreal_architecture_gen.py")
+    if not os.path.isfile(ADDON):
+        log(f"missing addon {ADDON}")
+        return False
+    deploy = os.path.dirname(ADDON)
+    if deploy not in sys.path:
+        sys.path.insert(0, deploy)
+    name = "surreal_architecture_gen"
+    try:
+        if name in sys.modules:
+            mod = sys.modules[name]
+            if hasattr(mod, "unregister"):
+                try:
+                    mod.unregister()
+                except Exception:
+                    pass
+        spec = importlib.util.spec_from_file_location(name, ADDON)
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules[name] = mod
+        assert spec.loader is not None
+        spec.loader.exec_module(mod)
+        if hasattr(mod, "register"):
+            mod.register()
+        log(f"loaded SurrealArch version={getattr(mod, 'bl_info', {}).get('version')}")
+        return hasattr(bpy.ops.surreal_arch, "generate")
+    except Exception:
+        log("addon load failed:\n" + traceback.format_exc())
+        return False
+
+
+def ensure_base_trim_materials(obj: bpy.types.Object) -> None:
+    base = bpy.data.materials.get("M_Orn_Base")
+    if base is None:
+        base = bpy.data.materials.new("M_Orn_Base")
+        base.use_nodes = True
+        nt = base.node_tree
+        bsdf = nt.nodes.get("Principled BSDF")
+        if bsdf:
+            bsdf.inputs["Base Color"].default_value = (0.72, 0.68, 0.78, 1.0)
+            if "Roughness" in bsdf.inputs:
+                bsdf.inputs["Roughness"].default_value = 0.55
+            if "Metallic" in bsdf.inputs:
+                bsdf.inputs["Metallic"].default_value = 0.05
+    trim = bpy.data.materials.get("M_Orn_Trim")
+    if trim is None:
+        trim = bpy.data.materials.new("M_Orn_Trim")
+        trim.use_nodes = True
+        nt = trim.node_tree
+        bsdf = nt.nodes.get("Principled BSDF")
+        if bsdf:
+            bsdf.inputs["Base Color"].default_value = (0.92, 0.78, 0.42, 1.0)
+            if "Roughness" in bsdf.inputs:
+                bsdf.inputs["Roughness"].default_value = 0.28
+            if "Metallic" in bsdf.inputs:
+                bsdf.inputs["Metallic"].default_value = 0.65
+            if "Emission Color" in bsdf.inputs:
+                bsdf.inputs["Emission Color"].default_value = (0.55, 0.35, 0.75, 1.0)
+            if "Emission Strength" in bsdf.inputs:
+                bsdf.inputs["Emission Strength"].default_value = 0.08
+    mesh = obj.data
+    mesh.materials.clear()
+    mesh.materials.append(base)
+    mesh.materials.append(trim)
+    n = len(mesh.polygons)
+    if n:
+        mid = max(1, n // 2)
+        for i, poly in enumerate(mesh.polygons):
+            poly.material_index = 0 if i < mid else 1
+    log(f"materials Base+Trim on {obj.name} faces={n}")
+

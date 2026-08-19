@@ -1,4 +1,4 @@
-ï»¿# Texture Duplicate Audit â€” Decision 032
+# Texture Duplicate Audit — Decision 032
 **Date:** 2026-08-03
 **Source:** Monolith project_query search for T_Melodia_ textures across all Content roots
 
@@ -20,6 +20,6 @@ The **Universal** texture set at /Game/Melodia/UI/Textures/Universal/ is the act
 
 ## Recommendation
 1. Consolidate all active widget references to point to the Universal set
-2. Do NOT delete the GameUI set â€” still referenced by WBP_MainMenu (SoftMG_Parchment)
-3. Do NOT delete the Source set â€” it's the import origin
+2. Do NOT delete the GameUI set — still referenced by WBP_MainMenu (SoftMG_Parchment)
+3. Do NOT delete the Source set — it's the import origin
 4. Alphas can be quarantined after verifying no active widget references them

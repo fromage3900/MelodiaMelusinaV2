@@ -9,6 +9,8 @@
 #include "Actions/ProjectActions.h"
 #include "Actions/UMGActions.h"
 #include "Actions/MaterialActions.h"
+#include "Actions/AnimationActions.h"
+#include "Actions/AudioActions.h"
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
 #include "Kismet/GameplayStatics.h"
@@ -170,9 +172,44 @@ void UMCPBridge::RegisterActions()
 	ActionHandlers.Add(TEXT("create_umg_widget_blueprint"), MakeShared<FCreateUMGWidgetBlueprintAction>());
 	ActionHandlers.Add(TEXT("add_text_block_to_widget"), MakeShared<FAddTextBlockToWidgetAction>());
 	ActionHandlers.Add(TEXT("add_button_to_widget"), MakeShared<FAddButtonToWidgetAction>());
+	ActionHandlers.Add(TEXT("add_progress_bar_to_widget"), MakeShared<FAddProgressBarToWidgetAction>());
+	ActionHandlers.Add(TEXT("add_image_to_widget"), MakeShared<FAddImageToWidgetAction>());
+	ActionHandlers.Add(TEXT("add_canvas_panel_slot"), MakeShared<FAddCanvasPanelSlotAction>());
+	ActionHandlers.Add(TEXT("create_widget_animation"), MakeShared<FCreateWidgetAnimationAction>());
+	ActionHandlers.Add(TEXT("add_widget_animation_track"), MakeShared<FAddWidgetAnimationTrackAction>());
+	ActionHandlers.Add(TEXT("play_widget_animation"), MakeShared<FPlayWidgetAnimationAction>());
 	ActionHandlers.Add(TEXT("bind_widget_event"), MakeShared<FBindWidgetEventAction>());
 	ActionHandlers.Add(TEXT("add_widget_to_viewport"), MakeShared<FAddWidgetToViewportAction>());
 	ActionHandlers.Add(TEXT("set_text_block_binding"), MakeShared<FSetTextBlockBindingAction>());
+
+	// =========================================================================
+	// Animation Actions (AnimBlueprints, State Machines, Skeletal Controls)
+	// =========================================================================
+	ActionHandlers.Add(TEXT("create_animation_blueprint"), MakeShared<FCreateAnimationBlueprintAction>());
+	ActionHandlers.Add(TEXT("add_anim_state_machine"), MakeShared<FAddAnimStateMachineAction>());
+	ActionHandlers.Add(TEXT("add_anim_state"), MakeShared<FAddAnimStateAction>());
+	ActionHandlers.Add(TEXT("add_anim_transition"), MakeShared<FAddAnimTransitionAction>());
+	ActionHandlers.Add(TEXT("add_blend_space_player"), MakeShared<FAddBlendSpacePlayerAction>());
+	ActionHandlers.Add(TEXT("add_sequence_player"), MakeShared<FAddSequencePlayerAction>());
+	ActionHandlers.Add(TEXT("add_bone_transform_node"), MakeShared<FAddBoneTransformNodeAction>());
+	ActionHandlers.Add(TEXT("add_two_bone_ik_node"), MakeShared<FAddTwoBoneIKNodeAction>());
+	ActionHandlers.Add(TEXT("add_anim_notify"), MakeShared<FAddAnimNotifyAction>());
+	ActionHandlers.Add(TEXT("connect_anim_nodes"), MakeShared<FConnectAnimNodesAction>());
+	ActionHandlers.Add(TEXT("get_anim_state_machine_states"), MakeShared<FGetAnimStateMachineStatesAction>());
+
+	// =========================================================================
+	// Audio & MetaSound Actions (Sound Cues, MetaSounds, Spatialization)
+	// =========================================================================
+	ActionHandlers.Add(TEXT("create_sound_cue"), MakeShared<FCreateSoundCueAction>());
+	ActionHandlers.Add(TEXT("add_sound_node_wave_player"), MakeShared<FAddSoundNodeWavePlayerAction>());
+	ActionHandlers.Add(TEXT("add_sound_node_modulator"), MakeShared<FAddSoundNodeModulatorAction>());
+	ActionHandlers.Add(TEXT("add_sound_node_random"), MakeShared<FAddSoundNodeRandomAction>());
+	ActionHandlers.Add(TEXT("add_sound_node_attenuation"), MakeShared<FAddSoundNodeAttenuationAction>());
+	ActionHandlers.Add(TEXT("create_metasound_source"), MakeShared<FCreateMetaSoundSourceAction>());
+	ActionHandlers.Add(TEXT("add_metasound_node"), MakeShared<FAddMetaSoundNodeAction>());
+	ActionHandlers.Add(TEXT("connect_metasound_nodes"), MakeShared<FConnectMetaSoundNodesAction>());
+	ActionHandlers.Add(TEXT("set_metasound_parameter"), MakeShared<FSetMetaSoundParameterAction>());
+	ActionHandlers.Add(TEXT("play_sound_at_location"), MakeShared<FPlaySoundAtLocationAction>());
 
 	// =========================================================================
 	// Material Actions (Materials, Shaders, Post-Process)

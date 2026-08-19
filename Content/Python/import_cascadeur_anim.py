@@ -53,7 +53,6 @@ def import_animation(fbx_path: Path, destination_name: str) -> list[str]:
 
     options = unreal.FbxImportUI()
     options.set_editor_property("skeleton", unreal.load_asset(TARGET_SKELETON))
-    options.set_editor_property("skeletal_mesh", unreal.load_asset(TARGET_MESH))
     options.set_editor_property("import_as_skeletal", True)
     options.set_editor_property("import_mesh", False)
     options.set_editor_property("import_animations", True)

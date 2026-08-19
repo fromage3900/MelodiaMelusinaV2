@@ -165,6 +165,18 @@ bool UMelodiaTokenWalletSubsystem::TrySpendGolden(const int32 Amount)
 	return true;
 }
 
+bool UMelodiaTokenWalletSubsystem::TryRefundGolden(const int32 Amount)
+{
+	if (Amount <= 0)
+	{
+		return false;
+	}
+
+	GoldenTokens += Amount;
+	BroadcastChanged();
+	return true;
+}
+
 void UMelodiaTokenWalletSubsystem::CaptureToSave(UMelodiaSaveGame* Save) const
 {
 	if (!Save)

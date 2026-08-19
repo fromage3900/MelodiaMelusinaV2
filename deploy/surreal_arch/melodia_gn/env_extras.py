@@ -260,7 +260,7 @@ def build_env_stepping_stones(group_name="MEL_env_stepping_stones"):
 
 
 def build_env_reeds_patch(group_name="MEL_env_reeds_patch"):
-    """Reeds patch — clustered reed stems on a scattered grid.
+    """Reeds patch — clustered reed stems with height jitter.
 
     Stores reed_density (FLOAT) on the output for PCG material reads.
     """
@@ -271,6 +271,8 @@ def build_env_reeds_patch(group_name="MEL_env_reeds_patch"):
     add_float_param(tree, "Reed Height", 1.2, 0.3, 4.0)
     add_float_param(tree, "Reed Radius", 0.03, 0.01, 0.2)
     add_float_param(tree, "Density", 0.5, 0.01, 2.0)
+    add_float_param(tree, "Height Jitter", 0.35, 0.0, 1.0)
+    add_float_param(tree, "Clump", 0.4, 0.0, 1.0)
 
     verts = _math(tree, "CEIL", (bx - 900, by + 200),
                   _math(tree, "SQRT", (bx - 1000, by + 200), gin.outputs["Reed Count"]).outputs[0])
@@ -280,26 +282,89 @@ def build_env_reeds_patch(group_name="MEL_env_reeds_patch"):
     link_sockets(tree, verts.outputs[0], grid.inputs["Vertices X"])
     link_sockets(tree, verts.outputs[0], grid.inputs["Vertices Y"])
 
-    reed = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 500, by))
+    # Clump: mix XY toward a 3x3 cell grid so stems gather instead of a uniform lattice.
+    pos = safe_node(tree, "GeometryNodeInputPosition", (bx - 900, by + 40))
+    sep = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 720, by + 40))
+    link_sockets(tree, pos.outputs["Position"], sep.inputs["Vector"])
+    cell = _math(tree, "DIVIDE", (bx - 900, by - 80), gin.outputs["Patch Size"], 3.0)
+    qx = _math(tree, "MULTIPLY", (bx - 520, by + 80),
+               _math(tree, "FLOOR", (bx - 680, by + 80),
+                     _math(tree, "DIVIDE", (bx - 840, by + 80), sep.outputs["X"], cell.outputs[0]).outputs[0]).outputs[0],
+               cell.outputs[0])
+    qy = _math(tree, "MULTIPLY", (bx - 520, by - 40),
+               _math(tree, "FLOOR", (bx - 680, by - 40),
+                     _math(tree, "DIVIDE", (bx - 840, by - 40), sep.outputs["Y"], cell.outputs[0]).outputs[0]).outputs[0],
+               cell.outputs[0])
+    mix_x = _math(tree, "MULTIPLY", (bx - 340, by + 80), qx.outputs[0], gin.outputs["Clump"])
+    keep_x = _math(tree, "MULTIPLY", (bx - 340, by + 160), sep.outputs["X"],
+                   _math(tree, "SUBTRACT", (bx - 500, by + 200), 1.0, gin.outputs["Clump"]).outputs[0])
+    mix_y = _math(tree, "MULTIPLY", (bx - 340, by - 40), qy.outputs[0], gin.outputs["Clump"])
+    keep_y = _math(tree, "MULTIPLY", (bx - 340, by - 120), sep.outputs["Y"],
+                   _math(tree, "SUBTRACT", (bx - 500, by - 160), 1.0, gin.outputs["Clump"]).outputs[0])
+    clump_pos = _combine(
+        tree, (bx - 160, by + 40),
+        _math(tree, "ADD", (bx - 220, by + 80), keep_x.outputs[0], mix_x.outputs[0]).outputs[0],
+        _math(tree, "ADD", (bx - 220, by - 40), keep_y.outputs[0], mix_y.outputs[0]).outputs[0],
+        sep.outputs["Z"],
+    )
+    set_clump = safe_node(tree, "GeometryNodeSetPosition", (bx - 40, by + 200))
+    link_sockets(tree, grid.outputs["Mesh"], set_clump.inputs["Geometry"])
+    link_sockets(tree, clump_pos.outputs["Vector"], set_clump.inputs["Position"])
+
+    reed = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 500, by - 280))
     link_sockets(tree, gin.outputs["Reed Radius"], reed.inputs["Radius"])
     link_sockets(tree, gin.outputs["Reed Height"], reed.inputs["Depth"])
     reed.inputs["Vertices"].default_value = 6
     reed.fill_type = "NGON"
-    stems = _instance(tree, (bx - 300, by + 200), grid.outputs["Mesh"], reed.outputs["Mesh"])
 
-    store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx, by + 200))
+    idx = safe_node(tree, "GeometryNodeInputIndex", (bx - 200, by - 200))
+    rand = safe_node(tree, "FunctionNodeRandomValue", (bx, by - 200))
+    if rand is None:
+        rand = safe_node(tree, "GeometryNodeRandomValue", (bx, by - 200))
+    try:
+        rand.data_type = "FLOAT"
+    except Exception:
+        pass
+    jitter_lo = _math(tree, "SUBTRACT", (bx - 200, by - 320), 1.0, gin.outputs["Height Jitter"])
+    jitter_hi = _math(tree, "ADD", (bx - 200, by - 400), 1.0, gin.outputs["Height Jitter"])
+    if rand:
+        min_in = rand.inputs.get("Min") or (rand.inputs[0] if len(rand.inputs) else None)
+        max_in = rand.inputs.get("Max") or (rand.inputs[1] if len(rand.inputs) > 1 else None)
+        id_in = rand.inputs.get("ID") or rand.inputs.get("Id")
+        if min_in is not None:
+            link_sockets(tree, jitter_lo.outputs[0], min_in)
+        if max_in is not None:
+            link_sockets(tree, jitter_hi.outputs[0], max_in)
+        if id_in is not None:
+            link_sockets(tree, idx.outputs["Index"], id_in)
+        rand_out = rand.outputs.get("Value") or rand.outputs[0]
+    else:
+        rand_out = jitter_hi.outputs[0]
+
+    scale = _combine(tree, (bx + 160, by - 200), 1.0, 1.0, rand_out)
+    inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx + 160, by + 80))
+    link_sockets(tree, set_clump.outputs["Geometry"], inst.inputs["Points"])
+    link_sockets(tree, reed.outputs["Mesh"], inst.inputs["Instance"])
+    if "Scale" in inst.inputs:
+        link_sockets(tree, scale.outputs["Vector"], inst.inputs["Scale"])
+    real = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 380, by + 80))
+    link_sockets(tree, inst.outputs["Instances"], real.inputs["Geometry"])
+
+    store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 580, by + 80))
     store.data_type = "FLOAT"
     store.inputs["Name"].default_value = "reed_density"
     link_sockets(tree, gin.outputs["Density"], store.inputs["Value"])
-    link_sockets(tree, stems, store.inputs["Geometry"])
+    link_sockets(tree, real.outputs["Geometry"], store.inputs["Geometry"])
     link_sockets(tree, store.outputs["Geometry"], gout.inputs["Geometry"])
 
     color_node(grid, "curve")
     color_node(reed, "geometry")
+    color_node(inst, "instance")
     color_node(store, "attribute")
     return label_tree(tree, group_name, [
         {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
         {"title": "Scatter Grid", "nodes": ("grid", "sqrt", "ceil"), "role": "curve"},
+        {"title": "Clump and Jitter", "nodes": ("floor", "random", "set position"), "role": "attribute"},
         {"title": "Reed Stems", "nodes": ("reed", "instance"), "role": "instance"},
         {"title": "Output", "nodes": ("store", "Group Output"), "role": "output"},
     ])
