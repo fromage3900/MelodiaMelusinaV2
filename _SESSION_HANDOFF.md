@@ -1,3 +1,16 @@
+# Session Handoff — 2026-08-19 (Nemotron × OpenCode × Unreal research)
+
+**Pick up:** [`Docs/Handoffs/NEMOTRON_OPENCODE_UE_RESEARCH_2026-08-19.md`](Docs/Handoffs/NEMOTRON_OPENCODE_UE_RESEARCH_2026-08-19.md)
+
+- **Research DONE:** Nemotron model lineup, OpenCode integration (Ultra broken via NIM #34026),
+  Unreal public evidence (ACE runtime NPC; no OpenCode+Monolith public example yet).
+- **Experiments DESIGNED:** Tasks 4–7 (harness compare, long-context, MCP surface, background agent).
+- **Spec:** `specs/nemotron_experiment_harness.json`
+- **Tonight:** Phase 0–2 — OpenRouter smoke, then T1/T4/T5 on Claude vs Nemotron Super.
+- **Do not use Nemotron Ultra via NIM in OpenCode** until #34026 fixed; OpenRouter only.
+
+---
+
 # Session Handoff — 2026-08-12 ~23:36 ET (UE idle apply)
 
 Owner released A1. **T1/T2/T3 landed** in PID **38184**. Evidence: [`Saved/Audit/ue_idle_apply_2026-08-12.md`](Saved/Audit/ue_idle_apply_2026-08-12.md).
