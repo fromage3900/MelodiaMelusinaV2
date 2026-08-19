@@ -170,15 +170,57 @@ secondary note — but don't lead with it. The collaboration pitch is stronger.
 
 ---
 
+## 6. OpenCode — User Research + Case Study + Contribution
+
+**Deadline:** None (but momentum matters — reach out while you're actively using it)
+**Contact:** Jay V via X (@jayv), OpenCode Discord, or Toronto meetup circuit.
+Also: hello@opencode.ai or via GitHub.
+**Subject:** "A non-programmer shipped 70% of a UE5.8 JRPG through OpenCode —
+4 months of user data"
+
+### What this is
+
+NOT a benchmark package. A user research conversation. The full pitch is at
+`Docs/Portfolio/PITCH_OPENCODE.md`.
+
+### Why this is different from the other pitches
+
+You're not testing their model from outside. You've been a daily power user
+for four months. The community is just now building OpenCode-to-Unreal bridges —
+you're months ahead. Jay V explicitly said he's worried about over-focusing
+on enterprise and losing the consumer story. You ARE the consumer story.
+
+### Four options to offer (from the pitch doc)
+A. 30-min user research conversation with their product team
+B. Co-written case study ("non-programmer ships UE5.8 JRPG via OpenCode")
+C. Community contribution — UE5.8 MCP patterns, failure modes, documentation
+D. All of the above + a job conversation (you're in Toronto, they're in Toronto)
+
+### Draft opening
+> I'm a 4th-year 3D student who can't hand-write code. Over the past four
+> months I've used OpenCode in Rider as my primary development harness to
+> build a production UE5.8 JRPG — C++ subsystems, MCP orchestration, material
+> pipelines, agent coordination, the whole stack. The game is 70% done and
+> I'm building the last 30% in OpenCode right now.
+>
+> I have four months of contextual use data from a user profile your base
+> probably underrepresents: non-programmer, game dev, hostile environment
+> (UE5.8 + three MCP surfaces). I'd love 30 minutes with your product team
+> to walk through what I learned. Also happy to co-write a case study or
+> contribute UE5 patterns to the community.
+
+---
+
 ## Priority order for tomorrow
 
 | # | Company | Action | Deadline |
 |---|---------|--------|----------|
 | 1 | **NVIDIA** | Submit DevRel application + resume | **Aug 21** |
-| 2 | **Nous Research** | Commit local Hermes tests, send email | Rolling |
-| 3 | **Certain Affinity** | Send application | Rolling |
-| 4 | **Infold Games** | Visit campus portal, identify track | Oct 31 |
-| 5 | **Velan Studios** | Send application | Rolling |
+| 2 | **OpenCode** | Send pitch email / DM Jay V | ASAP (momentum) |
+| 3 | **Nous Research** | Send MATH collaboration proposal | Rolling |
+| 4 | **Certain Affinity** | Send application | Rolling |
+| 5 | **Infold Games** | Visit campus portal, identify track | Oct 31 |
+| 6 | **Velan Studios** | Send application | Rolling |
 
 ---
 
