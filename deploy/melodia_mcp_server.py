@@ -1216,16 +1216,15 @@ def melodia_encounter_start(encounter_id: str) -> dict[str, Any]:
     _ENCOUNTERS[encounter_id] = {
         "encounter_id": encounter_id,
         "grief_active": True,
-        "enemy": {"type": "mana_drainer", "abilities": ["mana_drain"]},
+        "enemy": {"type": "mana_drainer", "hp": 100, "abilities": ["mana_drain"]},
         "resolved": False,
     }
     return {
         "schema": "melodia.encounter.start.v1",
-        "encounter_id": encounter_id,
         "status": "active",
-        "enemy": {"type": "mana_drainer", "abilities": ["mana_drain"]},
-        "grief_set_to": grief_result["grief_set_to"],
-        "new_state": grief_result["new_state"],
+        "grief_set_to": grief_result.get("grief_set_to"),
+        "new_state": grief_result.get("new_state"),
+        **_ENCOUNTERS[encounter_id],
     }
 
 
@@ -1245,9 +1244,9 @@ def melodia_encounter_enemy_action(encounter_id: str) -> dict[str, Any]:
     return {
         "schema": "melodia.encounter.enemy_action.v1",
         "encounter_id": encounter_id,
-        "action": "mana_drain",
+        "enemy_action": "mana_drain",
         "mana_drained": drain,
-        "new_state": _economy_dict(_ECONOMY_STATE),
+        "economy": _economy_dict(_ECONOMY_STATE),
     }
 
 

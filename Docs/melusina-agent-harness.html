@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-page="melusina-agent-harness">
 <head>
 <meta charset="utf-8" />
@@ -465,6 +465,18 @@
 
     <!-- Header & Kicker -->
     <header class="whitepaper-header">
+      <div class="callout-box is-warn" style="text-align:left;margin-bottom:1.5rem">
+        <h2 class="callout-title">Withdrawal notice — 2026-08-19</h2>
+        <p class="callout-desc">
+          The 100-task model scorecard on this page (98.8% TCA, 99.2% TCA, 95.5% / 97.5% SCR,
+          91.0% / 98.0% RCF) is <strong>withdrawn and unpublished</strong> — it was never backed by a
+          committed run log. Public evidence is <code>generated/melodia/status/math_run_latest.json</code>
+          (32/32 tool-surface eval), <code>math_run_models_latest.json</code> (per-model run logs),
+          <code>project_health_claims.json</code>, and the Echo gate ledger. No model score is
+          published until its run JSON exists. The harness design, metric definitions, and policy
+          architecture described here stand; the empirical table below does not.
+        </p>
+      </div>
       <span class="whitepaper-kicker">✦ Nous Research Technical Evaluation · Autonomous 3D Simulation Harness ✦</span>
       <h1 class="whitepaper-title">Melusina Agent Test Harness (MATH)</h1>
       <p class="whitepaper-subtitle">
@@ -473,7 +485,7 @@
       <div class="meta-badges">
         <span class="meta-badge"><strong>Target Lab:</strong> Nous Research</span>
         <span class="meta-badge"><strong>Primary Engine:</strong> Unreal Engine 5.8 C++</span>
-        <span class="meta-badge"><strong>Standard Benchmark:</strong> 100 Standardized Tasks</span>
+        <span class="meta-badge"><strong>Standard Benchmark:</strong> 28-task tool-surface eval (see withdrawal notice)</span>
         <span class="meta-badge"><strong>Evaluated Parameter Range:</strong> 7B – 70B</span>
         <span class="meta-badge"><strong>Reference Date:</strong> 2026-08-18</span>
       </div>
@@ -941,3 +953,4 @@ function switchWhitepaperTab(tabId, btn) {
 </script>
 </body>
 </html>
+
