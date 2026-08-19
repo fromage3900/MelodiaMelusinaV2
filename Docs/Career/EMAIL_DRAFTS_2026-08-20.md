@@ -1,0 +1,205 @@
+# Application Emails — Draft for 2026-08-20
+
+All details sourced from `Docs/Career/STUDIO_*.md` files. Review each draft,
+personalize the brackets, and send.
+
+---
+
+## 1. NVIDIA — DevRel Manager, Higher Ed & Research (URGENT)
+
+**Deadline: August 21, 2026** (tomorrow)
+**Role:** Developer Relations Manager, Foundational AI (JR2023172)
+**Location:** Toronto
+**Salary:** $170K–$275K CAD (L4/L5)
+**Apply:** https://jobs.nvidia.com/careers/job/893397075768
+
+### Email / cover letter points
+
+- Address the seniority honestly upfront: "I'm a 4th-year 3D student. I know
+  this is scoped for more experience. Here's why the portfolio closes the gap."
+- Lead with the SIL / Sanja Fidler connection — spatial intelligence, 3D
+  content creation research. This is the Toronto lab's identity.
+- Concrete artifacts:
+  - 138-material Substrate Toon spine unified in UE5.8
+  - T3D wiring pipeline with Echo evidence ledger (AI-authored content + quality gates)
+  - Multi-MCP agent orchestration (3 surfaces, parallel lanes)
+  - PCG procedural scatter pipeline
+- Mention Vector Institute awareness — NV is platinum sponsor through 2027.
+- Close with interest in SIL research internship / Omniverse intern if this
+  role isn't the right level fit — gets your name in the system for fall
+  postings.
+
+### Attach
+- Resume
+- Link to portfolio site
+- Link to GitHub repo (the pipeline IS the artifact)
+
+### Draft opening
+> I'm applying for the Developer Relations Manager role (JR2023172) in the
+> Toronto office. I'm a 4th-year 3D major, which I know is earlier-career than
+> this posting targets — but over the past [N] months I've built a production
+> UE5.8 environment pipeline with AI-driven content authoring that I believe
+> demonstrates the cross-discipline fluency this role needs.
+>
+> [2-3 sentences on the strongest portfolio pieces mapped to SIL research]
+>
+> I'm particularly drawn to the Toronto lab because of the Spatial Intelligence
+> Lab's work in 3D synthesis and content creation — my portfolio is the applied
+> production side of exactly those research problems. I'd welcome the chance to
+> discuss this role, or if the timing is better, a research internship in
+> Sanja Fidler's lab for 2027.
+
+---
+
+## 2. Infold Games — 2027 Campus Recruitment
+
+**Deadline: October 31, 2026** (10 weeks)
+**Track:** Art & Visual Design
+**Apply:** https://lnkd.in/g8za_gzD (campus recruitment portal)
+**Location:** Singapore HQ, LA, Tokyo, Seoul, Taipei (confirm remote/relocation)
+
+### Email / cover letter points
+
+- Apply through the **campus recruitment portal**, not the Senior Concept
+  posting.
+- Lead with Love and Deepspace aesthetic alignment: Sakura moonlit garden,
+  Zen garden family, Baroque gilded ornament — cinematic, romantic, atmospheric.
+- Mention UE5.8 production experience — their new AAA project uses UE5.
+- Be honest about 3D pipeline strength vs. traditional concept/hand-drawing.
+- Check portal for specific 3D Environment Artist track (preferred over
+  concept art track if available).
+
+### Attach
+- Resume
+- Portfolio reel (lead with stylized/romantic renders, not toon-action)
+- ArtStation if you have one
+
+### Draft opening
+> I'm applying through Infold Games' 2027 Campus Recruitment for the Art &
+> Visual Design track. I'm a 4th-year 3D major with a production portfolio
+> built in UE5.8 — procedural environment art, cinematic lighting, and a
+> material pipeline that maps to the romantic-atmospheric visual register
+> Love and Deepspace is known for.
+>
+> [2-3 sentences on specific renders that match their aesthetic]
+>
+> I've followed Infold's work since [context] — the cinematic environment
+> craft in Love and Deepspace, especially the attention to lighting and mood
+> in scene composition, is what drew me to this application.
+
+---
+
+## 3. Nous Research — Forward Deployed Engineer
+
+**Deadline:** None (rolling)
+**Role:** Forward Deployed Engineer (or SW Eng GUI/Product)
+**Location:** Fully remote
+**Apply:** recruiting@nousresearch.com — Subject: "Forward Deployed Engineer"
+
+### Email / cover letter points
+
+- Lead with the MCP + agent orchestration experience — Hermes Agent uses MCP
+  for tool integration, and you run three MCP surfaces daily.
+- Concrete artifacts:
+  - Echo pipeline with evidence ledger
+  - Parallel agent lanes with quality gates
+  - T3D wiring pipeline (spec → inject → compile → fingerprint → regress)
+- Mention Hermes model testing (attach local results once committed).
+- The role is "deploy and adapt Hermes Agent Enterprise inside customer
+  environments" — frame the UE5 production environment as a customer-like
+  deployment scenario.
+
+### Attach
+- Resume
+- GitHub repo link
+- Hermes test results (commit from local first)
+- Work proposal drafts (commit from local first)
+
+### Draft opening
+> I'm applying for the Forward Deployed Engineer role. I've spent the past
+> [N] months deploying AI agents in a production UE5.8 environment — three
+> coordinated MCP surfaces, parallel agent lanes with ledger-backed evidence
+> gates, and an AI-driven content authoring pipeline. That's not a description
+> of Hermes Agent, but it's the same architecture pattern, and I've been
+> testing Hermes models as part of evaluating the agent stack.
+>
+> [Reference specific Hermes test results]
+
+---
+
+## 4. Certain Affinity — Sr Advanced Technical Artist (Toronto)
+
+**Deadline:** Rolling (posted June 2026, still active)
+**Role:** Senior Advanced Technical Artist
+**Location:** Toronto (hybrid)
+**Salary:** $130K–$175K CAD
+**Apply:** https://hiring.camp/job/yzlE9G
+
+### Notes
+- This is a Senior role but Certain Affinity is known to hire strong juniors.
+- Dead-center skill match: UE5 materials, procedural env art, Blueprint,
+  Substance, Houdini, performance profiling.
+- The Substrate Toon spine work is directly relevant — mention material
+  pipeline optimization, shader instruction budgets.
+- Reports to Technical Art Director.
+
+### Draft opening
+> I'm a 4th-year 3D major applying for the Senior Advanced Technical Artist
+> role in the Toronto office. My portfolio includes a production UE5.8
+> environment pipeline: 138 materials unified on a Substrate Toon spine,
+> PCG procedural scatter, and AI-driven content authoring tooling. I know this
+> is scoped at Senior level — I'd welcome the chance to show the work and
+> discuss where I'd fit on the team.
+
+---
+
+## 5. Velan Studios — Technical Artist (Sr+/Lead)
+
+**Deadline:** Rolling
+**Role:** Technical Artist (Senior+/Lead)
+**Location:** Toronto (hybrid, 3 days/week)
+**Salary:** $95K–$150K CAD
+**Apply:** https://gamejobs.co/Technical-Artist-Senior-Lead-at-Velan-Studios-2062
+
+### Notes
+- Custom engine + Unreal. Unannounced title.
+- Values experimental/NPR work — the Toon material work is a direct fit.
+- Also hiring Senior Environment Artist ($85K–$120K) — may be more
+  realistic as a first target.
+
+---
+
+## Priority order for tomorrow
+
+| # | Company | Action | Deadline |
+|---|---------|--------|----------|
+| 1 | **NVIDIA** | Submit DevRel application + resume | **Aug 21** |
+| 2 | **Nous Research** | Commit local Hermes tests, send email | Rolling |
+| 3 | **Certain Affinity** | Send application | Rolling |
+| 4 | **Infold Games** | Visit campus portal, identify track | Oct 31 |
+| 5 | **Velan Studios** | Send application | Rolling |
+
+---
+
+## Pre-send checklist
+
+- [ ] Resume updated with UE5.8 pipeline work, MCP orchestration, material spine
+- [ ] Portfolio site live and loading
+- [ ] GitHub repo has recent commits visible (push local state first)
+- [ ] Hermes test results committed (for Nous application)
+- [ ] ArtStation updated with stylized renders (for Infold application)
+- [ ] Each email personalized — no generic "I love your company" language
+
+---
+
+## PRs pending merge (for owner to squash-merge from GitHub UI)
+
+| PR | Title | Status |
+|----|-------|--------|
+| [#7](https://github.com/fromage3900/MelodiaMelusinaV2/pull/7) | docs: First Dream is playable — PIE board + QUICKSTART | MERGEABLE |
+| [#8](https://github.com/fromage3900/MelodiaMelusinaV2/pull/8) | docs: Twinmotion + RealityScan side-lane handoff | MERGEABLE |
+| [#10](https://github.com/fromage3900/MelodiaMelusinaV2/pull/10) | Add full asset credits suite | MERGEABLE |
+| [#1](https://github.com/fromage3900/MelodiaMelusinaV2/pull/1) | Foundation: V2 game plan, repo hygiene, post-battle restore | MERGEABLE |
+| [#9](https://github.com/fromage3900/MelodiaMelusinaV2/pull/9) | Repo lock-in: LFS/hooks, art gate, Perforce plan (touches `.gitattributes`) | MERGEABLE |
+| [#5](https://github.com/fromage3900/MelodiaMelusinaV2/pull/5) | Model lanes, AGENTS slim | DRAFT |
+| [#11](https://github.com/fromage3900/MelodiaMelusinaV2/pull/11) | Career research (this branch) | DRAFT |
