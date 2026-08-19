@@ -142,4 +142,57 @@ repo, and a specific reference to SIL + Vector Institute work.
 
 ---
 
-*Researched 2026-08-19. DevRel Manager role (JR2023172) closes Aug 21 — apply immediately.*
+---
+
+## Updated: applicant is a 4th-year 3D major
+
+### What this changes
+
+The DevRel Manager role ($170K–$275K, L4/L5) is a reach for a student. Apply
+anyway — worst case is a no, and the application gets your name in their system.
+But the realistic high-probability paths are:
+
+### Realistic NVIDIA Toronto paths for a 4th-year student
+
+**1. Research Internship in Fidler's SIL Lab (Winter or Summer 2027)**
+- These postings go up in fall. The lab hires students for 3D content creation
+  research — Karran Pandey (U of T CS PhD) interned there doing "3D painting
+  with Gaussian Splat Brushes" under Masha Shugrina.
+- Your portfolio is stronger than most applicants' for the 3D synthesis /
+  spatial content side. Lead with the Substrate Toon spine + PCG pipeline, not
+  the agent orchestration (save that for the interview).
+- Target: Sanja Fidler's lab, Masha Shugrina's team specifically (3D content).
+
+**2. Omniverse Replicator / Robotics Simulation Intern**
+- Toronto office ran "SW Engineering Intern, Omniverse Replicator" and
+  "SW Engineering Intern, Robotics Simulation" for Summer 2026. Both closed
+  but will reopen for Summer 2027.
+- These roles want: 3D simulation, synthetic data, USD, game/physics engine
+  experience. Directly relevant.
+- Hourly: $20–$63 CAD.
+
+**3. New College Grad roles (posted each fall)**
+- Graphics Architect, Hardware — New College Grad 2026 was posted for
+  Santa Clara (MS required). Watch for Toronto equivalents.
+- These require strong C++. Start preparing now if you're not already fluent.
+
+### Timeline
+| When | Action |
+|------|--------|
+| **Now (Aug 19)** | Apply to DevRel Manager (JR2023172, closes Aug 21) |
+| **Sep 2026** | Watch for SIL research intern postings on nvidia.com/careers |
+| **Oct 2026** | Watch for Omniverse/Simulation intern postings |
+| **Oct–Nov 2026** | New grad postings appear for Spring/Summer 2027 start |
+| **Ongoing** | Engage with Vector Institute events, Fidler lab publications |
+
+### The pitch as a student
+> "I'm a 4th-year 3D student who has already built the kind of AI-augmented
+> content pipeline your lab researches. My portfolio isn't coursework — it's a
+> production UE5.8 environment with 138 materials on a unified Substrate Toon
+> spine, a procedural scatter pipeline, and a multi-agent orchestration system
+> that uses MCP to coordinate three tool surfaces with ledger-backed quality
+> gates. Most intern applicants bring a Kaggle notebook; I have a living repo
+> that ships 3D content through an AI pipeline."
+
+*Researched 2026-08-19. DevRel Manager role (JR2023172) closes Aug 21 — apply immediately.
+Intern/new-grad postings expected Fall 2026 for 2027 start.*
