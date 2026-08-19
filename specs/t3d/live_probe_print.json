@@ -1,0 +1,34 @@
+{
+  "$schema": "../schemas/t3d_mutation_request.v1.json",
+  "schema": "melodia.t3d_mutation_request.v1",
+  "request_id": "t3d-live-print-probe-v2",
+  "asset_path": "/Game/MelodiaIntegration/Tests/BP_T3DSafeWireProbe",
+  "expected_before_fingerprint": "REPLACE_FROM_LIVE_QUERY",
+  "operations": [
+    {"verb": "inject_nodes_t3d", "description": "Add one temporary-safe PrintString probe node to the dedicated test fixture."}
+  ],
+  "nodes": [
+    {"id": "Probe", "class": "K2Node_CallFunction", "semantic_label": "temporary_print_probe"}
+  ],
+  "expected_postconditions": {
+    "required_nodes": ["Probe"],
+    "forbidden_nodes": [],
+    "required_connections": [],
+    "expected_delta": {
+      "new_nodes": ["Probe"],
+      "new_connections": []
+    },
+    "compile_error_count": 0,
+    "reexport_after_save": true
+  },
+  "verification": {
+    "compile_zero_errors": true,
+    "assert_graph_match": true,
+    "reexport_after_save": true
+  },
+  "t3d": "Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name=\"Probe\"\n   FunctionReference=(MemberParent=Class'\"/Script/Engine.KismetSystemLibrary\"',MemberName=\"PrintString\")\n   NodePosX=0\n   NodePosY=0\n   NodeGuid={{GUID:probe}}\n   CustomProperties Pin (PinId={{GUID:probein}},PinName=\"execute\",Direction=\"EGPD_Input\",PinType.PinCategory=\"exec\",PinType.PinSubCategoryObject=None,)\n   CustomProperties Pin (PinId={{GUID:probeout}},PinName=\"then\",Direction=\"EGPD_Output\",PinType.PinCategory=\"exec\",PinType.PinSubCategoryObject=None,)\n   CustomProperties Pin (PinId={{GUID:probestr}},PinName=\"InString\",Direction=\"EGPD_Input\",PinType.PinCategory=\"string\",PinType.PinSubCategory=\"\",DefaultValue=\"{{message}}\",)\n   CustomProperties Pin (PinId={{GUID:probedur}},PinName=\"Duration\",Direction=\"EGPD_Input\",PinType.PinCategory=\"real\",PinType.PinSubCategory=\"float\",DefaultValue={{duration}},)\nEnd Object\n",
+  "placeholders": {
+    "message": "T3D_SAFE_WIRE_LIVE_PROBE",
+    "duration": "2.0"
+  }
+}

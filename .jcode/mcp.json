@@ -3,6 +3,12 @@
     "monolith": {
       "command": "Plugins/Monolith/Scripts/monolith_proxy.bat",
       "args": []
+    },
+    "agent_bridge": {
+      "command": "C:/Python314/python.exe",
+      "args": [
+        "C:/EnvironmentPortfolio/BS_GodFile/deploy/agent_bridge_mcp.py"
+      ]
     }
   }
 }

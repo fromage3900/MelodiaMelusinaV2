@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/wardrobe_catalog_source.v1.json",
+  "title": "Melodia Wardrobe Catalog Source v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "catalog_asset",
+    "first_outfit",
+    "draft_reconciliation",
+    "materialization"
+  ],
+  "properties": {
+    "schema": {
+      "const": "melodia.wardrobe_catalog_source.v1"
+    },
+    "catalog_asset": {
+      "const": "/MelodiaWardrobe/Catalog/DA_MelodiaCosmeticCatalog"
+    },
+    "first_outfit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outfit_id",
+        "record_count",
+        "records",
+        "default_slots",
+        "resonant_form_policy",
+        "battle_wardrobe_enabled"
+      ],
+      "properties": {
+        "outfit_id": {
+          "const": "MelusinaV2"
+        },
+        "record_count": {
+          "const": 5
+        },
+        "records": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "cosmetic_id",
+              "slot",
+              "rarity",
+              "mesh",
+              "resonant_form_id"
+            ],
+            "properties": {
+              "cosmetic_id": {
+                "type": "string",
+                "pattern": "^Cos_[A-Za-z0-9_]+$"
+              },
+              "slot": {
+                "enum": [
+                  "Body",
+                  "Shirt",
+                  "Skirt",
+                  "Boots",
+                  "Accessories"
+                ]
+              },
+              "rarity": {
+                "const": "Common"
+              },
+              "content_pack_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+              },
+              "mesh": {
+                "type": "string",
+                "pattern": "^/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_[A-Za-z]+$"
+              },
+              "resonant_form_id": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        "default_slots": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "Shirt",
+              "Skirt",
+              "Boots",
+              "Accessories"
+            ]
+          }
+        },
+        "resonant_form_policy": {
+          "const": "decorative_only"
+        },
+        "battle_wardrobe_enabled": {
+          "const": false
+        }
+      }
+    },
+    "draft_reconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted_source_shapes",
+        "slot_aliases",
+        "rarity_aliases",
+        "deferred_rarity_values",
+        "rarity_policy",
+        "content_pack_field",
+        "content_pack_policy",
+        "token_variant_source",
+        "larger_catalog_status"
+      ],
+      "properties": {
+        "accepted_source_shapes": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "root",
+              "id_field",
+              "slot_field",
+              "rarity_field"
+            ],
+            "properties": {
+              "root": {
+                "type": "string"
+              },
+              "id_field": {
+                "type": "string"
+              },
+              "slot_field": {
+                "type": "string"
+              },
+              "rarity_field": {
+                "type": "string"
+              },
+              "source_draft_path_field": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "slot_aliases": {
+          "type": "object",
+          "additionalProperties": {
+            "enum": [
+              "Body",
+              "Hat",
+              "Gloves",
+              "Shawl",
+              "Trail",
+              "HairCharm",
+              "Shirt",
+              "Skirt",
+              "Boots",
+              "Accessories"
+            ]
+          }
+        },
+        "rarity_aliases": {
+          "type": "object",
+          "additionalProperties": {
+            "enum": [
+              "Common",
+              "Uncommon",
+              "Rare",
+              "Epic",
+              "Legendary",
+              "Grandmaster"
+            ]
+          }
+        },
+        "deferred_rarity_values": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "Refined",
+              "Couture"
+            ]
+          }
+        },
+        "rarity_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "unresolved_values",
+            "import_action"
+          ],
+          "properties": {
+            "status": {
+              "const": "owner_decision_required"
+            },
+            "unresolved_values": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "Refined",
+                  "Couture"
+                ]
+              }
+            },
+            "import_action": {
+              "const": "reject_until_explicit_mapping"
+            }
+          }
+        },
+        "content_pack_field": {
+          "const": "content_pack_id"
+        },
+        "content_pack_policy": {
+          "const": "preserve_when_present_optional_until_collection_authority"
+        },
+        "token_variant_source": {
+          "const": "Content/Python/gmm/game/tokens.py"
+        },
+        "larger_catalog_status": {
+          "const": "blocked_until_rarity_decision_and_mesh_mapping"
+        }
+      }
+    },
+    "materialization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "editor_only",
+        "requires_asset_existence_readback",
+        "requires_catalog_readback",
+        "requires_pawn_readback"
+      ],
+      "properties": {
+        "status": {
+          "const": "source_ready_editor_materialization_pending"
+        },
+        "editor_only": {
+          "const": true
+        },
+        "requires_asset_existence_readback": {
+          "const": true
+        },
+        "requires_catalog_readback": {
+          "const": true
+        },
+        "requires_pawn_readback": {
+          "const": true
+        }
+      }
+    }
+  }
+}

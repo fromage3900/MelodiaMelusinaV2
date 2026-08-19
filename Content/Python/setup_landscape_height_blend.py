@@ -912,7 +912,7 @@ def build(*, force: bool = False) -> str:
     pulse = lib.collection_scalar(m, MPC_SAKURA, "SparklePulse", 2180, 1040)
     audio_global = lib.collection_scalar(m, MPC_PORTFOLIO_AUDIO, "GlobalReactivity", 2180, 1160)
     if not audio_global:
-raise RuntimeError(
+        raise RuntimeError(
             "Landscape audio-reactivity requires "
             "MPC_Melodia_Palette.GlobalReactivity"
         )

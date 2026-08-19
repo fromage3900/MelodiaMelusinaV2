@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_data_only_enemy_variant_contract",
+  "contract_id": "melody_slime_variant_contract",
+  "status": "offline_rows_ready_import_and_live_parent_readback_pending",
+  "authority_contract": {
+    "stock_execution_authority": "stock_turn_based_jrpg_session_and_result_authority",
+    "stock_enemy_parent": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_DynamicEnemyBattleBase",
+    "melodia_child": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEnemy_SingleStock",
+    "battle_presentation": {
+      "asset_name": "BP_MelodySlimeBattle",
+      "path_resolution": "live_asset_registry_readback_required",
+      "role": "presentation/data binding only; it must not replace the stock battle/session/result authority"
+    },
+    "forbidden_ownership": [
+      "new enemy execution subsystem",
+      "new battle/session/result authority",
+      "one Blueprint child per slime variant",
+      "map-specific hardcoded enemy stats",
+      "direct save-file mutation from enemy content"
+    ],
+    "required_live_relationships": [
+      "BP_MelodiaEnemy_SingleStock resolves its stock parent/adapter contract.",
+      "The encounter references the Melodia enemy adapter and the stock battle bridge.",
+      "The enemy adapter resolves a row from DT_MelodySlime_Enemies.",
+      "BP_MelodySlimeBattle is the battle-side presentation for the selected row.",
+      "Adding a fourth variant changes data rows/references only; no authority or Blueprint fork changes."
+    ]
+  },
+  "data_sources": {
+    "enemy_rows": "Content/Melodia/DataStuctures/DT_MelodySlime_Enemies.json",
+    "skill_rows": "Content/Melodia/DataStuctures/DT_MelodySlime_Skills.json",
+    "room_mod_rows": "Content/Melodia/DataStuctures/DT_MelodySlime_RoomMods.json",
+    "row_struct_header": "Plugins/MelodiaCore/Source/MelodiaCore/MelodiaSlimeDataRows.h",
+    "import_destination": "/Game/Melodia/DataStuctures",
+    "import_status": "source_json_and_row_contract_only_until_DataTable_assets_exist"
+  },
+  "row_schema": {
+    "enemy_required_fields": [
+      "enemy_id",
+      "display_name",
+      "max_hp",
+      "max_toughness",
+      "base_damage",
+      "speed",
+      "element",
+      "bpm"
+    ],
+    "skill_required_fields": [
+      "skill_id",
+      "display_name",
+      "element",
+      "instrument",
+      "mechanic_level",
+      "sp_cost",
+      "power_scalar",
+      "note_pitches",
+      "note_durations"
+    ],
+    "room_mod_required_fields": [
+      "blessing_id",
+      "display_name",
+      "description",
+      "token_cost",
+      "effect_type",
+      "effect_value",
+      "effect_str",
+      "curse",
+      "curse_effect",
+      "flavor"
+    ],
+    "parallel_note_arrays_must_match": true,
+    "allowed_elements": [
+      "Forte",
+      "Tide",
+      "Gale",
+      "Arcane",
+      "Radiant",
+      "Umbral",
+      "Stone"
+    ],
+    "bpm_range": [
+      40,
+      240
+    ]
+  },
+  "proof_variants": [
+    {
+      "variant_id": "tonic",
+      "enemy_row": "SlimeFortePresto",
+      "skill_rows": [
+        "Chart_Forte_Beat"
+      ],
+      "room_mod_rows": [
+        "ModRhythmBlessing"
+      ],
+      "proof_intent": "A readable low-complexity Forte row with one data-selected chart and modifier."
+    },
+    {
+      "variant_id": "third",
+      "enemy_row": "SlimeTidalHarmony",
+      "skill_rows": [
+        "Chart_Tide_Wave"
+      ],
+      "room_mod_rows": [
+        "ModMelodicHarmony"
+      ],
+      "proof_intent": "A Tide row proves the encounter is not coupled to one element or one chart."
+    },
+    {
+      "variant_id": "fifth",
+      "enemy_row": "SlimeGaleTroupe",
+      "skill_rows": [
+        "Chart_Gale_WindTune"
+      ],
+      "room_mod_rows": [
+        "ModMelodicFate"
+      ],
+      "proof_intent": "A Gale row proves a third data-only variant without a new authority."
+    }
+  ],
+  "fourth_variant_acceptance": {
+    "example_row": "SlimeRadianceSpark",
+    "allowed_changes": [
+      "Add or select one row in DT_MelodySlime_Enemies.",
+      "Reference existing rows in DT_MelodySlime_Skills and DT_MelodySlime_RoomMods, or add data rows to those tables when the content requires them.",
+      "Update data-only variant coverage metadata/evidence."
+    ],
+    "forbidden_changes": [
+      "Create BP_MelodiaEnemy_SlimeRadianceSpark.",
+      "Create or fork an enemy battle authority.",
+      "Add a map-specific branch for the variant.",
+      "Change stock battle/session/result ownership.",
+      "Write variant state directly to a save object."
+    ],
+    "expected_new_authority_count": 0,
+    "expected_new_blueprint_count": 0
+  },
+  "live_evidence_required": [
+    "The three source tables are imported as DataTables with the declared row structures.",
+    "The selected row, skill rows, and room-mod rows resolve through live reflection.",
+    "BP_MelodiaEnemy_SingleStock parent/CDO and encounter reference are read back.",
+    "BP_MelodySlimeBattle is located and its presentation role is read back.",
+    "One fourth-row dry-run or live data-only proof shows no new Blueprint/authority mutation.",
+    "Compile/save/mtime/readback and a stock battle result are verified in a later live lane."
+  ],
+  "offline_blockers": [
+    "No DT_MelodySlime_* .uasset import is present in the current source-row audit.",
+    "BP_MelodySlimeBattle has no stable source path in the repository contract and needs live registry resolution.",
+    "Parent, CDO, encounter reference, and stock battle handoff are not proven by JSON rows.",
+    "Static row validation cannot prove battle presentation, map placement, or PIE behavior."
+  ]
+}

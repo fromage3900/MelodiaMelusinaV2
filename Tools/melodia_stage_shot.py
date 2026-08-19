@@ -396,6 +396,13 @@ def emit_passport(subject: str, objs: list[bpy.types.Object], capture: str, out_
         sys.path.insert(0, str(TOOLS))
     try:
         from melodia_asset_passport import passport_for_objects
+    except ImportError:
+        log(
+            "passport skip: melodia_asset_passport module is missing (lost 2026-07-31, "
+            "only .pyc + a known-bad reconstruction remain — see _TASK_QUEUE.md); "
+            "continuing without passport output"
+        )
+        return
     except Exception as exc:
         log(f"passport skip: {exc}")
         return

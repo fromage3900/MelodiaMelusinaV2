@@ -1,38 +1,39 @@
-# CODEOWNERS — lane boundaries mirror AGENT_OWNERSHIP.md / .cursor/rules/agent-boundaries.md
+# CODEOWNERS
+#
+# This project is solo (Decision 002, 2026-07-26, retired the 5-agent
+# ownership model this file used to mirror). AGENT_OWNERSHIP.md has been
+# archived to Docs/_Superseded/AGENT_OWNERSHIP.md and is no longer a
+# source of truth. Every path below was verified tracked with
+# `git ls-files <path>` before being kept; entries pointing at gitignored
+# paths (Saved/gate_ledger.json, Saved/Echo/, Tools/audit_*.py,
+# Tools/fix_*.py, Tools/MaterialMaker/, Tools/BlenderLiveLink/ -- none of
+# which exist in the tree) were dropped as dead rules.
 
-# Default reviewers for everything
+# Default reviewer for everything
 * @fromage3900
 
-# Geometry / SurrealArch lane (PGA)
+# Procedural geometry / SurrealArch
 deploy/surreal_arch/ @fromage3900
 deploy/surreal_world/ @fromage3900
 deploy/surreal_os/ @fromage3900
 deploy/surreal_greybox/ @fromage3900
 
-# Material lane (MPA)
+# Material pipeline
 Content/Python/setup_master_*.py @fromage3900
 Content/Python/material_lib.py @fromage3900
-Tools/MaterialMaker/ @fromage3900
 
-# Placement / PCG lane (PPA)
+# Placement / PCG
 Content/Python/pcg_graph_builder.py @fromage3900
 Content/Python/setup_pcg_*.py @fromage3900
 
-# Import / LiveLink lane (WIA)
+# Import / manifest pipeline
 Content/Python/import_world_manifest.py @fromage3900
-Tools/BlenderLiveLink/ @fromage3900
 
-# QA / Sentinel lane (SQA)
-Tools/audit_*.py @fromage3900
-Tools/fix_*.py @fromage3900
-deploy/_mcp_verify_*.py @fromage3900
+# Echo pipeline (gate runner + manifest; the ledger itself is gitignored
+# CI output and is not tracked, so it has no owner rule here)
 Tools/echo_run.py @fromage3900
 Tools/record_gate.py @fromage3900
-
-# Echo pipeline manifest and gates
 specs/echo_pipeline.json @fromage3900
-Saved/gate_ledger.json @fromage3900
-Saved/Echo/ @fromage3900
 
 # CI definitions
 .github/workflows/ @fromage3900

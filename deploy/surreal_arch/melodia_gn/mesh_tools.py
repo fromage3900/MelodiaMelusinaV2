@@ -13,8 +13,29 @@ import bpy
 from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, label_tree,
     new_geometry_tree, add_float_param, add_int_param, add_bool_param,
-    add_vector_param, make_group_input, tree_input_names,
+    add_vector_param, make_group_input, tree_input_names, require_node, sock,
 )
+
+
+def _wire_mesh_bevel(tree, bevel, mesh_sock, offset_sock, segments_sock=None, profile_sock=None):
+    """Link Blender 5.2 Mesh Bevel sockets. Do not wire Selection=False (that bevels nothing).
+
+    5.2: Offset is the width; Shape is the 0-1 profile amount; Profile is a curve geometry.
+    """
+    link_sockets(tree, mesh_sock, sock(bevel, "Mesh", "Geometry"))
+    link_sockets(tree, offset_sock, sock(bevel, "Offset", "Width"))
+    segs = sock(bevel, "Segments")
+    if segments_sock is not None and segs is not None:
+        link_sockets(tree, segments_sock, segs)
+    if profile_sock is not None:
+        shape = sock(bevel, "Shape")
+        prof = sock(bevel, "Profile")
+        if shape is not None and getattr(shape, "type", "") != "GEOMETRY":
+            link_sockets(tree, profile_sock, shape)
+        elif prof is not None and getattr(prof, "type", "") != "GEOMETRY":
+            link_sockets(tree, profile_sock, prof)
+    color_node(bevel, "geometry")
+    return sock(bevel, "Mesh", "Geometry", outputs=True)
 
 
 def build_bevel_profile(group_name="MEL_bevel_profile"):
@@ -32,20 +53,14 @@ def build_bevel_profile(group_name="MEL_bevel_profile"):
     add_bool_param(tree, "Only Vertices", False)
     add_bool_param(tree, "Limit to Selected", False)
 
-    bevel = safe_node(tree, "GeometryNodeMeshBevel", (bx, by))
-    if bevel:
-        link_sockets(tree, gin.outputs["Geometry"], bevel.inputs["Mesh"])
-        link_sockets(tree, gin.outputs["Width"], bevel.inputs["Offset"])
-        link_sockets(tree, gin.outputs["Segments"], bevel.inputs["Segments"])
-        link_sockets(tree, gin.outputs["Profile"], bevel.inputs["Profile"])
-        if "Only Vertices" in gin.outputs and "Only Vertices" in bevel.inputs:
-            link_sockets(tree, gin.outputs["Only Vertices"], bevel.inputs["Only Vertices"])
-        if "Limit to Selected" in gin.outputs and "Selection" in bevel.inputs:
-            link_sockets(tree, gin.outputs["Limit to Selected"], bevel.inputs["Selection"])
-        link_sockets(tree, bevel.outputs["Mesh"], gout.inputs["Geometry"])
-        color_node(bevel, "geometry")
-    else:
-        link_sockets(tree, gin.outputs["Geometry"], gout.inputs["Geometry"])
+    bevel = require_node(
+        tree, "GeometryNodeMeshBevel", (bx, by), "GeometryNodeBevelMesh",
+    )
+    mesh_out = _wire_mesh_bevel(
+        tree, bevel, gin.outputs["Geometry"], gin.outputs["Width"],
+        gin.outputs["Segments"], gin.outputs["Profile"],
+    )
+    link_sockets(tree, mesh_out, gout.inputs["Geometry"])
 
     return label_tree(tree, "MEL_bevel_profile", [
         {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
@@ -93,13 +108,14 @@ def build_weighted_bevel(group_name="MEL_weighted_bevel"):
         else:
             weighted.inputs[1].default_value = 1.0
 
-    bevel = safe_node(tree, "GeometryNodeMeshBevel", (bx + 300, by))
-    if bevel:
-        link_sockets(tree, gin.outputs["Geometry"], bevel.inputs["Mesh"])
-        link_sockets(tree, weighted.outputs[0], bevel.inputs["Offset"])
-        link_sockets(tree, gin.outputs["Segments"], bevel.inputs["Segments"])
-        link_sockets(tree, bevel.outputs["Mesh"], gout.inputs["Geometry"])
-        color_node(bevel, "geometry")
+    bevel = require_node(
+        tree, "GeometryNodeMeshBevel", (bx + 300, by), "GeometryNodeBevelMesh",
+    )
+    mesh_out = _wire_mesh_bevel(
+        tree, bevel, gin.outputs["Geometry"], weighted.outputs[0],
+        gin.outputs["Segments"],
+    )
+    link_sockets(tree, mesh_out, gout.inputs["Geometry"])
 
     return tree
 
@@ -120,25 +136,22 @@ def build_multi_bevel(group_name="MEL_multi_bevel"):
 
     geo = gin.outputs["Geometry"]
 
-    # First bevel — main chamfer
-    bevel_1 = safe_node(tree, "GeometryNodeMeshBevel", (bx - 100, by + 100))
-    if bevel_1:
-        link_sockets(tree, geo, bevel_1.inputs["Mesh"])
-        link_sockets(tree, gin.outputs["Main Bevel"], bevel_1.inputs["Offset"])
-        link_sockets(tree, gin.outputs["Main Segments"], bevel_1.inputs["Segments"])
-        link_sockets(tree, gin.outputs["Main Profile"], bevel_1.inputs["Profile"])
-        geo = bevel_1.outputs["Mesh"]
-        color_node(bevel_1, "geometry")
+    bevel_1 = require_node(
+        tree, "GeometryNodeMeshBevel", (bx - 100, by + 100), "GeometryNodeBevelMesh",
+    )
+    geo = _wire_mesh_bevel(
+        tree, bevel_1, geo, gin.outputs["Main Bevel"],
+        gin.outputs["Main Segments"], gin.outputs["Main Profile"],
+    )
 
     # Second bevel — micro chamfer on remaining sharp edges
-    bevel_2 = safe_node(tree, "GeometryNodeMeshBevel", (bx + 150, by - 50))
-    if bevel_2:
-        link_sockets(tree, geo, bevel_2.inputs["Mesh"])
-        link_sockets(tree, gin.outputs["Micro Bevel"], bevel_2.inputs["Offset"])
-        link_sockets(tree, gin.outputs["Micro Segments"], bevel_2.inputs["Segments"])
-        link_sockets(tree, gin.outputs["Micro Profile"], bevel_2.inputs["Profile"])
-        geo = bevel_2.outputs["Mesh"]
-        color_node(bevel_2, "geometry")
+    bevel_2 = require_node(
+        tree, "GeometryNodeMeshBevel", (bx + 150, by - 50), "GeometryNodeBevelMesh",
+    )
+    geo = _wire_mesh_bevel(
+        tree, bevel_2, geo, gin.outputs["Micro Bevel"],
+        gin.outputs["Micro Segments"], gin.outputs["Micro Profile"],
+    )
 
     link_sockets(tree, geo, gout.inputs["Geometry"])
     return tree

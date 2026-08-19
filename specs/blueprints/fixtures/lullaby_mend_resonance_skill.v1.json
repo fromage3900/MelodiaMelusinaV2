@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "lullaby_mend_resonance_skill",
+  "status": "contract_spec_only",
+  "readiness": "L1",
+  "readiness_level": "L1",
+  "owner": "Melodia gameplay integration",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.skill.lullaby_mend",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "skill",
+    "DisplayName": "Lullaby Mend",
+    "Tags": [
+      "fixture",
+      "single_target",
+      "heal_support",
+      "radiant_resonance"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "fixture_always_unlocked"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "none",
+    "AllowedContexts": [
+      "battle_session",
+      "skill_fixture"
+    ],
+    "BlockedContexts": [
+      "cutscene",
+      "menu",
+      "travel"
+    ],
+    "ContextPolicy": "fail_closed_and_report_block_reason",
+    "ModeSet": [
+      "target_select",
+      "execute",
+      "result"
+    ],
+    "EnterPolicy": "accept_one_valid_ally_target",
+    "UpdatePolicy": "hold_target_selection_without_mutating_stock_state",
+    "ExitPolicy": "release_target_and_return_stock_result",
+    "InterruptPolicy": "cancel_without_cost_or_reward",
+    "ResetPolicy": "clear_target_and_restore_fixture_state",
+    "VariantSet": [
+      "lullaby_mend_default"
+    ],
+    "EquippedVariantId": "lullaby_mend_default",
+    "FallbackVariantId": "lullaby_mend_default",
+    "AnimationProfile": "optional_fixture_animation",
+    "VfxProfile": "optional_fixture_vfx",
+    "AudioProfile": "optional_fixture_audio",
+    "UiPresentation": "skill_fixture_prompt",
+    "PreviewPolicy": "show_target_and_cost_before_commit",
+    "EffectTogglePolicy": "presentation_only",
+    "UnavailableVariantPolicy": "use_fallback_and_keep_execution_valid",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "none",
+    "CanonicalStateKey": "melodia.fixture.skill.lullaby_mend",
+    "IdempotencyKey": "skill.lullaby_mend.request_id",
+    "SaveWritePolicy": "no_direct_write",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "single_target_skill_entry_and_reset",
+    "ExpectedEvidence": "compile_graph_path_runtime_failure_reset",
+    "ReadinessLevel": "L1"
+  },
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaSkill_LullabyMend",
+    "parent_template": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaSkill_Base",
+    "runtime_authority": "stock_turn_based_jrpg_session",
+    "definition_asset": "/Game/MelodiaIntegration/Definitions/DA_MelodiaSkill_LullabyMend"
+  },
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "spawn_player",
+      "open_skill_fixture",
+      "select_one_target",
+      "request_stock_execution"
+    ],
+    "reset_route": [
+      "cancel_or_complete",
+      "clear_target",
+      "restore_stock_session_fixture"
+    ],
+    "cost": {
+      "resource_id": "skill_points",
+      "amount": 2
+    },
+    "cooldown": {
+      "turns": 2,
+      "status": "native_cooldown_contract_pending",
+      "owner": "UMelodiaBattleSession"
+    },
+    "target_rules": {
+      "count": 1,
+      "requires_valid_stock_target": true
+    },
+    "damage_multipliers": {
+      "Poor": 0.35,
+      "Good": 1.0,
+      "Great": 1.2,
+      "Perfect": 1.5
+    },
+    "beat_timings": {
+      "bpm": 112.0,
+      "intro_beats": 1.0,
+      "active_beats": 4.5,
+      "outro_beats": 1.0
+    },
+    "resonance_type": "Radiant",
+    "execution_rule": "request_umelodia_battle_session_and_stock_execution_only",
+    "result_tags": [
+      "fixture_skill_requested",
+      "fixture_skill_result_observed"
+    ]
+  },
+  "failure_routes": [
+    "invalid_target_does_not_spend_cost",
+    "blocked_context_returns_reason_without_execution",
+    "cancel_returns_without_cost_or_reward",
+    "duplicate_request_id_is_replay_safe"
+  ],
+  "evidence_required": [
+    "definition_path_resolves",
+    "blueprint_compiles_without_forbidden_authority",
+    "graph_export_contains_target_cost_cooldown_and_stock_request",
+    "valid_target_produces_one_stock_result",
+    "invalid_target_and_cancel_are_side_effect_free",
+    "cooldown_authority_is_present_before_l2_promotion",
+    "reset_restores_fixture_state",
+    "fresh_evidence_envelope_records_request_id_and_fingerprint"
+  ]
+}

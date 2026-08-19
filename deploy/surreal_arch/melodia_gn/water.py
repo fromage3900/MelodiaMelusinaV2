@@ -10,6 +10,7 @@ from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, label_tree,
     new_geometry_tree, add_float_param, add_int_param, add_bool_param,
     add_vector_param, make_group_input, register_builder, tree_input_names,
+    input_geometry_with_default,
 )
 
 
@@ -31,6 +32,8 @@ def build_water_gerstner(group_name="MEL_water_gerstner"):
     add_float_param(tree, "Base Frequency", 0.5, 0.01, 10.0)
     add_float_param(tree, "Speed", 1.0, 0.1, 10.0)
     add_bool_param(tree, "Animated", True)
+
+    src = input_geometry_with_default(tree, gin, (bx - 1400, by), kind="grid")
 
     pos = safe_node(tree, "GeometryNodeInputPosition", (bx - 1200, by))
     sep = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 1000, by))
@@ -110,7 +113,7 @@ def build_water_gerstner(group_name="MEL_water_gerstner"):
     store.data_type = "FLOAT"
     store.inputs["Name"].default_value = "water_displacement"
     link_sockets(tree, sum_node.outputs[0], store.inputs["Value"])
-    link_sockets(tree, gin.outputs["Geometry"], store.inputs["Geometry"])
+    link_sockets(tree, src, store.inputs["Geometry"])
     link_sockets(tree, store.outputs["Geometry"], gout.inputs["Geometry"])
 
     color_node(pos, "attribute")
@@ -141,6 +144,7 @@ def build_water_ripples(group_name="MEL_water_ripples"):
     add_float_param(tree, "Growth Speed", 0.5, 0.01, 5.0)
     add_float_param(tree, "Height Amplitude", 0.1, 0.001, 1.0)
     add_int_param(tree, "Segments", 32, 6, 256)
+    src = input_geometry_with_default(tree, gin, (bx - 1400, by), kind="grid")
 
     pos = safe_node(tree, "GeometryNodeInputPosition", (bx - 1000, by))
     sep = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 800, by))
@@ -231,7 +235,7 @@ def build_water_ripples(group_name="MEL_water_ripples"):
     store.data_type = "FLOAT"
     store.inputs["Name"].default_value = "ripple_height"
     link_sockets(tree, sum_node.outputs[0], store.inputs["Value"])
-    link_sockets(tree, gin.outputs["Geometry"], store.inputs["Geometry"])
+    link_sockets(tree, src, store.inputs["Geometry"])
     link_sockets(tree, store.outputs["Geometry"], gout.inputs["Geometry"])
 
     color_node(sep, "math")
@@ -385,10 +389,10 @@ def build_water_current_markers(group_name="MEL_water_current_markers"):
 # -- Registry --
 register_builder("MEL_water_gerstner", build_water_gerstner, "Gerstner Waves",
     "Multi-layer Gerstner wave displacement — wind direction, speed, amplitude, animated.",
-    "effects")
+    "effects", role="modifier")
 register_builder("MEL_water_ripples", build_water_ripples, "Water Ripples",
     "Expanding ripple rings from an impact point with per-ring decay.",
-    "effects")
+    "effects", role="modifier")
 register_builder("MEL_water_foam", build_water_foam, "Water Foam",
     "Foam patch instances with lifetime — velocity-threshold wake and impact foam.",
     "effects")

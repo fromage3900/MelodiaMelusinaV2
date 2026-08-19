@@ -1,9 +1,21 @@
-"""Configure the canonical Infinity Nikki render post-process stack.
+"""Configure the canonical post-process stack: ink outline + grade + starry night.
 
-Editor-only. Originally limited to render/test levels; extended 2026-07-31
-(night render-polish pass) to also cover the 4 gameplay levels used for the
-website render archive (Docs/WebsiteRenderArchive/), so they share the one
-grade authority instead of drifting per-level.
+Editor-only. Covers all render test levels, gameplay levels, and L_Template.
+
+Blendable stack (per-level, via PPV_NikkiDream):
+  1. dreamprint_ink — ink + vine + halftone outline replacement (weight 1.0)
+  2. melusina_grade — MI_MeluColorGrade_PortfolioHero (weight 0.69)
+  3. starry_night   — MI_StarryNight_Hero (weight 1.0)
+
+The dreamprint ink (M_PP_MelodiaInk) replaces the old storybook outline with
+ink + vine + halftone effects. Starry night overlay (M_PP_StarryNightOverlay_Candidate)
+reads UDS time-of-day, lighting, and wind, and paints Van Gogh-style brush strokes
+and stars on top of the UDS sky via the post-process pipeline.
+
+NOT unconditionally idempotent on values: if a level's PPV_NikkiDream
+already has its grade overridden, a normal run leaves the existing tuning
+alone and only attaches any missing blendable materials. Pass force=True
+to explicitly reassert the canonical preset over existing tuning.
 
 NOT unconditionally idempotent on values as of 2026-08-01: if a level's
 PPV_NikkiDream already has its grade overridden (override_bloom_intensity is
@@ -28,18 +40,10 @@ already reads from, not on this volume. This volume now only carries what
 post-process is actually for: bloom/vignette/grain/CA as lens character,
 kept near-neutral by default.
 
-Blendable stack replaced 2026-08-01: M_PP_ToonOutline + M_PP_StorybookVines_Inst
-(two materials, duplicated edge-detection work) consolidated into one
-M_PP_StorybookOutline -- real depth+normal multi-tap edge detection (not the
-old single-axis ddx()-only version), CustomStencil-driven per-object style
-presets, UDS time-of-day tint via the existing Day_to_Night_Color bridge, and
-a merged vine-growth overlay sharing the same edge mask. Built using this
-project's existing Art of Shader material-function library
-(MF_StencilDepthAlpha, MF_PostProcessBlend) rather than raw duplicate logic.
-M_PP_MeluColorGrade stays in the stack for its palette/framing job (not folded in --
-separate scope, see Docs/Handoffs/PPV_STORYBOOK_OUTLINE_INTEGRATION_2026-08-01.md).
-Old M_PP_ToonOutline/M_PP_StorybookVines/M_PP_StorybookVines_Inst quarantined,
-not deleted.
+Blendable stack replaced 2026-08-18: old storybook_outline removed,
+dreamprint_ink takes over as the ink+vine+halftone outline replacement.
+Starry Night sky (MI_StarryNight_Hero) added as the third blendable,
+overlaying UDS via the M_PP_StarryNightOverlay_Candidate.
 
 2026-08-01 (later): blendables are resolved from a preference list per role.
 The explicit GameplayStandard profile instances are preferred, with the legacy
@@ -56,11 +60,13 @@ LEVELS = (
     "/Game/_PROJECT/Levels/RenderTests/L_Render_SpaceCathedral",
     "/Game/_PROJECT/Levels/RenderTests/L_Render_BaroqueCastle",
     "/Game/_PROJECT/Levels/RenderTests/L_Render_BioGrotto",
-    "/Game/EnvSandbox/Environments/Sakura/L_SakuraPath",
+    # L_SakuraPath removed 2026-08-18: the level no longer exists in the project
+    # (Sakura folder emptied; only L_Render_SakuraDream remains under _PROJECT).
     "/Game/EnvSandbox/Environments/L_KaleidoNave",
     "/Game/EnvSandbox/Environments/L_FallenMoon",
     "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
     "/Game/ZenForestTest",
+    "/Game/EnvSandbox/_Template/L_Template",
 )
 # Each role lists candidate paths in preference order; the first that loads wins.
 # Instances are preferred over their master so per-level/per-shot grade tuning never
@@ -68,14 +74,20 @@ LEVELS = (
 # safe to edit concurrently -- overrides for parameters the master later renames or
 # drops are simply ignored by the instance).
 BLENDABLES = (
-    ("storybook_outline", (
-        "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_GameplayStandard",
-        "/Game/EnvSandbox/Materials/PostProcess/MI_PP_StorybookOutline",
-        "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StorybookOutline_FoliageSafe_Candidate",
+    ("dreamprint_ink", (
+        "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_PortfolioHero",
+        "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_GameplayStandard",
+        "/Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk",
     )),
     ("melusina_grade", (
+        "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_PortfolioHero",
         "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_GameplayStandard",
         "/Game/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade",
+    )),
+    ("starry_night", (
+        "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StarryNight_Hero",
+        "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StarryNightOverlay_Candidate_Inst",
+        "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StarryNightOverlay_Candidate",
     )),
 )
 REPORT = Path(__file__).resolve().parents[1] / ".." / "Saved" / "Audit" / "nikki_post_process_audit.json"
@@ -121,9 +133,8 @@ def _configure(unreal, level: str, force: bool = False) -> dict:
                 break
         else:
             missing.append({"role": role, "candidates": list(candidates)})
-    # Keep outline authoritative at full weight. The gameplay grade is deliberately
-    # restrained to the established 0.69 stack weight.
-    role_weights = {"storybook_outline": 1.0, "melusina_grade": 0.69}
+    # Outline at full weight, grade restrained to 0.69, starry night at full weight.
+    role_weights = {"dreamprint_ink": 1.0, "melusina_grade": 0.69, "starry_night": 1.0}
     settings.set_editor_property("weighted_blendables", unreal.WeightedBlendables(
         [unreal.WeightedBlendable(role_weights.get(role, 1.0), mat)
          for role, mat in blend_objects]))

@@ -9,6 +9,8 @@
 #include "Blueprint/UserWidget.h"
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
+#include "MelodiaRhythmCombatSubsystem.h"
+#include "MelodiaRhythmHUDWidget.h"
 
 namespace
 {
@@ -16,6 +18,13 @@ namespace
 	// path that has never existed, so the fallback silently resolved to nothing and
 	// MelodiaBattleWidget stayed null whenever MelodiaBattleWidgetPath was unset.
 	constexpr TCHAR DefaultMelodiaBattleWidgetPath[] = TEXT("/Game/MelodiaIntegration/UI/BP_MelodiaBattleUI.BP_MelodiaBattleUI_C");
+
+	// V3 consolidation (2026-08-18): the quarantined AMelodiaGameMode used to spawn
+	// the rhythm highway HUD. BP_MelodiaJRPGGameMode cannot (plain GameModeBase), so
+	// the bridge -- which already owns battle UI lifetime -- spawns and binds it.
+	// Tracked here (not as a UPROPERTY) so this stays a .cpp-only, Live-Coding-safe change.
+	constexpr TCHAR DefaultMelodiaRhythmHUDPath[] = TEXT("/Game/Melodia/UI/WBP_Battle_Rhythm.WBP_Battle_Rhythm_C");
+	TWeakObjectPtr<UMelodiaRhythmHUDWidget> GBridgeRhythmHUD;
 }
 
 // Lets the link be exercised from a live PIE session without authoring a single
@@ -342,6 +351,28 @@ void UMelodiaUIBridgeSubsystem::CreateBattleUIInternal()
 		MelodiaBattleWidget->AddToViewport(100);
 		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: auto-created Melodia battle widget from path %s."), *MelodiaBattleWidgetPath.ToString());
 	}
+
+	// Spawn the native rhythm highway HUD and bind it to the rhythm combat subsystem.
+	// Without this, UMelodiaRhythmCombatSubsystem::BoundHUD stays null on the JRPG
+	// GameMode path and the highway silently never renders.
+	if (!GBridgeRhythmHUD.IsValid())
+	{
+		UClass* RhythmHUDClass = FSoftClassPath(DefaultMelodiaRhythmHUDPath).TryLoadClass<UMelodiaRhythmHUDWidget>();
+		if (!RhythmHUDClass)
+		{
+			RhythmHUDClass = UMelodiaRhythmHUDWidget::StaticClass();
+		}
+		if (UMelodiaRhythmHUDWidget* HUD = CreateWidget<UMelodiaRhythmHUDWidget>(World, RhythmHUDClass))
+		{
+			HUD->AddToViewport(90);
+			GBridgeRhythmHUD = HUD;
+			UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: spawned rhythm HUD %s."), *RhythmHUDClass->GetName());
+		}
+	}
+	if (UMelodiaRhythmCombatSubsystem* Rhythm = World->GetSubsystem<UMelodiaRhythmCombatSubsystem>())
+	{
+		Rhythm->BindRhythmHUD(GBridgeRhythmHUD.Get());
+	}
 }
 
 void UMelodiaUIBridgeSubsystem::RemoveBattleUIInternal()
@@ -352,4 +383,17 @@ void UMelodiaUIBridgeSubsystem::RemoveBattleUIInternal()
 		MelodiaBattleWidget = nullptr;
 		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: removed Melodia battle widget."));
 	}
+
+	if (UWorld* World = GetWorld())
+	{
+		if (UMelodiaRhythmCombatSubsystem* Rhythm = World->GetSubsystem<UMelodiaRhythmCombatSubsystem>())
+		{
+			Rhythm->BindRhythmHUD(nullptr);
+		}
+	}
+	if (GBridgeRhythmHUD.IsValid())
+	{
+		GBridgeRhythmHUD->RemoveFromParent();
+	}
+	GBridgeRhythmHUD = nullptr;
 }

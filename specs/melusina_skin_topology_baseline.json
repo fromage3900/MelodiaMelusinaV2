@@ -1,0 +1,6 @@
+{
+  "schema": "melodia.melusina_skin_topology_baseline.v1",
+  "policy": "A key here means the violation predates the gate. NEW violations fail. Removing a key is progress; adding one needs a reason.",
+  "rule": "every skinned bone must be a descendant of 'root_x'",
+  "accepted": []
+}

@@ -2,7 +2,7 @@
 
 Complete end-to-end workflow for automatically generating portfolio graphics in Unreal and deploying them to your Wix website via GitHub Pages.
 
-> **Repo status (2026-08-05):** `BS_GodFile/.git` is healthy at repo root on `main`; latest local commit `ec20b015`; checkpoint `6154cc1e` captures recovered history. Push to `origin` is currently blocked by network connectivity to `github.com:443`. Collaborator environment scripts added under `deploy/`.
+> **Repo status (2026-08-05):** `BS_GodFile/.git` is healthy at repo root on `main`; latest local commit `ec20b015`; checkpoint `6154cc1e` captures recovered history. GitHub connectivity from this workstation is **intermittent**, not permanently blocked and not fixed: pushes have succeeded repeatedly since 2026-08-11, and a `port 443` timeout recurred on 2026-08-13. Treat a failed push as the network, retry, and push from a clean auxiliary worktree rather than a dirty editor checkout. Do not record it as a standing blocker again. Collaborator environment scripts added under `deploy/`.
 
 ---
 

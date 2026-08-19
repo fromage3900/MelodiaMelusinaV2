@@ -1,5 +1,8 @@
 """Place a small, deterministic NPC placeholder cast in ZenForestTest.
 
+ZenForestTest is the authority exploration map, and the coordinates below were
+authored against its geometry -- they are correct as written.
+
 These actors are explicitly temporary silhouettes for dialogue, direction, and
 composition testing until release-cleared VRM assets are imported. Rerunning
 the script updates existing labelled actors instead of creating duplicates.
@@ -7,12 +10,17 @@ the script updates existing labelled actors instead of creating duplicates.
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import unreal
 
 
-MAP_PATH = "/Game/ZenForestTest"
+# ZenForestTest is the AUTHORITY EXPLORATION MAP (owner, 2026-08-14). Exploration
+# NPCs belong here. Do not "correct" this to MelodiaIntegrationMap -- that is the
+# integration proof map (save/load, Quill resume, idempotence), a different role.
+# Override only for a deliberate test in another level.
+MAP_PATH = os.environ.get("MELODIA_NPC_MAP", "/Game/ZenForestTest")
 PLACEHOLDER_CLASS = "/Script/MelodiaCore.MelodiaNPCPlaceholder"
 REPORT_PATH = Path(__file__).resolve().parents[2] / "Saved" / "Melodia" / "npc_placeholder_setup.json"
 

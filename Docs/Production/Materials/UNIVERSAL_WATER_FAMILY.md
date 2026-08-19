@@ -5,6 +5,36 @@ surface-water master. Its instances cover lakes, ponds, rivers, shoreline
 surfaces, swamp water, frozen ponds, and waterfall sheets. Do not revive
 `M_Master_Toon_Water` or assign a surface-water instance to Melusina's hair.
 
+## Current line (2026-08-14): v10_Upgrade is canonical
+
+`M_Water_Master_Grand_v10_Upgrade` is the canonical v10 master — an additive
+V9 upgrade preserving the V9 art-direction graph (wave, ripple, proximity-foam,
+bioluminescence, normal, WPO, Substrate water outputs) with the native
+interaction compatibility layer (`MF_WaterNativeInteraction_v10`) inserted.
+Compile-verified: 16 samplers, 260 VS / 1727 PS, zero validation issues
+(see `WATER_V10_FINALIZATION_STATUS_2026-08-09.md`). The five integrated
+instances under `Instances/Water/v10/Integrated/` parent here.
+
+- `M_Water_Master_Grand_v10_Substrate` is the **study line** for the UE 5.8
+  native-water/Substrate integration (CalmPond + HeroFLIP parent there). Its
+  promotion gates are still open — do not treat it as production.
+- v6/v7/v9 masters remain in service for their existing instance families
+  (`MI_GrandWater_*` → v6, `MI_Melusina_WaterHair`/`MI_Preset_WaterBeauty` →
+  v7, `MI_WaterV9_*` → v9). No reparenting of those families.
+- `MI_WaterV10_NativeDefault` intentionally parents to
+  `MI_WaterV10_Integrated_CalmPond` (MI-of-MI) so it inherits the family
+  overrides — allowlisted in `audit_mi_runtime.py`.
+
+## Roadmap: v11 + UE water integration
+
+UE 5.8-native Water Body integration is **on the roadmap**. `v11` (next-gen
+master) will be authored only after the native integration study closes its
+gates (see `WATER_V10_NATIVE_NIAGARA_SUBSTRATE_TOON_2026-08-09.md` and the
+promotion gates list in `WATER_V10_FINALIZATION_STATUS_2026-08-09.md`): native
+height/velocity replay on a real Water Body, project-owned Data Channel
+consumer, PIE water traversal, audio activation, Tier 2/3/4 performance
+captures, and the packaged World Partition audit.
+
 Melusina's authored source identity is `Water (Advance).001`. Her runtime hair
 uses the verified dedicated instance
 `/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair` on

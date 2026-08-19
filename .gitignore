@@ -1,4 +1,4 @@
-﻿# UE generated / transient
+# UE generated / transient
 Binaries/
 DerivedDataCache/
 Intermediate/
@@ -158,6 +158,82 @@ Content/EnvSandbox/*
 !Content/EnvSandbox/PCG/
 !Content/EnvSandbox/PCG/**
 
+# The toon spine itself (2026-08-13). `Content/EnvSandbox/*` above was excluding all
+# 121 master materials and all 18 TP_* toon profiles, including
+# M_Master_Toon_Universal -- the asset MATERIAL_PIPELINE.md:26 calls "the primary
+# surface master". Both material fold commits prove the consequence:
+# `git show --name-only 9c59c8f3 8ced728f | grep -c uasset` returns 0. 9c59c8f3
+# ("fold 65 _PROJECT masters") changed four files -- three Python scripts and a
+# JSON manifest. The masters those scripts produced were never committed, so the
+# "9/9 compile-verified, BSDF wired" claim in the message cannot be checked against
+# anything, and there is no revert path for the spine every material inherits from.
+#
+# Masters + ToonProfiles are 8.6 MB combined -- there was never a budget reason to
+# exclude them. Scoped deliberately to these two folders: the rest of
+# EnvSandbox/Materials (137 MB, mostly generated instances and textures) stays
+# ignored under the bulk-art reasoning above.
+!Content/EnvSandbox/Materials/
+Content/EnvSandbox/Materials/*
+!Content/EnvSandbox/Materials/Masters/
+!Content/EnvSandbox/Materials/Masters/**
+!Content/EnvSandbox/Materials/ToonProfiles/
+!Content/EnvSandbox/Materials/ToonProfiles/**
+
+# Curated material surface (2026-08-15). The 08-14 organization pass promoted the
+# Nikki masters, created 7+ new MF_Nikki* functions, restored 77 MIs from git/LFS,
+# and swept 1,468 mesh-referenced MIs onto the core standard. All of it is
+# hand-curated instance work the same `git clean`-class accident would destroy --
+# Functions and Instances are logic/preset layers, not bulk downloadable art.
+# Sizes here: Functions 2.3 MB, Instances 11.4 MB, SDF/Instances 1.9 MB,
+# Impressionist 0.16 MB, VFX 0.1 MB, Textures/Utility 0.05 MB. SDF/Textures
+# (36 MB), _Scratch/, _Archive/ and _PROJECT/04_Materials/Textures (651 MB)
+# stay ignored under the bulk-art reasoning above.
+!Content/EnvSandbox/Materials/Functions/
+!Content/EnvSandbox/Materials/Functions/**
+!Content/EnvSandbox/Materials/Instances/
+!Content/EnvSandbox/Materials/Instances/**
+!Content/EnvSandbox/Materials/SDF/
+Content/EnvSandbox/Materials/SDF/*
+!Content/EnvSandbox/Materials/SDF/Instances/
+!Content/EnvSandbox/Materials/SDF/Instances/**
+!Content/EnvSandbox/Materials/Impressionist/
+!Content/EnvSandbox/Materials/Impressionist/**
+!Content/EnvSandbox/VFX/
+Content/EnvSandbox/VFX/*
+!Content/EnvSandbox/VFX/Materials/
+!Content/EnvSandbox/VFX/Materials/**
+!Content/EnvSandbox/Textures/
+Content/EnvSandbox/Textures/*
+!Content/EnvSandbox/Textures/Utility/
+!Content/EnvSandbox/Textures/Utility/**
+
+# Restored MIs from the 08-14 restore pass (git history + LFS). Small, load-bearing
+# instance sets; the 651 MB _PROJECT Textures folder stays ignored. Each directory
+# level must be re-included first or git never descends into it (Content/* excludes
+# the parents at line 99).
+!Content/_PROJECT/
+Content/_PROJECT/*
+!Content/_PROJECT/04_Materials/
+Content/_PROJECT/04_Materials/*
+!Content/_PROJECT/04_Materials/Cosmo/
+!Content/_PROJECT/04_Materials/Cosmo/**
+!Content/_PROJECT/04_Materials/Landscape/
+!Content/_PROJECT/04_Materials/Landscape/**
+!Content/_PROJECT/04_Materials/water/
+!Content/_PROJECT/04_Materials/water/**
+!Content/Materials/
+Content/Materials/*
+!Content/Materials/MI_ToonLayer.uasset
+!Content/Art/
+Content/Art/*
+!Content/Art/Materials/
+Content/Art/Materials/*
+!Content/Art/Materials/Master/
+Content/Art/Materials/Master/*
+!Content/Art/Materials/Master/Materials/
+Content/Art/Materials/Master/Materials/*
+!Content/Art/Materials/Master/Materials/MI_ToonLayer.uasset
+
 # Nested site repo + deploy staging dir (mirrors, not tracked content)
 my-site-clean/
 _github_deploy/
@@ -171,56 +247,29 @@ Imports/Animations/Cascadeur/*
 !Imports/Animations/Cascadeur/Inbox/
 Imports/Animations/Cascadeur/Inbox/*
 !Imports/Animations/Cascadeur/Inbox/README.md
-Tools/*
-!Tools/Cascadeur/
-!Tools/Cascadeur/Melusina/
-!Tools/Cascadeur/Melusina/README.md
-!Tools/run_cascadeur_import.ps1
-!Tools/validate_cascadeur_manifest.py
-# Verification + injection pipeline core (AGENTS.md "Core Tools") — the gates P0 claims run on
-!Tools/mcp_client.py
-!Tools/t3d_blueprint_injector.py
-!Tools/t3d_material_curve_injector.py
-!Tools/t3d_niagara_injector.py
-!Tools/t3d_anim_injector.py
-!Tools/t3d_mesh_lod_injector.py
-!Tools/nl_to_blueprint.py
-!Tools/bp_regression_checker.py
-!Tools/continuous_loop.py
-!Tools/pie_smoke_runner.py
-!Tools/regression_suite.py
-!Tools/graph_reachability.py
-!Tools/ui_lint.py
-!Tools/record_gate.py
-!Tools/echo_run.py
-# Agent infrastructure 2026-08-11 (intake fan-out tooling)
-!Tools/model_router.py
-!Tools/playtest_harness.py
-!Tools/video_review_lane.py
-!Tools/memory_index.py
-!Tools/lane_dispatcher.py
-!Tools/git_safe_push.py
-!Tools/lfs_health_audit.py
-!Tools/bp_live_path.py
-!Tools/bp_sweep.py
-!Tools/project_state.py
-!Tools/ui_style_audit.py
-!Tools/test_ui_style_audit.py
-!Tools/t3d_dashboard.py
-!Tools/BlenderAddons/
-!Tools/BlenderAddons/**
-# Negation above re-includes junk — put it back out
-Tools/BlenderAddons/**/__pycache__/
-Tools/BlenderAddons/**/*.pyc
-Tools/BlenderAddons/**/*.pyo
-Tools/BlenderAddons/**/*.blend1
-# Local Blender brush packs / side trees — keep on disk, do not track
-86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/
-# Melodia Studio / stage SSOT + Review_Queue populate
-!Tools/melodia_stage_paths.py
-!Tools/melodia_website_root.py
-!Tools/populate_gn_builders_review_queue.py
-!Tools/melodia_stage_shot.py
+# --- Tools/ INVERTED 2026-08-14 ---
+# Was `Tools/*` plus a hand-maintained allowlist of 61 `!Tools/...` entries. That
+# allowlist failed silently and repeatedly: ~17 tool sources under Tools/ now survive
+# only as .pyc bytecode with no git history, including the whole portfolio/stage
+# pipeline (komikaze stage looks, EEVEE batch render, review-queue population, asset
+# passports) and a doc-link validator that was rebuilt from scratch because nobody
+# could find it. Eight contract test suites were sitting in the same position.
+# See Docs/Reports/LOST_TOOL_SOURCES_2026-08-14.md.
+#
+# Now: track source, ignore build output and heavy binaries. Source under Tools/ is
+# ~5 MB across 337 .py plus docs/specs -- there was never a budget reason to exclude
+# it. The 34 MB of .blend and 12 MB of .pyd stay out, which is what the size actually
+# was. Adding a new tool no longer requires remembering to edit this file.
+Tools/**/__pycache__/
+Tools/**/*.pyc
+Tools/**/*.pyo
+Tools/**/*.pyd
+Tools/**/*.blend
+Tools/**/*.blend1
+Tools/**/*.fbx
+Tools/**/*.uasset
+Tools/ubt_feedback/
+
 melodia-design-system/
 KitbashExport/
 research/
@@ -230,3 +279,37 @@ pipeline/
 Samples/
 .kiro/
 .junie/
+
+# Root-level session debris and scratch assets. Ad-hoc probes agents drop at the repo root
+# during a live editor session. Ignored rather than deleted, per the standing note in
+# _SESSION_HANDOFF.md: "session debris, propose a .gitignore line rather than deleting".
+# Anchored with a leading slash on purpose -- Tools/fix_*.py and Tools/check_*.py are
+# real, CODEOWNERS-assigned tools and must stay visible to git.
+/check_*.py
+/fix_*.py
+/pie_*.py
+/pie_*_report.json
+/scratch_*.py
+/setup_room_commands.py
+/test_vrm_import.py
+/Temp/
+
+# Root-level loose binary scratch meshes and textures
+/*.fbx
+/*.png
+/*.bundle
+/*.sln
+/*.slnx
+/*.uproject.DotSettings.user
+/*_smoke_report.json
+/*_postclean_report.json
+/*_probe_check_report.json
+/g
+/nul
+
+# Agent plan files. `.agents/plans/*.md` is where live work is currently specified
+# (see Docs/AGENT_LANES.md); tracking it is a deliberate follow-up, not an oversight.
+.agents/
+
+/Plugins/Oceanology_Plugin/
+*.log

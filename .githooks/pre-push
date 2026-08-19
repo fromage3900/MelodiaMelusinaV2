@@ -1,36 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-# Pre-push: branch naming + LFS budget (Echo promote hygiene).
-# Collab/cursor/docs branches: 50 MB batch. Other feature branches: 512 MB.
-# Override: MELODIA_LFS_LIMIT_MB=<n>
-
-echo "==> [pre-push] Running branch naming + LFS budget validation..."
-
-BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || echo "")
-if [ -n "$BRANCH" ] && [ "$BRANCH" != "main" ]; then
-  case "$BRANCH" in
-    feature/*|fix/*|docs/*|cleanup/*|collab/*|codex/*|recovery/*|cursor/*)
-      echo "==> [pre-push] Branch '$BRANCH' follows naming convention."
-      ;;
-    *)
-      echo "ERROR: [pre-push] Branch '$BRANCH' does not follow naming convention."
-      echo "Allowed: feature/ fix/ docs/ cleanup/ collab/ codex/ recovery/ cursor/"
-      exit 1
-      ;;
-  esac
-fi
-
-LIMIT="${MELODIA_LFS_LIMIT_MB:-}"
-if [ -z "$LIMIT" ]; then
-  case "$BRANCH" in
-    collab/*|cursor/*|docs/*) LIMIT=50 ;;
-    *) LIMIT=512 ;;
-  esac
-fi
-
-echo "==> [pre-push] LFS budget limit: ${LIMIT} MB (branch=${BRANCH:-detached})"
-ROOT="$(git rev-parse --show-toplevel)"
-python3 "$ROOT/Tools/git_safe_push.py" --limit-mb "$LIMIT" --check-only
-echo "==> [pre-push] Validation passed."
-exit 0
+#!/bin/sh
+command -v git-lfs >/dev/null 2>&1 || { printf >&2 "\n%s\n\n" "This repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting the 'pre-push' file in the hooks directory (set by 'core.hookspath'; usually '.git/hooks')."; exit 2; }
+git lfs pre-push "$@"

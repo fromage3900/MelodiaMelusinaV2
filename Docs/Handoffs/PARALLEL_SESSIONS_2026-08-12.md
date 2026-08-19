@@ -3,9 +3,11 @@
 Each block is a **standalone session start**. Copy one block into a new agent chat.
 Read locks first. Claim the lane in [PARALLEL_LANES_2026-08-12.md](PARALLEL_LANES_2026-08-12.md).
 
-**Repo:** `C:\EnvironmentPortfolio\BS_GodFile` · `main` @ `2e3c893d`  
+**Repo:** `C:\EnvironmentPortfolio\BS_GodFile` · current `main` @ `840b7650`
+Historical session prompts below retain their original timestamps and status.
 **Board:** [PIE_RUNTIME_NOTES_2026-08-12.md](PIE_RUNTIME_NOTES_2026-08-12.md)  
 **Locks:** Rhythm WORKED · Quill WORKED — do not reopen.
+**Next session (2026-08-13):** [SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md](SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md) — N0–N6 prompts. 15m loop **stopped**.
 
 ---
 
@@ -194,7 +196,7 @@ If editor required, wait until Group A releases the slot.
 
 ```text
 Lane T1 from Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md.
-UnrealEditor PID 38184 is A1 — do NOT start a second editor.
+UnrealEditor the one running editor (`Get-Process UnrealEditor`) is A1 — do NOT start a second editor.
 If A1 has released the slot, in that same editor run:
   py Content/Python/assign_hero_zentrim.py --apply
 Creates MI_ZenTrim_Base4K, assigns slot 0 on SM_Retopo_wand + SM_SM_StreetLamp.
@@ -232,10 +234,10 @@ Expect ~96 .bobj then GC_MelusinaHairFlip_v22.abc
 ## Coordinator sticky (owner / lead agent)
 
 ```text
-You are the parallel coordinator for Melodia 2026-08-12 evening.
-Authority: Docs/Handoffs/PARALLEL_LANES_2026-08-12.md + PARALLEL_SESSIONS_2026-08-12.md
+You are the parallel coordinator for Melodia 2026-08-13 continuation.
+Authority: Docs/Handoffs/SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md
 Locks: rhythm WORKED, Quill WORKED — protect them.
-Spawn order: D1 D2 D3 D4 C1 E1 B1 in parallel; A1 when editor free; A2→A3 after.
-Update the claim table when agents start/finish. Block any second UnrealEditor.
-Summarize blockers to the owner in ≤10 lines when asked.
+15m loop STOPPED — do not restart.
+Spawn order: N1 (save KaleidoNave + mocap idle check) then N3 GC socket; N2 blender idle only after N1; A1 battle when editor free; N4 cross; N6 plates.
+One UnrealEditor the one running editor (`Get-Process UnrealEditor`). Block any second editor.
 ```

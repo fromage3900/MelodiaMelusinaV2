@@ -1,4 +1,4 @@
-﻿# Launch jcode in the MelodiaMelusina repo (interactive swarm coordinator session).
+﻿# Launch jcode in the MelodiaMelusinaV2 repo (interactive swarm coordinator session).
 # Prerequisite: jcode installed + logged in. See .jcode/README.md
 param(
     [switch]$SkipSkillsInstall,

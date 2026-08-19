@@ -1,6 +1,51 @@
 {
   "DataType": "SkillData",
   "Rows": {
+    "Chart_Arcane_CosmicResonance": {
+      "skill_id": "Chart_Arcane_CosmicResonance",
+      "display_name": "Cosmic Resonance",
+      "element": "Arcane",
+      "instrument": "MusicBox",
+      "mechanic_level": 3,
+      "sp_cost": 3,
+      "power_scalar": 2.0,
+      "note_pitches": [
+        60,
+        64,
+        67,
+        72,
+        76,
+        84,
+        76,
+        79,
+        84,
+        72,
+        76,
+        84,
+        67,
+        72,
+        79,
+        84
+      ],
+      "note_durations": [
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
     "Chart_Arcane_Flare": {
       "skill_id": "Chart_Arcane_Flare",
       "display_name": "Arcane Flare",
@@ -269,6 +314,43 @@
         0.25
       ]
     },
+    "Chart_Forte_CadenceStrike": {
+      "skill_id": "Chart_Forte_CadenceStrike",
+      "display_name": "Cadence Strike",
+      "element": "Forte",
+      "instrument": "MusicBox",
+      "mechanic_level": 2,
+      "sp_cost": 2,
+      "power_scalar": 1.6,
+      "note_pitches": [
+        72,
+        76,
+        79,
+        84,
+        72,
+        76,
+        79,
+        84,
+        72,
+        76,
+        79,
+        84
+      ],
+      "note_durations": [
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
     "Chart_Forte_EchoBurst": {
       "skill_id": "Chart_Forte_EchoBurst",
       "display_name": "EchoBurst",
@@ -431,6 +513,43 @@
         0.25
       ]
     },
+    "Chart_Gale_StormChase": {
+      "skill_id": "Chart_Gale_StormChase",
+      "display_name": "Storm Chase",
+      "element": "Gale",
+      "instrument": "MusicBox",
+      "mechanic_level": 2,
+      "sp_cost": 2,
+      "power_scalar": 1.6,
+      "note_pitches": [
+        79,
+        84,
+        79,
+        88,
+        79,
+        91,
+        84,
+        79,
+        88,
+        84,
+        91,
+        84
+      ],
+      "note_durations": [
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
     "Chart_Gale_Tornado": {
       "skill_id": "Chart_Gale_Tornado",
       "display_name": "Tornado Strike",
@@ -555,6 +674,39 @@
       ],
       "note_durations": [
         0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "Chart_Radiant_LullabyMend": {
+      "skill_id": "Chart_Radiant_LullabyMend",
+      "display_name": "Lullaby Mend",
+      "element": "Radiant",
+      "instrument": "MusicBox",
+      "mechanic_level": 2,
+      "sp_cost": 2,
+      "power_scalar": 1.6,
+      "note_pitches": [
+        64,
+        67,
+        72,
+        76,
+        72,
+        67,
+        76,
+        79,
+        72,
+        84
+      ],
+      "note_durations": [
         0.25,
         0.25,
         0.25,
@@ -695,6 +847,72 @@
         0.25
       ]
     },
+    "Chart_Stone_TerraFirma": {
+      "skill_id": "Chart_Stone_TerraFirma",
+      "display_name": "Terra Firma",
+      "element": "Stone",
+      "instrument": "MusicBox",
+      "mechanic_level": 1,
+      "sp_cost": 1,
+      "power_scalar": 1.2000000000000002,
+      "note_pitches": [
+        40,
+        48,
+        52,
+        60,
+        40,
+        48,
+        52,
+        60
+      ],
+      "note_durations": [
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "Chart_Tide_AbyssalSong": {
+      "skill_id": "Chart_Tide_AbyssalSong",
+      "display_name": "Abyssal Song",
+      "element": "Tide",
+      "instrument": "MusicBox",
+      "mechanic_level": 2,
+      "sp_cost": 2,
+      "power_scalar": 1.6,
+      "note_pitches": [
+        36,
+        48,
+        60,
+        48,
+        36,
+        48,
+        60,
+        72,
+        48,
+        60,
+        48,
+        36
+      ],
+      "note_durations": [
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
     "Chart_Tide_Wave": {
       "skill_id": "Chart_Tide_Wave",
       "display_name": "Wave Pulse",
@@ -718,6 +936,47 @@
         67
       ],
       "note_durations": [
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "Chart_Umbral_DissonantSilence": {
+      "skill_id": "Chart_Umbral_DissonantSilence",
+      "display_name": "Dissonant Silence",
+      "element": "Umbral",
+      "instrument": "MusicBox",
+      "mechanic_level": 3,
+      "sp_cost": 3,
+      "power_scalar": 2.0,
+      "note_pitches": [
+        60,
+        63,
+        67,
+        70,
+        73,
+        67,
+        70,
+        75,
+        70,
+        67,
+        78,
+        82,
+        75,
+        84
+      ],
+      "note_durations": [
+        0.25,
+        0.25,
         0.25,
         0.25,
         0.25,

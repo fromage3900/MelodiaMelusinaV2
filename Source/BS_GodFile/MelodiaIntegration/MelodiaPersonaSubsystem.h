@@ -103,7 +103,7 @@ private:
 	UFUNCTION()
 	void HandleRewardRequested(FName RewardId);
 
-	/** Observes stock battle presentation only; it never owns battle state or damage. */
+	/** Observes stock battle presentation only; it never owns battle, damage, or quest state. */
 	UFUNCTION()
 	void HandleJRPGBattleStarted(FName EncounterId);
 

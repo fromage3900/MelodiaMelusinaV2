@@ -1,0 +1,229 @@
+{
+  "schema": "melodia.math_tasks.v1",
+  "description": "Deterministic harness self-eval. Scores the MCP tool surface, not an LLM. Each task calls a registered read-only tool and asserts schema/fields.",
+  "scorer": "Tools/run_math_eval.py",
+  "mutates": false,
+  "editor_required": false,
+  "tasks": [
+    {
+      "id": "notify_battle_allow",
+      "tool": "melodia_quill_validate_notification",
+      "args": { "notification": "melodia:battle:encounter_01" },
+      "expect": { "is_valid_verb": true, "verb": "melodia:battle" }
+    },
+    {
+      "id": "notify_hack_deny",
+      "tool": "melodia_quill_validate_notification",
+      "args": { "notification": "melodia:hack:encounter_01" },
+      "expect": { "is_valid_verb": false }
+    },
+    {
+      "id": "notify_stat_allow",
+      "tool": "melodia_quill_validate_notification",
+      "args": { "notification": "melodia:stat:intent_01:harmony:2" },
+      "expect": { "is_valid_verb": true, "verb": "melodia:stat" }
+    },
+    {
+      "id": "quill_list_has_scripts",
+      "tool": "melodia_quill_list_scripts",
+      "args": {},
+      "expect": { "schema": "melodia.quill.scripts.v1" },
+      "expect_min_len": { "scripts": 1 }
+    },
+    {
+      "id": "narrative_record_schema",
+      "tool": "melodia_narrative_get_record",
+      "args": {},
+      "expect": { "schema": "melodia.narrative.record.v1" },
+      "expect_keys": ["record"]
+    },
+    {
+      "id": "allowlist_schema",
+      "tool": "melodia_config_get_allowlist",
+      "args": {},
+      "expect": { "schema": "melodia.config.allowlist.v1" }
+    },
+    {
+      "id": "fixtures_list",
+      "tool": "melodia_bp_list_fixtures",
+      "args": {},
+      "expect": { "schema": "melodia.bp.fixtures.v1" },
+      "expect_min_len": { "fixtures": 1 }
+    },
+    {
+      "id": "fixture_unknown_invalid",
+      "tool": "melodia_bp_validate_fixture",
+      "args": { "fixture_name": "nonexistent_fixture_xyz" },
+      "expect": { "valid": false }
+    },
+    {
+      "id": "template_world_challenge",
+      "tool": "melodia_bp_get_template",
+      "args": { "template_id": "world_challenge" },
+      "expect": { "schema": "melodia.bp.template.v1" },
+      "expect_keys": ["template"]
+    },
+    {
+      "id": "template_missing_errors",
+      "tool": "melodia_bp_get_template",
+      "args": { "template_id": "nonexistent" },
+      "expect": { "schema": "melodia.bp.template.v1" },
+      "expect_keys": ["error"]
+    },
+    {
+      "id": "subsystems_listed",
+      "tool": "melodia_system_list_subsystems",
+      "args": {},
+      "expect": { "schema": "melodia.system.subsystems.v1" },
+      "expect_min_len": { "subsystems": 1 }
+    },
+    {
+      "id": "health_schema",
+      "tool": "melodia_system_health",
+      "args": {},
+      "expect": { "schema": "melodia.system.health.v1" },
+      "expect_keys": ["status", "checks"]
+    },
+    {
+      "id": "idempotency_audit",
+      "tool": "melodia_narrative_audit_idempotency",
+      "args": {},
+      "expect": { "schema": "melodia.narrative.idempotency_audit.v1" },
+      "expect_keys": ["findings", "all_paths_guarded"]
+    },
+    {
+      "id": "p0_route_five_fixtures",
+      "tool": "melodia_bp_validate_p0_route",
+      "args": {},
+      "expect": { "schema": "melodia.bp.p0_route.v1" },
+      "expect_len": { "fixtures": 5 },
+      "live_enriches": true
+    },
+    {
+      "id": "golden_preflight_ready_flag",
+      "tool": "melodia_system_golden_run_preflight",
+      "args": {},
+      "expect": { "schema": "melodia.system.golden_run_preflight.v1" },
+      "expect_keys": ["ready", "checks", "next_step"],
+      "expect_nested_keys": { "checks": ["monolith_reachable"] }
+    },
+    {
+      "id": "persona_stats_schema",
+      "tool": "melodia_persona_get_stats",
+      "args": {},
+      "expect": { "schema": "melodia.persona.stats.v1" }
+    },
+    {
+      "id": "audio_list_schema",
+      "tool": "melodia_audio_list_assets",
+      "args": {},
+      "expect": { "schema": "melodia.audio.list.v1" },
+      "expect_keys": ["assets"]
+    },
+    {
+      "id": "audio_rhythm_catalog",
+      "tool": "melodia_audio_get_rhythm_catalog",
+      "args": {},
+      "expect": { "schema": "melodia.audio.rhythm_catalog.v1" },
+      "expect_keys": ["catalog_assets"]
+    },
+    {
+      "id": "audio_metasound_offline",
+      "tool": "melodia_audio_validate_metasound",
+      "args": { "metasound_path": "/Game/Audio/MetaSounds/MS_Melodia_HarmonicSynth" },
+      "expect": { "schema": "melodia.audio.validate_metasound.v1" },
+      "expect_keys": ["valid"]
+    },
+    {
+      "id": "ui_list_schema",
+      "tool": "melodia_ui_list_widgets",
+      "args": {},
+      "expect": { "schema": "melodia.ui.list.v1" },
+      "expect_keys": ["widgets"]
+    },
+    {
+      "id": "ui_battle_hud",
+      "tool": "melodia_ui_get_battle_hud",
+      "args": {},
+      "expect": { "schema": "melodia.ui.battle_hud.v1" },
+      "expect_keys": ["primary_hud", "hud_widgets"]
+    },
+    {
+      "id": "compile_feedback_offline",
+      "tool": "melodia_system_compile_feedback",
+      "args": {},
+      "expect": { "schema": "melodia.system.compile_feedback.v1" },
+      "expect_keys": ["available", "compile_errors"]
+    },
+    {
+      "id": "animation_sm_editor",
+      "tool": "melodia_animation_validate_state_machine",
+      "args": { "abp_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current" },
+      "expect": { "schema": "melodia.animation.validate_sm.v1" },
+      "editor_required": true
+    },
+    {
+      "id": "ui_validate_widget_offline",
+      "tool": "melodia_ui_validate_widget",
+      "args": { "widget_path": "/Game/Melodia/UI/WBP_Battle_Rhythm" },
+      "expect": { "schema": "melodia.ui.validate_widget.v1" },
+      "expect_keys": ["valid"]
+    },
+    {
+      "id": "economy_get_state",
+      "tool": "melodia_economy_get_state",
+      "args": {},
+      "expect": { "schema": "melodia.economy.state.v1" },
+      "expect_keys": ["healing", "mana", "utility", "grief"]
+    },
+    {
+      "id": "economy_grief_hook",
+      "tool": "melodia_economy_activate_grief_hook",
+      "args": { "dungeon_id": "p0_dungeon" },
+      "expect": { "schema": "melodia.economy.grief_hook.v1", "grief_set_to": 30.0 },
+      "expect_keys": ["dungeon_id", "new_state"]
+    },
+    {
+      "id": "economy_cast_healing_song",
+      "tool": "melodia_economy_cast_skill",
+      "args": { "skill_id": "healing_song", "tier": 1 },
+      "expect": { "schema": "melodia.economy.cast.v1", "skill": "healing_song" },
+      "expect_keys": ["success", "new_state", "mana_gain"]
+    },
+    {
+      "id": "economy_cast_mana_song",
+      "tool": "melodia_economy_cast_skill",
+      "args": { "skill_id": "mana_song", "tier": 1 },
+      "expect": { "schema": "melodia.economy.cast.v1", "skill": "mana_song" },
+      "expect_keys": ["success", "new_state", "grief_reduction"]
+    },
+    {
+      "id": "hud_economy_state",
+      "tool": "melodia_ui_get_economy_hud",
+      "args": {},
+      "expect": { "schema": "melodia.ui.economy_hud.v1" },
+      "expect_keys": ["economy", "skill_availability", "scalar_tiers", "grief_hook"]
+    },
+    {
+      "id": "encounter_start_p0",
+      "tool": "melodia_encounter_start",
+      "args": { "encounter_id": "p0_dungeon" },
+      "expect": { "schema": "melodia.encounter.start.v1", "grief_active": true },
+      "expect_keys": ["encounter_id", "enemy"]
+    },
+    {
+      "id": "encounter_resolve_p0",
+      "tool": "melodia_encounter_resolve",
+      "args": { "encounter_id": "p0_dungeon" },
+      "expect": { "schema": "melodia.encounter.resolve.v1" },
+      "expect_keys": ["resolved", "quest_progress"]
+    },
+    {
+      "id": "quest_p0_status",
+      "tool": "melodia_quest_check_p0",
+      "args": { "quest_id": "p0_vertical_slice" },
+      "expect": { "schema": "melodia.quest.check_p0.v1" },
+      "expect_keys": ["quest_id", "status", "requirements"]
+    }
+  ]
+}

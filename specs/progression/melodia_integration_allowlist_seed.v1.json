@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_integration_allowlist_seed",
+  "status": "offline_seed_editor_materialization_pending",
+  "target_asset": "/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig",
+  "merge_policy": {
+    "operation": "add_missing_only",
+    "never_remove_existing_ids": true,
+    "duplicate_existing_value": "accept_if_identical",
+    "unexpected_collision": "fail_closed_and_require_owner_review"
+  },
+  "sets": {
+    "WorldChallengeIds": [
+      "challenge.first_resonance_echo"
+    ],
+    "StateAnchorIds": [
+      "anchor.first_dream.progress"
+    ],
+    "NarrativeFlagIds": [
+      "challenge.first_resonance_echo.completed",
+      "first_dream.progress_anchor_applied",
+      "first_resonance_solved",
+      "quest.harmony_awakening.completed",
+      "quest.echoes_of_resonance.completed",
+      "quest.twilight_overture.completed"
+    ],
+    "DialogueRewardIds": [
+      "reward.first_resonance_echo",
+      "reward.harmony_awakening",
+      "reward.echoes_of_resonance",
+      "reward.twilight_overture"
+    ],
+    "QuestIds": [
+      "quest.first_dream",
+      "quest.harmony_awakening",
+      "quest.echoes_of_resonance",
+      "quest.twilight_overture"
+    ]
+  },
+  "source_fixtures": [
+    "specs/blueprints/fixtures/first_resonance_world_challenge.v1.json",
+    "specs/blueprints/fixtures/first_dream_progress_anchor.v1.json"
+  ],
+  "promotion_evidence": [
+    "config asset loads with reflected WorldChallengeIds and StateAnchorIds",
+    "seed is merged without removing pre-existing allowlist entries",
+    "challenge and anchor invalid-ID requests fail closed",
+    "config asset is saved and reloaded before live fixture execution"
+  ]
+}

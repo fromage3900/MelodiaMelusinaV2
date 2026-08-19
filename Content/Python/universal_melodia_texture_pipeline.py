@@ -246,8 +246,6 @@ class TextureScanner:
     def _analyze_texture(self, path: Path) -> Optional[TextureInfo]:
         """Analyze single texture file."""
         try:
-            # Use PIL or similar to get image info
-            # For now, return basic info
             resolution = self._get_resolution(path)
             channels = self._get_channel_count(path)
             
@@ -265,13 +263,80 @@ class TextureScanner:
             return None
     
     def _get_resolution(self, path: Path) -> Tuple[int, int]:
-        """Get texture resolution."""
-        # Placeholder - implement with PIL/Pillow
-        return (1024, 1024)
-    
+        """Get texture resolution. Real header read (PIL preferred, header parse fallback)."""
+        try:
+            from PIL import Image
+            with Image.open(path) as img:
+                return (img.width, img.height)
+        except ImportError:
+            pass
+        except Exception:
+            pass
+        # PIL unavailable or unreadable: parse file headers directly.
+        with open(path, "rb") as fh:
+            head = fh.read(64)
+        if path.suffix.lower() == ".png" and head[:8] == b"\x89PNG\r\n\x1a\n":
+            w, h = int.from_bytes(head[16:20], "big"), int.from_bytes(head[20:24], "big")
+            return (w, h)
+        if path.suffix.lower() in (".jpg", ".jpeg") and head[:2] == b"\xff\xd8":
+            with open(path, "rb") as fh:
+                while True:
+                    marker = fh.read(2)
+                    if len(marker) < 2:
+                        break
+                    if marker[0] != 0xFF:
+                        break
+                    if marker[1] in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
+                                     0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+                        seg = fh.read(3)
+                        if len(seg) == 3:
+                            h = int.from_bytes(seg[1:3], "big")
+                            w = int.from_bytes(fh.read(2), "big")
+                            return (w, h)
+                        break
+                    length = int.from_bytes(fh.read(2), "big")
+                    if length < 2:
+                        break
+                    fh.seek(length - 2, 1)
+        if path.suffix.lower() == ".bmp" and head[:2] == b"BM":
+            w = int.from_bytes(head[18:22], "little")
+            h = int.from_bytes(head[22:26], "little")
+            return (w, abs(h))
+        if path.suffix.lower() == ".tga" and head[1:2] == b"\x00":
+            w = head[12] | (head[13] << 8)
+            h = head[14] | (head[15] << 8)
+            if w and h:
+                return (w, h)
+        raise ValueError(f"cannot determine resolution for {path}")
+
     def _get_channel_count(self, path: Path) -> int:
-        """Get number of channels."""
-        # Placeholder - implement with PIL/Pillow
+        """Get number of channels. Real header read (PIL preferred, parse fallback)."""
+        try:
+            from PIL import Image
+            with Image.open(path) as img:
+                mode = (img.mode or "").upper()
+                if mode in ("1", "L", "P", "I"):
+                    return 1
+                if mode == "RGB":
+                    return 3
+                if mode == "RGBA":
+                    return 4
+                return len(mode)
+        except ImportError:
+            pass
+        except Exception:
+            pass
+        with open(path, "rb") as fh:
+            head = fh.read(64)
+        if path.suffix.lower() == ".png" and head[:8] == b"\x89PNG\r\n\x1a\n":
+            color_type = head[25]
+            return {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}.get(color_type, 3)
+        if path.suffix.lower() in (".jpg", ".jpeg") and head[:2] == b"\xff\xd8":
+            components = head[27] if len(head) > 27 else None
+            return components or 3
+        if path.suffix.lower() == ".bmp" and head[:2] == b"BM":
+            bits = int.from_bytes(head[28:30], "little")
+            return 4 if bits >= 32 else (3 if bits >= 24 else 1)
         return 3
     
     def _classify_texture(self, path: Path, channels: int) -> TextureType:
@@ -435,38 +500,46 @@ class UniversalMelodiaPipeline:
             elif texture.texture_type == TextureType.THICKNESS:
                 material_set.thickness = texture.path
         
-        # Generate missing maps if needed
+        # Generate missing maps if needed — REAL generation only; otherwise a
+        # warning is recorded instead of a fabricated "generated" path.
         if self.config.generate_normal and not material_set.normal and material_set.height:
-            print(f"Generating normal map for {name}...")
-            # material_set.normal = self._generate_normal(material_set.height, output_dir)
+            self.report.warnings.append(
+                f"{name}: normal-from-height requested but generation is not implemented; "
+                "no normal map produced (source height sampled directly instead)"
+            )
         
         if self.config.estimate_roughness and not material_set.roughness and material_set.albedo:
-            print(f"Estimating roughness for {name}...")
-            # material_set.roughness = self._estimate_roughness(material_set.albedo, output_dir)
+            self.report.warnings.append(
+                f"{name}: roughness estimation requested but not implemented; "
+                "assign a real roughness map or accept the neutral default"
+            )
         
         if self.config.estimate_metallic and not material_set.metallic and material_set.albedo:
-            print(f"Estimating metallic for {name}...")
-            # material_set.metallic = self._estimate_metallic(material_set.albedo, output_dir)
+            self.report.warnings.append(
+                f"{name}: metallic estimation requested but not implemented; "
+                "assign a real metallic map or accept the neutral default"
+            )
         
         return material_set
     
     def _generate_normal(self, height_map: Path, output_dir: Path) -> Path:
         """Generate normal map from height map."""
-        # Placeholder for Material Maker integration
-        output_path = output_dir / f"{height_map.stem}_normal.png"
-        return output_path
+        raise NotImplementedError(
+            "normal-from-height generation is not implemented; do not claim "
+            "generated maps in reports — route a real normal or the neutral one"
+        )
     
     def _estimate_roughness(self, albedo: Path, output_dir: Path) -> Path:
         """Estimate roughness from albedo."""
-        # Placeholder for Material Maker integration
-        output_path = output_dir / f"{albedo.stem}_roughness.png"
-        return output_path
+        raise NotImplementedError(
+            "roughness estimation is not implemented; do not fabricate maps"
+        )
     
     def _estimate_metallic(self, albedo: Path, output_dir: Path) -> Path:
         """Estimate metallic from albedo."""
-        # Placeholder for Material Maker integration
-        output_path = output_dir / f"{albedo.stem}_metallic.png"
-        return output_path
+        raise NotImplementedError(
+            "metallic estimation is not implemented; do not fabricate maps"
+        )
 
 
 # Convenience function for command-line usage

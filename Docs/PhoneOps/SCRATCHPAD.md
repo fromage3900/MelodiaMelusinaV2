@@ -4,6 +4,9 @@ Append-only research notes for phone + Grok + Cursor handoffs. Promote durable c
 
 ---
 
+> Correction 2026-08-13: the repo/remote named throughout this section is now `legacy-melodia`;
+> the source of truth is `origin` = `github.com/fromage3900/MelodiaMelusinaV2`.
+
 ## 2026-08-11 — iOS Cursor + Grok experiment
 
 - User testing Cursor from iOS; also experimenting with SuperGrok.

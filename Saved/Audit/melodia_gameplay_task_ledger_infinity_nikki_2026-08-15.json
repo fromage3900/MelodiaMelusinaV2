@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.1",
+  "kind": "melodia_gameplay_task_ledger_infinity_nikki_checkpoint",
+  "captured_at_utc": "2026-08-15",
+  "purpose": "Additive gameplay ledger snapshot after public UE/JRPG workflow research; the prior shared ledger is not overwritten.",
+  "lens": "Infinity Nikki: outfit/form capability providers, gathering-to-crafting loops, contextual traversal, lightweight challenges, and frequent data-driven content additions.",
+  "ownership": {
+    "codex_lane": [
+      "editor/Monolith when healthy",
+      "Blueprint and uasset integration",
+      "MelodiaIntegrationMap fixture verification",
+      "Saved/Audit evidence",
+      "this additive research checkpoint"
+    ],
+    "claude_lane": ["C++", "Python tooling", "shared task ledger reconciliation", "shared docs review"],
+    "melusina_lane": ["open editor/Monolith", "Melusina V2/ABP/BlendSpace/Kawaii/material assets", "visual and PIE evidence"],
+    "protected": ["_TASK_QUEUE.md", "Melusina V2 mesh assets", "ABP/BlendSpace assets", "KawaiiPhysics graphs", "Melusina material instances"]
+  },
+  "current_gates": {
+    "t3d_safe_wire": {"status": "pass", "evidence": "Tools/test_t3d_safe_wire.py", "passed": 42, "total": 42},
+    "contract_suite": {"status": "pass", "evidence": "Tools/run_contract_tests.py", "passed": 17, "total": 17},
+    "bp_shell_materialization": {"status": "offline_complete_live_readback_pending", "ready": 6, "total": 7, "blocked": ["skill_definition_bridge"]},
+    "definition_assets": {"status": "not_created", "reason": "Content/MelodiaIntegration/Definitions is absent and live DataAsset creation requires a clean responsive editor"},
+    "integration_map": {"status": "static_fixture_not_proven", "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap", "required": ["actor/tag readback", "nonempty stock roster", "compiled graph", "runtime success/failure/reset evidence"]},
+    "editor_gate": {"status": "blocked", "pid": 49204, "main_window_handle": 0, "monolith_port": 9316, "listener": false, "blocker": "historical MODAL_OPEN; no responsive Monolith endpoint"},
+    "melusina_v2": {"status": "corrected_and_reimported_runtime_promotion_unproven", "rule": "do not mutate or promote V2/ABP/Kawaii/material assets from this lane"}
+  },
+  "work_items": [
+    {"id": "P0-EDITOR-REENTRY", "status": "blocked_until_clean_owner", "next": "After restart, one editor owner restores Monolith and records PID/port/log evidence."},
+    {"id": "P0-ENCOUNTER-FIRST-DREAM", "status": "ready_but_not_executed", "next": "Read back exactly one tagged IntegrationMap actor and nonempty stock roster, then set EnemyId and run success/abort/reset."},
+    {"id": "P0-SKILL-BRIDGE", "status": "blocked", "next": "Resolve /Game/MelodiaIntegration/Definitions versus native /Game/MelodiaIntegration/Config discovery, cooldown authority, request ID, SP/mana semantics."},
+    {"id": "P1-GATHERING-VERTICAL-SLICE", "status": "planned", "next": "Create one node definition, one capability requirement, one material reward, one idempotent inventory transaction, and one reset fixture."},
+    {"id": "P1-PORTAL-TRAVERSAL", "status": "contract_ready_live_pending", "next": "Prove locked failure, capability unlock, save-before-travel, arrival context, and input restoration."},
+    {"id": "P1-STOCK-ENEMY", "status": "parent_confirmed_source_live_graph_pending", "next": "Bind one authored definition to stock battle, then prove telegraph/hit/defeat/reward/reset."},
+    {"id": "P1-CHALLENGE-ANCHOR", "status": "native_adapter_source_wired_live_pending", "next": "Use one atomic challenge reward and one stable-key state anchor through canonical narrative/save."},
+    {"id": "P2-HUB-COMPOSITION", "status": "deferred", "next": "Only after P0/P1 proof: home/hub, photo/memory, dye/presentation, and optional co-op challenges."},
+    {"id": "P2-ROGUELIKE-SCALE", "status": "quarantined_until_authority_closeout", "next": "Keep dungeon persistence isolated until Sir ladder and canonical save/narrative seam are closed."}
+  ],
+  "infinity_nikki_design_rules": [
+    "A Resonant Form may provide a capability snapshot; it may not own traversal or progression authority.",
+    "Gathering creates a typed item transaction and a cosmetic/UX event; it does not directly mutate a BP-local count.",
+    "A recipe consumes definitions through one inventory authority and must be repeatable/idempotent across save/load.",
+    "Every contextual action has a readable blocked reason and, where appropriate, an alternate route.",
+    "Cosmetic wardrobe state is separate from campaign progression and capability unlock truth.",
+    "New content should be a data addition plus a fixture, not a new subsystem or duplicate currency.",
+    "Niagara/material/animation polish observes typed impact or state events and never decides gameplay outcome."
+  ],
+  "definition_of_done": [
+    "New skill, enemy, gathering node, portal, or challenge can be added without editing battle/traversal/save authority code.",
+    "The readiness scanner detects missing parent/interface/ID/fixture evidence before promotion.",
+    "The editor fixture and Development package reproduce the same route result.",
+    "Save/load and reset are proven with stable IDs and no duplicate reward/state transaction.",
+    "The player-facing golden route remains separate from the IntegrationMap proof route."
+  ],
+  "evidence_sources": [
+    "Saved/Audit/melodia_bp_task_ledger_snapshot_2026-08-15.json",
+    "Saved/Audit/melodia_definition_asset_creation_manifest_2026-08-15.json",
+    "Saved/Audit/skill_definition_path_alignment_audit_2026-08-15.json",
+    "Saved/Audit/integration_map_fixture_static_probe_2026-08-15.json",
+    "Saved/Audit/core_p0_offline_gate_snapshot_2026-08-15.json",
+    "specs/p0/core_p0_dream_golden_run.v1.json",
+    "Docs/Research/MELODIA_UE_JRPG_WORKFLOW_RESEARCH_2026-08-15.md"
+  ],
+  "mutation_policy": "No stale-editor live mutation, no _TASK_QUEUE.md edit, no Claude-owned C++/Python/shared-ledger overwrite, and no Melusina V2/ABP/Kawaii/material mutation."
+}

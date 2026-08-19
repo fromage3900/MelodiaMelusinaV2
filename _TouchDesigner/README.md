@@ -10,7 +10,7 @@ Embody/Envoy controls that running project through `http://127.0.0.1:9870/mcp`.
 2. Open `grandmaster_melodia/grandmaster_melodia7.22.toe`.
 3. Confirm the Embody COMP is enabled after every TD restart.
 4. Verify the Envoy MCP listener on `http://127.0.0.1:9870/mcp`.
-5. Check `G:/EnvironmentPortfolio/.embody/envoy.json` for the active TD PID and project.
+5. Check `C:/EnvironmentPortfolio/.embody/envoy.json` for the active TD PID and project.
 6. Tag networks for externalization (lctrl + lctrl on any COMP/DAT).
 7. Export networks via Ctrl+Shift+U, or Envoy `export_network`, into `networks/`.
 

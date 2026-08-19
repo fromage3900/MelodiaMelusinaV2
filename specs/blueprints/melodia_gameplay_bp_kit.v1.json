@@ -1,0 +1,241 @@
+{
+  "schema_version": "1.0",
+  "kind": "blueprint_template_registry",
+  "registry_id": "melodia_gameplay_bp_kit",
+  "status": "contract_ready_live_graphs_pending",
+  "shared_content_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "fixture_specs_root": "specs/blueprints/fixtures",
+  "promotion_rule": "contract_spec_only_until_live_compile_path_runtime_failure_reset_evidence",
+  "authority": {
+    "gameplay_mode_candidate": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode",
+    "battle_execution": "stock_turn_based_jrpg_session",
+    "travel": "UMelodiaTravelSubsystem",
+    "narrative": "UMelodiaNarrativeSubsystem",
+    "traversal": "UMelodiaTraversalComponent",
+    "persistence": "canonical_save_contract",
+    "kawaii_presentation": {
+      "mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair",
+      "anim_blueprint": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair"
+    }
+  },
+  "readiness_levels": {
+    "L0": "asset inventory, owner, route, and purpose recorded",
+    "L1": "parent, interfaces, variables, events, and authority contract recorded",
+    "L2": "live graph inspected; required nodes present; forbidden ownership absent",
+    "L3": "disposable fixture exercises the asset on its real route",
+    "L4": "compile, live-path reachability, fresh evidence, and ledger registration complete"
+  },
+  "forbidden_ownership": [
+    "new GameMode authority",
+    "direct battle execution outside the stock session",
+    "direct OpenLevel travel routing",
+    "direct narrative progression mutation",
+    "direct save-file mutation",
+    "duplicated traversal state machine",
+    "production dependency on ignored test assets"
+  ],
+  "templates": [
+    {
+      "id": "skill",
+      "planned_blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaSkill_Base",
+      "required_contract": [
+        "skill identity",
+        "target rules",
+        "cost and cooldown",
+        "execution request into stock battle",
+        "success, failure, and cancellation results",
+        "telemetry/event output"
+      ],
+      "materialization": {
+        "artifact_model": "data_asset_plus_presentation_blueprint",
+        "definition_class": "UMelodiaRhythmSkillDefinition",
+        "definition_parent": "UPrimaryDataAsset (final; create a DataAsset instance, not a Blueprint child)",
+        "presentation_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaSkill_Base",
+        "presentation_parent": "stock BP_BattleSkillBase (live reflection required)",
+        "status": "blocked_until_definition_bridge_and_cooldown_authority",
+        "materialization_blockers": [
+          "one canonical definition shared by stock battle and rhythm execution",
+          "native cooldown and request-id ownership",
+          "live reflection of the stock skill parent"
+        ]
+      },
+      "first_fixture": "one single-target skill with deterministic cost and result",
+      "fixture_spec": "specs/blueprints/fixtures/single_target_resonance_skill.v1.json",
+      "fixture_readiness": "L1_contract_spec_only"
+    },
+    {
+      "id": "enemy",
+      "planned_blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEnemy_Base",
+      "required_contract": [
+        "enemy identity",
+        "stock battle unit data",
+        "threat profile",
+        "defeat event",
+        "reward hook"
+      ],
+      "materialization": {
+        "artifact_model": "data_asset_plus_blueprint_child",
+        "definition_class": "UMelodiaEnemyDataAsset",
+        "native_parent": "/Script/MelodiaCore.MelodiaEnemyBase",
+        "required_components": ["SkeletalMeshComponent"],
+        "status": "parent_confirmed_source_live_graph_pending",
+        "materialization_blockers": ["live parent/CDO/component reflection", "stock encounter fixture"]
+      },
+        "first_fixture": "one disposable enemy that enters the stock encounter path",
+        "fixture_spec": "specs/blueprints/fixtures/single_stock_enemy.v1.json",
+        "fixture_readiness": "L1_contract_spec_only"
+    },
+    {
+      "id": "encounter",
+      "planned_blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEncounter_Base",
+      "required_contract": [
+        "activation condition",
+        "spawn/lock state",
+        "battle request",
+        "completion event",
+        "reset/idempotency behavior"
+      ],
+      "materialization": {
+        "artifact_model": "blueprint_child_of_native_trigger",
+        "native_parent": "/Script/MelodiaCore.MelodiaEncounterTrigger",
+        "required_components": ["BoxComponent"],
+        "status": "parent_confirmed_source_live_graph_pending",
+        "materialization_blockers": ["stock battle handoff fixture", "reset/idempotency evidence"]
+      },
+        "first_fixture": "one repeatable encounter trigger with a reset control",
+        "fixture_spec": "specs/blueprints/fixtures/repeatable_first_dream_encounter.v1.json",
+        "fixture_readiness": "L1_contract_spec_only"
+    },
+    {
+      "id": "portal",
+      "planned_blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaPortal_Base",
+      "required_contract": [
+        "portal identity",
+        "discovery and unlock condition",
+        "destination key",
+        "travel subsystem request",
+        "arrival event",
+        "safe failure presentation"
+      ],
+      "materialization": {
+        "artifact_model": "blueprint_child_of_native_portal_shell",
+        "native_parent": "/Script/BS_GodFile.MelodiaTravelInteractionPortal",
+        "required_components": ["InteractionVolume", "PromptText"],
+        "status": "parent_extensibility_opened_source_live_graph_pending",
+        "materialization_blockers": ["allowlisted destination fixture", "save-before-travel and input restoration evidence"]
+      },
+        "first_fixture": "one locked portal that transitions only through the travel contract",
+        "fixture_spec": "specs/blueprints/fixtures/locked_traversal_portal.v1.json",
+        "fixture_readiness": "L1_contract_spec_only"
+    },
+    {
+      "id": "traversal_gate",
+      "planned_blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaTraversalGate_Base",
+      "required_contract": [
+        "required traversal state",
+        "available/blocked presentation",
+        "state re-check after load",
+        "deterministic failure behavior"
+      ],
+      "materialization": {
+        "artifact_model": "actor_blueprint_with_gate_presentation",
+        "native_parent": "/Script/Engine.Actor",
+        "required_components": ["BoxComponent"],
+        "runtime_authority": "UMelodiaTraversalComponent",
+        "status": "contract_ready_live_graph_pending",
+        "materialization_blockers": ["capability-provider compile/live evidence", "context matrix and reset fixture"]
+      },
+      "first_fixture": "one gate driven by a single traversal capability",
+      "fixture_spec": "specs/blueprints/fixtures/hover_gate_with_dungeon_lock.v1.json",
+      "fixture_readiness": "L1_contract_spec_only"
+    },
+    {
+      "id": "world_challenge",
+      "planned_blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaWorldChallenge_Base",
+      "required_contract": [
+        "challenge identity",
+        "attempt and reset semantics",
+        "completion event",
+        "reward event",
+        "save key"
+      ],
+      "materialization": {
+        "artifact_model": "actor_blueprint_plus_definition_data",
+        "native_parent": "/Script/Engine.Actor",
+        "runtime_authority": "UMelodiaNarrativeSubsystem",
+        "status": "native_adapter_source_wired_closed_editor_build_pending",
+        "adapter_contract": "specs/progression/melodia_world_challenge_adapter.v1.json",
+        "required_config_allowlist": {
+          "WorldChallengeIds": ["challenge.first_resonance_echo"],
+          "NarrativeFlagIds": ["challenge.first_resonance_echo.completed"],
+          "DialogueRewardIds": ["reward.first_resonance_echo"]
+        },
+        "required_config_allowlist_source": "specs/progression/melodia_integration_allowlist_seed.v1.json",
+        "materialization_blockers": ["clean UHT/compile/reflection", "definition asset shape", "DA_MelodiaIntegrationConfig.WorldChallengeIds entry", "idempotent reward/state fixture"]
+        },
+        "first_fixture": "one idempotent challenge that survives reload",
+        "fixture_spec": "specs/blueprints/fixtures/first_resonance_world_challenge.v1.json",
+        "fixture_readiness": "L1_contract_spec_only"
+    },
+    {
+      "id": "state_anchor",
+      "planned_blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaStateAnchor_Base",
+      "required_contract": [
+        "stable identity",
+        "persistence key",
+        "idempotent event application",
+        "replay-safe presentation"
+      ],
+        "materialization": {
+          "artifact_model": "actor_blueprint_plus_canonical_narrative_state",
+        "native_parent": "/Script/Engine.Actor",
+        "runtime_authority": "UMelodiaNarrativeSubsystem and canonical save contract",
+        "status": "native_adapter_source_wired_closed_editor_build_pending",
+        "adapter_contract": "specs/progression/melodia_state_anchor_adapter.v1.json",
+        "required_config_allowlist": {
+          "StateAnchorIds": ["anchor.first_dream.progress"],
+          "NarrativeFlagIds": ["first_dream.progress_anchor_applied"],
+          "QuestIds": ["quest.first_dream"]
+        },
+        "required_config_allowlist_source": "specs/progression/melodia_integration_allowlist_seed.v1.json",
+        "materialization_blockers": ["clean UHT/compile/reflection", "DA_MelodiaIntegrationConfig.StateAnchorIds entry", "save/load replay fixture"]
+        },
+        "first_fixture": "one anchor that can be applied twice without duplicate rewards",
+        "fixture_spec": "specs/blueprints/fixtures/first_dream_progress_anchor.v1.json",
+        "fixture_readiness": "L1_contract_spec_only"
+    }
+  ],
+  "existing_integration_assets_to_audit": [
+    "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode",
+    "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameInstance",
+    "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGPlayerController",
+    "/Game/MelodiaIntegration/Blueprints/BP_MelodiaBattleBridge",
+    "/Game/MelodiaIntegration/Blueprints/BP_MelodiaTravelVolume",
+    "/Game/MelodiaIntegration/Opening/BP_KaleidoNaveArrivalTrigger",
+    "/Game/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit"
+  ],
+  "required_live_evidence": [
+    "effective GameMode for each target map",
+    "parent, CDO, interfaces, components, and graph list",
+    "compile result from the current editor",
+    "live-path reachability from the fixture map",
+    "disposable fixture with deterministic reset",
+    "fresh evidence envelope linked to the ledger"
+  ],
+  "creation_order": [
+    "resolve GameMode and battle authority",
+    "create one fixture per template",
+    "compile and path-test the fixtures",
+    "promote shared contracts into base Blueprints",
+    "create content variants from data, not new authorities"
+  ],
+  "template_materialization_order": [
+    "skill",
+    "traversal_gate",
+    "enemy",
+    "encounter",
+    "portal",
+    "world_challenge",
+    "state_anchor"
+  ]
+}

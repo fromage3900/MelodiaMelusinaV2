@@ -1,0 +1,224 @@
+{
+  "_comment": [
+    "Repaired MelusinaLocomotion state machine for ABP_Melusina_Current.",
+    "",
+    "BASELINE (Content/Exports/battle_anim_ui_export/2_ABP_Melusina_Current_state_machines.json):",
+    "  4 states -- Idle, JumpStart, Airborne, Land -- and NO ground-locomotion state.",
+    "  BS_Melusina_Locomotion is not referenced by the AnimGraph at all. That is why walk/run",
+    "  never triggers: there is nothing for velocity to drive. The T-pose is the same wound one",
+    "  layer up -- the entry Idle state resolves to no sequence, so it emits the reference pose.",
+    "",
+    "JUMP WIND-UP REQUIREMENT (owner, explicit):",
+    "  The INITIAL HOLD of SpaceBar must trigger the wind-up animation. The launch does not",
+    "  happen on press. Press -> bJumpWindup=true -> JumpWindup state plays the anticipation",
+    "  crouch -> the AnimNotify 'JumpLaunch' inside that clip calls Jump() -> Airborne.",
+    "  This is why the entry rule is bJumpWindup and NOT bIsFalling: keying off IsFalling would",
+    "  mean the wind-up can only start after the character has already left the ground."
+  ],
+  "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+  "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+  "state_machine": "MelusinaLocomotion",
+  "entry_state": "Idle",
+  "_LIVE_PREFLIGHT_2026-08-16": [
+    "Preflight against the live ABP changed this spec. Two things the committed export",
+    "did NOT show:",
+    "  1. A 'Glide' state exists (position [192,0]). The export baseline has only 4 states.",
+    "     The first draft computed stale = existing - spec and would have DELETED Glide,",
+    "     which is live traversal (BP_MelusinaJRPGCharacter sets",
+    "     bRequireCapabilityProviderForGlide=true, and the ABP has a bIsGliding variable).",
+    "  2. Speed / Velocity / Acceleration / bIsMoving / bIsGliding / WasInAir already exist.",
+    "     11 variables total. The locomotion plumbing is already wired -- only the state",
+    "     that CONSUMES it is missing.",
+    "",
+    "So this plan is now PURELY ADDITIVE. Nothing is removed. 'JumpStart' is repurposed as",
+    "the wind-up rather than replaced by a new 'JumpWindup' state, which preserves the",
+    "existing Idle -> JumpStart -> Airborne -> Land chain and its transitions."
+  ],
+  "required_variables": {
+    "bJumpWindup": {
+      "type": "bool",
+      "default": false,
+      "already_exists": false,
+      "source": "BP_MelusinaJRPGCharacter: true on MelodiaTraversalJump Pressed, false on Landed or Released"
+    }
+  },
+  "existing_variables_do_not_recreate": [
+    "Speed",
+    "Velocity",
+    "Acceleration",
+    "bIsMoving",
+    "bIsCrouched",
+    "bIsGliding",
+    "WasInAir",
+    "VFX_SwingEnergy",
+    "VFX_SparkleRate",
+    "VFX_MotionEnergy",
+    "VFX_LandPulse"
+  ],
+  "preserve_untouched": [
+    "Glide",
+    "Airborne",
+    "Land"
+  ],
+  "states": [
+    {
+      "name": "Idle",
+      "kind": "sequence",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX",
+      "loop": true,
+      "position": [
+        0,
+        0
+      ],
+      "_note": "REVISED. The first draft bound A_Melusina_Idle (unsuffixed, 2026-08-08), which would likely have preserved the T-pose rather than fixed it. melusina_idle_restore_mocap_2026-08-13.md names A_Melusina_Idle_Mocap_RootX as the owner-approved speed-0 idle and records the previous sample as a collapsed/wrong pose. Length 0.5s, loops, correct cm scale via the mocap retargeter chain.",
+      "_tpose_hypotheses": [
+        "A: state graph resolves to no sequence -> reference pose (original theory)",
+        "B: state IS bound, but to a bad Lane A clip that evaluates to rest pose (now the stronger theory, given the 08-08 asset was wired in after the 08-13 mocap restore)",
+        "Preflight distinguishes them: if the Idle state already has a sequence player, it is B."
+      ]
+    },
+    {
+      "name": "Locomotion",
+      "kind": "blendspace",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion",
+      "driven_by": "Speed",
+      "loop": true,
+      "position": [
+        280,
+        0
+      ],
+      "_note": "The missing state. This is the fix for walk/run not triggering."
+    },
+    {
+      "name": "JumpWindup",
+      "kind": "sequence",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_JumpStart_Mocap_RootX",
+      "loop": false,
+      "always_reset_on_entry": true,
+      "position": [
+        140,
+        -200
+      ],
+      "_note": "Anticipation crouch. always_reset_on_entry is required or a re-press mid-clip resumes from the middle instead of restarting the wind-up."
+    },
+    {
+      "name": "Airborne",
+      "kind": "sequence",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_JumpLoop_Mocap_RootX",
+      "loop": true,
+      "position": [
+        420,
+        -200
+      ]
+    },
+    {
+      "name": "Land",
+      "kind": "sequence",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Land_Mocap_RootX",
+      "loop": false,
+      "always_reset_on_entry": true,
+      "position": [
+        660,
+        -200
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "Idle",
+      "to": "Locomotion",
+      "rule": {
+        "kind": "compare",
+        "lhs": "Speed",
+        "op": ">",
+        "rhs": 10.0
+      },
+      "blend": 0.2
+    },
+    {
+      "from": "Locomotion",
+      "to": "Idle",
+      "rule": {
+        "kind": "compare",
+        "lhs": "Speed",
+        "op": "<",
+        "rhs": 10.0
+      },
+      "blend": 0.2
+    },
+    {
+      "from": "Idle",
+      "to": "JumpWindup",
+      "rule": {
+        "kind": "bool",
+        "variable": "bJumpWindup"
+      },
+      "blend": 0.05,
+      "_note": "0.05s. The wind-up must read as instant on the press or the hold feels dead."
+    },
+    {
+      "from": "Locomotion",
+      "to": "JumpWindup",
+      "rule": {
+        "kind": "bool",
+        "variable": "bJumpWindup"
+      },
+      "blend": 0.05
+    },
+    {
+      "from": "JumpWindup",
+      "to": "Airborne",
+      "rule": {
+        "kind": "bool",
+        "variable": "WasInAir"
+      },
+      "blend": 0.1,
+      "_note": "Fires only after the JumpLaunch notify has called Jump(). Not time-based."
+    },
+    {
+      "from": "Airborne",
+      "to": "Land",
+      "rule": {
+        "kind": "auto"
+      },
+      "blend": 0.15
+    },
+    {
+      "from": "Land",
+      "to": "Locomotion",
+      "rule": {
+        "kind": "compare",
+        "lhs": "Speed",
+        "op": ">",
+        "rhs": 10.0
+      },
+      "blend": 0.15,
+      "_note": "Landing at speed must resume locomotion. The baseline only had Land -> Idle, which stalls a running landing."
+    },
+    {
+      "from": "Land",
+      "to": "Idle",
+      "rule": {
+        "kind": "compare",
+        "lhs": "Speed",
+        "op": "<",
+        "rhs": 10.0
+      },
+      "blend": 0.2
+    }
+  ],
+  "notifies": [
+    {
+      "sequence": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_JumpStart_Mocap_RootX",
+      "name": "JumpLaunch",
+      "time_fraction": 0.45,
+      "_note": "Placement is provisional -- retime against the clip's actual push-off frame once it can be scrubbed in-editor. Consumed by BP_MelusinaJRPGCharacter to call Jump()."
+    }
+  ],
+  "foot_ik": {
+    "ik_rig": "/Game/Melodia/Characters/Melusina/IK_Melusina_Body",
+    "placement": "after the state machine, before the KawaiiPhysics nodes",
+    "gate": "bIsFalling == false",
+    "_note": "IK_Melusina/IK_Melusina_Body currently have zero solvers and zero goals, which also makes the retargeter's 'Run IK Rig' op inert."
+  }
+}

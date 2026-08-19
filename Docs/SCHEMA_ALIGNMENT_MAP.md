@@ -131,7 +131,7 @@ portfolio_package.json
 | Domain | Format | Example |
 |--------|--------|---------|
 | UE Asset Paths | `/Game/<folder>/<name>.<name>` | `/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal` |
-| Filesystem Paths | Absolute with forward slashes | `g:/EnvironmentPortfolio/BS_GodFile/Saved/...` |
+| Filesystem Paths | Absolute with forward slashes | `C:/EnvironmentPortfolio/BS_GodFile/Saved/...` |
 | Actor Locations | `[x, y, z]` floats, 2 decimal places | `[100.50, -200.25, 50.00]` |
 | Material Names | `asset.get_name()` only | `M_Master_Toon_Universal` |
 | Booleans | JSON `true`/`false` | `true` |

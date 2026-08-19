@@ -1,0 +1,32 @@
+{
+  "MetaSoundConfig": {
+    "GraphName": "MSS_JRPG_UI_Master",
+    "Description": "Routing map for the Kenney UI Audio pack into the Melodia MetaSound Master Graph.",
+    "RoutingPaths": [
+      {
+        "EventId": "UI_Hover",
+        "SourceAsset": "/Game/Audio/Kenney/UI_Hover_01.wav",
+        "VolumeMultiplier": 0.8,
+        "PitchModulation": [0.95, 1.05]
+      },
+      {
+        "EventId": "UI_Select",
+        "SourceAsset": "/Game/Audio/Kenney/UI_Select_01.wav",
+        "VolumeMultiplier": 1.0,
+        "PitchModulation": [1.0, 1.0]
+      },
+      {
+        "EventId": "UI_Cancel",
+        "SourceAsset": "/Game/Audio/Kenney/UI_Cancel_01.wav",
+        "VolumeMultiplier": 0.9,
+        "PitchModulation": [0.9, 1.0]
+      },
+      {
+        "EventId": "UI_MenuOpen",
+        "SourceAsset": "/Game/Audio/Kenney/UI_Jingle_02.wav",
+        "VolumeMultiplier": 1.1,
+        "PitchModulation": [1.0, 1.0]
+      }
+    ]
+  }
+}

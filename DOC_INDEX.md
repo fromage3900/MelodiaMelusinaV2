@@ -1,43 +1,75 @@
-Ôªø# Documentation Index
+# Documentation Index
 
 This is the front door for project documentation. Prefer updating this index over creating another floating status document.
 
-## Latest checkpoint ‚Äî 2026-08-12 (cloud git-health prep)
+
+## New 2026-08-13 ó repo lock-in
+
+| Doc | What |
+|---|---|
+| [`Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md) | **Next phase.** Perforce for content, git for code. Plan only; not before the three completion gates close. |
+| [`Docs/Reports/LFS_HEALTH_2026-08-13.md`](Docs/Reports/LFS_HEALTH_2026-08-13.md) | LFS evidence. `Exports/` is 63% of LFS; one `.git/lfs/bad` object is live-referenced. |
+| [`Docs/AGENT_TOOLS.md`](Docs/AGENT_TOOLS.md) | Tool catalogue split out of AGENTS.md (32 KB subagent cap). |
+| [`Docs/CREDITS.md`](Docs/CREDITS.md) | All asset credits: creator, source URL, license, usage ó Epic/Fab, ArtStation, CC0, BOOTH, first-party, assembled kit, staging provenance. |
+| [`Docs/SOURCES_MATRIX.md`](Docs/SOURCES_MATRIX.md) | Coverage map: every `Content/` folder ? its credit row. Gate: `Tools/credits_gate.py` (must PASS on every import). |
+| [`Docs/AGENT_MCP_SURFACES.md`](Docs/AGENT_MCP_SURFACES.md) | All MCP servers, one-writer rule, Monolith commands, CI. |
+| [`Docs/AGENT_LANES.md`](Docs/AGENT_LANES.md) | Parallelisation, `.agents/plans/`, STOP sentinels, stage-save gate, owner locks. |
+| [`Docs/_Superseded/README.md`](Docs/_Superseded/README.md) | 16 archived root docs and why each went. |
+
+## Latest checkpoint ó 2026-08-13 ~00:42 ET (loop stopped)
+
+| Doc | Purpose |
+|---|---|
+| [Docs/Handoffs/SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md](Docs/Handoffs/SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md) | **Pick up here** ó session review, close-or-not, paste-ready N0ñN6 prompts |
+| [Saved/Audit/melusina_blender_idle_wire.md](Saved/Audit/melusina_blender_idle_wire.md) | Blender idle import; meters/cm collapse; mocap restored to speed 0 |
+| [Saved/Audit/tonight_prep_loop.md](Saved/Audit/tonight_prep_loop.md) | 15m loop ticks 1ñ17; **loop stopped** |
+
+## Source-control checkpoint ó 2026-08-13 ~00:50 ET
+
+| Repository | State |
+|---|---|
+| `BS_GodFile` | `main` and `v2/main` synchronized at `840b7650`; working tree still has uncommitted editor/agent artifacts |
+| `my-site-clean` | Local `3cfa5f0`; configured remote has unrelated history, so no merge or force-push was performed |
+| Website checks | Site facts and assets pass; token lint remains blocked with `99` hard errors and `1113` warnings |
+
+Full details: [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL_STATUS_2026-08-13.md).
+
+## Latest checkpoint ó 2026-08-12 (cloud git-health prep)
 
 | Doc | Purpose |
 |---|---|
 | [Saved/Audit/ue_idle_apply_2026-08-12.md](Saved/Audit/ue_idle_apply_2026-08-12.md) | A-idle: T1 ZenTrim applied, T2 41 Cathedral uassets, T3 Geometry Cache imported |
-| [Saved/Audit/flip_hair_bake_2026-08-12.md](Saved/Audit/flip_hair_bake_2026-08-12.md) | Flip bake 1‚Äì240 (480 `.bobj`); ABC `GC_MelusinaHairFlip_v22.abc` frames 1‚Äì96 |
+| [Saved/Audit/flip_hair_bake_2026-08-12.md](Saved/Audit/flip_hair_bake_2026-08-12.md) | Flip bake 1ñ240 (480 `.bobj`); ABC `GC_MelusinaHairFlip_v22.abc` frames 1ñ96 |
 | [Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md](Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md) | After live v22: five doors, three session types, GN visual review (not more trees) |
-| [Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) | **OWNER LOCK ‚Äî rhythm game WORKED** |
-| [Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md) | **OWNER LOCK ‚Äî QuillScript WORKED** |
-| [Docs/Handoffs/PARALLEL_LANES_2026-08-12.md](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md) | **Parallel agent lanes** (post rhythm+Quill locks) ‚Äî claim table |
+| [Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) | **OWNER LOCK ó rhythm game WORKED** |
+| [Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md) | **OWNER LOCK ó QuillScript WORKED** |
+| [Docs/Handoffs/PARALLEL_LANES_2026-08-12.md](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md) | **Parallel agent lanes** (post rhythm+Quill locks) ó claim table |
 | [Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md) | **Paste-ready session prompts** for each lane |
-| [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) | **Start here for Blender / Melodia Studio** ‚Äî v22 path, MCP 9876, Health `12/12` / `165` |
-| [Docs/Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md](Docs/Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md) | Blender lanes ‚Äî **B0/B1/B3 done**; B2 plate dry-run still open |
-| [Saved/Audit/gn_library_audit_2026-08-12.md](Saved/Audit/gn_library_audit_2026-08-12.md) | **GN library audit** ‚Äî 165 construct; P0 presets **24/165 (14.5%)** |
-| [Saved/Audit/gn_presets_audit_2026-08-12.json](Saved/Audit/gn_presets_audit_2026-08-12.json) | P0 preset inventory ‚Äî 24 builders / 73 looks, 0 orphans |
+| [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) | **Start here for Blender / Melodia Studio** ó v22 path, MCP 9876, Health `12/12` / `165` |
+| [Docs/Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md](Docs/Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md) | Blender lanes ó **B0/B1/B3 done**; B2 plate dry-run still open |
+| [Saved/Audit/gn_library_audit_2026-08-12.md](Saved/Audit/gn_library_audit_2026-08-12.md) | **GN library audit** ó 165 construct; P0 presets **24/165 (14.5%)** |
+| [Saved/Audit/gn_presets_audit_2026-08-12.json](Saved/Audit/gn_presets_audit_2026-08-12.json) | P0 preset inventory ó 24 builders / 73 looks, 0 orphans |
 | [Saved/Audit/melusina_needed_work_2026-08-12.md](Saved/Audit/melusina_needed_work_2026-08-12.md) | Melusina wardrobe SSOT retargeted to v22 / MCP 9876; live 5.2 still needed |
-| [Saved/Audit/handpainted_texture_inventory_2026-08-12.md](Saved/Audit/handpainted_texture_inventory_2026-08-12.md) | Owner handpaint hunt ‚Äî 1208 hits; no named lantern/wand/cross maps |
+| [Saved/Audit/handpainted_texture_inventory_2026-08-12.md](Saved/Audit/handpainted_texture_inventory_2026-08-12.md) | Owner handpaint hunt ó 1208 hits; no named lantern/wand/cross maps |
 | [Saved/Audit/p0_level_mesh_gaps_2026-08-12.md](Saved/Audit/p0_level_mesh_gaps_2026-08-12.md) | Four P0 umaps exist; Cathedral 41 FBX not imported; no vow-cross SM |
 | [Saved/Audit/water_hair_layer_c_runbook_2026-08-12.md](Saved/Audit/water_hair_layer_c_runbook_2026-08-12.md) | Layer C: 0 `.bobj`; tune+alembic helpers ready; bake blocked on 5.2 |
-| [Saved/Audit/hero_zentrim_assign.json](Saved/Audit/hero_zentrim_assign.json) | `--apply` **done** ‚Äî `MI_ZenTrim_Base4K` on wand + StreetLamp |
+| [Saved/Audit/hero_zentrim_assign.json](Saved/Audit/hero_zentrim_assign.json) | `--apply` **done** ó `MI_ZenTrim_Base4K` on wand + StreetLamp |
 | [Saved/Audit/cathedral_fbx_import.json](Saved/Audit/cathedral_fbx_import.json) | Cathedral kit **41/41** imported to `/Game/EnvSandbox/Meshes/Cathedral/` |
 | [Saved/Audit/hair_flip_geometry_cache_import.json](Saved/Audit/hair_flip_geometry_cache_import.json) | Layer C Geometry Cache at `/Game/Cinematics/MelusinaWaterHair/GC_MelusinaHairFlip_v22` |
-| [Docs/Handoffs/TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md](Docs/Handoffs/TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md) | **Tonight board** ‚Äî P0 levels, ZenTrim on heroes, water-hair Geometry Cache |
-| [deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md](deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md) | **GN expansion** ‚Äî P0 landed closed-editor; water-hair cache is cine-only |
-| [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) | P0 PIE/runtime board ‚Äî rhythm + Quill locked WORKED; battles still open |
-| [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) | Tonight‚Äôs cloud work: PRs #4/#6, untrack/ignore, tomorrow merge order |
-| [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) | Phone/cloud Now list aligned to merge ‚Üí build ‚Üí playtest |
-| [README.md](README.md) | Front-door project status refreshed 2026-08-12 |
+| [Docs/Handoffs/TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md](Docs/Handoffs/TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md) | **Tonight board** ó P0 levels, ZenTrim on heroes, water-hair Geometry Cache |
+| [deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md](deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md) | **GN expansion** ó P0 landed closed-editor; water-hair cache is cine-only |
+| [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) | P0 PIE/runtime board ó rhythm + Quill locked WORKED; battles still open |
+| [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) | Tonightís cloud work: PRs #4/#6, untrack/ignore, tomorrow merge order |
+| [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) | Phone/cloud Now list aligned to merge ? build ? playtest |
+| [README.md](README.md) | Front-door project status refreshed 2026-08-13 |
 
-## Environment checkpoint ‚Äî 2026-08-11
+## Environment checkpoint ó 2026-08-11
 
 Read these before changing setup, ECHO, or cross-checkout tooling:
 
 | Doc | Purpose |
 |---|---|
-| [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) | **Start here for Blender / Melodia Studio** ‚Äî v22 path, MCP 9876, Health `12/12` / `165` |
+| [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) | **Start here for Blender / Melodia Studio** ó v22 path, MCP 9876, Health `12/12` / `165` |
 | [Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md](Docs/ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md) | Workspace topology, authority boundaries, service contract, and drift register |
 | [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) | Portable Windows setup and execution path |
 | [Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md](Docs/Handoffs/ENVIRONMENT_BUILD_VALIDATION_2026-08-11.md) | Evidence from the implemented environment and remaining blockers |
@@ -47,47 +79,47 @@ Read [`Docs/Handoffs/PROJECT_HANDOFF_2026-08-09.md`](Docs/Handoffs/PROJECT_HANDO
 resuming gameplay work from another session. It records the earlier local Git
 state, validation evidence, and known remote-network limitations as of 2026-08-09.
 
-## ‚≠ê Gameplay/vertical-slice canonical docs (project root, read these first for gameplay)
+## ? Gameplay/vertical-slice canonical docs (project root, read these first for gameplay)
 
-As of 2026-07-30 these are the real, actively-maintained source of truth for gameplay/vertical-slice work ‚Äî not a test, confirmed adopted over several days:
+As of 2026-07-30 these are the real, actively-maintained source of truth for gameplay/vertical-slice work ó not a test, confirmed adopted over several days:
 
 | Doc | Purpose |
 |---|---|
 | [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) | **Binding on every agent; outranks every other agent doc here.** Do the job asked and stop. No compensation mechanisms. "Kill it" means delete. Don't re-verify what the owner told you. A fix is not a review. Decision 026. |
-| [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md) | Most recent session's accomplished/pending/do-not-do list. Overwritten each session ‚Äî read fresh every time. |
+| [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md) | Most recent session's accomplished/pending/do-not-do list. Overwritten each session ó read fresh every time. |
 | [`_DECISION_LOG.md`](_DECISION_LOG.md) | Append-only strategic decisions (currently through 042). Check before re-litigating a settled question. |
-| [`_TASK_QUEUE.md`](_TASK_QUEUE.md) | The real, live, granular task tracker ‚Äî P0/P1/P2/P3, per-task status/agent. |
+| [`_TASK_QUEUE.md`](_TASK_QUEUE.md) | The real, live, granular task tracker ó P0/P1/P2/P3, per-task status/agent. |
 | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) | Current scope authority for the First Dream vertical slice. Explicitly supersedes older SakuraDream/Phase-2 scope. |
-| [`_ROADBLOCKS_2026-07-31.md`](_ROADBLOCKS_2026-07-31.md) | **Read before trusting any dated doc.** Consolidated roadblock inventory plus the contradiction register ‚Äî which docs currently contain false claims, and the verdict on each. |
+| [`_ROADBLOCKS_2026-07-31.md`](_ROADBLOCKS_2026-07-31.md) | **Read before trusting any dated doc.** Consolidated roadblock inventory plus the contradiction register ó which docs currently contain false claims, and the verdict on each. |
 
-### ‚è± Dated-doc rule
+### ? Dated-doc rule
 
 A doc's filename date is when it was **written**, not when it was last **true**. This repo has
-produced same-day contradictions more than once ‚Äî `Docs/GAMEPLAY_REVIEW_2026-07-30.md` was wrong
+produced same-day contradictions more than once ó `Docs/GAMEPLAY_REVIEW_2026-07-30.md` was wrong
 about the travel system three minutes after being saved, and
-`Docs/MELODIA_SYSTEMS_COMPOSITION_CONTRACT_2026-07-30.md` contradicts itself between ¬ß2 and ¬ß5a.
+`Docs/MELODIA_SYSTEMS_COMPOSITION_CONTRACT_2026-07-30.md` contradicts itself between ß2 and ß5a.
 Before acting on a claim that something is missing or broken, check the relevant source file's
 mtime. `_ROADBLOCKS_2026-07-31.md` tracks the known cases.
 
-## Session docs ‚Äî 2026-07-30 (were unindexed until 2026-07-31)
+## Session docs ó 2026-07-30 (were unindexed until 2026-07-31)
 
 | Doc | Purpose |
 |---|---|
 | [Docs/BLUEPRINT_WIRING_CHECKLIST_2026-07-30.md](Docs/BLUEPRINT_WIRING_CHECKLIST_2026-07-30.md) | **The actionable list.** Five ordered editor-wiring items, each independently testable, none breaking anything if left undone. Its "cannot read graph topology" premise was corrected 2026-07-31. |
-| [Docs/GAMEPLAY_REVIEW_2026-07-30.md](Docs/GAMEPLAY_REVIEW_2026-07-30.md) | Rhythm / teleport / Quill gap analysis. **¬ß2 (teleport) is superseded** ‚Äî see the banner at the top of the file. |
-| [Docs/FOUNDATION_CLOSEOUT_DECISIONS_2026-07-30.md](Docs/FOUNDATION_CLOSEOUT_DECISIONS_2026-07-30.md) | Closeout decision record behind Decisions 012‚Äì021. |
-| [Docs/MELODIA_SYSTEMS_COMPOSITION_CONTRACT_2026-07-30.md](Docs/MELODIA_SYSTEMS_COMPOSITION_CONTRACT_2026-07-30.md) | The composition/adapter pattern. **¬ß2‚Äì3 historical; only ¬ß5a is current.** |
+| [Docs/GAMEPLAY_REVIEW_2026-07-30.md](Docs/GAMEPLAY_REVIEW_2026-07-30.md) | Rhythm / teleport / Quill gap analysis. **ß2 (teleport) is superseded** ó see the banner at the top of the file. |
+| [Docs/FOUNDATION_CLOSEOUT_DECISIONS_2026-07-30.md](Docs/FOUNDATION_CLOSEOUT_DECISIONS_2026-07-30.md) | Closeout decision record behind Decisions 012ñ021. |
+| [Docs/MELODIA_SYSTEMS_COMPOSITION_CONTRACT_2026-07-30.md](Docs/MELODIA_SYSTEMS_COMPOSITION_CONTRACT_2026-07-30.md) | The composition/adapter pattern. **ß2ñ3 historical; only ß5a is current.** |
 | [Docs/MELODIA_IDENTITY_AND_LOOP_2026-07-30.md](Docs/MELODIA_IDENTITY_AND_LOOP_2026-07-30.md) | What the game is, and the loop it is trying to close. |
-| [Docs/FOUNDATION_LOCKIN_PLAN_2026-07-30.md](Docs/FOUNDATION_LOCKIN_PLAN_2026-07-30.md) | Morning plan for the closeout. Several "blocked" rows are stale ‚Äî build gate has since closed. |
+| [Docs/FOUNDATION_LOCKIN_PLAN_2026-07-30.md](Docs/FOUNDATION_LOCKIN_PLAN_2026-07-30.md) | Morning plan for the closeout. Several "blocked" rows are stale ó build gate has since closed. |
 | [Docs/RHYTHM_COMBAT_SYSTEM_HANDOFF_2026-07-30.md](Docs/RHYTHM_COMBAT_SYSTEM_HANDOFF_2026-07-30.md) | Handoff for the quarantined rhythm-combat trio (Decision 011). |
-| [Docs/MELUSINA_HAIR_REEXPORT_CHECKLIST_2026-07-30.md](Docs/MELUSINA_HAIR_REEXPORT_CHECKLIST_2026-07-30.md) | Hair re-export procedure. Its "still broken, shared_bones=0" headline is superseded ‚Äî root cause was the ARP "Match to Rig" toggle. |
+| [Docs/MELUSINA_HAIR_REEXPORT_CHECKLIST_2026-07-30.md](Docs/MELUSINA_HAIR_REEXPORT_CHECKLIST_2026-07-30.md) | Hair re-export procedure. Its "still broken, shared_bones=0" headline is superseded ó root cause was the ARP "Match to Rig" toggle. |
 | [Docs/MELUSINA_BLENDER_AAA_PIPELINE_2026-07-30.md](Docs/MELUSINA_BLENDER_AAA_PIPELINE_2026-07-30.md) | Character pipeline reference. |
 
 ## Canonical Project Docs (environment-art / portfolio)
 
 | Doc | Status | Purpose |
 |---|---|---|
-| [Docs/QUEUE.md](Docs/QUEUE.md) | **Active** | Environment-art/portfolio tracker only as of 2026-07-30 ‚Äî gameplay tracking moved to the root docs above. |
+| [Docs/QUEUE.md](Docs/QUEUE.md) | **Active** | Environment-art/portfolio tracker only as of 2026-07-30 ó gameplay tracking moved to the root docs above. |
 | [Docs/PROJECT_STATUS_2026-07-25.md](Docs/PROJECT_STATUS_2026-07-25.md) | **Active** | Current cross-cutting status and decision record; supersedes stale sections of CURRENT_STATE.md. |
 | [Docs/MELODIA_UE58_INTEGRATION_ARCHITECTURE_2026-07-26.md](Docs/MELODIA_UE58_INTEGRATION_ARCHITECTURE_2026-07-26.md) | **Active** | Gameplay-authority decision: JRPG template is mechanical authority, QuillScript narrative-candidate, ACFU archived. |
 | [Docs/PCG_PORTFOLIO_HANDOFF_DEEPSEEK_2026-07-26.md](Docs/PCG_PORTFOLIO_HANDOFF_DEEPSEEK_2026-07-26.md) | **Active** | Handoff for DeepSeek: verify/finish 2-3 flagship PCG scenes (depth over breadth), fix stale `PCG_CATALOG.md` + RockScatter naming. |
@@ -96,12 +128,12 @@ mtime. `_ROADBLOCKS_2026-07-31.md` tracks the known cases.
 | [Docs/AI_AGENTS_MODELS_WORKFLOW_GUIDE_2026-07-26.md](Docs/AI_AGENTS_MODELS_WORKFLOW_GUIDE_2026-07-26.md) | Reference | Which AI models/agents fit which of this project's 4 workflow lanes, with July 2026 benchmarks. |
 | [Docs/AWS_AGENT_TOOLKIT_SETUP_2026-07-26.md](Docs/AWS_AGENT_TOOLKIT_SETUP_2026-07-26.md) | Reference | AWS CLI + Agent Toolkit setup record; flags the root-vs-IAM-user follow-up. |
 | [README.md](README.md) | Implemented | Project pitch and entry point. |
-| [CURRENT_STATE.md](CURRENT_STATE.md) | Partial ‚Äî see PROJECT_STATUS | Truth table for platform readiness; gameplay sections superseded by the two rows above. |
+| [CURRENT_STATE.md](CURRENT_STATE.md) | Partial ó see PROJECT_STATUS | Truth table for platform readiness; gameplay sections superseded by the two rows above. |
 | [MELIDIA_LONGTERM_HEALTH_SAFETY_PLAN.md](MELIDIA_LONGTERM_HEALTH_SAFETY_PLAN.md) | Implemented | Strategic roadmap for long-term health, safety, and sustainability. |
-| [UNIVERSAL_ENVIRONMENT_PIPELINE.md](UNIVERSAL_ENVIRONMENT_PIPELINE.md) | Implemented | Generic environment production flow. |
+| [UNIVERSAL_ENVIRONMENT_PIPELINE.md](Docs/_Superseded/UNIVERSAL_ENVIRONMENT_PIPELINE.md) | Implemented | Generic environment production flow. |
 | [MATERIAL_LOOKDEV_PIPELINE.md](MATERIAL_LOOKDEV_PIPELINE.md) | Implemented | Master-to-instance-to-preview workflow. |
-| [AGENT_OPERATING_MODEL.md](AGENT_OPERATING_MODEL.md) | Implemented | Recursive agent roles and safety lanes. |
-| [PORTFOLIO_READINESS.md](PORTFOLIO_READINESS.md) | Implemented | Portfolio infrastructure checklist. |
+| [AGENT_OPERATING_MODEL.md](Docs/_Superseded/AGENT_OPERATING_MODEL.md) | Implemented | Recursive agent roles and safety lanes. |
+| [PORTFOLIO_READINESS.md](Docs/_Superseded/PORTFOLIO_READINESS.md) | Implemented | Portfolio infrastructure checklist. |
 
 ## Architecture
 
@@ -111,8 +143,8 @@ mtime. `_ROADBLOCKS_2026-07-31.md` tracks the known cases.
 | [CURRENT_SYSTEM_MAP.md](CURRENT_SYSTEM_MAP.md) | Implemented | Reality audit of portfolio generation loop. |
 | [DATA_FLOW.md](DATA_FLOW.md) | Implemented | End-to-end data lifecycle. |
 | [DEPENDENCY_GRAPH.md](DEPENDENCY_GRAPH.md) | Implemented | Subsystem dependencies. |
-| [TASK_GRAPH.md](TASK_GRAPH.md) | Implemented | Production task dependency graph. |
-| [SYSTEM_EVOLUTION_MAP.md](SYSTEM_EVOLUTION_MAP.md) | Planned/v2 | Evolution from MVP package to v2 tokens. |
+| [TASK_GRAPH.md](Docs/_Superseded/TASK_GRAPH.md) | Implemented | Production task dependency graph. |
+| [SYSTEM_EVOLUTION_MAP.md](Docs/_Superseded/SYSTEM_EVOLUTION_MAP.md) | Planned/v2 | Evolution from MVP package to v2 tokens. |
 
 ## Materials And Look-Dev
 
@@ -132,20 +164,20 @@ mtime. `_ROADBLOCKS_2026-07-31.md` tracks the known cases.
 | [PORTFOLIO_PIPELINE.md](PORTFOLIO_PIPELINE.md) | Partial | Aspirational + implemented capture/package design. |
 | [PORTFOLIO_PIPELINE_AUDIT.md](PORTFOLIO_PIPELINE_AUDIT.md) | Implemented | Audit of Unreal to package to Figma loop. |
 | [Docs/PORTFOLIO_ORCHESTRATOR_PLAN.md](Docs/PORTFOLIO_ORCHESTRATOR_PLAN.md) | Partial | Rotating environment specialist loop. |
-| [../Docs/DESIGN_SYSTEM.md](../Docs/DESIGN_SYSTEM.md) | Implemented | Design-system source of truth. |
-| [../Docs/FIGMA_IMPLEMENTATION_GUIDE.md](../Docs/FIGMA_IMPLEMENTATION_GUIDE.md) | Implemented | Figma implementation guide. |
+| [../Docs/DESIGN_SYSTEM.md](Docs/DESIGN_SYSTEM.md) | Implemented | Design-system source of truth. |
+| [../Docs/FIGMA_IMPLEMENTATION_GUIDE.md](Docs/FIGMA_IMPLEMENTATION_GUIDE.md) | Implemented | Figma implementation guide. |
 | [_github_deploy/README.md](_github_deploy/README.md) | Implemented | Wix/GitHub deployment baseline. |
 
 ## Agents And Automation (Historical as of Decision 002, 2026-07-26)
 
-Per `_DECISION_LOG.md` Decision 002: no agent ownership boundaries, no interface contracts ‚Äî direct access to everything. These docs are read for tool-capability context only, not followed as process. Current lane allocation (informal, file-claim based) is in `Docs/2026-07-29_PROJECT_HANDOFF.md`'s "Multi-agent parallel work allocation" section instead.
+Per `_DECISION_LOG.md` Decision 002: no agent ownership boundaries, no interface contracts ó direct access to everything. These docs are read for tool-capability context only, not followed as process. Current lane allocation (informal, file-claim based) is in `Docs/2026-07-29_PROJECT_HANDOFF.md`'s "Multi-agent parallel work allocation" section instead.
 
 | Doc | Status | Notes |
 |---|---|---|
-| [AGENTS.md](AGENTS.md) | Historical | Multi-agent production framework ‚Äî superseded process, kept for tool-capability reference. |
-| [AGENT_BOUNDARIES.md](AGENT_BOUNDARIES.md) | Historical | Write boundaries and conflict prevention ‚Äî no longer enforced. |
-| [AGENT_OWNERSHIP.md](AGENT_OWNERSHIP.md) | Historical | Ownership and handshakes ‚Äî no longer enforced. |
-| [AUTOMATION_OPPORTUNITIES.md](AUTOMATION_OPPORTUNITIES.md) | Partial | Automation gap list. |
+| [AGENTS.md](AGENTS.md) | Historical | Multi-agent production framework ó superseded process, kept for tool-capability reference. |
+| [AGENT_BOUNDARIES.md](Docs/_Superseded/AGENT_BOUNDARIES.md) | Historical | Write boundaries and conflict prevention ó no longer enforced. |
+| [AGENT_OWNERSHIP.md](Docs/_Superseded/AGENT_OWNERSHIP.md) | Historical | Ownership and handshakes ó no longer enforced. |
+| [AUTOMATION_OPPORTUNITIES.md](Docs/_Superseded/AUTOMATION_OPPORTUNITIES.md) | Partial | Automation gap list. |
 
 ## Reports And Reviews
 
@@ -153,17 +185,17 @@ Per `_DECISION_LOG.md` Decision 002: no agent ownership boundaries, no interface
 |---|---|---|
 | [ART_DIRECTOR_REVIEW.md](ART_DIRECTOR_REVIEW.md) | Report | Hiring-manager review. Sakura art pass remains human-owned. |
 | [PCG_REFINEMENT_REPORT.md](PCG_REFINEMENT_REPORT.md) | Report | PCG refinement cycle summary. |
-| [NEXT_HIGHEST_LEVERAGE_TASK.md](NEXT_HIGHEST_LEVERAGE_TASK.md) | Report | Previous capture-spine priority. |
+| [NEXT_HIGHEST_LEVERAGE_TASK.md](Docs/_Superseded/NEXT_HIGHEST_LEVERAGE_TASK.md) | Report | Previous capture-spine priority. |
 | [deploy/SURREAL_ARCH_LOOP_STATE.md](deploy/SURREAL_ARCH_LOOP_STATE.md) | Report | Long-running architecture loop state. |
 
 ## Archive (2026-07-26)
 
-Explicitly named as reference/superseded in `Docs/MELODIA_UE58_INTEGRATION_ARCHITECTURE_2026-07-26.md` ‚Äî moved, not deleted:
+Explicitly named as reference/superseded in `Docs/MELODIA_UE58_INTEGRATION_ARCHITECTURE_2026-07-26.md` ó moved, not deleted:
 
-- `Docs/_Reference/` ‚Äî `MELODIA_ACFU_QUILLSCRIPT_COMPATIBILITY_MATRIX_2026-07-25.md`, `MELODIA_GAME_SYSTEMS_DEEP_REVIEW_2026-07-14.md`, `BP_INTEGRATION_REVIEW_2026-07-18.md`
-- `Docs/_Superseded/` ‚Äî `MELODIA_ROGUELIKE_GAMELOOP_COMPLETION_PLAN_2026-07-14.md`
+- `Docs/_Reference/` ó `MELODIA_ACFU_QUILLSCRIPT_COMPATIBILITY_MATRIX_2026-07-25.md`, `MELODIA_GAME_SYSTEMS_DEEP_REVIEW_2026-07-14.md`, `BP_INTEGRATION_REVIEW_2026-07-18.md`
+- `Docs/_Superseded/` ó `MELODIA_ROGUELIKE_GAMELOOP_COMPLETION_PLAN_2026-07-14.md`
 
-Not yet archived (named only vaguely as "MelodiaCore rhythm/presentation implementation documents" ‚Äî needs Sol/user confirmation on exact files before moving, to avoid archiving something still actively referenced).
+Not yet archived (named only vaguely as "MelodiaCore rhythm/presentation implementation documents" ó needs Sol/user confirmation on exact files before moving, to avoid archiving something still actively referenced).
 
 ## Reclassification Targets
 

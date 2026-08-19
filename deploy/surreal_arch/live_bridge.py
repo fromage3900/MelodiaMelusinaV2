@@ -1,11 +1,10 @@
-﻿"""Live Bridge Dashboard ΓÇö unified BlenderΓåöUnreal communication scaffold.
+"""Live Bridge dashboard — Blender to Unreal status under Melodia Studio.
 
-Surfaces all four bridge pathways in one panel under Melodia Studio:
-  Port 9876 ΓÇö LiveLink TCP (FBX + textures + animation streaming)
-  Port 9317 ΓÇö Blender MCP HTTP (genome/agent control)  
-  Port 9316 ΓÇö UE Monolith MCP (Python execution in Unreal)
-
-Wraps the existing livelink_bridge.py, blender_mcp.py, and monolith_mcp_client.py.
+Ports (do not mix these up):
+  9876 LiveLink TCP — Melodia Studio → Live Bridge → Start Server (UE /Game/LiveLink/)
+  9876 BlenderMCP TCP — N-panel BlenderMCP → Connect (agent control). Same port as LiveLink; do not run both.
+  9316 Unreal Python Monolith
+  9317 / 9877 — retired adapters; do not use
 """
 
 from __future__ import annotations
@@ -109,12 +108,27 @@ def _get_livelink_status() -> dict:
 
 
 def _get_blender_mcp_status() -> dict:
-    """Check if Blender MCP (port 9317) is running."""
-    ok, detail = _ping_port("127.0.0.1", 9317, timeout=1.0)
-    if ok:
-        ok2, resp = _ping_http("http://127.0.0.1:9317/api/ping", timeout=1.5)
-        return {"running": ok2, "detail": resp if ok2 else detail, "port": 9317}
-    return {"running": False, "detail": detail, "port": 9317}
+    """Agent MCP is BlenderMCP TCP 9876. Legacy HTTP 9317 is retired."""
+    ok_tcp, detail_tcp = _ping_port("127.0.0.1", 9876, timeout=1.0)
+    if ok_tcp:
+        return {
+            "running": True,
+            "detail": "TCP :9876 listening (BlenderMCP Connect or LiveLink — they share this port)",
+            "port": 9876,
+        }
+    ok_legacy, detail_legacy = _ping_port("127.0.0.1", 9317, timeout=0.4)
+    if ok_legacy:
+        ok2, resp = _ping_http("http://127.0.0.1:9317/api/ping", timeout=1.0)
+        return {
+            "running": ok2,
+            "detail": f"legacy :9317 (retired) {resp if ok2 else detail_legacy}",
+            "port": 9317,
+        }
+    return {
+        "running": False,
+        "detail": "N → BlenderMCP → Connect is off; :9876 closed",
+        "port": 9876,
+    }
 
 
 def _get_ue_mcp_status() -> dict:
@@ -417,13 +431,13 @@ class BRIB_PT_bridge_dashboard(Panel):
             row.label(text="", icon="CHECKBOX_DEHLT")
             row.label(text="LiveLink")
 
-        # Blender MCP 9317
+        # Agent MCP 9876 (N-panel Connect). LiveLink Start Server also binds 9876.
         if bm.get("running"):
             row.label(text="", icon="CHECKBOX_HLT")
-            row.label(text="BL MCP")
+            row.label(text="Agent MCP")
         else:
             row.label(text="", icon="CHECKBOX_DEHLT")
-            row.label(text="BL MCP")
+            row.label(text="Agent MCP")
 
         # UE MCP 9316
         if um.get("running"):
@@ -434,7 +448,7 @@ class BRIB_PT_bridge_dashboard(Panel):
             row.label(text="UE MCP")
 
     def _draw_livelink_section(self, layout, context, settings):
-        """LiveLink (port 9876) ΓÇö FBX/texture/animation streaming."""
+        """LiveLink TCP :9876 — Blender → UE /Game/LiveLink/ only. Not agent MCP."""
         ll = context.scene.get("_brib_livelink", {})
 
         box = layout.box()
@@ -473,7 +487,7 @@ class BRIB_PT_bridge_dashboard(Panel):
                 row.prop(settings, "sync_interval")
 
     def _draw_mcp_section(self, layout, context, settings):
-        """MCP servers ΓÇö Blender (9317) and Unreal (9316)."""
+        """Agent MCP is N-panel BlenderMCP Connect on 9876. Legacy 9317 is retired."""
         bm = context.scene.get("_brib_blender_mcp", {})
         um = context.scene.get("_brib_ue_mcp", {})
 
@@ -482,30 +496,31 @@ class BRIB_PT_bridge_dashboard(Panel):
         row.prop(settings, "expand_mcp", text="",
                  icon="DOWNARROW_HLT" if settings.expand_mcp else "RIGHTARROW",
                  emboss=False)
-        row.label(text="MCP Servers", icon="TOOL_SETTINGS")
+        row.label(text="MCP", icon="TOOL_SETTINGS")
 
         if settings.expand_mcp:
             col = box.column(align=True)
-            # Blender MCP 9317
             sub = col.box()
             sr = sub.row(align=True)
+            port = bm.get("port", 9876)
             if bm.get("running"):
-                sr.label(text="Blender MCP  :9317", icon="CHECKBOX_HLT")
+                sr.label(text=f"Agent MCP  :{port}", icon="CHECKBOX_HLT")
             else:
-                sr.label(text="Blender MCP  :9317", icon="CHECKBOX_DEHLT")
+                sr.label(text="Agent MCP  :9876", icon="CHECKBOX_DEHLT")
+            sub.label(text="N → BlenderMCP → Connect. Not Live Bridge Start Server.")
             if bm.get("detail"):
                 sub.label(text=f"  {bm['detail'][:80]}", icon="DOT")
 
-            # UE MCP 9316
             sub = col.box()
             sr = sub.row(align=True)
             if um.get("running"):
-                sr.label(text="Unreal MCP   :9316", icon="CHECKBOX_HLT")
+                sr.label(text="Unreal Python  :9316", icon="CHECKBOX_HLT")
             else:
-                sr.label(text="Unreal MCP   :9316", icon="CHECKBOX_DEHLT")
+                sr.label(text="Unreal Python  :9316", icon="CHECKBOX_DEHLT")
             if um.get("detail"):
                 sub.label(text=f"  {um['detail'][:80]}", icon="DOT")
             sr.operator("brib.ue_ping", text="", icon="FILE_REFRESH")
+            col.label(text="Legacy :9317 / :9877 — do not use.")
 
     def _draw_actions(self, layout, context, settings):
         """Quick-send and utility buttons."""

@@ -42,7 +42,7 @@ rules generator (recovered), and the Blueprint-verification gap (Decisions 024/0
 
 **2026-08-05 update:** Git recovery completed; checkpoint commit `6154cc1e` captures the full live
 working tree on recovered history. Local `main` is healthy and diverged from `origin/main`; push is
-currently blocked by network connectivity to `github.com:443`. Collaborator environment design is
+intermittent, not blocked — see the note below. Collaborator environment design is
 in progress: tiered onboarding scripts and validation added under `deploy/`.
 
 **In progress as of 2026-07-31 (session 3):** UEBlueprintMCP installed and registered, disabled by

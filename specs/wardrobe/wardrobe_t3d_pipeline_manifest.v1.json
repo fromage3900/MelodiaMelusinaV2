@@ -1,0 +1,26 @@
+{
+  "schema": "melodia.wardrobe_t3d_pipeline_manifest.v1",
+  "mutation_schema": "melodia.t3d_mutation_request.v1",
+  "operations": [
+    "validate_wardrobe_nodes",
+    "inject_wardrobe_node",
+    "validate_wardrobe_catalog",
+    "wire_wardrobe_battle_gate"
+  ],
+  "transport": {
+    "livelink_adapter": {"host": "127.0.0.1", "port": 9876, "protocol": "tcp"},
+    "osc_in": {"host": "127.0.0.1", "port": 8000, "protocol": "udp"},
+    "osc_out": {"host": "127.0.0.1", "port": 9000, "protocol": "udp"},
+    "monolith": {"host": "127.0.0.1", "port": 9316, "protocol": "tcp"}
+  },
+  "safety": {
+    "dry_run_default": true,
+    "writes_require_go": true,
+    "writes_require_expected_before_fingerprint": true,
+    "compile_zero_errors": true,
+    "assert_graph_match": true,
+    "battle_gate_default": false,
+    "unavailable_bridge_action": "fail_closed"
+  },
+  "evidence_root": "Saved/T3D"
+}

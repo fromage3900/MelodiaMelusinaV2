@@ -13,6 +13,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Allowlist")
 	TSet<FName> EncounterIds;
 
+	/** World-challenge identities accepted by the canonical completion adapter. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Allowlist")
+	TSet<FName> WorldChallengeIds;
+
+	/** Generic StateAnchor identities accepted by the canonical apply adapter. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Allowlist")
+	TSet<FName> StateAnchorIds;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Allowlist")
 	TSet<FName> QuestIds;
 

@@ -247,6 +247,253 @@ bool UMelodiaNarrativeSubsystem::GrantDialogueReward(const FName RewardId)
 	return true;
 }
 
+bool UMelodiaNarrativeSubsystem::IsWorldChallengeCompleted(
+	const FName ChallengeId,
+	const FName CompletionFlagId) const
+{
+	return !ChallengeId.IsNone()
+		&& !CompletionFlagId.IsNone()
+		&& Config
+		&& Config->WorldChallengeIds.Contains(ChallengeId)
+		&& Config->NarrativeFlagIds.Contains(CompletionFlagId)
+		&& NarrativeRecord.Flags.FindRef(CompletionFlagId);
+}
+
+EMelodiaContentCommitResult UMelodiaNarrativeSubsystem::CommitWorldChallenge(
+	const FName ChallengeId,
+	const FName CompletionFlagId,
+	const FName RewardId,
+	const FName CompletionIntentId,
+	EMelodiaContentCommitFailure& OutFailure)
+{
+	OutFailure = EMelodiaContentCommitFailure::None;
+	const FString Intent = FString::Printf(TEXT("CommitWorldChallenge(%s)"), *ChallengeId.ToString());
+
+	auto RejectContent = [this, &OutFailure, &Intent](
+		const EMelodiaContentCommitFailure Failure,
+		const EMelodiaIntentFailure IntentFailure,
+		const EMelodiaContentCommitResult Result = EMelodiaContentCommitResult::Rejected)
+	{
+		OutFailure = Failure;
+		Reject(Intent, IntentFailure);
+		return Result;
+	};
+
+	if (ChallengeId.IsNone() || CompletionFlagId.IsNone()
+		|| RewardId.IsNone() || CompletionIntentId.IsNone())
+	{
+		return RejectContent(EMelodiaContentCommitFailure::InvalidId, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+	if (!Config)
+	{
+		return RejectContent(EMelodiaContentCommitFailure::AuthorityUnavailable, EMelodiaIntentFailure::MissingRuntime);
+	}
+	if (!Config->WorldChallengeIds.Contains(ChallengeId))
+	{
+		return RejectContent(EMelodiaContentCommitFailure::UnknownChallenge, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+	if (!Config->NarrativeFlagIds.Contains(CompletionFlagId))
+	{
+		return RejectContent(EMelodiaContentCommitFailure::UnknownFlag, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+	if (!Config->DialogueRewardIds.Contains(RewardId))
+	{
+		return RejectContent(EMelodiaContentCommitFailure::UnknownReward, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+
+	const bool bIntentConsumed = NarrativeRecord.ConsumedIntentIds.Contains(CompletionIntentId);
+	const bool bCompletionSet = NarrativeRecord.Flags.FindRef(CompletionFlagId);
+	const bool bRewardConsumed = NarrativeRecord.ConsumedRewardIds.Contains(RewardId);
+	if (bIntentConsumed)
+	{
+		if (bCompletionSet && bRewardConsumed)
+		{
+			return EMelodiaContentCommitResult::AlreadyApplied;
+		}
+		return RejectContent(
+			EMelodiaContentCommitFailure::InconsistentState,
+			EMelodiaIntentFailure::IncompatibleSave,
+			EMelodiaContentCommitResult::InconsistentState);
+	}
+	if (bRewardConsumed)
+	{
+		return RejectContent(
+			EMelodiaContentCommitFailure::RewardAlreadyConsumed,
+			EMelodiaIntentFailure::Duplicate,
+			EMelodiaContentCommitResult::InconsistentState);
+	}
+	if (bCompletionSet)
+	{
+		return RejectContent(
+			EMelodiaContentCommitFailure::CompletionAlreadySet,
+			EMelodiaIntentFailure::Duplicate,
+			EMelodiaContentCommitResult::InconsistentState);
+	}
+
+	// All validation is complete before the first canonical field is changed.
+	// Broadcasts happen only after the three record mutations are committed.
+	NarrativeRecord.Flags.Add(CompletionFlagId, true);
+	NarrativeRecord.ConsumedIntentIds.Add(CompletionIntentId);
+	NarrativeRecord.ConsumedRewardIds.Add(RewardId);
+	if (UQuillscriptSubsystem* Quill = GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>())
+	{
+		Quill->GetVariables().Add(CompletionFlagId, FText::FromString(TEXT("on")));
+	}
+	OnFlagChanged.Broadcast(CompletionFlagId, true);
+	OnRewardRequested.Broadcast(RewardId);
+	UE_LOG(LogTemp, Log, TEXT("Melodia world challenge committed: challenge=%s flag=%s reward=%s intent=%s"),
+		*ChallengeId.ToString(), *CompletionFlagId.ToString(), *RewardId.ToString(), *CompletionIntentId.ToString());
+	return EMelodiaContentCommitResult::Applied;
+}
+
+bool UMelodiaNarrativeSubsystem::IsStateAnchorApplied(
+	const FName AnchorId,
+	const FName PersistenceKey,
+	const FName ApplyIntentId) const
+{
+	return !AnchorId.IsNone()
+		&& !PersistenceKey.IsNone()
+		&& !ApplyIntentId.IsNone()
+		&& Config
+		&& Config->StateAnchorIds.Contains(AnchorId)
+		&& NarrativeRecord.ConsumedIntentIds.Contains(ApplyIntentId);
+}
+
+EMelodiaContentCommitResult UMelodiaNarrativeSubsystem::ApplyStateAnchor(
+	const FName AnchorId,
+	const FName PersistenceKey,
+	const TArray<FMelodiaStateAnchorOperation>& Operations,
+	const FName ApplyIntentId,
+	EMelodiaContentCommitFailure& OutFailure)
+{
+	OutFailure = EMelodiaContentCommitFailure::None;
+	const FString Intent = FString::Printf(TEXT("ApplyStateAnchor(%s,%s)"),
+		*AnchorId.ToString(), *PersistenceKey.ToString());
+
+	auto RejectContent = [this, &OutFailure, &Intent](
+		const EMelodiaContentCommitFailure Failure,
+		const EMelodiaIntentFailure IntentFailure,
+		const EMelodiaContentCommitResult Result = EMelodiaContentCommitResult::Rejected)
+	{
+		OutFailure = Failure;
+		Reject(Intent, IntentFailure);
+		return Result;
+	};
+
+	if (AnchorId.IsNone() || PersistenceKey.IsNone() || ApplyIntentId.IsNone() || Operations.IsEmpty())
+	{
+		return RejectContent(EMelodiaContentCommitFailure::InvalidId, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+	if (!Config)
+	{
+		return RejectContent(EMelodiaContentCommitFailure::AuthorityUnavailable, EMelodiaIntentFailure::MissingRuntime);
+	}
+	if (!Config->StateAnchorIds.Contains(AnchorId))
+	{
+		return RejectContent(EMelodiaContentCommitFailure::UnknownAnchor, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+
+	TSet<FName> SeenTargets;
+	bool bAnyPositiveOperationAlreadyApplied = false;
+	bool bAllOperationsMatchForReplay = true;
+	for (const FMelodiaStateAnchorOperation& Operation : Operations)
+	{
+		if (Operation.TargetId.IsNone() || SeenTargets.Contains(Operation.TargetId))
+		{
+			return RejectContent(EMelodiaContentCommitFailure::InvalidId, EMelodiaIntentFailure::UnknownIdentifier);
+		}
+		SeenTargets.Add(Operation.TargetId);
+
+		bool bCurrentValue = false;
+		switch (Operation.Type)
+		{
+		case EMelodiaStateAnchorOperationType::SetNarrativeFlag:
+			if (!Config->NarrativeFlagIds.Contains(Operation.TargetId))
+			{
+				return RejectContent(EMelodiaContentCommitFailure::UnknownFlag, EMelodiaIntentFailure::UnknownIdentifier);
+			}
+			bCurrentValue = NarrativeRecord.Flags.FindRef(Operation.TargetId);
+			break;
+		case EMelodiaStateAnchorOperationType::SetQuestActive:
+			if (!Config->QuestIds.Contains(Operation.TargetId))
+			{
+				return RejectContent(EMelodiaContentCommitFailure::UnknownQuest, EMelodiaIntentFailure::UnknownIdentifier);
+			}
+			bCurrentValue = NarrativeRecord.ActiveQuestIds.Contains(Operation.TargetId);
+			break;
+		default:
+			return RejectContent(EMelodiaContentCommitFailure::UnsupportedOperation, EMelodiaIntentFailure::UnknownIntent);
+		}
+		// A false operation is a valid no-op against a default/absent field, so it
+		// cannot prove that a prior anchor applied it. True operations can prove
+		// partial application and are therefore used for the fail-closed check.
+		const bool bOperationMatchesForReplay = !Operation.bValue || bCurrentValue;
+		bAllOperationsMatchForReplay &= bOperationMatchesForReplay;
+		bAnyPositiveOperationAlreadyApplied |= Operation.bValue && bCurrentValue;
+	}
+
+	const bool bIntentConsumed = NarrativeRecord.ConsumedIntentIds.Contains(ApplyIntentId);
+	if (bIntentConsumed)
+	{
+		if (bAllOperationsMatchForReplay)
+		{
+			return EMelodiaContentCommitResult::AlreadyApplied;
+		}
+		return RejectContent(
+			EMelodiaContentCommitFailure::InconsistentState,
+			EMelodiaIntentFailure::IncompatibleSave,
+			EMelodiaContentCommitResult::InconsistentState);
+	}
+	if (bAnyPositiveOperationAlreadyApplied)
+	{
+		return RejectContent(
+			EMelodiaContentCommitFailure::InconsistentState,
+			EMelodiaIntentFailure::IncompatibleSave,
+			EMelodiaContentCommitResult::InconsistentState);
+	}
+
+	// The complete operation list has been validated before this transaction
+	// mutates the canonical record. The intent journal is the idempotency key.
+	for (const FMelodiaStateAnchorOperation& Operation : Operations)
+	{
+		switch (Operation.Type)
+		{
+		case EMelodiaStateAnchorOperationType::SetNarrativeFlag:
+			NarrativeRecord.Flags.Add(Operation.TargetId, Operation.bValue);
+			break;
+		case EMelodiaStateAnchorOperationType::SetQuestActive:
+			if (Operation.bValue)
+			{
+				NarrativeRecord.ActiveQuestIds.AddUnique(Operation.TargetId);
+			}
+			else
+			{
+				NarrativeRecord.ActiveQuestIds.Remove(Operation.TargetId);
+			}
+			break;
+		default:
+			// Exhaustively validated above; keep the switch defensive if the enum grows.
+			return RejectContent(EMelodiaContentCommitFailure::UnsupportedOperation, EMelodiaIntentFailure::UnknownIntent);
+		}
+	}
+	NarrativeRecord.ConsumedIntentIds.Add(ApplyIntentId);
+	for (const FMelodiaStateAnchorOperation& Operation : Operations)
+	{
+		if (Operation.Type == EMelodiaStateAnchorOperationType::SetNarrativeFlag)
+		{
+			if (UQuillscriptSubsystem* Quill = GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>())
+			{
+				Quill->GetVariables().Add(Operation.TargetId,
+					FText::FromString(Operation.bValue ? TEXT("on") : TEXT("off")));
+			}
+			OnFlagChanged.Broadcast(Operation.TargetId, Operation.bValue);
+		}
+	}
+	UE_LOG(LogTemp, Log, TEXT("Melodia state anchor committed: anchor=%s key=%s intent=%s operations=%d"),
+		*AnchorId.ToString(), *PersistenceKey.ToString(), *ApplyIntentId.ToString(), Operations.Num());
+	return EMelodiaContentCommitResult::Applied;
+}
+
 bool UMelodiaNarrativeSubsystem::GrantDialogueSocialStat(const FName IntentId, const FName StatId, const int32 Delta)
 {
 	const FString Intent = FString::Printf(TEXT("GrantDialogueSocialStat(%s,%s,%d)"),

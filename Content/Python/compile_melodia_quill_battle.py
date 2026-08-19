@@ -7,6 +7,7 @@ SOURCE_PATH = Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.proje
 EXPECTED_NOTIFICATIONS = (
     "$ Notify melodia:battle:melodia_smoke_encounter",
     "$ Notify melodia:flag:melodia_smoke_complete:true",
+    "$ Notify melodia:quest:melodia_q_echo_01",
     "$ Notify melodia:reward:melodia_smoke_reward",
 )
 EXPECTED_POST_BATTLE_LINES = (
@@ -43,6 +44,11 @@ if source.count("{melodia_battle_result} == fled") != 1:
     raise RuntimeError("Expected exactly one Fled result branch")
 if source.count("The battle could not begin") != 1:
     raise RuntimeError("Expected exactly one fail-closed unavailable battle acknowledgement")
+victory_start = source.index("? if: {melodia_battle_result} == victory")
+victory_end = source.index("? else:", victory_start)
+quest_notification = source.index("$ Notify melodia:quest:melodia_q_echo_01")
+if not victory_start < quest_notification < victory_end:
+    raise RuntimeError("Quest 1 completion must be authored only in the Victory branch")
 for variable in EXPECTED_PERSISTENT_VARIABLES:
     if variable not in source:
         raise RuntimeError(f"Expected persistent Melodia variable '{variable}'")

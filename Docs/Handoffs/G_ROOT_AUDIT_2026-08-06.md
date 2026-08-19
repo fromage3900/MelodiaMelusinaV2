@@ -5,9 +5,9 @@ Summary
 - Findings: many hardcoded references exist across deployment scripts, tools, and generated logs; grep found 1,000+ matches in ~13 files (notably large manifest files and tool scripts).
 
 Top affected files / folders (representative)
-- `.clean_repo/import.fi` — many `py "G:/EnvironmentPortfolio/..."` entries (huge file; contains pipeline invocations)
+- `.clean_repo/import.fi` — many `py "C:/EnvironmentPortfolio/..."` entries (huge file; contains pipeline invocations)
 - `robocopy_BS_GodFile.log` — copy log showing G: tree
-- `deploy/mcp_git.py` — hardcoded `PROJECT_ROOT = "G:/EnvironmentPortfolio/BS_GodFile"`
+- `deploy/mcp_git.py` — hardcoded `PROJECT_ROOT = "C:/EnvironmentPortfolio/BS_GodFile"`
 - `BS_GodFile/.rider/mcp.json`, `.cursor/mcp.json`, `.idea/mcp.json` — editor MCP configs referencing G:\ paths
 - `deploy/agent_bridge_mcp.py`, `deploy/blender_mcp_adapter.py`, `deploy/hermes_mcp.py` — deployment adapters referencing G:\ or expecting G: layout
 - `tools/*.ps1` — many PowerShell publishing/build scripts with `ProjectRoot = "C:\EnvironmentPortfolio\BS_GodFile"`
@@ -30,7 +30,7 @@ PowerShell (run from `C:\EnvironmentPortfolio`):
 
 ```powershell
 # Find files with G:\ references
-Get-ChildItem -Recurse -File | Select-String -Pattern "G:\\EnvironmentPortfolio|G:/EnvironmentPortfolio" | Select-Object Path, LineNumber, Line | Out-File G_root_matches.txt -Encoding utf8
+Get-ChildItem -Recurse -File | Select-String -Pattern "G:\\EnvironmentPortfolio|C:/EnvironmentPortfolio" | Select-Object Path, LineNumber, Line | Out-File G_root_matches.txt -Encoding utf8
 # Count matches
 Get-Content G_root_matches.txt | Measure-Object -Line
 ```

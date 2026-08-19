@@ -1,4 +1,4 @@
-# Coordinator bootstrap — MelodiaMelusina jcode swarm
+# Coordinator bootstrap — MelodiaMelusinaV2 jcode swarm
 
 Paste this into the **root** jcode session after `.\deploy\start_jcode_swarm.ps1`.
 

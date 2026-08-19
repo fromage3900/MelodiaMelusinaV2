@@ -11,6 +11,7 @@ NODE_REMAP_52 = {
     "GeometryNodeCube": "GeometryNodeMeshCube",
     "GeometryNodeUVSphere": "GeometryNodeMeshUVSphere",
     "GeometryNodeBevelMesh": "GeometryNodeMeshBevel",
+    "GeometryNodeBevel": "GeometryNodeMeshBevel",
     "GeometryNodeMeshToDualMesh": "GeometryNodeDualMesh",
     "GeometryNodeSeparateXYZ": "ShaderNodeSeparateXYZ",
     "GeometryNodeCombineXYZ": "ShaderNodeCombineXYZ",
@@ -104,6 +105,77 @@ def safe_node(tree, bl_idname, loc, fallback_callable=None):
                     bl_idname, fb_exc,
                 )
         return None
+
+
+def require_node(tree, bl_idname, loc, *aliases):
+    """Create a node or raise. Missing SKU nodes must not silently passthrough."""
+    tried = (bl_idname,) + tuple(aliases)
+    for name in tried:
+        node = safe_node(tree, name, loc)
+        if node is not None:
+            return node
+    raise RuntimeError(
+        "GN node unavailable in %s: tried %s"
+        % (getattr(tree, "name", "?"), tried)
+    )
+
+
+def _geometry_inputs(node):
+    sockets = []
+    for s in getattr(node, "inputs", []):
+        stype = str(getattr(s, "type", "") or "")
+        if "GEOMETRY" in stype.upper() or getattr(s, "name", "") in (
+            "Mesh", "Mesh 1", "Mesh 2", "Geometry",
+        ):
+            sockets.append(s)
+    return sockets
+
+
+def mesh_boolean_node(tree, loc, operation, mesh_a, mesh_b):
+    """Mesh Boolean with Blender 5.2 socket names.
+
+    DIFFERENCE: mesh_a minus mesh_b (Mesh 1 - Mesh 2).
+    UNION: mesh_a union mesh_b.
+    Returns (node, mesh_output_socket).
+    """
+    node = require_node(tree, "GeometryNodeMeshBoolean", loc)
+    try:
+        node.operation = operation
+    except Exception:
+        op_in = sock(node, "Operation")
+        if op_in is not None:
+            try:
+                op_in.default_value = operation
+            except Exception:
+                pass
+    try:
+        node.solver = "EXACT"
+    except Exception:
+        pass
+    a_in = sock(node, "Mesh 1", "Mesh", "Geometry")
+    b_in = None
+    try:
+        b_in = node.inputs.get("Mesh 2")
+    except Exception:
+        b_in = None
+    geos = _geometry_inputs(node)
+    if b_in is None:
+        if a_in is not None:
+            b_in = next((s for s in geos if s != a_in), None)
+        if b_in is None and len(geos) >= 2:
+            a_in, b_in = geos[0], geos[1]
+        elif b_in is None and len(geos) == 1:
+            a_in = b_in = geos[0]
+    if a_in is None:
+        a_in = node.inputs[0]
+    if b_in is None:
+        b_in = node.inputs[1] if len(node.inputs) > 1 else a_in
+    link_sockets(tree, mesh_a, a_in)
+    link_sockets(tree, mesh_b, b_in)
+    out = sock(node, "Mesh", "Geometry", outputs=True)
+    if out is None:
+        out = node.outputs[0]
+    return node, out
 
 
 def link_sockets(tree, from_socket, to_socket):
@@ -237,7 +309,7 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "ui_label": "Gazebo",
         "mel_tree": "MEL_gazebo",
         "category": "Structures",
-        "panel_hint": "Radial pavilion with columns, roof, and finial.",
+        "panel_hint": "Radial pavilion with columns, engawa deck, roof, and finial.",
     },
     "PORTICO": {
         "ui_label": "Portico",
@@ -273,7 +345,31 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "ui_label": "Sheet Music Rail",
         "mel_tree": "MEL_music_sheet_rail",
         "category": "Musical Notation",
-        "panel_hint": "Railing composed from staff lines, notes, and posts.",
+        "panel_hint": "Walkable staff railing: posts, five swept lines, notes at pitch-height.",
+    },
+    "MUSIC_KEY_UNIT": {
+        "ui_label": "Music Key Unit",
+        "mel_tree": "MEL_music_key_unit",
+        "category": "Musical Notation",
+        "panel_hint": "Life-size piano key: box plus front lip, accidental switch, pitch.",
+    },
+    "MUSIC_PIANO_ROLL": {
+        "ui_label": "Music Piano Roll",
+        "mel_tree": "MEL_music_piano_roll",
+        "category": "Musical Notation",
+        "panel_hint": "Instance keys on a spline. Profile 0–3: PIANO / XYLO / MARIMBA / GLOCK.",
+    },
+    "MUSIC_HARP": {
+        "ui_label": "Music Harp",
+        "mel_tree": "MEL_music_harp",
+        "category": "Musical Notation",
+        "panel_hint": "Pedal harp: pillar, neck curve, strings on spline, soundboard, pitch index.",
+    },
+    "MUSIC_ROOM_SHELL": {
+        "ui_label": "Music Room Shell",
+        "mel_tree": "MEL_music_room_shell",
+        "category": "Structures",
+        "panel_hint": "Greybox hollow room with openings and optional dado staff band.",
     },
     "MELODIA_NOTE_HEAD": {
         "ui_label": "Note Head",
@@ -369,7 +465,7 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "ui_label": "Castle Gothic Window",
         "mel_tree": "MEL_castle_gothic_window",
         "category": "Castle Kit",
-        "panel_hint": "Pointed arch window and tracery group.",
+        "panel_hint": "Pointed portal/bay window with tracery (gothic_kit language).",
     },
     "CASTLE_BUTTRESS": {
         "ui_label": "Castle Buttress",
@@ -399,7 +495,13 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "ui_label": "Castle Full Assembler",
         "mel_tree": "MEL_castle_assembler",
         "category": "Castle Kit",
-        "panel_hint": "Full castle composition group.",
+        "panel_hint": "Full castle composition with default keep/towers/walls seed.",
+    },
+    "STEPPED_PYRAMID": {
+        "ui_label": "Stepped Pyramid",
+        "mel_tree": "MEL_stepped_pyramid",
+        "category": "Primitives",
+        "panel_hint": "Stacked shrinking terraces with wired XY size.",
     },
     "CASTLE_DRAWBRIDGE": {
         "ui_label": "Castle Drawbridge",
@@ -482,6 +584,90 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "mel_tree": "MEL_filigree_spiral",
         "category": "Filigree and Crests",
         "panel_hint": "Art Nouveau logarithmic filigree scroll with tapered profile.",
+    },
+    "FILIGREE_CORNER_VOLUTE": {
+        "ui_label": "Filigree Corner Volute",
+        "mel_tree": "MEL_filigree_corner_volute",
+        "category": "Filigree and Crests",
+        "panel_hint": "Corner volute scroll with tapered profile and finial.",
+    },
+    "FILIGREE_FINIAL_CROSS": {
+        "ui_label": "Filigree Finial Cross",
+        "mel_tree": "MEL_filigree_finial_cross",
+        "category": "Filigree and Crests",
+        "panel_hint": "Bar-and-ball finial cross for spire and crest tips.",
+    },
+    "FILIGREE_WREATH_RING": {
+        "ui_label": "Filigree Wreath Ring",
+        "mel_tree": "MEL_filigree_wreath_ring",
+        "category": "Filigree and Crests",
+        "panel_hint": "Laurel wreath ring with tilted leaves.",
+    },
+    "CIRCULAR_ARRAY": {
+        "ui_label": "Circular Array",
+        "mel_tree": "MEL_circular_array",
+        "category": "Primitives",
+        "panel_hint": "Instance geometry on a circle — cockpit GN Stack smoke click.",
+    },
+    "GREYBOX_ROOM_KIT": {
+        "ui_label": "Greybox Room Kit",
+        "mel_tree": "MEL_greybox_room_kit",
+        "category": "Structures",
+        "panel_hint": "Hollow room shell with wall thickness and optional ceiling.",
+    },
+    "GREYBOX_OPENINGS": {
+        "ui_label": "Greybox Openings",
+        "mel_tree": "MEL_greybox_openings",
+        "category": "Structures",
+        "panel_hint": "Door and window boolean cuts for greybox interiors.",
+    },
+    "GREYBOX_CORRIDOR": {
+        "ui_label": "Greybox Corridor",
+        "mel_tree": "MEL_greybox_corridor",
+        "category": "Structures",
+        "panel_hint": "Tileable hollow hall with optional end caps.",
+    },
+    "GREYBOX_JUNCTION": {
+        "ui_label": "Greybox Junction",
+        "mel_tree": "MEL_greybox_junction",
+        "category": "Structures",
+        "panel_hint": "T or X join of corridor volumes, then shell.",
+    },
+    "GREYBOX_COMPOSER": {
+        "ui_label": "Greybox Composer",
+        "mel_tree": "MEL_greybox_composer",
+        "category": "Structures",
+        "panel_hint": "Join room, corridor, and junction groups (snap later).",
+    },
+    "COLUMN": {
+        "ui_label": "Column",
+        "mel_tree": "MEL_column",
+        "category": "Profiles",
+        "panel_hint": "Classical column profile with editable radius and height.",
+    },
+    "BEVEL_PROFILE": {
+        "ui_label": "Bevel Profile",
+        "mel_tree": "MEL_bevel_profile",
+        "category": "Mesh Tools",
+        "panel_hint": "Weighted bevel with profile control for live mesh edges.",
+    },
+    "ADD_GEOMETRY": {
+        "ui_label": "Add (Union)",
+        "mel_tree": "MEL_add_geometry",
+        "category": "Math and Attributes",
+        "panel_hint": "Boolean union compose helper.",
+    },
+    "OP_ITERATE": {
+        "ui_label": "Iterate + Power Falloff",
+        "mel_tree": "MEL_op_iterate",
+        "category": "Operations",
+        "panel_hint": "Instance N times along an axis with power-scale falloff.",
+    },
+    "WATER_THEM_GAZEBO": {
+        "ui_label": "Water-Themed Gazebo",
+        "mel_tree": "MEL_water_them_gazebo",
+        "category": "Set Dressing",
+        "panel_hint": "Existing water gazebo (no new Set Dressing factories).",
     },
 }
 
@@ -722,6 +908,169 @@ def add_vector_param(tree, name, default=(0.0, 0.0, 0.0), description=""):
     return make_group_input(tree, "NodeSocketVector", name, default)
 
 
+def mesh_line_to_curve(tree, loc, mesh_sock):
+    """Convert a Mesh Line / Mesh Circle into a curve for Curve-to-Mesh."""
+    to_curve = safe_node(tree, "GeometryNodeMeshToCurve", loc)
+    if to_curve is None:
+        return mesh_sock
+    link_sockets(tree, mesh_sock, to_curve.inputs.get("Mesh") or to_curve.inputs[0])
+    return to_curve.outputs.get("Curve") or to_curve.outputs.get("Geometry")
+
+
+def sweep_profile(tree, loc, curve_or_mesh_sock, radius_sock, profile_res=8, already_curve=False):
+    """AAA railing / vault pattern: curve + circle profile → mesh."""
+    curve_sock = curve_or_mesh_sock
+    if not already_curve:
+        curve_sock = mesh_line_to_curve(tree, (loc[0] - 180, loc[1]), curve_or_mesh_sock)
+    profile = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (loc[0] - 180, loc[1] - 140))
+    if profile is None:
+        profile = safe_node(tree, "GeometryNodeMeshCircle", (loc[0] - 180, loc[1] - 140))
+    try:
+        profile.inputs["Resolution"].default_value = profile_res
+    except Exception:
+        pass
+    try:
+        profile.inputs["Vertices"].default_value = profile_res
+    except Exception:
+        pass
+    if radius_sock is not None:
+        try:
+            link_sockets(tree, radius_sock, profile.inputs["Radius"])
+        except Exception:
+            pass
+    sweep = safe_node(tree, "GeometryNodeCurveToMesh", loc)
+    link_sockets(tree, curve_sock, sweep.inputs.get("Curve") or sweep.inputs[0])
+    prof_in = sweep.inputs.get("Profile Curve") or sweep.inputs.get("Profile")
+    if prof_in is not None:
+        out = profile.outputs.get("Curve") or profile.outputs.get("Mesh") or profile.outputs[0]
+        link_sockets(tree, out, prof_in)
+    return sweep.outputs.get("Mesh") or sweep.outputs.get("Geometry")
+
+
+def add_music_influence_params(tree):
+    """Sockets for the Universal Musical Influence post-pass (default 0 = no warp)."""
+    add_float_param(tree, "Music Influence", 0.0, 0.0, 1.0)
+    add_float_param(tree, "Musical Amplitude", 1.0, 0.0, 4.0)
+    add_float_param(tree, "Musical Freq A", 2.0, 0.1, 12.0)
+    add_float_param(tree, "Musical Freq B", 3.0, 0.1, 12.0)
+
+
+def apply_universal_music_pass(tree, gin, geom, loc=(2400, 0)):
+    """Radial harmonic pulse — same math as monolith add_universal_music_pass.
+
+    Gated by Music Influence (skip wiring warp when socket missing).
+    """
+    inf = gin.outputs.get("Music Influence")
+    if inf is None or geom is None:
+        return geom
+    x, y = loc
+    pos = safe_node(tree, "GeometryNodeInputPosition", (x, y + 200))
+    sep = safe_node(tree, "ShaderNodeSeparateXYZ", (x + 200, y + 200))
+    link_sockets(tree, pos.outputs["Position"], sep.inputs["Vector"])
+    z_freq = safe_node(tree, "ShaderNodeMath", (x + 400, y + 200))
+    z_freq.operation = "MULTIPLY"
+    link_sockets(tree, sep.outputs["Z"], z_freq.inputs[0])
+    fa = gin.outputs.get("Musical Freq A")
+    if fa is not None:
+        link_sockets(tree, fa, z_freq.inputs[1])
+    else:
+        z_freq.inputs[1].default_value = 2.0
+    sine_z = safe_node(tree, "ShaderNodeMath", (x + 600, y + 200))
+    sine_z.operation = "SINE"
+    link_sockets(tree, z_freq.outputs[0], sine_z.inputs[0])
+    atan2 = safe_node(tree, "ShaderNodeMath", (x + 400, y))
+    atan2.operation = "ARCTAN2"
+    link_sockets(tree, sep.outputs["Y"], atan2.inputs[0])
+    link_sockets(tree, sep.outputs["X"], atan2.inputs[1])
+    a_freq = safe_node(tree, "ShaderNodeMath", (x + 600, y))
+    a_freq.operation = "MULTIPLY"
+    link_sockets(tree, atan2.outputs["Value"], a_freq.inputs[0])
+    fb = gin.outputs.get("Musical Freq B")
+    if fb is not None:
+        link_sockets(tree, fb, a_freq.inputs[1])
+    else:
+        a_freq.inputs[1].default_value = 3.0
+    sine_a = safe_node(tree, "ShaderNodeMath", (x + 800, y))
+    sine_a.operation = "SINE"
+    link_sockets(tree, a_freq.outputs["Value"], sine_a.inputs[0])
+    addn = safe_node(tree, "ShaderNodeMath", (x + 800, y + 100))
+    addn.operation = "ADD"
+    link_sockets(tree, sine_z.outputs[0], addn.inputs[0])
+    link_sockets(tree, sine_a.outputs[0], addn.inputs[1])
+    amp = safe_node(tree, "ShaderNodeMath", (x + 1000, y + 100))
+    amp.operation = "MULTIPLY"
+    link_sockets(tree, addn.outputs[0], amp.inputs[0])
+    ma = gin.outputs.get("Musical Amplitude")
+    if ma is not None:
+        link_sockets(tree, ma, amp.inputs[1])
+    else:
+        amp.inputs[1].default_value = 1.0
+    scaled = safe_node(tree, "ShaderNodeMath", (x + 1200, y + 100))
+    scaled.operation = "MULTIPLY"
+    link_sockets(tree, amp.outputs[0], scaled.inputs[0])
+    link_sockets(tree, inf, scaled.inputs[1])
+    rxy = safe_node(tree, "ShaderNodeCombineXYZ", (x + 800, y - 200))
+    link_sockets(tree, sep.outputs["X"], rxy.inputs["X"])
+    link_sockets(tree, sep.outputs["Y"], rxy.inputs["Y"])
+    rxy.inputs["Z"].default_value = 0.0
+    norm = safe_node(tree, "ShaderNodeVectorMath", (x + 1000, y - 200))
+    norm.operation = "NORMALIZE"
+    link_sockets(tree, rxy.outputs["Vector"], norm.inputs[0])
+    pulse = safe_node(tree, "ShaderNodeVectorMath", (x + 1200, y - 100))
+    pulse.operation = "SCALE"
+    link_sockets(tree, norm.outputs["Vector"], pulse.inputs[0])
+    link_sockets(tree, scaled.outputs[0], pulse.inputs["Scale"])
+    set_pos = safe_node(tree, "GeometryNodeSetPosition", (x + 1400, y))
+    link_sockets(tree, geom, set_pos.inputs["Geometry"])
+    link_sockets(tree, pulse.outputs[0], set_pos.inputs["Offset"])
+    color_node(set_pos, "universal")
+    return set_pos.outputs["Geometry"]
+
+
+def input_geometry_with_default(tree, gin, loc, kind="ico"):
+    """Modifier default seed: ico-sphere or grid when Use Default Seed is on."""
+    add_bool_param(tree, "Use Default Seed", True)
+    if kind == "grid":
+        seed = safe_node(tree, "GeometryNodeMeshGrid", loc)
+        seed.inputs["Size X"].default_value = 4.0
+        seed.inputs["Size Y"].default_value = 4.0
+        seed.inputs["Vertices X"].default_value = 32
+        seed.inputs["Vertices Y"].default_value = 32
+        seed_sock = seed.outputs.get("Mesh") or seed.outputs.get("Geometry")
+    else:
+        seed = safe_node(tree, "GeometryNodeMeshIcoSphere", loc)
+        if seed is None:
+            seed = safe_node(tree, "GeometryNodeMeshUVSphere", loc)
+        try:
+            seed.inputs["Radius"].default_value = 1.0
+        except Exception:
+            pass
+        try:
+            seed.inputs["Subdivisions"].default_value = 3
+        except Exception:
+            pass
+        try:
+            seed.inputs["Segments"].default_value = 32
+            seed.inputs["Rings"].default_value = 16
+        except Exception:
+            pass
+        seed_sock = seed.outputs.get("Mesh") or seed.outputs.get("Geometry")
+    sw = safe_node(tree, "GeometryNodeSwitch", (loc[0] + 220, loc[1]))
+    try:
+        sw.input_type = "GEOMETRY"
+    except Exception:
+        pass
+    link_sockets(tree, gin.outputs["Use Default Seed"], sw.inputs["Switch"])
+    true_in = sw.inputs.get("True") or sw.inputs.get("TRUE")
+    false_in = sw.inputs.get("False") or sw.inputs.get("FALSE")
+    link_sockets(tree, seed_sock, true_in)
+    geo_in = gin.outputs.get("Geometry")
+    if geo_in is not None:
+        link_sockets(tree, geo_in, false_in)
+    color_node(seed, "geometry")
+    return sw.outputs.get("Output") or sw.outputs.get("Geometry")
+
+
 def add_mesh_torus(tree, loc, major_radius=1.5, minor_radius=0.25,
                    major_segments=48, minor_segments=12):
     """Blender 5.x replacement for the removed MeshTorus node.
@@ -791,17 +1140,15 @@ CATEGORY_META: dict[str, dict] = {
 }
 
 
-def register_builder(tree_name, builder_fn, label, description="", category=""):
+def register_builder(tree_name, builder_fn, label, description="", category="",
+                     hidden=False, role="sku"):
     """Register a GN tree builder into the global registry.
 
-    Called at module-import time by each builder module.  All derived
-    data structures (TREE_TYPES, TREE_DESCRIPTIONS, etc.) are lazily
-    rebuilt by _rebuild_derived_data() which __init__.py calls after
-    all sub-modules have been imported.
+    hidden=True keeps the live id (RQ / blends) but omits it from GN Stack.
+    role is sku | modifier | tool | factory | pcg_alias | pcg_keep.
     """
     def _labeled_builder(*args, **kwargs):
         result = builder_fn(*args, **kwargs)
-        # Builders may return (tree, gin, gout) tuple or just tree
         tree = result[0] if isinstance(result, (tuple, list)) else result
         return ensure_labeled_tree(tree, tree_name, category)
 
@@ -811,7 +1158,13 @@ def register_builder(tree_name, builder_fn, label, description="", category=""):
         "description": description,
         "category":    category,
         "builder":     builder_fn,
+        "hidden":      bool(hidden),
+        "role":        role or "sku",
     }
+
+
+def is_hidden_builder(tree_name: str) -> bool:
+    return bool(GROUP_METADATA.get(tree_name, {}).get("hidden"))
 
 
 # Derived data (rebuilt by __init__.py after all builder registrations)

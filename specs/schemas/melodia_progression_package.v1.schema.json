@@ -1,0 +1,991 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/melodia_progression_package.v1.schema.json",
+  "title": "Melodia Progression Package v1",
+  "description": "Reusable chapter progression data for the canonical Melodia narrative record. Objective state is derived from the record journals; it is not a second save authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "schema_version",
+    "kind",
+    "contract_id",
+    "package",
+    "content_refs",
+    "authority",
+    "required_allowlist",
+    "chapter",
+    "beats",
+    "quests",
+    "objectives",
+    "rewards",
+    "consequences",
+    "intent_journal",
+    "pacing",
+    "acceptance"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "melodia.progression_package.v1"
+    },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "kind": {
+      "const": "melodia_progression_package"
+    },
+    "contract_id": {
+      "const": "melodia_progression_package"
+    },
+    "package": {
+      "$ref": "#/$defs/package"
+    },
+    "content_refs": {
+      "$ref": "#/$defs/content_refs"
+    },
+    "authority": {
+      "$ref": "#/$defs/authority"
+    },
+    "required_allowlist": {
+      "$ref": "#/$defs/allowlist"
+    },
+    "chapter": {
+      "$ref": "#/$defs/chapter"
+    },
+    "beats": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/beat"
+      }
+    },
+    "quests": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/quest"
+      }
+    },
+    "objectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/objective"
+      }
+    },
+    "rewards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/reward"
+      }
+    },
+    "consequences": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/consequence"
+      }
+    },
+    "intent_journal": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/intent"
+      }
+    },
+    "pacing": {
+      "$ref": "#/$defs/pacing"
+    },
+    "acceptance": {
+      "$ref": "#/$defs/acceptance"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9]*(?:[._:-][a-z0-9]+)*$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "locked",
+        "active",
+        "completed",
+        "failed"
+      ]
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "package_id",
+        "definition_version",
+        "display_name",
+        "content_kind",
+        "status"
+      ],
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/id"
+        },
+        "definition_version": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*\\.[0-9]+$"
+        },
+        "display_name": {
+          "$ref": "#/$defs/text"
+        },
+        "content_kind": {
+          "const": "chapter_progression"
+        },
+        "status": {
+          "enum": [
+            "contract_only",
+            "editor_materialization_pending",
+            "runtime_integration_pending",
+            "ready"
+          ]
+        }
+      }
+    },
+    "content_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "player_route",
+        "integration_proof_map",
+        "encounter_ids",
+        "dialogue_source_refs",
+        "source_notification_aliases"
+      ],
+      "properties": {
+        "player_route": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^/Game/"
+          }
+        },
+        "integration_proof_map": {
+          "type": "string",
+          "pattern": "^/Game/"
+        },
+        "encounter_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        },
+        "dialogue_source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "source_notification_aliases": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "quest",
+            "reward"
+          ],
+          "properties": {
+            "quest": {
+              "$ref": "#/$defs/id"
+            },
+            "reward": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_subsystem",
+        "narrative_record",
+        "save_field",
+        "objective_state_source",
+        "offline_projection",
+        "presentation"
+      ],
+      "properties": {
+        "runtime_subsystem": {
+          "const": "UMelodiaNarrativeSubsystem"
+        },
+        "narrative_record": {
+          "const": "FMelodiaNarrativeRecord"
+        },
+        "save_field": {
+          "const": "melodiaNarrativeRecord"
+        },
+        "objective_state_source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "active_quest_ids",
+            "flags",
+            "consumed_intent_ids",
+            "consumed_reward_ids",
+            "script_checkpoint"
+          ],
+          "properties": {
+            "active_quest_ids": {
+              "const": "FMelodiaNarrativeRecord.ActiveQuestIds"
+            },
+            "flags": {
+              "const": "FMelodiaNarrativeRecord.Flags"
+            },
+            "consumed_intent_ids": {
+              "const": "FMelodiaNarrativeRecord.ConsumedIntentIds"
+            },
+            "consumed_reward_ids": {
+              "const": "FMelodiaNarrativeRecord.ConsumedRewardIds"
+            },
+            "script_checkpoint": {
+              "const": "FMelodiaNarrativeRecord.ScriptCheckpoint"
+            }
+          }
+        },
+        "offline_projection": {
+          "type": "string",
+          "minLength": 1
+        },
+        "presentation": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "allowlist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "quest_ids",
+        "narrative_flag_ids",
+        "dialogue_reward_ids"
+      ],
+      "properties": {
+        "quest_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        },
+        "narrative_flag_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        },
+        "dialogue_reward_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "prerequisite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id",
+        "satisfied_states"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "chapter",
+            "beat",
+            "quest",
+            "objective"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "satisfied_states": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "active",
+              "completed",
+              "failed"
+            ]
+          }
+        }
+      }
+    },
+    "chapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chapter_id",
+        "order",
+        "title",
+        "prerequisites",
+        "beat_ids",
+        "quest_ids",
+        "exit_objective_ids",
+        "checkpoint_id"
+      ],
+      "properties": {
+        "chapter_id": {
+          "$ref": "#/$defs/id"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prerequisite"
+          }
+        },
+        "beat_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "quest_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "exit_objective_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "checkpoint_id": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "beat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "beat_id",
+        "order",
+        "title",
+        "prerequisites",
+        "objective_ids",
+        "checkpoint_id",
+        "interrupt_policy",
+        "intent_ids"
+      ],
+      "properties": {
+        "beat_id": {
+          "$ref": "#/$defs/id"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prerequisite"
+          }
+        },
+        "objective_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "checkpoint_id": {
+          "$ref": "#/$defs/id"
+        },
+        "interrupt_policy": {
+          "enum": [
+            "resume_from_canonical_checkpoint",
+            "restart_beat_without_replaying_consumed_intents"
+          ]
+        },
+        "intent_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    "quest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "quest_id",
+        "title",
+        "prerequisites",
+        "beat_ids",
+        "objective_ids",
+        "accept_intent_id",
+        "complete_intent_id",
+        "completion_flag_id",
+        "reward_ids",
+        "consequence_ids",
+        "restore_policy"
+      ],
+      "properties": {
+        "quest_id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prerequisite"
+          }
+        },
+        "beat_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "objective_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "accept_intent_id": {
+          "$ref": "#/$defs/id"
+        },
+        "complete_intent_id": {
+          "$ref": "#/$defs/id"
+        },
+        "completion_flag_id": {
+          "$ref": "#/$defs/id"
+        },
+        "reward_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "consequence_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "restore_policy": {
+          "const": "retain_active_objectives_and_consumed_journals"
+        }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reward_ids",
+        "consequence_ids"
+      ],
+      "properties": {
+        "reward_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "consequence_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "intent_id",
+        "flag_id",
+        "effects"
+      ],
+      "properties": {
+        "intent_id": {
+          "$ref": "#/$defs/id"
+        },
+        "flag_id": {
+          "$ref": "#/$defs/id"
+        },
+        "accepted_results": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "victory",
+              "defeat",
+              "fled",
+              "unavailable"
+            ]
+          }
+        },
+        "effects": {
+          "$ref": "#/$defs/effects"
+        }
+      }
+    },
+    "objective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "objective_id",
+        "order",
+        "beat_id",
+        "quest_id",
+        "title",
+        "prerequisites",
+        "state_rules",
+        "completion",
+        "failure",
+        "checkpoint_id",
+        "tracker"
+      ],
+      "properties": {
+        "objective_id": {
+          "$ref": "#/$defs/id"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "beat_id": {
+          "$ref": "#/$defs/id"
+        },
+        "quest_id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prerequisite"
+          }
+        },
+        "state_rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "initial_state",
+            "terminal_states",
+            "state_source",
+            "ordered"
+          ],
+          "properties": {
+            "initial_state": {
+              "const": "locked"
+            },
+            "terminal_states": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/state"
+              }
+            },
+            "state_source": {
+              "const": "canonical_record_journals"
+            },
+            "ordered": {
+              "const": true
+            }
+          }
+        },
+        "completion": {
+          "$ref": "#/$defs/transition"
+        },
+        "failure": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/transition"
+            }
+          ]
+        },
+        "checkpoint_id": {
+          "$ref": "#/$defs/id"
+        },
+        "tracker": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "visible",
+            "label",
+            "route_marker_id",
+            "completion_feedback",
+            "show_subobjectives"
+          ],
+          "properties": {
+            "visible": {
+              "type": "boolean"
+            },
+            "label": {
+              "$ref": "#/$defs/text"
+            },
+            "route_marker_id": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/id"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "completion_feedback": {
+              "$ref": "#/$defs/text"
+            },
+            "show_subobjectives": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "reward": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reward_id",
+        "title",
+        "grant_intent_id",
+        "record_field",
+        "canonical_effect",
+        "restore_policy"
+      ],
+      "properties": {
+        "reward_id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "grant_intent_id": {
+          "$ref": "#/$defs/id"
+        },
+        "record_field": {
+          "const": "FMelodiaNarrativeRecord.ConsumedRewardIds"
+        },
+        "canonical_effect": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "id"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "dialogue_reward",
+                "narrative_flag",
+                "stat",
+                "equipment"
+              ]
+            },
+            "id": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        },
+        "restore_policy": {
+          "const": "consumed_reward_replays_presentation_only"
+        }
+      }
+    },
+    "consequence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consequence_id",
+        "title",
+        "intent_id",
+        "target",
+        "restore_policy"
+      ],
+      "properties": {
+        "consequence_id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "intent_id": {
+          "$ref": "#/$defs/id"
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "id",
+            "value"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "narrative_flag",
+                "quest",
+                "checkpoint"
+              ]
+            },
+            "id": {
+              "$ref": "#/$defs/id"
+            },
+            "value": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            }
+          }
+        },
+        "restore_policy": {
+          "const": "intent_replays_presentation_only"
+        }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "intent_id",
+        "owner_type",
+        "owner_id",
+        "record_field",
+        "exactly_once",
+        "replay_policy"
+      ],
+      "properties": {
+        "intent_id": {
+          "$ref": "#/$defs/id"
+        },
+        "owner_type": {
+          "enum": [
+            "chapter",
+            "beat",
+            "quest",
+            "objective",
+            "reward",
+            "consequence"
+          ]
+        },
+        "owner_id": {
+          "$ref": "#/$defs/id"
+        },
+        "record_field": {
+          "enum": [
+            "FMelodiaNarrativeRecord.ConsumedIntentIds",
+            "FMelodiaNarrativeRecord.ConsumedRewardIds"
+          ]
+        },
+        "exactly_once": {
+          "const": true
+        },
+        "replay_policy": {
+          "const": "no_op_after_restore"
+        }
+      }
+    },
+    "pacing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_minutes",
+        "beat_windows",
+        "rules"
+      ],
+      "properties": {
+        "target_minutes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "minimum",
+            "maximum"
+          ],
+          "properties": {
+            "minimum": {
+              "type": "number",
+              "minimum": 0
+            },
+            "maximum": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "beat_windows": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "beat_id",
+              "start_minute",
+              "end_minute",
+              "target_seconds",
+              "readability_obligations"
+            ],
+            "properties": {
+              "beat_id": {
+                "$ref": "#/$defs/id"
+              },
+              "start_minute": {
+                "type": "number",
+                "minimum": 0
+              },
+              "end_minute": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "target_seconds": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "readability_obligations": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/$defs/text"
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "offline_checks",
+        "live_checks",
+        "exit_criteria"
+      ],
+      "properties": {
+        "offline_checks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/acceptance_check"
+          }
+        },
+        "live_checks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/acceptance_check"
+          }
+        },
+        "exit_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      }
+    },
+    "acceptance_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "status",
+        "assertion"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "schema",
+            "transition",
+            "restore",
+            "presentation",
+            "editor",
+            "pie",
+            "packaged"
+          ]
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "pending",
+            "blocked"
+          ]
+        },
+        "assertion": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    }
+  }
+}

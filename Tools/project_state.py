@@ -38,6 +38,13 @@ WIDTH = 78
 # Documents that make claims about the code, mapped to the source they describe.
 # A doc older than its subject is not necessarily wrong -- it is UNVERIFIED, and
 # that is the distinction this project keeps losing.
+#
+# This covered 4 of 442 tracked docs until 2026-08-13 while the view's own
+# summary line ("N of M tracked docs are behind their subject") read as if it
+# meant project-wide coverage. It does not: this is a hand-picked watchlist of
+# the docs an agent is most likely to trust at face value, not an audit of
+# every doc in the repo. See the summary line in view_staleness() for the
+# corrected wording.
 DOC_SUBJECTS = {
     "Docs/BLUEPRINT_WIRING_CONTRACT_2026-08-07.md": [
         "Source/BS_GodFile/MelodiaIntegration/MelodiaRhythmCombatSubsystem.h",
@@ -52,6 +59,42 @@ DOC_SUBJECTS = {
     ],
     "_SESSION_HANDOFF.md": [
         "Source/BS_GodFile/MelodiaIntegration",
+    ],
+    "AGENTS.md": [
+        "Tools",
+        "_AGENT_WORKING_AGREEMENT.md",
+    ],
+    "_TASK_QUEUE.md": [
+        "Source/BS_GodFile/MelodiaIntegration",
+    ],
+    "CURRENT_STATE.md": [
+        "Source/BS_GodFile/MelodiaIntegration",
+    ],
+    "README.md": [
+        "Source/BS_GodFile",
+    ],
+    "COLLABORATOR_SETUP.md": [
+        "Tools",
+        "specs",
+    ],
+    "Docs/AGENT_TOOLS.md": [
+        "Tools",
+    ],
+    "Docs/echo/campaign_01_rhythm_damage_delta.md": [
+        "specs/echo_pipeline.json",
+        "Tools/echo_run.py",
+    ],
+    "Docs/echo/campaign_02_save_round_trip.md": [
+        "specs/echo_pipeline.json",
+        "Tools/echo_run.py",
+    ],
+    "Docs/echo/campaign_03_package_launch.md": [
+        "specs/echo_pipeline.json",
+        "Tools/echo_run.py",
+    ],
+    "Docs/echo/campaign_04_result_matrix.md": [
+        "specs/echo_pipeline.json",
+        "Tools/echo_run.py",
     ],
 }
 
@@ -200,6 +243,33 @@ def view_baselines():
     return lines
 
 
+def _git_commit_ts(rel):
+    """Last COMMIT timestamp for a path, or None.
+
+    Filesystem mtime is unusable in this repo: a bulk touch/clone flattened them, so
+    406 of 477 docs report an mtime inside the last 7 days regardless of real age.
+    Comparing mtimes therefore reported 14 of 14 watched docs as STALE, most at "0h
+    behind" -- pure noise, and noise in a radar is worse than no radar because people
+    learn to ignore it. Commit time survives a checkout and is the honest signal.
+    """
+    out = git("log", "-1", "--format=%ct", "--", rel).strip()
+    try:
+        return int(out) if out else None
+    except ValueError:
+        return None
+
+
+def _newest_commit_ts(subject):
+    """Newest commit timestamp across a subject path (file or directory)."""
+    return _git_commit_ts(subject)
+
+
+# Drift below this is treated as simultaneous. Docs and the code they describe are
+# routinely committed in the same session; flagging a 40-minute gap as staleness
+# trains the reader to ignore the tool.
+STALENESS_THRESHOLD_HOURS = 48
+
+
 def view_staleness():
     lines = header("DOC STALENESS RADAR",
                    "a doc older than the code it describes is UNVERIFIED, not wrong")
@@ -209,28 +279,42 @@ def view_staleness():
         if not os.path.exists(dpath):
             rows.append(("MISSING", doc, "", ""))
             continue
-        dm = os.path.getmtime(dpath)
-        newest = None
-        newest_src = ""
-        for s in subjects:
-            m = newest_mtime(s)
+        dm = _git_commit_ts(doc)
+        if dm is None:
+            rows.append(("?", doc, "untracked - no commit history", ""))
+            continue
+        newest, newest_src = None, ""
+        for sub in subjects:
+            m = _newest_commit_ts(sub)
             if m and (newest is None or m > newest):
-                newest, newest_src = m, s
+                newest, newest_src = m, sub
         if newest is None:
             rows.append(("?", doc, "subject not found", ""))
-        elif newest > dm:
-            drift_h = (newest - dm) / 3600
+            continue
+        drift_h = (newest - dm) / 3600
+        if drift_h > STALENESS_THRESHOLD_HOURS:
             rows.append(("STALE", doc, f"{drift_h:.0f}h behind", os.path.basename(newest_src)))
+        elif drift_h > 0:
+            rows.append(("recent", doc, f"{drift_h:.0f}h (within {STALENESS_THRESHOLD_HOURS}h)", ""))
         else:
             rows.append(("fresh", doc, "", ""))
 
     for status, doc, note, src in rows:
-        mark = "STALE" if status == "STALE" else ("  ?  " if status == "?" else "fresh")
+        mark = {"STALE": "STALE", "?": "  ?  ", "MISSING": "MISS ", "recent": "  ~  "}.get(status, "fresh")
         lines.append(f"  {mark:<7}{doc[:46]:<48}{note}")
         if src:
             lines.append(f"         └─ newer: {src}")
     stale = [r for r in rows if r[0] == "STALE"]
-    lines += ["", f"  {len(stale)} of {len(rows)} tracked docs are behind their subject."]
+    total_tracked_md = len([l for l in git("ls-files", "*.md").splitlines() if l.strip()])
+    lines += [
+        "",
+        f"  {len(stale)} of {len(rows)} WATCHED docs are more than "
+        f"{STALENESS_THRESHOLD_HOURS}h behind their subject.",
+        f"  Coverage: {len(rows)} of {total_tracked_md or '?'} tracked .md. This is a "
+        "hand-picked watchlist (DOC_SUBJECTS), not project-wide.",
+        "  Signal is git COMMIT time, not filesystem mtime -- mtimes in this repo were "
+        "flattened by a bulk touch and are meaningless.",
+    ]
     if stale:
         lines.append("  Re-verify these against source before acting on any claim they make.")
     return lines

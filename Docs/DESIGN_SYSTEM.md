@@ -588,7 +588,7 @@ monolith_mcp_client.call_tool("editor_query", {
     "action": "capture_scene_preview",
     "asset_type": "static_mesh",  # or "level" for full scene
     "asset_path": "/Game/EnvSandbox/Levels/L_SakuraPath",
-    "output_path": "g:/EnvironmentPortfolio/Saved/Portfolio/Hero_SakuraPath.png",
+    "output_path": "C:/EnvironmentPortfolio/Saved/Portfolio/Hero_SakuraPath.png",
     "width": 1920,
     "height": 1080
 })
@@ -613,7 +613,7 @@ monolith_mcp_client.call_tool("editor_query", {
     "action": "capture_with_overlay",
     "asset_path": "/Game/EnvSandbox/Meshes/GB_ZEN_Rock_01",
     "overlay_mode": "wireframe",  # or "uv_density", ".shader_complexity", "normals"
-    "output_path": "g:/EnvironmentPortfolio/Saved/Portfolio/Breakdown_Rock_Wireframe.png",
+    "output_path": "C:/EnvironmentPortfolio/Saved/Portfolio/Breakdown_Rock_Wireframe.png",
     "width": 1024,
     "height": 1024
 })
@@ -638,7 +638,7 @@ monolith_mcp_client.call_tool("editor_query", {
         "/Game/EnvSandbox/Materials/SDF/Instances/MI_SDF_OrnamentLayer_Classic"
     ],
     "preview_mesh": "sphere",  # or "plane" for displacement/parallax
-    "output_path": "g:/EnvironmentPortfolio/Saved/Portfolio/Material_Grid_SDF.png",
+    "output_path": "C:/EnvironmentPortfolio/Saved/Portfolio/Material_Grid_SDF.png",
     "width": 2048,
     "height": 2048
 })
@@ -659,7 +659,7 @@ monolith_mcp_client.call_tool("editor_query", {
     "action": "capture_scene_preview",
     "asset_type": "static_mesh",
     "asset_path": "/Game/EnvSandbox/Meshes/TrimPanel_01",
-    "output_path": "g:/EnvironmentPortfolio/Saved/Portfolio/TrimSheet_Lit.png",
+    "output_path": "C:/EnvironmentPortfolio/Saved/Portfolio/TrimSheet_Lit.png",
     "width": 2048,
     "height": 1024
 })
@@ -669,7 +669,7 @@ monolith_mcp_client.call_tool("editor_query", {
     "action": "capture_with_overlay",
     "asset_path": "/Game/EnvSandbox/Meshes/TrimPanel_01",
     "overlay_mode": "uv_density",
-    "output_path": "g:/EnvironmentPortfolio/Saved/Portfolio/TrimSheet_UV.png",
+    "output_path": "C:/EnvironmentPortfolio/Saved/Portfolio/TrimSheet_UV.png",
     "width": 2048,
     "height": 1024
 })
@@ -776,7 +776,7 @@ monolith_mcp_client.call_tool("editor_query", {
     "action": "capture_scene_preview",
     "asset_type": "level",
     "asset_path": "/Game/EnvSandbox/Levels/L_SakuraPath",
-    "output_path": "g:/EnvironmentPortfolio/Saved/Portfolio/PCG_Graph_Visualization.png",
+    "output_path": "C:/EnvironmentPortfolio/Saved/Portfolio/PCG_Graph_Visualization.png",
     "width": 1920,
     "height": 1080
 })
@@ -797,7 +797,7 @@ monolith_mcp_client.call_tool("editor_query", {
 monolith_mcp_client.call_tool("editor_query", {
     "action": "csv_profile",
     "operation": "start",
-    "output_path": "g:/EnvironmentPortfolio/Saved/Portfolio/Performance_Profile.csv",
+    "output_path": "C:/EnvironmentPortfolio/Saved/Portfolio/Performance_Profile.csv",
     "trace_channels": ["CPU", "GPU", "Frame", "Render"]
 })
 

@@ -2,12 +2,15 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import unreal
 
 
-MAP_PATH = "/Game/ZenForestTest"
+# Must match setup_melodia_npc_placeholders.py. ZenForestTest is the authority
+# exploration map (owner, 2026-08-14).
+MAP_PATH = os.environ.get("MELODIA_NPC_MAP", "/Game/ZenForestTest")
 LABELS = (
     "MelodiaNPC_SD_02_PetalPriestess",
     "MelodiaNPC_CW_01_StarWeaver",

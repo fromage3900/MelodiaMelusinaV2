@@ -104,14 +104,20 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "GARDEN_GAZEBO": {
                 "Radius": 2.0, "Column Count": 10, "Column Height": 2.2,
                 "Roof Pitch": 1.2, "Beam Radius": 0.05, "Has Finial": True,
+                "Has Engawa": True, "Engawa Depth": 0.45, "Has Irimoya": False,
+                "Use Default Column": True, "Music Influence": 0.0,
             },
             "MARKET_PAVILION": {
                 "Radius": 3.5, "Column Count": 12, "Column Height": 2.8,
                 "Roof Pitch": 0.5, "Beam Radius": 0.07, "Has Finial": False,
+                "Has Engawa": True, "Engawa Depth": 0.7, "Has Irimoya": False,
+                "Use Default Column": True, "Music Influence": 0.0,
             },
             "BANDSTAND_PARK": {
                 "Radius": 2.8, "Column Count": 8, "Column Height": 3.2,
                 "Roof Pitch": 0.6, "Beam Radius": 0.06, "Has Finial": True,
+                "Has Engawa": True, "Engawa Depth": 0.35, "Has Irimoya": True,
+                "Use Default Column": True, "Music Influence": 0.0,
             },
         },
     },
@@ -669,6 +675,172 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # music_heroes.py — MEL_music_key_unit (music)
+    "MEL_music_key_unit": {
+        "label": "Music Key Unit",
+        "preset_labels": {
+            "WHITE_IVORY": "White Ivory",
+            "BLACK_ACCIDENTAL": "Black Accidental",
+            "WALKABLE_TREAD": "Walkable Tread",
+        },
+        "preset_descriptions": {
+            "WHITE_IVORY": "Life-size white key with a modest front lip.",
+            "BLACK_ACCIDENTAL": "Raised accidental, shorter and narrower.",
+            "WALKABLE_TREAD": "Oversized key you can walk as a stair tread.",
+        },
+        "presets": {
+            "WHITE_IVORY": {
+                "Width": 0.0235, "Length": 0.15, "Height": 0.018,
+                "Is Accidental": False, "Pitch": 0.0, "Lip Depth": 0.012,
+            },
+            "BLACK_ACCIDENTAL": {
+                "Width": 0.0235, "Length": 0.15, "Height": 0.018,
+                "Is Accidental": True, "Pitch": 1.0, "Lip Depth": 0.008,
+            },
+            "WALKABLE_TREAD": {
+                "Width": 0.28, "Length": 0.55, "Height": 0.08,
+                "Is Accidental": False, "Pitch": 0.0, "Lip Depth": 0.06,
+            },
+        },
+    },
+
+    # music_heroes.py — MEL_music_piano_roll (music)
+    "MEL_music_piano_roll": {
+        "label": "Music Piano Roll",
+        "preset_labels": {
+            "ENDLESS_88": "Endless 88",
+            "WALKABLE_XYLO_PATH": "Walkable Xylo Path",
+            "MARIMBA_GALLERY": "Marimba Gallery",
+        },
+        "preset_descriptions": {
+            "ENDLESS_88": "Concert piano: 88 keys, period = key width, endless along the spline.",
+            "WALKABLE_XYLO_PATH": "Xylophone bars as a walkable path (Profile=1).",
+            "MARIMBA_GALLERY": "Longer, taller marimba bars for a gallery walk (Profile=2).",
+        },
+        "presets": {
+            "ENDLESS_88": {
+                "Key Width": 0.0235, "Key Length": 0.15, "Key Height": 0.018,
+                "Profile": 0, "Key Count": 88, "Endless": True,
+                "Length": 2.07, "Pitch Start": 0.0, "Black Offset": 0.04,
+            },
+            "WALKABLE_XYLO_PATH": {
+                "Key Width": 0.22, "Key Length": 0.55, "Key Height": 0.08,
+                "Profile": 1, "Key Count": 24, "Endless": True,
+                "Length": 8.0, "Pitch Start": 0.0, "Black Offset": 0.12,
+            },
+            "MARIMBA_GALLERY": {
+                "Key Width": 0.28, "Key Length": 0.8, "Key Height": 0.1,
+                "Profile": 2, "Key Count": 16, "Endless": True,
+                "Length": 10.0, "Pitch Start": 0.0, "Black Offset": 0.16,
+            },
+        },
+    },
+
+    # music_heroes.py — MEL_music_sheet_rail (music)
+    "MEL_music_sheet_rail": {
+        "label": "Sheet Music Rail",
+        "preset_labels": {
+            "CONCERT_HALL_RAIL": "Concert Hall Rail",
+            "BALCONY_STAFF": "Balcony Staff",
+            "GALLERY_WALK": "Gallery Walk",
+        },
+        "preset_descriptions": {
+            "CONCERT_HALL_RAIL": "Walkable five-line staff railing for a concert balcony.",
+            "BALCONY_STAFF": "Shorter rail, denser notes, no clef.",
+            "GALLERY_WALK": "Long thick-line gallery rail with sparse notes.",
+        },
+        "presets": {
+            "CONCERT_HALL_RAIL": {
+                "Length": 12.0, "Height": 1.05, "Line Thickness": 0.045,
+                "Line Spacing": 0.12, "Note Count": 16, "Note Size": 0.2,
+                "Post Count": 7, "Show Clef": True,
+            },
+            "BALCONY_STAFF": {
+                "Length": 6.0, "Height": 0.95, "Line Thickness": 0.03,
+                "Line Spacing": 0.1, "Note Count": 24, "Note Size": 0.14,
+                "Post Count": 4, "Show Clef": False,
+            },
+            "GALLERY_WALK": {
+                "Length": 18.0, "Height": 1.15, "Line Thickness": 0.06,
+                "Line Spacing": 0.14, "Note Count": 8, "Note Size": 0.22,
+                "Post Count": 10, "Show Clef": True,
+            },
+        },
+    },
+
+    # music_heroes.py — MEL_music_room_shell (structures)
+    "MEL_music_room_shell": {
+        "label": "Music Room Shell",
+        "preset_labels": {
+            "RECITAL_BOX": "Recital Box",
+            "PRACTICE_CELL": "Practice Cell",
+            "HALL_DADO": "Hall With Dado",
+        },
+        "preset_descriptions": {
+            "RECITAL_BOX": "Mid-size recital room, door and window, dado staff band.",
+            "PRACTICE_CELL": "Tight practice cell, door only, no dado.",
+            "HALL_DADO": "Long hall with a high dado staff band.",
+        },
+        "presets": {
+            "RECITAL_BOX": {
+                "Room Length": 10.0, "Room Width": 7.0, "Room Height": 4.5,
+                "Wall Thickness": 0.28, "Ceiling": True,
+                "Cut Door": True, "Cut Window": True,
+                "Dado Staff Band": True, "Dado Height": 1.05,
+                "Dado Thickness": 0.03, "Line Spacing": 0.12,
+            },
+            "PRACTICE_CELL": {
+                "Room Length": 4.5, "Room Width": 3.6, "Room Height": 3.2,
+                "Wall Thickness": 0.22, "Ceiling": True,
+                "Cut Door": True, "Cut Window": False,
+                "Dado Staff Band": False, "Dado Height": 0.9,
+                "Dado Thickness": 0.02, "Line Spacing": 0.1,
+            },
+            "HALL_DADO": {
+                "Room Length": 16.0, "Room Width": 8.0, "Room Height": 6.0,
+                "Wall Thickness": 0.35, "Ceiling": True,
+                "Cut Door": True, "Cut Window": True,
+                "Dado Staff Band": True, "Dado Height": 1.2,
+                "Dado Thickness": 0.04, "Line Spacing": 0.14,
+            },
+        },
+    },
+
+    # music_heroes.py — MEL_music_harp (music)
+    "MEL_music_harp": {
+        "label": "Music Harp",
+        "preset_labels": {
+            "PEDAL_HARP_C": "Pedal Harp C",
+            "LAP_HARP": "Lap Harp",
+            "ENDLESS_NECK": "Endless Neck",
+        },
+        "preset_descriptions": {
+            "PEDAL_HARP_C": "Concert pedal harp, 47 strings, C pitch start.",
+            "LAP_HARP": "Small folk harp, fewer strings, short pillar.",
+            "ENDLESS_NECK": "String count from neck length / spacing.",
+        },
+        "presets": {
+            "PEDAL_HARP_C": {
+                "Height": 1.8, "Depth": 0.55,
+                "Soundboard Width": 0.42, "Soundboard Height": 0.95,
+                "String Count": 47, "String Radius": 0.003, "String Spacing": 0.012,
+                "Endless": False, "Pitch Start": 0.0, "Pillar Radius": 0.045,
+            },
+            "LAP_HARP": {
+                "Height": 0.7, "Depth": 0.28,
+                "Soundboard Width": 0.22, "Soundboard Height": 0.4,
+                "String Count": 22, "String Radius": 0.0025, "String Spacing": 0.01,
+                "Endless": False, "Pitch Start": 12.0, "Pillar Radius": 0.022,
+            },
+            "ENDLESS_NECK": {
+                "Height": 1.6, "Depth": 0.7,
+                "Soundboard Width": 0.38, "Soundboard Height": 0.85,
+                "String Count": 36, "String Radius": 0.004, "String Spacing": 0.014,
+                "Endless": True, "Pitch Start": 0.0, "Pillar Radius": 0.04,
+            },
+        },
+    },
+
     # filigree.py — MEL_filigree_spiral (filigree)
     "MEL_filigree_spiral": {
         "label": "Filigree Spiral",
@@ -790,15 +962,435 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         "presets": {
             "KEEP_COURT": {
                 "Site Scale": 1.0, "Courtyard Width": 20.0, "Courtyard Depth": 15.0,
-                "Complete Walls": True, "Corner Towers": True,
+                "Complete Walls": True, "Corner Towers": True, "Use Default Seed": True,
             },
             "WIDE_BAILEY": {
                 "Site Scale": 2.2, "Courtyard Width": 48.0, "Courtyard Depth": 36.0,
-                "Complete Walls": True, "Corner Towers": True,
+                "Complete Walls": True, "Corner Towers": True, "Use Default Seed": True,
             },
             "COMPACT_CITADEL": {
                 "Site Scale": 0.6, "Courtyard Width": 10.0, "Courtyard Depth": 8.0,
-                "Complete Walls": True, "Corner Towers": False,
+                "Complete Walls": True, "Corner Towers": False, "Use Default Seed": True,
+            },
+        },
+    },
+
+    "MEL_castle_gothic_window": {
+        "label": "Castle Gothic Window",
+        "preset_labels": {
+            "PORTAL_LANCET": "Portal Lancet",
+            "BAY_TRACERY": "Bay Tracery",
+            "NARROW_SLIT": "Narrow Slit",
+        },
+        "preset_descriptions": {
+            "PORTAL_LANCET": "Tall pointed portal with two mullions (gothic_kit language).",
+            "BAY_TRACERY": "Wider bay with denser tracery.",
+            "NARROW_SLIT": "Arrow-slit scale lancet, no bars.",
+        },
+        "presets": {
+            "PORTAL_LANCET": {
+                "Width": 1.4, "Height": 2.8, "Arch Point": 0.55,
+                "Frame Thick": 0.1, "Tracery Bars": 2, "Bar Width": 0.04,
+                "Music Influence": 0.0,
+            },
+            "BAY_TRACERY": {
+                "Width": 2.2, "Height": 3.2, "Arch Point": 0.4,
+                "Frame Thick": 0.12, "Tracery Bars": 4, "Bar Width": 0.05,
+                "Music Influence": 0.0,
+            },
+            "NARROW_SLIT": {
+                "Width": 0.55, "Height": 2.0, "Arch Point": 0.7,
+                "Frame Thick": 0.06, "Tracery Bars": 0, "Bar Width": 0.03,
+                "Music Influence": 0.0,
+            },
+        },
+    },
+
+    "MEL_stepped_pyramid": {
+        "label": "Stepped Pyramid",
+        "preset_labels": {
+            "ZIGGURAT_FIVE": "Five-Step Ziggurat",
+            "LOW_TERRACE": "Low Terrace",
+            "TALL_KEEP": "Tall Keep",
+        },
+        "preset_descriptions": {
+            "ZIGGURAT_FIVE": "Classic five-step shrinking pyramid.",
+            "LOW_TERRACE": "Wide shallow terraces.",
+            "TALL_KEEP": "Steep eight-step keep.",
+        },
+        "presets": {
+            "ZIGGURAT_FIVE": {
+                "Steps": 5, "Base Size": 4.0, "Step Height": 0.4, "Shrink": 0.75,
+            },
+            "LOW_TERRACE": {
+                "Steps": 3, "Base Size": 6.0, "Step Height": 0.25, "Shrink": 0.82,
+            },
+            "TALL_KEEP": {
+                "Steps": 8, "Base Size": 3.2, "Step Height": 0.55, "Shrink": 0.7,
+            },
+        },
+    },
+
+    # ornament.py — P1 thin-kit (vine / radial / frame before new generators)
+    "MEL_ornament_vine": {
+        "label": "Ornament Vine",
+        "preset_labels": {
+            "NOUVEAU_SPRAY": "Nouveau Spray",
+            "TIGHT_TENDRIL": "Tight Tendril",
+            "PANEL_SWAG": "Panel Swag",
+        },
+        "preset_descriptions": {
+            "NOUVEAU_SPRAY": "Classic Art Nouveau S-curve vine for panel interiors.",
+            "TIGHT_TENDRIL": "Dense thin tendril for jewelry-scale insets.",
+            "PANEL_SWAG": "Wide low-frequency swag for door and wall panels.",
+        },
+        "presets": {
+            "NOUVEAU_SPRAY": {
+                "Panel Width": 1.6, "Panel Height": 2.0, "Branch Count": 3.0,
+                "Density": 0.5, "Taper Power": 0.7, "Thickness": 0.02,
+                "Wave Amp": 0.15, "Wave Freq": 2.0, "Segments": 32,
+            },
+            "TIGHT_TENDRIL": {
+                "Panel Width": 0.9, "Panel Height": 1.2, "Branch Count": 5.0,
+                "Density": 0.85, "Taper Power": 1.4, "Thickness": 0.01,
+                "Wave Amp": 0.08, "Wave Freq": 3.5, "Segments": 64,
+            },
+            "PANEL_SWAG": {
+                "Panel Width": 2.8, "Panel Height": 1.4, "Branch Count": 2.0,
+                "Density": 0.35, "Taper Power": 0.4, "Thickness": 0.035,
+                "Wave Amp": 0.28, "Wave Freq": 1.1, "Segments": 48,
+            },
+        },
+    },
+    "MEL_ornament_radial": {
+        "label": "Ornament Radial",
+        "preset_labels": {
+            "ROSE_WINDOW": "Rose Window",
+            "COMPASS_STAR": "Compass Star",
+            "OCULUS_VOID": "Oculus Void",
+        },
+        "preset_descriptions": {
+            "ROSE_WINDOW": "Eight-spoke gothic rose with three rings.",
+            "COMPASS_STAR": "Dense twelve-spoke star, no center void.",
+            "OCULUS_VOID": "Open oculus with a large center void.",
+        },
+        "presets": {
+            "ROSE_WINDOW": {
+                "Radius": 0.8, "Spoke Count": 8, "Ring Count": 3,
+                "Profile Radius": 0.015, "Center Void": 0.0,
+            },
+            "COMPASS_STAR": {
+                "Radius": 1.2, "Spoke Count": 12, "Ring Count": 2,
+                "Profile Radius": 0.02, "Center Void": 0.0,
+            },
+            "OCULUS_VOID": {
+                "Radius": 1.6, "Spoke Count": 6, "Ring Count": 4,
+                "Profile Radius": 0.025, "Center Void": 0.35,
+            },
+        },
+    },
+    "MEL_ornament_frame": {
+        "label": "Ornament Frame",
+        "preset_labels": {
+            "THIN_INSET": "Thin Inset",
+            "HEAVY_MULLION": "Heavy Mullion",
+            "SOFT_PICTURE": "Soft Picture Frame",
+        },
+        "preset_descriptions": {
+            "THIN_INSET": "Narrow sharp frame for panel insets.",
+            "HEAVY_MULLION": "Thick tapered mullion for window grids.",
+            "SOFT_PICTURE": "Wide softened frame for hanging panels.",
+        },
+        "presets": {
+            "THIN_INSET": {
+                "Frame Width": 0.03, "Corner Taper": 0.4, "Smooth": 0.0,
+            },
+            "HEAVY_MULLION": {
+                "Frame Width": 0.12, "Corner Taper": 1.6, "Smooth": 0.0,
+            },
+            "SOFT_PICTURE": {
+                "Frame Width": 0.08, "Corner Taper": 1.0, "Smooth": 1.0,
+            },
+        },
+    },
+
+    # ornament_extras.py — remaining Filigree kit (3)
+    "MEL_filigree_corner_volute": {
+        "label": "Filigree Corner Volute",
+        "preset_labels": {
+            "CORNER_SCROLL": "Corner Scroll",
+            "DEEP_VOLUTE": "Deep Volute",
+            "TINY_EAR": "Tiny Ear",
+        },
+        "preset_descriptions": {
+            "CORNER_SCROLL": "Default corner volute with a small finial.",
+            "DEEP_VOLUTE": "Many-turn tapered volute for crest corners.",
+            "TINY_EAR": "Compact ear scroll for jewelry-scale frames.",
+        },
+        "presets": {
+            "CORNER_SCROLL": {
+                "Outer Radius": 0.5, "Inner Radius": 0.06, "Turns": 1.5,
+                "Taper Power": 1.2, "Profile Radius": 0.012,
+                "Resolution": 128, "Finial Size": 0.03,
+            },
+            "DEEP_VOLUTE": {
+                "Outer Radius": 0.9, "Inner Radius": 0.04, "Turns": 3.2,
+                "Taper Power": 0.7, "Profile Radius": 0.018,
+                "Resolution": 192, "Finial Size": 0.05,
+            },
+            "TINY_EAR": {
+                "Outer Radius": 0.22, "Inner Radius": 0.03, "Turns": 1.1,
+                "Taper Power": 1.8, "Profile Radius": 0.008,
+                "Resolution": 64, "Finial Size": 0.015,
+            },
+        },
+    },
+    "MEL_filigree_finial_cross": {
+        "label": "Filigree Finial Cross",
+        "preset_labels": {
+            "SPIRE_CROSS": "Spire Cross",
+            "PROCESSIONAL": "Processional Cross",
+            "BARE_CROSS": "Bare Cross",
+        },
+        "preset_descriptions": {
+            "SPIRE_CROSS": "Default bar-and-ball finial for spire tips.",
+            "PROCESSIONAL": "Taller arms with a large center ball.",
+            "BARE_CROSS": "Slim cross, no center ball.",
+        },
+        "presets": {
+            "SPIRE_CROSS": {
+                "Height": 0.7, "Arm Width": 0.4, "Bar Thickness": 0.05,
+                "Tip Size": 0.09, "Center Ball Size": 0.09, "Has Center Ball": True,
+            },
+            "PROCESSIONAL": {
+                "Height": 1.4, "Arm Width": 0.7, "Bar Thickness": 0.07,
+                "Tip Size": 0.14, "Center Ball Size": 0.16, "Has Center Ball": True,
+            },
+            "BARE_CROSS": {
+                "Height": 0.55, "Arm Width": 0.28, "Bar Thickness": 0.035,
+                "Tip Size": 0.05, "Center Ball Size": 0.04, "Has Center Ball": False,
+            },
+        },
+    },
+    "MEL_filigree_wreath_ring": {
+        "label": "Filigree Wreath Ring",
+        "preset_labels": {
+            "LAUREL_CREST": "Laurel Crest",
+            "CROWN_RING": "Crown Ring",
+            "MINI_WREATH": "Mini Wreath",
+        },
+        "preset_descriptions": {
+            "LAUREL_CREST": "Default eight-leaf laurel wreath.",
+            "CROWN_RING": "Dense tilted wreath for cresting.",
+            "MINI_WREATH": "Small four-leaf ring for jewelry.",
+        },
+        "presets": {
+            "LAUREL_CREST": {
+                "Radius": 0.3, "Tube Radius": 0.02, "Leaf Count": 8,
+                "Leaf Length": 0.18, "Leaf Width": 0.08, "Leaf Tilt": 25.0,
+            },
+            "CROWN_RING": {
+                "Radius": 0.55, "Tube Radius": 0.03, "Leaf Count": 16,
+                "Leaf Length": 0.28, "Leaf Width": 0.12, "Leaf Tilt": 40.0,
+            },
+            "MINI_WREATH": {
+                "Radius": 0.15, "Tube Radius": 0.01, "Leaf Count": 6,
+                "Leaf Length": 0.08, "Leaf Width": 0.04, "Leaf Tilt": 12.0,
+            },
+        },
+    },
+
+    # operations.py + geometry_extras.py — remaining Operations kit (3)
+    "MEL_op_iterate": {
+        "label": "Iterate + Power Falloff",
+        "preset_labels": {
+            "COLONNADE": "Colonnade",
+            "TAPER_STAIR": "Taper Stair",
+            "DENSE_FENCE": "Dense Fence",
+        },
+        "preset_descriptions": {
+            "COLONNADE": "Eight even-spaced instances, gentle falloff.",
+            "TAPER_STAIR": "Few instances with strong power taper.",
+            "DENSE_FENCE": "Many tight-spaced posts, even scale.",
+        },
+        "presets": {
+            "COLONNADE": {
+                "Count": 8, "Spacing": 1.0, "Base Scale": 1.0,
+                "Power Falloff": 0.5, "Even Spacing": True,
+            },
+            "TAPER_STAIR": {
+                "Count": 5, "Spacing": 1.4, "Base Scale": 1.2,
+                "Power Falloff": 1.8, "Even Spacing": False,
+            },
+            "DENSE_FENCE": {
+                "Count": 16, "Spacing": 0.35, "Base Scale": 0.8,
+                "Power Falloff": 0.15, "Even Spacing": True,
+            },
+        },
+    },
+    "MEL_op_bounded": {
+        "label": "Bounded Auto-Fit",
+        "preset_labels": {
+            "FLUSH_FIT": "Flush Fit",
+            "PADDED_INSET": "Padded Inset",
+            "SOFT_FILL": "Soft Fill",
+        },
+        "preset_descriptions": {
+            "FLUSH_FIT": "Uniform centered fit, no padding.",
+            "PADDED_INSET": "Uniform fit with a visible margin.",
+            "SOFT_FILL": "Non-uniform fill with a soft exponent.",
+        },
+        "presets": {
+            "FLUSH_FIT": {
+                "Padding": 0.0, "Fit Exponent": 1.0,
+                "Uniform Scale": True, "Center": True,
+            },
+            "PADDED_INSET": {
+                "Padding": 0.08, "Fit Exponent": 1.0,
+                "Uniform Scale": True, "Center": True,
+            },
+            "SOFT_FILL": {
+                "Padding": 0.02, "Fit Exponent": 1.8,
+                "Uniform Scale": False, "Center": True,
+            },
+        },
+    },
+    "MEL_op_power_clamp": {
+        "label": "Clamped Power Scale",
+        "preset_labels": {
+            "GENTLE_CLAMP": "Gentle Clamp",
+            "HARD_FLOOR": "Hard Floor",
+            "WIDE_RANGE": "Wide Range",
+        },
+        "preset_descriptions": {
+            "GENTLE_CLAMP": "Default falloff with a modest min/max.",
+            "HARD_FLOOR": "Steep falloff, never below 0.25.",
+            "WIDE_RANGE": "Shallow falloff, wide allowed scale.",
+        },
+        "presets": {
+            "GENTLE_CLAMP": {
+                "Base Scale": 1.0, "Power": 0.8, "Min": 0.05, "Max": 10.0,
+            },
+            "HARD_FLOOR": {
+                "Base Scale": 1.2, "Power": 1.6, "Min": 0.25, "Max": 4.0,
+            },
+            "WIDE_RANGE": {
+                "Base Scale": 0.8, "Power": 0.35, "Min": 0.1, "Max": 24.0,
+            },
+        },
+    },
+
+    "MEL_greybox_room_kit": {
+        "label": "Greybox Room Kit",
+        "preset_labels": {
+            "SMALL_CELL": "Small Cell",
+            "HALL": "Hall",
+            "CLOISTER_WALK": "Cloister Walk",
+        },
+        "preset_descriptions": {
+            "SMALL_CELL": "Tight 4x4 cell with a ceiling.",
+            "HALL": "Long assembly hall, high ceiling.",
+            "CLOISTER_WALK": "Wide cloister bay with thinner walls.",
+        },
+        "presets": {
+            "SMALL_CELL": {
+                "Room Length": 4.0, "Room Width": 4.0, "Room Height": 3.0,
+                "Wall Thickness": 0.25, "Ceiling": True,
+            },
+            "HALL": {
+                "Room Length": 14.0, "Room Width": 7.0, "Room Height": 5.5,
+                "Wall Thickness": 0.35, "Ceiling": True,
+            },
+            "CLOISTER_WALK": {
+                "Room Length": 10.0, "Room Width": 4.5, "Room Height": 3.6,
+                "Wall Thickness": 0.2, "Ceiling": True,
+            },
+        },
+    },
+    "MEL_greybox_openings": {
+        "label": "Greybox Openings",
+        "preset_labels": {
+            "SMALL_CELL": "Small Cell",
+            "HALL": "Hall",
+            "CLOISTER_WALK": "Cloister Walk",
+        },
+        "preset_descriptions": {
+            "SMALL_CELL": "Single door, no window.",
+            "HALL": "Door plus a high window.",
+            "CLOISTER_WALK": "Open arcade-like window, no door.",
+        },
+        "presets": {
+            "SMALL_CELL": {
+                "Cut Door": True, "Cut Window": False,
+                "Door Width": 0.85, "Door Height": 2.1, "Door X": 0.0,
+                "Window Width": 1.0, "Window Height": 0.8, "Window X": 1.2,
+                "Window Sill": 1.1, "Cut Depth": 12.0,
+            },
+            "HALL": {
+                "Cut Door": True, "Cut Window": True,
+                "Door Width": 1.2, "Door Height": 2.4, "Door X": -1.5,
+                "Window Width": 1.6, "Window Height": 1.2, "Window X": 1.8,
+                "Window Sill": 1.4, "Cut Depth": 16.0,
+            },
+            "CLOISTER_WALK": {
+                "Cut Door": False, "Cut Window": True,
+                "Door Width": 0.9, "Door Height": 2.1, "Door X": 0.0,
+                "Window Width": 2.2, "Window Height": 1.8, "Window X": 0.0,
+                "Window Sill": 0.8, "Cut Depth": 12.0,
+            },
+        },
+    },
+    "MEL_greybox_corridor": {
+        "label": "Greybox Corridor",
+        "preset_labels": {
+            "SMALL_CELL": "Small Cell",
+            "HALL": "Hall",
+            "CLOISTER_WALK": "Cloister Walk",
+        },
+        "preset_descriptions": {
+            "SMALL_CELL": "Short capped connector.",
+            "HALL": "Long open hall.",
+            "CLOISTER_WALK": "Wide cloister run, open ends.",
+        },
+        "presets": {
+            "SMALL_CELL": {
+                "Length": 4.0, "Width": 2.0, "Height": 2.8,
+                "Wall Thickness": 0.22, "End Cap": True,
+            },
+            "HALL": {
+                "Length": 16.0, "Width": 3.2, "Height": 4.5,
+                "Wall Thickness": 0.3, "End Cap": False,
+            },
+            "CLOISTER_WALK": {
+                "Length": 12.0, "Width": 3.6, "Height": 3.4,
+                "Wall Thickness": 0.18, "End Cap": False,
+            },
+        },
+    },
+    "MEL_greybox_junction": {
+        "label": "Greybox Junction",
+        "preset_labels": {
+            "SMALL_CELL": "Small Cell T",
+            "HALL": "Hall Cross",
+            "CLOISTER_WALK": "Cloister T",
+        },
+        "preset_descriptions": {
+            "SMALL_CELL": "Compact T join.",
+            "HALL": "Wide X crossing.",
+            "CLOISTER_WALK": "Open T for cloister corners.",
+        },
+        "presets": {
+            "SMALL_CELL": {
+                "Size": 4.0, "Width": 2.0, "Height": 2.8,
+                "Wall Thickness": 0.22, "Cross Junction": False,
+            },
+            "HALL": {
+                "Size": 8.0, "Width": 3.2, "Height": 4.5,
+                "Wall Thickness": 0.3, "Cross Junction": True,
+            },
+            "CLOISTER_WALK": {
+                "Size": 6.0, "Width": 3.6, "Height": 3.4,
+                "Wall Thickness": 0.18, "Cross Junction": False,
             },
         },
     },

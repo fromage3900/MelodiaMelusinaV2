@@ -4,7 +4,7 @@ Editor tools - Level actors, viewport, and general editor operations.
 
 import json
 from typing import Any
-from mcp.types import Tool, TextContent
+from ..mcp_types import Tool, TextContent
 
 from ..connection import get_connection, CommandResult
 

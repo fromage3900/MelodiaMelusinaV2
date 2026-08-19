@@ -5,21 +5,30 @@ import json
 import os
 
 import unreal
+from pathlib import Path
 
 ASSET_PATH = "/Game/Melodia/Data/Enemies/DA_MelodiaEnemyCatalog"
-DIR = unreal.Paths.project_content_dir() / ".." / "Imports" / "Data" / "EnemyVariants"
+DIR = Path(unreal.Paths.project_content_dir()) / ".." / "Imports" / "Data" / "EnemyVariants"
 
 ELEMENT_MAP = {
+    "arcane": unreal.MelodiaSpellElement.ARCANE,
+    "arcane_element": unreal.MelodiaSpellElement.ARCANE,
     "forte": unreal.MelodiaSpellElement.FORTE,
     "forte_element": unreal.MelodiaSpellElement.FORTE,
+    "gale": unreal.MelodiaSpellElement.GALE,
+    "gale_element": unreal.MelodiaSpellElement.GALE,
+    "wind": unreal.MelodiaSpellElement.GALE,
+    "wind_element": unreal.MelodiaSpellElement.GALE,
     "radiant": unreal.MelodiaSpellElement.RADIANT,
     "radiant_element": unreal.MelodiaSpellElement.RADIANT,
     "stone": unreal.MelodiaSpellElement.STONE,
     "stone_element": unreal.MelodiaSpellElement.STONE,
-    "wind": unreal.MelodiaSpellElement.WIND,
-    "wind_element": unreal.MelodiaSpellElement.WIND,
-    "water": unreal.MelodiaSpellElement.WATER,
-    "water_element": unreal.MelodiaSpellElement.WATER,
+    "tide": unreal.MelodiaSpellElement.TIDE,
+    "tide_element": unreal.MelodiaSpellElement.TIDE,
+    "water": unreal.MelodiaSpellElement.TIDE,
+    "water_element": unreal.MelodiaSpellElement.TIDE,
+    "umbral": unreal.MelodiaSpellElement.UMBRAL,
+    "umbral_element": unreal.MelodiaSpellElement.UMBRAL,
 }
 
 TIER_BOSS = {"unique", "boss", "miniboss", "elite_boss"}

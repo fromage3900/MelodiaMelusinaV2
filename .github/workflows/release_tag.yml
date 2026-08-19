@@ -23,6 +23,23 @@ jobs:
           fetch-depth: 0
           lfs: false
 
+      # Saved/gate_ledger.json is gitignored and was never a tracked file
+      # (git ls-files Saved/gate_ledger.json returns nothing), so a plain
+      # checkout can never see it. echo_gates.yml now uploads the ledger
+      # as a workflow artifact ("gate-ledger") on every run against main.
+      # Pull the most recent successful one down here instead of reading
+      # it from the working tree. This keeps the ledger out of git (as
+      # echo_gates.yml's own comment intends) while still letting this
+      # job see real gate rows instead of dying with FileNotFoundError.
+      - name: Download latest gate ledger artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          workflow: echo_gates.yml
+          branch: main
+          name: gate-ledger
+          path: Saved
+          workflow_conclusion: success
+
       - name: Verify completion gates have ledger rows
         shell: bash
         run: |
@@ -51,10 +68,18 @@ jobs:
           git push origin "$VERSION"
 
       - name: Draft GitHub release
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${{ github.event.inputs.version }}" `
-            --title "Melodia ${{ github.event.inputs.version }}" `
-            --notes "${{ github.event.inputs.note }}" `
+          # This step has no `shell:` override elsewhere in the file, but
+          # ubuntu-latest's default shell is bash, not PowerShell -- so
+          # backtick line-continuations (PowerShell syntax) were being
+          # parsed as bash command substitution, which is a syntax error.
+          # Use bash line-continuations (trailing backslash) instead, and
+          # set shell: bash explicitly so this can't silently regress if
+          # the job's default shell ever changes.
+          gh release create "${{ github.event.inputs.version }}" \
+            --title "Melodia ${{ github.event.inputs.version }}" \
+            --notes "${{ github.event.inputs.note }}" \
             --generate-notes || true

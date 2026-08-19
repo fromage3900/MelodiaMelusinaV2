@@ -1,0 +1,37 @@
+{
+  "schema": "melodia.melusina_v2_material_map.v1",
+  "description": "Source Blender material names to approved Melusina material instances. Masters are never edited or created by the V2 importer.",
+  "approved_materials": {
+    "SBW_MELUSINA.002": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_006.MI_Melusina_SBW_MELUSINA_006",
+    "SBW_MELUSINA.006": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_006.MI_Melusina_SBW_MELUSINA_006",
+    "SBW_MELUSINA": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_007.MI_Melusina_SBW_MELUSINA_007",
+    "SBW_Outline": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005",
+    "Material.008": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_UpdatedShirt.MI_Melusina_UpdatedShirt",
+    "SKIRT.003": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SKIRT_003.MI_Melusina_SKIRT_003",
+    "Halftone 3 Inputs - Lines & Circles.002": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Halftone_3_Inputs_-_Lines___Circles_002.MI_Melusina_Halftone_3_Inputs_-_Lines___Circles_002",
+    "skirtpanel.002": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_skirtpanel_002.MI_Melusina_skirtpanel_002",
+    "Outline.006": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005",
+    "Material.017": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_017.MI_Melusina_Material_017",
+    "Outline": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005",
+    "bow.002": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_bow_002.MI_Melusina_bow_002",
+    "frontpanel.001": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_frontpanel_001.MI_Melusina_frontpanel_001",
+    "GLOVES.001": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_GLOVES_001.MI_Melusina_GLOVES_001",
+    "Material.016": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_GLOVES_001.MI_Melusina_GLOVES_001",
+    "SHAWL.001": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SHAWL_001.MI_Melusina_SHAWL_001",
+    "Outline.005": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005",
+    "sleeve.003": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_sleeve_003.MI_Melusina_sleeve_003",
+    "SBW_MELUSINA.007": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_007.MI_Melusina_SBW_MELUSINA_007",
+    "SBW_MELUSINA.008": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_007.MI_Melusina_SBW_MELUSINA_007",
+    "SBW_Outline.003": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005",
+    "Gradient (Radial).002": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_IRISFRONT_001.MI_Melusina_IRISFRONT_001"
+  },
+  "reject_tokens": [
+    "WorldGrid",
+    "Marble",
+    "Placeholder",
+    "V2Test",
+    "M_Master_"
+  ],
+  "production_baseline": "existing Substrate toon material instances",
+  "allow_material_master_changes": false
+}

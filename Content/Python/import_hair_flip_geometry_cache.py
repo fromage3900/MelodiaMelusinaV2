@@ -1,13 +1,25 @@
 # -*- coding: utf-8 -*-
-"""Import Flip Fluids Alembic as a Geometry Cache cine asset (Layer C).
+"""Import Flip Fluids Alembic as the Melusina water-hair Geometry Cache body.
+
+Product path (do not launch Unreal here):
+  Geometry Cache  = hair BODY (globules) on a sibling GeometryCacheComponent
+  Niagara Melusina_WaterFX / WaterSplashEmitter = drip
+  Socket both to head_x with inverse bind (Decision 010). UMelodiaHairComponent
+  is skeletal — it cannot hold a Geometry Cache. Do not parent GC to head_x
+  without the inverse (old ~3 ft offset). Use apply_melusina_aaa_hair_today.py.
+
+SK_MelusinaHair + ABP_Melusina_WaterHair stay on disk as fallback silhouette.
+They are not the water-hair product.
 
 Does NOT:
-  - replace SK_MelusinaHair / MI_Melusina_WaterHair / ABP_Melusina_WaterHair
   - spawn into the currently loaded gameplay map
   - launch a second UnrealEditor
+  - stuff GC into UMelodiaHairComponent
 
-Source ABC (already cm via Blender global_scale=100):
+Source ABC (already cm via Blender global_scale=100). Prefer the full 1–240
+export when present:
   G:\\EnvironmentPortfolio\\BS_GodFile\\Exports\\MelusinaWaterHair\\GC_MelusinaHairFlip_v22.abc
+  G:\\EnvironmentPortfolio\\BS_GodFile\\KitbashExport\\flip_melusina_waterhair_v22_*.abc
 
 In already-open editor:
   py Content/Python/import_hair_flip_geometry_cache.py
@@ -28,12 +40,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 ABC_CANDIDATES = [
     Path(r"G:\EnvironmentPortfolio\BS_GodFile\Exports\MelusinaWaterHair\GC_MelusinaHairFlip_v22.abc"),
     PROJECT_ROOT / "Exports" / "MelusinaWaterHair" / "GC_MelusinaHairFlip_v22.abc",
+    Path(r"G:\EnvironmentPortfolio\BS_GodFile\KitbashExport\flip_melusina_waterhair_v22_2026-08-13_1511.abc"),
+    Path(r"G:\EnvironmentPortfolio\BS_GodFile\KitbashExport\flip_melusina_waterhair_v22_2026-08-13_1321.abc"),
 ]
 DEST = "/Game/Cinematics/MelusinaWaterHair"
 ASSET_NAME = "GC_MelusinaHairFlip_v22"
 AUDIT_PATH = PROJECT_ROOT / "Saved" / "Audit" / "hair_flip_geometry_cache_import.json"
 FRAME_START = 1
-FRAME_END = 96
+FRAME_END = 240
 
 
 def _log(msg: str) -> None:
@@ -149,8 +163,11 @@ def main() -> int:
         _log(f"FAIL {exc}")
 
     payload["note"] = (
-        "Cine Geometry Cache only. Leave SK_MelusinaHair + MI_Melusina_WaterHair "
-        "+ ABP_Melusina_WaterHair as gameplay Layer A. Socket a new GeometryCacheActor to head."
+        "Product: Geometry Cache is the hair BODY on a sibling "
+        "GeometryCacheComponent. Socket GC + Niagara Melusina_WaterFX to "
+        "head_x with inverse bind (Decision 010). Do not parent GC to "
+        "UMelodiaHairComponent. SK_MelusinaHair + ABP_Melusina_WaterHair "
+        "are fallback silhouette only."
     )
     AUDIT_PATH.parent.mkdir(parents=True, exist_ok=True)
     AUDIT_PATH.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")

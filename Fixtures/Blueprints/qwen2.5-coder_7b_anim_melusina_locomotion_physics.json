@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "benchmark_task": "anim_melusina_locomotion_physics",
+    "model_evaluated": "qwen2.5-coder:7b",
+    "subsystem": "Animation",
+    "timestamp": "2026-08-19T05:44:55Z",
+    "total_score": 60.35,
+    "success": false,
+    "run_mode": "live",
+    "llm_tokens": 3248,
+    "llm_raw_length": 3599
+  },
+  "task_description": "Construct an Animation Blueprint with state machine transitions, blendspace evaluation, two-bone IK, and procedural bone modification for Melusina tail/fin secondary physics.",
+  "pipeline_operations": [
+    {
+      "tool": "create_animation_blueprint",
+      "arguments": {
+        "name": "ABP_Melusina_Character",
+        "parent_class": "Character"
+      }
+    },
+    {
+      "tool": "add_anim_state_machine",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion"
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "Idle"
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "Walk"
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "Run"
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "JumpStart"
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "InAir"
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "Land"
+      }
+    },
+    {
+      "tool": "add_blend_space_player",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "blend_space_name": "BS_Melusina_Locomotion"
+      }
+    },
+    {
+      "tool": "add_two_bone_ik_node",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "node_name": "TwoBoneIK_Foot_L"
+      }
+    },
+    {
+      "tool": "add_bone_transform_node",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "node_name": "ModifyBone_Tail_02_Jnt"
+      }
+    },
+    {
+      "tool": "add_anim_notify",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "notify_name": "Footstep_L"
+      }
+    },
+    {
+      "tool": "add_anim_notify",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "notify_name": "CastMagic"
+      }
+    },
+    {
+      "tool": "connect_anim_nodes",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "source_node_name": "TwoBoneIK_Foot_L",
+        "target_node_name": "ModifyBone_Tail_02_Jnt"
+      }
+    },
+    {
+      "tool": "connect_anim_nodes",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "source_node_name": "ModifyBone_Tail_02_Jnt",
+        "target_node_name": "BS_Melusina_Locomotion"
+      }
+    },
+    {
+      "tool": "connect_anim_nodes",
+      "arguments": {
+        "animation_blueprint_name": "ABP_Melusina_Character",
+        "source_node_name": "BS_Melusina_Locomotion",
+        "target_node_name": "SM_Locomotion"
+      }
+    },
+    {
+      "tool": "save_all",
+      "arguments": {}
+    }
+  ],
+  "graph_summary": {
+    "nodes_count": 14,
+    "connections_count": 3,
+    "required_coverage": "88.9%"
+  }
+}

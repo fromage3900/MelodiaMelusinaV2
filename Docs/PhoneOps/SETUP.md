@@ -1,23 +1,23 @@
 # Phone + Multi-Agent Setup
 
-How this MelodiaMelusina workspace is driven from phone, GitHub cloud agents, and parallel research (SuperGrok / Cursor Pro).
+How this MelodiaMelusinaV2 workspace is driven from phone, GitHub cloud agents, and parallel research (SuperGrok / Cursor Pro).
 
 ## Stack
 
 | Layer | Tool | Role |
 |---|---|---|
 | Phone UI | Cursor iOS / mobile agents | Kick off cloud runs, review diffs, steer priorities |
-| Cloud code | Cursor Cloud Agents (`MelodiaMelusina`) | Read/write repo, PRs, docs, audits |
+| Cloud code | Cursor Cloud Agents (`MelodiaMelusinaV2`) | Read/write repo, PRs, docs, audits |
 | Deep research | SuperGrok (or similar) | Scratchpads, strategy, cross-tool synthesis — often no git push |
 | Local production | UE 5.8 + Blender 5.1 + MCP | Materials, PCG, Live Link, capture (desktop) |
 | Source of truth | This GitHub repo | `main` + `cursor/*-0e29` agent branches |
 
-Repo: `github.com/fromage3900/MelodiaMelusina`  
+Repo: `github.com/fromage3900/MelodiaMelusinaV2` (remote `origin`)  
 UProject: `BS_GodFile.uproject` (UE 5.8)
 
 ## Cursor Pro (phone / cloud)
 
-1. Open Cursor Agents on phone → target **MelodiaMelusina**.
+1. Open Cursor Agents on phone → target **MelodiaMelusinaV2**.
 2. Prefer short, one-lane prompts (docs, audit, one script family).
 3. Cloud agents create branches like `cursor/<name>-0e29`, commit, push, open draft PRs.
 4. You approve merge / art direction / external publish — agents do not.
@@ -78,7 +78,7 @@ On the Windows box, install the same set into jcode via `.\deploy\install_jcode_
 
 Full inventory + history context: [RECENT_STUDY.md](RECENT_STUDY.md).
 
-There is **no** root `.cursorrules` / `CLAUDE.md` in MelodiaMelusina; use `AGENTS.md` + PhoneOps + Monolith/jcode skills instead.
+There is **no** root `.cursorrules` in MelodiaMelusinaV2 (root `CLAUDE.md` exists); use `AGENTS.md` + PhoneOps + Monolith/jcode skills instead.
 
 ## jcode swarm (desktop parallel coding)
 

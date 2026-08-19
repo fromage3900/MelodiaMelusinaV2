@@ -1,7 +1,7 @@
 # Release Validation Report — July 2026
 
 **Generated:** 2026-07-17  
-**Repo:** `G:/EnvironmentPortfolio/BS_GodFile`  
+**Repo:** `C:/EnvironmentPortfolio/BS_GodFile`  
 **Status:** `validation_complete`  
 
 ---

@@ -1,4 +1,4 @@
-﻿"""Gothic castle generator ΓÇö composable GN groups for walls, towers, keeps, gates, windows, buttresses,
+"""Gothic castle generator ΓÇö composable GN groups for walls, towers, keeps, gates, windows, buttresses,
 curtain walls, machicolations, and spiral stairs.
 
 Each component auto-fits to bounding boxes, uses power/exponent scaling,
@@ -27,7 +27,8 @@ import bpy
 from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param, add_vector_param,
-    make_group_input,
+    make_group_input, sweep_profile, add_music_influence_params,
+    apply_universal_music_pass, input_geometry_with_default,
 )
 
 
@@ -339,11 +340,10 @@ def build_castle_gatehouse(group_name="MEL_castle_gatehouse"):
 
 
 def build_castle_gothic_window(group_name="MEL_castle_gothic_window"):
-    """Gothic pointed arch window with tracery.
+    """Gothic pointed-arch window — portal slab minus cutter, plus tracery.
 
-    Uses: power (arch pointedness), exponent_blend (arch curve),
-          add (tracery bars), subtract (window void), bounding_box (wall-fit),
-          store_attribute (window zone)
+    Language matches gothic_kit GB_GOTHIC_PORTAL / bay: boolean wall, pointed
+    cap, mullions. Universal Musical Influence at the end (default 0).
     """
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
@@ -351,65 +351,143 @@ def build_castle_gothic_window(group_name="MEL_castle_gothic_window"):
     add_float_param(tree, "Width", 1.2, 0.3, 4.0)
     add_float_param(tree, "Height", 2.0, 0.5, 6.0)
     add_float_param(tree, "Arch Point", 0.5, 0.0, 1.0)
-    add_float_param(tree, "Frame Thick", 0.06, 0.02, 0.3)
+    add_float_param(tree, "Frame Thick", 0.08, 0.02, 0.3)
     add_int_param(tree, "Tracery Bars", 2, 0, 6)
-    add_float_param(tree, "Bar Width", 0.03, 0.01, 0.1)
+    add_float_param(tree, "Bar Width", 0.04, 0.01, 0.1)
+    add_music_influence_params(tree)
 
-    # Window frame: cube
+    # Wall / frame slab (Y is thickness)
     frame = safe_node(tree, "GeometryNodeMeshCube", (bx - 300, by + 300))
-    link_float_to_vector(tree, gin.outputs["Width"], frame, "Size", component=0)
-    link_float_to_vector(tree, gin.outputs["Height"], frame, "Size", component=2)
+    try:
+        frame.inputs["Vertices X"].default_value = 3
+        frame.inputs["Vertices Y"].default_value = 2
+        frame.inputs["Vertices Z"].default_value = 4
+    except Exception:
+        pass
+    frame_size = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 520, by + 300))
+    link_sockets(tree, gin.outputs["Width"], frame_size.inputs["X"])
+    thick3 = safe_node(tree, "ShaderNodeMath", (bx - 700, by + 260))
+    thick3.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Frame Thick"], thick3.inputs[0])
+    thick3.inputs[1].default_value = 3.0
+    link_sockets(tree, thick3.outputs[0], frame_size.inputs["Y"])
+    link_sockets(tree, gin.outputs["Height"], frame_size.inputs["Z"])
+    link_sockets(tree, frame_size.outputs["Vector"], frame.inputs["Size"])
 
-    # Inner void
-    inner = safe_node(tree, "GeometryNodeMeshCube", (bx - 300, by + 100))
-    inner_w = safe_node(tree, "ShaderNodeMath", (bx - 400, by + 150))
+    # Inner rectangular cutter — Width/Height minus 2× frame thick
+    thick2 = safe_node(tree, "ShaderNodeMath", (bx - 700, by + 140))
+    thick2.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Frame Thick"], thick2.inputs[0])
+    thick2.inputs[1].default_value = 2.0
+    inner_w = safe_node(tree, "ShaderNodeMath", (bx - 520, by + 180))
     inner_w.operation = "SUBTRACT"
     link_sockets(tree, gin.outputs["Width"], inner_w.inputs[0])
-    link_sockets(tree, gin.outputs["Frame Thick"], inner_w.inputs[1])
-    inner_h = safe_node(tree, "ShaderNodeMath", (bx - 400, by + 100))
+    link_sockets(tree, thick2.outputs[0], inner_w.inputs[1])
+    inner_h = safe_node(tree, "ShaderNodeMath", (bx - 520, by + 100))
     inner_h.operation = "SUBTRACT"
     link_sockets(tree, gin.outputs["Height"], inner_h.inputs[0])
-    link_sockets(tree, gin.outputs["Frame Thick"], inner_h.inputs[1])
+    link_sockets(tree, thick2.outputs[0], inner_h.inputs[1])
+    inner_d = safe_node(tree, "ShaderNodeMath", (bx - 700, by + 60))
+    inner_d.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Frame Thick"], inner_d.inputs[0])
+    inner_d.inputs[1].default_value = 6.0
+    inner = safe_node(tree, "GeometryNodeMeshCube", (bx - 300, by + 100))
+    inner_size = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 400, by + 100))
+    link_sockets(tree, inner_w.outputs[0], inner_size.inputs["X"])
+    link_sockets(tree, inner_d.outputs[0], inner_size.inputs["Y"])
+    link_sockets(tree, inner_h.outputs[0], inner_size.inputs["Z"])
+    link_sockets(tree, inner_size.outputs["Vector"], inner.inputs["Size"])
 
-    # Subtract inner from frame
-    diff = safe_node(tree, "GeometryNodeMeshBoolean", (bx - 100, by + 200))
+    # Pointed cap cutter (gothic_kit pointed arch)
+    cap = safe_node(tree, "GeometryNodeMeshCone", (bx - 300, by - 80))
+    cap.inputs["Vertices"].default_value = 16
+    link_sockets(tree, inner_w.outputs[0], cap.inputs["Radius Bottom"])
+    cap.inputs["Radius Top"].default_value = 0.0
+    arch_h = safe_node(tree, "ShaderNodeMath", (bx - 520, by - 80))
+    arch_h.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Height"], arch_h.inputs[0])
+    link_sockets(tree, gin.outputs["Arch Point"], arch_h.inputs[1])
+    half_arch = safe_node(tree, "ShaderNodeMath", (bx - 400, by - 80))
+    half_arch.operation = "MULTIPLY"
+    link_sockets(tree, arch_h.outputs[0], half_arch.inputs[0])
+    half_arch.inputs[1].default_value = 0.55
+    link_sockets(tree, half_arch.outputs[0], cap.inputs["Depth"])
+    cap_z = safe_node(tree, "ShaderNodeMath", (bx - 520, by - 160))
+    cap_z.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Height"], cap_z.inputs[0])
+    cap_z.inputs[1].default_value = 0.28
+    cap_pos = safe_node(tree, "GeometryNodeTransform", (bx - 100, by - 80))
+    link_sockets(tree, cap.outputs["Mesh"], cap_pos.inputs["Geometry"])
+    cap_loc = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 280, by - 180))
+    link_sockets(tree, cap_z.outputs[0], cap_loc.inputs["Z"])
+    link_sockets(tree, cap_loc.outputs["Vector"], cap_pos.inputs["Translation"])
+
+    cutters = safe_node(tree, "GeometryNodeJoinGeometry", (bx - 80, by + 40))
+    link_sockets(tree, inner.outputs["Mesh"], cutters.inputs["Geometry"])
+    link_sockets(tree, cap_pos.outputs["Geometry"], cutters.inputs["Geometry"])
+
+    # Frame minus cutters (was swapped: inner minus frame)
+    diff = safe_node(tree, "GeometryNodeMeshBoolean", (bx + 80, by + 200))
     diff.operation = "DIFFERENCE"
-    link_sockets(tree, frame.outputs["Mesh"], diff.inputs["Mesh 2"])
-    link_sockets(tree, inner.outputs["Mesh"], diff.inputs["Mesh 1"])
+    link_sockets(tree, frame.outputs["Mesh"], diff.inputs["Mesh 1"])
+    link_sockets(tree, cutters.outputs["Geometry"], diff.inputs["Mesh 2"])
 
-    # Tracery bars: vertical
-    bar = safe_node(tree, "GeometryNodeMeshCube", (bx - 100, by - 50))
-    link_float_to_vector(tree, gin.outputs["Bar Width"], bar, "Size", component=0)
-    link_float_to_vector(tree, gin.outputs["Height"], bar, "Size", component=2)
-    bar.inputs["Size"].default_value[1] = 0.01
+    # Tracery mullions
+    bar = safe_node(tree, "GeometryNodeMeshCube", (bx - 100, by - 220))
+    bar_size = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 280, by - 220))
+    link_sockets(tree, gin.outputs["Bar Width"], bar_size.inputs["X"])
+    bar_size.inputs["Y"].default_value = 0.02
+    link_sockets(tree, gin.outputs["Height"], bar_size.inputs["Z"])
+    link_sockets(tree, bar_size.outputs["Vector"], bar.inputs["Size"])
 
-    # Tracery bars array
-    bar_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 300, by - 100))
+    bar_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 300, by - 280))
     bar_line.mode = "END_POINTS"
     link_sockets(tree, gin.outputs["Tracery Bars"], bar_line.inputs["Count"])
-    link_float_to_vector(tree, gin.outputs["Width"], bar_line, "Start Location", component=0)
+    half_w = safe_node(tree, "ShaderNodeMath", (bx - 480, by - 280))
+    half_w.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Width"], half_w.inputs[0])
+    half_w.inputs[1].default_value = -0.35
+    link_float_to_vector(tree, half_w.outputs[0], bar_line, "Start Location", component=0)
+    span_end = safe_node(tree, "ShaderNodeMath", (bx - 480, by - 340))
+    span_end.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Width"], span_end.inputs[0])
+    span_end.inputs[1].default_value = 0.35
+    end_in = bar_line.inputs.get("End Location") or bar_line.inputs.get("Offset")
+    if end_in is not None:
+        end_vec = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 360, by - 340))
+        link_sockets(tree, span_end.outputs[0], end_vec.inputs["X"])
+        link_sockets(tree, end_vec.outputs["Vector"], end_in)
 
-    inst_bars = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx - 100, by - 100))
+    inst_bars = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx - 80, by - 280))
     link_sockets(tree, bar_line.outputs["Mesh"], inst_bars.inputs["Points"])
     link_sockets(tree, bar.outputs["Mesh"], inst_bars.inputs["Instance"])
-
-    realize_bars = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 100, by - 100))
+    realize_bars = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 100, by - 280))
     link_sockets(tree, inst_bars.outputs["Instances"], realize_bars.inputs["Geometry"])
 
-    # Join frame + tracery
-    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 100, by + 100))
+    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 220, by + 80))
     link_sockets(tree, diff.outputs["Mesh"], join.inputs["Geometry"])
     link_sockets(tree, realize_bars.outputs["Geometry"], join.inputs["Geometry"])
 
-    shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 300, by + 100))
+    subdiv = safe_node(tree, "GeometryNodeSubdivisionSurface", (bx + 400, by + 80))
+    if subdiv is not None:
+        link_sockets(tree, join.outputs["Geometry"], subdiv.inputs.get("Mesh") or subdiv.inputs[0])
+        try:
+            subdiv.inputs["Level"].default_value = 1
+        except Exception:
+            pass
+        geo = subdiv.outputs.get("Mesh") or subdiv.outputs.get("Geometry")
+    else:
+        geo = join.outputs["Geometry"]
+
+    shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 600, by + 80))
     shade.inputs["Shade Smooth"].default_value = True
-    link_sockets(tree, join.outputs["Geometry"], shade.inputs["Geometry"])
-    link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
+    link_sockets(tree, geo, shade.inputs["Geometry"])
+    music_geo = apply_universal_music_pass(tree, gin, shade.outputs["Geometry"], (bx + 800, by))
+    link_sockets(tree, music_geo, gout.inputs["Geometry"])
 
     color_node(frame, "geometry")
     color_node(diff, "math")
     color_node(join, "geometry")
-
     return tree
 
 
@@ -486,23 +564,16 @@ def build_castle_buttress(group_name="MEL_castle_buttress"):
     link_sockets(tree, arch_line.outputs["Mesh"], arch_pos.inputs["Geometry"])
     link_sockets(tree, combine.outputs["Vector"], arch_pos.inputs["Position"])
 
-    # Circle profile for arch sweep
-    arch_profile = safe_node(tree, "GeometryNodeMeshCircle", (bx, by - 100))
-    link_sockets(tree, gin.outputs["Thickness"], arch_profile.inputs["Radius"])
-    arch_profile.inputs["Vertices"].default_value = 6
-    arch_profile.fill_type = "NGON"
-
-    # Curve to mesh: sweep profile along arch
-    arch_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx + 1100, by - 200))
-    link_sockets(tree, arch_pos.outputs["Geometry"], arch_mesh.inputs["Curve"])
-    profile_sock = arch_mesh.inputs.get("Profile") or arch_mesh.inputs.get("Profile Curve")
-    link_sockets(tree, arch_profile.outputs["Mesh"], profile_sock)
+    # Circle profile for arch sweep (AAA railing: curve circle, MeshToCurve path)
+    arch_swept = sweep_profile(
+        tree, (bx + 1100, by - 200), arch_pos.outputs["Geometry"],
+        gin.outputs["Thickness"], profile_res=8, already_curve=False)
 
     # Join strut + pier + arch
     join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 1100, by + 100))
     link_sockets(tree, strut.outputs["Mesh"], join.inputs["Geometry"])
     link_sockets(tree, pier.outputs["Mesh"], join.inputs["Geometry"])
-    link_sockets(tree, arch_mesh.outputs["Mesh"], join.inputs["Geometry"])
+    link_sockets(tree, arch_swept, join.inputs["Geometry"])
 
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 1300, by + 100))
     shade.inputs["Shade Smooth"].default_value = True
@@ -512,7 +583,7 @@ def build_castle_buttress(group_name="MEL_castle_buttress"):
     color_node(strut, "geometry")
     color_node(pier, "geometry")
     color_node(arch_line, "curve")
-    color_node(arch_mesh, "geometry")
+    color_node(arch_pos, "curve")
     color_node(join, "geometry")
 
     return tree
@@ -1045,11 +1116,42 @@ def build_castle_assembler(group_name="MEL_castle_assembler"):
     add_float_param(tree, "Courtyard Depth", 15.0, 5.0, 60.0)
     add_bool_param(tree, "Complete Walls", True)
     add_bool_param(tree, "Corner Towers", True)
+    add_bool_param(tree, "Use Default Seed", True)
 
     walls_sock = gin.outputs["Walls"] if "Walls" in gin.outputs else None
     towers_sock = gin.outputs["Towers"] if "Towers" in gin.outputs else None
     keep_sock = gin.outputs["Keep"] if "Keep" in gin.outputs else None
     gate_sock = gin.outputs["Gatehouse"] if "Gatehouse" in gin.outputs else None
+
+    def _seed_part(sock, builder, gname, loc):
+        grp = None
+        try:
+            grp = safe_node(tree, "GeometryNodeGroup", loc)
+            if gname not in bpy.data.node_groups:
+                builder(gname)
+            if grp:
+                grp.node_tree = bpy.data.node_groups.get(gname)
+        except Exception:
+            grp = None
+        default_geo = grp.outputs.get("Geometry") if grp and grp.node_tree else None
+        sw = safe_node(tree, "GeometryNodeSwitch", (loc[0] + 220, loc[1]))
+        try:
+            sw.input_type = "GEOMETRY"
+        except Exception:
+            pass
+        link_sockets(tree, gin.outputs["Use Default Seed"], sw.inputs["Switch"])
+        true_in = sw.inputs.get("True") or sw.inputs.get("TRUE")
+        false_in = sw.inputs.get("False") or sw.inputs.get("FALSE")
+        if default_geo is not None:
+            link_sockets(tree, default_geo, true_in)
+        if sock is not None:
+            link_sockets(tree, sock, false_in)
+        return sw.outputs.get("Output") or sw.outputs.get("Geometry")
+
+    walls_sock = _seed_part(walls_sock, build_castle_wall_segment, "MEL_castle_wall_segment", (bx - 600, by + 80))
+    towers_sock = _seed_part(towers_sock, build_castle_tower, "MEL_castle_tower", (bx - 600, by - 80))
+    keep_sock = _seed_part(keep_sock, build_castle_keep, "MEL_castle_keep", (bx - 600, by - 240))
+    gate_sock = _seed_part(gate_sock, build_castle_gatehouse, "MEL_castle_gatehouse", (bx - 600, by - 400))
 
     # Courtyard bounding box
     court = safe_node(tree, "GeometryNodeMeshGrid", (bx - 400, by + 300))
@@ -1097,7 +1199,7 @@ def build_castle_assembler(group_name="MEL_castle_assembler"):
 from .core import register_builder
 
 register_builder("MEL_castle_crenellation", build_castle_crenellation, "Castle Crenellation",
-    "Battlement top ΓÇö alternating merlons and crenels along a wall",
+    "Battlement top — alternating merlons and crenels along a wall",
     "castle")
 register_builder("MEL_castle_wall_segment", build_castle_wall_segment, "Castle Wall Segment",
     "Wall body with optional crenellation toggle via Switch node",
@@ -1112,23 +1214,23 @@ register_builder("MEL_castle_gothic_window", build_castle_gothic_window, "Castle
     "Pointed arch window with tracery bars",
     "castle")
 register_builder("MEL_castle_buttress", build_castle_buttress, "Castle Buttress",
-    "Flying buttress ΓÇö tapered strut with angled arch support",
+    "Flying buttress — tapered strut with angled arch support",
     "castle")
 register_builder("MEL_castle_keep", build_castle_keep, "Castle Keep",
-    "Central keep ΓÇö multi-tier core with corner towers and tier taper",
+    "Central keep — multi-tier core with corner towers and tier taper",
     "castle")
 register_builder("MEL_castle_curtain_wall", build_castle_curtain_wall, "Castle Curtain Wall",
-    "Wall between towers ΓÇö walkway and support pillars via linear array",
+    "Wall between towers — walkway and support pillars via linear array",
     "castle")
 register_builder("MEL_castle_machicolations", build_castle_machicolations, "Castle Machicolations",
-    "Projecting parapet ΓÇö murder holes via grid array of boolean voids",
+    "Projecting parapet — murder holes via grid array of boolean voids",
     "castle")
 register_builder("MEL_castle_spiral_stairs", build_castle_spiral_stairs, "Castle Spiral Stairs",
-    "Spiral staircase ΓÇö hollow shaft with wedge steps on helix",
+    "Spiral staircase — hollow shaft with wedge steps on helix",
     "castle")
 register_builder("MEL_castle_assembler", build_castle_assembler, "Castle Full Assembler",
     "Full castle composition \u2014 walls, towers, keep, gatehouse, courtyard",
-    "castle")
+    "castle", role="modifier")
 register_builder("MEL_castle_drawbridge", build_castle_drawbridge, "Castle Drawbridge",
     "Drawbridge with plank floor, chain suspension, and hinge rotation",
     "castle")

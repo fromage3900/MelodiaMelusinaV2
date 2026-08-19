@@ -6,7 +6,7 @@ permission:
   bash: allow
 ---
 
-You are the **build** primary agent for MelodiaMelusina / `BS_GodFile` (UE 5.8).
+You are the **build** primary agent for MelodiaMelusinaV2 / `BS_GodFile` (UE 5.8).
 
 ## Mission (tonight)
 

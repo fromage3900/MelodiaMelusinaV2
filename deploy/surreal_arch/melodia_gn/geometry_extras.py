@@ -747,13 +747,32 @@ def build_stepped_pyramid(group_name="MEL_stepped_pyramid"):
     parts = []
     for i in range(8):
         cube = safe_node(tree, "GeometryNodeMeshCube", (bx - 600, by + 120 - i * 160))
-        size = gin.outputs["Base Size"]
-        for _axis in range(3):
-            factor = safe_node(tree, "ShaderNodeMath", (bx - 750, by + 120 - i * 160))
-            factor.operation = "MULTIPLY"
-            factor.inputs[1].default_value = 0.75 ** i
-            link_sockets(tree, size, factor.inputs[0])
-            link_float_to_vector(tree, factor.outputs[0], cube, "Size", component=_axis, defaults=(0.0, 0.0, 0.0))
+        try:
+            cube.inputs["Size"].default_value = (4.0, 4.0, 0.4)
+            cube.inputs["Vertices X"].default_value = 4
+            cube.inputs["Vertices Y"].default_value = 4
+            cube.inputs["Vertices Z"].default_value = 2
+        except Exception:
+            pass
+        shrink_pow = safe_node(tree, "ShaderNodeMath", (bx - 900, by + 120 - i * 160))
+        shrink_pow.operation = "POWER"
+        shrink_pow.inputs[0].default_value = 0.75
+        shrink_pow.inputs[1].default_value = float(i)
+        link_sockets(tree, gin.outputs["Shrink"], shrink_pow.inputs[0])
+        xy = safe_node(tree, "ShaderNodeMath", (bx - 750, by + 120 - i * 160))
+        xy.operation = "MULTIPLY"
+        xy.inputs[0].default_value = 4.0
+        xy.inputs[1].default_value = 1.0
+        link_sockets(tree, gin.outputs["Base Size"], xy.inputs[0])
+        link_sockets(tree, shrink_pow.outputs[0], xy.inputs[1])
+        size_vec = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 620, by + 80 - i * 160))
+        size_vec.inputs["X"].default_value = 4.0
+        size_vec.inputs["Y"].default_value = 4.0
+        size_vec.inputs["Z"].default_value = 0.4
+        link_sockets(tree, xy.outputs[0], size_vec.inputs["X"])
+        link_sockets(tree, xy.outputs[0], size_vec.inputs["Y"])
+        link_sockets(tree, gin.outputs["Step Height"], size_vec.inputs["Z"])
+        link_sockets(tree, size_vec.outputs["Vector"], cube.inputs["Size"])
         color_node(cube, "geometry")
 
         z_off = safe_node(tree, "ShaderNodeMath", (bx - 750, by + 40 - i * 160))
@@ -778,7 +797,7 @@ def build_stepped_pyramid(group_name="MEL_stepped_pyramid"):
 
         set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx - 300, by + 120 - i * 160))
         link_sockets(tree, cube.outputs["Mesh"], set_pos.inputs["Geometry"])
-        link_sockets(tree, combine.outputs["Vector"], set_pos.inputs["Position"])
+        link_sockets(tree, combine.outputs["Vector"], set_pos.inputs["Offset"])
 
         gate = safe_node(tree, "FunctionNodeCompare", (bx - 450, by - 20 - i * 160))
         gate.data_type = "INT"

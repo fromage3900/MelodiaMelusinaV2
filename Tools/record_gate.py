@@ -37,6 +37,7 @@ KNOWN_GATES = [
     "dialogue_visible",
     "travel_allowlist",
     "battle_encounter",
+    "battle_integration_map",
     "save_create",
     "save_load",
     "victory_result",

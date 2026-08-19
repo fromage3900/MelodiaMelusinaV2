@@ -36,7 +36,24 @@ OUT_PATH = os.path.normpath(os.path.join(
 TARGET_ROOTS = [
     "/Game/EnvSandbox/Materials/SDF/Instances",
 ]
-EXTRA_ROOTS = []  # fill after halftone MI creation, e.g. "/Game/EnvSandbox/Materials/SDF/Instances/Halftone"
+EXTRA_ROOTS = [
+    "/Game/EnvSandbox/Materials/Instances",
+    "/Game/EnvSandbox/Materials/Impressionist/Instances",
+    "/Game/EnvSandbox/Materials/Instances/Water",
+    "/Game/EnvSandbox/Materials/Instances/NikkiIntegrated",
+    "/Game/EnvSandbox/Materials/Instances/NikkiHero",
+    "/Game/EnvSandbox/Materials/Instances/NikkiIntegrated/Mapped",
+    "/Game/EnvSandbox/Materials/Masters",
+    "/Game/EnvSandbox/VFX/Materials",
+    "/Game/_PROJECT/04_Materials/Landscape/Instances",
+    "/Game/_PROJECT/04_Materials/Cosmo/Instances",
+    "/Game/_PROJECT/04_Materials/Cosmo",
+    "/Game/_PROJECT/04_Materials/water",
+    "/Game/_PROJECT/04_Materials/SDF",
+    "/Game/EnvSandbox/Materials/Instances/Environment/FlatColors",
+    "/Game/EnvSandbox/Materials/Instances/Environment/Cathedral",
+    "/Game/EnvSandbox/Meshes/Environment/AvatarGarden/Materials",
+]
 
 MEL = unreal.MaterialEditingLibrary
 
@@ -62,24 +79,27 @@ def lerp_f(a, b, t):
 
 
 def parent_param_names(mi):
-    """Collect scalar+vector parameter names the parent master exposes."""
-    scalars, vectors = [], []
+    """Collect scalar+vector+static-switch parameter names the parent master exposes."""
+    scalars, vectors, switches = [], [], []
     try:
         parent = mi.get_editor_property("parent")
         if parent is None:
-            return scalars, vectors
+            return scalars, vectors, switches
         for p in (MEL.get_scalar_parameter_names(parent) or []):
             scalars.append(str(p))
         for p in (MEL.get_vector_parameter_names(parent) or []):
             vectors.append(str(p))
+        for p in (MEL.get_static_switch_parameter_names(parent) or []):
+            switches.append(str(p))
     except Exception as ex:
         print("PARAM_READ_ERR|%s" % ex)
-    return scalars, vectors
+    return scalars, vectors, switches
 
 
 def existing_overrides(mi):
     sc = set()
     vec = set()
+    sw = set()
     try:
         for e in (mi.get_editor_property("scalar_parameter_values") or []):
             sc.add(str(e.get_editor_property("parameter_info").get_editor_property("name")))
@@ -90,7 +110,12 @@ def existing_overrides(mi):
             vec.add(str(e.get_editor_property("parameter_info").get_editor_property("name")))
     except Exception:
         pass
-    return sc, vec
+    try:
+        for e in (mi.get_editor_property("static_switch_parameter_values") or []):
+            sw.add(str(e.get_editor_property("parameter_info").get_editor_property("name")))
+    except Exception:
+        pass
+    return sc, vec, sw
 
 
 def read_scalar_default(mi, name):
@@ -137,8 +162,8 @@ def apply_one(path, policy):
     if "MaterialInstanceConstant" not in type(mi).__name__:
         rec["status"] = "NOT_MI"
         return rec
-    scalars, vectors = parent_param_names(mi)
-    have_sc, have_vec = existing_overrides(mi)
+    scalars, vectors, switches = parent_param_names(mi)
+    have_sc, have_vec, have_sw = existing_overrides(mi)
     fam = rec["family"]
     fam_pol = policy["family_policies"]["_families"].get(fam, {})
     fam_scalars = set(fam_pol.get("scalars", []))
@@ -146,6 +171,7 @@ def apply_one(path, policy):
     changed = 0
     skipped = []
     applied = []
+    done = set()  # first matching rule wins (spec: "first matching rule wins; remaining entries are skipped")
 
     # scalars
     for rule in policy["variance"]["scalars"]:
@@ -156,7 +182,10 @@ def apply_one(path, policy):
         if not targets:
             continue
         for name in targets:
+            if name in done:
+                continue
             if name in have_sc:
+                done.add(name)
                 skipped.append((name, "already_overridden"))
                 continue
             cur = read_scalar_default(mi, name)
@@ -172,6 +201,7 @@ def apply_one(path, policy):
             try:
                 MEL.set_material_instance_scalar_parameter_value(mi, name, val)
                 changed += 1
+                done.add(name)
                 applied.append((name, round(val, 5)))
             except Exception as ex:
                 skipped.append((name, "set_fail:%s" % ex))
@@ -186,7 +216,10 @@ def apply_one(path, policy):
             continue
         palette = [tuple(p) for p in policy["palettes"][rule["palette"]]]
         for name in targets:
+            if name in done:
+                continue
             if name in have_vec:
+                done.add(name)
                 skipped.append((name, "already_overridden"))
                 continue
             base = pick_from(palette, path + name)
@@ -199,7 +232,29 @@ def apply_one(path, policy):
             try:
                 MEL.set_material_instance_vector_parameter_value(mi, name, col)
                 changed += 1
+                done.add(name)
                 applied.append((name, [round(x, 4) for x in (col.r, col.g, col.b, col.a)]))
+            except Exception as ex:
+                skipped.append((name, "set_fail:%s" % ex))
+
+    # static switches
+    for rule in policy.get("variance", {}).get("switches", []):
+        match = rule["match"].lower()
+        targets = [s for s in switches if match in s.lower()]
+        if not targets:
+            continue
+        for name in targets:
+            if name in done:
+                continue
+            if name in have_sw:
+                done.add(name)
+                skipped.append((name, "already_overridden"))
+                continue
+            try:
+                MEL.set_material_instance_static_switch_parameter_value(mi, name, bool(rule["value"]))
+                changed += 1
+                done.add(name)
+                applied.append((name, bool(rule["value"])))
             except Exception as ex:
                 skipped.append((name, "set_fail:%s" % ex))
 

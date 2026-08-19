@@ -16,7 +16,7 @@ Locks: do not reopen rhythm/Quill. One Unreal editor. Do not save v22 without `M
 2. **Melusina beauty plate on v22** (`melodia_stage_shot.py --preset beauty --lights nikki --subject melusina`). Hair pin stays `Water (Advance).001`.
 3. **Hero props for UE import** — owner maps are ZenTrim + tileables, not Magicians lantern albedos. See handpainted inventory.
 4. **Four P0 levels** — placement + missing meshes only; no gameplay rewrite.
-5. **Water-hair for UE** — three layers. Flip Fluids cache is **empty**; rebake is cine-only.
+5. **Water-hair** — Flip `fluid_surface` **is** the hair body (globules + drip). GC + Niagara socket `head_x`. SK hair is fallback.
 
 ---
 
@@ -113,25 +113,26 @@ Objects (do not hide-render the look hair): `FF_MelusinaHair_Domain`, `FF_Melusi
 
 ## How to get water-hair fluid renders cached for UE
 
-**Hair is already water in-engine** via `SK_MelusinaHair` + `MI_Melusina_WaterHair` + `ABP_Melusina_WaterHair`. That is the gameplay body. Flip Fluids does **not** replace it.
+**The hair is water.** Visible body = Flip `fluid_surface` (globules + drip). `SK_MelusinaHair` + `MI_Melusina_WaterHair` + `ABP_Melusina_WaterHair` stay on disk as **fallback silhouette** until the owner sockets the Geometry Cache.
 
 ```text
-Layer A  LOOK (always)     SK_MelusinaHair + MI_Melusina_WaterHair
-                           Blender pin: Water (Advance).001 on Hair Strand.*
-Layer B  DRIP (gameplay)   Niagara Melusina_WaterFX  (no .bobj, no Alembic)
-Layer C  CINE CACHE        Flip Fluids bake → Alembic fluid_surface
-                           → UE Geometry Cache on a cine actor only
+Hair body (Blender)   Flip fluid_surface — hide domain cube; strands = obstacle
+Hair body (UE)        Geometry Cache, socket head_x via UMelodiaHairComponent
+Drip (UE)             Niagara Melusina_WaterFX / WaterSplashEmitter, same socket
+Fallback              SK_MelusinaHair + ABP until GC is socketed
 ```
 
-### Layer C procedure (next live 5.2, then UE when editor free)
+### Procedure (live 5.2, then UE when editor free)
 
-1. v22: confirm `FF_MelusinaHair_*` exist. Run `tune_melusina_hair_drip.py` so domain covers tips. Sheet off for “little drip”; sheet on only for a cascade hero.
-2. Flip Fluid → Bake frames **1–96** @ res **72** (or 80) into `KitbashExport/flip_cache_melusina_waterhair/`. Expect `.bobj` count ≈ frame count. Do not bake 240 until 96 is good.
-3. Export **`fluid_surface`** Alembic (`Exports/MelusinaWaterHair/GC_MelusinaHairFlip_v22.abc`), UVs on, world scale cm. Parent/constraint to `hair_root` / head in Blender before export if the surface should follow the head.
-4. UE: Import Alembic as **Geometry Cache**. New cine actor (not `SK_MelusinaHair`). Material: water/toon MI, not a second skeletal hair. Socket to head. Play cache in sequencer / montage.
-5. Optional cheaper runtime: VAT from the same ABC — only if cine cache is too heavy. Do **not** run Flip Fluids or Niagara 3D FLIP as the hair solver.
+1. v22: run `tune_melusina_hair_drip.py` — domain covers full strand bbox, drip `TYPE_INFLOW` along the length, domain cube `hide_render`, strands obstacle. **Do not start Flip during a beauty still.**
+2. Existing cache `KitbashExport/flip_cache_melusina_waterhair/` already has frames **1–240**. Rebake only if globules are missing.
+3. Export **`fluid_surface`** Alembic with the **domain frame range** (not hardcoded 1–96). Parent/constraint to head before export if the surface must follow.
+4. UE: Import Alembic as **Geometry Cache** (`import_hair_flip_geometry_cache.py`). Socket GC + Niagara to `head_x`. SK hair is fallback, not the product.
+5. Do **not** run Flip Fluids or Niagara 3D FLIP / Water V10 as the hair solver.
 
-**Non-goals:** replacing `Water (Advance).001`; putting FLIP meshes under `FX_Hero`; using Water V10 Niagara Fluids as hair; treating `T_Hatch_Cross` as the vow cross.
+**Non-goals:** treating Flip as cine overlay; putting FLIP meshes under `FX_Hero`; using Water V10 as hair; replacing `UMelodiaHairComponent` with a compensation transform (Decision 026).
+
+Audit: [`Saved/Audit/water_hair_product_intent_2026-08-13.md`](../../Saved/Audit/water_hair_product_intent_2026-08-13.md)
 
 ---
 
@@ -152,7 +153,7 @@ Closed-editor work is done. Live gates:
 
 | Blocker | Why |
 |---------|-----|
-| UnrealEditor PID 38184 | A1 holds. Do not `--apply` ZenTrim or import Cathedral until released. |
+| UnrealEditor the one running editor (`Get-Process UnrealEditor`) | A1 holds. Do not `--apply` ZenTrim or import Cathedral until released. |
 | Blender MCP down | Owner restarts 5.2. Then tune → bake → alembic helper. |
 | Cathedral 41 FBX | Not in Content. Import when A idle. |
 | `MI_ZenTrim_Base4K` | Missing; script creates it on `--apply`. |

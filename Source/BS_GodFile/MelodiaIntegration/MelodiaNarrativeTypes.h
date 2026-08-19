@@ -26,6 +26,58 @@ enum class EMelodiaIntentFailure : uint8
 	IncompatibleSave
 };
 
+/** Typed result for atomic, data-driven world-content commits. */
+UENUM(BlueprintType)
+enum class EMelodiaContentCommitResult : uint8
+{
+	Applied,
+	AlreadyApplied,
+	Rejected,
+	InconsistentState
+};
+
+/** Fail-closed reason returned by the generic world-content adapters. */
+UENUM(BlueprintType)
+enum class EMelodiaContentCommitFailure : uint8
+{
+	None,
+	InvalidId,
+	UnknownChallenge,
+	UnknownAnchor,
+	UnknownFlag,
+	UnknownReward,
+	UnknownQuest,
+	DuplicateIntent,
+	RewardAlreadyConsumed,
+	CompletionAlreadySet,
+	UnsupportedOperation,
+	InconsistentState,
+	AuthorityUnavailable
+};
+
+UENUM(BlueprintType)
+enum class EMelodiaStateAnchorOperationType : uint8
+{
+	SetNarrativeFlag,
+	SetQuestActive
+};
+
+/** One allowlisted canonical operation in a generic StateAnchor transaction. */
+USTRUCT(BlueprintType)
+struct BS_GODFILE_API FMelodiaStateAnchorOperation
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|State Anchor")
+	EMelodiaStateAnchorOperationType Type = EMelodiaStateAnchorOperationType::SetNarrativeFlag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|State Anchor")
+	FName TargetId = NAME_None;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|State Anchor")
+	bool bValue = true;
+};
+
 /**
  * Universal outfit slot vocabulary shared with the MelodiaWardrobe plugin
  * (Decision 043, 2026-08-07). Lives in MelodiaIntegration because the save
@@ -47,7 +99,14 @@ enum class EMelodiaWardrobeSlot : uint8
 	Gloves,
 	Shawl,
 	Trail,
-	HairCharm
+	HairCharm,
+
+	// V2 split-garment slots. Append only: the preceding values are serialized
+	// into existing save records and must never be renumbered.
+	Shirt,
+	Skirt,
+	Boots,
+	Accessories
 };
 
 USTRUCT(BlueprintType)

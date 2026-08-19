@@ -19,6 +19,26 @@ After a crash or restart: **N → BlenderMCP → Connect to MCP server** (port *
 
 Agent ping: `python Tools/blender_mcp_client.py get_scene_info`
 
+## Studio Health (2026-08-17) — musical heroes on deploy
+
+```text
+GN builders=173 menu=173 sections=12/12 section_trees=173
+hidden=27 (them_* + PCG v1 aliases)  visible_stack=146
+Review_Queue RQ_MEL_* = 165 (live v22 not resynced this pass)
+```
+
+Headless evidence: [`Saved/Audit/gn_music_heroes_2026-08-17_1437.json`](../Saved/Audit/gn_music_heroes_2026-08-17_1437.json) (7/7). Prior greybox smoke: [`Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json`](../Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json). AppData sync skipped (hung lookdev `blender.exe`).
+
+## Studio Health (2026-08-17) — greybox pass on deploy
+
+```text
+GN builders=169 menu=169 sections=12/12 section_trees=169
+hidden=27 (them_* + PCG v1 aliases)  visible_stack=142
+Review_Queue RQ_MEL_* = 165 (live v22 not resynced this pass)
+```
+
+Headless evidence: [`Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json`](../Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json). Next-work plan: [`deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md`](../deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md) (08-12 kept as history).
+
 ## Studio Health (2026-08-12 19:48 ET) — B0/B1 green
 
 ```text
@@ -28,7 +48,7 @@ Review_Queue RQ_MEL_* = 165
 
 Evidence: [`Saved/Audit/melodia_studio_sections_2026-08-12_1948.md`](../Saved/Audit/melodia_studio_sections_2026-08-12_1948.md) · [`…parity_2026-08-12_1948.md`](../Saved/Audit/melodia_studio_parity_2026-08-12_1948.md).
 
-**GN library audit (closed-editor):** [`Saved/Audit/gn_library_audit_2026-08-12.md`](../Saved/Audit/gn_library_audit_2026-08-12.md) — 165 construct, **P0 presets 24/165 (14.5%)**, stop adding volume. **Expansion:** [`deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md`](../deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md).
+**Expansion:** [`deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md`](../deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md) supersedes 08-12 for next work. Presets **42/173**, STUDIO_LABELS include music heroes + greybox Structures ids.
 
 **GN Stack smoke (expand the panel; ≥1 builder each):** Castle Kit · Musical Notation · Ornament · Magic Effects. Click **Circular Array** on a selected mesh — a Geometry Nodes modifier should appear.
 
@@ -38,7 +58,7 @@ Evidence: [`Saved/Audit/melodia_studio_sections_2026-08-12_1948.md`](../Saved/Au
 
 **Workflow after live v22:** [`Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md`](Handoffs/WORKFLOW_UNIFY_2026-08-12.md) — five doors, GN visual review on `GN_Review_Grid`, freeze Set Dressing.
 
-Lanes: [BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md](Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md). Remaining: **B2** website plate dry-run (git push off).
+Lanes: [BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md](Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md). Remaining: **B3 editable ornaments** on live v22. Cam_Beauty (B2-live) landed 2026-08-13 — live site https://fromage3900.github.io/my-site/.
 
 ## Ports (do not mix these up)
 

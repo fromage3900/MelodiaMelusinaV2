@@ -1,0 +1,118 @@
+{
+  "schema": "melodia.objective_tracker_presentation.v1",
+  "schema_version": "1.0",
+  "kind": "melodia_objective_tracker_presentation_contract",
+  "contract_id": "melodia_objective_tracker_presentation",
+  "status": "presentation_contract_only",
+  "purpose": "Define a read-only objective tracker contract without mutating a widget asset or creating a second progression authority.",
+  "authority": {
+    "read_subsystem": "UMelodiaNarrativeSubsystem",
+    "read_record": "FMelodiaNarrativeRecord",
+    "read_package": "specs/progression/melodia_first_dream_progression.v1.json",
+    "write_operations": [],
+    "persistence": "FMelodiaNarrativeRecord through the canonical JRPG save contract",
+    "forbidden": [
+      "widget-local quest or objective state",
+      "direct save-file mutation",
+      "direct writes to FMelodiaNarrativeRecord from presentation",
+      "hardcoded map names, battle IDs, or dialogue logic in the widget",
+      "duplicate reward or consequence emission from a tracker refresh"
+    ]
+  },
+  "materialization": {
+    "widget_asset": null,
+    "editor_required": true,
+    "source_contract_is_complete": true,
+    "runtime_materialization_status": "blocked_without_live_editor_owner",
+    "safe_next_step": "Create or adapt one tracker widget that consumes the read model, then compile, save, re-read, and prove restore in PIE."
+  },
+  "read_model": {
+    "current_objective": {
+      "id": "derived_from_ordered_objective_states",
+      "label": "objectives[].tracker.label",
+      "state": "locked|active|completed|failed",
+      "quest_id": "objectives[].quest_id",
+      "beat_id": "objectives[].beat_id"
+    },
+    "optional_subobjectives": {
+      "source": "objectives[] where tracker.show_subobjectives is true",
+      "ordering": "quest.objective_ids order",
+      "state": "same canonical objective state enum"
+    },
+    "completion_feedback": {
+      "source": "objectives[].tracker.completion_feedback",
+      "trigger": "state transition observed from active to completed or failed",
+      "replay_after_restore": "presentation may replay a non-mutating summary; it must not reapply the transition"
+    },
+    "route_marker": {
+      "source": "objectives[].tracker.route_marker_id",
+      "resolution": "package and runtime route resolver",
+      "missing_marker": "show objective text and remain usable without inventing a map or actor reference"
+    },
+    "restore": {
+      "source": [
+        "FMelodiaNarrativeRecord.ActiveQuestIds",
+        "FMelodiaNarrativeRecord.Flags",
+        "FMelodiaNarrativeRecord.ConsumedIntentIds",
+        "FMelodiaNarrativeRecord.ConsumedRewardIds",
+        "FMelodiaNarrativeRecord.ScriptCheckpoint"
+      ],
+      "behavior": "recompute the same read model after map travel, save/load, or process restart",
+      "write_back": false
+    }
+  },
+  "visual_states": [
+    "hidden",
+    "locked",
+    "active",
+    "completed",
+    "failed",
+    "restoring",
+    "unavailable"
+  ],
+  "presentation_requirements": [
+    {
+      "id": "tracker.current_objective",
+      "requirement": "Show exactly one current active objective for the active quest, or a stable terminal summary when no objective is active."
+    },
+    {
+      "id": "tracker.subobjectives",
+      "requirement": "Show optional ordered sub-objectives from the package; do not infer order from widget hierarchy."
+    },
+    {
+      "id": "tracker.completion_feedback",
+      "requirement": "Show completion or failure feedback once per observed state transition and allow a harmless replay after restore."
+    },
+    {
+      "id": "tracker.route_marker",
+      "requirement": "Request a marker by stable package ID and degrade to text when the route resolver is unavailable."
+    },
+    {
+      "id": "tracker.restore",
+      "requirement": "After travel or process restart, read the canonical record again and reproduce the same objective state without emitting gameplay intents."
+    },
+    {
+      "id": "tracker.accessibility",
+      "requirement": "Expose objective text, state, and completion feedback without relying on color or distortion alone."
+    }
+  ],
+  "acceptance": {
+    "offline": [
+      "Every referenced objective, quest, beat, and route marker resolves in the progression package.",
+      "The tracker contract declares no write operation and no widget-owned persistence field.",
+      "The current objective is selected from ordered canonical state, not from map name or widget order."
+    ],
+    "live": [
+      {
+        "id": "tracker.editor_materialization",
+        "status": "pending",
+        "assertion": "One editor owner materializes the tracker and proves compile/save/readback."
+      },
+      {
+        "id": "tracker.pie_restore",
+        "status": "pending",
+        "assertion": "PIE shows active, completion, failure, and restore states without duplicate intent or reward emission."
+      }
+    ]
+  }
+}

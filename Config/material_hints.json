@@ -16,6 +16,28 @@
       "sacred": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_HondenSanctum",
       "large": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_MossGarden",
       "monument": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_SakuraDrift"
+    },
+    "PORTFOLIO_HERO": {
+      "bloom_intensity": 1.0,
+      "vignette_intensity": 0.0,
+      "film_grain_intensity": 0.0,
+      "scene_fringe_intensity": 0.0
+    },
+    "LORE_BOOK": {
+      "bloom_intensity": 0.3,
+      "vignette_intensity": 0.2,
+      "film_grain_intensity": 0.1,
+      "scene_fringe_intensity": 0.05
     }
+  },
+  "OVERRIDE_FLAGS": {
+    "bloom_intensity": "Controls bloom post-process intensity per role (0.0-1.0). Set per-material-instance on PPV_NikkiDream.",
+    "vignette_intensity": "Controls vignette post-process intensity per role (0.0-1.0). Set per-material-instance on PPV_NikkiDream.",
+    "film_grain_intensity": "Controls film grain post-process intensity per role (0.0-1.0). Set per-material-instance on PPV_NikkiDream.",
+    "scene_fringe_intensity": "Controls chromatic aberration post-process intensity per role (0.0-1.0). Set per-material-instance on PPV_NikkiDream.",
+    "ink_react": "InkReact scalar parameter on MPC_MelodiaInk. Drives liveliness of ink render effect.",
+    "ink_master_weight": "InkMasterWeight scalar parameter on MPC_MelodiaInk. Controls overall ink darkness intensity.",
+    "storybook_outline_weight": "Weight of M_PP_StorybookOutline blendable in PPV_NikkiDream weighted_blendables stack.",
+    "melusina_grade_weight": "Weight of M_PP_MeluColorGrade blendable in PPV_NikkiDream weighted_blendables stack (canonical 0.69)."
   }
 }

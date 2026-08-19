@@ -16,7 +16,7 @@ Human (phone or desktop)
         │ spawns scoped workers (light-swarm, ≤6)
         ├─► PGA / MPA / PPA / WIA / SQA / WEB / MUSE
         ▼
-  Shared MelodiaMelusina checkout
+  Shared MelodiaMelusinaV2 checkout
   (jcode tracks reads/writes → code-shift pings)
         │
         ▼
@@ -47,7 +47,7 @@ Do not run jcode workers and OpenCode/Muse on the same write paths without coord
 irm https://jcode.sh/install.ps1 | iex
 jcode login --provider <claude|openai|copilot|gemini|...>
 
-cd <MelodiaMelusina>
+cd <MelodiaMelusinaV2>
 # creates ~/.jcode/config.toml from example if missing; installs skills; launches jcode
 .\deploy\start_jcode_swarm.ps1
 ```

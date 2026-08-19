@@ -7,8 +7,11 @@ GROUP_BUILDERS is fully populated by the time bake_all() runs.
 
 from __future__ import annotations
 
+import hashlib
+import json
 import os
 from pathlib import Path
+from typing import Any
 
 import bpy
 
@@ -110,3 +113,146 @@ def load_library(lib_path: str | None = None) -> list[str]:
     """Load all groups from library into current .blend."""
     lib_path = lib_path or get_library_path()
     return append_trees(lib_path)
+
+
+# ---------------------------------------------------------------------------
+# Structural fingerprints (P2 regression baseline). Does NOT write a library.
+# ---------------------------------------------------------------------------
+
+HEAVY_TREES_51PLUS = (
+    "MEL_escher_penrose_stairs",
+    "MEL_nikki_quarter",
+    "MEL_sky_observatory",
+    "MEL_escher_waterfall",
+    "MEL_escher_belvedere",
+    "MEL_stepped_pyramid",
+    "MEL_castle_siege_tower",
+    "MEL_water_ripples",
+    "MEL_water_gerstner",
+    "MEL_castle_portcullis",
+    "MEL_castle_barbican",
+    "MEL_reed_body",
+    "MEL_castle_gothic_window",
+    "MEL_ornament_vine",
+    "MEL_gazebo",
+    "MEL_castle_assembler",
+    "MEL_music_staff",
+)
+
+
+def _jsonable_default(value: Any) -> Any:
+    """Normalize GN socket defaults so hashes are stable across runs."""
+    if value is None:
+        return None
+    if isinstance(value, (str, int, bool)):
+        return value
+    if isinstance(value, float):
+        return round(value, 6)
+    if hasattr(value, "__iter__") and not isinstance(value, (str, bytes)):
+        try:
+            return [_jsonable_default(x) for x in list(value)]
+        except Exception:
+            return str(value)
+    return str(value)
+
+
+def fingerprint_tree(ng) -> dict[str, Any]:
+    """Stable structural fingerprint of one Geometry Node tree (no locations)."""
+    nodes = []
+    for node in sorted(ng.nodes, key=lambda n: n.name):
+        nodes.append({
+            "name": node.name,
+            "type": getattr(node, "bl_idname", node.type),
+            "inputs": [
+                (s.identifier, s.name, s.type) for s in node.inputs
+            ],
+            "outputs": [
+                (s.identifier, s.name, s.type) for s in node.outputs
+            ],
+        })
+    links = sorted(
+        (
+            lnk.from_node.name,
+            lnk.from_socket.identifier,
+            lnk.to_node.name,
+            lnk.to_socket.identifier,
+        )
+        for lnk in ng.links
+    )
+    iface: list[dict[str, Any]] = []
+    try:
+        for item in ng.interface.items_tree:
+            if getattr(item, "item_type", "") != "SOCKET":
+                continue
+            default = None
+            if hasattr(item, "default_value"):
+                try:
+                    default = _jsonable_default(item.default_value)
+                except Exception:
+                    default = None
+            iface.append({
+                "name": item.name,
+                "in_out": getattr(item, "in_out", ""),
+                "socket_type": getattr(item, "socket_type", ""),
+                "default": default,
+            })
+    except Exception:
+        pass
+    payload = {
+        "name": ng.name,
+        "interface": iface,
+        "links": links,
+        "nodes": nodes,
+    }
+    blob = json.dumps(payload, sort_keys=True, separators=(",", ":"), default=str)
+    digest = hashlib.sha256(blob.encode("utf-8")).hexdigest()
+    return {
+        "name": ng.name,
+        "sha256": digest,
+        "node_count": len(ng.nodes),
+        "link_count": len(ng.links),
+        "interface_count": len(iface),
+    }
+
+
+def fingerprint_builders(
+    names: list[str] | tuple[str, ...] | None = None,
+    *,
+    construct: bool = True,
+) -> dict[str, Any]:
+    """Construct named trees via GROUP_BUILDERS (same loop as bake_all) and hash.
+
+    Does not call save_library / libraries.write. Safe for factory-startup.
+    """
+    target = list(names) if names is not None else list(HEAVY_TREES_51PLUS)
+    results: list[dict[str, Any]] = []
+    errors: list[dict[str, str]] = []
+    for name in target:
+        ng = bpy.data.node_groups.get(name)
+        if ng is None and construct:
+            builder = GROUP_BUILDERS.get(name)
+            if builder is None:
+                errors.append({"name": name, "error": "not in GROUP_BUILDERS"})
+                continue
+            try:
+                built = builder(name)
+                ng = built[0] if isinstance(built, (tuple, list)) else built
+                if ng is None:
+                    ng = bpy.data.node_groups.get(name)
+            except Exception as exc:
+                errors.append({"name": name, "error": str(exc)})
+                continue
+        if ng is None:
+            errors.append({"name": name, "error": "tree missing after construct"})
+            continue
+        try:
+            results.append(fingerprint_tree(ng))
+        except Exception as exc:
+            errors.append({"name": name, "error": f"fingerprint failed: {exc}"})
+    return {
+        "ok": not errors,
+        "count": len(results),
+        "trees": results,
+        "errors": errors,
+        "algorithm": "sha256 of canonical JSON (nodes+links+interface; no locations)",
+    }

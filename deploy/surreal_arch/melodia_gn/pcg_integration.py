@@ -63,7 +63,14 @@ def _pcg_common(group_name, theme):
         foam.inputs["Name"].default_value = "foam_intensity"
         link_sockets(tree, gin.outputs["Foam Intensity"], foam.inputs["Value"])
         link_sockets(tree, depth.outputs["Geometry"], foam.inputs["Geometry"])
-        out = foam
+
+        speed = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 400, by - 200))
+        speed.data_type = "FLOAT"
+        speed.inputs["Name"].default_value = "current_speed"
+        link_sockets(tree, gin.outputs["Current Speed"], speed.inputs["Value"])
+        link_sockets(tree, foam.outputs["Geometry"], speed.inputs["Geometry"])
+        out = speed
+        color_node(speed, "attribute")
     else:
         instr = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 200, by))
         instr.data_type = "INT"
@@ -76,7 +83,14 @@ def _pcg_common(group_name, theme):
         tempo.inputs["Name"].default_value = "tempo"
         link_sockets(tree, gin.outputs["Tempo"], tempo.inputs["Value"])
         link_sockets(tree, instr.outputs["Geometry"], tempo.inputs["Geometry"])
-        out = tempo
+
+        dens = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 400, by - 200))
+        dens.data_type = "FLOAT"
+        dens.inputs["Name"].default_value = "density"
+        link_sockets(tree, gin.outputs["Density"], dens.inputs["Value"])
+        link_sockets(tree, tempo.outputs["Geometry"], dens.inputs["Geometry"])
+        out = dens
+        color_node(dens, "attribute")
 
     link_sockets(tree, out.outputs["Geometry"], gout.inputs["Geometry"])
 
@@ -180,19 +194,19 @@ def material_crosswalk_v2(group_name="MEL_material_crosswalk_v2"):
 # -- Registry --
 register_builder("MEL_pcg_water_tags", pcg_water_tags, "PCG Water Tags",
     "PCG tag schema for water geometry — pcg_tag_index, water_depth, foam_intensity, pcg_is_dynamic.",
-    "set_dressing")
+    "set_dressing", hidden=True, role="pcg_alias")
 register_builder("MEL_pcg_water_tags_v2", pcg_water_tags_v2, "PCG Water Tags v2",
     "Enhanced water tag schema — adds Current Speed lane support.",
-    "set_dressing")
+    "set_dressing", role="pcg_keep")
 register_builder("MEL_pcg_music_tags", pcg_music_tags, "PCG Music Tags",
     "PCG tag schema for music geometry — pcg_tag_index, instrument_count, tempo, pcg_is_dynamic.",
-    "set_dressing")
+    "set_dressing", hidden=True, role="pcg_alias")
 register_builder("MEL_pcg_music_tags_v2", pcg_music_tags_v2, "PCG Music Tags v2",
     "Enhanced music tag schema — adds Density lane support.",
-    "set_dressing")
+    "set_dressing", role="pcg_keep")
 register_builder("MEL_material_crosswalk", material_crosswalk_integration, "Material Crosswalk",
     "Material crosswalk for UE export — base color, metallic, roughness, water mode attributes.",
-    "set_dressing")
+    "set_dressing", hidden=True, role="pcg_alias")
 register_builder("MEL_material_crosswalk_v2", material_crosswalk_v2, "Material Crosswalk v2",
     "Enhanced crosswalk with caustics-first water mode default.",
-    "set_dressing")
+    "set_dressing", role="pcg_keep")
