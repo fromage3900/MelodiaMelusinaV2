@@ -1,0 +1,49 @@
+{
+  "id": "placement50",
+  "label": "Universal BP physics placement pack (target ≤50 MB)",
+  "max_mb": 50,
+  "echo_role": "author/inject for PCG/Universal; static_gates when editor live; never record runtime from this slice alone",
+  "sparse_checkout": [
+    "Source",
+    "Docs",
+    "Tools",
+    "deploy",
+    "specs",
+    "Config",
+    "Content/Python",
+    "Content/MelodiaIntegration",
+    "Content/EnvSandbox/PCG/Universal",
+    "Content/EnvSandbox/Materials",
+    "Content/EnvSandbox/PCG/Musical",
+    "Plugins/MelodiaCore/Source",
+    "README.md",
+    "DOC_INDEX.md",
+    "BS_GodFile.uproject",
+    "UNIVERSAL_ENVIRONMENT_PIPELINE.md",
+    "AGENTS.md"
+  ],
+  "lfs_include": [
+    "Content/MelodiaIntegration/**",
+    "Content/EnvSandbox/PCG/Universal/**",
+    "Content/EnvSandbox/Materials/M_Master_Toon_Universal*",
+    "Content/EnvSandbox/Materials/ToonProfiles/**",
+    "Content/EnvSandbox/PCG/Musical/**",
+    "Content/Python/**",
+    "specs/**"
+  ],
+  "required_paths": [
+    "Content/MelodiaIntegration/Blueprints",
+    "Content/EnvSandbox/PCG/Universal",
+    "Content/EnvSandbox/Materials"
+  ],
+  "fail_if_missing": false,
+  "workstation_required_assets": [
+    "/Game/EnvSandbox/PCG/Universal/BP_MelodiaPCGControl",
+    "/Game/EnvSandbox/PCG/Universal/PCG_Melodia_Universal_Scatter",
+    "/Game/EnvSandbox/PCG/Universal/PCG_ControlReaderAliases",
+    "/Game/EnvSandbox/PCG/Universal/BP_InstanceOnSpline",
+    "/Game/EnvSandbox/Materials/M_Master_Toon_Universal",
+    "/Game/MelodiaIntegration/Blueprints/BP_MelodiaTravelVolume"
+  ],
+  "notes": "EnvSandbox binaries are absent from some cloud checkouts (0 tracked files). Owner measures on Windows with git lfs pull --include=... then python Tools/lfs_health_audit.py --manifest specs/collab_slices/placement50.json. Shrink include list if over 50 MB; do not raise the budget."
+}

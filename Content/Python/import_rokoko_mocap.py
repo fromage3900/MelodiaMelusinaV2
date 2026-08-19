@@ -27,7 +27,9 @@ import os
 import re
 import unreal
 
-INBOX = r"G:\EnvironmentPortfolio\BS_GodFile\Imports\Mocap\Rokoko\Inbox"
+# Content/Python → repo root (works on any clone; no G:\ hardcode)
+_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+INBOX = os.path.join(_PROJECT_ROOT, "Imports", "Mocap", "Rokoko", "Inbox")
 SRC_SKELETON = "/Game/Melodia/Mocap/Source/SK_MocapSource_Skeleton"
 SRC_MESH = "/Game/Melodia/Mocap/Source/SK_MocapSource"
 RTG = "/Game/Melodia/Mocap/RTG_Mocap_to_Melusina"
@@ -35,7 +37,7 @@ SRC_ANIM_DIR = "/Game/Melodia/Mocap/Source/Anims"
 OUT_DIR = "/Game/Melodia/Characters/Melusina/Animations/Mocap"
 TGT_MESH = "/Game/Melodia/Characters/Melusina/SK_Melusina"
 TGT_SKEL = "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
-REPORT = r"G:\EnvironmentPortfolio\BS_GodFile\Saved\Melodia\rokoko_import_report.json"
+REPORT = os.path.join(_PROJECT_ROOT, "Saved", "Melodia", "rokoko_import_report.json")
 
 PREFIX = "A_Src_Rokoko_"
 

@@ -1,0 +1,16 @@
+{
+  "$schema": "melodia_sculpt_sidecar.v1",
+  "example": true,
+  "asset_stem": "SM_Orn_Example_v01",
+  "kind": "static_mesh",
+  "role": "ornament",
+  "intended_ue_path": "/Game/EnvSandbox/Meshes/Ornament/SM_Orn_Example",
+  "overwrite_existing": false,
+  "units": "cm",
+  "up_axis": "Z",
+  "forward_axis": "X",
+  "collision": "simple_box_or_complex_as_simple",
+  "assign_material": "M_Master_Toon_Universal",
+  "notes": "Copy this file next to the FBX as SM_Orn_Example_v01.sculpt.json",
+  "echo": "author stage only until imported+compiled; no runtime ledger from a mesh drop"
+}
