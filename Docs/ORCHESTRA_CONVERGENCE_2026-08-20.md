@@ -294,3 +294,89 @@ is proven. The next steps, in order:
 4. Equip `Cos_Accessories_MelusinaV2`, confirm Glide becomes active and is suppressed in battle.
 5. Replay the pattern and reload the save — confirm no double-grant.
 6. Only then: `python Tools/echo_run.py record music_world_key pass`.
+
+
+---
+
+# Pillar 5 — THE PAWN (added 2026-08-20, later)
+
+Four Melusina character Blueprints existed. This section names the owner and retires the rest.
+
+## Verdicts
+
+| Blueprint | Parent | Evidence | Verdict |
+|---|---|---|---|
+| `/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter` | `BP_JRPGCharacterBase_C` (JRPG template) | **Referenced by `BP_MelodiaJRPGGameMode` as its default pawn.** 25 components + 4 native. Uses `ABP_Melusina_Current`. Confirmed instantiated in PIE as `BP_MelusinaJRPGCharacter_C_1`. | **OWNER** |
+| `/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation` | `BP_PlayerUnitBase_C` | Mutual hard reference with the owner. A battle **unit**, not a character — a different role in the JRPG template, not a duplicate. | **LIVE** |
+| `/Game/Melodia/Characters/Melusina/BP_Melusina` | `MelodiaSmokeCharacter` (C++, MelodiaCore) | Zero references. In no `.umap`. Parent is a **smoke-test class**. Decision 044's rationale states this pawn "was retired for being a second authority." | **DEAD** (already retired by decision) |
+| `/Game/Characters/Melusina/BP_Melusina` | `Character` (engine) | Zero references either direction. Duplicate root tree. | **DEAD** |
+
+## What was consolidated
+
+The owner carried **both** outfit authorities: `Wardrobe` (`MelodiaWardrobeComponent`, the owner per
+Decision 044) *and* a vestigial `Outfit` (`MelodiaOutfitComponent`, the superseded one).
+
+`Outfit` had **zero references** in the pawn's graphs. Decision 044 records that
+`UMelodiaWardrobeComponent` is a one-way re-host of the `UMelodiaOutfitComponent` algorithm, with
+the material-override and subsystem-mirror additions the original lacked.
+
+**Removed `Outfit` from `BP_MelusinaJRPGCharacter`.** Compile went from
+`UpToDateWithWarnings` to **`UpToDate`, 0 errors / 0 warnings** — the vestigial component was the
+warning source. Saved 406,053 → 405,062 bytes.
+
+Decision 044's constraint is honored: the quarantined `MelodiaCore` source was **not** moved,
+deleted or modified. Only the redundant component instance on the live pawn was removed.
+
+## Correction — the live pawn was never missing anything
+
+An earlier pass in this session inspected `BP_Melusina` and concluded the pawn lacked a wardrobe
+component, lacked a traversal component, and had the capability gate off. **All three were wrong**
+— that was the orphaned smoke-test pawn. The real pawn has:
+
+| | State |
+|---|---|
+| `Wardrobe` (`MelodiaWardrobeComponent`) | Present |
+| `MelodiaTraversal` (`MelodiaTraversalComponent`) | Present |
+| `bRequireCapabilityProviderForGlide` | **`True`** |
+| `TraversalCapabilityContextId` | `active_traversal_context` |
+| `SprintSpeed` | 630 — exactly the top blendspace sample, no disagreement |
+| `WaterHairMesh` (`MelodiaHairComponent`) | Present, binds to `head_x` at runtime (verified in PIE log) |
+
+**So the money-pouch chain has one remaining unknown, not four.** Wardrobe → capability →
+traversal → `bIsGliding` → Glide state is complete in data and wiring; only PIE proof is missing.
+
+Note the form's `restricted_context_ids: [battle_session]` does not collide with the live query
+context `active_traversal_context`, so the restriction behaves as intended.
+
+## New finding — crouch is disabled, so JumpWindup is unreachable
+
+PIE logged: `BP_MelusinaJRPGCharacter_C_1 is trying to crouch, but crouching is disabled on this
+character! (check CharacterMovement NavAgentSettings)`.
+
+Both `Idle → JumpWindup` and `Locomotion → JumpWindup` are gated on `bIsCrouched`. If crouch is
+disabled on the movement component, `bIsCrouched` can never be true and **JumpWindup is a third
+unreachable state** — alongside the `Locomotion` and `Glide` states fixed earlier today.
+
+This settles the open question in the animation review's Defect C: `bIsCrouched` driving jump
+windup is a **wiring error**, not a deliberate crouch-as-windup design. The purpose-named
+`bJumpWindup` variable exists and is unused, and `JumpWindupVisualDuration = 0.4` is configured on
+the traversal component — the intent is clear.
+
+**Not fixed here** — it needs either `bJumpWindup` wired to the transitions, or crouch enabled.
+That is an owner call.
+
+## Remaining pawn work
+
+1. Retire the two DEAD Blueprints (deletion is Red-tier — needs owner sign-off).
+2. Harvest before retiring: `Content/Melodia/.../BP_Melusina` holds `ToggleOrreryMenu` and a
+   `WaterHairFlipCache` (`GeometryCacheComponent`) that the owner does not have. Decide whether
+   either is wanted on the owner.
+3. Resolve the JumpWindup wiring above.
+4. Two pre-existing compile warnings on the owner: `RecreatePinForVariable: 'CharacterMesh0' pin
+   not found` (×2). Unrelated to this change; present before it.
+
+## Doc defect noticed
+
+`_DECISION_LOG.md` has **two different decisions numbered 044** — the wardrobe re-host
+(2026-08-07) and "KawaiiPhysics replaces Chaos Cloth". Decision numbers are being cited across the
+codebase (`MelodiaWardrobeComponent.h:3` cites 044), so a collision is a real hazard.

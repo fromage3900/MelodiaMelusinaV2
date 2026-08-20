@@ -24,7 +24,7 @@ MASTER_FOLDER = "/Game/Melodia/_PROJECT/04_Materials/PostProcess"
 MASTER_NAME = "M_PP_MelodiaInk"
 MASTER_PATH = lib.asset_path(MASTER_FOLDER, MASTER_NAME)
 PROFILE_FOLDER = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles"
-GRADE_DONOR = "/Game/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade"
+GRADE_DONOR = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade"
 REPORT = Path(__file__).resolve().parents[2] / "Saved" / "Audit" / "dreamprint_material_build.json"
 GROUP = "Dreamprint"
 
@@ -210,7 +210,7 @@ def build_master(force: bool = False) -> unreal.Material:
     custom = lib.create_expression(mat, unreal.MaterialExpressionCustom, 600, 0)
     custom.set_editor_property("code", CODE)
     unreal.MaterialEditingLibrary.connect_material_property(custom, "", unreal.MaterialProperty.MP_EMISSIVE_COLOR)
-    wiring = wire_custom_inputs(mat, custom)
+    wiring = wire_custom_inputs(mat, custom, force=force)
     if not wiring.get("wired") and not wiring.get("reason", "").startswith("already"):
         raise RuntimeError(f"custom input wiring failed: {wiring}")
     try:
@@ -258,11 +258,14 @@ def _scene_texture(mat: unreal.Material, x: int, y: int, coord_expr=None) -> unr
     return st
 
 
-def wire_custom_inputs(mat: unreal.Material, custom: unreal.MaterialExpressionCustom) -> dict:
+def wire_custom_inputs(mat: unreal.Material, custom: unreal.MaterialExpressionCustom, force: bool = False) -> dict:
     """Build the 42 named function inputs + the graph that feeds them."""
     existing = custom.get_editor_property("inputs") or []
-    if len(existing) >= 40:
+    if len(existing) >= 40 and not force:
         return {"wired": False, "reason": f"already wired ({len(existing)} inputs)"}
+    if force:
+        custom.set_editor_property("inputs", [])
+        existing = []
     if not existing:
         donor_mat = unreal.load_asset(GRADE_DONOR)
         donor = None
@@ -388,11 +391,11 @@ def wire_custom_inputs(mat: unreal.Material, custom: unreal.MaterialExpressionCu
     st_smear = _scene_texture(mat, -200, 500, smear_coord)
 
     sources: dict[str, tuple[unreal.MaterialExpression, str]] = {
-        "UV": (sp, ""),
-        "SceneColor": (st_base, "RGB"),
-        "cR": (st_cr, "RGB"),
-        "cB": (st_cb, "RGB"),
-        "smeared": (st_smear, "RGB"),
+        "UV": (sp, "ViewportUV"),
+        "SceneColor": (st_base, "Color"),
+        "cR": (st_cr, "Color"),
+        "cB": (st_cb, "Color"),
+        "smeared": (st_smear, "Color"),
     }
     for ident, _coll_path in MPC_INPUTS:
         sources[ident] = (by_name[ident], "")
@@ -407,7 +410,7 @@ def wire_custom_inputs(mat: unreal.Material, custom: unreal.MaterialExpressionCu
              + [n for n, _ in VECTOR_PARAMS])
     entries = []
     for name in names:
-        entry = template.copy()
+        entry = unreal.CustomInput()
         entry.set_editor_property("input_name", name)
         entries.append(entry)
     custom.set_editor_property("inputs", entries)

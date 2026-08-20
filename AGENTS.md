@@ -8,20 +8,37 @@ See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do
 
 ## Core vision (stick to this)
 
-Ship a small Persona-lite First Dream loop — not a systems demo:
+Ship one integrated rhythm-JRPG loop — not a systems demo, and not four parallel systems:
 
 ```text
-Quill dialogue → allowlisted encounter → JRPG battle (Melusina)
+Quill dialogue → allowlisted encounter → JRPG battle (Melusina), rhythm-timed
   → typed result → Quill resumes once → exploration / checkpoint
 ```
 
-JRPG template owns party/turns/skills/damage/saves. `UMelodiaNarrativeSubsystem` is only the
-narrow Quill bridge. MelodiaCore is presentation-only this phase. Do not invent parallel combat
-authority. Full product scope: `_VERTICAL_SLICE_SCOPE.md`.
+**Absolute authority — never rebuilt, wrapped, or competed with:**
+QuillScript owns narrative. The TurnBased JRPG template owns party/turns/targeting/damage/
+results/inventory/saves. `UMelodiaNarrativeSubsystem` is only the narrow Quill bridge.
+MelodiaCore is presentation-only this phase. Do not invent parallel combat authority.
+
+**The four pillars converge onto those two layers.** Rhythm input rides *on top of* JRPG command
+input — same Attack/Skill/Item/Flee decisions, timed. Wardrobe is a core pillar (outfits carry
+presentation *and* gameplay meaning). UI has one writer per surface. World puzzle is music-as-key
+and is **not yet built**.
+
+Shape: OMORI. Music-as-key: Zelda. Visual/wardrobe bar: Infinity Nikki.
+
+**The current job is convergence, not construction.** Rhythm exists in three places, wardrobe in
+five, the battle HUD has two writers by design. Before adding anything, check
+[`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) for which
+implementation is OWNER and which are DEAD, and
+[`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) for the seams.
+
+Authority statement: [`../PROJECT.md`](../PROJECT.md). Full product scope: `_VERTICAL_SLICE_SCOPE.md`.
 
 **Model lanes:** pick a task class before writing (`triage|audit|code|cpp|mcp|playtest|author|
-deep|review|orchestrator|vision|daemon|docs`). Router: `python Tools/model_router.py pick <class>
---detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
+deep|review|orchestrator|vision|daemon|docs`, plus the production lanes `wardrobe_catalog|
+beatmap_author|quill_author|asset_qa|anim_bindings`). Router: `python Tools/model_router.py pick
+<class> --detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
 Gameplay queue ≠ `NEXT_ACTIONS.md` (that is platform); use vertical-slice / core-systems handoffs.
 
 | Class | Use for | Must not |
@@ -31,6 +48,14 @@ Gameplay queue ≠ `NEXT_ACTIONS.md` (that is platform); use vertical-slice / co
 | `playtest` | Real-input `runtime` gate | Probe-only ledger `pass` |
 | `daemon` | Overnight local loops (Ollama) | `.uasset` writes / gate certification |
 | `audit` | bp_sweep / static gates | Compensating flags for real defects |
+| `wardrobe_catalog` | Outfit rows against the catalog contract | Invent slots or bypass `MelodiaWardrobeSubsystem` |
+| `beatmap_author` | Rhythm beat maps | Make rhythm a second combat authority |
+| `quill_author` | QuillScript dialogue + 7-verb notifications | Emit an unallowlisted id |
+| `asset_qa` | art/credits/bp gates, triage | Fabricate a file path |
+| `anim_bindings` | ABP state machine + pose binding checks | Write `.uasset` |
+
+**Every lane must not:** build a fifth wardrobe track, a fourth rhythm path, or a second HUD
+writer. Converge onto the named owner. A new parallel implementation is a defect, not progress.
 
 ---
 
