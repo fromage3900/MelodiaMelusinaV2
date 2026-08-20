@@ -35,29 +35,19 @@ double-invokes the skill (`cpp:534` documents the exactly-once guard; `cpp:716` 
 the deferral cleanly on invalidation). Campaign 1's A/B (`melodia.Rhythm.Disable 0|1`)
 is therefore meaningful on this path. No HOLD from sequencing.
 
-## Step 5 — RestorePartyAfterBattle: implementation exists, zero callers; field spelling unverifiable headlessly
+## Step 5 — RestorePartyAfterBattle: WIRED 2026-08-11
 
-- `MelodiaJRPGPostBattleLibrary.h:31` — `UFUNCTION(BlueprintCallable) RestorePartyAfterBattle(UObject* BattleController)`.
-- `MelodiaJRPGPostBattleLibrary.cpp` — full implementation: resolves `battle`/`currentBattle`
-  via `FindFProperty` (never casts to a possibly-unloaded generated class), walks
-  `playerUnits` (battle base) + the controller's persistent `TMap<UClass*, FS_UnitState>`
-  map by class key, writes restored HP/MP into both.
-- **Map-side field names are the TYPO forms**: `FindAuthoredStructMember(UnitStateStruct, TEXT("currentHP"))`
-  and `TEXT("curentMP")`. The library was authored to match the stock struct's typo'd
-  spelling (`curentMP` per closeout plan line 82/83) — a faithful-match assumption.
-- **Zero call sites** in `Source/` (grep: only the library's own .h/.cpp).
-- `FS_UnitState` is a Blueprint user-defined struct (uasset — not textually greppable);
-  the stock reference project at `CompatibilityLabs/TurnBasedJRPGUE58` did not surface it
-  in .h search either.
+- `MelodiaJRPGPostBattleLibrary.h` — `UFUNCTION(BlueprintCallable) RestorePartyAfterBattle(UObject* BattleController)`.
+- Implementation walks `playerUnits` + controller persistent map; map-side MP field is
+  **`curentMP`** (typo confirmed 2026-08-11 via Monolith `export_asset_text` on
+  `/Game/TurnBasedJRPGTemplate/Blueprints/Structs/S_PlayerUnitData` — do not “fix” it).
+- **Call site WIRED** on foundation: `UMelodiaExternalJRPGBridgeSubsystem::HandleBattleOver`
+  restores via live `BP_BattleController` **before** `CompleteBattle` / Quill resume.
+- Still needs closed-editor build + one PIE defeat/victory to observe
+  `MELODIA_RECOVERY restored N player unit(s)` in the log.
 
-**Verdict:** ~~HOLD~~ **RESOLVED 2026-08-11 (live reflection).** Monolith `project_query export_asset_text`
-on `/Game/TurnBasedJRPGTemplate/Blueprints/Structs/S_PlayerUnitData` shows
-`VariablesDescriptions(2)=(VarName="curentMP_6_79399572456CC89F79B2DA9F0A8BB445",...,FriendlyName="curentMP",Category="int")`
-— the stock struct **really spells it `curentMP`** (typo confirmed in the authored asset, not a
-text-dump artifact: this is the full T3D export of the live struct). The library's faithful-match
-assumption is **correct**; the string does not need fixing. Remaining work is the call site only:
-hang `RestorePartyAfterBattle` off `CompleteBattle -> ResumeQuillOnce` (heal-only decision stands).
-Wiring gate: `RestorePartyAfterBattle_callers`.
+**Verdict:** spelling RESOLVED (live reflection = `curentMP`); call-site WIRED (cloud foundation).
+Observe in PIE before claiming gate evidence.
 
 ## Notes
 

@@ -1,8 +1,10 @@
 """Headless mocap retarget — run with the editor CLOSED, no modals.
 
+Prefer Tools/run_headless_mocap_retarget.ps1 from the repo root. Manual example:
+
     & 'C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe' `
-      'G:\\EnvironmentPortfolio\\BS_GodFile\\BS_GodFile.uproject' `
-      -run=pythonscript -script='G:/EnvironmentPortfolio/BS_GodFile/Content/Python/headless_retarget_mocap.py' `
+      '<repo>\\BS_GodFile.uproject' `
+      -run=pythonscript -script='<repo>/Content/Python/headless_retarget_mocap.py' `
       -unattended -nop4 -nosplash
 
 Retargets every A_Src_* clip in /Game/Melodia/Mocap/Source/Anims onto SK_Melusina via
@@ -16,12 +18,13 @@ no Slate modals, so the batch runs clean.
 """
 import unreal, json, os
 
+_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 RTG = '/Game/Melodia/Mocap/RTG_Mocap_to_Melusina'
 SRC_MESH = '/Game/Melodia/Mocap/Source/SK_MocapSource'
 TGT_MESH = '/Game/Melodia/Characters/Melusina/SK_Melusina'
 SRC_DIR = '/Game/Melodia/Mocap/Source/Anims'
 OUT_DIR = '/Game/Melodia/Characters/Melusina/Animations/Mocap'
-REPORT = r'G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/retarget_report.json'
+REPORT = os.path.join(_PROJECT_ROOT, 'Saved', 'Melodia', 'retarget_report.json')
 
 
 def main():

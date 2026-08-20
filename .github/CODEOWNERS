@@ -1,33 +1,37 @@
-# CODEOWNERS — lane boundaries mirror AGENT_OWNERSHIP.md / .cursor/rules/agent-boundaries.md
+# CODEOWNERS — path reviewers (Decision 002 retired the 5-agent ownership model;
+# labels below are path clusters only, not process authorities)
 
-# Default reviewers for everything
+# Default
 * @fromage3900
 
-# Geometry / SurrealArch lane (PGA)
+# Geometry / SurrealArch lane
 deploy/surreal_arch/ @fromage3900
 deploy/surreal_world/ @fromage3900
 deploy/surreal_os/ @fromage3900
 deploy/surreal_greybox/ @fromage3900
 
-# Material lane (MPA)
+# Material lane
 Content/Python/setup_master_*.py @fromage3900
 Content/Python/material_lib.py @fromage3900
 Tools/MaterialMaker/ @fromage3900
 
-# Placement / PCG lane (PPA)
+# Placement / PCG lane
 Content/Python/pcg_graph_builder.py @fromage3900
 Content/Python/setup_pcg_*.py @fromage3900
+specs/collab_slices/ @fromage3900
 
-# Import / LiveLink lane (WIA)
+# Import / LiveLink lane
 Content/Python/import_world_manifest.py @fromage3900
 Tools/BlenderLiveLink/ @fromage3900
 
-# QA / Sentinel lane (SQA)
+# QA / Echo
 Tools/audit_*.py @fromage3900
 Tools/fix_*.py @fromage3900
 deploy/_mcp_verify_*.py @fromage3900
 Tools/echo_run.py @fromage3900
 Tools/record_gate.py @fromage3900
+Tools/git_safe_push.py @fromage3900
+Tools/lfs_health_audit.py @fromage3900
 
 # Echo pipeline manifest and gates
 specs/echo_pipeline.json @fromage3900

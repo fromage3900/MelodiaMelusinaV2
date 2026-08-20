@@ -1,6 +1,7 @@
 # Rokoko → Melusina mocap setup
 
-**Status:** Pipeline scaffolded 2026-07-12. Existing batch retarget (`RTG_Mocap_to_Melusina`) is the game path. Rokoko feeds it via FBX (and optionally Live Link for preview).
+**Status:** Pipeline scaffolded 2026-07-12. Existing batch retarget (`RTG_Mocap_to_Melusina`) is the game path. Rokoko feeds it via FBX (and optionally Live Link for preview).  
+**Phone + scan companion:** [`MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md`](MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md) — Live Link = preview on `SK_MocapSource` only; shipping clips = FBX inbox → retarget.
 
 ## Architecture
 
