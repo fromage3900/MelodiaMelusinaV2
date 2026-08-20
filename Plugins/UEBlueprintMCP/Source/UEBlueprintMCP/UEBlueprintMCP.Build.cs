@@ -38,6 +38,12 @@ public class UEBlueprintMCP : ModuleRules
 			"AssetTools",
 			"MaterialEditor",     // For UMaterialEditingLibrary and material expression manipulation
 			"RenderCore",         // For material shader compilation
+			"AnimGraph",          // For Animation Blueprint and State Machine graph editing
+			"AnimGraphRuntime",   // For Skeletal Control and IK nodes
+			"AudioEditor",        // For Sound Cue editor manipulation
+			"MetasoundFrontend",  // For MetaSound graph definitions
+			"MetasoundEngine",    // For MetaSound runtime integration
+			"MetasoundGraphCore", // For MetaSound node connections
 		});
 
 		// Ensure proper RTTI/exceptions for crash handling

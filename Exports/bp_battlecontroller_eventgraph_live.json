@@ -1375,8 +1375,12 @@
      "name": "currentBattle",
      "direction": "output",
      "type": "object:BP_BattleBase_C",
-     "connected_to": [],
-     "connected_to_ids": []
+     "connected_to": [
+      "K2Node_CreateWidget_0.currentBattle"
+     ],
+     "connected_to_ids": [
+      "CEB5F75A456FE0A97B459E8254C50F28"
+     ]
     }
    ],
    "variable_name": "currentBattle",
@@ -15597,7 +15601,7 @@
   {
    "id": "K2Node_CreateWidget_3",
    "class": "K2Node_CreateWidget",
-   "title": "Create BP Melodia Victory Dialogue Widget",
+   "title": "Create BP Victory Dialogue Widget",
    "pos": [
     3446,
     10407
@@ -15632,7 +15636,7 @@
      "name": "Class",
      "direction": "input",
      "type": "class:UserWidget",
-     "default_object": "/Game/Melodia/UI/BP_MelodiaVictoryDialogue.BP_MelodiaVictoryDialogue_C",
+     "default_object": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/Dialogues/BP_VictoryDialogue.BP_VictoryDialogue_C",
      "connected_to": [],
      "connected_to_ids": []
     },
@@ -15640,7 +15644,7 @@
      "id": "79634108441D4AD6324842AB5110CB0D",
      "name": "ReturnValue",
      "direction": "output",
-     "type": "object:BP_MelodiaVictoryDialogue_C",
+     "type": "object:BP_VictoryDialogue_C",
      "connected_to": [
       "K2Node_CallFunction_133.self",
       "K2Node_Knot_48.InputPin"
@@ -15989,7 +15993,7 @@
      "id": "09F0AC004AE1972C6BF6358C287795EA",
      "name": "InputPin",
      "direction": "input",
-     "type": "object:BP_MelodiaVictoryDialogue_C",
+     "type": "object:BP_VictoryDialogue_C",
      "connected_to": [
       "K2Node_Knot_48.OutputPin"
      ],
@@ -16001,7 +16005,7 @@
      "id": "971DF5E94F5EDF5E1D4EC899F0D72B4D",
      "name": "OutputPin",
      "direction": "output",
-     "type": "object:BP_MelodiaVictoryDialogue_C",
+     "type": "object:BP_VictoryDialogue_C",
      "connected_to": [
       "K2Node_AddDelegate_5.self"
      ],
@@ -16024,7 +16028,7 @@
      "id": "5A4103AE48AF88E11DAB388099DD019A",
      "name": "InputPin",
      "direction": "input",
-     "type": "object:BP_MelodiaVictoryDialogue_C",
+     "type": "object:BP_VictoryDialogue_C",
      "connected_to": [
       "K2Node_CreateWidget_3.ReturnValue"
      ],
@@ -16036,7 +16040,7 @@
      "id": "BCC070C84DF3144355657DB03B0FB0C3",
      "name": "OutputPin",
      "direction": "output",
-     "type": "object:BP_MelodiaVictoryDialogue_C",
+     "type": "object:BP_VictoryDialogue_C",
      "connected_to": [
       "K2Node_Knot_47.InputPin"
      ],
@@ -22616,8 +22620,12 @@
      "name": "self",
      "direction": "output",
      "type": "object",
-     "connected_to": [],
-     "connected_to_ids": []
+     "connected_to": [
+      "K2Node_CreateWidget_0.battleController"
+     ],
+     "connected_to_ids": [
+      "616C49B34824D23554C7FCBD3EDB9B56"
+     ]
     }
    ]
   },
@@ -29700,16 +29708,24 @@
      "name": "currentBattle",
      "direction": "input",
      "type": "object:BP_BattleBase_C",
-     "connected_to": [],
-     "connected_to_ids": []
+     "connected_to": [
+      "K2Node_VariableGet_1.currentBattle"
+     ],
+     "connected_to_ids": [
+      "C5D4F6C14E890360788A00BA7CAFA722"
+     ]
     },
     {
      "id": "616C49B34824D23554C7FCBD3EDB9B56",
      "name": "battleController",
      "direction": "input",
      "type": "object:BP_BattleController_C",
-     "connected_to": [],
-     "connected_to_ids": []
+     "connected_to": [
+      "K2Node_Self_2.self"
+     ],
+     "connected_to_ids": [
+      "2687BE464CFD98FF69DE8ABAF6B67BD3"
+     ]
     }
    ]
   },
@@ -30285,6 +30301,14 @@
    "to_pin": "execute",
    "from_pin_id": "B48A6B874C8CBC3FF0B87882C0FDA4D3",
    "to_pin_id": "DA7EF6D64D40D00EF141CF928B7B3671"
+  },
+  {
+   "from_node": "K2Node_VariableGet_1",
+   "from_pin": "currentBattle",
+   "to_node": "K2Node_CreateWidget_0",
+   "to_pin": "currentBattle",
+   "from_pin_id": "C5D4F6C14E890360788A00BA7CAFA722",
+   "to_pin_id": "CEB5F75A456FE0A97B459E8254C50F28"
   },
   {
    "from_node": "K2Node_Knot_1",
@@ -34741,6 +34765,14 @@
    "to_pin": "execute",
    "from_pin_id": "7A62C93A4DF225A5C151E2BC39C4D180",
    "to_pin_id": "FC8C69CC4C45231F7E7F5389B0CCEDF3"
+  },
+  {
+   "from_node": "K2Node_Self_2",
+   "from_pin": "self",
+   "to_node": "K2Node_CreateWidget_0",
+   "to_pin": "battleController",
+   "from_pin_id": "2687BE464CFD98FF69DE8ABAF6B67BD3",
+   "to_pin_id": "616C49B34824D23554C7FCBD3EDB9B56"
   },
   {
    "from_node": "K2Node_VariableGet_47",

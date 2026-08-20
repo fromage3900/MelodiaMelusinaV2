@@ -1,3 +1,22 @@
+> # SUPERSEDED - do not plan against this file
+>
+> **The scope authority is [`_VERTICAL_SLICE_SCOPE.md`](../_VERTICAL_SLICE_SCOPE.md)**
+> (named as such by `DOC_INDEX.md:92`, `_TASK_QUEUE.md`, `Docs/QUEUE.md` and both
+> `.opencode` agents). This file is dated 2026-08-01 and its filename reads *newer* than
+> the authority's, which is precisely why it is dangerous: it is older, and it is wrong.
+>
+> **The specific contradiction.** Below, under "Proven / current", this file states
+> *"The integration battle path is player-proven"*. The owner's live verification on
+> 2026-08-06 (`_VERTICAL_SLICE_SCOPE.md:45-50`) says the opposite: *"Quill dialogue is not
+> visible, battle systems are non-functional, and the game is unplayable."* A later
+> 2026-08-12 update restores rhythm and QuillScript only - **not** the battle path,
+> save/load, or packaging.
+>
+> Kept for history: its loop description and the "music you cannot fail at" thesis are
+> still the design intent and are quoted elsewhere. The **status claims are not current**.
+>
+> Banner added 2026-08-14.
+
 # Current Vertical Slice Scope — 2026-08-01
 
 ## The actual shipping slice

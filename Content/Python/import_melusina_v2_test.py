@@ -1,12 +1,22 @@
 # -*- coding: utf-8 -*-
 """Import Melusina updated meshes as V2 test copies. Does NOT replace live SK.
 
+PORTFOLIO / CINE ONLY. SM_MelusinaBase/Shirt/Skirt/Boots/Accessories/Hair/Hair1
+land as STATIC meshes under SK_MelusinaRigARP_V2Test — a separate ARP skeleton
+(dotted names, meters), NOT SK_Melusina_Skeleton. Do not switch gameplay to
+these pieces (would force a retarget/redirector). Gameplay path is wardrobe
+re-skin onto SK_Melusina_Skeleton + SetLeaderPoseComponent.
+See Saved/Audit/melusina_idle_retarget_rca_2026-08-13.md.
+
 Source: G:\\MelusinaRigFinalSeparate\\*.fbx
 Dest:   /Game/Melodia/Characters/Melusina/V2Test/*_V2Test
 
 replace_existing=False. Does not touch:
   /Game/Melodia/Characters/Melusina/SK_Melusina
   /Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair
+
+Do not re-import SK_MelusinaRigARP.fbx (~33 MB Interchange hang) unless
+--include-rig. This file is not a Lane A animation importer.
 """
 from __future__ import annotations
 

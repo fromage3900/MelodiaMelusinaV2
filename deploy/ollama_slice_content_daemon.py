@@ -26,7 +26,7 @@ OUT = ROOT / "Imports" / "Data"
 STOP = ROOT / "deploy" / "OLLAMA_SLICE_STOP"
 LOG = ROOT / "deploy" / "ollama_slice_content.log"
 PID = ROOT / "deploy" / "OLLAMA_SLICE_LOOP.pid"
-MODEL = "qwen2.5:7b"
+MODEL = "qwen2.5-coder:7b"
 API = "http://127.0.0.1:11434/api/generate"
 
 # Real project constants — DO NOT let the model invent these.

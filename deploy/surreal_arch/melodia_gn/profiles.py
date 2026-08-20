@@ -387,11 +387,11 @@ register_builder("MEL_post", build_post, "Post",
     "Square post with chamfer edges and optional cap",
     "profiles")
 register_builder("MEL_rail", build_rail, "Rail",
-    "Rail sweep ΓÇö rectangle profile extruded along a curve",
+    "Rail sweep — rectangle profile extruded along a curve",
     "profiles")
 register_builder("MEL_star_finial", build_star_finial, "Star Finial",
     "Decorative star-shaped crown finial for tower/column tops",
     "profiles")
 register_builder("MEL_lissajous", build_lissajous_curve, "Lissajous Curve",
-    "Lissajous curve (A┬╖sin(a┬╖t+╬┤), B┬╖sin(b┬╖t)) for decorative arches",
+    "Lissajous curve (A*sin(a*t+delta), B*sin(b*t)) for decorative arches",
     "profiles")

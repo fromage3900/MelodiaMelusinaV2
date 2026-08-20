@@ -141,19 +141,12 @@ else:
     MEL = unreal.MaterialEditingLibrary
     params = {{}}
     try:
-        exprs = MEL.get_material_expressions(mat) or []
+        for s in MEL.get_scalar_parameter_names(mat):
+            params[str(s)] = "scalar"
+        for v in MEL.get_vector_parameter_names(mat):
+            params[str(v)] = "vector"
     except:
-        exprs = []
-    for expr in exprs:
-        try:
-            pn = str(expr.get_editor_property("parameter_name"))
-            tname = type(expr).__name__
-            if "ScalarParameter" in tname:
-                params[pn] = "scalar"
-            elif "VectorParameter" in tname:
-                params[pn] = "vector"
-        except:
-            pass
+        pass
     print("PARAMS_{key}:" + str(params))
 """)
     actual = {}
@@ -182,29 +175,31 @@ else:
             if actual[pname] != expected_type:
                 report.warn(f"Type mismatch '{pname}' in {key}: expected {expected_type}, got {actual[pname]}")
 
-    # Check MPC references
+    # Check MPC references (hard package dependency — nodes may live inside material functions)
+    mpc_refs_checked = []
     for entry in ms.get("mpc_references", []):
         for mpc_name, params in entry.items():
+            mpc_path = schema.get("material_parameter_collections", {}).get(mpc_name, {}).get("path", "")
+            if not mpc_path:
+                continue
             out2 = be.run(f"""
 import unreal
-mat = unreal.load_asset("{path}")
-if mat:
-    found = []
-    for expr in unreal.MaterialEditingLibrary.get_material_expressions(mat):
-        if type(expr).__name__ == "MaterialExpressionCollectionParameter":
-            coll = expr.get_editor_property("collection")
-            if coll and str(coll.get_name()) == "{mpc_name}":
-                found.append(str(expr.get_editor_property("parameter_name")))
-    print("MPCREFS:" + str(found))
+ar = unreal.AssetRegistryHelpers.get_asset_registry()
+ad = ar.get_asset_by_object_path("{path}")
+if not ad.is_valid():
+    print("NOASSET")
+else:
+    opts = unreal.AssetRegistryDependencyOptions()
+    deps = [str(d) for d in ar.get_dependencies(ad.package_name, opts)]
+    print("HAS_DEP:" + str("{mpc_path}" in deps))
 """)
-            existing_refs = []
-            for line2 in out2.splitlines():
-                if line2.startswith("MPCREFS:"):
-                    try: existing_refs = ast.literal_eval(line2[8:])
-                    except: pass
-            for ep in params:
-                if ep not in existing_refs:
-                    report.warn(f"MPC ref '{mpc_name}:{ep}' missing in {key}")
+            has_dep = any(line.strip().startswith("HAS_DEP:True") for line in out2.splitlines())
+            if "NOASSET" in out2:
+                report.err(f"Material '{key}' not found for MPC check")
+                continue
+            if not has_dep:
+                report.warn(f"MPC '{mpc_name}' not referenced by {key} (no hard package dependency)")
+            mpc_refs_checked.append(mpc_name)
 
 # ── Main ─────────────────────────────────────────────────────────────
 def main():

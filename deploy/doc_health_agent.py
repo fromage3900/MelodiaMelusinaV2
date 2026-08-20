@@ -2,12 +2,12 @@
 """Doc Health Agent — nightly scan for stale, missing, or contradictory documentation.
 
 Scans all .md files in Docs/ and root, extracts technical claims, cross-references
-against C++ source headers, and optionally uses Qwen3:8b (--ollama) for intelligent
+against C++ source headers, and optionally uses qwen2.5-coder:7b (--ollama) for intelligent
 claim extraction and Monolith MCP (--monolith) for live UE editor validation.
 
 Usage:
     python deploy/doc_health_agent.py                          # basic scan
-    python deploy/doc_health_agent.py --ollama                 # +Qwen3:8b claim extraction
+    python deploy/doc_health_agent.py --ollama                 # +Ollama claim extraction
     python deploy/doc_health_agent.py --monolith               # +Monolith MCP validation
     python deploy/doc_health_agent.py --ollama --monolith      # full
 """
@@ -29,7 +29,7 @@ SOURCE = ROOT / "Source"
 PLUGINS = ROOT / "Plugins"
 REVIEWS = DOCS / "Reviews"
 OLLAMA_API = "http://127.0.0.1:11434/api/generate"
-OLLAMA_MODEL = "qwen3:8b"
+OLLAMA_MODEL = "qwen2.5-coder:7b"
 MONOLITH_URL = "http://localhost:9316"
 
 # Claim extraction patterns
@@ -571,7 +571,7 @@ def write_report(
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Doc Health Agent — nightly stale/contradiction scanner")
-    p.add_argument("--ollama", action="store_true", help="Use Qwen3:8b for claim extraction")
+    p.add_argument("--ollama", action="store_true", help="Use the configured local Ollama model for claim extraction")
     p.add_argument("--monolith", action="store_true", help="Connect to Monolith MCP for validation")
     p.add_argument("--quiet", action="store_true", help="Minimal output")
     return p.parse_args()

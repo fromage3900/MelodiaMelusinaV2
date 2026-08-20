@@ -41,11 +41,88 @@ QUALITY_GATES = {
 }
 
 
-def aaq_quality_checklist(builder_name: str) -> dict:
-    """Return the gate checklist for one builder, all gates OPEN by default."""
+def aaq_quality_checklist(builder_name: str, measured: dict | None = None) -> dict:
+    """Return the gate checklist for one builder.
+
+    Unmeasured mesh/export gates stay OPEN. When `measured` (or library
+    lookups) can answer construct / preset / STUDIO_LABELS / node count /
+    fingerprint, those fields are filled instead of an all-OPEN template.
+    """
+    measured = dict(measured or {})
+    has_preset = measured.get("has_preset")
+    if has_preset is None:
+        try:
+            from .presets import BUILDERS_PRESETS
+            has_preset = builder_name in BUILDERS_PRESETS and bool(
+                BUILDERS_PRESETS[builder_name].get("presets")
+            )
+        except Exception:
+            has_preset = None
+
+    has_label = measured.get("has_label")
+    if has_label is None:
+        try:
+            from .core import STUDIO_LABELS
+            trees = {info.get("mel_tree") for info in STUDIO_LABELS.values()}
+            has_label = builder_name in trees or builder_name in STUDIO_LABELS
+        except Exception:
+            has_label = None
+
+    construct = measured.get("construct")
+    node_count = measured.get("node_count")
+    has_fingerprint = measured.get("has_fingerprint")
+
+    gates = {}
+    for gate, note in QUALITY_GATES.items():
+        gates[gate] = {"passed": False, "status": "OPEN", "note": note}
+
+    if has_preset is True:
+        gates["preset_system"] = {
+            "passed": True,
+            "status": "PASS",
+            "note": "Curated looks exist in presets.py (2-3+).",
+        }
+    elif has_preset is False:
+        gates["preset_system"] = {
+            "passed": False,
+            "status": "FAIL",
+            "note": "No curated presets in presets.py.",
+        }
+
+    if has_label is True:
+        gates["documentation"] = {
+            "passed": False,
+            "status": "PARTIAL",
+            "note": "STUDIO_LABELS yes; Input/Curves/Attributes/Output frames unmeasured.",
+        }
+    elif has_label is False:
+        gates["documentation"] = {
+            "passed": False,
+            "status": "FAIL",
+            "note": "No STUDIO_LABELS entry; frames unmeasured.",
+        }
+
+    if has_fingerprint is True:
+        gates["regression_gate"] = {
+            "passed": True,
+            "status": "PASS",
+            "note": "Fingerprint present in the 12-tree heavy baseline.",
+        }
+    elif has_fingerprint is False:
+        gates["regression_gate"] = {
+            "passed": False,
+            "status": "OPEN",
+            "note": "No fingerprint (only 12 trees with 51+ nodes are baselined).",
+        }
+
     return {
         "builder": builder_name,
-        "gates": {gate: {"passed": False, "note": note} for gate, note in QUALITY_GATES.items()},
+        "construct": construct,
+        "has_preset": has_preset,
+        "has_label": has_label,
+        "node_count": node_count,
+        "has_fingerprint": has_fingerprint,
+        "gates": gates,
     }
 
 

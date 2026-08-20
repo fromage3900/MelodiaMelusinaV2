@@ -1,4 +1,4 @@
-# jcode swarm — MelodiaMelusina
+# jcode swarm — MelodiaMelusinaV2
 
 Project harness for [jcode](https://jcode.sh) parallel agents (swarm) mapped to Melodia PGA/MPA/PPA/WIA/SQA ownership.
 

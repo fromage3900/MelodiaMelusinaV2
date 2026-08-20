@@ -375,13 +375,19 @@ bool FMelodiaWiringPersonaAllowlistTest::RunTest(const FString& Parameters)
 			EquipmentIds.Contains(Pair.Value));
 	}
 
-	// Every equipment definition must name a stock item, or RequestEquip cannot
-	// resolve a class and the grant fails after the reward is already consumed.
+	// Every equipment definition must name a stock item SOME way, or RequestEquip
+	// cannot resolve a class and the grant fails after the reward is already
+	// consumed. Either route satisfies this: the data-driven StockItemClass
+	// (preferred) or the legacy StockItemAssetId key into the hardcoded table.
 	for (const FMelodiaEquipmentDefinition& Equipment : Persona->Equipment)
 	{
-		TestFalse(
-			FString::Printf(TEXT("Equipment '%s' names a StockItemAssetId"), *Equipment.EquipmentId.ToString()),
-			Equipment.StockItemAssetId.IsNone());
+		const bool bNamesStockItem =
+			!Equipment.StockItemClass.IsNull() || !Equipment.StockItemAssetId.IsNone();
+		TestTrue(
+			FString::Printf(
+				TEXT("Equipment '%s' names a stock item (StockItemClass or StockItemAssetId)"),
+				*Equipment.EquipmentId.ToString()),
+			bNamesStockItem);
 	}
 
 	return true;

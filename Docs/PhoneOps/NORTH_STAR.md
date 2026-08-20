@@ -1,6 +1,6 @@
 # North Star
 
-Phone-friendly control plane for MelodiaMelusina. Detail lives in `CURRENT_STATE.md` / `ROADMAP.md`; this file is the steering brief.
+Phone-friendly control plane for MelodiaMelusinaV2. Detail lives in `CURRENT_STATE.md` / `ROADMAP.md`; this file is the steering brief.
 
 ## North star
 

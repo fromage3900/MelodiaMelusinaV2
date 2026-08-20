@@ -50,7 +50,7 @@ MELODIA_PROJECT = f"{MELODIA}/_PROJECT"  # was /Game/_PROJECT
 # Key masters
 M_UNIVERSAL = f"{MASTERS}/M_Master_Toon_Universal"
 M_LANDSCAPE = f"{MASTERS}/M_Master_Toon_Landscape_HeightBlend"
-M_WATER = f"{MASTERS}/M_Water_Master_Grand_v6"
+M_WATER = f"{MASTERS}/M_Water_Master_Grand_v10_Upgrade"
 M_COSMIC = f"{MASTERS}/M_Master_Toon_Cosmic"
 M_SDF_TOON = f"{MASTERS}/M_Master_SDF_Toon"
 M_TOON_SDF = f"{MASTERS}/M_Toon_SDF"

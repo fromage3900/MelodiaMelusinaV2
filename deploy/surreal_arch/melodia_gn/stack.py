@@ -33,7 +33,11 @@ def _filter_tree(tree_name: str, filter_text: str) -> bool:
 
 
 def _all_tree_names() -> list[str]:
-    return [name for name, _ in _gn_core.TREE_TYPES]
+    show_hidden = bool(getattr(bpy.context.window_manager, "mel_gn_show_hidden", False))
+    return [
+        name for name, _ in _gn_core.TREE_TYPES
+        if show_hidden or not _gn_core.is_hidden_builder(name)
+    ]
 
 
 # Back-compat alias (prefer _all_tree_names() — catalog rebuilds after import)
@@ -391,6 +395,89 @@ class MEL_GN_OT_stack_select_active(Operator):
         return {"FINISHED"}
 
 
+class MEL_GN_OT_open_gn_editor(Operator):
+    """Focus a NODE_EDITOR on the active MEL_* Geometry Nodes modifier."""
+
+    bl_idname = "mel_gn.open_gn_editor"
+    bl_label = "Open GN editor"
+    bl_options = {"REGISTER"}
+
+    def execute(self, context):
+        obj = context.active_object
+        if not obj:
+            self.report({"WARNING"}, "No active object")
+            return {"CANCELLED"}
+        tree = None
+        stack = getattr(obj, "mel_gn_stack", None)
+        if stack and 0 <= stack.active_index < len(stack.items):
+            item = stack.items[stack.active_index]
+            mod = obj.modifiers.get(item.modifier_name)
+            if mod and getattr(mod, "node_group", None):
+                tree = mod.node_group
+        if tree is None:
+            for mod in obj.modifiers:
+                if getattr(mod, "type", "") != "NODES":
+                    continue
+                ng = getattr(mod, "node_group", None)
+                if ng is not None and str(ng.name).startswith("MEL_"):
+                    tree = ng
+                    break
+        if tree is None:
+            self.report({"WARNING"}, "No MEL_* Geometry Nodes modifier on the object")
+            return {"CANCELLED"}
+        for window in context.window_manager.windows:
+            screen = getattr(window, "screen", None)
+            if screen is None:
+                continue
+            for area in screen.areas:
+                if area.type != "NODE_EDITOR":
+                    continue
+                for space in area.spaces:
+                    if space.type != "NODE_EDITOR":
+                        continue
+                    space.tree_type = "GeometryNodeTree"
+                    space.node_tree = tree
+                    try:
+                        space.pin = True
+                    except Exception:
+                        pass
+                    self.report({"INFO"}, f"Opened {tree.name}")
+                    return {"FINISHED"}
+        self.report({"INFO"}, "Split an editor to Geometry Node Editor, then click again")
+        return {"CANCELLED"}
+
+
+def _sync_stack_from_mel_modifiers(obj):
+    """Keep GN Stack rows aligned with MEL_* NODES modifiers on the object."""
+    stack = getattr(obj, "mel_gn_stack", None)
+    if stack is None:
+        return
+    known = {item.modifier_name for item in stack.items}
+    for mod in obj.modifiers:
+        if getattr(mod, "type", "") != "NODES":
+            continue
+        ng = getattr(mod, "node_group", None)
+        if ng is None or not str(ng.name).startswith("MEL_"):
+            continue
+        if mod.name in known:
+            continue
+        item = stack.items.add()
+        item.name = ng.name
+        item.modifier_name = mod.name
+        item.tree_name = ng.name
+        item.expand = True
+    active_mod = getattr(obj.modifiers, "active", None)
+    if active_mod is None or getattr(active_mod, "type", "") != "NODES":
+        return
+    ng = getattr(active_mod, "node_group", None)
+    if ng is None or not str(ng.name).startswith("MEL_"):
+        return
+    for i, item in enumerate(stack.items):
+        if item.modifier_name == active_mod.name:
+            stack.active_index = i
+            break
+
+
 # ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 # Panel UI ΓÇö Melodia GN Stack (N-panel, nested under genome carousel)
 # ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
@@ -426,11 +513,16 @@ class MEL_GN_PT_stack(Panel):
         stack = getattr(obj, "mel_gn_stack", None) if obj is not None else None
         if stack is None:
             layout.label(text="Select a mesh/curve to add GN builders", icon="INFO")
+            wm = bpy.context.window_manager
+            if hasattr(wm, "mel_gn_show_hidden"):
+                layout.prop(wm, "mel_gn_show_hidden", text="Show hidden / factory clones")
             self._draw_tree_browser(layout, _EmptyStack())
             n_trees = len(_gn_core.TREE_TYPES)
             n_cats = sum(1 for c in _gn_core.TREE_CATEGORIES.values() if c.get("trees"))
             layout.label(text=f"Catalog: {n_trees} builders · {n_cats} sections", icon="NODETREE")
             return
+
+        _sync_stack_from_mel_modifiers(obj)
 
         # ΓöÇΓöÇ Header row: search + stats ΓöÇΓöÇ
         self._draw_header(layout, stack)
@@ -476,6 +568,10 @@ class MEL_GN_PT_stack(Panel):
                 icon="ADD",
             )
             op.tree_name = stack.filter_text
+        hide_row = col.row(align=True)
+        wm = bpy.context.window_manager
+        if hasattr(wm, "mel_gn_show_hidden"):
+            hide_row.prop(wm, "mel_gn_show_hidden", text="Show hidden / factory clones")
 
         # Stats row
         item_count = len(stack.items)
@@ -516,6 +612,11 @@ class MEL_GN_PT_stack(Panel):
                     continue
             else:
                 matching = trees
+            show_hidden = bool(getattr(bpy.context.window_manager, "mel_gn_show_hidden", False))
+            if not show_hidden:
+                matching = [t for t in matching if not _gn_core.is_hidden_builder(t)]
+            if not matching:
+                continue
 
             any_visible = True
             col = box.column(align=True)
@@ -663,6 +764,13 @@ class MEL_GN_PT_stack(Panel):
                 if desc:
                     info_col.label(text=desc, icon="INFO")
 
+                if is_active and item.tree_name.startswith("MEL_"):
+                    info_col.operator(
+                        "mel_gn.open_gn_editor",
+                        text="Open GN editor",
+                        icon="NODETREE",
+                    )
+
                 # Status line
                 status_row = info_col.row(align=True)
                 if mod:
@@ -752,19 +860,31 @@ CLASSES = [
     MEL_GN_OT_stack_reveal_modifier,
     MEL_GN_OT_stack_toggle_enabled,
     MEL_GN_OT_stack_select_active,
+    MEL_GN_OT_open_gn_editor,
     MEL_GN_PT_stack,
 ]
 
 
 def register_props():
-    bpy.types.Object.mel_gn_stack = PointerProperty(
-        type=MEL_GN_StackSettings,
-        name="Melodia GN Stack",
-    )
+    if not hasattr(bpy.types.Object, "mel_gn_stack"):
+        bpy.types.Object.mel_gn_stack = PointerProperty(
+            type=MEL_GN_StackSettings,
+            name="Melodia GN Stack",
+        )
+    if not hasattr(bpy.types.WindowManager, "mel_gn_show_hidden"):
+        bpy.types.WindowManager.mel_gn_show_hidden = BoolProperty(
+            name="Show hidden / factory clones",
+            description="Show hidden factory clones (them_* / PCG aliases) in the GN Stack browser",
+            default=False,
+        )
 
 
 def unregister_props():
     try:
         del bpy.types.Object.mel_gn_stack
+    except AttributeError:
+        pass
+    try:
+        del bpy.types.WindowManager.mel_gn_show_hidden
     except AttributeError:
         pass

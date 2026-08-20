@@ -116,11 +116,11 @@ def _res_overview() -> str:
     return """# Melodia Studio — Surreal Architecture Generator (v2.131.0)
 
 A Blender 5.2 addon for procedural surreal architecture with style genomes,
-Greybox kits, 59 Geometry Node builders, and Unreal Engine game pipeline.
+Greybox kits, 169 Geometry Node builders across 12 GN Stack categories, and Unreal Engine game pipeline.
 
 ## Architecture
 - **Monolith**: `surreal_architecture_gen` (~1.9MB, 38K lines) — main addon entry point
-- **59 GN builders**: castle kit, music notation, ornaments, filigree, structures, effects, math ops
+- **173 GN builders** / **12 GN Stack categories**: castle kit, music notation, ornaments, filigree, structures, effects, math ops
 - **56 styles** across 8 groups: asian, zen, baroque, gothic, civic, castle, woods, greybox
 - **18 Escher presets**: Penrose stairs, Mobius cathedral, fractal towers, etc.
 - **31 Surreal OS genomes**: style genome definitions with DNA parameters
@@ -377,7 +377,7 @@ def _export_fbx(args: dict) -> dict:
     return _run_blender(code)
 
 
-@tool("list_gn_builders", "List all 59 registered Geometry Node builders by category.")
+@tool("list_gn_builders", "List all 165 registered Geometry Node builders by category (12 GN Stack categories).")
 def _list_gn_builders(args: dict) -> dict:
     code = (
         _import_and_register() +

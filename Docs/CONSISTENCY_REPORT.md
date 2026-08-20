@@ -82,7 +82,7 @@ The following fields are absent but required for `portfolio_package.json`:
   "generated_at": "2025-06-25T01:00:00Z",  // ISO8601, replaces timestamp/scan_time
   "generated_by": "script_name.py",         // script filename
   "ok": true,                               // boolean success flag
-  "project_root": "g:/EnvironmentPortfolio/BS_GodFile"
+  "project_root": "C:/EnvironmentPortfolio/BS_GodFile"
 }
 ```
 

@@ -34,19 +34,47 @@ def _output_socket(node):
 
 
 def _profile_circle(tree, bx, by, radius_sock, vertices=8):
-    """Tube sweep profile: NGON circle driven by a float socket."""
-    circle = safe_node(tree, "GeometryNodeMeshCircle", (bx, by))
+    """Tube sweep profile: curve circle (AAA railing) driven by a float socket."""
+    circle = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (bx, by))
+    if circle is None:
+        circle = safe_node(tree, "GeometryNodeMeshCircle", (bx, by))
+        if radius_sock is not None:
+            link_sockets(tree, radius_sock, circle.inputs["Radius"])
+        try:
+            circle.inputs["Vertices"].default_value = vertices
+        except Exception:
+            pass
+        try:
+            circle.fill_type = "NGON"
+        except Exception:
+            pass
+        return circle
     if radius_sock is not None:
         link_sockets(tree, radius_sock, circle.inputs["Radius"])
-    circle.inputs["Vertices"].default_value = vertices
-    circle.fill_type = "NGON"
+    try:
+        if isinstance(vertices, bpy.types.NodeSocket):
+            link_sockets(tree, vertices, circle.inputs["Resolution"])
+        else:
+            circle.inputs["Resolution"].default_value = vertices
+    except Exception:
+        try:
+            if isinstance(vertices, bpy.types.NodeSocket):
+                link_sockets(tree, vertices, circle.inputs["Vertices"])
+            else:
+                circle.inputs["Vertices"].default_value = vertices
+        except Exception:
+            pass
     return circle
 
 
+def _profile_out(node):
+    return node.outputs.get("Curve") or node.outputs.get("Mesh") or node.outputs[0]
+
+
 def _sweep(tree, bx, by, curve_sock, profile_sock):
-    """Sweep a curve with a profile mesh."""
+    """Sweep a curve path with a curve profile (AAA railing)."""
     mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx, by))
-    link_sockets(tree, curve_sock, mesh.inputs["Curve"])
+    link_sockets(tree, curve_sock, mesh.inputs.get("Curve") or mesh.inputs[0])
     prof = mesh.inputs.get("Profile Curve") or mesh.inputs.get("Profile")
     link_sockets(tree, profile_sock, prof)
     return mesh
@@ -181,7 +209,7 @@ def build_music_bass_clef(group_name="MEL_music_bass_clef"):
     merge.inputs["Distance"].default_value = 0.001
 
     profile = _profile_circle(tree, bx - 100, by - 100, gin.outputs["Thickness"])
-    clef_mesh = _sweep(tree, bx + 100, by + 200, merge.outputs["Geometry"], profile.outputs["Mesh"])
+    clef_mesh = _sweep(tree, bx + 100, by + 200, merge.outputs["Geometry"], _profile_out(profile))
 
     # Two dots right of the curl
     dot1 = safe_node(tree, "GeometryNodeMeshUVSphere", (bx - 300, by - 280))
@@ -657,7 +685,7 @@ def build_music_fermata(group_name="MEL_music_fermata"):
     merge.inputs["Distance"].default_value = 0.001
 
     profile = _profile_circle(tree, bx - 100, by - 300, gin.outputs["Thickness"])
-    fer_mesh = _sweep(tree, bx + 260, by + 150, merge.outputs["Geometry"], profile.outputs["Mesh"])
+    fer_mesh = _sweep(tree, bx + 260, by + 150, merge.outputs["Geometry"], _profile_out(profile))
 
     # Center dot
     dot = safe_node(tree, "GeometryNodeMeshUVSphere", (bx, by - 320))
@@ -918,7 +946,7 @@ def build_music_time_signature(group_name="MEL_music_time_signature"):
     merge.inputs["Distance"].default_value = 0.001
 
     profile = _profile_circle(tree, bx - 100, by - 500, gin.outputs["Thickness"])
-    meter_mesh = _sweep(tree, bx + 260, by + 200, merge.outputs["Geometry"], profile.outputs["Mesh"])
+    meter_mesh = _sweep(tree, bx + 260, by + 200, merge.outputs["Geometry"], _profile_out(profile))
 
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 420, by + 200))
     shade.inputs["Shade Smooth"].default_value = True

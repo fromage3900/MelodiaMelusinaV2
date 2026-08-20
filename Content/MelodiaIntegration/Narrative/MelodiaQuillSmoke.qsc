@@ -38,6 +38,7 @@ $ Notify melodia:battle:melodia_smoke_encounter
     Victory. The dream remembers your courage, and the quiet petal opens.
 
   $ melodia_first_dream_resolved = on
+  $ Notify melodia:quest:melodia_q_echo_01
   $ Notify melodia:reward:melodia_smoke_reward
 
 ? else:

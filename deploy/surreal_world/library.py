@@ -183,6 +183,41 @@ def library_piece_count(coll=None):
     return len([o for o in coll.objects if o.name.startswith("_lib_")])
 
 
+class SURREAL_ARCH_OT_toggle_library_visibility(bpy.types.Operator):
+    bl_idname = "surreal_arch.toggle_library_visibility"
+    bl_label = "Toggle Library Visibility"
+    bl_description = (
+        "Flip SurrealArch_Library hide_viewport (and render). Pieces stay "
+        "individually hidden unless reveal_pieces is set."
+    )
+    bl_options = {"REGISTER", "UNDO"}
+
+    reveal_pieces: bpy.props.BoolProperty(
+        name="Reveal Pieces",
+        description="Also unhide every _lib_ piece object inside the library",
+        default=False,
+    )
+
+    def execute(self, context):
+        coll = bpy.data.collections.get(LIBRARY_COLLECTION)
+        if coll is None:
+            self.report({"WARNING"}, "SurrealArch_Library not found (run Library Init first)")
+            return {"CANCELLED"}
+        show = bool(coll.hide_viewport) or bool(coll.hide_render)
+        coll.hide_viewport = not show
+        coll.hide_render = not show
+        if show and self.reveal_pieces:
+            for obj in coll.objects:
+                obj.hide_viewport = False
+                obj.hide_render = False
+        state = "ON (shown)" if show else "OFF (hidden)"
+        self.report({"INFO"}, f"SurrealArch_Library {state}")
+        return {"FINISHED"}
+
+
+LIBRARY_VISIBILITY_CLASSES = (SURREAL_ARCH_OT_toggle_library_visibility,)
+
+
 VERIFY_LIBRARY_TYPES = frozenset({
     "KEEP", "CURTAIN_WALL", "WATCHTOWER", "GATEHOUSE", "TOWN_HOUSE", "MARKET_STALL", "CHAPEL",
     "TOWN_HALL", "TAVERN", "BLACKSMITH", "VILLAGE_WELL", "BELL_TOWER",

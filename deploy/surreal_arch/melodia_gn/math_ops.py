@@ -7,39 +7,40 @@ import bpy
 from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, new_geometry_tree,
     add_float_param, add_bool_param, add_vector_param,
-    make_group_input,
+    make_group_input, mesh_boolean_node,
 )
 
 
 def build_add_geometry(group_name="MEL_add_geometry"):
-    """Union-merge two geometry inputs."""
+    """Boolean union of Geometry and Geometry B (Mesh 1 ∪ Mesh 2)."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
     make_group_input(tree, "NodeSocketGeometry", "Geometry B")
-    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx, by))
-    link_sockets(tree, gin.outputs["Geometry"], join.inputs["Geometry"])
-    if "Geometry B" in gin.outputs:
-        link_sockets(tree, gin.outputs["Geometry B"], join.inputs["Geometry"])
-    link_sockets(tree, join.outputs["Geometry"], gout.inputs["Geometry"])
-
-    color_node(join, "geometry")
+    mesh_b = gin.outputs.get("Geometry B")
+    if mesh_b is None:
+        mesh_b = gin.outputs["Geometry"]
+    bool_node, mesh_out = mesh_boolean_node(
+        tree, (bx, by), "UNION", gin.outputs["Geometry"], mesh_b,
+    )
+    link_sockets(tree, mesh_out, gout.inputs["Geometry"])
+    color_node(bool_node, "geometry")
     return tree
 
 
 def build_subtract_geometry(group_name="MEL_subtract_geometry"):
-    """Boolean difference between two geometry inputs."""
+    """Boolean difference: Geometry minus Geometry B (Mesh 1 − Mesh 2)."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
     make_group_input(tree, "NodeSocketGeometry", "Geometry B")
-    bool_node = safe_node(tree, "GeometryNodeMeshBoolean", (bx, by))
-    bool_node.operation = "DIFFERENCE"
-    link_sockets(tree, gin.outputs["Geometry"], bool_node.inputs["Mesh 2"])
-    if "Geometry B" in gin.outputs:
-        link_sockets(tree, gin.outputs["Geometry B"], bool_node.inputs["Mesh 1"])
-    link_sockets(tree, bool_node.outputs["Mesh"], gout.inputs["Geometry"])
-
+    mesh_b = gin.outputs.get("Geometry B")
+    if mesh_b is None:
+        raise RuntimeError("MEL_subtract_geometry: Geometry B socket missing")
+    bool_node, mesh_out = mesh_boolean_node(
+        tree, (bx, by), "DIFFERENCE", gin.outputs["Geometry"], mesh_b,
+    )
+    link_sockets(tree, mesh_out, gout.inputs["Geometry"])
     color_node(bool_node, "math")
     return tree
 
@@ -200,10 +201,10 @@ def build_attribute_math(group_name="MEL_attribute_math"):
 from .core import register_builder
 
 register_builder("MEL_add_geometry", build_add_geometry, "Add (Union)",
-    "Boolean union ΓÇö merge two geometry inputs",
+    "Boolean union — merge two geometry inputs",
     "math_attrs")
 register_builder("MEL_subtract_geometry", build_subtract_geometry, "Subtract (Difference)",
-    "Boolean difference ΓÇö subtract second geometry from first",
+    "Boolean difference — subtract Geometry B from Geometry",
     "math_attrs")
 register_builder("MEL_power_scale", build_power_scale, "Power Scale",
     "Exponential power falloff scale along an axis for tapering",

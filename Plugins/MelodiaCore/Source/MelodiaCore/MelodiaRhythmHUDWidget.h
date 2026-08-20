@@ -139,6 +139,34 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Style")
 	FLinearColor BreakGaugeTint = FLinearColor(0.98f, 0.88f, 0.36f, 1.0f);
 
+	// --- Note highway geometry ---
+	// PaintNoteHighway drew every note at one Y regardless of LaneIndex, so a four-lane
+	// chart rendered as a single undifferentiated strip: the player could not tell which
+	// of Q/W/O/P a note belonged to. These values place the painted lanes over the UMG
+	// LaneRow (Lane_D/F/J/K, bottom-anchored, 880x140) so notes land on the key they
+	// actually map to. They are EditAnywhere because the UMG row is authored in the
+	// widget and these must follow it — if you move LaneRow, move these.
+
+	/** Number of lanes. Must match the UMG LaneRow child count and the input map. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Highway", meta=(ClampMin="1", ClampMax="8"))
+	int32 HighwayLaneCount = 4;
+
+	/** Total width of the lane block, matching the UMG LaneRow width. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Highway", meta=(ClampMin="1.0"))
+	float HighwayLaneRowWidth = 880.0f;
+
+	/** Distance from the bottom edge to the hit line, matching where LaneRow sits. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Highway", meta=(ClampMin="0.0"))
+	float HighwayHitLineFromBottom = 188.0f;
+
+	/** How far above the hit line notes spawn. Larger = more read time at the same BPM. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Highway", meta=(ClampMin="50.0"))
+	float HighwayApproachHeight = 620.0f;
+
+	/** Note square size in pixels. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Highway", meta=(ClampMin="4.0"))
+	float HighwayNoteSize = 28.0f;
+
 	// --- State (readable from Blueprint) ---
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD")
 	EMelodiaHUDMode ActiveHUDMode = EMelodiaHUDMode::Exploration;

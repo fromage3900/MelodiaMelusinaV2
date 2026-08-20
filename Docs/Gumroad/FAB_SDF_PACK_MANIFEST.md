@@ -134,13 +134,13 @@ This manifest inventories all 61 SDF (Signed Distance Field) masters available f
 
 ### KitbashExport (Primary Source)
 ```
-G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/
+C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/
 ```
 Files present: 10 FBX files (verified)
 
 ### Product Staging
 ```
-G:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash/FBX/
+C:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash/FBX/
 ```
 Files present: 10 FBX files (verified identical to source)
 

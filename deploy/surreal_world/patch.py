@@ -200,4 +200,11 @@ def register_world_operators(monolith):
         monolith.SURREAL_ARCH_PT_compose.draw = compose_panel_draw
         monolith.SURREAL_ARCH_PT_compose._world_patched = True
 
-    return [SURREAL_ARCH_OT_plan_spawn_zen_roji, SURREAL_ARCH_OT_plan_spawn_zen_temple, SURREAL_ARCH_OT_export_world_ue]
+    from surreal_world.library import LIBRARY_VISIBILITY_CLASSES
+
+    return [
+        SURREAL_ARCH_OT_plan_spawn_zen_roji,
+        SURREAL_ARCH_OT_plan_spawn_zen_temple,
+        SURREAL_ARCH_OT_export_world_ue,
+        *LIBRARY_VISIBILITY_CLASSES,
+    ]

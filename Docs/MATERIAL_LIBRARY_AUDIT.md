@@ -51,7 +51,7 @@ Full JSON: `Saved/Audit/material_library_audit.json`
 
 1. **Tools → Execute Python Script** (or Output Log):
    ```
-   python "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py"
+   python "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py"
    ```
 2. In editor (optional, adds redirector list): same script via `py "..."`.
 3. Content Browser → `/Game/EnvSandbox/Materials` → enable **Show Redirectors**.
@@ -87,7 +87,7 @@ Full JSON: `Saved/Audit/material_library_audit.json`
 ### Phase 3 — Redirector fix (~15 min)
 
 1. ```
-   py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py"
+   py "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py"
    ```
 2. If script warns (no API): Content Browser → Filters → **Show Redirectors** (or Miscellaneous → Redirectors) → right-click redirector → **Fixup** → **Save All**. See [UE58_REDIRECTOR_CLEANUP.md](UE58_REDIRECTOR_CLEANUP.md). Do **not** search for the old “Fix Up Redirectors in Folder” label — it is not in UE 5.8.
 3. Re-run `audit_material_library.py` — `melodia_path_refs` inside Materials should trend to **0**.

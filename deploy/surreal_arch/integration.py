@@ -14,6 +14,18 @@ _PATCHED = False
 _REGISTERED_MONOLITH = None
 
 
+def _register_class_once(cls):
+    """Idempotent register — Blender 5.2 raises ValueError on a second spawn_polyhedron."""
+    name = getattr(cls, "__name__", "")
+    if name and getattr(bpy.types, name, None) is not None:
+        return False
+    try:
+        bpy.utils.register_class(cls)
+        return True
+    except (RuntimeError, ValueError):
+        return False
+
+
 def _ensure_path():
     pkg = os.path.dirname(os.path.abspath(__file__))
     parent = os.path.dirname(pkg)
@@ -45,6 +57,39 @@ def _wire_trim_box_wrapper(monolith):
         return tag_face_trim_attrs(monolith, tree, geom, x, y, zone_value=0.0, trim_flag=0.0)
 
     monolith._gb_box = _gb_box_trim_zones
+
+
+def _legacy_modifier_panel_enabled(context) -> bool:
+    addons = getattr(getattr(context, "preferences", None), "addons", None)
+    if addons is None:
+        return False
+    for key in ("surreal_architecture_gen", "melodia_studio"):
+        addon = addons.get(key)
+        prefs = getattr(addon, "preferences", None) if addon else None
+        if prefs is not None and hasattr(prefs, "show_legacy_modifier_panel"):
+            return bool(prefs.show_legacy_modifier_panel)
+    return False
+
+
+def _demote_properties_panel(monolith):
+    """Hide the Modifier-tab drawer unless Preferences enable the legacy panel."""
+    panel = getattr(monolith, "SURREAL_ARCH_PT_panel", None)
+    if panel is None or getattr(panel, "_melodia_legacy_demoted", False):
+        return
+    panel.bl_label = "Melodia Studio · Modifier (legacy)"
+    opts = set(getattr(panel, "bl_options", set()) or set())
+    opts.add("DEFAULT_CLOSED")
+    panel.bl_options = opts
+
+    @classmethod
+    def _poll(cls, context):
+        if not _legacy_modifier_panel_enabled(context):
+            return False
+        obj = getattr(context, "active_object", None)
+        return bool(obj and getattr(obj, "type", None) == "MESH")
+
+    panel.poll = _poll
+    panel._melodia_legacy_demoted = True
 
 
 def _patch_genome_carousel_header(monolith):
@@ -146,6 +191,7 @@ def patch_monolith(monolith):
 
     _wire_trim_box_wrapper(monolith)
     _patch_genome_carousel_header(monolith)
+    _demote_properties_panel(monolith)
 
     monolith.build_greybox_corridor_offset = lambda t, p, bx=-1400: greybox_offset.build_greybox_corridor_offset(
         t, monolith, p, bx
@@ -613,6 +659,8 @@ def register_overhaul(monolith):
     from . import melodia_gn
     from .quality_props import register_quality_props
     from .stage_visibility import register_stage_visibility_classes
+    from .accessory_visibility import register_accessory_classes, unregister_accessory_props
+    from .stats_overlay import register_stats_overlay, unregister_stats_overlay
     from .solo_object import SOLO_OBJECT_CLASSES
     from .bagapie_bridge import BAGAPIE_BRIDGE_CLASSES
     from .nikki_materials import NIKKI_MATERIAL_CLASSES
@@ -638,6 +686,8 @@ def register_overhaul(monolith):
     _EXTRA_CLASSES.extend(register_os_operators(monolith))
     _EXTRA_CLASSES.extend(uv_ops.UV_OPERATOR_CLASSES)
     _EXTRA_CLASSES.extend(register_stage_visibility_classes())
+    _EXTRA_CLASSES.extend(register_accessory_classes())
+    _EXTRA_CLASSES.extend(register_stats_overlay())
     _EXTRA_CLASSES.extend(melodia_gn.CLASSES)
     _EXTRA_CLASSES.extend(SOLO_OBJECT_CLASSES)
     _EXTRA_CLASSES.extend(BAGAPIE_BRIDGE_CLASSES)
@@ -771,12 +821,7 @@ def register_overhaul(monolith):
         SURREAL_ARCH_OT_higgsas_load_arch_bridge,
     ])
     for cls in _EXTRA_CLASSES:
-        try:
-            bpy.utils.register_class(cls)
-        except RuntimeError:
-            # Blender may retain registered classes across hot reload/disable-enable cycles.
-            # Treat as idempotent for nap-loop stability.
-            pass
+        _register_class_once(cls)
     try:
         register_live_bridge_props()
     except Exception as exc:
@@ -794,8 +839,7 @@ def register_overhaul(monolith):
     except Exception as exc:
         print(f"[Surreal Architecture] stage_publish props skipped: {exc}")
     try:
-        if not hasattr(bpy.types.Object, "mel_gn_stack"):
-            melodia_gn.register_props()
+        melodia_gn.register_props()
     except Exception as exc:
         print(f"[Surreal Architecture] mel_gn_stack props skipped: {exc}")
     enable_overlay()
@@ -823,6 +867,14 @@ def unregister_overhaul():
     unregister_quality_props(_REGISTERED_MONOLITH)
     unregister_preferences()
     disable_overlay()
+    try:
+        unregister_stats_overlay()
+    except Exception:
+        pass
+    try:
+        unregister_accessory_props()
+    except Exception:
+        pass
     global _EXTRA_CLASSES
     for cls in reversed(_EXTRA_CLASSES):
         try:

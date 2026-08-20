@@ -10683,6 +10683,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
    Begin Object Name="MaterialExpressionScalarParameter_798" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionScalarParameter_798'"
+      DefaultValue=0.300000
       SliderMax=2.000000
       ParameterName="ShadowDreamStrength"
       ExpressionGUID=567FC4294549518F5E0BA6A278D266A5
@@ -10694,7 +10695,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
    Begin Object Name="MaterialExpressionScalarParameter_799" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionScalarParameter_799'"
-      DefaultValue=0.500000
+      DefaultValue=1.200000
       SliderMax=2.000000
       ParameterName="ShadowSoftness"
       ExpressionGUID=F5DAD26E4926AEB8036C48BBE5CB32E3
@@ -12727,7 +12728,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
    Begin Object Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionVectorParameter_0'"
-      DefaultValue=(R=0.200000,G=0.150000,B=0.300000,A=1.000000)
+      DefaultValue=(R=0.850000,G=0.400000,B=0.620000,A=1.000000)
       ParameterName="RampLow"
       ExpressionGUID=A7AC30374B57F4DA3FA48597FD3B21AC
       Group="10a | Color Ramp"
@@ -12736,7 +12737,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
    Begin Object Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionVectorParameter_1'"
-      DefaultValue=(R=0.850000,G=0.600000,B=0.750000,A=1.000000)
+      DefaultValue=(R=0.780000,G=0.550000,B=0.820000,A=1.000000)
       ParameterName="RampMid"
       ExpressionGUID=90EADB6546D5419A9231789CDD312690
       Group="10a | Color Ramp"
@@ -13011,7 +13012,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
    Begin Object Name="MaterialExpressionVectorParameter_162" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionVectorParameter_162'"
-      DefaultValue=(R=0.480000,G=0.420000,B=0.620000,A=1.000000)
+      DefaultValue=(R=0.820000,G=0.450000,B=0.680000,A=1.000000)
       ParameterName="ShadowDreamTint"
       ExpressionGUID=78D2DEA54BE23CEB0571DCB719EF1CD2
       Group="13 | Shadow Dream"
@@ -13120,7 +13121,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
    Begin Object Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionVectorParameter_2'"
-      DefaultValue=(R=1.000000,G=0.950000,B=0.900000,A=1.000000)
+      DefaultValue=(R=0.600000,G=0.780000,B=0.950000,A=1.000000)
       ParameterName="RampHigh"
       ExpressionGUID=A67D9BED417D932CB0894DB337BA0FB5
       Group="10a | Color Ramp"
@@ -13130,7 +13131,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
    Begin Object Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionVectorParameter_3'"
-      DefaultValue=(R=0.180000,G=0.120000,B=0.280000,A=1.000000)
+      DefaultValue=(R=0.850000,G=0.400000,B=0.620000,A=1.000000)
       ParameterName="ShadowRampLow"
       ExpressionGUID=3629F32449473724E02043A5F655558B
       Group="13 | Shadow Dream"
@@ -13140,7 +13141,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
    Begin Object Name="MaterialExpressionVectorParameter_4" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionVectorParameter_4'"
-      DefaultValue=(R=0.420000,G=0.280000,B=0.450000,A=1.000000)
+      DefaultValue=(R=0.780000,G=0.550000,B=0.820000,A=1.000000)
       ParameterName="ShadowRampMid"
       ExpressionGUID=FBE8EC4E4871B4F8767636904497E978
       Group="13 | Shadow Dream"
@@ -13150,7 +13151,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
    Begin Object Name="MaterialExpressionVectorParameter_5" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionVectorParameter_5'"
-      DefaultValue=(R=0.750000,G=0.600000,B=0.720000,A=1.000000)
+      DefaultValue=(R=0.600000,G=0.780000,B=0.950000,A=1.000000)
       ParameterName="ShadowRampHigh"
       ExpressionGUID=D14C513D40C8430B7F5F29A6F9ABC8A8
       Group="13 | Shadow Dream"
@@ -13249,7 +13250,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
    bUsedWithSkeletalMesh=True
    bUsedWithNanite=True
    EditorX=1152
-   StateId=AC4AD1554A5BAAF0DF8FAE92FB2927B8
+   StateId=DBF468C049063022753BC995B4E25304
    ReferencedTextureGuids(0)=73D4A5E14AB936D52FC5C09C91556F1F
    ReferencedTextureGuids(1)=8D8CFB9E402D85827BCD7E88490FDACE
    ReferencedTextureGuids(2)=4D8D081C43F132D69B99BB8595B653D2
@@ -13288,5 +13289,5 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
    ReferencedDefaultTextures(13)="/Script/Engine.Texture2D'/Engine/EngineResources/Black.Black'"
    ReferencedDefaultTextures(14)="/Script/Engine.Texture2D'/Engine/EngineResources/DefaultTexture.DefaultTexture'"
    ParameterOverviewExpansion=(("-12Global Celestial", True),("-12Global Character", True),("-12Global Cinematic", True),("-12Global Constellation Field", True),("-12Global Elemental", True),("-12Global FairyDust", True),("-12Global FlowerShadow", True),("-12Global Gilding", True),("-12Global Hybrid", True),("-12Global Itto", True),("-12Global Junji Ito Horror", True),("-12Global LayerA", True),("-12Global LayerB", True),("-12Global Layers", True),("-12Global MacroDetail", True),("-12Global Madoka", True),("-12Global Magical", True),("-12Global Nikki", True),("-12Global Palette", True),("-12Global Parallax", True),("-12Global ShadowDream", True),("-12Global Surface", True),("-12Global Temporal", True),("-12Global TimeOfDay", True),("-12Global TrimBlend", True),("-12Global Triplanar", True),("-12Global UV", True),("-12Global Witch Labyrinth", True),("-12Global World", True),("-12Global Real Parallax", True),("-12Global 01 | Base Surface", True),("-12Global 02 | Palette Ramp", True),("-12Global 03 | Texture Layer A", True),("-12Global 03 | Triplanar", True),("-12Global 04 | Texture Layer B", True),("-12Global 05 | Parallax", True),("-12Global 06 | Macro & Detail", True),("-12Global 07 | Temporal / Ink", True),("-12Global 08 | Nikki Rim & Glow", True),("-12Global 09 | Nikki Sparkle", True),("-12Global 10 | Nikki Iridescence & Sheen", True),("-12Global 11 | Gilding", True),("-12Global 12 | Shadow Garden (Flowers)", True),("-12Global 13 | Shadow Dream", True),("-12Global 14 | Celestial (Nebula)", True),("-12Global 15 | Fairy Dust", True),("-12Global 16 | Magical (Henshin)", True),("-12Global 17 | Character", True),("-12Global 18 | Elemental", True),("-12Global 19 | World / Weather", True),("-12Global 20 | Cinematic", True),("-12Global 21 | Time of Day", True),("-12Global 22 | Madoka", True),("-12Global 23 | Itto", True),("-12Global VertexPaintBlend", True),("-12Global ColorRamp", True),("-12Global Wind", True),("-12Global Channels", True),("-12Global LayerC", True),("-12Global", True),("-12Global 02 | Triplanar", True),("-12Global 05 | Texture Layer C", True),("-12Global 06 | Layer Blend A-to-B", True),("-12Global 07 | Layer Blend B-to-C", True),("-12Global 01b | Channels", True),("-12Global 05b | Parallax", True),("-12Global 10a | Color Ramp", True),("-12Global 10b | Dream Rim (magic)", True),("-12Global 10c | Dream Bloom (magic)", True),("-12Global 10d | Dream Flow (living magic)", True),("-12Global 10e | Dream Pulse (breathing)", True),("-12Global 10f | Kaleidoscope Sigil (magic)", True),("-12Global 10g | Dawn Wash (magic)", True),("-12Global 10h | Dream Mist (magic)", True),("-12Global 10i | Twinkle Glints (magic)", True),("-12Global 11b | Impasto Paint", True),("-12Global 16b | Ink Wear", True),("-12Global 16c | Vein Glow", True),("-12Global 17 | Macro & Detail", True),("-12Global 22 | Temporal / Ink", True),("-12Global 23 | Palette", True),("-12Global 99 | Deprecated (MeshBlend)", True),("-12Global Impasto", True),("-12Global MeshBlend", True),("-12Global 02b | Distance Field Contact", True),("-12Global 10j | Dream Halo (magic)", True))
-   LightingGuid=8A6AE5104EA4A83BF72AB3A507051F44
+   LightingGuid=FF98069D459576AE3BF0848250A4FB1E
 End Object

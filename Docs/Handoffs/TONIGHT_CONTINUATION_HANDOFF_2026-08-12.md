@@ -7,7 +7,9 @@ Cockpit: [BLENDER_MELODIA_COCKPIT.md](../BLENDER_MELODIA_COCKPIT.md)
 Parallel lanes: [PARALLEL_LANES_2026-08-12.md](PARALLEL_LANES_2026-08-12.md)  
 Canvas: `canvases/tonight-portfolio-prep.canvas.tsx`
 
-Locks: rhythm WORKED · Quill WORKED. One UnrealEditor. No v22 save without `MELODIA_ALLOW_STAGE_SAVE=1`. No copies onto G: (~2 GB free). Do not start a second 15-minute loop (PID **26352**, sentinel `AGENT_LOOP_TICK_tonight_prep`).
+**15-minute loop STOPPED ~00:42 ET** (was PID **26352**). Next-session prompts: [SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md](SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md). Do not start a second loop.
+
+Locks: rhythm WORKED · Quill WORKED. One UnrealEditor. No v22 save without `MELODIA_ALLOW_STAGE_SAVE=1`. No copies onto G: (~2 GB free).
 
 ---
 
@@ -30,8 +32,8 @@ Subagents this pass: [P0 gaps](3e1fd5c9-9fac-402d-b7e0-0ac721f1e2bb) · [ZenTrim
 
 | Process | PID | Rule |
 |---------|-----|------|
-| UnrealEditor | **38184** | Owner released ~23:24. T1 apply + T2 cathedral import + T3 GC import **landed**. One editor. |
-| Tonight 15m loop | **26352** | Leave running. Fold into `Saved/Audit/tonight_prep_loop.md` only. |
+| UnrealEditor | *(check `Get-Process UnrealEditor`)* | Owner released ~23:24. T1 apply + T2 cathedral import + T3 GC import **landed**. One editor. |
+| Tonight 15m loop | **stopped** | Was 26352. Do not restart unless owner asks. |
 | Blender 5.2 + MCP | **27644** / **9876** | **Connected 22:53 ET.** Health 12/12 / 165. LIQUID smoke + hair tune done. Do not save v22. |
 
 ---
@@ -62,9 +64,9 @@ Subagents this pass: [P0 gaps](3e1fd5c9-9fac-402d-b7e0-0ac721f1e2bb) · [ZenTrim
 
 ## Do next (ordered)
 
-1. **Owner:** Save `L_KaleidoNave` if the `CathedralKit_Review` strip should persist. Socket a new GeometryCacheActor to Melusina's head (do not replace SK hair). Undo `MEL_Smoke_EffectMagic_LIQUID` before a beauty plate. Do not save v22 unless `MELODIA_ALLOW_STAGE_SAVE=1`.
-2. T4 lean vow-cross FBX from v22. Never `T_Hatch_Cross`.
-3. B2 website plate dry-run still open (`stage_publish.py`, git push off).
+1. **Owner:** Save `L_KaleidoNave` if the `CathedralKit_Review` + `Melusina_V2Test` strips should persist. PIE-check mocap idle. Socket a new GeometryCacheActor to Melusina's head (do not replace SK hair). Undo `MEL_Smoke_EffectMagic_LIQUID` before a beauty plate. Do not save v22 unless `MELODIA_ALLOW_STAGE_SAVE=1`.
+2. Optional: blender idle retry only after mocap idle looks right (`SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md` lane N2).
+3. T4 lean vow-cross FBX from v22. Never `T_Hatch_Cross`.
 4. A3 `check-wiring` / runtime still needs real Q/W/O/P.
 
-Paste-ready prompts: [PARALLEL_SESSIONS_2026-08-12.md](PARALLEL_SESSIONS_2026-08-12.md) (T1–T3 blocks added).
+Paste-ready prompts: [SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md](SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md) (N0–N6) and [PARALLEL_SESSIONS_2026-08-12.md](PARALLEL_SESSIONS_2026-08-12.md).

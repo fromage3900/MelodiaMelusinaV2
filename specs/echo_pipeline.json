@@ -1,15 +1,15 @@
 {
   "$schema": "echo_pipeline.v1",
   "name": "melodia_echo",
-  "version": "1.1",
-  "generated_by": "T3D-manifest, 2026-08-09",
-  "purpose": "One runnable gate chain for the Melodia integration layer. Nothing is 'done' without a ledger row. Mirrors the agent gating categories HoYoverse's Echo applies to AI-generated game content.",
+  "version": "2.0",
+  "generated_by": "Monolith MCP refresh, 2026-08-18",
+  "purpose": "One runnable gate chain for the Melodia integration layer. Nothing is 'done' without a ledger row.",
   "stages": [
     {
       "id": "author",
       "label": "Author",
       "impl": "human_or_agent",
-      "note": "Proposal must be a spec (json/.qsc/t3d) plus the expected gate it claims. Agents are content producers; nothing about a beat is assumed until scored."
+      "note": "Proposal must be a spec (json/.qsc) plus the expected gate it claims. Agents are content producers; nothing about a beat is assumed until scored."
     },
     {
       "id": "spec_validate",
@@ -19,31 +19,22 @@
       "ledger_id": "spec_validate"
     },
     {
-      "id": "inject",
-      "label": "T3D inject",
-      "impl": "t3d_blueprint_injector.py / nl_to_blueprint.py",
-      "contract": "one asset per transaction, pre-flight passes, graph untouched on failure",
-      "ledger_id": "inject"
+      "id": "monolith_static",
+      "label": "Monolith static gates",
+      "impls": [
+        "melodia_animation_validate_state_machine",
+        "melodia_animation_validate_bindings",
+        "melodia_animation_get_runtime_abp"
+      ],
+      "contract": "Monolith must answer; animation state machines are valid, no disconnected pose outputs, runtime ABP matches skeleton",
+      "ledger_id": "monolith_static"
     },
     {
       "id": "compile",
       "label": "Compile",
       "impl": "blueprint_query:compile_blueprint",
       "contract": "0 errors",
-      "ledger_id": "blueprint_compile"
-    },
-    {
-      "id": "static_gates",
-      "label": "Static gates",
-      "impls": [
-        "graph_reachability.py",
-        "bp_live_path.py",
-        "ui_lint.py",
-        "bp_sweep.py",
-        "verify_baseline.py"
-      ],
-      "contract": "Monolith must answer; no dead exec islands, every configured live-path target is LIVE, no lint defects, no sweep findings, baseline clean",
-      "ledger_id": "static_gates"
+      "ledger_id": "monolith_compile"
     },
     {
       "id": "runtime_gates",
@@ -87,7 +78,8 @@
   "quality_gates": {
     "graph_fingerprint": "exact_match",
     "blueprint_compile": "0_errors",
-    "material_compile": "0_errors",
+    "animation_sm": "all_states_connected",
+    "animation_bindings": "no_disconnected_poses",
     "pie_smoke": "0_crashes",
     "wiring_invariants": "all_pass"
   },
@@ -108,13 +100,8 @@
   "runner_contract": {
     "editor_endpoint": "http://127.0.0.1:9316/mcp",
     "allowlist_asset": "/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig",
-    "default_pie_map": "/Game/EnvSandbox/Environments/L_KaleidoNave",
+    "default_pie_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
     "holds_without_editor": [
-      "bp_live_path",
-      "graph_reachability",
-      "bp_sweep",
-      "ui_lint",
-      "verify_baseline",
       "pie_smoke",
       "regression",
       "fingerprint",

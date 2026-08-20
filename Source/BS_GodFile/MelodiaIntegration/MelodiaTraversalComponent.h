@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "MelodiaSharedAuthorityInterfaces.h"
 #include "MelodiaWaterInteractionTypes.h"
 #include "MelodiaTraversalComponent.generated.h"
 
@@ -19,13 +20,54 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaSwimStateChanged, bool, bIsS
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaDiveStateChanged, bool, bIsDiving);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaFloatValueChanged, float, NewValue);
 
+UENUM(BlueprintType)
+enum class EMelodiaTraversalMode : uint8
+{
+	Grounded UMETA(DisplayName = "Grounded"),
+	Glide UMETA(DisplayName = "Glide")
+};
+
+UENUM(BlueprintType)
+enum class EMelodiaTraversalRequestResult : uint8
+{
+	Accepted UMETA(DisplayName = "Accepted"),
+	AlreadyActive UMETA(DisplayName = "Already Active"),
+	RejectedContext UMETA(DisplayName = "Rejected: Context"),
+	RejectedOwner UMETA(DisplayName = "Rejected: Owner"),
+	RejectedResource UMETA(DisplayName = "Rejected: Resource"),
+	RejectedCapability UMETA(DisplayName = "Rejected: Capability"),
+	UnsupportedMode UMETA(DisplayName = "Unsupported Mode")
+};
+
+USTRUCT(BlueprintType)
+struct BS_GODFILE_API FMelodiaTraversalRequestResult
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Traversal")
+	EMelodiaTraversalRequestResult Result = EMelodiaTraversalRequestResult::UnsupportedMode;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Traversal")
+	EMelodiaTraversalMode RequestedMode = EMelodiaTraversalMode::Grounded;
+
+	/** Stable diagnostic key for UI, telemetry, and fixture assertions. */
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Traversal")
+	FName BlockReason = NAME_None;
+
+	bool WasAccepted() const
+	{
+		return Result == EMelodiaTraversalRequestResult::Accepted
+			|| Result == EMelodiaTraversalRequestResult::AlreadyActive;
+	}
+};
+
 /**
  * Exploration-only movement adapter for the canonical Melusina pawn.
  * Input-context authority remains in UMelodiaInputContextSubsystem; this
  * component only applies traversal while exploration movement is allowed.
  */
 UCLASS(ClassGroup=(Melodia), meta=(BlueprintSpawnableComponent))
-class BS_GODFILE_API UMelodiaTraversalComponent : public UActorComponent
+class BS_GODFILE_API UMelodiaTraversalComponent : public UActorComponent, public IMelodiaTraversalStateProvider
 {
 	GENERATED_BODY()
 
@@ -60,6 +102,29 @@ public:
 	/** True while diving underwater. */
 	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
 	bool IsDiving() const { return bIsDiving; }
+
+	/** Current mode exposed to world-facing gates and presentation BPs. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
+	EMelodiaTraversalMode GetTraversalMode() const;
+
+	/**
+	 * Native movement authority for the first capability contract. The request is
+	 * fail-closed and currently supports Grounded and Glide only. Sprint, swim,
+	 * and dive remain input/native-only until their own transition contracts exist.
+	 */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Traversal")
+	FMelodiaTraversalRequestResult RequestTraversalMode(EMelodiaTraversalMode RequestedMode);
+
+	/** Restore the canonical grounded state; safe to call more than once. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Traversal")
+	void ResetTraversalState();
+
+	/** Context passed to the module-neutral capability provider when enabled. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Traversal|Capabilities")
+	FName GetTraversalCapabilityContextId() const { return TraversalCapabilityContextId; }
+
+	UFUNCTION(BlueprintCallable, Category="Melodia|Traversal|Capabilities")
+	void SetTraversalCapabilityContextId(FName ContextId) { TraversalCapabilityContextId = ContextId; }
 
 	/** Normalized traversal-local stamina for a lightweight HUD bar. */
 	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
@@ -105,6 +170,7 @@ private:
 	void CancelJumpWindup();
 	void SetSprinting(bool bShouldSprint);
 	void ApplyCurrentMovementSpeed();
+	bool IsCapabilityAvailableForMode(EMelodiaTraversalMode RequestedMode, FName& OutBlockReason) const;
 	void CancelTraversalState();
 	void StartGlide();
 	void StopGlide();
@@ -132,6 +198,18 @@ private:
 	bool bIsSprinting = false;
 	bool bIsDashing = false;
 	bool bMovementDefaultsCaptured = false;
+
+	/**
+	 * Opt-in during the migration window. Promoted traversal fixtures should set
+	 * this true so input and Blueprint requests share the same capability gate.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Traversal|Capabilities",
+		meta=(AllowPrivateAccess="true"))
+	bool bRequireCapabilityProviderForGlide = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Traversal|Capabilities",
+		meta=(AllowPrivateAccess="true"))
+	FName TraversalCapabilityContextId = NAME_None;
 	double JumpWindupStartedAt = -1.0;
 	float SavedGravityScale = 1.0f;
 	float SavedAirControl = 0.35f;
@@ -154,6 +232,10 @@ private:
 	float TimeSinceSwimStopped = 0.0f;
 	float WaterLevelZ = 0.0f;
 	float WaterMotionEventAccumulator = 0.0f;
+
+	/** Last tension published to the reactivity channel, gated by hysteresis so
+	 *  the per-frame proximity update does not spam Publish() on every tick. */
+	float LastPublishedExplorationTension = -1.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Water|Presentation", meta=(ClampMin="0.12", ClampMax="1.0"))
 	float WaterMotionEventInterval = 0.28f;

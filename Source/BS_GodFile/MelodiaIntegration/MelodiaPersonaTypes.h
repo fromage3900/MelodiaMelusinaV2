@@ -61,8 +61,25 @@ struct BS_GODFILE_API FMelodiaEquipmentDefinition
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FText DisplayName;
 
+	/**
+	 * Legacy lookup key into the hardcoded StockEquipmentPaths table in
+	 * MelodiaPersonaSubsystem.cpp. Adding equipment through this route requires a
+	 * C++ edit and a rebuild, which does not scale past the three entries it has.
+	 * Prefer StockItemClass below; this stays for already-authored content.
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName StockItemAssetId;
+
+	/**
+	 * The stock equipment Blueprint this definition describes. Authoring-side, so a
+	 * new piece of equipment is a data change rather than an engineering change.
+	 * When set, this wins over StockItemAssetId.
+	 *
+	 * The stock item remains the mechanical authority (Decision 009/029c) -- this
+	 * points AT it, it does not replace it.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftClassPtr<UObject> StockItemClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName Slot;

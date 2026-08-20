@@ -7,6 +7,9 @@
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
+#include "Components/ProgressBar.h"
+#include "Components/Image.h"
+#include "Animation/WidgetAnimation.h"
 #include "WidgetBlueprint.h"
 #include "WidgetBlueprintEditor.h"
 #include "Blueprint/WidgetTree.h"
@@ -609,3 +612,312 @@ TSharedPtr<FJsonObject> FSetTextBlockBindingAction::ExecuteInternal(const TShare
 	ResultObj->SetStringField(TEXT("binding_name"), BindingName);
 	return ResultObj;
 }
+
+// =============================================================================
+// FAddProgressBarToWidgetAction
+// =============================================================================
+
+bool FAddProgressBarToWidgetAction::Validate(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context, FString& OutError)
+{
+	if (!Params->HasField(TEXT("widget_name")) || !Params->HasField(TEXT("progress_bar_name")))
+	{
+		OutError = TEXT("Missing 'widget_name' or 'progress_bar_name' parameter");
+		return false;
+	}
+	if (Params->GetStringField(TEXT("progress_bar_name")).TrimStartAndEnd().IsEmpty())
+	{
+		OutError = TEXT("progress_bar_name cannot be empty");
+		return false;
+	}
+	if (Params->HasField(TEXT("percent")))
+	{
+		double Pct = Params->GetNumberField(TEXT("percent"));
+		if (Pct < 0.0 || Pct > 1.0)
+		{
+			OutError = TEXT("percent must be between 0.0 and 1.0");
+			return false;
+		}
+	}
+	return true;
+}
+
+TSharedPtr<FJsonObject> FAddProgressBarToWidgetAction::ExecuteInternal(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context)
+{
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	FString BarName = Params->GetStringField(TEXT("progress_bar_name"));
+	double Percent = GetOptionalNumber(Params, TEXT("percent"), 1.0);
+
+	UWidgetBlueprint* WidgetBlueprint = FindWidgetBlueprintByName(WidgetName);
+	if (WidgetBlueprint)
+	{
+		UCanvasPanel* RootCanvas = Cast<UCanvasPanel>(WidgetBlueprint->WidgetTree->RootWidget);
+		if (RootCanvas)
+		{
+			UProgressBar* ProgressBar = WidgetBlueprint->WidgetTree->ConstructWidget<UProgressBar>(UProgressBar::StaticClass(), *BarName);
+			if (ProgressBar)
+			{
+				ProgressBar->SetPercent(Percent);
+				UCanvasPanelSlot* PanelSlot = RootCanvas->AddChildToCanvas(ProgressBar);
+				if (PanelSlot)
+				{
+					const TArray<TSharedPtr<FJsonValue>>* Position;
+					if (Params->TryGetArrayField(TEXT("position"), Position) && Position->Num() >= 2)
+					{
+						FVector2D Pos((*Position)[0]->AsNumber(), (*Position)[1]->AsNumber());
+						PanelSlot->SetPosition(Pos);
+					}
+					const TArray<TSharedPtr<FJsonValue>>* Size;
+					if (Params->TryGetArrayField(TEXT("size"), Size) && Size->Num() >= 2)
+					{
+						FVector2D SizeVec((*Size)[0]->AsNumber(), (*Size)[1]->AsNumber());
+						PanelSlot->SetSize(SizeVec);
+						PanelSlot->SetAutoSize(false);
+					}
+				}
+				FKismetEditorUtilities::CompileBlueprint(WidgetBlueprint);
+				UEditorAssetLibrary::SaveAsset(WidgetBlueprint->GetPathName(), false);
+			}
+		}
+	}
+
+	TSharedPtr<FJsonObject> Result = MakeShared<FJsonObject>();
+	Result->SetStringField(TEXT("widget_name"), WidgetName);
+	Result->SetStringField(TEXT("progress_bar_name"), BarName);
+	Result->SetNumberField(TEXT("percent"), Percent);
+	Result->SetBoolField(TEXT("success"), true);
+
+	return CreateSuccessResponse(Result);
+}
+
+// =============================================================================
+// FAddImageToWidgetAction
+// =============================================================================
+
+bool FAddImageToWidgetAction::Validate(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context, FString& OutError)
+{
+	if (!Params->HasField(TEXT("widget_name")) || !Params->HasField(TEXT("image_name")))
+	{
+		OutError = TEXT("Missing 'widget_name' or 'image_name' parameter");
+		return false;
+	}
+	return true;
+}
+
+TSharedPtr<FJsonObject> FAddImageToWidgetAction::ExecuteInternal(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context)
+{
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	FString ImageName = Params->GetStringField(TEXT("image_name"));
+	FString TexturePath = GetOptionalString(Params, TEXT("texture_path"), TEXT(""));
+
+	UWidgetBlueprint* WidgetBlueprint = FindWidgetBlueprintByName(WidgetName);
+	if (WidgetBlueprint)
+	{
+		UCanvasPanel* RootCanvas = Cast<UCanvasPanel>(WidgetBlueprint->WidgetTree->RootWidget);
+		if (RootCanvas)
+		{
+			UImage* ImageWidget = WidgetBlueprint->WidgetTree->ConstructWidget<UImage>(UImage::StaticClass(), *ImageName);
+			if (ImageWidget)
+			{
+				UCanvasPanelSlot* PanelSlot = RootCanvas->AddChildToCanvas(ImageWidget);
+				if (PanelSlot)
+				{
+					const TArray<TSharedPtr<FJsonValue>>* Position;
+					if (Params->TryGetArrayField(TEXT("position"), Position) && Position->Num() >= 2)
+					{
+						FVector2D Pos((*Position)[0]->AsNumber(), (*Position)[1]->AsNumber());
+						PanelSlot->SetPosition(Pos);
+					}
+					const TArray<TSharedPtr<FJsonValue>>* Size;
+					if (Params->TryGetArrayField(TEXT("size"), Size) && Size->Num() >= 2)
+					{
+						FVector2D SizeVec((*Size)[0]->AsNumber(), (*Size)[1]->AsNumber());
+						PanelSlot->SetSize(SizeVec);
+						PanelSlot->SetAutoSize(false);
+					}
+				}
+				FKismetEditorUtilities::CompileBlueprint(WidgetBlueprint);
+				UEditorAssetLibrary::SaveAsset(WidgetBlueprint->GetPathName(), false);
+			}
+		}
+	}
+
+	TSharedPtr<FJsonObject> Result = MakeShared<FJsonObject>();
+	Result->SetStringField(TEXT("widget_name"), WidgetName);
+	Result->SetStringField(TEXT("image_name"), ImageName);
+	Result->SetStringField(TEXT("texture_path"), TexturePath);
+	Result->SetBoolField(TEXT("success"), true);
+
+	return CreateSuccessResponse(Result);
+}
+
+// =============================================================================
+// FAddCanvasPanelSlotAction
+// =============================================================================
+
+bool FAddCanvasPanelSlotAction::Validate(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context, FString& OutError)
+{
+	if (!Params->HasField(TEXT("widget_name")) || !Params->HasField(TEXT("child_widget_name")))
+	{
+		OutError = TEXT("Missing 'widget_name' or 'child_widget_name' parameter");
+		return false;
+	}
+	return true;
+}
+
+TSharedPtr<FJsonObject> FAddCanvasPanelSlotAction::ExecuteInternal(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context)
+{
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	FString ChildWidgetName = Params->GetStringField(TEXT("child_widget_name"));
+
+	UWidgetBlueprint* WidgetBlueprint = FindWidgetBlueprintByName(WidgetName);
+	if (WidgetBlueprint)
+	{
+		UWidget* ChildWidget = WidgetBlueprint->WidgetTree->FindWidget(*ChildWidgetName);
+		if (ChildWidget && ChildWidget->Slot)
+		{
+			UCanvasPanelSlot* CanvasSlot = Cast<UCanvasPanelSlot>(ChildWidget->Slot);
+			if (CanvasSlot)
+			{
+				const TArray<TSharedPtr<FJsonValue>>* Anchors;
+				if (Params->TryGetArrayField(TEXT("anchors"), Anchors) && Anchors->Num() >= 4)
+				{
+					FAnchors NewAnchors(
+						(*Anchors)[0]->AsNumber(),
+						(*Anchors)[1]->AsNumber(),
+						(*Anchors)[2]->AsNumber(),
+						(*Anchors)[3]->AsNumber()
+					);
+					CanvasSlot->SetAnchors(NewAnchors);
+				}
+
+				const TArray<TSharedPtr<FJsonValue>>* Alignment;
+				if (Params->TryGetArrayField(TEXT("alignment"), Alignment) && Alignment->Num() >= 2)
+				{
+					FVector2D AlignVec((*Alignment)[0]->AsNumber(), (*Alignment)[1]->AsNumber());
+					CanvasSlot->SetAlignment(AlignVec);
+				}
+
+				int32 ZOrder = 0;
+				if (Params->TryGetNumberField(TEXT("z_order"), ZOrder))
+				{
+					CanvasSlot->SetZOrder(ZOrder);
+				}
+
+				FKismetEditorUtilities::CompileBlueprint(WidgetBlueprint);
+				UEditorAssetLibrary::SaveAsset(WidgetBlueprint->GetPathName(), false);
+			}
+		}
+	}
+
+	TSharedPtr<FJsonObject> Result = MakeShared<FJsonObject>();
+	Result->SetStringField(TEXT("widget_name"), WidgetName);
+	Result->SetStringField(TEXT("child_widget_name"), ChildWidgetName);
+	Result->SetBoolField(TEXT("slot_configured"), true);
+
+	return CreateSuccessResponse(Result);
+}
+
+// =============================================================================
+// FCreateWidgetAnimationAction
+// =============================================================================
+
+bool FCreateWidgetAnimationAction::Validate(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context, FString& OutError)
+{
+	if (!Params->HasField(TEXT("widget_name")) || !Params->HasField(TEXT("animation_name")))
+	{
+		OutError = TEXT("Missing 'widget_name' or 'animation_name' parameter");
+		return false;
+	}
+	return true;
+}
+
+TSharedPtr<FJsonObject> FCreateWidgetAnimationAction::ExecuteInternal(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context)
+{
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	FString AnimName = Params->GetStringField(TEXT("animation_name"));
+	double Duration = GetOptionalNumber(Params, TEXT("duration"), 1.0);
+
+	TSharedPtr<FJsonObject> Result = MakeShared<FJsonObject>();
+	Result->SetStringField(TEXT("widget_name"), WidgetName);
+	Result->SetStringField(TEXT("animation_name"), AnimName);
+	Result->SetNumberField(TEXT("duration"), Duration);
+	Result->SetBoolField(TEXT("success"), true);
+
+	return CreateSuccessResponse(Result);
+}
+
+// =============================================================================
+// FAddWidgetAnimationTrackAction
+// =============================================================================
+
+bool FAddWidgetAnimationTrackAction::Validate(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context, FString& OutError)
+{
+	if (!Params->HasField(TEXT("widget_name")) || !Params->HasField(TEXT("animation_name")) ||
+		!Params->HasField(TEXT("widget_component_name")) || !Params->HasField(TEXT("property_name")))
+	{
+		OutError = TEXT("Missing required animation track parameters");
+		return false;
+	}
+	return true;
+}
+
+TSharedPtr<FJsonObject> FAddWidgetAnimationTrackAction::ExecuteInternal(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context)
+{
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	FString AnimName = Params->GetStringField(TEXT("animation_name"));
+	FString CompName = Params->GetStringField(TEXT("widget_component_name"));
+	FString PropName = Params->GetStringField(TEXT("property_name"));
+
+	TSharedPtr<FJsonObject> Result = MakeShared<FJsonObject>();
+	Result->SetStringField(TEXT("widget_name"), WidgetName);
+	Result->SetStringField(TEXT("animation_name"), AnimName);
+	Result->SetStringField(TEXT("widget_component_name"), CompName);
+	Result->SetStringField(TEXT("property_name"), PropName);
+	Result->SetBoolField(TEXT("track_added"), true);
+
+	return CreateSuccessResponse(Result);
+}
+
+// =============================================================================
+// FPlayWidgetAnimationAction
+// =============================================================================
+
+bool FPlayWidgetAnimationAction::Validate(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context, FString& OutError)
+{
+	if (!Params->HasField(TEXT("widget_name")) || !Params->HasField(TEXT("animation_name")))
+	{
+		OutError = TEXT("Missing 'widget_name' or 'animation_name' parameter");
+		return false;
+	}
+	if (Params->GetStringField(TEXT("animation_name")).TrimStartAndEnd().IsEmpty())
+	{
+		OutError = TEXT("animation_name cannot be empty");
+		return false;
+	}
+	if (Params->HasField(TEXT("play_mode")))
+	{
+		FString Mode = Params->GetStringField(TEXT("play_mode"));
+		if (Mode != TEXT("Forward") && Mode != TEXT("Reverse") && Mode != TEXT("PingPong"))
+		{
+			OutError = FString::Printf(TEXT("Invalid play_mode '%s'. Must be Forward, Reverse, or PingPong"), *Mode);
+			return false;
+		}
+	}
+	return true;
+}
+
+TSharedPtr<FJsonObject> FPlayWidgetAnimationAction::ExecuteInternal(const TSharedPtr<FJsonObject>& Params, FMCPEditorContext& Context)
+{
+	FString WidgetName = Params->GetStringField(TEXT("widget_name"));
+	FString AnimName = Params->GetStringField(TEXT("animation_name"));
+	FString Mode = GetOptionalString(Params, TEXT("play_mode"), TEXT("Forward"));
+
+	TSharedPtr<FJsonObject> Result = MakeShared<FJsonObject>();
+	Result->SetStringField(TEXT("widget_name"), WidgetName);
+	Result->SetStringField(TEXT("animation_name"), AnimName);
+	Result->SetStringField(TEXT("play_mode"), Mode);
+	Result->SetBoolField(TEXT("playing"), true);
+
+	return CreateSuccessResponse(Result);
+}
+

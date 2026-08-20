@@ -21,7 +21,7 @@
 
 ## Checklist
 
-- [ ] My changes follow the [commit conventions](CONTRIBUTING.md)
+- [ ] My changes follow the [commit conventions](../CONTRIBUTING.md)
 - [ ] I've tested this locally (if applicable)
 - [ ] Documentation is updated (if applicable)
 - [ ] No `.blend1`, `Intermediate/`, `Saved/`, or temp files committed

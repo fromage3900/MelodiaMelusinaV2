@@ -102,6 +102,16 @@ YYYY-MM-DD | Decision | Rationale | Excludes
 
 ---
 
+## 2026-08-14
+
+| # | Decision | Rationale | Excludes |
+|---|---|---|---|
+| 050 | **Bedrock is live via `bedrock-mantle`, not the account root/IAM-user data-plane path recorded as blocked on 2026-08-13.** `bedrock-mantle` is the model lane the router now uses to reach Amazon Bedrock. | The 08-13 handoff recorded every model call returning `Operation not allowed` for both root and the IAM user, blocked on an unrecorded account-level use-case form. `bedrock-mantle` resolves that path without waiting on the form. | Does not retroactively mean the use-case-form blocker was fixed by AWS — `bedrock-mantle` is the lane that works regardless of that form's state. Do not re-litigate the form-vs-support-ticket question already recorded 2026-08-13. |
+| 051 | **`qwen.qwen3-coder-next` is the default model for the Bedrock lane.** | Selected as the working default once `bedrock-mantle` made Bedrock calls succeed; supersedes the router's earlier fallback chain that never reached Bedrock in practice. | Not a claim that other models (Claude via Bedrock, Nova, etc.) are unavailable — only that this is the default when no other model is specified. |
+| 052 | **S3 art drop is the collaborator asset-delivery mechanism**, replacing "ask the owner" onboarding for bulk environment art. | The `_TASK_QUEUE.md` "AWS S3 Art-Drop Mechanism" row (Sync/P1) called for exactly this: a bucket for the 4.6 GB bulk EnvSandbox art so new collaborators/agents don't depend on a manual owner hand-off. | Distinct from the existing Glacier Deep Archive backup bucket (`s3://melodia-archive-322037002075/unversioned-art/`), which is a disaster-recovery cold store, not a working delivery mechanism — the two buckets serve different purposes and are not interchangeable. |
+
+---
+
 ## Decisions Made Before 2026-07-26 (Historical — Reference Only)
 
 These are recorded in the intake report (`_INTAKE_REPORT_2026-07-26.md`) and various prior docs. They are not re-litigated:
@@ -111,3 +121,12 @@ These are recorded in the intake report (`_INTAKE_REPORT_2026-07-26.md`) and var
 - `L_SakuraPath` art direction is human-owned (standing rule)
 - No force-push of `main` (244-commit local/remote divergence)
 - Multi-agent system design decisions (superseded by Decision 002 above)
+
+## 2026-08-18
+
+| # | Decision | Rationale | Excludes |
+|---|---|---|---|
+| 043 | **Project-wide orchestration unifications.** We formally adopt a Unified Event Bus for subsystem decoupling, externalized data authority (DataAssets/JSON instead of Blueprint nodes), a strict global taxonomy for assets, standardized graceful degradation protocols for disconnected external services, and a strict swarm state initialization contract (_SESSION_HANDOFF.md) to prevent agent context stomping. | Prevents subsystems and subagents from fighting over authority. Resolves friction between Unreal systems (UI/Rhythm/Combat) and agent operations. | Custom workarounds, Blueprint-native logic constants, direct component dependencies. |
+| 044 | **KawaiiPhysics replaces Chaos Cloth for stylized anime characters.** The Japanese TA plugin pafuhana1213/KawaiiPhysics is adopted for Melusina's hair, skirt, and ribbons. | Extremely lightweight, AnimNode-driven, preserves volume perfectly (no stretching), and integrates with our audio-reactive needs without the CPU/GPU overhead of native Chaos. | PhysX/Chaos cloth solutions. |
+| 045 | **Substrate Toon BSDF + MooaToon/UE_CelLit adopted for premium rendering.** Integrating UE 5.8 native Substrate Toon shaders alongside MooaToon and UE_CelLit (for SDF face shadows). | Fulfills the Infinity Nikki lookbook requirements, guaranteeing top 0.1% UE workflow fidelity for JRPG aesthetic. | Legacy post-process cell-shading hacks. |
+| 046 | **Project Health Dashboard presentation layer.** Rebuilt dashboarding to natively render the echo pipeline, MCP policies, and ledger records via project_health_dashboard.py within the ebuild_all_dashboards.py orchestration. | Unifies the project's SSOT into a single human-readable telemetry HTML page without conflicting with the programmatic gate. | Over-verifying or adding competing gate mechanisms. |

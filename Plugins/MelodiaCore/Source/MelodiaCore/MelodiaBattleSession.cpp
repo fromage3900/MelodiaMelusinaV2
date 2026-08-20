@@ -233,6 +233,24 @@ void UMelodiaBattleSession::NotifyEnemyIntentPresentation() const
 	}
 }
 
+float UMelodiaBattleSession::ComputeEncounterTension() const
+{
+	// Incoming attack power is the primary driver (staged telegraphs ramp it).
+	float Tension = FMath::Clamp(ActiveEnemyIntentDamage / 100.0f, 0.0f, 1.0f);
+
+	// Low remaining enemy HP reads as a tense finish -- the fight feels closing-in.
+	if (EnemyMaxHP > 0.0f)
+	{
+		const float Remaining = FMath::Clamp(EnemyHP / EnemyMaxHP, 0.0f, 1.0f);
+		Tension = FMath::Max(Tension, 1.0f - Remaining);
+	}
+
+	// Each staged action taken adds a little more dread (bounded).
+	Tension = FMath::Min(1.0f, Tension + FMath::Min(StagedActionsTaken, 4) * 0.08f);
+
+	return Tension;
+}
+
 void UMelodiaBattleSession::NotifyEnemyHitPresentation(const float Damage, const EMelodiaRhythmGrade RhythmGrade) const
 {
 	AActor* EnemyActor = ActiveEncounter.EnemyActor;
@@ -901,7 +919,7 @@ void UMelodiaBattleSession::ExecuteEnemyTurn()
 	{
 		if (UMelodiaRhythmReactivitySubsystem* Reactivity = ActiveBattleController->GetWorld()->GetSubsystem<UMelodiaRhythmReactivitySubsystem>())
 		{
-			Reactivity->NotifyEnemyIntent();
+			Reactivity->NotifyEnemyIntent(ComputeEncounterTension());
 		}
 	}
 	ResolveEnemyAction();
@@ -1184,7 +1202,7 @@ void UMelodiaBattleSession::StagedEnemyTelegraph()
 	{
 		if (UMelodiaRhythmReactivitySubsystem* Reactivity = World->GetSubsystem<UMelodiaRhythmReactivitySubsystem>())
 		{
-			Reactivity->NotifyEnemyIntent();
+			Reactivity->NotifyEnemyIntent(ComputeEncounterTension());
 		}
 		// Telegraph beat, then the attack-anim beat, then impact. Pacing subsystem
 		// is optional polish (same degrade contract as MelodiaSirMelodiousIntroActor):

@@ -58,8 +58,35 @@ namespace MelodiaOllamaValidation
 				bool bValid = false;
 				if (FJsonSerializer::Deserialize(Reader, ResponseJson) && ResponseJson.IsValid())
 				{
-					const FString ModelReply = ResponseJson->GetStringField(TEXT("response"));
-					bValid = ModelReply.Contains(TEXT("valid"), ESearchCase::IgnoreCase);
+					const FString ModelReply = ResponseJson->GetStringField(TEXT("response")).TrimStartAndEnd();
+					const FString LowerReply = ModelReply.ToLower();
+
+					// Tokenize words to prevent substring false-positives (e.g. "invalid" containing "valid")
+					TArray<FString> Tokens;
+					LowerReply.ParseIntoArray(Tokens, TEXT(" \t\r\n.,;:!?'\"()[]{}"), true);
+
+					bool bFoundValid = false;
+					bool bFoundInvalid = false;
+					for (int32 Idx = 0; Idx < Tokens.Num(); ++Idx)
+					{
+						const FString& Token = Tokens[Idx];
+						if (Token == TEXT("invalid") || Token == TEXT("false"))
+						{
+							bFoundInvalid = true;
+							break;
+						}
+						if (Token == TEXT("not") && (Idx + 1 < Tokens.Num()) && Tokens[Idx + 1] == TEXT("valid"))
+						{
+							bFoundInvalid = true;
+							break;
+						}
+						if (Token == TEXT("valid") || Token == TEXT("true"))
+						{
+							bFoundValid = true;
+						}
+					}
+
+					bValid = bFoundValid && !bFoundInvalid;
 				}
 
 				UE_LOG(LogTemp, Log, TEXT("MELODIA_Ollama_Validation: %s -> %s"), *Message, bValid ? TEXT("Valid") : TEXT("Invalid"));

@@ -22,6 +22,9 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 AGENT_MEMORY_DIR = PROJECT_ROOT / "Saved" / "AgentMemory"
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+from Tools.mcp_policy import authorize_tool
 
 TOOLS = [
     {
@@ -45,6 +48,11 @@ TOOLS = [
                 "model": {
                     "type": "string",
                     "description": "Optional: Override model (e.g., 'qwen2.5-coder:14b', 'deepseek-r1:14b')",
+                },
+                "approval": {
+                    "type": "string",
+                    "enum": ["none", "editor", "owner"],
+                    "description": "Approval scope for downstream mutation; routing itself remains planning-only.",
                 },
             },
             "required": ["intent", "action"],
@@ -97,6 +105,11 @@ TOOLS = [
                     "type": "string",
                     "description": "Optional: Focus on specific element (Forte, Tide, Gale, etc.)",
                 },
+                "approval": {
+                    "type": "string",
+                    "enum": ["none", "editor", "owner"],
+                    "description": "Must be owner for this shared-memory mutation.",
+                },
             },
             "required": [],
         },
@@ -114,6 +127,11 @@ TOOLS = [
                 "wait_for_result": {
                     "type": "boolean",
                     "description": "Wait for result (requires UE Live Link ready)",
+                },
+                "approval": {
+                    "type": "string",
+                    "enum": ["none", "editor", "owner"],
+                    "description": "Raw UE commands are denied; use t3d_safe_wire with editor approval.",
                 },
             },
             "required": ["command"],
@@ -378,7 +396,7 @@ def run_blessing_evolution(target_count: int = 5, element_focus: str | None = No
     }
 
 
-def ue_editor_command(command: str, wait_for_result: bool = False) -> dict:
+def ue_editor_command(command: str, wait_for_result: bool = False, approval: str = "none") -> dict:
     """Prepare UE editor command for execution."""
     return {
         "status": "prepared",
@@ -428,25 +446,22 @@ def main():
             args = params.get("arguments", {})
             
             if tool_name == "delegate_to_agent":
-                result = route_intent(
-                    args.get("intent", ""),
-                    args.get("action", ""),
-                    args.get("payload"),
+                payload = args.get("payload") or {}
+                policy = authorize_tool(
+                    "delegate_to_agent", "route", args.get("approval", "none"),
+                    payload.get("path") or payload.get("manifest_path"),
                 )
+                result = route_intent(args.get("intent", ""), args.get("action", ""), payload) if policy["allowed"] else {"status": "denied", **policy}
             elif tool_name == "get_agent_status":
                 result = get_agent_status(args.get("agent_name"))
             elif tool_name == "get_agent_memory":
                 result = get_agent_memory(args.get("query", ""), args.get("category"))
             elif tool_name == "run_blessing_evolution":
-                result = run_blessing_evolution(
-                    args.get("target_count", 5),
-                    args.get("element_focus"),
-                )
+                policy = authorize_tool("run_blessing_evolution", "mutate", args.get("approval", "none"))
+                result = run_blessing_evolution(args.get("target_count", 5), args.get("element_focus")) if policy["allowed"] else {"status": "denied", **policy}
             elif tool_name == "ue_editor_command":
-                result = ue_editor_command(
-                    args.get("command", ""),
-                    args.get("wait_for_result", False),
-                )
+                policy = authorize_tool("ue_editor_command", "mutate", args.get("approval", "none"))
+                result = {"status": "denied", **policy, "replacement": "Tools/t3d_safe_wire.py via the Monolith MCP surface"} if not policy["allowed"] else ue_editor_command(args.get("command", ""), args.get("wait_for_result", False), args.get("approval", "none"))
             else:
                 result = {"status": "error", "message": f"Unknown tool: {tool_name}"}
             

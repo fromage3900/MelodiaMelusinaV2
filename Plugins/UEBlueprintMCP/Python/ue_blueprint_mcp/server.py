@@ -8,14 +8,12 @@ import asyncio
 import logging
 from typing import Any
 
-from mcp.server import Server
-from mcp.server.stdio import stdio_server
-from mcp.types import Tool, TextContent
+from .mcp_types import Server, stdio_server, Tool, TextContent
 
 from .connection import get_connection, PersistentUnrealConnection, CommandResult
 
 # Import tool modules
-from .tools import blueprint, editor, nodes, project, umg, materials
+from .tools import blueprint, editor, nodes, project, umg, materials, animation, audio, ui
 
 logger = logging.getLogger(__name__)
 
@@ -67,6 +65,14 @@ async def list_tools() -> list[Tool]:
     tools.extend(project.get_tools())
     tools.extend(umg.get_tools())
     tools.extend(materials.get_tools())
+    tools.extend(animation.get_tools())
+    tools.extend(audio.get_tools())
+    # Note: ui and umg share tools, deduplicate by tool name
+    existing_tool_names = {t.name for t in tools}
+    for t in ui.get_tools():
+        if t.name not in existing_tool_names:
+            tools.append(t)
+            existing_tool_names.add(t.name)
 
     return tools
 
@@ -104,6 +110,15 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
 
     if name in materials.TOOL_HANDLERS:
         return await materials.handle_tool(name, arguments)
+
+    if name in animation.TOOL_HANDLERS:
+        return await animation.handle_tool(name, arguments)
+
+    if name in audio.TOOL_HANDLERS:
+        return await audio.handle_tool(name, arguments)
+
+    if name in ui.TOOL_HANDLERS:
+        return await ui.handle_tool(name, arguments)
 
     return [TextContent(type="text", text=f'{{"success": false, "error": "Unknown tool: {name}"}}')]
 

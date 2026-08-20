@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import bpy
 
+from .accessory_visibility import ACCESSORY_VECTOR_SIZE
+
 
 def workflow_mode(props):
     return getattr(props, "ui_workflow_mode", "FULL")
@@ -342,7 +344,24 @@ def draw_level_design(layout, context, monolith):
     brow.operator("surreal_arch.bake_beavel", text="Bake Beavel Pro", icon="MOD_BEVEL")
     vrow = layout.box()
     vrow.label(text="Viewport", icon="HIDE_OFF")
-    vrow.operator("surreal_arch.toggle_snap_overlay", text="Toggle Snap Overlay")
+    overlay_row = vrow.row(align=True)
+    overlay_row.operator("surreal_arch.toggle_snap_overlay", text="Toggle Snap Overlay")
+    overlay_row.operator("surreal_arch.stats_overlay_toggle", text="Stats Overlay", icon="INFO")
+    acc = layout.box()
+    acc.label(text="Accessories", icon="OUTLINER_COLLECTION")
+    if hasattr(bpy.types.Scene, "surreal_arch_accessory_toggles"):
+        grid = acc.grid_flow(row_major=True, columns=8, even_columns=True, align=True)
+        for i in range(ACCESSORY_VECTOR_SIZE):
+            grid.prop(
+                context.scene,
+                "surreal_arch_accessory_toggles",
+                index=i,
+                text="",
+                toggle=True,
+            )
+        arow = acc.row(align=True)
+        arow.operator("surreal_arch.apply_accessory_visibility", text="Apply", icon="CHECKMARK")
+        arow.operator("surreal_arch.show_all_accessories", text="Show All", icon="HIDE_OFF")
     row = layout.row(align=True)
     row.scale_y = 1.25
     row.operator("surreal_arch.generate", text="Generate", icon="SHADERFX")

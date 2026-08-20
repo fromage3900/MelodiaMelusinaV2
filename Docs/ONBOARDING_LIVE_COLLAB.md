@@ -1,4 +1,4 @@
-﻿# Live Collaborative Level Designer -- Step-by-Step Onboarding
+# Live Collaborative Level Designer -- Step-by-Step Onboarding
 
 > **Goal:** Get two designers building levels together -- one in Blender, one in Unreal -- with live streaming, automatic materials, voiced NPCs, and rhythm combat. **Time to first live sync: ~10 minutes.**
 
@@ -210,7 +210,7 @@ python -m gmm.gameplay_smoke
 | Port | Protocol | Service | Direction |
 |------|----------|---------|-----------|
 | `9876` | TCP + JSON | LiveLink -- FBX/texture/animation streaming | Blender -> UE |
-| `9317` | Legacy adapter | Do not use; live Blender MCP is on shared port `9876` | — |
+| `9317` | Legacy adapter | Do not use; live Blender MCP is on shared port `9876` | � |
 | `9316` | HTTP JSON-RPC | UE Monolith MCP -- Python execution, 1,325 tools | Any -> UE |
 | `50021` | HTTP REST | VOICEVOX -- text-to-speech (7 ZunZun voices) | Any -> VOICEVOX |
 | `50022` | HTTP REST | Melusina Voice -- custom SBV2 TTS | Any -> Melusina |

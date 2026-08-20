@@ -1,4 +1,4 @@
-ï»¿# Zundamon Î“Ã‡Ã¶ NPC Blueprint Specification
+# Zundamon GÇö NPC Blueprint Specification
 ## BP_Zundamon_NPC
 
 ### Inheritance
@@ -18,33 +18,33 @@ BP_Zundamon_NPC : Character
 | **VOICEVOXAudio** | TMap<FString, USoundWave> | Pre-generated voice lines |
 | **BehaviorTree** | UBehaviorTree | BT_Zundamon_NPC |
 
-### Behavior Tree Î“Ã‡Ã¶ BT_Zundamon_NPC
+### Behavior Tree GÇö BT_Zundamon_NPC
 
 ```
 Root (Selector)
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Combat
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Condition: Enemy in range
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Ranged attack (Zunda Arrow)
-Î“Ã¶Ã©
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Quest Interaction
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Condition: Player targeting & within range
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Face player
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Open quest UI
-Î“Ã¶Ã©
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Shop Interaction
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Condition: Player targeting & within range
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Open shop UI
-Î“Ã¶Ã©
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Idle
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Look around (random head rotation)
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Hum/sing (trigger voice line)
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Snack on mochi (eat animation)
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Stretch
-Î“Ã¶Ã©
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Sequence: Wander
-    Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Find random nav point
-    Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Action: Walk to point
-    Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Wait: 3-8 seconds
+Gö£GöÇGöÇ Sequence: Combat
+Göé   Gö£GöÇGöÇ Condition: Enemy in range
+Göé   GööGöÇGöÇ Action: Ranged attack (Zunda Arrow)
+Göé
+Gö£GöÇGöÇ Sequence: Quest Interaction
+Göé   Gö£GöÇGöÇ Condition: Player targeting & within range
+Göé   Gö£GöÇGöÇ Action: Face player
+Göé   GööGöÇGöÇ Action: Open quest UI
+Göé
+Gö£GöÇGöÇ Sequence: Shop Interaction
+Göé   Gö£GöÇGöÇ Condition: Player targeting & within range
+Göé   GööGöÇGöÇ Action: Open shop UI
+Göé
+Gö£GöÇGöÇ Sequence: Idle
+Göé   Gö£GöÇGöÇ Action: Look around (random head rotation)
+Göé   Gö£GöÇGöÇ Action: Hum/sing (trigger voice line)
+Göé   Gö£GöÇGöÇ Action: Snack on mochi (eat animation)
+Göé   GööGöÇGöÇ Action: Stretch
+Göé
+GööGöÇGöÇ Sequence: Wander
+    Gö£GöÇGöÇ Action: Find random nav point
+    Gö£GöÇGöÇ Action: Walk to point
+    GööGöÇGöÇ Wait: 3-8 seconds
 ```
 
 ### Animation Set
@@ -62,7 +62,7 @@ Root (Selector)
 | `A_Zundamon_Eat` | AnimSequence | Eat mochi, satisfied expression |
 | `A_Zundamon_ArrowFire` | AnimSequence | Draw Zunda Arrow, fire |
 
-### Shop Inventory Î“Ã‡Ã¶ DA_ZundamonShop
+### Shop Inventory GÇö DA_ZundamonShop
 
 | Item | Price | Effect | Category |
 |------|-------|--------|----------|
@@ -74,7 +74,7 @@ Root (Selector)
 | `Green East Silk` | 300g | Crafting material | Material |
 | `Zunda Bean Paste` | 25g | Cooking ingredient | Material |
 
-### Quest Data Î“Ã‡Ã¶ DT_ZundamonQuests
+### Quest Data GÇö DT_ZundamonQuests
 
 | ID | Name | Type | Prereq | Reward |
 |----|------|------|--------|--------|
@@ -101,33 +101,33 @@ Root (Selector)
 
 ```
 /Game/Melodia/Characters/Zundamon/
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ SK_Zundamon               # Skeletal Mesh
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ SK_Zundamon_PhysicsAsset   # Physics Asset
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ SK_Zundamon_Skeleton       # Skeleton
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ ABP_Zundamon               # Animation Blueprint
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BP_Zundamon_NPC            # NPC Blueprint
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ BT_Zundamon_NPC            # Behavior Tree
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ DA_ZundamonShop            # Shop Inventory Data Asset
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ DT_ZundamonQuests          # Quest Data Table
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Materials/
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ MI_Zundamon_Body
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ MI_Zundamon_Cloth
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ MI_Zundamon_Hair
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ MI_Zundamon_Head
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ MI_Zundamon_Eye
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Textures/
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ T_Zundamon_Body
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ T_Zundamon_Cloth
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ T_Zundamon_Hair
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ T_Zundamon_Head
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ T_Zundamon_Eye
-Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ Animations/
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ A_Zundamon_Idle
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ A_Zundamon_Walk
-Î“Ã¶Ã©   Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ A_Zundamon_Greet
-Î“Ã¶Ã©   Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ ...
-Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ Audio/
-    Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ zun_first_meet_01.wav
-    Î“Ã¶Â£Î“Ã¶Ã‡Î“Ã¶Ã‡ zun_shop_open_01.wav
-    Î“Ã¶Ã¶Î“Ã¶Ã‡Î“Ã¶Ã‡ ...
+Gö£GöÇGöÇ SK_Zundamon               # Skeletal Mesh
+Gö£GöÇGöÇ SK_Zundamon_PhysicsAsset   # Physics Asset
+Gö£GöÇGöÇ SK_Zundamon_Skeleton       # Skeleton
+Gö£GöÇGöÇ ABP_Zundamon               # Animation Blueprint
+Gö£GöÇGöÇ BP_Zundamon_NPC            # NPC Blueprint
+Gö£GöÇGöÇ BT_Zundamon_NPC            # Behavior Tree
+Gö£GöÇGöÇ DA_ZundamonShop            # Shop Inventory Data Asset
+Gö£GöÇGöÇ DT_ZundamonQuests          # Quest Data Table
+Gö£GöÇGöÇ Materials/
+Göé   Gö£GöÇGöÇ MI_Zundamon_Body
+Göé   Gö£GöÇGöÇ MI_Zundamon_Cloth
+Göé   Gö£GöÇGöÇ MI_Zundamon_Hair
+Göé   Gö£GöÇGöÇ MI_Zundamon_Head
+Göé   GööGöÇGöÇ MI_Zundamon_Eye
+Gö£GöÇGöÇ Textures/
+Göé   Gö£GöÇGöÇ T_Zundamon_Body
+Göé   Gö£GöÇGöÇ T_Zundamon_Cloth
+Göé   Gö£GöÇGöÇ T_Zundamon_Hair
+Göé   Gö£GöÇGöÇ T_Zundamon_Head
+Göé   GööGöÇGöÇ T_Zundamon_Eye
+Gö£GöÇGöÇ Animations/
+Göé   Gö£GöÇGöÇ A_Zundamon_Idle
+Göé   Gö£GöÇGöÇ A_Zundamon_Walk
+Göé   Gö£GöÇGöÇ A_Zundamon_Greet
+Göé   GööGöÇGöÇ ...
+GööGöÇGöÇ Audio/
+    Gö£GöÇGöÇ zun_first_meet_01.wav
+    Gö£GöÇGöÇ zun_shop_open_01.wav
+    GööGöÇGöÇ ...
 ```
