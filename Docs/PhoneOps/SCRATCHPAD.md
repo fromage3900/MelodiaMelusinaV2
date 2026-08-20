@@ -60,3 +60,19 @@ Highlights:
 ---
 
 <!-- Append new dated sections below -->
+
+## 2026-08-12 — Drive / Grok fold-in status (this cloud run)
+
+- **Google Drive MCP:** still `needsAuth` in cloud agents (interactive auth only works in
+  Cursor desktop). Cannot list Drive from this VM until owner connects Drive on desktop
+  (or starts a new agent after authorizing).
+- **Known Drive folder (from PROJECT_HANDOFF_2026-08-09):** `EnvironmentPortfolio-2026-08-09`
+  id `14gTS8ohx-6rdsZXIzcFO5c8p40VXyKn-` — six handoff docs verified; **full archive never
+  uploaded** (500 MiB connector timeout). Do not treat Drive as complete project backup.
+- **SuperGrok PhoneOps:** already folded (`Docs/PhoneOps/*` + `CLOUD_RESEARCH_FOLD_IN_2026-08-11.md`).
+  Original `/opt/cursor/artifacts` Grok dumps were empty at recreate time.
+- **Folded now:** `PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md` (was only on PR #3).
+- **Not folded (owner decide):** website-repo MelodiaMelusina PRs — #81 Nikki-scale intake
+  (large; overlaps jcode already on V2), #82 portfolio cloud-env (website repo), #83
+  MelodiaCore GS combat (conflicts with V2 ownership: MelodiaCore presentation-only).
+- **V2 still open:** PR #4 git-health batches; PR #3 can close once bridge is on main.
