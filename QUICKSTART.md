@@ -45,7 +45,7 @@ $ueRoot = if ($env:MELODIA_UNREAL_ROOT) { $env:MELODIA_UNREAL_ROOT } else { "C:\
 
 ## 🎮 I Want to Play the Vertical Slice (First Dream)
 
-> **Status (2026-08-13):** Rhythm combat and QuillScript are **owner-locked WORKED** in live PIE (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`, `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`). The remaining P0 blocker is the **stock battle path** from `L_MelusinaMorning` → `L_KaleidoNave` (Dreamstate was merged into KaleidoNave on 2026-08-10). The 12 foundation gates are still being closed; see `_VERTICAL_SLICE_SCOPE.md` and `_TASK_QUEUE.md`. Unreal `main` is synchronized with `MelodiaMelusinaV2/main` at `840b7650`; the website checkout has a separate remote-history blocker. See [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL_STATUS_2026-08-13.md).
+> **Status (2026-08-13):** The game **is playable** in PIE. After Melusina's unique skill, the rhythm highway works (clunky), damage procs, and the next turn applies on skill finish. Rhythm combat and QuillScript are **owner-locked WORKED** — do **not** reopen as P0 (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`, `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`). Formal Echo `runtime` ledger (A/B + harness JSON) is still open. Alternate stock battle entry (Morning → KaleidoNave collider/dreamstate path) is still being worked. Living board: [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
 
 ### Step 1: Install Unreal Engine 5.8
 ```
@@ -57,24 +57,38 @@ $ueRoot = if ($env:MELODIA_UNREAL_ROOT) { $env:MELODIA_UNREAL_ROOT } else { "C:\
 ```
 📂 Open: BS_GodFile.uproject
 ⏳ Wait for shaders to compile (first run only)
+📌 Prefer a fresh pull of main (RestoreParty + playable levels are on main)
 ```
 
-### Step 3: Understand the Target Route
+### Step 3: Play the Live Route
 ```
-🎮 Target route: L_MelusinaMorning → L_KaleidoNave (L_Melodia_Dreamstate merged into KaleidoNave on 2026-08-10)
+🎮 Route: L_MelusinaMorning → L_KaleidoNave
+   (L_Melodia_Dreamstate was merged into KaleidoNave on 2026-08-10 — do not hunt a live Dreamstate map)
 📂 Real paths:
    /Game/Melodia/Levels/Opening/L_MelusinaMorning
    /Game/EnvSandbox/Environments/L_KaleidoNave
+
+▶️ PIE from Morning (or open KaleidoNave if you only want the battle space)
+⚔️ Reach the encounter → start battle → cast Melusina's unique skill
+🎹 Rhythm highway appears (clunky OK) → hit lanes → damage should proc
+⏭️ Next turn should apply when the skill finishes
 ```
 
-### Step 4: Read the Current State
+### Step 4: Known Rough Edges (still playable)
 ```
-📖 _VERTICAL_SLICE_SCOPE.md — current scope authority
+• Rhythm highway feel is clunky — expected for now
+• Some alternate battle entry paths (old dreamstate / collider-name) are still being worked
+• Formal runtime gate needs Decision 024 A/B + record_gate.py before release claims
+```
+
+### Step 5: Current State Docs
+```
+📖 Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md — living PIE board
 📖 _SESSION_HANDOFF.md — most recent session state
-📖 _TASK_QUEUE.md — live task tracker (P0/P1/P2/P3)
+📖 _VERTICAL_SLICE_SCOPE.md — scope authority
 ```
 
-**✅ Done!** You understand where the vertical slice stands.
+**✅ Done!** You've got a playable First Dream loop in PIE.
 
 ---
 
@@ -200,7 +214,7 @@ $ueRoot = if ($env:MELODIA_UNREAL_ROOT) { $env:MELODIA_UNREAL_ROOT } else { "C:\
 
 | Task | Command / Location |
 |------|-------------------|
-| 🎮 Play vertical slice | Target route: `L_MelusinaMorning` → `L_KaleidoNave` (Dreamstate content is merged into KaleidoNave; the stock battle path is not yet playable) |
+| 🎮 Play vertical slice | `L_MelusinaMorning` → `L_KaleidoNave` — unique-skill rhythm **playable**; stock battle entry still being worked |
 | 🏗️ Test geometry | Open `/Game/EnvSandbox/Environments/L_KaleidoNave` |
 | 🎨 Test materials | Create instance from `M_Master_Toon_Universal` |
 | 🔧 Check services | Run `deploy/status.ps1` in terminal |
@@ -208,6 +222,6 @@ $ueRoot = if ($env:MELODIA_UNREAL_ROOT) { $env:MELODIA_UNREAL_ROOT } else { "C:\
 
 ---
 
-**💡 Tip:** Start with Viewer Mode, then try Geometry Mode when you're comfortable. Take it step by step!
+**💡 Tip:** Want the game first? Use the vertical-slice path above. For art/tools, start with Viewer Mode, then Geometry Mode.
 
 **🎉 Welcome to the team!**

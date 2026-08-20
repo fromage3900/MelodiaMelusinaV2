@@ -4,12 +4,12 @@ Simple queue for phone agents. Prefer updating this file over inventing parallel
 
 ## Now
 
-0. **FAMILY LOCKS — RHYTHM + QUILLSCRIPT WORKED**. [RHYTHM…](../Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](../Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
-1. **Parallel fan-out:** [PARALLEL_LANES…](../Handoffs/PARALLEL_LANES_2026-08-12.md) · [PARALLEL_SESSIONS…](../Handoffs/PARALLEL_SESSIONS_2026-08-12.md). **Blender B0/B1/B3 DONE**. Remaining Blender: **B2** plate dry-run. **Tonight T1–T4:** [TONIGHT_CONTINUATION…](../Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md). D1 harness path **done**. **one** UE editor (PID 38184) for A1→A2→A3.
-2. ~~#4/#6 merge + pull + cold build~~ **DONE** (`main` @ `840b7650`; remote synchronized).
-3. **Editor P0:** stock battles Morning → KaleidoNave + `MELODIA_RECOVERY…` (lanes A1/A2).
-4. **Formal runtime packaging:** harness paths (D1) then A3 `record_gate.py runtime`.
-5. Optional [#3](https://github.com/fromage3900/MelodiaMelusinaV2/pull/3) / [#5](https://github.com/fromage3900/MelodiaMelusinaV2/pull/5) — lane C1.
+0. **FAMILY LOCKS — RHYTHM + QUILLSCRIPT WORKED**. Do not reopen as P0. [RHYTHM…](../Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](../Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
+1. **PIE board:** [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](../Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) — Owner 2026-08-13: rhythm highway **worked** after Melusina unique (clunky), damage procced, next turn on skill finish. Dreamstate/collider entry paths still broken.
+2. **Parallel fan-out:** [PARALLEL_LANES…](../Handoffs/PARALLEL_LANES_2026-08-12.md). Studio/GN live disk: **165 builders / 12 categories**, presets **33/100**, no new Set Dressing.
+3. ~~#4/#6 merge + pull + cold build~~ **DONE**. Phone-artist docs survivor is [#5](https://github.com/fromage3900/MelodiaMelusinaV2/pull/5) (#3 closed as duplicate).
+4. **Editor remaining:** stock battles Morning → KaleidoNave + `MELODIA_RECOVERY…` (not a Rhythm/Quill reopen).
+5. **Formal runtime packaging:** Decision 024 A/B + `playtest_harness.py` → assertion JSON → `record_gate.py runtime`. Owner play ≠ ledger row.
 
 ## Next
 
