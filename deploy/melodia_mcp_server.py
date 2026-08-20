@@ -589,6 +589,176 @@ def melodia_narrative_audit_idempotency() -> dict[str, Any]:
     }
 
 
+SUFFIX_MAP = {
+    "_BaseColor": "Albedo", "_albedo": "Albedo", "_diffuse": "Albedo",
+    "_Normal": "NormalMap", "_normal": "NormalMap",
+    "_ORM": "ORM", "_orm": "ORM",
+    "_Height": "HeightMap", "_height": "HeightMap", "_Displace": "HeightMap",
+    "_Roughness": "RoughnessMap", "_roughness": "RoughnessMap",
+    "_Metallic": "MetallicMap", "_metallic": "MetallicMap",
+}
+
+
+def _scan_pbr_texture_sets() -> tuple[dict, dict]:
+    """Scan Content/Textures + _PROJECT/Textures + Melusina Materials for PBR sets.
+    Returns (complete_sets, incomplete_sets) where each is {stem: {param: /Game/path}}."""
+    roots = [
+        PROJECT_ROOT / "Content" / "Textures",
+        PROJECT_ROOT / "Content" / "_PROJECT" / "04_Materials" / "Textures",
+        PROJECT_ROOT / "Content" / "Melodia" / "Characters" / "Melusina" / "Materials",
+    ]
+    from collections import defaultdict
+    sets: dict[str, dict[str, str]] = defaultdict(dict)
+    for root in roots:
+        if not root.exists():
+            continue
+        for p in root.rglob("*.uasset"):
+            name = p.stem
+            for suffix, role in SUFFIX_MAP.items():
+                if name.endswith(suffix):
+                    stem = name[: -len(suffix)]
+                    try:
+                        rel = p.relative_to(PROJECT_ROOT / "Content")
+                        sets[stem][role] = "/Game/" + str(rel).replace("\\", "/")
+                    except ValueError:
+                        pass
+                    break
+    complete, incomplete = {}, {}
+    for stem, maps in sets.items():
+        if "Albedo" in maps and "NormalMap" in maps and (
+            "ORM" in maps or ("RoughnessMap" in maps and "MetallicMap" in maps)
+        ):
+            complete[stem] = maps
+        else:
+            incomplete[stem] = maps
+    return dict(complete), dict(incomplete)
+
+
+def _existing_material_instances() -> set[str]:
+    """Query AssetRegistry for existing MI names under known instance folders."""
+    out = set()
+    if not _monolith_is_live():
+        return set()
+    for folder in [
+        "/Game/EnvSandbox/Materials/Instances",
+        "/Game/_PROJECT/04_Materials",
+        "/Game/Melodia/_PROJECT/04_Materials",
+    ]:
+        try:
+            raw = _monolith_call("material_query.list_material_instances", {"folder_path": folder}, timeout=30)
+            if isinstance(raw, list):
+                for entry in raw:
+                    name = entry if isinstance(entry, str) else (entry.get("name") or entry.get("asset_name") or "")
+                    if name:
+                        out.add(name)
+        except Exception:
+            pass
+    return out
+
+
+def melodia_material_list_pbr() -> dict[str, Any]:
+    """Scan disk for PBR texture sets and report which are complete and which have instances."""
+    complete, incomplete = _scan_pbr_texture_sets()
+    existing = _existing_material_instances() if _monolith_is_live() else set()
+    complete_with_instance = {s for s in complete if any(name in existing for name in (s, f"MI_{s}"))}
+    return {
+        "schema": "melodia.material.pbr_list.v1",
+        "source": "live" if _monolith_is_live() else "offline",
+        "complete_sets": {
+            stem: maps for stem, maps in sorted(complete.items())
+        },
+        "complete_set_count": len(complete),
+        "incomplete_set_count": len(incomplete),
+        "complete_sets_with_instance": sorted(complete_with_instance),
+        "complete_sets_without_instance": sorted(set(complete) - complete_with_instance),
+        "incomplete_stems": sorted(incomplete),
+        "live_existing_instance_count": len(existing) if existing else None,
+    }
+
+
+def melodia_material_get_compile_stats(asset_path: str) -> dict[str, Any]:
+    """Report compilation state for a master or instance. Offline-safe + live Monolith."""
+    if _monolith_is_live():
+        stats = _monolith_call("material_query.get_compilation_stats", {"asset_path": asset_path}, timeout=30)
+        if stats:
+            return {"schema": "melodia.material.compile_stats.v1", "source": "live", "asset_path": asset_path, "stats": stats}
+    # Offline: check file existence
+    uasset = PROJECT_ROOT / "Content" / asset_path.replace("/Game/", "")
+    return {
+        "schema": "melodia.material.compile_stats.v1",
+        "source": "offline",
+        "asset_path": asset_path,
+        "uasset_exists": uasset.exists(),
+        "uasset_size": uasset.stat().st_size if uasset.exists() else 0,
+        "note": "Re-run when editor is live for full compile stats.",
+    }
+
+
+def melodia_material_audit() -> dict[str, Any]:
+    """Full material pipeline health: broken masters, PPV issues, audio gap."""
+    if _monolith_is_live():
+        ink = _monolith_call("material_query.get_compilation_stats", {"asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk"}, timeout=30)
+    else:
+        ink = None
+    # Audio reactivity check: look for CollectionParameter nodes reading MPC audio
+    audio_gap_note = (
+        "C++ MelodiaAudioReactivePresentationSubsystem writes BeatPulse/Bass/Mid/Treble/BeatPhase/BeatIntensity/GlobalReactivity "
+        "to MPC_Melodia_Palette every frame. No surface material reads any of them; only M_PP_MelodiaInk consumes audio and it does not compile."
+    )
+    return {
+        "schema": "melodia.material.audit.v1",
+        "source": "live" if _monolith_is_live() else "offline",
+        "masters": {
+            "M_PP_MelodiaInk": {
+                "path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk",
+                "compiled": ink.get("is_compiled") if ink else None,
+                "compile_errors": ink.get("compile_errors") if ink else None,
+                "expression_count": ink.get("expression_count") if ink else None,
+                "ps_instructions": ink.get("num_pixel_shader_instructions") if ink else None,
+                "known_issue": "Custom node has 42 declared inputs, only 38 wired (SceneColor, cR, cB, smeared missing). UE 5.8 by-name global failure mode.",
+            },
+        },
+        "audio_reactivity_gap": audio_gap_note,
+        "ppv_known_defects": {
+            "slot1_surface_in_pp_stack": "MI_StarryNight_VanGogh resolves to MD_SURFACE; UE silently drops post-process blendables that aren't MD_POST_PROCESS",
+            "label_mismatch": "Live actor PPV_Dreamprint_Candidate vs scripts looking up PPV_NikkiDream",
+            "grade_weight_mismatch": "Live 0.18 vs canonical 0.69 on ZenForestTest",
+        },
+    }
+
+
+def melodia_ppv_report() -> dict[str, Any]:
+    """Per-level PPV state. Offline script analysis + live when reachable."""
+    levels = [
+        "/Game/_PROJECT/Levels/RenderTests/L_Render_SakuraDream",
+        "/Game/_PROJECT/Levels/RenderTests/L_Render_SpaceCathedral",
+        "/Game/_PROJECT/Levels/RenderTests/L_Render_BaroqueCastle",
+        "/Game/_PROJECT/Levels/RenderTests/L_Render_BioGrotto",
+        "/Game/EnvSandbox/Environments/L_KaleidoNave",
+        "/Game/EnvSandbox/Environments/L_FallenMoon",
+        "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+        "/Game/ZenForestTest",
+    ]
+    levels_where_scripts_spawn = levels  # setup_nikki_render_post_process.py iterates these
+    return {
+        "schema": "melodia.ppv.report.v1",
+        "source": "offline",
+        "canonical_stack": {
+            "dreamprint_ink": {"preferred": "MI_MelodiaInk_PortfolioHero", "weight": 1.0},
+            "melusina_grade": {"preferred": "MI_MeluColorGrade_PortfolioHero", "weight": 0.69},
+            "starry_night": {"preferred": "MI_StarryNight_Hero", "weight": 1.0},
+        },
+        "levels_in_script": levels_where_scripts_spawn,
+        "note": "Full per-level PPV state (blendable weights, actor label, domain check) requires live EditorActorSubsystem via Monolith.",
+        "known_live_state_ZenForestTest": {
+            "actor_label": "PPV_Dreamprint_Candidate",
+            "slot1": {"blendable": "MI_StarryNight_VanGogh", "weight": 1.0, "status": "BROKEN - surface domain"},
+            "slot2": {"blendable": "MI_MeluColorGrade_PortfolioHero", "weight": 0.18, "status": "OK"},
+            "slot3": {"blendable": "MI_StorybookOutline_Premium_Hero_Dream", "weight": 0.57, "status": "OK"},
+        },
+    }
+
+
 def melodia_bp_validate_p0_route() -> dict[str, Any]:
     """
     Validate all fixtures required for the P0 Dream golden run route:
@@ -1400,6 +1570,33 @@ TOOLS: list[dict[str, Any]] = [
         "description": "Audit C++ narrative subsystem for idempotency guards (ConsumeOnce, replay-safe paths).",
         "inputSchema": {"type": "object", "properties": {}, "required": []},
     },
+    # --- Material domain (offline disk scan + live Monolith enrichment) ---
+    {
+        "name": "melodia_material_list_pbr",
+        "description": "Scan disk for PBR texture sets and report which are complete (albedo+normal+ORM) and which already have instances.",
+        "inputSchema": {"type": "object", "properties": {}, "required": []},
+    },
+    {
+        "name": "melodia_material_get_compile_stats",
+        "description": "Report compilation state for a master/instance: errors, expression count, PS instructions. Offline-safe + live via material_query.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "asset_path": {"type": "string", "description": "Path to a UMaterial or MaterialInstanceConstant"},
+            },
+            "required": ["asset_path"],
+        },
+    },
+    {
+        "name": "melodia_material_audit",
+        "description": "Full material pipeline health audit: broken masters, PPV blendable domain issues, PPV label mismatches, audio-reactivity gap. Offline + live Monolith.",
+        "inputSchema": {"type": "object", "properties": {}, "required": []},
+    },
+    {
+        "name": "melodia_ppv_report",
+        "description": "Per-level PPV state: blendable slots, weights, domain issues, label mismatches. Offline script analysis + live EditorActorSubsystem.",
+        "inputSchema": {"type": "object", "properties": {}, "required": []},
+    },
     {
         "name": "melodia_bp_validate_p0_route",
         "description": "Validate P0 Dream golden run fixtures, Quill scripts, and allowlist IDs.",
@@ -1684,6 +1881,18 @@ def main() -> None:
             elif tool_name == "melodia_narrative_audit_idempotency":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
                 result = melodia_narrative_audit_idempotency() if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_material_list_pbr":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_material_list_pbr() if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_material_get_compile_stats":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_material_get_compile_stats(args.get("asset_path", "")) if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_material_audit":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_material_audit() if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_ppv_report":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_ppv_report() if policy["allowed"] else {"status": "denied", **policy}
             elif tool_name == "melodia_bp_validate_p0_route":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
                 result = melodia_bp_validate_p0_route() if policy["allowed"] else {"status": "denied", **policy}

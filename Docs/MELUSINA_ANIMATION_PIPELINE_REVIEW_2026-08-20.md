@@ -132,7 +132,11 @@ the graph misleading to read and is exactly the kind of thing that produces a wr
 
 ---
 
-## 6. Asset topology — 43 uncommitted deletions
+## 6. Asset topology — 43 deletions
+
+> **Resolved same day.** These were committed by the owner in `03de1220`. The section below
+> described them while still uncommitted; the "decide and commit deliberately" call has been made
+> and the canonical-replacement mapping is the part that still matters.
 
 `git status` shows **43 deleted Melusina animation assets** in the working tree, unstaged:
 `ABP_Melusina`, `IK_Melusina_Body`, `RTG_UE4Mannequin_To_Melusina`, `BS_Melusina_Locomotion`,
@@ -168,7 +172,32 @@ This is the animation-pillar version of the convergence problem.
 
 ---
 
-## 7. Pawn composition — what is and is not on `BP_Melusina`
+## 7. Pawn composition
+
+> ## ⚠ CORRECTION 2026-08-20 (later) — THIS SECTION EXAMINED THE WRONG PAWN
+>
+> Section 7 below inspects `/Game/Melodia/Characters/Melusina/BP_Melusina`. **That is not the
+> live pawn.** `BP_MelodiaJRPGGameMode` sets **`BP_MelusinaJRPGCharacter_C`**
+> (`/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter`) as its default pawn, and
+> `BP_Melusina` has zero references and is placed in no level.
+>
+> Everything §7 concluded about missing components is therefore **wrong**. On the real pawn:
+>
+> | Claim in §7 | Actual state on `BP_MelusinaJRPGCharacter` |
+> |---|---|
+> | No `MelodiaWardrobeComponent` | **PRESENT** — component `Wardrobe` |
+> | No `MelodiaTraversalComponent` | **PRESENT** — component `MelodiaTraversal` |
+> | `bRequireCapabilityProviderForGlide` defaults false | **Set to `True`**, context `active_traversal_context` |
+> | Sprint 714 vs blendspace max 650 disagree | **Agree** — live `SprintSpeed = 630`, exactly the top blendspace sample. The 714 figure came from a stale ledger note. |
+>
+> **Consequence for the money pouch:** of the four blockers §8 listed, three never existed and the
+> fourth (`bIsGliding` never assigned) was fixed in the addendum. The wardrobe→Glide chain is
+> complete pending PIE.
+>
+> §7 is left unedited below as the record of the error. Read it as a description of an orphaned
+> Blueprint, not of the game.
+
+### 7a. The orphaned `BP_Melusina`
 
 | Component | Class | Note |
 |---|---|---|
@@ -239,3 +268,110 @@ for all of them mattering.
 path (`animation_query.get_abp_info` succeeds). The wrapper in `deploy/melodia_mcp_server.py` is
 not resolving what Monolith resolves. Worth a look before those validators are trusted in a gate
 — `monolith_static` lists both as gate impls.
+
+
+---
+
+# Addendum — fixes applied and verified, 2026-08-20 (later same day)
+
+The review above was read-only. This addendum records the fixes that were then **applied**, what
+was verified by screenshot, and two corrections to the review itself.
+
+## Fixes applied to `ABP_Melusina_Current`
+
+All three landed, compiled **0 errors / 0 warnings**, and saved (660,681 → 672,062 bytes).
+
+| # | Fix | How |
+|---|---|---|
+| 1 | `Speed` is now assigned | New `K2Node_PropertyAccess_4` (`RuntimeGroundSpeed`) → `Set Speed`, spliced into the live exec chain after `Set bIsMoving` |
+| 2 | `bIsGliding` is now assigned | New `K2Node_PropertyAccess_5` (`bRuntimeIsGliding`) → `Set bIsGliding`, chained after `Set Speed` |
+| 3 | `Locomotion` blendspace reads real speed | `AnimGraphNode_BlendSpacePlayer_2.X` pin-bound to `RuntimeGroundSpeed` |
+
+Both new reads use genuine **Property Access** nodes, so the thread-safe update graph stays
+thread-safe — not foreign-member VariableGets, which is the documented cause of
+"Accessing an object reference is not thread-safe".
+
+Verified live exec chain after the edit:
+
+```
+FunctionEntry -> Set Velocity -> Set Acceleration -> Set bIsMoving
+             -> Set Speed        (<- RuntimeGroundSpeed)
+             -> Set bIsGliding   (<- bRuntimeIsGliding)
+```
+
+**Consequence:** `Idle -> Locomotion` (`Speed > 10.0`) and `Airborne -> Glide` (`bIsGliding`) can
+now both fire. Those were the two unreachable states in §2. This does **not** yet prove they fire
+correctly at runtime — that needs PIE, which was not run.
+
+## Screenshot verification
+
+`Saved/Screenshots/Monolith/MelusinaLocoCheck/` and `.../AnimFrames/20260820_164938_*`.
+
+| Capture | Blend param | Result |
+|---|---|---|
+| `walk300_001_t0.33.png` | 300 (Run) | Posed, coherent deformation |
+| `A_idle_spd0_000_t0.50.png` | 0 (Idle) | Full body, standing, one leg forward |
+| `D_sample630_000_t0.40.png` | 630 (Sprint sample) | Clear sprint pose in silhouette |
+
+**What this proves:** the Melusina skeleton, the retargeted mocap clips, and the
+`BS_Melusina_Locomotion_Hybrid` blendspace all evaluate correctly. Skirt, boots, hat and hair
+deform together with no exploded geometry. The retarget is functioning.
+
+**What it does not prove:** in-game locomotion. These are isolated preview-scene captures, not PIE.
+
+## Correction 1 — the blendspace is NOT broken at 600
+
+An intermediate capture at blend param 600 returned a T-pose, and I initially read that as an
+interpolation defect between the 540 and 630 samples. **That conclusion was wrong.** The exact
+630 sample rendered a correct sprint pose on a freshly launched editor, and the T-pose captures
+were the 5th and 6th capture calls in a degraded session — see Correction 2. Treat the blendspace
+as sound: 1D `GroundSpeed` 0→650 with 7 samples (Idle 0, Walk 150/180, Run 300/420, Sprint
+540/630).
+
+One genuine note remains: the ledger records sprint at **714 uu/s**, above the blendspace max of
+**650**. That clamps rather than breaks, but the top sample and the movement component disagree.
+Worth an owner decision, not a defect.
+
+## Correction 2 — `capture_anim_frames` crashes the editor
+
+`editor.capture_anim_frames` leaks a rooted UObject and brings the editor down with
+`Assertion failed: !IsRooted()` (`UObjectBaseUtility.h:209`) on a later call.
+
+Observed twice:
+- Session A: 4 captures succeeded, then a `run_python` call asserted inside `HandleRunPython`.
+- Session B: 1 capture succeeded, then the next `capture_anim_frames` asserted inside
+  `FMonolithToolRegistry::ExecuteAction` — no Python involved.
+
+The shared `!IsRooted()` assert across both paths points at the capture path rooting a preview
+object and never unrooting it; the next allocation or GC then trips the assert.
+
+**Practical rule until fixed: one `capture_anim_frames` call per editor session, then relaunch.**
+Budget for it — do not chain captures.
+
+This is a Monolith plugin bug (`Plugins/Monolith/Source/MonolithEditor/`), not an engine or
+content problem, and it is worth fixing since capture is the project's main visual-evidence path.
+
+## Still open from §9
+
+Items 3–9 were **not** done: the orphaned `BlendSpacePlayer_0` and `Slot_1/2/3` remain, the dead
+`CharacterProperties` chain remains, `bIsCrouched` vs `bJumpWindup` still needs an owner call, the
+two components are still absent from `BP_Melusina`, `bRequireCapabilityProviderForGlide` is still
+`false`, and the V2 mesh promotion is still open.
+
+Fixing items 1, 2 and 7 (done here) removes the *animation-side* blockers to
+`wardrobe_gameplay_hook`. The *pawn-side* blockers — no wardrobe component, no traversal
+component, capability gate off — are untouched and still stand between the money pouch and an
+observable Glide.
+
+---
+## 2026-08-20 (later) — Idle canonical +水 hair renderer + pawn source-of-truth
+
+**Decisions:** `BP_MelusinaJRPGCharacter` (`Content/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter.uasset`) is the single OWNER pawn (Pillar 5, `ORCHESTRA_CONVERGENCE_2026-08-20.md`). `A_BL_Melusina_Idle_Loop` v22 ARP factory rebuild (`generated/melusina_animation_library.json:25`, `A_BL_Melusina_Idle_Loop_cm` / `A_BL_Source_Idle_Loop`) is canonical idle — prior origin/scaling issues were import-pipeline, not clip choice.
+
+**Idle:** the `MelusinaLocomotion` `Idle` state's SequencePlayer remains pointed at the pre-v22 asset; promotion to the v22 `cm` variant is staged (repoint + Loop=true, single `capture_anim_frames` per session per known `!IsRooted()` Monolith bug).
+
+**Water-hair renderer (long-term): Groom (Hair Strands) + Niagara `WaterHairDripFX`, not GeometryCache.** `WaterHairFlipCache` (`GeometryCacheComponent`) bakes and cannot react to wind/MPC/`bIsGliding`; the live groom path already exists — `Hair/ABP_Melusina_Hair`, `ABP_Melusina_WaterHair` + `UMelodiaHairComponent` on `head_x` (`ORCHESTRA_CONVERGENCE.md:Pillar 5` table: WaterHairMesh present, PIE `MELUSINA_HAIR_BOUND`). Keep `GeometryCache` disabled as fallback, don't delete until Groom parity in PIE. Material reads `MPC_Melodia_Palette` `AudioReactAmount`, not PPV slot 1 (per `MATERIAL_PIPELINE_AUDIT` / `PPV_STACK_AUDIT`).
+
+**Pawn SoT verification:** `BP_MelodiaJRPGGameMode` DefaultPawnClass → `BP_MelusinaJRPGCharacter_C` (lives, 0 references on `Content/Melodia/Characters/Melusina/BP_Melusina` smoke pawn). `Wardrobe` + `MelodiaTraversal` + `bRequireCapabilityProviderForGlide=True` already on owner — convergence doc Pillar 5 correction.
+
+**Remaining:** repoint idle SequencePlayer, disable `WaterHairFlipCache`, PIE + ledger `record_gate` for `wardrobe_gameplay_hook`/`music_world_key` (still OPEN).
