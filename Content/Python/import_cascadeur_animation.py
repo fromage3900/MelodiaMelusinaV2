@@ -1,8 +1,15 @@
 """Import Cascadeur body animations directly onto Melusina's production skeleton.
 
-The FBX files in Imports/Animations/Cascadeur/Inbox are expected to contain one
-body animation per file. This path deliberately does not retarget: Cascadeur
-must export the same body skeleton that Unreal already uses.
+Lane A does NOT retarget. FBX must already match SK_Melusina_Skeleton
+(465 bones, underscore names, centimeters, 30 fps). Meter-scale or dotted-name
+ARP/Blender FBX is rejected by Tools/melusina_anim_unit_guard.py.
+
+Animation that is not already on that skeleton must use the mocap chain:
+  Rokoko → SK_MocapSource → IK_MocapSource → RTG_Mocap_to_Melusina
+  → IK_Melusina_Body → A_Mocap_*
+  Docs/ROKOKO_MELUSINA_MOCAP.md
+
+Do not send Quaternius UAL1 Inbox takes here. Do not import V2Test ARP statics.
 
 Run inside the Unreal Editor Python console:
 
@@ -16,10 +23,20 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
 import unreal
+
+_TOOLS = Path(__file__).resolve().parents[2] / "Tools"
+if str(_TOOLS) not in sys.path:
+    sys.path.insert(0, str(_TOOLS))
+from melusina_anim_unit_guard import (  # noqa: E402
+    classify_spine_translation,
+    find_sidecar,
+    lane_a_contract_errors,
+)
 
 
 PROJECT_DIR = Path(unreal.Paths.project_dir()).resolve()
@@ -60,7 +77,8 @@ def _stem(path: Path) -> str:
 
 
 def _sidecar_path(fbx_path: Path) -> Path:
-    return fbx_path.with_suffix(".json")
+    found = find_sidecar(fbx_path)
+    return found if found else fbx_path.with_suffix(".json")
 
 
 def _read_sidecar(fbx_path: Path) -> tuple[dict[str, Any] | None, list[str]]:
@@ -68,7 +86,7 @@ def _read_sidecar(fbx_path: Path) -> tuple[dict[str, Any] | None, list[str]]:
     if not sidecar.is_file():
         return None, [f"No sidecar manifest found for {fbx_path.name}"]
     try:
-        value = json.loads(sidecar.read_text(encoding="utf-8"))
+        value = json.loads(sidecar.read_text(encoding="utf-8-sig"))
     except (OSError, json.JSONDecodeError) as exc:
         return None, [f"Invalid sidecar manifest {sidecar}: {exc}"]
     if not isinstance(value, dict):
@@ -164,7 +182,14 @@ def _import_one(fbx_path: Path, manifest: dict[str, Any] | None, replace_existin
         entry["errors"].extend(sidecar_errors)
         return entry
     if manifest is None:
-        entry["warnings"].append(f"No sidecar manifest found for {fbx_path.name}")
+        entry["errors"].append(
+            f"No sidecar (.json or .manifest.json) for {fbx_path.name}; "
+            "Inbox UAL1 takes must not import onto SK_Melusina_Skeleton"
+        )
+        return entry
+    entry["errors"].extend(lane_a_contract_errors(fbx_path, manifest))
+    if entry["errors"]:
+        return entry
 
     skeleton = unreal.load_asset(TARGET_SKELETON)
     target_mesh = unreal.load_asset(TARGET_MESH)
@@ -223,8 +248,25 @@ def _import_one(fbx_path: Path, manifest: dict[str, Any] | None, replace_existin
     entry["sequence_length_seconds"] = _number_property(sequence, "sequence_length")
     entry["rate_scale"] = _number_property(sequence, "rate_scale")
     entry["frame_count"] = _number_method(sequence, "get_number_of_frames")
+    unit = _probe_import_units(sequence)
+    entry["unit"] = unit
+    if unit.get("class") == "meters":
+        entry["errors"].append(
+            f"Meter-scale tracks on cm skeleton (c_spine_02_x Y={unit.get('spine_y')}). "
+            "Rejecting; do not play this clip on SK_Melusina."
+        )
+        return entry
     entry["ok"] = True
     return entry
+
+
+def _probe_import_units(sequence: Any) -> dict[str, Any]:
+    try:
+        pose = unreal.AnimationLibrary.get_bone_pose_for_frame(sequence, "c_spine_02_x", 0, False)
+        y = float(pose.translation.y)
+    except Exception as exc:
+        return {"class": "unknown", "spine_y": None, "warn": str(exc)}
+    return {"class": classify_spine_translation(y), "spine_y": y}
 
 
 def _get_property(obj: Any, name: str) -> Any:

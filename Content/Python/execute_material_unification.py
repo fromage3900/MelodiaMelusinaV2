@@ -268,8 +268,7 @@ def step_generate_ollama_sdf() -> dict:
 
     # Select best model for code generation
     model = None
-    for preferred in ("codellama:7b", "qwen2.5-coder:14b", "deepseek-coder:6.7b",
-                       "qwen3.6:latest", "deepseek-r1:7b"):
+    for preferred in ("qwen2.5-coder:7b", "deepseek-r1:14b", "hermes3:latest"):
         if preferred in models:
             model = preferred
             break

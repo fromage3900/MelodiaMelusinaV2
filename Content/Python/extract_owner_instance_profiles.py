@@ -12,9 +12,16 @@ that vocabulary drives specs/instance_parameter_policy.json.
 Scopes (owner-authored roots; add more as discovered):
   /Game/EnvSandbox/Materials/Instances/Environment
   /Game/EnvSandbox/Materials/Impressionist/Instances
-  /Game/EnvSandbox/Materials/Instances/NikkiIntegrated
+  /Game/EnvSandbox/Materials/Instances/Landscape
+  /Game/EnvSandbox/Materials/Instances/Showcase
+  /Game/EnvSandbox/Materials/Instances/Character
+  /Game/EnvSandbox/Materials/Instances/Sakura
   /Game/EnvSandbox/Materials/Instances/NikkiHero
-  /Game/EnvSandbox/Materials/Instances/Water/v10/Integrated
+  /Game/EnvSandbox/Materials/Instances/NikkiIntegrated
+  /Game/EnvSandbox/Materials/Instances/Water
+  /Game/EnvSandbox/Materials/Instances/Rhythm
+  /Game/EnvSandbox/Materials/Instances/MelodyTokens
+  /Game/EnvSandbox/Materials/Instances/Grotto
   /Game/Melodia/Characters
 """
 
@@ -25,9 +32,16 @@ import unreal  # noqa: F401  (editor context)
 ROOTS = [
     "/Game/EnvSandbox/Materials/Instances/Environment",
     "/Game/EnvSandbox/Materials/Impressionist/Instances",
-    "/Game/EnvSandbox/Materials/Instances/NikkiIntegrated",
+    "/Game/EnvSandbox/Materials/Instances/Landscape",
+    "/Game/EnvSandbox/Materials/Instances/Showcase",
+    "/Game/EnvSandbox/Materials/Instances/Character",
+    "/Game/EnvSandbox/Materials/Instances/Sakura",
     "/Game/EnvSandbox/Materials/Instances/NikkiHero",
-    "/Game/EnvSandbox/Materials/Instances/Water/v10/Integrated",
+    "/Game/EnvSandbox/Materials/Instances/NikkiIntegrated",
+    "/Game/EnvSandbox/Materials/Instances/Water",
+    "/Game/EnvSandbox/Materials/Instances/Rhythm",
+    "/Game/EnvSandbox/Materials/Instances/MelodyTokens",
+    "/Game/EnvSandbox/Materials/Instances/Grotto",
     "/Game/Melodia/Characters",
 ]
 

@@ -1,4 +1,4 @@
-﻿# Melodia Music Clock & Rhythm Combat Review — 2026-08-03
+# Melodia Music Clock & Rhythm Combat Review � 2026-08-03
 
 **Date:** 2026-08-03
 **Author:** UE 5.8 Audio/Rhythm Systems Analyst
@@ -19,11 +19,11 @@ Verified in `MelodiaMusicClockSubsystem.h` (lines 259-260) and `MelodiaMusicCloc
 | 2nd | Quartz `UMelodiaAudioComponent` | `IsBattleClockRunning()` | Beat phase only, no authored map |
 | 3rd | None | No clock running | `HasMusicalTime()` = false, degrade gracefully |
 
-The design (Decision 012) explicitly forbids wall-clock accumulators — they drift against real audio within a minute. This is enforced: the C++ contains no wall-clock fallback. The previous wall-clock 120 BPM accumulator was removed from `MelodiaAudioReactivePresentationSubsystem.cpp` (lines 103-109 comment confirms the removal).
+The design (Decision 012) explicitly forbids wall-clock accumulators � they drift against real audio within a minute. This is enforced: the C++ contains no wall-clock fallback. The previous wall-clock 120 BPM accumulator was removed from `MelodiaAudioReactivePresentationSubsystem.cpp` (lines 103-109 comment confirms the removal).
 
 **Timebase discipline is correct:**
-- `VisualTimebase` = `VideoRenderTime` (line 133) — used for note highway scroll, UI pulses, MPC animations
-- `InputTimebase` = `ExperiencedTime` (line 136) — used for timing error measurement and grading
+- `VisualTimebase` = `VideoRenderTime` (line 133) � used for note highway scroll, UI pulses, MPC animations
+- `InputTimebase` = `ExperiencedTime` (line 136) � used for timing error measurement and grading
 - The clock subsystem `GetTimingErrorMsToNearestBeat()` (line 223) reads `ExperiencedTime`, so grading measures against what the player actually heard, not what the video renderer shows
 
 **Verdict: NO ISSUES. Harmonix is preferred. Quartz is the wired fallback. No wall-clock accumulator exists. The clock composition is production-ready.**
@@ -34,25 +34,25 @@ The design (Decision 012) explicitly forbids wall-clock accumulators — they dr
 
 ### Finding: C++ PIPELINE IS COMPLETE; BLUEPRINT WIRING IS NOT
 
-The pipeline `RecordInputNow() → SubmitRatedInput() → ConsumePendingRequest()` is **fully implemented in C++** with validation, session management, grade conversion, and wallet integration. All six functions exist and are verified:
+The pipeline `RecordInputNow() ? SubmitRatedInput() ? ConsumePendingRequest()` is **fully implemented in C++** with validation, session management, grade conversion, and wallet integration. All six functions exist and are verified:
 
 | Function | File | Status | Key Validation |
 |----------|------|--------|----------------|
-| `StartSession(SkillId)` | `MelodiaRhythmCombatSubsystem.h:60` | ✅ Implemented | Validates skill is registered; clears previous session |
-| `RecordInputNow()` | `MelodiaJRPGPresentationRhythmComponent.cpp:77-92` | ✅ Implemented | Guards `HasMusicalTime()`; reads input timebase; grades via `GradeInputFromTimingErrorMs()` |
-| `SubmitRatedInput(Grade, Hits, Misses)` | `MelodiaRhythmCombatSubsystem.cpp:119-147` | ✅ Implemented | Validates `ActiveSessionId != 0`; rejects duplicate results (`bResultAccepted`); builds `FMelodiaAuthoritativeRhythmResult` with ClockSource audit |
-| `SubmitResult(InResult)` | `MelodiaRhythmCombatSubsystem.cpp:92-117` | ✅ Implemented | Validates session ID match + `bValid` flag; builds `FMelodiaRhythmEffectRequest` via `BuildEffectRequest()` |
-| `ConsumePendingRequest(OutRequest)` | `MelodiaRhythmCombatSubsystem.cpp:154-170` | ✅ Implemented | Returns pending request with `bConsumed=true`; calls `ApplyWalletIntegration()` exactly once; clears pending state |
-| `BuildEffectRequest(Skill, Result)` | `MelodiaRhythmCombatSubsystem.cpp:181-197` | ✅ Implemented | Maps SkillId, EffectType, BaseMagnitude, RhythmScalar (from grade multiplier), TargetMode, TargetCount, Duration, TurnShift |
-| `ApplyWalletIntegration(Request)` | `MelodiaRhythmCombatSubsystem.cpp:216-244` | ✅ Implemented | Spends SP cost via `Wallet->TrySpendMana(Skill->SPCost)`; grants Forte shard on grades >= 1.2x scalar via `Wallet->TryGrantShards("Forte", 1, GrantId)` |
+| `StartSession(SkillId)` | `MelodiaRhythmCombatSubsystem.h:60` | ? Implemented | Validates skill is registered; clears previous session |
+| `RecordInputNow()` | `MelodiaJRPGPresentationRhythmComponent.cpp:77-92` | ? Implemented | Guards `HasMusicalTime()`; reads input timebase; grades via `GradeInputFromTimingErrorMs()` |
+| `SubmitRatedInput(Grade, Hits, Misses)` | `MelodiaRhythmCombatSubsystem.cpp:119-147` | ? Implemented | Validates `ActiveSessionId != 0`; rejects duplicate results (`bResultAccepted`); builds `FMelodiaAuthoritativeRhythmResult` with ClockSource audit |
+| `SubmitResult(InResult)` | `MelodiaRhythmCombatSubsystem.cpp:92-117` | ? Implemented | Validates session ID match + `bValid` flag; builds `FMelodiaRhythmEffectRequest` via `BuildEffectRequest()` |
+| `ConsumePendingRequest(OutRequest)` | `MelodiaRhythmCombatSubsystem.cpp:154-170` | ? Implemented | Returns pending request with `bConsumed=true`; calls `ApplyWalletIntegration()` exactly once; clears pending state |
+| `BuildEffectRequest(Skill, Result)` | `MelodiaRhythmCombatSubsystem.cpp:181-197` | ? Implemented | Maps SkillId, EffectType, BaseMagnitude, RhythmScalar (from grade multiplier), TargetMode, TargetCount, Duration, TurnShift |
+| `ApplyWalletIntegration(Request)` | `MelodiaRhythmCombatSubsystem.cpp:216-244` | ? Implemented | Spends SP cost via `Wallet->TrySpendMana(Skill->SPCost)`; grants Forte shard on grades >= 1.2x scalar via `Wallet->TryGrantShards("Forte", 1, GrantId)` |
 
 ### Grade Table (from design contract, confirmed in source)
 
 | Grade | Timing Error | Damage Mult | Heal Mult | SP Mult | Turn Shift |
 |-------|-------------|-------------|-----------|---------|------------|
-| Perfect | ≤ 90ms | 1.45 | 1.35 | 1.25 | Yes (MaxTurnShift) |
-| Great | ≤ 120ms | 1.20 | 1.15 | 1.10 | Yes (MaxTurnShift) |
-| Good | ≤ 160ms | 1.00 | 1.00 | 1.00 | No |
+| Perfect | = 90ms | 1.45 | 1.35 | 1.25 | Yes (MaxTurnShift) |
+| Great | = 120ms | 1.20 | 1.15 | 1.10 | Yes (MaxTurnShift) |
+| Good | = 160ms | 1.00 | 1.00 | 1.00 | No |
 | Miss | > 160ms | 0.70 | 0.70 | 0.75 | No |
 
 ### What Is NOT Yet Connected (Blueprint Layer)
@@ -79,17 +79,17 @@ Only 7 scalars are being written by the sole writer, `UMelodiaAudioReactivePrese
 
 | Scalar | Derivation | Written? | Line |
 |--------|-----------|----------|------|
-| `GlobalReactivity` | `bBattleActive ? BattleIntensity : 0.0f` | ✅ | 120 |
-| `Bass` | `bBattleActive ? BattleIntensity : 0.0f` | ✅ | 121 |
-| `Mid` | `RhythmPulseValue` (= ImpactPulse) | ✅ | 122 |
-| `Treble` | `BeatPulseValue` (= sin²(BeatPhase × PI)) | ✅ | 123 |
-| `BeatPhase` | `MusicClock->GetBeatPhase(VisualTimebase)` or 0 | ✅ | 124 |
-| `BeatPulse` | `BeatPulseValue` (sin² based) | ✅ | 125 |
-| `RhythmPulse` | `RhythmPulseValue` (= ImpactPulse) | ✅ | 126 |
+| `GlobalReactivity` | `bBattleActive ? BattleIntensity : 0.0f` | ? | 120 |
+| `Bass` | `bBattleActive ? BattleIntensity : 0.0f` | ? | 121 |
+| `Mid` | `RhythmPulseValue` (= ImpactPulse) | ? | 122 |
+| `Treble` | `BeatPulseValue` (= sin�(BeatPhase � PI)) | ? | 123 |
+| `BeatPhase` | `MusicClock->GetBeatPhase(VisualTimebase)` or 0 | ? | 124 |
+| `BeatPulse` | `BeatPulseValue` (sin� based) | ? | 125 |
+| `RhythmPulse` | `RhythmPulseValue` (= ImpactPulse) | ? | 126 |
 
 ### Missing MPC Scalars (Design Contract vs Reality)
 
-The design contract (QWEN_HARMONIX_QUARTZ_BATTLE_INTEGRATION §D.1) specifies **18 scalars total**. **11 are missing:**
+The design contract (QWEN_HARMONIX_QUARTZ_BATTLE_INTEGRATION �D.1) specifies **18 scalars total**. **11 are missing:**
 
 | Missing Scalar | Design Source | Impact |
 |---------------|--------------|--------|
@@ -109,7 +109,7 @@ The design contract (QWEN_HARMONIX_QUARTZ_BATTLE_INTEGRATION §D.1) specifies **
 
 The `UMelodiaRhythmReactivitySubsystem` described in the design contract (with `NotifyBeat()`, `NotifyCommandResolved()`, `NotifyBreak()`, `NotifyEnemyIntent()`, `NotifyVictory()` and a `Publish()` method that writes all 18 scalars) **does not exist in the source tree**. The only presentation subsystem that writes MPC scalars is `UMelodiaAudioReactivePresentationSubsystem`, which handles battle transitions and basic beat pulse but has no knowledge of command resolution, breaks, enemy tension, or victory events.
 
-The existing `PulseImpact(float Strength)` method (line 89-92) provides an external API for triggering impact pulses but is not connected to the rhythm combat pipeline — no caller invokes it from `RecordInputNow()` or `SubmitRatedInput()`.
+The existing `PulseImpact(float Strength)` method (line 89-92) provides an external API for triggering impact pulses but is not connected to the rhythm combat pipeline � no caller invokes it from `RecordInputNow()` or `SubmitRatedInput()`.
 
 ### MPC Consumers
 
@@ -131,7 +131,7 @@ These materials are consuming `BeatPulse`, `BeatPhase`, `RhythmPulse` via existi
 
 ### Query 1: `cppreflect_query get_uclass class_name=UMelodiaMusicClockSubsystem`
 - **Server:** Unreachable during this review session
-- **Prior result** (from RHYTHM_WALLET_REVIEW Appendix A): ✅ Success — Module: BS_GodFile, Parent: UWorldSubsystem, Functions: Get, GetActiveMusicClock, GetBeatPhase, GetClockSource, GetMusicTime, GetTimingErrorMsToNearestBeat, HasMusicalTime, RegisterMusicClock, RegisterQuartzAudioComponent, SetCalibrationOffsetMs. Delegates: OnMelodiaBeat, OnMelodiaBar, OnClockSourceChanged.
+- **Prior result** (from RHYTHM_WALLET_REVIEW Appendix A): ? Success � Module: BS_GodFile, Parent: UWorldSubsystem, Functions: Get, GetActiveMusicClock, GetBeatPhase, GetClockSource, GetMusicTime, GetTimingErrorMsToNearestBeat, HasMusicalTime, RegisterMusicClock, RegisterQuartzAudioComponent, SetCalibrationOffsetMs. Delegates: OnMelodiaBeat, OnMelodiaBar, OnClockSourceChanged.
 
 ### Query 2: `cppreflect_query get_uclass class_name=UMelodiaRhythmCombatSubsystem`
 - **Server:** Unreachable during this review session
@@ -139,7 +139,7 @@ These materials are consuming `BeatPulse`, `BeatPhase`, `RhythmPulse` via existi
 
 ### Query 3: `project_query get_asset_details on /Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette`
 - **Server:** Unreachable during this review session
-- **Prior result** (from RHYTHM_WALLET_REVIEW Appendix A): ✅ Success — Class: MaterialParameterCollection, Last modified: 2026-08-03T06:37:34, Referenced by: 18 materials/functions. Variables array was empty (Monolith does not index MPC scalar/vector parameters).
+- **Prior result** (from RHYTHM_WALLET_REVIEW Appendix A): ? Success � Class: MaterialParameterCollection, Last modified: 2026-08-03T06:37:34, Referenced by: 18 materials/functions. Variables array was empty (Monolith does not index MPC scalar/vector parameters).
 
 ---
 
@@ -147,20 +147,20 @@ These materials are consuming `BeatPulse`, `BeatPhase`, `RhythmPulse` via existi
 
 | Area | Status | Action Required |
 |------|--------|-----------------|
-| Harmonix vs Quartz preference | ✅ Correct | None |
-| Wall-clock accumulator prohibition | ✅ Enforced | None |
-| Timebase discipline (Visual=VideoRenderTime, Input=ExperiencedTime) | ✅ Correct | None |
-| RhythmCombatSubsystem clock ownership | ✅ Correct (reads clock, does not own it) | None |
-| `RecordInputNow()` → `SubmitRatedInput()` → `ConsumePendingRequest()` C++ pipeline | ✅ Complete | None |
-| Blueprint wiring (StartSession → highway → RecordInputNow → SubmitRatedInput → ConsumePendingRequest → InvalidateSession) | ❌ Not connected | Wire BP_BattleUI and BP_BattleController |
-| MPC scalars written (7 of 18) | ⚠️ Partial | Create `UMelodiaRhythmReactivitySubsystem` or extend existing subsystem |
-| `UMelodiaRhythmReactivitySubsystem` with NotifyBeat/NotifyCommandResolved/NotifyBreak/NotifyEnemyIntent/NotifyVictory | ❌ Missing | P1 implementation |
-| `PulseImpact()` caller integration | ❌ Not connected | Wire into rhythm combat pipeline |
-| `GetCurrentBeatPosition()` redirected to MusicClockSubsystem | ⚠️ Partial | Per design doc, execution component still uses local accumulator |
-| `EMelodiaSkillGrade` vs `EMelodiaRhythmGrade` type collision | ⚠️ Risk | Per design doc Phase 1, consolidate to one type |
-| `MelodiaRhythmCombatTypes.h` corruption | ✅ Fixed (per RHYTHM_WALLET_REVIEW) | None |
-| `DA_CadenceStrike` DataAsset | ✅ Exists on disk | Needs asset registry scan for auto-discover |
-| Wallet integration (SP cost + shard reward) | ✅ Complete | None |
+| Harmonix vs Quartz preference | ? Correct | None |
+| Wall-clock accumulator prohibition | ? Enforced | None |
+| Timebase discipline (Visual=VideoRenderTime, Input=ExperiencedTime) | ? Correct | None |
+| RhythmCombatSubsystem clock ownership | ? Correct (reads clock, does not own it) | None |
+| `RecordInputNow()` ? `SubmitRatedInput()` ? `ConsumePendingRequest()` C++ pipeline | ? Complete | None |
+| Blueprint wiring (StartSession ? highway ? RecordInputNow ? SubmitRatedInput ? ConsumePendingRequest ? InvalidateSession) | ? Not connected | Wire BP_BattleUI and BP_BattleController |
+| MPC scalars written (7 of 18) | ?? Partial | Create `UMelodiaRhythmReactivitySubsystem` or extend existing subsystem |
+| `UMelodiaRhythmReactivitySubsystem` with NotifyBeat/NotifyCommandResolved/NotifyBreak/NotifyEnemyIntent/NotifyVictory | ? Missing | P1 implementation |
+| `PulseImpact()` caller integration | ? Not connected | Wire into rhythm combat pipeline |
+| `GetCurrentBeatPosition()` redirected to MusicClockSubsystem | ?? Partial | Per design doc, execution component still uses local accumulator |
+| `EMelodiaSkillGrade` vs `EMelodiaRhythmGrade` type collision | ?? Risk | Per design doc Phase 1, consolidate to one type |
+| `MelodiaRhythmCombatTypes.h` corruption | ? Fixed (per RHYTHM_WALLET_REVIEW) | None |
+| `DA_CadenceStrike` DataAsset | ? Exists on disk | Needs asset registry scan for auto-discover |
+| Wallet integration (SP cost + shard reward) | ? Complete | None |
 
 ---
 

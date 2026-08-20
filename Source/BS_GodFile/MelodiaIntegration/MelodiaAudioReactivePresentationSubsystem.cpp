@@ -152,14 +152,20 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	// UMelodiaMusicClockSubsystem::GetMusicPulse, which is the canonical copy --
 	// if this formula ever needs changing again, change it there and call it.
 	float BeatPulseValue = bHasMusicalTime ? FMath::Square(FMath::Cos(BeatPhase * PI)) : 0.0f;
-	float RhythmPulseValue = ImpactPulse;
+	// Ownership (Phase 0 reconciliation): this subsystem owns the beat namespace
+	// on MPC_Melodia_Palette -- it is the only writer of BeatPhase/BeatPulse/
+	// BeatIntensity/Treble because it is the one with the music clock and it
+	// publishes the continuous cos^2 pulse every frame. UMelodiaRhythmReactivity
+	// Subsystem keeps its internal beat values for OSC/reactive materials but no
+	// longer writes the MPC beat params. RhythmPulse (CommandEnergy) is owned by
+	// that plugin subsystem; this module's impact energy lives on Mid only.
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("GlobalReactivity"), bBattleActive ? BattleIntensity : 0.0f);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("Bass"), bBattleActive ? BattleIntensity : 0.0f);
-	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("Mid"), RhythmPulseValue);
+	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("Mid"), ImpactPulse);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("Treble"), BeatPulseValue);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatPhase"), BeatPhase);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatPulse"), BeatPulseValue);
-	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("RhythmPulse"), RhythmPulseValue);
+	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatIntensity"), BeatPulseValue);
 	return true;
 }
 

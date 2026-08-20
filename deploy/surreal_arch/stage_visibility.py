@@ -56,7 +56,9 @@ _STAGE_PRESETS = {
         "off": ("Melusina_WaterFX", "Review_Queue"),
     },
     "beauty_clean": {
-        "on": ("Asset_melusina", "Asset_sirmelodious", "Lights_Nikki", "Studio", "Cameras", "Characters"),
+        # Lights parent holds L_KeyWarm / L_RimPink / L_GoldKick / L_FillCool.
+        # Lights_Nikki is an empty marker — omitting Lights renders unlit.
+        "on": ("Asset_melusina", "Asset_sirmelodious", "Lights", "Lights_Nikki", "Studio", "Cameras", "Characters"),
         "off": (
             "Review_Queue",
             "Set_Diorama",
@@ -133,6 +135,29 @@ _STAGE_PRESETS = {
             "MusicalOrnaments_Review",
             "MusicalGN_Editable",
             "OrnamentGN_Editable",
+            "RenderSubject",
+        ),
+    },
+    "editable_gn": {
+        "on": (
+            "OrnamentGN_Editable",
+            "MusicalGN_Editable",
+            "Review_Queue",
+            "Lights_Nikki",
+            "Studio",
+            "Cameras",
+        ),
+        "off": (
+            "Asset_melusina",
+            "Characters",
+            "Set_Diorama",
+            "Surreal_Regen_Starlight",
+            "Melusina_WaterFX",
+            "Melusina_HairDrip",
+            "FX_Hero",
+            "Lights_Jewelry",
+            "Lights_Silhouette",
+            "MusicalOrnaments_Review",
             "RenderSubject",
         ),
     },
@@ -680,6 +705,11 @@ class SURREAL_ARCH_OT_set_stage_visibility_preset(bpy.types.Operator):
                 "Sculpt Monetization",
                 "Only kitbash fix meshes + Melody Tokens",
             ),
+            (
+                "editable_gn",
+                "Editable GN",
+                "Soft-isolate OrnamentGN_Editable / MusicalGN_Editable / Review_Queue",
+            ),
         ),
         default="solo_melusina",
     )
@@ -767,6 +797,27 @@ class SURREAL_ARCH_OT_review_queue_cycle(bpy.types.Operator):
         return {"FINISHED"}
 
 
+class SURREAL_ARCH_OT_isolate_editable_gn(bpy.types.Operator):
+    bl_idname = "surreal_arch.isolate_editable_gn"
+    bl_label = "Isolate Editable GN"
+    bl_description = (
+        "Soft-isolate OrnamentGN_Editable, MusicalGN_Editable, and Review_Queue "
+        "via LayerCollection.hide_viewport"
+    )
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context):
+        result = apply_stage_preset("editable_gn", clear_exclude=True)
+        if not result.get("ok"):
+            self.report({"ERROR"}, result.get("error", "failed"))
+            return {"CANCELLED"}
+        self.report(
+            {"INFO"},
+            f"Isolated editable GN (on={len(result['on'])} off={len(result['off'])})",
+        )
+        return {"FINISHED"}
+
+
 class SURREAL_ARCH_PT_stage_studio(bpy.types.Panel):
     """Stage tools nested under Melodia Studio (closed). Pie owns quick presets."""
 
@@ -803,6 +854,13 @@ class SURREAL_ARCH_PT_stage_studio(bpy.types.Panel):
             icon="SCULPTMODE_HLT",
         )
         op.preset = "sculpt_monetization"
+        iso = box.row(align=True)
+        iso.scale_y = 1.2
+        iso.operator(
+            "surreal_arch.isolate_editable_gn",
+            text="Isolate Editable GN",
+            icon="RESTRICT_VIEW_OFF",
+        )
         grid = box.grid_flow(row_major=True, columns=2, even_columns=True, align=True)
         for preset, label in (
             ("solo_melusina", "Solo"),
@@ -901,5 +959,6 @@ def register_stage_visibility_classes():
         SURREAL_ARCH_OT_clear_object_visibility,
         SURREAL_ARCH_OT_show_outliner_restrict,
         SURREAL_ARCH_OT_review_queue_cycle,
+        SURREAL_ARCH_OT_isolate_editable_gn,
         SURREAL_ARCH_PT_stage_studio,
     ]

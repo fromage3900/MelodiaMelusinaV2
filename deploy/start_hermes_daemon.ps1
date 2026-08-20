@@ -63,17 +63,15 @@ Write-Host ""
 # Run once mode (non-daemon)
 if ($RunOnce) {
     Write-Host "Running single verification pass..."
-    & python "$ProjectRoot\deploy\hermes_daemon.py"
+    & python "$ProjectRoot\deploy\hermes_daemon.py" --run-once
     exit $LASTEXITCODE
 }
 
 # Daemon mode
 Write-Host "Starting Hermes daemon (60s interval)..."
-Start-Process powershell -ArgumentList @(
-    "-NoExit",
-    "-File", "$ProjectRoot\deploy\hermes_daemon.ps1",
-    "-IntervalSeconds", "60"
-) -WindowStyle Minimized -PassThru
+Start-Process python -ArgumentList @(
+    "`"$ProjectRoot\deploy\hermes_daemon.py`""
+) -WorkingDirectory $ProjectRoot -WindowStyle Minimized -PassThru
 
 Write-Host ""
 Write-Host "Monitor file: $AuditDir\hermes_health.json"

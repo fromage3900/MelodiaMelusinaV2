@@ -4,7 +4,7 @@ Material tools - Material creation, expressions, and post-process.
 
 import json
 from typing import Any
-from mcp.types import Tool, TextContent
+from ..mcp_types import Tool, TextContent
 
 from ..connection import get_connection, CommandResult
 

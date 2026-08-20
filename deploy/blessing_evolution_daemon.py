@@ -29,7 +29,7 @@ OPENAI_API_KEY = None  # Will use OPENAI_API_KEY env var
 DEFAULT_MODEL = "gpt-4"  # Cloud model
 # Fallback Ollama config (only used if OpenAI unavailable)
 OLLAMA_HOST = "http://127.0.0.1:11434"
-OLLAMA_MODEL = "qwen2.5-coder:14b"
+OLLAMA_MODEL = "qwen2.5-coder:7b"
 
 # Element types for blessing focus
 ELEMENTS = ["Forte", "Tide", "Gale", "Stone", "Radiant", "Umbral", "Arcane"]

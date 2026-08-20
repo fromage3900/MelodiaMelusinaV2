@@ -3,6 +3,14 @@
 **Snapshot:** 2026-08-11  
 **Scope:** Unreal, ECHO evidence gates, environment-art tooling, portfolio export, website delivery, DCC services, and optional experiments.
 
+> Correction 2026-08-13: the remote source of truth is unambiguously
+> `origin` = `https://github.com/fromage3900/MelodiaMelusinaV2`. The table below (written
+> 2026-08-11) called the local `BS_GodFile/` checkout the authority and treated the V2 remote/tree
+> as merely comparison material — that ordering is superseded. `BS_GodFile/` is the working tree
+> that pushes to and pulls from the `MelodiaMelusinaV2` remote; it is not an independent authority.
+> `MelodiaMelusina` (no `V2`) is the old repo, now the remote `legacy-melodia`, and must never be
+> cloned, pushed to, or merged.
+
 This document is the implementation-facing map for the mixed `C:\EnvironmentPortfolio` workspace. It records which tree owns which concern, where state is derived from, and which documentation claims still require verification. It does not authorize deleting or overwriting a duplicate tree.
 
 ## Workspace topology
@@ -11,12 +19,12 @@ The workspace root is an assembly of separate concerns rather than one Git repos
 
 | Root | Role | Authority |
 |---|---|---|
-| `BS_GodFile/` | Unreal project, gameplay C++, ECHO tools, environment tooling, current evidence ledger | Active Unreal/ECHO source for this setup |
-| `MelodiaMelusinaV2/` | Second Unreal checkout/snapshot with a largely mirrored project and ECHO surface | Comparison/reference until drift is reconciled |
+| `BS_GodFile/` | Unreal project, gameplay C++, ECHO tools, environment tooling, current evidence ledger | Local working tree tracking the `MelodiaMelusinaV2` remote (`origin`) — not an authority independent of it |
+| `MelodiaMelusinaV2/` (remote) | The canonical GitHub repo — `origin` = `https://github.com/fromage3900/MelodiaMelusinaV2` | **Source of truth** for the Unreal/ECHO codebase |
 | `my-site-clean/` | Separate website checkout with its own Git history | Website source candidate; deployment ownership remains to be resolved |
 | root `src/`, `wix/`, `generated/`, `public/`, `components/` | Root website/distribution copy and generated handoff material | Keep until mapped against `my-site-clean` |
 | `CompatibilityLabs/` | UE 5.8 compatibility projects, plugin experiments, and backups | Isolated references; never treated as production authority |
-| `MelodiaMelusina/` | Older archive/review material | Read-only historical reference |
+| `MelodiaMelusina/` (remote `legacy-melodia`) | Old/superseded repo | Never clone, push to, or merge |
 | `.agents/`, `Saved/`, `build/` | Agent handoffs, reports, session/build artifacts | Evidence/context only; generated state is not source |
 
 The root has no usable Git repository boundary. Changes intended for the Unreal project belong to `BS_GodFile`; website changes require an explicit choice between the root website copy and `my-site-clean`.

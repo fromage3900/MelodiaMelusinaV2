@@ -572,7 +572,7 @@ Output: `Saved/Audit/material_library_audit.json`
 monolith_mcp_client.call_tool("editor_query", {
     "action": "capture_scene_preview",
     "asset_path": "/Game/EnvSandbox/Levels/L_SakuraPath",
-    "output_path": "g:/EnvironmentPortfolio/Saved/Portfolio/Hero_SakuraPath.png"
+    "output_path": "C:/EnvironmentPortfolio/Saved/Portfolio/Hero_SakuraPath.png"
 })
 ```
 

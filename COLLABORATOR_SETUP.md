@@ -1,6 +1,6 @@
 # 👥 Collaborator Setup Guide
 
-**Work together without downloading the full 300GB project.**
+**Work together on a source+levels+plugins repo (~3-4 GB). The bulk art is delivered out of band -- read the warning below before you expect a level to render.**
 
 This guide covers Unreal-capable collaboration. For a Blender-only bridge
 checkout with no Unreal project or plugin content, use
@@ -12,19 +12,65 @@ checkout with no Unreal project or plugin content, use
 
 ---
 
-## 🎯 Problem: Full Clone = 300GB Download
+## ⚠️ Read this before anything else: the art is not in the repository
 
-The current project tracks all binary files in Git LFS (textures, models, audio, etc.), which means a full clone is ~300GB. For collaborators working on specific tasks, this is overkill.
+**Corrected 2026-08-13.** This document used to open with "Full Clone = 300 GB" and offer
+a tier that pulled it. **That repository does not exist.** The 300 GB premise, the
+"~1–3 GB material art" pull, and the audio pull were all describing a state the project
+moved away from.
 
-## ✅ Solution: Tiered Onboarding
+What is actually true:
 
-Pick the tier that matches your role. Each tier downloads only what you need.
+| | |
+|---|---|
+| `Content/` on disk | **65 GB** |
+| `Content/` tracked in git | **~2,700 files, ~2.7 GB** |
+| Deliberately **not** tracked | Megascans 26 GB · Custom 6.4 GB · SmartAssets 5.1 GB · EnvSandbox art 4.7 GB · Greybox_Kit 4.0 GB · Meshes 3.3 GB · Brushify 2.9 GB · Library 2.2 GB · magicianlabatory 2.2 GB · _PROJECT 1.4 GB |
 
-| Tier | Role | Clone Size | Setup Time |
-|------|------|-----------|------------|
-| **Tier 1 — Lightweight UE** | Level design, material art, UI work with project plugins | 2–10 GB | 10–15 min + first C++ build |
-| **Tier 2 — Full Build** | Build engineer, packaging, PIE testing | ~300 GB | 1–2 hours |
-| **Tier 3 — Code/Docs Reviewer** | Code review, planning, documentation review | ~50 MB | ~1 minute |
+`.gitignore:99` blankets `Content/*` and re-includes a hand-curated list. The reasoning is
+written into the file and is deliberate — see `.gitignore:116-159`.
+
+**The consequence you will hit immediately:** `L_KaleidoNave` is tracked, but the meshes,
+textures, and instance materials it references are not. **It will open with missing
+references and pink/grey assets on a fresh clone.** That is expected. It is **not** an LFS
+problem and **no `git lfs pull` will fix it** — the assets were never committed. Ignore any
+older troubleshooting text that blames LFS for this.
+
+**The art drop now exists.** As of 2026-08-14 the authored environment art is in S3:
+
+```bash
+aws s3 sync s3://melodia-artdrop-322037002075/EnvSandbox/ Content/EnvSandbox/ --profile artdrop
+```
+
+**6,720 objects, 3.06 GiB** — authored art only. `Library/Migrated` is excluded, and
+Megascans / Brushify / `_ThirdParty` (~38 GB) are deliberately absent: those are vendor
+packs you re-fetch from Quixel/Brushify yourself, not things this project redistributes.
+
+**Access:** ask the owner for a key on the IAM user `melodia-artdrop-reader`. It is
+read-only (`s3:GetObject`, `s3:ListBucket`) and scoped to that one bucket, so it cannot
+touch anything else in the account and can be revoked for one person without affecting
+others. Configure it as its own profile:
+
+```bash
+aws configure --profile artdrop     # region ca-central-1
+```
+
+Egress is about **$0.28** for a full pull. Sync only what you need if you are iterating.
+
+As of 2026-08-13 the toon spine itself **is** tracked — 121 master materials and all 18
+`TP_*` toon profiles under `Content/EnvSandbox/Materials/{Masters,ToonProfiles}` (8.6 MB).
+Before that date they were excluded too, which is why the material "fold" commits of
+2026-08-12 contain zero `.uasset` files.
+
+## ✅ Tiered onboarding
+
+Pick the tier that matches your role.
+
+| Tier | Role | Clone size | Setup time | Can open a level? |
+|------|------|-----------|------------|-------------------|
+| **Tier 1 — Lightweight UE** | Level design, material art, UI work with project plugins | **~3–4 GB** | 10–15 min + first C++ build | Yes, **with missing art references** |
+| **Tier 2 — Full Build** | Build engineer, packaging, PIE testing | **~3–4 GB from git + 3.06 GiB art drop (S3)** | 1–2 hours | Yes, once the art drop is synced |
+| **Tier 3 — Code/Docs Reviewer** | Code review, planning, documentation review | ~50 MB | ~1 minute | No, and does not need to |
 
 ---
 
@@ -55,8 +101,9 @@ powershell -ExecutionPolicy Bypass -File .\deploy\validate_setup.ps1 -SkipServic
 
 ```bash
 # 1. Clone without hydrating the full LFS library
-GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/fromage3900/MelodiaMelusinaV2.git MelodiaCollab
 cd MelodiaCollab
+git config core.hooksPath .githooks   # a fresh clone does NOT enable the repo's hooks
 
 # 2. Install Git LFS
 git lfs install
@@ -66,7 +113,7 @@ bash deploy/collaborator_onboarding.sh lightweight
 
 # 4. The manifest includes BS_GodFile.uproject, full tracked Plugins/,
 #    plugin source, Content/Python, and the tracked gameplay paths.
-#    It intentionally does not pull the full 300 GB content library.
+#    There is no 300 GB content library in this repo to pull; see the note at the top.
 ```
 
 ### For Level Designers (Geometry/Levels):
@@ -78,18 +125,24 @@ git lfs pull --include="Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content
 
 ### For Material Artists:
 ```bash
-git lfs pull --include="Content/EnvSandbox/Materials/**/*.uasset"
-git lfs pull --include="Content/EnvSandbox/Materials/Masters/*.uasset"
-git lfs pull --include="Content/EnvSandbox/Textures/*.png"
-# Total: ~1-3GB
+# The toon spine IS tracked (since 2026-08-13): 121 masters + 18 TP_* profiles, 8.6 MB.
+git lfs pull --include="Content/EnvSandbox/Materials/Masters/**,Content/EnvSandbox/Materials/ToonProfiles/**"
 ```
+
+Everything else under `Content/EnvSandbox/Materials/` -- Instances/, SDF/, Landscape/,
+Textures/ -- is **not tracked**. The old instructions here pulled
+`Content/EnvSandbox/Materials/**/*.uasset` and `Content/EnvSandbox/Textures/*.png` and
+claimed "~1-3GB"; both matched **zero** tracked files, so the pull succeeded and
+downloaded nothing. Use the S3 art drop instead (see the top of this document).
 
 ### For Character/NPC Work:
 ```bash
-git lfs pull --include="Content/Characters/**/*.uasset"
-git lfs pull --include="Content/Characters/**/*.fbx"
-git lfs pull --include="Content/Audio/Voice/*.wav"
-# Total: ~5-10GB
+git lfs pull --include="Content/Characters/**"          # 71 tracked files
+git lfs pull --include="Content/Melodia/Characters/**"  # Melusina, Kiritan, Itako, Zunko
+
+# NOT tracked: Content/Audio/Voice/*.wav -- there is no un-ignore for Content/Audio,
+# so the old `git lfs pull --include="Content/Audio/Voice/*.wav"` line here matched
+# nothing. Voice WAVs are not in the S3 art drop either -- ask the owner directly.
 ```
 
 ---
@@ -99,9 +152,10 @@ git lfs pull --include="Content/Audio/Voice/*.wav"
 **Best for:** Build engineers, packaging, PIE testing
 
 ```bash
-# 1. Clone with LFS (full ~300GB)
-git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+# 1. Clone with LFS (~3-4 GB -- NOT 300 GB; the bulk art is not in the repo)
+git clone https://github.com/fromage3900/MelodiaMelusinaV2.git MelodiaCollab
 cd MelodiaCollab
+git config core.hooksPath .githooks
 
 # 2. Install and pull all LFS assets
 git lfs install
@@ -125,7 +179,7 @@ powershell -ExecutionPolicy Bypass -File .\deploy\validate_setup.ps1 -SkipServic
 
 ```bash
 # 1. Clone without LFS (~50MB, ~1 minute)
-git clone --filter=blob:none https://github.com/fromage3900/MelodiaMelusinaV2.git
+git clone --filter=blob:none https://github.com/fromage3900/MelodiaMelusinaV2.git MelodiaCollab
 cd MelodiaCollab
 
 # 2. That's it! All source code, configs, and docs are available.
@@ -135,13 +189,19 @@ cd MelodiaCollab
 
 ## 📋 Work-Specific Download Sizes
 
-| Role | What to Download | Size | Time |
-|------|------------------|------|------|
-| 🔍 **Viewer** | Source code + docs only | ~50MB | 1 min |
-| 🏗️ **Level Design** | Levels + geometry + materials | ~2-5GB | 5-10 min |
-| 🎨 **Material Art** | Materials + textures | ~1-3GB | 3-8 min |
-| 🧑‍🤝‍🧑 **Character/NPC** | Characters + voice | ~5-10GB | 10-20 min |
-| 🏭 **Full Build** | Everything | ~300GB | 1-2 hours |
+| Role | What is in the repo | Size | Time |
+|------|---------------------|------|------|
+| 🔍 **Viewer** | Source, configs, docs | ~50 MB | 1 min |
+| 🏗️ **Level Design** | Route `.umap`s + PCG graphs (`Content/Melodia/Levels`, `Content/EnvSandbox/Environments`) | ~50 MB | 2 min |
+| 🎨 **Material Art** | 121 masters + 18 toon profiles | 8.6 MB | 1 min |
+| 🧑‍🤝‍🧑 **Character/NPC** | Melusina/Kiritan/Itako/Zunko + `Content/Characters` | ~150 MB | 3 min |
+| 🏭 **Full Build** | All of the above + tracked plugins | **~3-4 GB** | 1-2 hours incl. C++ build |
+
+**None of these rows includes the environment art.** Meshes, instance materials, textures
+and voice WAVs (~13 GB of authored work plus ~40 GB of re-downloadable marketplace content)
+are not in git. Levels will open with missing references until the owner supplies the drop.
+The old version of this table promised up to 300 GB from a `git lfs pull`; that was wrong in
+every row.
 
 ---
 
@@ -220,10 +280,41 @@ After compiling, add `-RequirePluginBinaries` and require an exit code of `0`.
 ## 🆘 Troubleshooting
 
 **Problem:** "Asset appears as pink/missing in Unreal"
-**Solution:**
+**Solution:** First work out which of two different problems you have.
+
+1. **The asset is not in the repository at all** — by far the more likely case, and the
+   expected state on a fresh clone. Bulk environment art is gitignored on purpose. Check:
+   ```bash
+   git ls-files "Content/EnvSandbox/Meshes" | head    # empty => never committed
+   ```
+   If that is empty, **no `git lfs pull` will help.** Sync the S3 art drop instead. The
+   previous version of this entry told you to run a pull, which silently succeeds and
+   downloads nothing — that dead end cost real time.
+
+2. **The asset is tracked but its LFS content is not hydrated** — a pointer file on disk
+   instead of the real binary. Check for a 130-byte text file starting with
+   `version https://git-lfs.github.com/spec/v1`:
+   ```bash
+   git lfs ls-files --long | grep -i "<asset name>"   # '-' = not hydrated, '*' = hydrated
+   git lfs pull --include="Content/Path/To/Missing/Asset/**"
+   ```
+   Unreal reports an unhydrated pointer as an invalid package tag, which reads like file
+   corruption and is not.
+
+**Problem:** "A `.uasset` or `.umap` is read-only and Unreal will not save it"
+**Solution:** Working as intended. `.gitattributes` marks 2,224 files `lockable`, and LFS
+checks lockable files out read-only. Take the lock first:
 ```bash
-git lfs pull --include="Content/Path/To/Missing/Asset/**"
+git lfs lock Content/EnvSandbox/Environments/L_KaleidoNave.umap
+# ... edit, commit, push ...
+git lfs unlock Content/EnvSandbox/Environments/L_KaleidoNave.umap
 ```
+
+**Problem:** "My push was rejected before it started"
+**Solution:** `.githooks/pre-push` enforces branch prefixes — `feature/ fix/ docs/ cleanup/
+collab/ codex/ recovery/ cursor/`. A bare lane name like `gameplay` is rejected. It also
+enforces an LFS batch budget: **50 MB** on `collab/`, `cursor/` and `docs/` branches,
+512 MB elsewhere.
 
 **Problem:** "MeshBlend, PCGEx, or another plugin is missing"
 **Solution:** Confirm the collaborator used the `lightweight` UE tier, not the
@@ -261,7 +352,7 @@ git add <file>
 
 | Approach | Download Size | Time | Suitability |
 |----------|--------------|------|-------------|
-| **Full Clone** | ~300GB | 1-2 hours | Only for leads/build engineers |
+| **Full Clone** | ~3-4 GB + 3.06 GiB art drop | 1-2 hours (mostly the C++ build) | Leads/build engineers. Sync the S3 art drop to render a level. |
 | **Level Design** | ~2-5GB | 5-10 min | **Perfect for collaboration** |
 | **Material Work** | ~1-3GB | 3-8 min | Material artists |
 | **Source Only** | ~50MB | 1 min | Code review, planning |

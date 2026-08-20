@@ -7,6 +7,7 @@
 **Tonight cine/UE board:** [`Docs/Handoffs/TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md`](../../../Docs/Handoffs/TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md) (hero props, 4 P0 levels, water-hair cache). Not GN volume.
 
 **Thesis: stop adding volume. Quality and thin-kit depth next.**  
+> **Superseded for next work by** [GN_EXPANSION_PLAN_2026-08-17.md](GN_EXPANSION_PLAN_2026-08-17.md). Keep this file as the 08-12 freeze (165/12). Live registry after the 08-17 pass is **169/12**.  
 Live registry is **165/165 construct**, **12/12 GN Stack sections**. That already exceeds the overnight 134-source / 119-live target. `geometry_extras` and the extras modules are imported. `mel_gn.apply_preset` is wired.
 
 ---
@@ -113,14 +114,8 @@ Data-only. No Blender, no stage save. Smoke-apply in 5.2 still required (Stabili
 
 ---
 
-## Water-hair cache for UE (not a GN builder)
+## Water-hair (not a GN builder)
 
-Hair **look** is already water: Blender `Water (Advance).001` / UE `SK_MelusinaHair` + `MI_Melusina_WaterHair`. Flip Fluids is **not** the gameplay hair mesh.
+The hair **is water**: Blender Flip `fluid_surface` globulates and drips. UE Geometry Cache = body; Niagara `Melusina_WaterFX` = drip; both socket `head_x`. `SK_MelusinaHair` is fallback silhouette.
 
-| Layer | Ship in | Method |
-|-------|---------|--------|
-| A Look | Always | Skeletal hair + water/toon MI |
-| B Drip | Gameplay | Niagara `Melusina_WaterFX` (existing specs) |
-| C Cine cache | Sequencer / plates | Flip Fluids bake → Alembic `fluid_surface` → Geometry Cache |
-
-Cache path `KitbashExport/flip_cache_melusina_waterhair/` is **empty of `.bobj`** (2026-08-12). Rebake on **v22** after `tune_melusina_hair_drip.py`. Do not conflate with Water V10 Niagara Fluids. Full procedure: tonight board.
+Cache path `KitbashExport/flip_cache_melusina_waterhair/` holds frames 1–240 (2026-08-13). Rebake on **v22** only if globules are missing. Do not conflate with Water V10 Niagara Fluids. Intent: [`Saved/Audit/water_hair_product_intent_2026-08-13.md`](../../../Saved/Audit/water_hair_product_intent_2026-08-13.md).

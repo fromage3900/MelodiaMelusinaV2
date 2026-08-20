@@ -431,24 +431,37 @@ void UMelodiaRhythmHUDWidget::PaintNoteHighway(FSlateWindowElementList& OutDrawE
 	const FSlateBrush HitLineBrush = MakeTextureBrush(HitLineTexture);
 	const FSlateBrush NoteBrush = MakeTextureBrush(NoteHeadTexture);
 
-	// Highway lane background
-	const float LaneY = H * 0.65f;
-	const float LaneH = 50.0f;
-	FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer,
-		AllottedGeometry.ToPaintGeometry(FVector2D(W, LaneH), FSlateLayoutTransform(FVector2D(0.0f, LaneY))),
-		HighwayBackgroundTexture ? &HighwayBrush : &WhiteBrush, ESlateDrawEffect::None,
-		FLinearColor(0.06f, 0.04f, 0.1f, 0.8f));
+	// Lanes are columns above the UMG LaneRow, and notes fall DOWN onto their key.
+	// Previously every note drew at one Y with LaneIndex ignored, which made a
+	// four-lane chart unreadable — the note carried no indication of which key it was.
+	const int32 LaneCount = FMath::Max(1, HighwayLaneCount);
+	const float RowWidth = FMath::Min(HighwayLaneRowWidth, W);
+	const float LaneW = RowWidth / static_cast<float>(LaneCount);
+	const float RowLeft = (W - RowWidth) * 0.5f;
+	const float HitLineY = H - HighwayHitLineFromBottom;
+	const float TopY = FMath::Max(0.0f, HitLineY - HighwayApproachHeight);
+	const float ApproachH = HitLineY - TopY;
 
-	// Hit line
-	const float HitLineX = W * 0.15f;
+	// One background column per lane, so the lane boundaries are visible at rest.
+	for (int32 Lane = 0; Lane < LaneCount; ++Lane)
+	{
+		const float LaneX = RowLeft + Lane * LaneW;
+		// Alternate tint so adjacent lanes stay distinguishable without a divider mesh.
+		const float Shade = (Lane % 2 == 0) ? 0.8f : 0.66f;
+		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer,
+			AllottedGeometry.ToPaintGeometry(FVector2D(LaneW - 2.0f, ApproachH), FSlateLayoutTransform(FVector2D(LaneX + 1.0f, TopY))),
+			HighwayBackgroundTexture ? &HighwayBrush : &WhiteBrush, ESlateDrawEffect::None,
+			FLinearColor(0.06f, 0.04f, 0.1f, Shade));
+	}
+
+	// Hit line spans the whole row — this is the "press now" reference.
 	FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 1,
-		AllottedGeometry.ToPaintGeometry(FVector2D(3.0f, LaneH), FSlateLayoutTransform(FVector2D(HitLineX, LaneY))),
+		AllottedGeometry.ToPaintGeometry(FVector2D(RowWidth, 3.0f), FSlateLayoutTransform(FVector2D(RowLeft, HitLineY))),
 		HitLineTexture ? &HitLineBrush : &WhiteBrush, ESlateDrawEffect::None,
 		FLinearColor(1.0f, 1.0f, 1.0f, 0.9f));
 
 	// Notes
-	const float NoteSize = 20.0f;
-	const float HighwayWidth = W * 0.8f;
+	const float NoteSize = HighwayNoteSize;
 	for (const FMelodiaHighwayNote& Note : HighwayNotes)
 	{
 		const float BeatOffset = Note.TargetBeat - HighwayBeatPosition;
@@ -457,9 +470,12 @@ void UMelodiaRhythmHUDWidget::PaintNoteHighway(FSlateWindowElementList& OutDrawE
 			continue;
 		}
 
-		const float NormalizedX = FMath::Clamp(BeatOffset / FMath::Max(0.1f, HighwayScrollBeatsAhead), 0.0f, 1.0f);
-		const float NoteX = HitLineX + NormalizedX * HighwayWidth;
-		const float NoteY = LaneY + (LaneH - NoteSize) * 0.5f;
+		// 0 = at the hit line, 1 = at the top of the approach. Time maps to distance,
+		// so a steady BPM gives steady visual speed.
+		const float Normalized = FMath::Clamp(BeatOffset / FMath::Max(0.1f, HighwayScrollBeatsAhead), 0.0f, 1.0f);
+		const int32 Lane = FMath::Clamp(Note.LaneIndex, 0, LaneCount - 1);
+		const float NoteX = RowLeft + (Lane + 0.5f) * LaneW - NoteSize * 0.5f;
+		const float NoteY = HitLineY - Normalized * ApproachH - NoteSize * 0.5f;
 
 		FLinearColor NoteColor;
 		if (Note.bResolved)
@@ -478,7 +494,7 @@ void UMelodiaRhythmHUDWidget::PaintNoteHighway(FSlateWindowElementList& OutDrawE
 		}
 
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 2,
-			AllottedGeometry.ToPaintGeometry(FVector2D(NoteSize, NoteSize), FSlateLayoutTransform(FVector2D(NoteX - NoteSize * 0.5f, NoteY))),
+			AllottedGeometry.ToPaintGeometry(FVector2D(NoteSize, NoteSize), FSlateLayoutTransform(FVector2D(NoteX, NoteY))),
 			NoteHeadTexture ? &NoteBrush : &WhiteBrush, ESlateDrawEffect::None,
 			NoteColor);
 	}

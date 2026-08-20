@@ -1,11 +1,11 @@
-ï»¿# Melodia Rules Contract Î“Ã‡Ã¶ who owns what
+# Melodia Rules Contract GÇö who owns what
 
 Two systems, one truth, zero drift:
 
 | System | Role | May do | May NOT do |
 |---|---|---|---|
 | **MelodiaCore** (UE C++ plugin) | **The actual game.** Runtime phase machine, combat state, rhythm execution, HUD glue. | Consume `MelodiaRulesGenerated.h`; evaluate modifier stacks generically per the schema. | Hardcode rule numbers; invent new rules not in the JSON. |
-| **gmm** (Python, `Content/Python/gmm/`) | **Game-system management + modifier stacks.** Rules authoring, CLI battle simulator, balance tuning, modifier design, data pipeline, drift audits, UE orchestration daemon. | Author `melodia_rules.json`; simulate against `rules_generated.py`; propose new mechanics (e.g. the element wheel, already speced here before C++ has it). | Be treated as gameplay truth Î“Ã‡Ã¶ its battle manager is a *simulator* of the same rules, never a second implementation to tune independently. |
+| **gmm** (Python, `Content/Python/gmm/`) | **Game-system management + modifier stacks.** Rules authoring, CLI battle simulator, balance tuning, modifier design, data pipeline, drift audits, UE orchestration daemon. | Author `melodia_rules.json`; simulate against `rules_generated.py`; propose new mechanics (e.g. the element wheel, already speced here before C++ has it). | Be treated as gameplay truth GÇö its battle manager is a *simulator* of the same rules, never a second implementation to tune independently. |
 
 ## The flow
 
@@ -25,7 +25,7 @@ Historical motivation: on 2026-07-10 the two sides had already drifted
 
 ## Porting queue (design proven in gmm, not yet in C++)
 
-1. Element wheel (7-element cycle, 1.5â”œÃ¹/0.5â”œÃ¹) Î“Ã‡Ã¶ `rules.elements`
-2. Toughness/break Î“Ã‡Ã¶ `rules.toughness`
-3. Modifier stacks Î“Ã‡Ã¶ `rules.modifiers` schema; C++ needs a generic
+1. Element wheel (7-element cycle, 1.5+ù/0.5+ù) GÇö `rules.elements`
+2. Toughness/break GÇö `rules.toughness`
+3. Modifier stacks GÇö `rules.modifiers` schema; C++ needs a generic
    `UMelodiaModifierStackComponent` evaluating (stat, op, duration, stacking).

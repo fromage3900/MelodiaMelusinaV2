@@ -38,6 +38,33 @@ Apply (prints before/after fingerprint; omit `--go` and it stays a dry run):
 python Docs/T3D_Patterns/t3d.py inject guarded_call --asset /Game/Path/BP_Thing --graph EventGraph --set target_class=/Script/Engine.KismetSystemLibrary --set function=PrintString --go
 ```
 
+## Wardrobe workflows
+
+Wardrobe mutations use the composite fail-closed transaction in
+`Tools/t3d_safe_wire.py`, not the legacy direct injector:
+
+```bash
+python Docs/T3D_Patterns/t3d.py validate_wardrobe_catalog
+python Docs/T3D_Patterns/t3d.py validate_wardrobe_nodes \
+  --asset /Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter \
+  --pattern guarded_call \
+  --set target_class=/Script/Engine.KismetSystemLibrary \
+  --set function=PrintString
+python Docs/T3D_Patterns/t3d.py inject_wardrobe_node \
+  --asset /Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter \
+  --pattern guarded_call \
+  --set target_class=/Script/Engine.KismetSystemLibrary \
+  --set function=PrintString \
+  --expected-fingerprint <hash> --go
+```
+
+`wire_wardrobe_battle_gate` refuses to run unless `--enable-battle` is passed;
+the runtime component's `bEnableBattleWardrobe` default remains false. External
+LiveLink/TouchDesigner and OSC adapters must normalize into the versioned
+`specs/wardrobe/wardrobe_t3d_pipeline.v1.json` contract before invoking these
+commands. Run `python Tools/wardrobe_bridge_health.py` for the 9876/8000/9000
+bridge report and Monolith MCP reachability.
+
 > **Git Bash mangles `/Game/...` and `/Script/...` into Windows paths.** Export
 > `MSYS_NO_PATHCONV=1` first, or run from PowerShell. The symptom is
 > `Blueprint not found: C:/Program Files/Git/Game/...`.

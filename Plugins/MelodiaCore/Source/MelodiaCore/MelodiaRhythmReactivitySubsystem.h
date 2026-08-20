@@ -8,6 +8,8 @@
 class UPrimitiveComponent;
 class UMaterialInstanceDynamic;
 class UMaterialParameterCollection;
+class USoundMix;
+class USoundClass;
 class FSocket;
 class FInternetAddr;
 
@@ -28,6 +30,20 @@ struct FMelodiaRhythmReactivitySignal
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") float BreakPulse = 0.0f;
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") float VictoryPulse = 0.0f;
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") float EnemyTension = 0.0f;
+	/**
+	 * Smoothed "how dangerous right now" register: fast-attacks toward the latest
+	 * graded EnemyTension, releases slowly so dread lingers (OMORI held-tension).
+	 * Drives the MPC DreadPresence channel -- the cold counterpart to the cozy set.
+	 * Presentation-only (Decision 033). Never feeds damage or results.
+	 */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") float TensionSustain = 0.0f;
+	/**
+	 * Continuous dissonance register derived from TensionSustain:
+	 * 0 = Clear, 1 = Strain, 2 = Rupture. Maps onto the existing
+	 * EMelodiaDissonanceTier vocabulary as a smooth value instead of a one-shot
+	 * overlap trigger. Presentation-only.
+	 */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") float DissonanceAmount = 0.0f;
 
 	// --- Cozy MPC expansion (warmth, world reactivity, ambient mood) ---
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") float WarmthGlow = 0.0f;
@@ -46,6 +62,8 @@ class MELODIACORE_API UMelodiaRhythmReactivitySubsystem : public UTickableWorldS
 
 public:
 	static const FName AudioCollectionPath;
+	static const FName TensionDuckSoundMixPath;
+	static const FName AmbienceSoundClassPath;
 
 	UFUNCTION(BlueprintPure, Category="Melodia|Reactivity", meta=(WorldContext="WorldContextObject"))
 	static UMelodiaRhythmReactivitySubsystem* Get(const UObject* WorldContextObject);
@@ -112,6 +130,10 @@ private:
 	/** True while any pulse/decay value is still away from rest - Tick only
 	 * needs to Publish() while something is actually animating. */
 	bool IsSignalAtRest() const;
+	/** Presentation-only ambience duck (Decision 033): as TensionSustain rises,
+	 * the ambience bed (SCL_Ambience) pulls back via a SoundMix class override.
+	 * Silent no-op until the SM_MelodiaTensionDuck SoundMix asset exists. */
+	void UpdateTensionAmbienceDuck();
 
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity", meta=(AllowPrivateAccess="true"))
 	FMelodiaRhythmReactivitySignal Signal;
@@ -123,6 +145,16 @@ private:
 	 * SetMPCScalar call (was 14x/frame via the unconditional per-tick Publish). */
 	UPROPERTY(Transient)
 	TObjectPtr<UMaterialParameterCollection> CachedCollection = nullptr;
+
+	/** Tension ambience duck targets, resolved lazily on first tension. Both are
+	 * no-ops when the content does not exist yet (mirrors the MPC no-op policy). */
+	UPROPERTY(Transient)
+	TObjectPtr<USoundMix> CachedTensionDuckMix = nullptr;
+	UPROPERTY(Transient)
+	TObjectPtr<USoundClass> CachedAmbienceSoundClass = nullptr;
+	/** Last volume written to the class override; starts at 1.0 (no duck) so the
+	 * first tension spike is what triggers the first override call. */
+	float LastAmbienceDuckVolume = 1.0f;
 
 	FSocket* OscSocket = nullptr;
 	TSharedPtr<FInternetAddr> OscTargetAddr;

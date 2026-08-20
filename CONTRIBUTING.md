@@ -4,107 +4,120 @@
 ✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
 ```
 
-Welcome! This guide covers how to contribute to Melodia -- whether you're an environment artist, technical designer, or programmer.
+Welcome! This guide outlines how to contribute to Melodia — whether you are an environment artist, technical designer, gameplay engineer, or AI researcher.
+
+---
+
+## Code of Conduct
+
+All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md). Please read it to understand our community standards and enforcement guidelines.
 
 ---
 
 ## Quick Start
 
-1. Read [README.md](README.md) -- choose your onboarding path
-2. For level designers: use [sparse checkout](Docs/SETUP_COLLAB.md) or the new onboarding scripts (50 MB, not 300 GB)
-3. For programmers: clone the full repo with `git lfs pull`
-4. Run `.\deploy\validate_collaborator_setup.sh` to check your environment
+1. Review [README.md](README.md) to choose your onboarding path.
+2. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
+3. **Engineers & Researchers:** Clone the repository and pull Git LFS tracked assets (`git lfs pull`).
+4. Execute `deploy/validate_setup.ps1` (or `python Tools/test_melodia_mcp.py`) to verify your local environment health.
 
 ---
 
 ## Branch Naming
 
 ```
-feature/<what-youre-building>    -- new functionality
-fix/<what-youre-fixing>          -- bug fixes
-docs/<what-youre-documenting>    -- documentation only
-cleanup/<what-youre-cleaning>    -- repo hygiene
-collab/<role>/<feature>          -- collaborator work (level design, material art, UI, docs)
+feature/<feature-name>       — new functionality or systems
+fix/<bug-description>        — bug and regression fixes
+docs/<documentation-target>  — documentation updates and whitepapers
+cleanup/<area>               — repository and pipeline hygiene
+collab/<role>/<task>         — collaborative environment art, level design, or UI
 ```
 
-Examples: `feature/zundamon-npc`, `fix/modifier-stacking`, `docs/collab-guide`, `collab/level-design/kaleido-nave`, `collab/material-art/toon-outline`, `collab/ui/combat-widget`
+Examples:
+- `feature/zundamon-npc`
+- `fix/modifier-stacking`
+- `docs/melusina-agent-harness`
+- `collab/level-design/kaleido-nave`
 
 ---
 
 ## Commit Conventions
 
+We follow standard Conventional Commits:
+
 ```
-<type>: <short description>
+<type>: <short imperative description>
 
 Examples:
   feat: add Zundamon NPC Blueprint with quest giver interface
-  fix: correct multiplicative modifier stacking in GS-001
-  docs: add live collab onboarding guide
-  chore: expand .gitignore for UE artifacts
+  fix: correct multiplicative modifier stacking in battle controller
+  docs: add Melusina Agent Test Harness evaluation whitepaper
+  chore: update .gitignore for loose scratch binaries
 ```
 
-Types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`
+Allowed types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `style`.
 
 ---
 
 ## Pull Request Process
 
-1. **Create a branch** from `main` using the naming convention above
-2. **Make your changes** -- keep commits focused and descriptive
-3. **Push** your branch to GitHub
-4. **Open a PR** against `main`
-5. **Describe what you changed and why** in the PR description
-6. Wait for review before merging
-
-For large changes (new systems, plugin modifications), open an issue first to discuss the approach.
+1. **Branch:** Create a branch from `main` using the naming convention above.
+2. **Focus:** Keep commits focused, clean, and atomic.
+3. **Validate:** Run test suites locally (`python Tools/test_melodia_mcp.py` and workspace validators).
+4. **Open PR:** Submit a Pull Request against `main` detailing what was changed and why.
+5. **Review:** Wait for automated CI status checks and maintainer review before merge.
 
 ---
 
-## File Ownership
+## File Ownership & Architecture Boundaries
 
-| Area | Owner | Review Required? |
-|------|-------|-----------------|
-| `deploy/surreal_arch/` | Procedural Geometry Agent | Yes |
-| `Content/Python/gmm/` | GMM Game Systems | Yes |
-| `Plugins/MelodiaCore/` | MelodiaCore C++ | Yes |
-| `Content/Python/setup_material_*.py` | Material Pipeline Agent | Yes |
-| `Docs/` | Anyone | No |
-| `Tools/` | Anyone | No |
+| Subsystem / Area | Component Scope | Review Required? |
+|------------------|----------------|:----------------:|
+| `Plugins/MelodiaCore/` | Native C++ Subsystems & Substrate Shaders | Yes |
+| `deploy/melodia_mcp_server.py` | Model Context Protocol & Tool Registry | Yes |
+| `Content/Python/gmm/` | GMM Gameplay Automation & Fixtures | Yes |
+| `deploy/surreal_arch/` | Procedural Geometry & Blender Bridge | Yes |
+| `Docs/` | Technical Whitepapers & Specifications | No |
+| `Tools/` | Test Scripts, Diagnostic Probes, Linting | No |
 
 ---
 
 ## Asset Naming Conventions
 
-Follow the naming conventions documented in [PIPELINE.md](PIPELINE.md) for all new assets:
+Follow the canonical asset hierarchy:
 
 | Prefix | Asset Type | Example |
-|--------|-----------|---------|
-| `MF_` | Material Functions | `MF_Triplanar` |
-| `M_` | Master Materials | `M_Master_Toon_Universal` |
-| `MI_` | Material Instances | `MI_Show_CelestialNebula` |
-| `BP_` | Blueprints | `BP_Zundamon_NPC` |
-| `L_` | Levels | `L_MelusinaMorning` |
-| `WP_` | World Partition Levels | `L_WP_SakuraDream` |
-| `SK_` | Skeletal Meshes | `SK_Melusina_FIXED_Hair` |
-
-See [PIPELINE.md](PIPELINE.md) → Material Pipeline and Component Registry for the full asset hierarchy and naming rules.
+|:------:|:-----------|:--------|
+| `MF_` | Material Function | `MF_Triplanar` |
+| `M_` | Master Material | `M_Master_Toon_Universal` |
+| `MI_` | Material Instance | `MI_Show_CelestialNebula` |
+| `BP_` | Blueprint Actor / Component | `BP_Zundamon_NPC` |
+| `L_` | Canonical Level Map | `L_MelusinaMorning` |
+| `WP_` | World Partition Level | `L_WP_SakuraDream` |
+| `SK_` | Skeletal Mesh | `SK_Melusina_Rig` |
 
 ---
 
-## What NOT to commit
+## Prohibited Artifacts (What NOT to Commit)
 
 Do NOT commit:
-- `.blend1` or `.blend2` files (Blender crash recovery -- auto-ignored)
-- `Intermediate/`, `Saved/`, `Binaries/` (UE build artifacts -- auto-ignored)
-- Temporary scripts (`Content/Python/_tmp_*`, `probe_*`, `query_*`)
-- ZIP archives or `.7z` files
-- Personal config files or local paths
+- `.blend1`, `.blend2` backup files (auto-ignored).
+- `Intermediate/`, `Saved/`, `Binaries/` Unreal build artifacts (auto-ignored).
+- Ephemeral root probes or scratch diagnostic scripts (`check_bp*.py`, `pie_smoke*.json`).
+- Archive bundles (`.zip`, `.7z`, `.bundle`).
+- Secret keys, local tokens, or `.env` files.
 
 ---
 
-## Getting Help
+## Security Disclosures
 
-- [DOC_INDEX.md](DOC_INDEX.md) -- full documentation map (68 docs)
-- [Docs/ONBOARDING_LIVE_COLLAB.md](Docs/ONBOARDING_LIVE_COLLAB.md) -- step-by-step bridge setup
-- [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) -- lightweight clone guide
-- File an issue on GitHub for bugs or feature requests
+If you discover a security vulnerability, please refer to our [Security Policy](SECURITY.md) and report it to [melodia-security@brennanshepherd.com](mailto:melodia-security@brennanshepherd.com).
+
+---
+
+## Documentation & Help
+
+- Complete Documentation Index: [DOC_INDEX.md](DOC_INDEX.md)
+- Agent Test Harness Whitepaper: [Docs/MELUSINA_AGENT_TEST_HARNESS.md](Docs/MELUSINA_AGENT_TEST_HARNESS.md)
+- LLM Daemon Ecosystem Report: [Docs/OLLAMA_UE5_INTEGRATION_REPORT.md](Docs/OLLAMA_UE5_INTEGRATION_REPORT.md)
+- Live Collaboration Setup: [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md)

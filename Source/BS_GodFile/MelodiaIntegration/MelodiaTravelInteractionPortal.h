@@ -7,9 +7,15 @@
 class UBoxComponent;
 class UTextRenderComponent;
 
-/** Explicit, player-confirmed story exit routed through the single travel authority. */
+/**
+ * Explicit, player-confirmed story exit routed through the single travel authority.
+ *
+ * This shell is intentionally Blueprint-extensible: content children may provide
+ * presentation and authored prompts while TravelSubsystem remains the only route
+ * owner. Do not add direct map loading to a child.
+ */
 UCLASS(Blueprintable, meta=(DisplayName="Melodia Travel Interaction Portal"))
-class BS_GODFILE_API AMelodiaTravelInteractionPortal final : public AActor
+class BS_GODFILE_API AMelodiaTravelInteractionPortal : public AActor
 {
 	GENERATED_BODY()
 

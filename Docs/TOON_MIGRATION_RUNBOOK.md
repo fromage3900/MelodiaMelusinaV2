@@ -84,7 +84,7 @@ Systematic playbook for converting **all portfolio-relevant** Melodia materials 
 2. **Plugins:** Python Editor Script Plugin, UnrealMCP (`Plugins/UnrealMCP`), PCG optional.
 3. **Redirector hygiene:** After every robocopy batch, run:
    ```text
-   py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py"
+   py "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py"
    ```
    If API missing → see [UE58_REDIRECTOR_CLEANUP.md](UE58_REDIRECTOR_CLEANUP.md): Filters → Show Redirectors → **Fixup**, or `py Content/Python/fix_migration_redirectors.py`. (The old “Fix Up Redirectors in Folder” label is not in UE 5.8.) → Save All.
 4. **Master templates** (create before large instance work):

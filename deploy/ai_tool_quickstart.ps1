@@ -3,7 +3,7 @@
 
 param(
     [string]$Action = "status",
-    [string]$Model = "qwen2.5-coder:14b",
+    [string]$Model = "qwen2.5-coder:7b",
     [string]$Provider = "auto"
 )
 

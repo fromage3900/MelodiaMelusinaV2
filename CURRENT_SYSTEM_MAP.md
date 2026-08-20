@@ -1,8 +1,8 @@
 # Current System Map — Portfolio Generation Pipeline
 
-> Read-only audit snapshot. Captured 2026-06-25 from `G:/EnvironmentPortfolio/BS_GodFile`.
+> Read-only audit snapshot. Captured 2026-06-25 from `C:/EnvironmentPortfolio/BS_GodFile`.
 > No code was modified to produce this document.
-> Companion docs: [PORTFOLIO_PIPELINE_AUDIT.md](PORTFOLIO_PIPELINE_AUDIT.md), [NEXT_HIGHEST_LEVERAGE_TASK.md](NEXT_HIGHEST_LEVERAGE_TASK.md).
+> Companion docs: [PORTFOLIO_PIPELINE_AUDIT.md](PORTFOLIO_PIPELINE_AUDIT.md), [NEXT_HIGHEST_LEVERAGE_TASK.md](Docs/_Superseded/NEXT_HIGHEST_LEVERAGE_TASK.md).
 
 ## 1. The intended loop
 

@@ -2,6 +2,7 @@
 
 #include "Components/InputComponent.h"
 #include "Components/MeshComponent.h"
+#include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -9,6 +10,8 @@
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
 #include "MelodiaInputContextSubsystem.h"
+#include "MelodiaRhythmReactivitySubsystem.h"
+#include "MelodiaTraversalCapabilityProvider.h"
 #include "MelodiaWaterAudioBridgeComponent.h"
 #include "MelodiaWaterInteractionSubsystem.h"
 #include "MelodiaWaterNiagaraBridgeComponent.h"
@@ -124,6 +127,129 @@ float UMelodiaTraversalComponent::GetBreathNormalized() const
 		: 0.0f;
 }
 
+EMelodiaTraversalMode UMelodiaTraversalComponent::GetTraversalMode() const
+{
+	return bIsGliding ? EMelodiaTraversalMode::Glide : EMelodiaTraversalMode::Grounded;
+}
+
+bool UMelodiaTraversalComponent::IsCapabilityAvailableForMode(
+	const EMelodiaTraversalMode RequestedMode,
+	FName& OutBlockReason) const
+{
+	OutBlockReason = NAME_None;
+	if (RequestedMode != EMelodiaTraversalMode::Glide || !bRequireCapabilityProviderForGlide)
+	{
+		return true;
+	}
+
+	const UWorld* World = GetWorld();
+	const UGameInstance* GameInstance = World ? World->GetGameInstance() : nullptr;
+	const UMelodiaTraversalCapabilityRegistry* Registry = GameInstance
+		? GameInstance->GetSubsystem<UMelodiaTraversalCapabilityRegistry>()
+		: nullptr;
+	if (!Registry)
+	{
+		OutBlockReason = TEXT("capability_provider_missing");
+		return false;
+	}
+
+	return Registry->QueryCapability(
+		MelodiaTraversalCapability::Glide,
+		TraversalCapabilityContextId,
+		OutBlockReason);
+}
+
+FMelodiaTraversalRequestResult UMelodiaTraversalComponent::RequestTraversalMode(
+	const EMelodiaTraversalMode RequestedMode)
+{
+	FMelodiaTraversalRequestResult Response;
+	Response.RequestedMode = RequestedMode;
+
+	if (!OwnerCharacter.IsValid() || !Movement.IsValid())
+	{
+		Response.Result = EMelodiaTraversalRequestResult::RejectedOwner;
+		Response.BlockReason = TEXT("traversal_owner_unavailable");
+		return Response;
+	}
+
+	if (!IsTraversalMovementAllowed(this))
+	{
+		Response.Result = EMelodiaTraversalRequestResult::RejectedContext;
+		Response.BlockReason = TEXT("input_context_blocks_movement");
+		return Response;
+	}
+
+	switch (RequestedMode)
+	{
+	case EMelodiaTraversalMode::Grounded:
+		if (!bIsGliding)
+		{
+			Response.Result = EMelodiaTraversalRequestResult::AlreadyActive;
+			Response.BlockReason = TEXT("already_grounded");
+			return Response;
+		}
+
+		CancelTraversalState();
+		Response.Result = EMelodiaTraversalRequestResult::Accepted;
+		return Response;
+
+	case EMelodiaTraversalMode::Glide:
+		{
+			FName CapabilityBlockReason;
+			if (!IsCapabilityAvailableForMode(RequestedMode, CapabilityBlockReason))
+			{
+				Response.Result = EMelodiaTraversalRequestResult::RejectedCapability;
+				Response.BlockReason = CapabilityBlockReason.IsNone()
+					? FName(TEXT("capability_not_active"))
+					: CapabilityBlockReason;
+				return Response;
+			}
+		}
+
+		if (bIsGliding)
+		{
+			Response.Result = EMelodiaTraversalRequestResult::AlreadyActive;
+			Response.BlockReason = TEXT("already_gliding");
+			return Response;
+		}
+
+		if (Movement->IsMovingOnGround())
+		{
+			Response.Result = EMelodiaTraversalRequestResult::RejectedContext;
+			Response.BlockReason = TEXT("glide_requires_airborne_state");
+			return Response;
+		}
+
+		if (GlideStamina < MinimumGlideStartStamina)
+		{
+			Response.Result = EMelodiaTraversalRequestResult::RejectedResource;
+			Response.BlockReason = TEXT("insufficient_glide_stamina");
+			return Response;
+		}
+
+		StartGlide();
+		if (bIsGliding)
+		{
+			Response.Result = EMelodiaTraversalRequestResult::Accepted;
+			return Response;
+		}
+
+		Response.Result = EMelodiaTraversalRequestResult::RejectedContext;
+		Response.BlockReason = TEXT("glide_start_rejected");
+		return Response;
+
+	default:
+		Response.Result = EMelodiaTraversalRequestResult::UnsupportedMode;
+		Response.BlockReason = TEXT("mode_not_yet_supported");
+		return Response;
+	}
+}
+
+void UMelodiaTraversalComponent::ResetTraversalState()
+{
+	CancelTraversalState();
+}
+
 void UMelodiaTraversalComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	bSuppressWaterPresentation = true;
@@ -204,6 +330,13 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 	// Glide logic
 	if (bIsGliding)
 	{
+		FName CapabilityBlockReason;
+		if (!IsCapabilityAvailableForMode(EMelodiaTraversalMode::Glide, CapabilityBlockReason))
+		{
+			CancelTraversalState();
+			return;
+		}
+
 		if (Movement->IsMovingOnGround())
 		{
 			StopGlide();
@@ -381,7 +514,7 @@ void UMelodiaTraversalComponent::HandleJumpPressed()
 	if (bAwaitingGlideTap)
 	{
 		bAwaitingGlideTap = false;
-		StartGlide();
+		RequestTraversalMode(EMelodiaTraversalMode::Glide);
 	}
 }
 
@@ -871,6 +1004,21 @@ void UMelodiaTraversalComponent::UpdateWaterState(float DeltaTime)
 		}
 
 		OnWaterProximityChanged.Broadcast(Proximity);
+
+		// Exploration tension register: approaching water reads as quiet unease,
+		// diving reads strongest (OMORI held-tension / SH2 radio-static register,
+		// Decision 033 -- presentation only, never gameplay). Hysteresis-gated so
+		// the per-frame proximity update cannot spam the reactivity Publish.
+		if (UMelodiaRhythmReactivitySubsystem* Reactivity = UMelodiaRhythmReactivitySubsystem::Get(this))
+		{
+			const float DiveBoost = bIsDiving ? 0.35f : 0.0f;
+			const float ExplorationTension = FMath::Clamp(Proximity * 0.55f + DiveBoost, 0.0f, 1.0f);
+			if (FMath::Abs(ExplorationTension - LastPublishedExplorationTension) >= 0.05f)
+			{
+				LastPublishedExplorationTension = ExplorationTension;
+				Reactivity->NotifyEnemyIntent(ExplorationTension);
+			}
+		}
 
 		if (!bWaterProximityActive && Proximity >= WaterProximityEnterThreshold)
 		{

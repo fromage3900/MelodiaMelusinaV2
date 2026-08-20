@@ -50,7 +50,7 @@ def cc0_path(surface: str, channel: str) -> str:
 
 
 def cc0_chain(surface: str) -> dict[str, list[str]]:
-    """Albedo / Normal / Height candidate chains for one CC0 surface."""
+    """Albedo / Normal / Height / ORM candidate chains for one CC0 surface."""
     import portfolio_texture_catalog as catalog
 
     color = cc0_path(surface, "Color")
@@ -62,9 +62,10 @@ def cc0_chain(surface: str) -> dict[str, list[str]]:
         "Albedo": [color, *catalog._chain(catalog.MARBLE["warm_stone"])],
         "Normal": [normal_gl, *catalog._normal_chain()],
         "Height": [disp, ao, rough, *catalog._chain(catalog.HEIGHT["perlin"])],
-        # CC0 packs are only an interim source and do not provide a stable ORM
-        # contract.  Authored terrain maps supply this channel.
-        "ORM": [],
+        # CC0 packs have no packed ORM (R=AO/G=rough/B=metal). Route the
+        # packed-neutral ORM so the slot never falls back to a color pack.
+        # Authored terrain maps (T_Land_*_ORM) supersede this once imported.
+        "ORM": [catalog.NEUTRAL["orm"], catalog.NEUTRAL["roughness"], catalog.NEUTRAL["metallic"]],
     }
 
 
@@ -74,7 +75,7 @@ LANDSCAPE_LAYER_TEXTURES: dict[str, dict[str, list[str]]] = {
     # being produced.  Never use one placeholder for both rock and ground.
     "Rock": cc0_chain("Marble012"),
     "Grass": cc0_chain("Ground037"),
-    "Mud": cc0_chain("Ground037"),
+    "Mud": cc0_chain("Bricks066"),  # worn brick — NOT Ground037 (grass)
     "Path": cc0_chain("PavingStones070"),
 }
 
@@ -82,7 +83,7 @@ LANDSCAPE_LAYER_TEXTURES: dict[str, dict[str, list[str]]] = {
 LANDSCAPE_LAYER_FALLBACKS: dict[str, dict[str, list[str]]] = {
     "Rock": cc0_chain("Bricks051"),
     "Grass": cc0_chain("Fabric045"),
-    "Mud": cc0_chain("Ground037"),
+    "Mud": cc0_chain("Tiles093"),  # distinct packed-earth read, never Ground037
     "Path": cc0_chain("Tiles074"),
 }
 

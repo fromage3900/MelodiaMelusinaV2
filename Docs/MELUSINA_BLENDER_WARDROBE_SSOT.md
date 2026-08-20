@@ -11,7 +11,7 @@ Historical: `KitbashExport/Melodia_Portfolio_Stage_v10.blend` (retired as the La
 
 | Lane | Canonical artifact | Purpose | Not for |
 |------|-------------------|---------|---------|
-| **A — Portfolio stage** | `G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend` + cockpit. Historical: `KitbashExport/Melodia_Portfolio_Stage_v10.blend` + `STAGE_README_v4.md` | Melusina beauty/cine stills, FX tiers, passports, site plates | Game mesh SKU export |
+| **A — Portfolio stage** | `G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_ZenRebuild_WIP.blend` + cockpit. Historical: `KitbashExport/Melodia_Portfolio_Stage_v10.blend` + `STAGE_README_v4.md` (**README missing**) | Melusina beauty/cine stills, FX tiers, passports, site plates | Game mesh SKU export |
 | **B — Ornament factory** | `KitbashExport/OrnamentalMeshes/SM_Orn_*.fbx` | Procedural ornaments → UE `/Game/EnvSandbox/Meshes/Ornament/` | Character clothes |
 | **C — Live Link** | `Docs/BLENDER_LIVELINK.md` (port **9876**) | Interactive scene sync → `/Game/LiveLink/` | Ornament SKU or wardrobe SSOT |
 | **D — Character / wardrobe** | External `G:\MelodiaMelusina\MelusinaFinalRig\` + this doc | Rig/skin; stage **links** Melusina; new outfits → `Wardrobe_*` + `Exports/MelusinaClothes/` | Live Link dumps, `SM_Orn_*` |
@@ -35,7 +35,7 @@ Cockpit (start-here): [`Docs/BLENDER_MELODIA_COCKPIT.md`](BLENDER_MELODIA_COCKPI
 | Eyes | Both `R_Iris.001` + `R_Iris.002` → **`Material.020_*`** | UV-matched Blender set. `M_Iris_front/Back_*` = UE only. See `Docs/MELUSINA_IRIS_POSTMORTEM_2026-07-13.md` |
 | MCP vs Live Link | MCP **9876** (N → BlenderMCP → Connect) · Live Link **9876** (Studio **Live Bridge → Start Server** — different button) | Same port, different Studio buttons. **9877 / 9317** are legacy — do not use |
 
-Live inventory of hybrid mats: [`Saved/Audit/melusina_komikaze_hybrid_inventory.json`](../Saved/Audit/melusina_komikaze_hybrid_inventory.json).
+Live inventory of hybrid mats: `Saved/Audit/melusina_komikaze_hybrid_inventory.json` — **MISSING (verified 2026-08-14).** Not on disk and not in git. It was produced by the two Komikaze scripts below, which are themselves gone, so it cannot be regenerated as documented.
 
 ## Melusina shading lanes (Komikaze)
 
@@ -56,7 +56,13 @@ Used on **hair, body, shawl, skirt, sleeves, boots, hat, etc.**
 
 Used on **`Studio_FloorCard`**, backdrop (when visible), `Set_Diorama`, kitbash prop plates.
 
-- Append whole Komikaze catalog materials via [`Tools/komikaze_stage_looks.py`](../Tools/komikaze_stage_looks.py) / [`Tools/batch_eevee_komikaze_portfolio.py`](../Tools/batch_eevee_komikaze_portfolio.py).  
+- ~~Append whole Komikaze catalog materials via `Tools/komikaze_stage_looks.py` /
+  `Tools/batch_eevee_komikaze_portfolio.py`.~~ **BOTH SCRIPTS ARE GONE (verified 2026-08-14).**
+  Only their bytecode survives — `Tools/__pycache__/komikaze_stage_looks.cpython-313.pyc` (8 KB,
+  last run 2026-07-11) and `batch_eevee_komikaze_portfolio.cpython-313.pyc` (50 KB, 2026-07-15).
+  Neither has any git history: `Tools/*` is gitignored, so deleting them was silent and
+  unrecoverable. **Do not follow this step — there is nothing to run.** See
+  `Docs/Reports/LOST_TOOL_SOURCES_2026-08-14.md`.  
 - Scripts **skip** Melusina objects so they do not wipe Lane A hybrids. That skip is “don’t full-replace character,” not “character has no Komikaze.”
 
 ## Naming contracts
@@ -132,8 +138,8 @@ Writes `Exports/MelusinaClothes/<OutfitId>/SK_Melusina_<OutfitId>.fbx` + sidecar
 
 ## Related docs
 
-- Stage toggles: [`KitbashExport/STAGE_README_v4.md`](../KitbashExport/STAGE_README_v4.md)
+- Stage toggles: `KitbashExport/STAGE_README_v4.md` — **MISSING (verified 2026-08-14)**, not on disk, not in git
 - Cockpit: [`BLENDER_MELODIA_COCKPIT.md`](BLENDER_MELODIA_COCKPIT.md)
-- Pipeline gaps: [`BLENDER_PIPELINE_REVIEW_2026-07-11.md`](BLENDER_PIPELINE_REVIEW_2026-07-11.md)
-- Textures: [`MELUSINA_TEXTURE_IMPORT_PLAN.md`](MELUSINA_TEXTURE_IMPORT_PLAN.md)
+- Pipeline gaps: `BLENDER_PIPELINE_REVIEW_2026-07-11.md` — **MISSING (verified 2026-08-14)**
+- Textures: `MELUSINA_TEXTURE_IMPORT_PLAN.md` — **MISSING (verified 2026-08-14)**
 - Live Link: [`BLENDER_LIVELINK.md`](BLENDER_LIVELINK.md)

@@ -133,7 +133,7 @@ python Content/Python/run_phase_a_safe.py
 **Starter pipeline (editor or headless):**
 
 ```text
-py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py"                 # or --force to refresh groups
+py "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py"                 # or --force to refresh groups
 py Content/Python/apply_starter_instances.py              # create/update 13 MI_Show_*
 py Content/Python/setup_trimsheet_instances.py          # create/update 4 trimsheet MIs
 py Content/Python/archive_unused_instances.py             # optional: move legacy Environment MIs
@@ -146,7 +146,7 @@ Headless:
 ```text
 set BS_STARTERS_ONLY=1
 UnrealEditor-Cmd.exe BS_GodFile.uproject ^
-  -ExecutePythonScript="G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py" ^
+  -ExecutePythonScript="C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py" ^
   -unattended -nullrhi
 
 py Content/Python/setup_trimsheet_instances.py          # headless, same flags
@@ -219,7 +219,7 @@ See `Docs/MATERIAL_LIBRARY_NAPO_LOOP_PLAN.md` and `Docs/Research/UE58_MaterialNo
 
 ## Master texture loop (no `/Engine/` textures)
 
-**Hard rule:** Never assign `DefaultTexture`, `WhiteSquareTexture`, or any `/Engine/` path on master texture parameters. All defaults come from `/Game/Textures` compositing catalog via [`portfolio_texture_catalog.py`](Content/Python/portfolio_texture_catalog.py).
+**Hard rule:** Never assign `DefaultTexture`, `WhiteSquareTexture`, or any `/Engine/` path on master texture parameters. All defaults come from `/Game/Textures` compositing catalog via [`portfolio_texture_catalog.py`](../Content/Python/portfolio_texture_catalog.py).
 
 | Mechanism | Purpose |
 |-----------|---------|

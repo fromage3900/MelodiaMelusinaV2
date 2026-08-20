@@ -87,5 +87,32 @@ if [ -n "$JUNK" ]; then
   exit 1
 fi
 
+# 6. Guard the CLAUDE.md never-touch table.
+#
+# Added 2026-08-13. CLAUDE.md and _TASK_QUEUE.md both stated that this hook
+# protected these paths. It did not -- there was no such check anywhere in
+# .githooks/, so the never-touch table was enforced by nothing but goodwill.
+# Making the claim true rather than deleting it.
+#
+# Override for a deliberate, reviewed change:  SKIP_PROTECTION=1 git commit ...
+if [ "${SKIP_PROTECTION:-0}" != "1" ]; then
+  PROTECTED=$(git diff --cached --name-only | grep -E \
+    '^(\.gitignore|\.gitattributes|Config/DefaultEngine\.ini|Config/DefaultGame\.ini|deploy/run_verify\.ps1|Content/Materials/MF_MeshBlend_.*\.uasset)$' \
+    || true)
+  if [ -n "$PROTECTED" ]; then
+    echo "ERROR: [pre-commit] Protected files staged (CLAUDE.md never-touch table):"
+    echo "$PROTECTED" | sed 's/^/  /'
+    echo ""
+    echo "  .gitignore      protects ~4.6 GB of untracked art from being staged"
+    echo "  .gitattributes  controls LFS for every .uasset/.umap/.blend"
+    echo "  Config/*.ini    shared engine/game config; wrong edits break all launch modes"
+    echo "  run_verify.ps1  the SQA gate; editing it bypasses every safety check"
+    echo ""
+    echo "These need owner sign-off. If this change IS the reviewed one:"
+    echo "  SKIP_PROTECTION=1 git commit ..."
+    exit 1
+  fi
+fi
+
 echo "==> [pre-commit] Validation passed."
 exit 0

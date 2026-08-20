@@ -1,4 +1,4 @@
-﻿"""Musical GN group builders ΓÇö note head, treble clef, staff, harmonic driver, phrase.
+"""Musical GN group builders ΓÇö note head, treble clef, staff, harmonic driver, phrase.
 
 Uses: exponent_blend (spiral), power_scale (iteration falloff), add (sine stacking),
       store_attribute (pitch/duration/velocity), bounding_box (auto-fit).
@@ -14,7 +14,8 @@ from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node,
     label_tree, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param, add_vector_param,
-    make_group_input,
+    make_group_input, sweep_profile, add_music_influence_params,
+    apply_universal_music_pass, input_geometry_with_default,
 )
 
 
@@ -376,22 +377,16 @@ def build_music_staff(group_name="MEL_music_staff"):
     add_float_param(tree, "Thickness", 0.008, 0.002, 0.03)
     add_int_param(tree, "Bar Count", 4, 1, 16)
     add_bool_param(tree, "Show Clef", True)
+    add_music_influence_params(tree)
 
-    # Single staff line: cylinder along X
+    # Single staff line: curve sweep along X
     line_cyl = safe_node(tree, "GeometryNodeMeshLine", (bx - 400, by + 300))
     line_cyl.mode = "END_POINTS"
     line_cyl.inputs["Count"].default_value = 2
     link_float_to_vector(tree, gin.outputs["Length"], line_cyl, "Start Location", component=0)
-
-    line_profile = safe_node(tree, "GeometryNodeMeshCircle", (bx - 200, by + 300))
-    link_sockets(tree, gin.outputs["Thickness"], line_profile.inputs["Radius"])
-    line_profile.inputs["Vertices"].default_value = 6
-    line_profile.fill_type = "NGON"
-
-    line_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx - 100, by + 300))
-    link_sockets(tree, line_cyl.outputs["Mesh"], line_mesh.inputs["Curve"])
-    line_prof = line_mesh.inputs.get("Profile Curve") or line_mesh.inputs.get("Profile")
-    link_sockets(tree, line_profile.outputs["Mesh"], line_prof)
+    line_mesh_sock = sweep_profile(
+        tree, (bx - 100, by + 300), line_cyl.outputs["Mesh"], gin.outputs["Thickness"],
+        profile_res=8, already_curve=False)
 
     # Array 5 lines via linear array on Y
     grid = safe_node(tree, "GeometryNodeMeshGrid", (bx + 100, by + 300))
@@ -406,7 +401,7 @@ def build_music_staff(group_name="MEL_music_staff"):
 
     inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx + 300, by + 300))
     link_sockets(tree, grid.outputs["Mesh"], inst.inputs["Points"])
-    link_sockets(tree, line_mesh.outputs["Mesh"], inst.inputs["Instance"])
+    link_sockets(tree, line_mesh_sock, inst.inputs["Instance"])
 
     # Set position to space lines vertically
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx + 500, by + 300))
@@ -422,10 +417,9 @@ def build_music_staff(group_name="MEL_music_staff"):
     bar_cyl.inputs["Start Location"].default_value[2] = -0.35
     bar_cyl.inputs["Start Location"].default_value[1] = 0.35
 
-    bar_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx, by + 100))
-    link_sockets(tree, bar_cyl.outputs["Mesh"], bar_mesh.inputs["Curve"])
-    bar_prof = bar_mesh.inputs.get("Profile Curve") or bar_mesh.inputs.get("Profile")
-    link_sockets(tree, line_profile.outputs["Mesh"], bar_prof)
+    bar_mesh_sock = sweep_profile(
+        tree, (bx, by + 100), bar_cyl.outputs["Mesh"], gin.outputs["Thickness"],
+        profile_res=8, already_curve=False)
 
     # Array bar lines along X
     bar_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 200, by))
@@ -435,7 +429,7 @@ def build_music_staff(group_name="MEL_music_staff"):
 
     bar_inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx, by))
     link_sockets(tree, bar_line.outputs["Mesh"], bar_inst.inputs["Points"])
-    link_sockets(tree, bar_mesh.outputs["Mesh"], bar_inst.inputs["Instance"])
+    link_sockets(tree, bar_mesh_sock, bar_inst.inputs["Instance"])
 
     realize_bars = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 200, by))
     link_sockets(tree, bar_inst.outputs["Instances"], realize_bars.inputs["Geometry"])
@@ -470,7 +464,8 @@ def build_music_staff(group_name="MEL_music_staff"):
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 600, by + 150))
     shade.inputs["Shade Smooth"].default_value = True
     link_sockets(tree, store_line.outputs["Geometry"], shade.inputs["Geometry"])
-    link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
+    music_geo = apply_universal_music_pass(tree, gin, shade.outputs["Geometry"], (bx + 800, by + 150))
+    link_sockets(tree, music_geo, gout.inputs["Geometry"])
 
     color_node(grid, "curve")
     color_node(inst, "instance")
@@ -509,6 +504,8 @@ def build_music_harmonic(group_name="MEL_music_harmonic"):
     add_float_param(tree, "Fade In", 0.2, 0.0, 1.0)
     add_float_param(tree, "Fade Out", 0.2, 0.0, 1.0)
     add_int_param(tree, "Note Count", 16, 4, 64)
+
+    src = input_geometry_with_default(tree, gin, (bx - 700, by), kind="grid")
 
     # Position input
     idx = safe_node(tree, "GeometryNodeInputIndex", (bx - 500, by + 300))
@@ -662,7 +659,7 @@ def build_music_harmonic(group_name="MEL_music_harmonic"):
 
     # Store as "pitch" attribute
     store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 1400, by + 250))
-    link_sockets(tree, gin.outputs["Geometry"], store.inputs["Geometry"])
+    link_sockets(tree, src, store.inputs["Geometry"])
     link_sockets(tree, final.outputs[0], store.inputs["Value"])
     store.data_type = "FLOAT"
     try:
@@ -707,16 +704,9 @@ def build_music_phrase(group_name="MEL_music_phrase"):
     staff_line.mode = "END_POINTS"
     staff_line.inputs["Count"].default_value = 2
     link_float_to_vector(tree, gin.outputs["Length"], staff_line, "Start Location", component=0)
-
-    staff_profile = safe_node(tree, "GeometryNodeMeshCircle", (bx - 500, by + 300))
-    staff_profile.inputs["Radius"].default_value = 0.006
-    staff_profile.inputs["Vertices"].default_value = 6
-    staff_profile.fill_type = "NGON"
-
-    staff_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx - 400, by + 350))
-    link_sockets(tree, staff_line.outputs["Mesh"], staff_mesh.inputs["Curve"])
-    staff_prof = staff_mesh.inputs.get("Profile Curve") or staff_mesh.inputs.get("Profile")
-    link_sockets(tree, staff_profile.outputs["Mesh"], staff_prof)
+    staff_mesh_sock = sweep_profile(
+        tree, (bx - 400, by + 350), staff_line.outputs["Mesh"], None,
+        profile_res=6, already_curve=False)
 
     # 5 staff lines arrayed on Y
     grid = safe_node(tree, "GeometryNodeMeshGrid", (bx - 400, by + 500))
@@ -727,7 +717,7 @@ def build_music_phrase(group_name="MEL_music_phrase"):
 
     inst_staff = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx - 200, by + 500))
     link_sockets(tree, grid.outputs["Mesh"], inst_staff.inputs["Points"])
-    link_sockets(tree, staff_mesh.outputs["Mesh"], inst_staff.inputs["Instance"])
+    link_sockets(tree, staff_mesh_sock, inst_staff.inputs["Instance"])
 
     realize_staff = safe_node(tree, "GeometryNodeRealizeInstances", (bx, by + 500))
     link_sockets(tree, inst_staff.outputs["Instances"], realize_staff.inputs["Geometry"])
@@ -843,129 +833,9 @@ def build_music_phrase(group_name="MEL_music_phrase"):
 
 
 def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
-    """Sheet-music railing: staff rail, notes, and posts as editable instances."""
-    tree, gin, gout = new_geometry_tree(group_name)
-    bx, by = 0, 0
-
-    add_float_param(tree, "Length", 8.0, 1.0, 30.0)
-    add_float_param(tree, "Height", 1.0, 0.2, 5.0)
-    add_float_param(tree, "Line Thickness", 0.025, 0.004, 0.2)
-    add_int_param(tree, "Note Count", 12, 1, 96)
-    add_float_param(tree, "Note Size", 0.18, 0.04, 1.0)
-    add_int_param(tree, "Post Count", 5, 2, 32)
-    add_bool_param(tree, "Show Clef", True)
-    add_bool_param(tree, "Realize for export", False)
-
-    staff_grp = _ensure_group_node(tree, "MEL_music_staff", build_music_staff, (bx - 500, by + 360))
-    if staff_grp and staff_grp.node_tree:
-        if staff_grp.inputs.get("Length"):
-            link_sockets(tree, gin.outputs["Length"], staff_grp.inputs["Length"])
-        if staff_grp.inputs.get("Line Spacing"):
-            spacing = safe_node(tree, "ShaderNodeMath", (bx - 720, by + 260))
-            spacing.operation = "DIVIDE"
-            link_sockets(tree, gin.outputs["Height"], spacing.inputs[0])
-            spacing.inputs[1].default_value = 4.0
-            link_sockets(tree, spacing.outputs[0], staff_grp.inputs["Line Spacing"])
-        if staff_grp.inputs.get("Thickness"):
-            link_sockets(tree, gin.outputs["Line Thickness"], staff_grp.inputs["Thickness"])
-        if staff_grp.inputs.get("Show Clef"):
-            link_sockets(tree, gin.outputs["Show Clef"], staff_grp.inputs["Show Clef"])
-
-    note_points = safe_node(tree, "GeometryNodeMeshLine", (bx - 500, by + 80))
-    note_points.mode = "END_POINTS"
-    link_sockets(tree, gin.outputs["Note Count"], note_points.inputs["Count"])
-    link_float_to_vector(tree, gin.outputs["Length"], note_points, "Start Location", component=0)
-
-    harmonic_grp = _ensure_group_node(tree, "MEL_music_harmonic", build_music_harmonic, (bx - 280, by + 80))
-    pitched_points = note_points.outputs["Mesh"]
-    if harmonic_grp and harmonic_grp.node_tree:
-        if harmonic_grp.inputs.get("Geometry"):
-            link_sockets(tree, note_points.outputs["Mesh"], harmonic_grp.inputs["Geometry"])
-        if harmonic_grp.inputs.get("Note Count"):
-            link_sockets(tree, gin.outputs["Note Count"], harmonic_grp.inputs["Note Count"])
-        pitched_points = harmonic_grp.outputs.get("Geometry") or pitched_points
-
-    note_grp = _ensure_group_node(tree, "MEL_music_note_head", build_music_note_head, (bx - 120, by - 80))
-    if note_grp and note_grp.node_tree and note_grp.inputs.get("Scale"):
-        link_sockets(tree, gin.outputs["Note Size"], note_grp.inputs["Scale"])
-
-    note_inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx + 140, by + 80))
-    link_sockets(tree, pitched_points, note_inst.inputs["Points"])
-    if note_grp and note_grp.node_tree:
-        note_geo = note_grp.outputs.get("Geometry")
-        if note_geo:
-            link_sockets(tree, note_geo, note_inst.inputs["Instance"])
-
-    post_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 500, by - 280))
-    post_line.mode = "END_POINTS"
-    link_sockets(tree, gin.outputs["Post Count"], post_line.inputs["Count"])
-    link_float_to_vector(tree, gin.outputs["Length"], post_line, "Start Location", component=0)
-
-    try:
-        from .profiles import build_post
-        post_grp = _ensure_group_node(tree, "MEL_post", build_post, (bx - 120, by - 420))
-    except Exception:
-        post_grp = None
-    if post_grp and post_grp.node_tree:
-        if post_grp.inputs.get("Height"):
-            link_sockets(tree, gin.outputs["Height"], post_grp.inputs["Height"])
-        if post_grp.inputs.get("Width"):
-            post_grp.inputs["Width"].default_value = 0.06
-
-    post_inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx + 140, by - 280))
-    link_sockets(tree, post_line.outputs["Mesh"], post_inst.inputs["Points"])
-    if post_grp and post_grp.node_tree:
-        post_geo = post_grp.outputs.get("Geometry")
-        if post_geo:
-            link_sockets(tree, post_geo, post_inst.inputs["Instance"])
-
-    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 420, by + 80))
-    if staff_grp and staff_grp.node_tree:
-        staff_geo = staff_grp.outputs.get("Geometry")
-        if staff_geo:
-            link_sockets(tree, staff_geo, join.inputs["Geometry"])
-    link_sockets(tree, note_inst.outputs["Instances"], join.inputs["Geometry"])
-    link_sockets(tree, post_inst.outputs["Instances"], join.inputs["Geometry"])
-
-    realize = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 620, by + 80))
-    link_sockets(tree, join.outputs["Geometry"], realize.inputs["Geometry"])
-
-    export_switch = safe_node(tree, "GeometryNodeSwitch", (bx + 820, by + 80))
-    try:
-        export_switch.input_type = "GEOMETRY"
-    except Exception:
-        pass
-    link_sockets(tree, gin.outputs["Realize for export"], export_switch.inputs["Switch"])
-    link_sockets(tree, join.outputs["Geometry"], _false_socket(export_switch))
-    link_sockets(tree, realize.outputs["Geometry"], _true_socket(export_switch))
-
-    shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 1020, by + 80))
-    shade.inputs["Shade Smooth"].default_value = True
-    link_sockets(tree, _output_socket(export_switch), shade.inputs["Geometry"])
-    link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
-
-    for node, role in (
-        (staff_grp, "curve"),
-        (note_points, "curve"),
-        (harmonic_grp, "attribute"),
-        (note_grp, "geometry"),
-        (note_inst, "instance"),
-        (post_line, "curve"),
-        (post_grp, "geometry"),
-        (post_inst, "instance"),
-        (join, "geometry"),
-        (export_switch, "instance"),
-        (shade, "geometry"),
-    ):
-        color_node(node, role)
-
-    return label_tree(tree, "MEL_music_sheet_rail", [
-        {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
-        {"title": "Staff Rail", "nodes": ("staff",), "role": "curve"},
-        {"title": "Notes", "nodes": ("note", "harmonic"), "role": "instance"},
-        {"title": "Posts", "nodes": ("post",), "role": "instance"},
-        {"title": "Export", "nodes": ("realize", "switch", "shade", "Group Output"), "role": "output"},
-    ])
+    """Walkable staff railing — same tree id, implementation in music_heroes."""
+    from .music_heroes import build_music_sheet_rail as _impl
+    return _impl(group_name)
 
 
 # -- Registry --
@@ -975,17 +845,17 @@ register_builder("MEL_music_note_head", build_music_note_head, "Music Note Head"
     "Elliptical note head with stem, flag, and pitch/duration/velocity attributes",
     "music")
 register_builder("MEL_music_treble_clef", build_music_treble_clef, "Music Treble Clef",
-    "Treble clef glyph ΓÇö 4 bezier segments merged and tube-swept",
+    "Treble clef glyph — 4 bezier segments merged and tube-swept",
     "music")
 register_builder("MEL_music_staff", build_music_staff, "Music Staff",
     "Five-line staff with bar lines and line-index attribute storage",
     "music")
 register_builder("MEL_music_harmonic", build_music_harmonic, "Music Harmonic Driver",
     "5-layer additive harmonic pitch driver with fade envelope",
-    "music")
+    "music", role="modifier")
 register_builder("MEL_music_phrase", build_music_phrase, "Music Phrase (Composite)",
-    "Composite musical phrase ΓÇö staff + note heads + harmonic + clef",
+    "Composite musical phrase — staff + note heads + harmonic + clef",
     "music")
 register_builder("MEL_music_sheet_rail", build_music_sheet_rail, "Sheet Music Rail",
-    "Editable staff railing composed from notes, posts, and line arrays",
+    "Walkable staff railing: posts, five swept lines, note heads at pitch-height",
     "music")

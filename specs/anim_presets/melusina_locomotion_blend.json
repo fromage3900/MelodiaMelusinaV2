@@ -1,34 +1,38 @@
 {
-  "blendspace_path": "/Game/Melodia/Characters/Melusina/BS_Melusina_Locomotion",
+  "_comment": "Canonical ground-locomotion blendspace for Melusina. Paths corrected 2026-08-15: the previous revision pointed at Animations/Mocap_RootX/ (never existed on disk) and at .../Melusina/BS_Melusina_Locomotion (asset actually lives under .../Melusina/Animations/). Every sample write silently failed. Verified against Saved/Audit/melusina_sprint_wiring.json.",
+  "blendspace_path": "/Game/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion",
+  "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
   "samples": [
     {
       "index": 0,
-      "animation": "/Game/Melodia/Characters/Melusina/Animations/Mocap_RootX/A_Melusina_Idle.A_Melusina_Idle",
+      "_comment": "A_Melusina_Idle (unsuffixed, 2026-08-08) is NOT the approved idle. Saved/Audit/melusina_idle_restore_mocap_2026-08-13.md records the owner-approved speed-0 clip as A_Melusina_Idle_Mocap_RootX, restored because the prior sample rendered a collapsed/wrong pose. The unsuffixed 08-08 asset was wired in afterwards and is the prime suspect for the current T-pose. Mocap is the only chain that reaches SK_Melusina_Skeleton through RTG_Mocap_to_Melusina; direct Lane A imports miss the contract on four axes (units, bone names, bone count, fps) -- see melusina_idle_retarget_rca_2026-08-13.md.",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX",
       "speed": 0.0,
       "label": "Idle"
     },
     {
       "index": 1,
-      "animation": "/Game/Melodia/Characters/Melusina/Animations/Mocap_RootX/A_Melusina_Walk.A_Melusina_Walk",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
       "speed": 180.0,
       "label": "Walk_Mocap"
     },
     {
       "index": 2,
-      "animation": "/Game/Melodia/Characters/Melusina/Animations/Mocap_RootX/A_Melusina_Run.A_Melusina_Run",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run_Mocap_RootX",
       "speed": 420.0,
       "label": "Run_Mocap"
     },
     {
       "index": 3,
-      "animation": "/Game/Melodia/Characters/Melusina/Animations/Mocap_RootX/A_Melusina_Sprint.A_Melusina_Sprint",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Sprint_Mocap_RootX",
       "speed": 630.0,
       "label": "Sprint_Mocap"
     }
   ],
   "axis_settings": {
     "horizontal_axis": "Speed",
-    "horizontal_range": [0.0, 630.0],
+    "_horizontal_range_comment": "Max raised 630 -> 750. The sprint gate records 714 uu/s; an axis capped at 630 (or the Hybrid's 650) clamps sprint and the top of the range is never reachable.",
+    "horizontal_range": [0.0, 750.0],
     "interpolation": {
       "type": "linear",
       "target_value_interpolation": "Linear"
@@ -37,5 +41,6 @@
   "modifiers": {
     "rate_scale": 1.0,
     "b_loop": true
-  }
+  },
+  "measured_speeds_report": "Saved/Audit/melusina_locomotion_measured_speeds.json"
 }

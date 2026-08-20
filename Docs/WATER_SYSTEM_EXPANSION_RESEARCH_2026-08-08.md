@@ -31,9 +31,12 @@ effects.
 - `FMelodiaWaterFluidImpulse` and the bounded subsystem replay buffer now give
   Shallow Water/2D FLIP/hero-FLIP adapters a deterministic escalation seam;
   contact-driven impulses are retained without enabling the beta Fluids plugin.
-- `NiagaraFluids` is currently disabled in the project. UE 5.8 documents it as
-  a Beta plugin and requires an editor restart after enabling it. Do not make
-  the whole game depend on it until the tier-2 prototype is measured.
+- `NiagaraFluids` is **ENABLED as of 2026-08-15** (owner request). The
+  `BS_GodFile.uproject` entry is committed and the UE 5.8 launcher build ships
+  the compiled `UnrealEditor-NiagaraFluids.dll`. UE 5.8 documents it as a Beta
+  plugin; it required an editor restart at enable time. Keep the game's
+  gameplay path fallback-first until the tier-2 prototype is measured — the
+  analytic fallbacks remain the default, fluids are an escalation seam.
 - `UMelodiaWaterFluidZoneComponent` is now an opt-in CPU reference adapter for
   the tier-2 decision. It uses a bounded 32x32 default height field, fixed
   30 Hz stepping, two-substep frame cap, Water Body filtering, radial impulse
@@ -85,10 +88,11 @@ Primary references:
   an art control. The current response therefore uses decaying impulse and
   surface-stress proxies, not a binary near-player glow.
 
-Decision record: keep `NiagaraFluids` disabled while the new fluid zone is a
-reference/profiling path; promote Shallow Water only for authored active zones;
-add 2D FLIP for splash-heavy hero zones; reserve 3D FLIP for authored hero
-shots or a measured gameplay payoff.
+Decision record: `NiagaraFluids` was **re-enabled on 2026-08-15** (owner
+request) after the fluid zone matured into a reference/profiling path. The
+promotion ladder stands: Shallow Water for authored active zones, 2D FLIP for
+splash-heavy hero zones, 3D FLIP for authored hero shots or a measured gameplay
+payoff. Enablement unblocks FLIP2D/FLIP3D hero testing in the v10 water stack.
 
 Research references for the high-end direction:
 
@@ -263,8 +267,10 @@ higher tier because it looks better in an editor-only still.
 3. Prototype one Shallow Water tile in the Celestial Pond and one 2D FLIP
    splash test in a hero grotto. Use `UMelodiaWaterFluidZoneComponent` first
    to validate the impulse profile, zone bounds, and measurable response.
-4. Only then enable `NiagaraFluids`, restart the editor, and measure the tier-2
-   templates against the existing Tier 0/1 fallback.
+4. `NiagaraFluids` is **enabled (2026-08-15)** — editor restarted once at
+   enable time; measure the tier-2 templates against the existing Tier 0/1
+   fallback. The FLIP2D pool/splash Niagara in the v10 stack is the first
+   target, followed by a 3D FLIP hero test.
 5. Add replay-based tests, map-transition cleanup, and a Render Studio portfolio
    capture for each promoted water profile.
 

@@ -285,6 +285,15 @@ private:
 	void NotifyEnemyBrokenPresentation() const;
 	void NotifyEnemyDefeatedPresentation() const;
 
+	/**
+	 * Graded 0..1 tension register for the presentation layer, read from the
+	 * encounter's own state: incoming attack power, low remaining enemy HP, and
+	 * staged-action escalation. Presentation-only (Decision 033) -- the value
+	 * feeds UMelodiaRhythmReactivitySubsystem::NotifyEnemyIntent and must never
+	 * route into damage, turns, or results.
+	 */
+	float ComputeEncounterTension() const;
+
 	UPROPERTY()
 	TObjectPtr<AActor> ActiveBattleController = nullptr;
 

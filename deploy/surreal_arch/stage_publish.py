@@ -22,6 +22,9 @@ from bpy.types import Operator, Panel, PropertyGroup
 
 from .branding import N_PANEL_CATEGORY, PRODUCT_NAME
 
+# Publish contract: git push is OFF unless the artist ticks the N-panel box.
+GIT_PUSH_DEFAULT = False
+
 
 def _project_root() -> Path:
     # deploy/surreal_arch/stage_publish.py → deploy → BS_GodFile
@@ -138,7 +141,7 @@ class MEL_StagePublishSettings(PropertyGroup):
     push_live: BoolProperty(
         name="Push live (git)",
         description="After upload, git add/commit/push the website repo (GitHub Pages). Default OFF.",
-        default=False,
+        default=GIT_PUSH_DEFAULT,
     )
     plate_slot: EnumProperty(
         name="Plate slot",

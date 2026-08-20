@@ -1,14 +1,81 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
-  // Inherit model from ~/.config/opencode (do not hard-code provider keys here).
-  // Optional pin examples (uncomment one):
-  // "model": "anthropic/claude-sonnet-4-20250514",
-  // "model": "ollama/qwen2.5-coder:14b",
+  // Default model (set 2026-08-14). Qwen3 Coder Next on bedrock-mantle: coder-tuned,
+  // long context, verified working, and ~$0.74/month at this project's measured
+  // 745K tokens/month. It is the default because it is the right tool for UE C++ and
+  // Blueprint work, not because it is cheap -- the whole Mantle spread is $0.20-$2.16
+  // a month here, so capability is the only sensible axis to choose on.
+  //
+  // Requires AWS_PROFILE=bedrock (SigV4) or AWS_BEARER_TOKEN_BEDROCK before launch.
+  // Override per session with `opencode --model <provider>/<id>`.
+  "model": "bedrock-mantle/qwen.qwen3-coder-next",
 
   "permission": {
     "edit": "ask",
     "bash": "allow"
+  },
+
+  // ---------------------------------------------------------------------
+  // Amazon Bedrock via bedrock-mantle (rewritten 2026-08-14 -- VERIFIED WORKING)
+  //
+  // Why: the OpenRouter key here is free tier and its paid-model daily quota
+  // exhausts mid-day (402s), so the Rider lane dies partway through a session.
+  // Bedrock bills per token against the AWS account -- no daily cliff.
+  //
+  // THREE THINGS THE PREVIOUS VERSION OF THIS BLOCK GOT WRONG:
+  //
+  // 1. The endpoint. bedrock-mantle is a plain OpenAI-compatible HTTPS API at
+  //    https://bedrock-mantle.{region}.api.aws/v1  -- note `.api.aws`, NOT
+  //    `.amazonaws.com`. Pointing an OpenAI client at the amazonaws.com host is
+  //    why Cline failed on 2026-08-14.
+  // 2. The IAM actions. bedrock-mantle is a SEPARATE service from bedrock. It
+  //    needs `bedrock-mantle:CreateInference` on
+  //    arn:aws:bedrock-mantle:REGION:ACCT:project/default. A policy granting only
+  //    `bedrock:*` gets a 401 naming the missing action.
+  // 3. The model ids. Mantle drops the `us.` prefix and the `-v1:0` suffix:
+  //    `qwen.qwen3-coder-next`, not `us.qwen...-v1:0`.
+  //
+  // Plain bedrock-runtime Converse still returns "Operation not allowed" for
+  // every model on this account including Amazon's own Nova -- unexplained, and
+  // no longer relevant since Mantle serves 55 models.
+  //
+  // Auth: a Bedrock API key as a bearer token, OR the AWS credential chain.
+  // No key belongs in this file. Pick the identity before launching Rider:
+  //
+  //     $env:AWS_PROFILE = "bedrock"                 # PowerShell, SigV4
+  //     $env:AWS_BEARER_TOKEN_BEDROCK = "<key>"      # or a Bedrock API key
+  //
+  // Verified live 2026-08-14: qwen3-coder-next, qwen3-coder-480b, deepseek.v3.2,
+  // devstral-2 and both kimi models all returned completions.
+  // Keep in step with the "cpp" and "deep" classes in Tools/model_router.py.
+  "provider": {
+    "bedrock-mantle": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://bedrock-mantle.us-east-1.api.aws/v1"
+      },
+      "models": {
+        "qwen.qwen3-coder-next":              { "name": "Qwen3 Coder Next -- long C++" },
+        "qwen.qwen3-coder-480b-a35b-instruct":{ "name": "Qwen3 Coder 480B -- heavy" },
+        "deepseek.v3.2":                      { "name": "DeepSeek v3.2 -- reasoning coder" },
+        "mistral.devstral-2-123b":            { "name": "Devstral 2 -- code specialist" },
+        "moonshotai.kimi-k2-thinking":        { "name": "Kimi K2 Thinking -- long reasoning" },
+        "moonshotai.kimi-k2.5":               { "name": "Kimi K2.5" }
+      }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      },
+      "models": {
+        "qwen2.5:14b": { "name": "Qwen2.5 14B -- heavy code/reasoning" },
+        "qwen2.5-coder:7b": { "name": "Qwen2.5 Coder 7B -- fast code" },
+        "deepseek-r1:14b": { "name": "DeepSeek R1 14B -- reasoning" },
+        "hermes3:latest": { "name": "Hermes 3 -- general" }
+      }
+    }
   },
 
   "agent": {

@@ -19,7 +19,7 @@ KOMIKAZE_BLEND_PATH = (
     r"G:\programs\BlenderPlugins\plugins\Komikaze v2 (UNZIP ME) vfxmed\Komikaze v2.blend"
 )
 KOMIKAZE_LINEAR_HALFTONE = "Linear Gradient (Halftone)"
-KOMIKAZE_TILER = "NTTiler [Komp]"
+KOMIKAZE_TILER = "Tiler [Komp]"
 
 WRAP_LINEAR_HALFTONE = "MEL_NPR_LinearHalftone"
 WRAP_TILER = "MEL_NPR_Tiler"

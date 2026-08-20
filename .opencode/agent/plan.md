@@ -6,7 +6,7 @@ permission:
   bash: ask
 ---
 
-You are the **plan** primary agent for MelodiaMelusina / `BS_GodFile`.
+You are the **plan** primary agent for MelodiaMelusinaV2 / `BS_GodFile`.
 
 ## Mode
 

@@ -34,22 +34,51 @@ def _output_socket(node):
 
 
 def _profile_circle(tree, bx, by, radius_sock, vertices=8):
-    """Tube sweep profile: NGON circle driven by a float socket."""
-    circle = safe_node(tree, "GeometryNodeMeshCircle", (bx, by))
+    """Tube sweep profile: curve circle (AAA railing) driven by a float socket."""
+    circle = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (bx, by))
+    if circle is None:
+        circle = safe_node(tree, "GeometryNodeMeshCircle", (bx, by))
+        if radius_sock is not None:
+            link_sockets(tree, radius_sock, circle.inputs["Radius"])
+        try:
+            circle.inputs["Vertices"].default_value = vertices
+        except Exception:
+            pass
+        try:
+            circle.fill_type = "NGON"
+        except Exception:
+            pass
+        return circle
     if radius_sock is not None:
         link_sockets(tree, radius_sock, circle.inputs["Radius"])
-    if isinstance(vertices, bpy.types.NodeSocket):
-        link_sockets(tree, vertices, circle.inputs["Vertices"])
-    else:
-        circle.inputs["Vertices"].default_value = vertices
-    circle.fill_type = "NGON"
+    try:
+        if isinstance(vertices, bpy.types.NodeSocket):
+            link_sockets(tree, vertices, circle.inputs["Resolution"])
+        else:
+            circle.inputs["Resolution"].default_value = vertices
+    except Exception:
+        try:
+            if isinstance(vertices, bpy.types.NodeSocket):
+                link_sockets(tree, vertices, circle.inputs["Vertices"])
+            else:
+                circle.inputs["Vertices"].default_value = vertices
+        except Exception:
+            pass
     return circle
 
 
+def _profile_out(node):
+    return node.outputs.get("Curve") or node.outputs.get("Mesh") or node.outputs[0]
+
+
 def _sweep(tree, bx, by, curve_sock, profile_sock):
-    """Sweep a curve with a profile mesh."""
+    """Sweep a curve path with a curve profile (AAA railing).
+
+    Do not MeshToCurve first — scallop/keyhole/time-signature paths are already
+    bezier curves; MeshToCurve on those yields empty geometry.
+    """
     mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx, by))
-    link_sockets(tree, curve_sock, mesh.inputs["Curve"])
+    link_sockets(tree, curve_sock, mesh.inputs.get("Curve") or mesh.inputs[0])
     prof = mesh.inputs.get("Profile Curve") or mesh.inputs.get("Profile")
     link_sockets(tree, profile_sock, prof)
     return mesh
@@ -273,7 +302,7 @@ def build_ornament_scallop_band(group_name="MEL_ornament_scallop_band"):
     link_sockets(tree, inst.outputs["Instances"], realize.inputs["Geometry"])
 
     profile = _profile_circle(tree, bx - 300, by - 250, gin.outputs["Thickness"])
-    band_mesh = _sweep(tree, bx + 80, by, realize.outputs["Geometry"], profile.outputs["Mesh"])
+    band_mesh = _sweep(tree, bx + 80, by, realize.outputs["Geometry"], _profile_out(profile))
 
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 240, by))
     shade.inputs["Shade Smooth"].default_value = True
@@ -418,7 +447,7 @@ def build_ornament_keyhole_frame(group_name="MEL_ornament_keyhole_frame"):
     merge.inputs["Distance"].default_value = 0.002
 
     profile = _profile_circle(tree, bx - 200, by + 100, gin.outputs["Thickness"], gin.outputs["Profile Vertices"])
-    frame_mesh = _sweep(tree, bx + 120, by + 300, merge.outputs["Geometry"], profile.outputs["Mesh"])
+    frame_mesh = _sweep(tree, bx + 120, by + 300, merge.outputs["Geometry"], _profile_out(profile))
     scaled = _scale_all(tree, gin, bx + 280, by + 300, frame_mesh.outputs["Mesh"])
 
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 440, by + 300))
@@ -542,7 +571,7 @@ def build_filigree_corner_volute(group_name="MEL_filigree_corner_volute"):
     link_sockets(tree, inv.outputs[0], set_radius.inputs["Radius"])
 
     profile = _profile_circle(tree, bx - 700, by - 500, gin.outputs["Profile Radius"], 8)
-    arm = _sweep(tree, bx - 140, by + 300, set_radius.outputs["Curve"], profile.outputs["Mesh"])
+    arm = _sweep(tree, bx - 140, by + 300, set_radius.outputs["Curve"], _profile_out(profile))
 
     finial = safe_node(tree, "GeometryNodeMeshUVSphere", (bx - 340, by - 200))
     finial.inputs["Segments"].default_value = 16

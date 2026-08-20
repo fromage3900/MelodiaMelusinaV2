@@ -26,6 +26,9 @@ CROSSWALK_SEARCH_PATHS = [
     PROJECT_ROOT / "KitbashExport",
     PROJECT_ROOT / "Exports",
     PROJECT_ROOT / "Content" / "Melodia" / "Characters",
+    PROJECT_ROOT.parent / "Imports" / "KitBash3D_Atlantis",
+    PROJECT_ROOT.parent / "Imports" / "Oceanology",
+    PROJECT_ROOT.parent / "Imports" / "Kenney",
 ]
 
 # Fallback material if crosswalk entry points to non-existent asset

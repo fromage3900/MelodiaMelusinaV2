@@ -20,7 +20,7 @@ Some 5.5+ builds also show **Update Redirector References** on a folder context 
 With the project open:
 
 ```text
-py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py"
+py "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py"
 ```
 
 Or Output Log → same `py` line. Script lives at [`Content/Python/fix_migration_redirectors.py`](../Content/Python/fix_migration_redirectors.py) and targets `/Game/EnvSandbox/Materials` by default.

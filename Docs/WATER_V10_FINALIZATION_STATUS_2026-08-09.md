@@ -70,3 +70,22 @@ Additional guarded assets/tools:
 11. Normalize the editor lane to exactly one interactive process before final Monolith validation; the shared editor is currently healthy on port `9316`, but the rebuilt bridge module load still needs an explicit reflection readback.
 
 No editor process was terminated. Water profile and project-owned FLIP packages were intentionally saved through the active editor; no engine plugin assets were modified.
+
+---
+
+## Consolidation note — 2026-08-14
+
+- **Canonical v10 confirmed: `M_Water_Master_Grand_v10_Upgrade`** (the additive
+  V9 upgrade above). `M_Water_Master_Grand_v10_Substrate` is the study line;
+  its promotion gates remain open.
+- `MI_Water_v10_BiolumGrotto` reparented `MI_Universal_Enhanced_Water` (an MI)
+  → `M_Water_Master_Grand_v10_Upgrade` (fixes the audit MI_PARENT defect).
+- `MI_WaterV10_NativeDefault` stays parented to `MI_WaterV10_Integrated_CalmPond`
+  (documented intentional MI-of-MI — it derives the family overrides);
+  allowlisted in `audit_mi_runtime.py` as `ok_intentional_mi_parent`.
+- Duplicate `MI_IridescentRock` resolved: single copy retained at
+  `Masters/MI_IridescentRock`; the `Instances/` copy removed (zero referencers
+  verified; a rename-based redirector was not persisted by this engine's
+  `rename_asset`, and none is needed with zero references).
+- `v11` = next-gen master, gated on closing the native-integration promotion
+  gates above (see the Roadmap section in `UNIVERSAL_WATER_FAMILY.md`).

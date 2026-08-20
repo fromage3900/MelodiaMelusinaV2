@@ -31,6 +31,19 @@ def generate_blessing_extensions(mods: list[dict]) -> dict:
             "effect_type": m.get("effect_type", "passive"),
             "effect_value": m.get("effect_value", 0.0),
             "effect_str": m.get("effect_str", ""),
+            # Carry the burden half through. Omitting these two fields is what
+            # produced 26 blessing rows and 0 burden rows in DT_Blessings.json:
+            # the curse was authored in DT_MelodySlime_RoomMods.json and dropped
+            # here, silently, because a missing key looks identical to a room mod
+            # that genuinely has no curse.
+            #
+            # These are carried as PAIRING METADATA only. The typed burden rows
+            # (rule_type / magnitude / stack_policy, per
+            # specs/roguelike/melodia_blessing_burden_contract.v1.json) are built
+            # by Tools/extract_burdens_from_roommods.py into DT_Burdens.json.
+            # Do not treat a free-text curse_effect as a gameplay rule.
+            "curse": m.get("curse", ""),
+            "curse_effect": m.get("curse_effect", ""),
         }
     return extensions
 

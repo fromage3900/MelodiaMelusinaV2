@@ -232,10 +232,27 @@ def run_pass():
     report_path.write_text(json.dumps(health_report, indent=2), encoding="utf-8")
 
 def main():
-    """Main daemon loop."""
+    """Main daemon loop, or a single pass with --run-once."""
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--run-once",
+        action="store_true",
+        help="Run one verification pass and exit (no daemon loop)",
+    )
+    args = parser.parse_args()
+
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
+
+    if args.run_once:
+        log("Hermes run-once pass")
+        run_pass()
+        log("Run-once complete")
+        return
+
     log("Hermes daemon started")
-    
+
     last_census = None
     while not STOP_FILE.exists():
         # Run verification

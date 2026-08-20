@@ -6,6 +6,9 @@
 #include "Components/PrimitiveComponent.h"
 #include "Engine/World.h"
 #include "Engine/Engine.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundMix.h"
+#include "Sound/SoundClass.h"
 #include "Sockets.h"
 #include "SocketSubsystem.h"
 #include "Common/UdpSocketBuilder.h"
@@ -17,6 +20,12 @@
 // carries a matching, well-named param set (17 params incl. GlobalSparkleIntensity/
 // PaletteShift/TemporalJitter) that other project materials presumably already sample.
 const FName UMelodiaRhythmReactivitySubsystem::AudioCollectionPath(TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette"));
+
+// Tension ambience duck: the SoundMix must carry at least one SoundClassAdjuster
+// for SCL_Ambience (the override below writes volume at runtime regardless, but
+// a mix with no adjusters for the class is ignored by the override path).
+const FName UMelodiaRhythmReactivitySubsystem::TensionDuckSoundMixPath(TEXT("/Game/Melodia/Audio/Mix/SM_MelodiaTensionDuck"));
+const FName UMelodiaRhythmReactivitySubsystem::AmbienceSoundClassPath(TEXT("/Game/Melodia/Audio/Mix/SoundClasses/SCL_Ambience"));
 
 void UMelodiaRhythmReactivitySubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -86,6 +95,30 @@ void UMelodiaRhythmReactivitySubsystem::Tick(const float DeltaTime)
 	Signal.VictoryPulse = FMath::Max(0.0f, Signal.VictoryPulse - DeltaTime * 2.0f);
 	Signal.EnemyTension = FMath::FInterpTo(Signal.EnemyTension, 0.0f, DeltaTime, 1.5f);
 
+	// Tension sustain: fast attack toward the latest graded tension, slow release
+	// toward zero -- danger spikes, dread lingers (OMORI's held-tension register).
+	// Presentation-only; never feeds damage or results (Decision 033).
+	if (Signal.EnemyTension >= Signal.TensionSustain)
+	{
+		Signal.TensionSustain = FMath::FInterpTo(Signal.TensionSustain, Signal.EnemyTension, DeltaTime, 4.0f);
+	}
+	else
+	{
+		Signal.TensionSustain = FMath::FInterpTo(Signal.TensionSustain, 0.0f, DeltaTime, 0.35f);
+	}
+
+	// Continuous dissonance register: 0 = Clear, 1 = Strain, 2 = Rupture, derived
+	// from how much dread is currently felt. Drives the DissonanceAmount MPC/OSC
+	// channel so materials and TouchDesigner can shift toward the Rupture look
+	// without a one-shot overlap trigger.
+	Signal.DissonanceAmount = FMath::Clamp(Signal.TensionSustain * 2.0f, 0.0f, 2.0f);
+
+	// Tension ambience duck: the ambience bed pulls back as dread lingers.
+	// Runs every tick (cheap pointer checks + IsNearlyEqual) and BEFORE the
+	// at-rest skip so the fade back to full ambience completes even after
+	// TensionSustain decays below the at-rest epsilon.
+	UpdateTensionAmbienceDuck();
+
 	// Cozy: slow-decaying ambient values. WarmthGlow fades gently, others drift toward zero.
 	Signal.WarmthGlow = FMath::FInterpTo(Signal.WarmthGlow, 0.0f, DeltaTime, 0.8f);
 	Signal.PetalFallIntensity = FMath::FInterpTo(Signal.PetalFallIntensity, 0.0f, DeltaTime, 1.2f);
@@ -129,11 +162,57 @@ bool UMelodiaRhythmReactivitySubsystem::IsSignalAtRest() const
 		&& Signal.BreakPulse < Epsilon
 		&& Signal.VictoryPulse < Epsilon
 		&& Signal.EnemyTension < Epsilon
+		&& Signal.TensionSustain < Epsilon
+		&& Signal.DissonanceAmount < Epsilon
 		&& Signal.WarmthGlow < Epsilon
 		&& Signal.PetalFallIntensity < Epsilon
 		&& Signal.DreamRipple < Epsilon
 		&& Signal.EmberDance < Epsilon
 		&& Signal.CozyBloom < Epsilon;
+}
+
+void UMelodiaRhythmReactivitySubsystem::UpdateTensionAmbienceDuck()
+{
+	// Presentation-only ambience duck (Decision 033): as DreadPresence rises the
+	// ambience bed pulls back -- a quiet-register shift, never a mechanic. The
+	// dark-bed crossfade itself (Riverbed_Open toward Canopy_Small) is a content
+	// task on the ambience player; this only ducks the SCL_Ambience class volume.
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+
+	if (!CachedTensionDuckMix)
+	{
+		CachedTensionDuckMix = LoadObject<USoundMix>(nullptr, *TensionDuckSoundMixPath.ToString());
+		if (!CachedTensionDuckMix)
+		{
+			// Content does not exist yet -- silent no-op (same policy as the MPC
+			// param writes: SetScalarParameterValue on a missing param is a no-op).
+			return;
+		}
+	}
+	if (!CachedAmbienceSoundClass)
+	{
+		CachedAmbienceSoundClass = LoadObject<USoundClass>(nullptr, *AmbienceSoundClassPath.ToString());
+		if (!CachedAmbienceSoundClass)
+		{
+			return;
+		}
+	}
+
+	// Full ambience at rest, -6 dB (~0.5x) at max dread. The 1.5s fade keeps the
+	// shift from snapping; the override re-fades toward the new target on each
+	// change and ClearSoundMixClassOverride is never needed (target 1.0 restores
+	// full ambience through the same override).
+	const float TargetVolume = 1.0f - Signal.TensionSustain * 0.5f;
+
+	if (!FMath::IsNearlyEqual(TargetVolume, LastAmbienceDuckVolume, 0.01f))
+	{
+		LastAmbienceDuckVolume = TargetVolume;
+		UGameplayStatics::SetSoundMixClassOverride(World, CachedTensionDuckMix, CachedAmbienceSoundClass, TargetVolume, 1.0f, 1.5f, true);
+	}
 }
 
 TStatId UMelodiaRhythmReactivitySubsystem::GetStatId() const
@@ -202,6 +281,8 @@ void UMelodiaRhythmReactivitySubsystem::ResetEncounter()
 	Signal.BreakPulse = 0.0f;
 	Signal.VictoryPulse = 0.0f;
 	Signal.EnemyTension = 0.0f;
+	Signal.TensionSustain = 0.0f;
+	Signal.DissonanceAmount = 0.0f;
 
 	// Cozy: gentle values linger — WarmthGlow and DreamRipple fade slowly rather than snap.
 	Signal.PetalFallIntensity = 0.0f;
@@ -269,17 +350,26 @@ void UMelodiaRhythmReactivitySubsystem::PublishToReactiveMaterials() const
 void UMelodiaRhythmReactivitySubsystem::Publish()
 {
 	// Remapped onto MPC_Melodia_Palette's real param set (see AudioCollectionPath comment).
-	// BeatPulse/BeatPhase match by name directly. The rest are a deliberate creative mapping,
-	// not 1:1 renames -- combo shifts the palette, victory blooms sparkle, tension jitters time.
-	SetMPCScalar(TEXT("BeatPulse"), Signal.BeatPulse);
-	SetMPCScalar(TEXT("BeatPhase"), Signal.BeatPhase);
-	SetMPCScalar(TEXT("BeatIntensity"), Signal.BeatPulse);
+	// The beat namespace (BeatPulse/BeatPhase/BeatIntensity) is owned by the game
+	// module's MelodiaAudioReactivePresentationSubsystem, which publishes the
+	// continuous clock-driven cos^2 pulse every frame. This subsystem keeps its own
+	// internal Signal beat values for the OSC + reactive-material pulses below but
+	// must not also write the MPC beat params -- two writers on one surface is a
+	// documented defect class in this project. RhythmPulse (CommandEnergy) stays here.
 	SetMPCScalar(TEXT("RhythmPulse"), Signal.CommandEnergy);
 	SetMPCScalar(TEXT("GlobalSparkleIntensity"), FMath::Max(Signal.VictoryPulse, Signal.CommandPulse));
 	SetMPCScalar(TEXT("PaletteShift"), Signal.ComboNormalized);
 	SetMPCScalar(TEXT("GlobalEmissiveBoost"), 1.0f + Signal.CrescendoNormalized);
 	SetMPCScalar(TEXT("ProximityGlow"), Signal.BreakPulse);
 	SetMPCScalar(TEXT("TemporalJitter"), Signal.EnemyTension);
+
+	// Tension/dread channels: the cold counterpart to the cozy set. DreadPresence
+	// cools the palette as dread lingers; DissonanceAmount drives the continuous
+	// Clear->Strain->Rupture register. SetScalarParameterValue on a param that
+	// does not yet exist in MPC_Melodia_Palette is a safe no-op, so this is
+	// content-ready before the editor session that adds the params.
+	SetMPCScalar(TEXT("DreadPresence"), Signal.TensionSustain);
+	SetMPCScalar(TEXT("DissonanceAmount"), Signal.DissonanceAmount);
 
 	// Cozy MPC expansion: gentle world-reactivity values.
 	SetMPCScalar(TEXT("WarmthGlow"), Signal.WarmthGlow);
@@ -299,6 +389,9 @@ void UMelodiaRhythmReactivitySubsystem::Publish()
 	SendOSCFloat(TEXT("/rhythm/crescendo_normalized"), Signal.CrescendoNormalized);
 	SendOSCFloat(TEXT("/rhythm/command_energy"), Signal.CommandEnergy);
 	SendOSCFloat(TEXT("/rhythm/victory_pulse"), Signal.VictoryPulse);
+	SendOSCFloat(TEXT("/rhythm/tension"), Signal.EnemyTension);
+	SendOSCFloat(TEXT("/rhythm/dread_presence"), Signal.TensionSustain);
+	SendOSCFloat(TEXT("/rhythm/dissonance"), Signal.DissonanceAmount);
 
 	OnSignalChanged.Broadcast(Signal);
 }

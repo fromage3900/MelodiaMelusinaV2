@@ -198,7 +198,7 @@ Same Toon BSDF chain; samples `LandscapeLayerCoords` instead of raw world XY for
 3. **Tools → Execute Python Script** → `Content/Python/setup_impressionist_materials.py`  
    Or Output Log:
    ```
-   py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py"
+   py "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py"
    ```
 4. Verify each master: open graph → confirm **Substrate Toon BSDF** node → **Front Material** connected (no orphaned Base Color pin).
 5. Assign `MI_Impressionist_Meadow_Dry` to a test mesh in `/Game/EnvSandbox/_Template`; orbit — strokes, impasto WPO, and wetness should read clearly.

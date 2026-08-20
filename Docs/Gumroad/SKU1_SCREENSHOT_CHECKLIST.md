@@ -26,7 +26,7 @@ Per daemon draft requirements, the following screenshots are needed for marketpl
 All required meshes verified at source location:
 
 ```
-G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/
+C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/
 ```
 
 | Mesh Name | FBX Exists | UE Path Ready |

@@ -13,9 +13,11 @@ class UTextRenderComponent;
  *
  * The authored stock encounter actor must carry EncounterId as an Actor Tag and
  * expose the adapter's confirmed StartBattle/offLevelBattleData/OnBattleOver contract.
+ * Blueprint children may add presentation and authored interaction policy, but the
+ * narrative subsystem remains the only battle-request authority.
  */
 UCLASS(Blueprintable, meta=(DisplayName="Melodia JRPG Battle Interaction"))
-class BS_GODFILE_API AMelodiaBattleInteractionTrigger final : public AActor
+class BS_GODFILE_API AMelodiaBattleInteractionTrigger : public AActor
 {
 	GENERATED_BODY()
 

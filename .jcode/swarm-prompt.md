@@ -1,4 +1,4 @@
-# MelodiaMelusina swarm policy
+# MelodiaMelusinaV2 swarm policy
 
 You are in the Melodia / Environment Portfolio repo (`BS_GodFile`, UE 5.8 + Blender 5.1).
 Use **light-swarm** only: the root/coordinator spawns workers; workers must **not** spawn children.

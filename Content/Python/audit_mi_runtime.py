@@ -37,6 +37,13 @@ FIX_PARENTS = {
         "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend",
 }
 
+# Documented intentional MI-of-MI parenting (owner-approved; see
+# WATER_V10_FINALIZATION_STATUS_2026-08-09.md: NativeDefault derives from the
+# integrated v10 family so it inherits the family overrides).
+ALLOW_MI_PARENT = {
+    "/Game/EnvSandbox/Materials/Instances/Water/v10/MI_WaterV10_NativeDefault",
+}
+
 AUDIT_ROOTS = [
     "/Game/EnvSandbox/Materials/SDF/Instances",
     "/Game/EnvSandbox/Materials/Instances",
@@ -88,7 +95,10 @@ def report_mi(path: str, fix: bool) -> dict:
     if not parent:
         rec["parent_status"] = "NO_PARENT"
     elif "MaterialInstanceConstant" in parent_cls:
-        rec["parent_status"] = "MI_PARENT"
+        # Documented intentional MI-of-MI parenting (e.g. MI_WaterV10_NativeDefault
+        # derives from the integrated v10 family per WATER_V10_FINALIZATION_STATUS).
+        base = path.split(".")[0]
+        rec["parent_status"] = "MI_PARENT" if base not in ALLOW_MI_PARENT else "ok_intentional_mi_parent"
     elif "Material" in parent_cls:
         rec["parent_status"] = "ok"
     else:

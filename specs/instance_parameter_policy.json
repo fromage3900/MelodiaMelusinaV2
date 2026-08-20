@@ -1,10 +1,12 @@
 {
   "_meta": {
-    "doc": "Instance parameter variance policy (fold-in v1).",
+    "doc": "Instance parameter variance policy (fold-in v2 - cute sweep).",
     "lens": "Infinity-Nikki-style material dev: dreamy pastel palettes, soft glows, iridescent hints, whimsical accents, tasteful sparkle; hero materials get restraint, utility materials get variety.",
     "grounding": "Parameter substrings must match a parameter that provably exists on the parent master (the applicator never invents names; it matches substrings against the parent's live parameter list and skips unmatched entries). Value ranges are authored here; concrete per-instance values are deterministically seeded by asset name so re-runs are idempotent.",
+    "palette_authority": "MPC_Melodia_Palette (sourced from the Melodia brand palette): Melusina_Lavender, Melusina_RoseGold, Melusina_SoftWhite, Melusina_Aqua, MeluPrimary/MeluSecondary/MeluAccent.",
+    "v2_additions": "ShadowDreamStrength + ShadowDreamTint on every instance whose parent exposes them; toon colour ramps (RampLow/Mid/High, LayerRamp*) assigned with cute pastel triads; bShadowDream_Active flipped ON where the parent gates it; first-matching-rule-wins enforced.",
     "specimen": "Saved/Audit/owner_instance_profiles.json holds the owner's hand-tuned instances; when it exists the applicator reports how many policy parameters coincide with the owner's vocabulary.",
-    "version": 1
+    "version": 2
   },
   "palettes": {
     "nikki_pastel": [
@@ -23,6 +25,41 @@
       [0.75, 0.95, 1.0, 1.0],
       [1.0, 0.90, 0.75, 1.0],
       [0.85, 1.0, 0.95, 1.0]
+    ],
+    "melodia_lavender": [
+      [0.608, 0.557, 0.769, 1.0],
+      [0.72, 0.62, 0.82, 1.0],
+      [0.54, 0.50, 0.71, 1.0]
+    ],
+    "melodia_ramp_low": [
+      [0.72, 0.62, 0.82, 1.0],
+      [0.66, 0.56, 0.78, 1.0],
+      [0.78, 0.66, 0.86, 1.0]
+    ],
+    "melodia_ramp_mid": [
+      [0.94, 0.78, 0.72, 1.0],
+      [0.90, 0.72, 0.66, 1.0],
+      [0.96, 0.84, 0.76, 1.0]
+    ],
+    "melodia_ramp_high": [
+      [0.97, 0.95, 0.97, 1.0],
+      [0.99, 0.96, 0.94, 1.0],
+      [0.96, 0.97, 0.99, 1.0]
+    ],
+    "melodia_dream": [
+      [0.894, 0.894, 0.937, 1.0],
+      [0.608, 0.557, 0.769, 1.0],
+      [0.49, 0.827, 0.753, 1.0]
+    ],
+    "melodia_iris": [
+      [0.49, 0.827, 0.753, 1.0],
+      [0.769, 0.659, 0.510, 1.0],
+      [0.608, 0.557, 0.769, 1.0]
+    ],
+    "melodia_shadowdream_pinkblue": [
+      [0.85, 0.40, 0.62, 1.0],
+      [0.78, 0.55, 0.82, 1.0],
+      [0.60, 0.78, 0.95, 1.0]
     ]
   },
   "variance": {
@@ -30,9 +67,16 @@
       "Scalar names containing the substring match case-insensitively; first matching rule wins; remaining entries are skipped.",
       "Multipliers apply to the parent's default value when the instance has no override (read default via MaterialEditingLibrary), never to an existing authored override.",
       "Vector rules set palette colors with optional per-instance hue jitter (seeded, within +/- 4%) so siblings vary without breaking family identity.",
-      "Emission/Glow intensity rules only apply when the parent exposes an emission-ish parameter (substring match); they scale with a small per-instance factor 0.8-1.25."
+      "Emission/Glow intensity rules only apply when the parent exposes an emission-ish parameter (substring match); they scale with a small per-instance factor 0.8-1.25.",
+      "Switches flip static bool parameters (e.g. bShadowDream_Active) only when the parent gates them."
     ],
     "scalars": [
+      { "match": "shadowdreamstrength", "mode": "set_override", "value": 0.3, "note": "Every instance gets the shadow-dream tint strength (pink/blue dream shadows)." },
+      { "match": "shadowsoftness", "mode": "set_override", "value": 1.2, "note": "Soft shadow falloff." },
+      { "match": "rampposmid", "mode": "set_override", "value": 0.5, "note": "Centered toon ramp." },
+      { "match": "layerrampposmid", "mode": "set_override", "value": 0.5 },
+      { "match": "rampstrength", "mode": "set_override", "value": 0.28, "note": "Toon ramp visible but tasteful." },
+      { "match": "layerrampstrength", "mode": "set_override", "value": 0.22 },
       { "match": "tiling", "mode": "multiply_default", "factor_range": [1.0, 1.8], "note": "Tasteful tiling variance so swatches read differently." },
       { "match": "roughness", "mode": "multiply_default", "factor_range": [0.9, 1.25], "note": "Satin/velvet roughness band, Nikki-restrained." },
       { "match": "gloss", "mode": "multiply_default", "factor_range": [0.9, 1.15], "note": "Subtle sheen lift." },
@@ -46,29 +90,37 @@
       { "match": "displacement", "mode": "multiply_default", "factor_range": [0.9, 1.1], "note": "Parallax stays gentle." }
     ],
     "vectors": [
+      { "match": "shadowdreamtint", "palette": "melodia_shadowdream_pinkblue", "jitter": 0.03, "note": "Pink/blue dream shadows." },
+      { "match": "ramplow", "palette": "melodia_shadowdream_pinkblue", "jitter": 0.03, "note": "Toon ramp low stop (dream pink)." },
+      { "match": "rampmid", "palette": "melodia_shadowdream_pinkblue", "jitter": 0.03, "note": "Toon ramp mid stop (lavender pink)." },
+      { "match": "ramphigh", "palette": "melodia_shadowdream_pinkblue", "jitter": 0.02, "note": "Toon ramp high stop (sky blue)." },
       { "match": "base_color", "palette": "nikki_pastel", "jitter": 0.04 },
       { "match": "basecolor", "palette": "nikki_pastel", "jitter": 0.04 },
       { "match": "albedo", "palette": "nikki_pastel", "jitter": 0.04 },
-      { "match": "tint", "palette": "dream_iridescent", "jitter": 0.03 },
+      { "match": "tint", "palette": "melodia_dream", "jitter": 0.03 },
+      { "match": "dreamtint", "palette": "melodia_dream", "jitter": 0.03 },
       { "match": "emissive", "palette": "crystal_glow", "jitter": 0.03 },
       { "match": "emission_color", "palette": "crystal_glow", "jitter": 0.03 },
       { "match": "glow_color", "palette": "crystal_glow", "jitter": 0.03 },
-      { "match": "iridescence", "palette": "dream_iridescent", "jitter": 0.02 },
-      { "match": "rim_color", "palette": "dream_iridescent", "jitter": 0.03 },
+      { "match": "iridescence", "palette": "melodia_iris", "jitter": 0.02 },
+      { "match": "rim_color", "palette": "melodia_iris", "jitter": 0.03 },
       { "match": "subsurface", "palette": "nikki_pastel", "jitter": 0.04 }
+    ],
+    "switches": [
+      { "match": "bshadowdream_active", "value": true, "note": "Flip the gated ShadowDream family on where the parent exposes it (Nikki masters)." }
     ]
   },
   "family_policies": {
     "_families": {
-      "SDF":    { "scalars": ["tiling", "roughness", "emissive_intensity", "emission_intensity", "glow"], "vectors": ["base_color", "emissive", "glow_color", "rim_color"], "palette_bias": "dream_iridescent" },
-      "Baroque": { "scalars": ["tiling", "roughness", "gloss"], "vectors": ["base_color", "tint", "gold"], "palette_bias": "nikki_pastel" },
-      "Crystal": { "scalars": ["tiling", "roughness", "emission_intensity"], "vectors": ["base_color", "emissive"], "palette_bias": "crystal_glow" },
-      "Halftone": { "scalars": ["tiling", "roughness", "emissive_intensity"], "vectors": ["base_color", "tint"], "palette_bias": "nikki_pastel" },
-      "Glitter": { "scalars": ["tiling", "glow", "emission_intensity"], "vectors": ["base_color", "iridescence", "glow_color"], "palette_bias": "dream_iridescent" },
-      "Landscape": { "scalars": ["tiling"], "vectors": ["base_color"], "palette_bias": "nikki_pastel" },
-      "Water": { "scalars": ["tiling", "gloss", "opacity"], "vectors": ["base_color", "subsurface"], "palette_bias": "crystal_glow" },
-      "Utility": { "scalars": ["tiling"], "vectors": [], "palette_bias": "nikki_pastel" },
-      "Impressionist": { "scalars": ["tiling", "roughness"], "vectors": ["base_color"], "palette_bias": "nikki_pastel" }
+      "SDF":    { "scalars": ["tiling", "roughness", "emissive_intensity", "emission_intensity", "glow", "shadowdreamstrength", "shadowsoftness", "rampstrength", "rampposmid"], "vectors": ["shadowdreamtint", "ramplow", "rampmid", "ramphigh", "base_color", "emissive", "glow_color", "rim_color", "iridescence"], "palette_bias": "dream_iridescent" },
+      "Baroque": { "scalars": ["tiling", "roughness", "gloss", "shadowdreamstrength", "shadowsoftness", "rampstrength", "rampposmid"], "vectors": ["shadowdreamtint", "ramplow", "rampmid", "ramphigh", "base_color", "tint", "gold"], "palette_bias": "nikki_pastel" },
+      "Crystal": { "scalars": ["tiling", "roughness", "emission_intensity", "shadowdreamstrength", "shadowsoftness", "rampstrength", "rampposmid"], "vectors": ["shadowdreamtint", "ramplow", "rampmid", "ramphigh", "base_color", "emissive"], "palette_bias": "crystal_glow" },
+      "Halftone": { "scalars": ["tiling", "roughness", "emissive_intensity", "shadowdreamstrength", "shadowsoftness", "rampstrength", "rampposmid"], "vectors": ["shadowdreamtint", "ramplow", "rampmid", "ramphigh", "base_color", "tint"], "palette_bias": "nikki_pastel" },
+      "Glitter": { "scalars": ["tiling", "glow", "emission_intensity", "shadowdreamstrength", "shadowsoftness", "rampstrength", "rampposmid"], "vectors": ["shadowdreamtint", "ramplow", "rampmid", "ramphigh", "base_color", "iridescence", "glow_color"], "palette_bias": "dream_iridescent" },
+      "Landscape": { "scalars": ["tiling", "shadowdreamstrength", "shadowsoftness", "rampstrength", "layerrampstrength", "rampposmid", "layerrampposmid"], "vectors": ["shadowdreamtint", "ramplow", "rampmid", "ramphigh", "base_color"], "palette_bias": "nikki_pastel" },
+      "Water": { "scalars": ["tiling", "gloss", "opacity", "shadowdreamstrength", "shadowsoftness"], "vectors": ["shadowdreamtint", "base_color", "subsurface"], "palette_bias": "crystal_glow" },
+      "Utility": { "scalars": ["tiling", "shadowdreamstrength", "shadowsoftness", "rampstrength", "rampposmid"], "vectors": ["shadowdreamtint", "ramplow", "rampmid", "ramphigh"], "palette_bias": "nikki_pastel" },
+      "Impressionist": { "scalars": ["tiling", "roughness", "shadowdreamstrength", "shadowsoftness", "rampstrength", "rampposmid"], "vectors": ["shadowdreamtint", "ramplow", "rampmid", "ramphigh", "base_color"], "palette_bias": "nikki_pastel" }
     },
     "notes": "Family selection is by asset-name prefix match (MI_<Family>_... or folder name); the applicator logs each family's matched-vs-skipped parameter names so the policy stays grounded in reality."
   }
