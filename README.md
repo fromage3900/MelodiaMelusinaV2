@@ -6,10 +6,15 @@
 
 ![UE 5.8](https://img.shields.io/badge/UE-5.8_%2B_C%2B%2B-informational?logo=unrealengine&logoColor=white&color=0a1929)
 ![Blender 5.2](https://img.shields.io/badge/Blender-5.2_LTS-critical?logo=blender&logoColor=white&color=e87d0d)
-![Assets](https://img.shields.io/badge/Assets-22%2C143_uasset-5e3a8c)
-![Maps](https://img.shields.io/badge/Maps-210_levels-3a5a3a)
-![Plugins](https://img.shields.io/badge/Plugins-15_active-8c3a3a)
+![Assets](https://img.shields.io/badge/uasset-1%2C988_tracked_%2F_24%2C128_local-5e3a8c)
+![Maps](https://img.shields.io/badge/umap-25_tracked_%2F_233_local-3a5a3a)
+![Plugins](https://img.shields.io/badge/Plugins-16_project-8c3a3a)
 ![MCP](https://img.shields.io/badge/Melodia_MCP-1330_actions-3a8c5e)
+
+> **Tracked vs local.** `.gitignore` deliberately keeps bulk art out of the repo — LFS is metered
+> at 10 GiB and the live payload is already 9.19 GB. A clone gets the 1,988 curated `.uasset`
+> files, not all 24,128 on the authoring machine. See [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md)
+> and [Docs/LFS_COLD_ARCHIVE.md](Docs/LFS_COLD_ARCHIVE.md).
 
 ♪ **Production-grade JRPG + agent harness in UE 5.8 + Blender 5.2.** Three active workstreams — a shippable vertical slice, a multi-modal content pipeline, and a constrained agent benchmark. Every claim has a ledger row. No prose passes for evidence.
 

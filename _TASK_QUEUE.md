@@ -86,7 +86,12 @@ next phase [`Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`](Docs/PERFORCE_MIGRATIO
   and `push.autoSetupRemote=true` are set so a bare push cannot land on the wrong repo.
   `recovery/melodia-main-sync-20260811` still tracks `legacy-melodia/main` (ahead 2) —
   those 2 commits exist only on the old repo; cherry-pick or abandon, do not push as-is.
-- Website repo (`my-site-clean`) remote history still unrelated — owner decision pending.
+- **Website repo — resolved 2026-08-20.** `my-site-clean/` is dead (11 stray PNGs, gitignored);
+  the live site is `fromage3900/my-site`, published by a Pages **Action off its `main`** (no
+  `gh-pages` branch despite what the Pages API reports). Tracked `wix/` is the source of truth
+  here and was resynced from live — 57 of 78 files had fallen behind, so the old pipeline would
+  have regressed the public site. Deploy target is a clone at `C:\EnvironmentPortfolio\_github_deploy`.
+  See [WEBSITE_MAINTENANCE.md](WEBSITE_MAINTENANCE.md).
 - **Ledger:** `runtime` **PASS 2026-08-13** (session `owner-realkey-20260813`) — owner
   verified real keyboard input; gate CLOSED. The earlier 08-12 `pie_smoke_1_145605` row
   was under-evidenced and is superseded. `static_gates` FAIL since 08-11. Remaining
