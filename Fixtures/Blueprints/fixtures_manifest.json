@@ -1,0 +1,10 @@
+[
+  {
+    "model": "qwen2.5-coder:7b",
+    "task_id": "anim_melusina_locomotion_physics",
+    "subsystem": "Animation",
+    "fixture_file": "qwen2.5-coder_7b_anim_melusina_locomotion_physics.json",
+    "score": 60.35,
+    "success": false
+  }
+]

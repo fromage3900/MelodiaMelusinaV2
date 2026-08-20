@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_blessing_burden_contract",
+  "contract_id": "melodia_blessing_burden",
+  "status": "content_authored_runtime_consumer_pending",
+  "purpose": "Keep the existing blessing content usable as a typed, authority-safe roguelike reward surface while making the missing burden design and runtime consumer explicit.",
+  "source_content": {
+    "path": "Content/Melodia/DataStuctures/DT_Blessings.json",
+    "data_type": "RoguelikeBlessing",
+    "observed_row_count": 26,
+    "observed_burden_row_count": 0,
+    "row_identity": "Rows key and blessing_id must match exactly",
+    "required_fields": [
+      "blessing_id",
+      "display_name",
+      "description",
+      "token_cost",
+      "effect_type",
+      "effect_value",
+      "effect_str"
+    ],
+    "validation": [
+      "token_cost is a non-negative integer",
+      "effect_type is authored and never inferred from display text",
+      "effect_value is numeric",
+      "duplicate stable IDs fail closed",
+      "unknown effect types are surfaced to the catalog validator"
+    ]
+  },
+  "presentation": {
+    "widget_asset": "/Game/Melodia/UI/WBP_BlessingBurden",
+    "blessing_card_texture": "/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Card_Blessing",
+    "burden_card_texture": "/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Card_Burden",
+    "status": "presentation_exists_without_complete_typed_catalog_binding",
+    "rule": "The widget renders an authority-owned candidate and never computes cost, applies effects, mutates save state, or chooses a currency."
+  },
+  "runtime_authority": {
+    "catalog_consumer": null,
+    "purchase_and_apply_authority": null,
+    "currency_authority_decision": "pending_owner_decision",
+    "candidate_currency_sources": [
+      "UMelodiaTokenWalletSubsystem.GoldenTokens",
+      "UMelodiaRoguelikeRunSubsystem.HeartMelodyTokens",
+      "UMelodiaRoguelikeRunSubsystem.SwirlMelodyTokens"
+    ],
+    "fail_closed_rule": "Do not bind token_cost to a currency until exactly one authority and one atomic spend/apply/refund transaction are selected."
+  },
+  "burden": {
+    "status": "design_pending",
+    "current_rows": 0,
+    "required_fields_before_authoring": [
+      "burden_id",
+      "display_name",
+      "description",
+      "rule_type",
+      "magnitude",
+      "duration_or_scope",
+      "stack_policy",
+      "source_content_pack"
+    ],
+    "rules": [
+      "A burden is a typed negative or constraining modifier, not a renamed blessing.",
+      "A burden must be authored as content before the UI advertises it as selectable.",
+      "A burden must use the same atomic candidate transaction as a blessing choice.",
+      "No burden may directly mutate save, wallet, battle, or traversal state from the widget."
+    ]
+  },
+  "dungeon_builder_boundary": {
+    "generator_blueprint": "/Game/Melodia/Roguelike/Blueprints/BP_RoguelikeDungeonGenerator",
+    "required_interface": "UMelodiaDungeonRecipeConsumer",
+    "read_only_inspector": "Content/Python/audit_roguelike_generator_readonly.py",
+    "live_verification_required": true,
+    "room_entrance_source": "Plugins/MelodiaCore/Source/MelodiaCore/MelodiaRoomEntrance.cpp",
+    "room_entrance_status": "transform_only_stub; arrival/traversal behavior pending",
+    "room_exit_status": "native_trigger_and_coordinator_handoff_exists",
+    "persistence_rule": "Keep UMelodiaRoguelikePersistence quarantined until overlapping profile ownership is migrated into the canonical save record."
+  },
+  "acceptance": [
+    "A typed catalog loads the authored 26 blessing rows without raw JSON runtime reads.",
+    "Exactly one currency authority performs an atomic spend/apply/refund transaction.",
+    "WBP_BlessingBurden renders candidates from the typed authority and is replay-safe.",
+    "Burden rows exist and validate before the burden card is marked gameplay-ready.",
+    "BP_RoguelikeDungeonGenerator live reflection proves the recipe-consumer interface.",
+    "Room entrance arrival and reset behavior are exercised on a disposable room route.",
+    "No roguelike persistence surface duplicates wardrobe ownership or narrative progression."
+  ]
+}

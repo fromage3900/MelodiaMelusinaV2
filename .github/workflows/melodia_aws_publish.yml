@@ -1,0 +1,92 @@
+name: Melodia AWS artifact publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      role_arn:
+        description: "AWS IAM role assumed through GitHub OIDC"
+        required: false
+        type: string
+      bucket:
+        description: "Explicit destination S3 bucket"
+        required: true
+        type: string
+      prefix:
+        description: "Versioned artifact prefix, e.g. melodia/builds/${{ github.sha }}"
+        required: true
+        type: string
+      kms_key_id:
+        description: "Customer-managed KMS key ARN or ID"
+        required: true
+        type: string
+      region:
+        description: "AWS region"
+        required: true
+        default: "ca-central-1"
+        type: string
+      confirm_publish:
+        description: "Actually copy the artifact; false performs plan-only validation"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: melodia-aws-artifact-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: [self-hosted, Windows, UE58]
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Build and verify package
+        shell: powershell
+        run: |
+          & .\deploy\BuildGraph\Invoke-MelodiaBuildGraph.ps1 -Target MelodiaBuild
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Validate confirmed publication inputs
+        if: inputs.confirm_publish
+        shell: powershell
+        env:
+          ROLE_ARN: ${{ inputs.role_arn }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:ROLE_ARN)) {
+            throw "confirm_publish=true requires role_arn for GitHub OIDC."
+          }
+
+      - name: Configure AWS through OIDC
+        if: inputs.confirm_publish
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.role_arn }}
+          aws-region: ${{ inputs.region }}
+
+      - name: Plan or publish immutable artifact
+        shell: powershell
+        env:
+          BUCKET: ${{ inputs.bucket }}
+          PREFIX: ${{ inputs.prefix }}
+          KMS_KEY_ID: ${{ inputs.kms_key_id }}
+          AWS_REGION_INPUT: ${{ inputs.region }}
+          CONFIRM_PUBLISH: ${{ inputs.confirm_publish }}
+        run: |
+          $args = @(
+            '-ArchiveDir', 'Products\Builds\BuildGraph',
+            '-Bucket', $env:BUCKET,
+            '-Prefix', $env:PREFIX,
+            '-Region', $env:AWS_REGION_INPUT,
+            '-KmsKeyId', $env:KMS_KEY_ID,
+            '-EvidencePath', 'Saved\Integration\evidence\aws_artifact_publish.json'
+          )
+          if ($env:CONFIRM_PUBLISH -eq 'true') { $args += '-ConfirmPublish' }
+          & .\deploy\BuildGraph\Publish-MelodiaArtifact.ps1 @args
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

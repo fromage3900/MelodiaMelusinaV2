@@ -1,0 +1,14 @@
+{
+  "name": "melusina_cutscene_staging",
+  "description": "Cutscene staging plates for Melodia's protagonist: narrative camera reads over the idle loop and v23 water-hair bake. Frame = freeze-frame of the 104-frame cine sim; camera is the shot language.",
+  "shots": [
+    {"name": "establish_world",  "camera": "Cam_Turntable.001", "frame": 40, "accessories": "ALL_VISIBLE", "template": "cs_{shot}_{frame}"},
+    {"name": "reveal_profile",   "camera": "Cam_Back",         "frame": 55, "accessories": "ALL_VISIBLE", "template": "cs_{shot}_{frame}"},
+    {"name": "water_rise",       "camera": "Cam_Low",          "frame": 65, "accessories": "ALL_VISIBLE", "template": "cs_{shot}_{frame}"},
+    {"name": "dialogue_medium",  "camera": "Cam_Beauty",       "frame": 71, "accessories": "ALL_VISIBLE", "template": "cs_{shot}_{frame}"},
+    {"name": "macro_emotion",    "camera": "Cam_Macro",        "frame": 80, "accessories": "ALL_VISIBLE", "template": "cs_{shot}_{frame}"},
+    {"name": "full_crown",       "camera": "Cam_Front",        "frame": 91, "accessories": "ALL_VISIBLE", "template": "cs_{shot}_{frame}"},
+    {"name": "song_release",     "camera": "Cam_Turntable",    "frame": 100, "accessories": "ALL_VISIBLE", "template": "cs_{shot}_{frame}"},
+    {"name": "bow_finale",       "camera": "Cam_Beauty",       "frame": 104, "accessories": "ALL_VISIBLE", "template": "cs_{shot}_{frame}"}
+  ]
+}

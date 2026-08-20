@@ -1,0 +1,207 @@
+{
+	"type": "graph",
+	"name": "SG_Mask_Shaping",
+	"label": "SG Mask Shaping",
+	"longdesc": "Mask shaping tools: Levels, S-Curve, Slope Bias, Curvature, Distance Field",
+	"shortdesc": "",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"parameters": {},
+	"nodes": [
+		{
+			"name": "Input_Mask",
+			"node_position": {
+				"x": -1200,
+				"y": 0
+			},
+			"parameters": {
+				"name": "Mask",
+				"type": 0,
+				"default": 0.5
+			},
+			"type": "input"
+		},
+		{
+			"name": "Input_Contrast",
+			"node_position": {
+				"x": -1200,
+				"y": 80
+			},
+			"parameters": {
+				"name": "Contrast",
+				"type": 0,
+				"default": 0.5
+			},
+			"type": "input"
+		},
+		{
+			"name": "Input_Pivot",
+			"node_position": {
+				"x": -1200,
+				"y": 160
+			},
+			"parameters": {
+				"name": "Pivot",
+				"type": 0,
+				"default": 0.5
+			},
+			"type": "input"
+		},
+		{
+			"name": "Input_EdgeSize",
+			"node_position": {
+				"x": -1200,
+				"y": 240
+			},
+			"parameters": {
+				"name": "EdgeSize",
+				"type": 0,
+				"default": 2
+			},
+			"type": "input"
+		},
+		{
+			"name": "Levels",
+			"node_position": {
+				"x": -800,
+				"y": 0
+			},
+			"parameters": {
+				"value": "$Pivot",
+				"contrast": "$Contrast"
+			},
+			"type": "tones"
+		},
+		{
+			"name": "S_Curve",
+			"node_position": {
+				"x": -800,
+				"y": 120
+			},
+			"parameters": {
+				"value": 0.5,
+				"contrast": 0.3
+			},
+			"type": "tones"
+		},
+		{
+			"name": "Curvature",
+			"node_position": {
+				"x": -800,
+				"y": 240
+			},
+			"parameters": {
+				"size": "$EdgeSize"
+			},
+			"type": "edge_detect"
+		},
+		{
+			"name": "Distance_Field",
+			"node_position": {
+				"x": -800,
+				"y": 360
+			},
+			"parameters": {
+				"shape": 0,
+				"sides": 64,
+				"radius": 0.95,
+				"edge": 0.15
+			},
+			"type": "shape"
+		},
+		{
+			"name": "Output_Hard",
+			"node_position": {
+				"x": -400,
+				"y": 0
+			},
+			"parameters": {
+				"name": "Hard",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_Soft",
+			"node_position": {
+				"x": -400,
+				"y": 120
+			},
+			"parameters": {
+				"name": "Soft",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_Curvature",
+			"node_position": {
+				"x": -400,
+				"y": 240
+			},
+			"parameters": {
+				"name": "Curvature",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_Radial",
+			"node_position": {
+				"x": -400,
+				"y": 360
+			},
+			"parameters": {
+				"name": "Radial",
+				"type": 0
+			},
+			"type": "output"
+		}
+	],
+	"connections": [
+		{
+			"from": "Input_Mask",
+			"from_port": 0,
+			"to": "Levels",
+			"to_port": 0
+		},
+		{
+			"from": "Levels",
+			"from_port": 0,
+			"to": "Output_Hard",
+			"to_port": 0
+		},
+		{
+			"from": "Input_Mask",
+			"from_port": 0,
+			"to": "S_Curve",
+			"to_port": 0
+		},
+		{
+			"from": "S_Curve",
+			"from_port": 0,
+			"to": "Output_Soft",
+			"to_port": 0
+		},
+		{
+			"from": "Input_Mask",
+			"from_port": 0,
+			"to": "Curvature",
+			"to_port": 0
+		},
+		{
+			"from": "Curvature",
+			"from_port": 0,
+			"to": "Output_Curvature",
+			"to_port": 0
+		},
+		{
+			"from": "Distance_Field",
+			"from_port": 0,
+			"to": "Output_Radial",
+			"to_port": 0
+		}
+	]
+}

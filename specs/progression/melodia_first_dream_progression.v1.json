@@ -1,0 +1,862 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "melodia.progression_package.v1",
+  "schema_version": "1.0",
+  "kind": "melodia_progression_package",
+  "contract_id": "melodia_progression_package",
+  "package": {
+    "package_id": "package.first_dream.progression",
+    "definition_version": "1.0",
+    "display_name": "First Dream",
+    "content_kind": "chapter_progression",
+    "status": "runtime_integration_pending"
+  },
+  "content_refs": {
+    "player_route": [
+      "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+      "/Game/EnvSandbox/Environments/L_KaleidoNave"
+    ],
+    "integration_proof_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "encounter_ids": [
+      "melodia_smoke_encounter"
+    ],
+    "dialogue_source_refs": [
+      "Content/MelodiaIntegration/Narrative/MelodiaMorningIntro.qsc",
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillSmoke.qsc"
+    ],
+    "source_notification_aliases": {
+      "quest": "melodia_q_echo_01",
+      "reward": "melodia_smoke_reward"
+    }
+  },
+  "authority": {
+    "runtime_subsystem": "UMelodiaNarrativeSubsystem",
+    "narrative_record": "FMelodiaNarrativeRecord",
+    "save_field": "melodiaNarrativeRecord",
+    "objective_state_source": {
+      "active_quest_ids": "FMelodiaNarrativeRecord.ActiveQuestIds",
+      "flags": "FMelodiaNarrativeRecord.Flags",
+      "consumed_intent_ids": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "consumed_reward_ids": "FMelodiaNarrativeRecord.ConsumedRewardIds",
+      "script_checkpoint": "FMelodiaNarrativeRecord.ScriptCheckpoint"
+    },
+    "offline_projection": "Tools/melodia_objective_state.py",
+    "presentation": "specs/progression/melodia_objective_tracker_presentation.v1.json"
+  },
+  "required_allowlist": {
+    "quest_ids": [
+      "quest.first_dream"
+    ],
+    "narrative_flag_ids": [
+      "flag.first_dream.quest.completed",
+      "flag.first_dream.objective.notice_absence.completed",
+      "flag.first_dream.objective.choose_to_listen.completed",
+      "flag.first_dream.objective.follow_quiet_chirp.completed",
+      "flag.first_dream.objective.restore_resonance.completed",
+      "flag.first_dream.objective.face_echo.victory",
+      "flag.first_dream.objective.face_echo.failed",
+      "flag.first_dream.objective.record_consequence.completed",
+      "flag.first_dream.objective.checkpoint.completed",
+      "first_resonance_solved",
+      "first_dream.echo_unresolved",
+      "first_dream.progress_anchor_applied"
+    ],
+    "dialogue_reward_ids": [
+      "reward.first_resonance_echo"
+    ]
+  },
+  "chapter": {
+    "chapter_id": "chapter.first_dream",
+    "order": 1,
+    "title": "First Dream",
+    "prerequisites": [],
+    "beat_ids": [
+      "beat.first_dream.morning_hook",
+      "beat.first_dream.departure",
+      "beat.first_dream.reunion",
+      "beat.first_dream.encounter",
+      "beat.first_dream.consequence",
+      "beat.first_dream.checkpoint"
+    ],
+    "quest_ids": [
+      "quest.first_dream"
+    ],
+    "exit_objective_ids": [
+      "objective.first_dream.checkpoint"
+    ],
+    "checkpoint_id": "checkpoint.first_dream.complete"
+  },
+  "beats": [
+    {
+      "beat_id": "beat.first_dream.morning_hook",
+      "order": 1,
+      "title": "The empty perch",
+      "prerequisites": [],
+      "objective_ids": [
+        "objective.first_dream.notice_absence",
+        "objective.first_dream.choose_to_listen"
+      ],
+      "checkpoint_id": "checkpoint.first_dream.morning",
+      "interrupt_policy": "resume_from_canonical_checkpoint",
+      "intent_ids": [
+        "intent.first_dream.objective.notice_absence.complete",
+        "intent.first_dream.objective.choose_to_listen.complete"
+      ]
+    },
+    {
+      "beat_id": "beat.first_dream.departure",
+      "order": 2,
+      "title": "Follow the quiet chirp",
+      "prerequisites": [
+        {
+          "type": "beat",
+          "id": "beat.first_dream.morning_hook",
+          "satisfied_states": [
+            "completed"
+          ]
+        }
+      ],
+      "objective_ids": [
+        "objective.first_dream.follow_quiet_chirp"
+      ],
+      "checkpoint_id": "checkpoint.first_dream.departure",
+      "interrupt_policy": "resume_from_canonical_checkpoint",
+      "intent_ids": [
+        "intent.first_dream.objective.follow_quiet_chirp.complete"
+      ]
+    },
+    {
+      "beat_id": "beat.first_dream.reunion",
+      "order": 3,
+      "title": "A note answered",
+      "prerequisites": [
+        {
+          "type": "beat",
+          "id": "beat.first_dream.departure",
+          "satisfied_states": [
+            "completed"
+          ]
+        }
+      ],
+      "objective_ids": [
+        "objective.first_dream.restore_resonance"
+      ],
+      "checkpoint_id": "checkpoint.first_dream.reunion",
+      "interrupt_policy": "resume_from_canonical_checkpoint",
+      "intent_ids": [
+        "intent.first_dream.objective.restore_resonance.complete"
+      ]
+    },
+    {
+      "beat_id": "beat.first_dream.encounter",
+      "order": 4,
+      "title": "The restless echo",
+      "prerequisites": [
+        {
+          "type": "beat",
+          "id": "beat.first_dream.reunion",
+          "satisfied_states": [
+            "completed"
+          ]
+        }
+      ],
+      "objective_ids": [
+        "objective.first_dream.face_echo"
+      ],
+      "checkpoint_id": "checkpoint.first_dream.encounter",
+      "interrupt_policy": "restart_beat_without_replaying_consumed_intents",
+      "intent_ids": [
+        "intent.first_dream.objective.face_echo.complete",
+        "intent.first_dream.objective.face_echo.fail"
+      ]
+    },
+    {
+      "beat_id": "beat.first_dream.consequence",
+      "order": 5,
+      "title": "What the echo leaves behind",
+      "prerequisites": [
+        {
+          "type": "beat",
+          "id": "beat.first_dream.encounter",
+          "satisfied_states": [
+            "completed",
+            "failed"
+          ]
+        }
+      ],
+      "objective_ids": [
+        "objective.first_dream.record_consequence"
+      ],
+      "checkpoint_id": "checkpoint.first_dream.consequence",
+      "interrupt_policy": "resume_from_canonical_checkpoint",
+      "intent_ids": [
+        "intent.first_dream.objective.record_consequence.complete"
+      ]
+    },
+    {
+      "beat_id": "beat.first_dream.checkpoint",
+      "order": 6,
+      "title": "A quiet place to continue",
+      "prerequisites": [
+        {
+          "type": "beat",
+          "id": "beat.first_dream.consequence",
+          "satisfied_states": [
+            "completed"
+          ]
+        }
+      ],
+      "objective_ids": [
+        "objective.first_dream.checkpoint"
+      ],
+      "checkpoint_id": "checkpoint.first_dream.complete",
+      "interrupt_policy": "resume_from_canonical_checkpoint",
+      "intent_ids": [
+        "intent.first_dream.objective.checkpoint.complete"
+      ]
+    }
+  ],
+  "quests": [
+    {
+      "quest_id": "quest.first_dream",
+      "title": "A Quiet Note",
+      "prerequisites": [],
+      "beat_ids": [
+        "beat.first_dream.morning_hook",
+        "beat.first_dream.departure",
+        "beat.first_dream.reunion",
+        "beat.first_dream.encounter",
+        "beat.first_dream.consequence",
+        "beat.first_dream.checkpoint"
+      ],
+      "objective_ids": [
+        "objective.first_dream.notice_absence",
+        "objective.first_dream.choose_to_listen",
+        "objective.first_dream.follow_quiet_chirp",
+        "objective.first_dream.restore_resonance",
+        "objective.first_dream.face_echo",
+        "objective.first_dream.record_consequence",
+        "objective.first_dream.checkpoint"
+      ],
+      "accept_intent_id": "intent.first_dream.quest.accept",
+      "complete_intent_id": "intent.first_dream.quest.complete",
+      "completion_flag_id": "flag.first_dream.quest.completed",
+      "reward_ids": [
+        "reward.first_resonance_echo"
+      ],
+      "consequence_ids": [
+        "consequence.first_dream.resonance_restored",
+        "consequence.first_dream.echo_unresolved",
+        "consequence.first_dream.progress_anchor"
+      ],
+      "restore_policy": "retain_active_objectives_and_consumed_journals"
+    }
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.first_dream.notice_absence",
+      "order": 1,
+      "beat_id": "beat.first_dream.morning_hook",
+      "quest_id": "quest.first_dream",
+      "title": "Notice the empty perch",
+      "prerequisites": [],
+      "state_rules": {
+        "initial_state": "locked",
+        "terminal_states": [
+          "completed"
+        ],
+        "state_source": "canonical_record_journals",
+        "ordered": true
+      },
+      "completion": {
+        "intent_id": "intent.first_dream.objective.notice_absence.complete",
+        "flag_id": "flag.first_dream.objective.notice_absence.completed",
+        "effects": {
+          "reward_ids": [],
+          "consequence_ids": []
+        }
+      },
+      "failure": null,
+      "checkpoint_id": "checkpoint.first_dream.morning",
+      "tracker": {
+        "visible": true,
+        "label": "Look at the empty perch.",
+        "route_marker_id": "marker.first_dream.perch",
+        "completion_feedback": "The silence is familiar, but the perch is empty.",
+        "show_subobjectives": false
+      }
+    },
+    {
+      "objective_id": "objective.first_dream.choose_to_listen",
+      "order": 2,
+      "beat_id": "beat.first_dream.morning_hook",
+      "quest_id": "quest.first_dream",
+      "title": "Choose to listen",
+      "prerequisites": [
+        {
+          "type": "objective",
+          "id": "objective.first_dream.notice_absence",
+          "satisfied_states": [
+            "completed"
+          ]
+        }
+      ],
+      "state_rules": {
+        "initial_state": "locked",
+        "terminal_states": [
+          "completed"
+        ],
+        "state_source": "canonical_record_journals",
+        "ordered": true
+      },
+      "completion": {
+        "intent_id": "intent.first_dream.objective.choose_to_listen.complete",
+        "flag_id": "flag.first_dream.objective.choose_to_listen.completed",
+        "effects": {
+          "reward_ids": [],
+          "consequence_ids": []
+        }
+      },
+      "failure": null,
+      "checkpoint_id": "checkpoint.first_dream.morning",
+      "tracker": {
+        "visible": true,
+        "label": "Follow the quiet chirp.",
+        "route_marker_id": "marker.first_dream.chirp",
+        "completion_feedback": "A small note answers from beyond the room.",
+        "show_subobjectives": false
+      }
+    },
+    {
+      "objective_id": "objective.first_dream.follow_quiet_chirp",
+      "order": 3,
+      "beat_id": "beat.first_dream.departure",
+      "quest_id": "quest.first_dream",
+      "title": "Follow the quiet chirp",
+      "prerequisites": [
+        {
+          "type": "objective",
+          "id": "objective.first_dream.choose_to_listen",
+          "satisfied_states": [
+            "completed"
+          ]
+        }
+      ],
+      "state_rules": {
+        "initial_state": "locked",
+        "terminal_states": [
+          "completed"
+        ],
+        "state_source": "canonical_record_journals",
+        "ordered": true
+      },
+      "completion": {
+        "intent_id": "intent.first_dream.objective.follow_quiet_chirp.complete",
+        "flag_id": "flag.first_dream.objective.follow_quiet_chirp.completed",
+        "effects": {
+          "reward_ids": [],
+          "consequence_ids": []
+        }
+      },
+      "failure": null,
+      "checkpoint_id": "checkpoint.first_dream.departure",
+      "tracker": {
+        "visible": true,
+        "label": "Follow the quiet chirp outside.",
+        "route_marker_id": "marker.first_dream.departure",
+        "completion_feedback": "The path opens toward a waiting answer.",
+        "show_subobjectives": false
+      }
+    },
+    {
+      "objective_id": "objective.first_dream.restore_resonance",
+      "order": 4,
+      "beat_id": "beat.first_dream.reunion",
+      "quest_id": "quest.first_dream",
+      "title": "Restore the resonance",
+      "prerequisites": [
+        {
+          "type": "objective",
+          "id": "objective.first_dream.follow_quiet_chirp",
+          "satisfied_states": [
+            "completed"
+          ]
+        }
+      ],
+      "state_rules": {
+        "initial_state": "locked",
+        "terminal_states": [
+          "completed"
+        ],
+        "state_source": "canonical_record_journals",
+        "ordered": true
+      },
+      "completion": {
+        "intent_id": "intent.first_dream.objective.restore_resonance.complete",
+        "flag_id": "flag.first_dream.objective.restore_resonance.completed",
+        "effects": {
+          "reward_ids": [],
+          "consequence_ids": []
+        }
+      },
+      "failure": null,
+      "checkpoint_id": "checkpoint.first_dream.reunion",
+      "tracker": {
+        "visible": true,
+        "label": "Answer the note and restore the resonance.",
+        "route_marker_id": "marker.first_dream.reunion",
+        "completion_feedback": "The answer is small, but it is real.",
+        "show_subobjectives": true
+      }
+    },
+    {
+      "objective_id": "objective.first_dream.face_echo",
+      "order": 5,
+      "beat_id": "beat.first_dream.encounter",
+      "quest_id": "quest.first_dream",
+      "title": "Face the restless echo",
+      "prerequisites": [
+        {
+          "type": "objective",
+          "id": "objective.first_dream.restore_resonance",
+          "satisfied_states": [
+            "completed"
+          ]
+        }
+      ],
+      "state_rules": {
+        "initial_state": "locked",
+        "terminal_states": [
+          "completed",
+          "failed"
+        ],
+        "state_source": "canonical_record_journals",
+        "ordered": true
+      },
+      "completion": {
+        "intent_id": "intent.first_dream.objective.face_echo.complete",
+        "flag_id": "flag.first_dream.objective.face_echo.victory",
+        "accepted_results": [
+          "victory"
+        ],
+        "effects": {
+          "reward_ids": [
+            "reward.first_resonance_echo"
+          ],
+          "consequence_ids": [
+            "consequence.first_dream.resonance_restored"
+          ]
+        }
+      },
+      "failure": {
+        "intent_id": "intent.first_dream.objective.face_echo.fail",
+        "flag_id": "flag.first_dream.objective.face_echo.failed",
+        "accepted_results": [
+          "defeat",
+          "fled"
+        ],
+        "effects": {
+          "reward_ids": [],
+          "consequence_ids": [
+            "consequence.first_dream.echo_unresolved"
+          ]
+        }
+      },
+      "checkpoint_id": "checkpoint.first_dream.encounter",
+      "tracker": {
+        "visible": true,
+        "label": "Meet the restless echo.",
+        "route_marker_id": "marker.first_dream.echo",
+        "completion_feedback": "The echo gives way, and the next note can be heard.",
+        "show_subobjectives": true
+      }
+    },
+    {
+      "objective_id": "objective.first_dream.record_consequence",
+      "order": 6,
+      "beat_id": "beat.first_dream.consequence",
+      "quest_id": "quest.first_dream",
+      "title": "Record what changed",
+      "prerequisites": [
+        {
+          "type": "objective",
+          "id": "objective.first_dream.face_echo",
+          "satisfied_states": [
+            "completed",
+            "failed"
+          ]
+        }
+      ],
+      "state_rules": {
+        "initial_state": "locked",
+        "terminal_states": [
+          "completed"
+        ],
+        "state_source": "canonical_record_journals",
+        "ordered": true
+      },
+      "completion": {
+        "intent_id": "intent.first_dream.objective.record_consequence.complete",
+        "flag_id": "flag.first_dream.objective.record_consequence.completed",
+        "effects": {
+          "reward_ids": [],
+          "consequence_ids": []
+        }
+      },
+      "failure": null,
+      "checkpoint_id": "checkpoint.first_dream.consequence",
+      "tracker": {
+        "visible": true,
+        "label": "Read the changed resonance.",
+        "route_marker_id": "marker.first_dream.consequence",
+        "completion_feedback": "The route remembers what happened.",
+        "show_subobjectives": false
+      }
+    },
+    {
+      "objective_id": "objective.first_dream.checkpoint",
+      "order": 7,
+      "beat_id": "beat.first_dream.checkpoint",
+      "quest_id": "quest.first_dream",
+      "title": "Keep a place to continue",
+      "prerequisites": [
+        {
+          "type": "objective",
+          "id": "objective.first_dream.record_consequence",
+          "satisfied_states": [
+            "completed"
+          ]
+        }
+      ],
+      "state_rules": {
+        "initial_state": "locked",
+        "terminal_states": [
+          "completed"
+        ],
+        "state_source": "canonical_record_journals",
+        "ordered": true
+      },
+      "completion": {
+        "intent_id": "intent.first_dream.objective.checkpoint.complete",
+        "flag_id": "flag.first_dream.objective.checkpoint.completed",
+        "effects": {
+          "reward_ids": [],
+          "consequence_ids": [
+            "consequence.first_dream.progress_anchor"
+          ]
+        }
+      },
+      "failure": null,
+      "checkpoint_id": "checkpoint.first_dream.complete",
+      "tracker": {
+        "visible": true,
+        "label": "Save the new note and continue.",
+        "route_marker_id": null,
+        "completion_feedback": "The next chapter has somewhere to begin.",
+        "show_subobjectives": false
+      }
+    }
+  ],
+  "rewards": [
+    {
+      "reward_id": "reward.first_resonance_echo",
+      "title": "First Resonance Echo",
+      "grant_intent_id": "intent.first_dream.reward.first_resonance_echo",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedRewardIds",
+      "canonical_effect": {
+        "type": "dialogue_reward",
+        "id": "reward.first_resonance_echo"
+      },
+      "restore_policy": "consumed_reward_replays_presentation_only"
+    }
+  ],
+  "consequences": [
+    {
+      "consequence_id": "consequence.first_dream.resonance_restored",
+      "title": "Resonance restored",
+      "intent_id": "intent.first_dream.consequence.resonance_restored",
+      "target": {
+        "type": "narrative_flag",
+        "id": "first_resonance_solved",
+        "value": true
+      },
+      "restore_policy": "intent_replays_presentation_only"
+    },
+    {
+      "consequence_id": "consequence.first_dream.echo_unresolved",
+      "title": "Echo remains unresolved",
+      "intent_id": "intent.first_dream.consequence.echo_unresolved",
+      "target": {
+        "type": "narrative_flag",
+        "id": "first_dream.echo_unresolved",
+        "value": true
+      },
+      "restore_policy": "intent_replays_presentation_only"
+    },
+    {
+      "consequence_id": "consequence.first_dream.progress_anchor",
+      "title": "First Dream progress anchored",
+      "intent_id": "intent.first_dream.consequence.progress_anchor",
+      "target": {
+        "type": "narrative_flag",
+        "id": "first_dream.progress_anchor_applied",
+        "value": true
+      },
+      "restore_policy": "intent_replays_presentation_only"
+    }
+  ],
+  "intent_journal": [
+    {
+      "intent_id": "intent.first_dream.quest.accept",
+      "owner_type": "quest",
+      "owner_id": "quest.first_dream",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.quest.complete",
+      "owner_type": "quest",
+      "owner_id": "quest.first_dream",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.objective.notice_absence.complete",
+      "owner_type": "objective",
+      "owner_id": "objective.first_dream.notice_absence",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.objective.choose_to_listen.complete",
+      "owner_type": "objective",
+      "owner_id": "objective.first_dream.choose_to_listen",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.objective.follow_quiet_chirp.complete",
+      "owner_type": "objective",
+      "owner_id": "objective.first_dream.follow_quiet_chirp",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.objective.restore_resonance.complete",
+      "owner_type": "objective",
+      "owner_id": "objective.first_dream.restore_resonance",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.objective.face_echo.complete",
+      "owner_type": "objective",
+      "owner_id": "objective.first_dream.face_echo",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.objective.face_echo.fail",
+      "owner_type": "objective",
+      "owner_id": "objective.first_dream.face_echo",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.objective.record_consequence.complete",
+      "owner_type": "objective",
+      "owner_id": "objective.first_dream.record_consequence",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.objective.checkpoint.complete",
+      "owner_type": "objective",
+      "owner_id": "objective.first_dream.checkpoint",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.reward.first_resonance_echo",
+      "owner_type": "reward",
+      "owner_id": "reward.first_resonance_echo",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.consequence.resonance_restored",
+      "owner_type": "consequence",
+      "owner_id": "consequence.first_dream.resonance_restored",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.consequence.echo_unresolved",
+      "owner_type": "consequence",
+      "owner_id": "consequence.first_dream.echo_unresolved",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    },
+    {
+      "intent_id": "intent.first_dream.consequence.progress_anchor",
+      "owner_type": "consequence",
+      "owner_id": "consequence.first_dream.progress_anchor",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "exactly_once": true,
+      "replay_policy": "no_op_after_restore"
+    }
+  ],
+  "pacing": {
+    "target_minutes": {
+      "minimum": 15,
+      "maximum": 20
+    },
+    "beat_windows": [
+      {
+        "beat_id": "beat.first_dream.morning_hook",
+        "start_minute": 0,
+        "end_minute": 3,
+        "target_seconds": 180,
+        "readability_obligations": [
+          "The empty perch and emotional hook are legible before the first choice.",
+          "Skip or advance changes dialogue presentation only once."
+        ]
+      },
+      {
+        "beat_id": "beat.first_dream.departure",
+        "start_minute": 3,
+        "end_minute": 6,
+        "target_seconds": 180,
+        "readability_obligations": [
+          "The route marker or text prompt identifies the quiet chirp without hiding the path."
+        ]
+      },
+      {
+        "beat_id": "beat.first_dream.reunion",
+        "start_minute": 6,
+        "end_minute": 9,
+        "target_seconds": 180,
+        "readability_obligations": [
+          "The call-and-response makes the restored resonance readable without requiring rhythm success."
+        ]
+      },
+      {
+        "beat_id": "beat.first_dream.encounter",
+        "start_minute": 9,
+        "end_minute": 16,
+        "target_seconds": 420,
+        "readability_obligations": [
+          "Victory, defeat, and fled outcomes each resolve to one typed objective outcome.",
+          "A missing Quill or unavailable battle runtime fails closed without consuming a progression intent."
+        ]
+      },
+      {
+        "beat_id": "beat.first_dream.consequence",
+        "start_minute": 16,
+        "end_minute": 19,
+        "target_seconds": 180,
+        "readability_obligations": [
+          "The consequence is visible and does not duplicate the reward or consequence on resume."
+        ]
+      },
+      {
+        "beat_id": "beat.first_dream.checkpoint",
+        "start_minute": 19,
+        "end_minute": 20,
+        "target_seconds": 60,
+        "readability_obligations": [
+          "The checkpoint is recorded before leaving the chapter.",
+          "Continue restores the current objective or terminal chapter summary."
+        ]
+      }
+    ],
+    "rules": [
+      "skip_or_advance_never_emits_a_second_intent",
+      "interruption_restores_from_canonical_checkpoint",
+      "missing_quill_fails_closed_without_mutating_canonical_state",
+      "victory_defeat_and_fled_each_resolve_to_one_typed_objective_outcome",
+      "replay_after_save_load_does_not_duplicate_intents_rewards_or_consequences",
+      "tracker_refresh_is_read_only"
+    ]
+  },
+  "acceptance": {
+    "offline_checks": [
+      {
+        "id": "acceptance.first_dream.schema",
+        "kind": "schema",
+        "status": "pass",
+        "assertion": "The package contains one chapter with stable IDs and all required schema sections."
+      },
+      {
+        "id": "acceptance.first_dream.ordered_states",
+        "kind": "transition",
+        "status": "pass",
+        "assertion": "Objective prerequisites form an ordered chain and expose locked, active, completed, and failed semantics."
+      },
+      {
+        "id": "acceptance.first_dream.exactly_once",
+        "kind": "transition",
+        "status": "pass",
+        "assertion": "Every completion, failure, reward, consequence, and quest transition has one journaled intent ID."
+      },
+      {
+        "id": "acceptance.first_dream.restore",
+        "kind": "restore",
+        "status": "pass",
+        "assertion": "A canonical record snapshot restores objective state, checkpoint, consumed intents, and consumed rewards without replaying effects."
+      },
+      {
+        "id": "acceptance.first_dream.tracker_contract",
+        "kind": "presentation",
+        "status": "pass",
+        "assertion": "The tracker is read-only and resolves current objective, optional sub-objectives, feedback, route marker, and restore from package data."
+      }
+    ],
+    "live_checks": [
+      {
+        "id": "acceptance.first_dream.editor_materialization",
+        "kind": "editor",
+        "status": "pending",
+        "assertion": "Materialize the package and tracker bindings through one live editor owner, then compile, save, and re-read."
+      },
+      {
+        "id": "acceptance.first_dream.pie_route",
+        "kind": "pie",
+        "status": "pending",
+        "assertion": "Play the Morning to KaleidoNave route and observe each objective state, typed battle branch, and tracker update."
+      },
+      {
+        "id": "acceptance.first_dream.process_restore",
+        "kind": "pie",
+        "status": "pending",
+        "assertion": "Save, exit the process, Continue, and verify the checkpoint and objective tracker restore without duplicate intents or rewards."
+      },
+      {
+        "id": "acceptance.first_dream.packaged_route",
+        "kind": "packaged",
+        "status": "pending",
+        "assertion": "Repeat the route in the packaged build with the allowlist fail-closed and no editor-only relaxed IDs."
+      }
+    ],
+    "exit_criteria": [
+      "The First Dream package is the only source of chapter/objective ordering.",
+      "UMelodiaNarrativeSubsystem remains the only runtime narrative and intent authority.",
+      "FMelodiaNarrativeRecord remains the only persisted progression seam.",
+      "The tracker reads canonical state and never emits a gameplay or save mutation.",
+      "A fresh-slot route and a Continue route both preserve exactly-once semantics."
+    ]
+  }
+}

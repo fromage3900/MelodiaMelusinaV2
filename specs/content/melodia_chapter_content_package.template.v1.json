@@ -1,0 +1,599 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "melodia.chapter_content_package.v1",
+  "schema_version": "1.0",
+  "kind": "melodia_chapter_content_package",
+  "contract_id": "melodia_chapter_content_package",
+  "status": "template_only",
+  "package": {
+    "package_id_pattern": "package.{movement_slug}.content",
+    "definition_version": "1.0",
+    "display_name": "Future Movement — Template",
+    "content_kind": "future_chapter_content",
+    "status": "template_only"
+  },
+  "progression_binding": {
+    "schema_ref": "specs/schemas/melodia_progression_package.v1.schema.json",
+    "package_ref": null,
+    "reference_package": {
+      "path": "specs/progression/melodia_first_dream_progression.v1.json",
+      "chapter_id": "chapter.first_dream",
+      "quest_id": "quest.first_dream",
+      "checkpoint_id": "checkpoint.first_dream.complete",
+      "purpose": "existing_progression_schema_and_id_style_reference"
+    },
+    "id_namespace": "movement_n",
+    "id_patterns": {
+      "chapter": "chapter.{movement_slug}",
+      "beat": "beat.{movement_slug}.{beat_slug}",
+      "quest": "quest.{movement_slug}.{quest_slug}",
+      "objective": "objective.{movement_slug}.{objective_slug}",
+      "intent": "intent.{movement_slug}.{owner}.{action}",
+      "checkpoint": "checkpoint.{movement_slug}.{checkpoint_slug}",
+      "reward": "reward.{movement_slug}.{reward_slug}",
+      "consequence": "consequence.{movement_slug}.{consequence_slug}",
+      "narrative_flag": "flag.{movement_slug}.{flag_slug}"
+    },
+    "canonical_state": {
+      "save_field": "melodiaNarrativeRecord",
+      "narrative_record": "FMelodiaNarrativeRecord",
+      "objective_state_source": "canonical_record_journals",
+      "checkpoint_field": "FMelodiaNarrativeRecord.ScriptCheckpoint",
+      "intent_journal_field": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "reward_journal_field": "FMelodiaNarrativeRecord.ConsumedRewardIds"
+    }
+  },
+  "authority": {
+    "save_owner": "stock JRPG GameInstance + BP_JRPGSaveGame",
+    "narrative_runtime_owner": "UMelodiaNarrativeSubsystem",
+    "narrative_record": "FMelodiaNarrativeRecord",
+    "dialogue_owner": "QuillScript",
+    "dialogue_handoff": "melodia:<verb>:<stable-id> through UMelodiaNarrativeSubsystem",
+    "travel_owner": "UMelodiaTravelSubsystem",
+    "traversal_owner": "UMelodiaTraversalComponent",
+    "encounter_owner": "stock JRPG battle/session/result authority",
+    "reward_owner": "allowlisted canonical narrative/progression subsystem",
+    "cosmetic_definition_owner": "UMelodiaWardrobeSubsystem",
+    "form_definition_owner": "FMelodiaResonantForm",
+    "unlock_state_owner": "UMelodiaNarrativeSubsystem -> FMelodiaNarrativeRecord.Flags",
+    "persistence": "FMelodiaNarrativeRecord_and_canonical_save_contract",
+    "presentation": "read-only consumers; widgets never mutate progression",
+    "forbidden": [
+      "second save or quest authority",
+      "QuillScript canonical save, quest, travel, or reward ownership",
+      "direct save-file mutation",
+      "direct OpenLevel travel",
+      "widget-local objective or unlock state",
+      "local capability grant or duplicated traversal state machine",
+      "cosmetic ownership of gameplay capabilities",
+      "runtime-only unlock state with no canonical key"
+    ]
+  },
+  "chapter": {
+    "chapter_id_pattern": "chapter.{movement_slug}",
+    "title": "Future movement title — owner input required",
+    "order": null,
+    "source": {
+      "path_template": "specs/progression/{movement_slug}_progression.v1.json",
+      "source_kind": "progression_package",
+      "status": "placeholder",
+      "authority": "melodia_progression_package.v1",
+      "declares": [
+        "chapter identity, order, prerequisites, beat membership, quest membership, exit objectives, and checkpoint"
+      ]
+    },
+    "status": "placeholder"
+  },
+  "beats": [
+    {
+      "beat_id_pattern": "beat.{movement_slug}.{beat_slug}",
+      "order": 1,
+      "title": "Beat title — owner input required",
+      "progression_source": {
+        "path_template": "specs/progression/{movement_slug}_progression.v1.json",
+        "source_kind": "progression_package",
+        "status": "placeholder",
+        "authority": "melodia_progression_package.v1",
+        "declares": [
+          "ordered beat prerequisites, objectives, checkpoint, interrupt policy, and intent IDs"
+        ]
+      },
+      "dialogue_source_ids": [
+        "dialogue.{movement_slug}.main"
+      ],
+      "checkpoint_id_pattern": "checkpoint.{movement_slug}.{beat_checkpoint}",
+      "status": "placeholder"
+    }
+  ],
+  "quests": [
+    {
+      "quest_id_pattern": "quest.{movement_slug}.{quest_slug}",
+      "title": "Quest title — owner input required",
+      "progression_source": {
+        "path_template": "specs/progression/{movement_slug}_progression.v1.json",
+        "source_kind": "progression_package",
+        "status": "placeholder",
+        "authority": "melodia_progression_package.v1",
+        "declares": [
+          "quest prerequisites, ordered beats/objectives, accept and complete intents, rewards, consequences, and restore policy"
+        ]
+      },
+      "beat_id_patterns": [
+        "beat.{movement_slug}.{beat_slug}"
+      ],
+      "objective_id_patterns": [
+        "objective.{movement_slug}.{objective_slug}"
+      ],
+      "accept_intent_id_pattern": "intent.{movement_slug}.quest.accept",
+      "complete_intent_id_pattern": "intent.{movement_slug}.quest.complete",
+      "status": "placeholder"
+    }
+  ],
+  "objectives": [
+    {
+      "objective_id_pattern": "objective.{movement_slug}.{objective_slug}",
+      "order": 1,
+      "title": "Objective title — owner input required",
+      "progression_source": {
+        "path_template": "specs/progression/{movement_slug}_progression.v1.json",
+        "source_kind": "progression_package",
+        "status": "placeholder",
+        "authority": "melodia_progression_package.v1",
+        "declares": [
+          "ordered state rules, prerequisites, completion/failure intents, flags, effects, tracker presentation, and checkpoint"
+        ]
+      },
+      "quest_id_pattern": "quest.{movement_slug}.{quest_slug}",
+      "beat_id_pattern": "beat.{movement_slug}.{beat_slug}",
+      "state_source": "canonical_record_journals",
+      "tracker_contract_ref": "specs/progression/melodia_objective_tracker_presentation.v1.json",
+      "checkpoint_id_pattern": "checkpoint.{movement_slug}.{objective_checkpoint}",
+      "status": "placeholder"
+    }
+  ],
+  "dialogue_sources": [
+    {
+      "source_id": "dialogue.{movement_slug}.main",
+      "path_template": "Content/MelodiaIntegration/Narrative/{movement_slug}.qsc",
+      "source_kind": "quill_qsc",
+      "status": "placeholder",
+      "authority": "QuillScript",
+      "declares": [
+        "ordered dialogue labels and choices",
+        "readable emotional turn and traversal choice",
+        "stable melodia notification intents only"
+      ],
+      "interaction_label_pattern": "label.{movement_slug}.entry",
+      "notification_route": "melodia:<verb>:<stable-id> through UMelodiaNarrativeSubsystem",
+      "notification_intent_patterns": [
+        "intent.{movement_slug}.dialogue.choice",
+        "intent.{movement_slug}.dialogue.consequence"
+      ],
+      "quill_owner": "QuillScript"
+    }
+  ],
+  "route_references": {
+    "player_route": [
+      {
+        "order": 1,
+        "map_path_template": "/Game/Melodia/Levels/{movement_slug}/{map_slug}",
+        "entry_spawn_tag": "Spawn.{movement_slug}.entry",
+        "exit_spawn_tag": "Spawn.{movement_slug}.exit",
+        "role": "traversal",
+        "source": {
+          "path_template": "specs/routes/{movement_slug}_route.v1.json",
+          "source_kind": "route_spec",
+          "status": "owner_input_required",
+          "authority": "UMelodiaTravelSubsystem",
+          "declares": [
+            "ordered player-facing map legs, spawn tags, route marker references, and safe failure behavior"
+          ]
+        },
+        "status": "owner_input_required"
+      }
+    ],
+    "integration_proof_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "travel_authority": "UMelodiaTravelSubsystem",
+    "route_source": {
+      "path_template": "specs/routes/{movement_slug}_route.v1.json",
+      "source_kind": "route_spec",
+      "status": "owner_input_required",
+      "authority": "UMelodiaTravelSubsystem",
+      "declares": [
+        "future route and map references without moving the player from Quill or a widget"
+      ]
+    },
+    "reference_route": [
+      "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+      "/Game/EnvSandbox/Environments/L_KaleidoNave"
+    ],
+    "route_status": "template_only",
+    "map_name_policy": "map names live in route data; widgets and Quill do not own travel"
+  },
+  "encounters": [
+    {
+      "encounter_id_pattern": "encounter.{movement_slug}.primary",
+      "kind": "combat_or_non_combat",
+      "source": {
+        "path_template": "specs/encounters/{movement_slug}_encounters.v1.json",
+        "source_kind": "encounter_spec",
+        "status": "owner_input_required",
+        "authority": "stock JRPG battle/session/result authority",
+        "declares": [
+          "one primary encounter, its activation gate, result branches, and reset/idempotency behavior"
+        ]
+      },
+      "authority": "stock JRPG battle/session/result authority",
+      "result_branches": [
+        "victory",
+        "defeat",
+        "fled",
+        "unavailable"
+      ],
+      "unavailable_policy": "fail_closed_without_consuming_intent",
+      "consequence_id_pattern": "consequence.{movement_slug}.encounter_result",
+      "intent_id_pattern": "intent.{movement_slug}.encounter.result",
+      "status": "owner_input_required"
+    }
+  ],
+  "rewards": [
+    {
+      "reward_id_pattern": "reward.{movement_slug}.{reward_slug}",
+      "title": "Durable chapter reward — owner input required",
+      "source": {
+        "path_template": "specs/rewards/{movement_slug}_rewards.v1.json",
+        "source_kind": "reward_spec",
+        "status": "owner_input_required",
+        "authority": "allowlisted canonical narrative/progression subsystem",
+        "declares": [
+          "one durable reward, its allowlisted ID, grant intent, and presentation fallback"
+        ]
+      },
+      "grant_intent_id_pattern": "intent.{movement_slug}.reward.durable",
+      "record_field": "FMelodiaNarrativeRecord.ConsumedRewardIds",
+      "canonical_effect": {
+        "type": "resonant_form",
+        "id_pattern": "form.{movement_slug}.primary"
+      },
+      "durable": true,
+      "status": "owner_input_required"
+    }
+  ],
+  "wardrobe_unlocks": [
+    {
+      "unlock_id_pattern": "unlock.{movement_slug}.wardrobe",
+      "cosmetic_id_pattern": "cosmetic.{movement_slug}.reward",
+      "catalog_contract_ref": "specs/wardrobe/wardrobe_catalog_contract.v1.json",
+      "definition_owner": "UMelodiaWardrobeSubsystem",
+      "unlock_state_source": "UMelodiaNarrativeSubsystem -> FMelodiaNarrativeRecord.Flags",
+      "presentation_only": true,
+      "durable": true,
+      "status": "owner_input_required"
+    }
+  ],
+  "form_unlocks": [
+    {
+      "form_id_pattern": "form.{movement_slug}.primary",
+      "capability_ids": [
+        "capability.{movement_slug}.primary"
+      ],
+      "capability_gate_contract_ref": "specs/capability/melodia_capability_gate.v1.json",
+      "traversal_contract_ref": "specs/traversal/melodia_traversal_capability.v1.json",
+      "definition_owner": "FMelodiaResonantForm",
+      "lookup_owner": "UMelodiaWardrobeSubsystem as read-only resonant-form capability lookup",
+      "unlock_state_source": "UMelodiaNarrativeSubsystem -> FMelodiaNarrativeRecord.Flags",
+      "runtime_decider": "UMelodiaTraversalComponent",
+      "unknown_form_policy": "fail_closed_without_capability",
+      "durable": true,
+      "status": "owner_input_required"
+    }
+  ],
+  "pacing_targets": {
+    "target_minutes": {
+      "minimum": null,
+      "target": null,
+      "maximum": null
+    },
+    "beat_windows": [
+      {
+        "beat_id_pattern": "beat.{movement_slug}.{beat_slug}",
+        "order": 1,
+        "start_minute": null,
+        "end_minute": null,
+        "target_seconds": null,
+        "readability_obligations": [
+          "The emotional turn is legible before the traversal decision.",
+          "The active objective and route prompt remain readable after skip, interruption, and restore."
+        ]
+      }
+    ],
+    "rules": [
+      "skip_or_advance_never_emits_a_second_intent",
+      "interruption_restores_from_canonical_checkpoint",
+      "missing_quill_or_unavailable_encounter_fails_closed_without_mutating_canonical_state",
+      "victory_defeat_and_fled_each_resolve_to_one_typed_objective_outcome",
+      "replay_after_save_load_does_not_duplicate_intents_rewards_or_consequences",
+      "tracker_refresh_is_read_only",
+      "chapter_stays within its authored target window before roster or system breadth expands"
+    ],
+    "status": "owner_input_required"
+  },
+  "emotional_turn": {
+    "before": "The movement opens with a stable belief or emotional avoidance — owner input required.",
+    "turn": "One authored discovery changes what the player understands — owner input required.",
+    "after": "The player leaves with a changed relationship to the route or companion — owner input required.",
+    "player_facing_signal": "A readable Quill line, choice, or world response makes the turn observable without relying on hidden flags.",
+    "status": "owner_input_required"
+  },
+  "traversal_decision": {
+    "decision_id_pattern": "decision.{movement_slug}.route",
+    "prompt": "Traversal decision prompt — owner input required.",
+    "options": [
+      {
+        "option_id_pattern": "option.{movement_slug}.route_a",
+        "description": "Take the first authored route option — owner input required.",
+        "route_effect": "route leg or traversal mode A — owner input required.",
+        "canonical_effect": "flag.{movement_slug}.route_a",
+        "status": "owner_input_required"
+      },
+      {
+        "option_id_pattern": "option.{movement_slug}.route_b",
+        "description": "Take the second authored route option — owner input required.",
+        "route_effect": "route leg or traversal mode B — owner input required.",
+        "canonical_effect": "flag.{movement_slug}.route_b",
+        "status": "owner_input_required"
+      }
+    ],
+    "authority": "UMelodiaTravelSubsystem for map travel; UMelodiaTraversalComponent for movement mode",
+    "route_outcome_source": "route_references.player_route and canonical progression consequence",
+    "durable_state_policy": "record_one_allowlisted_intent_and_recompute_route_from_canonical_state",
+    "status": "owner_input_required"
+  },
+  "consequence": {
+    "consequence_id_pattern": "consequence.{movement_slug}.{consequence_slug}",
+    "trigger": "The traversal decision and primary encounter/non-combat result resolve.",
+    "canonical_target": "FMelodiaNarrativeRecord.Flags",
+    "branches": [
+      {
+        "result": "victory",
+        "flag_id_pattern": "flag.{movement_slug}.result_victory",
+        "presentation": "The route shows the authored success consequence — owner input required."
+      },
+      {
+        "result": "defeat",
+        "flag_id_pattern": "flag.{movement_slug}.result_defeat",
+        "presentation": "The route shows the authored failure consequence — owner input required."
+      },
+      {
+        "result": "fled",
+        "flag_id_pattern": "flag.{movement_slug}.result_fled",
+        "presentation": "The route shows the authored retreat consequence — owner input required."
+      },
+      {
+        "result": "traversal_option",
+        "flag_id_pattern": "flag.{movement_slug}.route_chosen",
+        "presentation": "The chosen route remains readable after travel and restore."
+      }
+    ],
+    "exactly_once_intent_id_pattern": "intent.{movement_slug}.consequence.chapter_result",
+    "restore_policy": "intent_replays_presentation_only",
+    "status": "owner_input_required"
+  },
+  "checkpoint": {
+    "checkpoint_id_pattern": "checkpoint.{movement_slug}.{checkpoint_slug}",
+    "label": "Future movement continuation point — owner input required.",
+    "record_field": "FMelodiaNarrativeRecord.ScriptCheckpoint",
+    "write_authority": "UMelodiaNarrativeSubsystem",
+    "save_boundary": "stock JRPG GameInstance save transaction",
+    "restore_behavior": "Quill restarts from an authored label and the read model recomputes without replaying consumed intents",
+    "status": "owner_input_required"
+  },
+  "exit_criteria": [
+    {
+      "id": "exit.{movement_slug}.progression_binding",
+      "criterion": "A concrete progression package validates against the existing progression schema and supplies stable chapter, beat, quest, objective, intent, reward, consequence, flag, and checkpoint IDs.",
+      "verification": "Run the focused chapter-package validator and the progression package's existing offline checks.",
+      "evidence_link_id": "evidence.chapter.progression",
+      "status": "pending"
+    },
+    {
+      "id": "exit.{movement_slug}.story_authority",
+      "criterion": "Checked-in Quill source owns dialogue flow and routes only stable melodia notifications through UMelodiaNarrativeSubsystem.",
+      "verification": "Inspect .qsc source and compile/materialization evidence; no direct save, quest, battle, or travel authority is present.",
+      "evidence_link_id": "evidence.chapter.quill",
+      "status": "pending"
+    },
+    {
+      "id": "exit.{movement_slug}.route",
+      "criterion": "The player route and integration proof map are explicit, with travel requests owned by UMelodiaTravelSubsystem.",
+      "verification": "Resolve route references, compile the owner materialization, and record map/spawn readback.",
+      "evidence_link_id": "evidence.chapter.owner_route",
+      "status": "pending"
+    },
+    {
+      "id": "exit.{movement_slug}.decision",
+      "criterion": "Exactly one traversal decision, one emotional turn, one encounter or non-combat consequence, one durable reward, and one checkpoint are playable and readable.",
+      "verification": "Owner playtest records each decision branch and the resulting canonical flags/objectives.",
+      "evidence_link_id": "evidence.chapter.live",
+      "status": "pending"
+    },
+    {
+      "id": "exit.{movement_slug}.restore",
+      "criterion": "Save, process restart, and Continue restore the checkpoint and objective read model without duplicate intents, rewards, or consequences.",
+      "verification": "Fresh-slot and Continue route evidence records the canonical record fields and exactly-once journal deltas.",
+      "evidence_link_id": "evidence.chapter.live",
+      "status": "pending"
+    }
+  ],
+  "evidence_links": [
+    {
+      "id": "evidence.chapter.schema",
+      "kind": "contract",
+      "path_template": "specs/schemas/melodia_chapter_content_package.v1.schema.json",
+      "status": "required",
+      "proves": "The reusable chapter package shape and ownership invariants are versioned."
+    },
+    {
+      "id": "evidence.chapter.progression",
+      "kind": "reference",
+      "path_template": "specs/progression/melodia_first_dream_progression.v1.json",
+      "status": "reference",
+      "proves": "The existing progression schema and First Dream ID vocabulary remain the style reference."
+    },
+    {
+      "id": "evidence.chapter.quill",
+      "kind": "reference",
+      "path_template": "Docs/MELODIA_STORY_SEQUENCE_AND_QUILL_CONTRACT.md",
+      "status": "reference",
+      "proves": "Quill and canonical save/narrative ownership boundaries."
+    },
+    {
+      "id": "evidence.chapter.owner_route",
+      "kind": "reference",
+      "path_template": "specs/p0/core_p0_dream_golden_run.v1.json",
+      "status": "reference",
+      "proves": "The current player-route and integration-proof-map split."
+    },
+    {
+      "id": "evidence.chapter.wardrobe",
+      "kind": "reference",
+      "path_template": "specs/wardrobe/wardrobe_catalog_contract.v1.json",
+      "status": "reference",
+      "proves": "Cosmetic definition and canonical unlock-state boundaries."
+    },
+    {
+      "id": "evidence.chapter.form",
+      "kind": "reference",
+      "path_template": "specs/traversal/melodia_traversal_capability.v1.json",
+      "status": "reference",
+      "proves": "Resonant-form capability declaration and traversal enforcement boundaries."
+    },
+    {
+      "id": "evidence.chapter.live",
+      "kind": "pie",
+      "path_template": "Saved/Evidence/{package_id}/chapter_golden_run.json",
+      "status": "pending",
+      "proves": "Owner-controlled editor, PIE, restart/Continue, and packaged-route evidence."
+    },
+    {
+      "id": "evidence.chapter.owner_input",
+      "kind": "owner_decision",
+      "path_template": "owner-input://{package_id}/design-decisions",
+      "status": "required",
+      "proves": "The future movement is not treated as live content before design and owner choices are recorded."
+    }
+  ],
+  "owner_inputs": [
+    {
+      "id": "input.{movement_slug}.identity",
+      "owner": "design + narrative owner",
+      "question": "What are the concrete movement slug, chapter order, title, prerequisites, quest ID, beat IDs, objective IDs, intent IDs, and checkpoint ID?",
+      "blocks": "Binding progression_package_ref and replacing every placeholder ID pattern.",
+      "status": "required"
+    },
+    {
+      "id": "input.{movement_slug}.dialogue",
+      "owner": "narrative owner",
+      "question": "Which checked-in .qsc source, labels, choices, and stable melodia notifications express the movement?",
+      "blocks": "Quill source binding and dialogue compilation evidence.",
+      "status": "required"
+    },
+    {
+      "id": "input.{movement_slug}.route",
+      "owner": "route owner",
+      "question": "Which map legs, spawn tags, route markers, and traversal modes are the player-facing route?",
+      "blocks": "Route binding and travel/readback evidence.",
+      "status": "required"
+    },
+    {
+      "id": "input.{movement_slug}.encounter",
+      "owner": "combat + narrative owner",
+      "question": "Is the primary encounter combat or non-combat, which result branches matter, and which existing stock authority executes it?",
+      "blocks": "Encounter binding, allowlist review, and result-branch evidence.",
+      "status": "required"
+    },
+    {
+      "id": "input.{movement_slug}.turn",
+      "owner": "design + narrative owner",
+      "question": "What is the single emotional turn and how is it made legible to the player?",
+      "blocks": "Beat pacing and story acceptance.",
+      "status": "required"
+    },
+    {
+      "id": "input.{movement_slug}.decision",
+      "owner": "design + route owner",
+      "question": "What single traversal decision has exactly which two or more authored route outcomes?",
+      "blocks": "Traversal decision and consequence binding.",
+      "status": "required"
+    },
+    {
+      "id": "input.{movement_slug}.reward",
+      "owner": "progression + wardrobe owner",
+      "question": "What durable reward, cosmetic, and Resonant Form/capability unlock are granted, if any?",
+      "blocks": "Reward, wardrobe, form, and canonical flag allowlists.",
+      "status": "required"
+    },
+    {
+      "id": "input.{movement_slug}.pacing",
+      "owner": "design owner",
+      "question": "What are the minimum, target, and maximum minutes and per-beat readability targets?",
+      "blocks": "Pacing acceptance and chapter breadth decisions.",
+      "status": "required"
+    }
+  ],
+  "acceptance": {
+    "offline": [
+      {
+        "id": "acceptance.{movement_slug}.schema",
+        "kind": "schema",
+        "assertion": "The template validates against this JSON Schema and declares every required chapter-package section.",
+        "status": "pass"
+      },
+      {
+        "id": "acceptance.{movement_slug}.json_shape",
+        "kind": "json_shape",
+        "assertion": "The template is source/spec-only, has no Unreal asset claim, and uses stable ID patterns rather than live future IDs.",
+        "status": "pass"
+      },
+      {
+        "id": "acceptance.{movement_slug}.authority",
+        "kind": "authority",
+        "assertion": "Progression, Quill, save, travel, traversal, encounter, wardrobe, form, and presentation ownership matches the existing contracts.",
+        "status": "pass"
+      },
+      {
+        "id": "acceptance.{movement_slug}.references",
+        "kind": "reference",
+        "assertion": "The existing progression schema/IDs, Quill contract, route split, wardrobe contract, capability gate, and traversal contract resolve.",
+        "status": "pass"
+      },
+      {
+        "id": "acceptance.{movement_slug}.restore",
+        "kind": "restore",
+        "assertion": "The package requires canonical checkpoint restore and exactly-once intent/reward/consequence semantics without adding a save authority.",
+        "status": "pass"
+      }
+    ],
+    "live": [
+      {
+        "id": "acceptance.{movement_slug}.editor",
+        "kind": "editor",
+        "assertion": "One editor owner materializes the authored sources, compiles, saves, and re-reads the package-bound assets.",
+        "status": "pending"
+      },
+      {
+        "id": "acceptance.{movement_slug}.pie",
+        "kind": "pie",
+        "assertion": "Owner-controlled PIE observes the emotional turn, traversal decision, encounter consequence, reward, checkpoint, and readable objective tracker.",
+        "status": "pending"
+      },
+      {
+        "id": "acceptance.{movement_slug}.packaged",
+        "kind": "packaged",
+        "assertion": "The packaged route repeats the same checkpoint and exactly-once behavior without editor-only relaxed IDs.",
+        "status": "pending"
+      }
+    ],
+    "no_runtime_claims": true
+  }
+}

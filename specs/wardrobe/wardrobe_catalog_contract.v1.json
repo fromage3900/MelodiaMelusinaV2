@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/wardrobe_catalog_contract.v1.json",
+  "title": "Melodia Wardrobe Catalog Contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "catalog_asset",
+    "target_count",
+    "demo_count",
+    "gacha_count",
+    "first_outfit_gate",
+    "battle_gate",
+    "gacha_enabled",
+    "materialization_status",
+    "source_manifest",
+    "save_contract",
+    "first_outfit",
+    "draft_reconciliation",
+    "registration_state"
+  ],
+  "properties": {
+    "schema": {"const": "melodia.wardrobe_catalog_contract.v1"},
+    "catalog_asset": {"const": "/MelodiaWardrobe/Catalog/DA_MelodiaCosmeticCatalog"},
+    "target_count": {"const": 5},
+    "demo_count": {"const": 5},
+    "gacha_count": {"const": 0},
+    "first_outfit_gate": {"const": true},
+    "battle_gate": {"const": false},
+    "gacha_enabled": {"const": false},
+    "materialization_status": {
+      "const": "source_ready_editor_materialization_pending"
+    },
+    "source_manifest": {
+      "const": "specs/wardrobe/wardrobe_catalog_manifest.v1.json"
+    },
+    "golden_cost_per_pull": {"type": "integer", "const": 1},
+    "rarity_weights": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "save_contract": {
+      "type": "string",
+      "const": "existing FMelodiaNarrativeRecord wardrobe fields"
+    },
+    "first_outfit": {
+      "$ref": "wardrobe_catalog_source.v1.json#/properties/first_outfit"
+    },
+    "draft_reconciliation": {
+      "$ref": "wardrobe_catalog_source.v1.json#/properties/draft_reconciliation"
+    },
+    "registration_state": {
+      "const": "first-outfit-source-ready"
+    }
+  }
+}

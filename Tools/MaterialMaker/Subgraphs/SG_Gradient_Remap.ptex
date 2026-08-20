@@ -1,0 +1,201 @@
+{
+	"type": "graph",
+	"name": "SG_Gradient_Remap",
+	"label": "SG Gradient Remap",
+	"longdesc": "Gradient remapping utilities: colorize, grayscale remap, channel split",
+	"shortdesc": "",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"parameters": {},
+	"nodes": [
+		{
+			"name": "Input_Value",
+			"node_position": {
+				"x": -800,
+				"y": 0
+			},
+			"parameters": {
+				"name": "Value",
+				"type": 0,
+				"default": 0
+			},
+			"type": "input"
+		},
+		{
+			"name": "Input_Gradient",
+			"node_position": {
+				"x": -800,
+				"y": 80
+			},
+			"parameters": {
+				"name": "Gradient",
+				"type": 0,
+				"default": 0.5
+			},
+			"type": "input"
+		},
+		{
+			"name": "Colorize",
+			"node_position": {
+				"x": -400,
+				"y": 0
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{"a": 1, "b": 0, "g": 0, "pos": 0, "r": 0},
+						{"a": 1, "b": 1, "g": 1, "pos": 1, "r": 1}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Grayscale_Remap",
+			"node_position": {
+				"x": -400,
+				"y": 120
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{"a": 1, "b": 0, "g": 0, "pos": 0, "r": 0},
+						{"a": 1, "b": 1, "g": 1, "pos": 1, "r": 1}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Channel_Split",
+			"node_position": {
+				"x": -400,
+				"y": 240
+			},
+			"parameters": {},
+			"type": "separate"
+		},
+		{
+			"name": "Output_Color",
+			"node_position": {
+				"x": 0,
+				"y": 0
+			},
+			"parameters": {
+				"name": "RemappedColor",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_Gray",
+			"node_position": {
+				"x": 0,
+				"y": 120
+			},
+			"parameters": {
+				"name": "RemappedGray",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_ChanR",
+			"node_position": {
+				"x": 200,
+				"y": 240
+			},
+			"parameters": {
+				"name": "ChannelR",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_ChanG",
+			"node_position": {
+				"x": 200,
+				"y": 300
+			},
+			"parameters": {
+				"name": "ChannelG",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_ChanB",
+			"node_position": {
+				"x": 200,
+				"y": 360
+			},
+			"parameters": {
+				"name": "ChannelB",
+				"type": 0
+			},
+			"type": "output"
+		}
+	],
+	"connections": [
+		{
+			"from": "Input_Value",
+			"from_port": 0,
+			"to": "Colorize",
+			"to_port": 0
+		},
+		{
+			"from": "Input_Gradient",
+			"from_port": 0,
+			"to": "Colorize",
+			"to_port": 1
+		},
+		{
+			"from": "Colorize",
+			"from_port": 0,
+			"to": "Output_Color",
+			"to_port": 0
+		},
+		{
+			"from": "Input_Value",
+			"from_port": 0,
+			"to": "Grayscale_Remap",
+			"to_port": 0
+		},
+		{
+			"from": "Grayscale_Remap",
+			"from_port": 0,
+			"to": "Output_Gray",
+			"to_port": 0
+		},
+		{
+			"from": "Input_Value",
+			"from_port": 0,
+			"to": "Channel_Split",
+			"to_port": 0
+		},
+		{
+			"from": "Channel_Split",
+			"from_port": 0,
+			"to": "Output_ChanR",
+			"to_port": 0
+		},
+		{
+			"from": "Channel_Split",
+			"from_port": 1,
+			"to": "Output_ChanG",
+			"to_port": 0
+		},
+		{
+			"from": "Channel_Split",
+			"from_port": 2,
+			"to": "Output_ChanB",
+			"to_port": 0
+		}
+	]
+}
