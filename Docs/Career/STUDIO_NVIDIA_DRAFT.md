@@ -196,3 +196,13 @@ But the realistic high-probability paths are:
 
 *Researched 2026-08-19. DevRel Manager role (JR2023172) closes Aug 21 — apply immediately.
 Intern/new-grad postings expected Fall 2026 for 2027 start.*
+
+---
+
+## Submitted packet (2026-08-20)
+
+Paste-ready email, cover letter, proof links, “Why NVIDIA Toronto” script, and submit checklist:
+
+→ **[`NVIDIA_DEVREL_PACKET_2026-08-20.md`](NVIDIA_DEVREL_PACKET_2026-08-20.md)**
+
+Use that file for JR2023172. This draft remains the strategy authority (SIL framing, what not to pitch).
