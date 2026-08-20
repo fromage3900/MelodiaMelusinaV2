@@ -1,7 +1,10 @@
 """Shared helpers for BS_GodFile material Python builders."""
 from __future__ import annotations
 
-import unreal
+try:
+    import unreal
+except ImportError:
+    unreal = None
 
 MATERIALS_ROOT = "/Game/EnvSandbox/Materials"
 FUNCTION_DIR = f"{MATERIALS_ROOT}/Functions"
@@ -16,7 +19,7 @@ PP_SCENE_TEXTURE = "PPI_POST_PROCESS_INPUT0"
 
 
 def post_process_scene_texture_id():
-    return getattr(unreal.SceneTextureId, PP_SCENE_TEXTURE)
+    return getattr(unreal.SceneTextureId, PP_SCENE_TEXTURE) if unreal and hasattr(unreal, "SceneTextureId") else None
 
 
 def clear_material_graph(material) -> None:
@@ -455,11 +458,26 @@ def collection_vector(owner, collection_path: str, param_name: str, x: int, y: i
     return collection_param(owner, collection_path, param_name, x, y, vector=True)
 
 
-def texture_param(owner, name: str, group: str, x: int, y: int, *, desc: str | None = None):
+def configure_shared_wrap_sampler(expr, sampler_type=None, sampler_source=None):
+    if not expr or not unreal:
+        return
+    if sampler_source is None and hasattr(unreal, "SamplerSourceMode"):
+        for ssm_attr in ("SSM_SHARED_WRAP", "SSM_SharedWrap", "SSM_WRAP_WORLD_GROUP_SETTINGS"):
+            if hasattr(unreal.SamplerSourceMode, ssm_attr):
+                sampler_source = getattr(unreal.SamplerSourceMode, ssm_attr)
+                break
+    if sampler_source is not None:
+        try_set_editor_property(expr, "sampler_source", sampler_source)
+    if sampler_type is not None:
+        try_set_editor_property(expr, "sampler_type", sampler_type)
+
+
+def texture_param(owner, name: str, group: str, x: int, y: int, *, desc: str | None = None, sampler_type=None, sampler_source=None):
     expr = create_expression(owner, unreal.MaterialExpressionTextureSampleParameter2D, x, y)
     expr.set_editor_property("parameter_name", name)
     expr.set_editor_property("group", group)
     _set_param_desc(expr, desc)
+    configure_shared_wrap_sampler(expr, sampler_type=sampler_type, sampler_source=sampler_source)
     return expr
 
 

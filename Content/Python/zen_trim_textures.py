@@ -42,6 +42,10 @@ CHANNELS = (
 
 def trim_path(variant: str, channel: str) -> str:
     stem = f"ZenTrim_{variant}_{channel}"
+    stem_t = f"T_ZenTrim_{variant}_{channel}"
+    content = PROJECT_ROOT / "Content" / "Textures"
+    if (content / f"{stem_t}.png").exists() or (content / f"{stem_t}.uasset").exists():
+        return f"{TEX}/{stem_t}.{stem_t}"
     return f"{TEX}/{stem}.{stem}"
 
 
@@ -51,7 +55,7 @@ def variant_maps(variant: str) -> dict[str, str]:
         "Albedo": trim_path(variant, "BaseColor"),
         "NormalMap": trim_path(variant, "Normal"),
         "HeightMap": trim_path(variant, "Displacement"),
-        "ORM": trim_path(variant, "Roughness"),
+        "ORM": trim_path(variant, "ORM"),
         "RoughnessMap": trim_path(variant, "Roughness"),
         "MetallicMap": trim_path(variant, "Metallic"),
         "DetailNormal": trim_path(variant, "Alpha"),
@@ -93,10 +97,18 @@ def scan_disk() -> dict[str, dict[str, bool]]:
     out: dict[str, dict[str, bool]] = {}
     for variant in ZEN_TRIM_VARIANTS:
         out[variant] = {}
-        for ch in CHANNELS:
-            stem = f"ZenTrim_{variant}_{ch}"
-            out[variant][ch] = (content / f"{stem}.uasset").exists()
+        for ch in ("Alpha", "BaseColor", "BC", "Displacement", "Emission", "Metallic", "Normal", "N", "Roughness", "ORM"):
+            stem1 = f"ZenTrim_{variant}_{ch}"
+            stem2 = f"T_ZenTrim_{variant}_{ch}"
+            exists = (
+                (content / f"{stem1}.uasset").exists()
+                or (content / f"{stem1}.png").exists()
+                or (content / f"{stem2}.uasset").exists()
+                or (content / f"{stem2}.png").exists()
+            )
+            out[variant][ch] = exists
     return out
+
 
 
 def main() -> int:
