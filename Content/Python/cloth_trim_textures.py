@@ -27,7 +27,7 @@ CHANNELS = (
     "Roughness",
 )
 
-_STEM_RE = re.compile(r"^ClothTrim_(.+)_(Alpha|BaseColor|Displacement|Emission|Metallic|Normal|Roughness)$")
+_STEM_RE = re.compile(r"^(?:T_)?ClothTrim_(.+)_(Alpha|BaseColor|BC|Displacement|Emission|Metallic|Normal|N|Roughness|ORM|H)$")
 
 
 def discover_variants() -> tuple[str, ...]:
@@ -36,29 +36,31 @@ def discover_variants() -> tuple[str, ...]:
     if not content.is_dir():
         return ()
     found: set[str] = set()
-    for path in content.glob("ClothTrim_*.uasset"):
-        m = _STEM_RE.match(path.stem)
-        if m:
-            found.add(m.group(1))
+    for path in list(content.glob("*ClothTrim_*.*")):
+        if path.suffix.lower() in (".uasset", ".png"):
+            m = _STEM_RE.match(path.stem)
+            if m:
+                found.add(m.group(1))
     return tuple(sorted(found))
 
 
 def trim_path(variant: str, channel: str) -> str:
-    stem = f"ClothTrim_{variant}_{channel}"
+    stem = f"T_ClothTrim_{variant}_{channel}"
     return f"{TEX}/{stem}.{stem}"
 
 
 def variant_maps(variant: str) -> dict[str, str]:
     return {
-        "Albedo": trim_path(variant, "BaseColor"),
-        "NormalMap": trim_path(variant, "Normal"),
-        "HeightMap": trim_path(variant, "Displacement"),
-        "ORM": trim_path(variant, "Roughness"),
+        "Albedo": trim_path(variant, "BC"),
+        "NormalMap": trim_path(variant, "N"),
+        "HeightMap": trim_path(variant, "H"),
+        "ORM": trim_path(variant, "ORM"),
         "RoughnessMap": trim_path(variant, "Roughness"),
         "MetallicMap": trim_path(variant, "Metallic"),
         "DetailNormal": trim_path(variant, "Alpha"),
         "MotifMask": trim_path(variant, "Alpha"),
     }
+
 
 
 def layer_b_maps(variant: str) -> dict[str, str]:
@@ -93,10 +95,18 @@ def scan_disk() -> dict[str, dict[str, bool]]:
     out: dict[str, dict[str, bool]] = {}
     for variant in discover_variants():
         out[variant] = {}
-        for ch in CHANNELS:
-            stem = f"ClothTrim_{variant}_{ch}"
-            out[variant][ch] = (content / f"{stem}.uasset").exists()
+        for ch in ("BC", "BaseColor", "Normal", "N", "ORM", "Roughness", "Metallic", "H", "Displacement", "Alpha"):
+            stem1 = f"ClothTrim_{variant}_{ch}"
+            stem2 = f"T_ClothTrim_{variant}_{ch}"
+            exists = (
+                (content / f"{stem1}.uasset").exists()
+                or (content / f"{stem1}.png").exists()
+                or (content / f"{stem2}.uasset").exists()
+                or (content / f"{stem2}.png").exists()
+            )
+            out[variant][ch] = exists
     return out
+
 
 
 def overlay_variants() -> tuple[str, ...]:

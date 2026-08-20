@@ -189,6 +189,15 @@ def set_texture_parameters(material):
         node = expressions.get(N[alias])
         if node:
             node.set_editor_property("texture", load(path))
+            # Enforce Substrate Shared: Wrap sampler optimization (Feature F14)
+            for prop in ("sampler_source", "SamplerSource"):
+                try:
+                    for ssm_attr in ("SSM_SHARED_WRAP", "SSM_SharedWrap", "SSM_WRAP_WORLD_GROUP_SETTINGS"):
+                        if hasattr(unreal, "SamplerSourceMode") and hasattr(unreal.SamplerSourceMode, ssm_attr):
+                            node.set_editor_property(prop, getattr(unreal.SamplerSourceMode, ssm_attr))
+                            break
+                except Exception:
+                    pass
 
 def wire_master():
     material = load(MASTER)

@@ -1,4 +1,4 @@
-﻿"""Build M_Master_Toon_Universal â€” the 'reach for every scene' master.
+"""Build M_Master_Toon_Universal â€” the 'reach for every scene' master.
 
 Hybrid texture/procedural, dual texture layers (A/B) with per-layer maps and parallax,
 temporal boil/smear UV stylization, triplanar, Nikki dreamy glow, celestial ramps,
@@ -323,6 +323,8 @@ def parallax_uv_offset(
 ):
     """Inline height parallax UV offset; avoids stale MF_ParallaxCore pin typing."""
     h_s = lib.create_expression(m, unreal.MaterialExpressionTextureSample, -2400, y_base)
+    if hasattr(unreal, "MaterialSamplerType"):
+        lib.configure_shared_wrap_sampler(h_s, sampler_type=getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_LINEAR_COLOR", None))
     wire(f"{tag}_px_ht_obj", height_tex, h_s, "Tex", "TextureObject")
     wire(f"{tag}_px_ht_uv", uv, h_s, "UVs", "Coordinates")
     h_r = lib.create_expression(m, unreal.MaterialExpressionComponentMask, -2240, y_base)
@@ -361,7 +363,7 @@ def parallax_uv_offset(
 
 
 def adjust_normal_map(m, nrm_sample, n_str, n_pow, layer_str, tag: str, y: int):
-    """MF_NormalAdjust â€” strength, power, per-layer scale on sampled normal."""
+    """MF_NormalAdjust — strength, power, per-layer scale on sampled normal."""
     call = mf_call(m, MF_NORMAL_ADJUST, -1280, y)
     if not call:
         return nrm_sample
@@ -376,23 +378,40 @@ def sample_maps_uv(
     m, uv, albedo, normal, orm, height, roughness_map, metallic_map,
     tri_tiling, tri_alpha, tag: str, y0: int,
 ):
-    """UV-path texture samples plus per-channel triplanar blends."""
+    """UV-path texture samples plus per-channel triplanar blends with Shared: Wrap enforcement."""
     alb_s = lib.create_expression(m, unreal.MaterialExpressionTextureSample, -1420, y0)
+    if hasattr(unreal, "MaterialSamplerType"):
+        lib.configure_shared_wrap_sampler(alb_s, sampler_type=getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_COLOR", None))
     wire(f"{tag}_alb_obj", albedo, alb_s, "Tex", "TextureObject")
     wire(f"{tag}_alb_uv", uv, alb_s, "UVs", "Coordinates")
+
     nrm_s = lib.create_expression(m, unreal.MaterialExpressionTextureSample, -1420, y0 + 160)
+    if hasattr(unreal, "MaterialSamplerType"):
+        lib.configure_shared_wrap_sampler(nrm_s, sampler_type=getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_NORMAL", None))
     wire(f"{tag}_nrm_obj", normal, nrm_s, "Tex", "TextureObject")
     wire(f"{tag}_nrm_uv", uv, nrm_s, "UVs", "Coordinates")
+
     orm_s = lib.create_expression(m, unreal.MaterialExpressionTextureSample, -1420, y0 + 320)
+    if hasattr(unreal, "MaterialSamplerType"):
+        lib.configure_shared_wrap_sampler(orm_s, sampler_type=getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_LINEAR_COLOR", getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_MASKS", None)))
     wire(f"{tag}_orm_obj", orm, orm_s, "Tex", "TextureObject")
     wire(f"{tag}_orm_uv", uv, orm_s, "UVs", "Coordinates")
+
     hgt_s = lib.create_expression(m, unreal.MaterialExpressionTextureSample, -1420, y0 + 480)
+    if hasattr(unreal, "MaterialSamplerType"):
+        lib.configure_shared_wrap_sampler(hgt_s, sampler_type=getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_LINEAR_COLOR", getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_MASKS", None)))
     wire(f"{tag}_hgt_obj", height, hgt_s, "Tex", "TextureObject")
     wire(f"{tag}_hgt_uv", uv, hgt_s, "UVs", "Coordinates")
+
     rough_s = lib.create_expression(m, unreal.MaterialExpressionTextureSample, -1420, y0 + 640)
+    if hasattr(unreal, "MaterialSamplerType"):
+        lib.configure_shared_wrap_sampler(rough_s, sampler_type=getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_LINEAR_COLOR", None))
     wire(f"{tag}_rough_obj", roughness_map, rough_s, "Tex", "TextureObject")
     wire(f"{tag}_rough_uv", uv, rough_s, "UVs", "Coordinates")
+
     metal_s = lib.create_expression(m, unreal.MaterialExpressionTextureSample, -1420, y0 + 800)
+    if hasattr(unreal, "MaterialSamplerType"):
+        lib.configure_shared_wrap_sampler(metal_s, sampler_type=getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_LINEAR_COLOR", None))
     wire(f"{tag}_metal_obj", metallic_map, metal_s, "Tex", "TextureObject")
     wire(f"{tag}_metal_uv", uv, metal_s, "UVs", "Coordinates")
 
@@ -1058,9 +1077,9 @@ def build():
     wire("rough_alpha", tex_eff, rough, "Alpha")
 
     orm_r = lib.create_expression(m, unreal.MaterialExpressionComponentMask, -200, 960)
-    orm_r.set_editor_property("r", True)
+    orm_r.set_editor_property("r", False)
     orm_r.set_editor_property("g", False)
-    orm_r.set_editor_property("b", False)
+    orm_r.set_editor_property("b", True)
     orm_r.set_editor_property("a", False)
     lib.connect_unary(orm_s, orm_r)
     metal_r = lib.create_expression(m, unreal.MaterialExpressionComponentMask, -200, 1040)
@@ -1818,7 +1837,8 @@ def build():
     det_uv = lib.create_expression(m, unreal.MaterialExpressionMultiply, 3760, 900)
     wire("det_uvA", det_tc, det_uv, "A"); wire("det_uvB", det_tiling, det_uv, "B")
     det_s = lib.create_expression(m, unreal.MaterialExpressionTextureSample, 3920, 900)
-    lib.try_set_editor_property(det_s, "sampler_type", unreal.MaterialSamplerType.SAMPLERTYPE_NORMAL)
+    if hasattr(unreal, "MaterialSamplerType"):
+        lib.configure_shared_wrap_sampler(det_s, sampler_type=getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_NORMAL", None))
     wire("det_obj", det_tex, det_s, "Tex", "TextureObject")
     wire("det_uv", det_uv, det_s, "UVs", "Coordinates")
     nrm_det = lib.create_expression(m, unreal.MaterialExpressionLinearInterpolate, 4240, 900)
@@ -1855,6 +1875,8 @@ def build():
     mg_uv = lib.create_expression(m, unreal.MaterialExpressionMultiply, 4960, 980)
     wire("mg_uvA", mg_tc, mg_uv, "A"); wire("mg_uvB", motif_scale, mg_uv, "B")
     mg_s = lib.create_expression(m, unreal.MaterialExpressionTextureSample, 5120, 980)
+    if hasattr(unreal, "MaterialSamplerType"):
+        lib.configure_shared_wrap_sampler(mg_s, sampler_type=getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_LINEAR_COLOR", getattr(unreal.MaterialSamplerType, "SAMPLERTYPE_MASKS", None)))
     wire("mg_obj", motif_mask, mg_s, "Tex", "TextureObject")
     wire("mg_suv", mg_uv, mg_s, "UVs", "Coordinates")
     mg_sr = lib.create_expression(m, unreal.MaterialExpressionComponentMask, 5280, 980)
