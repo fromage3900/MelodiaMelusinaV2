@@ -2,12 +2,12 @@
 
 :root {
   /* Canonical Nikki iridescence ramp — hex fallback, OKLCH when supported */
-  --iri-cyan: #66d9ff;
-  --iri-gold: #ffe666;
-  --iri-purple: #cc99ff;
-  --iri-pearl: #f0dcf0;
-  --iri-seafoam: #7dd3c0;
-  --iri-lavender: #c8b6db;
+  --iri-cyan: var(--primitive-astral-300);
+  --iri-gold: var(--primitive-gold-100);
+  --iri-purple: var(--primitive-iris-500);
+  --iri-pearl: var(--primitive-sakura-100);
+  --iri-seafoam: var(--primitive-status-success);
+  --iri-lavender: var(--primitive-lavender-300);
   --dream-iri-ramp: linear-gradient(
     128deg,
     var(--iri-cyan) 0%,
@@ -99,25 +99,25 @@
 .melodia-shell[data-pillar="sakura"],
 .image-card[data-pillar="sakura"],
 .world-card.sakura {
-  --pillar-iri-ramp: linear-gradient(128deg, #ffb3c8 0%, #ffe666 42%, #e8a0c8 100%);
+  --pillar-iri-ramp: linear-gradient(128deg, var(--primitive-sakura-300) 0%, var(--primitive-gold-100) 42%, var(--primitive-sakura-500) 100%);
 }
 
 .melodia-shell[data-pillar="cathedral"],
 .image-card[data-pillar="cathedral"],
 .world-card.cathedral {
-  --pillar-iri-ramp: linear-gradient(128deg, #9b8cff 0%, #66d9ff 45%, #cc99ff 100%);
+  --pillar-iri-ramp: linear-gradient(128deg, var(--primitive-iris-300) 0%, var(--primitive-astral-300) 45%, var(--primitive-iris-500) 100%);
 }
 
 .melodia-shell[data-pillar="grotto"],
 .image-card[data-pillar="grotto"],
 .world-card.castle {
-  --pillar-iri-ramp: linear-gradient(128deg, #5cb8a8 0%, #d4b87a 42%, #3d8a7a 100%);
+  --pillar-iri-ramp: linear-gradient(128deg, var(--primitive-nikki-seafoam) 0%, var(--primitive-gold-300) 42%, var(--primitive-status-success) 100%);
 }
 
 .melodia-shell[data-pillar="orrery"],
 .image-card[data-pillar="orrery"],
 .world-card.grotto {
-  --pillar-iri-ramp: linear-gradient(128deg, #7a9eff 0%, #66d9ff 38%, #b388ff 100%);
+  --pillar-iri-ramp: linear-gradient(128deg, var(--primitive-astral-300) 0%, var(--primitive-astral-300) 38%, var(--primitive-lavender-300) 100%);
 }
 
 /* Ambient iridescent wash on every melodia page */
@@ -416,7 +416,7 @@
 .melodia-shell .button-premium-primary {
   background: var(--pillar-iri-ramp, var(--dream-iri-ramp));
   background-size: 220% 220%;
-  color: var(--void, #0d1224);
+  color: var(--void, var(--primitive-astral-900));
   box-shadow:
     0 8px 24px rgba(102, 217, 255, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
@@ -491,7 +491,7 @@
 /* Light paper heroes — soft iridescent frame */
 .melodia-shell .band.paper .hero,
 .melodia-shell .hero.hero-proof {
-  color: var(--ink, #221a2a);
+  color: var(--ink, var(--primitive-plum-800));
 }
 
 .melodia-shell .band.paper .hero h1 {
@@ -635,8 +635,8 @@
     rgba(255, 230, 102, 0.4),
     transparent
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(var(--primitive-ivory-50) 0 0) content-box, linear-gradient(var(--primitive-ivory-50) 0 0);
+  mask: linear-gradient(var(--primitive-ivory-50) 0 0) content-box, linear-gradient(var(--primitive-ivory-50) 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   transition: opacity 0.4s ease;
@@ -720,3 +720,97 @@
     opacity: 0.2;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DevinIridescence Thin-Film Spectrum Shader Math & Ornate Foil Borders
+   ══════════════════════════════════════════════════════════════════════════ */
+@keyframes devinIridescenceShift {
+  0% { --film-angle: 120deg; }
+  50% { --film-angle: 300deg; }
+  100% { --film-angle: 120deg; }
+}
+
+.iri-foil-border {
+  position: relative;
+  isolation: isolate;
+  border-radius: 8px;
+}
+
+.iri-foil-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    var(--film-angle, 135deg),
+    rgba(255, 110, 180, 0.8) 0%,
+    rgba(102, 217, 255, 0.85) 25%,
+    rgba(255, 230, 102, 0.9) 50%,
+    rgba(204, 153, 255, 0.8) 75%,
+    rgba(255, 110, 180, 0.8) 100%
+  );
+  -webkit-mask: linear-gradient(var(--color-text-primary) 0 0) content-box, linear-gradient(var(--color-text-primary) 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  animation: devinIridescenceShift 8s ease-in-out infinite;
+}
+
+.iri-foil-border:hover::after {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px rgba(255, 110, 180, 0.5));
+}
+
+.mg-filigree-frame {
+  position: relative;
+  border: 1px solid rgba(255, 180, 220, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 15px rgba(255, 110, 180, 0.08);
+}
+
+.mg-filigree-frame::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 12px;
+  background: url("../generated/assets/melodia-game-ui/T_Melodia_FiligreeCornerBaroque.png") center / contain no-repeat;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 4px rgba(255, 230, 102, 0.6));
+  pointer-events: none;
+}
+
+.mg-crystal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(20, 16, 32, 0.65);
+  border: 1px solid rgba(255, 180, 220, 0.35);
+  backdrop-filter: blur(8px);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.mg-crystal-badge::before {
+  content: "❖";
+  color: var(--mg-accent-pink, var(--color-accent-tertiary));
+  font-size: 0.75rem;
+  animation: mg-crystal-sparkle 3s ease-in-out infinite;
+}
+
+@keyframes mg-crystal-sparkle {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.25); opacity: 1; filter: drop-shadow(0 0 6px var(--mg-accent-pink)); }
+}
+
+

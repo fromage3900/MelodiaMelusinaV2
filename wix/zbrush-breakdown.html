@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https: http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:;" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Sculpt &amp; Procedural → Editor | Brennan Shepherd</title>
 <meta name="description" content="Labelled high-poly sculpt plates — Zen Lantern, Melody Tokens, Melusina, Sir Melodious — beside the Blender → Unreal production pipeline." />
 <link rel="stylesheet" href="melodia-luxury-type.css">
@@ -75,7 +78,7 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border: 1px solid rgba(200, 164, 94, 0.28);
-  background: #1a1c22;
+  background: var(--primitive-plum-900);
 }
 .sculpt-plate .frame img {
   width: 100%;
@@ -83,7 +86,7 @@
   object-fit: contain;
   object-position: center;
   display: block;
-  background: #2a2c33;
+  background: var(--primitive-plum-800);
 }
 .sculpt-plate .caption {
   margin: 0;
@@ -408,7 +411,7 @@
       <article class="sculpt-set" id="sirmelodious-sculpt" data-sculpt-id="sirmelodious" data-status="live">
         <div class="sculpt-set-head">
           <h3>Sir Melodious</h3>
-          <p>Companion bird clay — full approach and beak profile for wardrobe / stage pairing.</p>
+          <p>Living cockatoo companion clay — full approach and beak profile. Not a Melusina outfit. Not the duet-partner wound.</p>
           <div class="sculpt-meta">
             <span>SKU · Character · companion</span>
             <span>Target · Asset_sirmelodious</span>

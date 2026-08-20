@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https: http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:;" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Ornamental Architecture Kitbash | Brennan Shepherd</title>
 <meta name="description" content="Gothic ornamental meshes for Unreal — rose windows, vault ribs, spiral stairs, filigree. Visual lookbook; purchase opens after store shots." />
 <meta property="og:title" content="Ornamental Architecture Kitbash — Melodia" />
@@ -17,10 +20,10 @@
 <link rel="stylesheet" href="melodia-visual-breakdown.css">
 <link rel="stylesheet" href="application-hub.css">
 <style>
-.kitbash-price { font-family: var(--font-display); font-size: clamp(1.35rem, 2.4vw, 1.85rem); color: var(--iri-gold, #ffe666); margin: 0.75rem 0 0; }
+.kitbash-price { font-family: var(--font-display); font-size: clamp(1.35rem, 2.4vw, 1.85rem); color: var(--iri-gold, var(--primitive-gold-100)); margin: 0.75rem 0 0; }
 .kitbash-status { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; opacity: 0.75; margin: 0.5rem 0 0; }
-.kitbash-status.pending { color: #ff6eb4; }
-.kitbash-status.ready { color: #66d9ff; }
+.kitbash-status.pending { color: var(--color-accent-tertiary); }
+.kitbash-status.ready { color: var(--primitive-astral-300); }
 .kitbash-buy { margin-top: 1.25rem; }
 </style>
 </head>

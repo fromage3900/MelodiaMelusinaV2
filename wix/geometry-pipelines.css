@@ -42,10 +42,10 @@
   color: var(--iris);
 }
 
-.pipeline-status.is-live { color: #7dd3c0; }
+.pipeline-status.is-live { color: var(--primitive-status-success); }
 .pipeline-status.is-progress { color: var(--gold-soft); }
 .pipeline-status.is-planned { color: var(--muted); }
-.pipeline-status.is-scaffold { color: #cc99ff; }
+.pipeline-status.is-scaffold { color: var(--primitive-iris-500); }
 
 .pipeline-steps {
   display: grid;

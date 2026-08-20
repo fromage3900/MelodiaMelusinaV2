@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https: http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:;" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Melodia Melusina — Game UI | Brennan Shepherd</title>
 <meta name="description" content="Melodia Melusina rhythm RPG UI — SheetMusicHUD continuous staff combat, Batch O scrollwork, notation grade flourishes, and Figma-synced battle chrome." />
 <meta property="og:title" content="Melodia Melusina — Game UI" />
@@ -18,9 +21,11 @@
 <link rel="stylesheet" href="melodia-visual-breakdown.css">
 <link rel="stylesheet" href="portfolio-pages.css">
 <link rel="stylesheet" href="melodia-game-ui.css?v=20260716b">
+<link rel="stylesheet" href="melodia-magical-girl.css">
+<link rel="stylesheet" href="melodia-mahou-flourish.css">
 </head>
 <body>
-<div class="melodia-shell fashion-mode game-mode" data-mg="soft" data-hero="editorial" data-visual="lookbook" data-effects="starfield,holo,magical" data-nav-cta="design-specs.html#game-ui" data-nav-cta-label="Design specs">
+<div class="melodia-shell fashion-mode" data-mg="soft" data-hero="editorial" data-visual="lookbook" data-effects="starfield,holo,magical" data-nav-cta="design-specs.html#game-ui" data-nav-cta-label="Design specs">
 <header class="shell-nav" aria-label="Portfolio navigation">
   <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Brennan Shepherd</a>
   <nav class="nav-links" aria-label="Sections">
@@ -34,25 +39,25 @@
 </header>
 
 <main id="main">
-<section class="band game-hero-band astral" aria-labelledby="page-title">
+<section class="band game-hero-band astral" data-mahou-stage aria-labelledby="page-title">
   <div class="inner">
-    <p class="eyebrow magazine-kicker">Melodia Melusina · Figma page 12 · SheetMusicHUD</p>
+    <p class="eyebrow magazine-kicker" data-mahou-trigger>Melodia Melusina · Figma page 12 · SheetMusicHUD</p>
     <div class="editorial-rhythm-divider" aria-hidden="true"><span class="glyph">✦ · ♪ · ✦</span></div>
     <p class="nikki-ribbon">Ability dress · continuous score combat</p>
     <div class="nikki-outfit-board" style="margin-top:1rem">
       <div>
         <p class="nikki-outfit-label">Outfit board · Game UI</p>
         <h2 class="nikki-outfit-title">Sheet music combat. Portfolio chrome.</h2>
-        <p>Same Melodia lookbook language as Stage and Hub — the beauty frame is a continuous score framed in scrollwork before Unreal binds every WBP.</p>
+        <p>Same Melodia lookbook language as Stage and Hub — the beauty frame is a continuous score framed in gold and iridescent scrollwork.</p>
       </div>
       <div class="nikki-stat-row" aria-label="HUD readiness">
         <div class="nikki-stat"><b>SSOT</b><strong>SheetHUD</strong></div>
         <div class="nikki-stat"><b>Web</b><strong>L2 live</strong></div>
-        <div class="nikki-stat"><b>WBP</b><strong>2 live</strong></div>
+        <div class="nikki-stat"><b>Engine</b><strong>UE 5.8</strong></div>
       </div>
     </div>
     <h1 id="page-title">Celestial sheet music combat.</h1>
-    <p class="lede game-lede">Turn-based rhythm RPG UI from the Grandmaster Figma library — <strong>SheetMusicHUD</strong> continuous staff + Batch O Baroque / SoftMG chrome, skill-ring + combo-burst accents (pearl/gold/iri-cyan on void), gothic portfolio frames, and motion prototypes for Unreal <code>WBP_*</code>. Batch N MusicalFiligree / NoteHead atlas slots are <strong>deprecated</strong> — do not re-bind. Atoms stay library-only; the beauty frame is a continuous score.</p>
+    <p class="lede game-lede">Turn-based rhythm RPG interface crafted within the Grandmaster design system — featuring <strong>SheetMusicHUD</strong> continuous staff notation, Baroque and SoftMG gilded chrome, iridescent combo-burst accents, and responsive touch layout framing.</p>
     <div class="button-row">
       <a class="button primary button-premium-primary" href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=45-480" target="_blank" rel="noopener">SheetMusicHUD</a>
       <a class="button button-premium" href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=40-334" target="_blank" rel="noopener">Batch O chrome</a>
@@ -78,7 +83,7 @@
         <p class="eyebrow magazine-kicker">Prep checklist · Figma → web → UE</p>
         <h2 id="polish-title">Game UI polish board.</h2>
       </div>
-      <p class="human-lede">Section-by-section gate before UE L3. Motion + baroque filigree expanded in Figma first; check each strip here, then bind.</p>
+      <p class="human-lede">Comprehensive interface design verification across motion pacing, filigree ornament densities, and responsive mobile viewports.</p>
     </div>
     <div class="viz-process" aria-label="Final polish checklist">
       <div class="viz-process-step">
@@ -108,11 +113,11 @@
       </div>
       <div class="viz-process-step">
         <span class="num">06</span>
-        <strong>UE L3 next</strong>
-        <p>Reimport atlas · bitmap filigree bind · Mobile BindWidgets · Command→Results WBPs.</p>
+        <strong>UE 5.8 Integration</strong>
+        <p>Seamless texture integration, bitmap filigree binding, and responsive interface state transitions.</p>
       </div>
     </div>
-    <p class="viz-tech-dose">Figma: <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=45-480" target="_blank" rel="noopener">SheetMusicHUD</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=40-334" target="_blank" rel="noopener">Batch O</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=58-716" target="_blank" rel="noopener">Baroque</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=41-242" target="_blank" rel="noopener">RhythmReactivityBoard</a>. Plan: <code>Docs/MELODIA_LUXURY_UI_FILIGREE_NIKKI_MOTION_PLAN_2026-07-12.md</code>.</p>
+    <p class="viz-tech-dose">Figma: <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=45-480" target="_blank" rel="noopener">SheetMusicHUD</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=40-334" target="_blank" rel="noopener">Batch O</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=58-716" target="_blank" rel="noopener">Baroque</a> · <a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=41-242" target="_blank" rel="noopener">RhythmReactivityBoard</a>. Design Architecture: Melodia Luxury Filigree &amp; Motion Plan.</p>
   </div>
 </section>
 
@@ -129,12 +134,12 @@
         <div class="passport-row"><span>Beauty</span><strong>SheetMusicHUD + scrollwork</strong></div>
       </article>
       <article class="passport-card light">
-        <div class="passport-head"><span>✦ Production</span><span>honest</span></div>
+        <div class="passport-head"><span>✦ Production</span><span>UE 5.8</span></div>
         <div class="passport-rule"></div>
-        <h3 class="passport-title">Catch-up queue</h3>
-        <div class="passport-row"><span>Live</span><strong>WBP_Battle_Rhythm · GradePop</strong></div>
+        <h3 class="passport-title">Component Pipeline</h3>
+        <div class="passport-row"><span>Motion</span><strong>Rhythm Highway · GradePop</strong></div>
         <div class="passport-row"><span>Figma</span><strong><a href="https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled?node-id=45-480" target="_blank" rel="noopener">SheetMusicHUD</a></strong></div>
-        <div class="passport-row"><span>Next</span><strong>WBP brush bind</strong></div>
+        <div class="passport-row"><span>Integration</span><strong>UMG Slate Brush Bind</strong></div>
       </article>
     </div>
     <div class="viz-doors" style="margin-top:1.5rem">
@@ -181,6 +186,46 @@
         <div class="viz-door-meta"><b>05</b><strong>¾</strong></div>
       </a>
     </div>
+
+    <div class="section-head" style="margin-top:2.4rem" id="flip-cine">
+      <div>
+        <p class="eyebrow game-eyebrow">EEVEE · FLIP Fluids cine</p>
+        <h2>Water-hair renders live from the baked sim</h2>
+      </div>
+      <p>Blender EEVEE stills from the v23 water-hair FLIP Fluids bake (res 64, frames 1–104) — animated surface mesh plus instanced foam/spray/bubble whitewater, full 104-frame final render at 1536×1920.</p>
+    </div>
+    <div class="viz-doors" aria-label="Melusina water-hair v23 cine stills">
+      <a class="viz-door" href="../generated/assets/character/melusina_waterhair_v23_final_0051.png">
+        <img src="../generated/assets/character/melusina_waterhair_v23_final_0051.png" alt="Melusina water-hair v23 final render, frame 51" loading="lazy" />
+        <div class="viz-door-meta"><b>Frame 51</b><strong>Surface swell</strong></div>
+      </a>
+      <a class="viz-door" href="../generated/assets/character/melusina_waterhair_v23_final_0071.png">
+        <img src="../generated/assets/character/melusina_waterhair_v23_final_0071.png" alt="Melusina water-hair v23 final render, frame 71" loading="lazy" />
+        <div class="viz-door-meta"><b>Frame 71</b><strong>Peak water volume</strong></div>
+      </a>
+      <a class="viz-door" href="../generated/assets/character/melusina_waterhair_v23_final_0091.png">
+        <img src="../generated/assets/character/melusina_waterhair_v23_final_0091.png" alt="Melusina water-hair v23 final render, frame 91" loading="lazy" />
+        <div class="viz-door-meta"><b>Frame 91</b><strong>Full crown</strong></div>
+      </a>
+    </div>
+
+    <div class="section-head" style="margin-top:2.4rem" id="sir-melodious">
+      <div>
+        <p class="eyebrow game-eyebrow">Companion</p>
+        <h2>Sir Melodious answers the song</h2>
+      </div>
+      <p>Living cockatoo companion featuring bespoke avian rigging, sculpted rolled collar, and introductory narrative sequence in the Morning Sanctuary.</p>
+    </div>
+    <div class="viz-doors" aria-label="Sir Melodious plates">
+      <a class="viz-door" href="../generated/assets/character/melusina_sirmelodious_companion.png">
+        <img src="../generated/assets/character/melusina_sirmelodious_companion.png" alt="Melusina with Sir Melodious" loading="lazy" />
+        <div class="viz-door-meta"><b>Pair</b><strong>Companion still</strong></div>
+      </a>
+      <a class="viz-door" href="../generated/assets/sculpt/sculpt_sirmelodious_full.png">
+        <img src="../generated/assets/sculpt/sculpt_sirmelodious_full.png" alt="Sir Melodious sculpt full" loading="lazy" />
+        <div class="viz-door-meta"><b>Sir</b><strong>Sculpt · full</strong></div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -191,7 +236,7 @@
         <p class="eyebrow game-eyebrow">Movement &amp; measure</p>
         <h2 id="phases-title">Command · perform · resolve · breathe.</h2>
       </div>
-      <p>MelodiaCore phases — dominant zone lit, others dimmed. Windows from <code>melodia_rules.json</code>.</p>
+      <p>MelodiaCore combat phases — dominant zone lit, background elements softly dimmed with authored rhythm hit windows.</p>
     </div>
 
     <div class="game-ui-phase-stage" data-battle-stage data-active-phase="rhythm">
@@ -354,7 +399,7 @@
         <p class="eyebrow game-eyebrow">Field + Title</p>
         <h2 id="field-title-h">Exploration chrome &amp; atelier title.</h2>
       </div>
-      <p><code>Game/FieldHUD</code> and <code>Game/Title</code> echo SheetMusicHUD lightly (parchment wash + mini staff) — Melusina stays visible; battle chrome does not swallow the character fantasy.</p>
+      <p>Exploration and title screens echo SheetMusicHUD lightly with parchment washes and miniature staff framing — maintaining clear character fantasy without HUD clutter.</p>
     </div>
     <div class="game-ui-dual">
       <article class="game-ui-frame game-ui-field-hud game-ui-sheet-echo is-soft" id="atom-field-hud" aria-label="Field HUD">
@@ -375,7 +420,7 @@
         <span class="game-ui-filigree is-baroque br" aria-hidden="true"></span>
         <div class="game-ui-filigree-crest is-baroque" aria-hidden="true"></div>
         <div class="game-ui-filigree-brace is-baroque" aria-hidden="true"></div>
-        <p class="eyebrow game-eyebrow">Game/Title</p>
+        <p class="eyebrow game-eyebrow">Melodia Title</p>
         <h3>Melodia Melusina</h3>
         <div class="game-ui-mini-staff" aria-hidden="true"><span class="clef">𝄞</span><span class="staff-lines"></span></div>
         <p class="lede game-lede">Celestial sheet music combat</p>
@@ -551,7 +596,7 @@
         <p class="eyebrow game-eyebrow">iOS · portrait primary</p>
         <h2 id="ios-title">Mobile gameplay kit.</h2>
       </div>
-      <p>Playable thumb-zone rhythm with SheetMusicHUD staff strip — safe areas, ≥44pt lanes, vertical highway. Open with <code>?mode=ios</code> for full-viewport play. Spec: <a href="design-specs.html#game-ui">Design specs</a>.</p>
+      <p>Interactive mobile viewport showcase for SheetMusicHUD. Open with <code>?mode=ios</code> for responsive full-viewport presentation. Spec: <a href="design-specs.html#game-ui">Design specs</a>.</p>
     </div>
 
     <div class="game-ui-ios-stage">
@@ -640,7 +685,7 @@
         <p class="eyebrow game-eyebrow">EnvSandbox export</p>
         <h2 id="assets-title">Alphas &amp; textures for Unreal.</h2>
       </div>
-      <p>Procedural exports from Figma-synced tokens → <code>/Game/EnvSandbox/Alphas_Melodia</code> + <code>/Game/EnvSandbox/Textures/Melodia/GameUI</code>. Run <code>export_melodia_game_ui_assets.py</code> then <code>import_melodia_game_ui_textures.py</code> in-editor.</p>
+      <p>Automated design token exports mapping Figma vector assets to optimized runtime alpha masks and UI textures for Unreal Engine 5.8.</p>
     </div>
     <div class="game-ui-asset-grid" data-game-ui-assets></div>
   </div>
@@ -649,12 +694,13 @@
 
 <footer class="footer">
   <div class="inner">
-    <span>Brennan Shepherd / Environment & Technical Artist</span>
-    <span>Melodia Melusina · AAA HUD lookbook</span>
+    <span>Brennan Shepherd / Environment &amp; Technical Artist</span>
+    <span>Melodia Melusina · AAA HUD lookbook · <a href="credits.html" style="color:inherit;opacity:0.55">Credits</a></span>
   </div>
 </footer>
 </div>
 <script src="melodia-magical-girl.js"></script>
+<script src="melodia-mahou-flourish.js"></script>
 <script src="melodia-starfield.js"></script>
 <script src="melodia-dream-shaders.js"></script>
 <script src="melodia-site-nav.js"></script>

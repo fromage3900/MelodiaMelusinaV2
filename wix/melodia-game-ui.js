@@ -735,6 +735,235 @@
     }
   }
 
+  /* ── Site-Wide Harmonix 128 BPM Rhythm Highway HUD Engine ── */
+  var audioCtx = null;
+  var audioMuted = false;
+
+  function getAudioContext() {
+    if (!audioCtx && typeof window.AudioContext !== "undefined") {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx && audioCtx.state === "suspended") {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  function playSynthTone(grade) {
+    if (audioMuted) return;
+    try {
+      var ctx = getAudioContext();
+      if (!ctx) return;
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      var now = ctx.currentTime;
+      var freq = 440;
+      var dur = 0.14;
+
+      if (grade === "perfect") {
+        freq = 523.25; // C5
+        osc.type = "triangle";
+        gain.gain.setValueAtTime(0.22, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+        dur = 0.18;
+      } else if (grade === "great") {
+        freq = 440.00; // A4
+        osc.type = "sine";
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+        dur = 0.14;
+      } else if (grade === "good") {
+        freq = 329.63; // E4
+        osc.type = "sine";
+        gain.gain.setValueAtTime(0.14, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+        dur = 0.12;
+      } else { // miss
+        freq = 164.81; // E3
+        osc.type = "sawtooth";
+        gain.gain.setValueAtTime(0.10, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        dur = 0.08;
+      }
+
+      osc.frequency.setValueAtTime(freq, now);
+      osc.start(now);
+      osc.stop(now + dur);
+    } catch (e) {
+      /* fallback if Web Audio fails */
+    }
+  }
+
+  function spawnRhythmFloater(gradeLabel, x, y, gradeClass) {
+    if (reducedMotion) return;
+    var floater = document.createElement("span");
+    floater.className = "rhythm-floater " + (gradeClass || "perfect");
+    floater.textContent = gradeLabel;
+    floater.style.left = (x || (window.innerWidth / 2 - 40)) + "px";
+    floater.style.top = (y || (window.innerHeight - 90)) + "px";
+    document.body.appendChild(floater);
+    setTimeout(function () {
+      if (floater.parentNode) floater.remove();
+    }, 650);
+  }
+
+  function triggerHitShake() {
+    if (reducedMotion) return;
+    var shell = document.querySelector(".melodia-shell") || document.body;
+    shell.classList.remove("rhythm-hit-shake");
+    void shell.offsetWidth;
+    shell.classList.add("rhythm-hit-shake");
+    setTimeout(function () {
+      shell.classList.remove("rhythm-hit-shake");
+    }, 180);
+  }
+
+  function initGlobalRhythmHighway() {
+    if (document.getElementById("global-rhythm-bar")) return;
+
+    var GLOBAL_BPM = 128;
+    var GLOBAL_BEAT_MS = 60000 / GLOBAL_BPM;
+    var combo = 0;
+    var maxCombo = 0;
+
+    var bar = document.createElement("div");
+    bar.id = "global-rhythm-bar";
+    bar.className = "rhythm-highway-bar";
+    bar.innerHTML =
+      '<div class="rhythm-bar-left">' +
+        '<span class="rhythm-bar-badge">HARMONIX 128 BPM</span>' +
+        '<span class="rhythm-bar-note">♩ = 128</span>' +
+        '<button type="button" class="rhythm-bar-btn" data-rhythm-audio-toggle title="Toggle Audio Synth">🔊</button>' +
+      '</div>' +
+      '<div class="rhythm-bar-center">' +
+        '<div class="rhythm-bar-pulse-ring" data-global-pulse></div>' +
+        '<div class="rhythm-bar-hit-display" data-global-grade>READY <small>Tap Space / Z / X / D / F / J / K</small></div>' +
+        '<div class="rhythm-bar-lanes">' +
+          '<span class="rhythm-lane-btn" data-lane-key="0">Z / D</span>' +
+          '<span class="rhythm-lane-btn" data-lane-key="1">X / F</span>' +
+          '<span class="rhythm-lane-btn" data-lane-key="2">Space</span>' +
+          '<span class="rhythm-lane-btn" data-lane-key="3">J / K</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="rhythm-bar-right">' +
+        '<span class="rhythm-bar-combo" data-global-combo>COMBO × 0</span>' +
+        '<button type="button" class="rhythm-bar-toggle-btn" data-global-hud-toggle title="Minimize Rhythm HUD (Shortcut: R)">✕</button>' +
+      '</div>';
+
+    var launcher = document.createElement("button");
+    launcher.id = "global-rhythm-launcher";
+    launcher.type = "button";
+    launcher.className = "rhythm-hud-launcher";
+    launcher.title = "Toggle Harmonix Rhythm HUD (Shortcut: R)";
+    launcher.innerHTML = "🎵 128 BPM";
+    launcher.style.display = "none";
+
+    document.body.appendChild(bar);
+    document.body.appendChild(launcher);
+
+    var pulseRing = bar.querySelector("[data-global-pulse]");
+    var gradeDisplay = bar.querySelector("[data-global-grade]");
+    var comboDisplay = bar.querySelector("[data-global-combo]");
+    var audioBtn = bar.querySelector("[data-rhythm-audio-toggle]");
+    var closeBtn = bar.querySelector("[data-global-hud-toggle]");
+    var laneBtns = bar.querySelectorAll(".rhythm-lane-btn");
+
+    function setHudState(visible) {
+      if (visible) {
+        bar.classList.remove("is-collapsed");
+        launcher.style.display = "none";
+      } else {
+        bar.classList.add("is-collapsed");
+        launcher.style.display = "block";
+      }
+    }
+
+    closeBtn.addEventListener("click", function () { setHudState(false); });
+    launcher.addEventListener("click", function () { setHudState(true); });
+
+    audioBtn.addEventListener("click", function () {
+      audioMuted = !audioMuted;
+      audioBtn.textContent = audioMuted ? "🔇" : "🔊";
+      audioBtn.title = audioMuted ? "Unmute Audio Synth" : "Mute Audio Synth";
+    });
+
+    function beatLoop() {
+      if (!reducedMotion && !bar.classList.contains("is-collapsed")) {
+        pulseRing.style.transform = "scale(1.25)";
+        setTimeout(function () {
+          pulseRing.style.transform = "scale(1)";
+        }, 120);
+      }
+      setTimeout(beatLoop, GLOBAL_BEAT_MS);
+    }
+    beatLoop();
+
+    var KEY_MAP = {
+      "z": 0, "d": 0,
+      "x": 1, "f": 1,
+      " ": 2, "spacebar": 2,
+      "j": 3, "k": 3
+    };
+
+    document.addEventListener("keydown", function (e) {
+      var tag = (e.target.tagName || "").toLowerCase();
+      if (tag === "input" || tag === "textarea" || e.target.isContentEditable) return;
+
+      var key = e.key.toLowerCase();
+      if (key === "r") {
+        var isHidden = bar.classList.contains("is-collapsed");
+        setHudState(isHidden);
+        return;
+      }
+
+      if (!Object.prototype.hasOwnProperty.call(KEY_MAP, key)) return;
+      if (bar.classList.contains("is-collapsed")) return;
+
+      getAudioContext();
+
+      var laneIdx = KEY_MAP[key];
+      var laneBtn = laneBtns[laneIdx];
+      if (laneBtn) {
+        laneBtn.classList.add("lane-pressed");
+        setTimeout(function () { laneBtn.classList.remove("lane-pressed"); }, 160);
+      }
+
+      var now = performance.now();
+      var offset = now % GLOBAL_BEAT_MS;
+      var err = Math.min(offset, GLOBAL_BEAT_MS - offset);
+
+      var grade = "miss";
+      if (err <= 90) grade = "perfect";
+      else if (err <= 120) grade = "great";
+      else if (err <= 150) grade = "good";
+
+      pulseRing.setAttribute("data-hit-flash", grade);
+      setTimeout(function () { pulseRing.removeAttribute("data-hit-flash"); }, 200);
+
+      playSynthTone(grade);
+
+      if (grade === "miss") {
+        combo = 0;
+        gradeDisplay.innerHTML = 'MISS <small>&gt;150ms</small>';
+      } else {
+        combo++;
+        if (combo > maxCombo) maxCombo = combo;
+        var subText = "±" + Math.round(err) + "ms";
+        var labelText = grade === "perfect" ? "+100 PERFECT!" : grade.toUpperCase();
+        gradeDisplay.innerHTML = labelText + ' <small>' + subText + '</small>';
+        triggerHitShake();
+
+        var barRect = bar.getBoundingClientRect();
+        spawnRhythmFloater(labelText, barRect.left + barRect.width / 2 - 30, barRect.top - 20, grade);
+      }
+
+      comboDisplay.textContent = combo > 0 ? "COMBO × " + combo : "COMBO × 0";
+    });
+  }
+
   function init() {
     applyIosMode();
     document.querySelectorAll("[data-codex-grid]").forEach(fillCodexGrid);
@@ -743,6 +972,7 @@
     initDecorativeNotes();
     initPhaseSwitch();
     initClefCode();
+    initGlobalRhythmHighway();
     document.querySelectorAll("[data-ios-play]").forEach(initIosPhaseSwitch);
     loadRhythmConfig().then(function () {
       document.querySelectorAll("[data-rhythm-playground], [data-ios-rhythm]").forEach(function (el) {
@@ -758,3 +988,4 @@
     init();
   }
 })();
+

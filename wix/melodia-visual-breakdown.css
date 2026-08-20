@@ -79,7 +79,7 @@
     width: 9px;
     height: 9px;
     transform: translateX(-50%) rotate(45deg);
-    background: linear-gradient(135deg, #ffe666, #ff6eb4);
+    background: linear-gradient(135deg, var(--primitive-gold-100), var(--primitive-sakura-300));
     box-shadow: 0 0 0 3px rgba(13, 18, 36, 0.85);
   }
 }
@@ -157,14 +157,14 @@
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--iri-gold, #ffe666);
+  color: var(--iri-gold, var(--primitive-gold-100));
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 230, 102, 0.35);
   padding-bottom: 0.15rem;
 }
 
 .viz-copy .viz-link:hover {
-  color: #fff;
+  color: var(--primitive-ivory-50);
   border-bottom-color: rgba(255, 255, 255, 0.45);
 }
 
@@ -402,7 +402,7 @@
 }
 
 .technical-appendix .appendix-links a:hover {
-  color: #ffe666;
+  color: var(--primitive-gold-100);
 }
 
 /* ——— Infinity Nikki lookbook chrome ——— */
@@ -449,7 +449,7 @@
   font-weight: 400;
   font-size: clamp(1.55rem, 2.8vw, 2.2rem);
   line-height: 1.05;
-  background: linear-gradient(115deg, #fff8f0 0%, #ffb4d2 45%, #c4a8ff 78%, #ffe666 100%);
+  background: linear-gradient(115deg, var(--primitive-ivory-50) 0%, var(--primitive-sakura-300) 45%, var(--primitive-lavender-300) 78%, var(--primitive-gold-100) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -706,7 +706,7 @@
 }
 
 .melodia-shell[data-visual="lookbook"] .passport-title {
-  background: linear-gradient(120deg, #fff8f0 0%, #ffb4d2 48%, #ffe666 100%);
+  background: linear-gradient(120deg, var(--primitive-ivory-50) 0%, var(--primitive-sakura-300) 48%, var(--primitive-gold-100) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
