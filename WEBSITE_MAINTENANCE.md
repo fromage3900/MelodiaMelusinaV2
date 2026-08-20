@@ -1,206 +1,201 @@
 # Melodia Portfolio — Maintenance Guide
 
+Rewritten 2026-08-20. The previous version described a pipeline that had stopped existing: it named
+`my-site-clean/` as source of truth (it had decayed to 11 stray PNGs and was gitignored), pointed the
+deploy at a git worktree that no longer had a `.git` (so every deploy since silently copied into a
+dead directory), and targeted a `gh-pages` branch the site repo does not have. Every command in its
+Quick Reference table either failed or wrote somewhere nothing read.
+
+---
+
 ## Quick Reference
 
 | Task | Command |
 |------|---------|
-| **Full deploy** (sync + commit + push) | `.\deploy\quick-deploy.ps1` |
-| **Deploy with custom message** | `.\deploy\quick-deploy.ps1 -Message "Your message"` |
-| **Import new UE5 renders** | `.\tools\ingest-renders.ps1` |
-| **Import + auto-deploy** | `.\tools\ingest-renders.ps1 -Deploy` |
-| **Create new environment page** | `.\tools\add-environment.ps1 -Slug "your-env"` |
+| **Deploy the site** | `.\deploy\quick-deploy.ps1` |
+| **Deploy with a message** | `.\deploy\quick-deploy.ps1 -Message "Your message"` |
+| **Preview without deploying** | `.\deploy\sync_site_to_github.ps1 -Deploy $false` |
+| **Import new UE5 renders** | `.\Tools\ingest-renders.ps1` |
+| **Import + deploy** | `.\Tools\ingest-renders.ps1 -Deploy` |
+| **Scaffold an environment page** | `.\Tools\add-environment.ps1 -Slug "your-env"` — see Known gaps |
 
 ---
 
-## How the site works
+## How the site actually works
 
-### Architecture
-```
-BS_GodFile/
-  my-site-clean/          ← Source of truth. Edit everything here.
-    wix/                   ← All HTML pages
-    content/               ← JSON data files (site-copy.json, site-plates.json, site-manifest.json)
-    generated/assets/      ← Renders, webm loops, material images
-    public/                ← Shared CSS, JS, fonts, icons
-  _github_deploy/          ← Git worktree (auto-synced). DO NOT EDIT DIRECTLY.
-```
+The live site is **a separate GitHub repo**, `fromage3900/my-site`, published by GitHub Pages:
 
-### Deployment flow
 ```
-Edit in my-site-clean/
-       │
-       ▼
-deploy/quick-deploy.ps1   ← Syncs my-site-clean → _github_deploy worktree
-       │
-       ▼
-Git commit + push          ← Live on GitHub Pages (~30 seconds)
-       │
-       ▼
 https://fromage3900.github.io/my-site/wix/index.html
 ```
 
+Pages is configured with `build_type: workflow` — an **Action on that repo's `main` branch** builds
+and publishes. There is **no `gh-pages` branch**; the Pages API still reports one in its `source`
+field, but the branch does not exist and writing to it does nothing.
+
+```
+BS_GodFile/                     <- you edit here
+  wix/                          <- 34 pages + 44 css/js assets   (tracked)
+  components/  projects/        <- embeddable fragments          (tracked)
+  generated/                    <- render assets                 (mostly untracked)
+       |
+       |  .\deploy\quick-deploy.ps1
+       v
+C:\EnvironmentPortfolio\_github_deploy\    <- a CLONE of fromage3900/my-site
+       |
+       |  git commit + git push origin main
+       v
+GitHub Action on my-site main  ->  Pages  ->  live (~1 min)
+```
+
+### One-time setup
+
+The deploy target must be a real clone. Create it once:
+
+```bash
+git clone https://github.com/fromage3900/my-site.git C:\EnvironmentPortfolio\_github_deploy
+```
+
+`sync_site_to_github.ps1` refuses to run and prints this command if the target is missing or its
+`origin` is not the my-site repo. It also hard-resets the clone to `origin/main` before syncing, so a
+half-finished earlier deploy cannot leak into the next one.
+
+> There is a stale `BS_GodFile/_github_deploy/` directory (938 files, no `.git`, gitignored). It is
+> the corpse of the old worktree. Nothing reads it. Do not edit it, and do not use it as the deploy
+> target — the target lives one level up, in `C:\EnvironmentPortfolio\`.
+
+### What syncs, and what deliberately does not
+
+`$dirsToSync = @("wix", "components", "projects", "generated")`
+
+**`content` is deliberately excluded.** Windows paths are case-insensitive, so a `content` entry
+resolves to this project's UE **`Content\` tree — 26,591 asset files**. The old sync list contained
+it, which would have copied the entire game project into the public site. The script now hard-fails
+if `content` reappears in that list.
+
+The site's own `content/` (`site-copy.json`, `site-plates.json`), plus `public/`, `application/` and
+`tools/`, exist **only in the my-site repo** — they are not mirrored into BS_GodFile. Edit those in
+the clone and commit them there. Only `wix/`, `components/` and `projects/` round-trip through here.
+
 ---
 
-## Common Tasks
+## Common tasks
 
-### 1. Deploy the site (after any edit)
+### 1. Deploy
 
-The most important command. Run this after ANY change to make it live:
-
-```powershell
+```bash
 .\deploy\quick-deploy.ps1
 ```
 
-This will:
-1. Sync all files from `my-site-clean/` to the `_github_deploy/` worktree
-2. Stage changes, commit, and push to GitHub Pages
-3. Site goes live at `https://fromage3900.github.io/my-site/`
+Syncs, commits, pushes to my-site `main`. The Pages Action publishes from there — allow about a
+minute, then hard-refresh (Ctrl+Shift+R).
+
+To see what *would* deploy without committing:
+
+```bash
+.\deploy\sync_site_to_github.ps1 -Deploy $false
+```
 
 ### 2. Import new UE5 renders
 
-After capturing screenshots from UE5 (Saved/Portfolio/):
+After capturing to `Saved/Portfolio/`:
 
-```powershell
-.\tools\ingest-renders.ps1
+```bash
+.\Tools\ingest-renders.ps1
 ```
 
-This copies new renders into `generated/assets/` organized by type:
-- `.webm` → `landscape-loops/`
-- Prop/ornament images → `props/` or `ornaments/`
-- Everything else → `unreal/`
+Sorts into `generated/assets/` by type — `.webm`/`.mp4` to `landscape-loops/`, prop and ornament
+stills to `props/` or `ornaments/` by filename heuristic, everything else to `unreal/`.
 
-To import AND deploy in one step:
+### 3. Edit page copy
 
-```powershell
-.\tools\ingest-renders.ps1 -Deploy
-```
-
-### 3. Add a new environment
-
-Use the scaffolding script to create a new environment page:
-
-```powershell
-.\tools\add-environment.ps1 -Slug "crystal-cavern"
-```
-
-Or run interactively (no parameters):
-
-```powershell
-.\tools\add-environment.ps1
-```
-
-**After creating the page, do these 6 things:**
-
-1. **Replace hero images** — put your webm and poster in `generated/assets/landscape-loops/`
-2. **Replace macro images** — put ornament/prop detail shots in `generated/assets/ornaments/` or `generated/assets/props/`
-3. **Update OG image** — edit the `<meta property="og:image">` path in your new page
-4. **Add to hub page** — add a card to the environment grid in `application-hub.html`
-5. **Add to index page** — add a card to the environment grid in `index.html` (around line 79–96)
-6. **Update site manifest** — add the environment entry to `content/site-manifest.json`
-
-### 4. Update site copy
-
-Edit any HTML page in `wix/`. The main pages are:
+Edit the HTML in `wix/` directly. The main pages:
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Home page — hero, environment grid, Nikki-aligned section |
-| `application-hub.html` | All environments landing |
-| `sakura-case-study.html` | Sakura Dream environment breakdown |
-| `space-cathedral.html` | Space Cathedral environment breakdown |
-| `cosmic-orrery.html` | Cosmic Orrery environment breakdown |
-| `baroque-grotto.html` | Baroque Grotto environment breakdown |
-| `shader-breakdowns.html` | Master Toon Universal showcase + 22 material instances |
-| `recruiter-one-sheet.html` | Targeted one-sheet for Infinity Nikki recruiters |
-| `resume.html` | Professional resume |
-| `pipeline.html` | Toolchain + infrastructure breakdown (sends game-dev signal) |
+| `index.html` | Home — hero, environment grid |
+| `application-hub.html` | Integrated level routes & Echo DCC bridge |
+| `pcg-system-impact.html` | L_FallenMoon PCG scatter survey |
+| `sakura-case-study.html` | Sakura Dream breakdown |
+| `space-cathedral.html` | Space Cathedral breakdown |
+| `cosmic-orrery.html` | Cosmic Orrery breakdown |
+| `baroque-grotto.html` | Baroque Grotto breakdown |
+| `surreal-architecture.html` | Surreal architecture systems |
+| `shader-breakdowns.html` | Master Toon Universal + material instances |
+| `zbrush-breakdown.html` | ZBrush sculpt breakdown |
+| `geometry-nodes.html` | Geometry Nodes pipelines |
+| `world-bible.html` | World bible |
+| `recruiter-one-sheet.html` | Recruiter one-sheet |
+| `resume.html` | Resume |
 
-Data files in `content/`:
-- `site-copy.json` — centralized page copy
-- `site-plates.json` — hero plate mapping (environments → render paths)
-- `site-manifest.json` — version info, environment stats, pipeline registry
+`wix/` holds **34 pages**; the live `index.html` nav links **8** of them. The rest are reachable only
+by direct URL. Surfacing more is a nav edit in `wix/index.html` and `wix/melodia-site-nav.js` — the
+pages already exist and are already styled.
 
-### 5. Update environment stats
+### 4. Add a page to the nav
 
-If you update a world's triangle count, draw calls, or materials:
-
-1. Edit the stat row in the environment's page (`wix/your-env.html`)
-2. Update the manifest (`content/site-manifest.json`) — this is used by the pipeline page
-3. Deploy
-
-### 6. Add a new page to navigation
-
-The main nav (Home, Environments, Shaders, One-sheet, Resume) is hardcoded in every page's `<header>`.
-To add a nav link:
-
-1. Find the `<nav class="nav-links">` section in each HTML page
-2. Add a new `<a href="your-page.html">Section name</a>`
-3. Update the manifest (`content/site-manifest.json`)
+The nav is hardcoded in each page's `<header>`. Add `<a href="your-page.html">Section</a>` to the
+`<nav class="nav-links">` block.
 
 ---
 
-## Pipeline Details
+## Encoding — read before editing any `.ps1`
 
-### Deploy script (`deploy/sync_site_to_github.ps1`)
+Every script here must be saved as **UTF-8 *with* BOM** and CRLF.
 
-Copies `my-site-clean/` to `C:\EnvironmentPortfolio\_github_deploy/` (git worktree), then:
+Windows PowerShell 5.1 (which is what runs on this machine) assumes the system ANSI codepage when a
+file has no BOM. Any em-dash, arrow or box-drawing character then decodes as mojibake, and the stray
+bytes terminate string literals early. On 2026-08-20 both `Tools/ingest-renders.ps1` and
+`Tools/add-environment.ps1` were found to be **syntactically invalid for exactly this reason** — they
+could not run at all, independent of their broken paths. Adding a BOM fixed both with no content
+change.
 
-```powershell
-git add -A
-git commit -m "Sync site updates"
-git push origin main
+Parse-check a script before committing it. Run this in PowerShell, swapping in the file you touched
+— it prints `OK` or the parse errors:
+
+```
+$e=$null; [void][System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path 'deploy\sync_site_to_github.ps1').Path,[ref]$null,[ref]$e); if($e){$e|ForEach-Object{$_.Message}}else{'OK'}
 ```
 
-### Render ingest (`tools/ingest-renders.ps1`)
+---
 
-Scans `BS_GodFile/Saved/Portfolio/` for new files, copies them into the correct subdirectory of `generated/assets/`, and optionally deploys.
+## Known gaps
 
-### Environment scaffold (`tools/add-environment.ps1`)
-
-Copies `wix/environment-template.html` to `wix/{slug}.html` and replaces all `%%TOKEN%%` placeholders with your values.
+- **`add-environment.ps1` cannot run.** It reads `wix/environment-template.html`, which does not
+  exist anywhere in the repo. The script parses and its paths are now correct, but it will fail at
+  its template check until someone authors that template. Scaffold new pages by copying an existing
+  environment page for now.
+- **Website ship is Blocked**, not in progress — `_ROADBLOCKS_2026-07-31.md` C8, reconciled against
+  `_PORTFOLIO_SHIP_CHECKLIST.md`. It waits on owner-supplied hero renders. Nav and copy work can
+  proceed; final sign-off cannot.
+- **`generated/` is nearly empty here** (1 tracked file). Render assets live in the my-site clone.
+  `ingest-renders.ps1` writes into `generated/assets/` locally, and the sync carries it up.
 
 ---
 
 ## Troubleshooting
 
-### "Page shows 404 for images"
+**"is not a git clone of the site repo"** — run the one-time `git clone` above. The target is
+`C:\EnvironmentPortfolio\_github_deploy`, *not* the dead `BS_GodFile/_github_deploy/`.
 
-The site references assets at `../generated/assets/...` paths. These must exist in the `_github_deploy/` worktree. If missing:
+**Edits not showing live** — did the deploy print "N file(s) changed"? If it said "No changes",
+confirm you edited under `wix/` and not in the clone. Then allow ~1 min for the Action and
+hard-refresh.
 
-1. Check the file exists in `my-site-clean/generated/assets/`
-2. Run `.\deploy\quick-deploy.ps1` to sync
-3. Verify in `_github_deploy/generated/assets/`
+**Push failed** — GitHub connectivity from this workstation is intermittent (the README says the
+same). Retry before diagnosing. `git -C C:\EnvironmentPortfolio\_github_deploy pull origin main`
+then re-deploy.
 
-### "Deploy script says worktree not found"
-
-The script expects the git worktree at `C:\EnvironmentPortfolio\_github_deploy\`. If it's missing:
-
-```powershell
-# From the EnvironmentPortfolio repo root:
-git worktree add _github_deploy main
-```
-
-### "Git push failed"
-
-Check:
-- Are you authenticated with GitHub? `git push` should work if origin is set
-- Is the worktree on the `main` branch? `cd _github_deploy && git branch`
-- Try `git pull origin main` first, then re-run deploy
-
-### "My edits aren't showing up on the live site"
-
-1. Run `.\deploy\quick-deploy.ps1` — did it say "X files changed"?
-2. If "No changes to deploy", check that you edited a file in `my-site-clean/`, not directly in `_github_deploy/`
-3. Wait ~30 seconds for GitHub Pages to rebuild
-4. Hard-refresh your browser (Ctrl+Shift+R / Cmd+Shift+R)
+**Images 404** — the asset must exist under `generated/assets/` here and survive the sync. Check the
+clone after deploying.
 
 ---
 
-## Best Practices
+## Best practices
 
-- **Always edit in `my-site-clean/`** — never edit files directly in `_github_deploy/`
-- **Deploy after every meaningful change** — keeps the site in sync
-- **Test locally** before deploying: open `my-site-clean/wix/index.html` in a browser
-- **Commit the source repo too** — `my-site-clean/` changes should also be committed to the main EnvironmentPortfolio repo for backup
-- **Keep the manifest honest** — update `site-manifest.json` whenever you change environment stats
-- **Use the template** — `tools/add-environment.ps1` handles all the boilerplate so you don't forget anything
+- **Edit in `wix/`.** Never edit the deploy clone directly — the next sync hard-resets it.
+- **Pull before you push.** The live site has been ahead of the tracked copy before; on 2026-08-20,
+  57 of 78 files were behind live and deploying would have regressed the public site.
+- **Preview first** with `-Deploy $false` on anything structural.
+- **Save `.ps1` as UTF-8 with BOM** and parse-check it (see Encoding).
+- **Never add `content` to `$dirsToSync`.**
