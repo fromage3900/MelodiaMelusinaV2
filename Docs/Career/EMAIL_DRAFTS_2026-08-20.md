@@ -104,18 +104,44 @@ proposal is at `Docs/Portfolio/PITCH_NOUS_RESEARCH.md` (committed 2026-08-18,
 pending merge via PR #9).
 
 ### Key numbers to lead with
-- Hermes 3 8B under MCP: **98.8% TCA, 100% PAR, 95.5% SCR, 91.0% RCF,
-  85% token reduction**
-- LongCat 14B: **99.2% TCA, 97.5% SCR** on spatial/Blueprint tracks
-- Environment: UE5.8 as a live stateful RL environment, MCP as the constrained
-  action space, compiler diagnostics as the reward signal
+
+**⚠ 2026-08-20 CORRECTION — READ BEFORE SENDING.**
+The previously drafted headline ("Hermes 3 8B: 98.8% TCA / 100% PAR / 95.5% SCR /
+91.0% RCF / 85% token reduction" and "LongCat 14B: 99.2% TCA, 97.5% SCR") is
+**WITHDRAWN**. Those figures were formally unpublished on 2026-08-19 — see the
+withdrawal notice at `Docs/melusina-agent-harness.html:468-478`: *"withdrawn and
+unpublished — it was never backed by a committed run log."* Do not send them to a
+research lab. Nous would ask for the run log and there isn't one.
+
+Verified numbers, each with a run JSON on disk (`Saved/Audit/`):
+
+| Claim | Value | Evidence file |
+|---|---|---|
+| Harness self-eval (tool surface) | **31/32, TCA 100%** | `math_run_latest.json` (2026-08-20, `kind: harness_self_eval`) |
+| qwen2.5-coder:7b via MCP | **21/32, TCA 90.3%, exec 67.7%** | `math_run_qwen2.5-coder_7b_2026-08-20.json` |
+| qwen3.8-27b via MCP | **21/32, TCA 81.2%, exec 65.6%, TER 3.18** | `math_run_qwen3.8-27b_2026-08-19.json` |
+| muse-glimmer-30b | **0/32** (harness hosts it; model failed) | `math_run_muse-glimmer-30b_2026-08-19.json` |
+| Echo gate ledger | **41 rows — 32 pass, 9 fail** | `Saved/gate_ledger.json` |
+| Completion gates | runtime / save_load / repeat_consume / package_launch all **PASS** | `Tools/echo_run.py status` |
+
+Note both caveats honestly — they are the interesting part, not a weakness:
+- `editor_contacted: false` on the self-eval. Editor-required tasks HOLD rather
+  than silently pass.
+- muse-glimmer-30b scored 0/32. Report it. A harness that reports a zero is a
+  harness worth trusting.
+
+The real pitch is the **environment and the methodology**, not a leaderboard:
+UE5.8 as a live stateful RL environment, MCP as a constrained action space,
+compiler diagnostics as the reward signal, and a ledger that refuses unbacked
+claims — demonstrated by this very correction.
 
 ### Email structure
-1. One-line hook: "Hermes 3 8B under MCP achieves 98.8% task completion
-   accuracy in a live UE5.8 simulation — outperforming unconstrained
-   frontier models while using 85% fewer tokens."
+1. One-line hook: "I built a live UE5.8 environment where MCP is the constrained
+   action space and compiler diagnostics are the reward signal — and a gate ledger
+   that withdraws its own unbacked numbers."
 2. Two sentences on MATH (Melusina Agent Test Harness) as a formal RL env.
 3. Propose the four-phase collaboration roadmap from the pitch doc.
+
 4. Ask for a 30-minute call with their eval/research team.
 
 ### Attach
@@ -232,6 +258,234 @@ D. All of the above + a job conversation (you're in Toronto, they're in Toronto)
 - [ ] Hermes test results committed (for Nous application)
 - [ ] ArtStation updated with stylized renders (for Infold application)
 - [ ] Each email personalized — no generic "I love your company" language
+- [ ] **No withdrawn metrics anywhere** (98.8 / 99.2 / 95.5 / 91.0 / TER 0.15)
+- [ ] Every number you send has a file in `Saved/Audit/` you could attach
+
+---
+
+# SEND-READY BODIES
+
+Copy-paste ready. Only `[[...]]` fields need your input. Written flat and factual
+per tone preference — no flourish, no "I'm passionate about".
+
+Signature block for all of them:
+
+```
+Brennan Shepherd
+brennan.shepherd3900@gmail.com
+Portfolio: https://fromage3900.github.io/my-site/
+GitHub:    https://github.com/fromage3900/MelodiaMelusinaV2
+Toronto, ON
+```
+
+---
+
+## A. Nous Research — collaboration proposal
+
+**To:** recruiting@nousresearch.com (cc research contact if you find one)
+**Subject:** MATH: a UE5.8 stateful environment for evaluating constrained open-weights models
+
+> Hi,
+>
+> I've built something I think is relevant to how you evaluate Hermes, and I'd
+> like to propose a collaboration rather than apply for a job.
+>
+> MATH (Melusina Agent Test Harness) treats Unreal Engine 5.8 as a live stateful
+> environment for tool-using models. MCP is the constrained action space —
+> models emit typed tool calls, not free-form code. Compiler diagnostics and
+> Blueprint graph state are the observation and reward signal. Episodes
+> terminate on a gate, and every gate result is written to an append-only ledger.
+>
+> Current state, all backed by run logs in the repo:
+>
+> - Harness self-eval: 31/32 tasks, 100% tool-call accuracy
+> - qwen2.5-coder:7b through the MCP surface: 21/32, 90.3% TCA
+> - qwen3.8-27b: 21/32, 81.2% TCA, token efficiency ratio 3.18
+> - muse-glimmer-30b: 0/32 — the harness hosted it fine, the model failed
+> - 41 gate-ledger rows: 32 pass, 9 fail
+>
+> I'm including the zero deliberately. I withdrew an earlier scorecard from my
+> own whitepaper this week because it wasn't backed by a committed run log, and
+> I'd rather show you a harness that refuses unbacked numbers than a leaderboard.
+>
+> What I think is interesting for Nous specifically: this is a long-horizon
+> environment where small open-weights models have to hold state across dozens
+> of steps in a hostile, real codebase — not a synthetic benchmark. I have four
+> months of daily operating data on where they break.
+>
+> Full proposal with the four-phase roadmap is attached. Would your eval team be
+> open to a 30-minute call?
+>
+> [[SIGNATURE]]
+
+**Attach:** `Docs/Portfolio/PITCH_NOUS_RESEARCH.md`
+
+---
+
+## B. NVIDIA — DevRel Manager (deadline Aug 21)
+
+**Apply at:** https://jobs.nvidia.com/careers/job/893397075768
+**Subject:** JR2023172 — Developer Relations Manager, Foundational AI (Toronto)
+
+> Hello,
+>
+> I'm applying for Developer Relations Manager, Higher Ed & Research —
+> Foundational AI (JR2023172) in Toronto.
+>
+> I'm a 4th-year 3D major at Humber College. That is earlier-career than this
+> posting assumes and I want it stated plainly rather than discovered. I'm
+> applying because the work already shipped maps onto what Toronto's Spatial
+> Intelligence Lab and Vector-facing DevRel engage with: spatial content
+> systems, AI-augmented production pipelines, and agent orchestration an
+> academic can actually inspect.
+>
+> The artifact is a production UE5.8 project, not coursework:
+>
+> - 138 materials unified onto a single Substrate Toon master spine
+> - PCG procedural scatter systems and a documented Blender → UE content path
+> - A multi-agent MCP harness against that same project, with an evidence
+>   ledger — completion gates for runtime, save/load, repeat-consume and
+>   packaged launch all recorded PASS as dated rows
+> - Agent evaluation: harness self-eval 31/32 (100% tool-call accuracy), local
+>   Qwen through MCP at 21/32 (90.3%)
+>
+> Every number above has a run log or ledger row in the public repo. Where a
+> claim didn't, I withdrew it.
+>
+> I'm drawn to Toronto specifically because SIL's lineage — 3D vision, neural
+> rendering, content-creation research — is the research side of the production
+> problems I've been solving. If JR2023172 isn't the right level, I'd welcome
+> redirection toward an SIL or Omniverse-adjacent research internship for 2027.
+> I'm Toronto-based and available for an on-site technical screen.
+>
+> Resume attached; portfolio and repo links below.
+>
+> [[SIGNATURE]]
+
+**Do NOT include:** Muse 30B as a win, TokenRouter, Nemotron product claims,
+or any withdrawn TCA figure. See `NVIDIA_DEVREL_PACKET_2026-08-20.md:77`.
+
+---
+
+## C. OpenCode — user research
+
+**To:** hello@opencode.ai (or DM @jayv on X)
+**Subject:** Four months of UE5.8 power-user data from a non-programmer
+
+> Hi Jay,
+>
+> I'm a 4th-year 3D student who cannot hand-write code. For the past four months
+> OpenCode in Rider has been my primary development harness for a production
+> UE5.8 JRPG — C++ subsystems, MCP orchestration across three surfaces, material
+> pipelines, multi-agent coordination. The project is roughly 70% done and I'm
+> building the rest in OpenCode now.
+>
+> I think I'm a user profile your data underrepresents: non-programmer, game dev,
+> genuinely hostile environment. I've kept records of where the workflow breaks —
+> context compaction losing MCP state mid-task, tool-surface size blowing up
+> context, recovery behaviour after editor crashes.
+>
+> You've mentioned worrying about over-indexing on enterprise and losing the
+> consumer story. I have four months of the consumer story written down.
+>
+> Any of these work for me:
+> 1. 30 minutes with your product team, no prep needed on your side
+> 2. A co-written case study
+> 3. Contributing UE5.8 MCP patterns and failure modes to the community docs
+>
+> I'm in Toronto, same as you, so in person is easy if that's simpler.
+>
+> [[SIGNATURE]]
+
+---
+
+## D. Certain Affinity — Sr Advanced Technical Artist
+
+**Apply at:** https://hiring.camp/job/yzlE9G
+**Subject:** Senior Advanced Technical Artist — application (Toronto)
+
+> Hello,
+>
+> I'm applying for the Senior Advanced Technical Artist role in the Toronto
+> office. I'm a 4th-year 3D major, so I'm reaching above the posted level and
+> want that clear from the start.
+>
+> The reason I'm applying anyway is that the skill list matches what I've
+> actually built:
+>
+> - UE5.8 material pipeline: 138 materials consolidated onto one Substrate Toon
+>   master, with shader instruction budgets tracked as a build gate
+> - PCG procedural environment scatter
+> - Blueprint tooling — automated graph injection, fingerprint-based regression
+>   detection, and static audits that catch defect classes like shadowed parent
+>   events and dead execution islands
+> - Python/MCP editor automation across a live UE project
+>
+> The Blueprint audit tooling exists because those defects shipped in my own
+> project and passed review — a child Blueprint silently shadowing a parent's
+> event, compiling clean, and breaking the battle UI. I wrote the sweep so it
+> couldn't happen twice.
+>
+> Happy to walk a Technical Art Director through the pipeline and talk about
+> where I'd realistically fit on the team.
+>
+> [[SIGNATURE]]
+
+---
+
+## E. Infold Games — 2027 campus recruitment
+
+**Apply at:** campus portal (https://lnkd.in/g8za_gzD) — Art & Visual Design track
+**Subject:** 2027 Campus Recruitment — Art & Visual Design (3D environment focus)
+
+> Hello,
+>
+> I'm applying through Infold Games' 2027 Campus Recruitment for the Art &
+> Visual Design track. I'm a 4th-year 3D major graduating [[GRAD MONTH/YEAR]].
+>
+> My strength is 3D environment and material work in UE5.8 rather than 2D
+> concept illustration, and I'd like to be considered on that basis. The work
+> sits in the romantic-atmospheric register Love and Deepspace occupies:
+> moonlit Sakura gardens, a Zen garden family of environments, and Baroque
+> gilded ornament systems — built with a stylized non-photoreal material spine
+> and cinematic lighting.
+>
+> [[1-2 sentences naming the specific renders you're leading with]]
+>
+> I understand your new project is UE5-based; my pipeline experience is UE5.8
+> end to end, including procedural scatter and a Blender-to-engine content path.
+>
+> Portfolio and reel links below. If there's a dedicated 3D Environment Artist
+> track in the portal I'd prefer to be routed there.
+>
+> [[SIGNATURE]]
+
+**Before sending:** confirm whether the portal has a 3D Environment track, and
+whether Toronto-remote or relocation applies.
+
+---
+
+## F. Velan Studios — Technical Artist / Senior Environment Artist
+
+**Apply at:** https://gamejobs.co/Technical-Artist-Senior-Lead-at-Velan-Studios-2062
+**Subject:** Technical Artist — application (Toronto, hybrid)
+
+> Hello,
+>
+> I'm applying for the Technical Artist opening in Toronto. I'm a 4th-year 3D
+> major — below the posted seniority — and I'd also like to be considered for
+> the Senior Environment Artist posting if that's the better fit.
+>
+> The reason I'm writing is the experimental/NPR emphasis. My UE5.8 project runs
+> a unified Substrate Toon material spine across 138 materials: stylized shading
+> with hand-authored control rather than a photoreal target, plus a post-process
+> stack built for a non-photoreal look. Alongside that: PCG scatter systems,
+> Blueprint automation tooling, and Python editor pipelines.
+>
+> I'd welcome the chance to show the material system and discuss either role.
+>
+> [[SIGNATURE]]
+
 
 ---
 
