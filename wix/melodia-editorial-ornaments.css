@@ -47,7 +47,7 @@
   font-size: 0.68rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold-soft, #e4c990);
+  color: var(--gold-soft, var(--primitive-gold-300));
 }
 
 .editorial-rule-stars::before,
@@ -136,14 +136,14 @@
 .premium-kicker:not(.motif-no-glyph)::after {
   content: " ✦";
   opacity: var(--motif-glyph-opacity, 0.42);
-  color: var(--motif-accent, var(--gold, #c9a86a));
+  color: var(--motif-accent, var(--gold, var(--primitive-gold-500)));
 }
 
 /* Tier A2 — hollow sparkle (lists, secondary affordances) */
 .motif-star-glyph-open::after {
   content: " ✧";
   opacity: calc(var(--motif-glyph-opacity, 0.42) - 0.04);
-  color: var(--motif-accent, var(--gold, #c9a86a));
+  color: var(--motif-accent, var(--gold, var(--primitive-gold-500)));
 }
 
 /* Tier B — 8-point clip star (::before corners) */
@@ -201,13 +201,13 @@
 .path-list .path-row:nth-child(odd) > b::before {
   content: "✦ ";
   opacity: var(--motif-glyph-opacity, 0.42);
-  color: var(--motif-accent, var(--gold-soft, #e8c9b8));
+  color: var(--motif-accent, var(--gold-soft, var(--primitive-sakura-300)));
 }
 
 .path-list .path-row:nth-child(even) > b::before {
   content: "✧ ";
   opacity: calc(var(--motif-glyph-opacity, 0.42) - 0.06);
-  color: var(--motif-accent, var(--gold-soft, #e8c9b8));
+  color: var(--motif-accent, var(--gold-soft, var(--primitive-sakura-300)));
 }
 
 .guide-list .guide-card > b::before {
@@ -224,7 +224,7 @@
 
 /* Portal corner glyph uses tier A — pillar tint via accent-* on card */
 .portal-card::after {
-  color: var(--motif-accent, var(--gold, #c9a86a));
+  color: var(--motif-accent, var(--gold, var(--primitive-gold-500)));
   opacity: 0.72;
 }
 

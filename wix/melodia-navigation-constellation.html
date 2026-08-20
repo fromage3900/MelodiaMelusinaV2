@@ -3,16 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https: http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:;" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Melodia Constellation Navigation</title>
 <link rel="stylesheet" href="melodia-luxury-type.css">
 <style>
   :root {
-    --surface-base: #141A30;
-    --surface-raised: #1C2340;
-    --gold: #C9A86A;
-    --gold-soft: #DDC79B;
-    --text-primary: #ECEAF4;
-    --text-secondary: #A9A7C0;
+    --surface-base: var(--primitive-astral-900);
+    --surface-raised: var(--primitive-astral-700);
+    --gold: var(--primitive-gold-500);
+    --gold-soft: var(--primitive-gold-300);
+    --text-primary: var(--primitive-ivory-50);
+    --text-secondary: var(--primitive-slate-300);
     --border-gold: rgba(201, 168, 106, 0.3);
   }
 
@@ -22,12 +25,10 @@
     font-family: var(--font-body), system-ui, sans-serif;
     background: var(--surface-base);
     color: var(--text-primary);
-    overflow: hidden;
     width: 100%;
-    height: 60px;
+    min-height: 500px;
   }
-
-  .nav-container {
+.nav-container {
     position: fixed;
     top: 0;
     left: 0;

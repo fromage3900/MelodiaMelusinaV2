@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https: http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:;" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <!--
   MELODIA · Asset Passport — Wix HTML embed
   HOW TO USE IN WIX:
@@ -72,7 +75,7 @@ function burst(size,color){
 function render(){
   var dark = DATA.theme!=="light";
   var c = dark
-    ? {surf:"#1C2340",bord:"rgba(201,168,106,.35)",txt:"#ECEAF4",sec:"#A9A7C0",acc:"#DDC79B",gold:"#C9A86A",glow:"0 0 40px rgba(60,92,158,.35)",line:"rgba(255,255,255,.06)"}
+    ? {surf:"#1C2340",bord:"rgba(201,168,106,.35)",txt:"#ECEAF4",sec:"var(--primitive-slate-300)",acc:"var(--primitive-gold-300)",gold:"var(--primitive-gold-500)",glow:"0 0 40px rgba(60,92,158,.35)",line:"rgba(255,255,255,.06)"}
     : {surf:"#FFFFFF",bord:"rgba(176,141,79,.4)",txt:"#241B2E",sec:"#6E6080",acc:"#A7884E",gold:"#B08D4F",glow:"0 18px 40px rgba(36,27,46,.12)",line:"rgba(0,0,0,.06)"};
   var rows = DATA.rows.map(function(r){
     return '<div class="row" style="border-top:1px solid '+c.line+'"><span class="k" style="color:'+c.sec+'">'+esc(r[0])+'</span><span style="color:'+c.txt+'">'+esc(r[1])+'</span></div>';

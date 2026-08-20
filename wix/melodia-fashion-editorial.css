@@ -1,12 +1,12 @@
 /* Melodia Fashion Editorial — luxury lookbook layer (LV/Gucci-adjacent, magical) */
 
 :root {
-  --fashion-ink: #1a1520;
-  --fashion-cream: #f3ece1;
-  --fashion-champagne: #d4b87a;
-  --fashion-rose: #c9a0a8;
+  --fashion-ink: var(--primitive-plum-900);
+  --fashion-cream: var(--primitive-ivory-100);
+  --fashion-champagne: var(--primitive-gold-300);
+  --fashion-rose: var(--primitive-sakura-500);
   --fashion-rule: rgba(26, 21, 32, 0.14);
-  --fashion-foil: linear-gradient(118deg, #e8d5a8 0%, #c8a45e 38%, #f0e6c8 62%, #a8864a 100%);
+  --fashion-foil: linear-gradient(118deg, var(--primitive-gold-300) 0%, var(--primitive-gold-500) 38%, var(--primitive-gold-100) 62%, var(--primitive-gold-700) 100%);
 }
 
 .melodia-shell.fashion-mode,
@@ -15,7 +15,7 @@
     radial-gradient(circle at 8% 12%, rgba(201, 160, 168, 0.10), transparent 22%),
     radial-gradient(circle at 92% 8%, rgba(212, 184, 122, 0.08), transparent 26%),
     radial-gradient(circle at 50% 80%, rgba(102, 217, 255, 0.06), transparent 40%),
-    linear-gradient(180deg, var(--night-void, #070912) 0%, var(--night-astral, #101736) 48%, var(--night-ink, #0b0f1f) 100%);
+    linear-gradient(180deg, var(--night-void, var(--primitive-plum-900)) 0%, var(--night-astral, var(--primitive-astral-900)) 48%, var(--night-ink, var(--primitive-astral-900)) 100%);
 }
 
 .editorial-rule {

@@ -210,13 +210,13 @@
   --radius-pill: 999px;
 
   /* ===== TYPOGRAPHY (from tokens.json global.fontFamilies) ===== */
-  --font-display:       'Fraunces', Georgia, serif;
+  --font-display:       "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
   --font-display-fallback: Georgia, serif;
-  --font-cover:         'Cinzel', 'Fraunces', Georgia, serif;
-  --font-body:          'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
-  --font-body-fallback: 'Inter', system-ui, sans-serif;
-  --font-mono:          'Azeret Mono', 'IBM Plex Mono', monospace;
-  --font-brand:         'Cinzel', 'Fraunces', Georgia, serif;
+  --font-cover:         "Syne", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body:          "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body-fallback: "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono:          "Azeret Mono", ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
+  --font-brand:         "Syne", "Avenir Next", "Segoe UI", sans-serif;
 
   /* Type scale (matches tokens.json global.type) */
   --text-display-xl:    clamp(48px, 8vw, 72px) / 1.05 var(--font-display);

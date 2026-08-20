@@ -3,15 +3,22 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https: http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:;" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Melody Geometry | Brennan Shepherd</title>
-<meta name="description" content="Visual plates from Melodia Studio — musical ornaments, Zen builders, SurrealArch genomes." />
-<meta property="og:title" content="Melody Geometry" />
-<meta property="og:description" content="Sheet-music ornaments and Melodia Studio plates — lookbook first." />
+<meta name="description" content="Melodia Studio Geometry Nodes — 165 procedural generators, 12 stack categories, musical ornament plates, and stylized lookdev." />
+<meta property="og:title" content="Melody Geometry — Melodia Studio" />
+<meta property="og:description" content="165 procedural generators · 12 stack categories · 100 curated looks. Sheet-music plates and procedural forms from Melodia Studio." />
 <meta property="og:image" content="https://fromage3900.github.io/my-site/generated/assets/ornaments/musical_20260711/musical_stage_beauty.png" />
+<link rel="stylesheet" href="melodia-tokens.css">
 <link rel="stylesheet" href="melodia-luxury-type.css">
 <link rel="stylesheet" href="melodia-editorial.css">
 <link rel="stylesheet" href="melodia-fashion-editorial.css">
 <link rel="stylesheet" href="melodia-premium-system.css">
+<link rel="stylesheet" href="melodia-game-ui.css">
+<link rel="stylesheet" href="melodia-magical-girl.css">
+<link rel="stylesheet" href="melodia-mahou-flourish.css">
 <link rel="stylesheet" href="melodia-visual-breakdown.css">
 <link rel="stylesheet" href="application-hub.css">
 </head>
@@ -24,14 +31,14 @@
 </header>
 
 <main id="main">
-<section class="hero has-editorial-frame" aria-labelledby="page-title">
+<section class="hero has-editorial-frame" data-mahou-stage aria-labelledby="page-title">
   <div class="hero-media" aria-hidden="true">
     <img src="../generated/assets/ornaments/musical_20260711/musical_stage_beauty.png" alt="" />
   </div>
   <div class="hero-inner">
-    <p class="kicker magazine-kicker premium-kicker">Melody geometry</p>
+    <p class="kicker magazine-kicker premium-kicker" data-mahou-trigger>Melodia Studio · Procedural Geometry</p>
     <h1 id="page-title">Handmade curves in a night sky.</h1>
-    <p class="lede">Treble, rails, and note forms from Melodia Studio — shown as plates, not node graphs.</p>
+    <p class="lede">Treble, rails, and musical note forms from Melodia Studio — presented as high-fashion lookbook plates. Featuring <strong>165 procedural generators</strong> across <strong>12 stack categories</strong>, generating <strong>100 curated aesthetic looks</strong> with real-time parameter controls for architectural dressing and cinematic lookdev.</p>
   </div>
 </section>
 
@@ -69,7 +76,40 @@
   </div>
 </section>
 
-<section class="band astral fashion-band">
+<section class="band astral fashion-band" id="flip-cine">
+  <div class="inner">
+    <div class="viz-rule" aria-hidden="true"><span class="glyph">✦ cine</span></div>
+    <div class="section-head">
+      <div>
+        <p class="eyebrow magazine-kicker">Flip Fluids · Cam_Beauty</p>
+        <h2>Water-hair is cine, not gameplay.</h2>
+      </div>
+      <p class="human-lede">Cinematic EEVEE beauty stills exploring stylized water-hair fluidity and iridescent surface shaders on Melodia Lookdev Stage v22.</p>
+    </div>
+    <div class="viz-rail">
+      <div class="viz-rail-item">
+        <a class="viz-plate" href="../generated/assets/character/melusina_beauty_eevee_20260715c_01.png">
+          <img src="../generated/assets/character/melusina_beauty_eevee_20260715c_01.png" alt="Melusina EEVEE glam beauty reference" loading="lazy" />
+          <div class="viz-caption"><strong>Beauty ref</strong><span>Jul 15 EEVEE glam</span></div>
+        </a>
+      </div>
+      <div class="viz-rail-item">
+        <a class="viz-plate" href="../generated/assets/character/melusina_flip_hair_eevee_glam_20260813_01.png">
+          <img src="../generated/assets/character/melusina_flip_hair_eevee_glam_20260813_01.png" alt="Flip water-hair cine EEVEE frame 96" loading="lazy" />
+          <div class="viz-caption"><strong>Flip f96</strong><span>Cine Layer C</span></div>
+        </a>
+      </div>
+      <div class="viz-rail-item">
+        <a class="viz-plate" href="../generated/assets/character/melusina_flip_hair_eevee_glam_20260813_02.png">
+          <img src="../generated/assets/character/melusina_flip_hair_eevee_glam_20260813_02.png" alt="Flip water-hair cine EEVEE frame 240" loading="lazy" />
+          <div class="viz-caption"><strong>Flip f240</strong><span>Cine Layer C</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band paper fashion-band">
   <div class="inner">
     <div class="viz-rule" aria-hidden="true"><span class="glyph">✦ studio</span></div>
     <div class="section-head">
@@ -108,16 +148,16 @@
           <div class="passport-rule"></div>
           <h3 class="passport-title">Sheet-music lane</h3>
           <div class="passport-row"><span>Builders</span><strong>Treble · rail · note forms</strong></div>
-          <div class="passport-row"><span>Stage</span><strong>Melodia Portfolio Stage</strong></div>
+          <div class="passport-row"><span>Stage</span><strong>Melodia Portfolio Stage v22</strong></div>
           <div class="passport-row"><span>Engine parallel</span><strong>UE dressing / kitbash</strong></div>
         </article>
         <article class="passport-card light">
-          <div class="passport-head"><span>✦ Studio Passport</span><span>v2.134.0.0.0.0</span></div>
+          <div class="passport-head"><span>✦ Studio Passport</span><span>Blender 5.2</span></div>
           <div class="passport-rule"></div>
-          <h3 class="passport-title">Melodia Geometry</h3>
-          <div class="passport-row"><span>Host</span><strong>Melodia Studio GN</strong></div>
-          <div class="passport-row"><span>Siblings</span><strong>Zen · Gothic · SurrealArch</strong></div>
-          <div class="passport-row"><span>Proof</span><strong>Beauty plates + pipeline JSON</strong></div>
+          <h3 class="passport-title">Melodia Studio</h3>
+          <div class="passport-row"><span>Generators</span><strong>165 · 12 Stack Categories</strong></div>
+          <div class="passport-row"><span>Aesthetic Presets</span><strong>100 Curated Looks</strong></div>
+          <div class="passport-row"><span>Style Genomes</span><strong>Gothic · Zen · Romantic</strong></div>
         </article>
       </div>
       <article class="passport-showcase">
@@ -165,14 +205,15 @@
 
 <footer class="footer">
   <div class="inner">
-    <span>Brennan Shepherd / Environment & Technical Artist</span>
-    <span><a href="../generated/geometry_nodes_pipelines.json" style="color:inherit;opacity:0.55">Pipeline JSON</a> · Melodia Studio</span>
+    <span>Brennan Shepherd / Environment &amp; Technical Artist</span>
+    <span><a href="credits.html" style="color:inherit;opacity:0.55">Credits</a> · <a href="../generated/geometry_nodes_pipelines.json" style="color:inherit;opacity:0.55">Pipeline JSON</a> · Melodia Studio</span>
   </div>
 </footer>
 </div>
 
 <script src="melodia-orrery-system.js"></script>
 <script src="melodia-magical-girl.js"></script>
+<script src="melodia-mahou-flourish.js"></script>
 <script src="melodia-starfield.js"></script>
 <script src="melodia-site-nav.js"></script>
 <script src="melodia-editorial.js"></script>

@@ -115,12 +115,65 @@
   }
 
   function mountAll(root) {
-    const scope = root || document;
+    var scope = root || document;
     scope.querySelectorAll('[data-escher-interact], .escher-tessellation').forEach(mount);
+  }
+
+  function mountCardTilt(card) {
+    if (!card || card.dataset.tiltMounted === 'true') return;
+    card.dataset.tiltMounted = 'true';
+    card.style.transformStyle = 'preserve-3d';
+    card.style.transition = 'transform 0.15s ease-out, box-shadow 0.3s ease';
+
+    var sheen = card.querySelector('.escher-card-sheen');
+    if (!sheen) {
+      sheen = document.createElement('div');
+      sheen.className = 'escher-card-sheen';
+      sheen.setAttribute('aria-hidden', 'true');
+      sheen.style.position = 'absolute';
+      sheen.style.inset = '0';
+      sheen.style.borderRadius = 'inherit';
+      sheen.style.pointerEvents = 'none';
+      sheen.style.opacity = '0';
+      sheen.style.transition = 'opacity 0.25s ease';
+      sheen.style.zIndex = '2';
+      card.appendChild(sheen);
+    }
+
+    function onPointerMove(e) {
+      if (prefersReducedMotion()) return;
+      var rect = card.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var relX = (e.clientX - cx) / (rect.width / 2);
+      var relY = (e.clientY - cy) / (rect.height / 2);
+
+      var rotX = (-relY * 10).toFixed(2);
+      var rotY = (relX * 10).toFixed(2);
+
+      card.style.transform = 'perspective(1000px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale3d(1.02, 1.02, 1.02)';
+      sheen.style.opacity = '1';
+      sheen.style.background = 'radial-gradient(circle at ' + ((relX * 0.5 + 0.5) * 100).toFixed(1) + '% ' + ((relY * 0.5 + 0.5) * 100).toFixed(1) + '%, rgba(255, 230, 180, 0.25) 0%, rgba(204, 153, 255, 0.15) 45%, transparent 70%)';
+    }
+
+    function onPointerLeave() {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      sheen.style.opacity = '0';
+    }
+
+    card.addEventListener('pointermove', onPointerMove);
+    card.addEventListener('pointerleave', onPointerLeave);
+  }
+
+  function mountAllCards(root) {
+    var scope = root || document;
+    var selectors = '.portal-card, .guide-card, .stage-plate-card, .gate-card, .mg-ribbon-card, .escher-tilt-card, [data-escher-tilt], .env-card, .feature-card';
+    scope.querySelectorAll(selectors).forEach(mountCardTilt);
   }
 
   function boot() {
     mountAll();
+    mountAllCards();
   }
 
   if (document.readyState === 'loading') {
@@ -129,5 +182,6 @@
     boot();
   }
 
-  global.MelodiaEscher = { mount, mountAll, boot };
+  global.MelodiaEscher = { mount: mount, mountAll: mountAll, mountCardTilt: mountCardTilt, mountAllCards: mountAllCards, boot: boot };
 })(window);
+

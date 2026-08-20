@@ -129,8 +129,13 @@
   }
 
   function mountCanvas(shell) {
-    if (shell.querySelector(':scope > .melodia-starfield-canvas')) return;
+    const existing = shell.querySelector(':scope > #ambient-starfield, :scope > .melodia-starfield-canvas') || document.getElementById('ambient-starfield');
+    if (existing) {
+      canvas = existing;
+      return;
+    }
     const el = document.createElement('canvas');
+    el.id = 'ambient-starfield';
     el.className = 'melodia-starfield-canvas';
     el.setAttribute('aria-hidden', 'true');
     shell.insertBefore(el, shell.firstChild);
@@ -282,7 +287,82 @@
       }
     }
 
+    drawCursorTrail();
+
     ctx.globalCompositeOperation = 'source-over';
+  }
+
+  let trailParticles = [];
+  const PALETTE = [
+    [201, 168, 106], // gold
+    [102, 217, 255], // cyan
+    [255, 110, 180], // magenta
+    [204, 153, 255], // violet
+    [255, 248, 240]  // white
+  ];
+
+  function spawnCursorSparkle(clientX, clientY) {
+    if (reduceMotion().matches || isMobile()) return;
+    const count = Math.floor(Math.random() * 2) + 1;
+    for (let i = 0; i < count; i++) {
+      if (trailParticles.length > 120) trailParticles.shift();
+      const color = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 0.8 + 0.2;
+      trailParticles.push({
+        x: clientX + (Math.random() - 0.5) * 8,
+        y: clientY + (Math.random() - 0.5) * 8,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 0.2,
+        size: Math.random() * 2.2 + 0.8,
+        alpha: 1.0,
+        life: 1.0,
+        decay: Math.random() * 0.025 + 0.018,
+        color,
+        sparkle: Math.random() < 0.35,
+        rot: Math.random() * Math.PI,
+      });
+    }
+  }
+
+  function drawCursorTrail() {
+    if (!ctx || trailParticles.length === 0) return;
+    ctx.save();
+    ctx.globalCompositeOperation = 'screen';
+    for (let i = trailParticles.length - 1; i >= 0; i--) {
+      const p = trailParticles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life -= p.decay;
+      if (p.life <= 0) {
+        trailParticles.splice(i, 1);
+        continue;
+      }
+      const a = p.life * 0.85;
+      const [r, g, b] = p.color;
+
+      ctx.fillStyle = `rgba(${r},${g},${b},${a})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (p.sparkle) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot + (1 - p.life) * 2);
+        ctx.strokeStyle = `rgba(${r},${g},${b},${a * 0.7})`;
+        ctx.lineWidth = 0.8;
+        const len = p.size * 3 * p.life;
+        ctx.beginPath();
+        ctx.moveTo(-len, 0);
+        ctx.lineTo(len, 0);
+        ctx.moveTo(0, -len);
+        ctx.lineTo(0, len);
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+    ctx.restore();
   }
 
   function startLoop() {
@@ -318,6 +398,9 @@
 
     startLoop();
     window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('pointermove', (e) => {
+      spawnCursorSparkle(e.clientX, e.clientY);
+    }, { passive: true });
   }
 
   function setIntensity(next) {

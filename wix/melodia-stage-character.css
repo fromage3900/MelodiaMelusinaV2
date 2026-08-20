@@ -46,7 +46,7 @@
   border-radius: 2px;
   overflow: hidden;
   min-height: 320px;
-  background: #12162a;
+  background: var(--primitive-astral-900);
   transform-style: preserve-3d;
   perspective: 900px;
   /* Override premium gold-iri fill — keep class for animation hook only */
@@ -202,7 +202,7 @@
   z-index: 6;
   margin: 0;
   padding: 1rem 1.1rem;
-  color: #eceaf4;
+  color: var(--primitive-lavender-100);
   background: linear-gradient(transparent, rgba(18, 22, 42, 0.82));
   font-size: 0.85rem;
   letter-spacing: 0.04em;
@@ -260,8 +260,8 @@
 
 .stage-passport-fallback {
   border: 1px solid rgba(201, 168, 106, 0.35);
-  background: #1c2340;
-  color: #eceaf4;
+  background: var(--primitive-astral-900);
+  color: var(--primitive-lavender-100);
   padding: 1.25rem 1.4rem;
   max-width: 360px;
   position: relative;
@@ -273,7 +273,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: var(--dream-iri-ramp, linear-gradient(128deg, #66d9ff, #ffe666, #cc99ff));
+  background: var(--dream-iri-ramp, linear-gradient(128deg, var(--primitive-astral-300), var(--primitive-gold-100), var(--primitive-iris-500)));
   opacity: 0.08;
   mix-blend-mode: soft-light;
 }
@@ -284,7 +284,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-size: 0.7rem;
-  color: #ddc79b;
+  color: var(--primitive-gold-300);
 }
 
 .stage-passport-fallback .pp-title {
@@ -294,7 +294,7 @@
 }
 
 .stage-passport-fallback .pp-cat {
-  color: #a9a7c0;
+  color: var(--primitive-lavender-100);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-size: 0.7rem;
@@ -311,7 +311,7 @@
 }
 
 .stage-passport-fallback .pp-row span:first-child {
-  color: #a9a7c0;
+  color: var(--primitive-lavender-100);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -335,7 +335,7 @@
   max-height: min(72vh, 920px);
   object-fit: cover;
   object-position: center 22%;
-  background: #0a0814;
+  background: var(--primitive-plum-900);
 }
 
 .stage-hair-postcard {

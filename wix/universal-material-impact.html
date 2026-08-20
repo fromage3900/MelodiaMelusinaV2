@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https: http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:;" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Universal Material Impact | Brennan Shepherd</title>
   <meta name="description" content="In-scene proof that the universal master material affects the environment read: hero plates, capture slots, and shader family context." />
   <link rel="stylesheet" href="melodia-luxury-type.css">
@@ -12,11 +15,11 @@
     .impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     .impact-card{border:1px solid rgba(201,168,106,.35);background:rgba(16,23,54,.82);overflow:hidden}
     .impact-card .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(18,24,45,.14),rgba(200,164,94,.10));display:grid;place-items:center;color:rgba(236,234,244,.62);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
-    .impact-card img{width:100%;height:100%;object-fit:contain;display:block;background:#12182d}
+    .impact-card img{width:100%;height:100%;object-fit:contain;display:block;background:var(--primitive-astral-900)}
     .impact-card .body{padding:16px 18px}
     .impact-card .body p{color:rgba(236,234,244,.72);line-height:1.6}
     .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-    .pillrow span{display:inline-flex;align-items:center;padding:7px 9px;border:1px solid rgba(201,168,106,.35);font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#9b8fc4;background:rgba(16,23,54,.55)}
+    .pillrow span{display:inline-flex;align-items:center;padding:7px 9px;border:1px solid rgba(201,168,106,.35);font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--primitive-iris-300);background:rgba(16,23,54,.55)}
     @media(max-width:980px){.impact-grid{grid-template-columns:1fr}}
   </style>
 </head>

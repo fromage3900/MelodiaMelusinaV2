@@ -214,10 +214,10 @@
   display: none;
 }
 
-.world-card.sakura { border-top: 5px solid #d989a8; }
+.world-card.sakura { border-top: 5px solid var(--primitive-sakura-300); }
 .world-card.cathedral { border-top: 5px solid var(--iris); }
 .world-card.castle { border-top: 5px solid var(--gold); }
-.world-card.grotto { border-top: 5px solid #287b7d; }
+.world-card.grotto { border-top: 5px solid var(--primitive-status-success); }
 
 .escher-layout {
   display: grid;
@@ -458,7 +458,7 @@
   position: relative;
   overflow: hidden;
   border: 1px solid var(--border-gold);
-  background: linear-gradient(180deg, var(--astral), #1b2740);
+  background: linear-gradient(180deg, var(--astral), var(--primitive-astral-900));
   color: var(--lavender);
   padding: 22px;
   min-height: 260px;
@@ -558,7 +558,7 @@
   position: relative;
   min-height: 420px;
   border: 1px solid var(--border-gold);
-  background: linear-gradient(180deg, #13182b, var(--plum));
+  background: linear-gradient(180deg, var(--primitive-astral-900), var(--plum));
   overflow: hidden;
   padding: 42px;
   display: flex;

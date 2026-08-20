@@ -5,8 +5,8 @@
   top: 0;
   z-index: 1000;
   padding: 0.65rem 1rem;
-  background: var(--iri-gold, #ffe666);
-  color: #0d1224;
+  background: var(--iri-gold, var(--primitive-gold-100));
+  color: var(--primitive-astral-900);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -26,7 +26,7 @@
 }
 
 .shell-nav .nav-links a.is-active {
-  color: var(--iri-gold, #ffe666);
+  color: var(--iri-gold, var(--primitive-gold-100));
 }
 
 .shell-nav .nav-links a.is-active::after {
@@ -82,7 +82,7 @@
   font-family: var(--font-display) !important;
   font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   letter-spacing: 0.01em;
-  color: var(--iri-gold, #ffe666);
+  color: var(--iri-gold, var(--primitive-gold-100));
 }
 
 /* Soften game-mode HUD bleed on product pages */

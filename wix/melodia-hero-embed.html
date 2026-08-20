@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https: http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:;" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <!--
   MELODIA · Hero Banner (Constellation, Astral Night) — Wix HTML embed
   HOW TO USE: Wix Editor → Add (+) → Embed Code → Embed HTML → paste this file.
@@ -54,7 +57,7 @@ function rng(s){return function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7
 function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
 
 var T = {
-  dark:  {bg:"radial-gradient(120% 120% at 20% 0%, #1b2444 0%, #141A30 60%, #0f1426 100%)", word:"#ECEAF4", kick:"#DDC79B", title:"#ECEAF4", sub:"#DDC79B", stars:true, constel:true, nebula:false},
+  dark:  {bg:"radial-gradient(120% 120% at 20% 0%, #1b2444 0%, #141A30 60%, #0f1426 100%)", word:"#ECEAF4", kick:"var(--primitive-gold-300)", title:"#ECEAF4", sub:"var(--primitive-gold-300)", stars:true, constel:true, nebula:false},
   nebula:{bg:"#141A30", word:"#ECEAF4", kick:"#A99AD0", title:"#ECEAF4", sub:"#A99AD0", stars:true, constel:false, nebula:true},
   ivory: {bg:"linear-gradient(180deg,#FCFBF8,#F7F4EF)", word:"#241B2E", kick:"#5A6170", title:"#241B2E", sub:"#A7884E", stars:false, constel:false, nebula:false}
 };
@@ -62,7 +65,7 @@ function render(){
   var t = T[DATA.theme]||T.dark;
   var h=document.getElementById("hero");
   h.style.background=t.bg;
-  var goldMark = DATA.theme==="ivory" ? "#A7884E" : "#C9A86A";
+  var goldMark = DATA.theme==="ivory" ? "#A7884E" : "var(--primitive-gold-500)";
   var html='';
   if(t.nebula){
     html+='<div class="hero-layer layer-nebula" data-depth=".18"><div style="position:absolute;right:-2%;top:-22%;width:60%;height:120%;border-radius:50%;background:radial-gradient(closest-side,rgba(110,90,166,.7),rgba(110,90,166,0));filter:blur(40px)"></div>';
@@ -72,7 +75,7 @@ function render(){
   if(t.stars){var r=rng(7);for(var i=0;i<70;i++){var x=(r()*100).toFixed(2),y=(r()*100).toFixed(2);var delay=(r()*-5).toFixed(2);if(i%18===0){html+='<div class="gstar" style="left:'+x+'%;top:'+y+'%;opacity:.85;animation-delay:'+delay+'s">'+fourstar(9,goldMark)+'</div>';}else{var sz=(0.8+r()*1.6).toFixed(1);html+='<div class="star" style="left:'+x+'%;top:'+y+'%;width:'+sz+'px;height:'+sz+'px;opacity:'+(0.25+r()*0.4).toFixed(2)+';animation-delay:'+delay+'s"></div>';}}}
   else {var r2=rng(11);for(var j=0;j<6;j++){html+='<div class="gstar" style="left:'+(55+r2()*40).toFixed(1)+'%;top:'+(10+r2()*70).toFixed(1)+'%;opacity:.5">'+fourstar(9,"#A7884E")+'</div>';}}
   html+='</div>';
-  if(t.constel){html+='<div class="hero-layer layer-constel" data-depth=".14"><svg class="constel" viewBox="0 0 520 330"><g stroke="#DDC79B" stroke-width="1" fill="none" opacity=".55"><path d="M30 90 L160 200 L300 110 L450 240 M300 110 L350 40 L230 300"/></g><g fill="#C9A86A"><circle cx="30" cy="90" r="4"/><circle cx="160" cy="200" r="5"/><circle cx="300" cy="110" r="4"/><circle cx="450" cy="240" r="5"/><circle cx="350" cy="40" r="4"/><circle cx="230" cy="300" r="4"/></g></svg></div>';}
+  if(t.constel){html+='<div class="hero-layer layer-constel" data-depth=".14"><svg class="constel" viewBox="0 0 520 330"><g stroke="var(--primitive-gold-300)" stroke-width="1" fill="none" opacity=".55"><path d="M30 90 L160 200 L300 110 L450 240 M300 110 L350 40 L230 300"/></g><g fill="var(--primitive-gold-500)"><circle cx="30" cy="90" r="4"/><circle cx="160" cy="200" r="5"/><circle cx="300" cy="110" r="4"/><circle cx="450" cy="240" r="5"/><circle cx="350" cy="40" r="4"/><circle cx="230" cy="300" r="4"/></g></svg></div>';}
   html+='<div class="mark">'+burst(22,goldMark)+'<span class="wordmark" style="color:'+t.word+'">MELODIA</span></div>';
   html+='<div class="content" data-depth="-.04"><div class="kick" style="color:'+t.kick+'">'+esc(DATA.kicker)+'</div>';
   html+='<div class="title" style="color:'+t.title+'">'+esc(DATA.title)+'</div>';

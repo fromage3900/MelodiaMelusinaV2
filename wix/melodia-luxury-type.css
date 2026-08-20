@@ -1,6 +1,6 @@
 /* Melodia typography SSOT — atelier / cathedral signal
-   Intentionally NOT the AI-default stack (Fraunces, Inter, IBM Plex Mono, Roboto).
-   Brand: Syne · Display/lede: Instrument Serif · Body: Bricolage Grotesque · UI: Azeret Mono
+   Strictly adheres to project documented font stack:
+   Brand: Syne · Display: Instrument Serif · Body: Bricolage Grotesque · UI: Azeret Mono
 */
 @import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Instrument+Serif:ital@0;1&family=Syne:wght@500;600;700;800&display=swap");
 
@@ -9,17 +9,17 @@
   --font-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
   --font-body: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
   --font-mono: "Azeret Mono", ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
-  --font-lede: "Instrument Serif", "Iowan Old Style", Palatino, serif;
-  --tracking-brand: 0.14em;
+  --font-lede: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --tracking-brand: 0.12em;
   --tracking-display: 0.01em;
-  --tracking-body: 0.005em;
-  --tracking-mono: 0.08em;
+  --tracking-body: 0.01em;
+  --tracking-mono: 0.06em;
 }
 
 /* Optional denser display for store / kitbash pages */
 html[data-display-font="syne"] {
   --font-display: "Syne", "Avenir Next", sans-serif;
-  --font-lede: "Instrument Serif", Palatino, serif;
+  --font-lede: "Bricolage Grotesque", "Avenir Next", sans-serif;
   --tracking-display: 0.04em;
 }
 
@@ -28,6 +28,7 @@ body,
   font-family: var(--font-body);
   letter-spacing: var(--tracking-body);
   font-optical-sizing: auto;
+  line-height: 1.6;
 }
 
 .brand,
@@ -52,11 +53,32 @@ h1, h2, h3,
   font-weight: 400;
 }
 
+h1, .hero h1 {
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h2, .section-head h2 {
+  line-height: 1.2;
+}
+
+h3 {
+  line-height: 1.25;
+}
+
 .lede,
 .hero .lede,
-.human-lede,
-.world-jp {
+.human-lede {
   font-family: var(--font-lede);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--color-text-primary, var(--primitive-ivory-50));
+}
+
+.world-jp {
+  font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
 }
@@ -78,12 +100,8 @@ h1, h2, h3,
 .table-row b {
   font-family: var(--font-mono);
   letter-spacing: var(--tracking-mono);
-}
-
-.hero h1,
-h1 {
-  font-weight: 400;
-  line-height: 0.94;
+  font-size: max(0.8rem, var(--tracking-mono-size, 0.8rem));
+  line-height: 1.5;
 }
 
 @media (min-width: 900px) {
@@ -91,3 +109,4 @@ h1 {
     letter-spacing: 0.005em;
   }
 }
+

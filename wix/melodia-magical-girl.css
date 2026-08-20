@@ -362,7 +362,7 @@
   width: 14px;
   height: 14px;
   pointer-events: none;
-  background: linear-gradient(135deg, var(--iri-cyan, #66d9ff), var(--iri-purple, #cc99ff));
+  background: linear-gradient(135deg, var(--iri-cyan, var(--primitive-astral-300)), var(--iri-purple, var(--primitive-iris-500)));
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   opacity: 0.72;
   animation: mg-crystal-tick 6.5s ease-in-out infinite;
@@ -370,8 +370,8 @@
 }
 
 .mg-crystal.c1 { top: 18%; left: 2.5%; animation-delay: 0s; }
-.mg-crystal.c2 { top: 28%; right: 3%; animation-delay: 1.4s; background: linear-gradient(135deg, var(--iri-gold, #ffe666), var(--iri-cyan, #66d9ff)); }
-.mg-crystal.c3 { bottom: 16%; left: 4%; animation-delay: 2.8s; background: linear-gradient(135deg, rgba(255, 110, 180, 0.9), var(--iri-purple, #cc99ff)); }
+.mg-crystal.c2 { top: 28%; right: 3%; animation-delay: 1.4s; background: linear-gradient(135deg, var(--iri-gold, var(--primitive-gold-100)), var(--iri-cyan, var(--primitive-astral-300))); }
+.mg-crystal.c3 { bottom: 16%; left: 4%; animation-delay: 2.8s; background: linear-gradient(135deg, rgba(255, 110, 180, 0.9), var(--iri-purple, var(--primitive-iris-500))); }
 .mg-crystal.c4 { bottom: 24%; right: 3.5%; animation-delay: 4.2s; }
 
 .melodia-shell[data-mg="soft"] .mg-crystal {
