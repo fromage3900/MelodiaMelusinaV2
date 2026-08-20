@@ -1,0 +1,389 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "melodia.mcp_tool_policy.v1",
+  "default_decision": "deny",
+  "approvals": {
+    "none": 0,
+    "editor": 1,
+    "owner": 2
+  },
+  "forbidden_path_tokens": [
+    "content/_project/",
+    "l_sakurapath",
+    "sakura"
+  ],
+  "tools": {
+    "get_agent_status": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "get_agent_memory": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "delegate_to_agent": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "route"
+      ],
+      "reason": "Routing is planning-only; downstream mutation surfaces must authorize their own write."
+    },
+    "run_blessing_evolution": {
+      "decision": "allow",
+      "required_approval": "owner",
+      "operations": [
+        "mutate"
+      ],
+      "reason": "Writes a shared agent-memory queue and can change generated game content."
+    },
+    "ue_editor_command": {
+      "decision": "deny",
+      "required_approval": "owner",
+      "operations": [
+        "mutate"
+      ],
+      "reason": "Raw UE command execution is disabled; use the verified Monolith/T3D path."
+    },
+    "t3d_safe_wire": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "monolith_status": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "blueprint_query.export_graph": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "blueprint_query.get_graph_fingerprint": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "blueprint_query.assert_graph_matches": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "verify"
+      ]
+    },
+    "blueprint_query.validate_nodes_t3d": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "verify"
+      ]
+    },
+    "blueprint_query.inject_nodes_t3d": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "blueprint_query.compile_blueprint": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate",
+        "verify"
+      ]
+    },
+    "blueprint_query.save_asset": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "editor_query.get_build_status": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "editor_query.list_automation_tests": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "editor_query.run_pie_smoke": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate",
+        "verify"
+      ]
+    },
+    "melodia_persona_get_stats": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_persona_get_quests": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_quill_list_scripts": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_quill_validate_notification": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
+    "melodia_rhythm_list_skills": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_narrative_get_record": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_config_get_allowlist": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_bp_list_fixtures": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_bp_get_template": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_bp_validate_fixture": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
+    "melodia_system_health": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_system_list_subsystems": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_narrative_audit_idempotency": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
+    "melodia_bp_validate_p0_route": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
+    "melodia_system_golden_run_preflight": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_animation_validate_state_machine": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_animation_validate_bindings": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_animation_get_runtime_abp": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_audio_list_assets": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_audio_validate_metasound": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_audio_get_rhythm_catalog": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_ui_list_widgets": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_ui_validate_widget": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_ui_get_battle_hud": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_system_compile_feedback": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_economy_get_state": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_economy_rhythm_hit": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ],
+      "reason": "Mutates in-process economy state only; no disk writes."
+    },
+    "melodia_economy_cast_skill": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ],
+      "reason": "Mutates in-process economy state only; no disk writes."
+    },
+    "melodia_economy_activate_grief_hook": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ],
+      "reason": "Sets grief to 30 in-process; dungeon context only."
+    },
+    "melodia_ui_get_economy_hud": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_encounter_start": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ],
+      "reason": "In-process encounter state only; no disk writes."
+    },
+    "melodia_encounter_enemy_action": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ],
+      "reason": "In-process economy mutation only; no disk writes."
+    },
+    "melodia_encounter_resolve": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ],
+      "reason": "In-process encounter resolution check; no disk writes."
+    },
+    "melodia_quest_check_p0": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    }
+  }
+}
