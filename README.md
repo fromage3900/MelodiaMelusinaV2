@@ -1,255 +1,221 @@
-﻿# Melodia — Gameplay Vertical Slice + Environment Art Platform
+﻿# ♪ Melodia — BS_GodFile ✧ Production JRPG + Agent Harness
 
 ```
 ✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧  ┊ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
 ```
 
-![Build](https://img.shields.io/github/actions/workflow/status/fromage3900/MelodiaMelusinaV2/unreal_build.yml?branch=main&label=UE%20build)
-![Echo Gates](https://img.shields.io/github/actions/workflow/status/fromage3900/MelodiaMelusinaV2/echo_gates.yml?branch=main&label=Echo%20static%20gates)
-![Release](https://img.shields.io/github/v/release/fromage3900/MelodiaMelusinaV2?label=release)
+![UE 5.8](https://img.shields.io/badge/UE-5.8_%2B_C%2B%2B-informational?logo=unrealengine&logoColor=white&color=0a1929)
+![Blender 5.2](https://img.shields.io/badge/Blender-5.2_LTS-critical?logo=blender&logoColor=white&color=e87d0d)
+![Assets](https://img.shields.io/badge/Assets-22%2C143_uasset-5e3a8c)
+![Maps](https://img.shields.io/badge/Maps-210_levels-3a5a3a)
+![Plugins](https://img.shields.io/badge/Plugins-15_active-8c3a3a)
+![MCP](https://img.shields.io/badge/Melodia_MCP-1330_actions-3a8c5e)
 
-UE 5.8 + Blender 5.2 production project with two active tracks:
+♪ **Production-grade JRPG + agent harness in UE 5.8 + Blender 5.2.** Three active workstreams — a shippable vertical slice, a multi-modal content pipeline, and a constrained agent benchmark. Every claim has a ledger row. No prose passes for evidence.
 
-1. **Gameplay vertical slice ("First Dream")** — a compact Persona-lite JRPG loop: QuillScript dialogue, stock JRPG combat, rhythm-combat (Harmonix), canonical save/load, travel/input authorities, a Melody Token economy, and co-op skills.
-2. **Environment-art platform** — real-time Blender↔Unreal level design bridge, procedural geometry generation, automatic material crosswalk, and a portfolio capture/publish pipeline.
-
-```
- ◇─◇──◇──◇─◇
-```
-
-> **Blender / Melodia Studio?** [Docs/BLENDER_MELODIA_COCKPIT.md](Docs/BLENDER_MELODIA_COCKPIT.md) — v22 stage, MCP **9876**, Health `12/12` / `165`.
->
-> **Gameplay scope?** [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority.
->
-> **Most recent session?** [_SESSION_HANDOFF.md](_SESSION_HANDOFF.md) — read fresh every time.
->
-> **Tonight’s cloud prep?** [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) — git health + RestoreParty PRs, merge order for the PC.
->
-> **Phone / cloud queue?** [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) — Now/Next for Cursor iOS + cloud agents.
->
-> **Parallel agents tonight?** [PARALLEL_LANES…](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md) · [paste sessions…](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md).
->
-> **Live task tracker?** [_TASK_QUEUE.md](_TASK_QUEUE.md) — P0/P1/P2/P3, per-task status/agent.
->
-> **Architecture overview?** [PIPELINE.md](PIPELINE.md) — full system map.
->
-> **Machine setup?** [Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md](Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md) — portable Windows environment.
->
-> **Source control (2026-08-13):** See [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL_STATUS_2026-08-13.md) for the authoritative multi-repo checkpoint.
->
-> **Unreal repo:** Private V2 at `https://github.com/fromage3900/MelodiaMelusinaV2`. `main` and `v2/main` are synchronized at `840b7650`; PRs **#4** + **#6** are squash-merged. The working tree still contains uncommitted editor/agent artifacts. LFS is metered — see [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
->
-> **Website repo:** `C:\EnvironmentPortfolio\my-site-clean` has local tip `3cfa5f0`, but its configured remote has unrelated history and remains intentionally unsynchronized. Do not force-push or merge unrelated histories.
->
-> **RHYTHM + QUILL WORKED (owner locks):** [RHYTHM…](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md) — tell the family; do not reopen highway or Quill as unverified.
+♫ **Current phase:** P0 economy implementation, Nemotron evaluation, and T3D wiring gate expansion.
 
 ```
- ◇─◇──◇──◇─◇
+◇─◇──◇──◇─◇
 ```
 
 ---
 
-## 🎮 Primary Track: First Dream Vertical Slice
+## ♪ Three Active Tracks
 
-> **Status (2026-08-13):** `static_gates` **PASS**. **Rhythm WORKED** · **QuillScript WORKED** (owner locks). Formal `runtime` harness row still **OPEN**. Stock battles still broken. Board: [PIE…](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) · [RHYTHM…](Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
+### 1. ♫ Gameplay Vertical Slice — "First Dream"
 
-### The loop
+A complete, self-contained JRPG loop. Sanctuary departure → dream traversal → stock + rhythm encounter → typed narrative consequence → canonical checkpoint.
 
-```text
-sanctuary conversation
-  -> authored departure
-  -> short dream traversal
-  -> one stock JRPG encounter
-  -> typed terminal result
-  -> narrative consequence
-  -> stable checkpoint/save
+```
+L_MelusinaMorning
+  ♪ sanctuary conversation (QuillScript)
+    ♪ authored departure gate
+      ♪ short dream traversal
+        ♪ L_KaleidoNave — stock JRPG + Harmonix rhythm encounter
+          ♪ typed terminal result
+            ♪ narrative consequence + idempotent social stat
+              ♪ canonical save (BP_JRPGSaveGame)
 ```
 
-### Playable route (target)
+**Route:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
 
-`L_MelusinaMorning` → dream traversal → `L_KaleidoNave` (boss / stock rhythm encounter)
+| System | Status | Evidence |
+|--------|--------|----------|
+| QuillScript dialogue | ♪ WORKED (owner-locked) | `QUILLSCRIPT_LOCKED_2026-08-12.md` |
+| Harmonix rhythm | ♪ WORKED (owner-locked) | `RHYTHM_GAME_LOCKED_2026-08-12.md` |
+| PIE runtime input | ♪ PASS (ledger 2026-08-13) | `Saved/gate_ledger.json` |
+| Save/Load | ♪ PASS | `repeat_consume` + `package_launch` gates |
+| Stock JRPG battle | ◻ BROKEN | Morning → KaleidoNave path open |
+| T3D wiring gate | ♪ EXPANDING | `t3d_safe_wire.py` active |
 
-Real paths:
-- `/Game/Melodia/Levels/Opening/L_MelusinaMorning`
-- `/Game/EnvSandbox/Environments/L_KaleidoNave` (includes merged dreamstate content; old `L_Melodia_Dreamstate` allowlist entry stripped — backup under `Saved/Recovery/`)
+### 2. ♪ Melodia MCP + Agent Harness (MATH)
 
-### Next on the PC (post rhythm lock)
+1330 typed MCP actions across 24 namespaces. Three-tier model routing. Offline-safe read-only tools + live Monolith RPC bridge.
 
-1. ~~Pull + closed-editor build + rhythm highway~~ **DONE — owner confirmed rhythm game WORKED**
-2. ~~WillScript / QuillScript~~ **DONE — owner confirmed WORKED**
-3. Stock battle path Morning → KaleidoNave; battle-end logs `MELODIA_RECOVERY…`
-4. `python Tools/playtest_harness.py` with real keys → assertion JSON beside frames → `record_gate.py runtime pass|fail`
+| Component | Actions | Namespace |
+|-----------|---------|-----------|
+| Melodia Server | 13 | persona, quill, narrative, fixtures, allowlist |
+| Monolith | ~150 | blueprint graph, compile, CDO, T3D |
+| UEBlueprintMCP | ~200 | animation, audio, UMG, editor, project |
 
-### Core systems
+**Metric suite:** TCA · PAR · SCR · RCF · TER
 
-| System | What it is |
-|--------|-----------|
-| **QuillScript dialogue** | Narrative authority — **OWNER LOCK 2026-08-12: WORKED in PIE** |
-| **Stock JRPG combat** | Turn/target/damage/result authority (TurnBasedJRPGTemplate) |
-| **Rhythm combat** | Harmonix music clock + `UMelodiaRhythmCombatSubsystem` — **OWNER LOCK 2026-08-12: WORKED in PIE** |
-| **Canonical save/load** | `BP_JRPGSaveGame` slot across process restart |
-| **Travel authority** | `UMelodiaTravelSubsystem` — single travel path with allowlist validation |
-| **Input authority** | `UMelodiaInputContextSubsystem` — push/pop context stack |
-| **Melody Token economy** | `UMelodiaTokenWalletSubsystem` — pickups + HUD |
-| **Co-op skills** | Petal Cadence, Skybound Refrain, Resonance (stock authority) |
+**Evidence:** `Saved/Audit/math_run_models_latest.json` — per-model rows, never static claims.
 
-### Where to start reading
+### 3. ♪ Echo Pipeline + Evidence Ledger
 
-- [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority
-- [_SESSION_HANDOFF.md](_SESSION_HANDOFF.md) — most recent session state
-- [_TASK_QUEUE.md](_TASK_QUEUE.md) — live task tracker
-- [_DECISION_LOG.md](_DECISION_LOG.md) — append-only strategic decisions
-- [Docs/BLUEPRINT_WIRING_CONTRACT_2026-08-07.md](Docs/BLUEPRINT_WIRING_CONTRACT_2026-08-07.md) — canonical wiring source of truth
+```
+Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote
+```
+
+| File | Role |
+|------|------|
+| `Tools/echo_run.py` | Gate chain runner |
+| `specs/echo_pipeline.json` | Manifest |
+| `Tools/project_state.py --view integration` | 4-gate ledger status |
+| `Saved/gate_ledger.json` | 37 rows, no row = not done |
+
+**Completion gates (2026-08-18):** `runtime` PASS · `save_load` PASS · `repeat_consume` PASS · `package_launch` PASS.
 
 ---
 
-## 🏗️ Secondary Track: Environment Art Platform
+## ♪ Repository Map
 
-UE 5.8 + Blender 5.2 production platform for stylized portfolio work: real-time Blender↔Unreal level design bridge, procedural geometry generation, automatic material crosswalk, and a portfolio capture/publish pipeline.
+| Path | Contents |
+|------|----------|
+| `Content/Melodia/` | Gameplay: levels, characters, save, config |
+| `Content/EnvSandbox/` | Environments, materials, PCG ecosystems |
+| `Source/BS_GodFile/` | 137 C++ files — battle, narrative, persona, wardrobe, travel |
+| `Tools/` | 151 Python scripts — audit, build, gate, inject, weave |
+| `deploy/` | Daemons, MCP server, surreal_arch, build graph |
+| `specs/` | 87 JSON schemas — contracts, fixtures, policies |
+| `Plugins/` | 15 active — Monolith, QuillScript, Wardrobe, UnrealMCP, VRM4U… |
+| `Docs/` | 411 files — handoffs, reviews, specs, career |
+| `Exports/` | FBX, animation sources, Alembic, glTF |
+| `Saved/` | Gate ledgers, audit reports, recovery |
 
-### Onboarding paths
+---
 
-| Path | Time | What You'll Do | For |
-|------|------|----------------|-----|
-| **Viewer** | 5 min | Open & explore levels | Reviewers, new team members |
-| **Geometry** | 10 min | Build & send assets to UE | Level designers, environment artists |
-| **Materials** | 15 min | Create & preview materials | Technical artists, shader folks |
-| **Full Collaborator** | 30 min | Complete live workflow | Active contributors |
+## ♪ Plugin Roster
 
-Run setup check: `.\deploy\validate_collaborator_setup.sh`
+| Plugin | Role | Status |
+|--------|------|--------|
+| `Monolith` | Live-editor MCP bridge (JSON-RPC) | ♪ Compiled |
+| `MelodiaCore` | Battle, narrative, persona subsystems | ♪ Compiled |
+| `MelodiaWardrobe` | Cosmetic + leader-pose garment sharing | ♪ Compiled |
+| `QuillScript` | Narrative dialogue system | ♪ WORKED |
+| `UEBlueprintMCP` | Blueprint manipulation via TCP socket | ♪ Compiled |
+| `UnrealMCP` | Generic UE MCP surface | ♪ Compiled |
+| `MeshBlend` | Mesh deformation runtime | ♪ Compiled |
+| `KawaiiPhysics` | Stylized physics (cloth, hair, skirt) | ♪ Active |
+| `VRM4U` | VRM avatar import/runtime | ♪ Active |
+| `Oceanology_Plugin` | Water rendering + simulation | ◻ Disabled in .uproject |
+| `PCGExtendedToolkit` | Procedural content generation | ♪ Active |
+| `ProceduralDungeon` | Runtime dungeon assembly | ♪ Active |
+| `ProceduralModelingToolkit` | Runtime mesh generation | ♪ Active |
+| `GaeaUnrealTools` | Terrain/heightfield import | ♪ Active |
+| `MelodiaTokenWallet` | Token/NFT stub | ◻ Scaffolded |
 
-### Port map
+---
 
-| Port | Service | Direction |
-|------|---------|-----------|
-| `9876` | **BlenderMCP** (agent ↔ open 5.2 GUI) **and** LiveLink TCP — do not run both | See [cockpit](Docs/BLENDER_MELODIA_COCKPIT.md) |
-| `9316` | UE Monolith MCP — Python execution | Any → UE |
-| `9317` | Legacy Blender HTTP claims — **not** the live GUI MCP | Do not use |
-| `50021` | VOICEVOX — TTS (7 characters) | Any → VOICEVOX |
-| `50022` | Melusina Voice — custom SBV2 | Any → Melusina |
+## ♪ Melodia Studio (Blender 5.2)
 
-### Troubleshooting
-
-| Problem | Fix |
-|---------|-----|
-| Port 9876 "in use" | Close extra Blender **or** stop LiveLink if you need BlenderMCP (same port) |
-| Materials gray in UE | `resolve_material_crosswalk.resolve_all()` |
-| Speaker not found | VOICEVOX Settings -> Manage Voice Libraries -> download |
-| PIE crash | Rebuild MelodiaCore (.dll) |
-
-### Key scripts
-
-| Script | Does | Where |
-|--------|------|-------|
-| `Tools/setup_zunzun_studio.py` | Import ZunZun models + studio layout | Blender |
-| `Tools/generate_all_voices.py` | Batch-generate 102 NPC voice WAVs | Terminal |
-| `Content/Python/import_zundamon.py` | Import Zundamon FBX + materials | UE |
-| `Content/Python/create_zunzun_bps.py` | Auto-create 7 NPC BPs + quests/shop/party | UE |
-| `Content/Python/resolve_material_crosswalk.py` | Post-import material auto-resolver | UE |
-| `deploy/bootstrap_environment.ps1` | Opt-in Python/website environment bootstrap | Terminal |
-
-### Two-designer workflow
-
-| Role | Tool | Responsibility |
-|------|------|---------------|
-| **Geometry Designer** | Blender | Procedural gen, mesh editing, materials, live sync |
-| **Level Scripter** | Unreal | Blueprints, encounters, lighting, PCG scatter, NPCs |
-
-Live sync ON -> Designer tweaks -> UE auto-updates -> Scripter places gameplay.
-
-Full guide: [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md)
+♪ 165 procedural geometry generators across 12 stack categories.
+♪ Melusina stage: EEVEE glam beauty plates, wireframe topology, stage passport.
+♪ LiveLink bridge + MCP surface on port 9876.
 
 ```
-◇──◇──◇──◇─◇
+Stage: v22 | Rokoko LiveLink: active | MCP: :9876 | Health: 12/12
 ```
 
 ---
 
-## Documentation
+## ♪ Environment Art
+
+♪ 4 canonical levels — Sakura Dream · Kaleido Nave · Melusina's Morning · Fallen Moon.
+♪ 138-material Substrate Toon spine (unified).
+♪ PCG scatter systems, trim sheets, SDF ornamental detail.
+♪ Look development, hero renders, portfolio capture/publish pipeline.
 
 ```
-◇─── Docs ───◇
-```
-
-**Gameplay (read these first):**
-- [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md) — current scope authority
-- [_SESSION_HANDOFF.md](_SESSION_HANDOFF.md) — most recent session state
-- [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) — 2026-08-12 cloud git-health prep
-- [Docs/PhoneOps/INDEX.md](Docs/PhoneOps/INDEX.md) — phone / Cursor iOS entry
-- [_TASK_QUEUE.md](_TASK_QUEUE.md) — live task tracker
-- [_DECISION_LOG.md](_DECISION_LOG.md) — append-only strategic decisions
-- [DOC_INDEX.md](DOC_INDEX.md) — complete documentation map
-
-**Getting started (environment-art):**
-- [QUICKSTART.md](QUICKSTART.md) — 5-minute setup
-- [PIPELINE.md](PIPELINE.md) — unified pipeline architecture
-- [CURRENT_STATE.md](CURRENT_STATE.md) — system readiness
-
-**Workflows:**
-- [UNIVERSAL_ENVIRONMENT_PIPELINE.md](UNIVERSAL_ENVIRONMENT_PIPELINE.md) — production flow
-- [MATERIAL_LOOKDEV_PIPELINE.md](MATERIAL_LOOKDEV_PIPELINE.md) — material & look-dev
-- [AGENT_OPERATING_MODEL.md](AGENT_OPERATING_MODEL.md) — agent roles & safety
-
-**Collaboration:**
-- [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) — lightweight collab setup (50 MB)
-- [COLLABORATOR_SETUP.md](COLLABORATOR_SETUP.md) — tiered onboarding
-- [Docs/LEVEL_DESIGNER_ONBOARDING.md](Docs/LEVEL_DESIGNER_ONBOARDING.md) — level design workflow
-- [Docs/COLLABORATION_WORKFLOW.md](Docs/COLLABORATION_WORKFLOW.md) — Git/LFS handoff rules
-
-**Status:**
-- [PORTFOLIO_READINESS.md](PORTFOLIO_READINESS.md) — readiness checklist
-
-```
-◇──◇──◇──◇─◇
+Sakura Dream   → L_SakuraDream     · shrine route · petal light · toon materials
+Kaleido Nave   → L_KaleidoNave     · gothic sci-fi cathedral · kaleidoscope shaders
+Morning Atelier→ L_MelusinasMorning· character atelier · EEVEE glam beauty
+Cosmic Crater  → L_FallenMoon      · PCG scatter ecosystem survey
 ```
 
 ---
 
-## Systems
+## ♪ Career Pipeline (Aug 2026)
+
+| Studio | Lane | Status | Deadline |
+|--------|------|--------|----------|
+| Nous Research | Agent / Fwd Deployed Eng | ♪ Collaboration pitch drafted | Rolling |
+| Infold Games | Art & Visual Design (Campus 2027) | ♪ Portal identified | Oct 31 |
+| NVIDIA | DevRel Manager, Higher Ed | ♪ Research drafted | Aug 21 |
+| Certain Affinity | Sr Advanced Technical Artist | ♪ Ready | Rolling |
+| Velan Studios | Technical Artist (Sr+/Lead) | ♪ Ready | Rolling |
+| Cohere | Agent Engineer | ♪ Drafted | — |
+| AgenTao | Agent Engineer | ♪ Drafted | — |
+| GameDevAgents | Agent Engineer | ♪ Drafted | — |
+| Autor | Agent Systems | ♪ Drafted | — |
+| Rulelet | Modular UE5 Logic | ♪ Drafted | — |
+| Tenstorrent | Hardware-stub eval | ◻ Queued | — |
+| Xanadu | Quantum Q# lane | ◻ Queued | — |
 
 ```
-◇─── Systems ───◇
+◇─◇──◇──◇─◇
 ```
 
-**Materials:** [PIPELINE](MATERIAL_PIPELINE.md) / [Review](MATERIAL_SYSTEM_REVIEW.md) / [Integration](Docs/MATERIAL_INTEGRATION.md) / [Node Tree](Docs/MATERIAL_NODE_TREE_REVIEW.md)
+---
 
-**Portfolio:** [Portfolio Pipeline](PORTFOLIO_PIPELINE.md) / [Audit](PORTFOLIO_PIPELINE_AUDIT.md) / [Readiness](PORTFOLIO_READINESS.md)
-
-**Agents:** [Framework](AGENTS.md) / [Boundaries](AGENT_BOUNDARIES.md) / [Ownership](AGENT_OWNERSHIP.md)
-
-**Pipeline:**
-```
-Material/PCG/world systems
-  -> L_Template or neutral test map validation
-  -> Saved/Portfolio render and metadata fragments
-  -> renders_manifest.json
-  -> portfolio_package.json
-  -> website / Figma / ArtStation handoff
-```
-
-**Agent loops:**
-```powershell
-.\deploy\start_cursor_agent_loop.ps1   # Agent loop
-.\deploy\start_surreal_loop.ps1        # Architecture loop
-.\deploy\start_surreal_tierb_loop.ps1  # Tier-B loop
-.\deploy\start_world_loop.ps1          # World loop
-.\deploy\start_td_loop.ps1             # TouchDesigner loop
-.\deploy\start_hermes_daemon.ps1       # Meta/orchestrator
-.\deploy\start_ollama_fleet.ps1        # AI voice fleet
-.\deploy\status.ps1                    # Live dashboard (PID/state per loop)
-```
-Blender-side (4): surreal_micro10, surreal_micro2, surreal_tierb, world_micro10
-UE Python (6): material_aaa, master_texture, portfolio_orch, specialist_pcg, specialist_terrain, sdf_factory
-Meta (1): recursive_learner
-
-**SDF Material Catalog:** 32 Substrate Toon instances across Cathedral/Gothic (8), Cosmo (6), Landscape (6), Stylized (6), Base (5). 6 drop-in ready, 16 adaptable. [Scorecard](NEXT_HIGHEST_LEVERAGE_TASK.md)
+## ♪ Quick Links
 
 ```
-◇──◇──◇──◇─◇
+♪ Session authority   → _SESSION_HANDOFF.md
+♪ Task queue          → _TASK_QUEUE.md
+♪ Parallel lanes      → Docs/Handoffs/PARALLEL_LANES_2026-08-12.md
+♪ Vertical slice      → _VERTICAL_SLICE_SCOPE.md
+♪ Architecture map    → PIPELINE.md
+♪ Blender cockpit    → Docs/BLENDER_MELODIA_COCKPIT.md
+♪ Onboarding runbook  → Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md
+♪ Career drafts       → Docs/Career/STUDIO_*.md
+♪ Nemotron plan       → Docs/Handoffs/NEMOTRON_OPENCODE_UE_RESEARCH_2026-08-19.md
+♪ Gate ledger         → Saved/gate_ledger.json
+♪ Math evidence       → Saved/Audit/math_run_models_latest.json
 ```
+
+---
+
+## ♪ Get Running
+
+```bash
+# 1. Clone
+git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+cd MelodiaMelusinaV2
+
+# 2. Pull LFS assets
+git lfs pull
+
+# 3. Generate project files
+GenerateProjectFiles.bat
+
+# 4. Open in UE 5.8
+start BS_GodFile.uproject
+
+# 5. Run static gates
+python Tools/project_state.py --view integration
+```
+
+```
+◇─◇──◇──◇─◇
+```
+
+♪ **Owner-locked:** Rhythm game · QuillScript — do not reopen as unverified.
+♪ **Ledger rule:** No row = not done. Evidence over prose.
+♪ **STOP flags:** `MELUSINA_SHADER_AGENT_STOP` + `sheet_hud_loop_STOP` — active.
 
 ```
 ✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧  ┊ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
 ```
-
-**Boundary:** Do not automate final Sakura level art direction. `L_SakuraPath` is human-owned.
