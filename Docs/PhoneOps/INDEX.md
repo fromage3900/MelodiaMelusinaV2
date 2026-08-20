@@ -2,14 +2,19 @@
 
 Front door for driving MelodiaMelusina from iOS / Cursor mobile.
 
+**Artist bridge (read first on phone):**
+[PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md)
+— what phone Cursor is for (Drive + git + Remote Control), not sandbox ops.
+
 ## Start here (order)
 
-1. [SETUP.md](SETUP.md) — SuperGrok + Cursor Pro + phone/GitHub agents
-2. [NORTH_STAR.md](NORTH_STAR.md) — goal, this-week focus, milestones, open decisions
-3. [BACKLOG.md](BACKLOG.md) — Now / Next / Backlog
-4. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory
-5. [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) — **Implemented** jcode swarm install + Recipes A/B
-6. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
+1. [../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md) — phone artist intent + Drive-ready protocol
+2. [SETUP.md](SETUP.md) — SuperGrok + Cursor Pro + phone/GitHub agents
+3. [NORTH_STAR.md](NORTH_STAR.md) — goal, this-week focus, milestones, open decisions
+4. [BACKLOG.md](BACKLOG.md) — Now / Next / Backlog
+5. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory
+6. [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) — **Implemented** jcode swarm install + Recipes A/B
+7. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
 
 Harness files: [`.jcode/README.md`](../../.jcode/README.md) · `.\deploy\start_jcode_swarm.ps1`
 
