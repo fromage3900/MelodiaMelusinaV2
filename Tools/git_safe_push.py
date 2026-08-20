@@ -60,6 +60,18 @@ def run(cmd: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(cmd, check=False, text=True, capture_output=True)
 
 
+def run_bytes(cmd: list[str]) -> subprocess.CompletedProcess[bytes]:
+    """Blob reads must stay binary.
+
+    `run()` decodes with the platform default codec -- cp1252 on Windows -- so any
+    blob holding a byte outside that map (a real binary, or UTF-8 punctuation)
+    raised UnicodeDecodeError, left stdout None, and crashed the gate on the
+    AttributeError instead of reporting a budget. Re-encoding the decoded text
+    also corrupted the very bytes the pointer check inspects.
+    """
+    return subprocess.run(cmd, check=False, capture_output=True)
+
+
 def current_branch() -> str:
     proc = run(["git", "symbolic-ref", "--short", "HEAD"])
     return proc.stdout.strip() if proc.returncode == 0 else ""
@@ -114,18 +126,18 @@ def _pointer_meta(data: bytes) -> tuple[str, int] | None:
 
 def _read_blob(rel: str, at_ref: str | None = None) -> bytes | None:
     if at_ref:
-        proc = run(["git", "show", f"{at_ref}:{rel}"])
+        proc = run_bytes(["git", "show", f"{at_ref}:{rel}"])
         if proc.returncode != 0:
             return None
-        return proc.stdout.encode("utf-8", errors="surrogateescape")
+        return proc.stdout
     path = Path(rel)
     try:
         return path.read_bytes()
     except OSError:
-        proc = run(["git", "show", f":{rel}"])
+        proc = run_bytes(["git", "show", f":{rel}"])
         if proc.returncode != 0:
             return None
-        return proc.stdout.encode("utf-8", errors="surrogateescape")
+        return proc.stdout
 
 
 def blob_pointer_size(rel: str, at_ref: str | None = None) -> int | None:
