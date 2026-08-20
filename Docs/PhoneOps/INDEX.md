@@ -29,6 +29,7 @@ Then, if you need deeper truth:
 | [../../AGENTS.md](../../AGENTS.md) | Multi-agent ownership |
 | [../../PIPELINE.md](../../PIPELINE.md) | Blender ↔ UE ↔ portfolio map |
 | [../AgentMemory/Decisions.md](../AgentMemory/Decisions.md) | Locked decisions |
+| [../Production/MODEL_LANES_2026-08-12.md](../Production/MODEL_LANES_2026-08-12.md) | Model lanes + local daemon policy |
 
 ## How to use from phone
 
@@ -37,7 +38,12 @@ Then, if you need deeper truth:
 Paste one of these:
 
 ```text
-You are on MelodiaMelusina. Read Docs/PhoneOps/NORTH_STAR.md and Docs/PhoneOps/BACKLOG.md.
+Read Docs/Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md.
+Drive is connected. Pull my Melodia scan/research folder, consolidate into the repo, open one draft PR. No process docs. No UE/Blender from cloud unless Remote Control is on.
+```
+
+```text
+You are on MelodiaMelusinaV2. Read Docs/PhoneOps/NORTH_STAR.md and Docs/PhoneOps/BACKLOG.md.
 Do only the first Now item. Stay Green/Yellow autonomy. No Sakura level edits. PR when done.
 ```
 
@@ -71,7 +77,7 @@ and reconcile with CURRENT_STATE.md / NEXT_ACTIONS.md. Open a draft PR.
 Blender surreal_os/arch  →  world.json  →  UE import/HISM
 Material masters/MIs     →  manifests   →  portfolio_package → website configs
 PCG graphs               →  EnvSandbox scatter
-MelodiaCore / Melodia    →  playable slice (C++ rules)
+JRPG + MelodiaIntegration →  playable First Dream loop (not MelodiaCore combat)
 PhoneOps docs            →  your mobile control plane
 ```
 
@@ -81,3 +87,4 @@ PhoneOps docs            →  your mobile control plane
 - Do not write into `Content/_PROJECT/`.
 - Do not publish externally without explicit approval.
 - Prefer `EnvSandbox`, `deploy/`, `Docs/`, `Content/Python/` for agent work.
+- Do not rebuild JRPG combat authority in MelodiaCore this phase.

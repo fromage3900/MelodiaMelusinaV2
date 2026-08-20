@@ -4,7 +4,10 @@ You are in the Melodia / Environment Portfolio repo (`BS_GodFile`, UE 5.8 + Blen
 Use **light-swarm** only: the root/coordinator spawns workers; workers must **not** spawn children.
 Prefer the shared checkout — do **not** create git worktrees unless the coordinator explicitly requests isolation for a risky refactor.
 
-Read first: `Docs/PhoneOps/NORTH_STAR.md`, `Docs/PhoneOps/BACKLOG.md`, `CURRENT_STATE.md`, `NEXT_ACTIONS.md`, `AGENT_OWNERSHIP.md`.
+Read first: `_AGENT_WORKING_AGREEMENT.md`, `AGENTS.md` (Core vision + model lanes),
+`Docs/Production/MODEL_LANES_2026-08-12.md`, `Docs/PhoneOps/NORTH_STAR.md`,
+`Docs/PhoneOps/BACKLOG.md`, `CURRENT_STATE.md`. Gameplay queue ≠ `NEXT_ACTIONS.md`
+(platform); use `_VERTICAL_SLICE_SCOPE.md` / core-systems handoffs for Melodia play work.
 
 ## Coordinator duties
 

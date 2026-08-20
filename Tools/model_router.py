@@ -2,8 +2,10 @@
 """Model Router — policy-based model selection, chat dispatch, cost ledger.
 
 Picks the best model per task class, with ordered fallbacks, then can run the
-chat call itself. Keys come from env (OPENROUTER_API_KEY / TOKENROUTER_API_KEY)
-or fall back to the root .mcp.json (single source of truth, no key duplication).
+chat call itself. Keys come from env (OPENROUTER_API_KEY / TOKENROUTER_API_KEY /
+LOCAL_LLM_API_KEY) or fall back to the root .mcp.json (legacy; prefer env).
+
+Local daemons: set LOCAL_LLM_BASE_URL (default http://127.0.0.1:11434/v1 for Ollama).
 
 Usage:
   python model_router.py pick <class> [--detail]
@@ -11,8 +13,9 @@ Usage:
   python model_router.py test [--class <class>] [--include-blocked]
   python model_router.py ledger [--tail N]
   python model_router.py cost
+  python model_router.py classes
 
-Task classes: triage audit code author review orchestrator vision
+Policy authority: Docs/Production/MODEL_LANES_2026-08-12.md
 """
 
 import argparse
@@ -28,9 +31,12 @@ ROOT_MCP = os.path.abspath(os.path.join(_TOOLS_DIR, "..", "..", ".mcp.json"))
 LEDGER = os.path.abspath(os.path.join(_TOOLS_DIR, "..", "Saved", "router_ledger.jsonl"))
 REQUEST_TIMEOUT = 90
 
+LOCAL_BASE = os.environ.get("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434/v1").rstrip("/")
+
 ENDPOINTS = {
     "openrouter": "https://openrouter.ai/api/v1",
     "tokenrouter": "https://api.tokenrouter.com/v1",
+    "local": LOCAL_BASE,
 }
 
 PRICES = {
@@ -45,32 +51,61 @@ PRICES = {
     "nvidia/nemotron-3-super-120b-a12b:free": (0.0, 0.0),
     "openai/gpt-oss-20b:free": (0.0, 0.0),
     "mistralai/codestral-2508": (0.0000003, 0.0000009),
+    # Local Ollama tags — zero API cost
+    "qwen3:8b": (0.0, 0.0),
+    "qwen3-coder:14b": (0.0, 0.0),
+    "qwen3-coder:32b": (0.0, 0.0),
+    "qwen3-coder-next": (0.0, 0.0),
+    "devstral-small": (0.0, 0.0),
+    "gpt-oss:20b": (0.0, 0.0),
 }
 
 BLOCKED = {"meta/muse-spark-1.2": "requires 18+ confirmation at openrouter.ai/settings/preferences"}
 
+# Narrowest class wins. See Docs/Production/MODEL_LANES_2026-08-12.md
 POLICY = {
     "triage": [
         ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free 1M ctx"),
         ("openai/gpt-oss-20b:free", "openrouter", "free code"),
+        ("qwen3:8b", "local", "local daemon triage"),
         ("moonshotai/kimi-k3-free", "tokenrouter", "slow but strong fallback"),
     ],
     "audit": [
         ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free heavy"),
         ("deepseek/deepseek-v4-flash", "openrouter", "analysis"),
+        ("qwen3-coder:14b", "local", "local static-gate loops"),
         ("meta/muse-spark-1.2", "openrouter", "gamedev-ranked"),
     ],
     "code": [
         ("deepseek/deepseek-v4-flash", "openrouter", "default coder"),
         ("mistralai/codestral-2508", "openrouter", "code specialist"),
+        ("qwen3-coder:14b", "local", "local code daemon"),
         ("meta/muse-spark-1.2", "openrouter", "gamedev-ranked"),
+    ],
+    "cpp": [
+        ("deepseek/deepseek-v4-pro", "openrouter", "stronger C++/UE reasoning"),
+        ("deepseek/deepseek-v4-flash", "openrouter", "fast C++ fallback"),
+        ("qwen3-coder:32b", "local", "local C++ if 24GB+ VRAM"),
+        ("devstral-small", "local", "agentic multi-file local"),
+    ],
+    "mcp": [
+        ("x-ai/grok-4.5", "openrouter", "MCP multi-step plans"),
+        ("mistralai/mistral-medium-3-5", "openrouter", "tool-orchestration fallback"),
+        ("qwen3-coder-next", "local", "local agentic MCP (80A3)"),
+        ("moonshotai/kimi-k3-free", "tokenrouter", "MCP-strong free"),
+    ],
+    "playtest": [
+        ("x-ai/grok-4.5", "openrouter", "fresh-eyes on assertion JSON"),
+        ("mistralai/mistral-medium-3-5", "openrouter", "report grading"),
+        ("qwen3-coder:14b", "local", "grade reports only — never record pass alone"),
     ],
     "author": [
         ("mistralai/mistral-medium-3-5", "openrouter", "creative/agentic frontier"),
         ("moonshotai/kimi-k3-free", "tokenrouter", "free fallback"),
+        ("qwen3:8b", "local", "local dialogue drafts"),
     ],
     "deep": [
-        ("moonshotai/kimi-k3-free", "tokenrouter", "SLOW but strong: long complex tasks, clear rules, 3D spatial"),
+        ("moonshotai/kimi-k3-free", "tokenrouter", "SLOW but strong: long complex tasks"),
         ("mistralai/mistral-medium-3-5", "openrouter", "frontier fallback"),
     ],
     "review": [
@@ -86,6 +121,17 @@ POLICY = {
         ("mistralai/mistral-medium-3-5", "openrouter", "screenshot review"),
         ("meta/muse-spark-1.2", "openrouter", "video input (age-confirm first)"),
     ],
+    "daemon": [
+        ("qwen3-coder:14b", "local", "overnight code/audit loops (16GB+)"),
+        ("qwen3:8b", "local", "overnight triage/docs (8GB)"),
+        ("qwen3-coder-next", "local", "agentic daemon if pulled"),
+        ("gpt-oss:20b", "local", "alt local free-weight"),
+    ],
+    "docs": [
+        ("deepseek/deepseek-v4-flash", "openrouter", "handoff/fold-in prose"),
+        ("qwen3:8b", "local", "local docs daemon"),
+        ("openai/gpt-oss-20b:free", "openrouter", "free fallback"),
+    ],
 }
 
 
@@ -93,12 +139,13 @@ def load_keys():
     keys = {
         "openrouter": os.environ.get("OPENROUTER_API_KEY", ""),
         "tokenrouter": os.environ.get("TOKENROUTER_API_KEY", ""),
+        "local": os.environ.get("LOCAL_LLM_API_KEY", "ollama"),
     }
-    if not any(keys.values()):
+    if not keys["openrouter"] or not keys["tokenrouter"]:
         try:
             with open(ROOT_MCP, "r", encoding="utf-8") as fh:
                 data = json.load(fh)
-            for name, server in data.get("mcpServers", {}).items():
+            for _name, server in data.get("mcpServers", {}).items():
                 env = server.get("env", {})
                 base = env.get("OPENAI_BASE_URL", "")
                 key = env.get("OPENAI_API_KEY", "")
@@ -122,41 +169,37 @@ def chat(model, endpoint, prompt, keys, system=None, max_tokens=2000, temperatur
     }
     if system:
         payload["messages"].insert(0, {"role": "system", "content": system})
-    req = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "Authorization": "Bearer " + keys[endpoint],
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
+    data = json.dumps(payload).encode("utf-8")
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + (keys.get(endpoint) or "ollama"),
+    }
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
     with urllib.request.urlopen(req, timeout=request_timeout) as resp:
         return json.loads(resp.read().decode("utf-8"))
 
 
+def estimate_cost(model, usage):
+    if not usage:
+        return 0.0
+    pin, pout = PRICES.get(model, (0.0, 0.0))
+    return pin * usage.get("prompt_tokens", 0) + pout * usage.get("completion_tokens", 0)
+
+
 def log_usage(task_class, model, endpoint, usage, ok=True):
-    try:
-        os.makedirs(os.path.dirname(LEDGER), exist_ok=True)
-        tokens_in = (usage or {}).get("prompt_tokens", 0)
-        tokens_out = (usage or {}).get("completion_tokens", 0)
-        p_in, p_out = PRICES.get(model, (0.0, 0.0))
-        cost = tokens_in * p_in + tokens_out * p_out
-        row = {
-            "ts": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "class": task_class,
-            "model": model,
-            "endpoint": endpoint,
-            "in": tokens_in,
-            "out": tokens_out,
-            "cost_usd": round(cost, 6),
-            "ok": ok,
-        }
-        with open(LEDGER, "a", encoding="utf-8") as fh:
-            fh.write(json.dumps(row) + "\n")
-        return row
-    except Exception:
-        return None
+    os.makedirs(os.path.dirname(LEDGER), exist_ok=True)
+    row = {
+        "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "class": task_class,
+        "model": model,
+        "endpoint": endpoint,
+        "in": (usage or {}).get("prompt_tokens", 0),
+        "out": (usage or {}).get("completion_tokens", 0),
+        "cost_usd": estimate_cost(model, usage) if ok else 0.0,
+        "ok": ok,
+    }
+    with open(LEDGER, "a", encoding="utf-8") as fh:
+        fh.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
 def pick(task_class, detail=False):
@@ -175,10 +218,13 @@ def run_chat(task_class, prompt, system=None, json_out=False, attempt=0, max_tok
     keys = load_keys()
     candidates = POLICY[task_class][attempt:]
     last_err = None
+    # daemon class: local only — never silently fall through to paid cloud
+    if task_class == "daemon":
+        candidates = [c for c in candidates if c[1] == "local"]
     for model, endpoint, _note in candidates:
         if model in BLOCKED and attempt == 0:
             continue
-        if not keys.get(endpoint):
+        if endpoint != "local" and not keys.get(endpoint):
             last_err = "no key for %s" % endpoint
             continue
         started = time.time()
@@ -209,7 +255,7 @@ def run_test(task_class, include_blocked=False):
         if model in BLOCKED and not include_blocked:
             print("  SKIP %-40s %s" % (model, BLOCKED[model]))
             continue
-        if not keys.get(endpoint):
+        if endpoint != "local" and not keys.get(endpoint):
             print("  SKIP %-40s no key for %s" % (model, endpoint))
             continue
         try:
@@ -286,6 +332,7 @@ def main():
     p_ledger = sub.add_parser("ledger")
     p_ledger.add_argument("--tail", type=int, default=20)
     p_cost = sub.add_parser("cost")
+    sub.add_parser("classes")
     args = ap.parse_args()
 
     if args.cmd == "pick":
@@ -303,6 +350,9 @@ def main():
         show_ledger(args.tail)
     elif args.cmd == "cost":
         show_cost()
+    elif args.cmd == "classes":
+        for name in sorted(POLICY):
+            print("%-14s %s" % (name, POLICY[name][0][0]))
 
 
 if __name__ == "__main__":
