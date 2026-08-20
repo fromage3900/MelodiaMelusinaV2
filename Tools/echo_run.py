@@ -14,6 +14,11 @@ the owner, but nothing is believed until a gate produces a ledger row.
     python Tools/echo_run.py run --all                # static chain, then HOLD/FAIL
     python Tools/echo_run.py validate-spec spec.json  # contract check on a proposal
     python Tools/echo_run.py record <id> pass|fail --note "..."   # delegate to record_gate
+    python Tools/echo_run.py record <id> pass --layer ch2_website --lane code
+    python Tools/echo_run.py status --topo                        # DAG matrix + completion gates
+    python Tools/echo_run.py topo schedule                        # classify eligible gates into lanes
+    python Tools/echo_run.py topo check-promote ch1_gameplay.promote
+    python Tools/echo_topo.py <cmd>                               # direct DAG processor
 
 LIVENESS: stages that need the editor (static gates, pie_smoke, regression,
 fingerprint, and the live allowlist query) are reported as HOLD when Monolith is
@@ -34,6 +39,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PROJECT = os.path.dirname(HERE)
 MANIFEST = os.path.join(PROJECT, "specs", "echo_pipeline.json")
 LEDGER = os.path.join(PROJECT, "Saved", "gate_ledger.json")
+TOPO_MANIFEST = os.path.join(PROJECT, "specs", "echo_topo.json")
 
 DEFAULT_PIE_MAP = os.environ.get(
     "MELODIA_ECHO_PIE_MAP",
@@ -492,7 +498,7 @@ def cmd_list(manifest: dict) -> None:
         print(f"  contract: {s.get('contract', '')}")
 
 
-def cmd_status() -> None:
+def cmd_status(args: argparse.Namespace | None = None) -> None:
     latest = _ledger_latest()
     print("# Completion gates (ledger-backed)")
     for gid, what in _load_manifest_completions().items():
@@ -507,6 +513,8 @@ def cmd_status() -> None:
         print(f"  [{mark:<4}] {gid:<18} {date:<12} {what}")
     live = editor_live()
     print(f"\n  editor reachable on 9316: {'yes' if live else 'no (editor gates HOLD)'}")
+    if args and getattr(args, "topo", False):
+        _cmd_topo_summary()
 
 
 def _load_manifest_completions() -> dict:
@@ -610,6 +618,41 @@ def run_static() -> bool | None:
     return all_ok
 
 
+def _cmd_topo_summary() -> None:
+    """Delegate topological DAG summary to echo_topo.py."""
+    import subprocess as sp
+    result = sp.run([sys.executable, os.path.join(HERE, "echo_topo.py"), "summary"],
+                    capture_output=True, text=True, timeout=30)
+    print("\n" + result.stdout)
+    if result.stderr:
+        print(result.stderr, file=sys.stderr)
+
+
+def _cmd_topo(args: argparse.Namespace) -> None:
+    """Dispatch topological commands to echo_topo.py."""
+    import subprocess as sp
+    cmd = [sys.executable, os.path.join(HERE, "echo_topo.py"), args.topo_cmd]
+    if args.topo_cmd == "check-promote":
+        if not args.gate:
+            print("ERROR: topo check-promote requires --gate <id>", file=sys.stderr)
+            sys.exit(2)
+        cmd.append(args.gate)
+    if args.json:
+        cmd.append("--json")
+    result = sp.run(cmd, timeout=60)
+    sys.exit(result.returncode)
+
+
+def _cmd_topo_json() -> dict:
+    """Return topo eligible gates as JSON (for programmatic consumers)."""
+    import subprocess as sp
+    result = sp.run(
+        [sys.executable, os.path.join(HERE, "echo_topo.py"), "eligible", "--json"],
+        capture_output=True, text=True, timeout=30,
+    )
+    return json.loads(result.stdout) if result.stdout else {}
+
+
 def main() -> None:
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
@@ -620,7 +663,9 @@ def main() -> None:
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     sub.add_parser("list")
-    sub.add_parser("status")
+    sp_status = sub.add_parser("status")
+    sp_status.add_argument("--topo", action="store_true",
+                          help="also show topological DAG readiness matrix")
     sp = sub.add_parser("run")
     sp.add_argument("stage", help="stage id, a gate tool name, or --all")
     sp.add_argument("--all", action="store_true")
@@ -641,13 +686,21 @@ def main() -> None:
     sr.add_argument("gate_id")
     sr.add_argument("status", choices=["pass", "fail"])
     sr.add_argument("--note", default="")
+    sr.add_argument("--layer", default="", help="topo layer id (e.g. ch2_environment)")
+    sr.add_argument("--lane", default="", help="model lane (e.g. vision, code, audit)")
+
+    sp_topo = sub.add_parser("topo", help="topological DAG view")
+    sp_topo.add_argument("topo_cmd", nargs="?", default="summary",
+                         choices=["eligible", "order", "schedule", "check-promote", "summary"])
+    sp_topo.add_argument("--gate", help="gate id for check-promote")
+    sp_topo.add_argument("--json", action="store_true")
 
     args = ap.parse_args()
 
     if args.cmd == "list":
         cmd_list(load_manifest())
     elif args.cmd == "status":
-        cmd_status()
+        cmd_status(args)
     elif args.cmd == "run":
         cmd_run(args)
     elif args.cmd == "validate-spec":
@@ -660,21 +713,22 @@ def main() -> None:
         print(json.dumps(res, indent=2))
         sys.exit(0 if res["ok"] else 1)
     elif args.cmd == "record":
-        code, output = run_py(
-            "Tools/record_gate.py",
-            args.gate_id,
-            args.status,
-            "--note",
-            args.note,
-        )
+        record_args = ["Tools/record_gate.py", args.gate_id, args.status, "--note", args.note]
+        if args.layer:
+            record_args += ["--layer", args.layer]
+        if args.lane:
+            record_args += ["--lane", args.lane]
+        code, output = run_py(*record_args)
         print(output or "recorded")
         if code != 0:
             sys.exit(code)
         # A recorded failure is intentionally non-zero so automation cannot
         # mistake an observed failure for a passing gate.
         sys.exit(0 if args.status == "pass" else 1)
+    elif args.cmd == "topo":
+        _cmd_topo(args)
     else:
-        print("available: list | status | run | validate-spec | record ; add --all to run")
+        print("available: list | status | run | validate-spec | record | topo ; add --all to run")
         sys.exit(1)
 
 
