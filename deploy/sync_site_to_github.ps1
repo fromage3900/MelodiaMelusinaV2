@@ -129,7 +129,8 @@ try {
     if (-not $Deploy) {
         Write-Host ""
         Write-Host "  [DRY RUN] -Deploy `$false -- staged but not committed."
-        return
+        Pop-Location
+        exit 0
     }
 
     git commit -m $Message
