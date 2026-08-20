@@ -6,6 +6,7 @@ This is the front door for project documentation. Prefer updating this index ove
 
 | Doc | Purpose |
 |---|---|
+| [Docs/Handoffs/TWINMOTION_REALITYSCAN_SIDE_LANE_2026-08-13.md](Docs/Handoffs/TWINMOTION_REALITYSCAN_SIDE_LANE_2026-08-13.md) | **Twinmotion + RealityScan side lane** — scan/Datasmith paths into EnvSandbox; not a second art pipeline |
 | [Saved/Audit/ue_idle_apply_2026-08-12.md](Saved/Audit/ue_idle_apply_2026-08-12.md) | A-idle: T1 ZenTrim applied, T2 41 Cathedral uassets, T3 Geometry Cache imported |
 | [Saved/Audit/flip_hair_bake_2026-08-12.md](Saved/Audit/flip_hair_bake_2026-08-12.md) | Flip bake 1–240 (480 `.bobj`); ABC `GC_MelusinaHairFlip_v22.abc` frames 1–96 |
 | [Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md](Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md) | After live v22: five doors, three session types, GN visual review (not more trees) |
