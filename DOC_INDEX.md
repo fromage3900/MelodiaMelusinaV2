@@ -2,6 +2,38 @@
 
 This is the front door for project documentation. Prefer updating this index over creating another floating status document.
 
+
+## New 2026-08-13 — repo lock-in
+
+| Doc | What |
+|---|---|
+| [`Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md) | **Next phase.** Perforce for content, git for code. Plan only; not before the three completion gates close. |
+| [`Docs/Reports/LFS_HEALTH_2026-08-13.md`](Docs/Reports/LFS_HEALTH_2026-08-13.md) | LFS evidence. `Exports/` is 63% of LFS; one `.git/lfs/bad` object is live-referenced. |
+| [`Docs/AGENT_TOOLS.md`](Docs/AGENT_TOOLS.md) | Tool catalogue split out of AGENTS.md (32 KB subagent cap). |
+| [`Docs/CREDITS.md`](Docs/CREDITS.md) | All asset credits: creator, source URL, license, usage — Epic/Fab, ArtStation, CC0, BOOTH, first-party, assembled kit, staging provenance. |
+| [`Docs/SOURCES_MATRIX.md`](Docs/SOURCES_MATRIX.md) | Coverage map: every `Content/` folder → its credit row. Gate: `Tools/credits_gate.py` (must PASS on every import). |
+| [`Docs/AGENT_MCP_SURFACES.md`](Docs/AGENT_MCP_SURFACES.md) | All MCP servers, one-writer rule, Monolith commands, CI. |
+| [`Docs/AGENT_LANES.md`](Docs/AGENT_LANES.md) | Parallelisation, `.agents/plans/`, STOP sentinels, stage-save gate, owner locks. |
+| [`Docs/_Superseded/README.md`](Docs/_Superseded/README.md) | 16 archived root docs and why each went. |
+
+## Latest checkpoint — 2026-08-13 ~00:42 ET (loop stopped)
+
+| Doc | Purpose |
+|---|---|
+| [Docs/Handoffs/SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md](Docs/Handoffs/SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md) | **Pick up here** — session review, close-or-not, paste-ready N0–N6 prompts |
+| [Saved/Audit/melusina_blender_idle_wire.md](Saved/Audit/melusina_blender_idle_wire.md) | Blender idle import; meters/cm collapse; mocap restored to speed 0 |
+| [Saved/Audit/tonight_prep_loop.md](Saved/Audit/tonight_prep_loop.md) | 15m loop ticks 1–17; **loop stopped** |
+
+## Source-control checkpoint — 2026-08-13 ~00:50 ET
+
+| Repository | State |
+|---|---|
+| `BS_GodFile` | `main` and `v2/main` synchronized at `840b7650`; working tree still has uncommitted editor/agent artifacts |
+| `my-site-clean` | Local `3cfa5f0`; configured remote has unrelated history, so no merge or force-push was performed |
+| Website checks | Site facts and assets pass; token lint remains blocked with `99` hard errors and `1113` warnings |
+
+Full details: [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL_STATUS_2026-08-13.md).
+
 ## Latest checkpoint — 2026-08-12 (cloud git-health prep)
 
 | Doc | Purpose |
@@ -30,7 +62,7 @@ This is the front door for project documentation. Prefer updating this index ove
 | [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) | P0 PIE/runtime board — rhythm + Quill locked WORKED; battles still open |
 | [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) | Tonight’s cloud work: PRs #4/#6, untrack/ignore, tomorrow merge order |
 | [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) | Phone/cloud Now list aligned to merge → build → playtest |
-| [README.md](README.md) | Front-door project status refreshed 2026-08-12 |
+| [README.md](README.md) | Front-door project status refreshed 2026-08-13 |
 
 ## Environment checkpoint — 2026-08-11
 
@@ -99,10 +131,10 @@ mtime. `_ROADBLOCKS_2026-07-31.md` tracks the known cases.
 | [README.md](README.md) | Implemented | Project pitch and entry point. |
 | [CURRENT_STATE.md](CURRENT_STATE.md) | Partial — see PROJECT_STATUS | Truth table for platform readiness; gameplay sections superseded by the two rows above. |
 | [MELIDIA_LONGTERM_HEALTH_SAFETY_PLAN.md](MELIDIA_LONGTERM_HEALTH_SAFETY_PLAN.md) | Implemented | Strategic roadmap for long-term health, safety, and sustainability. |
-| [UNIVERSAL_ENVIRONMENT_PIPELINE.md](UNIVERSAL_ENVIRONMENT_PIPELINE.md) | Implemented | Generic environment production flow. |
+| [UNIVERSAL_ENVIRONMENT_PIPELINE.md](Docs/_Superseded/UNIVERSAL_ENVIRONMENT_PIPELINE.md) | Implemented | Generic environment production flow. |
 | [MATERIAL_LOOKDEV_PIPELINE.md](MATERIAL_LOOKDEV_PIPELINE.md) | Implemented | Master-to-instance-to-preview workflow. |
-| [AGENT_OPERATING_MODEL.md](AGENT_OPERATING_MODEL.md) | Implemented | Recursive agent roles and safety lanes. |
-| [PORTFOLIO_READINESS.md](PORTFOLIO_READINESS.md) | Implemented | Portfolio infrastructure checklist. |
+| [AGENT_OPERATING_MODEL.md](Docs/_Superseded/AGENT_OPERATING_MODEL.md) | Implemented | Recursive agent roles and safety lanes. |
+| [PORTFOLIO_READINESS.md](Docs/_Superseded/PORTFOLIO_READINESS.md) | Implemented | Portfolio infrastructure checklist. |
 
 ## Architecture
 
@@ -112,8 +144,8 @@ mtime. `_ROADBLOCKS_2026-07-31.md` tracks the known cases.
 | [CURRENT_SYSTEM_MAP.md](CURRENT_SYSTEM_MAP.md) | Implemented | Reality audit of portfolio generation loop. |
 | [DATA_FLOW.md](DATA_FLOW.md) | Implemented | End-to-end data lifecycle. |
 | [DEPENDENCY_GRAPH.md](DEPENDENCY_GRAPH.md) | Implemented | Subsystem dependencies. |
-| [TASK_GRAPH.md](TASK_GRAPH.md) | Implemented | Production task dependency graph. |
-| [SYSTEM_EVOLUTION_MAP.md](SYSTEM_EVOLUTION_MAP.md) | Planned/v2 | Evolution from MVP package to v2 tokens. |
+| [TASK_GRAPH.md](Docs/_Superseded/TASK_GRAPH.md) | Implemented | Production task dependency graph. |
+| [SYSTEM_EVOLUTION_MAP.md](Docs/_Superseded/SYSTEM_EVOLUTION_MAP.md) | Planned/v2 | Evolution from MVP package to v2 tokens. |
 
 ## Materials And Look-Dev
 
@@ -133,8 +165,8 @@ mtime. `_ROADBLOCKS_2026-07-31.md` tracks the known cases.
 | [PORTFOLIO_PIPELINE.md](PORTFOLIO_PIPELINE.md) | Partial | Aspirational + implemented capture/package design. |
 | [PORTFOLIO_PIPELINE_AUDIT.md](PORTFOLIO_PIPELINE_AUDIT.md) | Implemented | Audit of Unreal to package to Figma loop. |
 | [Docs/PORTFOLIO_ORCHESTRATOR_PLAN.md](Docs/PORTFOLIO_ORCHESTRATOR_PLAN.md) | Partial | Rotating environment specialist loop. |
-| [../Docs/DESIGN_SYSTEM.md](../Docs/DESIGN_SYSTEM.md) | Implemented | Design-system source of truth. |
-| [../Docs/FIGMA_IMPLEMENTATION_GUIDE.md](../Docs/FIGMA_IMPLEMENTATION_GUIDE.md) | Implemented | Figma implementation guide. |
+| [../Docs/DESIGN_SYSTEM.md](Docs/DESIGN_SYSTEM.md) | Implemented | Design-system source of truth. |
+| [../Docs/FIGMA_IMPLEMENTATION_GUIDE.md](Docs/FIGMA_IMPLEMENTATION_GUIDE.md) | Implemented | Figma implementation guide. |
 | [_github_deploy/README.md](_github_deploy/README.md) | Implemented | Wix/GitHub deployment baseline. |
 
 ## Agents And Automation (Historical as of Decision 002, 2026-07-26)
@@ -144,9 +176,9 @@ Per `_DECISION_LOG.md` Decision 002: no agent ownership boundaries, no interface
 | Doc | Status | Notes |
 |---|---|---|
 | [AGENTS.md](AGENTS.md) | Historical | Multi-agent production framework — superseded process, kept for tool-capability reference. |
-| [AGENT_BOUNDARIES.md](AGENT_BOUNDARIES.md) | Historical | Write boundaries and conflict prevention — no longer enforced. |
-| [AGENT_OWNERSHIP.md](AGENT_OWNERSHIP.md) | Historical | Ownership and handshakes — no longer enforced. |
-| [AUTOMATION_OPPORTUNITIES.md](AUTOMATION_OPPORTUNITIES.md) | Partial | Automation gap list. |
+| [AGENT_BOUNDARIES.md](Docs/_Superseded/AGENT_BOUNDARIES.md) | Historical | Write boundaries and conflict prevention — no longer enforced. |
+| [AGENT_OWNERSHIP.md](Docs/_Superseded/AGENT_OWNERSHIP.md) | Historical | Ownership and handshakes — no longer enforced. |
+| [AUTOMATION_OPPORTUNITIES.md](Docs/_Superseded/AUTOMATION_OPPORTUNITIES.md) | Partial | Automation gap list. |
 
 ## Reports And Reviews
 
@@ -154,7 +186,7 @@ Per `_DECISION_LOG.md` Decision 002: no agent ownership boundaries, no interface
 |---|---|---|
 | [ART_DIRECTOR_REVIEW.md](ART_DIRECTOR_REVIEW.md) | Report | Hiring-manager review. Sakura art pass remains human-owned. |
 | [PCG_REFINEMENT_REPORT.md](PCG_REFINEMENT_REPORT.md) | Report | PCG refinement cycle summary. |
-| [NEXT_HIGHEST_LEVERAGE_TASK.md](NEXT_HIGHEST_LEVERAGE_TASK.md) | Report | Previous capture-spine priority. |
+| [NEXT_HIGHEST_LEVERAGE_TASK.md](Docs/_Superseded/NEXT_HIGHEST_LEVERAGE_TASK.md) | Report | Previous capture-spine priority. |
 | [deploy/SURREAL_ARCH_LOOP_STATE.md](deploy/SURREAL_ARCH_LOOP_STATE.md) | Report | Long-running architecture loop state. |
 
 ## Archive (2026-07-26)
