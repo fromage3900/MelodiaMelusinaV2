@@ -82,17 +82,27 @@ Stateful RL Environment for Constrained Small-Model Research."**
 
 This is NOT a job application — it's a proposal for a joint benchmark,
 positioning the UE5.8 MCP pipeline as a formal RL environment for Hermes 3 /
-LongCat. Key claims backed by benchmark numbers:
+LongCat.
 
-- Hermes 3 8B under MCP: **98.8% TCA, 100% PAR, 95.5% SCR, 91.0% RCF,
-  85% token reduction (TER = 0.15)**
-- LongCat 14B: **99.2% TCA, 97.5% SCR** on spatial/Blueprint tracks
+**⚠ 2026-08-20: the two model-score bullets that used to head this list are
+WITHDRAWN.** "Hermes 3 8B: 98.8% TCA / 100% PAR / 95.5% SCR / 91.0% RCF / TER 0.15"
+and "LongCat 14B: 99.2% TCA, 97.5% SCR" were formally unpublished on 2026-08-19
+(`Docs/melusina-agent-harness.html:468-478`) — never backed by a committed run log.
+Do not restore them. Verified replacements with on-disk run JSONs are tabulated in
+`Docs/Career/EMAIL_DRAFTS_2026-08-20.md` §3.
+
+What still stands (design and methodology, which is the actual pitch):
+
+- Verified: harness self-eval **31/32, TCA 100%** (`Saved/Audit/math_run_latest.json`);
+  qwen2.5-coder:7b **21/32, TCA 90.3%**; qwen3.8-27b **21/32, TCA 81.2%, TER 3.18**;
+  muse-glimmer-30b **0/32** (reported, not hidden)
 - Formal RL environment definition: state space, action space, observation,
   reward signal, episode termination — all mapped to UE5.8 + MCP
 - Five-metric reward function: TCA / PAR / SCR / RCF / TER
 - Four-phase collaboration roadmap: benchmark integration → LoRA fine-tuning
   + RLVR → headless CI/CD swarms → open benchmark standard
 - Proposed outcome: Nous Research × Melusina whitepaper, open leaderboard
+
 
 ### Other research tools committed
 - `Tools/bedrock_research.py` + `Tools/bedrock_research_run.py` — AWS Bedrock

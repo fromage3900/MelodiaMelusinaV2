@@ -37,6 +37,41 @@
       "ledger_id": "monolith_compile"
     },
     {
+      "id": "claireon_bringup",
+      "label": "Claireon bring-up (PREP — not yet run)",
+      "impl": "Tools/test_claireon_toolcalls.py + Plugins/Claireon/Scripts/Utilities/Invoke-EditorBuild.ps1",
+      "contract": "Claireon compiles on UE 5.8, MCP server binds its deterministic worktree port, and tool_search answers. Runs ONLY in the Melodia_ClaireonTest worktree — never the main checkout (python_execute is unsandboxed per Claireon SECURITY.md).",
+      "ledger_id": "claireon_bringup",
+      "status": "prep",
+      "gates": [
+        {
+          "id": "claireon_build",
+          "label": "Claireon builds on UE 5.8",
+          "contract": "BS_GodFileEditor target builds with Claireon enabled, 0 errors. A FAILURE here is a valid, reportable outcome — upstream has open bugs for UE 5.7+ builds (issue #6) and bp_compile hangs (issue #7), and no public record of a 5.8 build exists.",
+          "blocking": false
+        },
+        {
+          "id": "claireon_server_bind",
+          "label": "MCP server binds deterministic port",
+          "contract": "Saved/Claireon/MCPServer.json exists with a live port + PID. Expected port: 57818 for Melodia_ClaireonTest, 64998 for BS_GodFile (SHA-256 of canonical root folded into 49152-65535).",
+          "blocking": false
+        },
+        {
+          "id": "claireon_tool_discovery",
+          "label": "tool_search answers over the live catalog",
+          "contract": "tool_search returns ranked results from the SQLite FTS5 + embedding index against a running editor. Client-side probe (Tools/test_claireon_toolcalls.py) is NOT this gate — it scores model behaviour with the editor offline.",
+          "blocking": false
+        },
+        {
+          "id": "claireon_python_roundtrip",
+          "label": "python_execute round-trips to the editor",
+          "contract": "A claireon.<tool>(...) call executes in-editor and returns a typed result. Must be audit-logged (LogClaireon PythonAuditLog) and read back after every run.",
+          "blocking": false
+        }
+      ]
+    },
+
+    {
       "id": "runtime_gates",
       "label": "Runtime gates",
       "impls": [
