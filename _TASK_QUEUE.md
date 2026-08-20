@@ -1,33 +1,64 @@
 # Task Queue — Parallel Agent Work
 
-**Purpose:** Single source of truth for what's being worked on, by whom, and what's next. Any agent can claim a task, update status, or add new tasks.
+**Purpose:** Single source of truth for what's being worked on, by whom, and what's next.
 
-**Format:**
-```
-| Task | Phase | Priority | Status | Agent | Notes |
-```
+## Queue — 2026-08-13 ~13:30 ET (post repo lock-in)
 
-**Priorities:** P0 = blocking everything, P1 = should do this week, P2 = nice to have, P3 = parked
-**Statuses:** `Available` / `In Progress` / `Done` / `Blocked` / `Parked`
+**Read first:** [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md) ·
+next phase [`Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
+
+**Never trust a PID written here or anywhere else** — run `Get-Process UnrealEditor`.
+`origin` = MelodiaMelusinaV2. Branch `feature/repo-lockin-20260813` has 7 unpushed commits.
+
+| Task | Phase | Pri | Status | Agent | Notes |
+|---|---|---|---|---|---|
+| Credits completion (all sources documented) | Sync | P1 | **Done 2026-08-13** | build | `Docs/CREDITS.md` + `Docs/SOURCES_MATRIX.md` + README block + `Tools/credits_gate.py` (PASS 66 dirs). Committed on `feature/repo-lockin-20260813` |
+| AWS S3 Glacier Deep Archive Backup | Sync | P0 | **Available** | — | Back up 13GB of unversioned art (`Content/Custom`, `magicianlabatory`, `_PROJECT`, `Meshes`) |
+| AWS S3 Art-Drop Mechanism | Sync | P1 | **Available** | — | Create S3 bucket for the 4.6GB bulk environment art to replace "ask the owner" onboarding |
+| Setup S3-backed Shared UE DDC | Sync | P1 | **Available** | — | Configure `DefaultEngine.ini` to use S3 shared DDC so collaborators don't face multi-hour shader compiles |
+| Push `feature/repo-lockin-20260813`, open PR | Sync | P0 | **Available** | — | Nothing is on the remote. GitHub 443 intermittent — retry, push from a clean worktree |
+| Re-fetch `Melodia_Portfolio_Stage_v18_SIR_VISIBLE.blend` | Sync | P0 | **Available** | — | Its 1.79 GB LFS object sits in `.git/lfs/bad` and is **live-referenced**, not orphaned |
+| `save_load` gate | VS | P0 | **Available** | — | Canonical `BP_JRPGSaveGame` slot across a full process restart |
+| `repeat_consume` gate | VS | P0 | **Available** | — | Flag + reward restore without duplication; `melodia:stat:` idempotent per IntentId |
+| `package_launch` gate | VS | P0 | **Available** | — | Development build launches and plays the route outside the editor |
+| ~~`runtime` gate~~ | VS | P0 | **DONE 2026-08-13** | owner | Real keys verified. `[PASS] runtime 2026-08-13`. **Do not reopen** |
+| Enable `GitSourceControl` provider | Sync | P1 | **Blocked** | owner | UE 5.8 ships it; not enabled. This is why 2,224 lockable files have 0 locks. Touches `.uproject` + Config |
+| DDC path is machine-specific (`Config/DefaultEngine.ini:215`) | Sync | P1 | **Blocked** | owner | Anyone without that drive gets a multi-hour first launch. Never-touch file |
+| `git lfs prune --recent` | Sync | P1 | **Blocked** | owner | ~10 GB of the 19 GB local store is orphaned. **Destructive** |
+| Get `Exports/*.blend` out of LFS | Sync | P1 | **Available** | — | **63% of all LFS content** (5.6 GB). Regenerable build artefacts, not source |
+| Shrink art-gate baseline: 120 duplicate short names | Art | P1 | **Available** | — | `Tools/art_gates.py --strict`. Makes every short-name-matching audit non-deterministic |
+| Shrink art-gate baseline: 11 WIP masters + 2 `MI_` in `Masters/` | Art | P1 | **Available** | — | Nine landscape variants, four Universal — all loadable and parentable today |
+| `Tools/melodia_asset_passport.py` missing, 3 live importers | Tooling | P1 | **Available** | — | `melodia_stage_shot.py:398`, `remount_melusina_plates.py:268`, `scan_ornament_fbx_stats.py:116` all ImportError |
+| Run `art_gates.py --live` once | Art | P1 | **Available** | — | Needs the editor. Nobody has ever measured shader instructions against the 150 cap |
+| `recovery/melodia-main-sync-20260811` — 2 commits only on the old repo | Sync | P2 | **Available** | — | Cherry-pick onto V2 or abandon. Do not push as-is |
+| `.gitattributes` LFS gaps: `.bmp`, `.pyd`, `.lib` | Sync | P2 | **Blocked** | owner | Never-touch file. 3 `.bmp` already committed raw (~200 KB) |
+| Nested `.git_disabled` pack committed | Sync | P2 | **Available** | — | See `Docs/Reports/LFS_HEALTH_2026-08-13.md` |
+| Decide `l_melodia_dreamstate..umap` (double-dot typo) | Sync | P2 | **Blocked** | owner | Rename or delete; not touching without assent |
+| **Perforce decision** | Next | P1 | **Blocked** | owner | `Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`. **Not before the three gates close** |
+
+---
+
+<details>
+<summary>Earlier queues (historical)</summary>
 
 ## Highest-leverage queue — 2026-08-13 ~01:45 ET
 
 **Pick up:** `Docs/Handoffs/SESSION_REVIEW_NEXT_PROMPTS_2026-08-13.md` (still valid as evidence path; process facts below supersede its PID table).
 
-**Live state (verified 01:45):** One UnrealEditor **PID 48864** (replaced 38184), owns :9316. Owner is importing ElectricDreams_Env assets in-editor right now (`Levels/ElectricDreams_Env.umap` + 2,339 `__ExternalActors__` + 6 PCG levels were G:-only; C: had none). `MODAL_OPEN` 01:31:55 → **MCP is unresponsive to all lanes until the import modal dismisses — do not queue editor work behind it.** Rhythm + Quill locks hold. Stash `wip-before-pr4-pr6-pull` reconciled (see checkpoint below).
+**Live state (as of 01:45 — re-verify, do not trust):** One UnrealEditor owning :9316. **Never trust a PID written in a doc; run `Get-Process UnrealEditor` and use what it returns.** The PID recorded here at 01:45 was 48864, which had itself already replaced 38184 — that is two turnovers inside one night, and every doc naming a fixed PID was wrong within hours. Owner is importing ElectricDreams_Env assets in-editor right now (`Levels/ElectricDreams_Env.umap` + 2,339 `__ExternalActors__` + 6 PCG levels were G:-only; C: had none). `MODAL_OPEN` 01:31:55 → **MCP is unresponsive to all lanes until the import modal dismisses — do not queue editor work behind it.** Rhythm + Quill locks hold. Stash `wip-before-pr4-pr6-pull` reconciled (see checkpoint below).
 
 | Task | Phase | Priority | Status | Agent | Notes |
 |---|---|---|---|---|---|
 | Wait for owner import modal to clear | Tonight | P0 | **In Progress** | owner | Do not touch Content/ or :9316 until dismissed |
 | N1 Save `L_KaleidoNave` (Cathedral strip + V2-test actors unsaved) | Tonight | P0 | **Available** | owner | After import clears; one editor |
-| A1 stock battle real-key Q/W/O/P — Morning → KaleidoNave | VS | P0 | **Available** | — | Tag `melodia_smoke_encounter`; real keys through `BP_BattleUI::OnKeyDown`; A/B `melodia.Rhythm.Disable 1`; assertion JSON next to frames; then `Tools/playtest_harness.py record runtime pass/fail` (S1–S2, per NEXT_PROMPTS order) |
-| Verify `runtime` ledger PASS row (08-12 18:57, `pie_smoke_1_145605`) | VS | P0 | **Available** | — | Row exists but is a pie_smoke session; must meet real-key standard before trusted (08-11 FAIL row is the precedent) |
+| A1 stock battle real-key Q/W/O/P — Morning → KaleidoNave | VS | P0 | **Done** | owner | **2026-08-13 owner verified real keys through `BP_BattleUI::OnKeyDown`.** Ledger `[PASS] runtime 2026-08-13`, session `owner-realkey-20260813`. Do not reopen or re-prove. |
+| Verify `runtime` ledger PASS row | VS | P0 | **Done** | — | Resolved 08-13: the 08-12 `pie_smoke_1_145605` row was under-evidenced (restoration + PIE smoke, not real input). Superseded by the owner-verified 08-13 row. |
 | B4 battle-result closure — Victory/Defeat/Fled/unavailable each resume/abort Quill exactly once | VS | P0 | **Available** | — | `E_BattleResult` → `CompleteBattle`; restoration wired at bridge (PR #6) |
 | B7 `ShowRhythmGrade` display after rhythm works | VS | P0 | **Available** | — | Grade HUD text verified invisible 08-11 — recheck Alpha/vis flags when A1 passes |
 | N2 Socket GC cine actor to Melusina head | Tonight | P1 | **Available** | — | Do not replace `SK_MelusinaHair`; flip cache on G: `KitbashExport/flip_cache_melusina_waterhair` |
 | N3 Blender idle `A_BL_Melusina_Idle_Loop` second pass | Tonight | P1 | **Parked** | — | Only after N1 proves mocap idle looks normal (unit mismatch burned once) |
 | T4 lean vow-cross FBX from v22 | Tonight | P1 | **Blocked** | — | Never `T_Hatch_Cross`; needs 5.2 |
-| Stale-ref closeout verify | Sync | P1 | **In Progress** | build | Re-run `Saved/scan_stale_strings_20260812.py` post-import; 19-layer + ElectricDreams expect 0 |
+| Stale-ref closeout verify | Sync | P1 | **DONE 2026-08-13** | build | Post-import rescan: **273 → 234 stale, all deliberate skips** (220 ED world actors + 7 datalayers + 5 ED demo BPs + `l_melodia_dreamstate` owner-call + 1 dirtmask). Copied via `Tools/copy_ed_closures_20260813.py`: 37 Asmbly ext actors + `t_softsquare_01_m` + `volume`. Registry-verified 37/37 Asmbly actors + both tail pkgs. Loop maps (KaleidoNave/Morning/MainMenu/FallenMoon) 0 missing. ED audio (`/Game/Audio/Aud_Source`) already landed in owner's import |
 | Decide `l_melodia_dreamstate..umap` (copy-bug leftover, owner call) | Sync | P1 | **Blocked** | build | Rename to `.umap` (resurrects merged-out level) or delete; not touching without assent |
 | Refresh `Exports/bp_battlecontroller_eventgraph_live.json` from live BP | Sync | P1 | **Available** | — | Committed export is stale (still `BP_MelodiaVictoryDialogue`); stash holds the newer snapshot; regenerable post-modal |
 | Drop stash `wip-before-pr4-pr6-pull` | Sync | P2 | **Available** | — | Verified: nothing sole-copy in it (restore superseded by PR #6 bridge call; harness line already in worktree) |
@@ -40,7 +71,7 @@
 
 - Unreal `main` = `v2/main` = `840b7650`; fetched 00:47. Working tree: 56 paths dirty
   (24 M + 32 ??). No MERGE_HEAD/REBASE_HEAD. Hooks live via `core.hooksPath=.githooks`
-  (pre-commit protects .gitignore/.gitattributes/Config INI/run_verify.ps1).
+  **Correction 2026-08-13: pre-commit does NOT protect .gitignore/.gitattributes/Config INI/run_verify.ps1.** Nothing in `.githooks/` guards those paths; the hook checks LFS pointers >50 MB, forbidden extensions, build-artifact dirs, zero-byte files and junk names. Do not rely on protection that does not exist.
 - LFS 3.6.1: 2,224 lockable files; **0 locks held** — hold a lock before modifying
   Content assets (Cursor lane is pushing `v2/cursor/pie-rhythm-highway-notes-1a53`,
   fetched 00:44, unmerged).
@@ -49,15 +80,21 @@
   ::HandleBattleOver` → lines 199/234 on HEAD; the stash's CompleteBattle placement
   would double-heal — do NOT apply). (2) harness BP_TRIES line already in worktree.
   (3) export JSON's newer snapshot is regenerable.
-- `origin/main` (old MelodiaMelusina) diverged 367/35 from `v2/main` — intentional split;
-  do not merge. `recovery/melodia-main-sync-20260811` tracks origin/main (ahead 2).
+- **Remotes renamed 2026-08-13:** `origin` is now **MelodiaMelusinaV2** (the source of
+  truth) and `main` tracks `origin/main`. The old `MelodiaMelusina` is `legacy-melodia`;
+  `legacy-origin` (dead environment-portfolio) was removed. `remote.pushDefault=origin`
+  and `push.autoSetupRemote=true` are set so a bare push cannot land on the wrong repo.
+  `recovery/melodia-main-sync-20260811` still tracks `legacy-melodia/main` (ahead 2) —
+  those 2 commits exist only on the old repo; cherry-pick or abandon, do not push as-is.
 - Website repo (`my-site-clean`) remote history still unrelated — owner decision pending.
-- **Ledger:** `runtime` PASS row added 08-12 18:57 (`pie_smoke_1_145605`) — verify it
-  against the real-input standard before trusting. `static_gates` FAIL since 08-11.
+- **Ledger:** `runtime` **PASS 2026-08-13** (session `owner-realkey-20260813`) — owner
+  verified real keyboard input; gate CLOSED. The earlier 08-12 `pie_smoke_1_145605` row
+  was under-evidenced and is superseded. `static_gates` FAIL since 08-11. Remaining
+  completion gates: `save_load`, `repeat_consume`, `package_launch`.
 
 ## Tonight continuation — 2026-08-12 ~20:40 ET
 
-Handoff: `Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md`. UnrealEditor PID 38184 = A1. Loop 26352 = leave running.
+Handoff: `Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md`. The one running editor (`Get-Process UnrealEditor`) holds A1. Loop 26352 = leave running.
 
 | Task | Phase | Priority | Status | Agent | Notes |
 |---|---|---|---|---|---|
@@ -72,7 +109,7 @@ Handoff: `Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md`. UnrealEdito
 
 ## State updates — 2026-08-05
 - Git recovery complete: `BS_GodFile/.git` healthy at repo root on `main`; latest local commit `ec20b015`; checkpoint commit `6154cc1e` captures full live working tree on recovered history.
-- Push to `origin` is currently blocked by network connectivity to `github.com:443`.
+- GitHub connectivity from this workstation is **intermittent**, not permanently blocked and not fixed: pushes have succeeded repeatedly since 2026-08-11, and a `port 443` timeout recurred on 2026-08-13. Treat a failed push as the network, retry, and push from a clean auxiliary worktree rather than a dirty editor checkout. Do not record it as a standing blocker again.
 - Collaborator environment artifacts added: `deploy/collaborator_onboarding.sh`, `deploy/validate_collaborator_setup.sh`. `COLLABORATOR_SETUP.md` and `DOC_INDEX.md` updated with tiered onboarding references.
 
 ## State updates — 2026-08-06
@@ -247,3 +284,4 @@ Handoff: `Docs/Handoffs/TONIGHT_CONTINUATION_HANDOFF_2026-08-12.md`. UnrealEdito
 | Performance profile all 4 WP levels | Post-ship | P3 | Only SakuraDream needed for vertical slice |
 | MelodiaCore C++ plugin compile | Post-ship | P3 | 5-day budget deferred — working around with JRPG template |
 | GitHub LFS budget restoration | Post-ship | P3 | Blocks recovery branch push |
+</details>

@@ -219,3 +219,17 @@ python Tools/project_state.py --view integration
 ```
 ✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧  ┊ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
 ```
+
+---
+
+## ♪ Attributions & Credits
+
+♫ *Melodia* relies on creators across the UE/Fab marketplace, the CC0 community, BOOTH.pm, and the owner's own first-party art. Every imported asset carries strict provenance — named creator, source link, and license.
+
+The modular environment mega-kit in `Content/EnvSandbox/Meshes/Environment` is an owner-assembled set built from ArtStation + staged packs; its components are credited per-pack.
+
+♪ Full creator list, source links and licenses: **[Docs/CREDITS.md](Docs/CREDITS.md)**
+♪ Coverage map: **[Docs/SOURCES_MATRIX.md](Docs/SOURCES_MATRIX.md)**
+♪ Gate: `Tools/credits_gate.py`, run in the `echo_gates` static sweep.
+
+Thank you to every creator making this vertical slice possible.
