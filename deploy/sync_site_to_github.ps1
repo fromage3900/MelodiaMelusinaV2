@@ -19,7 +19,12 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$source = Split-Path -Parent $PSScriptRoot
+# 2026-08-20: repointed to the REPO ROOT. There were TWO wix/ trees --
+# C:\EnvironmentPortfolio\wix (the live Vite root where edits happen) and
+# BS_GodFile/wix (a bulk copy this script used to deploy). The split silently
+# 404'd pages linked from index.html, including melusina-agent-harness.html.
+# Root is now the single consolidated source. Do not point this at BS_GodFile/wix.
+$source = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $dest   = $Target
 
 Write-Host ""
