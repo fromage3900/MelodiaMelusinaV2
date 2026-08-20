@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "locked_traversal_portal",
+  "status": "contract_spec_only",
+  "owner": "Melodia travel integration",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.portal.locked_traversal",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "portal",
+    "DisplayName": "Locked Traversal Portal",
+    "Tags": [
+      "fixture",
+      "portal",
+      "traversal",
+      "safe_failure",
+      "input_restore"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "capability.melodia.glide"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "grounded",
+    "AllowedContexts": [
+      "open_world",
+      "portal_fixture"
+    ],
+    "BlockedContexts": [
+      "cutscene",
+      "menu",
+      "travel",
+      "battle_session",
+      "boss_stage"
+    ],
+    "ContextPolicy": "re_evaluate_on_enter_and_context_change",
+    "ModeSet": [
+      "hidden",
+      "discovered",
+      "locked",
+      "available",
+      "requesting",
+      "arrived",
+      "failed"
+    ],
+    "EnterPolicy": "read_unlock_and_context_before_showing_interaction",
+    "UpdatePolicy": "recheck_capability_and_destination_before_request",
+    "ExitPolicy": "observe_arrival_and_restore_input_context",
+    "InterruptPolicy": "cancel_request_and_restore_input_without_travel",
+    "ResetPolicy": "return_to_locked_or_available_state_from_canonical_unlock",
+    "VariantSet": [
+      "portal_available",
+      "portal_locked",
+      "portal_unavailable"
+    ],
+    "EquippedVariantId": "portal_available",
+    "FallbackVariantId": "portal_locked",
+    "AnimationProfile": "optional_portal_open_animation",
+    "VfxProfile": "optional_portal_traversal_vfx",
+    "AudioProfile": "optional_portal_traversal_audio",
+    "UiPresentation": "portal_requirement_and_failure_prompt",
+    "PreviewPolicy": "show_destination_and_requirement_before_request",
+    "EffectTogglePolicy": "presentation_only",
+    "UnavailableVariantPolicy": "use_locked_variant_and_offer_ground_route",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "portal_idle",
+    "CanonicalStateKey": "melodia.fixture.portal.locked_traversal",
+    "IdempotencyKey": "portal.locked_traversal.request_id",
+    "SaveWritePolicy": "travel_subsystem_and_canonical_narrative_context_only",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "locked_portal_unlock_travel_arrival_input_restore",
+    "ExpectedEvidence": "portal_compile_unlock_failure_travel_arrival_reset",
+    "ReadinessLevel": "L1"
+  },
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaPortal_LockedTraversal",
+    "parent_template": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaPortal_Base",
+    "runtime_authority": "UMelodiaTravelSubsystem_and_UMelodiaTraversalComponent",
+    "definition_asset": "/Game/MelodiaIntegration/Definitions/DA_MelodiaPortal_LockedTraversal"
+  },
+  "definition_contract": {
+    "portal_id": "portal.locked_traversal",
+    "destination_key": "dreamstate.fixture.arrival",
+    "required_capability_id": "capability.melodia.glide",
+    "travel_request_authority": "UMelodiaTravelSubsystem",
+    "arrival_event_id": "portal.locked_traversal.arrived",
+    "save_before_travel_required": true,
+    "input_context_must_restore_after_failure_or_arrival": true,
+    "direct_open_level_forbidden": true
+  },
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "discover_portal",
+      "read_capability_and_context",
+      "show_locked_or_available_prompt",
+      "request_travel_through_subsystem"
+    ],
+    "locked_route": [
+      "missing_capability",
+      "show_reason",
+      "remain_grounded",
+      "offer_ground_route"
+    ],
+    "success_route": [
+      "save_before_travel",
+      "observe_arrival_event",
+      "restore_input_context"
+    ],
+    "reset_route": [
+      "return_to_fixture_start",
+      "re_read_canonical_unlock",
+      "restore_locked_or_available_presentation"
+    ],
+    "failure_routes": [
+      "blocked_context_does_not_travel",
+      "unknown_destination_fails_closed",
+      "duplicate_request_is_replay_safe"
+    ]
+  },
+  "failure_routes": [
+    "missing_capability_shows_locked_reason",
+    "blocked_context_keeps_player_in_grounded_state",
+    "unknown_destination_does_not_call_direct_open_level",
+    "travel_failure_restores_input_context",
+    "repeated_request_does_not_duplicate_arrival"
+  ],
+  "evidence_required": [
+    "definition_path_resolves",
+    "blueprint_compiles_without_direct_travel_authority",
+    "graph_export_contains_unlock_context_request_failure_and_input_restore",
+    "locked_route_is safe and readable",
+    "allowlisted destination travels through UMelodiaTravelSubsystem",
+    "save_before_travel_and_arrival_are observed",
+    "fresh_evidence_envelope_records_portal_id_destination_and_request_id"
+  ],
+  "readiness_level": "L1",
+  "readiness": "L1"
+}

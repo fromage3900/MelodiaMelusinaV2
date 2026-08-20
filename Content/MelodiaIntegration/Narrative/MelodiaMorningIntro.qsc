@@ -1,0 +1,45 @@
+@ Start
+
+- Melusina
+  The festival banners are down. Someone else already packed their cart.
+  The road is kind like that - it always lets you be just a little too late.
+
+- Melusina
+  The perch is empty again. I know a small absence can fill a whole room.
+
+- Melusina
+  Sir flew off for snacks again. He does that. He always comes back.
+
+* Follow the quiet chirp. | melodia_met_melodious = on | -> Reunion
+* Wait and listen. | -> Listening
+
+<@> Reunion
+
+? if: {melodia_met_melodious} == on
+
+  - Melusina
+    The quiet petal answers. I can follow it without pretending the room is full.
+
+? else:
+
+  - Melusina
+    I will listen first. The answer can come when the echo has made room for it.
+
+? endif
+
+-> Departure
+
+<@> Listening
+
+- Melusina
+  I will listen first. The answer can come when the echo has made room for it.
+
+-> Departure
+
+<@> Departure
+
+- Melusina
+  I'll keep the seat warm. Arriving late isn't the same as being unwanted.
+
+$ %melodia_morning_sir.BeginWindowDeparture
+$ End

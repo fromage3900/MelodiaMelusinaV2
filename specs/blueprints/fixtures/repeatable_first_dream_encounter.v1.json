@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "repeatable_first_dream_encounter",
+  "status": "contract_spec_only",
+  "owner": "Melodia battle integration",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.encounter.first_dream_repeatable",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "encounter",
+    "DisplayName": "Repeatable First Dream Encounter",
+    "Tags": [
+      "fixture",
+      "encounter",
+      "first_dream",
+      "stock_battle",
+      "idempotent_reset"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "fixture_always_unlocked"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "grounded",
+    "AllowedContexts": [
+      "open_world",
+      "encounter_fixture"
+    ],
+    "BlockedContexts": [
+      "cutscene",
+      "menu",
+      "travel",
+      "battle_session"
+    ],
+    "ContextPolicy": "re_evaluate_on_enter_and_context_change",
+    "ModeSet": [
+      "inactive",
+      "available",
+      "locked",
+      "launching",
+      "active",
+      "completed",
+      "reset"
+    ],
+    "EnterPolicy": "evaluate_context_and_encounter_lock_before_request",
+    "UpdatePolicy": "hold_lock_until_stock_battle_result_or_abort",
+    "ExitPolicy": "release_lock_after_typed_result_and_refresh_state",
+    "InterruptPolicy": "abort_pending_battle_without_fabricating_result",
+    "ResetPolicy": "clear_runtime_lock_and_restore_available_state_without_duplicate_reward",
+    "VariantSet": [
+      "first_dream_default",
+      "first_dream_locked"
+    ],
+    "EquippedVariantId": "first_dream_default",
+    "FallbackVariantId": "first_dream_locked",
+    "AnimationProfile": "optional_encounter_warning_animation",
+    "VfxProfile": "optional_encounter_activation_vfx",
+    "AudioProfile": "optional_encounter_activation_audio",
+    "UiPresentation": "encounter_prompt_and_lock_status",
+    "PreviewPolicy": "show_encounter_requirement_without_starting_battle",
+    "EffectTogglePolicy": "presentation_only",
+    "UnavailableVariantPolicy": "use_locked_variant_and_keep_player_grounded",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "none",
+    "CanonicalStateKey": "melodia.fixture.encounter.first_dream_repeatable",
+    "IdempotencyKey": "encounter.first_dream_repeatable.request_id",
+    "SaveWritePolicy": "narrative_subsystem_adapter_only",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "repeatable_encounter_lock_battle_result_reset",
+    "ExpectedEvidence": "trigger_compile_lock_stock_handoff_result_abort_reset",
+    "ReadinessLevel": "L1"
+  },
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEncounter_FirstDream",
+    "parent_template": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEncounter_Base",
+    "runtime_authority": "UMelodiaNarrativeSubsystem_and_stock_battle_bridge",
+    "definition_asset": "/Game/MelodiaIntegration/Definitions/DA_MelodiaEncounter_FirstDream"
+  },
+  "definition_contract": {
+    "encounter_id": "encounter.first_dream_repeatable",
+    "stock_enemy_id": "enemy.single_stock_fixture",
+    "activation_tag": "melodia.fixture.encounter.first_dream_repeatable",
+    "battle_request_authority": "UMelodiaNarrativeSubsystem.StartBattle_then_stock_bridge",
+    "completion_authority": "typed_stock_battle_result",
+    "abort_authority": "UMelodiaNarrativeSubsystem.AbortPendingBattle",
+    "lock_is_runtime_only_until_result": true,
+    "adapter_must_not_write_save_object_directly": true
+  },
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "enter_trigger",
+      "read_context",
+      "show_prompt",
+      "request_start_battle",
+      "observe_stock_handoff"
+    ],
+    "success_route": [
+      "observe_typed_result",
+      "release_lock",
+      "refresh_completion_presentation"
+    ],
+    "abort_route": [
+      "teardown_stock_session",
+      "call_abort_pending_battle",
+      "release_lock_without_result"
+    ],
+    "reset_route": [
+      "reset_fixture_world",
+      "re_enter_trigger",
+      "verify_available_state"
+    ],
+    "failure_routes": [
+      "blocked_context_keeps_lock_closed",
+      "busy_subsystem_rejects_duplicate_start",
+      "abort_does_not_emit_result"
+    ]
+  },
+  "failure_routes": [
+    "blocked_context_does_not_request_battle",
+    "duplicate_start_request_is_rejected_or_no_op",
+    "battle_abort_releases_lock_without_reward",
+    "typed_result_releases_lock_once",
+    "reset_is_repeatable_without_duplicate_completion"
+  ],
+  "evidence_required": [
+    "definition_path_resolves",
+    "blueprint_compiles_without_new_game_mode_authority",
+    "graph_export_contains_context_check_lock_start_abort_and_reset",
+    "stock_battle_handoff_is reached through the canonical bridge",
+    "typed result and abort paths are both observed",
+    "repeatable reset restores available state",
+    "fresh_evidence_envelope_records_encounter_id_and_request_id"
+  ],
+  "readiness_level": "L1",
+  "readiness": "L1"
+}

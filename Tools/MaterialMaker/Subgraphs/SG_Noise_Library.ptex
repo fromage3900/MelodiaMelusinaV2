@@ -1,0 +1,217 @@
+{
+	"type": "graph",
+	"name": "SG_Noise_Library",
+	"label": "SG Noise Library",
+	"longdesc": "Reusable noise subgraph: Perlin, Worley, Gradient, Domain Warp, Fractal Sum. All seeded via $GlobalSeed.",
+	"shortdesc": "",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"parameters": {},
+	"nodes": [
+		{
+			"name": "Input_Seed",
+			"node_position": {
+				"x": -1200,
+				"y": 0
+			},
+			"parameters": {
+				"name": "Seed",
+				"type": 0,
+				"default": 0.5
+			},
+			"type": "input"
+		},
+		{
+			"name": "Input_ScaleX",
+			"node_position": {
+				"x": -1200,
+				"y": 80
+			},
+			"parameters": {
+				"name": "ScaleX",
+				"type": 0,
+				"default": 16
+			},
+			"type": "input"
+		},
+		{
+			"name": "Input_ScaleY",
+			"node_position": {
+				"x": -1200,
+				"y": 160
+			},
+			"parameters": {
+				"name": "ScaleY",
+				"type": 0,
+				"default": 16
+			},
+			"type": "input"
+		},
+		{
+			"name": "Perlin_Base",
+			"node_position": {
+				"x": -800,
+				"y": 0
+			},
+			"parameters": {
+				"scale_x": "$ScaleX",
+				"scale_y": "$ScaleY",
+				"iterations": 3,
+				"persistence": 0.5,
+				"seed": "floor($Seed * 65535)"
+			},
+			"type": "perlin"
+		},
+		{
+			"name": "Worley_Cells",
+			"node_position": {
+				"x": -800,
+				"y": 120
+			},
+			"parameters": {
+				"scale_x": "$ScaleX",
+				"scale_y": "$ScaleY",
+				"randomness": 0.6,
+				"seed": "floor($Seed * 65535 + 1)"
+			},
+			"type": "voronoi"
+		},
+		{
+			"name": "Gradient_Noise",
+			"node_position": {
+				"x": -800,
+				"y": 240
+			},
+			"parameters": {
+				"scale_x": 4,
+				"scale_y": 4,
+				"iterations": 2,
+				"persistence": 0.5,
+				"seed": "floor($Seed * 65535 + 2)"
+			},
+			"type": "perlin"
+		},
+		{
+			"name": "DomainWarp_Base",
+			"node_position": {
+				"x": -800,
+				"y": 360
+			},
+			"parameters": {
+				"amount": 0.08,
+				"eps": 0.05,
+				"seed": "floor($Seed * 65535 + 3)"
+			},
+			"type": "warp"
+		},
+		{
+			"name": "Fractal_Sum",
+			"node_position": {
+				"x": -800,
+				"y": 480
+			},
+			"parameters": {
+				"scale_x": "$ScaleX",
+				"scale_y": "$ScaleY",
+				"iterations": 4,
+				"persistence": 0.5,
+				"seed": "floor($Seed * 65535 + 4)"
+			},
+			"type": "perlin"
+		},
+		{
+			"name": "Output_Perlin",
+			"node_position": {
+				"x": -400,
+				"y": 0
+			},
+			"parameters": {
+				"name": "Perlin",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_Worley",
+			"node_position": {
+				"x": -400,
+				"y": 120
+			},
+			"parameters": {
+				"name": "Worley",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_Gradient",
+			"node_position": {
+				"x": -400,
+				"y": 240
+			},
+			"parameters": {
+				"name": "Gradient",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_DomainWarped",
+			"node_position": {
+				"x": -400,
+				"y": 360
+			},
+			"parameters": {
+				"name": "DomainWarped",
+				"type": 0
+			},
+			"type": "output"
+		},
+		{
+			"name": "Output_FractalSum",
+			"node_position": {
+				"x": -400,
+				"y": 480
+			},
+			"parameters": {
+				"name": "FractalSum",
+				"type": 0
+			},
+			"type": "output"
+		}
+	],
+	"connections": [
+		{
+			"from": "Perlin_Base",
+			"from_port": 0,
+			"to": "Output_Perlin",
+			"to_port": 0
+		},
+		{
+			"from": "Worley_Cells",
+			"from_port": 0,
+			"to": "Output_Worley",
+			"to_port": 0
+		},
+		{
+			"from": "Gradient_Noise",
+			"from_port": 0,
+			"to": "Output_Gradient",
+			"to_port": 0
+		},
+		{
+			"from": "DomainWarp_Base",
+			"from_port": 0,
+			"to": "Output_DomainWarped",
+			"to_port": 0
+		},
+		{
+			"from": "Fractal_Sum",
+			"from_port": 0,
+			"to": "Output_FractalSum",
+			"to_port": 0
+		}
+	]
+}

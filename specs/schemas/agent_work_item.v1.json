@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/agent_work_item.v1.json",
+  "title": "Melodia Agent Work Item v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "work_id", "scope", "owner_surface", "operation", "files_allowed", "files_forbidden", "verification", "approval"],
+  "properties": {
+    "schema": {"const": "melodia.agent_work_item.v1"},
+    "work_id": {"type": "string", "minLength": 8},
+    "scope": {"type": "string", "minLength": 1},
+    "owner_surface": {"enum": ["repo", "unreal_editor", "blender", "build", "aws", "docs"]},
+    "operation": {"enum": ["read", "plan", "mutate", "build", "publish"]},
+    "files_allowed": {"type": "array", "items": {"type": "string"}},
+    "files_forbidden": {"type": "array", "items": {"type": "string"}},
+    "verification": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "approval": {"enum": ["none", "owner", "editor", "ci"]},
+    "expected_outputs": {"type": "array", "items": {"type": "string"}}
+  }
+}

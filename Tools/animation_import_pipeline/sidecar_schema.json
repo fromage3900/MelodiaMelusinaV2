@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema#",
+  "title": "Animation Import Sidecar Manifest",
+  "description": "Metadata manifest paired with each source FBX for the additive retarget pipeline. One .manifest.json per .fbx.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "clip_id",
+    "context",
+    "expected_skeleton",
+    "fps",
+    "root_motion",
+    "loop",
+    "start_frame",
+    "end_frame",
+    "consumer"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["1.0"],
+      "description": "Sidecar schema version for validator compatibility"
+    },
+    "clip_id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9_]+$",
+      "description": "Unique clip identifier, e.g. 'Idle_Serene'. Used as the Unreal asset name."
+    },
+    "source_name": {
+      "type": "string",
+      "description": "Human-readable source attribution, e.g. 'Quaternius UAL1 - Idle_Loop'"
+    },
+    "context": {
+      "type": "string",
+      "enum": ["locomotion", "battle", "cinematic", "additive", "emote", "dialogue"],
+      "description": "Usage category — determines which integration path the clip follows"
+    },
+    "expected_skeleton": {
+      "type": "string",
+      "description": "Canonical source skeleton path expected in the FBX. For Lane A: 'SK_Source_Melusina_Skeleton'. For third-party: the rig name."
+    },
+    "fps": {
+      "type": "integer",
+      "enum": [15, 24, 30, 60],
+      "description": "Frame rate of the source animation. Must match the pipeline contract (30) or be resampled."
+    },
+    "root_motion": {
+      "type": "string",
+      "enum": ["in_place", "root"],
+      "description": "Root motion policy. 'in_place' = no root displacement (use for blendspace locomotion). 'root' = root bone animates translation (use for montages)."
+    },
+    "loop": {
+      "type": "boolean",
+      "description": "If true, the clip is intended to loop; the importer should set the looping flag."
+    },
+    "start_frame": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "First frame of the usable animation range in the FBX"
+    },
+    "end_frame": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Last frame of the usable animation range in the FBX (inclusive)"
+    },
+    "consumer": {
+      "type": "string",
+      "enum": ["blendspace", "state_machine", "montage", "additive_layer", "pose_search"],
+      "description": "Which UE animation system consumes this clip"
+    },
+    "notify_contract": {
+      "type": "array",
+      "description": "Expected notifies on this clip. Empty unless the clip has specific gameplay events.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "time": { "type": "number", "description": "Time in seconds" },
+          "type": { "type": "string", "description": "Notify class name" },
+          "payload": { "type": "object", "description": "Notify-specific data" }
+        }
+      }
+    }
+  }
+}

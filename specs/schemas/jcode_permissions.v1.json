@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/jcode_permissions.v1.json",
+  "title": "Melodia JCODE Permissions v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "coordinator", "unreal_editor", "write_scopes", "approval_rules", "handoff_contract"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema": {"const": "melodia.jcode_permissions.v1"},
+    "coordinator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_workers", "recursive_spawning", "shared_checkout", "one_writer_per_surface"],
+      "properties": {
+        "max_workers": {"type": "integer", "minimum": 1, "maximum": 6},
+        "recursive_spawning": {"const": false},
+        "shared_checkout": {"type": "boolean"},
+        "one_writer_per_surface": {"const": true}
+      }
+    },
+    "unreal_editor": {"type": "object"},
+    "write_scopes": {"type": "object"},
+    "approval_rules": {"type": "object"},
+    "handoff_contract": {"type": "array", "minItems": 4, "items": {"type": "string"}}
+  }
+}

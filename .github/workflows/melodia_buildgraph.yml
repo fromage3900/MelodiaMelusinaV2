@@ -1,0 +1,45 @@
+name: Melodia BuildGraph / Gauntlet
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "BuildGraph target"
+        required: true
+        default: "MelodiaBuild"
+        type: choice
+        options:
+          - MelodiaBuild
+          - ValidateContracts
+          - CookPackage
+          - Gauntlet
+          - PublishArtifact
+
+concurrency:
+  group: melodia-ue-buildgraph
+  cancel-in-progress: false
+
+jobs:
+  buildgraph:
+    runs-on: [self-hosted, Windows, UE58]
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Run BuildGraph target
+        shell: powershell
+        env:
+          TARGET: ${{ inputs.target }}
+        run: |
+          & .\deploy\BuildGraph\Invoke-MelodiaBuildGraph.ps1 -Target $env:TARGET
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Upload BuildGraph artifact manifest and package
+        uses: actions/upload-artifact@v4
+        with:
+          name: melodia-buildgraph-${{ github.run_id }}
+          path: Products/Builds/BuildGraph
+          if-no-files-found: error
+          retention-days: 14

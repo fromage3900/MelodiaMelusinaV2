@@ -1,0 +1,22 @@
+schema_version = "1.0.0"
+
+id = "live_link_unreal"
+version = "3.3.1"
+name = "Live Link to Unreal Engine"
+tagline = "Real-time live sync from Blender to Unreal Engine"
+maintainer = "Milad Kambari <3DRedbox Studio>"
+type = "add-on"
+
+website = "https://www.artstation.com/milad_kambari"
+
+tags = ["Import-Export", "Pipeline", "Render"]
+
+blender_version_min = "4.2.0"
+
+license = [
+  "SPDX:GPL-3.0-or-later",
+]
+
+[permissions]
+network = "Send scene, mesh and animation data to Unreal Engine over a local socket"
+files = "Write temporary FBX and texture files to the system temp folder for exchange"

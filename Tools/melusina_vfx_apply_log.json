@@ -1,0 +1,124 @@
+{
+  "tool": "apply_melusina_vfx.py",
+  "timestamp": "2026-08-07T03:38:37.006501+00:00",
+  "preset": "melusina_waterfx_day1",
+  "material_preset": "subtle_drip",
+  "steps": {
+    "asset_check": [
+      {
+        "status": "{\"ok\":true,\"success\":true,\"mode\":\"execute_file\",\"result\":\"None\",\"output\":[{\"type\":\"info\",\"output\":\"FOUND",
+        "path": "/Game/Melodia/VFX/Melusina_WaterFX",
+        "type": "NiagaraSystem\\r\\n\"},{\"type\":\"info\",\"output\":\"FOUND|/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_WaterMist|NiagaraSystem\\r\\n\"},{\"type\":\"info\",\"output\":\"FOUND|/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair|MaterialInstanceConstant\\r\\n\"},{\"type\":\"info\",\"output\":\"FOUND|/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette|MaterialParameterCollection\\r\\n\"},{\"type\":\"info\",\"output\":\"FOUND|/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter|Blueprint\\r\\n\"}]}"
+      }
+    ],
+    "waterfx_params": [
+      "Module /Niagara/Modules/Emitter/SpawnRate.SpawnRate already present",
+      "Module /Niagara/Modules/Spawn/Initialization/V2/InitializeParticle.InitializeParticle already present",
+      "WaterSplashEmitter.SpawnRate.SpawnRate=60.0: {\"result\":\"Set input 'SpawnRate' = '60.0'\"}",
+      "WaterSplashEmitter.InitializeParticle.Lifetime Max=1.8: {\"result\":\"Set input 'Lifetime Max' = '1.8'\"}",
+      "WaterSplashEmitter.InitializeParticle.Lifetime Min=1.44: {\"result\":\"Set input 'Lifetime Min' = '1.44'\"}",
+      "WaterSheetEmitter.SpawnRate.SpawnRate=15.0: {\"result\":\"Set input 'SpawnRate' = '15.0'\"}",
+      "WaterSheetEmitter.InitializeParticle.Lifetime Max=0.6: {\"result\":\"Set input 'Lifetime Max' = '0.6'\"}",
+      "WaterSheetEmitter.InitializeParticle.Lifetime Min=0.5: {\"result\":\"Set input 'Lifetime Min' = '0.5'\"}"
+    ],
+    "watermist_params": [
+      "WaterMist.InitializeParticle.Lifetime Min=3.2: {\"result\":\"Set input 'Lifetime Min' = '3.2'\"}",
+      "WaterMist.InitializeParticle.Lifetime Max=4.0: {\"result\":\"Set input 'Lifetime Max' = '4.0'\"}",
+      "WaterMist.SpawnRate already bound to User.ProximitySpawnRateMultiplier"
+    ],
+    "water_hair_material": [
+      "HairDripIntensity=0.35: {\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair\",\"parameter_name\":\"HairDripIntensity\"",
+      "SplashForce=0.25: {\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair\",\"parameter_name\":\"SplashForce\",\"type",
+      "WaterOpacity=0.72: {\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair\",\"parameter_name\":\"WaterOpacity\",\"typ",
+      "WaterRoughness=0.28: {\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair\",\"parameter_name\":\"WaterRoughness\",\"t",
+      "MagicalIntensity=0.15: {\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair\",\"parameter_name\":\"MagicalIntensity\",",
+      "CausticIntensity=0.08: {\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair\",\"parameter_name\":\"CausticIntensity\",",
+      "DripSpeed=0.2: {\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair\",\"parameter_name\":\"DripSpeed\",\"type\":",
+      "DripLength=0.08: {\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair\",\"parameter_name\":\"DripLength\",\"type\""
+    ],
+    "mpc_bindings": [
+      "WaterMist.SpawnRate -> User.ProximitySpawnRateMultiplier: ALREADY_BOUND (via dynamic input)",
+      "Spawning driven by MPC_Melodia_Palette.PlayerProximity at runtime"
+    ],
+    "save": [
+      "/Game/Melodia/VFX/Melusina_WaterFX: {\"asset_path\":\"/Game/Melodia/VFX/Melusina_WaterFX\",\"saved\":true,\"was_dirty\":true,\"asset_class\":\"Niag",
+      "/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_WaterMist: {\"asset_path\":\"/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_WaterMist\",\"saved\":true,\"was_dirty\":tru",
+      "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair: {\"ok\":true,\"success\":true,\"mode\":\"execute_file\",\"result\":\"None\",\"output\":[{\"type\":\"info\",\"output\":\"S"
+    ],
+    "compile_verify": [
+      {
+        "path": "/Game/Melodia/VFX/Melusina_WaterFX",
+        "verify": "{\"ok\":true,\"success\":true,\"mode\":\"execute_file\",\"result\":\"None\",\"output\":[{\"type\":\"info\",\"output\":\"{\\\"ok\\\": true, \\\"compile_status\\\": \\\"FOUND\\\", \\\"compile_errors\\\": []}\\r\\n\"}]}"
+      },
+      {
+        "path": "/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_WaterMist",
+        "verify": "{\"ok\":true,\"success\":true,\"mode\":\"execute_file\",\"result\":\"None\",\"output\":[{\"type\":\"info\",\"output\":\"{\\\"ok\\\": true, \\\"compile_status\\\": \\\"FOUND\\\", \\\"compile_errors\\\": []}\\r\\n\"}]}"
+      }
+    ],
+    "character_bp": {
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+      "components": [
+        {
+          "variable_name": "WaterHairMesh",
+          "name": "WaterHairMesh",
+          "class": "MelodiaHairComponent",
+          "is_scene_component": true,
+          "is_root": true,
+          "children": []
+        },
+        {
+          "variable_name": "MelodiaTraversal",
+          "name": "MelodiaTraversal",
+          "class": "MelodiaTraversalComponent",
+          "is_scene_component": false,
+          "is_root": true,
+          "children": []
+        },
+        {
+          "variable_name": "Outfit",
+          "name": "Outfit",
+          "class": "MelodiaOutfitComponent",
+          "is_scene_component": false,
+          "is_root": true,
+          "children": []
+        }
+      ],
+      "component_count": 3,
+      "inherited_native_components": [
+        {
+          "name": "CollisionCylinder",
+          "variable_name": "CollisionCylinder",
+          "class": "CapsuleComponent",
+          "is_scene_component": true,
+          "is_native": true,
+          "is_root": true
+        },
+        {
+          "name": "Arrow",
+          "variable_name": "Arrow",
+          "class": "ArrowComponent",
+          "is_scene_component": true,
+          "is_native": true,
+          "parent": "CollisionCylinder",
+          "is_root": false
+        },
+        {
+          "name": "CharMoveComp",
+          "variable_name": "CharMoveComp",
+          "class": "CharacterMovementComponent",
+          "is_scene_component": false,
+          "is_native": true
+        },
+        {
+          "name": "CharacterMesh0",
+          "variable_name": "CharacterMesh0",
+          "class": "SkeletalMeshComponent",
+          "is_scene_component": true,
+          "is_native": true,
+          "parent": "CollisionCylinder",
+          "is_root": false
+        }
+      ]
+    }
+  }
+}

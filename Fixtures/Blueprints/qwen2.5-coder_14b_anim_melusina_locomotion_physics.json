@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "benchmark_task": "anim_melusina_locomotion_physics",
+    "model_evaluated": "qwen2.5-coder:14b",
+    "subsystem": "Animation",
+    "timestamp": "2026-08-19T04:54:21Z",
+    "total_score": 100.0,
+    "success": true
+  },
+  "task_description": "Construct an Animation Blueprint with state machine transitions, blendspace evaluation, two-bone IK, and procedural bone modification for Melusina tail/fin secondary physics.",
+  "pipeline_operations": [
+    {
+      "tool": "create_animation_blueprint",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "target_skeleton": "/Game/Characters/Melusina/SK_Melusina_Skeleton",
+        "parent_class": "AnimInstance",
+        "path": "/Game/Animations"
+      }
+    },
+    {
+      "tool": "add_anim_state_machine",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "node_position": [
+          150.0,
+          200.0
+        ]
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "Idle",
+        "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Idle",
+        "is_blend_space": false
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "Walk",
+        "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Walk",
+        "is_blend_space": false
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "Run",
+        "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Run",
+        "is_blend_space": false
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "JumpStart",
+        "animation_asset": "/Game/Animations/Melusina/AS_Melusina_JumpStart",
+        "is_blend_space": false
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "InAir",
+        "animation_asset": "/Game/Animations/Melusina/AS_Melusina_InAir",
+        "is_blend_space": false
+      }
+    },
+    {
+      "tool": "add_anim_state",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "state_name": "Land",
+        "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Land",
+        "is_blend_space": false
+      }
+    },
+    {
+      "tool": "add_anim_transition",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "source_state": "Idle",
+        "target_state": "Walk",
+        "transition_rule": "Speed > 10.0",
+        "blend_time": 0.2
+      }
+    },
+    {
+      "tool": "add_anim_transition",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "state_machine_name": "SM_Locomotion",
+        "source_state": "Walk",
+        "target_state": "Run",
+        "transition_rule": "Speed > 300.0",
+        "blend_time": 0.25
+      }
+    },
+    {
+      "tool": "add_blend_space_player",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "blend_space_asset": "/Game/Animations/Melusina/BS_Melusina_Locomotion",
+        "node_name": "BS_Melusina_Locomotion",
+        "node_position": [
+          350.0,
+          200.0
+        ]
+      }
+    },
+    {
+      "tool": "add_bone_transform_node",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "bone_name": "tail_02_jnt",
+        "transform_mode": "Additive",
+        "translation_space": "ComponentSpace",
+        "rotation_space": "ComponentSpace",
+        "node_position": [
+          600.0,
+          200.0
+        ]
+      }
+    },
+    {
+      "tool": "add_two_bone_ik_node",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "ik_foot_bone": "ik_foot_l",
+        "joint_target": "calf_l",
+        "effector_location": [
+          0.0,
+          0.0,
+          -15.0
+        ],
+        "node_position": [
+          850.0,
+          200.0
+        ]
+      }
+    },
+    {
+      "tool": "add_anim_notify",
+      "arguments": {
+        "sequence_name": "/Game/Animations/Melusina/AS_Melusina_Walk",
+        "notify_name": "Footstep_L",
+        "trigger_time": 0.32,
+        "track_index": 0
+      }
+    },
+    {
+      "tool": "connect_anim_nodes",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "source_node": "BS_Melusina_Locomotion",
+        "source_pin": "Pose",
+        "target_node": "ModifyBone_Tail",
+        "target_pin": "ComponentPose"
+      }
+    },
+    {
+      "tool": "connect_anim_nodes",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "source_node": "ModifyBone_Tail",
+        "source_pin": "Pose",
+        "target_node": "TwoBoneIK_FootL",
+        "target_pin": "ComponentPose"
+      }
+    },
+    {
+      "tool": "connect_anim_nodes",
+      "arguments": {
+        "blueprint_name": "ABP_Melusina_Character",
+        "source_node": "TwoBoneIK_FootL",
+        "source_pin": "Pose",
+        "target_node": "AnimOutput",
+        "target_pin": "Result"
+      }
+    }
+  ],
+  "graph_summary": {
+    "nodes_count": 14,
+    "connections_count": 5,
+    "required_coverage": "100.0%"
+  }
+}
