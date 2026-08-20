@@ -46,7 +46,7 @@ if (-not $SkipBuild) {
         'BS_GodFileEditor',
         'Win64',
         'Development',
-        "-Project=`"$ProjectPath`",
+        "-Project=`"$ProjectPath`"",
         '-WaitMutex',
         '-NoHotReload'
     )

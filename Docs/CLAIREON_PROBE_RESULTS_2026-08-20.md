@@ -25,12 +25,22 @@ Scored axes:
 
 Pass = correct tool AND correct arg key.
 
-## Results (2 models completed)
+## Results (2 models completed, 1 invalid)
 
 | Model | Pass | Surface | Tool choice | Arg shape | Arg subject |
 |---|---|---|---|---|---|
 | qwen2.5-coder:7b | **7/8** | 100% | 87.5% | 87.5% | 87.5% |
 | deepseek-coder:6.7b | **1/8** | 37.5% | 12.5% | 12.5% | 25.0% |
+| ~~qwen2.5-coder:14b~~ | ~~0/8~~ | — | — | — | **INVALID — corrupt weights** |
+
+### qwen2.5-coder:14b — INVALID, do not cite
+Run on 2026-08-20 after the Ollama fix. The model loads (284s) but emits
+repeated-token garbage (`"8888888..."`) for all 8 prompts. This is a corrupt
+on-disk model, **not** a capability measurement. Isolation: `qwen2.5-coder:7b` on
+the identical config and store returned coherent output. The report JSON is
+flagged `INVALID: true` / `do_not_cite: true`. Requires `ollama rm` + `ollama pull`
+then re-verification. See `Docs/OLLAMA_SETUP_FIX_2026-08-20.md`.
+
 
 ### qwen2.5-coder:7b — 7/8
 Only failure: `execute_python_direct` — asked to run Python that counts selected
