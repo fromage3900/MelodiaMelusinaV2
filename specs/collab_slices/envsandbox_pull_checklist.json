@@ -1,0 +1,18 @@
+{
+  "id": "envsandbox_pull_checklist",
+  "label": "Workstation EnvSandbox pull for placement50",
+  "when": "After sculpt or before Universal PCG/physics placement work",
+  "steps": [
+    "cd MelodiaMelusinaV2 (or BS_GodFile tracking V2)",
+    "git lfs pull --include=Content/EnvSandbox/PCG/Universal/**,Content/EnvSandbox/Materials/**,Content/EnvSandbox/PCG/Musical/**,Content/MelodiaIntegration/**",
+    "python Tools/lfs_health_audit.py --manifest specs/collab_slices/placement50.json",
+    "If over 50 MB: shrink include list or use MELODIA_LFS_LIMIT_MB=512 on feature/sculpt-* only for that session",
+    "git lfs lock Content/EnvSandbox/PCG/Universal/BP_MelodiaPCGControl.uasset (and any mesh you will edit)",
+    "Assign new ornament sculpts to M_Master_Toon_Universal after import; tag PCG_Ground where appropriate"
+  ],
+  "required_assets": [
+    "/Game/EnvSandbox/PCG/Universal/BP_MelodiaPCGControl",
+    "/Game/EnvSandbox/PCG/Universal/PCG_Melodia_Universal_Scatter",
+    "/Game/EnvSandbox/Materials/M_Master_Toon_Universal"
+  ]
+}

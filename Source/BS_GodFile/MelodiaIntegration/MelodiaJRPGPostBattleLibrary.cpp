@@ -81,6 +81,9 @@ void UMelodiaJRPGPostBattleLibrary::RestorePartyAfterBattle(UObject* BattleContr
 		{
 			UnitStateStruct = StateStructProp->Struct;
 			MapCurrentHP = CastField<FIntProperty>(FindAuthoredStructMember(UnitStateStruct, TEXT("currentHP")));
+			// Stock S_PlayerUnitData / FS_UnitState map field is authored as
+			// curentMP (typo confirmed 2026-08-11 via Monolith export_asset_text
+			// live reflection). Do not "fix" the spelling — the lookup must match.
 			MapCurrentMP = CastField<FIntProperty>(FindAuthoredStructMember(UnitStateStruct, TEXT("curentMP")));
 		}
 	}

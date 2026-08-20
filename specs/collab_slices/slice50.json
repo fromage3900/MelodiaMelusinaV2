@@ -1,0 +1,32 @@
+{
+  "id": "slice50",
+  "label": "MelodiaIntegration BP slice (≤50 MB)",
+  "max_mb": 50,
+  "echo_role": "text + small Integration binaries; gameplay claims still need Echo runtime_gates + ledger",
+  "sparse_checkout": [
+    "Source",
+    "Docs",
+    "Tools",
+    "deploy",
+    "specs",
+    "Config",
+    "Content/Python",
+    "Content/MelodiaIntegration",
+    "Plugins/MelodiaCore/Source",
+    "README.md",
+    "DOC_INDEX.md",
+    "BS_GodFile.uproject",
+    "AGENTS.md"
+  ],
+  "lfs_include": [
+    "Content/MelodiaIntegration/**",
+    "Content/Python/**",
+    "specs/**"
+  ],
+  "required_paths": [
+    "Content/MelodiaIntegration/Blueprints",
+    "Content/MelodiaIntegration/Config"
+  ],
+  "fail_if_missing": true,
+  "notes": "Measured ~9.6 MB LFS for MelodiaIntegration alone on V2 main. Do not pull EnvSandbox/JRPG here."
+}

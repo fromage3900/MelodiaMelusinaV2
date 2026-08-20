@@ -63,6 +63,7 @@ KNOWN_GATES = [
     "save_system",
     "reward_restore",
     "package_launch",
+    "static_gates",
 ]
 
 

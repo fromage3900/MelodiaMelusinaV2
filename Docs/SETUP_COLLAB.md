@@ -27,9 +27,18 @@ git sparse-checkout set `
   Docs/ZUNZUN_FAMILY_INTEGRATION.md `
   Docs/ZUNDAMON_DESIGN_BIBLE.md `
   Docs/ZUNDAMON_NPC_SPEC.md `
+  Docs/LIVEOPS_GIT_SOP_2026-08-11.md `
   README.md `
   DOC_INDEX.md
 git checkout
+git config core.hooksPath .githooks
+```
+
+For UE Integration / Universal placement slices use:
+
+```powershell
+bash deploy/collaborator_onboarding.sh docs50
+# or: slice50 | placement50 | gameplay | full
 ```
 
 **What you get (~120 MB, verified 2026-08-11):**
@@ -37,7 +46,9 @@ git checkout
 - (check) GMM game systems (Python combat/rhythm/roguelike rules)
 - (check) All pipeline tools and scripts
 - (check) Full documentation
-- Γ¥î No .uasset files, .blend files, textures, or UE content
+- No .uasset files, .blend files, textures, or UE content (docs50 / Option A)
+
+See also [COLLABORATOR_SETUP.md](../COLLABORATOR_SETUP.md) and [LIVEOPS_GIT_SOP_2026-08-11.md](LIVEOPS_GIT_SOP_2026-08-11.md).
 
 ---
 

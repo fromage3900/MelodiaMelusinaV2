@@ -4,11 +4,20 @@ Append-only research notes for phone + Grok + Cursor handoffs. Promote durable c
 
 ---
 
+## 2026-08-11 — Grok share folded into V2 (writable Cursor branch)
+
+- Share: https://grok.com/share/bGVnYWN5LWNvcHk_c7761e0a-252b-44bf-b4de-4940025d6de0
+- Grok connector: read OK after V2 public; **write 403** — pack landed instead on `cursor/v2-game-foundation-098b`.
+- Owner PIE: empty rhythm highway; Sir not on CTRL; UI transparent; Kaleido traversal/Quill/battle **present but dead**.
+- Docs added: `PIE_2026-08-11.md`, `HIGHEST_LEVERAGE_NOW.md`, `MOBILE_LANES.md`, `STYLIZED_ENV_PACK_SHORTLIST_2026-08-11.md`.
+- 20-min slice plan under these notes collapses to: one Quill → one battle → opaque UI → then Sir/rhythm.
+
 ## 2026-08-11 — iOS Cursor + Grok experiment
 
 - User testing Cursor from iOS; also experimenting with SuperGrok.
 - Grok prepared five planning docs under `/artifacts` (setup, index, scratchpad, north star, backlog) but **did not push**.
 - This Cursor cloud agent (`bc-019ff1ec-…`, source `mobile`, repo `MelodiaMelusina`) found `/opt/cursor/artifacts` empty of those files and recreated them under `Docs/PhoneOps/`.
+
 
 ### Repo dig (high-signal)
 
