@@ -8,8 +8,12 @@ Prefer Tools/run_headless_mocap_retarget.ps1 from the repo root. Manual example:
       -unattended -nop4 -nosplash
 
 Retargets every A_Src_* clip in /Game/Melodia/Mocap/Source/Anims onto SK_Melusina via
-RTG_Mocap_to_Melusina, writes A_Mocap_* into the Melusina Animations/Mocap folder, saves each,
-and writes a validity report to Saved/Melodia/retarget_report.json. Idempotent: overwrite=True.
+RTG_Mocap_to_Melusina_Current (canonical, targets IK_Melusina_Body_Current), writes A_Mocap_*
+into the Melusina Animations/Mocap folder, saves each, and writes a validity report to
+Saved/Melodia/retarget_report.json. Idempotent: overwrite=True.
+
+Both V1 (SK_Melusina) and V2 (SK_Melusina_V2_*) meshes bind SK_Melusina_Skeleton, so every
+clip this script produces plays on V2 via leader pose with zero re-retargeting.
 
 Why headless: the interactive batch retarget pops a per-clip "Duplicating animation | Cancel"
 modal that severs the Monolith MCP socket and (when the editor is under concurrent access or
@@ -19,7 +23,7 @@ no Slate modals, so the batch runs clean.
 import unreal, json, os
 
 _PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-RTG = '/Game/Melodia/Mocap/RTG_Mocap_to_Melusina'
+RTG = '/Game/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current'
 SRC_MESH = '/Game/Melodia/Mocap/Source/SK_MocapSource'
 TGT_MESH = '/Game/Melodia/Characters/Melusina/SK_Melusina'
 SRC_DIR = '/Game/Melodia/Mocap/Source/Anims'

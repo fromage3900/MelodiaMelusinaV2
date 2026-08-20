@@ -1,13 +1,36 @@
-﻿# Melusina Agent Test Harness (MATH)
+# Melusina Agent Test Harness (MATH)
+
+> **What this document is (revised 2026-08-20).** A **technical appendix to the Melodia Melusina
+> game** — how one person builds at team velocity. The subject is the game; the harness is the
+> method. Authority: [`../../PROJECT.md`](../../PROJECT.md).
+>
+> **The AI tooling is a tool.** It exists to produce game artifacts. It is not the product, and
+> nothing here sets project direction.
 
 > **2026-08-19:** Unpublished 100-task / 98.8% TCA model scores are withdrawn.
 > Public evidence is the MCP + contract test run and Echo runtime ledger.
 > See `wix/melusina-agent-harness.html` and `generated/melodia/status/math_evidence_2026-08-19.json`.
+>
+> **2026-08-20 addendum — the one real run was also invalid, for a separate reason.**
+> `eval_results.json` (one model, one task, 60.35%, 0% pass) is not a model-capability finding
+> either. 16 of its 17 tool calls failed with an identical `'blueprint_name' is a required
+> property` because `Tools/run_math_models.py::_tool_catalog` emitted only
+> `name: description[:140]` and discarded `inputSchema` — then validated the model's arguments
+> against the schema it had withheld. **The model was scored on a contract it was never shown.**
+> Root cause fixed 2026-08-20 (`_format_schema`).
+>
+> **Replacement measure:** `Tools/run_production_lanes.py`. Local models are judged by whether a
+> real game artifact passes a real contract — binary acceptance, no score. A lane never records
+> its own ledger row.
+>
+> **A stale duplicate exists** at `../../Docs/MELUSINA_AGENT_TEST_HARNESS.md` (2026-08-18) which
+> predates the withdrawal and still presents the figures as measured. It is marked do-not-send.
 
 ## Constrained Model Context Protocols for Autonomous Interactive 3D Simulations
 
-**Target AI Research Organization:** Nous Research  
-**Document Classification:** Autonomous Agent Evaluation Suite & Portfolio Technical Whitepaper  
+**Subject:** Melodia Melusina — a single-person AAA-tier UE 5.8 rhythm-JRPG  
+**Method interest to:** open-weights research orgs (Nous Research and similar)  
+**Document Classification:** Technical appendix — solo game development method  
 **Evaluated Model Classes:** Nous Hermes 3 (8B / 70B), LongCat, Qwen 2.5 Coder (7B / 14B), DeepSeek-R1 (7B / 14B)  
 **Primary Game Engine:** Unreal Engine 5.8 (C++, Blueprints, Material Parameter Collections, Monolith RPC)  
 **Version:** 1.0.0 (Research Edition)  
@@ -500,6 +523,8 @@ The **Melusina Agent Test Harness** confirms that open-weights foundation models
 3. **Headless CI/CD Evaluation Swarms:** Deploy Nous Hermes 3 swarms directly into Unreal Engine automated test pipelines for nightly regression testing and level validation.
 
 ---
-*Melusina Agent Test Harness authored and published for Nous Research Collaboration Portfolio.*
+*Melusina Agent Test Harness — technical appendix to Melodia Melusina.*
+
+*Revised 2026-08-20: reframed from research prospectus to game-development appendix.*
 
 

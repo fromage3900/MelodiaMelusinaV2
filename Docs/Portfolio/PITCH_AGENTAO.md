@@ -1,5 +1,10 @@
 # Agent Pitch: AgenTao
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 **Target:** AgenTao — Toronto / Richmond Hill  
 **Focus:** Long-Horizon Software Engineering Agents  
 **Prepared by:** Melusina Engineering Team  

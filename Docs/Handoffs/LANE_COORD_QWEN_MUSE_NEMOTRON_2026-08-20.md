@@ -73,3 +73,29 @@ From recent peer messages (through **11:22 AM** user ask: *"we need more tests a
 - [ ] Prefer OpenRouter smoke + T1/T4/T5; write `Saved/Audit/nemotron_*` only
 - [ ] If `:9316` needed, confirm peer is idle on editor MATH first
 - [ ] Link peer as [General chat](5344e2d5-18a2-403f-80aa-5f6c1a304283) in any follow-up handoff
+
+---
+
+## Sonnet closeout note (2026-08-20): `C:\EnvironmentPortfolio\wix` is now a local git repo
+
+`C:\EnvironmentPortfolio\wix` (214+ files, 48 HTML pages, all modified today) had **zero** version
+control — the single biggest data-loss exposure found in this session's git-health pass. It now
+has a local-only git repo (`git init`, one commit, `.gitignore` for `node_modules/`/`.DS_Store`/
+`*.log`). **No remote, no push** — this is a local safety net only, not a publishing change, and
+it does not touch this lane's ownership of that directory.
+
+This does **not** resolve the two-`wix`-trees question — it just stops the untracked one from
+being one `rm -rf` away from gone. There are still two divergent trees and no source-of-truth
+decision:
+
+- `BS_GodFile/wix` (tracked in the main repo) and `C:\EnvironmentPortfolio\wix` (now its own local
+  repo) are **not** a superset/subset pair.
+- The sibling (`C:\EnvironmentPortfolio\wix`) has ~19 pages `BS_GodFile/wix` lacks, including
+  dashboards, the agent harness, the hiring dossier, credits, pipeline, and t3d-catalog pages.
+- `BS_GodFile/wix` has 5 embed/component pages the sibling lacks (`melodia-hero-embed.html`,
+  `melodia-passport-embed.html`, `melodia-project-card.html`, `melodia-smooth-scroll.html`, plus
+  an `environment-template.html`-style component set under its own archive).
+
+Neither tree should be treated as canonical until the owner decides which one the live site
+actually deploys from. This lane (Qwen/Muse) still owns `C:\EnvironmentPortfolio\wix` per the
+boundary above — the git init only adds history, it does not change who writes there.

@@ -1,5 +1,10 @@
 # Digital Extremes — Cover Letter Paragraph
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 **Context:** Adapted for Digital Extremes environment artist postings in London, Ontario. Emphasizes the studio's explicit ask for "surreal/abstract spaces," pipeline literacy, and local geographic fit.
 
 ---

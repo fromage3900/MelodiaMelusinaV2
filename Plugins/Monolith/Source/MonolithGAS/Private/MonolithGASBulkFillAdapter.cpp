@@ -414,7 +414,7 @@ FDryRunReport FMonolithGASBulkFillAdapter::GasBulkFill(const FBulkFillSpec& Spec
 	{
 		for (const auto& RowKV : RowsObj->Values)
 		{
-			const FString& RowName = RowKV.Key;
+			const FString RowName = FString(RowKV.Key.ToView());
 			const TSharedPtr<FJsonObject>* RowObjPtr = nullptr;
 			if (!RowKV.Value->TryGetObject(RowObjPtr) || !RowObjPtr || !RowObjPtr->IsValid())
 			{
@@ -442,11 +442,11 @@ FDryRunReport FMonolithGASBulkFillAdapter::GasBulkFill(const FBulkFillSpec& Spec
 		"Monolith GAS Bulk Fill"));
 	DataTable->Modify();
 
-	for (const auto& RowKV : RowsObj->Values)
-	{
-		const FString& RowName = RowKV.Key;
-		const TSharedPtr<FJsonObject>* RowObjPtr = nullptr;
-		if (!RowKV.Value->TryGetObject(RowObjPtr) || !RowObjPtr || !RowObjPtr->IsValid())
+		for (const auto& RowKV : RowsObj->Values)
+		{
+			const FString RowName = FString(RowKV.Key.ToView());
+			const TSharedPtr<FJsonObject>* RowObjPtr = nullptr;
+			if (!RowKV.Value->TryGetObject(RowObjPtr) || !RowObjPtr || !RowObjPtr->IsValid())
 		{
 			FBulkFillFieldWrite W;
 			W.Path = FString::Printf(TEXT("rows[%s]"), *RowName);

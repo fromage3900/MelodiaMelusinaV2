@@ -29,7 +29,9 @@ import urllib.error
 _TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_MCP = os.path.abspath(os.path.join(_TOOLS_DIR, "..", "..", ".mcp.json"))
 LEDGER = os.path.abspath(os.path.join(_TOOLS_DIR, "..", "Saved", "router_ledger.jsonl"))
-REQUEST_TIMEOUT = 90
+# Local models on a cold load can exceed 90s before first token, especially the
+# 21-30 GB tags. Override with LLM_REQUEST_TIMEOUT when driving production lanes.
+REQUEST_TIMEOUT = int(os.environ.get("LLM_REQUEST_TIMEOUT", "90"))
 
 LOCAL_BASE = os.environ.get("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434/v1").rstrip("/")
 
@@ -52,6 +54,15 @@ PRICES = {
     "openai/gpt-oss-20b:free": (0.0, 0.0),
     "mistralai/codestral-2508": (0.0000003, 0.0000009),
     # Local Ollama tags — zero API cost
+    # Verified installed 2026-08-20 via `ollama list`.
+    "qwen2.5-coder:7b": (0.0, 0.0),
+    "qwen2.5-coder:14b": (0.0, 0.0),
+    "qwen3.8-27b": (0.0, 0.0),
+    "muse-glimmer-30b": (0.0, 0.0),
+    "muse-glimmer-30b-cpu": (0.0, 0.0),
+    "deepseek-r1:7b": (0.0, 0.0),
+    "deepseek-r1:14b": (0.0, 0.0),
+    "deepseek-coder:6.7b": (0.0, 0.0),
     "qwen3:8b": (0.0, 0.0),
     "qwen3-coder:14b": (0.0, 0.0),
     "qwen3-coder:32b": (0.0, 0.0),
@@ -60,10 +71,94 @@ PRICES = {
     "gpt-oss:20b": (0.0, 0.0),
 }
 
-BLOCKED = {"meta/muse-spark-1.2": "requires 18+ confirmation at openrouter.ai/settings/preferences"}
+BLOCKED = {
+    "meta/muse-spark-1.2": "requires 18+ confirmation at openrouter.ai/settings/preferences",
+    # Corrupt weights on disk, verified 2026-08-20: loads, then emits repeated tokens.
+    # Docs/OLLAMA_SETUP_FIX_2026-08-20.md. Remove after re-pull + coherence smoke test.
+    "qwen2.5-coder:14b": "corrupt weights on disk — emits repeated tokens; re-pull and smoke-test first",
+    # 1/8 on the discovery probe: right tool in prose, no JSON.
+    "deepseek-coder:6.7b": "no structured output — unusable as an MCP client without constrained decoding",
+}
+
+# Classes that must never silently reach a paid cloud endpoint.
+# `daemon` runs unattended overnight; the production lanes generate game content.
+PRODUCTION_CLASSES = frozenset({
+    "wardrobe_catalog", "beatmap_author", "quill_author", "asset_qa", "anim_bindings",
+})
+LOCAL_ONLY_CLASSES = frozenset({"daemon"}) | PRODUCTION_CLASSES
+
+# Production lanes MUST NOT do these. Mirrors the AGENTS.md must-not table.
+PRODUCTION_MUST_NOT = {
+    "wardrobe_catalog": "invent slots, or bypass UMelodiaWardrobeSubsystem",
+    "beatmap_author": "make rhythm a second combat authority",
+    "quill_author": "emit an id that is not in the allowlist",
+    "asset_qa": "fabricate a file path",
+    "anim_bindings": "write .uasset",
+}
+# No production lane certifies its own gate. An artifact is accepted by
+# `Tools/echo_run.py record <gate> pass`, run by a human or a gate script -- never
+# by the model that produced it.
 
 # Narrowest class wins. See Docs/Production/MODEL_LANES_2026-08-12.md
+#
+# PRODUCTION LANES (added 2026-08-20, paradigm shift).
+# The AI tooling is a tool. These five lanes route REAL game work to local models.
+# A lane's output counts only when an Echo gate accepts the artifact --
+# `python Tools/echo_run.py record <gate> pass|fail`. A score is not an acceptance.
+#
+# Local-first by design: every production lane leads with a model that is actually
+# pulled on this workstation (verified 2026-08-20 via `ollama list`). Cloud entries
+# are fallbacks, never the default -- production content should not require network.
+#
+# Model-fit evidence, not vibes:
+#   qwen2.5-coder:7b   -- 7/8 with 100% surface adherence on the 2-tool discovery probe
+#                         (Docs/CLAIREON_PROBE_RESULTS_2026-08-20.md). Never invented a
+#                         tool outside the manifest. Best structured-output local model.
+#   deepseek-coder:6.7b -- 1/8. Names the right tool in prose, emits no JSON. Routed
+#                         NOWHERE. Do not add it to a lane without constrained decoding.
 POLICY = {
+    # ---- production lanes: real game artifacts, gate-accepted ----
+    #
+    # QUARANTINED — do not add to any lane until re-verified:
+    #   qwen2.5-coder:14b  -- CORRUPT WEIGHTS ON DISK. Loads fine, then emits pure
+    #                         repeated tokens ("8888888..."), 0/8 with all responses
+    #                         unparsed. Isolated to this tag: qwen2.5-coder:7b is
+    #                         coherent on identical config/prompt/store, and both tags
+    #                         carry exclusive blobs, so it is not shared-blob
+    #                         corruption. Docs/OLLAMA_SETUP_FIX_2026-08-20.md.
+    #                         Fix: `ollama rm` + `ollama pull`, then a coherence smoke
+    #                         test BEFORE any sweep. Re-add only after that passes.
+    #   deepseek-coder:6.7b -- 1/8 on the discovery probe. Names the right tool in
+    #                         prose, emits no JSON. Unusable without constrained decoding.
+    #
+    # Load times on this workstation are dominated by disk, not compute: the model
+    # store is on a 32 MB/s HDD, so a 9 GB tag needs ~5 min and a 21 GB tag ~11 min to
+    # page in cold. Drive production lanes with LLM_REQUEST_TIMEOUT=1200.
+    "wardrobe_catalog": [
+        ("qwen2.5-coder:7b", "local", "7/8, 100% surface adherence; coherent smoke test"),
+        ("qwen3.8-27b", "local", "larger local fallback (~11 min cold load)"),
+        ("deepseek/deepseek-v4-flash", "openrouter", "cloud fallback only"),
+    ],
+    "beatmap_author": [
+        ("qwen3.8-27b", "local", "beat maps vs MelodiaRhythmSkillDefinition"),
+        ("qwen2.5-coder:7b", "local", "smaller/faster fallback"),
+        ("mistralai/mistral-medium-3-5", "openrouter", "cloud fallback only"),
+    ],
+    "quill_author": [
+        ("muse-glimmer-30b", "local", "narrative-weighted; QuillScript dialogue drafts"),
+        ("muse-glimmer-30b-cpu", "local", "CPU build when VRAM is held by the editor"),
+        ("mistralai/mistral-medium-3-5", "openrouter", "cloud fallback only"),
+    ],
+    "asset_qa": [
+        ("qwen2.5-coder:7b", "local", "art/credits/bp gate triage — only verified-coherent coder tag"),
+        ("deepseek-r1:14b", "local", "reasoning fallback for triage"),
+        ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free wide-context fallback"),
+    ],
+    "anim_bindings": [
+        ("deepseek-r1:14b", "local", "ABP state machine + pose binding cross-check"),
+        ("deepseek-r1:7b", "local", "lighter fallback"),
+        ("deepseek/deepseek-v4-flash", "openrouter", "cloud fallback only"),
+    ],
     "triage": [
         ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free 1M ctx"),
         ("openai/gpt-oss-20b:free", "openrouter", "free code"),
@@ -218,8 +313,10 @@ def run_chat(task_class, prompt, system=None, json_out=False, attempt=0, max_tok
     keys = load_keys()
     candidates = POLICY[task_class][attempt:]
     last_err = None
-    # daemon class: local only — never silently fall through to paid cloud
-    if task_class == "daemon":
+    # daemon + production lanes: local first — never silently fall through to paid
+    # cloud. Production lanes produce game artifacts; a surprise cloud bill or a
+    # network dependency in the content pipeline is a defect, not a fallback.
+    if task_class in LOCAL_ONLY_CLASSES:
         candidates = [c for c in candidates if c[1] == "local"]
     for model, endpoint, _note in candidates:
         if model in BLOCKED and attempt == 0:

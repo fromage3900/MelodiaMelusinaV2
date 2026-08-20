@@ -1,5 +1,10 @@
 # Application Emails — Draft for 2026-08-20
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 All details sourced from `Docs/Career/STUDIO_*.md` files. Review each draft,
 personalize the brackets, and send.
 

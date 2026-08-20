@@ -1,5 +1,10 @@
 # Technical Observations for OpenCode — From 4 Months of UE5.8 + MCP
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 Structured for an engineer receiving this, not a recruiter. Each observation
 names the GitHub issue it maps to (where one exists), describes what was
 observed in the UE5.8 + Monolith + VibeUE + UEBlueprintMCP environment, and

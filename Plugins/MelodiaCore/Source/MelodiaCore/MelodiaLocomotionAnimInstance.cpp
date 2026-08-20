@@ -40,6 +40,7 @@ void UMelodiaLocomotionAnimInstance::NativeUpdateAnimation(const float DeltaSeco
 	}
 	bRuntimeIsGliding = Traversal.GetObject() != nullptr && Traversal->IsGliding();
 	bRuntimeIsSprinting = Traversal.GetObject() != nullptr && Traversal->IsSprinting();
+	bRuntimeIsJumpWindup = Traversal.GetObject() != nullptr && Traversal->IsJumpWindingUp();
 
 	// Gliding still uses MOVE_Falling for physics, but it must not keep the
 	// locomotion graph's generic jump/fall state eligible at the same time.

@@ -1,6 +1,38 @@
-﻿# Documentation Index
+# Documentation Index
 
 This is the front door for project documentation. Prefer updating this index over creating another floating status document.
+
+
+---
+
+## Read these four, in this order
+
+Everything below this section is reference. These four are authority.
+
+| # | Doc | What it settles |
+|---|---|---|
+| 1 | [`../PROJECT.md`](../PROJECT.md) | **What this project is.** Melodia Melusina is a game. QuillScript + TurnBased JRPG are absolute authority. The AI tooling is a tool. If any doc below disagrees, this one wins. |
+| 2 | [`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) | **Which implementation owns which pillar.** Rhythm exists in 3 places, wardrobe in 5, the HUD has 2 writers. This names one OWNER per pillar and marks the rest DEAD. Check before writing anything. |
+| 3 | [`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) | **How the pillars meet the authority layers.** One owner and one direction per seam, each with the gate that proves it. Unproven seams are labelled UNPROVEN. |
+| 4 | [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) | **How work gets done here.** Do the job, ship it, stop. Never compensate. Kill means delete. Owner statements are ground truth. |
+
+**The current job is convergence, not construction.** A new parallel implementation of something
+that already exists is a defect, not progress.
+
+### Latest session — 2026-08-20 (the paradigm shift)
+
+| Doc | What |
+|---|---|
+| [`Docs/Handoffs/SESSION_CLOSEOUT_2026-08-20.md`](Docs/Handoffs/SESSION_CLOSEOUT_2026-08-20.md) | Everything done this session, what is still open, and where to start next. |
+| [`Docs/MELUSINA_ANIMATION_PIPELINE_REVIEW_2026-08-20.md`](Docs/MELUSINA_ANIMATION_PIPELINE_REVIEW_2026-08-20.md) | Live review. `Speed`, `bIsGliding`, `bJumpWindup` are never assigned — `Locomotion` and `Glide` are unreachable states. |
+
+### Marketing, funding and hiring material
+
+`Docs/Career/` and `Docs/Portfolio/` are **downstream of the game**. They exist to fund and staff
+it. **No agent may cite anything in them as project direction.**
+
+---
+
 
 
 ## New 2026-08-13 — repo lock-in

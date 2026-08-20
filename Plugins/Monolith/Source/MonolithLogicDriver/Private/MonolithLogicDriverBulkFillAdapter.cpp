@@ -122,7 +122,7 @@ namespace MonolithLogicDriverBulkFillInternal
 		// fanout to instanced state nodes is a v1.1 refinement.
 		for (const auto& StateKV : (*StatesObj)->Values)
 		{
-			const FString& StateName = StateKV.Key;
+			const FString StateName = FString(StateKV.Key.ToView());
 			const TSharedPtr<FJsonObject>* StatePropsObj = nullptr;
 			if (!StateKV.Value->TryGetObject(StatePropsObj) || !StatePropsObj || !(*StatePropsObj).IsValid())
 			{
