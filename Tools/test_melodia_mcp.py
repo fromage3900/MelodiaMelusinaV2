@@ -338,6 +338,48 @@ def test_quest_check_p0_schema() -> None:
         assert key in result
 
 
+def test_economy_rhythm_and_cast_mcp() -> None:
+    """Rhythm hits bank resources, then three P0 songs succeed via MCP handlers."""
+    import deploy.melodia_mcp_server as server
+    from deploy.melodia_economy import MelodiaGlobalEconomy
+
+    server._ECONOMY_STATE = MelodiaGlobalEconomy()
+    hook = server.melodia_economy_activate_grief_hook("p0_dungeon_mcp_test")
+    assert hook.get("success", True) is not False
+    for _ in range(40):
+        hit = server.melodia_economy_rhythm_hit(0.95)
+        assert hit["schema"] == "melodia.economy.rhythm_hit.v1"
+    for skill in ("healing_song", "mana_song", "utility_debuff"):
+        cast = server.melodia_economy_cast_skill(skill, 1)
+        assert cast["schema"] == "melodia.economy.cast.v1"
+        assert cast.get("success") is True, cast
+
+
+def test_p0_vertical_slice_mcp_chain() -> None:
+    """Full P0 MCP chain: encounter start → bank → casts → enemy → resolve → quest."""
+    import deploy.melodia_mcp_server as server
+    from deploy.melodia_economy import MelodiaGlobalEconomy
+
+    enc_id = "p0_chain_test"
+    server._ECONOMY_STATE = MelodiaGlobalEconomy()
+    start = server.melodia_encounter_start(enc_id)
+    assert start["schema"] == "melodia.encounter.start.v1"
+    for _ in range(40):
+        assert "error" not in server.melodia_economy_rhythm_hit(0.9)
+    for skill in ("healing_song", "mana_song", "utility_debuff"):
+        assert server.melodia_economy_cast_skill(skill, 1).get("success") is True
+    drain = server.melodia_encounter_enemy_action(enc_id)
+    assert drain["schema"] == "melodia.encounter.enemy_action.v1"
+    resolved = server.melodia_encounter_resolve(enc_id)
+    assert resolved["schema"] == "melodia.encounter.resolve.v1"
+    assert resolved.get("blocked_enemy") is True
+    quest = server.melodia_quest_check_p0("p0_vertical_slice")
+    assert quest["schema"] == "melodia.quest.check_p0.v1"
+    assert "healing_song" in quest.get("cast_history", [])
+    assert quest.get("has_combat_skills") is True
+    assert quest.get("encounter_resolved") is True
+
+
 def run_all() -> int:
     """Run every test and report results."""
     tests = [
@@ -367,6 +409,8 @@ def run_all() -> int:
         test_encounter_enemy_action_schema,
         test_encounter_resolve_schema,
         test_quest_check_p0_schema,
+        test_economy_rhythm_and_cast_mcp,
+        test_p0_vertical_slice_mcp_chain,
     ]
 
     passed = 0
