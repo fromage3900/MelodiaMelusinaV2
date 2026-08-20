@@ -122,6 +122,8 @@ def record_gate(
     status: str,
     note: str = "",
     session_id: str | None = None,
+    layer: str = "",
+    lane: str = "",
 ) -> dict:
     if status not in ("pass", "fail"):
         raise ValueError("status must be pass or fail")
@@ -145,6 +147,10 @@ def record_gate(
         "note": note,
         "session": sid,
     }
+    if layer:
+        entry["layer"] = layer
+    if lane:
+        entry["lane"] = lane
     ledger["gates"].append(entry)
 
     session = ledger["sessions"].get(sid, {})
@@ -229,6 +235,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("gate_id", nargs="?", help="Gate ID from known list")
     p.add_argument("status", nargs="?", choices=["pass", "fail"], help="pass or fail")
     p.add_argument("--note", default="", help="Observation note")
+    p.add_argument("--layer", default="", help="topo layer id (e.g. ch2_environment)")
+    p.add_argument("--lane", default="", help="model lane (e.g. vision, code, audit)")
     p.add_argument("--session", default=None, help="Optional evidence session id")
     p.add_argument("--list", action="store_true", help="Show all known gates and current status")
     p.add_argument("--report", action="store_true", help="Generate markdown summary")
@@ -245,7 +253,14 @@ def main() -> None:
         generate_report()
         return
     if args.gate_id and args.status:
-        record_gate(args.gate_id, args.status, note=args.note, session_id=args.session)
+        record_gate(
+            args.gate_id,
+            args.status,
+            note=args.note,
+            session_id=args.session,
+            layer=args.layer,
+            lane=args.lane,
+        )
         return
 
     print("Usage: python Tools/record_gate.py <gate-id> pass|fail --note \"...\"")
