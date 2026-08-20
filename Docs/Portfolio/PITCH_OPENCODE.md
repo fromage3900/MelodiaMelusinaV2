@@ -1,5 +1,10 @@
 # Pitch: A Non-Programmer Shipped 70% of a UE5.8 JRPG Through OpenCode
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 **Prepared for:** OpenCode (Jay V, Frank Wang, Dax Raad, Adam Elmore)
 **Date:** 2026-08-19
 **Author:** 4th-year 3D major, zero formal programming background

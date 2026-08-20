@@ -1,5 +1,10 @@
 # NVIDIA Toronto DevRel Packet — JR2023172
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 **Role:** Developer Relations Manager, Higher Ed & Research — Foundational AI  
 **Req:** JR2023172 · Toronto · closes **Aug 21, 2026**  
 **Applicant:** Brennan Shepherd · 4th-year 3D major (Humber) · Toronto, ON  

@@ -17,8 +17,12 @@ Run in a live editor (MCP / py console) OR headless after import via Tools scrip
 Bone-name gate:
   FBX must match SK_MocapSource_Skeleton. Export from Rokoko using the
   CharacterRef profile built from SK_MocapSource (see Docs/ROKOKO_MELUSINA_MOCAP.md).
-  If bones differ, import still lands but retarget quality will be wrong —
-  create RTG_Rokoko_to_Melusina instead of reusing RTG_Mocap_to_Melusina.
+  If bones differ, import still lands but retarget quality will be wrong?"
+  create RTG_Rokoko_to_Melusina instead of reusing RTG_Mocap_to_Melusina_Current.
+
+Canonical retargeter: RTG_Mocap_to_Melusina_Current -> IK_Melusina_Body_Current
+(root_x, 19 chains). Both V1 and V2 meshes bind SK_Melusina_Skeleton, so output
+clips play on V2 via leader pose with zero re-retargeting.
 """
 from __future__ import annotations
 
@@ -32,7 +36,7 @@ _PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 INBOX = os.path.join(_PROJECT_ROOT, "Imports", "Mocap", "Rokoko", "Inbox")
 SRC_SKELETON = "/Game/Melodia/Mocap/Source/SK_MocapSource_Skeleton"
 SRC_MESH = "/Game/Melodia/Mocap/Source/SK_MocapSource"
-RTG = "/Game/Melodia/Mocap/RTG_Mocap_to_Melusina"
+RTG = "/Game/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current"
 SRC_ANIM_DIR = "/Game/Melodia/Mocap/Source/Anims"
 OUT_DIR = "/Game/Melodia/Characters/Melusina/Animations/Mocap"
 TGT_MESH = "/Game/Melodia/Characters/Melusina/SK_Melusina"

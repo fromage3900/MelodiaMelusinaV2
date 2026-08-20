@@ -1,5 +1,10 @@
 # Toronto AI × Unreal Ecosystem Map — August 2026
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 Evidence-based. Every person, event, and community verified via primary source.
 Organized by how reachable they are to an individual developer.
 

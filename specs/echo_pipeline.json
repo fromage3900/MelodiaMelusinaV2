@@ -1,148 +1,205 @@
 {
-  "$schema": "echo_pipeline.v1",
-  "name": "melodia_echo",
-  "version": "2.0",
-  "generated_by": "Monolith MCP refresh, 2026-08-18",
-  "purpose": "One runnable gate chain for the Melodia integration layer. Nothing is 'done' without a ledger row.",
-  "stages": [
+ "$schema": "echo_pipeline.v1",
+ "name": "melodia_echo",
+ "version": "2.0",
+ "generated_by": "Monolith MCP refresh, 2026-08-18",
+ "purpose": "One runnable gate chain for the Melodia integration layer. Nothing is 'done' without a ledger row.",
+ "stages": [
+  {
+   "id": "author",
+   "label": "Author",
+   "impl": "human_or_agent",
+   "note": "Proposal must be a spec (json/.qsc) plus the expected gate it claims. Agents are content producers; nothing about a beat is assumed until scored."
+  },
+  {
+   "id": "spec_validate",
+   "label": "Spec validation",
+   "impl": "echo_run.py:validate_spec",
+   "contract": "ids in scope are allowlisted by DA_MelodiaIntegrationConfig or an explicit export, arity matches the 7-verb contract, no duplicate consume-once ids, item:give remains a logging stub",
+   "ledger_id": "spec_validate"
+  },
+  {
+   "id": "monolith_static",
+   "label": "Monolith static gates",
+   "impls": [
+    "melodia_animation_validate_state_machine",
+    "melodia_animation_validate_bindings",
+    "melodia_animation_get_runtime_abp"
+   ],
+   "contract": "Monolith must answer; animation state machines are valid, no disconnected pose outputs, runtime ABP matches skeleton",
+   "ledger_id": "monolith_static"
+  },
+  {
+   "id": "compile",
+   "label": "Compile",
+   "impl": "blueprint_query:compile_blueprint",
+   "contract": "0 errors",
+   "ledger_id": "monolith_compile"
+  },
+  {
+   "id": "claireon_bringup",
+   "label": "Claireon bring-up (PREP — not yet run)",
+   "impl": "Tools/test_claireon_toolcalls.py + Plugins/Claireon/Scripts/Utilities/Invoke-EditorBuild.ps1",
+   "contract": "Claireon compiles on UE 5.8, MCP server binds its deterministic worktree port, and tool_search answers. Runs ONLY in the Melodia_ClaireonTest worktree — never the main checkout (python_execute is unsandboxed per Claireon SECURITY.md).",
+   "ledger_id": "claireon_bringup",
+   "status": "prep",
+   "gates": [
     {
-      "id": "author",
-      "label": "Author",
-      "impl": "human_or_agent",
-      "note": "Proposal must be a spec (json/.qsc) plus the expected gate it claims. Agents are content producers; nothing about a beat is assumed until scored."
+     "id": "claireon_build",
+     "label": "Claireon builds on UE 5.8",
+     "contract": "BS_GodFileEditor target builds with Claireon enabled, 0 errors. A FAILURE here is a valid, reportable outcome — upstream has open bugs for UE 5.7+ builds (issue #6) and bp_compile hangs (issue #7), and no public record of a 5.8 build exists.",
+     "blocking": false
     },
     {
-      "id": "spec_validate",
-      "label": "Spec validation",
-      "impl": "echo_run.py:validate_spec",
-      "contract": "ids in scope are allowlisted by DA_MelodiaIntegrationConfig or an explicit export, arity matches the 7-verb contract, no duplicate consume-once ids, item:give remains a logging stub",
-      "ledger_id": "spec_validate"
+     "id": "claireon_server_bind",
+     "label": "MCP server binds deterministic port",
+     "contract": "Saved/Claireon/MCPServer.json exists with a live port + PID. Expected port: 57818 for Melodia_ClaireonTest, 64998 for BS_GodFile (SHA-256 of canonical root folded into 49152-65535).",
+     "blocking": false
     },
     {
-      "id": "monolith_static",
-      "label": "Monolith static gates",
-      "impls": [
-        "melodia_animation_validate_state_machine",
-        "melodia_animation_validate_bindings",
-        "melodia_animation_get_runtime_abp"
-      ],
-      "contract": "Monolith must answer; animation state machines are valid, no disconnected pose outputs, runtime ABP matches skeleton",
-      "ledger_id": "monolith_static"
+     "id": "claireon_tool_discovery",
+     "label": "tool_search answers over the live catalog",
+     "contract": "tool_search returns ranked results from the SQLite FTS5 + embedding index against a running editor. Client-side probe (Tools/test_claireon_toolcalls.py) is NOT this gate — it scores model behaviour with the editor offline.",
+     "blocking": false
     },
     {
-      "id": "compile",
-      "label": "Compile",
-      "impl": "blueprint_query:compile_blueprint",
-      "contract": "0 errors",
-      "ledger_id": "monolith_compile"
-    },
-    {
-      "id": "claireon_bringup",
-      "label": "Claireon bring-up (PREP — not yet run)",
-      "impl": "Tools/test_claireon_toolcalls.py + Plugins/Claireon/Scripts/Utilities/Invoke-EditorBuild.ps1",
-      "contract": "Claireon compiles on UE 5.8, MCP server binds its deterministic worktree port, and tool_search answers. Runs ONLY in the Melodia_ClaireonTest worktree — never the main checkout (python_execute is unsandboxed per Claireon SECURITY.md).",
-      "ledger_id": "claireon_bringup",
-      "status": "prep",
-      "gates": [
-        {
-          "id": "claireon_build",
-          "label": "Claireon builds on UE 5.8",
-          "contract": "BS_GodFileEditor target builds with Claireon enabled, 0 errors. A FAILURE here is a valid, reportable outcome — upstream has open bugs for UE 5.7+ builds (issue #6) and bp_compile hangs (issue #7), and no public record of a 5.8 build exists.",
-          "blocking": false
-        },
-        {
-          "id": "claireon_server_bind",
-          "label": "MCP server binds deterministic port",
-          "contract": "Saved/Claireon/MCPServer.json exists with a live port + PID. Expected port: 57818 for Melodia_ClaireonTest, 64998 for BS_GodFile (SHA-256 of canonical root folded into 49152-65535).",
-          "blocking": false
-        },
-        {
-          "id": "claireon_tool_discovery",
-          "label": "tool_search answers over the live catalog",
-          "contract": "tool_search returns ranked results from the SQLite FTS5 + embedding index against a running editor. Client-side probe (Tools/test_claireon_toolcalls.py) is NOT this gate — it scores model behaviour with the editor offline.",
-          "blocking": false
-        },
-        {
-          "id": "claireon_python_roundtrip",
-          "label": "python_execute round-trips to the editor",
-          "contract": "A claireon.<tool>(...) call executes in-editor and returns a typed result. Must be audit-logged (LogClaireon PythonAuditLog) and read back after every run.",
-          "blocking": false
-        }
-      ]
-    },
-
-    {
-      "id": "runtime_gates",
-      "label": "Runtime gates",
-      "impls": [
-        "pie_smoke_runner.py",
-        "regression_suite.py",
-        "Melodia.Wiring suite (Automation RunTests Melodia)",
-        "campaign scripts (docs/echo/campaign_*.md)"
-      ],
-      "contract": "Monolith runtime tools are clean; Melodia.Wiring and campaign evidence are reviewed separately and recorded explicitly",
-      "ledger_id": "runtime_gates"
-    },
-    {
-      "id": "record",
-      "label": "Record",
-      "impl": "record_gate.py <gate-id> pass|fail",
-      "contract": "every stage appends a dated ledger row; next session reads the ledger, not prose",
-      "ledger_id": "gate_ledger"
-    },
-    {
-      "id": "promote",
-      "label": "Promote",
-      "impl": "commit + baseline update + AGENTS.md next-work tick",
-      "contract": "bp_fingerprints.json / material_catalog.json updated if fingerprints moved; plain git add/commit; LFS batch within collab 50MB / full 512MB (git_safe_push.py); see Docs/LIVEOPS_GIT_SOP_2026-08-11.md",
-      "ledger_id": "promote"
+     "id": "claireon_python_roundtrip",
+     "label": "python_execute round-trips to the editor",
+     "contract": "A claireon.<tool>(...) call executes in-editor and returns a typed result. Must be audit-logged (LogClaireon PythonAuditLog) and read back after every run.",
+     "blocking": false
     }
-  ],
-  "completion_gates": [
-    "runtime",
-    "save_load",
-    "repeat_consume",
-    "package_launch"
-  ],
-  "completion_definitions": {
-    "runtime": "Victory/Defeat/Fled/unavailable; each resumes/aborts Quill exactly once",
-    "save_load": "Canonical BP_JRPGSaveGame slot across a full process restart",
-    "repeat_consume": "Flag+reward restore without duplication; melodia:stat: idempotent per IntentId",
-    "package_launch": "Development-packaged build launches outside the editor"
+   ]
   },
-  "quality_gates": {
-    "graph_fingerprint": "exact_match",
-    "blueprint_compile": "0_errors",
-    "animation_sm": "all_states_connected",
-    "animation_bindings": "no_disconnected_poses",
-    "pie_smoke": "0_crashes",
-    "wiring_invariants": "all_pass"
+  {
+   "id": "runtime_gates",
+   "label": "Runtime gates",
+   "impls": [
+    "pie_smoke_runner.py",
+    "regression_suite.py",
+    "Melodia.Wiring suite (Automation RunTests Melodia)",
+    "campaign scripts (docs/echo/campaign_*.md)"
+   ],
+   "contract": "Monolith runtime tools are clean; Melodia.Wiring and campaign evidence are reviewed separately and recorded explicitly",
+   "ledger_id": "runtime_gates"
   },
-  "agent_contract": {
-    "producer": "an agent or the owner authors a spec + claimed gate",
-    "gate": "the claimed gate must record a ledger row before it is believed",
-    "verbs": [
-      "melodia:battle:<EncounterId>",
-      "melodia:quest:<QuestId>",
-      "melodia:flag:<FlagId>:<true|false>",
-      "melodia:travel:<LevelId>",
-      "melodia:reward:<RewardId>",
-      "melodia:stat:<IntentId>:<StatId>:<Delta>",
-      "melodia:item:give:<ItemId>:<Count>"
-    ],
-    "authority": "DA_MelodiaIntegrationConfig allowlist is the live check; there is no relaxed-mode claim in Shipping"
+  {
+   "id": "orchestra",
+   "label": "Orchestra convergence",
+   "impl": "editor session (one writer) + Tools/echo_run.py record",
+   "contract": "The four pillars converge onto the two absolute authority layers (QuillScript, TurnBased JRPG template). One owner per seam. A second owner is a defect. See Docs/ORCHESTRA_CONTRACT_2026-08-20.md for the seam map and Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md for OWNER/DEAD/MERGE verdicts.",
+   "ledger_id": "orchestra",
+   "status": "open",
+   "gates": [
+    {
+     "id": "rhythm_owner",
+     "label": "rhythm owner",
+     "contract": "Exactly one rhythm path reaches the JRPG damage calculation. NOTE: this is about the execution path, NOT which module a class lives in -- MelodiaRhythmHUDWidget and MelodiaRhythmReactivitySubsystem live in MelodiaCore and are both load-bearing.",
+     "blocking": true
+    },
+    {
+     "id": "hud_single_writer",
+     "label": "hud single writer",
+     "contract": "One writer owns the battle HUD. No widget is written by both stock BP_BattleUI and a Melodia overlay in the same frame. Currently VIOLATED: MelodiaUIBridgeSubsystem and MelodiaJRPGBattleOverlaySubsystem both create battle-time widgets.",
+     "blocking": true
+    },
+    {
+     "id": "wardrobe_equip_roundtrip",
+     "label": "wardrobe equip roundtrip",
+     "contract": "Equip -> save -> process restart -> load -> correct outfit and correct materials, through the UMelodiaWardrobeSubsystem API only.",
+     "blocking": true
+    },
+    {
+     "id": "rhythm_grade_to_result",
+     "label": "rhythm grade to result",
+     "contract": "A real-key rhythm grade demonstrably changes a JRPG battle result, and Quill resumes exactly once.",
+     "blocking": true
+    },
+    {
+     "id": "music_world_key",
+     "label": "music world key",
+     "contract": "One world object responds to one played phrase. APCGHeroMusicGraphHost::OnPatternCompleted reaches UMelodiaNarrativeSubsystem as a 7-verb notification. Music opens doors; it never enters the combat or damage pipeline.",
+     "blocking": true
+    },
+    {
+     "id": "wardrobe_gameplay_hook",
+     "label": "wardrobe gameplay hook",
+     "contract": "One outfit produces one observable gameplay difference via IMelodiaTraversalCapabilityProvider (Glide/Dash/Swim).",
+     "blocking": true
+    }
+   ]
   },
-  "runner_contract": {
-    "editor_endpoint": "http://127.0.0.1:9316/mcp",
-    "allowlist_asset": "/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig",
-    "default_pie_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
-    "holds_without_editor": [
-      "pie_smoke",
-      "regression",
-      "fingerprint",
-      "runtime_gates"
-    ],
-    "automatic_ledger_writes": false,
-    "record_command": "python Tools/echo_run.py record <gate-id> pass|fail --note \"...\""
+  {
+   "id": "record",
+   "label": "Record",
+   "impl": "record_gate.py <gate-id> pass|fail",
+   "contract": "every stage appends a dated ledger row; next session reads the ledger, not prose",
+   "ledger_id": "gate_ledger"
+  },
+  {
+   "id": "promote",
+   "label": "Promote",
+   "impl": "commit + baseline update + AGENTS.md next-work tick",
+   "contract": "bp_fingerprints.json / material_catalog.json updated if fingerprints moved; plain git add/commit; LFS batch within collab 50MB / full 512MB (git_safe_push.py); see Docs/LIVEOPS_GIT_SOP_2026-08-11.md",
+   "ledger_id": "promote"
   }
+ ],
+ "completion_gates": [
+  "runtime",
+  "save_load",
+  "repeat_consume",
+  "package_launch",
+  "rhythm_owner",
+  "hud_single_writer",
+  "wardrobe_equip_roundtrip",
+  "rhythm_grade_to_result",
+  "music_world_key",
+  "wardrobe_gameplay_hook"
+ ],
+ "completion_definitions": {
+  "runtime": "Victory/Defeat/Fled/unavailable; each resumes/aborts Quill exactly once",
+  "save_load": "Canonical BP_JRPGSaveGame slot across a full process restart",
+  "repeat_consume": "Flag+reward restore without duplication; melodia:stat: idempotent per IntentId",
+  "package_launch": "Development-packaged build launches outside the editor",
+  "rhythm_owner": "Exactly one rhythm path reaches the JRPG damage calculation. NOTE: this is about the execution path, NOT which module a class lives in -- MelodiaRhythmHUDWidget and MelodiaRhythmReactivitySubsystem live in MelodiaCore and are both load-bearing.",
+  "hud_single_writer": "One writer owns the battle HUD. No widget is written by both stock BP_BattleUI and a Melodia overlay in the same frame. Currently VIOLATED: MelodiaUIBridgeSubsystem and MelodiaJRPGBattleOverlaySubsystem both create battle-time widgets.",
+  "wardrobe_equip_roundtrip": "Equip -> save -> process restart -> load -> correct outfit and correct materials, through the UMelodiaWardrobeSubsystem API only.",
+  "rhythm_grade_to_result": "A real-key rhythm grade demonstrably changes a JRPG battle result, and Quill resumes exactly once.",
+  "music_world_key": "One world object responds to one played phrase. APCGHeroMusicGraphHost::OnPatternCompleted reaches UMelodiaNarrativeSubsystem as a 7-verb notification. Music opens doors; it never enters the combat or damage pipeline.",
+  "wardrobe_gameplay_hook": "One outfit produces one observable gameplay difference via IMelodiaTraversalCapabilityProvider (Glide/Dash/Swim)."
+ },
+ "quality_gates": {
+  "graph_fingerprint": "exact_match",
+  "blueprint_compile": "0_errors",
+  "animation_sm": "all_states_connected",
+  "animation_bindings": "no_disconnected_poses",
+  "pie_smoke": "0_crashes",
+  "wiring_invariants": "all_pass"
+ },
+ "agent_contract": {
+  "producer": "an agent or the owner authors a spec + claimed gate",
+  "gate": "the claimed gate must record a ledger row before it is believed",
+  "verbs": [
+   "melodia:battle:<EncounterId>",
+   "melodia:quest:<QuestId>",
+   "melodia:flag:<FlagId>:<true|false>",
+   "melodia:travel:<LevelId>",
+   "melodia:reward:<RewardId>",
+   "melodia:stat:<IntentId>:<StatId>:<Delta>",
+   "melodia:item:give:<ItemId>:<Count>"
+  ],
+  "authority": "DA_MelodiaIntegrationConfig allowlist is the live check; there is no relaxed-mode claim in Shipping"
+ },
+ "runner_contract": {
+  "editor_endpoint": "http://127.0.0.1:9316/mcp",
+  "allowlist_asset": "/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig",
+  "default_pie_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "holds_without_editor": [
+   "pie_smoke",
+   "regression",
+   "fingerprint",
+   "runtime_gates"
+  ],
+  "automatic_ledger_writes": false,
+  "record_command": "python Tools/echo_run.py record <gate-id> pass|fail --note \"...\""
+ }
 }

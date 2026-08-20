@@ -1,10 +1,20 @@
 # Active Vertical Slice Scope — First Dream
 
-**Status:** production-foundation closeout before combat expansion  
-**Authority:** `Docs/MELODIA_SOLO_GAMEPLAY_CONSTITUTION_2026-07-27.md`  
+**Status:** convergence — integrate the four pillars onto the two authority layers
+**Authority:** [`../PROJECT.md`](../PROJECT.md), then `Docs/MELODIA_SOLO_GAMEPLAY_CONSTITUTION_2026-07-27.md`
 **Playable route (current target):** `L_MelusinaMorning` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
 **Real paths:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
 **KaleidoNave transition:** Travel node retargeted from `/Game/ZenForestTest`; Dreamstate content was merged into KaleidoNave on 2026-08-10 and `+MapsToCook` was added to `DefaultGame.ini`. `L_Melodia_Dreamstate` is not a live route. Open item: KaleidoNave's merged Dreamstate BPs don't function on arrival (`_DECISION_LOG.md` 021b) — diagnose before routing the playtest through it.
+
+> **Scope change 2026-08-20 — the paradigm shift.** This document previously deferred
+> **"Wardrobe platform"** and **"Rhythm as required battle authority"**. Both are now **core
+> pillars**, per the owner's direction and [`../PROJECT.md`](../PROJECT.md). The game is a
+> rhythm-JRPG with a wardrobe pillar: OMORI's shape, Zelda's music-as-key, Infinity Nikki's
+> visual bar. QuillScript and the TurnBased JRPG template remain **absolute authority** — the
+> musical layer rides on top of the JRPG command scaffolding, it does not replace it.
+>
+> The old deferral lines are preserved in git history. The reason they were deferred (avoid
+> parallel authorities) was correct; the answer is convergence, not deferral.
 
 > **Corrected 2026-07-31.** This line previously read *"DefaultGame.ini intentionally NOT modified."*
 > That is no longer true: `+MapsToCook=(FilePath="/Game/EnvSandbox/Environments/L_KaleidoNave")` **was**
@@ -18,19 +28,29 @@
 
 ## Product goal
 
-Ship a compact Persona-lite loop whose mechanics are readable, intentional, and enjoyable:
+Ship a compact rhythm-JRPG loop whose mechanics are readable, intentional, and enjoyable:
 
 ```text
 sanctuary conversation
   -> authored departure
-  -> short dream traversal
-  -> one stock JRPG encounter
+  -> dream traversal (music opens the way)
+  -> one JRPG encounter, rhythm-timed
   -> typed terminal result
   -> narrative consequence
   -> stable checkpoint/save
 ```
 
-The loop is allowed to stay small. If a mechanic does not improve the player’s decisions, feedback, attachment, or flow, remove or defer it.
+The loop is allowed to stay small. If a mechanic does not improve the player's decisions,
+feedback, attachment, or flow, remove or defer it.
+
+### What each pillar owes the loop
+
+| Pillar | The minimum this slice needs | Not this slice |
+|---|---|---|
+| **Rhythm** | Timing on JRPG command input changes one battle outcome. One highway, correct lane legend. | A full song library, difficulty tiers, or rhythm as the *only* input path |
+| **Wardrobe** | One outfit equips, persists across a save/restart, and makes one observable gameplay difference | 38 gacha outfits, dye, evolution stages, photo mode |
+| **UI** | One writer per surface. No widget written by two owners in one frame. | A full settings/inventory/quest/party UI suite |
+| **World puzzle** | One world object responds to one played phrase | A puzzle system, a phrase grammar, or a second traversal authority |
 
 ## Proven now
 
@@ -53,6 +73,9 @@ The loop is allowed to stay small. If a mechanic does not improve the player’s
 > resume-once paths: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md` and
 > `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`. This does not retroactively verify the historical
 > "Proven now" bullets above, but it does mean rhythm and Quill are no longer P0 unknowns.
+>
+> **Updated 2026-08-13.** The `runtime` gate passed with real keyboard input
+> (ledger `[PASS] runtime 2026-08-13`, session `owner-realkey-20260813`). Owner-locked. Do not reopen.
 
 ## Foundation gate before combat expansion
 
@@ -61,8 +84,8 @@ All items below are binary gates:
 - [ ] Identify the instantiated stock battle widget package at runtime.
 - [ ] Prove Attack/Skill/Item/Flee mouse, keyboard, and controller parity without duplicate execution.
 - [ ] Pass Victory, Defeat, Fled, and unavailable; each resumes/aborts Quill exactly once.
-- [ ] Create and load a canonical `BP_JRPGSaveGame` slot across a full process restart.
-- [ ] Prove one narrative flag and one reward restore without duplication.
+- [x] Create and load a canonical `BP_JRPGSaveGame` slot across a full process restart. — ledger `save_load` **PASS 2026-08-14**, owner-verified (`owner-verified-20260814`). Do not reopen.
+- [x] Prove one narrative flag and one reward restore without duplication. — ledger `repeat_consume` **PASS 2026-08-14** (`session-894e8f57`): authored Priestess Quill first occurrence + canonical SaveToSlot ResumeScript replay; stat and quest intent remained exactly once after reload.
 - [ ] Load the canonical JRPG slot with Quill unavailable and preserve all JRPG-owned state.
 - [ ] Route a missing/unknown script or checkpoint to an explicit authored safe location without erasing valid current state.
 - [ ] Test interpreter invalidation during terminal-result broadcast; retain a recoverable pending result if Quill resume fails.
@@ -71,7 +94,34 @@ All items below are binary gates:
 - [ ] Repair or intentionally revise the `Morning_RoomShell` validator contract.
 - [x] Identify/isolate the overlong or invalid serialized name causing cook exit 25. — `PCGEx_PathTesselate.uasset`, invalid name at index 411; Decision 022, 2026-07-30.
 - [x] Package the proven three-map route. — `Saved/StagedBuilds_20260730/`, 2.1 GB, all five maps, `Success - 0 error(s)`.
-- [ ] **Launch**-test the packaged route outside the editor. Still open: packaging is not launching.
+- [x] **Launch**-test the packaged route outside the editor. — ledger `package_launch` **PASS 2026-08-14**: UE 5.8 packaged Gauntlet ran outside the editor, mounted a 2782-package IoStore, loaded `MelodiaMainMenu` and added `WBP_MainMenu` to viewport across map cycles. An earlier same-day FAIL row (cook failed before stage/pak) is superseded.
+
+> **Ledger reconciliation 2026-08-20.** The foundation gates above were checked against
+> `Saved/gate_ledger.json`, not against prose. Three items this document had listed as open
+> (`save_load`, `repeat_consume`, `package_launch`) have had PASS rows since 2026-08-14 — two of
+> them owner-verified. The doc was six days stale. **The shipping gates are closed.**
+>
+> Still genuinely open and unchecked above: the runtime battle-widget identification, input
+> parity, the result matrix, Quill-unavailable load, safe-location routing, interpreter
+> invalidation, mid-battle save lockout, Main Menu wiring, and the `Morning_RoomShell` validator.
+>
+> Separately, `static_gates` is **FAIL 2026-08-14** — `verify_baseline` drift on
+> `M_Master_Simple_Universal` (25→26 nodes) and `M_Master_Toon_Landscape_HeightBlend`
+> (290→304 nodes). The other four sub-gates passed.
+
+## Orchestra convergence gates (2026-08-20)
+
+The four pillars must converge onto the two authority layers before pillar scope expands. Each
+is a binary gate with a ledger row. Full detail:
+[`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) and
+[`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md).
+
+- [ ] `rhythm_owner` — exactly one rhythm path reaches the JRPG damage calculation; MelodiaCore's rhythm classes have zero live callers.
+- [ ] `hud_single_writer` — one writer owns the battle HUD; no widget written by both stock `BP_BattleUI` and a Melodia overlay in the same frame.
+- [ ] `wardrobe_equip_roundtrip` — equip → save → process restart → load → correct outfit and correct materials, through the `MelodiaWardrobeSubsystem` API only.
+- [ ] `rhythm_grade_to_result` — a real-key rhythm grade demonstrably changes a JRPG battle result, and Quill resumes exactly once.
+- [ ] `music_world_key` — one world object responds to one played phrase.
+- [ ] `wardrobe_gameplay_hook` — one outfit produces one gameplay difference the player can observe.
 
 ## Co-op skill gates (2026-07-29)
 
@@ -94,12 +144,12 @@ All items below are binary gates:
 
 ## Combat-expansion slice
 
-After the foundation gate passes, expansion is limited to:
+After the foundation gate and the orchestra convergence gates pass, expansion is limited to:
 
 1. Make the active stock command UI readable, focusable, and visually consistent.
 2. Preserve the stock JRPG controller as turn, target, damage, result, inventory, and save authority.
 3. Add one meaningful combat decision at a time and playtest it before adding another.
-4. Improve hit, damage, break, result, and companion feedback without making rhythm mandatory.
+4. Improve hit, damage, break, result, and companion feedback.
 5. Keep one enemy/encounter until its complete decision loop is fun.
 6. Add tests to the result matrix when a new terminal path is introduced.
 
@@ -109,8 +159,11 @@ After the foundation gate passes, expansion is limited to:
 - Procedural roguelike/run authority
 - Broad enemy roster or boss pipeline
 - Open-world/environment expansion
-- Wardrobe platform, crafting, achievements, or multiplayer
-- Rhythm as required battle authority
+- Crafting, achievements, or multiplayer
+- Wardrobe **breadth** — the 38 remaining gacha outfits, dye state, evolution stages, photo poses,
+  lookbook/share-card output. The pillar is core; its catalog is not this slice.
+- Rhythm **breadth** — a song library, difficulty tiers, or rhythm as the sole input path. The
+  pillar is core; JRPG command input remains the authority it rides on.
 - Broad settings, inventory, quest, or party UI suites
 - Front-end map replacement before menu behavior passes
 
@@ -126,3 +179,7 @@ After the foundation gate passes, expansion is limited to:
 ## Stop rule
 
 Combat expansion stops whenever a new mechanic fails to make the existing encounter more readable or more enjoyable. Fix, simplify, or remove it before adding scope.
+
+**Convergence corollary (2026-08-20):** if a pillar's work would create a *second* implementation
+of something that already exists, stop. Converge onto the named owner instead. Building it twice
+is what put the project here.

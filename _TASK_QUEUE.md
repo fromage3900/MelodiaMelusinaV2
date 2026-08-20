@@ -2,40 +2,87 @@
 
 **Purpose:** Single source of truth for what's being worked on, by whom, and what's next.
 
-## Queue — 2026-08-13 ~13:30 ET (post repo lock-in)
 
-**Read first:** [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md) ·
-next phase [`Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
+## Queue — 2026-08-20 (paradigm shift: convergence)
+
+**Read first:** [`../PROJECT.md`](../PROJECT.md) (authority) ·
+[`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) (who owns what) ·
+[`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) (the seams).
 
 **Never trust a PID written here or anywhere else** — run `Get-Process UnrealEditor`.
-`origin` = MelodiaMelusinaV2. Branch `feature/repo-lockin-20260813` has 7 unpushed commits.
+`origin` = MelodiaMelusinaV2.
 
-| Task | Phase | Pri | Status | Agent | Notes |
-|---|---|---|---|---|---|
-| Credits completion (all sources documented) | Sync | P1 | **Done 2026-08-13** | build | `Docs/CREDITS.md` + `Docs/SOURCES_MATRIX.md` + README block + `Tools/credits_gate.py` (PASS 66 dirs). Committed on `feature/repo-lockin-20260813` |
-| AWS S3 Glacier Deep Archive Backup | Sync | P0 | **Blocked — needs `aws login`** | claude | **2026-08-20:** manifest + runbook ready at [Docs/LFS_COLD_ARCHIVE.md](Docs/LFS_COLD_ARCHIVE.md) with SHA-256 per target. Set A (portfolio stages v16/v17, 3.49 GB) → Glacier IR; Set B (pre-integration backup, 156 MB) → Deep Archive, **tarred into one object** (128 KB min billable per object). Untrack step gated on a verified round-trip download. Blocked only on the session: dead `[default]` static keys that made `aws login` refuse outright were removed (backup `~/.aws/credentials.bak-20260820`), so the command now runs — it needs an auth code typed into a live terminal. |
-| Land the `.gitignore` union (repo-lockin carve-outs + Claireon) | Sync | P0 | **Available — needs owner** | sonnet | **2026-08-20:** the 2,243 assets adopted in `309a575d` were force-added; `.gitignore` still excludes them, so future `git add` will not pick up new assets in those trees. Union = repo-lockin's version, **minus** its `.agents/` rule (would shadow the committed plan docs), **plus** main's root scratch-script block and the Claireon `Plugins/Claireon/` rule. Its version also drops the `Tools/*` blanket ignore (removing the `-f` requirement) and carries `.venv-guardrails/`. Never-touch file — needs owner sign-off. |
-| AWS S3 Art-Drop Mechanism | Sync | P1 | **Available** | — | Create S3 bucket for the 4.6GB bulk environment art to replace "ask the owner" onboarding |
-| Setup S3-backed Shared UE DDC | Sync | P1 | **Available** | — | Configure `DefaultEngine.ini` to use S3 shared DDC so collaborators don't face multi-hour shader compiles |
-| ~~Push `feature/repo-lockin-20260813`, open PR~~ | Sync | P0 | **DONE 2026-08-20 — merged, not pushed** | claude | Squash-merged to local `main` in two parts: `309a575d` (2,243-file asset half, staged from on-disk state) and `caee6389` (text/code half, 517 files). 28 conflicts, 27 resolved to main — main is the forward edge at 08-19/20 vs the branch tip at 08-13. `Config/DefaultGame.ini` merged clean (cook `/Game/Melodia/UI` + 2 feature flags). **`.gitignore` NOT merged** — see the follow-up row. Push gated on the Glacier archive: local LFS is 11.69 GB against a 10 GiB free tier. |
-| ~~Re-fetch `Melodia_Portfolio_Stage_v18_SIR_VISIBLE.blend`~~ | Sync | P0 | **DONE 2026-08-20 — false alarm, no re-fetch needed** | claude | Both copies verified byte-perfect against the pointer oid `e8f3aebd…09264`: the working-tree file (1,792,267,474 bytes) **and** the object already in `.git/lfs/objects/e8/f3/`. The `.git/lfs/bad/` entry was a stale duplicate, not the live object. Removed — reclaimed **1.7 GB** local disk (`bad/` 1.7 GB → 3.1 MB). Three genuinely-orphaned small objects remain in `bad/` with no good copy; they are unreferenced. |
-| `save_load` gate | VS | P0 | **Available** | — | Canonical `BP_JRPGSaveGame` slot across a full process restart |
-| `repeat_consume` gate | VS | P0 | **Available** | — | Flag + reward restore without duplication; `melodia:stat:` idempotent per IntentId |
-| `package_launch` gate | VS | P0 | **Available** | — | Development build launches and plays the route outside the editor |
-| ~~`runtime` gate~~ | VS | P0 | **DONE 2026-08-13** | owner | Real keys verified. `[PASS] runtime 2026-08-13`. **Do not reopen** |
-| Enable `GitSourceControl` provider | Sync | P1 | **Blocked** | owner | UE 5.8 ships it; not enabled. This is why 2,224 lockable files have 0 locks. Touches `.uproject` + Config |
-| DDC path is machine-specific (`Config/DefaultEngine.ini:215`) | Sync | P1 | **Blocked** | owner | Anyone without that drive gets a multi-hour first launch. Never-touch file |
-| `git lfs prune --recent` | Sync | P1 | **Blocked** | owner | ~10 GB of the 19 GB local store is orphaned. **Destructive** |
-| Get `Exports/*.blend` out of LFS | Sync | P1 | **Available** | — | **63% of all LFS content** (5.6 GB). Regenerable build artefacts, not source |
-| Shrink art-gate baseline: 120 duplicate short names | Art | P1 | **Available** | — | `Tools/art_gates.py --strict`. Makes every short-name-matching audit non-deterministic |
-| Shrink art-gate baseline: 11 WIP masters + 2 `MI_` in `Masters/` | Art | P1 | **Available** | — | Nine landscape variants, four Universal — all loadable and parentable today |
-| `Tools/melodia_asset_passport.py` missing, 3 live importers | Tooling | P1 | **Available** | — | `melodia_stage_shot.py:398`, `remount_melusina_plates.py:268`, `scan_ornament_fbx_stats.py:116` all ImportError |
-| Run `art_gates.py --live` once | Art | P1 | **Available** | — | Needs the editor. Nobody has ever measured shader instructions against the 150 cap |
-| `recovery/melodia-main-sync-20260811` — 2 commits only on the old repo | Sync | P2 | **Available** | — | Cherry-pick onto V2 or abandon. Do not push as-is |
-| `.gitattributes` LFS gaps: `.bmp`, `.pyd`, `.lib` | Sync | P2 | **Blocked** | owner | Never-touch file. 3 `.bmp` already committed raw (~200 KB) |
-| Nested `.git_disabled` pack committed | Sync | P2 | **Available** | — | See `Docs/Reports/LFS_HEALTH_2026-08-13.md` |
-| Decide `l_melodia_dreamstate..umap` (double-dot typo) | Sync | P2 | **Blocked** | owner | Rename or delete; not touching without assent |
-| **Perforce decision** | Next | P1 | **Blocked** | owner | `Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`. **Not before the three gates close** |
+> **Ledger reconciliation 2026-08-20.** The four shipping gates (`runtime`, `save_load`,
+> `repeat_consume`, `package_launch`) **all have PASS rows** in `Saved/gate_ledger.json` — two
+> owner-verified. This queue previously listed three of them as Available; that was six days
+> stale. Verify with `python Tools/echo_run.py status`, not with prose.
+>
+> **What is actually left:** the orchestra convergence, and `static_gates` (FAIL 2026-08-14).
+
+---
+
+### P0 — The game
+
+| Task | Pri | Status | Agent | Notes |
+|---|---|---|---|---|
+| Wire `OnPatternCompleted` → one 7-verb narrative notification | P0 | **Available** | — | **Highest-leverage single edge in the project.** `Piano/PCGHeroMusic.cpp:620` broadcasts; the only consumer is water (`MelodiaPCGWaterGameplayBridgeComponent.cpp:48`). One edge into `UMelodiaNarrativeSubsystem` closes `music_world_key` and turns three built-but-disconnected systems into a loop. Preserve the presentation-only boundary — music opens doors, it never deals damage. |
+| Merge `MelodiaJRPGBattleOverlaySubsystem` into `MelodiaUIBridgeSubsystem` | P0 | **Available** | — | Two GameInstance subsystems independently create battle widgets (`:64`/`:83` vs `:124`/`:348`/`:365`). This is the concrete `hud_single_writer` violation and is fixable regardless of the stock-UI question. |
+| Answer: does stock `BP_BattleUI` still need to render? | P0 | **Available** | — | Needs ONE editor session, one writer: `melodia_ui_get_battle_hud` + `melodia_ui_validate_widget`. Blocks the rest of the UI pillar. Record the answer in the contract. |
+| Establish whether the live pawn has a populated `MelodiaWardrobeComponent` | P0 | **Available** | — | **Nothing outside `Plugins/MelodiaWardrobe/` calls `UMelodiaWardrobeSubsystem`.** The pillar is complete and possibly unconnected. `MELUSINA_V2_REBUILD...` records pawn-mesh promotion and default garment map as OPEN. |
+| Prove the Glide/Dash/Swim capability path end-to-end | P0 | **Available** | — | `wardrobe_gameplay_hook`. The Infinity Nikki pattern is already wired (`MelodiaTraversalCapabilityProvider.h:32-38`). The header warns that a capability without a provider mapping AND a caller is a name with no behaviour. |
+| `rhythm_grade_to_result` — grade changes a JRPG result | P0 | **Available** | — | The seam that defines the game. Rhythm is owner-locked WORKED; the grade→damage edge is unproven. |
+| Fix `WBP_MelodiaRhythmHighway` lane legend → Q/W/O/P | P0 | **Available** | — | Still shows retired D/F/J/K. Live keys are Q/W/O/P via `BP_BattleUI::OnKeyDown`. Small, visible, unambiguous. |
+| `static_gates` — clear the two baseline drifts | P0 | **Available** | — | FAIL 2026-08-14. `M_Master_Simple_Universal` 25→26 nodes, `M_Master_Toon_Landscape_HeightBlend` 290→304 nodes. Other four sub-gates passed. Either re-baseline deliberately or revert the drift. |
+
+### P1 — Convergence hygiene
+
+| Task | Pri | Status | Agent | Notes |
+|---|---|---|---|---|
+| Mark DEAD in-header: `MelodiaRhythmExecutionComponent`, `MelodiaBattleInputComponent` remap, `MelodiaOutfitComponent` | P1 | **Available** | — | Marking only. Deletion is Red-tier and needs owner sign-off. |
+| Decide `MelodiaNPRClothingComponent`: merge or dead | P1 | **Blocked — owner** | — | A third outfit-state holder with its own `Get/SetCurrentOutfit`. No external callers found. |
+| Establish caller status: `MelodiaBattleResultsWidget`, `MelodiaExplorationHUDWidget` | P1 | **Available** | — | Do not assume dead — two of three assumed-dead MelodiaCore rhythm classes turned out load-bearing. |
+| Foundation gates still genuinely open | P1 | **Available** | — | Battle-widget identification, input parity, result matrix, Quill-unavailable load, safe-location routing, interpreter invalidation, mid-battle save lockout, Main Menu wiring, `Morning_RoomShell` validator. See `_VERTICAL_SLICE_SCOPE.md`. |
+| Wardrobe importer scripts move behind the C++ API | P1 | **Available** | — | `Content/Python/wire_melusina_wardrobe_*.py` and `import_melusina_wardrobe_contract.py` are authoring tooling, not a runtime authority. |
+
+### P2 — Infrastructure (does not block the game)
+
+> These were P0 in the previous queue. They are real work with real value, and **none of them is
+> the game.** They do not gate a single orchestra or shipping gate.
+
+| Task | Pri | Status | Agent | Notes |
+|---|---|---|---|---|
+| AWS S3 Glacier Deep Archive Backup | P2 | **Blocked — needs `aws login`** | claude | Manifest + runbook ready at [Docs/LFS_COLD_ARCHIVE.md](Docs/LFS_COLD_ARCHIVE.md) with SHA-256 per target. Set A (portfolio stages v16/v17, 3.49 GB) → Glacier IR; Set B (pre-integration backup, 156 MB) → Deep Archive, tarred into one object. Needs an auth code typed into a live terminal. |
+| Land the `.gitignore` union | P2 | **Blocked — owner** | sonnet | The 2,243 assets adopted in `309a575d` were force-added; `.gitignore` still excludes them. Union = repo-lockin's version, minus its `.agents/` rule, plus main's root scratch-script block and `Plugins/Claireon/`. **Never-touch file.** |
+| Push `main` (28 unpushed) | P2 | **Blocked** | — | Gated on the Glacier archive: local LFS is 11.69 GB against a 10 GiB free tier. |
+| AWS S3 Art-Drop Mechanism | P2 | **Available** | — | S3 bucket for the 4.6 GB bulk environment art to replace "ask the owner" onboarding. |
+| Setup S3-backed Shared UE DDC | P2 | **Available** | — | So collaborators do not face multi-hour shader compiles. |
+| Enable `GitSourceControl` provider | P2 | **Blocked — owner** | — | UE 5.8 ships it; not enabled. This is why 2,224 lockable files have 0 locks. Touches `.uproject` + Config. |
+| DDC path is machine-specific (`Config/DefaultEngine.ini:215`) | P2 | **Blocked — owner** | — | Never-touch file. |
+| `git lfs prune --recent` | P2 | **Blocked — owner** | — | ~10 GB of the 19 GB local store is orphaned. **Destructive.** |
+| Get `Exports/*.blend` out of LFS | P2 | **Available** | — | **63% of all LFS content** (5.6 GB). Regenerable build artefacts, not source. |
+| Shrink art-gate baseline: 120 duplicate short names | P2 | **Available** | — | `Tools/art_gates.py --strict`. Makes every short-name-matching audit non-deterministic. |
+| Shrink art-gate baseline: 11 WIP masters + 2 `MI_` in `Masters/` | P2 | **Available** | — | Nine landscape variants, four Universal — all loadable and parentable today. |
+| `Tools/melodia_asset_passport.py` missing, 3 live importers | P2 | **Available** | — | `melodia_stage_shot.py:398`, `remount_melusina_plates.py:268`, `scan_ornament_fbx_stats.py:116` all ImportError. |
+| Run `art_gates.py --live` once | P2 | **Available** | — | Needs the editor. Shader instructions have never been measured against the 150 cap. |
+| `recovery/melodia-main-sync-20260811` — 2 commits only on the old repo | P3 | **Available** | — | Cherry-pick onto V2 or abandon. Do not push as-is. |
+| `.gitattributes` LFS gaps: `.bmp`, `.pyd`, `.lib` | P3 | **Blocked — owner** | — | Never-touch file. 3 `.bmp` already committed raw (~200 KB). |
+| Nested `.git_disabled` pack committed | P3 | **Available** | — | See `Docs/Reports/LFS_HEALTH_2026-08-13.md`. |
+| Decide `l_melodia_dreamstate..umap` (double-dot typo) | P3 | **Blocked — owner** | — | Rename or delete; not touching without assent. |
+| **Perforce decision** | P3 | **Blocked — owner** | — | `Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`. The three gates it waited on are now closed, so this is purely an owner call. |
+
+### Done — do not reopen
+
+| Task | Closed | Evidence |
+|---|---|---|
+| `runtime` gate | 2026-08-13 | Ledger PASS, owner-verified real keys (`owner-realkey-20260813`) |
+| `save_load` gate | 2026-08-14 | Ledger PASS, owner-verified (`owner-verified-20260814`) |
+| `repeat_consume` gate | 2026-08-14 | Ledger PASS (`session-894e8f57`) |
+| `package_launch` gate | 2026-08-14 | Ledger PASS — packaged Gauntlet, 2782-package IoStore mounted outside the editor |
+| Rhythm highway WORKED | 2026-08-12 | `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md` |
+| QuillScript WORKED | 2026-08-12 | `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md` |
+| Credits completion | 2026-08-13 | `Docs/CREDITS.md` + `Docs/SOURCES_MATRIX.md` + `Tools/credits_gate.py` (PASS 66 dirs) |
+| Repo lock-in merge | 2026-08-20 | `309a575d` (2,243-file asset half) + `caee6389` (text/code half) squash-merged to local `main` |
+| Stage v18 re-fetch | 2026-08-20 | False alarm; both copies byte-perfect against oid `e8f3aebd…09264`. Reclaimed 1.7 GB from `.git/lfs/bad/` |
 
 ---
 

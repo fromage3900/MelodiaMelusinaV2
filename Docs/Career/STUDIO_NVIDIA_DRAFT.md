@@ -1,5 +1,10 @@
 # NVIDIA Toronto — Application Strategy
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 ## The Toronto office is a research lab, not a product office
 
 This distinction governs everything below. The Toronto office is the

@@ -1,5 +1,10 @@
 # Compulsion Games — Application Draft (watchlist, no open posting confirmed right now)
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 Apply via: https://compulsiongames.com/ (careers) and https://www.artstation.com/jobs/c/compulsiongames — the specific "3D Environment Artist (Intern)" posting found in this research was **removed October 23, 2025**, but the studio also has a standing (non-intern) 3D Environment Artist track. Check their careers page directly for current openings before drafting further — this doc is prepared so you can move fast the moment a matching posting reopens.
 
 ## Company snapshot (verified 2026-07-26)

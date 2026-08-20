@@ -38,7 +38,10 @@ if str(ROOT) not in sys.path:
 
 SYSTEM = (
     "You are calling the Melodia Hermes MCP harness. Reply with ONLY a JSON object: "
-    '{"tool": "<registered_tool_name>", "args": {}}. No markdown.'
+    '{"tool": "<registered_tool_name>", "args": {<parameters>}}. No markdown.\n'
+    "Every parameter listed as REQUIRED in the tool signature must appear in args. "
+    "Square brackets in a signature mean optional. Do not invent tools or parameters "
+    "that are not in the catalog."
 )
 
 
@@ -134,12 +137,53 @@ def _parse_call(text: str) -> dict[str, Any] | None:
     return data
 
 
+def _format_schema(schema: dict[str, Any] | None) -> str:
+    """Render a tool inputSchema as a compact, promptable signature.
+
+    ROOT CAUSE FIX (2026-08-20). This catalog previously emitted only
+    `- name: description[:140]`, discarding `inputSchema` entirely -- then the
+    harness validated the model's args against that same schema. The model was
+    scored on a contract it was never shown.
+
+    That is the whole of the 2026-08-19 result: 16 of 17 tool calls failed with an
+    identical `'blueprint_name' is a required property`, producing a 60.35% score
+    and a 0% pass rate that was read as a model-capability finding. It was a
+    harness defect. Per _AGENT_WORKING_AGREEMENT rule 2, the fix is to show the
+    schema -- not to wrap the call in a retry or auto-inject the missing key.
+    """
+    if not isinstance(schema, dict):
+        return "()"
+    props = schema.get("properties") or {}
+    required = list(schema.get("required") or [])
+    if not props:
+        return "()"
+    parts = []
+    for name, spec in props.items():
+        spec = spec if isinstance(spec, dict) else {}
+        kind = spec.get("type", "any")
+        if spec.get("enum"):
+            kind = "|".join(str(v) for v in spec["enum"])
+        parts.append(f"{name}:{kind}" if name in required else f"[{name}:{kind}]")
+    sig = ", ".join(parts)
+    if required:
+        sig += f"   REQUIRED: {', '.join(required)}"
+    return f"({sig})"
+
+
 def _tool_catalog() -> str:
+    """Tool list given to the model.
+
+    Emits the full call signature, marking required parameters explicitly.
+    Square brackets denote optional parameters.
+    """
     import deploy.melodia_mcp_server as server
 
     lines = []
     for tool in getattr(server, "TOOLS", []):
-        lines.append(f"- {tool.get('name')}: {tool.get('description', '')[:140]}")
+        name = tool.get("name")
+        desc = (tool.get("description", "") or "").strip()
+        sig = _format_schema(tool.get("inputSchema"))
+        lines.append(f"- {name}{sig}\n    {desc}")
     return "\n".join(lines)
 
 

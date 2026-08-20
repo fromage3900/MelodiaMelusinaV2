@@ -1,5 +1,10 @@
 # Epic MegaGrants — Application Draft
 
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
 Apply at: https://www.unrealengine.com/en-US/megagrants (Epic reviews on a rolling basis, typically 4–8 weeks to first response — apply now, keep building in parallel, don't wait on it).
 
 ---

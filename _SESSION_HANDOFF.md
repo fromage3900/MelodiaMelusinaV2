@@ -6,7 +6,40 @@
 
 **Read this first. Every session. No exceptions.**
 
-♫ Last updated: 2026-08-20 00:30 ET · main @ `43dd1437` · ♪ T3D RESTORED
+♫ Last updated: **2026-08-20 16:45 ET** · ♪ **THE PARADIGM SHIFT**
+
+---
+
+## ♪ Current session — 2026-08-20 — read the closeout first
+
+**Full record:** [`Docs/Handoffs/SESSION_CLOSEOUT_2026-08-20.md`](Docs/Handoffs/SESSION_CLOSEOUT_2026-08-20.md)
+
+**The project is a game.** `PROJECT.md` is now the authority statement: QuillScript and the
+TurnBased JRPG template are absolute; rhythm rides on JRPG command input; wardrobe is a core
+pillar; music acts as a key in the world. The AI tooling is a tool and may not set direction.
+
+**The shipping gates are closed.** `runtime`, `save_load`, `repeat_consume`, `package_launch`
+all have PASS rows. Several docs said otherwise and were six days stale — reconciled.
+`static_gates` is still FAIL on two material drifts.
+
+**What landed:**
+- Governance rewritten across `PROJECT.md`, `README.md`, `_VERTICAL_SLICE_SCOPE.md`, `AGENTS.md`, `DOC_INDEX.md`
+- [`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) — one OWNER per pillar, evidence-cited
+- [`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) — 7 seams; one violated, one unwired
+- Six `orchestra` gates added to the Echo pipeline — all OPEN
+- **Music-as-key adapter written** (`MelodiaPCGNarrativeChallengeBridgeComponent`) — **never compiled**
+- **Wardrobe Resonant Form authored** (`form.first_resonance_echo` → Glide) — the money-pouch accessory
+- Five local-model production lanes; the 60.35% benchmark was traced to a harness bug and fixed
+
+**⚠ Do not start work without reading these two:**
+1. [`Docs/MELUSINA_ANIMATION_PIPELINE_REVIEW_2026-08-20.md`](Docs/MELUSINA_ANIMATION_PIPELINE_REVIEW_2026-08-20.md) — `Speed`, `bIsGliding` and `bJumpWindup` are **never assigned** in `ABP_Melusina_Current`, so `Locomotion` and `Glide` are unreachable states. Melusina cannot walk from the state machine.
+2. `BP_Melusina` has **no** `MelodiaWardrobeComponent` and **no** `MelodiaTraversalComponent`, and still uses `SK_Melusina` rather than the V2 body.
+
+**Next session, in order:** close the editor and build → fix the `Speed` binding → add the two
+components to `BP_Melusina` → PIE the full chain → only then record a gate.
+
+**Standing rule learned this session:** MelodiaCore being quarantined does **not** mean everything
+inside it is dead. Grep for callers before any DEAD verdict, and exclude `Intermediate/`.
 
 ---
 
