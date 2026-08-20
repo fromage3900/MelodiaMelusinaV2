@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import urllib.error
 import urllib.request
@@ -61,13 +62,25 @@ def _resolve_muse_ollama() -> str | None:
     return None
 
 
+def _ollama_options() -> dict[str, Any]:
+    """Build Ollama options; set OLLAMA_NUM_GPU=0 to force CPU when VRAM is contested."""
+    opts: dict[str, Any] = {"temperature": 0, "num_predict": 256}
+    raw = (os.environ.get("OLLAMA_NUM_GPU") or "").strip()
+    if raw != "":
+        try:
+            opts["num_gpu"] = int(raw)
+        except ValueError:
+            pass
+    return opts
+
+
 def _chat_ollama(model: str, user: str, timeout: float, system: str | None = None) -> tuple[str, str | None, int, int]:
     """Return (text, error, prompt_tokens, completion_tokens)."""
     payload = json.dumps(
         {
             "model": model,
             "stream": False,
-            "options": {"temperature": 0, "num_predict": 256},
+            "options": _ollama_options(),
             "messages": [
                 {"role": "system", "content": system or SYSTEM},
                 {"role": "user", "content": user},
