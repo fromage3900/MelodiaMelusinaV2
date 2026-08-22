@@ -1,3 +1,16 @@
+> ## Start here — 2026-08-20
+>
+> **[`Docs/Handoffs/P0_INTEGRATION_HANDOFF_2026-08-20.md`](Docs/Handoffs/P0_INTEGRATION_HANDOFF_2026-08-20.md)**
+> — the three remaining P0 fronts (mana-drain economy, WBP/HUD, animation composition), plus the
+> pawn consolidation and a numbered "start here next session".
+>
+> Authority: [`../PROJECT.md`](../PROJECT.md) ·
+> [`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) ·
+> [`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md)
+>
+> **One runtime pawn:** `BP_MelusinaJRPGCharacter`. The two old `BP_Melusina` units are
+> metadata-tagged DEPRECATED and feature-empty.
+
 # ♪ Session Handoff — BS_GodFile
 
 ```

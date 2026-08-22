@@ -16,6 +16,8 @@ Everything below this section is reference. These four are authority.
 | 3 | [`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) | **How the pillars meet the authority layers.** One owner and one direction per seam, each with the gate that proves it. Unproven seams are labelled UNPROVEN. |
 | 4 | [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) | **How work gets done here.** Do the job, ship it, stop. Never compensate. Kill means delete. Owner statements are ground truth. |
 
+| 5 | [`Docs/Handoffs/P0_INTEGRATION_HANDOFF_2026-08-20.md`](Docs/Handoffs/P0_INTEGRATION_HANDOFF_2026-08-20.md) | **What to do next.** The three remaining P0 fronts and the ordered start-here list. |
+
 **The current job is convergence, not construction.** A new parallel implementation of something
 that already exists is a defect, not progress.
 
