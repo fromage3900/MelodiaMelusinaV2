@@ -58,6 +58,7 @@ The deterministic constellation builder is an offline semantic binding read mode
 ```powershell
 python -B Content/Python/resonant_world_asset_constellation.py --seed 3900 --movement petal_cantata --chunk-x 0 --chunk-y 0 --archetype SakuraDreamer --output Saved/Audit/resonant_world_constellation_petal_3900.json
 python -B Content/Python/resonant_world_asset_constellation.py --seed 3900 --all-movements --output Saved/Audit/resonant_world_constellation_portfolio_3900.json
+python -B Content/Python/resonant_world_score.py --seed 3900 --movement petal_cantata --chunk-x 0 --chunk-y 0 --archetype SakuraDreamer
 python -B Tools/evidence_envelope.py validate Saved/Audit/<envelope>.json
 python -m pytest -q Content/Python/test_resonant_world_asset_constellation.py
 python -B Tools/test_melodia_mcp.py
@@ -75,7 +76,16 @@ For the complete six-movement portfolio:
 '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"melodia_resonant_world_get_constellation","arguments":{"seed":3900,"movement_id":"all"}}}' | python -B deploy/melodia_mcp_server.py
 ```
 
-These calls should establish stable IDs, role bindings, coverage, quantum-candidate selection, and materialization state. They do not close `music_world_key`, `wardrobe_gameplay_hook`, or any PIE gate.
+The score read model is available through the same offline MCP boundary:
+
+```powershell
+'{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"melodia_resonant_world_get_score","arguments":{"seed":3900,"movement_id":"petal_cantata","chunk_x":0,"chunk_y":0,"archetype_id":"SakuraDreamer"}}}' | python -B deploy/melodia_mcp_server.py
+```
+
+These calls establish stable IDs, role bindings, coverage, quantum-candidate
+selection, call/response score events, seam endpoints, and materialization
+state. They do not close `music_world_key`, `wardrobe_gameplay_hook`, or any
+PIE gate.
 
 ### Editor-backed static and runtime gates
 
@@ -153,6 +163,7 @@ Treat one movement/asset constellation as a single chain. A later stage cannot p
 | Stage | Required proof | Gate disposition |
 |---|---|---|
 | Author / resolve | `constellation.ok=true`; stable seed + movement + chunk identity; exact movement/motif; required role coverage; no quarantined binding; real asset refs classified; exactly two quantum candidates; persisted backend/baseline/trace | Candidate for `ch2_environment.env_asset_author`; not runtime proof |
+| Compose / voice | `score.ok=true`; 16-beat call/response; four beat stages; shared seam endpoints; event-level music/material/ornament/VFX/wardrobe refs; replay key; quantum selector boundary | Evidence attached to `ch2_environment.env_asset_author`; not runtime proof |
 | Apply / compile | One Editor writer; healthy Monolith; additive proof map only; validated PCG plan applied; `editor_apply.performed=true`; hero graphs, data layers, and HLOD rules read back; 0 compile errors | Candidate for `ch2_environment.env_asset_inject`; HOLD if apply remains false |
 | PIE / observe | Proof map loads; expected 9 chunks / 5 hero inputs and selected movement appear; no seam/cross-chunk failure; captured movement and samples; beat stages `Invocation → Unfolding → Threshold → Release`; UI is event-driven; wardrobe form routes through canonical traversal; no duplicate reward/save | Candidate for `music_world_key` and `wardrobe_gameplay_hook`; requires fresh runtime envelope |
 | Persist / replay | Fresh slot, owner/PID/map/run ID, save boundary, process restart, Continue/re-entry, same constellation identity and idempotent result; no historical envelope substitution | Candidate for `wardrobe_equip_roundtrip`, `save_load`, and `repeat_consume` only when the run proves those behaviors |

@@ -1495,6 +1495,11 @@ def _resonant_world_imports():
         build_constellation_portfolio,
         validate_asset_constellation,
     )
+    from resonant_world_score import (
+        build_resonant_score,
+        build_score_portfolio,
+        validate_resonant_score,
+    )
     from resonant_world_magic_passage import (
         build_magic_passage,
         build_magic_passage_portfolio,
@@ -1509,6 +1514,9 @@ def _resonant_world_imports():
         "build_asset_constellation": build_asset_constellation,
         "build_constellation_portfolio": build_constellation_portfolio,
         "validate_asset_constellation": validate_asset_constellation,
+        "build_resonant_score": build_resonant_score,
+        "build_score_portfolio": build_score_portfolio,
+        "validate_resonant_score": validate_resonant_score,
         "build_magic_passage": build_magic_passage,
         "build_magic_passage_portfolio": build_magic_passage_portfolio,
         "validate_magic_passage": validate_magic_passage,
@@ -1674,6 +1682,72 @@ def melodia_resonant_world_get_constellation(
         }
 
 
+def melodia_resonant_world_get_score(
+    seed: int = 3900,
+    movement_id: str = "cadence_cathedral",
+    chunk_x: int = 0,
+    chunk_y: int = 0,
+    archetype_id: str | None = None,
+) -> dict[str, Any]:
+    """Compose a deterministic call/response score and route for one chunk."""
+    modules = _resonant_world_imports()
+    requested = str(movement_id or "cadence_cathedral")
+    try:
+        if requested in ("", "all", "*"):
+            portfolio = modules["build_score_portfolio"](int(seed), PROJECT_ROOT)
+            return {
+                "schema": "melodia.resonant_world.score.v1",
+                "source": "in_memory_score_composer",
+                "ok": bool(portfolio.get("ok")),
+                "seed": int(seed),
+                "movement_id": requested,
+                "chunk": [int(chunk_x), int(chunk_y)],
+                "score_count": int(portfolio.get("score_count", 0)),
+                "scores": portfolio.get("scores", []),
+                "validation_errors": portfolio.get("validation_errors", {}),
+                "materialization": {"performed": False, "writes_project_state": False},
+            }
+
+        score = modules["build_resonant_score"](
+            int(seed),
+            movement_id=requested,
+            chunk_x=int(chunk_x),
+            chunk_y=int(chunk_y),
+            archetype_id=archetype_id,
+            project_root=PROJECT_ROOT,
+        )
+        errors = modules["validate_resonant_score"](score)
+        return {
+            "schema": "melodia.resonant_world.score.v1",
+            "source": "in_memory_score_composer",
+            "ok": not errors,
+            "seed": int(seed),
+            "movement_id": requested,
+            "chunk": [int(chunk_x), int(chunk_y)],
+            "score_id": score.get("score_id"),
+            "motif": score.get("motif", {}),
+            "route": score.get("route", {}),
+            "stages": score.get("stages", []),
+            "events": score.get("events", []),
+            "world": score.get("world", {}),
+            "asset_constellation": score.get("asset_constellation", {}),
+            "quantum_setup": score.get("quantum_setup", {}),
+            "persistence": score.get("persistence", {}),
+            "runtime_boundary": score.get("runtime_boundary", {}),
+            "validation_errors": errors,
+            "materialization": {"performed": False, "writes_project_state": False},
+        }
+    except Exception as exc:  # pragma: no cover - environment-specific inventory failures
+        return {
+            "schema": "melodia.resonant_world.score.v1",
+            "source": "in_memory_score_composer",
+            "ok": False,
+            "seed": int(seed),
+            "movement_id": requested,
+            "chunk": [int(chunk_x), int(chunk_y)],
+            "validation_errors": [str(exc)],
+            "materialization": {"performed": False, "writes_project_state": False},
+        }
 def melodia_resonant_world_compile_passage(
     seed: int = 3900,
     movement_id: str = "petal_cantata",
@@ -2177,6 +2251,21 @@ TOOLS: list[dict[str, Any]] = [
         },
     },
     {
+        "name": "melodia_resonant_world_get_score",
+        "description": "Compose a deterministic musical call/response route, beat stages, and existing-asset voicing for one chunk without applying Unreal state.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "seed": {"type": "integer", "default": 3900, "description": "Deterministic world seed"},
+                "movement_id": {"type": "string", "default": "cadence_cathedral", "description": "Movement id, or all for the six-score portfolio"},
+                "chunk_x": {"type": "integer", "default": 0, "description": "Chunk coordinate X"},
+                "chunk_y": {"type": "integer", "default": 0, "description": "Chunk coordinate Y"},
+                "archetype_id": {"type": "string", "description": "Optional wardrobe/population archetype"},
+            },
+            "required": [],
+        },
+    },
+    {
         "name": "melodia_resonant_world_compile_passage",
         "description": "Compile an in-memory magical Resonant World passage or all six authored movements without writing project state.",
         "inputSchema": {
@@ -2374,6 +2463,15 @@ def main() -> None:
                 result = melodia_resonant_world_get_constellation(
                     int(args.get("seed", 3900)),
                     str(args.get("movement_id", "petal_cantata")),
+                    int(args.get("chunk_x", 0)),
+                    int(args.get("chunk_y", 0)),
+                    args.get("archetype_id"),
+                ) if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_resonant_world_get_score":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_resonant_world_get_score(
+                    int(args.get("seed", 3900)),
+                    str(args.get("movement_id", "cadence_cathedral")),
                     int(args.get("chunk_x", 0)),
                     int(args.get("chunk_y", 0)),
                     args.get("archetype_id"),

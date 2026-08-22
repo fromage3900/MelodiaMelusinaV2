@@ -4,6 +4,10 @@ This pass turns the existing repository inventory into a deterministic, semantic
 read model for a musical-voxel world chunk. It is the layer between the broad
 asset atlas and any future Unreal PCG materialization.
 
+The follow-on phrase/route layer is documented in
+`Docs/RESONANT_WORLD_SCORE_COMPOSER_2026-08-22.md` and exposed as
+`melodia_resonant_world_get_score`.
+
 ## What it binds
 
 For a `(seed, movement, chunk_x, chunk_y, archetype)` tuple,

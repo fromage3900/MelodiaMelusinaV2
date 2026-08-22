@@ -758,6 +758,27 @@
         "fields": ["source", "ok", "seed", "movement_id", "chunk", "constellation_id", "world", "inventory", "bindings", "coverage", "magical_moment", "quantum_setup", "verification", "runtime_boundary", "validation_errors", "materialization"]
       }
     },
+    "melodia_resonant_world_get_score": {
+      "category": "resonant_world",
+      "description": "Compose a deterministic musical call/response route, beat stages, and existing-asset voicing without applying Unreal state.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer", "default": 3900},
+          "movement_id": {"type": "string", "default": "cadence_cathedral"},
+          "chunk_x": {"type": "integer", "default": 0},
+          "chunk_y": {"type": "integer", "default": 0},
+          "archetype_id": {"type": "string"}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.score.v1",
+        "fields": ["source", "ok", "seed", "movement_id", "chunk", "score_id", "motif", "route", "stages", "events", "world", "asset_constellation", "quantum_setup", "persistence", "runtime_boundary", "validation_errors", "materialization"]
+      }
+    },
     "melodia_resonant_world_compile_passage": {
       "category": "resonant_world",
       "description": "Compile an in-memory magical Resonant World passage or six-movement portfolio without writing project state.",

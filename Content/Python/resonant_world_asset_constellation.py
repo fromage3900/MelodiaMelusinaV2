@@ -272,6 +272,25 @@ def _inventory(project_root_name: str) -> tuple[list[dict[str, Any]], dict[str, 
     return rows, summary, manifests, manifest_errors
 
 
+@lru_cache(maxsize=256)
+def _cached_path_candidates(
+    project_root_name: str,
+    movement_tokens: tuple[str, ...],
+    role: str,
+) -> tuple[dict[str, Any], ...]:
+    """Cache the expensive semantic role scan while preserving stable output."""
+    root = Path(project_root_name).resolve()
+    rows, _, _, _ = _inventory(str(root))
+    return tuple(_path_candidates(rows, root, movement_tokens, role))
+
+
+@lru_cache(maxsize=8)
+def _cached_terrain_fallback(project_root_name: str) -> tuple[dict[str, Any], ...]:
+    root = Path(project_root_name).resolve()
+    rows, _, _, _ = _inventory(str(root))
+    return tuple(_terrain_fallback(rows, root))
+
+
 def _role_hints(role: str) -> tuple[str, ...]:
     return {
         "terrain": ("terrain", "landscape", "l_wp_", "worldpartition", "renderterrains"),
@@ -488,7 +507,11 @@ def _population_refs(project_root: Path, manifests: Mapping[str, Any], movement:
 
 
 def _quantum_refs(project_root: Path, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    refs = _path_candidates(rows, project_root, ("quantum", "qsharp", "movement", "ranker"), "quantum")
+    refs = list(_cached_path_candidates(
+        str(project_root.resolve()),
+        ("quantum", "qsharp", "movement", "ranker"),
+        "quantum",
+    ))
     # Keep the two source files that define the current movement selector even
     # if a future scan changes the generic path scoring.
     return refs
@@ -581,9 +604,9 @@ def build_asset_constellation(
         elif role == "quantum":
             refs = _quantum_refs(root, rows)
         else:
-            refs = _path_candidates(rows, root, tokens, role)
+            refs = list(_cached_path_candidates(str(root), tokens, role))
             if role == "terrain" and not refs:
-                refs = _terrain_fallback(rows, root)
+                refs = list(_cached_terrain_fallback(str(root)))
         candidates[role] = _ordered_refs(world_seed, selected_movement_id, chunk_x, chunk_y, role, refs)
 
     selected = {
@@ -597,9 +620,9 @@ def build_asset_constellation(
         candidate_tokens = _movement_tokens(candidate_id, candidate_movement)
         candidate_counts = {}
         for role in ("terrain", "structure", "flora", "material", "music"):
-            candidate_refs = _path_candidates(rows, root, candidate_tokens, role)
+            candidate_refs = list(_cached_path_candidates(str(root), candidate_tokens, role))
             if role == "terrain" and not candidate_refs:
-                candidate_refs = _terrain_fallback(rows, root)
+                candidate_refs = list(_cached_terrain_fallback(str(root)))
             candidate_counts[role] = len(candidate_refs)
         candidate_counts["wardrobe"] = len(_manifest_wardrobe_refs(root, manifests, candidate_movement, None))
         candidate_counts["vfx"] = len(_manifest_vfx_refs(root, manifests, candidate_movement))

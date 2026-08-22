@@ -257,6 +257,26 @@ def test_resonant_world_constellation_is_offline_safe() -> None:
     assert result["materialization"]["writes_project_state"] is False
 
 
+def test_resonant_world_score_is_offline_safe() -> None:
+    """Score composition exposes a replayable phrase without runtime mutation."""
+    import deploy.melodia_mcp_server as server
+
+    result = server.melodia_resonant_world_get_score(
+        3900, "petal_cantata", 0, 0, "SakuraDreamer"
+    )
+    assert result["schema"] == "melodia.resonant_world.score.v1"
+    assert result["ok"] is True
+    assert result["score_id"]
+    assert result["motif"]["grammar_id"] == "petal_fan"
+    assert len(result["events"]) == 16
+    assert len(result["stages"]) == 4
+    assert result["events"][0]["phase"] == "call"
+    assert result["events"][8]["phase"] == "response"
+    assert len(result["quantum_setup"]["candidate_movements"]) == 2
+    assert result["runtime_boundary"]["does_not_apply_traversal"] is True
+    assert result["materialization"]["writes_project_state"] is False
+
+
 def test_animation_validate_state_machine_schema() -> None:
     """Animation state machine validation must declare correct schema."""
     import deploy.melodia_mcp_server as server
@@ -447,6 +467,7 @@ def run_all() -> int:
         test_golden_run_preflight,
         test_resonant_world_tools_are_offline_safe,
         test_resonant_world_constellation_is_offline_safe,
+        test_resonant_world_score_is_offline_safe,
         test_animation_validate_state_machine_schema,
         test_animation_validate_bindings_schema,
         test_animation_get_runtime_abp_schema,
