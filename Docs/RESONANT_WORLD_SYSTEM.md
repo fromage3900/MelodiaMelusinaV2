@@ -5,7 +5,9 @@
 **Generator:** `Content/Python/resonant_world_generator.py`  
 **Version:** `resonant_world_v1`  
 **Asset atlas:** `Content/Python/resonant_world_asset_atlas.py`  
+**Asset constellation:** `Content/Python/resonant_world_asset_constellation.py`
 **Movement composer:** `Content/Python/quantum/resonant_movement_ranker.py`
+**Score composer:** `Content/Python/resonant_world_score.py`
 **PCG adapter:** `Content/Python/resonant_world_pcg_adapter.py`
 **Phrase bridge:** `Content/Python/resonant_world_phrase_bridge.py`
 **Wardrobe bridge:** `Content/Python/resonant_world_wardrobe_bridge.py`
@@ -154,6 +156,8 @@ These rules keep procedural generation from becoming disposable noise.
 | --- | --- |
 | Seed, mode, harmonic region, chunk identity, voxel identity | Resonant World generator |
 | Movement identity and asset-family binding | Resonant World generator + asset atlas |
+| Existing-asset semantic binding per movement/chunk | `resonant_world_asset_constellation.py` |
+| Phrase, call/response, route seam, beat stages, and event voicing | `resonant_world_score.py` |
 | Resonant metadata on existing PCG volume/static specs | `resonant_world_pcg_adapter.py` |
 | Existing MIDI → stable phrase voxels | `resonant_world_phrase_bridge.py` |
 | Cosmetic/Form/Style → authored movement response preview | `resonant_world_wardrobe_bridge.py` |
@@ -184,6 +188,14 @@ axis. It also creates a scene-preview/photo anchor and explicit effect toggles,
 so a magical outfit is something the player can compose and photograph rather
 than a hidden numerical modifier. The passage remains a read-model; the
 existing owners still apply any request.
+
+The score composer is the next granularity down: it turns one movement/chunk
+into a 16-beat call/response lane with four music-clock stages. Its event-level
+voicing references the constellation's existing music, material, ornament, VFX,
+and wardrobe records. The route begins and ends on the generator's shared edge
+anchors, so neighboring chunks can stream without inventing a second seam
+system. A score ID is a replay key; the composer still does not write a save or
+apply traversal.
 
 Passage collection uses the existing `DA_MelodiaCurrencyRegistry` mirror rather
 than inventing a Resonant World economy: Petal Cantata exposes Radiant shards,
@@ -270,6 +282,7 @@ python BS_GodFile/Content/Python/resonant_world_phrase_bridge.py --midi BS_GodFi
 python BS_GodFile/Content/Python/resonant_world_wardrobe_bridge.py --seed 3900 --movement petal_cantata --archetype SakuraDreamer --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --output BS_GodFile/Saved/Audit/resonant_wardrobe_voicing_sakura_3900.json
 python BS_GodFile/Content/Python/resonant_world_magic_passage.py --seed 3900 --all-movements --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --output BS_GodFile/Saved/Audit/resonant_magic_passage_portfolio_3900.json
 python BS_GodFile/Content/Python/resonant_world_magic_passage.py --seed 3900 --movement petal_cantata --archetype SakuraDreamer --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --output BS_GodFile/Saved/Audit/resonant_magic_passage_petal_3900.json
+python BS_GodFile/Content/Python/resonant_world_score.py --seed 3900 --movement petal_cantata --chunk-x 0 --chunk-y 0 --archetype SakuraDreamer
 python BS_GodFile/Content/Python/resonant_world_pcg_adapter.py --seed 3900 --radius 1 --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --wardrobe BS_GodFile/Saved/Audit/resonant_wardrobe_voicing_sakura_3900.json --magic-passage BS_GodFile/Saved/Audit/resonant_magic_passage_petal_3900.json --output BS_GodFile/Saved/Audit/resonant_world_pcg_plan_3900.json
 python BS_GodFile/Content/Python/resonant_world_proof_handoff.py --plan BS_GodFile/Saved/Audit/resonant_world_pcg_plan_3900.json --output BS_GodFile/Saved/Audit/resonant_world_proof_handoff_3900.json
 ```
