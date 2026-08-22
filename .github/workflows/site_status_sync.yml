@@ -1,0 +1,58 @@
+name: Sync portfolio status from gate ledger
+
+# Keeps the public portfolio honest by regenerating its status blob from the
+# game repo's real gate ledger (Saved/gate_ledger.json). Runs on every game
+# push and nightly. The generator never invents progress.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Saved/gate_ledger.json'
+      - 'Tools/sync_site_status.py'
+  schedule:
+    - cron: '17 6 * * *'   # daily, off the :00 to avoid the crowd
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout game repo
+        uses: actions/checkout@v4
+        with:
+          path: game
+
+      - name: Generate status blob
+        run: python game/Tools/sync_site_status.py
+
+      - name: Checkout site repo
+        uses: actions/checkout@v4
+        with:
+          repository: fromage3900/my-site
+          path: site
+          token: ${{ secrets.SITE_SYNC_TOKEN }}
+
+      - name: Stage generated status
+        run: |
+          cp game/../my-site-clean/public/melodia/status/sync_status.json site/public/melodia/status/sync_status.json 2>/dev/null || true
+          # Fallback: regenerate into the site checkout directly if path bridge missing
+          if [ ! -f site/public/melodia/status/sync_status.json ]; then
+            python game/Tools/sync_site_status.py
+            cp my-site-clean/public/melodia/status/sync_status.json site/public/melodia/status/sync_status.json
+          fi
+
+      - name: Commit & push if changed
+        working-directory: site
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no status change"
+          else
+            git config user.name "Melodia Sync"
+            git config user.email "sync@melodia.local"
+            git commit -m "chore(site): sync status from gate ledger"
+            git push
+          fi
