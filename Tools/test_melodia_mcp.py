@@ -208,6 +208,35 @@ def test_golden_run_preflight() -> None:
     assert result["next_step"] in ("golden_run", "resolve_blockers")
 
 
+def test_resonant_world_tools_are_offline_safe() -> None:
+    """Resonant World atlas, compiler, handoff, and validation calls are read-only."""
+    import deploy.melodia_mcp_server as server
+
+    atlas = server.melodia_resonant_world_get_atlas()
+    assert atlas["schema"] == "melodia.resonant_world.atlas.v1"
+    assert atlas["ok"] is True
+    assert "petal_cantata" in atlas["movement_ids"]
+
+    passage = server.melodia_resonant_world_compile_passage(
+        3900, "petal_cantata", "SakuraDreamer"
+    )
+    assert passage["schema"] == "melodia.resonant_world.passage.v1"
+    assert passage["ok"] is True
+    assert passage["passage_count"] == 1
+    assert passage["passages"][0]["collection_affordance"]["currency_id"] == "Radiant"
+    assert passage["materialization"]["writes_project_state"] is False
+
+    handoff = server.melodia_resonant_world_get_handoff("all")
+    assert handoff["schema"] == "melodia.resonant_world.handoff.v1"
+    assert handoff["ok"] is True
+    assert handoff["proof_artifact"]["editor_apply_performed"] is False
+
+    validation = server.melodia_resonant_world_validate()
+    assert validation["schema"] == "melodia.resonant_world.validate.v1"
+    assert validation["ok"] is True
+    assert validation["materialization"]["writes_project_state"] is False
+
+
 def test_animation_validate_state_machine_schema() -> None:
     """Animation state machine validation must declare correct schema."""
     import deploy.melodia_mcp_server as server

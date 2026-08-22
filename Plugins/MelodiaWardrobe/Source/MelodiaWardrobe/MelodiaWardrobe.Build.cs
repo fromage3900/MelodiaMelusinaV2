@@ -29,5 +29,14 @@ public class MelodiaWardrobe : ModuleRules
 			"MelodiaCore",   // wallet (UMelodiaTokenWalletSubsystem) + EMelodiaSpellElement
 			"BS_GodFile"     // EMelodiaWardrobeSlot, FMelodiaNarrativeRecord
 		});
+
+		PrivateDependencyModuleNames.AddRange(new string[]
+		{
+			// The Resonant Passage component listens to the existing authored
+			// Harmonix music clock; it does not create a second transport.
+			"Harmonix",
+			"HarmonixMidi",
+			"HarmonixMetasound"
+		});
 	}
 }

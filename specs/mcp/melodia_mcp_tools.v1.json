@@ -315,6 +315,54 @@
         ]
       }
     },
+    "melodia_material_list_pbr": {
+      "category": "material",
+      "description": "Scan disk for complete and incomplete PBR texture sets.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.material.pbr_list.v1",
+        "fields": ["source", "complete_sets", "complete_set_count", "incomplete_set_count", "complete_sets_with_instance", "complete_sets_without_instance", "incomplete_stems", "live_existing_instance_count"]
+      }
+    },
+    "melodia_material_get_compile_stats": {
+      "category": "material",
+      "description": "Report material compilation state, using Monolith when available and disk presence offline.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {"asset_path": {"type": "string"}},
+        "required": ["asset_path"]
+      },
+      "output": {
+        "schema": "melodia.material.compile_stats.v1",
+        "fields": ["source", "asset_path", "stats", "uasset_exists", "uasset_size", "note"]
+      }
+    },
+    "melodia_material_audit": {
+      "category": "material",
+      "description": "Audit material pipeline health, PPV defects, and the audio-reactivity gap.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.material.audit.v1",
+        "fields": ["source", "masters", "audio_reactivity_gap", "ppv_known_defects"]
+      }
+    },
+    "melodia_ppv_report": {
+      "category": "material",
+      "description": "Report per-level post-process volume state from offline scripts and live inspection.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.material.ppv_report.v1",
+        "fields": ["source", "levels", "script_spawn_targets", "findings"]
+      }
+    },
     "melodia_bp_validate_p0_route": {
       "category": "blueprint",
       "description": "Validate P0 Dream golden run fixtures, Quill scripts, and allowlist IDs.",
@@ -677,6 +725,64 @@
         "schema": "melodia.quest.check_p0.v1",
         "fields": ["quest_id", "status", "cast_history", "resolved_encounters", "has_combat_skills", "encounter_resolved"]
       }
+    },
+    "melodia_resonant_world_get_atlas": {
+      "category": "resonant_world",
+      "description": "Read the offline Resonant World asset-family atlas.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.resonant_world.atlas.v1",
+        "fields": ["source", "ok", "artifact_path", "atlas_version", "scanned_file_count", "family_counts", "movement_ids", "manifest_sources", "validation_errors"]
+      }
+    },
+    "melodia_resonant_world_compile_passage": {
+      "category": "resonant_world",
+      "description": "Compile an in-memory magical Resonant World passage or six-movement portfolio without writing project state.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer", "default": 3900},
+          "movement_id": {"type": "string", "default": "petal_cantata"},
+          "archetype_id": {"type": "string", "default": "SakuraDreamer"}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.passage.v1",
+        "fields": ["source", "ok", "seed", "movement_id", "atlas_source", "passage_count", "passages", "validation_errors", "materialization"]
+      }
+    },
+    "melodia_resonant_world_get_handoff": {
+      "category": "resonant_world",
+      "description": "Return the proof envelope and UI/gameplay/quantum/tool-call handoff documents.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "target": {"type": "string", "enum": ["all", "ui", "gameplay", "quantum", "tool_calls"], "default": "all"}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.handoff.v1",
+        "fields": ["ok", "target", "documents", "proof_artifact", "validation_errors"]
+      }
+    },
+    "melodia_resonant_world_validate": {
+      "category": "resonant_world",
+      "description": "Validate the asset atlas, six-passage portfolio, PCG plan, and editor proof handoff.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.resonant_world.validate.v1",
+        "fields": ["ok", "checks", "materialization"]
+      }
     }
   },
   "categories": {
@@ -689,10 +795,12 @@
     "system": "Subsystem enumeration, health checks, diagnostics",
     "animation": "Animation Blueprint state machine validation, binding checks, T-pose detection",
     "audio": "MetaSound and SoundCue validation, rhythm audio catalog",
+    "material": "PBR, material compilation, post-process volume, and reactivity audits",
     "ui": "UMG widget validation, battle HUD discovery",
     "economy": "P0 global economy: healing, mana, utility, grief; rhythm skill chains",
     "encounter": "Dungeon encounter lifecycle: start, enemy actions, resolution",
-    "quest": "Quest progression tracking and completion gates"
+    "quest": "Quest progression tracking and completion gates",
+    "resonant_world": "Deterministic musical voxel worlds, magical passages, quantum selection, and integration handoffs"
   },
   "integration_notes": {
     "monolith_delegation": "Read-only tools fall back to offline spec files when Monolith is unreachable. No tool blocks on a dead editor.",

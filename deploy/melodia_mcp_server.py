@@ -60,6 +60,23 @@ NARRATIVE_DIR = PROJECT_ROOT / "Content" / "MelodiaIntegration" / "Narrative"
 CONFIG_ASSET_PATH = "/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig"
 PERSONA_CONTENT_PATH = "/Game/MelodiaIntegration/Config/DA_MelodiaPersonaContent"
 
+# Resonant World is intentionally exposed as an offline/read-only MCP surface.
+# The compiler writes audit artifacts when run from the authoring CLI, but these
+# MCP tools never write them; they inspect the checked-in/generated handoffs or
+# compile an in-memory preview for UI and gameplay agents.
+RESONANT_PYTHON_ROOT = PROJECT_ROOT / "Content" / "Python"
+RESONANT_ATLAS_PATH = PROJECT_ROOT / "Saved" / "Audit" / "resonant_world_asset_atlas.json"
+RESONANT_PHRASE_PATH = PROJECT_ROOT / "Saved" / "Audit" / "resonant_world_phrase_128bpm.json"
+RESONANT_PASSAGE_PATH = PROJECT_ROOT / "Saved" / "Audit" / "resonant_magic_passage_portfolio_3900.json"
+RESONANT_PLAN_PATH = PROJECT_ROOT / "Saved" / "Audit" / "resonant_world_pcg_plan_3900.json"
+RESONANT_HANDOFF_PATH = PROJECT_ROOT / "Saved" / "Audit" / "resonant_world_proof_handoff_3900.json"
+RESONANT_HANDOFF_DOCS = {
+    "ui": PROJECT_ROOT / "Docs" / "Handoffs" / "RESONANT_WORLD_UI_HANDOFF_2026-08-22.md",
+    "gameplay": PROJECT_ROOT / "Docs" / "Handoffs" / "RESONANT_WORLD_GAMEPLAY_HANDOFF_2026-08-22.md",
+    "quantum": PROJECT_ROOT / "Docs" / "Handoffs" / "RESONANT_WORLD_QUANTUM_HANDOFF_2026-08-22.md",
+    "tool_calls": PROJECT_ROOT / "Docs" / "Handoffs" / "RESONANT_WORLD_MCP_TOOL_CALLS_2026-08-22.md",
+}
+
 _id_counter = itertools.count(1)
 
 
@@ -1465,6 +1482,265 @@ def melodia_quest_check_p0(quest_id: str) -> dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------
+# Resonant World tools (offline compiler/read-model surface)
+# ---------------------------------------------------------------------------
+
+def _resonant_world_imports():
+    """Load the deterministic authoring modules without making them server dependencies."""
+    if str(RESONANT_PYTHON_ROOT) not in sys.path:
+        sys.path.insert(0, str(RESONANT_PYTHON_ROOT))
+    from resonant_world_asset_atlas import build_asset_atlas, validate_asset_atlas
+    from resonant_world_magic_passage import (
+        build_magic_passage,
+        build_magic_passage_portfolio,
+        validate_magic_passage,
+        validate_magic_passage_portfolio,
+    )
+    from resonant_world_pcg_adapter import validate_resonant_pcg_plan
+    from resonant_world_proof_handoff import validate_proof_handoff
+    return {
+        "build_asset_atlas": build_asset_atlas,
+        "validate_asset_atlas": validate_asset_atlas,
+        "build_magic_passage": build_magic_passage,
+        "build_magic_passage_portfolio": build_magic_passage_portfolio,
+        "validate_magic_passage": validate_magic_passage,
+        "validate_magic_passage_portfolio": validate_magic_passage_portfolio,
+        "validate_resonant_pcg_plan": validate_resonant_pcg_plan,
+        "validate_proof_handoff": validate_proof_handoff,
+    }
+
+
+def _resonant_artifact(path: Path) -> dict[str, Any] | None:
+    value = _load_json(path)
+    return value if isinstance(value, dict) else None
+
+
+def _resonant_atlas() -> tuple[dict[str, Any] | None, str]:
+    artifact = _resonant_artifact(RESONANT_ATLAS_PATH)
+    if artifact:
+        return artifact, "saved_audit"
+    try:
+        atlas = _resonant_world_imports()["build_asset_atlas"](PROJECT_ROOT)
+        return atlas, "in_memory_scan"
+    except Exception as exc:  # pragma: no cover - environment-specific import failures
+        return {"ok": False, "validation_errors": [str(exc)]}, "unavailable"
+
+
+def _summarise_resonant_passage(passage: dict[str, Any]) -> dict[str, Any]:
+    quantum = passage.get("quantum_setup", {})
+    rank = quantum.get("rank_preview") or {}
+    collection = passage.get("collection_affordance", {})
+    return {
+        "passage_id": passage.get("passage_id"),
+        "world": passage.get("world", {}),
+        "premise": passage.get("premise", {}),
+        "wardrobe_source": passage.get("wardrobe_source", {}),
+        "stages": [
+            {
+                "stage_id": stage.get("stage_id"),
+                "world_action": stage.get("world_action"),
+                "pcg_dressing": stage.get("pcg_dressing", {}),
+                "musical_asset": stage.get("musical_asset"),
+                "water_profile": stage.get("water_profile"),
+                "vfx_system": stage.get("vfx_system"),
+                "phrase_window": stage.get("phrase_window", {}),
+                "npc_zone": stage.get("npc_zone"),
+                "style_axes": stage.get("style_axes", []),
+            }
+            for stage in passage.get("response_choreography", [])
+        ],
+        "scene_preview": passage.get("scene_preview", {}),
+        "collection_affordance": {
+            "currency_id": collection.get("currency_id"),
+            "element": collection.get("element"),
+            "display_name": collection.get("display_name"),
+            "preview_only": collection.get("preview_only"),
+            "does_not_grant_currency": collection.get("does_not_grant_currency"),
+            "grant_authority": collection.get("grant_authority"),
+        },
+        "quantum_setup": {
+            "selection_stage": quantum.get("selection_stage"),
+            "candidate_movements": quantum.get("candidate_movements", []),
+            "backend_requested": rank.get("backend_requested"),
+            "backend": rank.get("backend"),
+            "qsharp_available": rank.get("qsharp_available"),
+            "winner_movement_id": rank.get("winner_movement_id"),
+            "classical_baseline_winner_id": rank.get("classical_baseline_winner_id"),
+            "trace_id": rank.get("trace_id"),
+        },
+        "runtime_boundary": passage.get("runtime_boundary", {}),
+    }
+
+
+def melodia_resonant_world_get_atlas() -> dict[str, Any]:
+    """Return the project-wide Resonant World asset-family inventory."""
+    atlas, source = _resonant_atlas()
+    atlas = atlas or {}
+    return {
+        "schema": "melodia.resonant_world.atlas.v1",
+        "source": source,
+        "ok": bool(atlas.get("ok")),
+        "artifact_path": str(RESONANT_ATLAS_PATH),
+        "atlas_version": atlas.get("atlas_version"),
+        "scanned_file_count": atlas.get("scan", {}).get("scanned_file_count", 0),
+        "family_counts": atlas.get("scan", {}).get("family_counts", {}),
+        "movement_ids": sorted(atlas.get("world_movements", {}).keys()),
+        "manifest_sources": atlas.get("manifest_sources", {}),
+        "validation_errors": atlas.get("validation_errors", []),
+    }
+
+
+def melodia_resonant_world_compile_passage(
+    seed: int = 3900,
+    movement_id: str = "petal_cantata",
+    archetype_id: str | None = "SakuraDreamer",
+) -> dict[str, Any]:
+    """Compile an in-memory magical passage or the six-movement portfolio."""
+    modules = _resonant_world_imports()
+    atlas, atlas_source = _resonant_atlas()
+    phrase = _resonant_artifact(RESONANT_PHRASE_PATH)
+    try:
+        if movement_id in ("", "all", "*"):
+            portfolio = modules["build_magic_passage_portfolio"](seed, atlas=atlas, phrase=phrase)
+            errors = modules["validate_magic_passage_portfolio"](portfolio)
+            passages = portfolio.get("passages", [])
+        else:
+            passage = modules["build_magic_passage"](
+                seed,
+                movement_id=movement_id,
+                archetype_id=archetype_id,
+                atlas=atlas,
+                phrase=phrase,
+            )
+            errors = modules["validate_magic_passage"](passage)
+            passages = [passage]
+    except Exception as exc:
+        return {
+            "schema": "melodia.resonant_world.passage.v1",
+            "source": "in_memory_compiler",
+            "ok": False,
+            "seed": int(seed),
+            "movement_id": movement_id,
+            "atlas_source": atlas_source,
+            "passage_count": 0,
+            "passages": [],
+            "validation_errors": [str(exc)],
+            "materialization": {"performed": False, "writes_project_state": False},
+        }
+
+    return {
+        "schema": "melodia.resonant_world.passage.v1",
+        "source": "in_memory_compiler",
+        "ok": not errors,
+        "seed": int(seed),
+        "movement_id": movement_id,
+        "atlas_source": atlas_source,
+        "passage_count": len(passages),
+        "passages": [_summarise_resonant_passage(dict(item)) for item in passages],
+        "validation_errors": errors,
+        "materialization": {"performed": False, "writes_project_state": False},
+    }
+
+
+def melodia_resonant_world_get_handoff(target: str = "all") -> dict[str, Any]:
+    """Return UI/gameplay/quantum handoff paths plus the validated proof envelope."""
+    requested = target.lower().strip() or "all"
+    targets = list(RESONANT_HANDOFF_DOCS) if requested == "all" else [requested]
+    unknown = [item for item in targets if item not in RESONANT_HANDOFF_DOCS]
+    if unknown:
+        return {
+            "schema": "melodia.resonant_world.handoff.v1",
+            "ok": False,
+            "target": requested,
+            "documents": [],
+            "validation_errors": [f"unknown handoff target: {item}" for item in unknown],
+        }
+
+    documents = []
+    for item in targets:
+        path = RESONANT_HANDOFF_DOCS[item]
+        documents.append({
+            "target": item,
+            "path": str(path),
+            "exists": path.exists(),
+            "title": path.read_text(encoding="utf-8").splitlines()[0] if path.exists() else None,
+        })
+
+    proof = _resonant_artifact(RESONANT_HANDOFF_PATH) or {}
+    return {
+        "schema": "melodia.resonant_world.handoff.v1",
+        "ok": all(item["exists"] for item in documents) and bool(proof.get("ok")),
+        "target": requested,
+        "documents": documents,
+        "proof_artifact": {
+            "path": str(RESONANT_HANDOFF_PATH),
+            "exists": bool(proof),
+            "ok": proof.get("ok"),
+            "hero_input_count": proof.get("hero_input_count"),
+            "static_spec_count": proof.get("static_spec_count"),
+            "chunk_count": proof.get("chunk_count"),
+            "editor_apply_performed": proof.get("editor_apply", {}).get("performed"),
+            "production_maps_touched": proof.get("editor_apply", {}).get("production_maps_touched"),
+        },
+        "validation_errors": [] if documents and all(item["exists"] for item in documents) else [
+            "one or more requested handoff documents are missing"
+        ],
+    }
+
+
+def melodia_resonant_world_validate() -> dict[str, Any]:
+    """Validate the atlas, passage portfolio, PCG plan, and editor proof envelope."""
+    modules = _resonant_world_imports()
+    atlas, atlas_source = _resonant_atlas()
+    phrase = _resonant_artifact(RESONANT_PHRASE_PATH)
+    checks: dict[str, Any] = {}
+
+    checks["asset_atlas"] = {
+        "source": atlas_source,
+        "ok": bool(atlas) and not modules["validate_asset_atlas"](atlas or {}),
+        "errors": modules["validate_asset_atlas"](atlas or {}) if atlas else ["atlas unavailable"],
+    }
+
+    try:
+        portfolio = modules["build_magic_passage_portfolio"](3900, atlas=atlas, phrase=phrase)
+        passage_errors = modules["validate_magic_passage_portfolio"](portfolio)
+        checks["magic_passage_portfolio"] = {
+            "source": "in_memory_compiler",
+            "ok": not passage_errors,
+            "passage_count": portfolio.get("passage_count"),
+            "errors": passage_errors,
+        }
+    except Exception as exc:
+        checks["magic_passage_portfolio"] = {"ok": False, "errors": [str(exc)]}
+
+    plan = _resonant_artifact(RESONANT_PLAN_PATH)
+    checks["pcg_plan"] = {
+        "source": "saved_audit" if plan else "missing",
+        "ok": bool(plan) and not modules["validate_resonant_pcg_plan"](plan),
+        "errors": modules["validate_resonant_pcg_plan"](plan) if plan else ["PCG plan artifact missing"],
+        "chunk_count": plan.get("chunk_count") if plan else None,
+        "hero_volume_count": plan.get("hero_volume_count") if plan else None,
+        "static_spec_count": plan.get("static_spec_count") if plan else None,
+    }
+
+    proof = _resonant_artifact(RESONANT_HANDOFF_PATH)
+    checks["proof_handoff"] = {
+        "source": "saved_audit" if proof else "missing",
+        "ok": bool(proof) and not modules["validate_proof_handoff"](proof),
+        "errors": modules["validate_proof_handoff"](proof) if proof else ["proof handoff artifact missing"],
+        "editor_apply_performed": proof.get("editor_apply", {}).get("performed") if proof else None,
+        "production_maps_touched": proof.get("editor_apply", {}).get("production_maps_touched") if proof else None,
+    }
+
+    return {
+        "schema": "melodia.resonant_world.validate.v1",
+        "ok": all(bool(check.get("ok")) for check in checks.values()),
+        "checks": checks,
+        "materialization": {"performed": False, "writes_project_state": False},
+    }
+
+
+# ---------------------------------------------------------------------------
 # MCP tool registry
 # ---------------------------------------------------------------------------
 
@@ -1795,6 +2071,41 @@ TOOLS: list[dict[str, Any]] = [
             "required": ["quest_id"],
         },
     },
+    # --- Resonant World tools ---
+    {
+        "name": "melodia_resonant_world_get_atlas",
+        "description": "Read the offline Resonant World asset-family atlas: audio/MIDI, PCG, wardrobe, water, Niagara, NPC, and quantum sources.",
+        "inputSchema": {"type": "object", "properties": {}, "required": []},
+    },
+    {
+        "name": "melodia_resonant_world_compile_passage",
+        "description": "Compile an in-memory magical Resonant World passage or all six authored movements without writing project state.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "seed": {"type": "integer", "default": 3900, "description": "Deterministic world seed"},
+                "movement_id": {"type": "string", "default": "petal_cantata", "description": "Movement id, or all for the six-movement portfolio"},
+                "archetype_id": {"type": "string", "default": "SakuraDreamer", "description": "Wardrobe/NPC archetype for a single movement"},
+            },
+            "required": [],
+        },
+    },
+    {
+        "name": "melodia_resonant_world_get_handoff",
+        "description": "Return the validated Resonant World proof envelope and the UI, gameplay, quantum, or tool-call handoff documents.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "target": {"type": "string", "enum": ["all", "ui", "gameplay", "quantum", "tool_calls"], "default": "all"},
+            },
+            "required": [],
+        },
+    },
+    {
+        "name": "melodia_resonant_world_validate",
+        "description": "Validate the Resonant World asset atlas, six-passage portfolio, PCG plan, and proof handoff without applying an editor mutation.",
+        "inputSchema": {"type": "object", "properties": {}, "required": []},
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -1956,6 +2267,22 @@ def main() -> None:
             elif tool_name == "melodia_quest_check_p0":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
                 result = melodia_quest_check_p0(args.get("quest_id", "")) if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_resonant_world_get_atlas":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_resonant_world_get_atlas() if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_resonant_world_compile_passage":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_resonant_world_compile_passage(
+                    int(args.get("seed", 3900)),
+                    str(args.get("movement_id", "petal_cantata")),
+                    args.get("archetype_id", "SakuraDreamer"),
+                ) if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_resonant_world_get_handoff":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_resonant_world_get_handoff(str(args.get("target", "all"))) if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_resonant_world_validate":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_resonant_world_validate() if policy["allowed"] else {"status": "denied", **policy}
             else:
                 result = {"status": "error", "message": f"Unknown tool: {tool_name}"}
 

@@ -2,7 +2,7 @@
 
 **Version:** 1.0.0  
 **Date:** 2026-08-18  
-**Status:** Active — 13/13 tests passing, offline-capable, Monolith-fallback enabled  
+**Status:** Active — 28/28 tests passing, offline-capable, Monolith-fallback enabled  
 
 ---
 
@@ -160,6 +160,19 @@ It sits alongside your existing MCP servers (Monolith, agent_bridge, Blender, Ca
 | `melodia_system_list_subsystems` | List native C++ subsystem authorities from headers | ✅ |
 | `melodia_system_golden_run_preflight` | Pre-flight check for P0 golden run (maps, config, gates, echo) | ✅ |
 
+### Resonant World
+
+| Tool | Description | Offline? |
+|------|-------------|----------|
+| `melodia_resonant_world_get_atlas` | Read the deterministic asset-family atlas and movement inventory | ✅ |
+| `melodia_resonant_world_compile_passage` | Compile one magical passage or the six-movement portfolio in memory | ✅ |
+| `melodia_resonant_world_get_handoff` | Discover UI, gameplay, quantum, tool-call, and proof handoffs | ✅ |
+| `melodia_resonant_world_validate` | Validate atlas, passages, PCG plan, and proof envelope | ✅ |
+
+These calls are read/verify only. They do not write audit artifacts, maps, assets,
+canonical narrative state, rewards, or traversal state. Their exact JSON examples
+are documented in `Docs/Handoffs/RESONANT_WORLD_MCP_TOOL_CALLS_2026-08-22.md`.
+
 | Tool | Description | Offline? |
 |------|-------------|----------|
 | `melodia_system_health` | Health check across specs, assets, Monolith reachability | ✅ |
@@ -222,7 +235,7 @@ Tests verify:
 12. P0 route validation checks fixtures, scripts, and allowlist IDs
 13. Golden run pre-flight verifies maps, config, gates, and echo pipeline
 
-All 13 tests pass.
+All 28 tests pass.
 1. Server imports cleanly
 2. Tool registry matches schema spec
 3. Every tool has a policy entry
@@ -234,7 +247,7 @@ All 13 tests pass.
 9. Server is registered in `.mcp.json`
 10. Template lookup returns correct definitions
 
-All 10 tests pass.
+The legacy registry subset is covered by the full 28-test suite above.
 
 ---
 
@@ -271,8 +284,12 @@ The existing `agent_bridge` MCP server routes intents to 5 agent types (geometry
 | `specs/mcp/melodia_mcp_tools.v1.json` | Tool schema and contract documentation |
 | `specs/mcp_tool_policy.v1.json` | Authorization policy (updated with melodia entries) |
 | `.mcp.json` | MCP client registration |
-| `Tools/test_melodia_mcp.py` | 13-test validation suite |
+| `Tools/test_melodia_mcp.py` | 28-test validation suite |
 | `Docs/MCP_MELODIA_SYSTEM.md` | This document |
+| `Docs/Handoffs/RESONANT_WORLD_UI_HANDOFF_2026-08-22.md` | UI event and HUD integration contract |
+| `Docs/Handoffs/RESONANT_WORLD_GAMEPLAY_HANDOFF_2026-08-22.md` | Wardrobe/music/traversal gameplay handoff |
+| `Docs/Handoffs/RESONANT_WORLD_QUANTUM_HANDOFF_2026-08-22.md` | Q#/classical fallback handoff |
+| `Docs/Handoffs/RESONANT_WORLD_MCP_TOOL_CALLS_2026-08-22.md` | MCP and CLI tool-call record |
 
 ---
 

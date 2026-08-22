@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia Resonant Phrase Manifest",
+  "type": "object",
+  "required": [
+    "format",
+    "schema_version",
+    "phrase_generator_version",
+    "source",
+    "world",
+    "voxels",
+    "note_count",
+    "voxel_count",
+    "ok"
+  ],
+  "properties": {
+    "format": {"const": "melodia_resonant_phrase_manifest"},
+    "schema_version": {"type": "integer", "const": 1},
+    "phrase_generator_version": {"type": "string", "const": "resonant_phrase_v1"},
+    "source": {"type": "object", "required": ["midi_path", "phrase_id", "ticks_per_beat"]},
+    "world": {"type": "object"},
+    "movement": {"type": "object"},
+    "note_count": {"type": "integer", "minimum": 0},
+    "voxel_count": {"type": "integer", "minimum": 0},
+    "voxels": {"type": "array", "items": {"type": "object"}},
+    "validation_errors": {"type": "array", "items": {"type": "string"}},
+    "ok": {"type": "boolean", "const": true}
+  },
+  "additionalProperties": true
+}
