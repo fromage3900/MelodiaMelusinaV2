@@ -438,6 +438,15 @@
       ],
       "reason": "Composes a deterministic in-memory phrase, route, and asset voicing; it does not load assets, apply traversal, grant rewards, or write project state."
     },
+    "melodia_resonant_world_project_chronicle": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ],
+      "reason": "Projects append-only world history into a deterministic in-memory read model; canonical save ownership remains outside this tool and no Unreal state is applied."
+    },
     "melodia_resonant_world_get_capture_manifest": {
       "decision": "allow",
       "required_approval": "none",
