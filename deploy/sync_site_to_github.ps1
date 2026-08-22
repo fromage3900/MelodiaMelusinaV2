@@ -107,6 +107,25 @@ Write-Host "  -- Syncing files --"
 # not mirrored here, so this script must not try to write them.
 $dirsToSync = @("wix", "components", "projects", "generated")
 
+# --- 1b. Regenerate the honest, ledger-backed status (token-free auto-sync) --
+# Runs the game-repo generator, then copies its output into the site source so
+# the next deploy ships live standing. Requires Python 3 on PATH.
+Write-Host ""
+Write-Host "  -- Syncing live status --"
+$scriptRoot = Split-Path -Parent $PSScriptRoot   # BS_GodFile/
+$genPy = Join-Path $scriptRoot "Tools/sync_site_status.py"
+$genStatus = & python $genPy 2>&1
+$genStatus | ForEach-Object { Write-Host "    $_" }
+$statusSrc = Join-Path $source "public/melodia/status/sync_status.json"
+if (Test-Path $statusSrc) {
+    $statusDst = Join-Path $dest "public/melodia/status/sync_status.json"
+    New-Item -ItemType Directory -Path (Split-Path $statusDst) -Force | Out-Null
+    Copy-Item $statusSrc $statusDst -Force
+    Write-Host "  [OK] live status staged"
+} else {
+    Write-Host "  [WARN] generator did not produce public/melodia/status/sync_status.json (is Python on PATH?)"
+}
+
 foreach ($d in $dirsToSync) {
     if ($d -ieq "content") {
         Write-Host "  [FAIL] 'content' in `$dirsToSync resolves to the UE Content\ tree on Windows."
