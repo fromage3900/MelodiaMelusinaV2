@@ -27,3 +27,22 @@ res = q.read_saved_result('qjob_123')
 Notes
 - This module works inside UE's embedded Python or standalone; when run inside UE it logs via `unreal.log`.
 - The saved JSON contract follows `QUANTUM_GAMEPLAY_EXPERIMENT_PROTO_2026-08-06.md`.
+
+## Resonant World provenance boundary
+
+`resonant_movement_ranker.py` is the source-of-truth selector used by the
+offline Resonant World constellation. Version 2 records the classical
+objective score, candidate asset provenance, amplitude probabilities for each
+two-candidate measurement, the selected backend, and a trace fingerprint that
+includes the candidate evidence. This makes a changed atlas produce a changed
+replay identity instead of silently reusing an old draw.
+
+The world composer intentionally submits exactly two authored movements to the
+Q# kernel. The ranker also supports an experimental N>2 pairwise tournament by
+composing that same two-candidate operation in a fixed order; if Q# is missing
+or any measurement fails, the complete result reports `classical-baseline`.
+Neither path chooses individual voxels, grades input, drives traversal, or
+grants rewards.
+
+For the formal contract and research rationale, see
+`Docs/RESONANT_WORLD_QUANTUM_PROVENANCE_2026-08-22.md`.

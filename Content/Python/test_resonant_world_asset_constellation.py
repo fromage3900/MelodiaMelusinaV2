@@ -55,6 +55,8 @@ def test_quantum_setup_is_exactly_two_candidate_selector() -> None:
     assert preview["backend_requested"] == "qsharp-simulator"
     assert preview["backend"] in {"qsharp-simulator", "classical-baseline"}
     assert preview["trace_id"]
+    assert preview["provenance"]["source_evidence_embedded_in_trace"] is True
+    assert all("provenance" in row for row in preview["candidate_scores"])
 
 
 def test_manifest_only_refs_are_not_claimed_as_runtime_assets() -> None:

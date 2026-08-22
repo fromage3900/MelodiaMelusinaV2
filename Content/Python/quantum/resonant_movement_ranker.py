@@ -14,12 +14,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
 
-RANKER_VERSION = "resonant_movement_ranker_v1"
+RANKER_VERSION = "resonant_movement_ranker_v2"
 OBJECTIVE_WEIGHTS = {
     "outfit_synergy": 0.30,
     "asset_coverage": 0.25,
@@ -55,9 +55,15 @@ class MovementCandidate:
     id: str
     movement_id: str
     features: dict[str, float]
+    provenance: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        return {"id": self.id, "movement_id": self.movement_id, "features": dict(self.features)}
+        return {
+            "id": self.id,
+            "movement_id": self.movement_id,
+            "features": dict(self.features),
+            "provenance": dict(self.provenance),
+        }
 
 
 def _bounded(value: Any) -> float:
@@ -71,11 +77,35 @@ def score_candidate(candidate: MovementCandidate) -> float:
     )
 
 
+def _measurement_probabilities(score_a: float, score_b: float) -> list[float]:
+    """Return the Q# amplitude-measurement probabilities for one pair."""
+    safe_a = max(0.000001, float(score_a))
+    safe_b = max(0.000001, float(score_b))
+    total = safe_a + safe_b
+    return [round(safe_a / total, 6), round(safe_b / total, 6)]
+
+
+def _candidate_fingerprint(candidate: MovementCandidate) -> dict[str, Any]:
+    """Keep source evidence in the replay identity without hashing file bytes."""
+    return {
+        "id": candidate.id,
+        "movement_id": candidate.movement_id,
+        "features": dict(sorted(candidate.features.items())),
+        "provenance": candidate.provenance,
+    }
+
+
 def _classical_winner(candidates: list[MovementCandidate]) -> tuple[MovementCandidate, float, list[dict[str, Any]]]:
     scored = [(score_candidate(candidate), candidate) for candidate in candidates]
     scored.sort(key=lambda item: (-item[0], item[1].id))
     rows = [
-        {"id": candidate.id, "movement_id": candidate.movement_id, "score": score, "features": dict(candidate.features)}
+        {
+            "id": candidate.id,
+            "movement_id": candidate.movement_id,
+            "score": score,
+            "features": dict(candidate.features),
+            "provenance": dict(candidate.provenance),
+        }
         for score, candidate in scored
     ]
     return scored[0][1], scored[0][0], rows
@@ -102,6 +132,7 @@ def rank_movements(
             id=str(item["id"]),
             movement_id=str(item.get("movement_id", item["id"])),
             features={key: _bounded(value) for key, value in dict(item.get("features", {})).items()},
+            provenance=dict(item.get("provenance", {})),
         )
         for item in candidates
     ]
@@ -112,6 +143,8 @@ def rank_movements(
     winner = baseline
     winner_score = baseline_score
     actual_backend = "classical-baseline"
+    selection_protocol = "classical-ranked"
+    measurement_log: list[dict[str, Any]] = []
     if backend == "qsharp-simulator" and len(parsed) == 2:
         scores = [score_candidate(candidate) for candidate in parsed]
         winner_index = _qsharp_pick(scores[0], scores[1])
@@ -119,6 +152,49 @@ def rank_movements(
             winner = parsed[winner_index]
             winner_score = scores[winner_index]
             actual_backend = "qsharp-simulator"
+            selection_protocol = "two_candidate_amplitude_measurement"
+            measurement_log.append({
+                "round": 0,
+                "left_id": parsed[0].id,
+                "right_id": parsed[1].id,
+                "scores": scores,
+                "probabilities": _measurement_probabilities(scores[0], scores[1]),
+                "winner_id": winner.id,
+                "backend": actual_backend,
+            })
+    elif backend == "qsharp-simulator" and len(parsed) > 2 and _QSHARP_AVAILABLE:
+        # Keep the authored two-candidate Q# kernel and compose it into a
+        # deterministic-order tournament for broader atlas experiments.  The
+        # world composer itself still requests exactly two candidates.
+        selection_protocol = "pairwise_tournament_amplitude_measurement"
+        tournament_winner = parsed[0]
+        tournament_score = score_candidate(tournament_winner)
+        tournament_ok = True
+        for round_index, challenger in enumerate(parsed[1:], start=1):
+            challenger_score = score_candidate(challenger)
+            winner_index = _qsharp_pick(tournament_score, challenger_score)
+            if winner_index is None:
+                tournament_ok = False
+                break
+            pair = [tournament_winner, challenger]
+            winner = pair[winner_index]
+            measurement_log.append({
+                "round": round_index,
+                "left_id": tournament_winner.id,
+                "right_id": challenger.id,
+                "scores": [tournament_score, challenger_score],
+                "probabilities": _measurement_probabilities(tournament_score, challenger_score),
+                "winner_id": winner.id,
+                "backend": "qsharp-simulator",
+            })
+            tournament_winner = winner
+            tournament_score = score_candidate(winner)
+        if tournament_ok:
+            winner = tournament_winner
+            winner_score = tournament_score
+            actual_backend = "qsharp-tournament"
+        else:
+            selection_protocol = "classical-ranked-fallback"
     elif backend not in {"classical-baseline", "qsharp-simulator"}:
         raise ValueError("backend must be classical-baseline or qsharp-simulator")
 
@@ -128,6 +204,7 @@ def rank_movements(
                 "seed": int(seed),
                 "backend_requested": backend,
                 "candidate_ids": [candidate.id for candidate in parsed],
+                "candidate_fingerprints": [_candidate_fingerprint(candidate) for candidate in parsed],
                 "ranker_version": RANKER_VERSION,
             },
             sort_keys=True,
@@ -146,11 +223,20 @@ def rank_movements(
         "classical_baseline_winner_id": baseline.id,
         "classical_baseline_score": baseline_score,
         "candidate_scores": baseline_rows,
+        "selection_protocol": selection_protocol,
+        "measurement_log": measurement_log,
+        "provenance": {
+            "candidate_count": len(parsed),
+            "candidate_ids": [candidate.id for candidate in parsed],
+            "source_evidence_embedded_in_trace": True,
+        },
         "trace_id": trace_id,
         "replay_contract": {
             "persist_result_before_world_apply": True,
-            "seed_is_not_a_substitute_for_persisted_quantum_draw": actual_backend == "qsharp-simulator",
+            "seed_is_not_a_substitute_for_persisted_quantum_draw": actual_backend in {"qsharp-simulator", "qsharp-tournament"},
             "unreal_application_boundary": "async movement result -> authored PCG binding",
+            "source_provenance_in_trace": True,
+            "measurement_log_required_for_replay": actual_backend in {"qsharp-simulator", "qsharp-tournament"},
         },
     }
 
@@ -170,7 +256,19 @@ def candidates_from_atlas(atlas: Mapping[str, Any], movement_ids: Iterable[str] 
             "visual_contrast": 0.85 if "visual_novelty" in objectives else 0.72,
             "motif_continuity": 0.90 if "motif_continuity" in objectives else 0.68,
         }
-        candidates.append(MovementCandidate(movement_id, movement_id, features))
+        candidates.append(
+            MovementCandidate(
+                movement_id,
+                movement_id,
+                features,
+                provenance={
+                    "atlas_movement_id": movement_id,
+                    "asset_counts": dict(counts),
+                    "missing_required_families": list(record.get("missing_required_families", [])),
+                    "quantum_objective": sorted(objectives),
+                },
+            )
+        )
     return candidates
 
 

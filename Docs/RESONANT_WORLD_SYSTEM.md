@@ -206,6 +206,14 @@ Gale, and Dissonant Expanse Umbral. The passage only declares the affordance;
 amounts and grants remain authored by the existing pickup/challenge and wallet
 authorities.
 
+Quantum preparation is deliberately low-frequency and provenance-first:
+`Content/Python/quantum/resonant_movement_ranker.py` v2 records the classical
+baseline, candidate asset evidence, amplitude probabilities, actual backend,
+and replay trace before any authored PCG apply. The Resonant World path submits
+exactly two movements; the ranker's N>2 pairwise tournament is an offline
+research surface, not a voxel, traversal, input, or reward authority. See
+`Docs/RESONANT_WORLD_QUANTUM_PROVENANCE_2026-08-22.md`.
+
 `resonant_world_proof_handoff.py` is the safe current-state envelope for the
 editor lane. It flattens the five hero inputs and preserves the wardrobe and
 passage summaries without importing `unreal`, mutating a map, or claiming that
