@@ -13,6 +13,7 @@
 **Wardrobe bridge:** `Content/Python/resonant_world_wardrobe_bridge.py`
 **Magic passage compiler:** `Content/Python/resonant_world_magic_passage.py`
 **Proof handoff:** `Content/Python/resonant_world_proof_handoff.py`
+**Capture evidence:** `Content/Python/resonant_world_capture_manifest.py`
 
 ## The idea
 
@@ -163,6 +164,7 @@ These rules keep procedural generation from becoming disposable noise.
 | Cosmetic/Form/Style → authored movement response preview | `resonant_world_wardrobe_bridge.py` |
 | Staged magical world response choreography | `resonant_world_magic_passage.py` |
 | Pure validation/flattening for the editor proof lane | `resonant_world_proof_handoff.py` |
+| Canonical lookdev slots, absolute source paths, and conservative PNG verdicts | `resonant_world_capture_manifest.py` |
 | Optional movement candidate selection | Async Python quantum service; classical fallback |
 | Streaming, PCG graph placement, HLOD/data-layer routing | Existing PCG / World Partition pipeline |
 | Beat/bar transport and reactive presentation | `UMelodiaMusicClockSubsystem` + existing palette bus |
@@ -283,6 +285,7 @@ python BS_GodFile/Content/Python/resonant_world_wardrobe_bridge.py --seed 3900 -
 python BS_GodFile/Content/Python/resonant_world_magic_passage.py --seed 3900 --all-movements --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --output BS_GodFile/Saved/Audit/resonant_magic_passage_portfolio_3900.json
 python BS_GodFile/Content/Python/resonant_world_magic_passage.py --seed 3900 --movement petal_cantata --archetype SakuraDreamer --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --output BS_GodFile/Saved/Audit/resonant_magic_passage_petal_3900.json
 python BS_GodFile/Content/Python/resonant_world_score.py --seed 3900 --movement petal_cantata --chunk-x 0 --chunk-y 0 --archetype SakuraDreamer
+python BS_GodFile/Content/Python/resonant_world_capture_manifest.py --seed 3900 --output BS_GodFile/Saved/Audit/resonant_world_capture_manifest_3900.json
 python BS_GodFile/Content/Python/resonant_world_pcg_adapter.py --seed 3900 --radius 1 --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --wardrobe BS_GodFile/Saved/Audit/resonant_wardrobe_voicing_sakura_3900.json --magic-passage BS_GodFile/Saved/Audit/resonant_magic_passage_petal_3900.json --output BS_GodFile/Saved/Audit/resonant_world_pcg_plan_3900.json
 python BS_GodFile/Content/Python/resonant_world_proof_handoff.py --plan BS_GodFile/Saved/Audit/resonant_world_pcg_plan_3900.json --output BS_GodFile/Saved/Audit/resonant_world_proof_handoff_3900.json
 ```
