@@ -552,7 +552,19 @@ def _quantum_setup(seed: int, movement_id: str, mode_id: str, coverage: Mapping[
                 "visual_contrast": 0.85 if candidate_id in {"star_loom", "mirage_gala"} else 0.72,
                 "motif_continuity": 0.90 if candidate_id in {"petal_cantata", "cadence_cathedral"} else 0.68,
             }
-            rank_candidates.append(MovementCandidate(candidate_id, candidate_id, features))
+            rank_candidates.append(
+                MovementCandidate(
+                    candidate_id,
+                    candidate_id,
+                    features,
+                    provenance={
+                        "source": "resonant_asset_constellation",
+                        "candidate_movement_id": candidate_id,
+                        "role_counts": dict(candidate_coverage.get("role_counts", {})),
+                        "required_roles": list(REQUIRED_ROLES),
+                    },
+                )
+            )
         rank_preview = rank_movements(seed, rank_candidates, backend="qsharp-simulator")
     except Exception as exc:  # pragma: no cover - optional Q# environment
         rank_preview = {"status": "classical_rank_preview_unavailable", "reason": str(exc)}
