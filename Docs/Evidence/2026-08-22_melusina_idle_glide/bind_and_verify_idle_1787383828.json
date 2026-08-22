@@ -1,0 +1,9 @@
+{
+  "kind": "bind_and_verify",
+  "utc": "2026-08-22T07:30:28Z",
+  "state": "Idle",
+  "clip": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX",
+  "binding": "A_Melusina_Idle_Mocap_RootX",
+  "uasset_age_s": 1.0,
+  "ok": true
+}
