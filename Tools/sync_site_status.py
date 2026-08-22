@@ -14,6 +14,7 @@ Run from anywhere; paths resolve relative to repo root.
 import json
 import os
 import sys
+import argparse
 import datetime
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -65,6 +66,11 @@ def gate_rows(ledger):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=None,
+                    help="Write the status JSON here (else the default site path).")
+    args = ap.parse_args()
+
     ledger = load_ledger()
     rows = gate_rows(ledger)
 
@@ -91,20 +97,23 @@ def main():
         "ledger_rows": rows,
     }
 
-    os.makedirs(os.path.dirname(SITE_STATUS), exist_ok=True)
-    with open(SITE_STATUS, "w", encoding="utf-8") as f:
+    out_path = os.path.abspath(args.out) if args.out else SITE_STATUS
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2, ensure_ascii=False)
 
-    # Copy into the site repo's deploy path as well if present.
-    alt = os.path.join(REPO_ROOT, "..", "my-site", "public", "melodia", "status", "sync_status.json")
-    try:
-        os.makedirs(os.path.dirname(alt), exist_ok=True)
-        with open(alt, "w", encoding="utf-8") as f:
-            json.dump(out, f, indent=2, ensure_ascii=False)
-    except Exception:
-        pass
+    # Copy into the site repo's deploy path as well if the default was used and
+    # the alternate clone exists (keeps both _github_deploy and my-site-clean in sync).
+    if not args.out:
+        alt = os.path.join(REPO_ROOT, "..", "my-site", "public", "melodia", "status", "sync_status.json")
+        try:
+            os.makedirs(os.path.dirname(alt), exist_ok=True)
+            with open(alt, "w", encoding="utf-8") as f:
+                json.dump(out, f, indent=2, ensure_ascii=False)
+        except Exception:
+            pass
 
-    print(f"[sync] wrote status: {pass_count}/{total} gates closed -> {os.path.normpath(SITE_STATUS)}")
+    print(f"[sync] wrote status: {pass_count}/{total} gates closed -> {out_path}")
 
 
 if __name__ == "__main__":
