@@ -237,6 +237,26 @@ def test_resonant_world_tools_are_offline_safe() -> None:
     assert validation["materialization"]["writes_project_state"] is False
 
 
+def test_resonant_world_constellation_is_offline_safe() -> None:
+    """Asset constellation binds existing files while preserving runtime boundaries."""
+    import deploy.melodia_mcp_server as server
+
+    result = server.melodia_resonant_world_get_constellation(
+        3900, "petal_cantata", 0, 0, "SakuraDreamer"
+    )
+    assert result["schema"] == "melodia.resonant_world.constellation.v1"
+    assert result["ok"] is True
+    assert result["coverage"]["required_role_coverage"] == 1.0
+    assert result["quantum_setup"]["candidate_movements"]
+    assert len(result["quantum_setup"]["candidate_movements"]) == 2
+    assert result["quantum_setup"]["quantum_is_selector_not_generator"] is True
+    assert result["magical_moment"]["style_layer"]["appearance_is_separate_from_capability"] is True
+    assert result["verification"]["echo"]["authority"] == "ledger_only"
+    assert result["verification"]["pie"]["read_model_is_not_pie_proof"] is True
+    assert result["runtime_boundary"]["does_not_apply_traversal"] is True
+    assert result["materialization"]["writes_project_state"] is False
+
+
 def test_animation_validate_state_machine_schema() -> None:
     """Animation state machine validation must declare correct schema."""
     import deploy.melodia_mcp_server as server
@@ -425,6 +445,8 @@ def run_all() -> int:
         test_narrative_idempotency_audit,
         test_p0_route_validation,
         test_golden_run_preflight,
+        test_resonant_world_tools_are_offline_safe,
+        test_resonant_world_constellation_is_offline_safe,
         test_animation_validate_state_machine_schema,
         test_animation_validate_bindings_schema,
         test_animation_get_runtime_abp_schema,

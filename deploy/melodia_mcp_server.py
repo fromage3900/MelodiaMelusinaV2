@@ -1490,6 +1490,11 @@ def _resonant_world_imports():
     if str(RESONANT_PYTHON_ROOT) not in sys.path:
         sys.path.insert(0, str(RESONANT_PYTHON_ROOT))
     from resonant_world_asset_atlas import build_asset_atlas, validate_asset_atlas
+    from resonant_world_asset_constellation import (
+        build_asset_constellation,
+        build_constellation_portfolio,
+        validate_asset_constellation,
+    )
     from resonant_world_magic_passage import (
         build_magic_passage,
         build_magic_passage_portfolio,
@@ -1501,6 +1506,9 @@ def _resonant_world_imports():
     return {
         "build_asset_atlas": build_asset_atlas,
         "validate_asset_atlas": validate_asset_atlas,
+        "build_asset_constellation": build_asset_constellation,
+        "build_constellation_portfolio": build_constellation_portfolio,
+        "validate_asset_constellation": validate_asset_constellation,
         "build_magic_passage": build_magic_passage,
         "build_magic_passage_portfolio": build_magic_passage_portfolio,
         "validate_magic_passage": validate_magic_passage,
@@ -1588,6 +1596,82 @@ def melodia_resonant_world_get_atlas() -> dict[str, Any]:
         "manifest_sources": atlas.get("manifest_sources", {}),
         "validation_errors": atlas.get("validation_errors", []),
     }
+
+
+def melodia_resonant_world_get_constellation(
+    seed: int = 3900,
+    movement_id: str = "petal_cantata",
+    chunk_x: int = 0,
+    chunk_y: int = 0,
+    archetype_id: str | None = None,
+) -> dict[str, Any]:
+    """Resolve existing project assets into a deterministic chunk read model."""
+    modules = _resonant_world_imports()
+    requested = str(movement_id or "petal_cantata")
+    try:
+        if requested in ("", "all", "*"):
+            result = modules["build_constellation_portfolio"](PROJECT_ROOT, int(seed))
+            validation_errors = [
+                f"{movement}: {error}"
+                for movement, errors in result.get("validation_errors", {}).items()
+                for error in errors
+            ]
+            result = {
+                "schema": "melodia.resonant_world.constellation.v1",
+                "source": "in_memory_scan",
+                "ok": bool(result.get("ok")) and not validation_errors,
+                "seed": int(seed),
+                "movement_id": requested,
+                "chunk": [int(chunk_x), int(chunk_y)],
+                "constellation_count": int(result.get("constellation_count", 0)),
+                "constellations": result.get("constellations", []),
+                "validation_errors": validation_errors,
+                "materialization": {"performed": False, "writes_project_state": False},
+            }
+            return result
+
+        constellation = modules["build_asset_constellation"](
+            PROJECT_ROOT,
+            int(seed),
+            movement_id=requested,
+            chunk_x=int(chunk_x),
+            chunk_y=int(chunk_y),
+            archetype_id=archetype_id,
+        )
+        errors = modules["validate_asset_constellation"](constellation)
+        return {
+            "schema": "melodia.resonant_world.constellation.v1",
+            "source": "in_memory_scan",
+            "ok": not errors,
+            "seed": int(seed),
+            "movement_id": requested,
+            "chunk": [int(chunk_x), int(chunk_y)],
+            "constellation_id": constellation.get("constellation_id"),
+            "world": constellation.get("world", {}),
+            "inventory": constellation.get("inventory", {}),
+            "movement": constellation.get("movement", {}),
+            "asset_candidates": constellation.get("asset_candidates", {}),
+            "bindings": constellation.get("bindings", {}),
+            "coverage": constellation.get("coverage", {}),
+            "magical_moment": constellation.get("magical_moment", {}),
+            "quantum_setup": constellation.get("quantum_setup", {}),
+            "verification": constellation.get("verification", {}),
+            "canonical_authorities": constellation.get("canonical_authorities", {}),
+            "runtime_boundary": constellation.get("runtime_boundary", {}),
+            "validation_errors": errors,
+            "materialization": {"performed": False, "writes_project_state": False},
+        }
+    except Exception as exc:  # pragma: no cover - environment-specific inventory failures
+        return {
+            "schema": "melodia.resonant_world.constellation.v1",
+            "source": "in_memory_scan",
+            "ok": False,
+            "seed": int(seed),
+            "movement_id": requested,
+            "chunk": [int(chunk_x), int(chunk_y)],
+            "validation_errors": [str(exc)],
+            "materialization": {"performed": False, "writes_project_state": False},
+        }
 
 
 def melodia_resonant_world_compile_passage(
@@ -2078,6 +2162,21 @@ TOOLS: list[dict[str, Any]] = [
         "inputSchema": {"type": "object", "properties": {}, "required": []},
     },
     {
+        "name": "melodia_resonant_world_get_constellation",
+        "description": "Resolve existing project assets into a deterministic musical-voxel chunk read model without loading, spawning, equipping, or mutating Unreal state.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "seed": {"type": "integer", "default": 3900, "description": "Deterministic world seed"},
+                "movement_id": {"type": "string", "default": "petal_cantata", "description": "Movement id, or all for the six-movement portfolio"},
+                "chunk_x": {"type": "integer", "default": 0, "description": "Chunk coordinate X"},
+                "chunk_y": {"type": "integer", "default": 0, "description": "Chunk coordinate Y"},
+                "archetype_id": {"type": "string", "description": "Optional wardrobe/population archetype"},
+            },
+            "required": [],
+        },
+    },
+    {
         "name": "melodia_resonant_world_compile_passage",
         "description": "Compile an in-memory magical Resonant World passage or all six authored movements without writing project state.",
         "inputSchema": {
@@ -2270,6 +2369,15 @@ def main() -> None:
             elif tool_name == "melodia_resonant_world_get_atlas":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
                 result = melodia_resonant_world_get_atlas() if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_resonant_world_get_constellation":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_resonant_world_get_constellation(
+                    int(args.get("seed", 3900)),
+                    str(args.get("movement_id", "petal_cantata")),
+                    int(args.get("chunk_x", 0)),
+                    int(args.get("chunk_y", 0)),
+                    args.get("archetype_id"),
+                ) if policy["allowed"] else {"status": "denied", **policy}
             elif tool_name == "melodia_resonant_world_compile_passage":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
                 result = melodia_resonant_world_compile_passage(
