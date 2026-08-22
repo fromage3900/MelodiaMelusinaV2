@@ -14,17 +14,20 @@
 param(
     [string]$Message = "Sync site updates",
     [string]$Target  = "C:\EnvironmentPortfolio\_github_deploy",
+    [string]$Source  = "C:\EnvironmentPortfolio\my-site-clean",
     [bool]$Deploy    = $true
 )
 
 $ErrorActionPreference = "Stop"
 
-# 2026-08-20: repointed to the REPO ROOT. There were TWO wix/ trees --
-# C:\EnvironmentPortfolio\wix (the live Vite root where edits happen) and
-# BS_GodFile/wix (a bulk copy this script used to deploy). The split silently
-# 404'd pages linked from index.html, including melusina-agent-harness.html.
-# Root is now the single consolidated source. Do not point this at BS_GodFile/wix.
-$source = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+# 2026-08-22: SOURCE OF TRUTH is my-site-clean/. That is the repo Pages actually
+# serves (it carries the origin remote and is what edits are committed to). The
+# old default walked up two parents from this script (BS_GodFile/) and copied
+# BS_GodFile/wix -- a STALE copy that diverges from the live site. Three trees
+# existed at one point (BS_GodFile/wix, _github_deploy, my-site-clean) and all
+# three differed. my-site-clean wins. A drift guard below warns if the other
+# two disagree with it, but never blocks a deploy on a warning.
+$source = $Source
 $dest   = $Target
 
 Write-Host ""
@@ -68,6 +71,27 @@ try {
     Write-Host "  [OK] target synced to origin/main"
 } finally {
     Pop-Location
+}
+
+# --- 0. Drift guard (warning only, never blocks) -------------------------
+# Catches the old three-tree split before it bites. If BS_GodFile/wix/index.html
+# or _github_deploy/wix/index.html disagree with the source, say so plainly.
+function Get-FileSha256($Path) {
+    if (-not (Test-Path $Path)) { return "<missing>" }
+    (Get-FileHash -Algorithm SHA256 $Path).Hash.Substring(0, 12)
+}
+$srcIdx = Join-Path $source "wix/index.html"
+$bgdIdx = "C:\EnvironmentPortfolio\BS_GodFile\wix\index.html"
+$dstIdx = Join-Path $dest "wix/index.html"
+$srcHash = Get-FileSha256 $srcIdx
+$bgdHash = Get-FileSha256 $bgdIdx
+$dstHash = Get-FileSha256 $dstIdx
+if ($bgdHash -ne "<missing>" -and $bgdHash -ne $srcHash) {
+    Write-Host "  [WARN] BS_GodFile\wix\index.html ($bgdHash) differs from source ($srcHash)."
+    Write-Host "         Source of truth is my-site-clean. Ignore BS_GodFile/wix or resync it."
+}
+if ($dstHash -ne "<missing>" -and $dstHash -ne $srcHash) {
+    Write-Host "  [WARN] $dest\wix\index.html ($dstHash) differs from source ($srcHash) -- will be overwritten."
 }
 
 # --- 1. Sync files --------------------------------------------------------
