@@ -779,6 +779,26 @@
         "fields": ["source", "ok", "seed", "movement_id", "chunk", "score_id", "motif", "route", "stages", "events", "world", "asset_constellation", "quantum_setup", "persistence", "runtime_boundary", "validation_errors", "materialization"]
       }
     },
+    "melodia_resonant_world_get_capture_manifest": {
+      "category": "resonant_world",
+      "description": "Read the four canonical lookdev target slots, absolute source assets, intended camera/material state, and conservative PNG evidence verdicts without rendering or publishing.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer", "default": 3900},
+          "movement_id": {"type": "string", "default": "all"},
+          "chunk_x": {"type": "integer", "default": 0},
+          "chunk_y": {"type": "integer", "default": 0}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.capture_manifest.v1",
+        "fields": ["source", "ok", "seed", "movement_id", "chunk", "render_map_contract", "targets", "verification", "runtime_boundary", "validation_errors", "materialization"]
+      }
+    },
     "melodia_resonant_world_compile_passage": {
       "category": "resonant_world",
       "description": "Compile an in-memory magical Resonant World passage or six-movement portfolio without writing project state.",

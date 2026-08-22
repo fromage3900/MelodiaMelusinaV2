@@ -1500,6 +1500,10 @@ def _resonant_world_imports():
         build_score_portfolio,
         validate_resonant_score,
     )
+    from resonant_world_capture_manifest import (
+        build_capture_manifest,
+        validate_capture_manifest,
+    )
     from resonant_world_magic_passage import (
         build_magic_passage,
         build_magic_passage_portfolio,
@@ -1517,6 +1521,8 @@ def _resonant_world_imports():
         "build_resonant_score": build_resonant_score,
         "build_score_portfolio": build_score_portfolio,
         "validate_resonant_score": validate_resonant_score,
+        "build_capture_manifest": build_capture_manifest,
+        "validate_capture_manifest": validate_capture_manifest,
         "build_magic_passage": build_magic_passage,
         "build_magic_passage_portfolio": build_magic_passage_portfolio,
         "validate_magic_passage": validate_magic_passage,
@@ -1748,6 +1754,62 @@ def melodia_resonant_world_get_score(
             "validation_errors": [str(exc)],
             "materialization": {"performed": False, "writes_project_state": False},
         }
+
+
+def melodia_resonant_world_get_capture_manifest(
+    seed: int = 3900,
+    movement_id: str = "all",
+    chunk_x: int = 0,
+    chunk_y: int = 0,
+) -> dict[str, Any]:
+    """Return lookdev target slots and evidence gates without rendering or publishing."""
+    modules = _resonant_world_imports()
+    requested = str(movement_id or "all")
+    try:
+        manifest = modules["build_capture_manifest"](
+            int(seed),
+            movement_id=requested,
+            chunk_x=int(chunk_x),
+            chunk_y=int(chunk_y),
+            project_root=PROJECT_ROOT,
+        )
+        errors = modules["validate_capture_manifest"](manifest)
+        return {
+            "schema": "melodia.resonant_world.capture_manifest.v1",
+            "source": "in_memory_capture_evidence_scan",
+            "ok": not errors,
+            "seed": int(seed),
+            "movement_id": requested,
+            "chunk": [int(chunk_x), int(chunk_y)],
+            "render_map_contract": manifest.get("render_map_contract", {}),
+            "targets": manifest.get("targets", []),
+            "verification": manifest.get("verification", {}),
+            "runtime_boundary": manifest.get("runtime_boundary", {}),
+            "validation_errors": errors,
+            "materialization": {"performed": False, "writes_project_state": False},
+        }
+    except Exception as exc:  # pragma: no cover - environment-specific inventory failures
+        return {
+            "schema": "melodia.resonant_world.capture_manifest.v1",
+            "source": "in_memory_capture_evidence_scan",
+            "ok": False,
+            "seed": int(seed),
+            "movement_id": requested,
+            "chunk": [int(chunk_x), int(chunk_y)],
+            "render_map_contract": {},
+            "targets": [],
+            "verification": {},
+            "runtime_boundary": {
+                "read_model_only": True,
+                "does_not_render": True,
+                "does_not_publish_webfront": True,
+                "does_not_write_save": True,
+            },
+            "validation_errors": [str(exc)],
+            "materialization": {"performed": False, "writes_project_state": False},
+        }
+
+
 def melodia_resonant_world_compile_passage(
     seed: int = 3900,
     movement_id: str = "petal_cantata",
@@ -2266,6 +2328,20 @@ TOOLS: list[dict[str, Any]] = [
         },
     },
     {
+        "name": "melodia_resonant_world_get_capture_manifest",
+        "description": "Read the four canonical Resonant World lookdev slots, absolute source assets, intended camera/material state, and conservative PNG evidence verdicts without rendering or publishing.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "seed": {"type": "integer", "default": 3900, "description": "Deterministic world seed"},
+                "movement_id": {"type": "string", "default": "all", "description": "Movement id, or all for the four canonical capture slots"},
+                "chunk_x": {"type": "integer", "default": 0, "description": "Chunk coordinate X"},
+                "chunk_y": {"type": "integer", "default": 0, "description": "Chunk coordinate Y"},
+            },
+            "required": [],
+        },
+    },
+    {
         "name": "melodia_resonant_world_compile_passage",
         "description": "Compile an in-memory magical Resonant World passage or all six authored movements without writing project state.",
         "inputSchema": {
@@ -2475,6 +2551,14 @@ def main() -> None:
                     int(args.get("chunk_x", 0)),
                     int(args.get("chunk_y", 0)),
                     args.get("archetype_id"),
+                ) if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_resonant_world_get_capture_manifest":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_resonant_world_get_capture_manifest(
+                    int(args.get("seed", 3900)),
+                    str(args.get("movement_id", "all")),
+                    int(args.get("chunk_x", 0)),
+                    int(args.get("chunk_y", 0)),
                 ) if policy["allowed"] else {"status": "denied", **policy}
             elif tool_name == "melodia_resonant_world_compile_passage":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))

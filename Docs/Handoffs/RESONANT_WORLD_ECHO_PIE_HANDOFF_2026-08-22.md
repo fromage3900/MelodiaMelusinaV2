@@ -64,6 +64,18 @@ python -m pytest -q Content/Python/test_resonant_world_asset_constellation.py
 python -B Tools/test_melodia_mcp.py
 ```
 
+The lookdev evidence bridge is also read-only and must remain separate from
+runtime proof:
+
+```powershell
+python -B Content/Python/resonant_world_capture_manifest.py --seed 3900 --output Saved/Audit/resonant_world_capture_manifest_3900.json
+'{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"melodia_resonant_world_get_capture_manifest","arguments":{"seed":3900,"movement_id":"all","chunk_x":0,"chunk_y":0}}}' | python -B deploy/melodia_mcp_server.py
+```
+
+This manifest binds the four requested lookdev slots to score/constellation
+IDs, absolute source assets, intended camera/material state, and observed PNG
+verdicts. It does not render, copy, publish, or approve a frame.
+
 The current stdio MCP surface is read-only and can be exercised without Editor/Monolith. The constellation surface is now registered, policy-covered, and included in the offline MCP contract suite:
 
 ```powershell
@@ -190,6 +202,7 @@ Current authoritative or relevant paths:
 - `Saved/Audit/resonant_world_proof_handoff_3900.json` — present and `ok=true`; same proof-map contract, with `editor_apply.performed=false` and no production maps touched.
 - `Saved/Audit/resonant_movement_rank_3900.json` — present; requested `qsharp-simulator`, but actual backend is `classical-baseline`, with `qsharp_available=false`. Persist and replay the recorded winner/baseline/trace; make no quantum-advantage claim.
 - `Saved/Audit/resonant_world_phrase_128bpm.json`, `Saved/Audit/resonant_wardrobe_voicing_sakura_3900.json`, and `Saved/Audit/resonant_magic_passage_petal_3900.json` — offline design/read-model inputs, not PIE proof.
+- `Saved/Audit/resonant_world_capture_manifest_3900.json` — read-only lookdev contract for the four canonical PNG slots; current clean-approved count is zero. The exact SakuraDream candidate `Saved/Screenshots/Monolith/LookdevLane3/L_Render_SakuraDream_beauty_raw.png` is rejected after black/checker frames and post-marker `Error`/`Ensure` matches. Do not route it to webfront.
 - `Saved/Audit/resonant_world_asset_constellation_petal_3900.json` — absent at audit time. The builder’s documented output is `Saved/Audit/resonant_world_constellation_petal_3900.json`; generate a fresh, validated artifact when the next owner run begins.
 - `Saved/Evidence/{package_id}/chapter_golden_run.json` — required by the content-package template but `Saved/Evidence` and this artifact are absent. No chapter golden-run claim is closed.
 - `Saved/gate_ledger.json` — latest ledger authority. Existing `runtime`, `save_load`, `repeat_consume`, and `package_launch` rows are historical First Dream/gameplay evidence; the latest `static_gates` row is FAIL. Current Resonant-relevant completion gates including `music_world_key`, `wardrobe_gameplay_hook`, and `wardrobe_equip_roundtrip` are OPEN.

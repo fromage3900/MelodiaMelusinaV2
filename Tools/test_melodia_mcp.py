@@ -277,6 +277,30 @@ def test_resonant_world_score_is_offline_safe() -> None:
     assert result["materialization"]["writes_project_state"] is False
 
 
+def test_resonant_world_capture_manifest_is_evidence_gated() -> None:
+    """Capture contracts expose real evidence without promoting debug frames."""
+    import deploy.melodia_mcp_server as server
+
+    result = server.melodia_resonant_world_get_capture_manifest(3900, "all", 0, 0)
+    assert result["schema"] == "melodia.resonant_world.capture_manifest.v1"
+    assert result["ok"] is True
+    assert len(result["targets"]) == 4
+    assert result["verification"]["clean_approved_count"] == 0
+    assert result["verification"]["clean_capture_pending_count"] == 4
+    assert result["render_map_contract"]["namespace"] == "/Game/_PROJECT/Levels/RenderTests/"
+    assert result["runtime_boundary"]["does_not_touch_gameplay_maps"] is True
+    assert result["runtime_boundary"]["does_not_publish_webfront"] is True
+    assert result["materialization"]["writes_project_state"] is False
+    sakura = next(item for item in result["targets"] if item["target_id"] == "niagara_sakura_ambience")
+    assert sakura["status"] == "observed_candidates_not_publishable"
+    raw = next(
+        item for item in sakura["observed_candidates"]
+        if item["filename"] == "L_Render_SakuraDream_beauty_raw.png"
+    )
+    assert raw["verdict"] == "rejected_runtime_evidence"
+    assert "black/checker" in raw["note"]
+
+
 def test_animation_validate_state_machine_schema() -> None:
     """Animation state machine validation must declare correct schema."""
     import deploy.melodia_mcp_server as server
@@ -468,6 +492,7 @@ def run_all() -> int:
         test_resonant_world_tools_are_offline_safe,
         test_resonant_world_constellation_is_offline_safe,
         test_resonant_world_score_is_offline_safe,
+        test_resonant_world_capture_manifest_is_evidence_gated,
         test_animation_validate_state_machine_schema,
         test_animation_validate_bindings_schema,
         test_animation_get_runtime_abp_schema,
