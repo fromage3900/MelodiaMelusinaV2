@@ -731,7 +731,7 @@ def generate_html(claims: list[Claim], standing: str, standing_detail: str, now:
 <div class="header">
   <div>
     <div class="title">Melodia Project Health</div>
-    <div class="subtitle">Standing scorecard — Echo gates, Hermes harness, Qwen/Muse lanes, SWE Light orchestrator</div>
+    <div class="subtitle">Standing scorecard — Echo gates, local model tooling (Qwen / Muse), and the SWE Light wrapper</div>
   </div>
   <div class="meta">generated {ts} · {"editor up" if editor_up else "editor down"} · refresh 30s</div>
 </div>
