@@ -1,0 +1,39 @@
+{
+  "kind": "melusina_idle_glide_final_state",
+  "captured_utc": "2026-08-22T07:32:53Z",
+  "abp_uasset_age_s": 145.9,
+  "idle_binding": "A_Melusina_Idle_Mocap_RootX",
+  "glide_binding": "A_Mocap_LittleDance_001",
+  "glide_entry_rules": {
+    "Idle->Glide": "bool:bIsGliding",
+    "Locomotion->Glide": "bool:bIsGliding",
+    "Airborne->Glide": "bool:bIsGliding"
+  },
+  "glide_exit_rules": {
+    "Glide->Airborne": "bool:bRuntimeIsInAir",
+    "Glide->Land": "bool:bRuntimeIsGrounded"
+  },
+  "glide_edges": [
+    [
+      "Airborne",
+      "Glide"
+    ],
+    [
+      "Glide",
+      "Airborne"
+    ],
+    [
+      "Glide",
+      "Land"
+    ],
+    [
+      "Idle",
+      "Glide"
+    ],
+    [
+      "Locomotion",
+      "Glide"
+    ]
+  ],
+  "ok": true
+}
