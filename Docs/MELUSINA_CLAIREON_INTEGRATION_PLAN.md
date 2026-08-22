@@ -42,11 +42,36 @@ The property worth fearing: `python_execute` is unsandboxed. See §5.
 These exist because the project is unstable as of 2026-08-18 and stability
 outranks new capability.
 
-**B1 — Claireon never runs in the main checkout.**
-All bring-up happens in `C:\EnvironmentPortfolio\Melodia_ClaireonTest`
-(branch `claireon-test`, port 57818). The main checkout stays on Monolith.
+**B1 — SUPERSEDED 2026-08-21 by owner decision. Claireon IS enabled in the main checkout.**
 
-**B2 — Claireon and UEBlueprintMCP are never enabled together.**
+> The owner enabled Claireon in `BS_GodFile.uproject` (`Enabled: true`) and ratified it on
+> 2026-08-21. The original rule is kept below for its reasoning, which still explains *why* the
+> test worktree exists — but it no longer binds.
+>
+> ~~Claireon never runs in the main checkout. All bring-up happens in
+> `C:\EnvironmentPortfolio\Melodia_ClaireonTest` (branch `claireon-test`, port 57818). The main
+> checkout stays on Monolith.~~
+>
+> **What still binds under the new decision:**
+> - B3, B4 and B5 are unchanged. Claireon is a *tooling* surface only — never a gameplay
+>   authority, never a second writer on a graph Monolith is driving, and no `.uasset` write
+>   without a gate row.
+> - The §5 security posture is unchanged and is now **more** relevant, not less: `python_execute`
+>   is unsandboxed, "localhost-only" is header validation rather than a socket bind, and there is
+>   no authentication. Do not expose the port through a tunnel, proxy or port forward.
+> - **B2 is now the live hazard** — see below.
+
+**B2 — Claireon and UEBlueprintMCP are never enabled together. ⚠ CURRENTLY VIOLATED.**
+
+> **Live state 2026-08-21:** `BS_GodFile.uproject` has **both** `Claireon: Enabled=true` and
+> `UEBlueprintMCP: Enabled=true`. Two unsandboxed Python surfaces are declared at once. With B1
+> superseded, this is the rule that still needs an owner action: **disable `UEBlueprintMCP`.**
+>
+> `Docs/Career/OPENCODE_TECHNICAL_OBSERVATIONS.md:24` already records UEBlueprintMCP as
+> permanently disabled (untrusted), so turning it off costs nothing currently relied on.
+>
+> Mitigating fact: no `Saved/Claireon/MCPServer.json` exists in the main checkout, so Claireon's
+> server has not bound here yet. The exposure is latent until the first `-StartMCPServer` launch.
 Both expose unsandboxed Python. `Docs/Career/OPENCODE_TECHNICAL_OBSERVATIONS.md:24`
 records UEBlueprintMCP as permanently disabled (untrusted); Claireon's README says
 explicitly not to run them side by side. Disable UEBlueprintMCP in the test
