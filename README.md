@@ -58,7 +58,7 @@ L_MelusinaMorning
 | Stock JRPG battle | ◻ BROKEN | Morning → KaleidoNave path open |
 | T3D wiring gate | ♪ EXPANDING | `t3d_safe_wire.py` active |
 
-### 2. ♪ Melodia MCP + Agent Harness (MATH)
+### 2. ♪ Melodia MCP + Local Model Tooling (MATH)
 
 1330 typed MCP actions across 24 namespaces. Three-tier model routing. Offline-safe read-only tools + live Monolith RPC bridge.
 

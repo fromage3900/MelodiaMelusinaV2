@@ -6,6 +6,8 @@ Uses existing Melody Token textures (Heart, Star, Swirl, Water) for visual varia
 from __future__ import annotations
 
 from dataclasses import dataclass, field, asdict
+import json
+from pathlib import Path
 from typing import Optional
 
 # ---------------------------------------------------------------------------
@@ -67,6 +69,46 @@ EXTRA_ELEMENTAL_TYPES = {
     "gale": {"display_name": "Gale Shard", "element": "Gale", "value": 11, "rarity": "uncommon"},
     "umbral": {"display_name": "Umbral Shard", "element": "Umbral", "value": 13, "rarity": "rare"},
 }
+
+# The Unreal DataAsset is canonical; this published mirror keeps the offline Python model
+# and its tests in agreement with the editor-owned catalog. The literals above remain a
+# bootstrap fallback for a partial checkout, but a present mirror always wins.
+PROJECT_ROOT = Path(__file__).resolve().parents[4]
+TOKEN_CATALOG_PATH = PROJECT_ROOT / "specs" / "economy" / "melodia_token_catalog.v1.json"
+TOKEN_SOURCE = ""
+
+
+def _load_token_catalog() -> None:
+    """Overlay token definitions from the canonical text mirror when it exists."""
+    global EXTRA_ELEMENTAL_TYPES, TOKEN_SOURCE, TOKEN_TYPES
+
+    if not TOKEN_CATALOG_PATH.exists():
+        return
+
+    with TOKEN_CATALOG_PATH.open(encoding="utf-8") as handle:
+        catalog = json.load(handle)
+
+    if catalog.get("schema") != "melodia_token_catalog.v1":
+        raise ValueError(f"Unsupported token catalog schema in {TOKEN_CATALOG_PATH}")
+
+    rows = catalog.get("tokens")
+    if not isinstance(rows, list) or not rows:
+        raise ValueError(f"Token catalog has no token rows: {TOKEN_CATALOG_PATH}")
+
+    TOKEN_TYPES = {
+        str(row["variant_id"]): dict(row)
+        for row in rows
+        if row.get("variant_id")
+    }
+    EXTRA_ELEMENTAL_TYPES = {
+        str(row["variant_id"]): dict(row)
+        for row in (catalog.get("extra_elemental_types") or [])
+        if row.get("variant_id")
+    }
+    TOKEN_SOURCE = str(TOKEN_CATALOG_PATH)
+
+
+_load_token_catalog()
 
 # ---------------------------------------------------------------------------
 # Token Definitions
