@@ -2,7 +2,16 @@ name: Sync portfolio status from gate ledger
 
 # Keeps the public portfolio honest by regenerating its status blob from the
 # game repo's real gate ledger (Saved/gate_ledger.json). Runs on every game
-# push and nightly. The generator never invents progress.
+# push to main and nightly. The generator never invents progress.
+#
+# TWO ways this fires:
+#   1. TOKEN-FREE (default, works today): run `.\deploy\sync_site_to_github.ps1`
+#      locally — it regenerates the status and ships it inside the normal site
+#      deploy (uses your existing git credentials, no PAT needed).
+#   2. SECRET-BASED (optional): this Action also runs on push or schedule and
+#      pushes the blob to my-site using secrets.SITE_SYNC_TOKEN.
+#      Requires a fine-grained PAT with write to fromage3900/my-site, stored as
+#      the SITE_SYNC_TOKEN repo secret on fromage3900/MelodiaMelusinaV2.
 on:
   push:
     branches: [main]
@@ -25,8 +34,8 @@ jobs:
         with:
           path: game
 
-      - name: Generate status blob
-        run: python game/Tools/sync_site_status.py
+      - name: Generate status blob into the site checkout
+        run: python game/Tools/sync_site_status.py --out game/_site_status.json
 
       - name: Checkout site repo
         uses: actions/checkout@v4
@@ -37,12 +46,8 @@ jobs:
 
       - name: Stage generated status
         run: |
-          cp game/../my-site-clean/public/melodia/status/sync_status.json site/public/melodia/status/sync_status.json 2>/dev/null || true
-          # Fallback: regenerate into the site checkout directly if path bridge missing
-          if [ ! -f site/public/melodia/status/sync_status.json ]; then
-            python game/Tools/sync_site_status.py
-            cp my-site-clean/public/melodia/status/sync_status.json site/public/melodia/status/sync_status.json
-          fi
+          mkdir -p site/public/melodia/status
+          cp game/_site_status.json site/public/melodia/status/sync_status.json
 
       - name: Commit & push if changed
         working-directory: site
