@@ -231,6 +231,34 @@
         "verify"
       ]
     },
+    "melodia_material_list_pbr": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_material_get_compile_stats": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_material_audit": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_ppv_report": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
     "melodia_bp_validate_p0_route": {
       "decision": "allow",
       "required_approval": "none",
@@ -383,6 +411,37 @@
       "required_approval": "none",
       "operations": [
         "read"
+      ]
+    },
+    "melodia_resonant_world_get_atlas": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_resonant_world_compile_passage": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ],
+      "reason": "Compiles an in-memory read model only; no audit artifact or project state is written."
+    },
+    "melodia_resonant_world_get_handoff": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_resonant_world_validate": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
       ]
     }
   }

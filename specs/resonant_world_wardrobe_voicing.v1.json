@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia Resonant World Wardrobe Voicing Preview v1",
+  "type": "object",
+  "required": [
+    "format",
+    "schema_version",
+    "voicing_version",
+    "request_id",
+    "world",
+    "layers",
+    "movement",
+    "asset_binding",
+    "world_response",
+    "challenge_hook",
+    "authorities",
+    "runtime_boundary",
+    "ok"
+  ],
+  "properties": {
+    "format": {"const": "melodia_resonant_world_wardrobe_voicing"},
+    "schema_version": {"const": 1},
+    "voicing_version": {"const": "resonant_wardrobe_voicing_v1"},
+    "request_id": {"type": "string", "pattern": "^[a-f0-9]{16}$"},
+    "world": {"type": "object", "required": ["world_seed", "movement_id"]},
+    "layers": {
+      "type": "object",
+      "required": ["cosmetic", "form", "style"],
+      "properties": {
+        "cosmetic": {"type": "object", "required": ["catalog_asset", "records"]},
+        "form": {"type": "object", "required": ["requested_resonant_form_id", "declares_only", "grants_capability"]},
+        "style": {"type": "object", "required": ["archetype_id", "voicing"]}
+      }
+    },
+    "movement": {"type": "object", "required": ["movement_id", "world_verb"]},
+    "asset_binding": {"type": "object", "required": ["asset_resolution"]},
+    "world_response": {"type": "object", "required": ["verb", "pcg_dressing", "presentation", "route_request"]},
+    "challenge_hook": {"type": "object", "required": ["preview_only", "adapter"]},
+    "authorities": {"type": "object"},
+    "runtime_boundary": {
+      "type": "object",
+      "required": [
+        "preview_only",
+        "does_not_equip",
+        "does_not_grant_capability",
+        "does_not_commit_challenge",
+        "does_not_write_save"
+      ],
+      "properties": {
+        "preview_only": {"const": true},
+        "does_not_equip": {"const": true},
+        "does_not_grant_capability": {"const": true},
+        "does_not_commit_challenge": {"const": true},
+        "does_not_write_save": {"const": true}
+      }
+    },
+    "validation_errors": {"type": "array", "items": {"type": "string"}},
+    "ok": {"const": true}
+  },
+  "additionalProperties": true
+}

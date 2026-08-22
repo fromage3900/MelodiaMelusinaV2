@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia Resonant World Proof Handoff v1",
+  "type": "object",
+  "required": [
+    "format",
+    "schema_version",
+    "handoff_version",
+    "world_seed",
+    "proof_level",
+    "pcg_owner",
+    "graph_reuse",
+    "hero_inputs",
+    "hero_input_count",
+    "static_spec_count",
+    "chunk_count",
+    "editor_apply",
+    "ok"
+  ],
+  "properties": {
+    "format": {"const": "melodia_resonant_world_proof_handoff"},
+    "schema_version": {"const": 1},
+    "handoff_version": {"const": "resonant_world_proof_handoff_v1"},
+    "world_seed": {"type": "integer"},
+    "proof_level": {"type": ["string", "null"]},
+    "pcg_owner": {"type": "string"},
+    "graph_reuse": {"const": true},
+    "hero_inputs": {"type": "array", "items": {"type": "object"}},
+    "hero_input_count": {"type": "integer"},
+    "static_spec_count": {"type": "integer"},
+    "chunk_count": {"type": "integer"},
+    "wardrobe_voicing": {"type": "object"},
+    "magic_passage": {"type": "object"},
+    "editor_apply": {
+      "type": "object",
+      "required": ["required", "performed", "single_editor_only", "production_maps_touched"],
+      "properties": {
+        "required": {"const": true},
+        "performed": {"const": false},
+        "single_editor_only": {"const": true},
+        "production_maps_touched": {"const": false}
+      }
+    },
+    "validation_errors": {"type": "array", "items": {"type": "string"}},
+    "ok": {"const": true}
+  },
+  "additionalProperties": true
+}

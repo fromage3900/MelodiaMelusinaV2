@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia Resonant World Magic Passage v1",
+  "type": "object",
+  "required": [
+    "format",
+    "schema_version",
+    "passage_version",
+    "passage_id",
+    "world",
+    "premise",
+    "wardrobe_source",
+    "response_choreography",
+    "scene_preview",
+    "ensemble",
+    "collection_affordance",
+    "phrase",
+    "quantum_setup",
+    "canonical_routes",
+    "state_model",
+    "runtime_boundary",
+    "ok"
+  ],
+  "properties": {
+    "format": {"const": "melodia_resonant_world_magic_passage"},
+    "schema_version": {"const": 1},
+    "passage_version": {"const": "resonant_magic_passage_v1"},
+    "passage_id": {"type": "string", "pattern": "^[a-f0-9]{16}$"},
+    "world": {"type": "object", "required": ["world_seed", "movement_id"]},
+    "premise": {"type": "object", "required": ["world_verb", "resonant_form_id"]},
+    "wardrobe_source": {"type": "object", "required": ["request_id", "archetype_id"]},
+    "response_choreography": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"type": "object", "required": ["stage_id", "musical_job", "world_action", "pcg_dressing"]}
+    },
+    "scene_preview": {"type": "object", "required": ["photo_spot", "effect_toggles"]},
+    "ensemble": {"type": "object"},
+    "collection_affordance": {"type": "object", "required": ["currency_id", "source_registry", "grant_authority", "does_not_grant_currency"]},
+    "phrase": {"type": "object"},
+    "quantum_setup": {"type": "object", "required": ["selection_stage", "backend_policy", "persisted_fields"]},
+    "canonical_routes": {"type": "object"},
+    "state_model": {"type": "object"},
+    "runtime_boundary": {
+      "type": "object",
+      "required": [
+        "authoring_or_read_model",
+        "does_not_spawn_actors",
+        "does_not_equip",
+        "does_not_grant_capability",
+        "does_not_commit_challenge",
+        "does_not_write_save",
+        "does_not_control_per_frame_traversal"
+      ],
+      "properties": {
+        "authoring_or_read_model": {"const": true},
+        "does_not_spawn_actors": {"const": true},
+        "does_not_equip": {"const": true},
+        "does_not_grant_capability": {"const": true},
+        "does_not_commit_challenge": {"const": true},
+        "does_not_write_save": {"const": true},
+        "does_not_control_per_frame_traversal": {"const": true}
+      }
+    },
+    "validation_errors": {"type": "array", "items": {"type": "string"}},
+    "ok": {"const": true}
+  },
+  "additionalProperties": true
+}
