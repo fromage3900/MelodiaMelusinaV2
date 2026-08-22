@@ -420,6 +420,15 @@
         "read"
       ]
     },
+    "melodia_resonant_world_get_constellation": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ],
+      "reason": "Builds a deterministic in-memory asset-binding read model from existing files and manifests; it does not write project state or apply editor mutations."
+    },
     "melodia_resonant_world_compile_passage": {
       "decision": "allow",
       "required_approval": "none",

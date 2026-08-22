@@ -1,0 +1,46 @@
+{
+  "$schema": "melodia.resonant_world.asset_constellation.v1",
+  "format": "melodia_resonant_world_asset_constellation",
+  "version": "resonant_asset_constellation_v1",
+  "purpose": "Bind existing project assets into a deterministic musical-voxel world-chunk read model.",
+  "required_roles": [
+    "terrain",
+    "structure",
+    "music",
+    "wardrobe",
+    "vfx",
+    "quantum"
+  ],
+  "reference_policy": {
+    "runtime_ready": "Only a project-backed /Game asset that resolves to an existing Content file is runtime-ready.",
+    "authoring_ready": "Manifest and logical references may guide authoring but are not silently promoted to runtime assets.",
+    "blocked_paths": ["_archive", "_quarantine", "_deprecated", "Saved", "Intermediate", "DerivedDataCache", "Binaries", "Build"],
+    "hair_water_rule": "Melusina hair shader references are not traversable water bodies."
+  },
+  "quantum_policy": {
+    "operation": "QuantumGameplay.WorldComposer.PickMovement",
+    "candidate_count": 2,
+    "preferred_backend": "qsharp-simulator",
+    "fallback_backend": "classical-baseline",
+    "selector_not_generator": true,
+    "forbidden_uses": ["per_frame_traversal", "individual_voxel_selection", "player_input_grading", "reward_grants"],
+    "persist_before_apply": ["winner_movement_id", "classical_baseline_winner_id", "backend", "trace_id"]
+  },
+  "runtime_boundary": {
+    "read_model_only": true,
+    "does_not_load_unreal_assets": true,
+    "does_not_spawn_actors": true,
+    "does_not_equip": true,
+    "does_not_grant_capability": true,
+    "does_not_apply_traversal": true,
+    "does_not_grant_currency": true,
+    "does_not_write_save": true
+  },
+  "verification_policy": {
+    "echo_runner": "Tools/echo_run.py",
+    "pie_runner": "Tools/playtest_harness.py",
+    "authority": "Saved/gate_ledger.json",
+    "read_model_is_not_pie_proof": true,
+    "world_specific_pie_status_default": "not_yet_observed"
+  }
+}
