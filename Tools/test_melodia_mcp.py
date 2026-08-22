@@ -277,6 +277,32 @@ def test_resonant_world_score_is_offline_safe() -> None:
     assert result["materialization"]["writes_project_state"] is False
 
 
+def test_resonant_world_chronicle_is_read_only_and_replayable() -> None:
+    """Chronicle projection preserves memory while leaving save authority elsewhere."""
+    import deploy.melodia_mcp_server as server
+
+    result = server.melodia_resonant_world_project_chronicle(
+        3900,
+        "petal_cantata",
+        0,
+        0,
+        [
+            {"sequence": 0, "event_type": "discovery", "chunk": [0, 0], "payload": {"movement_id": "star_loom"}},
+            {"sequence": 1, "event_type": "movement_attuned", "chunk": [1, 0], "payload": {"movement_id": "star_loom"}},
+            {"sequence": 2, "event_type": "voxel_edit", "chunk": [0, 0], "payload": {"cell": [1, 2, 3], "material_id": "note_block", "pitch_class": 4, "timbre": "harp"}},
+            {"sequence": 3, "event_type": "voxel_remove", "chunk": [0, 0], "payload": {"cell": [1, 2, 3]}},
+        ],
+    )
+    assert result["schema"] == "melodia.resonant_world.chronicle.v1"
+    assert result["ok"] is True
+    assert result["chronicle_id"]
+    assert result["projection"]["attuned_movement_id"] == "star_loom"
+    assert result["projection"]["voxel_edits"][0]["material_id"] == "air"
+    assert result["persistence"]["writes_save"] is False
+    assert result["runtime_boundary"]["does_not_apply_unreal"] is True
+    assert result["materialization"]["writes_project_state"] is False
+
+
 def test_resonant_world_capture_manifest_is_evidence_gated() -> None:
     """Capture contracts expose real evidence without promoting debug frames."""
     import deploy.melodia_mcp_server as server
@@ -492,6 +518,7 @@ def run_all() -> int:
         test_resonant_world_tools_are_offline_safe,
         test_resonant_world_constellation_is_offline_safe,
         test_resonant_world_score_is_offline_safe,
+        test_resonant_world_chronicle_is_read_only_and_replayable,
         test_resonant_world_capture_manifest_is_evidence_gated,
         test_animation_validate_state_machine_schema,
         test_animation_validate_bindings_schema,

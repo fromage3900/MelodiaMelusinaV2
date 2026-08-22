@@ -1500,6 +1500,7 @@ def _resonant_world_imports():
         build_score_portfolio,
         validate_resonant_score,
     )
+    from resonant_world_chronicle import build_chronicle, validate_chronicle
     from resonant_world_capture_manifest import (
         build_capture_manifest,
         validate_capture_manifest,
@@ -1521,6 +1522,8 @@ def _resonant_world_imports():
         "build_resonant_score": build_resonant_score,
         "build_score_portfolio": build_score_portfolio,
         "validate_resonant_score": validate_resonant_score,
+        "build_chronicle": build_chronicle,
+        "validate_chronicle": validate_chronicle,
         "build_capture_manifest": build_capture_manifest,
         "validate_capture_manifest": validate_capture_manifest,
         "build_magic_passage": build_magic_passage,
@@ -1751,6 +1754,68 @@ def melodia_resonant_world_get_score(
             "seed": int(seed),
             "movement_id": requested,
             "chunk": [int(chunk_x), int(chunk_y)],
+            "validation_errors": [str(exc)],
+            "materialization": {"performed": False, "writes_project_state": False},
+        }
+
+
+def melodia_resonant_world_project_chronicle(
+    seed: int = 3900,
+    movement_id: str = "petal_cantata",
+    chunk_x: int = 0,
+    chunk_y: int = 0,
+    events: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Project append-only world history without writing the canonical save."""
+    modules = _resonant_world_imports()
+    requested = str(movement_id or "petal_cantata")
+    supplied_events = events if events is not None else []
+    try:
+        chronicle = modules["build_chronicle"](
+            int(seed),
+            movement_id=requested,
+            chunk_x=int(chunk_x),
+            chunk_y=int(chunk_y),
+            events=supplied_events,
+            project_root=PROJECT_ROOT,
+        )
+        errors = modules["validate_chronicle"](chronicle)
+        return {
+            "schema": "melodia.resonant_world.chronicle.v1",
+            "source": "in_memory_chronicle_projection",
+            "ok": not errors,
+            "seed": int(seed),
+            "movement_id": requested,
+            "chunk": [int(chunk_x), int(chunk_y)],
+            "chronicle_id": chronicle.get("chronicle_id"),
+            "world": chronicle.get("world", {}),
+            "source_provenance": chronicle.get("source_provenance", {}),
+            "events": chronicle.get("events", []),
+            "projection": chronicle.get("projection", {}),
+            "persistence": chronicle.get("persistence", {}),
+            "runtime_boundary": chronicle.get("runtime_boundary", {}),
+            "validation_errors": errors,
+            "materialization": chronicle.get("materialization", {"performed": False, "writes_project_state": False}),
+        }
+    except Exception as exc:  # pragma: no cover - malformed client payloads are environment-specific
+        return {
+            "schema": "melodia.resonant_world.chronicle.v1",
+            "source": "in_memory_chronicle_projection",
+            "ok": False,
+            "seed": int(seed),
+            "movement_id": requested,
+            "chunk": [int(chunk_x), int(chunk_y)],
+            "chronicle_id": None,
+            "world": {},
+            "source_provenance": {},
+            "events": [],
+            "projection": {},
+            "persistence": {"writes_save": False},
+            "runtime_boundary": {
+                "read_model_only": True,
+                "does_not_write_save": True,
+                "does_not_apply_unreal": True,
+            },
             "validation_errors": [str(exc)],
             "materialization": {"performed": False, "writes_project_state": False},
         }
@@ -2328,6 +2393,26 @@ TOOLS: list[dict[str, Any]] = [
         },
     },
     {
+        "name": "melodia_resonant_world_project_chronicle",
+        "description": "Project append-only discoveries, score completions, style voicings, and sparse voxel edits into a deterministic world-memory read model without writing saves or applying Unreal state.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "seed": {"type": "integer", "default": 3900, "description": "Deterministic world seed"},
+                "movement_id": {"type": "string", "default": "petal_cantata", "description": "Authored base movement"},
+                "chunk_x": {"type": "integer", "default": 0, "description": "Chunk coordinate X"},
+                "chunk_y": {"type": "integer", "default": 0, "description": "Chunk coordinate Y"},
+                "events": {
+                    "type": "array",
+                    "items": {"type": "object"},
+                    "default": [],
+                    "description": "Append-only chronicle events; projection is deterministic and read-only",
+                },
+            },
+            "required": [],
+        },
+    },
+    {
         "name": "melodia_resonant_world_get_capture_manifest",
         "description": "Read the four canonical Resonant World lookdev slots, absolute source assets, intended camera/material state, and conservative PNG evidence verdicts without rendering or publishing.",
         "inputSchema": {
@@ -2551,6 +2636,15 @@ def main() -> None:
                     int(args.get("chunk_x", 0)),
                     int(args.get("chunk_y", 0)),
                     args.get("archetype_id"),
+                ) if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_resonant_world_project_chronicle":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_resonant_world_project_chronicle(
+                    int(args.get("seed", 3900)),
+                    str(args.get("movement_id", "petal_cantata")),
+                    int(args.get("chunk_x", 0)),
+                    int(args.get("chunk_y", 0)),
+                    args.get("events", []),
                 ) if policy["allowed"] else {"status": "denied", **policy}
             elif tool_name == "melodia_resonant_world_get_capture_manifest":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))

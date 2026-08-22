@@ -7,7 +7,7 @@ clock, traversal loop, input grader, or reward authority.
 
 The source implementation is:
 
-`Content/Python/quantum/resonant_movement_ranker.py`
+`Content/Python/quantum/resonant_movement_ranker.py` (ranker v2)
 
 with the Q# operation:
 
@@ -21,6 +21,12 @@ with the Q# operation:
 4. Fall back to `classical-baseline` when Q# is unavailable or times out.
 5. Persist winner, baseline winner, backend, and trace ID before world apply.
 6. Pass the resolved movement into the authored PCG binding.
+
+Ranker v2 also embeds source asset counts, missing-family evidence, objective
+vectors, candidate fingerprints, and measurement probabilities in the replay
+trace. If a research caller supplies more than two candidates, the ranker uses
+a deterministic pairwise tournament over the same two-candidate kernel; that
+path is offline research only and is never a generator or gameplay authority.
 
 The current environment reports `qsharp_available=false`, so the generated
 passage artifacts request the Q# path but resolve honestly to the classical

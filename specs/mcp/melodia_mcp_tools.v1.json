@@ -779,6 +779,27 @@
         "fields": ["source", "ok", "seed", "movement_id", "chunk", "score_id", "motif", "route", "stages", "events", "world", "asset_constellation", "quantum_setup", "persistence", "runtime_boundary", "validation_errors", "materialization"]
       }
     },
+    "melodia_resonant_world_project_chronicle": {
+      "category": "resonant_world",
+      "description": "Project append-only discoveries, score completions, style voicings, and sparse voxel edits into a deterministic world-memory read model without writing saves or applying Unreal state.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer", "default": 3900},
+          "movement_id": {"type": "string", "default": "petal_cantata"},
+          "chunk_x": {"type": "integer", "default": 0},
+          "chunk_y": {"type": "integer", "default": 0},
+          "events": {"type": "array", "items": {"type": "object"}, "default": []}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.chronicle.v1",
+        "fields": ["source", "ok", "seed", "movement_id", "chunk", "chronicle_id", "world", "source_provenance", "events", "projection", "persistence", "runtime_boundary", "validation_errors", "materialization"]
+      }
+    },
     "melodia_resonant_world_get_capture_manifest": {
       "category": "resonant_world",
       "description": "Read the four canonical lookdev target slots, absolute source assets, intended camera/material state, and conservative PNG evidence verdicts without rendering or publishing.",

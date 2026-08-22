@@ -159,6 +159,7 @@ These rules keep procedural generation from becoming disposable noise.
 | Movement identity and asset-family binding | Resonant World generator + asset atlas |
 | Existing-asset semantic binding per movement/chunk | `resonant_world_asset_constellation.py` |
 | Phrase, call/response, route seam, beat stages, and event voicing | `resonant_world_score.py` |
+| Long-lived discoveries, score memory, style voicings, and sparse voxel replay projection | `resonant_world_chronicle.py` |
 | Resonant metadata on existing PCG volume/static specs | `resonant_world_pcg_adapter.py` |
 | Existing MIDI → stable phrase voxels | `resonant_world_phrase_bridge.py` |
 | Cosmetic/Form/Style → authored movement response preview | `resonant_world_wardrobe_bridge.py` |
@@ -219,6 +220,15 @@ editor lane. It flattens the five hero inputs and preserves the wardrobe and
 passage summaries without importing `unreal`, mutating a map, or claiming that
 PIE evidence exists. The eventual one-editor setup can consume this envelope
 or the same source plan.
+
+`resonant_world_chronicle.py` is the long-term memory seam. It normalizes an
+append-only event stream, derives discovered movements, visited chunks,
+completed score IDs, style voicings, and last-write-wins sparse voxel edits,
+then emits a replay key plus asset/quantum source provenance. Its persistence
+owner is `UMelodiaNarrativeSubsystem / canonical save contract`; the module
+itself never writes a save, applies Unreal state, grants currency/capabilities,
+or materializes a map. The MCP read tool exposes this projection to UI and
+gameplay integration without creating a second persistence authority.
 
 ## Build path
 
@@ -293,6 +303,7 @@ python BS_GodFile/Content/Python/resonant_world_wardrobe_bridge.py --seed 3900 -
 python BS_GodFile/Content/Python/resonant_world_magic_passage.py --seed 3900 --all-movements --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --output BS_GodFile/Saved/Audit/resonant_magic_passage_portfolio_3900.json
 python BS_GodFile/Content/Python/resonant_world_magic_passage.py --seed 3900 --movement petal_cantata --archetype SakuraDreamer --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --output BS_GodFile/Saved/Audit/resonant_magic_passage_petal_3900.json
 python BS_GodFile/Content/Python/resonant_world_score.py --seed 3900 --movement petal_cantata --chunk-x 0 --chunk-y 0 --archetype SakuraDreamer
+python BS_GodFile/Content/Python/resonant_world_chronicle.py --seed 3900 --movement petal_cantata
 python BS_GodFile/Content/Python/resonant_world_capture_manifest.py --seed 3900 --output BS_GodFile/Saved/Audit/resonant_world_capture_manifest_3900.json
 python BS_GodFile/Content/Python/resonant_world_pcg_adapter.py --seed 3900 --radius 1 --atlas BS_GodFile/Saved/Audit/resonant_world_asset_atlas.json --phrase BS_GodFile/Saved/Audit/resonant_world_phrase_128bpm.json --wardrobe BS_GodFile/Saved/Audit/resonant_wardrobe_voicing_sakura_3900.json --magic-passage BS_GodFile/Saved/Audit/resonant_magic_passage_petal_3900.json --output BS_GodFile/Saved/Audit/resonant_world_pcg_plan_3900.json
 python BS_GodFile/Content/Python/resonant_world_proof_handoff.py --plan BS_GodFile/Saved/Audit/resonant_world_pcg_plan_3900.json --output BS_GodFile/Saved/Audit/resonant_world_proof_handoff_3900.json
