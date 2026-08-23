@@ -11,6 +11,7 @@ revert while any row is still pending.
 | --- | --- | --- | --- |
 | P0 runtime portability | `.gitignore`; `Docs/Evidence/2026-08-22_p0_enemy_territory_guard.md`; `Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/BP_EnemyExplorePawnBase.uasset`; `.../AggressiveEnemyExplorePawns/BP_AggressiveEnemyExplorePawnBase.uasset` | Commit first, after both remote LFS locks are acquired. | Existing scoped compile/PIE evidence in the companion document; `git lfs fsck`; LFS lock ownership; diff check. |
 | Save migration and economy | `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaPersistenceTests.cpp`; `MelodiaSaveGame.h`; `MelodiaTokenWalletSubsystem.cpp`; `MelodiaTokenWalletSubsystem.h`; untracked `MelodiaEconomyTestListener.h`; `Content/Python/author_melodia_universal_assets.py`; `specs/blueprints/fixtures/universal_melody_token.v1.json` | Preserve and split into a dedicated save/economy commit. Do not combine with HUD or Blender work. | Native build plus save migration and wallet contract tests. |
+| MelodiaCore companion/fur/garden experiments | Untracked `MelodiaCompanionComponent.{cpp,h}`; `MelodiaCompanionData.{cpp,h}`; `MelodiaFurBackend.{cpp,h}`; `MelodiaResonanceGardenData.{cpp,h}` | Preserve, then move to an isolated feature worktree before review. These are a separate gameplay-feature spike, not save migration or P0. | Feature-specific source review, native build, and a scoped runtime test. |
 | HUD/rhythm integration | `Source/BS_GodFile/MelodiaIntegration/MelodiaJRPGBattleOverlaySubsystem.{h,cpp}`; `MelodiaUIBridgeSubsystem.{h,cpp}`; `Content/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway.uasset`; `Content/Melodia/DataStuctures/DT_MelodySlime_RoomMods.json`; `DT_MelodySlime_Skills.json`; `Plugins/MelodiaWardrobe/MelodiaWardrobe.uplugin`; `Plugins/UEBlueprintMCP/UEBlueprintMCP.uplugin`; `Tools/echo_run.py`; `specs/echo_pipeline.json` | Preserve and split into a HUD/rhythm commit only after source review. | Closed-editor native build, HUD ownership contract, and a viewport/runtime proof. |
 | World-gen/capture provenance | `Content/Python/resonant_world_capture_manifest.py` | Preserve; commit as its own source-only change. | Manifest tests, Python syntax check, and diff check. |
 | Lookdev material experiment | Eight `Content/EnvSandbox/Materials/Instances/**` assets and `Content/EnvSandbox/PCG/Musical/MI_Piano_{Ebony,Ivory}.uasset` | Preserve but defer. Do not stage into P0, gameplay, or website commits. | Explicit visual approval, matching runtime envelope, and LFS locks. |
@@ -21,6 +22,8 @@ revert while any row is still pending.
 
 - `BP_AverageEnemyExplorePawn` and `BP_InteractionDetector` remain ignored because
   they were coverage subjects, not edited P0 assets.
+- Passive stock enemy-pawn assets remain ignored; the P0 exception intentionally
+  exposes only the Base and Aggressive Blueprint assets named above.
 - The MIDI export is preserved but deferred; do not add it to source control
   until it is designated a playable source asset rather than a generated
   history artifact.
