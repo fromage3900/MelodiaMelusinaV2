@@ -1,0 +1,2546 @@
+{
+  "format": "melodia_resonant_world_score",
+  "schema_version": 1,
+  "score_version": "resonant_world_score_v1",
+  "score_id": "943f972fc2814433",
+  "generator_versions": {
+    "world": "resonant_world_v1",
+    "constellation": "resonant_asset_constellation_v1"
+  },
+  "world": {
+    "seed": 3900,
+    "chunk": [
+      0,
+      0
+    ],
+    "movement_id": "petal_cantata",
+    "movement_display_name": "Petal Cantata",
+    "world_verb": "bloom",
+    "root_note": "C",
+    "mode_id": "phrygian",
+    "bpm": 132,
+    "motif_id": "f8940edc30"
+  },
+  "motif": {
+    "grammar_id": "petal_fan",
+    "gesture": "a flower opens on the return to tonic",
+    "call_beats": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "response_beats": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "response_rule": "the response mirrors the route while changing voicing and degree emphasis"
+  },
+  "route": {
+    "kind": "edge_to_edge_phrase_lane",
+    "request_only": true,
+    "west": {
+      "signature": "374fdd696089cfa6",
+      "cell": [
+        0,
+        11
+      ]
+    },
+    "east": {
+      "signature": "8d2ee4875155bad8",
+      "cell": [
+        15,
+        11
+      ]
+    },
+    "points": [
+      [
+        0,
+        11
+      ],
+      [
+        1,
+        13
+      ],
+      [
+        2,
+        14
+      ],
+      [
+        3,
+        13
+      ],
+      [
+        4,
+        11
+      ],
+      [
+        5,
+        9
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        8,
+        11
+      ],
+      [
+        9,
+        13
+      ],
+      [
+        10,
+        14
+      ],
+      [
+        11,
+        13
+      ],
+      [
+        12,
+        11
+      ],
+      [
+        13,
+        9
+      ],
+      [
+        14,
+        8
+      ],
+      [
+        15,
+        11
+      ]
+    ],
+    "traversal_authority": "UMelodiaTraversalComponent"
+  },
+  "events": [
+    {
+      "event_id": "1372393c19d1a6cc",
+      "beat": 0,
+      "phase": "call",
+      "stage_id": "invocation",
+      "cell": [
+        0,
+        11,
+        3
+      ],
+      "pitch_class": 1,
+      "pitch_name": "C#",
+      "scale_degree": 1,
+      "voice": "melody",
+      "energy": 99,
+      "world_action": "germinate",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody.mid",
+          "source": "project_file",
+          "score": 11,
+          "evidence": [
+            ".mid",
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable.uasset",
+          "source": "project_file",
+          "score": 27,
+          "evidence": [
+            "garden",
+            "nikki",
+            "phyllotaxis",
+            "phyllotaxisgarden",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ebony.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Ebony",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ebony.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FabricTrail",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FabricTrail",
+          "metadata": {
+            "description": "Ribbon/streamer trail for fabric movement in wind. Satin-sheen ribbon particles following dress/cloth vertices.",
+            "routes": {
+              "wind_dir": "/niagara/wind",
+              "audio_amp": "/melusina/amp"
+            },
+            "max_particles": 40
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "52039f195ed39ba0",
+      "beat": 1,
+      "phase": "call",
+      "stage_id": "invocation",
+      "cell": [
+        1,
+        13,
+        7
+      ],
+      "pitch_class": 5,
+      "pitch_name": "F",
+      "scale_degree": 3,
+      "voice": "melody",
+      "energy": 96,
+      "world_action": "germinate",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.mid",
+          "source": "project_file",
+          "score": 11,
+          "evidence": [
+            ".mid",
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden.uasset",
+          "source": "project_file",
+          "score": 27,
+          "evidence": [
+            "garden",
+            "nikki",
+            "phyllotaxis",
+            "phyllotaxisgarden",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ivory.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Ivory",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ivory.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FabricTrail",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FabricTrail",
+          "metadata": {
+            "description": "Ribbon/streamer trail for fabric movement in wind. Satin-sheen ribbon particles following dress/cloth vertices.",
+            "routes": {
+              "wind_dir": "/niagara/wind",
+              "audio_amp": "/melusina/amp"
+            },
+            "max_particles": 40
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "f1637abaa39b79e9",
+      "beat": 2,
+      "phase": "call",
+      "stage_id": "invocation",
+      "cell": [
+        2,
+        14,
+        7
+      ],
+      "pitch_class": 8,
+      "pitch_name": "G#",
+      "scale_degree": 5,
+      "voice": "melody",
+      "energy": 88,
+      "world_action": "germinate",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.uasset",
+          "source": "project_file",
+          "score": 9,
+          "evidence": [
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid",
+          "disk_path": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.uasset",
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom.uasset",
+          "source": "project_file",
+          "score": 21,
+          "evidence": [
+            "bloom",
+            "mandalabloom",
+            "nikki",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "petal",
+            "sm_orn_"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal",
+          "disk_path": "Content/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal.uasset",
+          "metadata": {
+            "families": [
+              "musical_ornaments"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FabricTrail",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FabricTrail",
+          "metadata": {
+            "description": "Ribbon/streamer trail for fabric movement in wind. Satin-sheen ribbon particles following dress/cloth vertices.",
+            "routes": {
+              "wind_dir": "/niagara/wind",
+              "audio_amp": "/melusina/amp"
+            },
+            "max_particles": 40
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "3b8dcf594a34daca",
+      "beat": 3,
+      "phase": "call",
+      "stage_id": "invocation",
+      "cell": [
+        3,
+        13,
+        7
+      ],
+      "pitch_class": 3,
+      "pitch_name": "D#",
+      "scale_degree": 2,
+      "voice": "melody",
+      "energy": 60,
+      "world_action": "germinate",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody.uasset",
+          "source": "project_file",
+          "score": 9,
+          "evidence": [
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/MelodiaIntegration/MIDI/128BPMarpeggiomelody",
+          "disk_path": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody.uasset",
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Hero_TeaGarden.uasset",
+          "source": "project_file",
+          "score": 21,
+          "evidence": [
+            "garden",
+            "sakura",
+            "tea",
+            "teagarden"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Hero_TeaGarden",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Hero_TeaGarden.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg",
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Keybed.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Keybed",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Keybed.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FabricTrail",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FabricTrail",
+          "metadata": {
+            "description": "Ribbon/streamer trail for fabric movement in wind. Satin-sheen ribbon particles following dress/cloth vertices.",
+            "routes": {
+              "wind_dir": "/niagara/wind",
+              "audio_amp": "/melusina/amp"
+            },
+            "max_particles": 40
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "512ecbb11acca7be",
+      "beat": 4,
+      "phase": "call",
+      "stage_id": "unfolding",
+      "cell": [
+        4,
+        11,
+        7
+      ],
+      "pitch_class": 1,
+      "pitch_name": "C#",
+      "scale_degree": 1,
+      "voice": "melody",
+      "energy": 95,
+      "world_action": "open_flora",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Imports/Audio/BeatscribeVGM/extracted/GBA_MIDI/item.mid",
+          "source": "project_file",
+          "score": 5,
+          "evidence": [
+            ".mid",
+            "audio"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/WP/PCG_WP_SakuraDream_MeadowBloom.uasset",
+          "source": "project_file",
+          "score": 19,
+          "evidence": [
+            "bloom",
+            "meadow",
+            "meadowbloom",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/WP/PCG_WP_SakuraDream_MeadowBloom",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/WP/PCG_WP_SakuraDream_MeadowBloom.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Products/_Staging/OrnamentSculptReview_20260712/Gothic/SM_Orn_RoseWindow_8Petal.fbx",
+          "source": "project_file",
+          "score": 6,
+          "evidence": [
+            "petal",
+            "sm_orn_"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "musical_ornaments"
+            ],
+            "suffix": ".fbx"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_SparkleDrift",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_SparkleDrift",
+          "metadata": {
+            "description": "4-point star sparkles drifting with sin-wave oscillation. Gold-to-pink color shift, additive blend, soft alpha.",
+            "routes": {
+              "spawn_rate": "/niagara/sparkle/rate",
+              "particle_color": "/niagara/sparkle/color",
+              "particle_size": "/niagara/sparkle/size"
+            },
+            "max_particles": 60
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "075befb601625df4",
+      "beat": 5,
+      "phase": "call",
+      "stage_id": "unfolding",
+      "cell": [
+        5,
+        9,
+        5
+      ],
+      "pitch_class": 5,
+      "pitch_name": "F",
+      "scale_degree": 3,
+      "voice": "melody",
+      "energy": 88,
+      "world_action": "open_flora",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Imports/Audio/BeatscribeVGM/extracted/GBA_MIDI/reveal.mid",
+          "source": "project_file",
+          "score": 5,
+          "evidence": [
+            ".mid",
+            "audio"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable.uasset",
+          "source": "project_file",
+          "score": 27,
+          "evidence": [
+            "garden",
+            "nikki",
+            "phyllotaxis",
+            "phyllotaxisgarden",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ebony.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Ebony",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ebony.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_SparkleDrift",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_SparkleDrift",
+          "metadata": {
+            "description": "4-point star sparkles drifting with sin-wave oscillation. Gold-to-pink color shift, additive blend, soft alpha.",
+            "routes": {
+              "spawn_rate": "/niagara/sparkle/rate",
+              "particle_color": "/niagara/sparkle/color",
+              "particle_size": "/niagara/sparkle/size"
+            },
+            "max_particles": 60
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "497532fac63347bb",
+      "beat": 6,
+      "phase": "call",
+      "stage_id": "unfolding",
+      "cell": [
+        6,
+        8,
+        3
+      ],
+      "pitch_class": 10,
+      "pitch_name": "A#",
+      "scale_degree": 6,
+      "voice": "melody",
+      "energy": 89,
+      "world_action": "open_flora",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody.mid",
+          "source": "project_file",
+          "score": 11,
+          "evidence": [
+            ".mid",
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden.uasset",
+          "source": "project_file",
+          "score": 27,
+          "evidence": [
+            "garden",
+            "nikki",
+            "phyllotaxis",
+            "phyllotaxisgarden",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ivory.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Ivory",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ivory.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_SparkleDrift",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_SparkleDrift",
+          "metadata": {
+            "description": "4-point star sparkles drifting with sin-wave oscillation. Gold-to-pink color shift, additive blend, soft alpha.",
+            "routes": {
+              "spawn_rate": "/niagara/sparkle/rate",
+              "particle_color": "/niagara/sparkle/color",
+              "particle_size": "/niagara/sparkle/size"
+            },
+            "max_particles": 60
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "02b8010c25bddb3c",
+      "beat": 7,
+      "phase": "call",
+      "stage_id": "unfolding",
+      "cell": [
+        7,
+        9,
+        6
+      ],
+      "pitch_class": 8,
+      "pitch_name": "G#",
+      "scale_degree": 5,
+      "voice": "melody",
+      "energy": 74,
+      "world_action": "open_flora",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.mid",
+          "source": "project_file",
+          "score": 11,
+          "evidence": [
+            ".mid",
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom.uasset",
+          "source": "project_file",
+          "score": 21,
+          "evidence": [
+            "bloom",
+            "mandalabloom",
+            "nikki",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "petal",
+            "sm_orn_"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal",
+          "disk_path": "Content/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal.uasset",
+          "metadata": {
+            "families": [
+              "musical_ornaments"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_SparkleDrift",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_SparkleDrift",
+          "metadata": {
+            "description": "4-point star sparkles drifting with sin-wave oscillation. Gold-to-pink color shift, additive blend, soft alpha.",
+            "routes": {
+              "spawn_rate": "/niagara/sparkle/rate",
+              "particle_color": "/niagara/sparkle/color",
+              "particle_size": "/niagara/sparkle/size"
+            },
+            "max_particles": 60
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "6533e4fccadc9919",
+      "beat": 8,
+      "phase": "response",
+      "stage_id": "threshold",
+      "cell": [
+        8,
+        11,
+        7
+      ],
+      "pitch_class": 0,
+      "pitch_name": "C",
+      "scale_degree": 0,
+      "voice": "answer",
+      "energy": 96,
+      "world_action": "draw_petal_route",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.uasset",
+          "source": "project_file",
+          "score": 9,
+          "evidence": [
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid",
+          "disk_path": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.uasset",
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Hero_TeaGarden.uasset",
+          "source": "project_file",
+          "score": 21,
+          "evidence": [
+            "garden",
+            "sakura",
+            "tea",
+            "teagarden"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Hero_TeaGarden",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Hero_TeaGarden.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg",
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Keybed.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Keybed",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Keybed.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FlowerPetals",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FlowerPetals",
+          "metadata": {
+            "description": "Cherry blossom / sakura petal falling particles. Pastel pink petal sprites with randomized rotation and gentle falling motion.",
+            "routes": {
+              "spawn_rate": "/niagara/petal/rate",
+              "wind_dir": "/niagara/wind"
+            },
+            "max_particles": 50
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "39db8156553164e2",
+      "beat": 9,
+      "phase": "response",
+      "stage_id": "threshold",
+      "cell": [
+        9,
+        13,
+        5
+      ],
+      "pitch_class": 5,
+      "pitch_name": "F",
+      "scale_degree": 3,
+      "voice": "answer",
+      "energy": 100,
+      "world_action": "draw_petal_route",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody.uasset",
+          "source": "project_file",
+          "score": 9,
+          "evidence": [
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/MelodiaIntegration/MIDI/128BPMarpeggiomelody",
+          "disk_path": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody.uasset",
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/WP/PCG_WP_SakuraDream_MeadowBloom.uasset",
+          "source": "project_file",
+          "score": 19,
+          "evidence": [
+            "bloom",
+            "meadow",
+            "meadowbloom",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/WP/PCG_WP_SakuraDream_MeadowBloom",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/WP/PCG_WP_SakuraDream_MeadowBloom.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Products/_Staging/OrnamentSculptReview_20260712/Gothic/SM_Orn_RoseWindow_8Petal.fbx",
+          "source": "project_file",
+          "score": 6,
+          "evidence": [
+            "petal",
+            "sm_orn_"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "musical_ornaments"
+            ],
+            "suffix": ".fbx"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FlowerPetals",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FlowerPetals",
+          "metadata": {
+            "description": "Cherry blossom / sakura petal falling particles. Pastel pink petal sprites with randomized rotation and gentle falling motion.",
+            "routes": {
+              "spawn_rate": "/niagara/petal/rate",
+              "wind_dir": "/niagara/wind"
+            },
+            "max_particles": 50
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "532ea027ad917a90",
+      "beat": 10,
+      "phase": "response",
+      "stage_id": "threshold",
+      "cell": [
+        10,
+        14,
+        4
+      ],
+      "pitch_class": 8,
+      "pitch_name": "G#",
+      "scale_degree": 5,
+      "voice": "answer",
+      "energy": 98,
+      "world_action": "draw_petal_route",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Imports/Audio/BeatscribeVGM/extracted/GBA_MIDI/item.mid",
+          "source": "project_file",
+          "score": 5,
+          "evidence": [
+            ".mid",
+            "audio"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable.uasset",
+          "source": "project_file",
+          "score": 27,
+          "evidence": [
+            "garden",
+            "nikki",
+            "phyllotaxis",
+            "phyllotaxisgarden",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ebony.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Ebony",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ebony.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FlowerPetals",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FlowerPetals",
+          "metadata": {
+            "description": "Cherry blossom / sakura petal falling particles. Pastel pink petal sprites with randomized rotation and gentle falling motion.",
+            "routes": {
+              "spawn_rate": "/niagara/petal/rate",
+              "wind_dir": "/niagara/wind"
+            },
+            "max_particles": 50
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "d0a01fe7a543957e",
+      "beat": 11,
+      "phase": "response",
+      "stage_id": "threshold",
+      "cell": [
+        11,
+        13,
+        5
+      ],
+      "pitch_class": 5,
+      "pitch_name": "F",
+      "scale_degree": 3,
+      "voice": "answer",
+      "energy": 67,
+      "world_action": "draw_petal_route",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Imports/Audio/BeatscribeVGM/extracted/GBA_MIDI/reveal.mid",
+          "source": "project_file",
+          "score": 5,
+          "evidence": [
+            ".mid",
+            "audio"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden.uasset",
+          "source": "project_file",
+          "score": 27,
+          "evidence": [
+            "garden",
+            "nikki",
+            "phyllotaxis",
+            "phyllotaxisgarden",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ivory.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Ivory",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ivory.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FlowerPetals",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FlowerPetals",
+          "metadata": {
+            "description": "Cherry blossom / sakura petal falling particles. Pastel pink petal sprites with randomized rotation and gentle falling motion.",
+            "routes": {
+              "spawn_rate": "/niagara/petal/rate",
+              "wind_dir": "/niagara/wind"
+            },
+            "max_particles": 50
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "acd5513d4b250763",
+      "beat": 12,
+      "phase": "response",
+      "stage_id": "release",
+      "cell": [
+        12,
+        11,
+        5
+      ],
+      "pitch_class": 1,
+      "pitch_name": "C#",
+      "scale_degree": 1,
+      "voice": "answer",
+      "energy": 60,
+      "world_action": "leave_a_bloom_rest",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody.mid",
+          "source": "project_file",
+          "score": 11,
+          "evidence": [
+            ".mid",
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom.uasset",
+          "source": "project_file",
+          "score": 21,
+          "evidence": [
+            "bloom",
+            "mandalabloom",
+            "nikki",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "petal",
+            "sm_orn_"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal",
+          "disk_path": "Content/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal.uasset",
+          "metadata": {
+            "families": [
+              "musical_ornaments"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FabricTrail",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FabricTrail",
+          "metadata": {
+            "description": "Ribbon/streamer trail for fabric movement in wind. Satin-sheen ribbon particles following dress/cloth vertices.",
+            "routes": {
+              "wind_dir": "/niagara/wind",
+              "audio_amp": "/melusina/amp"
+            },
+            "max_particles": 40
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "46b713318a1be314",
+      "beat": 13,
+      "phase": "response",
+      "stage_id": "release",
+      "cell": [
+        13,
+        9,
+        4
+      ],
+      "pitch_class": 5,
+      "pitch_name": "F",
+      "scale_degree": 3,
+      "voice": "answer",
+      "energy": 81,
+      "world_action": "leave_a_bloom_rest",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.mid",
+          "source": "project_file",
+          "score": 11,
+          "evidence": [
+            ".mid",
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".mid"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Hero_TeaGarden.uasset",
+          "source": "project_file",
+          "score": 21,
+          "evidence": [
+            "garden",
+            "sakura",
+            "tea",
+            "teagarden"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Hero_TeaGarden",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Hero_TeaGarden.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg",
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Keybed.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Keybed",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Keybed.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FabricTrail",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FabricTrail",
+          "metadata": {
+            "description": "Ribbon/streamer trail for fabric movement in wind. Satin-sheen ribbon particles following dress/cloth vertices.",
+            "routes": {
+              "wind_dir": "/niagara/wind",
+              "audio_amp": "/melusina/amp"
+            },
+            "max_particles": 40
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "a1113cf84ef25fee",
+      "beat": 14,
+      "phase": "response",
+      "stage_id": "release",
+      "cell": [
+        14,
+        8,
+        4
+      ],
+      "pitch_class": 10,
+      "pitch_name": "A#",
+      "scale_degree": 6,
+      "voice": "answer",
+      "energy": 90,
+      "world_action": "leave_a_bloom_rest",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.uasset",
+          "source": "project_file",
+          "score": 9,
+          "evidence": [
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid",
+          "disk_path": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.uasset",
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/WP/PCG_WP_SakuraDream_MeadowBloom.uasset",
+          "source": "project_file",
+          "score": 19,
+          "evidence": [
+            "bloom",
+            "meadow",
+            "meadowbloom",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/WP/PCG_WP_SakuraDream_MeadowBloom",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/WP/PCG_WP_SakuraDream_MeadowBloom.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Products/_Staging/OrnamentSculptReview_20260712/Gothic/SM_Orn_RoseWindow_8Petal.fbx",
+          "source": "project_file",
+          "score": 6,
+          "evidence": [
+            "petal",
+            "sm_orn_"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "families": [
+              "musical_ornaments"
+            ],
+            "suffix": ".fbx"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FabricTrail",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FabricTrail",
+          "metadata": {
+            "description": "Ribbon/streamer trail for fabric movement in wind. Satin-sheen ribbon particles following dress/cloth vertices.",
+            "routes": {
+              "wind_dir": "/niagara/wind",
+              "audio_amp": "/melusina/amp"
+            },
+            "max_particles": 40
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    },
+    {
+      "event_id": "c0ff06ca71e25eff",
+      "beat": 15,
+      "phase": "response",
+      "stage_id": "release",
+      "cell": [
+        15,
+        11,
+        5
+      ],
+      "pitch_class": 7,
+      "pitch_name": "G",
+      "scale_degree": 4,
+      "voice": "answer",
+      "energy": 88,
+      "world_action": "leave_a_bloom_rest",
+      "gesture": "a flower opens on the return to tonic",
+      "asset_voicing": {
+        "music": {
+          "role": "music",
+          "reference": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody.uasset",
+          "source": "project_file",
+          "score": 9,
+          "evidence": [
+            "/midi/",
+            "128bpm",
+            "melody"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/MelodiaIntegration/MIDI/128BPMarpeggiomelody",
+          "disk_path": "Content/MelodiaIntegration/MIDI/128BPMarpeggiomelody.uasset",
+          "metadata": {
+            "families": [
+              "audio_midi"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "material": {
+          "role": "flora",
+          "reference": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable.uasset",
+          "source": "project_file",
+          "score": 27,
+          "evidence": [
+            "garden",
+            "nikki",
+            "phyllotaxis",
+            "phyllotaxisgarden",
+            "sakura"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable",
+          "disk_path": "Content/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable.uasset",
+          "metadata": {
+            "families": [
+              "sakura_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "ornament": {
+          "role": "ornament",
+          "reference": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ebony.uasset",
+          "source": "project_file",
+          "score": 7,
+          "evidence": [
+            "piano"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": true,
+          "on_disk": true,
+          "unreal_path": "/Game/EnvSandbox/PCG/Musical/MI_Piano_Ebony",
+          "disk_path": "Content/EnvSandbox/PCG/Musical/MI_Piano_Ebony.uasset",
+          "metadata": {
+            "families": [
+              "musical_pcg"
+            ],
+            "suffix": ".uasset"
+          }
+        },
+        "vfx": {
+          "role": "vfx",
+          "reference": "NS_Nikki_FabricTrail",
+          "source": "niagara_manifest",
+          "score": 10,
+          "evidence": [
+            "manifest_record",
+            "movement_vfx_system"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "unreal_path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FabricTrail",
+          "metadata": {
+            "description": "Ribbon/streamer trail for fabric movement in wind. Satin-sheen ribbon particles following dress/cloth vertices.",
+            "routes": {
+              "wind_dir": "/niagara/wind",
+              "audio_amp": "/melusina/amp"
+            },
+            "max_particles": 40
+          }
+        },
+        "wardrobe": {
+          "role": "wardrobe",
+          "reference": "manifest:archetypes/SakuraDreamer",
+          "source": "archetype_manifest",
+          "score": 10,
+          "evidence": [
+            "ability_style_preview",
+            "appearance_layer",
+            "movement_archetype"
+          ],
+          "authoring_ready": true,
+          "runtime_ready": false,
+          "on_disk": false,
+          "metadata": {
+            "display_name": "Sakura Dreamer",
+            "element": "Radiant",
+            "outfit_pieces": [
+              "kimono_sleeve_top",
+              "hakama_skirt",
+              "petal_hair_ribbon"
+            ],
+            "spawn_zones": [
+              "SakuraGrove",
+              "HealingShrine",
+              "PetalPlaza",
+              "DreamGarden"
+            ],
+            "source_is_manifest": true
+          }
+        }
+      }
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "invocation",
+      "beat_range": [
+        0,
+        3
+      ],
+      "event_ids": [
+        "1372393c19d1a6cc",
+        "52039f195ed39ba0",
+        "f1637abaa39b79e9",
+        "3b8dcf594a34daca"
+      ],
+      "trigger": "music_clock_on_beat",
+      "world_action": "germinate"
+    },
+    {
+      "stage_id": "unfolding",
+      "beat_range": [
+        4,
+        7
+      ],
+      "event_ids": [
+        "512ecbb11acca7be",
+        "075befb601625df4",
+        "497532fac63347bb",
+        "02b8010c25bddb3c"
+      ],
+      "trigger": "music_clock_on_beat",
+      "world_action": "open_flora"
+    },
+    {
+      "stage_id": "threshold",
+      "beat_range": [
+        8,
+        11
+      ],
+      "event_ids": [
+        "6533e4fccadc9919",
+        "39db8156553164e2",
+        "532ea027ad917a90",
+        "d0a01fe7a543957e"
+      ],
+      "trigger": "music_clock_on_beat",
+      "world_action": "draw_petal_route"
+    },
+    {
+      "stage_id": "release",
+      "beat_range": [
+        12,
+        15
+      ],
+      "event_ids": [
+        "acd5513d4b250763",
+        "46b713318a1be314",
+        "a1113cf84ef25fee",
+        "c0ff06ca71e25eff"
+      ],
+      "trigger": "music_clock_on_beat",
+      "world_action": "leave_a_bloom_rest"
+    }
+  ],
+  "asset_constellation": {
+    "constellation_id": "eca29c6175a1692f",
+    "required_role_coverage": 1.0,
+    "validation_errors": [],
+    "runtime_ready_reference_count": 35
+  },
+  "quantum_setup": {
+    "algorithm": "two_candidate_amplitude_measurement",
+    "qsharp_operation": "QuantumGameplay.WorldComposer.PickMovement",
+    "candidate_movements": [
+      "petal_cantata",
+      "cadence_cathedral"
+    ],
+    "backend_policy": {
+      "preferred": "qsharp-simulator",
+      "fallback": "classical-baseline",
+      "requires_exactly_two_candidates": true
+    },
+    "rank_preview": {
+      "job_id": "world-composer_0000003900",
+      "status": "completed",
+      "ranker_version": "resonant_movement_ranker_v2",
+      "winner_id": "cadence_cathedral",
+      "winner_movement_id": "cadence_cathedral",
+      "winner_score": 0.918,
+      "backend_requested": "qsharp-simulator",
+      "backend": "classical-baseline",
+      "qsharp_available": false,
+      "classical_baseline_winner_id": "cadence_cathedral",
+      "classical_baseline_score": 0.918,
+      "candidate_scores": [
+        {
+          "id": "cadence_cathedral",
+          "movement_id": "cadence_cathedral",
+          "score": 0.918,
+          "features": {
+            "outfit_synergy": 1.0,
+            "asset_coverage": 1.0,
+            "traversal_safety": 0.85,
+            "visual_contrast": 0.72,
+            "motif_continuity": 0.9
+          },
+          "provenance": {
+            "source": "resonant_asset_constellation",
+            "candidate_movement_id": "cadence_cathedral",
+            "role_counts": {
+              "terrain": 20,
+              "structure": 2294,
+              "flora": 4244,
+              "material": 4342,
+              "music": 644,
+              "wardrobe": 1,
+              "vfx": 2,
+              "water": 0,
+              "quantum": 26
+            },
+            "required_roles": [
+              "terrain",
+              "structure",
+              "music",
+              "wardrobe",
+              "vfx",
+              "quantum"
+            ]
+          }
+        },
+        {
+          "id": "petal_cantata",
+          "movement_id": "petal_cantata",
+          "score": 0.918,
+          "features": {
+            "outfit_synergy": 1.0,
+            "asset_coverage": 1.0,
+            "traversal_safety": 0.85,
+            "visual_contrast": 0.72,
+            "motif_continuity": 0.9
+          },
+          "provenance": {
+            "source": "resonant_asset_constellation",
+            "candidate_movement_id": "petal_cantata",
+            "role_counts": {
+              "terrain": 20,
+              "structure": 1563,
+              "flora": 1650,
+              "material": 4342,
+              "music": 644,
+              "wardrobe": 1,
+              "vfx": 3,
+              "water": 1,
+              "quantum": 26
+            },
+            "required_roles": [
+              "terrain",
+              "structure",
+              "music",
+              "wardrobe",
+              "vfx",
+              "quantum"
+            ]
+          }
+        }
+      ],
+      "selection_protocol": "classical-ranked",
+      "measurement_log": [],
+      "provenance": {
+        "candidate_count": 2,
+        "candidate_ids": [
+          "petal_cantata",
+          "cadence_cathedral"
+        ],
+        "source_evidence_embedded_in_trace": true
+      },
+      "trace_id": "cbebc3cea06da54c",
+      "replay_contract": {
+        "persist_result_before_world_apply": true,
+        "seed_is_not_a_substitute_for_persisted_quantum_draw": false,
+        "unreal_application_boundary": "async movement result -> authored PCG binding",
+        "source_provenance_in_trace": true,
+        "measurement_log_required_for_replay": false
+      }
+    },
+    "selection_stage": "world_preparation_only",
+    "quantum_is_selector_not_generator": true,
+    "not_allowed": [
+      "per_frame_traversal",
+      "individual_voxel_selection",
+      "player_input_grading",
+      "reward_grants"
+    ],
+    "persist_before_apply": [
+      "winner_movement_id",
+      "classical_baseline_winner_id",
+      "backend",
+      "trace_id"
+    ]
+  },
+  "persistence": {
+    "replay_key": "943f972fc2814433",
+    "persist_before_apply": [
+      "score_id",
+      "constellation_id",
+      "quantum_setup.rank_preview.trace_id"
+    ],
+    "sparse_edit_model": "persist player edits by event_id/cell_id/intent_id, then regenerate the score",
+    "save_authority": "UMelodiaNarrativeSubsystem / canonical save contract",
+    "writes_save": false
+  },
+  "runtime_boundary": {
+    "authoring_or_read_model": true,
+    "does_not_load_unreal_assets": true,
+    "does_not_spawn_actors": true,
+    "does_not_equip": true,
+    "does_not_grant_capability": true,
+    "does_not_apply_traversal": true,
+    "does_not_grant_currency": true,
+    "does_not_write_save": true,
+    "does_not_select_individual_voxels_with_quantum": true
+  },
+  "validation_errors": [],
+  "ok": true
+}
