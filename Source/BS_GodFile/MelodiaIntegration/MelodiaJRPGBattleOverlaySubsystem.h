@@ -6,13 +6,13 @@
 #include "MelodiaJRPGBattleOverlaySubsystem.generated.h"
 
 class UMelodiaNarrativeSubsystem;
-class UMelodiaBattleKeyboardLegendWidget;
-class UUserWidget;
 
 /**
- * Presentation-only owner for the standalone Melodia rhythm prompt.
- * Observes narrative battle lifecycle events without changing stock JRPG HUD,
- * input, focus, combat mechanics, or turn flow.
+ * Retired presentation observer for the standalone Melodia rhythm prompt.
+ *
+ * UMelodiaUIBridgeSubsystem is the sole owner of battle-time Melodia widgets.
+ * This subsystem remains as a compatibility observer for existing subsystem
+ * construction and event wiring, but it must not create viewport widgets.
  */
 UCLASS()
 class BS_GODFILE_API UMelodiaJRPGBattleOverlaySubsystem final : public UGameInstanceSubsystem
@@ -33,12 +33,4 @@ private:
 	UFUNCTION()
 	void HandleBattleAborted(FName EncounterId, FString Reason);
 
-	void RemoveRhythmPrompt();
-	void RemoveKeyboardLegend();
-
-	UPROPERTY(Transient)
-	TObjectPtr<UUserWidget> RhythmPrompt;
-
-	UPROPERTY(Transient)
-	TObjectPtr<UMelodiaBattleKeyboardLegendWidget> KeyboardLegend;
 };

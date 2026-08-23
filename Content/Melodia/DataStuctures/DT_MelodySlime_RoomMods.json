@@ -240,6 +240,18 @@
       "curse": "Rhythmic Shackles",
       "curse_effect": "Decrease speed by 20% for every missed note.",
       "flavor": "Notes flow harmoniously, binding your fate with each strike on the keys."
+    },
+    "ModRhythmBlessing": {
+      "blessing_id": "ModRhythmBlessing_Blessing",
+      "display_name": "Cadence Pulse",
+      "description": "Perfect timing grants +15% rhythm window for 3 turns.",
+      "token_cost": 50,
+      "effect_type": "perfect_window_bonus",
+      "effect_value": 15.0,
+      "effect_str": "",
+      "curse": "Discordant Beat",
+      "curse_effect": "Missed notes reduce rhythm window by 10%.",
+      "flavor": "Feel the rhythm of fate; strike true or fall to discord."
     }
   }
 }

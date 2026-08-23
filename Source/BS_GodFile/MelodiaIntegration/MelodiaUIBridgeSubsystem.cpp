@@ -4,9 +4,11 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/PlayerController.h"
 #include "TimerManager.h"
 #include "UObject/UnrealType.h"
 #include "Blueprint/UserWidget.h"
+#include "MelodiaBattleKeyboardLegendWidget.h"
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 #include "MelodiaRhythmCombatSubsystem.h"
@@ -24,6 +26,9 @@ namespace
 	// the bridge -- which already owns battle UI lifetime -- spawns and binds it.
 	// Tracked here (not as a UPROPERTY) so this stays a .cpp-only, Live-Coding-safe change.
 	constexpr TCHAR DefaultMelodiaRhythmHUDPath[] = TEXT("/Game/Melodia/UI/WBP_Battle_Rhythm.WBP_Battle_Rhythm_C");
+	constexpr TCHAR RhythmPromptClassPath[] = TEXT("/Game/MelodiaIntegration/UI/BP_MelodiaRhythmPrompt.BP_MelodiaRhythmPrompt_C");
+	constexpr int32 RhythmPromptZOrder = 100;
+	constexpr int32 KeyboardLegendZOrder = 110;
 	TWeakObjectPtr<UMelodiaRhythmHUDWidget> GBridgeRhythmHUD;
 }
 
@@ -110,8 +115,14 @@ void UMelodiaUIBridgeSubsystem::Deinitialize()
 
 UUserWidget* UMelodiaUIBridgeSubsystem::CreateMelodiaBattleUI(TSubclassOf<UUserWidget> MelodiaWidgetClass)
 {
-	if (!MelodiaWidgetClass || IsValid(MelodiaBattleWidget))
+	if (!MelodiaWidgetClass)
 	{
+		return nullptr;
+	}
+
+	if (IsValid(MelodiaBattleWidget))
+	{
+		CreateBattlePresentationOverlaysInternal();
 		return MelodiaBattleWidget;
 	}
 
@@ -125,6 +136,7 @@ UUserWidget* UMelodiaUIBridgeSubsystem::CreateMelodiaBattleUI(TSubclassOf<UUserW
 	if (MelodiaBattleWidget)
 	{
 		MelodiaBattleWidget->AddToViewport(100);
+		CreateBattlePresentationOverlaysInternal();
 		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: created Melodia battle widget from explicit class."));
 	}
 
@@ -329,6 +341,7 @@ void UMelodiaUIBridgeSubsystem::CreateBattleUIInternal()
 	if (IsValid(MelodiaBattleWidget))
 	{
 		ShowMelodiaBattleUI();
+		CreateBattlePresentationOverlaysInternal();
 		return;
 	}
 
@@ -336,6 +349,10 @@ void UMelodiaUIBridgeSubsystem::CreateBattleUIInternal()
 	if (!WidgetClass)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Melodia UI Bridge: cannot load widget class from %s"), *MelodiaBattleWidgetPath.ToString());
+		// Keep the keyboard legend and collapsed rhythm prompt available even if
+		// the optional authored battle surface is absent; this subsystem remains
+		// the sole owner of both presentation paths.
+		CreateBattlePresentationOverlaysInternal();
 		return;
 	}
 
@@ -351,6 +368,7 @@ void UMelodiaUIBridgeSubsystem::CreateBattleUIInternal()
 		MelodiaBattleWidget->AddToViewport(100);
 		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: auto-created Melodia battle widget from path %s."), *MelodiaBattleWidgetPath.ToString());
 	}
+	CreateBattlePresentationOverlaysInternal();
 
 	// Spawn the native rhythm highway HUD and bind it to the rhythm combat subsystem.
 	// Without this, UMelodiaRhythmCombatSubsystem::BoundHUD stays null on the JRPG
@@ -375,8 +393,71 @@ void UMelodiaUIBridgeSubsystem::CreateBattleUIInternal()
 	}
 }
 
+void UMelodiaUIBridgeSubsystem::CreateBattlePresentationOverlaysInternal()
+{
+	UWorld* World = GetWorld();
+	APlayerController* PlayerController = World ? World->GetFirstPlayerController() : nullptr;
+	if (!IsValid(PlayerController))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Melodia UI Bridge: battle presentation overlays not created; no player controller."));
+		return;
+	}
+
+	if (!KeyboardLegend)
+	{
+		KeyboardLegend = CreateWidget<UMelodiaBattleKeyboardLegendWidget>(
+			PlayerController, UMelodiaBattleKeyboardLegendWidget::StaticClass());
+		if (KeyboardLegend)
+		{
+			KeyboardLegend->SetIsFocusable(false);
+			KeyboardLegend->AddToViewport(KeyboardLegendZOrder);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Melodia UI Bridge: keyboard legend creation failed."));
+		}
+	}
+
+	if (!RhythmPrompt)
+	{
+		const TSubclassOf<UUserWidget> PromptClass = LoadClass<UUserWidget>(nullptr, RhythmPromptClassPath);
+		if (!PromptClass)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Melodia UI Bridge: rhythm prompt class is missing: %s"), RhythmPromptClassPath);
+			return;
+		}
+
+		RhythmPrompt = CreateWidget<UUserWidget>(PlayerController, PromptClass);
+		if (!RhythmPrompt)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Melodia UI Bridge: rhythm prompt creation failed."));
+			return;
+		}
+
+		RhythmPrompt->SetIsFocusable(false);
+		RhythmPrompt->SetVisibility(ESlateVisibility::Collapsed);
+		RhythmPrompt->AddToViewport(RhythmPromptZOrder);
+	}
+}
+
+void UMelodiaUIBridgeSubsystem::RemoveBattlePresentationOverlaysInternal()
+{
+	if (RhythmPrompt)
+	{
+		RhythmPrompt->RemoveFromParent();
+		RhythmPrompt = nullptr;
+	}
+	if (KeyboardLegend)
+	{
+		KeyboardLegend->RemoveFromParent();
+		KeyboardLegend = nullptr;
+	}
+}
+
 void UMelodiaUIBridgeSubsystem::RemoveBattleUIInternal()
 {
+	RemoveBattlePresentationOverlaysInternal();
+
 	if (IsValid(MelodiaBattleWidget))
 	{
 		MelodiaBattleWidget->RemoveFromParent();
