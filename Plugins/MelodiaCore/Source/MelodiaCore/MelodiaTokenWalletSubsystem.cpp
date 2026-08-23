@@ -3,6 +3,7 @@
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "HAL/IConsoleManager.h"
+#include "MelodiaCurrencyRegistry.h"
 #include "MelodiaSaveGame.h"
 
 namespace
@@ -34,23 +35,74 @@ void UMelodiaTokenWalletSubsystem::Initialize(FSubsystemCollectionBase& Collecti
 {
 	Super::Initialize(Collection);
 	EnsureElementKeys();
+	SyncLegacyViews();
 }
 
 void UMelodiaTokenWalletSubsystem::EnsureElementKeys()
 {
-	// Every element always present, so UI can bind seven rows without null-checking.
-	for (const FName& Element : GMelodiaElements)
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	if (!Registry)
 	{
-		if (!Shards.Contains(Element))
+		return;
+	}
+
+	for (const FMelodiaCurrencyDefinition& Row : Registry->Currencies)
+	{
+		if (Row.CurrencyId.IsNone())
 		{
-			Shards.Add(Element, 0);
+			continue;
 		}
+
+		if (Row.Kind == EMelodiaCurrencyKind::Resource)
+		{
+			const float MaxValue = FMath::Max(0.0f, Row.MaxValue);
+			ResourceMax.FindOrAdd(Row.CurrencyId, MaxValue);
+			Resources.FindOrAdd(Row.CurrencyId, FMath::Clamp(Row.DefaultValue, 0.0f, MaxValue));
+		}
+		else
+		{
+			Balances.FindOrAdd(Row.CurrencyId, FMath::Max(0, FMath::RoundToInt(Row.DefaultValue)));
+		}
+	}
+
+	SyncLegacyViews();
+}
+
+const UMelodiaCurrencyRegistry* UMelodiaTokenWalletSubsystem::GetRegistry() const
+{
+	return UMelodiaCurrencyRegistry::Get(this);
+}
+
+void UMelodiaTokenWalletSubsystem::SyncLegacyViews()
+{
+	Shards.Reset();
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	if (Registry)
+	{
+		for (const FMelodiaCurrencyDefinition& Row : Registry->Currencies)
+		{
+			if (Row.Kind == EMelodiaCurrencyKind::Shard && !Row.CurrencyId.IsNone())
+			{
+				Shards.Add(Row.CurrencyId, Balances.FindRef(Row.CurrencyId));
+			}
+		}
+	}
+
+	GoldenTokens = Balances.FindRef(TEXT("Golden"));
+	ManaCurrent = Resources.FindRef(TEXT("Mana"));
+	ManaMax = ResourceMax.FindRef(TEXT("Mana"));
+	if (ManaMax <= 0.0f)
+	{
+		ManaMax = 100.0f;
 	}
 }
 
 FMelodiaWalletSnapshot UMelodiaTokenWalletSubsystem::GetSnapshot() const
 {
 	FMelodiaWalletSnapshot Snapshot;
+	Snapshot.Balances = Balances;
+	Snapshot.Resources = Resources;
+	Snapshot.ResourceMax = ResourceMax;
 	Snapshot.Shards = Shards;
 	Snapshot.ManaCurrent = ManaCurrent;
 	Snapshot.ManaMax = ManaMax;
@@ -66,8 +118,41 @@ void UMelodiaTokenWalletSubsystem::BroadcastChanged()
 
 int32 UMelodiaTokenWalletSubsystem::GetShards(const FName Element) const
 {
-	const int32* Found = Shards.Find(Element);
+	const int32* Found = Balances.Find(Element);
 	return Found ? *Found : 0;
+}
+
+float UMelodiaTokenWalletSubsystem::GetBalance(const FName CurrencyId) const
+{
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(CurrencyId) : nullptr;
+	if (!Row || Row->Kind == EMelodiaCurrencyKind::Resource)
+	{
+		return 0.0f;
+	}
+	return static_cast<float>(Balances.FindRef(CurrencyId));
+}
+
+float UMelodiaTokenWalletSubsystem::GetResource(const FName CurrencyId) const
+{
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(CurrencyId) : nullptr;
+	if (!Row || Row->Kind != EMelodiaCurrencyKind::Resource)
+	{
+		return 0.0f;
+	}
+	return Resources.FindRef(CurrencyId);
+}
+
+float UMelodiaTokenWalletSubsystem::GetResourceMax(const FName CurrencyId) const
+{
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(CurrencyId) : nullptr;
+	if (!Row || Row->Kind != EMelodiaCurrencyKind::Resource)
+	{
+		return 0.0f;
+	}
+	return ResourceMax.FindRef(CurrencyId);
 }
 
 bool UMelodiaTokenWalletSubsystem::IsGrantConsumed(const FName GrantId) const
@@ -75,106 +160,202 @@ bool UMelodiaTokenWalletSubsystem::IsGrantConsumed(const FName GrantId) const
 	return !GrantId.IsNone() && ConsumedGrantIds.Contains(GrantId);
 }
 
-bool UMelodiaTokenWalletSubsystem::TryGrantShards(const FName Element, const int32 Amount, const FName GrantId)
+namespace
 {
-	if (Amount <= 0 || Element.IsNone())
+	bool ToWholeAmount(const float Amount, int32& OutAmount)
 	{
-		return false;
+		if (Amount <= 0.0f || !FMath::IsFinite(Amount))
+		{
+			return false;
+		}
+		const float Rounded = FMath::RoundToFloat(Amount);
+		if (!FMath::IsNearlyEqual(Amount, Rounded))
+		{
+			return false;
+		}
+		OutAmount = FMath::RoundToInt(Rounded);
+		return OutAmount > 0;
 	}
-	// Idempotency gate. Consumed IDs persist, so a battle replayed after a restart, or a
-	// pickup that respawns on level reload, cannot pay out twice.
-	if (IsGrantConsumed(GrantId))
+}
+
+bool UMelodiaTokenWalletSubsystem::TryGrantCurrency(const FName CurrencyId, const float Amount, const FName GrantId)
+{
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(CurrencyId) : nullptr;
+	if (!Row || CurrencyId.IsNone() || Amount <= 0.0f || !FMath::IsFinite(Amount) || IsGrantConsumed(GrantId))
 	{
 		return false;
 	}
 
-	int32& Balance = Shards.FindOrAdd(Element);
-	Balance += Amount;
-	TotalCollected += Amount;
+	if (Row->Kind == EMelodiaCurrencyKind::Resource)
+	{
+		const float MaxValue = ResourceMax.FindRef(CurrencyId);
+		float& Balance = Resources.FindOrAdd(CurrencyId);
+		Balance = FMath::Clamp(Balance + Amount, 0.0f, MaxValue);
+		if (Row->bCountsTowardTotalCollected)
+		{
+			TotalCollected += FMath::Max(0, FMath::RoundToInt(Amount));
+		}
+		if (!GrantId.IsNone())
+		{
+			ConsumedGrantIds.Add(GrantId);
+			ConsumedGrantOrder.AddUnique(GrantId);
+		}
+		SyncLegacyViews();
+		BroadcastChanged();
+		return true;
+	}
 
+	int32 WholeAmount = 0;
+	if (!ToWholeAmount(Amount, WholeAmount))
+	{
+		return false;
+	}
+
+	Balances.FindOrAdd(CurrencyId) += WholeAmount;
+	if (Row->bCountsTowardTotalCollected)
+	{
+		TotalCollected += WholeAmount;
+	}
 	if (!GrantId.IsNone())
 	{
 		ConsumedGrantIds.Add(GrantId);
+		ConsumedGrantOrder.AddUnique(GrantId);
 	}
 
+	SyncLegacyViews();
 	BroadcastChanged();
 	return true;
+}
+
+bool UMelodiaTokenWalletSubsystem::TrySpendCurrency(const FName CurrencyId, const float Amount)
+{
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(CurrencyId) : nullptr;
+	if (!Row || CurrencyId.IsNone() || Amount <= 0.0f || !FMath::IsFinite(Amount))
+	{
+		return false;
+	}
+
+	if (Row->Kind == EMelodiaCurrencyKind::Resource)
+	{
+		float* Balance = Resources.Find(CurrencyId);
+		if (!Balance || *Balance < Amount)
+		{
+			return false;
+		}
+		*Balance -= Amount;
+	}
+	else
+	{
+		int32 WholeAmount = 0;
+		if (!ToWholeAmount(Amount, WholeAmount))
+		{
+			return false;
+		}
+		int32* Balance = Balances.Find(CurrencyId);
+		if (!Balance || *Balance < WholeAmount)
+		{
+			return false;
+		}
+		*Balance -= WholeAmount;
+	}
+
+	SyncLegacyViews();
+	BroadcastChanged();
+	return true;
+}
+
+bool UMelodiaTokenWalletSubsystem::TryRefundCurrency(const FName CurrencyId, const float Amount)
+{
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(CurrencyId) : nullptr;
+	int32 WholeAmount = 0;
+	if (!Row || !Row->bRefundable || Row->Kind == EMelodiaCurrencyKind::Resource || !ToWholeAmount(Amount, WholeAmount))
+	{
+		return false;
+	}
+
+	Balances.FindOrAdd(CurrencyId) += WholeAmount;
+	SyncLegacyViews();
+	BroadcastChanged();
+	return true;
+}
+
+bool UMelodiaTokenWalletSubsystem::CanAfford(const TMap<FName, int32>& Cost) const
+{
+	if (Cost.IsEmpty())
+	{
+		return false;
+	}
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	for (const TPair<FName, int32>& Line : Cost)
+	{
+		const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(Line.Key) : nullptr;
+		if (!Row || Row->Kind == EMelodiaCurrencyKind::Resource || Line.Value <= 0 ||
+			GetBalance(Line.Key) < static_cast<float>(Line.Value))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool UMelodiaTokenWalletSubsystem::TrySpendMany(const TMap<FName, int32>& Cost)
+{
+	if (!CanAfford(Cost))
+	{
+		return false;
+	}
+	for (const TPair<FName, int32>& Line : Cost)
+	{
+		Balances.FindChecked(Line.Key) -= Line.Value;
+	}
+	SyncLegacyViews();
+	BroadcastChanged();
+	return true;
+}
+
+bool UMelodiaTokenWalletSubsystem::TryGrantShards(const FName Element, const int32 Amount, const FName GrantId)
+{
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(Element) : nullptr;
+	return Row && Row->Kind == EMelodiaCurrencyKind::Shard && TryGrantCurrency(Element, static_cast<float>(Amount), GrantId);
 }
 
 bool UMelodiaTokenWalletSubsystem::TrySpendShards(const FName Element, const int32 Amount)
 {
-	if (Amount <= 0)
-	{
-		return false;
-	}
-	int32* Balance = Shards.Find(Element);
-	if (!Balance || *Balance < Amount)
-	{
-		return false; // unaffordable: no state change, no event
-	}
-	*Balance -= Amount;
-	BroadcastChanged();
-	return true;
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(Element) : nullptr;
+	return Row && Row->Kind == EMelodiaCurrencyKind::Shard && TrySpendCurrency(Element, static_cast<float>(Amount));
 }
 
 bool UMelodiaTokenWalletSubsystem::TryAddMana(const float Amount)
 {
-	if (Amount <= 0.0f)
-	{
-		return false;
-	}
-	ManaCurrent = FMath::Min(ManaMax, ManaCurrent + Amount);
-	BroadcastChanged();
-	return true;
+	return TryGrantCurrency(TEXT("Mana"), Amount, NAME_None);
 }
 
 bool UMelodiaTokenWalletSubsystem::TrySpendMana(const float Amount)
 {
-	if (Amount <= 0.0f || ManaCurrent < Amount)
-	{
-		return false;
-	}
-	ManaCurrent -= Amount;
-	BroadcastChanged();
-	return true;
+	return TrySpendCurrency(TEXT("Mana"), Amount);
 }
 
 bool UMelodiaTokenWalletSubsystem::TryGrantGolden(const int32 Amount, const FName GrantId)
 {
-	if (Amount <= 0 || IsGrantConsumed(GrantId))
-	{
-		return false;
-	}
-	GoldenTokens += Amount;
-	if (!GrantId.IsNone())
-	{
-		ConsumedGrantIds.Add(GrantId);
-	}
-	BroadcastChanged();
-	return true;
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	const FMelodiaCurrencyDefinition* Row = Registry ? Registry->Find(TEXT("Golden")) : nullptr;
+	return Row && Row->Kind == EMelodiaCurrencyKind::Premium &&
+		TryGrantCurrency(TEXT("Golden"), static_cast<float>(Amount), GrantId);
 }
 
 bool UMelodiaTokenWalletSubsystem::TrySpendGolden(const int32 Amount)
 {
-	if (Amount <= 0 || GoldenTokens < Amount)
-	{
-		return false;
-	}
-	GoldenTokens -= Amount;
-	BroadcastChanged();
-	return true;
+	return TrySpendCurrency(TEXT("Golden"), static_cast<float>(Amount));
 }
 
 bool UMelodiaTokenWalletSubsystem::TryRefundGolden(const int32 Amount)
 {
-	if (Amount <= 0)
-	{
-		return false;
-	}
-
-	GoldenTokens += Amount;
-	BroadcastChanged();
-	return true;
+	return TryRefundCurrency(TEXT("Golden"), static_cast<float>(Amount));
 }
 
 void UMelodiaTokenWalletSubsystem::CaptureToSave(UMelodiaSaveGame* Save) const
@@ -183,12 +364,20 @@ void UMelodiaTokenWalletSubsystem::CaptureToSave(UMelodiaSaveGame* Save) const
 	{
 		return;
 	}
+	Save->WalletBalances = Balances;
+	Save->WalletResources = Resources;
+	Save->WalletResourceMax = ResourceMax;
 	Save->WalletShards = Shards;
 	Save->WalletManaCurrent = ManaCurrent;
 	Save->WalletManaMax = ManaMax;
 	Save->WalletGoldenTokens = GoldenTokens;
 	Save->WalletTotalCollected = TotalCollected;
 	Save->WalletConsumedGrantIds = ConsumedGrantIds;
+	Save->WalletConsumedGrantOrder = ConsumedGrantOrder;
+	if (const UMelodiaCurrencyRegistry* Registry = GetRegistry())
+	{
+		Save->WalletRegistrySchemaVersion = Registry->RegistrySchemaVersion;
+	}
 	Save->bWalletMigratedFromLegacyTokens = bMigratedFromLegacy;
 }
 
@@ -199,13 +388,25 @@ void UMelodiaTokenWalletSubsystem::RestoreFromSave(const UMelodiaSaveGame* Save)
 		return;
 	}
 
-	Shards = Save->WalletShards;
-	ManaCurrent = Save->WalletManaCurrent;
-	ManaMax = Save->WalletManaMax;
-	GoldenTokens = Save->WalletGoldenTokens;
+	Balances = Save->WalletBalances;
+	Resources = Save->WalletResources;
+	ResourceMax = Save->WalletResourceMax;
+	if (Balances.IsEmpty() && Resources.IsEmpty() && ResourceMax.IsEmpty())
+	{
+		Balances = Save->WalletShards;
+		Balances.FindOrAdd(TEXT("Golden")) = Save->WalletGoldenTokens;
+		Resources.FindOrAdd(TEXT("Mana")) = Save->WalletManaCurrent;
+		ResourceMax.FindOrAdd(TEXT("Mana")) = Save->WalletManaMax;
+	}
 	TotalCollected = Save->WalletTotalCollected;
 	ConsumedGrantIds = Save->WalletConsumedGrantIds;
+	ConsumedGrantOrder = Save->WalletConsumedGrantOrder;
+	for (const FName GrantId : ConsumedGrantIds)
+	{
+		ConsumedGrantOrder.AddUnique(GrantId);
+	}
 	bMigratedFromLegacy = Save->bWalletMigratedFromLegacyTokens;
+	EnsureElementKeys();
 
 	// One-way migration from the legacy per-variant ints. Heart maps to Forte and Swirl to
 	// Arcane, per the variant->element table in the token contract. The legacy fields are
@@ -215,12 +416,12 @@ void UMelodiaTokenWalletSubsystem::RestoreFromSave(const UMelodiaSaveGame* Save)
 	{
 		if (Save->HeartMelodyTokens > 0)
 		{
-			Shards.FindOrAdd(TEXT("Forte")) += Save->HeartMelodyTokens;
+			Balances.FindOrAdd(TEXT("Forte")) += Save->HeartMelodyTokens;
 			TotalCollected += Save->HeartMelodyTokens;
 		}
 		if (Save->SwirlMelodyTokens > 0)
 		{
-			Shards.FindOrAdd(TEXT("Arcane")) += Save->SwirlMelodyTokens;
+			Balances.FindOrAdd(TEXT("Arcane")) += Save->SwirlMelodyTokens;
 			TotalCollected += Save->SwirlMelodyTokens;
 		}
 		// Flag lives on the wallet; CaptureToSave writes it back into the record on next save.
@@ -232,13 +433,13 @@ void UMelodiaTokenWalletSubsystem::RestoreFromSave(const UMelodiaSaveGame* Save)
 	}
 
 	// Legacy saves carry a zeroed mana block; restore sane defaults rather than a dead wallet.
-	if (ManaMax <= 0.0f)
+	if (ResourceMax.FindRef(TEXT("Mana")) <= 0.0f)
 	{
-		ManaMax = 100.0f;
-		ManaCurrent = FMath::Clamp(ManaCurrent, 0.0f, ManaMax);
+		ResourceMax.FindOrAdd(TEXT("Mana")) = 100.0f;
+		Resources.FindOrAdd(TEXT("Mana")) = FMath::Clamp(Resources.FindRef(TEXT("Mana")), 0.0f, 100.0f);
 	}
 
-	EnsureElementKeys();
+	SyncLegacyViews();
 	BroadcastChanged();
 }
 

@@ -214,6 +214,15 @@ bool FMelodiaWalletIdempotencyTest::RunTest(const FString& Parameters)
 		Wallet->TryGrantCurrency(TEXT("Forte"), 5.0f, GrantId));
 	TestEqual(TEXT("Rejected repeat changed nothing"), Wallet->GetBalance(TEXT("Forte")), 5.0f);
 
+	const FName ResourceGrantId = TEXT("pickup_mana_001");
+	TestTrue(TEXT("Resource grant with an id is accepted"),
+		Wallet->TryGrantCurrency(TEXT("Mana"), 10.0f, ResourceGrantId));
+	TestEqual(TEXT("Mana reflects one accepted grant"), Wallet->GetResource(TEXT("Mana")), 60.0f);
+	TestTrue(TEXT("Resource grant id is recorded"), Wallet->IsGrantConsumed(ResourceGrantId));
+	TestFalse(TEXT("Repeated resource grant id is rejected"),
+		Wallet->TryGrantCurrency(TEXT("Mana"), 10.0f, ResourceGrantId));
+	TestEqual(TEXT("Rejected resource retry changed nothing"), Wallet->GetResource(TEXT("Mana")), 60.0f);
+
 	// A None GrantId is how genuinely repeatable grants (mana regeneration) opt out of the gate.
 	TestTrue(TEXT("First None-id grant accepted"),
 		Wallet->TryGrantCurrency(TEXT("Forte"), 1.0f, NAME_None));
