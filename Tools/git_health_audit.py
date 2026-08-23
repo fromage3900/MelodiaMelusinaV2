@@ -21,6 +21,16 @@ P0_ASSETS = (
     "Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/"
     "AggressiveEnemyExplorePawns/BP_AggressiveEnemyExplorePawnBase.uasset",
 )
+P0_MUST_REMAIN_IGNORED = (
+    "Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/"
+    "AverageEnemyExplorePawns/BP_AverageEnemyExplorePawn.uasset",
+    "Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/"
+    "PassiveEnemyExplorePawns/BP_PassiveEnemyExplorePawnBase.uasset",
+    "Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/"
+    "PassiveEnemyExplorePawns/BP_WeakEnemyExplorePawn.uasset",
+    "Content/TurnBasedJRPGTemplate/Blueprints/Battle/"
+    "BP_InteractionDetector.uasset",
+)
 LFS_DISABLED = (
     "-c",
     "filter.lfs.smudge=",
@@ -85,6 +95,23 @@ def verify_p0_asset(path: str) -> bool:
     return True
 
 
+def verify_p0_exception_is_contained(path: str) -> bool:
+    """Assert that non-authored P0 coverage/template assets stay ignored."""
+    ignored = subprocess.run(
+        ("git", "check-ignore", "-q", "--", path),
+        cwd=ROOT,
+        check=False,
+    )
+    if ignored.returncode == 0:
+        print(f"[PASS] P0 exception remains contained: {path}")
+        return True
+    if ignored.returncode == 1:
+        print(f"[FAIL] unexpected versionable P0 template/coverage asset: {path}")
+        return False
+    print(f"[FAIL] unable to inspect P0 ignore rule: {path}")
+    return False
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -106,6 +133,10 @@ def main() -> int:
         run("LFS status", "git", *LFS_DISABLED, "lfs", "status", "--porcelain"),
     ]
     checks.extend(verify_p0_asset(path) for path in P0_ASSETS)
+    checks.extend(
+        verify_p0_exception_is_contained(path)
+        for path in P0_MUST_REMAIN_IGNORED
+    )
 
     if args.remote:
         checks.extend(

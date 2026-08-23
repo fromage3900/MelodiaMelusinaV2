@@ -20,7 +20,7 @@
 
 ♪ **Production-grade rhythm-JRPG in UE 5.8 + Blender 5.2.** One author, three active workstreams — a shippable vertical slice, a multi-modal content pipeline, and a constrained local-model benchmark. Every claim has a ledger row. No prose passes for evidence. Music is the key: rhythm rides on every JRPG command, and in the world it opens the way.
 
-♫ **Current phase:** P0 economy implementation, model evaluation, and T3D wiring gate expansion.
+♫ **Current phase:** Cozy→psych-horror niche lock + P0 orchestra convergence. Light gacha (wardrobe-only, pity, no stamina). See `research/melodia_niche_cozy-horror_ue_workflows.md` + `research/live_verification_kit.md` for live-editor verification.
 
 See the [system architecture](Docs/melodia-architecture.svg) — four pillars converging onto two authority layers, with local model tooling clearly secondary.
 
