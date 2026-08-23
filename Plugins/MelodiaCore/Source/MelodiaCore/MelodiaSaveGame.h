@@ -32,14 +32,17 @@ public:
 
 	/**
 	 * Serialized save-schema version. This is the version stamped into the save record and
-	 * asserted by MelodiaPersistenceTests.cpp ("SaveSystemVersion is 2"). It is NOT the same
-	 * counter as the "additive v2/v3/v4" field-generation labels used in the comments below:
+	 * asserted by MelodiaPersistenceTests.cpp. It is NOT the same counter as the
+	 * "additive v2/v3/v4" field-generation labels used in the comments below:
 	 * those describe which additive field batches were introduced, while this value is the
 	 * on-disk schema generation. Do not bump this without a matching migration path and a
 	 * corresponding update to FMelodiaSaveGameDefaultsTest.
+	 *
+	 * 3 (2026-08-22): currency balances are registry-keyed. The legacy fields below remain
+	 * populated as a compatibility mirror so older builds degrade instead of reading zeroes.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save")
-	int32 SaveSystemVersion = 2;
+	int32 SaveSystemVersion = 3;
 
 	// --- Mirrors UMelodiaOpeningFlowSubsystem ---
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Opening")
@@ -122,6 +125,18 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Wallet")
 	TMap<FName, int32> WalletShards;
 
+	/** Registry-keyed integer balances for Shard and Premium currencies. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Wallet")
+	TMap<FName, int32> WalletBalances;
+
+	/** Registry-keyed float balances for Resource currencies. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Wallet")
+	TMap<FName, float> WalletResources;
+
+	/** Resource caps copied from the registry at capture time. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Wallet")
+	TMap<FName, float> WalletResourceMax;
+
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Wallet")
 	float WalletManaCurrent = 50.0f;
 
@@ -142,6 +157,14 @@ public:
 	 */
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Wallet")
 	TSet<FName> WalletConsumedGrantIds;
+
+	/** Insertion order for trimming the consumed-grant ledger oldest-first. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Wallet")
+	TArray<FName> WalletConsumedGrantOrder;
+
+	/** UMelodiaCurrencyRegistry::RegistrySchemaVersion at capture time. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Wallet")
+	int32 WalletRegistrySchemaVersion = 0;
 
 	/** False on legacy saves; set true once the one-way legacy token migration has run. */
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Save|Wallet")

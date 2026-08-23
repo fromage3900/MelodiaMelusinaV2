@@ -24,7 +24,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 bool FMelodiaSaveGameDefaultsTest::RunTest(const FString& Parameters)
 {
 	UMelodiaSaveGame* Save = NewObject<UMelodiaSaveGame>(GetTransientPackage());
-	TestEqual(TEXT("SaveSystemVersion is 2"), Save->SaveSystemVersion, 2);
+	TestEqual(TEXT("SaveSystemVersion is 3"), Save->SaveSystemVersion, 3);
 	TestEqual(TEXT("Currency defaults to 0"), Save->Currency, 0LL);
 	TestEqual(TEXT("HeartMelodyTokens defaults to 0"), Save->HeartMelodyTokens, 0);
 	TestEqual(TEXT("SwirlMelodyTokens defaults to 0"), Save->SwirlMelodyTokens, 0);

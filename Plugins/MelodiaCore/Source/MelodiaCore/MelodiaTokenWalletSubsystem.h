@@ -16,12 +16,25 @@
 #include "MelodiaTokenWalletSubsystem.generated.h"
 
 class UMelodiaSaveGame;
+class UMelodiaCurrencyRegistry;
 
 /** Immutable read model handed to UI. UI renders this and never computes balances itself. */
 USTRUCT(BlueprintType)
 struct MELODIACORE_API FMelodiaWalletSnapshot
 {
 	GENERATED_BODY()
+
+	/** Integer balances for every Shard and Premium currency, keyed by CurrencyId. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Wallet")
+	TMap<FName, int32> Balances;
+
+	/** Float balances for every Resource currency, keyed by CurrencyId. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Wallet")
+	TMap<FName, float> Resources;
+
+	/** Registry caps for Resource currencies, keyed by CurrencyId. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Wallet")
+	TMap<FName, float> ResourceMax;
 
 	/** Shard balances keyed by element: Forte, Tide, Gale, Stone, Radiant, Umbral, Arcane. */
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Wallet")
@@ -70,6 +83,38 @@ public:
 
 	UFUNCTION(BlueprintPure, Category="Melodia|Wallet")
 	int32 GetShards(FName Element) const;
+
+	/** Generic integer balance read for Shard and Premium currencies. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Wallet")
+	float GetBalance(FName CurrencyId) const;
+
+	/** Generic Resource read. Returns zero for unknown or non-Resource currencies. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Wallet")
+	float GetResource(FName CurrencyId) const;
+
+	/** Generic Resource cap read. Returns zero for unknown or non-Resource currencies. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Wallet")
+	float GetResourceMax(FName CurrencyId) const;
+
+	/** Registry-driven grant. Integer lanes require a whole-number Amount. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Wallet")
+	bool TryGrantCurrency(FName CurrencyId, float Amount, FName GrantId);
+
+	/** Registry-driven spend. A rejected spend never mutates state or broadcasts. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Wallet")
+	bool TrySpendCurrency(FName CurrencyId, float Amount);
+
+	/** Refund only currencies whose registry row explicitly permits it. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Wallet")
+	bool TryRefundCurrency(FName CurrencyId, float Amount);
+
+	/** Atomic affordability check for integer currency costs. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Wallet")
+	bool CanAfford(const TMap<FName, int32>& Cost) const;
+
+	/** Atomic multi-currency spend with exactly one change event on success. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Wallet")
+	bool TrySpendMany(const TMap<FName, int32>& Cost);
 
 	/**
 	 * Grant shards for a collection or reward.
@@ -128,10 +173,24 @@ public:
 
 private:
 	void EnsureElementKeys();
+	void SyncLegacyViews();
+	const UMelodiaCurrencyRegistry* GetRegistry() const;
 	void BroadcastChanged();
 
 	UPROPERTY()
 	TMap<FName, int32> Shards;
+
+	/** Authoritative integer lane for every Shard and Premium currency. */
+	UPROPERTY()
+	TMap<FName, int32> Balances;
+
+	/** Authoritative float lane for every Resource currency. */
+	UPROPERTY()
+	TMap<FName, float> Resources;
+
+	/** Authoritative Resource caps, copied from the registry at initialization/restore. */
+	UPROPERTY()
+	TMap<FName, float> ResourceMax;
 
 	UPROPERTY()
 	float ManaCurrent = 50.0f;
@@ -147,6 +206,10 @@ private:
 
 	UPROPERTY()
 	TSet<FName> ConsumedGrantIds;
+
+	/** Stable insertion order for save-ledger trimming. */
+	UPROPERTY()
+	TArray<FName> ConsumedGrantOrder;
 
 	/** Mirrors UMelodiaSaveGame::bWalletMigratedFromLegacyTokens; written back on capture. */
 	UPROPERTY()
