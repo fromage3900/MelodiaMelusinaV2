@@ -7,6 +7,7 @@
 
 class UMelodiaNarrativeSubsystem;
 class UMelodiaExternalJRPGBridgeSubsystem;
+class UMelodiaBattleKeyboardLegendWidget;
 class UUserWidget;
 
 /**
@@ -108,6 +109,8 @@ private:
 
 	void CreateBattleUIInternal();
 	void RemoveBattleUIInternal();
+	void CreateBattlePresentationOverlaysInternal();
+	void RemoveBattlePresentationOverlaysInternal();
 
 	/** Next-tick trampoline: the stock widget is built during InitBattle, after the battle-started broadcast. */
 	void EnsureStockBattleUIControllerReferenceDeferred();
@@ -120,4 +123,16 @@ private:
 
 	UPROPERTY(Transient)
 	TObjectPtr<UUserWidget> MelodiaBattleWidget;
+
+	/**
+	 * All battle-time Melodia widgets are owned by this subsystem. Keeping the
+	 * prompt and keyboard legend beside the main battle widget prevents a second
+	 * GameInstance subsystem from adding competing viewport widgets on the same
+	 * narrative event.
+	 */
+	UPROPERTY(Transient)
+	TObjectPtr<UUserWidget> RhythmPrompt;
+
+	UPROPERTY(Transient)
+	TObjectPtr<UMelodiaBattleKeyboardLegendWidget> KeyboardLegend;
 };
