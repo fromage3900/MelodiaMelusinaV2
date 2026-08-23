@@ -74,8 +74,8 @@
       "sha256": "a07c042dfc965441ad365d00a5956c7913424051d7aba15642e05f8cf8c5dba3"
     },
     "blender_obj": {
-      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Blender\\MelodiaStudio\\current_midi_environment.obj",
-      "project_relative_path": "Saved/Blender/MelodiaStudio/current_midi_environment.obj",
+      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\MelodiaMIDIEnvironment.obj",
+      "project_relative_path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/MelodiaMIDIEnvironment.obj",
       "exists": true,
       "bytes": 47632,
       "sha256": "f68acba3446ffa4288a03328854b95451b18f9eacb988f7181b56e91f623f6fc"
@@ -84,8 +84,8 @@
       "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\current_midi_environment.manifest.json",
       "project_relative_path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/current_midi_environment.manifest.json",
       "exists": true,
-      "bytes": 624,
-      "sha256": "dab7ca573f7f3035aed6659effbfd326e705bd06d1cf822232f7a5b8d18df5f2"
+      "bytes": 670,
+      "sha256": "a04fffe25252084dd1f11094613545bfcf25e1ce3b89e9524a4304f2107e5ddf"
     },
     "blender_fbx": {
       "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\MelodiaMIDIEnvironment.fbx",
@@ -109,12 +109,12 @@
       "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\current_midi_environment.manifest.json",
       "project_relative_path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/current_midi_environment.manifest.json",
       "exists": true,
-      "bytes": 624,
-      "sha256": "dab7ca573f7f3035aed6659effbfd326e705bd06d1cf822232f7a5b8d18df5f2"
+      "bytes": 670,
+      "sha256": "a04fffe25252084dd1f11094613545bfcf25e1ce3b89e9524a4304f2107e5ddf"
     },
     "mesh": {
-      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Blender\\MelodiaStudio\\current_midi_environment.obj",
-      "project_relative_path": "Saved/Blender/MelodiaStudio/current_midi_environment.obj",
+      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\MelodiaMIDIEnvironment.obj",
+      "project_relative_path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/MelodiaMIDIEnvironment.obj",
       "exists": true,
       "bytes": 47632,
       "sha256": "f68acba3446ffa4288a03328854b95451b18f9eacb988f7181b56e91f623f6fc"
@@ -149,8 +149,8 @@
       "sha256": "b420aff22b06faab8da00d5d20bcbd43ba9310cd5e91c88c1490714530557243"
     },
     "source_obj": {
-      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Blender\\MelodiaStudio\\current_midi_environment.obj",
-      "project_relative_path": "Saved/Blender/MelodiaStudio/current_midi_environment.obj",
+      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\MelodiaMIDIEnvironment.obj",
+      "project_relative_path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/MelodiaMIDIEnvironment.obj",
       "exists": true,
       "bytes": 47632,
       "sha256": "f68acba3446ffa4288a03328854b95451b18f9eacb988f7181b56e91f623f6fc"

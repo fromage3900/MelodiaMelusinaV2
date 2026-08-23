@@ -21,6 +21,12 @@ def test_bundle_import_plan_is_valid_and_non_mutating() -> None:
     assert plan["apply"]["maps_touched"] is False
     assert plan["apply"]["gameplay_save_written"] is False
 
+    bundle = json.loads(BUNDLE.read_text(encoding="utf-8"))
+    assert bundle["artifacts"]["blender_obj"]["exists"] is True
+    assert bundle["artifacts"]["blender_obj"]["project_relative_path"].startswith(
+        "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/"
+    )
+
 
 def test_missing_bundle_cannot_claim_an_import_plan(tmp_path: Path) -> None:
     plan = build_import_plan(tmp_path / "missing_bundle.json")
