@@ -70,6 +70,15 @@ RESONANT_PHRASE_PATH = PROJECT_ROOT / "Saved" / "Audit" / "resonant_world_phrase
 RESONANT_PASSAGE_PATH = PROJECT_ROOT / "Saved" / "Audit" / "resonant_magic_passage_portfolio_3900.json"
 RESONANT_PLAN_PATH = PROJECT_ROOT / "Saved" / "Audit" / "resonant_world_pcg_plan_3900.json"
 RESONANT_HANDOFF_PATH = PROJECT_ROOT / "Saved" / "Audit" / "resonant_world_proof_handoff_3900.json"
+RESONANT_OFFLINE_BUNDLE_PATH = (
+    PROJECT_ROOT
+    / "Content"
+    / "MelodiaIntegration"
+    / "ResonantWorld"
+    / "OfflineWorldGen"
+    / "PetalCantata_3900"
+    / "bundle.json"
+)
 RESONANT_HANDOFF_DOCS = {
     "ui": PROJECT_ROOT / "Docs" / "Handoffs" / "RESONANT_WORLD_UI_HANDOFF_2026-08-22.md",
     "gameplay": PROJECT_ROOT / "Docs" / "Handoffs" / "RESONANT_WORLD_GAMEPLAY_HANDOFF_2026-08-22.md",
@@ -1973,6 +1982,74 @@ def melodia_resonant_world_get_handoff(target: str = "all") -> dict[str, Any]:
     }
 
 
+def melodia_resonant_world_get_offline_bundle() -> dict[str, Any]:
+    """Expose the checked-in Blender-to-UE bundle as a read-only handoff."""
+    path = RESONANT_OFFLINE_BUNDLE_PATH
+    bundle = _resonant_artifact(path)
+    if not bundle:
+        return {
+            "schema": "melodia.resonant_world.offline_bundle.v1",
+            "source": "checked_in_bundle",
+            "ok": False,
+            "path": str(path),
+            "exists": path.exists(),
+            "validation_errors": ["offline world bundle is missing or invalid JSON"],
+            "materialization": {"performed": False, "writes_project_state": False},
+        }
+
+    try:
+        if str(RESONANT_PYTHON_ROOT) not in sys.path:
+            sys.path.insert(0, str(RESONANT_PYTHON_ROOT))
+        from import_melusina_offline_world import build_import_plan
+
+        import_plan = build_import_plan(path)
+    except Exception as exc:  # pragma: no cover - import environment fallback
+        import_plan = {
+            "ok": False,
+            "errors": [f"offline importer could not be evaluated: {exc}"],
+            "apply": {"performed": False, "maps_touched": False},
+        }
+
+    artifact_summary = {}
+    for name, record in (bundle.get("artifacts") or {}).items():
+        if isinstance(record, dict):
+            artifact_summary[name] = {
+                "path": record.get("path"),
+                "project_relative_path": record.get("project_relative_path"),
+                "exists": record.get("exists"),
+                "bytes": record.get("bytes"),
+                "sha256": record.get("sha256"),
+            }
+
+    bundle_errors = [
+        error
+        for values in (bundle.get("validation_errors") or {}).values()
+        if isinstance(values, list)
+        for error in values
+    ]
+    import_errors = list(import_plan.get("errors") or [])
+    return {
+        "schema": "melodia.resonant_world.offline_bundle.v1",
+        "source": "checked_in_bundle",
+        "ok": bool(bundle.get("ok")) and bool(import_plan.get("ok")),
+        "path": str(path),
+        "exists": path.exists(),
+        "bundle_version": bundle.get("bundle_version"),
+        "world": bundle.get("world", {}),
+        "artifacts": artifact_summary,
+        "blender": bundle.get("blender", {}),
+        "ue_import": bundle.get("ue_import", {}),
+        "ue_import_plan": {
+            "ok": import_plan.get("ok"),
+            "source_fbx": import_plan.get("source_fbx"),
+            "destination": import_plan.get("destination"),
+            "apply": import_plan.get("apply"),
+        },
+        "validation_errors": bundle_errors + import_errors,
+        "materialization": {"performed": False, "writes_project_state": False},
+    }
+
+
 def melodia_resonant_world_validate() -> dict[str, Any]:
     """Validate the atlas, passage portfolio, PCG plan, and editor proof envelope."""
     modules = _resonant_world_imports()
@@ -2451,6 +2528,11 @@ TOOLS: list[dict[str, Any]] = [
         },
     },
     {
+        "name": "melodia_resonant_world_get_offline_bundle",
+        "description": "Read the clone-visible Blender-to-UE Resonant World bundle, artifact hashes, six-movement score coverage, and non-mutating UE import plan.",
+        "inputSchema": {"type": "object", "properties": {}, "required": []},
+    },
+    {
         "name": "melodia_resonant_world_validate",
         "description": "Validate the Resonant World asset atlas, six-passage portfolio, PCG plan, and proof handoff without applying an editor mutation.",
         "inputSchema": {"type": "object", "properties": {}, "required": []},
@@ -2664,6 +2746,9 @@ def main() -> None:
             elif tool_name == "melodia_resonant_world_get_handoff":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
                 result = melodia_resonant_world_get_handoff(str(args.get("target", "all"))) if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_resonant_world_get_offline_bundle":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_resonant_world_get_offline_bundle() if policy["allowed"] else {"status": "denied", **policy}
             elif tool_name == "melodia_resonant_world_validate":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
                 result = melodia_resonant_world_validate() if policy["allowed"] else {"status": "denied", **policy}

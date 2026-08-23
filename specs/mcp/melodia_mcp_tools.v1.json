@@ -856,6 +856,17 @@
         "fields": ["ok", "target", "documents", "proof_artifact", "validation_errors"]
       }
     },
+    "melodia_resonant_world_get_offline_bundle": {
+      "category": "resonant_world",
+      "description": "Read the clone-visible Blender-to-UE bundle, artifact hashes, six-movement score coverage, and non-mutating UE import plan.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.resonant_world.offline_bundle.v1",
+        "fields": ["ok", "path", "bundle_version", "world", "artifacts", "blender", "ue_import", "ue_import_plan", "validation_errors", "materialization"]
+      }
+    },
     "melodia_resonant_world_validate": {
       "category": "resonant_world",
       "description": "Validate the asset atlas, six-passage portfolio, PCG plan, and editor proof handoff.",

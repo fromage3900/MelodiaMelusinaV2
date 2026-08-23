@@ -73,6 +73,17 @@ Returns the proof envelope and handoff document paths. `target` accepts `all`,
 {"name":"melodia_resonant_world_get_handoff","arguments":{"target":"all"}}
 ```
 
+### `melodia_resonant_world_get_offline_bundle`
+
+Returns the clone-visible Blender-to-UE bundle, SHA-256 artifact records, the
+six-movement score coverage, and the dry-run UE import plan. It is read-only;
+`ue_import_plan.apply.performed` remains `false` until an explicit UE-side
+import is run by the owner.
+
+```json
+{"name":"melodia_resonant_world_get_offline_bundle","arguments":{}}
+```
+
 ### `melodia_resonant_world_validate`
 
 Runs read-only validation over the asset atlas, in-memory six-passage portfolio,
@@ -84,7 +95,7 @@ saved PCG plan, and saved proof handoff.
 
 ## Policy
 
-All eight tools are declared in:
+All nine tools are declared in:
 
 - `specs/mcp/melodia_mcp_tools.v1.json`
 - `specs/mcp_tool_policy.v1.json`

@@ -472,6 +472,15 @@
         "read"
       ]
     },
+    "melodia_resonant_world_get_offline_bundle": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ],
+      "reason": "Reads the checked-in Blender-to-UE handoff and validates its artifact hashes without applying Unreal state or writing project state."
+    },
     "melodia_resonant_world_validate": {
       "decision": "allow",
       "required_approval": "none",

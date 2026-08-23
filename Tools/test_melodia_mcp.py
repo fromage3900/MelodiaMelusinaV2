@@ -231,6 +231,13 @@ def test_resonant_world_tools_are_offline_safe() -> None:
     assert handoff["ok"] is True
     assert handoff["proof_artifact"]["editor_apply_performed"] is False
 
+    offline_bundle = server.melodia_resonant_world_get_offline_bundle()
+    assert offline_bundle["schema"] == "melodia.resonant_world.offline_bundle.v1"
+    assert offline_bundle["ok"] is True
+    assert offline_bundle["world"]["score_count"] == 6
+    assert offline_bundle["ue_import_plan"]["apply"]["performed"] is False
+    assert offline_bundle["materialization"]["writes_project_state"] is False
+
     validation = server.melodia_resonant_world_validate()
     assert validation["schema"] == "melodia.resonant_world.validate.v1"
     assert validation["ok"] is True
