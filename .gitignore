@@ -141,6 +141,7 @@ Content/TurnBasedJRPGTemplate/Blueprints/Battle/*
 # keep the exception explicit so unreviewed marketplace/template edits do not
 # silently enter source control.
 !Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/
+Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/*
 !Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/BP_EnemyExplorePawnBase.uasset
 !Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/AggressiveEnemyExplorePawns/
 Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/AggressiveEnemyExplorePawns/*
