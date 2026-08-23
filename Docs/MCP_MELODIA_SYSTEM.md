@@ -167,6 +167,7 @@ It sits alongside your existing MCP servers (Monolith, agent_bridge, Blender, Ca
 | `melodia_resonant_world_get_atlas` | Read the deterministic asset-family atlas and movement inventory | ✅ |
 | `melodia_resonant_world_compile_passage` | Compile one magical passage or the six-movement portfolio in memory | ✅ |
 | `melodia_resonant_world_get_handoff` | Discover UI, gameplay, quantum, tool-call, and proof handoffs | ✅ |
+| `melodia_resonant_world_get_offline_bundle` | Read the clone-visible Blender-to-UE bundle, artifact hashes, and dry-run import plan | ✅ |
 | `melodia_resonant_world_validate` | Validate atlas, passages, PCG plan, and proof envelope | ✅ |
 
 These calls are read/verify only. They do not write audit artifacts, maps, assets,
