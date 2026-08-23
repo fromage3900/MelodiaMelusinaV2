@@ -51,6 +51,21 @@ def _load_bundle(path: Path) -> dict[str, Any]:
     return value
 
 
+def _resolve_artifact_record(record: dict[str, Any] | None) -> Path:
+    """Resolve an artifact from its absolute path, then its clone-relative path."""
+    if not isinstance(record, dict):
+        return Path()
+    absolute = Path(str(record.get("path") or ""))
+    if absolute.is_file():
+        return absolute.resolve()
+    relative = str(record.get("project_relative_path") or "")
+    if relative:
+        candidate = (PROJECT_ROOT / relative).resolve()
+        if candidate.is_file():
+            return candidate
+    return absolute
+
+
 def build_import_plan(bundle_path: str | Path) -> dict[str, Any]:
     bundle_file = Path(bundle_path).resolve()
     errors: list[str] = []
@@ -95,7 +110,7 @@ def build_import_plan(bundle_path: str | Path) -> dict[str, Any]:
         errors.append("recommended destination is not a /Game path")
 
     fbx_record = bundle.get("artifacts", {}).get("blender_fbx") or ue_import.get("source_fbx")
-    fbx_path = Path(str(fbx_record.get("path"))) if isinstance(fbx_record, dict) else Path()
+    fbx_path = _resolve_artifact_record(fbx_record)
     fbx_exists = fbx_path.is_file()
     if not fbx_exists:
         errors.append(f"Blender FBX is missing: {fbx_path}")

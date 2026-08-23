@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from import_melusina_offline_world import build_import_plan
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-BUNDLE = PROJECT_ROOT / "Saved" / "Blender" / "MelodiaStudio" / "OfflineWorldGen" / "PetalCantata_3900" / "bundle.json"
+BUNDLE = PROJECT_ROOT / "Content" / "MelodiaIntegration" / "ResonantWorld" / "OfflineWorldGen" / "PetalCantata_3900" / "bundle.json"
 
 
 def test_bundle_import_plan_is_valid_and_non_mutating() -> None:
@@ -26,3 +27,17 @@ def test_missing_bundle_cannot_claim_an_import_plan(tmp_path: Path) -> None:
 
     assert plan["ok"] is False
     assert plan["errors"]
+
+
+def test_import_plan_falls_back_to_project_relative_fbx_path(tmp_path: Path) -> None:
+    bundle = json.loads(BUNDLE.read_text(encoding="utf-8"))
+    bundle["artifacts"]["blender_fbx"]["path"] = r"Z:\missing\MelodiaMIDIEnvironment.fbx"
+    relocated_bundle = tmp_path / "bundle.json"
+    relocated_bundle.write_text(json.dumps(bundle), encoding="utf-8")
+
+    plan = build_import_plan(relocated_bundle)
+
+    assert plan["ok"] is True
+    assert plan["source_fbx"]["path"].endswith(
+        "Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\MelodiaMIDIEnvironment.fbx"
+    )
