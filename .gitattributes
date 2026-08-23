@@ -5,6 +5,8 @@
 
 # Default auto line ending handling
 * text=auto
+.gitattributes text eol=lf
+.gitignore text eol=lf
 
 # Script & Source Code Files — enforce consistent endings
 *.cpp   text eol=lf
@@ -19,6 +21,7 @@
 *.ps1   text eol=crlf
 *.ini   text eol=crlf
 *.uproject text eol=lf
+*.uplugin text eol=lf
 
 # ------------------------------------------------------------------------------
 # Binary Assets — Git LFS with Atomic Locking (lockable)
