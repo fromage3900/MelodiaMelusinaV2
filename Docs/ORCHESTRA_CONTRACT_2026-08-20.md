@@ -5,6 +5,17 @@
 **Companion:** [`ORCHESTRA_CONVERGENCE_2026-08-20.md`](ORCHESTRA_CONVERGENCE_2026-08-20.md) (which implementation owns what)
 **Modelled on:** [`BLUEPRINT_WIRING_CONTRACT_2026-08-07.md`](BLUEPRINT_WIRING_CONTRACT_2026-08-07.md) — same discipline: every claim traces to a source line or a graph export.
 
+> **Reconciled 2026-08-24.** Current execution authority is
+> [`Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
+> Current source has one Melodia battle-widget creator: the old overlay is a retired no-widget
+> observer. The Piano-to-Narrative challenge adapter is also source-built. These changes do not
+> close `hud_single_writer` or `music_world_key`; live widget identity, host/level attachment,
+> visible route payoff, and replay proof remain open. Historical `runtime`, `save_load`,
+> `repeat_consume`, and `package_launch` passes are bounded evidence, not current shipping
+> certification. The active P0 set also includes `rhythm_owner`, `rhythm_grade_to_result`,
+> `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, `static_gates`, and the four-outcome
+> `battle_integration_map` matrix.
+
 This is the single wiring source of truth for the seams between the four pillars and the two
 absolute authority layers.
 
@@ -43,7 +54,8 @@ Nothing in this document grants a pillar authority over anything in that table.
                                      ▼
               UMelodiaRhythmReactivitySubsystem ──► MPC_Melodia_Palette ──► world / material bus
                                                             ▲
-  APCGHeroMusicGraphHost ──OnPatternCompleted──►  [ UNWIRED — see Seam 6 ]
+  APCGHeroMusicGraphHost ──OnPatternCompleted──► UMelodiaPCGNarrativeChallengeBridgeComponent
+                                                     └──► Narrative CommitWorldChallenge
    (Piano: music as key)
 
   UMelodiaWardrobeSubsystem ──► { MI_* Substrate Toon presentation
@@ -62,7 +74,7 @@ Nothing in this document grants a pillar authority over anything in that table.
 | **Language** | C++ |
 | **Idempotency** | `NarrativeRecord.ConsumedIntentIds` — SaveGame-flagged, so a consumed intent survives reload (`MelodiaNarrativeSubsystem.cpp:177`) |
 | **Proof gate** | `repeat_consume` |
-| **Status** | **UNPROVEN** — gate open |
+| **Status** | `repeat_consume` has a bounded historical PASS (2026-08-14); current end-to-end shipping proof remains governed by the active P0 gates. |
 
 The 7 verbs: `battle`, `quest`, `flag`, `travel`, `reward`, `stat`, `item`.
 Syntax examples from source: `melodia:stat:<IntentId>:<StatId>:<Delta>` (`:1027`),
@@ -122,12 +134,12 @@ live game mode. Documented here so it stops being folklore.
 
 | | |
 |---|---|
-| **Owner** | `UMelodiaUIBridgeSubsystem` — **pending the open question below** |
+| **Owner** | `UMelodiaUIBridgeSubsystem` for Melodia battle presentation; stock `BP_BattleUI` retains stock command input. |
 | **Direction** | Native C++ events → widget creation. Widgets never write back into gameplay state. |
 | **Carrier** | `CreateWidget<>` at `MelodiaUIBridgeSubsystem.cpp:124, 348, 365` |
 | **Language** | C++ |
 | **Proof gate** | `hud_single_writer` |
-| **Status** | **UNPROVEN — and currently violated.** Two GameInstance subsystems create battle-time widgets independently: `MelodiaUIBridgeSubsystem` and `MelodiaJRPGBattleOverlaySubsystem` (`:64`, `:83`). |
+| **Status** | **SOURCE CONVERGED, LIVE UNPROVEN.** `UMelodiaJRPGBattleOverlaySubsystem` is now a retired compatibility observer and creates no widgets; runtime writer identity still needs proof. |
 
 ### Open question, blocking this seam
 
@@ -140,9 +152,8 @@ is the only writer?**
 This cannot be answered from source. It needs one editor session, one writer, using
 `melodia_ui_get_battle_hud` and `melodia_ui_validate_widget`. **Record the answer here when known.**
 
-**Must not:** no widget may be written by two owners in the same frame. Merging
-`MelodiaJRPGBattleOverlaySubsystem` into `MelodiaUIBridgeSubsystem` is required regardless of how
-the stock-UI question resolves.
+**Must not:** no widget may be written by two owners in the same frame. The retired observer must
+remain no-widget while it exists; remove it only after consumer and asset-reference evidence.
 
 ---
 
@@ -175,16 +186,16 @@ abilities. The registry rejects multiple providers to avoid split capability tru
 
 ## Seam 6 — Music as key → world consequence
 
-**This seam is the one genuine gap, and it is one edge wide.**
+The source edge exists; the remaining gap is live attachment and visible player payoff.
 
 | | |
 |---|---|
 | **Owner** | `APCGHeroMusicGraphHost` (emitter) → `UMelodiaNarrativeSubsystem` (consumer) |
 | **Direction** | pattern completion → narrative state. One way. |
-| **Carrier** | `OnPatternCompleted` broadcast (`PCGHeroMusic.cpp:620`) → **[UNWIRED]** → 7-verb `melodia:flag:` or `melodia:quest:` notification |
+| **Carrier** | `OnPatternCompleted` broadcast (`PCGHeroMusic.cpp:620`) → `UMelodiaPCGNarrativeChallengeBridgeComponent` → atomic `UMelodiaNarrativeSubsystem::CommitWorldChallenge` |
 | **Language** | C++ |
 | **Proof gate** | `music_world_key` |
-| **Status** | **NOT WIRED** |
+| **Status** | **SOURCE-BUILT, LIVE UNPROVEN** |
 
 ### What exists
 
@@ -195,9 +206,10 @@ scoring with streak and grade (`APCGHeroMusicGraphHost::ScoreState`), real conte
 
 ### What is missing
 
-`OnPatternCompleted` has exactly **one** consumer: `UMelodiaPCGWaterGameplayBridgeComponent`
-(`:48`), which routes it into water gameplay. It never reaches narrative, quest, or traversal
-state.
+Static source now includes the Narrative challenge adapter, but it cannot prove that the intended
+live `APCGHeroMusicGraphHost` owns/configures the component, that the level instantiates it, or
+that a visible world route reacts. Replay and reload must also prove the transaction remains
+exactly once.
 
 ### The boundary that must be preserved
 
@@ -211,8 +223,8 @@ is not "never has a consequence" — a Zelda ocarina does not deal damage, it op
 
 ### The action
 
-Wire `OnPatternCompleted` to **one** 7-verb narrative notification. `UMelodiaNarrativeSubsystem`
-already owns idempotency via `ConsumedIntentIds`, so replaying the pattern cannot double-grant.
+Use the existing adapter on the intended host and prove phrase → typed world result → visible route
+→ replay/reload. Only live evidence may close `music_world_key`.
 
 **Must not:** the puzzle layer never calls the JRPG template, never deals damage, and never
 becomes a second traversal authority. It emits a notification; Narrative decides what it means.
@@ -244,17 +256,18 @@ the pattern.
 
 | # | Seam | Owner | Gate | Status |
 |---|---|---|---|---|
-| 1 | Quill → JRPG battle | `UMelodiaNarrativeSubsystem` | `repeat_consume` | UNPROVEN |
-| 2 | JRPG result → Quill resume | `UMelodiaExternalJRPGBridgeSubsystem` | result matrix | UNPROVEN |
+| 1 | Quill → JRPG battle | `UMelodiaNarrativeSubsystem` | `repeat_consume` | Bounded historical pass; current loop proof open |
+| 2 | JRPG result → Quill resume | `UMelodiaExternalJRPGBridgeSubsystem` | `battle_integration_map` four-outcome matrix | UNPROVEN |
 | 3 | Rhythm input → JRPG damage | `UMelodiaRhythmCombatSubsystem` | `rhythm_owner`, `rhythm_grade_to_result` | Partly locked; grade edge UNPROVEN |
-| 4 | Battle HUD | `UMelodiaUIBridgeSubsystem` | `hud_single_writer` | **VIOLATED** — two writers |
+| 4 | Battle HUD | `UMelodiaUIBridgeSubsystem` | `hud_single_writer` | Source converged; live proof open |
 | 5a | Wardrobe → presentation | `UMelodiaWardrobeSubsystem` | `wardrobe_equip_roundtrip` | UNPROVEN |
 | 5b | Wardrobe → traversal capability | `UMelodiaWardrobeSubsystem` | `wardrobe_gameplay_hook` | UNPROVEN |
-| 6 | Music as key → world | `APCGHeroMusicGraphHost` → Narrative | `music_world_key` | **NOT WIRED** |
+| 6 | Music as key → world | `APCGHeroMusicGraphHost` → Narrative adapter | `music_world_key` | Source-built; live route proof open |
 | 7 | Audio → material bus | `UMelodiaRhythmReactivitySubsystem` | M3 | LIVE |
 
-**One seam is violated (4), one is unwired (6), five are unproven.** None require new systems —
-all seven have their machinery built.
+No new subsystem is required for these seams. Source has converged the former HUD duplication and
+implemented the former Piano edge, but live proof remains open for the active P0 gates, including
+the four-outcome battle matrix and current static chain.
 
 ---
 

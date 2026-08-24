@@ -1,269 +1,184 @@
 {
-  "schema": "melodia.p0.task_ledger.v1",
-  "generated_at": "2026-08-23T19:55:46-04:00",
-  "p0_tasks": [
+  "schema": "melodia.p0.task_ledger.v2",
+  "as_of": "2026-08-24",
+  "authority": {
+    "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
+    "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
+    "scope": "Close the existing First Dream loop before adding economy, song-family, HUD, dungeon, enemy, or quest breadth.",
+    "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct. Historical passes apply only to their captured baselines and are not current shipping certification."
+  },
+  "active_p0_gates": [
     {
-      "id": "p0_001",
+      "id": "rhythm_owner",
+      "status": "open",
+      "contract": "Exactly one rhythm execution path reaches the stock JRPG damage calculation; load-bearing MelodiaCore presentation and reactivity callers may remain."
+    },
+    {
+      "id": "hud_single_writer",
+      "status": "open",
+      "contract": "UMelodiaUIBridgeSubsystem is the sole Melodia writer for battle-time presentation and the instantiated runtime widget identity is proven."
+    },
+    {
+      "id": "rhythm_grade_to_result",
+      "status": "open",
+      "contract": "Real-key timing grade changes a stock JRPG result without blocking progression, and Quill resumes exactly once."
+    },
+    {
+      "id": "wardrobe_equip_roundtrip",
+      "status": "open",
+      "contract": "Equip through the wardrobe authority, save canonically, restart the process, load, and restore the correct outfit and materials."
+    },
+    {
+      "id": "wardrobe_gameplay_hook",
+      "status": "open",
+      "contract": "One equipped wardrobe item provides one observable inventory/capability hook; Glide is the first-slice capability."
+    },
+    {
+      "id": "music_world_key",
+      "status": "open",
+      "contract": "One existing Piano phrase commits one idempotent typed world result and visibly opens one player-facing route."
+    },
+    {
+      "id": "static_gates",
+      "status": "fail",
+      "contract": "The current frozen baseline passes the graph, live-path, Blueprint sweep, UI, and material-baseline checks without waivers."
+    },
+    {
+      "id": "battle_integration_map",
+      "status": "hold",
+      "contract": "Victory, Defeat, Fled, and unavailable each produce the typed result and resume or abort Quill exactly once on the current integration map."
+    }
+  ],
+  "bounded_historical_evidence": [
+    {
+      "id": "runtime",
+      "recorded_status": "pass",
+      "recorded_on": "2026-08-13",
+      "scope": "Real keyboard input on the captured owner session."
+    },
+    {
+      "id": "save_load",
+      "recorded_status": "pass",
+      "recorded_on": "2026-08-14",
+      "scope": "Canonical stock-JRPG save across the captured process restart."
+    },
+    {
+      "id": "repeat_consume",
+      "recorded_status": "pass",
+      "recorded_on": "2026-08-14",
+      "scope": "Captured authored replay remained exactly once."
+    },
+    {
+      "id": "package_launch",
+      "recorded_status": "pass",
+      "recorded_on": "2026-08-14",
+      "scope": "Captured Development package launched outside the editor."
+    }
+  ],
+  "current_source_truth": {
+    "battle_hud": "Source is converged: UMelodiaJRPGBattleOverlaySubsystem is a retired compatibility observer and creates no widgets. Runtime hud_single_writer proof remains open.",
+    "music_world_key": "Piano and UMelodiaPCGNarrativeChallengeBridgeComponent are source-built. Live host attachment, level wiring, visible route payoff, and replay proof remain open.",
+    "rhythm_owner": "The gate measures one execution path into stock JRPG damage, not zero MelodiaCore callers. Load-bearing presentation and reactivity callers are permitted."
+  },
+  "deferred_post_p0_expansion": [
+    {
+      "id": "expansion_001",
+      "legacy_id": "p0_001",
       "name": "Define 4 global economy data structs/variables",
       "system": "Global Economies",
-      "priority": 1,
-      "status": "open",
-      "notes": "HealingEconomy, ManaEconomy, UtilityEconomy, GriefEconomy as shared state"
+      "priority_after_p0": 1,
+      "status": "deferred",
+      "notes": "HealingEconomy, ManaEconomy, UtilityEconomy, and GriefEconomy as shared state."
     },
     {
-      "id": "p0_002",
+      "id": "expansion_002",
+      "legacy_id": "p0_002",
       "name": "Implement grief modifier on rhythm note hits",
       "system": "Grief Hook",
-      "priority": 2,
-      "status": "open",
-      "notes": "GriefEconomy biases rhythm-yield math (more Mana gain, less Healing gain)"
+      "priority_after_p0": 2,
+      "status": "deferred",
+      "notes": "GriefEconomy biases rhythm-yield math."
     },
     {
-      "id": "p0_003",
+      "id": "expansion_003",
+      "legacy_id": "p0_003",
       "name": "Implement HealingSong (base + 1 scalar tier)",
       "system": "Healing Song",
-      "priority": 3,
-      "status": "open",
-      "notes": "Consumes HealingEconomy, heals, grants small ManaEconomy (chain feed)"
+      "priority_after_p0": 3,
+      "status": "deferred",
+      "notes": "Consumes HealingEconomy, heals, and grants small ManaEconomy."
     },
     {
-      "id": "p0_004",
+      "id": "expansion_004",
+      "legacy_id": "p0_004",
       "name": "Implement ManaSong (base + 1 scalar tier)",
       "system": "Mana Song",
-      "priority": 4,
-      "status": "open",
-      "notes": "Consumes ManaEconomy, restores mana/resonance, reduces GriefEconomy (chain feed)"
+      "priority_after_p0": 4,
+      "status": "deferred",
+      "notes": "Consumes ManaEconomy, restores mana or resonance, and reduces GriefEconomy."
     },
     {
-      "id": "p0_005",
+      "id": "expansion_005",
+      "legacy_id": "p0_005",
       "name": "Implement UtilitySong_Debuff (mana drain type)",
       "system": "Utility Song",
-      "priority": 5,
-      "status": "open",
-      "notes": "Consumes UtilityEconomy, applies mana drain debuff that drains target ManaEconomy"
+      "priority_after_p0": 5,
+      "status": "deferred",
+      "notes": "Consumes UtilityEconomy and applies a mana-drain debuff."
     },
     {
-      "id": "p0_006",
-      "name": "Wire HUD/WBP for all P0 economy inputs/indicators",
+      "id": "expansion_006",
+      "legacy_id": "p0_006",
+      "name": "Wire HUD/WBP for economy inputs and indicators",
       "system": "HUD/WBP",
-      "priority": 6,
-      "status": "open",
-      "notes": "4 economy display slots + cast buttons + grief indicator + scalar tier display"
+      "priority_after_p0": 6,
+      "status": "deferred",
+      "notes": "Economy display, cast controls, grief indicator, and scalar-tier display must use the existing UI authority."
     },
     {
-      "id": "p0_007",
-      "name": "Dungeon route: level entry, encounter trigger, grief hook activation",
+      "id": "expansion_007",
+      "legacy_id": "p0_007",
+      "name": "Build the economy-focused dungeon route",
       "system": "Dungeon Route",
-      "priority": 7,
-      "status": "open",
-      "notes": "Single route/level entry that runs the P0 loop"
+      "priority_after_p0": 7,
+      "status": "deferred",
+      "notes": "A route for the expanded economy loop, not the current First Dream convergence route."
     },
     {
-      "id": "p0_008",
-      "name": "Enemy: debuff/status-pressure type (mana-drain reciprocal synergy)",
+      "id": "expansion_008",
+      "legacy_id": "p0_008",
+      "name": "Add a debuff/status-pressure enemy",
       "system": "Enemy",
-      "priority": 8,
-      "status": "open",
-      "notes": "One enemy type that pressures via status/debuff behavior aligned with UtilitySong_Debuff"
+      "priority_after_p0": 8,
+      "status": "deferred",
+      "notes": "One enemy aligned with the future UtilitySong_Debuff loop."
     },
     {
-      "id": "p0_009",
-      "name": "Quest integration: gate completion on required skill usage + encounter resolution",
+      "id": "expansion_009",
+      "legacy_id": "p0_009",
+      "name": "Integrate an economy-skill quest chain",
       "system": "Quest Integration",
-      "priority": 9,
-      "status": "open",
-      "notes": "Quest chain tied to casting HealingSong, ManaSong, UtilitySong_Debuff at least once"
+      "priority_after_p0": 9,
+      "status": "deferred",
+      "notes": "Future quest progression tied to skill usage and encounter resolution."
     }
   ],
-  "polish_tasks": [
-    {
-      "id": "polish_001",
-      "name": "Economy system idempotency (repeated casts do not corrupt state)",
-      "category": "Safety",
-      "priority": 1,
-      "status": "open",
-      "notes": "Verify repeated casts cannot underflow/overflow or double-apply effects"
-    },
-    {
-      "id": "polish_002",
-      "name": "Grief modifier edge cases (clamp min/max; no negative balances)",
-      "category": "Safety",
-      "priority": 2,
-      "status": "open",
-      "notes": "Explicit clamp behavior for all economy systems"
-    },
-    {
-      "id": "polish_003",
-      "name": "UtilitySong_Buff variant (PT2) extending from UtilityEconomy",
-      "category": "Utility",
-      "priority": 3,
-      "status": "open",
-      "notes": "Apply buff potency/duration scaling based on scalar tier"
-    },
-    {
-      "id": "polish_004",
-      "name": "UtilitySong_Cleanse variant (PT2) clearing debuffs from party",
-      "category": "Utility",
-      "priority": 4,
-      "status": "open",
-      "notes": "Remove debuffs from companion/party state"
-    },
-    {
-      "id": "polish_005",
-      "name": "Scalar tier 3 for all skill families",
-      "category": "Content",
-      "priority": 5,
-      "status": "open",
-      "notes": "Add tier 3 potency/duration scaling"
-    },
-    {
-      "id": "polish_006",
-      "name": "Rhythm hit accuracy -> economy yield validation (MATH-style eval)",
-      "category": "Math/Test",
-      "priority": 6,
-      "status": "open",
-      "notes": "Validate numeric yield outcomes from timing accuracy"
-    },
-    {
-      "id": "polish_007",
-      "name": "WBP: scalar tier UI update on economy threshold change",
-      "category": "HUD",
-      "priority": 7,
-      "status": "open",
-      "notes": "Update UI tier indicators when economy crosses thresholds"
-    },
-    {
-      "id": "polish_008",
-      "name": "Chain loop integration test (Heal -> Mana -> Grief -> more Healing)",
-      "category": "Integration",
-      "priority": 8,
-      "status": "open",
-      "notes": "Test full chain behavior: HealingSong -> ManaGain -> ManaSong -> GriefDrop -> HealingYieldEffect"
-    },
-    {
-      "id": "polish_009",
-      "name": "Enemy AI: scale mana drain potency by grief level",
-      "category": "Enemy AI",
-      "priority": 9,
-      "status": "open",
-      "notes": "Synergy with grief hook (heavier grief increases drain effects)"
-    },
-    {
-      "id": "polish_010",
-      "name": "Quest step UX: 'cast all 3 skill families at least once' completion condition",
-      "category": "Quest UX",
-      "priority": 10,
-      "status": "open",
-      "notes": "Explicit UX gate for P0 completion"
-    }
+  "deferred_post_p0_polish": [
+    "Economy idempotency and clamp edge cases",
+    "UtilitySong buff and cleanse variants",
+    "Third scalar tier for song families",
+    "Rhythm-accuracy-to-economy-yield math validation",
+    "Economy threshold UI updates",
+    "Full economy chain integration test",
+    "Grief-scaled enemy mana drain",
+    "Cast-all-families quest-step UX"
   ],
-  "overnight_test_targets": [
-    {
-      "id": "test_001",
-      "name": "Grief modifier calculation unit test (grief 0 / 50 / 100)"
-    },
-    {
-      "id": "test_002",
-      "name": "HealingSong blueprint fixture execution"
-    },
-    {
-      "id": "test_003",
-      "name": "ManaSong blueprint fixture execution"
-    },
-    {
-      "id": "test_004",
-      "name": "UtilitySong_Debuff (mana drain) blueprint fixture execution"
-    },
-    {
-      "id": "test_005",
-      "name": "WBP binding checks (4 economy bindings + cast button events)"
-    },
-    {
-      "id": "test_006",
-      "name": "Quest progression check (skill cast count updates quest state)"
-    }
-  ],
-  "integration_touchpoints": [
-    {
-      "id": "touch_001",
-      "name": "New MATH harness tasks for each skill family"
-    },
-    {
-      "id": "touch_002",
-      "name": "New WBP fixture for HUD"
-    },
-    {
-      "id": "touch_003",
-      "name": "Policy entries for any new MCP tools"
-    },
-    {
-      "id": "touch_004",
-      "name": "Quest allowlist entries for new quest IDs"
-    },
-    {
-      "id": "touch_005",
-      "name": "Dungeon encounter fixture"
-    }
-  ],
-  "current_audit": {
-    "audited_at": "2026-08-23T19:55:46-04:00",
-    "status": "EDITOR_RELAUNCHED_NO_RUNTIME_CLAIM",
-    "task_status_policy": "All P0 and polish tasks remain open unless their direct implementation and required evidence are present; offline contracts do not promote live runtime gates.",
-    "live_editor": {
-      "status": "READY_FOR_SERIALIZED_LIVE_SMOKE",
-      "endpoint": "127.0.0.1:9316",
-      "companion_endpoint": "127.0.0.1:55558",
-      "process_id": 13264,
-      "build_target": "BS_GodFileEditor",
-      "build_result": "Succeeded",
-      "blocker": "No active bind blocker; PIE/static/runtime smoke has not yet been rerun.",
-      "maps_touched": false,
-      "no_claim_written": true
-    },
-    "relaunch_evidence": {
-      "status": "startup_only",
-      "source_worktree": "G:/EnvironmentPortfolio/BS_GodFile",
-      "source_fixes": [
-        "MelodiaNarrativeSaveGame.h: Engine/SaveGame.h -> GameFramework/SaveGame.h",
-        "MelodiaIntegrationConfig.cpp: removed stale duplicate constructor/DesignNote body",
-        "MelodiaNarrativeSaveGame.h: removed orphaned constructor declaration"
-      ],
-      "unloadable_asset_observed": "Content/Textures/.../Craters/Craters_1_-_512x512.uasset (0 bytes); untouched"
-    },
-    "verified_offline_evidence": [
-      "Tools/test_echo_contract.py: 77/77",
-      "Tools/test_melodia_mcp.py: 33/33",
-      "Content/Python/test_resonant_world_capture_manifest.py: 3/3 direct invocation",
-      "Tools/test_melodia_wardrobe_transaction_contract.py: 67/67",
-      "Content/Python/test_resonant_world_wardrobe_bridge.py: 5/5",
-      "IntegrationMap, native-adapter, skill-bridge, HUD-source, and wiring-preflight contracts passed at their stated offline/source scope"
-    ],
-    "source_only_changes_pending_live_validation": [
-      "Tools/echo_run.py: preserve HOLD semantics when an editor-gated static subcheck times out"
-    ],
-    "open_live_gates": [
-      "rhythm_owner",
-      "hud_single_writer",
-      "rhythm_grade_to_result",
-      "music_world_key",
-      "wardrobe_equip_roundtrip",
-      "wardrobe_gameplay_hook"
-    ],
-    "remaining_boundaries": {
-      "oceanology": "BLOCKED_BINARY_ONLY; descriptor/source/build/shader/L_Atlantis proof absent",
-      "lookdev": "Protected maps and L_WP_SakuraDream remain untouched; no new capture promoted",
-      "website": "my-site-clean intentionally untouched"
-    },
-    "git": {
-      "branch": "main",
-      "head": "2bbe0a08",
-      "origin_main": "2bbe0a08",
-      "ahead_behind": "0/0",
-      "worktree_entries": 70,
-      "modified_tracked": 37,
-      "untracked": 33,
-      "broad_stage_or_push": false
-    },
-    "authoritative_handoff": "Docs/MELODIA_OVERALL_STATUS_2026-08-23.md"
-  }
+  "deferred_post_p0_test_targets": [
+    "Grief modifier calculation at grief 0, 50, and 100",
+    "HealingSong Blueprint fixture",
+    "ManaSong Blueprint fixture",
+    "UtilitySong_Debuff Blueprint fixture",
+    "Economy WBP binding checks",
+    "Economy quest progression check"
+  ]
 }

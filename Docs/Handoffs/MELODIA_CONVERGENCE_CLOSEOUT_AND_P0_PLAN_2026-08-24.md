@@ -4,7 +4,11 @@
 
 The offline convergence phase is complete and committed in reviewable follow-up batches. It produced reproducible authority, experience-contract, test-truth, and publication-claims tooling without modifying production C++, Unreal packages, canonical Quill content, or stock JRPG gameplay.
 
-The project is not at P0 exit yet. Four historical integration completion gates are recorded as passing, but the current convergence contract still has five open player-loop seams, `rhythm_owner` remains in the current P0 live-gate list, `static_gates` has a later failure, and the latest `battle_integration_map` row is an evidence gap rather than a fresh full-loop pass.
+The project is not at P0 exit yet. Four historical integration completion gates are recorded as
+passing, but eight current P0 gates remain open/failing/on HOLD. The August 24 NPC/quest audit
+also found a malformed authored flag intent, duplicate quest mutation paths, non-atomic reward
+ordering, and missing restart-safe checkpoint/encounter state. These are shipping blockers, not
+reasons to build another system.
 
 The fastest route is therefore convergence and proof, not another feature tranche.
 
@@ -14,9 +18,14 @@ The fastest route is therefore convergence and proof, not another feature tranch
 - `961cc186` — publication-safe gameplay claims validator and tests.
 - `127ca9e6` — non-UE gate truth auditor, regenerated 124-file inventory, report, and deterministic JSON evidence.
 - `f9fcb4d1` — deterministic 1,270-node gameplay authority atlas, tests, canonical August 24 report/evidence, and removal of the accidental August 23 duplicate.
+- `9a40d2ff` — this convergence closeout and shortest P0 plan.
+- `70212962` — fail-closed Windows hook, narrow generated-evidence boundary, index-safe Git health audit, and nested-checkout containment.
+- `2b69ce13` — correct dotted Monolith namespace/action/params routing plus canonical CDO `asset_path` reads and regression coverage.
+- `78ecff15` — correct `project_query` routing and fail-closed action-payload evidence handling.
 - `263c046f` — earlier preservation checkpoint that already contains the public reports, systems case-study, claims JSON, and Geometry Nodes/TouchDesigner/worldgen prompt packet. It also contains unrelated preservation work and is not represented as an isolated convergence commit.
 
-The four new commits are local on `main` and have not been pushed. Unrelated dirty `.uasset`, plugin, Blender, Gaea, `.gitignore`, and worldgen changes remain unstaged and were not included.
+The closeout and Git/MCP commits are local on `main` and have not been pushed. Unrelated dirty
+`.uasset`, plugin, Blender, Gaea, and worldgen changes remain preserved and were not included.
 
 ## Verification completed
 
@@ -28,7 +37,10 @@ The four new commits are local on `main` and have not been pushed. Unrelated dir
 
 Post-closeout verification then observed another active task add `Tools/BlenderAddons/melodia_showroom/_debug_scene.py` between the atlas test's two builds. That live-worktree rerun therefore finished 5/6 with only the byte-identity assertion failing. The committed evidence remains valid for its frozen commit baseline; it must be regenerated once more after all Tools writers stop before being called current-worktree evidence.
 
-The repository pre-commit hook cannot launch on this Windows checkout because its shebang is `/usr/bin/env bash`. Each commit therefore used `--no-verify` only after manually applying the hook's size, zero-byte, forbidden-extension, build-artifact, junk-name, and protected-path checks. `Saved/Audit/*.json` was intentionally committed as evidence even though the generic hook classifies all `Saved/` paths as transient.
+The repository pre-commit hook is repaired at `70212962`. It runs under Git for Windows, fails
+closed if required POSIX validators are unavailable, permits only the three named canonical audit
+JSON files under `Saved/`, and passed both the installed positive path and an isolated protected-
+file negative fixture. The health auditor no longer refreshes or locks the index.
 
 ## Test truth discovered
 
@@ -52,7 +64,7 @@ Ledger-backed historical passes:
 Still open or not current enough for P0 exit:
 
 - `rhythm_owner` — listed in the current P0 live-gate set.
-- `hud_single_writer` — still open; the authority contract records the two-writer seam as violated/unproven.
+- `hud_single_writer` — source is converged on `UMelodiaUIBridgeSubsystem`; runtime widget identity and one-writer proof remain open.
 - `rhythm_grade_to_result` — a real-key timing grade must demonstrably change the stock JRPG result while Quill resumes once.
 - `wardrobe_equip_roundtrip` — equip, canonical save, process restart, load, correct outfit and materials.
 - `wardrobe_gameplay_hook` — one outfit must provide one observable capability; Glide is the locked first-slice choice.
@@ -60,21 +72,54 @@ Still open or not current enough for P0 exit:
 - `static_gates` — latest ledger standing is FAIL because two material baselines drifted.
 - `battle_integration_map` — latest row is FAIL/HOLD because the August 22 run proved idle map health but did not rerun StartBattle, rhythm, terminal result, and Quill resume.
 
-The nine economy/song/HUD/dungeon/enemy/quest items in `Docs/P0_TASK_LEDGER.json` are all open, but implementing them now would broaden P0 and compete with the convergence scope. Recommendation: reclassify them as post-P0 gameplay expansion. Do not delete them; move their priority after the existing loop is accepted.
+The nine economy/song/HUD/dungeon/enemy/quest items are now classified in
+`Docs/P0_TASK_LEDGER.json` as deferred post-P0 expansion. They remain preserved, but cannot
+replace the active convergence and proof gates.
+
+### NPC and quest audit blockers
+
+- `Tools/test_melodia_first_dream_route_contract.py` currently fails because
+  `MelodiaQuillHarmonyAwakening.qsc` emits `melodia:flag:<id>` while the runtime requires
+  `melodia:flag:<id>:<bool>`.
+- `UMelodiaNPCInteractionComponent` can bypass Quill/Narrative and mutate Persona plus the
+  quarantined `AMelodiaQuestManagerBase`; `UMelodiaOpeningFlowSubsystem` still reaches that legacy
+  authority.
+- Reward IDs are consumed before downstream grant/equip acknowledgement, and Persona can mark a
+  quest complete before its reward succeeds.
+- `ScriptCheckpoint` has no production writer. Pending encounter/completion-guard state is
+  transient, so mid-encounter restart cannot yet meet the save contract.
+- Current Persona MCP reads expose allowlists/content definitions, not canonical runtime NPC and
+  quest state. They are useful diagnostics, not gate oracles.
+
+Execution and evidence requirements are consolidated in
+[`../P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md`](../P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md).
 
 ## Shortest credible P0 critical path
 
 ```mermaid
 flowchart LR
-    A[Freeze shipping baseline] --> B[Adjudicate two static baseline drifts]
-    B --> C[One battle UI writer + runtime widget identity]
-    C --> D[Real-key rhythm grade changes stock JRPG result]
-    D --> E[Wardrobe save roundtrip + Glide route]
-    E --> F[Piano phrase opens one world object]
-    F --> G[Fresh-slot and Continue golden run]
-    G --> H[Development package restart proof]
+    A[Fix malformed authored intent] --> B[Converge NPC and quest mutation]
+    B --> C[Atomic reward plus restart state]
+    C --> D[Freeze baseline and pass static chain]
+    D --> E[UI writer plus four battle outcomes]
+    E --> F[Wardrobe Glide plus music route]
+    F --> G[Fresh-slot and Continue]
+    G --> H[Development package proof]
     H --> I[P0 accepted; freeze evidence]
 ```
+
+### Step 0 — Make narrative and quest truth green
+
+- Fix the malformed canonical QSC notification and its materialization contract; do not weaken
+  the failing route test.
+- Remove the direct Persona/legacy QuestManager mutation fallback from the shipping NPC path.
+- Make quest completion and reward/equipment grant one acknowledged atomic transaction.
+- Persist a stable dialogue checkpoint and encounter command/outcome, or explicitly prohibit
+  saving while an encounter is pending.
+- Align First Dream design IDs with the authored Smoke aliases and represent unavailable.
+
+Exit: all offline route/progression/chapter/experience tests are green and one runtime snapshot
+contract can expose canonical NPC/quest/intent/reward/checkpoint state without mutation.
 
 ### Step 1 — Freeze and reconcile proof
 
