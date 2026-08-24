@@ -790,32 +790,49 @@ if bpy is not None:
 
         def draw(self, context):
             layout = self.layout
-            props = context.scene.melodia_studio
 
-            # Repo + version
+            # 4-row health dashboard
             if _mu is not None:
                 root = _mu.repo_root()
-                layout.label(text=f"Repo: {root}", icon='FILE_FOLDER')
+                h = _mu.health_check()
+
+                box = layout.box()
+                box.label(text="Health", icon='HEART')
+                row = box.row()
+                row.label(text="Repo: %s" % os.path.basename(root), icon='FILE_FOLDER')
+                row.alignment = 'RIGHT'
+                row.label(text="OK" if h["ok"] else "ISSUES",
+                          icon='CHECKMARK' if h["ok"] else 'ERROR')
+
+                row = box.row()
+                row.label(text="MIDI: %d files" % h.get("midi_count", 0),
+                          icon='FILE_SOUND')
+
+                if h.get("issues"):
+                    row = box.row()
+                    row.label(text=h["issues"][0], icon='ERROR')
+                else:
+                    row = box.row()
+                    row.label(text="All systems nominal", icon='CHECKMARK')
+
                 vers = _mu.addon_versions()
                 if vers:
-                    box = layout.box()
-                    box.label(text="Addons", icon='PACKAGE')
-                    for v in vers[:6]:
-                        box.label(text=f"{v['folder']} {v['version']}")
-                    if len(vers) > 6:
-                        box.label(text=f"… +{len(vers)-6} more")
+                    row = box.row()
+                    row.label(text="Addons: %d" % len(vers), icon='PACKAGE')
             else:
                 layout.label(text=midi_bridge.repo_root(), icon='FILE_FOLDER')
+                layout.label(text="melodia_utils not available", icon='ERROR')
 
             col = layout.column(align=True)
             col.operator("melodia_studio.validate_health", icon='HEART')
             row = col.row(align=True)
-            row.operator("melodia_studio.open_folder", text="Addons").folder = "addons"  # type: ignore[attr-defined]
-            row.operator("melodia_studio.open_folder", text="Showroom").folder = "showroom"  # type: ignore[attr-defined]
-
-            layout.separator()
-            layout.label(text="Tip: add Tools/BlenderAddons as a", icon='INFO')
-            layout.label(text="Script Directory in Preferences → File Paths")
+            row.operator("melodia_studio.setup_script_directory",
+                         icon='SCRIPTPLUGINS')
+            row.operator("melodia_studio.open_folder",
+                         text="Addons").folder = "addons"  # type: ignore[attr-defined]
+            row = col.row(align=True)
+            row.operator("melodia_studio.open_folder",
+                         text="Showroom").folder = "showroom"  # type: ignore[attr-defined]
 
     classes = [
         StudioProps,
