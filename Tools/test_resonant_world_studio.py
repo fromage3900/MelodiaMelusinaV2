@@ -5,6 +5,8 @@ import os
 import sys
 import json
 
+from worldgen_tooling_contracts import report_exit_code, sha256_file
+
 report = {}
 
 
@@ -84,7 +86,14 @@ def main():
                             report["prop_instances_after_rebuild"])
 
     # Render proof
-    out = r"G:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\resonant_world_studio\addon_proof.png"
+    repo = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
+    out = os.path.join(
+        os.environ.get(
+            "MELODIA_RESONANT_STUDIO_OUT",
+            os.path.join(repo, "Saved", "Audit", "resonant_world_studio"),
+        ),
+        "addon_proof.png",
+    )
     os.makedirs(os.path.dirname(out), exist_ok=True)
     sc = bpy.context.scene
     sc.render.resolution_x = 1280
@@ -95,6 +104,7 @@ def main():
     if report["render_ok"]:
         report["render_bytes"] = os.path.getsize(out)
         report["render_path"] = out
+        report["render_sha256"] = sha256_file(out)
 
     bpy.ops.resonant_world.export_report()
 
@@ -117,6 +127,7 @@ if __name__ == "__main__":
     code = 0
     try:
         main()
+        code = report_exit_code(report)
     except Exception:
         import traceback
         report["error"] = traceback.format_exc()[-1500:]

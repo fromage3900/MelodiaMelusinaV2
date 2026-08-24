@@ -20,8 +20,12 @@ import xml.dom.minidom
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.normpath(os.path.join(HERE, ".."))
 STUDIO = os.path.join(REPO, "Tools", "BlenderAddons", "melodia_studio")
-OUT_SVG = os.path.join(REPO, "Docs", "Assets", "resonant_world_banner.svg")
-OUT_JSON = os.path.join(REPO, "Docs", "Assets", "resonant_world_stats.json")
+OUT_DIR = os.environ.get(
+    "MELODIA_BANNER_OUT_DIR",
+    os.path.join(REPO, "Docs", "Assets"),
+)
+OUT_SVG = os.path.join(OUT_DIR, "resonant_world_banner.svg")
+OUT_JSON = os.path.join(OUT_DIR, "resonant_world_stats.json")
 
 # Palette: void background, musical accents. No raw primaries.
 BG = "#0a0a12"

@@ -14,7 +14,10 @@ import json
 import math
 import mathutils
 
-REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
+from worldgen_tooling_contracts import path_is_within
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.normpath(os.path.join(HERE, ".."))
 ADDON = os.path.join(REPO, "Tools", "BlenderAddons", "melodia_studio")
 for p in (ADDON,):
     if p not in sys.path:
@@ -22,14 +25,30 @@ for p in (ADDON,):
 
 
 def load_job():
-    """Load the daemon job JSON from the fixed path."""
-    path = os.path.join(os.environ.get("LOCALAPPDATA", REPO), "Temp",
-                        "daemon_current_job.json")
+    """Load the unique job passed by the parent daemon."""
+    path = os.environ.get("MELODIA_WORLDGEN_JOB")
+    if not path:
+        raise RuntimeError("MELODIA_WORLDGEN_JOB was not provided")
     if not os.path.exists(path):
-        print("[wrapper] Job not found: %s" % path, flush=True)
-        return None
+        raise FileNotFoundError("World-gen job not found: %s" % path)
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
+
+def validate_job(job):
+    """Reject malformed or path-escaping jobs before Blender reads/writes."""
+    required = {"obj", "midi", "preset", "out", "props", "camera"}
+    missing = sorted(required.difference(job))
+    if missing:
+        raise ValueError("World-gen job missing keys: %s" % ", ".join(missing))
+    allowed_temp = os.environ.get("MELODIA_WORLDGEN_ALLOWED_TEMP")
+    allowed_out = os.environ.get("MELODIA_WORLDGEN_ALLOWED_OUT")
+    if not allowed_temp or not allowed_out:
+        raise RuntimeError("World-gen path allowlists were not provided")
+    if not path_is_within(job["obj"], allowed_temp):
+        raise ValueError("OBJ path escapes the allowed temporary directory")
+    if not path_is_within(job["out"], allowed_out):
+        raise ValueError("Render path escapes the allowed audit directory")
 
 
 def import_obj(path):
@@ -213,8 +232,7 @@ def bounds_of(objs):
 
 def main():
     job = load_job()
-    if job is None:
-        return
+    validate_job(job)
 
     print("[wrapper] Job: %s / %s" % (job["midi"], job["preset"]), flush=True)
 
@@ -223,8 +241,7 @@ def main():
     # Terrain
     terrain = import_obj(job["obj"])
     if terrain is None:
-        print("[wrapper] Failed to import OBJ", flush=True)
-        return
+        raise RuntimeError("World-gen OBJ produced no vertices")
     terrain.data.materials.append(aura_material())
 
     # Dressing
@@ -240,16 +257,21 @@ def main():
     build_camera(centre, size, job.get("camera", {}))
 
     # Render
-    os.makedirs(os.path.dirname(job["out"]), exist_ok=True)
+    final_path = os.path.abspath(job["out"])
+    partial_path = final_path + ".%d.partial.png" % os.getpid()
+    os.makedirs(os.path.dirname(final_path), exist_ok=True)
     sc = bpy.context.scene
     sc.render.engine = 'BLENDER_EEVEE'
     sc.render.resolution_x = 1280
     sc.render.resolution_y = 720
     sc.render.image_settings.file_format = 'PNG'
-    sc.render.filepath = job["out"]
+    sc.render.filepath = partial_path
     bpy.ops.render.render(write_still=True)
+    if not os.path.exists(partial_path):
+        raise RuntimeError("Blender reported success without a render artifact")
+    os.replace(partial_path, final_path)
 
-    print("[wrapper] Rendered: %s" % job["out"], flush=True)
+    print("[wrapper] Rendered: %s" % final_path, flush=True)
 
 
 if __name__ == "__main__":

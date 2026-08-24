@@ -355,11 +355,11 @@ def generate_world(midi_path, preset_id="resonant_default", out_obj=None):
 
 
 def dress_terrain(terrain_obj, obj_path, style_id="verdant", seed=11, budget=1400, midi_path=None):
-    """Apply dressing/magic planning to an already-generated terrain mesh.
+    """Plan dressing/magic for an already-generated terrain mesh.
 
-    If midi_path is given, builds a real heightfield so props actually land
-    on ground. Otherwise falls back to empty-field planning (preserves the
-    deterministic string contract for offline tests, but reports 0 props).
+    If midi_path is given, builds a real heightfield so planned props use
+    grounded coordinates. Instancing is deliberately not claimed here; the
+    current Blender operator reports the plan count only.
 
     Returns a short human-readable status string, or raises.
     """

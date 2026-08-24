@@ -14,18 +14,35 @@ Run:
   python -B Tools/midi_worldgen_daemon.py
 """
 
-import os
-import sys
+import contextlib
+import hashlib
 import json
-import time
-import math
+import os
 import subprocess
+import sys
+import tempfile
+import time
 
-REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
+from worldgen_tooling_contracts import daemon_run_passes, sha256_file
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.normpath(os.path.join(HERE, ".."))
 ADDON = os.path.join(REPO, "Tools", "BlenderAddons", "melodia_studio")
-OUT_DIR = r"G:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\midi_worldgen_daemon"
+OUT_DIR = os.environ.get(
+    "MELODIA_WORLDGEN_OUT",
+    os.path.join(REPO, "Saved", "Audit", "midi_worldgen_daemon"),
+)
 LEDGER = os.path.join(OUT_DIR, "ledger.json")
-BLENDER = r"C:\Program Files\Blender Foundation\Blender 5.2\blender.exe"
+LOCK_FILE = os.path.join(OUT_DIR, ".daemon.lock")
+BLENDER = os.environ.get(
+    "MELODIA_BLENDER_EXE",
+    os.path.join(
+        os.environ.get("ProgramFiles", r"C:\Program Files"),
+        "Blender Foundation",
+        "Blender 5.2",
+        "blender.exe",
+    ),
+)
 
 for p in (ADDON, os.path.join(REPO, "Tools", "BlenderAddons", "resonant_world_studio")):
     if p not in sys.path:
@@ -47,8 +64,48 @@ def load_ledger():
 
 def save_ledger(ledger):
     os.makedirs(OUT_DIR, exist_ok=True)
-    with open(LEDGER, "w", encoding="utf-8") as f:
-        json.dump(ledger, f, indent=2)
+    temp_path = LEDGER + ".%d.tmp" % os.getpid()
+    try:
+        with open(temp_path, "w", encoding="utf-8") as f:
+            json.dump(ledger, f, indent=2)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temp_path, LEDGER)
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+
+
+@contextlib.contextmanager
+def single_instance():
+    """Hold a process-lifetime lock so scheduled runs cannot overlap."""
+    os.makedirs(OUT_DIR, exist_ok=True)
+    handle = open(LOCK_FILE, "a+b")
+    if os.path.getsize(LOCK_FILE) == 0:
+        handle.write(b"0")
+        handle.flush()
+    handle.seek(0)
+    try:
+        if os.name == "nt":
+            import msvcrt
+            msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError as exc:
+        handle.close()
+        raise RuntimeError("another MIDI world-gen daemon is active") from exc
+    try:
+        yield
+    finally:
+        handle.seek(0)
+        if os.name == "nt":
+            import msvcrt
+            msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
+        else:
+            import fcntl
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+        handle.close()
 
 
 def midi_files():
@@ -64,6 +121,8 @@ def midi_files():
             for fn in files:
                 if not fn.lower().endswith((".mid", ".midi")):
                     continue
+                if os.path.splitext(fn)[0].lower().endswith("_beatgrid"):
+                    continue
                 full = os.path.join(dirpath, fn)
                 key = os.path.normcase(full)
                 if key in seen:
@@ -74,15 +133,22 @@ def midi_files():
 
 
 def file_fingerprint(path):
-    st = os.stat(path)
-    return "%s:%d:%d" % (path, st.st_mtime, st.st_size)
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return "sha256:%s" % digest.hexdigest()
 
 
 def already_processed(ledger, midi_path, preset):
     fp = file_fingerprint(midi_path)
     for entry in ledger.get("entries", []):
         if entry.get("midi") == midi_path and entry.get("preset") == preset:
-            if entry.get("fingerprint") == fp:
+            if (
+                entry.get("fingerprint") == fp
+                and entry.get("render")
+                and os.path.exists(entry["render"])
+            ):
                 return True
     return False
 
@@ -118,19 +184,29 @@ def build_field(midi_path, preset_id):
 
 def render_proof(midi_path, preset_id, field, metrics, props, pstats):
     """Render a single proof image through Blender headless (subprocess)."""
+    if not os.path.isfile(BLENDER):
+        print("[daemon] Blender executable not found: %s" % BLENDER, flush=True)
+        return None
+
+    temp_root = os.path.join(os.environ.get("LOCALAPPDATA", REPO), "Temp")
+    os.makedirs(temp_root, exist_ok=True)
+    obj_handle = tempfile.NamedTemporaryFile(
+        prefix="melodia_worldgen_", suffix=".obj", dir=temp_root, delete=False
+    )
+    tmp_obj = obj_handle.name
+    obj_handle.close()
     try:
         mv = ww.load_voxel_module()
-        tmp_obj = os.path.join(os.environ.get("LOCALAPPDATA", REPO), "Temp",
-                               "daemon_%s.obj" % preset_id)
-        os.makedirs(os.path.dirname(tmp_obj), exist_ok=True)
         voxels = ww.field_to_voxels(field, mv)
         mv.export_obj(voxels, tmp_obj, name="DaemonWorld")
     except Exception as e:
         print("[daemon] Export failed for %s / %s: %s" % (
             os.path.basename(midi_path), preset_id, e), flush=True)
+        if os.path.exists(tmp_obj):
+            os.remove(tmp_obj)
         return None
 
-    # Write render job JSON to fixed path
+    # Write an isolated job file and pass it explicitly to the Blender process.
     # Convert colour tuples to lists for JSON serialization
     json_props = []
     for p in props:
@@ -141,39 +217,73 @@ def render_proof(midi_path, preset_id, field, metrics, props, pstats):
         "obj": tmp_obj,
         "midi": midi_path,
         "preset": preset_id,
-        "out": os.path.join(OUT_DIR, "renders",
-                            "%s__%s.png" % (
-                                os.path.basename(midi_path).replace(".mid", ""),
-                                preset_id)),
+        "out": os.path.join(
+            OUT_DIR,
+            "renders",
+            "%s__%s.png" % (os.path.splitext(os.path.basename(midi_path))[0], preset_id),
+        ),
         "props": json_props,
         "camera": {"azimuth": -38, "elevation": 26, "lens": 40, "dist_mult": 1.3},
     }
-    job_path = os.path.join(os.environ.get("LOCALAPPDATA", REPO), "Temp",
-                            "daemon_current_job.json")
-    with open(job_path, "w", encoding="utf-8") as f:
+    job_handle = tempfile.NamedTemporaryFile(
+        mode="w",
+        prefix="melodia_worldgen_",
+        suffix=".json",
+        dir=temp_root,
+        delete=False,
+        encoding="utf-8",
+    )
+    job_path = job_handle.name
+    with job_handle as f:
         json.dump(job, f, indent=2)
 
     # Call Blender
     wrapper = os.path.join(REPO, "Tools", "_daemon_render_wrapper.py")
-    result = subprocess.run(
-        [BLENDER, "--background", "--factory-startup", "--python", wrapper],
-        capture_output=True, text=True, timeout=300
-    )
+    child_env = os.environ.copy()
+    child_env["MELODIA_WORLDGEN_JOB"] = job_path
+    child_env["MELODIA_WORLDGEN_ALLOWED_TEMP"] = temp_root
+    child_env["MELODIA_WORLDGEN_ALLOWED_OUT"] = OUT_DIR
+    try:
+        result = subprocess.run(
+            [BLENDER, "--background", "--factory-startup", "--python", wrapper],
+            capture_output=True,
+            text=True,
+            timeout=300,
+            env=child_env,
+        )
+    finally:
+        for temp_path in (job_path, tmp_obj):
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
 
     if result.returncode != 0:
         print("[daemon] Blender render failed for %s / %s:\n%s" % (
             os.path.basename(midi_path), preset_id,
             result.stderr[-500:]), flush=True)
+        return None
 
     return job["out"] if os.path.exists(job["out"]) else None
 
 
-def regenerate_banner(ledger):
+def regenerate_banner(_ledger):
     """Regenerate the portfolio SVG from latest metrics."""
     banner_script = os.path.join(REPO, "Tools", "gen_resonant_banner.py")
     if os.path.exists(banner_script):
-        subprocess.run([sys.executable, "-B", banner_script],
-                       cwd=REPO, capture_output=True)
+        child_env = os.environ.copy()
+        child_env["MELODIA_BANNER_OUT_DIR"] = os.path.join(OUT_DIR, "banner")
+        result = subprocess.run(
+            [sys.executable, "-B", banner_script],
+            cwd=REPO,
+            capture_output=True,
+            text=True,
+            env=child_env,
+            timeout=120,
+        )
+        if result.returncode != 0:
+            print("[daemon] Banner generation failed:\n%s" % result.stderr[-500:])
+            return False
+        return True
+    return False
 
 
 def main():
@@ -209,6 +319,9 @@ def main():
 
                 render_path = render_proof(midi_path, preset_id, field, metrics,
                                            props, pstats)
+                if render_path is None:
+                    run["errors"] += 1
+                    continue
 
                 entry = {
                     "midi": midi_path,
@@ -225,6 +338,7 @@ def main():
                         "cells": metrics["cells"],
                     },
                     "render": render_path,
+                    "render_sha256": sha256_file(render_path),
                 }
                 ledger.setdefault("entries", []).append(entry)
                 run["processed"] += 1
@@ -237,21 +351,28 @@ def main():
                 print("[daemon] ERROR %s / %s: %s" % (
                     os.path.basename(midi_path), preset_id, exc), flush=True)
 
+    if not regenerate_banner(ledger):
+        run["errors"] += 1
+
     run["finished"] = time.strftime("%Y-%m-%d %H:%M:%S")
+    run["verdict"] = (
+        "PASS" if daemon_run_passes(run, len(PRESETS)) else "FAIL"
+    )
     ledger.setdefault("runs", []).append(run)
     save_ledger(ledger)
-
-    regenerate_banner(ledger)
 
     print("[daemon] Run complete: %d processed, %d skipped, %d errors" % (
         run["processed"], run["skipped"], run["errors"]), flush=True)
     print("[daemon] Ledger: %s" % LEDGER, flush=True)
+    return run
 
 
 if __name__ == "__main__":
     code = 0
     try:
-        main()
+        with single_instance():
+            run = main()
+        code = 0 if run.get("verdict") == "PASS" else 1
     except Exception:
         import traceback
         traceback.print_exc()
