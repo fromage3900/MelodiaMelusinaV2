@@ -144,7 +144,17 @@ def _monolith_call(method: str, args: dict[str, Any] | None = None, timeout: flo
             if not joined:
                 return None
             try:
-                return json.loads(joined)
+                payload = json.loads(joined)
+                if isinstance(payload, dict):
+                    action_failed = (
+                        payload.get("success") is False
+                        or payload.get("ok") is False
+                        or bool(payload.get("error"))
+                        or bool(payload.get("_error"))
+                    )
+                    if action_failed:
+                        return None
+                return payload
             except json.JSONDecodeError:
                 return {"_raw_text": joined}
     except (urllib.error.URLError, OSError, json.JSONDecodeError):
@@ -508,7 +518,7 @@ def melodia_system_health() -> dict[str, Any]:
             "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode",
             "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameInstance",
         ]:
-            result = _monolith_call("project.search", {"query": asset_path}, timeout=5.0)
+            result = _monolith_call("project_query.search", {"query": asset_path}, timeout=5.0)
             checks.setdefault("live_assets", {})[asset_path] = result is not None
 
     # 5. Policy file health
@@ -1240,7 +1250,7 @@ def melodia_ui_get_battle_hud() -> dict[str, Any]:
         on_disk = path in disk_widgets or any(w["name"] == name for w in disk_widgets.values())
         live_ok = None
         if _monolith_is_live():
-            live_ok = _monolith_call("project.search", {"query": path}, timeout=5.0) is not None
+            live_ok = _monolith_call("project_query.search", {"query": path}, timeout=5.0) is not None
         entries.append({"path": path, "on_disk": on_disk, "live_found": live_ok})
 
     return {
