@@ -179,6 +179,42 @@ def _add_route_thread(max_x: float, target: Vector, material) -> None:
     curve_data.materials.append(material)
 
 
+def _export_terrain_mesh(terrain, output_dir: Path) -> dict[str, Path]:
+    """Export only the generated terrain, never the studio lights or camera."""
+    # Keep the exported stem identical to the planned UE asset so the import
+    # contract resolves /Game/.../MelodiaMIDIEnvironment without appending a
+    # second preview name.
+    obj_path = output_dir / "MelodiaMIDIEnvironment.obj"
+    fbx_path = output_dir / "MelodiaMIDIEnvironment.fbx"
+    for selected in bpy.context.selected_objects:
+        selected.select_set(False)
+    terrain.select_set(True)
+    bpy.context.view_layer.objects.active = terrain
+
+    if hasattr(bpy.ops.wm, "obj_export"):
+        try:
+            bpy.ops.wm.obj_export(
+                filepath=str(obj_path),
+                export_selected_objects=True,
+                export_materials=False,
+            )
+        except TypeError:
+            bpy.ops.wm.obj_export(filepath=str(obj_path))
+    else:
+        bpy.ops.export_scene.obj(filepath=str(obj_path), use_selection=True, use_materials=False)
+
+    bpy.ops.export_scene.fbx(
+        filepath=str(fbx_path),
+        use_selection=True,
+        object_types={"MESH"},
+        use_mesh_modifiers=True,
+        add_leaf_bones=False,
+        bake_anim=False,
+        path_mode="AUTO",
+    )
+    return {"obj": obj_path, "fbx": fbx_path}
+
+
 def _setup_scene(grid: dict[tuple[int, int, int], int], output_png: Path):
     _clear_scene()
     scale = 0.62
@@ -281,6 +317,30 @@ def main() -> int:
     grid = parser.notes_to_voxel_grid(notes, ticks_per_beat, beat_division=4)
     output_png = output_dir / "MelodiaMIDIEnvironment_OfflinePreview_1920x1080.png"
     render = _setup_scene(grid, output_png)
+    terrain = bpy.data.objects.get("Melodia_MIDI_Environment")
+    if terrain is None:
+        raise RuntimeError("generated terrain object is missing")
+    exports = _export_terrain_mesh(terrain, output_dir)
+    canonical_manifest_path = output_dir / "current_midi_environment.manifest.json"
+    canonical_manifest = {
+        "format": "melodia_blender_midi_environment_manifest",
+        "schema_version": 1,
+        "generator": "Content/Python/melodia_blender_offline_preview.py + Tools/midi_to_voxel/midi_voxel.py",
+        "source_midi": str(midi_path),
+        "ticks_per_beat": ticks_per_beat,
+        "note_count": len(notes),
+        "voxel_count": len(grid),
+        "obj_path": str(exports["obj"]),
+        "fbx_path": str(exports["fbx"]),
+        "blend_path": str(output_png.with_suffix(".blend")),
+        "runtime_boundary": {
+            "offline_only": True,
+            "does_not_call_unreal": True,
+            "does_not_save_portfolio_stage": True,
+            "does_not_write_gameplay_save": True,
+        },
+    }
+    canonical_manifest_path.write_text(json.dumps(canonical_manifest, indent=2) + "\n", encoding="utf-8")
     manifest = {
         "format": "melodia_blender_offline_preview_manifest",
         "schema_version": 1,
@@ -291,6 +351,11 @@ def main() -> int:
         "note_count": len(notes),
         "voxel_count": len(grid),
         "render": {**render, "png": str(output_png), "png_sha256": _sha256(output_png)},
+        "exports": {
+            "obj": {"path": str(exports["obj"]), "sha256": _sha256(exports["obj"])},
+            "fbx": {"path": str(exports["fbx"]), "sha256": _sha256(exports["fbx"])},
+        },
+        "canonical_manifest": str(canonical_manifest_path),
         "blend": str(output_png.with_suffix(".blend")),
         "runtime_boundary": {
             "offline_only": True,
@@ -303,7 +368,7 @@ def main() -> int:
     }
     manifest_path = output_dir / "MelodiaMIDIEnvironment_OfflinePreview.manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"ok": True, "png": str(output_png), "blend": manifest["blend"], "manifest": str(manifest_path), "notes": len(notes), "voxels": len(grid)}, indent=2))
+    print(json.dumps({"ok": True, "png": str(output_png), "blend": manifest["blend"], "obj": str(exports["obj"]), "fbx": str(exports["fbx"]), "manifest": str(manifest_path), "canonical_manifest": str(canonical_manifest_path), "notes": len(notes), "voxels": len(grid)}, indent=2))
     return 0
 
 
