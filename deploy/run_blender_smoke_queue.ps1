@@ -21,8 +21,9 @@ $failed = $false
 foreach ($job in $queue.jobs) {
     $script = Join-Path $deploy $job.script
     if (-not (Test-Path $script)) {
-        Write-Host "[SKIP] $($job.id) - missing $($job.script)"
-        $results += [pscustomobject]@{ id = $job.id; status = "skip"; reason = "missing script" }
+        Write-Host "[FAIL] $($job.id) - missing $($job.script)"
+        $results += [pscustomobject]@{ id = $job.id; status = "fail"; reason = "missing script" }
+        $failed = $true
         continue
     }
     Write-Host "=== JOB $($job.id) ==="

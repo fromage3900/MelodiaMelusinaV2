@@ -18,6 +18,10 @@ if (-not $blender) {
 
 Write-Host "Using: $blender"
 $health = Join-Path $deploy "_health_check_gn_builders.py"
+if (-not (Test-Path $health)) {
+    Write-Error "Missing required health check: $health"
+    exit 1
+}
 & $blender --background --factory-startup --python $health
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
