@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/niagara_polish_pack.v1.json",
+  "schema": "melodia.niagara_polish_pack.v1",
+  "version": "1.0.0-draft",
+  "status": "draft_no_editor_writes",
+  "feature": "Melusina Niagara Polish Pack — Upgrades 1+2 for Sorrow Seam veil",
+  "citations": ["Docs/WATER_V10_NATIVE_NIAGARA_SUBSTRATE_TOON_2026-08-09.md:87", "Docs/VFX_NIAGARA_FINALIZATION_2026-08-14.md:1", "Docs/Handoffs/CODEX_NIAGARA_LIBRARY_AUDIT_2026-08-01.md:16"],
+  "upgrades": [
+    {
+      "id": "U1_biolum_flipbook_unify",
+      "targets": ["NS_Melusina_Globules", "NS_Melusina_Splash", "NS_Melusina_Ripple", "NS_Melusina_EyeSparkle"],
+      "material": "M_Niagara_MelodiaFlipbook",
+      "grid": "4x4",
+      "flip_fps": 15,
+      "params": {
+        "User.BiolumTint": "LinearColor from NDC_MelodiaWaterContact.RippleEnergy + VelocityMagnitude",
+        "User.ShearThreshold": "WaterShearThreshold via UMelodiaWaterNiagaraBridgeComponent",
+        "formula": "BioResponse = exp(-Age/Decay)*smoothstep(Threshold,1,BioImpulse)",
+        "DepthFade": 25,
+        "CameraOffset": [0, 0, 8],
+        "SoftParticle": true
+      },
+      "budget": "Tier1 pooled GPU <1.0ms, stat Niagara"
+    },
+    {
+      "id": "U2_ribbon_score",
+      "targets": ["NS_Melusina_SwingTrail", "NS_Melusina_Arc"],
+      "graph": "2-emitter CPU: Leader (SpawnPerUnit System.ManualSpawn User.SwingIntensity -> GenerateLocationEvent 0.016s) -> Receiver Ribbon",
+      "renderer": "Ribbon",
+      "material": "M_SakuraRibbon_or_M_Niagara_Melodia_Ribbon_with_MF_Niagara_SDF_Sample",
+      "modules": ["M_SeedRibbonLinkOrder", "M_SetRibbonGroupID", "SetPhaseOffset", "CurlNoiseForce 120/0.6", "Drag 1.8"],
+      "ribbon": { "width_over_life": "22->2", "uv_tiling": 3.0, "reaction_color_lerp": "MPC_Melodia_Palette palette" },
+      "user_params": ["User.SwingTrailWidth", "User.ArcCurvature", "User.SwingIntensity"],
+      "budget": "CPU ribbons only (2) + fireflies; GPU for motes"
+    }
+  ],
+  "horror_echo_gate": "Niagara AudioReactiveFX sprites on DissonanceAmount>0.8 && peripheral dot<0.3 — presentation only, no collision",
+  "validation": ["validate_system 0 err/warn", "isolated preview non-black", "pie_smoke_9 6 writes / 60 cap", "stat Niagara CPU <0.25ms GPU <1.0ms Tier1 pooled"]
+}
