@@ -32,6 +32,12 @@ def _preset_parts(preset_id):
         "fugue_maze_fugue": ("fugue_labyrinth", "fugue_maze"),
         "nocturne_reflection_nocturne": ("nocturne_ribbon", "nocturne_reflection"),
         "lullaby_cave_lullaby": ("lullaby_undergrowth", "lullaby_cave"),
+        "tarantella_bounce_saltarello": ("tarantella_bounce", "saltarello_ledges"),
+        "canon_echo_pavane": ("canon_echo", "pavane_grotto"),
+        "gavotte_hedges_aria": ("gavotte_hedges", "aria_mist"),
+        "rhapsody_fold_chaconne": ("rhapsody_fold", "chaconne_weave"),
+        "berceuse_overhang_madrigal": ("berceuse_overhang", "madrigal_canopy"),
+        "ritornello_rings_madrigal": ("ritornello_rings", "madrigal_canopy"),
     }
     return mapping.get(preset_id, ("resonant_default", "verdant"))
 
