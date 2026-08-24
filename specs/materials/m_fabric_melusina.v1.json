@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/m_fabric_melusina.v1.json",
+  "title": "M_Fabric_Melusina — Sheer OIT Fabric Master v1 (draft)",
+  "schema": "melodia.fabric_melusina.v1",
+  "version": "1.0.0-draft",
+  "status": "draft_no_editor_writes",
+  "date": "2026-08-24",
+  "asset": {
+    "parent_path": "/Game/Melodia/Characters/Melusina/Materials/M_Fabric_Melusina",
+    "base_parent_for_fork": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+    "catalog_relative": "Docs/T3D_Baseline/material_catalog.json:117",
+    "class": "Material",
+    "domain": "Surface",
+    "shading_model": "SubstrateToon",
+    "substrate_bsdf": "SubstrateToonBSDF",
+    "closure_budget": "single_closure_per_pixel_Blendable",
+    "notes": "Dedicated fabric/character lane parent. Slim fork of Universal kept lean per Docs/Research/UE58_TOON_MATERIAL_INTAKE_INFINITY_NIKKI_2026-08-08.md:188. Not a MI leaf."
+  },
+  "governance": {
+    "why_dedicated_parent": "Versatile fabric master that merges textures efficiently, reduces variants, and works across platforms. Semi-transparent pieces have separate explicit handling and fallback tiers. See UE58_TOON_MATERIAL_INTAKE:188 and INFINITY_NIKKI_PIPELINES:21.",
+    "variant_policy": {
+      "rule": "One parent for all sheer Melusina fabrics (Shawl, Trail, HairCharm). Colorways are MI_Fabric_Melusina_* instances swapping T_Fabric_*_BC/N/ORM textures, not new masters. New masters require justification.",
+      "max_new_masters_for_next_4_colorways": 0,
+      "max_new_functions": 0,
+      "max_new_mi_leaves_for_next_4_colorways": 4,
+      "citation_variant_reduction": "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:21",
+      "citation_parent_contract": "Docs/Research/UE58_TOON_MATERIAL_INTAKE_INFINITY_NIKKI_2026-08-08.md:188"
+    },
+    "deferred_alternatives": {
+      "MooaToon": "deferred — Plugins/MooaToon does not exist per Docs/Research/UE58_TOON_SHADER_EXTERNAL_PRACTICES_2026-08-14.md:17; INFINITY_NIKKI_PIPELINES:85",
+      "ShellFur_proprietary_clipping": "not replicated per INFINITY_NIKKI_PIPELINES:88",
+      "NextCAS_UE": "isolated experiment not a V2 dependency per INFINITY_NIKKI_PIPELINES:87"
+    }
+  },
+  "wardrobe_slots": {
+    "canonical_enum": "EMelodiaWardrobeSlot",
+    "enum_source": "Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeTypes.h:95",
+    "slots": ["Body", "Hat", "Gloves", "Shawl", "Trail", "HairCharm"],
+    "extended_v2_slots_not_served_by_this_parent": ["Shirt", "Skirt", "Boots", "Accessories"],
+    "extended_enum_append_line": "Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeTypes.h:106",
+    "slot_materialization": {
+      "Body": { "oit": false, "blend": "Opaque", "role": "bodice/front panel" },
+      "Hat": { "oit": false, "blend": "Opaque", "role": "headdress" },
+      "Gloves": { "oit": false, "blend": "Opaque_or_Masked lace if bit set", "role": "sleeve/glove" },
+      "Shawl": { "oit": true, "primary": true, "sort_priority": 10, "role": "sheer shawl/cape/lace overlay" },
+      "Trail": { "oit": true, "primary": true, "sort_priority": 20, "role": "sheer tail veil/mermaid trail membrane" },
+      "HairCharm": { "oit": true, "primary": false, "sort_priority": 15, "role": "ribbon/hair veil charm (thin)" }
+    },
+    "runtime_component": "Plugins/MelodiaWardrobe/Source/MelodiaWardrobe/Public/MelodiaWardrobeComponent.h:24",
+    "component_api": "EquipGarment leader-poses same-skeleton garments; material never creates a second mesh authority"
+  },
+  "blend_and_oit": {
+    "blend_mode": "Translucent",
+    "oit_model": "Weighted Blended OIT (WBOIT)",
+    "weight_function": "w(z, alpha) = alpha * max(0.01, 3e3 * (1 - z)^3)",
+    "weight_scale_param": "OIT_WeightScale",
+    "weight_scale_default": 3000.0,
+    "weight_scale_range": { "min": 500.0, "max": 8000.0 },
+    "two_pass": "Pass 1 accum color+revealage to RT_Accum/RT_Transmittance; Pass 2 composite. No depth write dependent on src alpha.",
+    "sort_priority_note": "OIT removes correctness dependency on sort; SortPriority remains for coplanar tie-break (Shawl 10, HairCharm 15, Trail 20)",
+    "gbuffer": {
+      "canonical": "Blendable (r.Substrate.ProjectGBufferFormat=0)",
+      "citation": "Docs/Research/UE58_TOON_SHADER_EXTERNAL_PRACTICES_2026-08-14.md:41",
+      "hero_tier_format": "Adaptive (+15% cook, SM6/PC only, other platforms fall back to Blendable)",
+      "hero_tier_citation": "Docs/Research/UE58_TOON_SHADER_EXTERNAL_PRACTICES_2026-08-14.md:41"
+    },
+    "glints": {
+      "supported_on_canonical_gbuffer": false,
+      "note": "Native Substrate glints require r.Substrate.Glints=1 and are not available on Blendable",
+      "citation": "Docs/Research/UE58_TOON_SHADER_EXTERNAL_PRACTICES_2026-08-14.md:32",
+      "fabric_policy": "Use custom Blendable-safe sparkle function only on Hero CelestialWeave instance; never native glint on Blendable sheer"
+    },
+    "citation_transparency_perf": "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:21"
+  },
+  "texture_inputs": {
+    "contract": "Fixed 5-param contract on every MI_Fabric_Melusina_* leaf; no ad-hoc per-instance texture param",
+    "citation_contract": "Docs/Research/UE58_TOON_MATERIAL_INTAKE_INFINITY_NIKKI_2026-08-08.md:188",
+    "real_source_on_disk": "C:/EnvironmentPortfolio/wix/textures/pbr (56 PNGs, 90 MB, 12 sets) — 2048^2 silk/velvet + 4096^2 frontpanel/shirt per Docs/MPC_UNIFY_FABRIC_PLAN_2026-08-20.md:57",
+    "reimport_table": "Reimport over 32x32 stubs at /Game/Textures/Fabrics so GUIDs/references survive per Docs/MPC_UNIFY_FABRIC_PLAN_2026-08-20.md:52",
+    "channels": [
+      {
+        "name": "BaseColor",
+        "param_pattern": "T_Fabric_*_BC",
+        "type": "Texture2D",
+        "srgb": true,
+        "compression": "TC_Default",
+        "resolution": "2048 (4096 for T_Melusina_FrontPanel / T_Melusina_Shirt)",
+        "grade": "MF_ColorRamp3 + MF_NikkiDreamGrade pastel remap"
+      },
+      {
+        "name": "Normal",
+        "param_pattern": "T_Fabric_*_N (+ DetailN optional)",
+        "type": "Texture2D",
+        "srgb": false,
+        "compression": "TC_Normalmap",
+        "resolution": "2048",
+        "note": "Plus optional DetailN at second UV scale for jacquard/brocade"
+      },
+      {
+        "name": "ORM",
+        "param_pattern": "T_Fabric_*_ORM",
+        "channels": "R=AO G=Roughness B=Metallic",
+        "type": "Texture2D",
+        "srgb": false,
+        "compression": "TC_Masks",
+        "resolution": "2048",
+        "packing": "packed (3-channel savings)",
+        "note": "Stubs shipped as sRGB true — must be fixed to sRGB false + TC_Masks per MPC_UNIFY_FABRIC_PLAN:74/79"
+      },
+      {
+        "name": "FuzzMask",
+        "param_pattern": "T_Fabric_*_Sheen",
+        "type": "Texture2D",
+        "srgb": false,
+        "compression": "TC_Masks",
+        "resolution": "1024-2048",
+        "drives": "MF_MelodiaIridescenceSheen fuzz lobe",
+        "sampling": "independent UV/mip from ORM; not packed"
+      },
+      {
+        "name": "WindMask",
+        "param_pattern": "T_Fabric_*_WindMask",
+        "channels": "R=phase G=stiffness B=flutter",
+        "type": "Texture2D",
+        "srgb": false,
+        "compression": "TC_Masks",
+        "resolution": "1024",
+        "drives": "MF_ClothWindDrape",
+        "companion_vertex_color": "R=wind phase G=bend per UE58_TOON_MATERIAL_INTAKE:183",
+        "note": "Plus vertex-color contract; mask and vertex color are complementary, not alternatives"
+      },
+      {
+        "name": "OpacityMask",
+        "param_pattern": "T_Fabric_*_Mask",
+        "type": "Texture2D",
+        "srgb": false,
+        "compression": "TC_Masks",
+        "resolution": "1024",
+        "scope": "Masked fallback tier only; ignored on OIT path"
+      }
+    ],
+    "srgb_compression_table": {
+      "citation": "Docs/MPC_UNIFY_FABRIC_PLAN_2026-08-20.md:79",
+      "rows": [
+        { "suffix": "_BC", "srgb": true, "compression": "TC_Default" },
+        { "suffix": "_N, _DetailN", "srgb": false, "compression": "TC_Normalmap" },
+        { "suffix": "_ORM, _H, _Mask, _Sheen, _Sparkle", "srgb": false, "compression": "TC_Masks" }
+      ],
+      "stub_defect": "Every _ORM/_H/_Mask/_Sheen/_Sparkle stub was sRGB true (MPC_UNIFY_FABRIC_PLAN:74) — fix after every reimport"
+    }
+  },
+  "graph": {
+    "substrate": "Single SubstrateToonBSDF closure",
+    "toon_profile": {
+      "asset": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina",
+      "source_json": "specs/toon_profiles/tp_melusina.json:2",
+      "runtime_switch_allowed": false,
+      "citation_no_runtime_profile_switch": "Docs/Research/UE58_TOON_MATERIAL_INTAKE_INFINITY_NIKKI_2026-08-08.md:60",
+      "fallback_profile": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Character"
+    },
+    "core_upstream": [
+      { "function": "MF_ColorRamp3", "catalog": "Docs/T3D_Baseline/material_catalog.json:156", "role": "consolidated ramp contract per UE58_TOON_MATERIAL_INTAKE:105" },
+      { "function": "MF_NikkiDreamGrade", "catalog": "Docs/T3D_Baseline/material_catalog.json:380", "role": "warm pastel grade, already wired into Universal per UE58_TOON_MATERIAL_INTAKE:54" },
+      { "function": "MF_ClothWindDrape", "catalog": "Docs/T3D_Baseline/material_catalog.json:143", "role": "WPO/UV wind, vertex-color phase" },
+      { "function": "MF_MelodiaIridescenceSheen", "catalog": "Docs/T3D_Baseline/material_catalog.json:272", "role": "fabric sheen/fuzz lobe" },
+      { "collection": "MPC_Melodia_Palette", "catalog": "Docs/T3D_Baseline/material_catalog.json:459", "role": "single palette authority; time-of-day hook" }
+    ],
+    "body_opaque_branch_only": ["MF_AnimeSkinWrap"],
+    "static_switches": [
+      { "name": "bEnableSparkle", "default": false, "allow_on": ["MI_Fabric_Melusina_CelestialWeave_hero_only"], "cost_guard": "custom Blendable-safe sparkle; native glint unsupported on Blendable per UE58_TOON_SHADER_EXTERNAL_PRACTICES:32" },
+      { "name": "bEnableGilding", "default": false, "allow_on": ["GildedBrocade", "GildedJacquard"], "mask": "Mask-limited" },
+      { "name": "bEnableIridescence", "default": false, "note": "false on Shawl default; true on CelestialWeave" },
+      { "name": "AudioReact", "default_gate": "AudioReactAmount=0.0 (byte-identical at rest)", "note": "Matches water/ink zero-guardrail per MPC_UNIFY_FABRIC_PLAN:132" },
+      { "name": "SDF_Relief", "default": false, "note": "never on sheer; opaque hero ornament only" }
+    ],
+    "static_switch_budget": { "max_combinations": 8, "must_prove_disabled_branch_disappears": true },
+    "parameters": {
+      "scalars": [
+        { "name": "OpacityThreshold", "default": 0.33, "used_by": "Masked fallback only" },
+        { "name": "FuzzAmount", "default_shawl_trail": 0.25, "range": [0.0, 1.0] },
+        { "name": "FuzzPower", "default": 6.0 },
+        { "name": "WindAmount", "default": 0.18, "range": [0.0, 0.6] },
+        { "name": "WindSpeed", "default": 0.08 },
+        { "name": "WindPhaseJitter", "default": 0.04 },
+        { "name": "OIT_WeightScale", "default": 3000.0, "range": [500.0, 8000.0] },
+        { "name": "SubsurfaceWrap", "default": 0.35, "note": "faux SSS on Blendable; no per-pixel MFP per UE58_TOON_SHADER_EXTERNAL_PRACTICES:30" },
+        { "name": "AudioReactAmount", "default": 0.0, "note": "0 = byte-identical" }
+      ],
+      "vectors": [
+        { "name": "BaseTint", "source": "MF_ColorRamp3 pastel triad" },
+        { "name": "FuzzTint", "source": "MF_MelodiaIridescenceSheen" }
+      ],
+      "registry_policy": "Groups/units/clamps/defaults/tier availability/migration aliases go in specs/instance_parameter_policy.json before any MI promotion"
+    }
+  },
+  "tiers_and_fallbacks": {
+    "citation_transparency_perf": "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:21",
+    "citation_gbuffer_formats": "Docs/Research/UE58_TOON_SHADER_EXTERNAL_PRACTICES_2026-08-14.md:41",
+    "tiers": [
+      { "name": "Standard", "gbuffer": "Blendable", "blend": "WBOIT translucent", "when": "gameplay & ambient", "features": "full §texture_inputs contract, core graph, wind WPO on" },
+      { "name": "Hero", "gbuffer": "Adaptive (SM6)", "blend": "WBOIT translucent", "when": "photo / cinematic probe", "note": "Same graph; ToonProfile selection via parent tier, not runtime switch per UE58_TOON_MATERIAL_INTAKE:60" },
+      { "name": "LowEnd", "gbuffer": "Blendable", "blend": "Masked dither", "when": "Scalability.Low, handheld", "changes": "OIT off, Masked OpacityThreshold 0.33, fuzz halved, wind off" },
+      { "name": "FailClosed", "gbuffer": "Blendable", "blend": "Opaque", "when": "OIT unavailable / budget exceeded", "guarantee": "Renders opaque pastel; never pink missing-ref per UE58_TOON_MATERIAL_INTAKE:224 P0" }
+    ]
+  },
+  "cloth_and_clipping": {
+    "policy": "Authored data, not runtime solving",
+    "citations": [
+      "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:22",
+      "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:37",
+      "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:75"
+    ],
+    "slot_compatibility_table": {
+      "note": "Which Body+Shawl+Trail combos are valid — authored per outfit, stored as data here, not code",
+      "entries": "to be authored per OutfitId; stub in this draft"
+    },
+    "clipping_profile": {
+      "note": "Per-outfit corrective bone poses for hair/hat/outerwear/shirt/waist; precomputed constraints for high-speed cloth & multi-layer collisions (see INFINITY_NIKKI_PIPELINES:37)",
+      "fields": ["outfit_id", "slot", "conflicting_slot", "corrective_pose_id", "constraint_preset", "fallback_if_unresolvable"]
+    },
+    "kawaii_boundary": "Kawaii physics is presentation/presentation-layer WPO+phase only, not a garment cloth solver; dynamic skirt cloth stays disabled until skeletal deformation stable per INFINITY_NIKKI_PIPELINES:75. See KAWAII_PHYSICS_PLACEMENT_AUDIT:103."
+  },
+  "fabric_instance_family": {
+    "parent": "/Game/Melodia/Characters/Melusina/Materials/M_Fabric_Melusina",
+    "instances_subfolder": "/Game/Melodia/_PROJECT/04_Materials/Instances/Fabrics",
+    "guardrail": "Nothing in this spec modifies M_Master_Toon_Universal or its 1762 instances (cf. MPC_UNIFY_FABRIC_PLAN:144)",
+    "example_instances": [
+      { "name": "MI_Fabric_Melusina_SheerSilk", "textures": "T_Fabric_SheerSilk_BC/N/ORM/Sheen/WindMask", "notes": "light, high sheen 0.45" },
+      { "name": "MI_Fabric_Melusina_RoyalVelvet", "textures": "T_Fabric_RoyalVelvet_BC/N/ORM/Sheen", "notes": "sheen map drives velvet falloff 0.65" },
+      { "name": "MI_Fabric_Melusina_CelestialWeave", "textures": "T_Fabric_CelestialWeave_BC/N/ORM/Sparkle", "notes": "sparkle map, iridescence 0.35" },
+      { "name": "MI_Fabric_Melusina_IridescentCelestialWeave", "textures": "T_Fabric_IridescentCelestialWeave_BC/N/ORM/Sparkle", "notes": "hero iridescent 0.75" }
+    ]
+  },
+  "validation": {
+    "spec_only_gate": true,
+    "no_editor_writes": "per _AGENT_WORKING_AGREEMENT.md — spec PR does not create/move/delete any .uasset",
+    "checks": [
+      "valid JSON and schema melodia.fabric_melusina.v1",
+      "slots == Body/Hat/Gloves/Shawl/Trail/HairCharm exactly, matching MelodiaNarrativeTypes.h:95",
+      "texture_inputs == BaseColor/Normal/ORM/FuzzMask/WindMask with sRGB/compression rows matching MPC_UNIFY_FABRIC_PLAN:79",
+      "ToonProfile == TP_Melusina, not switched at runtime per UE58_TOON_MATERIAL_INTAKE:60",
+      "fallback_tiers contain Standard/Hero/LowEnd/FailClosed with stated blend modes",
+      "static_switch combinations <= 8 and disabled branch disappears from compiled stats",
+      "zero new masters beyond M_Fabric_Melusina; variant count stays 1 parent + N instances"
+    ]
+  },
+  "citations": [
+    "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:21",
+    "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:22",
+    "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:37",
+    "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:75",
+    "Docs/Research/INFINITY_NIKKI_PIPELINES_2026-08-14.md:88",
+    "Docs/Research/UE58_TOON_MATERIAL_INTAKE_INFINITY_NIKKI_2026-08-08.md:52",
+    "Docs/Research/UE58_TOON_MATERIAL_INTAKE_INFINITY_NIKKI_2026-08-08.md:60",
+    "Docs/Research/UE58_TOON_MATERIAL_INTAKE_INFINITY_NIKKI_2026-08-08.md:188",
+    "Docs/Research/UE58_TOON_SHADER_EXTERNAL_PRACTICES_2026-08-14.md:32",
+    "Docs/Research/UE58_TOON_SHADER_EXTERNAL_PRACTICES_2026-08-14.md:41",
+    "Docs/MPC_UNIFY_FABRIC_PLAN_2026-08-20.md:52",
+    "Docs/MPC_UNIFY_FABRIC_PLAN_2026-08-20.md:74",
+    "Docs/MPC_UNIFY_FABRIC_PLAN_2026-08-20.md:79",
+    "Docs/MPC_UNIFY_FABRIC_PLAN_2026-08-20.md:132",
+    "asset_recommendations.md:159",
+    "asset_recommendations.md:174",
+    "Imports/Environment/AnimeFoliage_Perch/PROVENANCE.md:12",
+    "Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeTypes.h:95",
+    "Docs/Handoffs/KAWAII_PHYSICS_PLACEMENT_AUDIT_2026-08-14.md:13"
+  ]
+}
