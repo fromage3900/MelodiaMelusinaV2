@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/sorrow_seam.v1.json",
+  "schema": "melodia.sorrow_seam.v1",
+  "version": "1.0.0-draft",
+  "status": "draft_no_editor_writes",
+  "feature": "Melusina Sorrow Seam — living veil (presentation only)",
+  "parent_material": "/Game/Melodia/Characters/Melusina/Materials/M_Fabric_Melusina",
+  "parent_spec": "specs/materials/m_fabric_melusina.v1.json",
+  "slots": ["Shawl", "Trail"],
+  "cosmetic": {
+    "cosmetic_id": "Cos_Trail_SorrowSeam",
+    "slot": "Trail",
+    "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Trail_SorrowSeam",
+    "fallback_mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Trail",
+    "instance": "/Game/Melodia/Characters/Melusina/Materials/MI_Fabric_Melusina_SorrowSeam",
+    "default_on": "MelusinaV2"
+  },
+  "signals": {
+    "citations": ["Docs/Handoffs/TENSION_AUDIO_REACTIVITY_2026-08-15.md:22", "Docs/Handoffs/DREAMPRINT_AUDIO_REACTIVITY_PREP_2026-08-18.md:18"],
+    "read": ["MPC_Melodia_Palette.BeatPulse", "MPC_Melodia_Palette.DreadPresence", "MPC_Melodia_Palette.DissonanceAmount", "MPC_Melodia_Palette.TemporalJitter"],
+    "write": "none — presentation consumes only; owner UMelodiaAudioReactivePresentationSubsystem + MelodiaRhythmReactivitySubsystem"
+  },
+  "material_params": {
+    "at_rest_guarantee": "all dread params 0 → byte-identical to base pastel (MadokaRealityWarp 0, DreadPresence 0, Dissonance 0 => Multiply_52=Constant_2 per TENSION:118)",
+    "heal_param": "SheenIridescence +0.02 per Perfect/Great (clamped 0.0-0.35), Good/OK hold, no miss penalty per DECISION_LOG:016",
+    "warp_param": "MadokaRealityWarp = TemporalJitter (EnemyTension) → UV jitter via MF_Madoka Add_20",
+    "dissonance_lift": "DissonanceAmount*0.5 → Add_3 baseline lift per TENSION:113",
+    "dread_dim": "DreadPresence*0.35 → OneMinus dim per TENSION:115"
+  },
+  "progression": {
+    "battle_mend": "melodia:flag:sorrow_seam_mended.<battleSessionId> idempotent IntentId via UMelodiaNarrativeSubsystem (no second save authority)",
+    "world_heal_full": "challenge.first_resonance_echo.completed flag via MelodiaPCGNarrativeChallengeBridgeComponent (already gates Glide per ORCHESTRA_CONVERGENCE:251) — when true, Sorrow Seam sheen lerps to pristine over 1.5s",
+    "gacha_boundary": "Sorrow Seam is soul-bound free; alternate veils are gacha cosmetics. No stat teeth."
+  },
+  "presentation_component": {
+    "class": "UMelusinaSorrowSeamComponent",
+    "module": "MelodiaIntegration",
+    "attach_to": "BP_MelusinaJRPGCharacter (alongside MelodiaWardrobeComponent)",
+    "ticks": "presentation only, reads MPC scalars each TickPresentation, lerps material scalar params on MI_Fabric_Melusina_SorrowSeam",
+    "horror_echo_sprites": "Niagara AudioReactiveFX sprite emitter gated on DissonanceAmount>0.8 and camera peripheral dot<0.3 — pure VFX, no collision, no gameplay"
+  },
+  "validation": [
+    "spec valid JSON + schema",
+    "no new combat/traversal authority — preserves Decisions 009/011",
+    "at-rest 0 → byte-identical verified via material re-read",
+    "idempotent flag survives save_load + repeat_consume gates"
+  ]
+}
