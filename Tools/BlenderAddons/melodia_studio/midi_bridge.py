@@ -354,22 +354,70 @@ def generate_world(midi_path, preset_id="resonant_default", out_obj=None):
     return report
 
 
-def dress_terrain(terrain_obj, obj_path, style_id="verdant", seed=11, budget=1400):
+def dress_terrain(terrain_obj, obj_path, style_id="verdant", seed=11, budget=1400, midi_path=None):
     """Apply dressing/magic planning to an already-generated terrain mesh.
 
-    Returns a short human-readable status string, or None on failure.
+    If midi_path is given, builds a real heightfield so props actually land
+    on ground. Otherwise falls back to empty-field planning (preserves the
+    deterministic string contract for offline tests, but reports 0 props).
+
+    Returns a short human-readable status string, or raises.
     """
     try:
+        from . import terrain_dressing as td
+    except ImportError:
+        # Fallback for direct script execution
         import importlib.util
         spec = importlib.util.spec_from_file_location(
             "terrain_dressing",
             os.path.join(walkable_tool_dir(), "terrain_dressing.py"))
         td = importlib.util.module_from_spec(spec)
+        assert spec.loader is not None
         spec.loader.exec_module(td)
-    except Exception as exc:
-        raise RuntimeError("terrain_dressing import failed: %s" % exc)
 
-    plan, stats = td.plan_dressing({}, style_id=style_id, seed=seed, budget=budget)
-    magic_plan, magic_stats = td.plan_magic({}, style_id=style_id)
+    # Try to build a real field when a MIDI is available — this is the QOL
+    # fix for the {} bug that left every dressing at 0 props. Offline tests
+    # call with midi_path=None and still expect a string, so empty is kept
+    # as a valid fallback.
+    field = {}
+    field_ok = False
+    if midi_path and os.path.exists(midi_path):
+        try:
+            from . import walkable_world as ww
+            mv = ww.load_voxel_module()
+            tracks, tpb = mv.parse_midi(midi_path)
+            if tracks and tracks[0]:
+                notes = list(tracks[0])
+                # Include beatgrid if it exists — same as generate_world
+                bg = beatgrid_for(midi_path)
+                if bg:
+                    try:
+                        b_tracks, b_tpb = mv.parse_midi(bg)
+                        if b_tracks and b_tpb:
+                            scale = float(tpb) / float(b_tpb)
+                            notes.extend((int(n[0] * scale), n[1] + 36, n[2]) for n in b_tracks[0])
+                            notes.sort()
+                    except Exception:
+                        pass
+                wpreset = ww.WALKABLE_PRESETS.get("walkable_valley", {})
+                field, _gw = ww.build_heightfield(
+                    notes,
+                    cells_per_beat=wpreset.get("cells_per_beat", 2),
+                    height_scale=wpreset.get("height_scale", 1.9),
+                    plateau_radius=wpreset.get("plateau_radius", 2),
+                    tpb=tpb,
+                )
+                field = ww.fill_gaps(field)
+                field = ww.limit_slope(field, wpreset.get("max_slope", 1), wpreset.get("smooth_passes", 3))
+                field_ok = True
+        except Exception:
+            field = {}
+
+    plan, stats = td.plan_dressing(field, style_id=style_id, seed=seed, budget=budget)
+    magic_plan, magic_stats = td.plan_magic(field, style_id=style_id)
     style = td.load_styles().get(style_id, {}).get("label", style_id)
-    return "%s | %d props | %d magic" % (style, len(plan), len(magic_plan))
+    # Keep the contract string, but annotate when real field was used so UI can show it
+    base = "%s | %d props | %d magic" % (style, len(plan), len(magic_plan))
+    if field_ok and field:
+        base += " | field %d cells" % len(field)
+    return base
