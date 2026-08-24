@@ -15,6 +15,10 @@ These are this project's own tooling, not third-party addons. They only ever liv
 | `GenesisCore` | Core support library for the above GN tools (name matches the "style genome" architecture referenced elsewhere in this project) |
 | `fromage_roof_generator` / `FromageRoof_v3.1` | Custom procedural roof generator (two versions present — confirm which is current before moving both) |
 | `melodia_icons` | Custom icon set for the above tools' UI |
+| `melodia_pose_audit` | Melodia character rig pose audit addon, headless-safe |
+| `melodia_showroom` | Integrated terrain→dress→frame→render pipeline for Resonant World showroom shots |
+| `melodia_stage` | One-click character turntable & studio staging |
+| `melodia_studio` | Resonant World terrain generation, dressing styles, and musical expansion presets |
 | `rust_gpu_sdf_addon` | Custom SDF/procedural-geometry tool |
 | `Procedural_Generation_Toolkit` | Custom, name is generic — verify contents before assuming scope |
 | `blender_art_nouveau_greybox`, `blender_baroque_greybox` | Custom architectural-style greybox generators (referenced in earlier project session history) — **not present in the 5.1 quarantine snapshot or current 5.2 addons folder**, only existed in the older 4.2 snapshot. Either superseded/renamed, or genuinely lost — worth checking `deploy/surreal_arch/` in the main UE repo, which may already have the equivalent logic. |
@@ -55,4 +59,4 @@ Everything else in the current addon list (`AE2BLEND_1_3_1`, `Advanced-Cones-mas
 
 To actually load the custom addons from their new repo location, add the repo path as an extra Script Directory: **Blender → Edit → Preferences → File Paths → Script Directories → Add** → point at `C:\EnvironmentPortfolio\BS_GodFile\Tools\BlenderAddons\`. This can't be done from outside Blender safely (`userpref.blend` is a binary file, not safe to hand-edit) — it's a 30-second one-time click, not a recurring task.
 
-**Current state (2026-07-30)**: the 8 custom addons above exist in BOTH places right now — Blender's own `scripts/addons/` (where they're actively loaded from today) AND the new `Tools/BlenderAddons/` repo location (the new source of truth going forward). This is deliberate, not a mistake — once you've done the Script Directories step above and confirmed everything still loads correctly from the new path, the copies inside `scripts/addons/` can be deleted so there's only one copy to keep in sync.
+**Current state (2026-08-24)**: the 13 custom addons above exist in BOTH places right now — Blender's own `scripts/addons/` (where they're actively loaded from today) AND the new `Tools/BlenderAddons/` repo location (the new source of truth going forward). This is deliberate, not a mistake — once you've done the Script Directories step above and confirmed everything still loads correctly from the new path, the copies inside `scripts/addons/` can be deleted so there's only one copy to keep in sync.
