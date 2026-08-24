@@ -1,10 +1,10 @@
-# Gameplay Authority Atlas — 2026-08-23
+# Gameplay Authority Atlas — 2026-08-24
 
 **Scope:** static AST/text parse only. No Unreal/Monolith/Blender/network/AWS execution. No .uasset parsing. Paths normalized, timestamps omitted, deterministic JSON.
 
-**Read-only inputs:** `Source/BS_GodFile/MelodiaIntegration/**`, `Plugins/MelodiaCore/**`, `Plugins/MelodiaWardrobe/**`, `Plugins/QuillScript/**`, `Content/Python/gmm/**`, `Content/Python/init_unreal.py` + `Content/Python/envui/**`, `Tools/**`, `specs/**`.
+**Read-only inputs:** `Source/BS_GodFile/MelodiaIntegration/**`, `Source/BS_GodFile/Piano/**`, `Plugins/MelodiaCore/**`, `Plugins/MelodiaWardrobe/**`, `Plugins/QuillScript/**`, `Content/Python/gmm/**`, `Tools/**`, `specs/**`.
 
-**Counts:** nodes=1269 edges=1391 sccs=1248 cycles=6
+**Counts:** nodes=1270 edges=1391 sccs=1249 cycles=6
 
 Static reachability is not runtime proof - see tiers below.
 
@@ -332,7 +332,7 @@ Nodes: 3 — canonical:2, merge:1
 
 ### tooling — Repository tooling and manifests; never runtime gameplay authority
 
-Nodes: 855 — authoring:676, prototype:125, unknown:54
+Nodes: 856 — authoring:677, prototype:125, unknown:54
 
 | path | symbol | role | verdict | confidence | runtime_reachability | citation |
 |---|---|---|---|---|---|---|
@@ -386,7 +386,7 @@ Nodes: 855 — authoring:676, prototype:125, unknown:54
 | Content/Python/gmm/geometry/procedural_window.py | WindowSpec | prototype | PROTOTYPE | 0.99 | source-present only | Content/Python/gmm/geometry/procedural_window.py:18 |
 | Content/Python/gmm/geometry/schemas.py | validate_bevel_parameters | prototype | PROTOTYPE | 0.99 | source-present only | Content/Python/gmm/geometry/schemas.py:17 |
 | Content/Python/gmm/geometry/sessions.py | PreviewSession | prototype | PROTOTYPE | 0.99 | source-present only | Content/Python/gmm/geometry/sessions.py:17 |
-| ... 805 more ... | | | | | | |
+| ... 806 more ... | | | | | | |
 
 ### party — TurnBased JRPG template (party and units)
 
@@ -423,7 +423,7 @@ Focused GMM blast radius
 
 ## 5. Strongly Connected Components & Dependency Cycles
 
-SCCs: 1248 | Cycles (SCC size>1 or self-loop): 6
+SCCs: 1249 | Cycles (SCC size>1 or self-loop): 6
 
 **Cycles:**
 - Content/Python/gmm/ui/battle_menu.py -> Content/Python/gmm/ui/builder.py
@@ -454,7 +454,7 @@ SCCs: 1248 | Cycles (SCC size>1 or self-loop): 6
 - [1] Content/Python/gmm/fixtures/water_family_profiles.json
 - [1] Content/Python/gmm/fixtures/water_surface_request.json
 - [1] Content/Python/gmm/game/afflictions.py
-- ... 1228 more singletons ...
+- ... 1229 more singletons ...
 </details>
 
 ## 6. Proposed Retirement / Merge Sequence (no deletion, no source edit)
@@ -471,7 +471,7 @@ SCCs: 1248 | Cycles (SCC size>1 or self-loop): 6
 
 ## 7. UNKNOWNs & LIVE_EVIDENCE_REQUIRED
 
-UNKNOWN or low-confidence nodes: 54 | LIVE_EVIDENCE_REQUIRED flagged: 1265
+UNKNOWN or low-confidence nodes: 54 | LIVE_EVIDENCE_REQUIRED flagged: 1266
 
 Rather than guessing, these are marked `UNKNOWN` or `LIVE_EVIDENCE_REQUIRED`. If Blueprint/.uasset live state is required, mark `LIVE_EVIDENCE_REQUIRED` and continue elsewhere.
 
@@ -507,7 +507,7 @@ Rather than guessing, these are marked `UNKNOWN` or `LIVE_EVIDENCE_REQUIRED`. If
 | Content/Python/gmm/game/equipment_catalog.py | get_equipment | tooling | PROTOTYPE | runtime proof needed | Content/Python/gmm/game/equipment_catalog.py:7 |
 | Content/Python/gmm/game/interaction.py | InteractableType | tooling | PROTOTYPE | runtime proof needed | Content/Python/gmm/game/interaction.py:11 |
 | Content/Python/gmm/game/jrpg_bridge.py | template_action_to_melodia | tooling | PROTOTYPE | runtime proof needed | Content/Python/gmm/game/jrpg_bridge.py:65 |
-| ... 1235 more ... | | | | | |
+| ... 1236 more ... | | | | | |
 
 ## 8. Top Duplicate-Authority Clusters
 
