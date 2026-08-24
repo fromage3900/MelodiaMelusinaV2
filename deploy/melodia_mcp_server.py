@@ -103,12 +103,27 @@ def _load_json(path: Path) -> dict[str, Any] | None:
 
 
 def _monolith_call(method: str, args: dict[str, Any] | None = None, timeout: float = 10.0) -> dict[str, Any] | None:
-    """POST to Monolith via JSON-RPC. Returns parsed result or None on any failure."""
+    """POST to Monolith via JSON-RPC. Returns parsed result or None on any failure.
+
+    `method` may be either a bare Monolith tool name ("monolith_status") or the
+    dotted "<tool>.<action>" form ("animation_query.get_abp_info"). Monolith exposes
+    one MCP tool per namespace and selects the operation via an `action` argument, so
+    the dotted form must be split: sending the whole dotted string as the tool name
+    matches nothing, and every such call previously failed closed to None -- which
+    surfaced as "ABP not found" / "Could not read nodes" from callers that could not
+    tell a missing asset from a malformed request.
+    """
+    if "." in method:
+        tool_name, action = method.split(".", 1)
+        arguments: dict[str, Any] = {"action": action, "params": args or {}}
+    else:
+        tool_name, arguments = method, (args or {})
+
     body = {
         "jsonrpc": "2.0",
         "id": _next_id(),
         "method": "tools/call",
-        "params": {"name": method, "arguments": args or {}},
+        "params": {"name": tool_name, "arguments": arguments},
     }
     req = urllib.request.Request(
         MONOLITH_URL,
@@ -162,7 +177,7 @@ def melodia_persona_get_stats(stat_id: str | None = None) -> dict[str, Any]:
     live_stats: dict[str, Any] | None = None
     if _monolith_is_live():
         live_stats = _monolith_call("blueprint_query.get_cdo_properties", {
-            "path": PERSONA_CONTENT_PATH
+            "asset_path": PERSONA_CONTENT_PATH
         })
 
     return {
@@ -193,7 +208,7 @@ def melodia_persona_get_quests(quest_id: str | None = None) -> dict[str, Any]:
     live_quests = None
     if _monolith_is_live():
         live_quests = _monolith_call("blueprint_query.get_cdo_properties", {
-            "path": PERSONA_CONTENT_PATH
+            "asset_path": PERSONA_CONTENT_PATH
         })
 
     return {
@@ -295,7 +310,7 @@ def melodia_rhythm_list_skills() -> dict[str, Any]:
     live_skills = None
     if _monolith_is_live():
         live_skills = _monolith_call("blueprint_query.get_cdo_properties", {
-            "path": "/Game/MelodiaIntegration/Config/DA_MelodiaSongs"
+            "asset_path": "/Game/MelodiaIntegration/Config/DA_MelodiaSongs"
         })
 
     return {
@@ -1124,7 +1139,7 @@ def melodia_audio_get_rhythm_catalog() -> dict[str, Any]:
     live = None
     if _monolith_is_live():
         live = _monolith_call("blueprint_query.get_cdo_properties", {
-            "path": "/Game/MelodiaIntegration/Config/DA_MelodiaSongs"
+            "asset_path": "/Game/MelodiaIntegration/Config/DA_MelodiaSongs"
         })
 
     catalog_assets = [a for a in _scan_audio_assets() if "rhythm" in a["name"].lower() or "melodia" in a["name"].lower()]
