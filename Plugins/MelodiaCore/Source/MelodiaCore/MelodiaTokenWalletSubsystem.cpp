@@ -196,11 +196,7 @@ bool UMelodiaTokenWalletSubsystem::TryGrantCurrency(const FName CurrencyId, cons
 		{
 			TotalCollected += FMath::Max(0, FMath::RoundToInt(Amount));
 		}
-		if (!GrantId.IsNone())
-		{
-			ConsumedGrantIds.Add(GrantId);
-			ConsumedGrantOrder.AddUnique(GrantId);
-		}
+		RecordConsumedGrant(GrantId);
 		SyncLegacyViews();
 		BroadcastChanged();
 		return true;
@@ -217,11 +213,7 @@ bool UMelodiaTokenWalletSubsystem::TryGrantCurrency(const FName CurrencyId, cons
 	{
 		TotalCollected += WholeAmount;
 	}
-	if (!GrantId.IsNone())
-	{
-		ConsumedGrantIds.Add(GrantId);
-		ConsumedGrantOrder.AddUnique(GrantId);
-	}
+	RecordConsumedGrant(GrantId);
 
 	SyncLegacyViews();
 	BroadcastChanged();
@@ -358,6 +350,52 @@ bool UMelodiaTokenWalletSubsystem::TryRefundGolden(const int32 Amount)
 	return TryRefundCurrency(TEXT("Golden"), static_cast<float>(Amount));
 }
 
+void UMelodiaTokenWalletSubsystem::RecordConsumedGrant(const FName GrantId)
+{
+	if (GrantId.IsNone() || ConsumedGrantIds.Contains(GrantId))
+	{
+		return;
+	}
+
+	ConsumedGrantIds.Add(GrantId);
+	ConsumedGrantOrder.Add(GrantId);
+
+	// Trim oldest-first. Replaying a grant older than the window can double-pay, so the cap is
+	// deliberately large: it bounds save size and restore cost without making replay plausible.
+	if (ConsumedGrantOrder.Num() > MaxConsumedGrantEntries)
+	{
+		const int32 Excess = ConsumedGrantOrder.Num() - MaxConsumedGrantEntries;
+		for (int32 Index = 0; Index < Excess; ++Index)
+		{
+			ConsumedGrantIds.Remove(ConsumedGrantOrder[Index]);
+		}
+		ConsumedGrantOrder.RemoveAt(0, Excess, EAllowShrinking::No);
+	}
+}
+
+void UMelodiaTokenWalletSubsystem::RefreshResourceCapsFromRegistry()
+{
+	const UMelodiaCurrencyRegistry* Registry = GetRegistry();
+	if (!Registry)
+	{
+		return;
+	}
+
+	for (const FMelodiaCurrencyDefinition& Row : Registry->Currencies)
+	{
+		if (Row.Kind != EMelodiaCurrencyKind::Resource || Row.CurrencyId.IsNone())
+		{
+			continue;
+		}
+		const float MaxValue = FMath::Max(0.0f, Row.MaxValue);
+		ResourceMax.FindOrAdd(Row.CurrencyId) = MaxValue;
+		if (float* Balance = Resources.Find(Row.CurrencyId))
+		{
+			*Balance = FMath::Clamp(*Balance, 0.0f, MaxValue);
+		}
+	}
+}
+
 void UMelodiaTokenWalletSubsystem::CaptureToSave(UMelodiaSaveGame* Save) const
 {
 	if (!Save)
@@ -400,13 +438,35 @@ void UMelodiaTokenWalletSubsystem::RestoreFromSave(const UMelodiaSaveGame* Save)
 	}
 	TotalCollected = Save->WalletTotalCollected;
 	ConsumedGrantIds = Save->WalletConsumedGrantIds;
+	// Legacy saves have no order array; rebuild one so trimming has something to work with.
 	ConsumedGrantOrder = Save->WalletConsumedGrantOrder;
-	for (const FName GrantId : ConsumedGrantIds)
+	ConsumedGrantOrder.RemoveAll([this](const FName GrantId)
 	{
-		ConsumedGrantOrder.AddUnique(GrantId);
+		return GrantId.IsNone() || !ConsumedGrantIds.Contains(GrantId);
+	});
+	{
+		TSet<FName> Seen(ConsumedGrantOrder);
+		for (const FName GrantId : ConsumedGrantIds)
+		{
+			if (!Seen.Contains(GrantId))
+			{
+				Seen.Add(GrantId);
+				ConsumedGrantOrder.Add(GrantId);
+			}
+		}
 	}
 	bMigratedFromLegacy = Save->bWalletMigratedFromLegacyTokens;
 	EnsureElementKeys();
+
+	// EnsureElementKeys uses FindOrAdd, so a cap already present from the save wins. When the
+	// registry schema has moved since capture, the save's caps are stale and must be replaced.
+	if (const UMelodiaCurrencyRegistry* Registry = GetRegistry())
+	{
+		if (Save->WalletRegistrySchemaVersion != Registry->RegistrySchemaVersion)
+		{
+			RefreshResourceCapsFromRegistry();
+		}
+	}
 
 	// One-way migration from the legacy per-variant ints. Heart maps to Forte and Swirl to
 	// Arcane, per the variant->element table in the token contract. The legacy fields are

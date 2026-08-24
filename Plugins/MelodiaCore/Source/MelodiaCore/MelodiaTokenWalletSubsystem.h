@@ -171,11 +171,28 @@ public:
 	 */
 	void RestoreFromSave(const UMelodiaSaveGame* Save);
 
+public:
+	/**
+	 * Hard cap on the persisted consumed-grant ledger. The ledger only exists to make grants
+	 * idempotent across restarts; without a bound it grows for the life of a save and is paid
+	 * for on every capture, restore, and AddUnique scan.
+	 */
+	static constexpr int32 MaxConsumedGrantEntries = 4096;
+
 private:
 	void EnsureElementKeys();
 	void SyncLegacyViews();
 	const UMelodiaCurrencyRegistry* GetRegistry() const;
 	void BroadcastChanged();
+
+	/** Record a consumed grant id and trim the ledger oldest-first to MaxConsumedGrantEntries. */
+	void RecordConsumedGrant(FName GrantId);
+
+	/**
+	 * Re-read Resource caps from the registry. Saves store the caps that were live at capture
+	 * time, so a registry cap change would otherwise never reach an existing save.
+	 */
+	void RefreshResourceCapsFromRegistry();
 
 	UPROPERTY()
 	TMap<FName, int32> Shards;
