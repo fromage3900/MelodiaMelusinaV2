@@ -121,6 +121,48 @@ PRESETS = {
         "cave_height_divisor": 30,
         "use_beatgrid": False,
     },
+    "tarantella_bounce": {
+        "label": "Tarantella Bounce",
+        "chunk_beats": 3,
+        "surface_height_divisor": 17,
+        "cave_height_divisor": 34,
+        "use_beatgrid": True,
+    },
+    "canon_echo": {
+        "label": "Canon Echo",
+        "chunk_beats": 7,
+        "surface_height_divisor": 24,
+        "cave_height_divisor": 46,
+        "use_beatgrid": True,
+    },
+    "gavotte_hedges": {
+        "label": "Gavotte Hedges",
+        "chunk_beats": 4,
+        "surface_height_divisor": 20,
+        "cave_height_divisor": 52,
+        "use_beatgrid": False,
+    },
+    "rhapsody_fold": {
+        "label": "Rhapsody Fold",
+        "chunk_beats": 6,
+        "surface_height_divisor": 14,
+        "cave_height_divisor": 22,
+        "use_beatgrid": True,
+    },
+    "berceuse_overhang": {
+        "label": "Berceuse Overhang",
+        "chunk_beats": 6,
+        "surface_height_divisor": 34,
+        "cave_height_divisor": 16,
+        "use_beatgrid": True,
+    },
+    "ritornello_rings": {
+        "label": "Ritornello Rings",
+        "chunk_beats": 8,
+        "surface_height_divisor": 26,
+        "cave_height_divisor": 36,
+        "use_beatgrid": True,
+    },
 }
 
 

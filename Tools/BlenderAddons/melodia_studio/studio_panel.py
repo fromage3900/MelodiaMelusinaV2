@@ -66,6 +66,11 @@ class StudioProps(bpy.types.PropertyGroup):
             ("lullaby_cave", "Lullaby Cave", "Soft underground feel; minimal objects, ambient light"),
             ("fugue_maze", "Fugue Maze", "Dense layered walk; repeating markers and light"),
             ("nocturne_reflection", "Nocturne Reflection", "Single reflective route; quiet and minimal"),
+            ("pavane_grotto", "Pavane Grotto", "Slow processional route; flooded chambers and underlight"),
+            ("saltarello_ledges", "Saltarello Ledges", "Leaping rhythmic motion; exposed sky and bright markers"),
+            ("madrigal_canopy", "Madrigal Canopy", "Layered vocal richness; soft growths and drifting light"),
+            ("chaconne_weave", "Chaconne Weave", "Repeating ground bass; monumental route with water and light"),
+            ("aria_mist", "Aria Mist", "Solo vocal clarity; sparse, atmospheric, and vertical"),
         ],
         default="verdant",
     )

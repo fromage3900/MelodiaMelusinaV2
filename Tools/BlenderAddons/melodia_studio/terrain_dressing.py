@@ -175,6 +175,36 @@ DRESSING_STYLES = {
         "magic": ["cadence_pool", "aurora_veil"],
         "description": "Single reflective route; quiet and minimal.",
     },
+    "pavane_grotto": {
+        "label": "Pavane Grotto",
+        "dressing": ["moss_cluster", "chime_pillar"],
+        "magic": ["cadence_pool", "ground_glow"],
+        "description": "Slow processional route; flooded chambers and underlight.",
+    },
+    "saltarello_ledges": {
+        "label": "Saltarello Ledges",
+        "dressing": ["resonance_crystal", "note_bloom", "songstone"],
+        "magic": ["harmonic_rings", "motif_wisps"],
+        "description": "Leaping rhythmic motion; exposed sky and bright markers.",
+    },
+    "madrigal_canopy": {
+        "label": "Madrigal Canopy",
+        "dressing": ["note_bloom", "moss_cluster"],
+        "magic": ["aurora_veil", "motif_wisps"],
+        "description": "Layered vocal richness; soft growths and drifting light.",
+    },
+    "chaconne_weave": {
+        "label": "Chaconne Weave",
+        "dressing": ["chime_pillar", "songstone", "resonance_crystal"],
+        "magic": ["harmonic_rings", "ground_glow", "cadence_pool"],
+        "description": "Repeating ground bass; monumental route with water and light.",
+    },
+    "aria_mist": {
+        "label": "Aria Mist",
+        "dressing": ["note_bloom", "songstone"],
+        "magic": ["motif_wisps", "aurora_veil"],
+        "description": "Solo vocal clarity; sparse, atmospheric, and vertical.",
+    },
 }
 
 

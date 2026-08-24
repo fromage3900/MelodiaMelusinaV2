@@ -20,6 +20,12 @@ if bpy is not None:
         ("fugue_maze_fugue", "Fugue Maze Fugue", "Fugue Labyrinth terrain + Fugue Maze dressing"),
         ("nocturne_reflection_nocturne", "Nocturne Reflection Nocturne", "Nocturne Ribbon terrain + Nocturne Reflection dressing"),
         ("lullaby_cave_lullaby", "Lullaby Cave Lullaby", "Lullaby Undergrowth terrain + Lullaby Cave dressing"),
+        ("tarantella_bounce_saltarello", "Tarantella Bounce Saltarello", "Tarantella Bounce terrain + Saltarello Ledges dressing"),
+        ("canon_echo_pavane", "Canon Echo Pavane", "Canon Echo terrain + Pavane Grotto dressing"),
+        ("gavotte_hedges_aria", "Gavotte Hedges Aria", "Gavotte Hedges terrain + Aria Mist dressing"),
+        ("rhapsody_fold_chaconne", "Rhapsody Fold Chaconne", "Rhapsody Fold terrain + Chaconne Weave dressing"),
+        ("berceuse_overhang_madrigal", "Berceuse Overhang Madrigal", "Berceuse Overhang terrain + Madrigal Canopy dressing"),
+        ("ritornello_rings_madrigal", "Ritornello Rings Madrigal", "Ritornello Rings terrain + Madrigal Canopy dressing"),
     ]
 
     class SHOWROOM_Props(bpy.types.PropertyGroup):
