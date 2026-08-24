@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/pool_remembers.v1.json",
+  "schema": "melodia.pool_remembers.v1",
+  "version": "1.0.0-draft",
+  "feature": "Pool That Remembers — save-mirror water",
+  "presentation_only": true,
+  "zone": "BP_MelodiaWaterSimulationZone in L_MelusinaMorning (ShallowWaterSim + WaveFoamSim)",
+  "datachannel": "NDC_MelodiaWaterContact (8 fields, pooled 60/sec)",
+  "capture": "Each piano phrase OnPatternCompleted -> melodia:flag:pool_memory.<phraseId> idempotent (ConsumedIntentIds) via CommitWorldChallenge",
+  "replay": "On load, UMelodiaWaterNiagaraBridgeComponent replays reverse ripples with -0.3 impulse + BioResponse exp(-Age/Decay)",
+  "dread_visual": "High DreadPresence -> MF_Madoka warp on M_Water_Master_Grand_v10 (UV jitter TemporalJitter), shows empty-room echo — no gameplay, screen-space only",
+  "validation": ["NDC 6 writes cap verified pie_smoke_9", "ShallowWater height/velocity blend via MF_WaterNativeInteraction_v10", "save_load PASS still holds"]
+}
