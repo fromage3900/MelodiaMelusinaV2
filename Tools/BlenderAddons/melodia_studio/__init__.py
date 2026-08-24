@@ -4,10 +4,10 @@
 bl_info = {
     "name": "Melodia Studio",
     "author": "fromage3900",
-    "version": (1, 2, 0),
+    "version": (1, 3, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Melodia",
-    "description": "MIDI-driven Resonant World generation for Melodia (C: authority)",
+    "description": "MIDI-driven Resonant World generation — walkable default, Gaea surfaced, musical GN presets, bespoke Melodia chrome (C: authority)",
     "category": "Melodia",
 }
 
