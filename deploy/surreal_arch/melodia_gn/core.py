@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import bpy
+import math
 
 from .logging import log
 
@@ -938,12 +939,24 @@ def sweep_profile(tree, loc, curve_or_mesh_sock, radius_sock, profile_res=8, alr
             link_sockets(tree, radius_sock, profile.inputs["Radius"])
         except Exception:
             pass
+    # Rotate profile 90° X so it stands perpendicular to the curve.
+    # Without this, the circle lies flat and produces zero-area faces.
+    prof_xf = safe_node(tree, "GeometryNodeTransform", (loc[0] - 80, loc[1] - 140))
+    if prof_xf:
+        link_sockets(tree, profile.outputs.get("Curve") or profile.outputs[0],
+                     prof_xf.inputs["Geometry"])
+        try:
+            prof_xf.inputs["Rotation"].default_value = (math.radians(90), 0, 0)
+        except Exception:
+            pass
+        prof_out = prof_xf.outputs["Geometry"]
+    else:
+        prof_out = profile.outputs.get("Curve") or profile.outputs[0]
     sweep = safe_node(tree, "GeometryNodeCurveToMesh", loc)
     link_sockets(tree, curve_sock, sweep.inputs.get("Curve") or sweep.inputs[0])
     prof_in = sweep.inputs.get("Profile Curve") or sweep.inputs.get("Profile")
     if prof_in is not None:
-        out = profile.outputs.get("Curve") or profile.outputs.get("Mesh") or profile.outputs[0]
-        link_sockets(tree, out, prof_in)
+        link_sockets(tree, prof_out, prof_in)
     return sweep.outputs.get("Mesh") or sweep.outputs.get("Geometry")
 
 
