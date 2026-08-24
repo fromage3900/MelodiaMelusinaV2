@@ -30,9 +30,9 @@ which requires assertion-bearing NPC/quest, four-outcome, restart, and packaged 
 
 | Item | State |
 | --- | --- |
-| Documented `HEAD` | `70212962` after the Git-plumbing commit and before pending docs commits |
+| Documented `HEAD` | `caa10ecd` after Git/MCP/P0 authority commits and before pending Git-status/portfolio docs commits |
 | Fetched `origin/main` | `263c046f` |
-| Ahead / behind | `7 / 0` at the documented baseline |
+| Ahead / behind | `10 / 0` at the documented baseline |
 | Integrity | Git object graph and local LFS pointer/object checks pass |
 | Hook | Committed at `70212962`; installed-path positive check and isolated protected-file negative fixture pass |
 | Main checkout | Dirty WIP preserved; staged `A_MannFix_Walk.uasset` remains isolated |

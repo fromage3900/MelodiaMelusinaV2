@@ -1,3 +1,5 @@
+> **Superseded snapshot (2026-08-24):** Path and ownership state moved on; use [Git Worktree Inventory — 2026-08-24](GIT_WORKTREE_INVENTORY_2026-08-24.md).
+
 # Git worktree ownership inventory — 2026-08-23
 
 This is a recovery manifest for the mixed `main` worktree. It is an ownership
