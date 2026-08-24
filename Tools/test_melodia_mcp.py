@@ -19,6 +19,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from unittest.mock import patch
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -111,6 +112,101 @@ def test_offline_tools_run_without_monolith() -> None:
     result = server.melodia_system_list_subsystems()
     assert result["schema"] == "melodia.system.subsystems.v1"
     assert isinstance(result["subsystems"], list)
+
+
+def test_monolith_call_routes_bare_and_dotted_tools() -> None:
+    """Dotted calls must target the namespace tool and nest action params."""
+    import deploy.melodia_mcp_server as server
+
+    captured: list[dict] = []
+
+    class FakeResponse:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, traceback):
+            return False
+
+        def read(self) -> bytes:
+            envelope = {
+                "result": {
+                    "content": [{"type": "text", "text": '{"ok": true}'}],
+                    "isError": False,
+                }
+            }
+            return json.dumps(envelope).encode("utf-8")
+
+    def fake_urlopen(request, timeout):
+        del timeout
+        captured.append(json.loads(request.data.decode("utf-8")))
+        return FakeResponse()
+
+    with patch.object(server.urllib.request, "urlopen", side_effect=fake_urlopen):
+        assert server._monolith_call("monolith_status", {"verbose": True}) == {"ok": True}
+        assert server._monolith_call(
+            "animation_query.get_abp_info", {"asset_path": "/Game/Test/ABP_Test"}
+        ) == {"ok": True}
+        assert server._monolith_call(
+            "blueprint_query.get_cdo_properties", {"asset_path": "/Game/Test/BP_Test"}
+        ) == {"ok": True}
+
+    assert captured[0]["params"] == {
+        "name": "monolith_status",
+        "arguments": {"verbose": True},
+    }
+    assert captured[1]["params"] == {
+        "name": "animation_query",
+        "arguments": {
+            "action": "get_abp_info",
+            "params": {"asset_path": "/Game/Test/ABP_Test"},
+        },
+    }
+    assert captured[2]["params"] == {
+        "name": "blueprint_query",
+        "arguments": {
+            "action": "get_cdo_properties",
+            "params": {"asset_path": "/Game/Test/BP_Test"},
+        },
+    }
+
+
+def test_live_cdo_reads_use_canonical_asset_path_parameter() -> None:
+    """Every live CDO reader must use Monolith's asset_path schema."""
+    import deploy.melodia_mcp_server as server
+
+    calls: list[tuple[str, dict]] = []
+
+    def fake_monolith_call(method, args=None, timeout=10.0):
+        del timeout
+        calls.append((method, args or {}))
+        return {"properties": []}
+
+    with patch.object(server, "_monolith_is_live", return_value=True), patch.object(
+        server, "_monolith_call", side_effect=fake_monolith_call
+    ):
+        assert server.melodia_persona_get_stats()["source"] == "live"
+        assert server.melodia_persona_get_quests()["source"] == "live"
+        assert server.melodia_rhythm_list_skills()["source"] == "live"
+        assert server.melodia_audio_get_rhythm_catalog()["source"] == "live"
+
+    assert calls == [
+        (
+            "blueprint_query.get_cdo_properties",
+            {"asset_path": server.PERSONA_CONTENT_PATH},
+        ),
+        (
+            "blueprint_query.get_cdo_properties",
+            {"asset_path": server.PERSONA_CONTENT_PATH},
+        ),
+        (
+            "blueprint_query.get_cdo_properties",
+            {"asset_path": "/Game/MelodiaIntegration/Config/DA_MelodiaSongs"},
+        ),
+        (
+            "blueprint_query.get_cdo_properties",
+            {"asset_path": "/Game/MelodiaIntegration/Config/DA_MelodiaSongs"},
+        ),
+    ]
 
 
 def test_quill_notification_validation() -> None:
@@ -515,6 +611,8 @@ def run_all() -> int:
         test_policy_default_is_deny,
         test_melodia_tools_are_read_only,
         test_offline_tools_run_without_monolith,
+        test_monolith_call_routes_bare_and_dotted_tools,
+        test_live_cdo_reads_use_canonical_asset_path_parameter,
         test_quill_notification_validation,
         test_fixture_validation,
         test_server_registered_in_mcp_config,
