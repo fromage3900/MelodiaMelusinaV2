@@ -271,6 +271,77 @@ bool UMelodiaWardrobeComponent::EquipCosmetic(const FName CosmeticId)
 	return false;
 }
 
+bool UMelodiaWardrobeComponent::ApplyCosmeticPresentation(const FName CosmeticId)
+{
+	if (CosmeticId.IsNone())
+	{
+		return false;
+	}
+
+	UMelodiaWardrobeSubsystem* Wardrobe = UMelodiaWardrobeSubsystem::Get(this);
+	if (!Wardrobe || !Wardrobe->IsOwned(CosmeticId))
+	{
+		// Companion presentation is fail-closed: an unowned id is not a request
+		// to acquire anything, and no narrative record is touched here.
+		return false;
+	}
+
+	USkeletalMesh* Mesh = Wardrobe->GetCosmeticMesh(CosmeticId);
+	if (!Mesh || !IsGarmentSkeletonCompatible(Mesh))
+	{
+		return false;
+	}
+
+	const EMelodiaWardrobeSlot Slot = Wardrobe->GetSlotForCosmetic(CosmeticId);
+	EquipGarment(Slot, Mesh);
+	return IsSlotShowingMesh(Slot, Mesh);
+}
+
+EMelodiaCompanionWardrobeRequestResult UMelodiaWardrobeComponent::RequestCompanionWardrobe_Implementation(
+	const FMelodiaCompanionWardrobeProfile& Profile)
+{
+	FText ValidationError;
+	if (!Profile.IsValid(&ValidationError))
+	{
+		return EMelodiaCompanionWardrobeRequestResult::RejectedInvalidProfile;
+	}
+
+	UMelodiaWardrobeSubsystem* Wardrobe = UMelodiaWardrobeSubsystem::Get(this);
+	if (!Wardrobe)
+	{
+		return EMelodiaCompanionWardrobeRequestResult::RejectedNoWardrobeProvider;
+	}
+
+	// Default path: read ownership and catalog data, then apply the mesh directly.
+	// ApplyCosmeticPresentation deliberately does not call EquipCosmetic, because
+	// equipping is a durable player choice and would write the canonical record.
+	for (const FName CosmeticId : Profile.PreferredCosmeticIds)
+	{
+		if (Wardrobe->IsOwned(CosmeticId) && ApplyCosmeticPresentation(CosmeticId))
+		{
+			return EMelodiaCompanionWardrobeRequestResult::AppliedOwnedCosmetic;
+		}
+	}
+
+	if (!Profile.bAllowPrototypeGrant)
+	{
+		return EMelodiaCompanionWardrobeRequestResult::RejectedNoOwnedCosmetic;
+	}
+
+	// The profile validator requires the cosmetic and receipt to be explicit and
+	// requires the cosmetic to be in the preferred list. This is the only branch
+	// allowed to call GrantCosmetic, preserving the wardrobe subsystem as the sole
+	// ownership/save authority while keeping accidental grants impossible.
+	if (!Wardrobe->GrantCosmetic(Profile.PrototypeGrantCosmeticId, Profile.PrototypeGrantId))
+	{
+		return EMelodiaCompanionWardrobeRequestResult::RejectedPrototypeGrantFailed;
+	}
+
+	return ApplyCosmeticPresentation(Profile.PrototypeGrantCosmeticId)
+		? EMelodiaCompanionWardrobeRequestResult::GrantedAndAppliedPrototypeCosmetic
+		: EMelodiaCompanionWardrobeRequestResult::RejectedPresentationFailed;
+}
+
 void UMelodiaWardrobeComponent::UnequipSlot(const EMelodiaWardrobeSlot Slot)
 {
 	if (UMelodiaWardrobeSubsystem* Wardrobe = UMelodiaWardrobeSubsystem::Get(this))
