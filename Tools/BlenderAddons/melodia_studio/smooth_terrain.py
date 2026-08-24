@@ -143,7 +143,7 @@ def _build_mesh(subdivided, original_field):
             verts.append((x, y, h))
 
             # Determine biome color
-            orig_cell = (int(x / 4), int(y / 4))
+            orig_cell = (int(x / factor), int(y / factor))
             tag_info = tags.get(orig_cell, {})
             tag = tag_info.get("tag", "slope")
             color = BIOME_COLORS.get(tag, BIOME_COLORS["slope"])
