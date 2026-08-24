@@ -2,13 +2,13 @@
 
 ## Verdict
 
-**HOLD.** The inventory reconciles at **121 files**, but the current offline shared contract run is **19/20** and GMM discovery is **FAIL** after running 268 tests. Unsafe candidates remain HOLD; no editor, network, build, or dependency install was used.
+**HOLD.** The inventory reconciles at **124 files**, but the current offline shared contract run is **19/20** and GMM discovery is **FAIL** after running 268 tests. Unsafe candidates remain HOLD; no editor, network, build, or dependency install was used.
 
 ## What was actually run
 
 - `python.exe -B Tools/run_contract_tests.py --json` — return 1; 19 pass, 1 fail; floor 20.
 - `python.exe -B -m unittest discover -s Content/Python/gmm/tests -p test_*.py -v` — return 1; errors=6.
-- Inventory results: PASS 19, FAIL/grouped FAIL 27, HOLD_UNSAFE 22, NOT_RUN 53.
+- Inventory results: PASS 19, FAIL/grouped FAIL 27, HOLD_UNSAFE 23, NOT_RUN 55.
 
 Both commands ran in bounded subprocesses with `-B`. Tests were discovered with `pathlib` and `ast`; no test module was imported for inventory.
 
@@ -117,8 +117,8 @@ From BS_GodFile, pyproject.toml limits pytest to Content/Python and deploy with 
 
 ## Acceptance reconciliation
 
-- Discovered paths: 121
-- Unique inventory entries: 121
+- Discovered paths: 124
+- Unique inventory entries: 124
 - Reconciled: `true`
 - Exclusions: installed environments/site-packages, `.claude` worktrees, generated `_stub_*` packages, build/Saved output, and `__init__.py` package markers.
 - Runnable entries missing command/timeout/result: 0

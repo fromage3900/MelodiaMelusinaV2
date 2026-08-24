@@ -1,5 +1,5 @@
 {
-  "discovered_file_count": 121,
+  "discovered_file_count": 124,
   "discovery": {
     "exclusions": [
       "installed environments and site-packages",
@@ -4886,6 +4886,60 @@
       "timeout_seconds": 60
     },
     {
+      "assertion_bearing_success": true,
+      "assertion_count": 18,
+      "current_result": "NOT_RUN",
+      "dependencies": {
+        "availability": "NOT_PROBED_WITH_IMPORTS",
+        "imports": [
+          "pathlib",
+          "sys",
+          "Tools",
+          "unittest"
+        ],
+        "non_stdlib": [
+          "Tools"
+        ]
+      },
+      "domain": "general",
+      "execution": {
+        "captured_result": "NOT_RUN",
+        "command": null,
+        "launched": false,
+        "timeout_seconds": 60
+      },
+      "execution_policy": "INVENTORY_ONLY",
+      "gate": "shared_contract_candidate",
+      "interpreter": {
+        "bytecode_disabled": true,
+        "name": "python"
+      },
+      "oracle_findings": [],
+      "oracle_strength": "assertion_bearing",
+      "parse_error": null,
+      "path": "Tools/authority_atlas/tests/test_atlas.py",
+      "references": {
+        "editor": [],
+        "network": [],
+        "process": []
+      },
+      "risks": {
+        "editor": [],
+        "network": [],
+        "process": []
+      },
+      "runner": "unittest",
+      "sha256": "e83c5f79e5372763f38ca40d1d79f20af49696d75f1a0cfd7dbfb0de4b2f8be7",
+      "side_effects": [],
+      "success_condition": {
+        "assertion_count": 18,
+        "custom_check_count": 0,
+        "kind": "python_assertions"
+      },
+      "test_callable_count": 6,
+      "timeout_seconds": 60
+    },
+    {
       "assertion_bearing_success": false,
       "assertion_count": 0,
       "current_result": "HOLD_UNSAFE",
@@ -4967,7 +5021,59 @@
     },
     {
       "assertion_bearing_success": true,
-      "assertion_count": 36,
+      "assertion_count": 9,
+      "current_result": "NOT_RUN",
+      "dependencies": {
+        "availability": "NOT_PROBED_WITH_IMPORTS",
+        "imports": [
+          "importlib",
+          "os",
+          "sys",
+          "unittest"
+        ],
+        "non_stdlib": []
+      },
+      "domain": "integration",
+      "execution": {
+        "captured_result": "NOT_RUN",
+        "command": null,
+        "launched": false,
+        "timeout_seconds": 60
+      },
+      "execution_policy": "INVENTORY_ONLY",
+      "gate": "shared_contract_candidate",
+      "interpreter": {
+        "bytecode_disabled": true,
+        "name": "python"
+      },
+      "oracle_findings": [],
+      "oracle_strength": "assertion_bearing",
+      "parse_error": null,
+      "path": "Tools/BlenderAddons/melodia_showroom/tests/test_showroom.py",
+      "references": {
+        "editor": [],
+        "network": [],
+        "process": []
+      },
+      "risks": {
+        "editor": [],
+        "network": [],
+        "process": []
+      },
+      "runner": "unittest",
+      "sha256": "25448087f60a16f7303056ae0656d1e8728a6f4d28162255e128b47e0f346675",
+      "side_effects": [],
+      "success_condition": {
+        "assertion_count": 9,
+        "custom_check_count": 0,
+        "kind": "python_assertions"
+      },
+      "test_callable_count": 5,
+      "timeout_seconds": 60
+    },
+    {
+      "assertion_bearing_success": true,
+      "assertion_count": 39,
       "current_result": "NOT_RUN",
       "dependencies": {
         "availability": "NOT_PROBED_WITH_IMPORTS",
@@ -5011,7 +5117,7 @@
         "process": []
       },
       "runner": "unittest",
-      "sha256": "638af60dd90002f01538ba54e4d7c9091f38676c001bf4259b1e6b76e6b7633d",
+      "sha256": "43991fa4fdcbec36c53dc6eac7fccb8b4e8d2cb81f59d1efbdb293d9f81b7a5c",
       "side_effects": [
         {
           "kind": "filesystem_replace",
@@ -5021,11 +5127,11 @@
         }
       ],
       "success_condition": {
-        "assertion_count": 36,
+        "assertion_count": 39,
         "custom_check_count": 0,
         "kind": "python_assertions"
       },
-      "test_callable_count": 20,
+      "test_callable_count": 21,
       "timeout_seconds": 60
     },
     {
@@ -7633,6 +7739,77 @@
       "timeout_seconds": 60
     },
     {
+      "assertion_bearing_success": false,
+      "assertion_count": 0,
+      "current_result": "HOLD_UNSAFE",
+      "dependencies": {
+        "availability": "NOT_PROBED_WITH_IMPORTS",
+        "imports": [
+          "bpy",
+          "json",
+          "os",
+          "resonant_world_studio",
+          "sys",
+          "traceback"
+        ],
+        "non_stdlib": [
+          "bpy",
+          "resonant_world_studio"
+        ]
+      },
+      "domain": "world_generation",
+      "execution": {
+        "captured_result": "HOLD_UNSAFE",
+        "command": null,
+        "launched": false,
+        "timeout_seconds": 60
+      },
+      "execution_policy": "HOLD_UNSAFE",
+      "gate": "shared_contract_candidate",
+      "interpreter": {
+        "bytecode_disabled": true,
+        "name": "python"
+      },
+      "oracle_findings": [],
+      "oracle_strength": "none",
+      "parse_error": null,
+      "path": "Tools/test_resonant_world_studio.py",
+      "references": {
+        "editor": [],
+        "network": [],
+        "process": []
+      },
+      "risks": {
+        "editor": [
+          {
+            "kind": "imports_bpy",
+            "line": 3,
+            "path": "Tools/test_resonant_world_studio.py",
+            "source": "import bpy"
+          }
+        ],
+        "network": [],
+        "process": []
+      },
+      "runner": "script",
+      "sha256": "1ce5e35bb6c2bf90111af7dd5191da8397f4c7e4d88ba11cd8767f65100adecd",
+      "side_effects": [
+        {
+          "kind": "filesystem_open_write",
+          "line": 127,
+          "path": "Tools/test_resonant_world_studio.py",
+          "source": "with open(dest, \"w\", encoding=\"utf-8\") as fh:"
+        }
+      ],
+      "success_condition": {
+        "assertion_count": 0,
+        "custom_check_count": 0,
+        "kind": "process_exit_only_or_none"
+      },
+      "test_callable_count": 0,
+      "timeout_seconds": 60
+    },
+    {
       "assertion_bearing_success": true,
       "assertion_count": 19,
       "current_result": "PASS",
@@ -7872,7 +8049,7 @@
       "timeout_seconds": 60
     }
   ],
-  "entry_count": 121,
+  "entry_count": 124,
   "kind": "non_ue_gate_inventory",
   "pytest": {
     "coverage_explanation": "From BS_GodFile, pyproject.toml limits pytest to Content/Python and deploy with test_*.py and *_test.py. It excludes Tools, Docs/T3D_Baseline, _TouchDesigner, plugin tests, and root-level tests. From the parent EnvironmentPortfolio directory, ../pytest.ini instead limits collection to wix/tests and tests, excluding BS_GodFile. No pytest collection was launched because this audit discovers by AST/text and the selected interpreter reports pytest unavailable during GMM discovery.",

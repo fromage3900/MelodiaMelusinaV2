@@ -1,0 +1,934 @@
+{
+  "bytecode_disabled": true,
+  "current_results": {
+    "FAIL": 27,
+    "HOLD_UNSAFE": 23,
+    "NOT_RUN": 55,
+    "PASS": 19
+  },
+  "dependency_install_attempted": false,
+  "editor_contacted": false,
+  "fix_queue": {
+    "environment": [
+      {
+        "issue": "pytest dependency is unavailable",
+        "source": "gmm_unittest_discovery"
+      }
+    ],
+    "harness": [
+      {
+        "issue": "gmm package discovery does not expose VERSION",
+        "source": "gmm_unittest_discovery"
+      },
+      {
+        "issue": "gmm.core discovery does not expose GmmAudit",
+        "source": "gmm_unittest_discovery"
+      }
+    ],
+    "oracle": [
+      {
+        "issue": "repeated_operation_without_state_comparison",
+        "source": "Content/Python/gmm/tests/test_save_manager.py:151"
+      },
+      {
+        "issue": "repeated_operation_without_state_comparison",
+        "source": "Content/Python/gmm/tests/test_save_manager.py:152"
+      },
+      {
+        "issue": "marker_only_success",
+        "source": "Tools/MaterialMaker/test_material_maker_api.py:26"
+      },
+      {
+        "issue": "marker_only_success",
+        "source": "Tools/bedrock_model_test.py:31"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:42 (Tools/test_t3d_request_contract.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:43 (Tools/test_melodia_content_fixtures.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:44 (Tools/test_melodia_bp_readiness.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:45 (Tools/test_melodia_bp_materialization_preflight.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:46 (Tools/test_melodia_skill_bridge_contract.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:47 (Tools/test_melodia_native_adapter_contract.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:48 (Tools/test_melodia_bp_registry_contract.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:49 (Tools/test_melodia_blessing_burden_contract.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:50 (Tools/test_melodia_wardrobe_transaction_contract.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:51 (Tools/test_melusina_skin_topology_contract.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:52 (Tools/test_melodia_package_launch_contract.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:53 (Tools/test_mcp_policy.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:54 (Tools/test_mcp_registration.py)"
+      },
+      {
+        "issue": "uncaptured_test_count_marker",
+        "source": "Tools/run_contract_tests.py:55 (Tools/test_evidence_envelope.py)"
+      },
+      {
+        "issue": "uncaptured_test_count_marker",
+        "source": "Tools/run_contract_tests.py:56 (Tools/test_ollama_health.py)"
+      },
+      {
+        "issue": "marker_text_plus_returncode",
+        "source": "Tools/run_contract_tests.py:58 (Tools/test_melusina_anim_unit_guard.py)"
+      },
+      {
+        "issue": "broad_or_assertion",
+        "source": "Tools/test_melodia_mcp.py:105"
+      },
+      {
+        "issue": "repeated_operation_without_state_comparison",
+        "source": "Tools/test_melodia_progression_contract.py:330"
+      },
+      {
+        "issue": "repeated_operation_without_state_comparison",
+        "source": "Tools/test_melodia_progression_contract.py:356"
+      },
+      {
+        "issue": "broad_or_assertion",
+        "source": "Tools/test_melodia_wardrobe_catalog_contract.py:128"
+      },
+      {
+        "issue": "broad_or_assertion",
+        "source": "Tools/test_melody_slime_datatables_contract.py:44"
+      },
+      {
+        "issue": "zero_test_success_output",
+        "source": "Tools/test_melusina_skin_topology_contract.py"
+      },
+      {
+        "issue": "echo_based_broad_or_assertion",
+        "source": "Tools/test_p0_economy_mcp.py:36"
+      },
+      {
+        "issue": "repeated_operation_without_state_comparison",
+        "source": "Tools/test_p0_economy_mcp.py:52"
+      },
+      {
+        "issue": "marker_only_success",
+        "source": "_TouchDesigner/grandmaster_melodia/scripts/test_create.py:10"
+      },
+      {
+        "issue": "marker_only_success",
+        "source": "_TouchDesigner/grandmaster_melodia/scripts/test_create2.py:38"
+      },
+      {
+        "issue": "marker_only_success",
+        "source": "test_vrm_import.py:14"
+      }
+    ],
+    "production": [
+      {
+        "issue": "C:\\EnvironmentPortfolio\\BS_GodFile\\specs\\blueprints\\fixtures\\universal_melody_token.v1.json",
+        "source": "Tools/test_melodia_content_fixtures.py"
+      }
+    ]
+  },
+  "gmm_unittest_discovery": {
+    "command": "python.exe -B -m unittest discover -s Content/Python/gmm/tests -p test_*.py -v",
+    "error_count": 6,
+    "errors": [
+      "test_command_manifest_handles_envui_registrations (test_daemon_generators.TestDaemonGenerators.test_command_manifest_handles_envui_registrations)",
+      "test_currency_registry (unittest.loader._FailedTest.test_currency_registry)",
+      "test_geometry_modifiers (unittest.loader._FailedTest.test_geometry_modifiers)",
+      "test_modifier_commands (unittest.loader._FailedTest.test_modifier_commands)",
+      "test_npc_pipeline (unittest.loader._FailedTest.test_npc_pipeline)",
+      "test_pcg_manifest (unittest.loader._FailedTest.test_pcg_manifest)"
+    ],
+    "failure_count": 0,
+    "failure_owners": [
+      {
+        "issue": "pytest dependency is unavailable",
+        "owner": "environment"
+      },
+      {
+        "issue": "gmm package discovery does not expose VERSION",
+        "owner": "harness"
+      },
+      {
+        "issue": "gmm.core discovery does not expose GmmAudit",
+        "owner": "harness"
+      }
+    ],
+    "failures": [],
+    "returncode": 1,
+    "status": "FAIL",
+    "summary": "errors=6",
+    "tests_run": 268,
+    "timeout_seconds": 240
+  },
+  "inventory_entry_count": 124,
+  "inventory_reconciled": true,
+  "kind": "non_ue_gate_truth_audit",
+  "network_contacted": false,
+  "offline_only": true,
+  "schema_version": "1.0",
+  "shared_contract_runner": {
+    "command": "python.exe -B Tools/run_contract_tests.py --json",
+    "coverage_floor": 20,
+    "failed": 1,
+    "parsed": true,
+    "passed": 19,
+    "results": [
+      {
+        "path": "Tools/test_echo_contract.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": true,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 40,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_echo_contract.py\", re.compile(r\"===\\s+(\\d+)/(\\d+) passed ===\")),"
+          },
+          "oracle_kind": "positive_equal_counter_marker",
+          "pattern": "===\\s+(\\d+)/(\\d+) passed ==="
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_t3d_safe_wire.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": true,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 41,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_t3d_safe_wire.py\", re.compile(r\"===\\s+(\\d+)/(\\d+) passed ===\")),"
+          },
+          "oracle_kind": "positive_equal_counter_marker",
+          "pattern": "===\\s+(\\d+)/(\\d+) passed ==="
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_t3d_request_contract.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 42,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_t3d_request_contract.py\", re.compile(r\"validated T3D request schema\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated T3D request schema"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "failure_excerpt": "C:\\EnvironmentPortfolio\\BS_GodFile\\specs\\blueprints\\fixtures\\universal_melody_token.v1.json",
+        "path": "Tools/test_melodia_content_fixtures.py",
+        "reason": "suite returned non-zero",
+        "returncode": 1,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 43,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melodia_content_fixtures.py\", re.compile(r\"validated \\d+ Melodia fixture specs\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated \\d+ Melodia fixture specs"
+        },
+        "status": "FAIL",
+        "success_marker_observed": false
+      },
+      {
+        "path": "Tools/test_melodia_bp_readiness.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 44,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melodia_bp_readiness.py\", re.compile(r\"validated Blueprint readiness inventory\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated Blueprint readiness inventory"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_melodia_bp_materialization_preflight.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 45,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melodia_bp_materialization_preflight.py\", re.compile(r\"validated materialization preflight\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated materialization preflight"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_melodia_skill_bridge_contract.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 46,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melodia_skill_bridge_contract.py\", re.compile(r\"validated skill bridge contract\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated skill bridge contract"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_melodia_native_adapter_contract.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 47,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melodia_native_adapter_contract.py\", re.compile(r\"validated native adapter contract surfaces\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated native adapter contract surfaces"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_melodia_bp_registry_contract.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 48,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melodia_bp_registry_contract.py\", re.compile(r\"validated BP registry/fixture parity\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated BP registry/fixture parity"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_melodia_blessing_burden_contract.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 49,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melodia_blessing_burden_contract.py\", re.compile(r\"validated Blessing/Burden contract\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated Blessing/Burden contract"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_melodia_wardrobe_transaction_contract.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 50,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melodia_wardrobe_transaction_contract.py\", re.compile(r\"validated Melodia wardrobe transaction contract\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated Melodia wardrobe transaction contract"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_melusina_skin_topology_contract.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 51,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melusina_skin_topology_contract.py\", re.compile(r\"validated Melusina skin topology contract\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated Melusina skin topology contract"
+        },
+        "runtime_oracle_warning": "zero_test_success_output",
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_melodia_package_launch_contract.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 52,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melodia_package_launch_contract.py\", re.compile(r\"validated Melusina package-launch montage contract\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated Melusina package-launch montage contract"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_mcp_policy.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 53,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_mcp_policy.py\", re.compile(r\"mcp-policy-tests:\\s+\\d+/\\d+ passed\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "mcp-policy-tests:\\s+\\d+/\\d+ passed"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_mcp_registration.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 54,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_mcp_registration.py\", re.compile(r\"validated checked-in MCP registration policy\")),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "validated checked-in MCP registration policy"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_evidence_envelope.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 55,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_evidence_envelope.py\", re.compile(r\"Ran\\s+\\d+ tests.*\\bOK\\b\", re.S)),"
+          },
+          "oracle_kind": "uncaptured_test_count_marker",
+          "pattern": "Ran\\s+\\d+ tests.*\\bOK\\b"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_ollama_health.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 56,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_ollama_health.py\", re.compile(r\"Ran\\s+\\d+ tests.*\\bOK\\b\", re.S)),"
+          },
+          "oracle_kind": "uncaptured_test_count_marker",
+          "pattern": "Ran\\s+\\d+ tests.*\\bOK\\b"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_ui_style_audit.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": true,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 57,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_ui_style_audit.py\", re.compile(r\"===\\s+(\\d+)/(\\d+) passed ===\")),"
+          },
+          "oracle_kind": "positive_equal_counter_marker",
+          "pattern": "===\\s+(\\d+)/(\\d+) passed ==="
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Tools/test_melusina_anim_unit_guard.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": false,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 58,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Tools/test_melusina_anim_unit_guard.py\", re.compile(r'\"ok\"\\s*:\\s*true')),"
+          },
+          "oracle_kind": "marker_text_plus_returncode",
+          "pattern": "\"ok\"\\s*:\\s*true"
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      },
+      {
+        "path": "Docs/T3D_Baseline/test_canonical.py",
+        "reason": null,
+        "returncode": 0,
+        "runner_oracle": {
+          "counter_coupled": true,
+          "evidence": {
+            "kind": "shared_runner_marker_oracle",
+            "line": 59,
+            "path": "Tools/run_contract_tests.py",
+            "source": "Suite(\"Docs/T3D_Baseline/test_canonical.py\", re.compile(r\"===\\s+(\\d+)/(\\d+) passed ===\")),"
+          },
+          "oracle_kind": "positive_equal_counter_marker",
+          "pattern": "===\\s+(\\d+)/(\\d+) passed ==="
+        },
+        "status": "PASS",
+        "success_marker_observed": true
+      }
+    ],
+    "returncode": 1,
+    "runner_oracle_findings": [
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "uncaptured_test_count_marker",
+        "line": 55,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_evidence_envelope.py\", re.compile(r\"Ran\\s+\\d+ tests.*\\bOK\\b\", re.S)),",
+        "suite_path": "Tools/test_evidence_envelope.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 53,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_mcp_policy.py\", re.compile(r\"mcp-policy-tests:\\s+\\d+/\\d+ passed\")),",
+        "suite_path": "Tools/test_mcp_policy.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 54,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_mcp_registration.py\", re.compile(r\"validated checked-in MCP registration policy\")),",
+        "suite_path": "Tools/test_mcp_registration.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 49,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melodia_blessing_burden_contract.py\", re.compile(r\"validated Blessing/Burden contract\")),",
+        "suite_path": "Tools/test_melodia_blessing_burden_contract.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 45,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melodia_bp_materialization_preflight.py\", re.compile(r\"validated materialization preflight\")),",
+        "suite_path": "Tools/test_melodia_bp_materialization_preflight.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 44,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melodia_bp_readiness.py\", re.compile(r\"validated Blueprint readiness inventory\")),",
+        "suite_path": "Tools/test_melodia_bp_readiness.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 48,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melodia_bp_registry_contract.py\", re.compile(r\"validated BP registry/fixture parity\")),",
+        "suite_path": "Tools/test_melodia_bp_registry_contract.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 43,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melodia_content_fixtures.py\", re.compile(r\"validated \\d+ Melodia fixture specs\")),",
+        "suite_path": "Tools/test_melodia_content_fixtures.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 47,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melodia_native_adapter_contract.py\", re.compile(r\"validated native adapter contract surfaces\")),",
+        "suite_path": "Tools/test_melodia_native_adapter_contract.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 52,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melodia_package_launch_contract.py\", re.compile(r\"validated Melusina package-launch montage contract\")),",
+        "suite_path": "Tools/test_melodia_package_launch_contract.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 46,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melodia_skill_bridge_contract.py\", re.compile(r\"validated skill bridge contract\")),",
+        "suite_path": "Tools/test_melodia_skill_bridge_contract.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 50,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melodia_wardrobe_transaction_contract.py\", re.compile(r\"validated Melodia wardrobe transaction contract\")),",
+        "suite_path": "Tools/test_melodia_wardrobe_transaction_contract.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 58,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melusina_anim_unit_guard.py\", re.compile(r'\"ok\"\\s*:\\s*true')),",
+        "suite_path": "Tools/test_melusina_anim_unit_guard.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 51,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_melusina_skin_topology_contract.py\", re.compile(r\"validated Melusina skin topology contract\")),",
+        "suite_path": "Tools/test_melusina_skin_topology_contract.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "uncaptured_test_count_marker",
+        "line": 56,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_ollama_health.py\", re.compile(r\"Ran\\s+\\d+ tests.*\\bOK\\b\", re.S)),",
+        "suite_path": "Tools/test_ollama_health.py"
+      },
+      {
+        "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+        "kind": "marker_text_plus_returncode",
+        "line": 42,
+        "path": "Tools/run_contract_tests.py",
+        "source": "Suite(\"Tools/test_t3d_request_contract.py\", re.compile(r\"validated T3D request schema\")),",
+        "suite_path": "Tools/test_t3d_request_contract.py"
+      }
+    ],
+    "status": "FAIL",
+    "suite_count": 20,
+    "timeout_seconds": 240
+  },
+  "weak_oracle_count": 31,
+  "weak_oracles": [
+    {
+      "detail": "same call assigned to sm1 and sm2 without comparing their state/results",
+      "kind": "repeated_operation_without_state_comparison",
+      "line": 151,
+      "path": "Content/Python/gmm/tests/test_save_manager.py",
+      "source": "sm2 = SaveManager(save_dir=self.tmp)"
+    },
+    {
+      "detail": "same call assigned to p1 and p2 without comparing their state/results",
+      "kind": "repeated_operation_without_state_comparison",
+      "line": 152,
+      "path": "Content/Python/gmm/tests/test_save_manager.py",
+      "source": "p2 = MelodiaPlayerState()"
+    },
+    {
+      "detail": "success text exists without a local assertion or discoverable test callable",
+      "kind": "marker_only_success",
+      "line": 26,
+      "path": "Tools/MaterialMaker/test_material_maker_api.py",
+      "source": "print(f\"[OK] Found potential Material Maker path: {path}\")"
+    },
+    {
+      "detail": "success text exists without a local assertion or discoverable test callable",
+      "kind": "marker_only_success",
+      "line": 31,
+      "path": "Tools/bedrock_model_test.py",
+      "source": "print(f\"OK: {p}\", file=sys.stderr, flush=True)"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 42,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_t3d_request_contract.py\", re.compile(r\"validated T3D request schema\")),",
+      "suite_path": "Tools/test_t3d_request_contract.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 43,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melodia_content_fixtures.py\", re.compile(r\"validated \\d+ Melodia fixture specs\")),",
+      "suite_path": "Tools/test_melodia_content_fixtures.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 44,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melodia_bp_readiness.py\", re.compile(r\"validated Blueprint readiness inventory\")),",
+      "suite_path": "Tools/test_melodia_bp_readiness.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 45,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melodia_bp_materialization_preflight.py\", re.compile(r\"validated materialization preflight\")),",
+      "suite_path": "Tools/test_melodia_bp_materialization_preflight.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 46,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melodia_skill_bridge_contract.py\", re.compile(r\"validated skill bridge contract\")),",
+      "suite_path": "Tools/test_melodia_skill_bridge_contract.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 47,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melodia_native_adapter_contract.py\", re.compile(r\"validated native adapter contract surfaces\")),",
+      "suite_path": "Tools/test_melodia_native_adapter_contract.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 48,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melodia_bp_registry_contract.py\", re.compile(r\"validated BP registry/fixture parity\")),",
+      "suite_path": "Tools/test_melodia_bp_registry_contract.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 49,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melodia_blessing_burden_contract.py\", re.compile(r\"validated Blessing/Burden contract\")),",
+      "suite_path": "Tools/test_melodia_blessing_burden_contract.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 50,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melodia_wardrobe_transaction_contract.py\", re.compile(r\"validated Melodia wardrobe transaction contract\")),",
+      "suite_path": "Tools/test_melodia_wardrobe_transaction_contract.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 51,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melusina_skin_topology_contract.py\", re.compile(r\"validated Melusina skin topology contract\")),",
+      "suite_path": "Tools/test_melusina_skin_topology_contract.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 52,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melodia_package_launch_contract.py\", re.compile(r\"validated Melusina package-launch montage contract\")),",
+      "suite_path": "Tools/test_melodia_package_launch_contract.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 53,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_mcp_policy.py\", re.compile(r\"mcp-policy-tests:\\s+\\d+/\\d+ passed\")),",
+      "suite_path": "Tools/test_mcp_policy.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 54,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_mcp_registration.py\", re.compile(r\"validated checked-in MCP registration policy\")),",
+      "suite_path": "Tools/test_mcp_registration.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "uncaptured_test_count_marker",
+      "line": 55,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_evidence_envelope.py\", re.compile(r\"Ran\\s+\\d+ tests.*\\bOK\\b\", re.S)),",
+      "suite_path": "Tools/test_evidence_envelope.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "uncaptured_test_count_marker",
+      "line": 56,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_ollama_health.py\", re.compile(r\"Ran\\s+\\d+ tests.*\\bOK\\b\", re.S)),",
+      "suite_path": "Tools/test_ollama_health.py"
+    },
+    {
+      "detail": "shared runner observes process return code plus marker text without a positive equal counter",
+      "kind": "marker_text_plus_returncode",
+      "line": 58,
+      "path": "Tools/run_contract_tests.py",
+      "source": "Suite(\"Tools/test_melusina_anim_unit_guard.py\", re.compile(r'\"ok\"\\s*:\\s*true')),",
+      "suite_path": "Tools/test_melusina_anim_unit_guard.py"
+    },
+    {
+      "detail": "assert succeeds through any of 2 branches",
+      "kind": "broad_or_assertion",
+      "line": 105,
+      "path": "Tools/test_melodia_mcp.py",
+      "source": "assert \"sets\" in result or \"entries\" in result"
+    },
+    {
+      "detail": "same call assigned to result and replay without comparing their state/results",
+      "kind": "repeated_operation_without_state_comparison",
+      "line": 330,
+      "path": "Tools/test_melodia_progression_contract.py",
+      "source": "replay = projection.complete_objective(objective_id)"
+    },
+    {
+      "detail": "same call assigned to victory and replay without comparing their state/results",
+      "kind": "repeated_operation_without_state_comparison",
+      "line": 356,
+      "path": "Tools/test_melodia_progression_contract.py",
+      "source": "replay = projection.complete_objective(\"objective.first_dream.face_echo\", \"complete\")"
+    },
+    {
+      "detail": "assert succeeds through any of 2 branches",
+      "kind": "broad_or_assertion",
+      "line": 128,
+      "path": "Tools/test_melodia_wardrobe_catalog_contract.py",
+      "source": "assert rarity in rarities or rarity.casefold() in deferred, (path, rarity)"
+    },
+    {
+      "detail": "assert succeeds through any of 2 branches",
+      "kind": "broad_or_assertion",
+      "line": 44,
+      "path": "Tools/test_melody_slime_datatables_contract.py",
+      "source": "assert f\" {field}\" in header or f\"\\t{field}\" in header, field"
+    },
+    {
+      "detail": "assert succeeds through any of 3 branches",
+      "kind": "echo_based_broad_or_assertion",
+      "line": 36,
+      "path": "Tools/test_p0_economy_mcp.py",
+      "source": "assert \"enemy_mana_drained\" in cast or after.get(\"utility\", 0) <= before.get(\"utility\", 0) or cast.get(\"skill\") == \"utility_debuff\""
+    },
+    {
+      "detail": "same call assigned to r1 and r2 without comparing their state/results",
+      "kind": "repeated_operation_without_state_comparison",
+      "line": 52,
+      "path": "Tools/test_p0_economy_mcp.py",
+      "source": "r2 = server.melodia_encounter_resolve(eid)"
+    },
+    {
+      "detail": "success text exists without a local assertion or discoverable test callable",
+      "kind": "marker_only_success",
+      "line": 10,
+      "path": "_TouchDesigner/grandmaster_melodia/scripts/test_create.py",
+      "source": "print('Test 1 OK (with name):', x)"
+    },
+    {
+      "detail": "success text exists without a local assertion or discoverable test callable",
+      "kind": "marker_only_success",
+      "line": 38,
+      "path": "_TouchDesigner/grandmaster_melodia/scripts/test_create2.py",
+      "source": "print('  OK:', op_name)"
+    },
+    {
+      "detail": "success text exists without a local assertion or discoverable test callable",
+      "kind": "marker_only_success",
+      "line": 14,
+      "path": "test_vrm_import.py",
+      "source": "print(\"OK VRM4U import module loaded successfully\")"
+    }
+  ]
+}
