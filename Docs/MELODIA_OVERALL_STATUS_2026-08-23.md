@@ -1,3 +1,5 @@
+> **Superseded snapshot (2026-08-24):** This remains historical evidence only; use [Melodia Overall Status — 2026-08-24](MELODIA_OVERALL_STATUS_2026-08-24.md).
+
 # Melodia overall status — 2026-08-23
 
 Audited at `2026-08-23T19:55:46-04:00` from the BS_GodFile worktree and the

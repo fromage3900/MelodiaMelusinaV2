@@ -1,3 +1,5 @@
+> **Superseded snapshot (2026-08-24):** Do not execute this report's old push/LFS-recovery options; use [Git Health — 2026-08-24](GIT_HEALTH_2026-08-24.md).
+
 # Git Health Report — 2026-08-19
 
 ## Status: LOCAL HEALTHY / REMOTE BLOCKED
