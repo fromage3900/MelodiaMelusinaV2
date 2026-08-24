@@ -2,7 +2,7 @@
 
 namespace
 {
-	void SetValidationError(FText* OutError, const TCHAR* Message)
+	void SetCompanionWardrobeValidationError(FText* OutError, const TCHAR* Message)
 	{
 		if (OutError)
 		{
@@ -20,13 +20,13 @@ bool FMelodiaCompanionWardrobeProfile::IsValid(FText* OutError) const
 
 	if (ProfileId.IsNone())
 	{
-		SetValidationError(OutError, TEXT("ProfileId must not be None."));
+		SetCompanionWardrobeValidationError(OutError, TEXT("ProfileId must not be None."));
 		return false;
 	}
 
 	if (PreferredCosmeticIds.IsEmpty())
 	{
-		SetValidationError(OutError, TEXT("PreferredCosmeticIds must contain at least one candidate."));
+		SetCompanionWardrobeValidationError(OutError, TEXT("PreferredCosmeticIds must contain at least one candidate."));
 		return false;
 	}
 
@@ -34,7 +34,7 @@ bool FMelodiaCompanionWardrobeProfile::IsValid(FText* OutError) const
 	{
 		if (CosmeticId.IsNone())
 		{
-			SetValidationError(OutError, TEXT("PreferredCosmeticIds must not contain None."));
+			SetCompanionWardrobeValidationError(OutError, TEXT("PreferredCosmeticIds must not contain None."));
 			return false;
 		}
 	}
@@ -49,7 +49,7 @@ bool FMelodiaCompanionWardrobeProfile::IsValid(FText* OutError) const
 
 	if (PrototypeGrantCosmeticId.IsNone() || PrototypeGrantId.IsNone())
 	{
-		SetValidationError(
+		SetCompanionWardrobeValidationError(
 			OutError,
 			TEXT("Prototype grants require both PrototypeGrantCosmeticId and PrototypeGrantId."));
 		return false;
@@ -57,7 +57,7 @@ bool FMelodiaCompanionWardrobeProfile::IsValid(FText* OutError) const
 
 	if (!PreferredCosmeticIds.Contains(PrototypeGrantCosmeticId))
 	{
-		SetValidationError(
+		SetCompanionWardrobeValidationError(
 			OutError,
 			TEXT("PrototypeGrantCosmeticId must be one of the preferred candidates."));
 		return false;
