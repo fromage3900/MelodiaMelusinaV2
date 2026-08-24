@@ -99,7 +99,7 @@
     {
      "id": "hud_single_writer",
      "label": "hud single writer",
-     "contract": "One writer owns the battle HUD. No widget is written by both stock BP_BattleUI and a Melodia overlay in the same frame. Currently VIOLATED: MelodiaUIBridgeSubsystem and MelodiaJRPGBattleOverlaySubsystem both create battle-time widgets.",
+     "contract": "One writer owns the battle HUD. No widget is written by both stock BP_BattleUI and a Melodia overlay in the same frame. Source consolidation now places Melodia battle widgets under MelodiaUIBridgeSubsystem; closed-editor compile and viewport proof remain required before promotion.",
      "blocking": true
     },
     {
@@ -161,7 +161,7 @@
   "repeat_consume": "Flag+reward restore without duplication; melodia:stat: idempotent per IntentId",
   "package_launch": "Development-packaged build launches outside the editor",
   "rhythm_owner": "Exactly one rhythm path reaches the JRPG damage calculation. NOTE: this is about the execution path, NOT which module a class lives in -- MelodiaRhythmHUDWidget and MelodiaRhythmReactivitySubsystem live in MelodiaCore and are both load-bearing.",
-  "hud_single_writer": "One writer owns the battle HUD. No widget is written by both stock BP_BattleUI and a Melodia overlay in the same frame. Currently VIOLATED: MelodiaUIBridgeSubsystem and MelodiaJRPGBattleOverlaySubsystem both create battle-time widgets.",
+  "hud_single_writer": "One writer owns the battle HUD. No widget is written by both stock BP_BattleUI and a Melodia overlay in the same frame. Source consolidation now places Melodia battle widgets under MelodiaUIBridgeSubsystem; closed-editor compile and viewport proof remain required before promotion.",
   "wardrobe_equip_roundtrip": "Equip -> save -> process restart -> load -> correct outfit and correct materials, through the UMelodiaWardrobeSubsystem API only.",
   "rhythm_grade_to_result": "A real-key rhythm grade demonstrably changes a JRPG battle result, and Quill resumes exactly once.",
   "music_world_key": "One world object responds to one played phrase. APCGHeroMusicGraphHost::OnPatternCompleted reaches UMelodiaNarrativeSubsystem as a 7-verb notification. Music opens doors; it never enters the combat or damage pipeline.",

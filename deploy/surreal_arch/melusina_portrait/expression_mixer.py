@@ -1,4 +1,4 @@
-﻿"""Expression mixer ΓÇö keyframe blendshapes on the Melusina armature from a viseme track.
+"""Expression mixer ΓÇö keyframe blendshapes on the Melusina armature from a viseme track.
 
 Pipeline:
   1. Parse voice file ΓåÆ VoiceTrack (phoneme_reader)
@@ -13,6 +13,7 @@ Pipeline:
 from __future__ import annotations
 
 import bpy
+from dataclasses import dataclass, field  # noqa: F401 — restored after header corruption
 from mathutils import Vector
 
 from .phoneme_reader import VoiceTrack, PhonemeEvent

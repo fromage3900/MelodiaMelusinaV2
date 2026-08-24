@@ -220,6 +220,67 @@ def draw_level_design(layout, context, monolith):
         tcol.prop(props, "gb_trim_recess")
         tcol.prop(props, "gb_frame", text="Door frame")
         tcol.prop(props, "gb_bake_trim_colors", text="Bake trim colors")
+    # ── Room shell: advanced shapes ──────────────────────────────
+    if hasattr(props, "gb_room_shape"):
+        is_room = props.arch_type in ("GREYBOX_ROOM", "GB_ROOM_COMPOSITE", "GB_ROOM_CIRCULAR", "GB_ROOM_APSIDAL", "GB_ROOM_CIRCULAR", "GB_ROOM_APSIDAL") or monolith._match_greybox_arch(props.arch_type)
+        # Show for any greybox arch so advanced shapes are discoverable
+        rbox = layout.box()
+        rbox.label(text="Room Shell — shape & math", icon="MESH_CUBE")
+        rcol = rbox.column(align=True)
+        rcol.prop(props, "gb_room_shape", text="Shape")
+        adv_shape = getattr(props, "gb_room_shape", "RECTANGLE") in ("CIRCULAR", "APSIDAL", "OCTAGON", "HEX", "ELLIPSE", "SUPERELLIPSE", "FREEFORM")
+        if adv_shape:
+            rcol.prop(props, "gb_room_radius", text="Radius")
+            if getattr(props, "gb_room_shape", "") in ("OCTAGON", "HEX", "ELLIPSE", "SUPERELLIPSE", "CIRCULAR", "APSIDAL", "FREEFORM"):
+                rcol.prop(props, "gb_room_sides", text="Sides")
+            if getattr(props, "gb_room_shape", "") in ("ELLIPSE", "SUPERELLIPSE"):
+                rcol.prop(props, "gb_room_ellipse_ratio", text="Ellipse Ratio")
+            if getattr(props, "gb_room_shape", "") == "SUPERELLIPSE":
+                rcol.prop(props, "gb_room_super_n", text="Super N")
+            rcol.label(text="Tip: use Pie → Room Shape (Alt+Q) for quick switch", icon="INFO")
+        else:
+            # Composite L/T/U hint
+            if getattr(props, "gb_room_shape", "") in ("L_SHAPE", "T_SHAPE", "U_SHAPE"):
+                rcol.label(text="L/T/U uses W/D as wing sizes — see composite builder", icon="INFO")
+
+    # ── Window cutouts — detailed ────────────────────────────────
+    if hasattr(props, "gb_window_shape"):
+        wbox = layout.box()
+        wbox.label(text="Window Cutouts — detailed", icon="WINDOW")
+        wcol = wbox.column(align=True)
+        wcol.prop(props, "gb_windows_enabled", text="Enable Windows")
+        if getattr(props, "gb_windows_enabled", False):
+            wcol.prop(props, "gb_window_shape", text="Window Shape")
+            wcol.prop(props, "gb_window_arch_height", text="Arch Height")
+            wrow = wbox.row(align=True)
+            wrow.prop(props, "gb_window_width", text="W")
+            wrow.prop(props, "gb_window_height", text="H")
+            wrow.prop(props, "gb_window_sill", text="Sill")
+            wcol.prop(props, "gb_window_frame_thickness", text="Frame Thick")
+            brow = wbox.row(align=True)
+            brow.prop(props, "gb_window_has_mullion", text="Mullion")
+            brow.prop(props, "gb_window_has_transom", text="Transom")
+            wcol.prop(props, "gb_window_glazing", text="Glazing (glass plane)")
+            # Per-wall counts / toggles
+            wbox.label(text="Placement", icon="UV")
+            prow = wbox.row(align=True)
+            prow.prop(props, "gb_window_count_ns", text="N/S")
+            prow.prop(props, "gb_window_count_ew", text="E/W")
+            fallback = wbox.column(align=True)
+            fallback.label(text="Legacy per-wall fallback (when counts =0)", icon="DOT")
+            frow = fallback.row(align=True)
+            frow.prop(props, "gb_window_n", text="N")
+            frow.prop(props, "gb_window_s", text="S")
+            frow.prop(props, "gb_window_e", text="E")
+            frow.prop(props, "gb_window_w", text="W")
+            fallback.prop(props, "gb_window_count", text="Per Wall")
+            wbox.label(text="Pie → Window (Ctrl+Shift+Q) cycles shape", icon="INFO")
+        else:
+            wcol.label(text="Enable to expose shape / arch / frame / mullion / glazing", icon="INFO")
+            wcol.prop(props, "gb_window_n", text="N")
+            wcol.prop(props, "gb_window_e", text="E")
+            wcol.prop(props, "gb_window_w", text="W")
+
     if monolith._match_greybox_arch(props.arch_type):
         kit = layout.box()
         kit.label(text="Corridor kit", icon="MOD_BUILD")

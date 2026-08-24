@@ -36,8 +36,6 @@ This repo has active copies on both `C:\EnvironmentPortfolio\BS_GodFile` and `G:
 - Smoke log:
   - `Tools/BlenderAddons/melodia_showroom/_smoke.log`
   - confirmed `waltz_garden_waltz | terrain=357v/2856f | dress=Waltz Garden | render=...`
-- Unit tests:
-  - `python3.11 -B -m unittest melodia_showroom.tests.test_showroom -v` → 5/5 OK
 
 ## Addon manifest status
 

@@ -49,7 +49,12 @@ invalid, or the definition does not authorize that interaction. They do not
 grant currency, write a save, alter the player controller, or materialize
 world assets.
 
-## First live test: `MelodiaIntegrationMap`
+## First live test: `L_ChoralSheep_Prototype`
+
+Use only the isolated RenderTests map
+`/Game/_PROJECT/Levels/RenderTests/L_ChoralSheep_Prototype`. Do not use
+`L_WP_SakuraDream`, Headquarters BFG, `MelodiaIntegrationMap`, or any gameplay
+map for this prototype.
 
 Use the integration map rather than a protected RenderTests beauty map.
 

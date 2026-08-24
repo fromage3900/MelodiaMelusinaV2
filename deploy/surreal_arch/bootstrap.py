@@ -121,7 +121,7 @@ def register_preferences():
     for cls in _PREF_CLASSES:
         try:
             bpy.utils.register_class(cls)
-        except RuntimeError:
+        except (RuntimeError, ValueError):
             pass
     _migrate_old_preferences()
 

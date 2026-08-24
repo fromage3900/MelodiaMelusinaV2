@@ -1,0 +1,43 @@
+{
+  "format": "melodia_mesh_terrain_source_handoff",
+  "schema_version": 1,
+  "world_seed": 3900,
+  "movement_id": "petal_cantata",
+  "source": {
+    "provider": "Open Topo Data",
+    "dataset": "aster30m",
+    "url": "https://api.opentopodata.org/v1/aster30m",
+    "anchor_name": "Petal Cantata / Yoshino region",
+    "center_lat": 34.384,
+    "center_lon": 135.857,
+    "sample_grid": [129, 129],
+    "source_elevation_range_m": [138.0, 1060.0]
+  },
+  "mesh": {
+    "clone_relative_path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/TerrainSources/Yoshino_ASTER_12km_129/PetalCantata_Yoshino_ASTER_12km_129.obj",
+    "manifest_relative_path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/TerrainSources/Yoshino_ASTER_12km_129/PetalCantata_Yoshino_ASTER_12km_129.manifest.json",
+    "sha256": "8042fe736e349f93399000222a5240de3ebe0e30500382101e30ad73fe0f534b",
+    "units": "meters",
+    "extent_m": [12000.0, 12000.0],
+    "vertex_count": 16641,
+    "triangle_count": 32768
+  },
+  "ue5_8_handoff": {
+    "target": "Mesh Terrain",
+    "import_scale_cm_per_meter": 100.0,
+    "classic_landscape_used": false,
+    "required_plugins": ["MeshPartition", "MeshTerrainMode", "PCGMeshPartitionInterop"],
+    "production_map_touched": false,
+    "gameplay_save_written": false
+  },
+  "blender_preview": {
+    "png_path": "Saved/Blender/MelodiaStudio/OfflineWorldGen/PetalCantata_3900/TerrainPreview5/PetalCantata_Yoshino_ASTER_MIDI_Overlay_1920x1080.png",
+    "png_sha256": "3775175742ad8450c043e36937be463d8d013f0013896967a30d3fcebecf67cc",
+    "resolution": [1920, 1080],
+    "midi_note_count": 192,
+    "midi_voxel_count": 236,
+    "terrain_and_midi_in_same_meter_space": true,
+    "visual_review": "real terrain and musical voxel landmark visible; UE Mesh Terrain promotion remains pending"
+  },
+  "ok": true
+}

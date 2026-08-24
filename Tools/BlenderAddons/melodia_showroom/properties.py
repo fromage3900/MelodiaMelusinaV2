@@ -43,16 +43,16 @@ if bpy is not None:
         )
         samples: IntProperty(
             name="Samples",
-            default=64,
+            default=512,
             min=1,
             max=4096,
             description="Render samples",
         )
         resolution_percent: IntProperty(
             name="Resolution %",
-            default=100,
+            default=200,
             min=10,
-            max=200,
+            max=400,
             description="Resolution percent",
         )
         transparent: BoolProperty(
