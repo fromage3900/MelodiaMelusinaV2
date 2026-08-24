@@ -1,0 +1,60 @@
+{
+  "schema": "melodia.gaea_setup.v1",
+  "setup_id": "cadence_crystal_ridge",
+  "status": "recipe_ready_reference_graph_validated_native_export_pending",
+  "display_name": "Cadence Cathedral — Crystal Ridge",
+  "world_seed": 3900,
+  "musical_binding": {
+    "movement_id": "cadence_cathedral",
+    "midi_preset": "toccata_spires_toccata",
+    "dressing_style": "crystalline",
+    "design_intent": "A high-contrast ridge with a strong skyline, a readable ascent, and a crystal cadence landmark."
+  },
+  "source": {
+    "provider": "Open Topo Data",
+    "dataset": "aster30m",
+    "center_lat": 34.384,
+    "center_lon": 135.857,
+    "source_mesh": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/TerrainSources/Yoshino_ASTER_12km_129/PetalCantata_Yoshino_ASTER_12km_129.obj",
+    "source_extent_m": [12000.0, 12000.0],
+    "working_window_m": [4000.0, 4000.0],
+    "source_units": "meters"
+  },
+  "gaea_reference": {
+    "path": "C:/Program Files/QuadSpinner/Gaea 2/Examples/Creative - Stylized Mountain.terrain",
+    "validated": true,
+    "resolution": 2048,
+    "bake_resolution": 2048,
+    "reference_extent_m": [5000.0, 2500.0],
+    "node_count": 3,
+    "key_nodes": ["RadialGradient", "Erosion2"]
+  },
+  "recipe": {
+    "graph_chain": ["SourceMeshWindow", "RadialGradient", "RidgeAccent", "Erosion2", "Weathering", "SatMap"],
+    "target_resolution": 4097,
+    "output_extent_m": [4000.0, 4000.0],
+    "height_range_m": [0.0, 900.0],
+    "erosion_iterations": 28,
+    "ridge_width_m": 180.0,
+    "ridge_height_m": 260.0,
+    "crystal_mask_threshold": 0.76,
+    "slope_mask_range": [0.34, 0.92],
+    "wind_direction_degrees": 35.0
+  },
+  "outputs": {
+    "mesh_obj": "Saved/Audit/gaea_setups/cadence_crystal_ridge/CadenceCrystalRidge_4097.obj",
+    "heightfield_png16": "Saved/Audit/gaea_setups/cadence_crystal_ridge/CadenceCrystalRidge_4097_height.png",
+    "masks": ["flow", "slope", "curvature", "height", "crystal_ridge"],
+    "manifest": "Saved/Audit/gaea_setups/cadence_crystal_ridge/handoff_manifest.json"
+  },
+  "ue5_8": {
+    "target": "Mesh Terrain",
+    "content_namespace": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/CadenceCrystalRidge",
+    "classic_landscape_used": false,
+    "landscape_material": "/Game/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Landscape_HeightBlend/MI_M_Master_Toon_Landscape_HeightBlend_Soil",
+    "hero_materials": ["/Game/EnvSandbox/PCG/Musical/MI_Piano_Ebony", "/Game/EnvSandbox/PCG/Musical/MI_Piano_Ivory"],
+    "pcg_profile": "crystalline",
+    "hero_capture": "Saved/Audit/gaea_setups/cadence_crystal_ridge/PIE_CadenceCrystalRidge_1920x1080.png"
+  },
+  "gates": ["metric_extent_verified", "ridge_mask_verified", "hero_landmark_grounded", "mesh_terrain_partition_built", "pcg_reads_partition", "clean_pie", "lookdev_approved"]
+}
