@@ -115,13 +115,15 @@
     },
     {
       "id": "hud_single_writer_gate",
-      "copy": "The battle HUD single-writer gate is open and the current source record says two GameInstance creators are present; this packet does not describe the HUD as converged.",
+      "copy": "The source assigns Melodia battle-widget ownership to UMelodiaUIBridgeSubsystem, while the retired compatibility observer creates no viewport widgets; the hud_single_writer gate remains open because runtime viewport proof is unrecorded.",
       "proof_status": "NEED_EVIDENCE",
       "approved_for_publication": false,
       "gate_refs": ["hud_single_writer"],
       "evidence": [
-        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 125, "kind": "source", "ephemeral": false, "note": "HUD seam owner and status."},
-        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 132, "kind": "source", "ephemeral": false, "note": "Open stock-UI question and two-writer constraint."}
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaJRPGBattleOverlaySubsystem.h", "line": 11, "kind": "source", "ephemeral": false, "note": "Header identifies the old overlay as a retired presentation observer."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaJRPGBattleOverlaySubsystem.h", "line": 13, "kind": "source", "ephemeral": false, "note": "Header assigns battle-time Melodia widget ownership to UMelodiaUIBridgeSubsystem."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaJRPGBattleOverlaySubsystem.cpp", "line": 39, "kind": "source", "ephemeral": false, "note": "Retired observer handles battle requests without creating a widget."},
+        {"path": "_VERTICAL_SLICE_SCOPE.md", "line": 120, "kind": "source", "ephemeral": false, "note": "Runtime hud_single_writer proof remains an unchecked convergence gate."}
       ]
     },
     {
@@ -148,24 +150,27 @@
     },
     {
       "id": "music_world_key_gate",
-      "copy": "The piano/music-as-key machinery exists, but the pattern-completion-to-narrative edge remains open and is not wired as a player-facing world consequence.",
-      "proof_status": "NEED_EVIDENCE",
+      "copy": "The Piano pattern-completion emitter and Narrative adapter are source-built; level and host placement plus a player-facing world consequence remain unproven.",
+      "proof_status": "SOURCE_BUILT_LIVE_PENDING",
       "approved_for_publication": false,
       "gate_refs": ["music_world_key"],
       "evidence": [
-        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 182, "kind": "source", "ephemeral": false, "note": "Music-as-key owner and missing edge."},
-        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 247, "kind": "source", "ephemeral": false, "note": "Seam summary marks music-world key NOT WIRED."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.h", "line": 50, "kind": "source", "ephemeral": false, "note": "Source declares the Blueprint-spawnable Narrative challenge adapter."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.cpp", "line": 61, "kind": "source", "ephemeral": false, "note": "Adapter binds uniquely to the music host pattern-completion event."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.cpp", "line": 138, "kind": "source", "ephemeral": false, "note": "Pattern completion routes through the canonical atomic Narrative transaction."},
+        {"path": "_VERTICAL_SLICE_SCOPE.md", "line": 123, "kind": "source", "ephemeral": false, "note": "Player-facing music_world_key proof remains an unchecked convergence gate."},
         {"path": "Content/Python/test_pcg_piano_layout.py", "line": 14, "kind": "test", "ephemeral": false, "note": "Piano authoring contract tests cover layout, not narrative consequence."}
       ]
     },
     {
       "id": "world_challenge_adapter_boundary",
-      "copy": "The world-challenge adapter is shaped around one Narrative transaction, no direct save write, and no combat authority; editor build and PIE evidence remain pending.",
+      "copy": "The source-built world-challenge adapter is constrained to one Narrative transaction, no direct save write, and no combat authority; runtime host placement and consequence evidence remain pending.",
       "proof_status": "SOURCE_BUILT_LIVE_PENDING",
       "approved_for_publication": false,
       "evidence": [
-        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.h", "line": 20, "kind": "source", "ephemeral": false, "note": "Adapter contract and runtime boundary."},
-        {"path": "Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md", "line": 213, "kind": "source", "ephemeral": false, "note": "Convergence record describes the contained adapter and its pending live proof."}
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.h", "line": 35, "kind": "source", "ephemeral": false, "note": "Adapter contract excludes combat, damage, turn, and party authority."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.h", "line": 40, "kind": "source", "ephemeral": false, "note": "Adapter contract forbids direct save-object writes."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.cpp", "line": 138, "kind": "source", "ephemeral": false, "note": "Implementation uses the canonical atomic CommitWorldChallenge transaction."}
       ]
     },
     {
@@ -192,10 +197,10 @@
   ],
   "open_gates": [
     {"id": "rhythm_grade_to_result", "state": "OPEN", "evidence": [{"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 105, "note": "Contract marks the grade-to-result edge unproven."}]},
-    {"id": "hud_single_writer", "state": "VIOLATED", "evidence": [{"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 130, "note": "Contract records the two-writer violation."}]},
+    {"id": "hud_single_writer", "state": "OPEN", "evidence": [{"path": "_VERTICAL_SLICE_SCOPE.md", "line": 120, "note": "Source ownership is consolidated, while viewport single-writer proof remains open."}]},
     {"id": "wardrobe_equip_roundtrip", "state": "OPEN", "evidence": [{"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 159, "note": "Wardrobe roundtrip gate is unproven."}]},
     {"id": "wardrobe_gameplay_hook", "state": "OPEN", "evidence": [{"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 160, "note": "Wardrobe gameplay hook gate is unproven."}]},
-    {"id": "music_world_key", "state": "NOT_WIRED", "evidence": [{"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 253, "note": "Seam summary marks music-world key not wired."}]},
+    {"id": "music_world_key", "state": "OPEN", "evidence": [{"path": "_VERTICAL_SLICE_SCOPE.md", "line": 123, "note": "The source adapter exists, while live host placement and player-facing consequence proof remain open."}]},
     {"id": "static_gates", "state": "FAIL", "evidence": [{"path": "Saved/gate_ledger.json", "line": 224, "note": "Latest static-gates row records material baseline drift."}]}
   ]
 }

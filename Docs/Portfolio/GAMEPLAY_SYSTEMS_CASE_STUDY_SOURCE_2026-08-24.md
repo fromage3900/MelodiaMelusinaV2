@@ -40,6 +40,10 @@ flowchart LR
     P[Substrate Toon / MI_*\npresentation and material bus]
     M[APCGHeroMusicGraphHost\npattern scoring + OnPatternCompleted]
     X[UMelodiaPCGWaterGameplayBridgeComponent\nknown presentation/water consumer]
+    Y[UMelodiaPCGNarrativeChallengeBridgeComponent\nsource-built Narrative adapter]
+    UI[UMelodiaUIBridgeSubsystem\nMelodia battle-widget source owner]
+    O[UMelodiaJRPGBattleOverlaySubsystem\nretired no-widget observer]
+    H[Melodia battle presentation widgets]
 
     Q -->|7-verb notification| N
     N -->|one-way battle request/result bridge| J
@@ -49,11 +53,20 @@ flowchart LR
     W -->|equipped outfit| P
     W -->|capability query| V
     M -->|pattern completion| X
+    M -->|source event binding; live placement unproven| Y
+    Y -->|atomic CommitWorldChallenge| N
+    J -->|battle events| UI
+    UI -->|creates and tears down| H
+    N -.->|event observation only| O
 ```
 
 The current map is not a claim that every seam is proven. The source contract explicitly marks
-the battle HUD seam violated, the music-world edge not wired, and several wardrobe/rhythm seams
-unproven. A source owner is therefore not the same thing as a public runtime claim.
+several wardrobe/rhythm seams unproven. Battle-widget ownership is consolidated in source under
+`UMelodiaUIBridgeSubsystem`; the old overlay subsystem is a retired compatibility observer and has
+no widget-creation path. The Piano-to-Narrative adapter also exists in source. Neither fact closes
+its runtime gate: viewport writer identity, live host/level placement, a player-facing world
+consequence, and restart-safe behavior still require evidence. A source owner is therefore not the
+same thing as a public runtime claim.
 
 ## Target authority — the one-direction convergence model
 
@@ -75,9 +88,10 @@ flowchart LR
     class PM,N open;
 ```
 
-The dashed music-to-narrative edge is a target seam, not a completion statement. The target keeps
-music outside combat authority: music can open a world route; the JRPG template still resolves
-damage, turns, targeting, and results.
+The dashed music-to-narrative edge represents a source-built seam whose live host placement and
+player-facing consequence remain unproven, not a completion statement. The target keeps music
+outside combat authority: music can open a world route; the JRPG template still resolves damage,
+turns, targeting, and results.
 
 ## Three-phase player loop
 
@@ -154,8 +168,8 @@ branches. Those are proof milestones, not claims made by this packet.
 | Beat time | `UMelodiaMusicClockSubsystem` using Harmonix/Quartz | Musical time has one named owner; live seam evidence remains scoped. |
 | Rhythm grading | `UMelodiaRhythmCombatSubsystem` | Source and selected runtime evidence exist; grade-to-result convergence is still open. |
 | Wardrobe state and capability | `UMelodiaWardrobeSubsystem` | Wardrobe is the single intended owner; equip roundtrip and gameplay hook still need proof. |
-| Battle HUD | `UMelodiaUIBridgeSubsystem` target, with stock command input retained | The single-writer question is open; the current source record says two creators are present. |
-| Music-as-key consequence | `APCGHeroMusicGraphHost` → Narrative | The intended edge is one allowlisted narrative transaction, not combat damage. |
+| Battle HUD | `UMelodiaUIBridgeSubsystem`, with stock command input retained | Source ownership is consolidated and the old overlay is a retired no-widget observer; viewport single-writer proof remains open. |
+| Music-as-key consequence | `APCGHeroMusicGraphHost` → `UMelodiaPCGNarrativeChallengeBridgeComponent` → Narrative | The source-built edge uses one allowlisted Narrative transaction, not combat damage; live host placement and a visible consequence remain unproven. |
 | Shared material bus | `UMelodiaRhythmReactivitySubsystem` | Presentation reactivity is separate from combat authority. |
 
 ## Evidence that is safe to publish
@@ -180,10 +194,10 @@ playable companion or a rendered portfolio claim.
 | Gate | Current status | Contained work | Next proof |
 |---|---|---|---|
 | `rhythm_grade_to_result` | OPEN | Rhythm subsystem and grade tests | Real-key A/B battle result with a re-checkable report |
-| `hud_single_writer` | VIOLATED in the source record | UIBridge plus overlay support | One editor session to settle stock UI visibility, then merge creators |
+| `hud_single_writer` | OPEN — source ownership consolidated; runtime proof pending | UIBridge plus a retired no-widget event observer | Identify the instantiated viewport widgets and prove only UIBridge creates/writes the Melodia battle presentation |
 | `wardrobe_equip_roundtrip` | OPEN | Wardrobe owner API, catalog, save fields | Equip → save → process restart → load → mesh/material assertion |
 | `wardrobe_gameplay_hook` | OPEN | Capability vocabulary/provider and traversal caller | Equip one authored form, observe capability, confirm battle restriction |
-| `music_world_key` | OPEN / NOT WIRED in the source record | Piano graph, pattern scoring, challenge adapter shape | Pattern completion → one narrative transaction → save/replay idempotence |
+| `music_world_key` | OPEN — `SOURCE_BUILT_LIVE_PENDING` | Piano graph, pattern scoring, and Narrative challenge adapter | Prove live host/level placement, pattern completion → one Narrative transaction → visible route consequence → save/replay idempotence |
 | `static_gates` | FAIL in the latest ledger rows | Four sub-gates passed; two material baselines drifted | Reconcile the two baseline drifts and rerun the complete static chain |
 
 Contained prototypes are valuable because they keep proof surfaces narrow: the piano graph does not
@@ -192,14 +206,15 @@ world generation does not become a runtime claim.
 
 ## Next proof milestones
 
-1. Close the editor and perform the required native Development build for the source-only challenge
-   adapter; this packet does not run that build.
-2. In one editor session, verify the live pawn's wardrobe component, catalog/default bindings, and
-   the stock-versus-overlay battle HUD question.
+1. In one serialized editor session, verify that the source-built challenge adapter is instantiated
+   on the intended music host and binds the pattern-completion event exactly once.
+2. Verify the live pawn's wardrobe component and catalog/default bindings, then identify every
+   battle-time viewport widget and confirm the retired observer creates none.
 3. Run the music pattern once, record the flag/reward/intent transaction, reload, and replay it.
 4. Equip the authored wardrobe form, prove the traversal capability in exploration, and prove the
    `battle_session` restriction.
-5. Merge the overlay creator into the single HUD owner, then rerun the focused runtime matrix.
+5. Prove `UMelodiaUIBridgeSubsystem` is the sole Melodia battle-widget writer, then rerun the
+   focused runtime matrix.
 6. Record only the gates whose ledger evidence actually passes. Do not convert a source check or
    probe into a runtime claim.
 
