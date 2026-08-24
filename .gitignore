@@ -101,6 +101,9 @@ Content/*
 !Content/Melodia/
 Content/Melodia/*
 !Content/Melodia/DataStuctures/
+!Content/Melodia/Companions/
+!Content/Melodia/Companions/ChoralSheep/
+!Content/Melodia/Companions/ChoralSheep/**
 
 # Authored Melodia JRPG integration and presentation packages.
 !Content/MelodiaIntegration/

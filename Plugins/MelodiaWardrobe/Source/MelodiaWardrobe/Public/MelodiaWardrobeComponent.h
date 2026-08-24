@@ -14,6 +14,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "MelodiaCompanionWardrobeBridge.h"
 #include "MelodiaNarrativeTypes.h" // EMelodiaWardrobeSlot
 #include "MelodiaWardrobeComponent.generated.h"
 
@@ -23,7 +24,9 @@ class UMaterialInterface;
 class UMelodiaWardrobeSubsystem;
 
 UCLASS(ClassGroup=(Melodia), Blueprintable, meta=(BlueprintSpawnableComponent))
-class MELODIAWARDROBE_API UMelodiaWardrobeComponent : public UActorComponent
+class MELODIAWARDROBE_API UMelodiaWardrobeComponent
+	: public UActorComponent
+	, public IMelodiaCompanionWardrobeInterface
 {
 	GENERATED_BODY()
 
@@ -40,6 +43,18 @@ public:
 	 *  mirrors the equipped id into the narrative record. */
 	UFUNCTION(BlueprintCallable, Category="Melodia|Wardrobe")
 	bool EquipCosmetic(FName CosmeticId);
+
+	/**
+	 * Applies an already-owned cosmetic to this actor for presentation only.
+	 * Unlike EquipCosmetic, this path does not modify the equipped map or any save
+	 * state. It is the default seam used by companion presentation requests.
+	 */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Wardrobe|Presentation")
+	bool ApplyCosmeticPresentation(FName CosmeticId);
+
+	/** Core-owned companion seam. Prototype grants are opt-in in the profile. */
+	virtual EMelodiaCompanionWardrobeRequestResult RequestCompanionWardrobe_Implementation(
+		const FMelodiaCompanionWardrobeProfile& Profile) override;
 
 	UFUNCTION(BlueprintCallable, Category="Melodia|Wardrobe")
 	void UnequipSlot(EMelodiaWardrobeSlot Slot);
