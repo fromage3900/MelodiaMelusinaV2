@@ -230,6 +230,390 @@ def build_bell_chime(group_name="MEL_bell_chime"):
     ])
 
 
+# ---------------------------------------------------------------------------
+# MEL_tuning_fork
+# ---------------------------------------------------------------------------
+
+def build_tuning_fork(group_name="MEL_tuning_fork"):
+    """U-shaped tines with resonance box. Pitch from tine length."""
+    tree, gin, gout = new_geometry_tree(group_name)
+    bx, by = 0, 0
+
+    add_float_param(tree, "Tine Length", 0.35, 0.1, 1.0)
+    add_float_param(tree, "Tine Radius", 0.008, 0.002, 0.04)
+    add_float_param(tree, "Tine Gap", 0.04, 0.01, 0.2)
+    add_float_param(tree, "Handle Length", 0.25, 0.1, 0.8)
+    add_float_param(tree, "Handle Radius", 0.012, 0.005, 0.05)
+    add_float_param(tree, "Box Width", 0.08, 0.02, 0.3)
+    add_float_param(tree, "Box Height", 0.06, 0.02, 0.2)
+    add_float_param(tree, "Box Depth", 0.04, 0.01, 0.15)
+    add_float_param(tree, "Pitch", 440.0, 20.0, 2000.0)
+
+    parts = []
+
+    # Handle
+    handle = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 600, by + 200))
+    if handle:
+        handle.inputs["Vertices"].default_value = 12
+        link_sockets(tree, gin.outputs["Handle Length"], handle.inputs["Depth"])
+        link_sockets(tree, gin.outputs["Handle Radius"], handle.inputs["Radius"])
+        # Lift so bottom at z=0
+        handle_xf = safe_node(tree, "GeometryNodeTransform", (bx - 400, by + 200))
+        if handle_xf:
+            link_sockets(tree, handle.outputs["Mesh"], handle_xf.inputs["Geometry"])
+            half_h = safe_node(tree, "ShaderNodeMath", (bx - 600, by + 150))
+            if half_h:
+                half_h.operation = "MULTIPLY"
+                link_sockets(tree, gin.outputs["Handle Length"], half_h.inputs[0])
+                half_h.inputs[1].default_value = 0.5
+                link_float_to_vector(tree, half_h.outputs[0], handle_xf, "Translation",
+                                     component=2, defaults=(0.0, 0.0, 0.0))
+            parts.append(handle_xf.outputs["Geometry"])
+
+    # Two tines
+    for side in (-1, 1):
+        tine = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 600, by - side * 200))
+        if tine:
+            tine.inputs["Vertices"].default_value = 8
+            link_sockets(tree, gin.outputs["Tine Length"], tine.inputs["Depth"])
+            link_sockets(tree, gin.outputs["Tine Radius"], tine.inputs["Radius"])
+            # Position tine at gap offset
+            gap = safe_node(tree, "ShaderNodeMath", (bx - 400, by - side * 250))
+            if gap:
+                gap.operation = "MULTIPLY"
+                link_sockets(tree, gin.outputs["Tine Gap"], gap.inputs[0])
+                gap.inputs[1].default_value = side * 0.5
+            tine_xf = safe_node(tree, "GeometryNodeTransform", (bx - 200, by - side * 200))
+            if tine_xf:
+                link_sockets(tree, tine.outputs["Mesh"], tine_xf.inputs["Geometry"])
+                if gap:
+                    link_float_to_vector(tree, gap.outputs[0], tine_xf, "Translation",
+                                         component=0, defaults=(0.0, 0.0, 0.0))
+                parts.append(tine_xf.outputs["Geometry"])
+
+    # Resonance box (at top of handle)
+    box = safe_node(tree, "GeometryNodeMeshCube", (bx - 600, by + 400))
+    if box:
+        box.inputs["Size"].default_value = (0.08, 0.06, 0.04)
+        link_sockets(tree, gin.outputs["Box Width"], box.inputs["Size"])
+        box_xf = safe_node(tree, "GeometryNodeTransform", (bx - 400, by + 400))
+        if box_xf:
+            link_sockets(tree, box.outputs["Mesh"], box_xf.inputs["Geometry"])
+            # Position at top of handle
+            lift = safe_node(tree, "ShaderNodeMath", (bx - 600, by + 350))
+            if lift:
+                lift.operation = "MULTIPLY"
+                link_sockets(tree, gin.outputs["Handle Length"], lift.inputs[0])
+                lift.inputs[1].default_value = 0.9
+                link_float_to_vector(tree, lift.outputs[0], box_xf, "Translation",
+                                     component=2, defaults=(0.0, 0.0, 0.0))
+            parts.append(box_xf.outputs["Geometry"])
+
+    # Join all
+    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx, by))
+    for p in parts:
+        if p:
+            link_sockets(tree, p, join.inputs["Geometry"])
+
+    # Store pitch
+    store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 200, by))
+    if store:
+        store.data_type = "FLOAT"
+        try:
+            store.inputs["Name"].default_value = "pitch"
+        except Exception:
+            pass
+        link_sockets(tree, join.outputs["Geometry"], store.inputs["Geometry"])
+        link_sockets(tree, gin.outputs["Pitch"], store.inputs["Value"])
+        result = store.outputs["Geometry"]
+    else:
+        result = join.outputs["Geometry"]
+
+    link_sockets(tree, result, gout.inputs["Geometry"])
+
+    return label_tree(tree, group_name, [
+        {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
+        {"title": "Tines", "nodes": ("cylinder", "transform"), "role": "geometry"},
+        {"title": "Handle + Box", "nodes": ("cylinder", "cube", "join"), "role": "geometry"},
+        {"title": "Output", "nodes": ("store", "Group Output"), "role": "output"},
+    ])
+
+
+# ---------------------------------------------------------------------------
+# MEL_singing_bowl
+# ---------------------------------------------------------------------------
+
+def build_singing_bowl(group_name="MEL_singing_bowl"):
+    """Rim-resonant bowl with strike point. Harmonic overtones from wall profile."""
+    tree, gin, gout = new_geometry_tree(group_name)
+    bx, by = 0, 0
+
+    add_float_param(tree, "Radius", 0.15, 0.05, 0.5)
+    add_float_param(tree, "Wall Thickness", 0.004, 0.001, 0.02)
+    add_float_param(tree, "Depth", 0.08, 0.02, 0.3)
+    add_float_param(tree, "Rim Width", 0.02, 0.005, 0.1)
+    add_float_param(tree, "Strike Point", 0.0, 0.0, 1.0)
+    add_float_param(tree, "Pitch", 256.0, 20.0, 2000.0)
+
+    # Bowl profile: half-sphere shelled
+    outer = safe_node(tree, "GeometryNodeMeshUVSphere", (bx - 400, by))
+    if outer:
+        link_sockets(tree, gin.outputs["Radius"], outer.inputs["Radius"])
+        outer.inputs["Segments"].default_value = 32
+        outer.inputs["Rings"].default_value = 16
+
+    # Inner sphere (smaller)
+    inner_r = safe_node(tree, "ShaderNodeMath", (bx - 600, by - 100))
+    if inner_r:
+        inner_r.operation = "SUBTRACT"
+        link_sockets(tree, gin.outputs["Radius"], inner_r.inputs[0])
+        link_sockets(tree, gin.outputs["Wall Thickness"], inner_r.inputs[1])
+    inner = safe_node(tree, "GeometryNodeMeshUVSphere", (bx - 400, by - 200))
+    if inner:
+        if inner_r:
+            link_sockets(tree, inner_r.outputs[0], inner.inputs["Radius"])
+        inner.inputs["Segments"].default_value = 32
+        inner.inputs["Rings"].default_value = 16
+
+    # Boolean difference for shell
+    boolean = safe_node(tree, "GeometryNodeMeshBoolean", (bx - 100, by))
+    if boolean and outer and inner:
+        boolean.operation = "DIFFERENCE"
+        link_sockets(tree, outer.outputs["Mesh"], boolean.inputs[0])
+        link_sockets(tree, inner.outputs["Mesh"], boolean.inputs[1])
+        shell = boolean.outputs["Mesh"]
+    else:
+        shell = outer.outputs["Mesh"] if outer else None
+
+    # Rim ring (torus-like) — torus not in 5.2, use tube instead
+    rim = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (bx - 400, by + 200))
+    if rim:
+        # Set radius via the curve's radius input
+        if rim.inputs.get("Radius"):
+            link_sockets(tree, gin.outputs["Radius"], rim.inputs["Radius"])
+        rim.inputs["Resolution"].default_value = 32
+        rim_geo = rim.outputs["Curve"]
+        # Sweep a small circle along the rim for thickness
+        rim_profile = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (bx - 200, by + 100))
+        if rim_profile:
+            rim_profile.inputs["Resolution"].default_value = 8
+            rim_profile.inputs["Radius"].default_value = 0.01
+        rim_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx, by + 200))
+        if rim_mesh and rim_geo:
+            link_sockets(tree, rim_geo, rim_mesh.inputs.get("Curve") or rim_mesh.inputs[0])
+            if rim_profile:
+                link_sockets(tree, rim_profile.outputs["Curve"],
+                             rim_mesh.inputs.get("Profile Curve") or rim_mesh.inputs[1])
+            rim_geo = rim_mesh.outputs["Mesh"]
+    else:
+        rim_geo = None
+
+    # Join shell + rim
+    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 100, by))
+    if shell:
+        link_sockets(tree, shell, join.inputs["Geometry"])
+    if rim_geo:
+        link_sockets(tree, rim_geo, join.inputs["Geometry"])
+
+    # Store pitch
+    store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 300, by))
+    if store:
+        store.data_type = "FLOAT"
+        try:
+            store.inputs["Name"].default_value = "pitch"
+        except Exception:
+            pass
+        link_sockets(tree, join.outputs["Geometry"], store.inputs["Geometry"])
+        link_sockets(tree, gin.outputs["Pitch"], store.inputs["Value"])
+        result = store.outputs["Geometry"]
+    else:
+        result = join.outputs["Geometry"]
+
+    link_sockets(tree, result, gout.inputs["Geometry"])
+
+    return label_tree(tree, group_name, [
+        {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
+        {"title": "Shell", "nodes": ("sphere", "boolean"), "role": "geometry"},
+        {"title": "Rim", "nodes": ("torus", "join"), "role": "geometry"},
+        {"title": "Output", "nodes": ("store", "Group Output"), "role": "output"},
+    ])
+
+
+# ---------------------------------------------------------------------------
+# MEL_church_bell
+# ---------------------------------------------------------------------------
+
+def build_church_bell(group_name="MEL_church_bell"):
+    """Inverted cup bell with crown, shoulder, and sound bow. Clapper swing."""
+    tree, gin, gout = new_geometry_tree(group_name)
+    bx, by = 0, 0
+
+    add_float_param(tree, "Height", 0.6, 0.1, 2.0)
+    add_float_param(tree, "Mouth Radius", 0.25, 0.05, 1.0)
+    add_float_param(tree, "Wall Thickness", 0.01, 0.002, 0.05)
+    add_float_param(tree, "Shoulder Height", 0.15, 0.02, 0.5)
+    add_float_param(tree, "Crown Width", 0.08, 0.02, 0.3)
+    add_float_param(tree, "Has Clapper", True)
+    add_float_param(tree, "Clapper Swing", 0.0, -30.0, 30.0)
+    add_float_param(tree, "Pitch", 128.0, 20.0, 2000.0)
+
+    parts = []
+
+    # Outer profile: cone (inverted)
+    outer = safe_node(tree, "GeometryNodeMeshCone", (bx - 600, by))
+    if outer:
+        outer.inputs["Vertices"].default_value = 48
+        link_sockets(tree, gin.outputs["Height"], outer.inputs["Depth"])
+        link_sockets(tree, gin.outputs["Mouth Radius"], outer.inputs["Radius Bottom"])
+        # Top radius = mouth - shoulder
+        top_r = safe_node(tree, "ShaderNodeMath", (bx - 800, by - 100))
+        if top_r:
+            top_r.operation = "MULTIPLY"
+            link_sockets(tree, gin.outputs["Mouth Radius"], top_r.inputs[0])
+            top_r.inputs[1].default_value = 0.3
+            link_sockets(tree, top_r.outputs[0], outer.inputs["Radius Top"])
+        outer.fill_type = "NGON"
+
+    # Inner cone (smaller)
+    inner_h = safe_node(tree, "ShaderNodeMath", (bx - 800, by + 100))
+    if inner_h:
+        inner_h.operation = "SUBTRACT"
+        link_sockets(tree, gin.outputs["Height"], inner_h.inputs[0])
+        link_sockets(tree, gin.outputs["Wall Thickness"], inner_h.inputs[1])
+    inner_mouth = safe_node(tree, "ShaderNodeMath", (bx - 800, by - 200))
+    if inner_mouth:
+        inner_mouth.operation = "SUBTRACT"
+        link_sockets(tree, gin.outputs["Mouth Radius"], inner_mouth.inputs[0])
+        link_sockets(tree, gin.outputs["Wall Thickness"], inner_mouth.inputs[1])
+    inner = safe_node(tree, "GeometryNodeMeshCone", (bx - 600, by - 300))
+    if inner:
+        inner.inputs["Vertices"].default_value = 48
+        if inner_h:
+            link_sockets(tree, inner_h.outputs[0], inner.inputs["Depth"])
+        if inner_mouth:
+            link_sockets(tree, inner_mouth.outputs[0], inner.inputs["Radius Bottom"])
+            inner_top = safe_node(tree, "ShaderNodeMath", (bx - 800, by - 400))
+            if inner_top:
+                inner_top.operation = "MULTIPLY"
+                link_sockets(tree, inner_mouth.outputs[0], inner_top.inputs[0])
+                inner_top.inputs[1].default_value = 0.3
+                link_sockets(tree, inner_top.outputs[0], inner.inputs["Radius Top"])
+        inner.fill_type = "NGON"
+
+    # Boolean difference
+    boolean = safe_node(tree, "GeometryNodeMeshBoolean", (bx - 300, by))
+    if boolean and outer and inner:
+        boolean.operation = "DIFFERENCE"
+        link_sockets(tree, outer.outputs["Mesh"], boolean.inputs[0])
+        link_sockets(tree, inner.outputs["Mesh"], boolean.inputs[1])
+        shell = boolean.outputs["Mesh"]
+    else:
+        shell = outer.outputs["Mesh"] if outer else None
+
+    if shell:
+        parts.append(shell)
+
+    # Crown (top cap)
+    crown = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 600, by + 300))
+    if crown:
+        crown.inputs["Vertices"].default_value = 24
+        link_sockets(tree, gin.outputs["Crown Width"], crown.inputs["Radius"])
+        crown.inputs["Depth"].default_value = 0.05
+        crown.fill_type = "NGON"
+        # Position at top of bell
+        crown_xf = safe_node(tree, "GeometryNodeTransform", (bx - 400, by + 300))
+        if crown_xf:
+            link_sockets(tree, crown.outputs["Mesh"], crown_xf.inputs["Geometry"])
+            lift = safe_node(tree, "ShaderNodeMath", (bx - 600, by + 250))
+            if lift:
+                lift.operation = "SUBTRACT"
+                link_sockets(tree, gin.outputs["Height"], lift.inputs[0])
+                lift.inputs[1].default_value = 0.025
+                link_float_to_vector(tree, lift.outputs[0], crown_xf, "Translation",
+                                     component=2, defaults=(0.0, 0.0, 0.0))
+            parts.append(crown_xf.outputs["Geometry"])
+        else:
+            parts.append(crown.outputs["Mesh"])
+
+    # Clapper (optional) — use switch to toggle
+    clapper_switch = safe_node(tree, "GeometryNodeSwitch", (bx - 200, by + 400))
+    if clapper_switch:
+        try:
+            clapper_switch.input_type = "GEOMETRY"
+        except Exception:
+            pass
+        link_sockets(tree, gin.outputs["Has Clapper"],
+                     clapper_switch.inputs.get("Switch") or clapper_switch.inputs[0])
+
+        clapper = safe_node(tree, "GeometryNodeMeshUVSphere", (bx - 600, by + 500))
+        if clapper:
+            clapper.inputs["Radius"].default_value = 0.04
+            clapper.inputs["Segments"].default_value = 16
+            clapper.inputs["Rings"].default_value = 8
+            swing = safe_node(tree, "ShaderNodeMath", (bx - 400, by + 500))
+            if swing:
+                swing.operation = "DIVIDE"
+                link_sockets(tree, gin.outputs["Clapper Swing"], swing.inputs[0])
+                swing.inputs[1].default_value = 57.3
+            clapper_xf = safe_node(tree, "GeometryNodeTransform", (bx - 200, by + 500))
+            if clapper_xf:
+                link_sockets(tree, clapper.outputs["Mesh"], clapper_xf.inputs["Geometry"])
+                if swing:
+                    try:
+                        clapper_xf.inputs["Rotation"].default_value = (
+                            swing.outputs[0], 0, 0)
+                    except Exception:
+                        pass
+                clapper_xf.inputs["Translation"].default_value = (0, 0, 0)
+                true_in = clapper_switch.inputs.get("True")
+                if true_in is None:
+                    true_in = clapper_switch.inputs[1] if len(clapper_switch.inputs) > 1 else None
+                if true_in:
+                    link_sockets(tree, clapper_xf.outputs["Geometry"], true_in)
+            else:
+                true_in = clapper_switch.inputs.get("True")
+                if true_in is None:
+                    true_in = clapper_switch.inputs[1] if len(clapper_switch.inputs) > 1 else None
+                if true_in:
+                    link_sockets(tree, clapper.outputs["Mesh"], true_in)
+
+        # Get output socket directly
+        out_sock = clapper_switch.outputs.get("Output")
+        if out_sock is None:
+            out_sock = clapper_switch.outputs[0] if clapper_switch.outputs else None
+        if out_sock:
+            parts.append(out_sock)
+
+    # Join all
+    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 100, by))
+    for p in parts:
+        if p:
+            link_sockets(tree, p, join.inputs["Geometry"])
+
+    # Store pitch
+    store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 300, by))
+    if store:
+        store.data_type = "FLOAT"
+        try:
+            store.inputs["Name"].default_value = "pitch"
+        except Exception:
+            pass
+        link_sockets(tree, join.outputs["Geometry"], store.inputs["Geometry"])
+        link_sockets(tree, gin.outputs["Pitch"], store.inputs["Value"])
+        result = store.outputs["Geometry"]
+    else:
+        result = join.outputs["Geometry"]
+
+    link_sockets(tree, result, gout.inputs["Geometry"])
+
+    return label_tree(tree, group_name, [
+        {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
+        {"title": "Shell", "nodes": ("cone", "boolean"), "role": "geometry"},
+        {"title": "Crown + Clapper", "nodes": ("cylinder", "sphere", "switch"), "role": "geometry"},
+        {"title": "Output", "nodes": ("store", "Group Output"), "role": "output"},
+    ])
+
+
 # -- Registry --
 register_builder("MEL_brass_pipe", build_brass_pipe, "Brass Pipe",
     "Brass tube geometry — narrow trumpet bore or wide trombone bore with bell flare.",
@@ -239,4 +623,13 @@ register_builder("MEL_reed_body", build_reed_body, "Reed Body",
     "music")
 register_builder("MEL_bell_chime", build_bell_chime, "Bell/Chime",
     "Spherical bell, cup bell, or tubular chime with partial control and clapper flag.",
+    "music")
+register_builder("MEL_tuning_fork", build_tuning_fork, "Tuning Fork",
+    "U-shaped tines with resonance box — pitch from tine length.",
+    "music")
+register_builder("MEL_singing_bowl", build_singing_bowl, "Singing Bowl",
+    "Rim-resonant bowl with strike point — harmonic overtones from wall profile.",
+    "music")
+register_builder("MEL_church_bell", build_church_bell, "Church Bell",
+    "Inverted cup bell with crown, shoulder, and sound bow — clapper swing.",
     "music")
