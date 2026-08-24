@@ -128,10 +128,16 @@ def _estimate_tempo(notes, tpb):
 
     avg_interval = sum(intervals) / len(intervals)
 
-    # Convert to BPM (assuming quarter note = tpb ticks)
+    # Convert to BPM: avg_interval is in ticks, tpb is ticks per beat
+    # BPM = 60 / (seconds_per_beat) = 60 / (avg_interval / tpb / tempo_base)
+    # Simplified: if avg_interval is ticks between notes, and quarter note = tpb ticks
+    # Then beats per note = avg_interval / tpb, and BPM = 60 / (avg_interval / tpb)
+    # But we need to account for the fact that notes may not be quarter notes
+    # Simple heuristic: BPM = (tpb * 60) / (avg_interval * 4) assumes 16th notes
+    # Better: just use the standard formula
     if avg_interval > 0:
-        bpm = (tpb * 60) / (avg_interval * 4)
-        bpm = max(60, min(200, bpm))  # Clamp to reasonable range
+        bpm = (tpb * 60.0) / avg_interval
+        bpm = max(60, min(200, bpm))
         return round(bpm)
 
     return 120

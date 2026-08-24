@@ -2075,6 +2075,131 @@ def melodia_resonant_world_get_offline_bundle() -> dict[str, Any]:
     }
 
 
+# ---------------------------------------------------------------------------
+# Melodia Studio (Blender addon)
+# ---------------------------------------------------------------------------
+
+
+def _studio_imports():
+    """Load Melodia Studio modules without making them server dependencies."""
+    studio_root = PROJECT_ROOT / "Tools" / "BlenderAddons" / "melodia_studio"
+    if str(studio_root) not in sys.path:
+        sys.path.insert(0, str(studio_root))
+
+    from Tools.BlenderAddons.melodia_studio import (
+        midi_bridge,
+        walkable_world,
+        terrain_dressing,
+        smooth_terrain,
+        atmosphere,
+        musical_structure,
+        world_streaming,
+    )
+    return {
+        "midi_bridge": midi_bridge,
+        "walkable_world": walkable_world,
+        "terrain_dressing": terrain_dressing,
+        "smooth_terrain": smooth_terrain,
+        "atmosphere": atmosphere,
+        "musical_structure": musical_structure,
+        "world_streaming": world_streaming,
+    }
+
+
+def melodia_studio_analyze_song(midi_path: str) -> dict[str, Any]:
+    """Analyze musical structure: detect sections, estimate tempo, map to biomes."""
+    try:
+        mods = _studio_imports()
+        return mods["musical_structure"].analyze_song(midi_path)
+    except Exception as exc:
+        return {"ok": False, "error": str(exc)}
+
+
+def melodia_studio_list_presets() -> dict[str, Any]:
+    """List walkable terrain presets and dressing styles."""
+    try:
+        mods = _studio_imports()
+        return {
+            "ok": True,
+            "walkable_presets": list(mods["walkable_world"].WALKABLE_PRESETS.keys()),
+            "dressing_styles": list(mods["terrain_dressing"].DRESSING_STYLES.keys()),
+            "magic_systems": list(mods["terrain_dressing"].MAGIC_SYSTEMS.keys()),
+            "prop_kinds": list(mods["terrain_dressing"].DRESSING_KINDS.keys()),
+        }
+    except Exception as exc:
+        return {"ok": False, "error": str(exc)}
+
+
+def melodia_studio_get_health() -> dict[str, Any]:
+    """Read-only health check for Melodia Studio subsystem."""
+    try:
+        mods = _studio_imports()
+        bridge = mods["midi_bridge"]
+
+        midi_dir = bridge.midi_content_dir()
+        scenes_dir = bridge.scenes_dir()
+        voxel_dir = bridge.voxel_tool_dir()
+
+        return {
+            "ok": True,
+            "paths": {
+                "midi": str(midi_dir),
+                "scenes": str(scenes_dir),
+                "voxel_tool": str(voxel_dir),
+            },
+            "midi_count": len(bridge.discover_midi()),
+            "scenes_count": len([d for d in os.listdir(scenes_dir) if os.path.isdir(os.path.join(scenes_dir, d))]),
+        }
+    except Exception as exc:
+        return {"ok": False, "error": str(exc)}
+
+
+def melodia_studio_export_fbx(
+    midi_path: str,
+    preset_id: str = "walkable_valley",
+    output_path: str | None = None,
+) -> dict[str, Any]:
+    """Generate smooth terrain from MIDI and export as UE5-compatible FBX."""
+    try:
+        mods = _studio_imports()
+        if not os.path.exists(midi_path):
+            return {"ok": False, "error": f"MIDI not found: {midi_path}"}
+
+        mesh = mods["smooth_terrain"].generate_smooth_terrain(midi_path, preset_id)
+        if mesh is None:
+            return {"ok": False, "error": "Terrain generation failed"}
+
+        obj = bpy.data.objects.new("SM_MelodiaTerrain", mesh)
+        bpy.context.collection.objects.link(obj)
+
+        if output_path is None:
+            output_path = os.path.join(
+                mods["midi_bridge"].repo_root(),
+                "Saved", "Audit", "melodia_studio_exports",
+                f"terrain_{preset_id}.fbx"
+            )
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+        bpy.ops.export_scene.fbx(
+            filepath=output_path,
+            use_selection=True,
+            global_scale=1.0,
+            apply_unit_scale=True,
+            axis_forward="-Z",
+            axis_up="Y",
+            use_custom_props=True,
+        )
+
+        return {
+            "ok": True,
+            "path": output_path,
+            "size_bytes": os.path.getsize(output_path),
+            "preset": preset_id,
+        }
+    except Exception as exc:
+        return {"ok": False, "error": str(exc)}
+
+
 def melodia_resonant_world_validate() -> dict[str, Any]:
     """Validate the atlas, passage portfolio, PCG plan, and editor proof envelope."""
     modules = _resonant_world_imports()
@@ -2562,6 +2687,41 @@ TOOLS: list[dict[str, Any]] = [
         "description": "Validate the Resonant World asset atlas, six-passage portfolio, PCG plan, and proof handoff without applying an editor mutation.",
         "inputSchema": {"type": "object", "properties": {}, "required": []},
     },
+    # --- Melodia Studio (Blender addon) ---
+    {
+        "name": "melodia_studio_analyze_song",
+        "description": "Analyze musical structure: detect sections (intro/verse/chorus/bridge/outro), estimate tempo, compute dynamics, map to biomes.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "midi_path": {"type": "string", "description": "Absolute path to a .mid file"},
+            },
+            "required": ["midi_path"],
+        },
+    },
+    {
+        "name": "melodia_studio_list_presets",
+        "description": "List available walkable terrain presets (walkable_valley, walkable_highlands, walkable_plaza, walkable_canyon, walkable_spiral_arena) and dressing styles.",
+        "inputSchema": {"type": "object", "properties": {}, "required": []},
+    },
+    {
+        "name": "melodia_studio_get_health",
+        "description": "Run a read-only health check: MIDI directory, voxel tool, Blender addon paths, generated scenes, and Gaea integration status.",
+        "inputSchema": {"type": "object", "properties": {}, "required": []},
+    },
+    {
+        "name": "melodia_studio_export_fbx",
+        "description": "Generate smooth terrain from MIDI and export as UE5-compatible FBX. Returns the output path and file size.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "midi_path": {"type": "string", "description": "Absolute path to a .mid file"},
+                "preset_id": {"type": "string", "description": "Terrain preset (default: walkable_valley)"},
+                "output_path": {"type": "string", "description": "Optional: override output FBX path"},
+            },
+            "required": ["midi_path"],
+        },
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -2777,6 +2937,22 @@ def main() -> None:
             elif tool_name == "melodia_resonant_world_validate":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
                 result = melodia_resonant_world_validate() if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_studio_analyze_song":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_studio_analyze_song(args.get("midi_path", "")) if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_studio_list_presets":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_studio_list_presets() if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_studio_get_health":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_studio_get_health() if policy["allowed"] else {"status": "denied", **policy}
+            elif tool_name == "melodia_studio_export_fbx":
+                policy = authorize_tool(tool_name, "read", args.get("approval", "none"))
+                result = melodia_studio_export_fbx(
+                    args.get("midi_path", ""),
+                    args.get("preset_id", "walkable_valley"),
+                    args.get("output_path"),
+                ) if policy["allowed"] else {"status": "denied", **policy}
             else:
                 result = {"status": "error", "message": f"Unknown tool: {tool_name}"}
 
