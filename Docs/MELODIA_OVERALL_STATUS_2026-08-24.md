@@ -30,10 +30,10 @@ which requires assertion-bearing NPC/quest, four-outcome, restart, and packaged 
 
 | Item | State |
 | --- | --- |
-| Documented `HEAD` | `caa10ecd` after Git/MCP/P0 authority commits and before pending Git-status/portfolio docs commits |
+| Documented `HEAD` | `cfb2bef8` after all isolated Git/MCP/P0/portfolio batches and before the final health-note commit |
 | Fetched `origin/main` | `263c046f` |
-| Ahead / behind | `10 / 0` at the documented baseline |
-| Integrity | Git object graph and local LFS pointer/object checks pass |
+| Ahead / behind | `12 / 0` at the documented baseline |
+| Integrity | Git object graph, local LFS pointer/object checks, origin visibility, and remote LFS lock query pass |
 | Hook | Committed at `70212962`; installed-path positive check and isolated protected-file negative fixture pass |
 | Main checkout | Dirty WIP preserved; staged `A_MannFix_Walk.uasset` remains isolated |
 | Secondary worktrees | Detached `.claude` checkout and `Melodia_ClaireonTest` dirty; ownership audits on HOLD |

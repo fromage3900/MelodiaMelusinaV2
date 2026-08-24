@@ -1,6 +1,6 @@
 # Git health report — 2026-08-24
 
-## Status: LOCAL INTEGRITY PASS / SHARED-WORKTREE HOLD / NOT PUSHED
+## Status: LOCAL + REMOTE METADATA PASS / SHARED-WORKTREE HOLD / NOT PUSHED
 
 This is the current source-control checkpoint for `BS_GodFile`. It records a
 healthy local object and LFS store, but it does **not** call the working tree
@@ -12,9 +12,9 @@ in place and must be separated by ownership before any promotion.
 | Item | State |
 | --- | --- |
 | Branch | `main` |
-| Documented `HEAD` | `caa10ecd` after Git/MCP/P0 authority commits and before the pending Git-status/portfolio docs commits |
+| Documented `HEAD` | `cfb2bef8` after all isolated Git/MCP/P0/portfolio batches and before this final health-note commit |
 | Fetched `origin/main` | `263c046f` |
-| Ahead / behind at that baseline | `10 / 0` |
+| Ahead / behind at that baseline | `12 / 0` |
 | Remote publication | **No push performed** |
 | Main worktree | Dirty, with valid concurrent WIP preserved |
 | Index boundary | `A_MannFix_Walk.uasset` is staged foreign work and must remain isolated |
@@ -29,7 +29,8 @@ fresh remote comparison.
 | --- | --- | --- | --- |
 | Git object-graph integrity (`fsck`) | **PASS** | `VERIFIED_OFFLINE`: the local object graph has no reported corruption | Remote completeness, a clean worktree, or runtime gameplay |
 | LFS pointer and local-object checks | **PASS** | `VERIFIED_OFFLINE`: audited pointers resolve to valid local LFS objects | That every object has already been uploaded or that a future clone is complete |
-| Fetched branch relation | **PASS** at the documented baseline | `VERIFIED_REMOTE_METADATA`: local `main` was six commits ahead and zero behind fetched `origin/main` | Push authorization or publication |
+| Fetched branch relation | **PASS** at the documented baseline | `VERIFIED_REMOTE_METADATA`: local `main` was twelve commits ahead and zero behind fetched `origin/main` | Push authorization or publication |
+| Origin visibility and LFS lock query | **PASS** after the isolated batches | `VERIFIED_REMOTE_METADATA`: `origin/main` resolves to `263c046f` and the remote lock query completed | That outgoing LFS objects are uploaded; no push was attempted |
 | Pre-commit hook repair | **PASS** at `70212962` | `VERIFIED_OFFLINE`: the installed hook ran with all required validators, and an isolated negative fixture rejected a protected-file commit | Enforcement in another checkout until that checkout receives the commit and runs the hook |
 | Stale lock recovery | **COMPLETE** | Exact stale locks were cleared after their orphan process was terminated | Permission to remove an active lock or terminate an active owner |
 | Worktree metadata | **PASS WITH HOLDS** | Stale `pr5` metadata was pruned; remaining checkouts are known | That the two remaining secondary worktrees are clean or safe to delete |
@@ -46,7 +47,7 @@ proof remains governed by the gate ledger and the convergence closeout.
 3. The detached `.claude` worktree and `Melodia_ClaireonTest` are dirty and on
    ownership hold. Their content and branches require an owner audit before
    cleanup, merge, deletion, or pruning.
-4. The ten outgoing baseline commits have not been pushed. Publication remains
+4. The twelve outgoing baseline commits have not been pushed. Publication remains
    a separate owner decision after the outgoing range and LFS impact are
    reviewed.
 
