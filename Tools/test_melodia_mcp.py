@@ -149,6 +149,9 @@ def test_monolith_call_routes_bare_and_dotted_tools() -> None:
         assert server._monolith_call(
             "blueprint_query.get_cdo_properties", {"asset_path": "/Game/Test/BP_Test"}
         ) == {"ok": True}
+        assert server._monolith_call("project_query.search", {"query": "NPC"}) == {
+            "ok": True
+        }
 
     assert captured[0]["params"] == {
         "name": "monolith_status",
@@ -167,6 +170,10 @@ def test_monolith_call_routes_bare_and_dotted_tools() -> None:
             "action": "get_cdo_properties",
             "params": {"asset_path": "/Game/Test/BP_Test"},
         },
+    }
+    assert captured[3]["params"] == {
+        "name": "project_query",
+        "arguments": {"action": "search", "params": {"query": "NPC"}},
     }
 
 
@@ -207,6 +214,45 @@ def test_live_cdo_reads_use_canonical_asset_path_parameter() -> None:
             {"asset_path": "/Game/MelodiaIntegration/Config/DA_MelodiaSongs"},
         ),
     ]
+
+
+def test_monolith_call_rejects_failed_action_payloads() -> None:
+    """A transport-successful action failure must not be treated as live data."""
+    import deploy.melodia_mcp_server as server
+
+    class FakeFailureResponse:
+        def __init__(self, payload):
+            self.payload = payload
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, traceback):
+            return False
+
+        def read(self) -> bytes:
+            envelope = {
+                "result": {
+                    "content": [
+                        {"type": "text", "text": json.dumps(self.payload)}
+                    ],
+                    "isError": False,
+                }
+            }
+            return json.dumps(envelope).encode("utf-8")
+
+    for payload in (
+        {"success": False},
+        {"ok": False},
+        {"error": "invalid action parameters"},
+        {"_error": "editor unavailable"},
+    ):
+        with patch.object(
+            server.urllib.request,
+            "urlopen",
+            return_value=FakeFailureResponse(payload),
+        ):
+            assert server._monolith_call("project_query.search", {"query": "NPC"}) is None
 
 
 def test_quill_notification_validation() -> None:
@@ -613,6 +659,7 @@ def run_all() -> int:
         test_offline_tools_run_without_monolith,
         test_monolith_call_routes_bare_and_dotted_tools,
         test_live_cdo_reads_use_canonical_asset_path_parameter,
+        test_monolith_call_rejects_failed_action_payloads,
         test_quill_notification_validation,
         test_fixture_validation,
         test_server_registered_in_mcp_config,
