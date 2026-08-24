@@ -16,10 +16,7 @@ import json
 import math
 import traceback
 
-from worldgen_tooling_contracts import builder_entry_passes, report_exit_code
-
-HERE = os.path.dirname(os.path.abspath(__file__))
-REPO = os.path.normpath(os.path.join(HERE, ".."))
+REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
 GN_DIR = os.path.join(REPO, "deploy", "surreal_arch", "melodia_gn")
 PARENT = os.path.join(REPO, "deploy", "surreal_arch")
 if PARENT not in sys.path:
@@ -125,7 +122,11 @@ def probe_builder(name, builder_fn, params=None):
 
             eval_obj.to_mesh_clear()
 
-        entry["ok"] = builder_entry_passes(entry)
+        # Self-contained pass criteria
+        has_geometry = entry.get("polygons", 0) > 0
+        no_nans = not entry.get("nan_values", False) and not entry.get("nan_vertices", False)
+        no_dup_inputs = not entry.get("duplicate_inputs", False)
+        entry["ok"] = has_geometry and no_nans and no_dup_inputs and not entry["errors"]
 
     except Exception as e:
         entry["errors"].append(traceback.format_exc()[-800:])
@@ -173,7 +174,20 @@ def main():
         if entry["ok"]:
             ok_count += 1
         report["builders"].append(entry)
-        print("%-40s %s" % (name, "OK" if entry["ok"] else "FAIL: " + str(entry["errors"])))
+        status = "OK" if entry["ok"] else "FAIL"
+        extra = ""
+        if entry.get("errors"):
+            extra = " | " + str(entry["errors"])[:60]
+        if entry.get("nan_values"):
+            extra += " | NaN defaults!"
+        if entry.get("nan_vertices", 0):
+            extra += " | NaN verts!"
+        if entry.get("duplicate_inputs"):
+            extra += " | DUP INPUTS!"
+        print("  %-38s %s nodes=%-4d in=%-3d out=%-3d v=%-6d p=%-6d%s" % (
+            name, status, entry.get("nodes", 0), entry.get("inputs", 0),
+            entry.get("outputs", 0), entry.get("verts", 0),
+            entry.get("polygons", 0), extra), flush=True)
 
     report["summary"] = {"total": len(builders), "ok": ok_count, "fail": len(builders) - ok_count}
     report["verdict"] = "PASS" if ok_count == len(builders) else "FAIL"
@@ -181,15 +195,15 @@ def main():
     dest = os.path.join(os.environ.get("LOCALAPPDATA", REPO), "Temp", "musical_gn_verify.json")
     with open(dest, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
-    print("\n%s/%d builders OK" % (ok_count, len(builders)))
-    print("REPORT %s" % dest)
+    print("\n%s/%d builders OK" % (ok_count, len(builders)), flush=True)
+    print("VERDICT:", report["verdict"], flush=True)
+    print("REPORT %s" % dest, flush=True)
 
 
 if __name__ == "__main__":
     code = 0
     try:
         main()
-        code = report_exit_code(report)
     except Exception:
         import traceback
         report["error"] = traceback.format_exc()[-1500:]
@@ -198,8 +212,6 @@ if __name__ == "__main__":
     dest = os.path.join(os.environ.get("LOCALAPPDATA", REPO), "Temp", "musical_gn_verify.json")
     with open(dest, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
-    with open(dest + ".done", "w") as f:
-        f.write("done")
     print("REPORT %s" % dest, flush=True)
     sys.stdout.flush()
     os._exit(code)

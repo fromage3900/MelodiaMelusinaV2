@@ -119,7 +119,7 @@ def _subdivide_field(field, factor=4):
     return result
 
 
-def _build_mesh(subdivided, original_field):
+def _build_mesh(subdivided, original_field, factor=4):
     """Build smooth mesh from subdivided heightfield."""
     if not subdivided:
         return None
