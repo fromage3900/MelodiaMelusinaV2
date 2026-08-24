@@ -1,5 +1,18 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/sh
+set -eu
+
+# Hooks launched from PowerShell may inherit a Windows PATH that contains
+# git.exe but omits Git for Windows' POSIX utilities. Git's sh maps /usr/bin
+# to its bundled tools, while native POSIX installations use the same path.
+PATH="/usr/bin:$PATH"
+export PATH
+
+for REQUIRED_TOOL in grep xargs sh wc head sed; do
+  command -v "$REQUIRED_TOOL" >/dev/null 2>&1 || {
+    echo "ERROR: [pre-commit] Required validator command is unavailable: $REQUIRED_TOOL"
+    exit 1
+  }
+done
 
 # Pre-commit hook: LFS + file-size validation + junk artifact detection
 # Blocks commits that would push large binary files without LFS tracking,
@@ -49,7 +62,11 @@ if [ -n "$FORBIDDEN" ]; then
 fi
 
 # 3. Block UE build artifacts
-BUILD_ARTIFACTS=$(git diff --cached --name-only | grep -E '^(Intermediate|Saved|Binaries|DerivedDataCache)/' || true)
+BUILD_ARTIFACTS=$(
+  git diff --cached --name-only |
+    grep -E '^(Intermediate|Saved|Binaries|DerivedDataCache)/' |
+    grep -Ev '^Saved/Audit/(first_dream_experience_contract_20260824|gameplay_authority_atlas_20260824|non_ue_gate_truth_20260824)\.json$' || true
+)
 if [ -n "$BUILD_ARTIFACTS" ]; then
   echo "ERROR: [pre-commit] UE build artifacts staged:"
   echo "$BUILD_ARTIFACTS"

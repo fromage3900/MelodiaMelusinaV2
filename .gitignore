@@ -258,3 +258,14 @@ pie_*.py
 pie_*.json
 deploy/_stub_*
 _Quarantine_*/
+
+# --- Vendored third-party editor plugin (nested git repo) ---
+# Plugins/Claireon is a 3.3 GB checkout of https://github.com/believer-oss/Claireon
+# with its own .git and its own history. It is deliberately NOT tracked here: vendoring
+# it would balloon this repo's already-24 GB .git, and a submodule cannot carry the local
+# AWS SigV4 work (kept on the plugin's own `local/aws-sigv4` branch).
+# Re-clone with: git clone https://github.com/believer-oss/Claireon.git Plugins/Claireon
+Plugins/Claireon/
+
+# Editor .uproject backups made before plugin toggles
+*.uproject.bak_*
