@@ -5,6 +5,14 @@ version: 0.1
 
 # P0 Vertical Slice Design Spec (Melodia)
 
+> **SUPERSEDED AS ACTIVE P0 SCOPE — 2026-08-24.** This file is retained as the historical
+> economy/song-family expansion design snapshot authored on 2026-08-23. Its nine core tasks,
+> HUD additions, dungeon route, enemy, and quest chain are **deferred until after P0**; they are
+> not instructions for the current shipping lane. The current authority is
+> [`Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md),
+> with the machine-readable queue in [`P0_TASK_LEDGER.json`](P0_TASK_LEDGER.json). Current P0
+> closes the existing First Dream authorities and proof gates before it adds gameplay breadth.
+
 This document locks the gameplay and integration requirements for the P0 playable vertical slice of **Melodia**. The goal is an **ASAP end-to-end loop** that proves the core “emotion modifier + economy + rhythm skills” pipeline.
 
 ## 1. Summary of P0 Core Gameplay
@@ -178,4 +186,3 @@ List the blueprint fixtures, harness tasks, and policy entries that need to be c
 - Policy entries for any new MCP tools
 - Quest allowlist entries for new quest IDs
 - Dungeon encounter fixture
-

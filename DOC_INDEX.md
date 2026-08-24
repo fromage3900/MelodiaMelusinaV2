@@ -5,28 +5,33 @@ This is the front door for project documentation. Prefer updating this index ove
 
 ---
 
-## Read these four, in this order
+## Read these five, in this order
 
-Everything below this section is reference. These four are authority.
+Everything below this section is reference. These five are authority.
 
 | # | Doc | What it settles |
 |---|---|---|
 | 1 | [`../PROJECT.md`](../PROJECT.md) | **What this project is.** Melodia Melusina is a game. QuillScript + TurnBased JRPG are absolute authority. The AI tooling is a tool. If any doc below disagrees, this one wins. |
-| 2 | [`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) | **Which implementation owns which pillar.** Rhythm exists in 3 places, wardrobe in 5, the HUD has 2 writers. This names one OWNER per pillar and marks the rest DEAD. Check before writing anything. |
+| 2 | [`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) | **Which implementation owns which pillar.** This names one canonical owner per pillar, records contained competitors, and separates source convergence from still-open live proof. Check before writing anything. |
 | 3 | [`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) | **How the pillars meet the authority layers.** One owner and one direction per seam, each with the gate that proves it. Unproven seams are labelled UNPROVEN. |
 | 4 | [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) | **How work gets done here.** Do the job, ship it, stop. Never compensate. Kill means delete. Owner statements are ground truth. |
-
-| 5 | [`Docs/Handoffs/P0_INTEGRATION_HANDOFF_2026-08-20.md`](Docs/Handoffs/P0_INTEGRATION_HANDOFF_2026-08-20.md) | **What to do next.** The three remaining P0 fronts and the ordered start-here list. |
+| 5 | [`Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md) | **What to do next.** Current P0 truth, the shortest convergence/proof path, and the long-term development order. |
 
 **The current job is convergence, not construction.** A new parallel implementation of something
 that already exists is a defect, not progress.
 
-### Latest session — 2026-08-20 (the paradigm shift)
+### Current checkpoint — 2026-08-24
 
 | Doc | What |
 |---|---|
-| [`Docs/Handoffs/SESSION_CLOSEOUT_2026-08-20.md`](Docs/Handoffs/SESSION_CLOSEOUT_2026-08-20.md) | Everything done this session, what is still open, and where to start next. |
-| [`Docs/MELUSINA_ANIMATION_PIPELINE_REVIEW_2026-08-20.md`](Docs/MELUSINA_ANIMATION_PIPELINE_REVIEW_2026-08-20.md) | Live review. `Speed`, `bIsGliding`, `bJumpWindup` are never assigned — `Locomotion` and `Glide` are unreachable states. |
+| [`Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md) | Convergence closeout, proof-tier truth, shortest P0 critical path, and post-P0 architecture plan. |
+| [`Docs/P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md`](Docs/P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md) | Evidence-grade operator sequence for NPC/quest, four battle outcomes, restart, animation readback, and packaged P0 proof. |
+| [`Docs/MELODIA_OVERALL_STATUS_2026-08-24.md`](Docs/MELODIA_OVERALL_STATUS_2026-08-24.md) | Current cross-cutting project status; keeps source, offline, historical-runtime, and current-live proof separate. |
+| [`Docs/GIT_HEALTH_2026-08-24.md`](Docs/GIT_HEALTH_2026-08-24.md) | Local Git/LFS health, outgoing baseline, remaining holds, and push-ready checklist. |
+| [`Docs/GIT_WORKTREE_INVENTORY_2026-08-24.md`](Docs/GIT_WORKTREE_INVENTORY_2026-08-24.md) | Current worktree ownership holds and safe batch order. |
+
+The August 20 session closeout and animation review remain historical evidence;
+use the August 24 checkpoint above for current routing.
 
 ### Marketing, funding and hiring material
 

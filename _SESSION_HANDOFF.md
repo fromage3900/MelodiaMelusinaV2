@@ -1,15 +1,22 @@
-> ## Start here — 2026-08-20
+> ## Start here — 2026-08-24
 >
-> **[`Docs/Handoffs/P0_INTEGRATION_HANDOFF_2026-08-20.md`](Docs/Handoffs/P0_INTEGRATION_HANDOFF_2026-08-20.md)**
-> — the three remaining P0 fronts (mana-drain economy, WBP/HUD, animation composition), plus the
-> pawn consolidation and a numbered "start here next session".
+> **[`Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md)**
+> — current P0 truth, the shortest live-proof path, and the post-P0 architecture order.
+>
+> Status: [`Docs/MELODIA_OVERALL_STATUS_2026-08-24.md`](Docs/MELODIA_OVERALL_STATUS_2026-08-24.md) ·
+> P0 test playbook: [`Docs/P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md`](Docs/P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md) ·
+> Git: [`Docs/GIT_HEALTH_2026-08-24.md`](Docs/GIT_HEALTH_2026-08-24.md) ·
+> Worktrees: [`Docs/GIT_WORKTREE_INVENTORY_2026-08-24.md`](Docs/GIT_WORKTREE_INVENTORY_2026-08-24.md)
 >
 > Authority: [`../PROJECT.md`](../PROJECT.md) ·
 > [`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) ·
 > [`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md)
 >
-> **One runtime pawn:** `BP_MelusinaJRPGCharacter`. The two old `BP_Melusina` units are
-> metadata-tagged DEPRECATED and feature-empty.
+> **P0 is still open.** Preserve the mixed worktree, keep proof tiers distinct,
+> and do not expand the nine economy/song/HUD/dungeon items into the convergence critical path.
+
+> **Historical body notice:** The August 20 session record below is preserved for evidence and
+> context; it is no longer the current task router.
 
 # ♪ Session Handoff — BS_GodFile
 

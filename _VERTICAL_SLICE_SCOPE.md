@@ -6,6 +6,15 @@
 **Real paths:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
 **KaleidoNave transition:** Travel node retargeted from `/Game/ZenForestTest`; Dreamstate content was merged into KaleidoNave on 2026-08-10 and `+MapsToCook` was added to `DefaultGame.ini`. `L_Melodia_Dreamstate` is not a live route. Open item: KaleidoNave's merged Dreamstate BPs don't function on arrival (`_DECISION_LOG.md` 021b) — diagnose before routing the playtest through it.
 
+> **Current authority 2026-08-24.** The active P0 execution plan is
+> [`Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
+> The nine economy/song-family/HUD/dungeon/enemy/quest tasks formerly labelled P0 are deferred
+> post-P0 expansion. Historical `runtime`, `save_load`, `repeat_consume`, and `package_launch`
+> PASS rows remain bounded evidence for their captured baselines; they do not certify the current
+> shipping baseline. Piano plus the narrative challenge adapter is source-built, while its live
+> host/level/player-facing route remains unproven. The retired battle-overlay observer creates no
+> widgets in current source, while live `hud_single_writer` proof remains open.
+
 > **Scope change 2026-08-20 — the paradigm shift.** This document previously deferred
 > **"Wardrobe platform"** and **"Rhythm as required battle authority"**. Both are now **core
 > pillars**, per the owner's direction and [`../PROJECT.md`](../PROJECT.md). The game is a
@@ -99,7 +108,9 @@ All items below are binary gates:
 > **Ledger reconciliation 2026-08-20.** The foundation gates above were checked against
 > `Saved/gate_ledger.json`, not against prose. Three items this document had listed as open
 > (`save_load`, `repeat_consume`, `package_launch`) have had PASS rows since 2026-08-14 — two of
-> them owner-verified. The doc was six days stale. **The shipping gates are closed.**
+> them owner-verified. Those rows are preserved as bounded evidence for their captured August
+> baselines; **they are not current shipping certification** and do not close the August 24 P0
+> convergence gates.
 >
 > Still genuinely open and unchecked above: the runtime battle-widget identification, input
 > parity, the result matrix, Quill-unavailable load, safe-location routing, interpreter
@@ -116,12 +127,14 @@ is a binary gate with a ledger row. Full detail:
 [`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) and
 [`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md).
 
-- [ ] `rhythm_owner` — exactly one rhythm path reaches the JRPG damage calculation; MelodiaCore's rhythm classes have zero live callers.
+- [ ] `rhythm_owner` — exactly one rhythm execution path reaches the JRPG damage calculation. Load-bearing MelodiaCore presentation/reactivity callers are permitted; zero MelodiaCore callers is not the contract.
 - [ ] `hud_single_writer` — one writer owns the battle HUD; no widget written by both stock `BP_BattleUI` and a Melodia overlay in the same frame.
 - [ ] `wardrobe_equip_roundtrip` — equip → save → process restart → load → correct outfit and correct materials, through the `MelodiaWardrobeSubsystem` API only.
 - [ ] `rhythm_grade_to_result` — a real-key rhythm grade demonstrably changes a JRPG battle result, and Quill resumes exactly once.
 - [ ] `music_world_key` — one world object responds to one played phrase.
 - [ ] `wardrobe_gameplay_hook` — one outfit produces one gameplay difference the player can observe.
+- [ ] `static_gates` — the current frozen baseline passes the static chain; the latest ledger standing is FAIL.
+- [ ] `battle_integration_map` — Victory, Defeat, Fled, and unavailable each produce a typed result and resume or abort Quill exactly once on the current integration map.
 
 ## Co-op skill gates (2026-07-29)
 
@@ -166,6 +179,9 @@ After the foundation gate and the orchestra convergence gates pass, expansion is
   pillar is core; JRPG command input remains the authority it rides on.
 - Broad settings, inventory, quest, or party UI suites
 - Front-end map replacement before menu behavior passes
+- The four-economy/grief system, Healing/Mana/Utility song families, economy HUD, economy dungeon,
+  status-pressure enemy, and skill-gated quest chain preserved in `Docs/P0_VERTICAL_SLICE_SPEC.md`;
+  all nine are post-P0 expansion until the existing First Dream loop is accepted.
 
 ## Flow/QOL priorities
 

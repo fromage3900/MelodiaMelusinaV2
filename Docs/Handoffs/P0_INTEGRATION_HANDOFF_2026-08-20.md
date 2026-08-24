@@ -1,5 +1,15 @@
 # P0 Integration Handoff — 2026-08-20
 
+> **SUPERSEDED FOR CURRENT EXECUTION — 2026-08-24.** This handoff is preserved as an August 20
+> source/editor snapshot. Do not execute its economy port, economy HUD, dungeon, enemy, or quest
+> expansion steps as P0 work. The active authority is
+> [`MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md),
+> and [`../P0_TASK_LEDGER.json`](../P0_TASK_LEDGER.json) now classifies those nine items as
+> post-P0 expansion. Statements below about a two-widget-writing overlay and an unwired
+> Piano-to-Narrative edge are also historical: current source retires the overlay as a no-widget
+> observer and contains the narrative challenge adapter, while both runtime proof gates remain
+> open.
+
 **Read first:** [`../../../PROJECT.md`](../../../PROJECT.md) (authority) ·
 [`../ORCHESTRA_CONVERGENCE_2026-08-20.md`](../ORCHESTRA_CONVERGENCE_2026-08-20.md) (who owns what) ·
 [`../ORCHESTRA_CONTRACT_2026-08-20.md`](../ORCHESTRA_CONTRACT_2026-08-20.md) (the seams)

@@ -4,6 +4,16 @@
 **Authority:** [`../../PROJECT.md`](../../PROJECT.md)
 **Companion:** [`ORCHESTRA_CONTRACT_2026-08-20.md`](ORCHESTRA_CONTRACT_2026-08-20.md) (the seams)
 
+> **Reconciled 2026-08-24.** Current execution authority is
+> [`Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
+> Two August 20 source claims below have since changed: `UMelodiaJRPGBattleOverlaySubsystem` is
+> now a retired compatibility observer that creates no widgets, and
+> `UMelodiaPCGNarrativeChallengeBridgeComponent` now implements the Piano-to-Narrative edge.
+> These are source-built states, not live proof: `hud_single_writer` and `music_world_key` remain
+> open. Active P0 also includes `rhythm_owner`, `rhythm_grade_to_result`,
+> `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, `static_gates`, and the four-outcome
+> `battle_integration_map` result matrix. The former nine-item economy expansion is post-P0.
+
 This document exists because the four pillars were built in parallel and never joined. Its job is
 to name **exactly one OWNER per pillar** and mark everything else.
 
@@ -96,8 +106,10 @@ system that nothing calls.
 
 ## Pillar 3 — UI
 
-This is the hardest call in the project, and the honest answer is that **the two-writer design is
-deliberate and documented**, not accidental.
+The August 20 snapshot had two Melodia widget creators. Current source has converged that seam:
+`UMelodiaUIBridgeSubsystem` is the sole Melodia battle-widget writer, and the retired overlay
+remains only as a compatibility observer. Runtime widget identity and one-writer behavior still
+need live proof.
 
 `MelodiaUIBridgeSubsystem.h` states it plainly:
 
@@ -109,7 +121,7 @@ deliberate and documented**, not accidental.
 |---|---|---|---|
 | Stock `BP_BattleUI` | Blueprint (JRPG template) | Owns command input via `OnKeyDown`. Part of the absolute authority layer. | **OWNER** (command input) |
 | `UMelodiaUIBridgeSubsystem` | `Source/BS_GodFile/MelodiaIntegration/` | Creates `MelodiaBattleWidget` at `:124` **and again** at `:348`, plus `MelodiaRhythmHUDWidget` at `:365`. GameInstance subsystem. | **OWNER** (battle overlay) — pending §Decision |
-| `UMelodiaJRPGBattleOverlaySubsystem` | `Source/BS_GodFile/MelodiaIntegration/` | **A second GameInstance subsystem creating battle-time widgets**: `MelodiaBattleKeyboardLegendWidget` at `:64`, `RhythmPrompt` at `:83`. | **MERGE** → UIBridge |
+| `UMelodiaJRPGBattleOverlaySubsystem` | `Source/BS_GodFile/MelodiaIntegration/` | Current header names it a retired compatibility observer; current implementation subscribes/logs and creates no viewport widgets. | **PRESENTATION — retired observer** |
 | `UMelodiaUIWiringComponent`, `UMelodiaUIFeedbackSubsystem`, `UMelodiaUIBridgeLibrary` | `Source/BS_GodFile/MelodiaIntegration/` | Support surfaces around the bridge. | **LIVE** |
 | `UMelodiaQuillPresentationWidgets` | `Source/BS_GodFile/MelodiaIntegration/` | Narrative presentation; creates choice entries at `:222`. Distinct surface from battle. | **LIVE** |
 | `UMelodiaBattleResultsWidget`, `UMelodiaExplorationHUDWidget` | `Plugins/MelodiaCore/` | MelodiaCore widgets. Live-caller status **not yet established** — do not assume dead, given the `MelodiaRhythmHUDWidget` lesson above. | **UNKNOWN — verify** |
@@ -126,7 +138,7 @@ MCP surface.
 ### Actions
 
 1. Answer the question above in-editor. Record the answer in the contract.
-2. Merge `MelodiaJRPGBattleOverlaySubsystem` into `MelodiaUIBridgeSubsystem`. Two GameInstance subsystems independently spawning battle widgets is the concrete two-writer defect, independent of the stock-UI question.
+2. Prove at runtime that the retired overlay creates no widgets and that `UMelodiaUIBridgeSubsystem` is the sole Melodia writer; remove the observer later only after consumer/reference evidence.
 3. Establish caller status for the two MelodiaCore widgets before judging them.
 
 ---
@@ -143,13 +155,15 @@ MCP surface.
 | `PCGMusicSequencer` | `Source/BS_GodFile/Piano/` | Sequencing layer. | **LIVE** |
 | Piano content | `Content/EnvSandbox/PCG/Musical/` | Real assets: `SM_PianoKey_White_Bevel`, `SM_PianoKey_Black_Bevel`, `SM_Piano_Keybed`, `MI_Piano_Ivory`, `MI_Piano_Ebony`, `M_Piano_Surface`. | **LIVE** |
 | Piano build tooling | `Content/Python/build_pcg_piano.py`, `pcg_piano_layout.py`, `setup_pcg_piano_level.py`, `audit_pcg_piano.py`, `test_pcg_piano_layout.py` | Complete authoring pipeline with its own test. | **LIVE** |
-| `UMelodiaPCGWaterGameplayBridgeComponent` | `Source/BS_GodFile/MelodiaIntegration/` | **The only consumer of `OnPatternCompleted`** (`:48`). Routes pattern completion into water gameplay. | **LIVE** |
+| `UMelodiaPCGWaterGameplayBridgeComponent` | `Source/BS_GodFile/MelodiaIntegration/` | Routes `OnPatternCompleted` into water gameplay. | **LIVE** |
+| `UMelodiaPCGNarrativeChallengeBridgeComponent` | `Source/BS_GodFile/MelodiaIntegration/` | Binds `OnPatternCompleted` and calls the atomic `CommitWorldChallenge` Narrative seam. Static attachment to a live host/level is not proven. | **ADAPTER — source-built, live pending** |
 
 ### The actual gap
 
-The music-as-key loop is **built and closed** — but it closes onto **water only**. A completed
-pattern produces a water reaction and a `Reactivity->NotifyVictory()` presentation pulse
-(`PCGHeroMusic.cpp:626`). It never reaches narrative, quest, or traversal state.
+The source edge no longer closes onto water only. The narrative challenge adapter now commits a
+typed/idempotent Narrative result, but static inspection cannot prove that a live music host owns
+the component, that the correct level instantiates it, or that a visible route reacts. That
+host/level/player-payoff chain and replay behavior are the remaining gap.
 
 `PCGHeroMusic.cpp:624` states the boundary deliberately:
 
@@ -162,8 +176,8 @@ does not deal damage; it opens a door.
 
 ### Actions
 
-1. **Do not build a puzzle system.** Wire the existing `OnPatternCompleted` to **one** narrative consequence through the existing 7-verb contract — a `melodia:flag:` or `melodia:quest:` notification into `UMelodiaNarrativeSubsystem`, which already owns idempotency via `ConsumedIntentIds`.
-2. That single edge satisfies `music_world_key` and turns three built-but-disconnected systems into a loop.
+1. **Do not build another puzzle system.** Use the existing `UMelodiaPCGNarrativeChallengeBridgeComponent` and Narrative transaction.
+2. Attach/configure that adapter on the intended live host, prove the visible world consequence and replay behavior, and only then record `music_world_key`.
 3. Preserve the presentation-only boundary. Music opens doors; the JRPG template still deals damage.
 
 ---
@@ -175,9 +189,9 @@ does not deal damage; it opens a door.
 
 | # | Action | Pillar | Blocked on |
 |---|---|---|---|
-| 1 | Wire `OnPatternCompleted` → narrative | World puzzle | **CODE WRITTEN** — needs a closed-editor build |
+| 1 | Prove `OnPatternCompleted` → Narrative adapter → visible route | World puzzle | Source-built; live host/level/player-facing route proof |
 | 2 | Answer the stock-UI render question in-editor | UI | One editor session |
-| 3 | Merge `MelodiaJRPGBattleOverlaySubsystem` into `MelodiaUIBridgeSubsystem` | UI | #2 |
+| 3 | Prove UIBridge is the sole runtime Melodia widget writer; retired observer creates none | UI | Live widget-identity evidence |
 | 4 | Establish whether the live pawn has a populated `MelodiaWardrobeComponent` | Wardrobe | One editor session |
 | 5 | Prove the Glide/Dash/Swim capability path end-to-end | Wardrobe | **DATA AUTHORED** — needs #1 built, then PIE |
 | 6 | Fix `WBP_MelodiaRhythmHighway` lane legend → Q/W/O/P | Rhythm | Nothing |

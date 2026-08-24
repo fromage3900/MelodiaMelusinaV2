@@ -6,6 +6,19 @@ See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do
 
 ---
 
+## Current P0 authority — 2026-08-24
+
+Read [`Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md)
+first. Active gates: `rhythm_owner`, `hud_single_writer`, `rhythm_grade_to_result`,
+`wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, `music_world_key`, `static_gates`, and the
+four-outcome `battle_integration_map`.
+The old nine-item economy expansion is post-P0 (`Docs/P0_TASK_LEDGER.json`). August 13–14
+`runtime`/save/replay/package passes are bounded evidence, not current shipping certification.
+Current source retires the old overlay as a no-widget observer and builds the Piano Narrative
+adapter; live HUD identity and world-route/replay proof remain open.
+
+---
+
 ## Core vision (stick to this)
 
 Ship one integrated rhythm-JRPG loop — not a systems demo, and not four parallel systems:
@@ -23,12 +36,13 @@ MelodiaCore is presentation-only this phase. Do not invent parallel combat autho
 **The four pillars converge onto those two layers.** Rhythm input rides *on top of* JRPG command
 input — same Attack/Skill/Item/Flee decisions, timed. Wardrobe is a core pillar (outfits carry
 presentation *and* gameplay meaning). UI has one writer per surface. World puzzle is music-as-key
-and is **not yet built**.
+and its Piano-to-Narrative edge is **source-built but not live-proven**.
 
 Shape: OMORI. Music-as-key: Zelda. Visual/wardrobe bar: Infinity Nikki.
 
-**The current job is convergence, not construction.** Rhythm exists in three places, wardrobe in
-five, the battle HUD has two writers by design. Before adding anything, check
+**The current job is convergence, not construction.** Rhythm and wardrobe still have competing
+or prototype authorities. The battle-HUD source has one Melodia widget writer, but runtime widget
+identity and exactly-once behavior remain unproven. Before adding anything, check
 [`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) for which
 implementation is OWNER and which are DEAD, and
 [`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) for the seams.
@@ -181,7 +195,9 @@ Production JRPG + QuillScript integration in UE 5.8. The target loop is:
 
 `QuillScript dialogue -> allowlisted encounter request -> JRPG battle with Melusina -> typed result -> QuillScript resumes once -> exploration`
 
-The loop is not yet fully proven. Do not report completion until the runtime, save/load, repeat-callback, and Development-package gates are recorded.
+The loop is not yet fully proven. The August 13–14 runtime, save/load, repeat-callback, and
+Development-package rows are bounded historical evidence only. Do not report the current shipping
+baseline complete until the active August 24 P0 gates above are recorded against that baseline.
 
 ## Quantum usage
 
@@ -399,9 +415,10 @@ plausible to a folder outside `Content/` first.
     distinction is load-bearing: a sublevel that is not set to load at startup is **absent from
     the PIE world**. Read the `sublevel` field, and confirm at runtime with a tag probe.
 
-## Next work, in order
+## Historical August 10 work queue — superseded
 
-Full detail: `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md`.
+Retained for incident context. Do not execute this list as the current queue; use the August 24
+P0 authority at the top of this file. Historical WORKED/PASS observations are bounded evidence.
 
 1. ~~**Give the song map a beat map.**~~ **DONE 2026-08-11** — `MelodiaMusicClockSubsystem`
    loads the imported `128BPMarpeggiomelody_beatgrid` MIDI (tempo+bar+beat maps validated,
@@ -436,7 +453,7 @@ AGENTS slim under 32 KB subagent cap. Done 2026-08-12/13: #4+#6 on `main`; owner
 Melusina unique → highway (clunky) → damage → next turn on skill finish.
 
 Parallel work for other agents, partitioned by contended resource:
-**current** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md)
+**historical** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md)
 + paste prompts [`Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md`](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md)
 (history: `PARALLEL_LANES_2026-08-08.md`). Rhythm + Quill are owner-locked WORKED — do not reopen.
 
