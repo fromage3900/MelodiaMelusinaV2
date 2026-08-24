@@ -262,7 +262,7 @@
 		},
 		{
 			"Name": "Claireon",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "GameplayAbilities",
