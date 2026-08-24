@@ -11,7 +11,7 @@ is identified and proven.
 
 | Checkout | State | Disposition |
 | --- | --- | --- |
-| Main `BS_GodFile` checkout | `main`; documented baseline `caa10ecd`; dirty | Active integration checkout. Use path-limited commits only. Preserve all unrelated WIP and the foreign staged asset. |
+| Main `BS_GodFile` checkout | `main`; documented baseline `cfb2bef8`; dirty | Active integration checkout. Use path-limited commits only. Preserve all unrelated WIP and the foreign staged asset. |
 | Detached `.claude/worktrees/magical-williamson-a3534a` checkout | Dirty; ownership not yet adjudicated | **HOLD.** Inventory its branch/reachability and owner before merge, archive, deletion, or metadata changes. |
 | `Melodia_ClaireonTest` checkout | Dirty; ownership audit pending | **HOLD.** Keep the Claireon/plugin experiment isolated until provenance, build scope, and intended branch are confirmed. |
 | Former `_pr_wt/pr5` registration | Stale metadata; checkout directory absent | Metadata was pruned after the absence was verified. No live worktree content was deleted. |
@@ -28,7 +28,7 @@ would be data loss, not maintenance.
   batch. Do not unstage, amend, or absorb it from a docs/Git-health lane.
 - Hook/ignore plumbing landed at `70212962`; August 24 documentation remains a
   separate safe batch.
-- No push has been performed. At the documented baseline, `main` was ten
+- No push has been performed. At the documented baseline, `main` was twelve
   commits ahead and zero behind fetched `origin/main`.
 
 ## Required ownership audit for each held worktree
