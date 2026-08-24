@@ -4,15 +4,17 @@ QOL pass (2026-08-24, C-authority):
  - Unified N-panel category "Melodia" so all Melodia tools sit together
  - Search/filter for MIDI, preview line (notes + beatgrid), last-run stats
  - Cleanup of stale Terrain objects on re-generate
- - dress_terrain now receives midi_path so dressing actually places props
+ - dress_terrain receives midi_path so the placement plan uses real terrain
  - Management subpanel: health, folders, reload, docs
  - Icon fallback via addon_utils, offline-safe (no bpy on import)
  - Cached MIDI discovery (avoids rescanning every draw)
 """
 
 import os
+import shutil
 import sys
 import time
+from pathlib import Path
 
 try:
     import bpy  # type: ignore
@@ -300,12 +302,20 @@ if bpy is not None:
                 self.report({'WARNING'}, "No MIDI selected — pick one or set Custom MIDI")
                 return {'CANCELLED'}
 
-            # QOL: optional cleanup so re-generate doesn't stack 10 terrains
-            if getattr(props, "auto_cleanup", True) and addon_utils is not None:
-                try:
-                    addon_utils.cleanup_objects_with_prefix(("Terrain", "MS_", "SR_"))
-                except Exception:
-                    pass
+            # Remove only exact tool-owned names. Prefix deletion can destroy
+            # owner-renamed objects such as ``Terrain_Final``.
+            if getattr(props, "auto_cleanup", True):
+                for generated_name in (
+                    "Terrain",
+                    "Showroom_Terrain",
+                    "MS_Camera",
+                    "MS_Key",
+                    "MS_Fill",
+                    "MS_Rim",
+                ):
+                    generated = bpy.data.objects.get(generated_name)
+                    if generated is not None:
+                        bpy.data.objects.remove(generated, do_unlink=True)
 
             # Progress feedback
             wm = context.window_manager
@@ -476,18 +486,20 @@ if bpy is not None:
         bl_label = "Clean Up"
         bl_options = {'REGISTER', 'UNDO'}
         def execute(self, context):
-            if addon_utils is None:
-                # Fallback manual
-                removed = 0
-                for name in ("Terrain", "Showroom_Terrain"):
-                    o = bpy.data.objects.get(name)
-                    if o:
-                        bpy.data.objects.remove(o, do_unlink=True)
-                        removed += 1
-                self.report({'INFO'}, f"Removed {removed} terrain(s)")
-                return {'FINISHED'}
-            n = addon_utils.cleanup_objects_with_prefix(("Terrain", "Showroom_Terrain", "MS_", "SR_", "MelodiaStage_"))
-            self.report({'INFO'}, f"Cleaned {n} generated object(s)")
+            removed = 0
+            for generated_name in (
+                "Terrain",
+                "Showroom_Terrain",
+                "MS_Camera",
+                "MS_Key",
+                "MS_Fill",
+                "MS_Rim",
+            ):
+                generated = bpy.data.objects.get(generated_name)
+                if generated is not None:
+                    bpy.data.objects.remove(generated, do_unlink=True)
+                    removed += 1
+            self.report({'INFO'}, f"Cleaned {removed} generated object(s)")
             return {'FINISHED'}
 
     class STUDIO_OT_render_proof(bpy.types.Operator):
@@ -574,14 +586,26 @@ if bpy is not None:
                 self.report({'WARNING'}, "Daemon not found: %s" % daemon)
                 return {'CANCELLED'}
 
+            python_exe = os.environ.get("MELODIA_PYTHON_EXE")
+            if not python_exe:
+                candidate = os.path.basename(sys.executable).lower()
+                if candidate.startswith("python"):
+                    python_exe = sys.executable
+                else:
+                    python_exe = shutil.which("python")
+            if not python_exe:
+                self.report({'ERROR'}, "Python not found; set MELODIA_PYTHON_EXE")
+                return {'CANCELLED'}
+
             result = subprocess.run(
-                [sys.executable, "-B", daemon],
+                [python_exe, "-B", daemon],
                 capture_output=True, text=True, timeout=600
             )
             if result.returncode == 0:
                 self.report({'INFO'}, "Batch render complete")
             else:
                 self.report({'ERROR'}, "Batch failed: %s" % result.stderr[-200:])
+                return {'CANCELLED'}
             return {'FINISHED'}
 
     class STUDIO_OT_open_folder(bpy.types.Operator):

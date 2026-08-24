@@ -15,12 +15,20 @@ import bpy
 import os
 import sys
 import json
+import hashlib
 import math
 import time
+import mathutils
 
-REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
+from worldgen_tooling_contracts import report_exit_code, scene_entry_passes
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.normpath(os.path.join(HERE, ".."))
 SCENES_DIR = os.path.join(REPO, "Tools", "MelodiaProceduralStudio", "GeneratedScenes")
-OUT_DIR = r"G:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\scene_batch_audit"
+OUT_DIR = os.environ.get(
+    "MELODIA_SCENE_AUDIT_OUT",
+    os.path.join(REPO, "Saved", "Audit", "scene_batch_audit"),
+)
 LEDGER = os.path.join(OUT_DIR, "ledger.json")
 
 report = {"blender": bpy.app.version_string, "scenes": [], "started": time.strftime("%Y-%m-%d %H:%M:%S")}
@@ -28,7 +36,7 @@ report = {"blender": bpy.app.version_string, "scenes": [], "started": time.strft
 
 def scene_stats():
     """Collect measurable stats from the current scene.
-    
+
     After open_mainfile, the load is async — force an update so
     bpy.data.objects is actually populated before we count.
     """
@@ -39,7 +47,7 @@ def scene_stats():
             bpy.context.evaluated_depsgraph_get().update()
         except Exception:
             pass
-    
+
     stats = {
         "objects": len(bpy.data.objects),
         "meshes": len(bpy.data.meshes),
@@ -49,14 +57,14 @@ def scene_stats():
         "collections": len(bpy.data.collections),
         "worlds": len(bpy.data.worlds),
     }
-    
+
     # Triangle count
     tris = 0
     for me in bpy.data.meshes:
         for p in me.polygons:
             tris += len(p.vertices) - 2
     stats["triangles"] = tris
-    
+
     # Bounds
     mn = [1e18, 1e18, 1e18]
     mx = [-1e18, -1e18, -1e18]
@@ -69,10 +77,10 @@ def scene_stats():
                     mx[i] = max(mx[i], w[i])
     stats["bounds_min"] = [round(v, 3) for v in mn]
     stats["bounds_max"] = [round(v, 3) for v in mx]
-    
+
     # Active camera
     stats["active_camera"] = bpy.context.scene.camera.name if bpy.context.scene.camera else None
-    
+
     return stats
 
 
@@ -84,7 +92,7 @@ def render_preview(output_path):
     sc.render.resolution_y = 360
     sc.render.image_settings.file_format = 'PNG'
     sc.render.filepath = output_path
-    
+
     # Use active camera or create one
     if sc.camera is None:
         # Find first camera
@@ -101,7 +109,7 @@ def render_preview(output_path):
             cam.location = (5, -5, 3)
             cam.rotation_euler = (math.radians(70), 0, math.radians(45))
         sc.camera = cam
-    
+
     bpy.ops.render.render(write_still=True)
     return os.path.exists(output_path)
 
@@ -109,20 +117,20 @@ def render_preview(output_path):
 def process_scene(dir_name, blend_files):
     """Process a single scene directory."""
     entry = {"name": dir_name, "blends": blend_files, "ok": False, "errors": []}
-    
+
     if not blend_files:
         entry["errors"].append("no .blend files")
         return entry
-    
+
     # Use the first (or primary) blend
     blend_path = os.path.join(SCENES_DIR, dir_name, blend_files[0])
     entry["file"] = blend_files[0]
-    
+
     try:
         # Open the blend directly (replaces current scene)
         bpy.ops.wm.open_mainfile(filepath=blend_path)
         entry["opened"] = True
-        
+
         # Poll for load completion — use scene collection refresh
         for i in range(30):
             # Access scene collection to force refresh
@@ -132,47 +140,52 @@ def process_scene(dir_name, blend_files):
             bpy.context.view_layer.update() if bpy.context.view_layer else None
             if len(bpy.data.objects) > 0:
                 break
-        
+
         print("  loaded %d objs after %d polls" % (len(bpy.data.objects), i+1), flush=True)
-        
+
         # Collect stats
         entry["stats"] = scene_stats()
-        
+
         # Render preview
         preview_path = os.path.join(OUT_DIR, "previews", dir_name + ".png")
         os.makedirs(os.path.dirname(preview_path), exist_ok=True)
-        
+
         try:
             entry["preview_ok"] = render_preview(preview_path)
             entry["preview_path"] = preview_path
+            if entry["preview_ok"]:
+                digest = hashlib.sha256()
+                with open(preview_path, "rb") as handle:
+                    for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+                        digest.update(chunk)
+                entry["preview_sha256"] = digest.hexdigest()
         except Exception as e:
             entry["preview_ok"] = False
             entry["errors"].append("render: %s" % str(e)[:100])
-        
-        entry["ok"] = True
-        
+
+        entry["ok"] = scene_entry_passes(entry)
+
     except Exception as e:
         entry["errors"].append(str(e)[:200])
-    
+
     return entry
 
 
 def main():
-    import mathutils
     os.makedirs(OUT_DIR, exist_ok=True)
     os.makedirs(os.path.join(OUT_DIR, "previews"), exist_ok=True)
-    
+
     # Find all scene directories
     scene_dirs = []
     for d in sorted(os.listdir(SCENES_DIR)):
         full = os.path.join(SCENES_DIR, d)
         if not os.path.isdir(full):
             continue
-        blends = [f for f in os.listdir(full) if f.endswith('.blend')]
+        blends = sorted(f for f in os.listdir(full) if f.endswith('.blend'))
         scene_dirs.append((d, blends))
-    
+
     print("Found %d scene directories" % len(scene_dirs), flush=True)
-    
+
     for i, (dir_name, blends) in enumerate(scene_dirs):
         print("[%d/%d] %s ..." % (i+1, len(scene_dirs), dir_name), flush=True)
         entry = process_scene(dir_name, blends)
@@ -180,7 +193,7 @@ def main():
         status = "OK" if entry["ok"] else "FAIL"
         tris = entry.get("stats", {}).get("triangles", 0)
         print("  %s | objs=%d tris=%d" % (status, entry.get("stats", {}).get("objects", 0), tris), flush=True)
-    
+
     # Summary
     ok_count = sum(1 for s in report["scenes"] if s["ok"])
     report["summary"] = {
@@ -188,11 +201,14 @@ def main():
         "ok": ok_count,
         "fail": len(report["scenes"]) - ok_count,
     }
-    report["verdict"] = "PASS" if ok_count == len(report["scenes"]) else "FAIL"
-    
+    report["verdict"] = (
+        "PASS" if report["scenes"] and ok_count == len(report["scenes"])
+        else "FAIL"
+    )
+
     with open(LEDGER, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
-    
+
     print("\n%s/%d scenes OK" % (ok_count, len(report["scenes"])), flush=True)
     print("LEDGER %s" % LEDGER, flush=True)
 
@@ -201,6 +217,7 @@ if __name__ == "__main__":
     code = 0
     try:
         main()
+        code = report_exit_code(report)
     except Exception:
         import traceback
         report["error"] = traceback.format_exc()[-1500:]
