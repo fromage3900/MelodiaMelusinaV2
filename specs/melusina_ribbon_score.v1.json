@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/ribbon_score.v1.json",
+  "schema": "melodia.ribbon_score.v1",
+  "version": "1.0.0-draft",
+  "feature": "Ribbon Score — battle writes music in world space",
+  "presentation_only": true,
+  "targets": ["NS_Melusina_SwingTrail", "NS_Melusina_Arc"],
+  "graph": "Leader(CPU SpawnPerUnit User.SwingIntensity -> GenerateLocationEvent 0.016s) -> Receiver Ribbon(CPU Ribbon + M_SakuraRibbon + M_SeedRibbonLinkOrder/M_SetRibbonGroupID/SetPhaseOffset)",
+  "ribbon": {
+    "material": "M_Niagara_Melodia_Ribbon or M_SakuraRibbon with MF_Niagara_SDF_Sample",
+    "curl_noise": [120, 0.6],
+    "drag": 1.8,
+    "width_over_life": "22->2",
+    "uv_tiling": 3.0,
+    "reaction_color": "MPC_Melodia_Palette palette lerp"
+  },
+  "user_params": ["User.SwingTrailWidth", "User.ArcCurvature", "User.SwingIntensity"],
+  "grade_mapping": "Perfect/Great increase width+curl 1.3x, Good hold, no miss penalty — visuals only, never damage (Decisions 009/016)",
+  "niagara_budget": "CPU ribbons only (2) + fireflies; GPU for motes, ENV_StorybookAmbientVFX Q 7/12/18k",
+  "validation": ["validate_system 0 err", "isolated preview non-black", "pie_smoke ribbon not clipping", "stat Niagara CPU <0.25ms"]
+}
