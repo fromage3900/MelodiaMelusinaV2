@@ -227,8 +227,20 @@ def _find_candidates(project_root: Path, target: Mapping[str, Any]) -> list[dict
             continue
         rows.append((modified, path))
     rows.sort(key=lambda item: (-item[0], str(item[1])))
+    # Keep the bounded scan useful for ordinary previews, but never let a
+    # recorded rejection or the exact target disappear merely because newer
+    # candidates were added.  These rows are still classified below as
+    # rejected/unverified; retaining them is evidence integrity, not approval.
+    selected_paths = [path for _, path in rows[:MAX_CANDIDATES_PER_TARGET]]
+    expected = str(target["filename"])
+    for _, path in rows:
+        if path in selected_paths:
+            continue
+        if path.name.lower() in KNOWN_REVIEW_FINDINGS or path.name == expected:
+            selected_paths.append(path)
+
     candidates: list[dict[str, Any]] = []
-    for _, path in rows[:MAX_CANDIDATES_PER_TARGET]:
+    for path in selected_paths:
         verdict, note = _candidate_verdict(path, target)
         dimensions = _png_dimensions(path)
         candidates.append(
