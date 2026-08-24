@@ -21,6 +21,11 @@ public:
 	virtual void BeginPlay() override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	/** Sheen when the world is unhealed. Matches specs/melusina_sorrow_seam.v1.json. */
+	static constexpr float PristineSheen = 0.18f;
+	/** Sheen once challenge.first_resonance_echo is completed. */
+	static constexpr float HealedSheen = 0.32f;
+
 	UPROPERTY(EditAnywhere, Category="SorrowSeam")
 	TObjectPtr<UMaterialParameterCollection> PaletteMPC = nullptr;
 
@@ -28,14 +33,23 @@ public:
 	UPROPERTY(Transient)
 	TObjectPtr<UMaterialInstanceDynamic> SorrowSeamMID = nullptr;
 
-	UPROPERTY(EditAnywhere, Category="SorrowSeam", meta=(ClampMin="0.0", ClampMax="1.0"))
+	/** FInterpTo speed for the mend lerp. 1.5 reaches pristine->healed in ~1.5s. */
+	UPROPERTY(EditAnywhere, Category="SorrowSeam", meta=(ClampMin="0.0", ClampMax="10.0"))
 	float MendLerpSpeed = 1.5f;
 
 	// Idempotent heal flag check — read-only: if challenge.first_resonance_echo.completed is set, lerp to pristine.
 	bool IsWorldHealed() const;
 
 private:
-	float CurrentSheen = 0.18f; // default pristine sheen for Sorrow Seam
-	float TargetSheen = 0.18f;
+	float CurrentSheen = PristineSheen;
+	float TargetSheen = PristineSheen;
+
+	/**
+	 * Set once ApplyToMID has scanned the owner's material slots. Without this the scan
+	 * re-runs every tick (8 GetMaterial calls plus string compares) for the whole session
+	 * whenever no Sorrow Seam material is bound, which is the current default.
+	 */
+	bool bMIDResolveAttempted = false;
+
 	void ApplyToMID();
 };

@@ -1,9 +1,18 @@
 #include "MelusinaSorrowSeamComponent.h"
+
+#include "Components/SkeletalMeshComponent.h"
+#include "Engine/GameInstance.h"
+#include "Engine/World.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
 #include "MelodiaNarrativeSubsystem.h"
-#include "Components/SkeletalMeshComponent.h"
+#include "UObject/UObjectGlobals.h"
+
+namespace
+{
+	constexpr TCHAR PaletteMPCPath[] = TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette");
+}
 
 UMelusinaSorrowSeamComponent::UMelusinaSorrowSeamComponent()
 {
@@ -14,41 +23,60 @@ UMelusinaSorrowSeamComponent::UMelusinaSorrowSeamComponent()
 void UMelusinaSorrowSeamComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	// PaletteMPC resolved via soft ref or subsystem locator — no hard load here to keep cooker happy.
+
+	// ConstructorHelpers::FObjectFinder is constructor-only: its ctor fatals with
+	// "FObjectFinders can't be used outside of constructors" when IsInConstructor is false.
+	// LoadObject is the supported runtime lookup, and the veil is presentation-only so a
+	// synchronous load here is bounded to one small MPC asset.
 	if (!PaletteMPC)
 	{
-		// Try to find /Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette if not assigned.
-		static ConstructorHelpers::FObjectFinder<UMaterialParameterCollection> Finder(TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette"));
-		if (Finder.Succeeded()) PaletteMPC = Finder.Object;
+		PaletteMPC = LoadObject<UMaterialParameterCollection>(nullptr, PaletteMPCPath);
+	}
+
+	if (!PaletteMPC)
+	{
+		// Nothing to read: stop ticking rather than running a no-op every frame.
+		UE_LOG(LogTemp, Warning,
+			TEXT("MelusinaSorrowSeam: palette MPC '%s' not found; veil disabled for %s."),
+			PaletteMPCPath, *GetNameSafe(GetOwner()));
+		SetComponentTickEnabled(false);
 	}
 }
 
 void UMelusinaSorrowSeamComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	if (!PaletteMPC) return;
+	if (!PaletteMPC)
+	{
+		return;
+	}
+
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
 
 	float Dread = 0.f, Dissonance = 0.f, BeatPulse = 0.f, TemporalJitter = 0.f;
-	if (GetWorld())
+	if (UMaterialParameterCollectionInstance* Inst = World->GetParameterCollectionInstance(PaletteMPC))
 	{
-		if (auto* Inst = GetWorld()->GetParameterCollectionInstance(PaletteMPC))
-		{
-			Inst->GetScalarParameterValue(FName(TEXT("DreadPresence")), Dread);
-			Inst->GetScalarParameterValue(FName(TEXT("DissonanceAmount")), Dissonance);
-			Inst->GetScalarParameterValue(FName(TEXT("BeatPulse")), BeatPulse);
-			Inst->GetScalarParameterValue(FName(TEXT("TemporalJitter")), TemporalJitter);
-		}
+		Inst->GetScalarParameterValue(FName(TEXT("DreadPresence")), Dread);
+		Inst->GetScalarParameterValue(FName(TEXT("DissonanceAmount")), Dissonance);
+		Inst->GetScalarParameterValue(FName(TEXT("BeatPulse")), BeatPulse);
+		Inst->GetScalarParameterValue(FName(TEXT("TemporalJitter")), TemporalJitter);
 	}
 
 	// World-healed overrides dread dim: lerp sheen to pristine 0.32 over 1.5s.
-	if (IsWorldHealed())
+	const bool bHealed = IsWorldHealed();
+	if (bHealed)
 	{
-		TargetSheen = 0.32f;
+		TargetSheen = HealedSheen;
 	}
 	CurrentSheen = FMath::FInterpTo(CurrentSheen, TargetSheen, DeltaTime, MendLerpSpeed);
 
 	// Gate: at rest (all 0) -> no MID creation, byte-identical.
-	if (FMath::IsNearlyZero(Dread) && FMath::IsNearlyZero(Dissonance) && FMath::IsNearlyZero(TemporalJitter) && FMath::IsNearlyEqual(CurrentSheen, 0.18f, 0.001f) && !IsWorldHealed())
+	if (FMath::IsNearlyZero(Dread) && FMath::IsNearlyZero(Dissonance) && FMath::IsNearlyZero(TemporalJitter) &&
+		FMath::IsNearlyEqual(CurrentSheen, PristineSheen, 0.001f) && !bHealed)
 	{
 		return;
 	}
@@ -66,11 +94,14 @@ void UMelusinaSorrowSeamComponent::TickComponent(float DeltaTime, ELevelTick Tic
 
 bool UMelusinaSorrowSeamComponent::IsWorldHealed() const
 {
-	if (auto* GI = GetWorld() ? GetWorld()->GetGameInstance() : nullptr)
+	const UWorld* World = GetWorld();
+	if (UGameInstance* GI = World ? World->GetGameInstance() : nullptr)
 	{
-		if (auto* Narr = GI->GetSubsystem<UMelodiaNarrativeSubsystem>())
+		if (UMelodiaNarrativeSubsystem* Narr = GI->GetSubsystem<UMelodiaNarrativeSubsystem>())
 		{
-			return Narr->IsWorldChallengeCompleted(FName(TEXT("challenge.first_resonance_echo")), FName(TEXT("challenge.first_resonance_echo.completed")));
+			return Narr->IsWorldChallengeCompleted(
+				FName(TEXT("challenge.first_resonance_echo")),
+				FName(TEXT("challenge.first_resonance_echo.completed")));
 		}
 	}
 	return false;
@@ -78,25 +109,42 @@ bool UMelusinaSorrowSeamComponent::IsWorldHealed() const
 
 void UMelusinaSorrowSeamComponent::ApplyToMID()
 {
-	if (SorrowSeamMID) return;
+	if (SorrowSeamMID || bMIDResolveAttempted)
+	{
+		return;
+	}
 	// Lazily create MID from the Sorrow Seam MI if the owner pawn has it on Trail slot.
 	// This is presentation; if mesh not found, MF_Madoka still reads MPC directly so veil still warps.
-	if (AActor* Owner = GetOwner())
+	// Resolution is attempted exactly once: MI_Fabric_Melusina_SorrowSeam does not exist yet, so
+	// re-scanning per tick would burn 8 GetMaterial calls and string compares every frame forever.
+	bMIDResolveAttempted = true;
+
+	AActor* Owner = GetOwner();
+	if (!Owner)
 	{
-		if (auto* Mesh = Owner->FindComponentByClass<USkeletalMeshComponent>())
+		return;
+	}
+
+	USkeletalMeshComponent* Mesh = Owner->FindComponentByClass<USkeletalMeshComponent>();
+	if (!Mesh)
+	{
+		return;
+	}
+
+	// Try material index 0..7 for Trail; create MID from whatever is there and matches Sorrow Seam.
+	const int32 SlotCount = FMath::Min(Mesh->GetNumMaterials(), 8);
+	for (int32 Idx = 0; Idx < SlotCount; ++Idx)
+	{
+		UMaterialInterface* Mat = Mesh->GetMaterial(Idx);
+		if (!Mat)
 		{
-			// Try material index 0..7 for Trail; create MID from whatever is there and matches Sorrow Seam.
-			for (int32 Idx = 0; Idx < 8; ++Idx)
-			{
-				if (UMaterialInterface* Mat = Mesh->GetMaterial(Idx))
-				{
-					if (Mat->GetName().Contains(TEXT("SorrowSeam")) || Mat->GetName().Contains(TEXT("Trail")))
-					{
-						SorrowSeamMID = Mesh->CreateDynamicMaterialInstance(Idx, Mat);
-						break;
-					}
-				}
-			}
+			continue;
+		}
+		const FString MatName = Mat->GetName();
+		if (MatName.Contains(TEXT("SorrowSeam")) || MatName.Contains(TEXT("Trail")))
+		{
+			SorrowSeamMID = Mesh->CreateDynamicMaterialInstance(Idx, Mat);
+			break;
 		}
 	}
 }
