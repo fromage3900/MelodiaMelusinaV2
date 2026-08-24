@@ -269,16 +269,27 @@ def _frame_scene(terrain_obj):
 
 def _render_viewport(context, path, props):
     scene = context.scene
-    scene.render.engine = 'BLENDER_EEVEE'
     scene.render.filepath = path
     scene.render.image_settings.file_format = 'PNG'
+    scene.render.resolution_x = 1920
+    scene.render.resolution_y = 1080
     render_pct = int(getattr(props, "resolution_percent", 100))
     if hasattr(scene.render, "resolution_percent"):
         scene.render.resolution_percent = render_pct
     elif hasattr(scene.render, "resolution_percentage"):
         scene.render.resolution_percentage = render_pct
-    scene.eevee.taa_samples = int(props.samples)
-    scene.render.film_transparent = bool(props.transparent)
+    scene.render.film_transparent = bool(getattr(props, "transparent", False))
+
+    # Path-traced quality path: Cycles with denoising.
+    # Falls back to EEVEE if Cycles is unavailable.
+    try:
+        scene.render.engine = 'CYCLES'
+        scene.cycles.samples = int(getattr(props, "samples", 256))
+        scene.cycles.use_denoising = True
+        scene.cycles.denoiser = 'OPENIMAGEDENOISE'
+    except Exception:
+        scene.render.engine = 'BLENDER_EEVEE'
+        scene.eevee.taa_samples = int(getattr(props, "samples", 256))
 
     prev = scene.camera
     try:

@@ -668,8 +668,13 @@ def register_overhaul(monolith):
     from .live_bridge import CLASSES as LIVE_BRIDGE_CLASSES, register_props as register_live_bridge_props
     from .material_bridge import CLASSES as MATERIAL_BRIDGE_CLASSES, register_props as register_material_bridge_props
     from .melusina_portrait import CLASSES as MELUSINA_PORTRAIT_CLASSES, register_props as register_portrait_props
-    from .pie_menu import register_pie_menu
+    from .pie_menu import (
+        register_pie_menu,
+        register_pie_menu_with_keymaps,
+        unregister_pie_menu_with_keymaps,
+    )
     from .stage_publish import CLASSES as STAGE_PUBLISH_CLASSES, register_props as register_stage_publish_props
+    from .music_ui import register_music_ui, unregister_music_ui
 
     patch_workflow_polls(monolith)
     register_preferences()
@@ -847,10 +852,28 @@ def register_overhaul(monolith):
         unify_npanel_categories()
     except Exception as exc:
         print(f"[Surreal Architecture] unify_npanel_categories skipped: {exc}")
+    try:
+        register_pie_menu_with_keymaps()
+    except Exception as exc:
+        print(f"[Surreal Architecture] pie keymaps skipped: {exc}")
+    try:
+        register_music_ui()
+    except Exception as exc:
+        print(f"[Melodia Studio] music score UI skipped: {exc}")
 
 
 def unregister_overhaul():
     global _REGISTERED_MONOLITH
+    try:
+        from .pie_menu import unregister_pie_menu_with_keymaps
+        unregister_pie_menu_with_keymaps()
+    except Exception:
+        pass
+    try:
+        from .music_ui import unregister_music_ui
+        unregister_music_ui()
+    except Exception:
+        pass
     from .bootstrap import unregister_preferences
     from .greybox_overlay import disable_overlay
     from .quality_props import unregister_quality_props

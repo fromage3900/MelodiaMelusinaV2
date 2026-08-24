@@ -2292,11 +2292,67 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
     # ── GREYBOX v2.52 extended props ───────────────────────────────────────
     gb_room_shape: bpy.props.EnumProperty(
         name="Room Shape",
-        items=[('RECTANGLE', "□ Rectangle",    "Single rectangular room"),
-               ('L_SHAPE',   "⌐ L-Shape",      "Two rooms joined at a corner"),
-               ('T_SHAPE',   "T T-Shape",       "Three arms meeting at a junction"),
-               ('U_SHAPE',   "U U-Shape",       "Three sides open in the middle"),],
+        description="Footprint shape — rectangle/composite or advanced math/organic shells",
+        items=[
+            ('RECTANGLE', "□ Rectangle",    "Single rectangular room"),
+            ('L_SHAPE',   "⌐ L-Shape",      "Two rooms joined at a corner"),
+            ('T_SHAPE',   "T T-Shape",       "Three arms meeting at a junction"),
+            ('U_SHAPE',   "U U-Shape",       "Three sides open in the middle"),
+            ('CIRCULAR',  "○ Circular",     "Full circle footprint (tower / rotunda)"),
+            ('APSIDAL',   "◐ Apsidal",      "Rectangle + semicircular apse end"),
+            ('OCTAGON',   "⬡ Octagon",      "Regular octagon — gothic / sci-fi hub"),
+            ('HEX',       "⬡ Hexagon",      "Regular hexagon — honeycomb / shrine"),
+            ('ELLIPSE',   "⬭ Ellipse",      "Elliptical hall (baroque / orbital)"),
+            ('SUPERELLIPSE', "⬔ Superellipse", "Squircle / superellipse (n>2) — modern vault"),
+            ('FREEFORM',  "〰 Freeform Curve", "GN curve footprint (editable curve profile)"),
+        ],
         default='RECTANGLE', update=auto_update_callback)
+    gb_room_sides: bpy.props.IntProperty(
+        name="Polygon Sides", default=8, min=3, max=32,
+        description="Side count for OCTAGON/HEX/ELLIPSE approximations (ignored for rectangle)",
+        update=auto_update_callback)
+    gb_room_radius: bpy.props.FloatProperty(
+        name="Room Radius", default=4.0, min=1.0, max=40.0,
+        description="Radius for CIRCULAR/APSIDAL/OCTAGON/HEX/ELLIPSE/SUPERELLIPSE",
+        update=auto_update_callback)
+    gb_room_ellipse_ratio: bpy.props.FloatProperty(
+        name="Ellipse Ratio (Y/X)", default=0.7, min=0.2, max=3.0,
+        description="Y/X squash for ELLIPSE / SUPERELLIPSE",
+        update=auto_update_callback)
+    gb_room_super_n: bpy.props.FloatProperty(
+        name="Superellipse N", default=4.0, min=0.5, max=12.0,
+        description="Exponent for SUPERELLIPSE (|x|^n+|y|^n=1). n=2 ellipse, 4 squircle, >8 near-rect",
+        update=auto_update_callback)
+    gb_window_shape: bpy.props.EnumProperty(
+        name="Window Shape",
+        description="Cutout silhouette for window booleans (greybox room / tower / apse)",
+        items=[
+            ('RECT', "▭ Rectangle", "Simple box cutter — trim-sheet friendly"),
+            ('ARCH_ROUND', "⌒ Round Arch", "Roman segmental arch on top"),
+            ('GOTHIC', "⩙ Gothic Pointed", "Two arcs meeting at apex"),
+            ('OGEE', "∿ Ogee S-Curve", "Convex-then-concave Islamic / gothic foil"),
+            ('CIRCLE', "○ Circular", "Oculus / porthole — cylinder cutter"),
+            ('ROSETTE', "✿ Rosette", "Circular with radial tracery hint"),
+            ('LINTEL', "▬ Lintel", "Flat lintel with slight reveal"),
+            ('SEGMENTAL', "⌒ Segmental", "Shallow segmental arch"),
+        ],
+        default='RECT', update=auto_update_callback)
+    gb_window_arch_height: bpy.props.FloatProperty(
+        name="Window Arch Height", default=0.4, min=0.0, max=3.0,
+        description="Arch rise above rectangular sill (for ARCH_ROUND/GOTHIC/OGEE/SEGMENTAL)",
+        update=auto_update_callback)
+    gb_window_has_mullion: bpy.props.BoolProperty(
+        name="Window Mullion", default=False,
+        description="Add centre vertical mullion bar inside window reveal",
+        update=auto_update_callback)
+    gb_window_has_transom: bpy.props.BoolProperty(
+        name="Window Transom", default=False,
+        description="Add horizontal transom bar (cross) inside window reveal",
+        update=auto_update_callback)
+    gb_window_glazing: bpy.props.BoolProperty(
+        name="Window Glazing", default=False,
+        description="Insert thin glass plane with SURREAL_TRIM:window_glass tag for UE",
+        update=auto_update_callback)
     gb_window_n: bpy.props.BoolProperty(name="Windows North", default=False,
         description="Add windows to North (+Y) wall", update=auto_update_callback)
     gb_window_s: bpy.props.BoolProperty(name="Windows South", default=False,
