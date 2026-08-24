@@ -289,22 +289,51 @@ def build_tuning_fork(group_name="MEL_tuning_fork"):
                 if gap:
                     link_float_to_vector(tree, gap.outputs[0], tine_xf, "Translation",
                                          component=0, defaults=(0.0, 0.0, 0.0))
+                tine_half = safe_node(tree, "ShaderNodeMath", (bx - 600, by - side * 200 - 80))
+                tine_base = safe_node(tree, "ShaderNodeMath", (bx - 420, by - side * 200 - 80))
+                tine_lift = safe_node(tree, "ShaderNodeMath", (bx - 240, by - side * 200 - 80))
+                if tine_half and tine_base and tine_lift:
+                    tine_half.operation = "MULTIPLY"
+                    link_sockets(tree, gin.outputs["Tine Length"], tine_half.inputs[0])
+                    tine_half.inputs[1].default_value = 0.5
+                    tine_base.operation = "ADD"
+                    link_sockets(tree, gin.outputs["Handle Length"], tine_base.inputs[0])
+                    link_sockets(tree, gin.outputs["Box Height"], tine_base.inputs[1])
+                    tine_lift.operation = "ADD"
+                    link_sockets(tree, tine_base.outputs[0], tine_lift.inputs[0])
+                    link_sockets(tree, tine_half.outputs[0], tine_lift.inputs[1])
+                    link_float_to_vector(
+                        tree,
+                        tine_lift.outputs[0],
+                        tine_xf,
+                        "Translation",
+                        component=2,
+                        defaults=(0.0, 0.0, 0.0),
+                    )
                 parts.append(tine_xf.outputs["Geometry"])
 
     # Resonance box (at top of handle)
     box = safe_node(tree, "GeometryNodeMeshCube", (bx - 600, by + 400))
     if box:
-        box.inputs["Size"].default_value = (0.08, 0.06, 0.04)
-        link_sockets(tree, gin.outputs["Box Width"], box.inputs["Size"])
+        box_size = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 800, by + 440))
+        if box_size:
+            link_sockets(tree, gin.outputs["Box Width"], box_size.inputs["X"])
+            link_sockets(tree, gin.outputs["Box Depth"], box_size.inputs["Y"])
+            link_sockets(tree, gin.outputs["Box Height"], box_size.inputs["Z"])
+            link_sockets(tree, box_size.outputs["Vector"], box.inputs["Size"])
         box_xf = safe_node(tree, "GeometryNodeTransform", (bx - 400, by + 400))
         if box_xf:
             link_sockets(tree, box.outputs["Mesh"], box_xf.inputs["Geometry"])
-            # Position at top of handle
+            # Place the box directly above the handle.
+            half_box = safe_node(tree, "ShaderNodeMath", (bx - 780, by + 350))
             lift = safe_node(tree, "ShaderNodeMath", (bx - 600, by + 350))
-            if lift:
-                lift.operation = "MULTIPLY"
+            if half_box and lift:
+                half_box.operation = "MULTIPLY"
+                link_sockets(tree, gin.outputs["Box Height"], half_box.inputs[0])
+                half_box.inputs[1].default_value = 0.5
+                lift.operation = "ADD"
                 link_sockets(tree, gin.outputs["Handle Length"], lift.inputs[0])
-                lift.inputs[1].default_value = 0.9
+                link_sockets(tree, half_box.outputs[0], lift.inputs[1])
                 link_float_to_vector(tree, lift.outputs[0], box_xf, "Translation",
                                      component=2, defaults=(0.0, 0.0, 0.0))
             parts.append(box_xf.outputs["Geometry"])
@@ -355,7 +384,8 @@ def build_singing_bowl(group_name="MEL_singing_bowl"):
     add_float_param(tree, "Strike Point", 0.0, 0.0, 1.0)
     add_float_param(tree, "Pitch", 256.0, 20.0, 2000.0)
 
-    # Bowl profile: half-sphere shelled
+    # Bowl profile: shell a sphere, delete the upper hemisphere, then scale
+    # the retained half to the requested depth.
     outer = safe_node(tree, "GeometryNodeMeshUVSphere", (bx - 400, by))
     if outer:
         link_sockets(tree, gin.outputs["Radius"], outer.inputs["Radius"])
@@ -385,6 +415,47 @@ def build_singing_bowl(group_name="MEL_singing_bowl"):
     else:
         shell = outer.outputs["Mesh"] if outer else None
 
+    if shell:
+        position = safe_node(tree, "GeometryNodeInputPosition", (bx - 120, by - 360))
+        separate = safe_node(tree, "ShaderNodeSeparateXYZ", (bx + 60, by - 360))
+        compare = safe_node(tree, "FunctionNodeCompare", (bx + 240, by - 360))
+        delete = safe_node(tree, "GeometryNodeDeleteGeometry", (bx + 420, by - 160))
+        if position and separate and compare and delete:
+            compare.data_type = "FLOAT"
+            compare.operation = "GREATER_THAN"
+            compare.inputs[1].default_value = 0.0
+            delete.domain = "FACE"
+            link_sockets(tree, position.outputs["Position"], separate.inputs["Vector"])
+            link_sockets(tree, separate.outputs["Z"], compare.inputs[0])
+            link_sockets(tree, shell, delete.inputs["Geometry"])
+            link_sockets(tree, compare.outputs["Result"], delete.inputs["Selection"])
+            shell = delete.outputs["Geometry"]
+
+        depth_ratio = safe_node(tree, "ShaderNodeMath", (bx + 240, by - 520))
+        bowl_xf = safe_node(tree, "GeometryNodeTransform", (bx + 600, by - 160))
+        if depth_ratio and bowl_xf:
+            depth_ratio.operation = "DIVIDE"
+            link_sockets(tree, gin.outputs["Depth"], depth_ratio.inputs[0])
+            link_sockets(tree, gin.outputs["Radius"], depth_ratio.inputs[1])
+            link_sockets(tree, shell, bowl_xf.inputs["Geometry"])
+            link_float_to_vector(
+                tree,
+                depth_ratio.outputs[0],
+                bowl_xf,
+                "Scale",
+                component=2,
+                defaults=(1.0, 1.0, 1.0),
+            )
+            link_float_to_vector(
+                tree,
+                gin.outputs["Depth"],
+                bowl_xf,
+                "Translation",
+                component=2,
+                defaults=(0.0, 0.0, 0.0),
+            )
+            shell = bowl_xf.outputs["Geometry"]
+
     # Rim ring (torus-like) — torus not in 5.2, use tube instead
     rim = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (bx - 400, by + 200))
     if rim:
@@ -397,7 +468,7 @@ def build_singing_bowl(group_name="MEL_singing_bowl"):
         rim_profile = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (bx - 200, by + 100))
         if rim_profile:
             rim_profile.inputs["Resolution"].default_value = 8
-            rim_profile.inputs["Radius"].default_value = 0.01
+            link_sockets(tree, gin.outputs["Rim Width"], rim_profile.inputs["Radius"])
         rim_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx, by + 200))
         if rim_mesh and rim_geo:
             link_sockets(tree, rim_geo, rim_mesh.inputs.get("Curve") or rim_mesh.inputs[0])
@@ -425,7 +496,15 @@ def build_singing_bowl(group_name="MEL_singing_bowl"):
             pass
         link_sockets(tree, join.outputs["Geometry"], store.inputs["Geometry"])
         link_sockets(tree, gin.outputs["Pitch"], store.inputs["Value"])
-        result = store.outputs["Geometry"]
+        strike_store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 500, by))
+        if strike_store:
+            strike_store.data_type = "FLOAT"
+            strike_store.inputs["Name"].default_value = "strike_point"
+            link_sockets(tree, store.outputs["Geometry"], strike_store.inputs["Geometry"])
+            link_sockets(tree, gin.outputs["Strike Point"], strike_store.inputs["Value"])
+            result = strike_store.outputs["Geometry"]
+        else:
+            result = store.outputs["Geometry"]
     else:
         result = join.outputs["Geometry"]
 
@@ -451,9 +530,8 @@ def build_church_bell(group_name="MEL_church_bell"):
     add_float_param(tree, "Height", 0.6, 0.1, 2.0)
     add_float_param(tree, "Mouth Radius", 0.25, 0.05, 1.0)
     add_float_param(tree, "Wall Thickness", 0.01, 0.002, 0.05)
-    add_float_param(tree, "Shoulder Height", 0.15, 0.02, 0.5)
     add_float_param(tree, "Crown Width", 0.08, 0.02, 0.3)
-    add_float_param(tree, "Has Clapper", True)
+    add_bool_param(tree, "Has Clapper", True)
     add_float_param(tree, "Clapper Swing", 0.0, -30.0, 30.0)
     add_float_param(tree, "Pitch", 128.0, 20.0, 2000.0)
 
@@ -559,11 +637,14 @@ def build_church_bell(group_name="MEL_church_bell"):
             if clapper_xf:
                 link_sockets(tree, clapper.outputs["Mesh"], clapper_xf.inputs["Geometry"])
                 if swing:
-                    try:
-                        clapper_xf.inputs["Rotation"].default_value = (
-                            swing.outputs[0], 0, 0)
-                    except Exception:
-                        pass
+                    link_float_to_vector(
+                        tree,
+                        swing.outputs[0],
+                        clapper_xf,
+                        "Rotation",
+                        component=1,
+                        defaults=(0.0, 0.0, 0.0),
+                    )
                 clapper_xf.inputs["Translation"].default_value = (0, 0, 0)
                 true_in = clapper_switch.inputs.get("True")
                 if true_in is None:
