@@ -2,7 +2,9 @@
 
 #include "MelodiaCompanionComponent.h"
 #include "MelodiaCompanionData.h"
+#include "MelodiaChoralSheepActor.h"
 #include "MelodiaResonanceGardenData.h"
+#include "Components/SphereComponent.h"
 #include "Misc/AutomationTest.h"
 
 namespace
@@ -118,6 +120,18 @@ bool FMelodiaCompanionPrimaryAssetIdsTest::RunTest(const FString& Parameters)
 	CompanionAsset->Definition = MakeValidChoralSheepDefinition();
 	TestEqual(TEXT("Companion primary asset type is stable"), CompanionAsset->GetPrimaryAssetId().PrimaryAssetType, FPrimaryAssetType(TEXT("MelodiaCompanion")));
 	TestEqual(TEXT("Companion primary asset name is stable"), CompanionAsset->GetPrimaryAssetId().PrimaryAssetName, FName(TEXT("ChoralSheep")));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FMelodiaChoralSheepActorContractTest, "Melodia.ResonanceGarden.ChoralSheepActorContract", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FMelodiaChoralSheepActorContractTest::RunTest(const FString& Parameters)
+{
+	const AMelodiaChoralSheepActor* Sheep = GetDefault<AMelodiaChoralSheepActor>();
+	TestNotNull(TEXT("Choral Sheep owns its native skeletal mesh slot"), Sheep->SkeletalMeshComponent.Get());
+	TestNotNull(TEXT("Choral Sheep owns its companion controller"), Sheep->CompanionComponent.Get());
+	TestNotNull(TEXT("Choral Sheep owns a query interaction range"), Sheep->InteractionRange.Get());
+	TestTrue(TEXT("Choral Sheep defaults to a standalone follow smoke"), Sheep->bAutoFollowFirstPlayer);
+	TestEqual(TEXT("Choral Sheep interaction range is stable"), Sheep->InteractionRange->GetUnscaledSphereRadius(), 160.0f);
 	return true;
 }
 

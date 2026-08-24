@@ -48,5 +48,13 @@
     "animation_blueprint_path": "/Game/Melodia/Companions/ChoralSheep/ABP_ChoralSheep",
     "reimport_policy": "Reimport the approved rig at the reserved skeletal-mesh path. The companion definition owns the mesh, optional animation class, and local transform; maps and actor Blueprints must not carry rig references.",
     "groom_policy": "Optional. Missing Groom must not prevent the base skeletal mesh from loading or the companion from following."
+  },
+  "native_integration": {
+    "native_actor_class": "/Script/MelodiaCore.MelodiaChoralSheepActor",
+    "blueprint_class_path": "/Game/Melodia/Companions/ChoralSheep/BP_ChoralSheep",
+    "interaction_radius_cm": 160.0,
+    "auto_follow_first_player_for_smoke": true,
+    "save_authority": "none",
+    "first_live_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap"
   }
 }

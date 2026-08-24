@@ -2,7 +2,7 @@
 
 namespace
 {
-	void SetValidationError(FText* OutError, const TCHAR* Message)
+	void SetResonanceGardenValidationError(FText* OutError, const TCHAR* Message)
 	{
 		if (OutError)
 		{
@@ -22,13 +22,13 @@ bool FMelodiaFurProfile::IsValid(FText* OutError) const
 {
 	if (ProfileId.IsNone())
 	{
-		SetValidationError(OutError, TEXT("Fur profile requires a stable ProfileId."));
+		SetResonanceGardenValidationError(OutError, TEXT("Fur profile requires a stable ProfileId."));
 		return false;
 	}
 
 	if (LODBands.Num() == 0)
 	{
-		SetValidationError(OutError, TEXT("Fur profile requires at least one LOD band."));
+		SetResonanceGardenValidationError(OutError, TEXT("Fur profile requires at least one LOD band."));
 		return false;
 	}
 
@@ -38,12 +38,12 @@ bool FMelodiaFurProfile::IsValid(FText* OutError) const
 		const FMelodiaFurLodBand& Band = LODBands[Index];
 		if (Band.MinDistance < 0.0f || Band.MaxDistance <= Band.MinDistance)
 		{
-			SetValidationError(OutError, TEXT("Fur LOD bands must have non-negative, increasing distances."));
+			SetResonanceGardenValidationError(OutError, TEXT("Fur LOD bands must have non-negative, increasing distances."));
 			return false;
 		}
 		if (Index > 0 && !FMath::IsNearlyEqual(Band.MinDistance, PreviousMax))
 		{
-			SetValidationError(OutError, TEXT("Fur LOD bands must be contiguous."));
+			SetResonanceGardenValidationError(OutError, TEXT("Fur LOD bands must be contiguous."));
 			return false;
 		}
 		PreviousMax = Band.MaxDistance;
@@ -51,7 +51,7 @@ bool FMelodiaFurProfile::IsValid(FText* OutError) const
 
 	if (WoolClumpScale < 0.0f || SheenResponse < 0.0f || SheenResponse > 1.0f)
 	{
-		SetValidationError(OutError, TEXT("Fur clump and sheen values are outside their valid ranges."));
+		SetResonanceGardenValidationError(OutError, TEXT("Fur clump and sheen values are outside their valid ranges."));
 		return false;
 	}
 
@@ -62,24 +62,24 @@ bool FMelodiaStyleGenome::IsValid(FText* OutError) const
 {
 	if (GenomeId.IsNone())
 	{
-		SetValidationError(OutError, TEXT("Style genome requires a stable GenomeId."));
+		SetResonanceGardenValidationError(OutError, TEXT("Style genome requires a stable GenomeId."));
 		return false;
 	}
 	if (MaterialFamily.IsNone())
 	{
-		SetValidationError(OutError, TEXT("Style genome requires a material family."));
+		SetResonanceGardenValidationError(OutError, TEXT("Style genome requires a material family."));
 		return false;
 	}
 	if (MusicMotif.IsNone())
 	{
-		SetValidationError(OutError, TEXT("Style genome requires a music motif."));
+		SetResonanceGardenValidationError(OutError, TEXT("Style genome requires a music motif."));
 		return false;
 	}
 	if (Sheen < 0.0f || Sheen > 1.0f || Iridescence < 0.0f || Iridescence > 1.0f
 		|| Sparkle < 0.0f || Sparkle > 1.0f || Bloom < 0.0f || Bloom > 1.0f
 		|| RhythmSensitivity < 0.0f || RhythmSensitivity > 2.0f)
 	{
-		SetValidationError(OutError, TEXT("Style genome material or rhythm values are outside their valid ranges."));
+		SetResonanceGardenValidationError(OutError, TEXT("Style genome material or rhythm values are outside their valid ranges."));
 		return false;
 	}
 	return true;
