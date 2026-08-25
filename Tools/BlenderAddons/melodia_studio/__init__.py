@@ -1,4 +1,4 @@
-# Melodia Studio — Blender Integration Panel
+# Melodia Studio - Blender Integration Panel
 # Tools/BlenderAddons/melodia_studio/
 
 bl_info = {
@@ -6,9 +6,9 @@ bl_info = {
     "author": "fromage3900",
     "version": (1, 3, 0),
     "blender": (4, 0, 0),
-    "location": "View3D > Sidebar > Melodia",
-    "description": "MIDI-driven Resonant World generation — walkable default, Gaea surfaced, musical GN presets, bespoke Melodia chrome (C: authority)",
-    "category": "Melodia",
+    "location": "View3D > Sidebar > Melodia Studio",
+    "description": "MIDI-driven Resonant World generation - walkable default, Gaea surfaced, musical GN presets, bespoke Melodia chrome (C: authority)",
+    "category": "Melodia Studio",
 }
 
 import importlib
@@ -17,7 +17,7 @@ import sys
 from . import midi_bridge
 from . import studio_panel
 
-# Optional helpers — may be absent offline
+# Optional helpers - may be absent offline
 try:
     from . import addon_utils  # type: ignore
 except Exception:

@@ -705,7 +705,7 @@ if bpy is not None:
         bl_idname = "STUDIO_PT_panel"
         bl_space_type = 'VIEW_3D'
         bl_region_type = 'UI'
-        bl_category = "Melodia"  # unified
+        bl_category = "Melodia Studio"  # separate tab per owner
         bl_options = {'DEFAULT_CLOSED'}
 
         def draw(self, context):
@@ -729,6 +729,13 @@ if bpy is not None:
             # Search + MIDI picker
             box.prop(props, "midi_filter", text="", icon='VIEWZOOM')
             box.prop(props, "midi_file", text="")
+            # Truncate hint (audit P0)
+            try:
+                _found_all = _discover_cached()
+                if len(_found_all) > 64:
+                    box.label(text=f"Showing 64 of {len(_found_all)} - use search", icon='INFO')
+            except Exception:
+                pass
             # Preview line for selected MIDI
             midi = _selected_midi(props)
             if midi and os.path.exists(midi):
@@ -785,7 +792,7 @@ if bpy is not None:
         bl_parent_id = "STUDIO_PT_panel"
         bl_space_type = 'VIEW_3D'
         bl_region_type = 'UI'
-        bl_category = "Melodia"
+        bl_category = "Melodia Studio"
         bl_options = {'DEFAULT_CLOSED'}
 
         def draw(self, context):
@@ -809,8 +816,12 @@ if bpy is not None:
                           icon='FILE_SOUND')
 
                 if h.get("issues"):
-                    row = box.row()
-                    row.label(text=h["issues"][0], icon='ERROR')
+                    for iss in h["issues"][:3]:
+                        row = box.row()
+                        row.label(text=iss, icon='ERROR')
+                    if len(h["issues"]) > 3:
+                        row = box.row()
+                        row.label(text=f"... +{len(h['issues'])-3} more", icon='INFO')
                 else:
                     row = box.row()
                     row.label(text="All systems nominal", icon='CHECKMARK')
