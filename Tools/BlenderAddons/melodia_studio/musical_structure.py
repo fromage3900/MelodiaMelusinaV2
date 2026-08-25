@@ -11,9 +11,14 @@ Pure Python, no bpy. Deterministic.
 
 import os
 import sys
+from pathlib import Path
 
-REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
-ADDON = os.path.join(REPO, "Tools", "BlenderAddons", "melodia_studio")
+try:
+    import melodia_utils as _mu  # type: ignore
+    REPO = str(_mu.repo_root())
+except Exception:
+    REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
+ADDON = str(Path(REPO) / "Tools" / "BlenderAddons" / "melodia_studio")
 if ADDON not in sys.path:
     sys.path.insert(0, ADDON)
 
