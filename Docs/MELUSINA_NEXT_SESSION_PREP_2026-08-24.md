@@ -236,3 +236,16 @@ need PIE, not code.
 - **Quaternius has never worked.** Owner ground truth. Do not wire, automate, or import it.
 
 - **Query the live object before believing any doc.** Every "X is missing" claim this session that came from a doc rather than a live query proved false — face, wardrobe and UI were all already built.
+
+  **Refinement 2026-08-25 — this rule cost a wrong turn when applied too loosely.** A live query is
+  only as good as what that query can *see*. The asset registry reported `WBP_MainMenu` with zero
+  referencers, which read as "nothing creates the main menu"; on that basis `GameDefaultMap` was
+  briefly repointed and had to be reverted. The reference was real — a hardcoded `FSoftObjectPath`
+  **string** in `OrreryMainMenuGameMode.cpp:318`, which the registry cannot index. And
+  `FIRST_DREAM_VERTICAL_SLICE_CHECKLIST_2026-07-28.md:165` had documented the correct wiring the
+  whole time, so here the *doc* was right and the *live query* was misleading.
+
+  Before declaring anything unreferenced, confirm with BOTH:
+  1. `grep -rn "<Name>" Source/ Plugins/*/Source/` — catches hardcoded `FSoftObjectPath`,
+     `LoadClass`, `StaticLoadObject`.
+  2. `grep -rl "<Name>" Content --include=*.uasset` — catches soft-path strings in package data.
