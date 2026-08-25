@@ -158,19 +158,55 @@ namespace to `MPC_Melodia_Palette` (materials) and stops there — Niagara canno
 
 Fix: mirror the same seven values into the NPC in the same publish function
 (`GlobalReactivity`, `Bass`, `Mid`, `Treble`, `BeatPhase`, `BeatPulse`, `BeatIntensity`).
-47 lines added, nothing removed. **Not yet built** — needs a closed editor.
+47 lines added, nothing removed. **BUILT AND LINKED 2026-08-25** (`Result: Succeeded`,
+closed-editor `Build.bat` pass).
 
 Gotcha worth keeping: `UNiagaraParameterCollectionInstance::SetFloatParameter` runs its argument
 through `ParameterNameFromFriendlyString`, so pass the **bare** name (`"BeatPulse"`). Passing the
 fully-qualified `NPC.MelodiaPalette.BeatPulse` silently writes a parameter nothing reads.
 
-### Still unwired on this seam
-- **`NS_Melodia_LaneHit` has ZERO references** — a purpose-built rhythm lane-hit effect that nothing
-  spawns.
-- **`RhythmBeatTracker::OnBeat.Broadcast()` has no C++ listener at all.** The beat fires into
-  nothing.
-- `ComboNormalized` / `VictoryPulse` / `EnemyTension` are declared in the NPC and unwritten —
-  feeding them from `MelodiaBattleSession` is the cheapest route to battle-intensity variation.
+Second gotcha, learned the expensive way 2026-08-25 — **"query the live object, not the doc" is not
+a licence to trust any single query.** The asset registry reported `WBP_MainMenu` with zero
+referencers, which I read as "nothing creates the menu". It was wrong: `OrreryMainMenuGameMode.cpp`
+holds the reference as a hardcoded `FSoftObjectPath` **string**, which the registry cannot see. On
+that basis I briefly repointed `GameDefaultMap` and had to revert it. Meanwhile
+`FIRST_DREAM_VERTICAL_SLICE_CHECKLIST_2026-07-28.md:165` had described the correct wiring all
+along. A registry query IS a live query — it is just blind to string-literal references.
+
+Before declaring an asset unreferenced, confirm with BOTH:
+1. `grep -rn "<AssetName>" Source/ Plugins/*/Source/` — catches hardcoded `FSoftObjectPath` /
+   `LoadClass` / `StaticLoadObject` paths.
+2. `grep -rl "<AssetName>" Content --include=*.uasset` — catches soft-path strings living in
+   package data that the registry did not index.
+
+Related: never write a bare `except: pass` in a verification scan. One hid a property-name error and
+produced a false "no Blueprint owns this component" across all 612 Blueprints; `BP_BattleController`
+owned it the whole time.
+
+### ~~Still unwired on this seam~~ — CLOSED 2026-08-25
+
+- ~~**`NS_Melodia_LaneHit` has ZERO references**~~ → **WIRED.** New
+  `FMelodiaLaneHitJudged` / `OnLaneHitJudged` on `UMelodiaRhythmCombatSubsystem`, broadcast from
+  all three in-session judged paths in `RegisterLaneHit` (misses included).
+  `UMelodiaJRPGPresentationRhythmComponent` binds it and spawns the system, setting
+  `User.LaneIndex` / `GradeIntensity` / `LaneColor` / `ImpactPosition`. Verified on the LIVE
+  `BP_BattleController` component, not just the CDO.
+
+- **`RhythmBeatTracker::OnBeat.Broadcast()` still has no C++ listener — deliberately.** This doc
+  previously framed that as the gap to close. It is the wrong seam for a lane-hit burst: `OnBeat`
+  is metronomic, so a listener there pulses whether or not the player pressed anything. The
+  per-*hit* event is `RegisterLaneHit`, which BP_BattleUI's Q/W/O/P already call. The continuous
+  pulse is served by the NPC mirror above; the per-note punctuation is served by
+  `OnLaneHitJudged`. Nothing needs to listen on `OnBeat`.
+
+- ~~`ComboNormalized` / `VictoryPulse` / `EnemyTension` … feeding them from `MelodiaBattleSession`
+  is the cheapest route~~ → **that advice was wrong and was reverted.**
+  `UMelodiaRhythmReactivitySubsystem` already OWNS those values in
+  `FMelodiaRhythmReactivitySignal`, exposed via `GetSignal()`. Recomputing them from
+  `MelodiaBattleSession` created a second, subtly different definition of numbers that already had
+  an owner — the same two-sources-of-truth problem as the duplicate wallet class. The subsystem is
+  now read directly, which also picks up `CrescendoNormalized`, `CommandEnergy`, `BreakPulse` and
+  `RhythmPulse` for free: seven parameters instead of three.
 
 ---
 
@@ -277,7 +313,13 @@ WHAT IS ACTUALLY LEFT (content, not plumbing):
 Make the Melodia UI read live game state. It currently binds to NOTHING.
 
 VERIFIED 2026-08-24:
-- WBP_Battle_Rhythm: 0 bindings. WBP_MelodiaCurrencyRow: 0 bindings. 38 WBP_* exist.
+- WBP_Battle_Rhythm: 0 bindings. 38 WBP_* exist.
+- CORRECTION 2026-08-25: WBP_MelodiaCurrencyRow having 0 bindings is NOT a gap to close. It is
+  REDUNDANT leftover from an abandoned data-driven design. The shipped wallet is
+  WBP_MelodiaWallet_Universal, parented to C++ UMelodiaWalletHUDWidget, which drives FIXED
+  BindWidgetOptional TextBlocks (TXT_Forte/Tide/Gale/Stone/Radiant/Umbral/Arcane/Mana/
+  GoldenTokens + TXT_TotalCollected) matching DA_MelodiaCurrencyRegistry's 9 currencies 1:1.
+  Do NOT "fix" the row widget - there is no missing link. Deleting it is an owner decision.
 - Widget class paths in MelodiaUIBridgeSubsystem.cpp all resolve to real assets - the
   problem is wiring, not missing or mispathed assets.
 - WBP_Battle_Rhythm parent = C++ UMelodiaRhythmHUDWidget, which exposes BlueprintReadOnly

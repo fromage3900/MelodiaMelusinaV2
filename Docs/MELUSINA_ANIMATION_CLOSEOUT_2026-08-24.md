@@ -146,6 +146,19 @@ component and applied in `BeginPlay()`.
 rather than a live query turned out to be false — face, wardrobe and UI all proved already built.
 `ORCHESTRA_CONVERGENCE` says as much in its own headline. **Query the live object first.**
 
+  **Refinement 2026-08-25 — this rule cost a wrong turn when applied too loosely.** A live query is
+  only as good as what that query can *see*. The asset registry reported `WBP_MainMenu` with zero
+  referencers, which read as "nothing creates the main menu"; on that basis `GameDefaultMap` was
+  briefly repointed and had to be reverted. The reference was real — a hardcoded `FSoftObjectPath`
+  **string** in `OrreryMainMenuGameMode.cpp:318`, which the registry cannot index. And
+  `FIRST_DREAM_VERTICAL_SLICE_CHECKLIST_2026-07-28.md:165` had documented the correct wiring the
+  whole time, so here the *doc* was right and the *live query* was misleading.
+
+  Before declaring anything unreferenced, confirm with BOTH:
+  1. `grep -rn "<Name>" Source/ Plugins/*/Source/` — catches hardcoded `FSoftObjectPath`,
+     `LoadClass`, `StaticLoadObject`.
+  2. `grep -rl "<Name>" Content --include=*.uasset` — catches soft-path strings in package data.
+
 ## 4. Locomotion + blendspace state
 
 - `ABP_Melusina_Current` / `MelusinaLocomotion`: 7 states, 15 transitions, entry `Idle`.
@@ -220,6 +233,24 @@ Fixed by splitting `<tool>.<action>` and sending `{"action": …, "params": …}
 included. **P0 impact: `monolith_static` lists `melodia_animation_validate_bindings` and
 `melodia_animation_validate_state_machine` as gate implementations.** Those gates were silently
 failing rather than validating. Any prior green from them is void.
+
+### Exact blast radius (enumerated 2026-08-25)
+
+20 dotted call sites across **16 validator functions** were failing closed. Every one of these
+returned `None` — not an error — so any recorded green from them predating the fix is void:
+
+| Area | Voided validators |
+|---|---|
+| Animation | `melodia_animation_validate_state_machine`, `melodia_animation_validate_bindings`, `melodia_animation_get_runtime_abp` |
+| UI | `melodia_ui_list_widgets`, `melodia_ui_validate_widget`, `melodia_ui_get_battle_hud` |
+| Audio | `melodia_audio_list_assets`, `melodia_audio_validate_metasound`, `melodia_audio_get_rhythm_catalog` |
+| Material | `melodia_material_get_compile_stats`, `melodia_material_audit`, `_existing_material_instances` |
+| Persona / rhythm | `melodia_persona_get_stats`, `melodia_persona_get_quests`, `melodia_rhythm_list_skills` |
+| System | `melodia_system_health` |
+
+The fix is intact in the working tree and parses clean, but **`deploy/melodia_mcp_server.py` is
+still uncommitted and the MCP server has not been restarted**, so none of the above is live yet.
+Restart the MCP server before trusting any melodia validator output.
 
 ---
 
