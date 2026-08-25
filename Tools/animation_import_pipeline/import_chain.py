@@ -38,7 +38,7 @@ from manifest_v2 import (  # noqa: E402
 MCP_URL = "http://localhost:9316/mcp"
 SOURCE_SKELETON_PATH = "/Game/Melodia/Mocap/Source/SK_Source_Melusina.SK_Source_Melusina"
 TARGET_MESH = TARGET_MESH_PATH + ".SK_Melusina"
-RTG_SOURCE_TO_MELUSINA = "/Game/Melodia/Mocap/Retarget/RTG_Source_to_Melusina.RTG_Source_to_Melusina"
+RTG_SOURCE_TO_MELUSINA = "/Game/Melodia/Characters/Melusina/RTG_Source_to_Melusina.RTG_Source_to_Melusina"
 STAGING_DEST = "/Game/Melodia/Characters/Melusina/Animations/SourceRetargeted"
 
 
@@ -219,6 +219,10 @@ def main():
         manifest_errors.append("legacy sidecar is catalogue-only; create a v2 source-rig manifest")
     else:
         manifest_errors.extend(validate_v2(manifest))
+    if not was_legacy and manifest.get("status") != "canonical":
+        manifest_errors.append(
+            f"manifest status {manifest.get('status')!r} is not importable; only canonical source-rig clips may enter the UE chain"
+        )
     if manifest_errors:
         print("FAIL: manifest rejected:")
         for error in manifest_errors:

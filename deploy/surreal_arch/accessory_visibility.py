@@ -1,4 +1,4 @@
-"""Accessory visibility — wire per-slot wardrobe toggles to real collection hides.
+"""Accessory visibility - wire per-slot wardrobe toggles to real collection hides.
 
 P1 from DEEPSEEK_HANDOFF_TOGGLEABLES: the old NikkiWardrobeProperties vector
 was UI-only and spawn ops ignored it. This module owns a scene-level 16-slot

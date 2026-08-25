@@ -8,6 +8,7 @@
 
 class UMelodiaAudioComponent;
 class UMusicClockComponent;
+class UNiagaraSystem;
 
 /**
  * Immutable rhythm feedback for the stock JRPG bridge.  This structure is
@@ -71,6 +72,35 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|JRPG Rhythm")
 	FMelodiaRhythmWindows RhythmWindows;
 
+	/**
+	 * Per-press burst spawned on every judged lane press.
+	 *
+	 * The default points at NS_Melodia_LaneHit, which currently lives under
+	 * Content/EnvSandbox/VFX/Candidates/ -- a loop-output folder that gets swept.
+	 * This is a soft pointer and an EditAnywhere property precisely so promoting
+	 * the asset out of Candidates/ is a reslot in the Blueprint, not a code edit.
+	 * Left empty, no burst spawns and nothing else changes.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|JRPG Rhythm|Lane FX")
+	TSoftObjectPtr<UNiagaraSystem> LaneHitEffect =
+		TSoftObjectPtr<UNiagaraSystem>(FSoftObjectPath(
+			TEXT("/Game/EnvSandbox/VFX/Candidates/Melodia/NS_Melodia_LaneHit.NS_Melodia_LaneHit")));
+
+	/** Lateral spacing between lane burst origins, in cm. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|JRPG Rhythm|Lane FX", meta=(ClampMin="0.0"))
+	float LaneSpacing = 60.0f;
+
+	/** Height above the owner at which lane bursts spawn, in cm. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|JRPG Rhythm|Lane FX")
+	float LaneHitHeight = 110.0f;
+
+	/**
+	 * Spawn the burst on a Miss too. On by default: a press that produces no
+	 * visible response at all reads as dropped input rather than as a miss.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|JRPG Rhythm|Lane FX")
+	bool bSpawnLaneHitOnMiss = true;
+
 	UPROPERTY(BlueprintAssignable, Category="Melodia|JRPG Rhythm")
 	FMelodiaJRPGPresentationRhythmResult OnPresentationRhythmResult;
 
@@ -114,6 +144,16 @@ private:
 	/** Metronome edge: plays a click when the music clock crosses a beat boundary. */
 	UFUNCTION()
 	void HandleMelodiaBeat(int32 BeatNumber, int32 BeatInBar);
+
+	/**
+	 * Per-press burst. Bound to UMelodiaRhythmCombatSubsystem::OnLaneHitJudged,
+	 * which fires once per judged press -- OnRhythmComplete would give one event
+	 * for the whole phrase and cannot punctuate individual notes.
+	 *
+	 * Presentation-only: reads the judgement, spawns FX, writes no session state.
+	 */
+	UFUNCTION()
+	void HandleLaneHitJudged(int32 LaneIndex, EMelodiaSkillGrade Grade, float TimingErrorMs);
 
 	static float GetPresentationScalar(EMelodiaRhythmGrade Grade);
 

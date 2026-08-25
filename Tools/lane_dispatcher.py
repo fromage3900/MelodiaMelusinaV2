@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Lane Dispatcher — route queue items to the right model lane.
+"""Lane Dispatcher - route queue items to the right model lane.
 
 Gameplay queue authority (in order, first that exists + yields items):
   1. Docs/Handoffs/CORE_GAMEPLAY_CLOSEOUT_PLAN_2026-08-11.md
   2. Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md  (## 2. Execution order)
   3. _VERTICAL_SLICE_SCOPE.md
-  4. NEXT_ACTIONS.md  (platform/website — last resort; not gameplay SSOT)
+  4. NEXT_ACTIONS.md  (platform/website - last resort; not gameplay SSOT)
 
 Classifies each item and assigns the best model lane via model_router policy.
 Read-only: writes Saved/dispatch_report.md, never mutates the queue.
@@ -39,7 +39,7 @@ QUEUE_CANDIDATES = [
 CLASSIFIER = {
     "playtest": ["playtest", "real-input", "real input", "runtime gate", "campaign 1",
                  "campaign 2", "campaign 3", "campaign 4", "onkeydown", "slate-sendinput",
-                 "rhythm→damage", "rhythm->damage", "save_load", "repeat_consume",
+                 "rhythm->damage", "rhythm->damage", "save_load", "repeat_consume",
                  "package_launch", "result matrix", "round trip"],
     "cpp": ["melodiaintegration", "c++", "cpp", "uclass", "ufunction", "live coding",
             "closed-editor build", "postbattle", "rhythmcombat", "restorepartyafterbattle",
@@ -96,11 +96,11 @@ def assign(items):
 
 
 def _parse_steps(lines):
-    """Parse '### Step N — title' from closeout plans."""
+    """Parse '### Step N - title' from closeout plans."""
     items = []
     current = None
     for line in lines:
-        m = re.match(r"^###\s+Step\s+(\d+)\s+[—\-–]\s+(.+)$", line.strip())
+        m = re.match(r"^###\s+Step\s+(\d+)\s+[-\--]\s+(.+)$", line.strip())
         if m:
             if current:
                 items.append(current)
@@ -190,7 +190,7 @@ def plan(json_out, queue_path=None):
     with open(REPORT, "w", encoding="utf-8") as fh:
         fh.write("# Lane Dispatch Report\n\n")
         fh.write("Queue authority: `%s`\n\n" % path)
-        fh.write("Vision: Quill → encounter → JRPG → typed result → resume once.\n")
+        fh.write("Vision: Quill -> encounter -> JRPG -> typed result -> resume once.\n")
         fh.write("Policy: `Docs/Production/MODEL_LANES_2026-08-12.md`\n\n")
         for a in assignments:
             mark = " BLOCKED: %s" % a["blocked"] if a["blocked"] else ""

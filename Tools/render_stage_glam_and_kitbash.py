@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""EEVEE stills from the live portfolio stage glam lighting — no stage save.
+"""EEVEE stills from the live portfolio stage glam lighting - no stage save.
 
 Respects MELUSINA_SHADER_AGENT_STOP / sheet_hud_loop_STOP:
   - never bpy.ops.wm.save_mainfile / save_as_mainfile
@@ -84,7 +84,7 @@ def _argv() -> list[str]:
 def assert_no_save_context() -> None:
     for flag in STOP_FLAGS:
         if flag.exists():
-            log(f"STOP present: {flag.name} — render-only, will not save stage")
+            log(f"STOP present: {flag.name} - render-only, will not save stage")
             break
     # Hard guard: wrap save ops if someone imports us
     def _blocked(*_a, **_k):
@@ -110,7 +110,7 @@ def ensure_stage_open() -> Path:
 
 
 def setup_eevee_preserve() -> None:
-    """Set render output settings only — do not retouch world or Melusina mats."""
+    """Set render output settings only - do not retouch world or Melusina mats."""
     scene = bpy.context.scene
     try:
         scene.render.engine = "BLENDER_EEVEE_NEXT"
@@ -122,7 +122,7 @@ def setup_eevee_preserve() -> None:
     scene.render.image_settings.file_format = "PNG"
     scene.render.image_settings.color_mode = "RGB"
     scene.render.film_transparent = False
-    # AudVis/compositor mauve-blank trap — stills write raw View Layer only
+    # AudVis/compositor mauve-blank trap - stills write raw View Layer only
     scene.render.use_compositing = False
     scene.use_nodes = False
     if hasattr(scene, "eevee") and hasattr(scene.eevee, "taa_render_samples"):
@@ -168,7 +168,7 @@ def render_still(path: Path) -> dict:
 def render_melusina(stamp: str) -> list[dict]:
     setup_eevee_preserve()
     shot.isolate_melusina()
-    # Ensure studio lights collection visible — energies stay as authored
+    # Ensure studio lights collection visible - energies stay as authored
     lights = bpy.data.collections.get("Lights")
     if lights:
         lights.hide_render = False
@@ -186,7 +186,7 @@ def render_melusina(stamp: str) -> list[dict]:
             results.append({"label": label, "ok": False, "error": "no camera"})
             continue
         bpy.context.scene.camera = cam
-        # Slight aim nudge for bust/portrait vs full — keep Cam transforms intact
+        # Slight aim nudge for bust/portrait vs full - keep Cam transforms intact
         out = out_dir / template.format(stamp=stamp)
         r = render_still(out)
         r["label"] = label
@@ -196,7 +196,7 @@ def render_melusina(stamp: str) -> list[dict]:
 
 
 def _kitbash_entries(only: set[str] | None) -> list[dict]:
-    # Flatten ornament assets from waves 1–3
+    # Flatten ornament assets from waves 1-3
     entries = []
     seen = set()
     for wave in (1, 2, 3):

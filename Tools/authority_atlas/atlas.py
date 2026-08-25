@@ -765,7 +765,7 @@ def render_markdown(atlas, root: Path = ROOT) -> str:
     domain_order = ["narrative","battle","rhythm","save","progression","wardrobe","traversal","ui","music_world","economy","tooling","party"]
     # Also include world music alias
     lines = []
-    lines.append(f"# Gameplay Authority Atlas — {AUDIT_DATE}")
+    lines.append(f"# Gameplay Authority Atlas - {AUDIT_DATE}")
     lines.append("")
     lines.append("**Scope:** static AST/text parse only. No Unreal/Monolith/Blender/network/AWS execution. No .uasset parsing. Paths normalized, timestamps omitted, deterministic JSON.")
     lines.append("")
@@ -795,7 +795,7 @@ def render_markdown(atlas, root: Path = ROOT) -> str:
     lines.append("| **Stock JRPG battle/party/inventory/save** | TurnBased template: `BP_BattleController`, `BP_JRPGSaveGame`, `MelodiaSaveSlotLibrary` (adapter) | `UMelodiaExternalJRPGBridgeSubsystem` (narrow reflection), `MelodiaJRPGPartyBootstrapSubsystem` (bootstrap) | `gmm/game/battle_manager.py`, `player_state.py`, `save_manager.py` are standalone Python prototype authority competing with stock | CANONICAL vs ADAPTER vs PROTOTYPE/MERGE |")
     lines.append("| **MelodiaIntegration rhythm & bridge seams** | `UMelodiaRhythmCombatSubsystem` + `UMelodiaMusicClockSubsystem` (Harmonix/Quartz) | `MelodiaJRPGPresentationRhythmComponent` (presentation), `MelodiaNarrativeSubsystem` bridge, `MelodiaExternalJRPGBridgeSubsystem` | `rhythm_clock.py`, `MelodiaRhythmExecutionComponent`, `MelodiaBattleInputComponent` are dead/prototype paths | CANONICAL vs PRESENTATION vs DEAD_CANDIDATE |")
     lines.append("| **MelodiaWardrobe ownership** | `UMelodiaWardrobeSubsystem` (`Plugins/MelodiaWardrobe`) + catalog contract | `UMelodiaWardrobeComponent` (pawn mirror), `MelodiaWardrobeGachaSubsystem` (acquisition adapter) | `UMelodiaOutfitComponent` (dead), GMM wardrobe drafts are prototype | CANONICAL vs ADAPTER vs DEAD_CANDIDATE |")
-    lines.append("| **Presentation-only MelodiaCore surfaces** | None — presentation only by phase | `MelodiaAudioReactivePresentationSubsystem`, `MelodiaRhythmReactivitySubsystem`, `MelodiaUIBridgeSubsystem` (canonical for widget lifecycle but presentation bus for MPC), `Material` masters | `Tools/BlenderAddons/melodia_*` authoring | PRESENTATION vs AUTHORING |")
+    lines.append("| **Presentation-only MelodiaCore surfaces** | None - presentation only by phase | `MelodiaAudioReactivePresentationSubsystem`, `MelodiaRhythmReactivitySubsystem`, `MelodiaUIBridgeSubsystem` (canonical for widget lifecycle but presentation bus for MPC), `Material` masters | `Tools/BlenderAddons/melodia_*` authoring | PRESENTATION vs AUTHORING |")
     lines.append("| **GMM prototype/authoring overlap** | No shipping authority | `Tools/**`, `specs/**`, `Content/Python/envui`, `init_unreal.py` are authoring | `Content/Python/gmm/**` is prototype that overlaps all production authorities | PROTOTYPE/AUTHORING isolated |")
     lines.append("")
     # Domain grouping
@@ -813,11 +813,11 @@ def render_markdown(atlas, root: Path = ROOT) -> str:
         if not lst:
             continue
         owner = OWNER_MAP.get(dom, OWNER_MAP.get(_normalize_domain(dom), "UNKNOWN"))
-        lines.append(f"### {dom} — {owner}")
+        lines.append(f"### {dom} - {owner}")
         lines.append("")
         # counts by role
         cnt = Counter(n["role"] for n in lst)
-        lines.append(f"Nodes: {len(lst)} — " + ", ".join(f"{k}:{v}" for k,v in sorted(cnt.items())))
+        lines.append(f"Nodes: {len(lst)} - " + ", ".join(f"{k}:{v}" for k,v in sorted(cnt.items())))
         lines.append("")
         lines.append("| path | symbol | role | verdict | confidence | runtime_reachability | citation |")
         lines.append("|---|---|---|---|---|---|---|")
@@ -891,7 +891,7 @@ def render_markdown(atlas, root: Path = ROOT) -> str:
     lines.append("> This sequence proposes moves only. No file deletion or source edit is performed by this atlas.")
     lines.append("")
     for step in atlas.get("retirement_sequence", []):
-        lines.append(f"{step['order']}. **{step['action']}** — {step['reason']}")
+        lines.append(f"{step['order']}. **{step['action']}** - {step['reason']}")
     lines.append("")
     # UNKNOWN
     lines.append("## 7. UNKNOWNs & LIVE_EVIDENCE_REQUIRED")
@@ -921,14 +921,14 @@ def render_markdown(atlas, root: Path = ROOT) -> str:
         lines.append("## 9. Document Drift (code vs 2026-08-20 contracts)")
         lines.append("")
         for d in atlas["document_drift"]:
-            lines.append(f"- **{d['topic']}** — {d['status']}: doc `{d['document_claim']}` vs code `{d['current_code']}`")
+            lines.append(f"- **{d['topic']}** - {d['status']}: doc `{d['document_claim']}` vs code `{d['current_code']}`")
         lines.append("")
     lines.append("## 10. Per-Node Field Legend")
     lines.append("")
     lines.append("Every node has: `path` (normalized posix), `symbol`/`module`, `role`/`classification`, `domain`, `canonical_owner`, `runtime_reachability` (tiered), `external_consumers` (import list), `verdict` (OWNER/ADAPTER/PRESENTATION_ONLY/AUTHORING/PROTOTYPE/MERGE/DEAD_CANDIDATE/UNKNOWN), `confidence` (0-1), `citation` (`path:line`). See JSON for machine-readable graph.")
     lines.append("")
     lines.append("---")
-    lines.append("*Generated deterministically via `Tools/authority_atlas` — AST/text parsing only, no engine execution, no timestamps.*")
+    lines.append("*Generated deterministically via `Tools/authority_atlas` - AST/text parsing only, no engine execution, no timestamps.*")
     return "\n".join(lines) + "\n"
 
 def write_outputs(atlas, root: Path = ROOT, json_path: Path | None = None, report_path: Path | None = None):

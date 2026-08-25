@@ -38,17 +38,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|NPC|Interaction", meta=(MultiLine=true))
 	FText EncounterGuidance = FText::FromString(TEXT("Follow the lanterns to the rhythm echo ahead."));
 
-	// --- Quest integration (cozy: quest givers accept on interaction start, complete on end) ---
+	// --- Legacy quest metadata ------------------------------------------------
+	// Preserved for existing assets only. This component never mutates either
+	// QuestManager or Persona; authored Quill notifications own shipping quest flow.
 
-	/** When true, AcceptQuest fires on BeginInteraction for QuestToGive. */
+	/** Legacy metadata; ignored at runtime. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|NPC|Quest")
 	bool bIsQuestGiver = false;
 
-	/** Quest to accept when interaction begins and bIsQuestGiver is true. */
+	/** Legacy metadata; ignored at runtime. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|NPC|Quest")
 	FMelodiaQuestDef QuestToGive;
 
-	/** If set, CompleteQuest fires when the interaction finishes (dialogue exhausted or cancelled). */
+	/** Legacy metadata; ignored at runtime. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|NPC|Quest")
 	FName QuestToCompleteOnEnd;
 

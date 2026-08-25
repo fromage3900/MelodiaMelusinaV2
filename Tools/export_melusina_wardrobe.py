@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Export a Wardrobe_<OutfitId> pack to Exports/MelusinaClothes/<id>/.
 
-Gameplay contract (plan of record — do NOT import V2Test ARP statics):
+Gameplay contract (plan of record - do NOT import V2Test ARP statics):
   Every piece must be a SKELETAL mesh skinned to SK_Melusina_Skeleton
   (465 bones, underscore names, centimeters). Slot components
   SetLeaderPoseComponent(bodyMesh). Retarget risk: zero.
@@ -34,7 +34,7 @@ if str(TOOLS) not in sys.path:
 from melodia_stage_paths import EXPORTS_CLOTHES, resolve_stage_blend  # noqa: E402
 from melusina_anim_unit_guard import live_skeleton_preflight  # noqa: E402
 
-# Checked-in FBX export contract for Melusina wardrobe → UE
+# Checked-in FBX export contract for Melusina wardrobe -> UE
 FBX_EXPORT_KWARGS = {
     "use_selection": True,
     "use_visible": True,
@@ -172,7 +172,7 @@ def main() -> int:
     for o in meshes:
         for s in o.material_slots:
             if s.material and s.material.name == "Water (Advance)":
-                log(f"FATAL {o.name} has Water (Advance) — refuse hair on wardrobe export")
+                log(f"FATAL {o.name} has Water (Advance) - refuse hair on wardrobe export")
                 return 3
 
     bpy.ops.object.select_all(action="DESELECT")

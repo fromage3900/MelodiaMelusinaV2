@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-T3D Niagara Module Injector — injects Niagara parameter changes, module scripts,
+T3D Niagara Module Injector - injects Niagara parameter changes, module scripts,
 and MPC bindings via Monolith MCP in a single transaction.
 
 Targets the `niagara_query:add_module`, `editor_query:run_python`, and
@@ -67,7 +67,7 @@ def monolith(method: str, args: dict | None = None, timeout: int = 30) -> str:
 
 
 def _resolve_niagara_path(path: str) -> str:
-    """Ensure path has no file extension — Niagara system assets don't use them."""
+    """Ensure path has no file extension - Niagara system assets don't use them."""
     return path.rsplit(".", 1)[0] if "." in path else path
 
 
@@ -445,7 +445,7 @@ def cli_main() -> int:
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="T3D Niagara Module Injector — CLI mode"
+        description="T3D Niagara Module Injector - CLI mode"
     )
     parser.add_argument("--niagara", help="Niagara system asset path")
     parser.add_argument("--set-param", action="append", default=[],

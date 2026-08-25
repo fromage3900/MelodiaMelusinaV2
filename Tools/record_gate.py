@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-record_gate.py — PIE gate recording tool.
+record_gate.py - PIE gate recording tool.
 
 Appends dated pass/fail observations to Saved/gate_ledger.json and optionally
 annotates the scope doc. Integrates with Monolith MCP for session tracking.
@@ -181,8 +181,8 @@ def list_gates() -> None:
             date = rec["date"]
             note = rec.get("note", "")[:50]
         else:
-            status = "—"
-            date = "—"
+            status = "-"
+            date = "-"
             note = "not recorded"
         print(f"{gid:<25} {status:<8} {date:<12} {note}")
 
@@ -215,12 +215,12 @@ def generate_report() -> str:
         if rec:
             lines.append(f"| {gid} | {rec['status']} | {rec['date']} | {rec.get('note', '')} |")
         else:
-            lines.append(f"| {gid} | — | — | not recorded |")
+            lines.append(f"| {gid} | - | - | not recorded |")
 
     lines += ["", "## Sessions", ""]
     for sid, sdata in sessions.items():
-        p = ", ".join(sdata.get("gates_passed", [])) or "—"
-        f_ = ", ".join(sdata.get("gates_failed", [])) or "—"
+        p = ", ".join(sdata.get("gates_passed", [])) or "-"
+        f_ = ", ".join(sdata.get("gates_failed", [])) or "-"
         lines.append(f"- **{sid}** ({sdata.get('date', '?')})")
         lines.append(f"  - Passed: {p}")
         lines.append(f"  - Failed: {f_}")

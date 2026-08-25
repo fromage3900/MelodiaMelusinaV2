@@ -1,4 +1,4 @@
-"""Recursive & Endless Castle/Cathedral Architecture GN builders — Golden ratio fractal spires, Escher endless stair bridges, mathematical gothic cathedrals.
+"""Recursive & Endless Castle/Cathedral Architecture GN builders - Golden ratio fractal spires, Escher endless stair bridges, mathematical gothic cathedrals.
 
 Uses complex math node graphs (parabolic arcs, logarithmic helices, trigonometric rose distributions) for procedural architecture.
 """
@@ -16,7 +16,7 @@ from .core import (
 
 
 def build_recursive_castle_spire(group_name="MEL_recursive_castle_spire"):
-    """Fractal recursive castle spire — central keep surrounded by recursive sub-towers scaling by Golden Ratio (0.618).
+    """Fractal recursive castle spire - central keep surrounded by recursive sub-towers scaling by Golden Ratio (0.618).
 
     Level n tower radius: R_n = R_0 * ScaleFactor^n
     Level n tower height: H_n = H_0 * ScaleFactor^n
@@ -195,7 +195,7 @@ def build_endless_escher_bridge(group_name="MEL_endless_escher_bridge"):
 
 
 def build_math_gothic_cathedral(group_name="MEL_math_gothic_cathedral"):
-    """Mathematical Gothic Cathedral — parabolic vaulted nave, flying buttresses, and 8-petaled rose window.
+    """Mathematical Gothic Cathedral - parabolic vaulted nave, flying buttresses, and 8-petaled rose window.
 
     Math Equations:
       Vault parabolic arc: Z(x, y) = H * (1 - (x/W)^2) * (1 - (y/D)^2)

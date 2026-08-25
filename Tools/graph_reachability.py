@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-graph_reachability.py — Blueprint graph reachability linter (v2).
+graph_reachability.py - Blueprint graph reachability linter (v2).
 
 Fixes from v1:
   - Does NOT treat disconnected function-call nodes as event entries
@@ -10,11 +10,11 @@ Fixes from v1:
   - Reports all dead exec islands with no backward path from real events
 
 Checks:
-  1. Dead island — exec-capable node with no path from any event entry
-  2. Editor-only class — node whose function_class contains ToolMenus,
+  1. Dead island - exec-capable node with no path from any event entry
+  2. Editor-only class - node whose function_class contains ToolMenus,
      UnrealEd, LevelEditor, etc.
-  3. Disconnected entry pin — event node with unwired exec outputs
-  4. Editor-only ref — any node reference (data pin, variable) to editor types
+  3. Disconnected entry pin - event node with unwired exec outputs
+  4. Editor-only ref - any node reference (data pin, variable) to editor types
 
 Usage:
     python Tools/graph_reachability.py --bp /Game/.../BP_Example
@@ -184,7 +184,7 @@ def _scan_graph(graph: dict, asset_path: str, result: LintResult) -> list[Violat
                         exec_downstream[node_uuid].add(target)
                         exec_upstream.setdefault(target, set()).add(node_uuid)
 
-    # Identify real event entries — only K2Node_Event or K2Node_CustomEvent
+    # Identify real event entries - only K2Node_Event or K2Node_CustomEvent
     event_entries: list[str] = []
     for node in nodes:
         node_uuid = node.get("uuid", node.get("node_id", node.get("id", node.get("name", ""))))
@@ -285,7 +285,7 @@ def _scan_graph(graph: dict, asset_path: str, result: LintResult) -> list[Violat
 
 
 # ---------------------------------------------------------------------------
-# Graph analysis — scan ALL graphs in the Blueprint
+# Graph analysis - scan ALL graphs in the Blueprint
 # ---------------------------------------------------------------------------
 
 def lint_blueprint(asset_path: str) -> LintResult:
@@ -308,7 +308,7 @@ def lint_blueprint(asset_path: str) -> LintResult:
     seen: set[str] = set()
 
     if listed and not graph_names:
-        # Asset has no graphs at all (e.g. an empty function library) —
+        # Asset has no graphs at all (e.g. an empty function library) -
         # nothing to scan, and an empty graph list is not an export failure.
         return result
 
@@ -477,7 +477,7 @@ def main() -> None:
 
     for r in results:
         if r.violations:
-            print(f"\n{r.asset_path} — {len(r.violations)} violation(s)")
+            print(f"\n{r.asset_path} - {len(r.violations)} violation(s)")
             for v in r.violations:
                 tag = {"dead_island": "DEAD", "editor_only_class": "EDITOR", "disconnected_entry": "DISCONN", "connectivity": "ERR"}.get(v.check, "?")
                 print(f"  [{tag}] [{v.graph}] {v.node}: {v.message}")

@@ -1,10 +1,10 @@
-"""Musical structure analyzer — detects song sections and maps them to biomes.
+"""Musical structure analyzer - detects song sections and maps them to biomes.
 
 Analyzes MIDI structure:
 - Section detection (intro/verse/chorus/bridge/outro)
 - Tempo (BPM) from note spacing
 - Dynamics (velocity variance) per section
-- Section → biome mapping
+- Section -> biome mapping
 
 Pure Python, no bpy. Deterministic.
 """

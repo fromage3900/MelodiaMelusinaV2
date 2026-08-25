@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-T3D Wardrobe Chapter 2 Injector — scaffolds text injection pipeline for
+T3D Wardrobe Chapter 2 Injector - scaffolds text injection pipeline for
 expanded Melodia wardrobe mechanics and ultimate outfit mechanic in Chapter 2.
 
 Extends T3DBlueprintInjector with wardrome-specific node types and

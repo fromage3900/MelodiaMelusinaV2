@@ -43,27 +43,39 @@ def _preset_parts(preset_id):
 
 
 def _midi_for_props(repo_root_path, props):
+    # C: authority - no G: fallback. Prefer explicit, then project MIDI, then canonical.
     path = props.midi_file.strip()
     if path:
         if os.path.exists(path):
             return path
+        # Allow relative path to project MIDI dir
         abs_path = os.path.join(repo_root_path, "Content", "MelodiaIntegration", "MIDI", path)
         if os.path.exists(abs_path):
             return abs_path
+        # Also try as absolute via bpy.path
+        try:
+            import bpy  # type: ignore
+            ap = bpy.path.abspath(path)
+            if os.path.exists(ap):
+                return ap
+        except Exception:
+            pass
     midi_dir = mb.content_dir()
     if midi_dir:
         cand = os.path.join(midi_dir, "128BPMarpeggiomelody.mid")
         if os.path.exists(cand):
             return cand
-    fallback_roots = [
-        os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "..", "EnvironmentPortfolio", "BS_GodFile")),
-        r"C:\EnvironmentPortfolio\BS_GodFile",
-        "/c/EnvironmentPortfolio/BS_GodFile",
-    ]
-    for root in fallback_roots:
-        cand = os.path.join(root, "Content", "MelodiaIntegration", "MIDI", "128BPMarpeggiomelody.mid")
-        if os.path.exists(cand):
-            return cand
+    # C: canonical last
+    cand = os.path.join(r"C:\EnvironmentPortfolio\BS_GodFile", "Content", "MelodiaIntegration", "MIDI", "128BPMarpeggiomelody.mid")
+    if os.path.exists(cand):
+        return cand
+    # Discover any MIDI
+    try:
+        disc = mb.discover_midi()
+        if disc:
+            return disc[0]
+    except Exception:
+        pass
     return ""
 
 
@@ -115,7 +127,12 @@ def _run_pipeline(context, preset_id, terrain_preset, dressing_style, props):
 
     report["terrain"] = "%dv/%df" % (report.get("voxels", 0), report.get("verts", 0))
 
-    dressing = mb.dress_terrain(None, out_obj, style_id=dressing_style)
+    # Pass midi_path so dressing builds a real field (QOL fix for {} bug)
+    try:
+        dressing = mb.dress_terrain(None, out_obj, style_id=dressing_style, midi_path=midi)
+    except TypeError:
+        # old shim without midi_path kw
+        dressing = mb.dress_terrain(None, out_obj, style_id=dressing_style)
     report["dressing"] = dressing or ""
 
     obj = _build_terrain_mesh(out_obj, "Showroom_Terrain")

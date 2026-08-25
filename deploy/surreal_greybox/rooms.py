@@ -1,4 +1,4 @@
-"""Room shell builders — re-exports from shells + combat room delegate (v2.72.2)."""
+"""Room shell builders - re-exports from shells + combat room delegate (v2.72.2)."""
 
 from __future__ import annotations
 

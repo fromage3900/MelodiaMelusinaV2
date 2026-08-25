@@ -28,7 +28,7 @@ $ End
 $ Notify melodia:stat:intent.quest.harmony_awakening:melodia_harmony:2
 $ Notify melodia:quest:quest.harmony_awakening
 $ Notify melodia:reward:reward.harmony_awakening
-$ Notify melodia:flag:quest.harmony_awakening.completed
+$ Notify melodia:flag:quest.harmony_awakening.completed:true
 $ End
 
 <@> Listen

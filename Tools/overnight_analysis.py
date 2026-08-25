@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""overnight_analysis.py — unattended Bedrock analysis passes into Saved/Overnight/.
+"""overnight_analysis.py - unattended Bedrock analysis passes into Saved/Overnight/.
 
 READ THIS FIRST, BECAUSE IT DETERMINES WHAT THIS CAN HONESTLY DO
 ================================================================
@@ -199,8 +199,8 @@ def run(name: str) -> int:
     except Exception as exc:  # noqa: BLE001
         body, code = f"[runner error: {exc}]", 1
     dest.write_text(
-        f"# Overnight analysis — {name}\n\n"
-        f"Generated {stamp} · router class `{cls}`\n\n"
+        f"# Overnight analysis - {name}\n\n"
+        f"Generated {stamp} - router class `{cls}`\n\n"
         "> **Advisory only.** Produced by a single-shot text model with no repo access.\n"
         "> This is a plan for a human, not evidence. No gate is closed by this file.\n\n"
         "---\n\n" + body + "\n", encoding="utf-8")

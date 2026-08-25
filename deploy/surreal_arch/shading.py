@@ -1,4 +1,4 @@
-"""Shading helpers — avoid duplicate Blender 5.x Smooth by Angle modifiers."""
+"""Shading helpers - avoid duplicate Blender 5.x Smooth by Angle modifiers."""
 
 from __future__ import annotations
 

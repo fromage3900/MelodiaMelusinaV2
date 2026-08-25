@@ -1,8 +1,8 @@
-"""fix_niagara_render_faults.py — fix all render issues + faulty emitters for immediate placement.
+"""fix_niagara_render_faults.py - fix all render issues + faulty emitters for immediate placement.
 
 Scope (from Saved/Audit/NIAGARA_RENDER_FAULT_REVIEW_2026-08-15.md):
   A. Replace engine-default renderer materials (/Niagara/DefaultAssets/*) with canonical
-     library materials (index-safe, idempotent — only touches default-material renderers).
+     library materials (index-safe, idempotent - only touches default-material renderers).
   B. Clear "Renderer depends on Particles.SpriteSize ... no particle-spawn initialization"
      warnings by setting Uniform Sprite Size Min/Max on the affected InitializeParticle modules.
 C. Promote system-level fixed bounds on the 3 systems whose emitters are already Fixed but
@@ -73,7 +73,7 @@ SPRITE_SIZE_FIXES = {
 
 # B2. The RendererAttributeInit warning is a UE analyzer artifact triggered ONLY by the
 # presence of the ScaleSpriteSize module (template residue on these copied ribbon-burst
-# emitters) — proven: identical spawn writes render fine on MagicTrailLeader (no
+# emitters) - proven: identical spawn writes render fine on MagicTrailLeader (no
 # ScaleSpriteSize, 0 warnings) while 4 different spawn-write mechanisms all leave the
 # warning whenever ScaleSpriteSize is present. Removing it clears the warning and the
 # sprites still render at the InitializeParticle size.
@@ -88,7 +88,7 @@ REMOVE_SCALE_SPRITE_SIZE = {
 # C. system-key -> (min, max) system-level fixed bounds (generous ambient-scale boxes).
 # The 4 burst systems are CPU sims on Dynamic bounds + 0 warmup: per-frame bounds
 # recompute churns placement culling, so promote fixed boxes like the owned-6 contract
-# pass did. Sizes are generous (burst/ribbon extents are wide) — a conservative culling
+# pass did. Sizes are generous (burst/ribbon extents are wide) - a conservative culling
 # volume only ever over-draws, never culls visible particles.
 FIXED_BOUNDS = {
     "magical_magictrail": ([-2000, -2000, -2000], [2000, 2000, 2000]),

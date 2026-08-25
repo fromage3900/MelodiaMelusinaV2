@@ -1,4 +1,4 @@
-"""Ribbon GN group builders — swept ribbons, lissajous, closed loops, violin bow."""
+"""Ribbon GN group builders - swept ribbons, lissajous, closed loops, violin bow."""
 
 from __future__ import annotations
 
@@ -16,9 +16,9 @@ from .core import (
 def _build_ribbon_common(group_name, mode="wave"):
     """Shared ribbon graph. `mode` selects the centerline shape.
 
-    wave      — sine centerline (default ribbon)
-    lissajous — x = sin(a*t), z = sin(b*t) closed curve
-    closed    — circle loop on XZ
+    wave      - sine centerline (default ribbon)
+    lissajous - x = sin(a*t), z = sin(b*t) closed curve
+    closed    - circle loop on XZ
     """
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
@@ -170,7 +170,7 @@ def build_ribbon_curve(group_name="MEL_ribbon_curve"):
 
 
 def build_lissajous_ribbon(group_name="MEL_lissajous_ribbon"):
-    """Lissajous figure ribbon — sin/cos cross path with configurable frequency."""
+    """Lissajous figure ribbon - sin/cos cross path with configurable frequency."""
     return _build_ribbon_common(group_name, mode="lissajous")
 
 
@@ -180,7 +180,7 @@ def build_closed_ribbon(group_name="MEL_closed_ribbon"):
 
 
 def build_violin_bow(group_name="MEL_violin_bow"):
-    """Violin bow — tapered stick with a sagging horsehair ribbon curve."""
+    """Violin bow - tapered stick with a sagging horsehair ribbon curve."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
@@ -284,10 +284,10 @@ def build_violin_bow(group_name="MEL_violin_bow"):
 
 # -- Registry --
 register_builder("MEL_ribbon_curve", build_ribbon_curve, "Ribbon Curve",
-    "Sine centerline ribbon strip — width, amplitude, frequency, twist attributes.",
+    "Sine centerline ribbon strip - width, amplitude, frequency, twist attributes.",
     "effects")
 register_builder("MEL_lissajous_ribbon", build_lissajous_ribbon, "Lissajous Ribbon",
-    "Lissajous figure ribbon — sin/cos cross path with frequency ratio control.",
+    "Lissajous figure ribbon - sin/cos cross path with frequency ratio control.",
     "effects")
 register_builder("MEL_closed_ribbon", build_closed_ribbon, "Closed Ribbon",
     "Seamless circular ribbon loop for UI borders and decorative rings.",

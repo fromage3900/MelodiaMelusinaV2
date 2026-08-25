@@ -1,4 +1,4 @@
-"""🔔 Tubular chime row — real free-free-beam tuning, ET degrees from the ♪ Score.
+"""[bell] Tubular chime row - real free-free-beam tuning, ET degrees from the * Score.
 
 Math (see Docs/MelodiaStudio/MUSIC_KIT_LEDGER_20260823.md):
     f(d)  = A4 * 2^((semitone(d) - 9) / 12)          equal temperament
@@ -88,12 +88,12 @@ def _bm_torus(bm, major_r, minor_r, seg_major, seg_minor, x, z, axis="x"):
 
 class SURREAL_ARCH_OT_generate_chime_row(bpy.types.Operator):
     bl_idname = "surreal_arch.generate_chime_row"
-    bl_label = "🔔 Generate Chime Row"
-    bl_description = ("Free-free-beam tuned tubular chimes from the ♪ Score panel — "
+    bl_label = "[bell] Generate Chime Row"
+    bl_description = ("Free-free-beam tuned tubular chimes from the * Score panel - "
                       "L ∝ √(f_ref/f); hang nodes at 22.4%; shimmer bands at overtone ratios")
     bl_options = {"REGISTER", "UNDO"}
 
-    use_score: bpy.props.BoolProperty(name="Use ♪ Score key/mode", default=True)
+    use_score: bpy.props.BoolProperty(name="Use * Score key/mode", default=True)
     root_hz: bpy.props.FloatProperty(name="Root Hz (manual)", default=261.63, min=20, max=4000)
     count: bpy.props.IntProperty(name="Tube Count", default=8, min=3, max=16)
     longest_m: bpy.props.FloatProperty(name="Longest Tube (m)", default=1.25, min=0.2, max=6.0)
@@ -204,7 +204,7 @@ class SURREAL_ARCH_OT_generate_chime_row(bpy.types.Operator):
         freq_txt = ", ".join(f"{f:.0f}" for f in freqs)
         self.report({"INFO"},
                     f"Chime row: {len(freqs)} tubes {key_root} {mode} "
-                    f"[{freq_txt}] Hz · L {min(lengths):.2f}–{max(lengths):.2f} m")
+                    f"[{freq_txt}] Hz - L {min(lengths):.2f}-{max(lengths):.2f} m")
         return {"FINISHED"}
 
 

@@ -87,6 +87,10 @@ private:
 	UFUNCTION()
 	void HandleNarrativeQuest(FName QuestId);
 
+	/** Narrative owns the atomic write; Persona only refreshes its read-model/UI. */
+	UFUNCTION()
+	void HandleNarrativeQuestStateCommitted(FName QuestId, bool bCompleted);
+
 	/** Narrative validated the intent and its allowlist; Persona owns the clamp and the broadcast. */
 	UFUNCTION()
 	void HandleSocialStatRequested(FName StatId, int32 Delta);

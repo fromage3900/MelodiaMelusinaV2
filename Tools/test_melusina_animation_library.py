@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -13,6 +14,7 @@ PIPELINE = TOOLS / "animation_import_pipeline"
 sys.path.insert(0, str(PIPELINE))
 
 from import_chain import TARGET_MESH, _pick_retargeter  # noqa: E402
+from melusina_anim_unit_guard import scan_fbx_name_style  # noqa: E402
 from manifest_v2 import (  # noqa: E402
     CANONICAL_RIG,
     CANONICAL_SKELETON_PATH,
@@ -100,10 +102,41 @@ def test_classification_and_no_direct_bypass() -> None:
         "blender",
     )
     assert_true(status == "blocked", (status, reasons))
+    status, reasons = _status_for_path(
+        Path("Exports/MelusinaAnims/A_Melusina_Idle_v22.fbx"),
+        {"source_type": "blender"},
+        "blender",
+    )
+    assert_true(status == "manual_required", (status, reasons))
+    status, reasons = _status_for_path(
+        Path("Exports/AnimationLibrary/Blender/A_BL_Source_Idle_Loop.fbx"),
+        {"schema_version": 2, "status": "promoted", "source_type": "blender"},
+        "blender",
+    )
+    assert_true(status == "blocked", (status, reasons))
     assert_true(TARGET_MESH == TARGET_MESH_PATH + ".SK_Melusina", TARGET_MESH)
-    assert_true(_pick_retargeter("A_CAS_Melusina_Idle_Loop") == "/Game/Melodia/Mocap/Retarget/RTG_Source_to_Melusina.RTG_Source_to_Melusina", "foreign direct retarget bypass")
+    assert_true(_pick_retargeter("A_CAS_Melusina_Idle_Loop") == "/Game/Melodia/Characters/Melusina/RTG_Source_to_Melusina.RTG_Source_to_Melusina", "foreign direct retarget bypass")
     direct = dict(valid_manifest(), canonical_skeleton=TARGET_SKELETON_PATH)
     assert_true(any("canonical_skeleton" in error for error in validate_v2(direct)), "live skeleton must not be source rig")
+
+
+def test_blocked_source_cannot_enter_import_chain() -> None:
+    blocked_manifest = TOOLS.parent / "Exports" / "AnimationLibrary" / "Blender" / "A_BL_Source_Idle_Loop.manifest.json"
+    blocked_fbx = blocked_manifest.parent / "A_BL_Source_Idle_Loop.fbx"
+    result = subprocess.run(
+        [sys.executable, str(PIPELINE / "import_chain.py"), str(blocked_fbx), "--manifest", str(blocked_manifest), "--dry-run"],
+        capture_output=True,
+        text=True,
+    )
+    assert_true(result.returncode != 0, result.stdout)
+    assert_true("not importable" in result.stdout, result.stdout)
+
+
+def test_owner_normalized_source_ignores_arp_custom_property_names() -> None:
+    fbx = TOOLS.parent / "Exports" / "AnimationLibrary" / "Blender" / "A_BL_FinalHandKeyed_Source_20260824.fbx"
+    report = scan_fbx_name_style(fbx)
+    assert_true(report["name_style"] == "underscore", report)
+    assert_true(report["dotted_hits"] == [], report)
 
 
 def test_promotion_fails_closed() -> None:
@@ -292,6 +325,8 @@ def main() -> int:
     test_deterministic_id()
     test_valid_and_invalid_contracts()
     test_classification_and_no_direct_bypass()
+    test_blocked_source_cannot_enter_import_chain()
+    test_owner_normalized_source_ignores_arp_custom_property_names()
     test_promotion_fails_closed()
     test_contact_audit_metadata_is_preserved()
     test_measured_speed_evidence_is_required_and_reusable()
@@ -300,7 +335,7 @@ def main() -> int:
     test_static_idle_can_replace_speed_zero_sample()
     test_live_promotion_never_bypasses_failed_gates()
     test_live_promotion_rejects_mismatched_passed_plan()
-    print(json.dumps({"ok": True, "tests": 13}, indent=2))
+    print(json.dumps({"ok": True, "tests": 15}, indent=2))
     return 0
 
 

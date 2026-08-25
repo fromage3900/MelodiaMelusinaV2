@@ -1,10 +1,10 @@
-"""Live Bridge dashboard — Blender to Unreal status under Melodia Studio.
+"""Live Bridge dashboard - Blender to Unreal status under Melodia Studio.
 
 Ports (do not mix these up):
-  9876 LiveLink TCP — Melodia Studio → Live Bridge → Start Server (UE /Game/LiveLink/)
-  9876 BlenderMCP TCP — N-panel BlenderMCP → Connect (agent control). Same port as LiveLink; do not run both.
+  9876 LiveLink TCP - Melodia Studio -> Live Bridge -> Start Server (UE /Game/LiveLink/)
+  9876 BlenderMCP TCP - N-panel BlenderMCP -> Connect (agent control). Same port as LiveLink; do not run both.
   9316 Unreal Python Monolith
-  9317 / 9877 — retired adapters; do not use
+  9317 / 9877 - retired adapters; do not use
 """
 
 from __future__ import annotations
@@ -113,7 +113,7 @@ def _get_blender_mcp_status() -> dict:
     if ok_tcp:
         return {
             "running": True,
-            "detail": "TCP :9876 listening (BlenderMCP Connect or LiveLink — they share this port)",
+            "detail": "TCP :9876 listening (BlenderMCP Connect or LiveLink - they share this port)",
             "port": 9876,
         }
     ok_legacy, detail_legacy = _ping_port("127.0.0.1", 9317, timeout=0.4)
@@ -126,7 +126,7 @@ def _get_blender_mcp_status() -> dict:
         }
     return {
         "running": False,
-        "detail": "N → BlenderMCP → Connect is off; :9876 closed",
+        "detail": "N -> BlenderMCP -> Connect is off; :9876 closed",
         "port": 9876,
     }
 
@@ -448,7 +448,7 @@ class BRIB_PT_bridge_dashboard(Panel):
             row.label(text="UE MCP")
 
     def _draw_livelink_section(self, layout, context, settings):
-        """LiveLink TCP :9876 — Blender → UE /Game/LiveLink/ only. Not agent MCP."""
+        """LiveLink TCP :9876 - Blender -> UE /Game/LiveLink/ only. Not agent MCP."""
         ll = context.scene.get("_brib_livelink", {})
 
         box = layout.box()
@@ -507,7 +507,7 @@ class BRIB_PT_bridge_dashboard(Panel):
                 sr.label(text=f"Agent MCP  :{port}", icon="CHECKBOX_HLT")
             else:
                 sr.label(text="Agent MCP  :9876", icon="CHECKBOX_DEHLT")
-            sub.label(text="N → BlenderMCP → Connect. Not Live Bridge Start Server.")
+            sub.label(text="N -> BlenderMCP -> Connect. Not Live Bridge Start Server.")
             if bm.get("detail"):
                 sub.label(text=f"  {bm['detail'][:80]}", icon="DOT")
 
@@ -520,7 +520,7 @@ class BRIB_PT_bridge_dashboard(Panel):
             if um.get("detail"):
                 sub.label(text=f"  {um['detail'][:80]}", icon="DOT")
             sr.operator("brib.ue_ping", text="", icon="FILE_REFRESH")
-            col.label(text="Legacy :9317 / :9877 — do not use.")
+            col.label(text="Legacy :9317 / :9877 - do not use.")
 
     def _draw_actions(self, layout, context, settings):
         """Quick-send and utility buttons."""

@@ -34,7 +34,7 @@ def inject_class_registrations(tail: list[str]) -> list[str]:
     for ln in tail:
         out.append(ln)
         if not injected and ANCHOR in ln:
-            out.append("    # v2.115+ — filigree + graph presets\n")
+            out.append("    # v2.115+ - filigree + graph presets\n")
             out.extend(f"{x}\n" for x in EXTRA_CLASS_LINES)
             injected = True
     if not injected:

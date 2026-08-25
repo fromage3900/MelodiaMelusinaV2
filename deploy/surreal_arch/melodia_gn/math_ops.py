@@ -201,10 +201,10 @@ def build_attribute_math(group_name="MEL_attribute_math"):
 from .core import register_builder
 
 register_builder("MEL_add_geometry", build_add_geometry, "Add (Union)",
-    "Boolean union — merge two geometry inputs",
+    "Boolean union - merge two geometry inputs",
     "math_attrs")
 register_builder("MEL_subtract_geometry", build_subtract_geometry, "Subtract (Difference)",
-    "Boolean difference — subtract Geometry B from Geometry",
+    "Boolean difference - subtract Geometry B from Geometry",
     "math_attrs")
 register_builder("MEL_power_scale", build_power_scale, "Power Scale",
     "Exponential power falloff scale along an axis for tapering",

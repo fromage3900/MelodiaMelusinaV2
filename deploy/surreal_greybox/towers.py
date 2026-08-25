@@ -1,4 +1,4 @@
-"""Greybox tower shells — multi-floor walkable blockouts (v2.72.2)."""
+"""Greybox tower shells - multi-floor walkable blockouts (v2.72.2)."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ def bind(monolith):
 
 def _require():
     if _M is None:
-        raise RuntimeError("surreal_greybox.towers not bound — call bind(monolith) at register")
+        raise RuntimeError("surreal_greybox.towers not bound - call bind(monolith) at register")
 
 
 def _patch(name, fn):

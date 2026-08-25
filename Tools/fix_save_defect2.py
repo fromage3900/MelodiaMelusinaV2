@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-fix_save_defect2.py — Fix slot name mismatch across save system.
+fix_save_defect2.py - Fix slot name mismatch across save system.
 
 Changes:
   1. BP_SavePointBase:   replace ToString(index) slot name with "MelodiaJRPGSlot0"
   2. WBP_SaveLoadPanel:  change "MelusinaSlot0" -> "MelodiaJRPGSlot0"
-  3. WBP_MainMenu:       already "MelodiaJRPGSlot0" — verify only
+  3. WBP_MainMenu:       already "MelodiaJRPGSlot0" - verify only
 """
 
 import json, os, subprocess, sys, time, urllib.request

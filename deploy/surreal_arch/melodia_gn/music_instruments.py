@@ -1,4 +1,4 @@
-"""Music instrument GN group builders — brass pipe, reed body, bell/chime."""
+"""Music instrument GN group builders - brass pipe, reed body, bell/chime."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from .core import (
 
 
 def build_brass_pipe(group_name="MEL_brass_pipe"):
-    """Brass instrument tube — trumpet (narrow bore) or trombone (wide bore).
+    """Brass instrument tube - trumpet (narrow bore) or trombone (wide bore).
 
     A flared cylinder body with parametric bore profile and bell radius.
     Stores `pipe_length` and `bore_profile` attributes.
@@ -73,7 +73,7 @@ def build_brass_pipe(group_name="MEL_brass_pipe"):
 
 
 def build_reed_body(group_name="MEL_reed_body"):
-    """Reed instrument body — clarinet (cylindrical) or oboe (conical).
+    """Reed instrument body - clarinet (cylindrical) or oboe (conical).
 
     Optionally bores Tone Hole Count cylindrical tone holes through the
     body with a boolean difference. Stores `wall_thickness`.
@@ -154,7 +154,7 @@ def build_reed_body(group_name="MEL_reed_body"):
 
 
 def build_bell_chime(group_name="MEL_bell_chime"):
-    """Bell and chime body — spherical bell, cup bell, or tubular chime.
+    """Bell and chime body - spherical bell, cup bell, or tubular chime.
 
     Bell Type drives the primitive: 0 = sphere, 1 = cup, 2 = tube.
     Stores `bell_diameter` and `bell_type`.
@@ -456,7 +456,7 @@ def build_singing_bowl(group_name="MEL_singing_bowl"):
             )
             shell = bowl_xf.outputs["Geometry"]
 
-    # Rim ring (torus-like) — torus not in 5.2, use tube instead
+    # Rim ring (torus-like) - torus not in 5.2, use tube instead
     rim = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (bx - 400, by + 200))
     if rim:
         # Set radius via the curve's radius input
@@ -613,7 +613,7 @@ def build_church_bell(group_name="MEL_church_bell"):
         else:
             parts.append(crown.outputs["Mesh"])
 
-    # Clapper (optional) — use switch to toggle
+    # Clapper (optional) - use switch to toggle
     clapper_switch = safe_node(tree, "GeometryNodeSwitch", (bx - 200, by + 400))
     if clapper_switch:
         try:
@@ -697,20 +697,20 @@ def build_church_bell(group_name="MEL_church_bell"):
 
 # -- Registry --
 register_builder("MEL_brass_pipe", build_brass_pipe, "Brass Pipe",
-    "Brass tube geometry — narrow trumpet bore or wide trombone bore with bell flare.",
+    "Brass tube geometry - narrow trumpet bore or wide trombone bore with bell flare.",
     "music")
 register_builder("MEL_reed_body", build_reed_body, "Reed Body",
-    "Reed instrument body — clarinet (cylindrical) or oboe (conical) with tone holes.",
+    "Reed instrument body - clarinet (cylindrical) or oboe (conical) with tone holes.",
     "music")
 register_builder("MEL_bell_chime", build_bell_chime, "Bell/Chime",
     "Spherical bell, cup bell, or tubular chime with partial control and clapper flag.",
     "music")
 register_builder("MEL_tuning_fork", build_tuning_fork, "Tuning Fork",
-    "U-shaped tines with resonance box — pitch from tine length.",
+    "U-shaped tines with resonance box - pitch from tine length.",
     "music")
 register_builder("MEL_singing_bowl", build_singing_bowl, "Singing Bowl",
-    "Rim-resonant bowl with strike point — harmonic overtones from wall profile.",
+    "Rim-resonant bowl with strike point - harmonic overtones from wall profile.",
     "music")
 register_builder("MEL_church_bell", build_church_bell, "Church Bell",
-    "Inverted cup bell with crown, shoulder, and sound bow — clapper swing.",
+    "Inverted cup bell with crown, shoulder, and sound bow - clapper swing.",
     "music")

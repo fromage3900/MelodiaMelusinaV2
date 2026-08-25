@@ -6,8 +6,8 @@ retargeter. New ARP/Blender/Cascadeur sources fail on four independent axes
 (dots vs underscores, 432/463 vs 465 bones, meters vs cm, 24 vs 30 fps).
 
 Mocap works because it never imports onto SK_Melusina:
-  Rokoko → SK_MocapSource → IK_MocapSource → RTG_Mocap_to_Melusina
-  → IK_Melusina_Body → A_Mocap_*
+  Rokoko -> SK_MocapSource -> IK_MocapSource -> RTG_Mocap_to_Melusina
+  -> IK_Melusina_Body -> A_Mocap_*
   Docs/ROKOKO_MELUSINA_MOCAP.md
 
 Split meshes: re-skin onto SK_Melusina_Skeleton and leader-pose via
@@ -72,10 +72,10 @@ UNDERSCORE_CONTRACT_MARKERS = (
 
 AUTHOR_HINT = (
     "Do not import this FBX onto SK_Melusina_Skeleton (Lane A, no retargeter). "
-    "Animation: Rokoko → SK_MocapSource → IK_MocapSource → RTG_Mocap_to_Melusina "
-    "→ IK_Melusina_Body → A_Mocap_* (Docs/ROKOKO_MELUSINA_MOCAP.md). "
+    "Animation: Rokoko -> SK_MocapSource -> IK_MocapSource -> RTG_Mocap_to_Melusina "
+    "-> IK_Melusina_Body -> A_Mocap_* (Docs/ROKOKO_MELUSINA_MOCAP.md). "
     "Split meshes: re-skin to SK_Melusina_Skeleton (465, underscore, cm) and "
-    "leader-pose via MelodiaWardrobe — not V2Test ARP statics "
+    "leader-pose via MelodiaWardrobe - not V2Test ARP statics "
     "(Docs/MELODIA_WARDROBE_PLUGIN_PLAN_2026-08-07.md)."
 )
 
@@ -153,7 +153,7 @@ def live_skeleton_preflight(bone_names: list[str]) -> dict[str, Any]:
         sample = ", ".join(dotted[:6])
         errors.append(
             f"dotted ARP names ({len(dotted)}), e.g. {sample}. "
-            "Rename . → _ onto SK_Melusina_Skeleton. Do not use V2Test ARP statics."
+            "Rename . -> _ onto SK_Melusina_Skeleton. Do not use V2Test ARP statics."
         )
     if count and count != LIVE_BONE_COUNT:
         errors.append(
@@ -166,8 +166,8 @@ def live_skeleton_preflight(bone_names: list[str]) -> dict[str, Any]:
         "ok": not errors,
         "errors": errors,
         "ue_import": False,
-        "rename_rule": "replace '.' with '_' (DEF_eye.L → DEF_eye_L)",
-        "unit_rule": "meters → cm (translation ×100); do not trust FBX UnitScaleFactor alone",
+        "rename_rule": "replace '.' with '_' (DEF_eye.L -> DEF_eye_L)",
+        "unit_rule": "meters -> cm (translation ×100); do not trust FBX UnitScaleFactor alone",
         "fps_rule": f"author at {LIVE_FPS} fps or resample; 24 fps desyncs live clips",
         "plan": AUTHOR_HINT,
     }
@@ -224,7 +224,14 @@ def read_fbx_unit_scale_factor(path: Path) -> float | None:
 
 
 def scan_fbx_name_style(path: Path) -> dict[str, Any]:
-    """Detect ARP dotted names vs live underscore contract in a binary FBX."""
+    """Detect ARP dotted names vs live names on binary FBX Model nodes.
+
+    Blender embeds ARP controller names in custom-property JSON. Searching the
+    whole binary for those strings falsely classified otherwise normalized
+    source-rig exports as mixed. Only a marker occurring in the local FBX
+    ``Model`` node context is treated as a bone-name hit; arbitrary metadata is
+    ignored.
+    """
     try:
         data = path.read_bytes()
     except OSError:
@@ -234,9 +241,23 @@ def scan_fbx_name_style(path: Path) -> dict[str, Any]:
             "underscore_hits": [],
             "error": "unreadable",
         }
-    dotted = [marker.decode("ascii") for marker in DOTTED_BONE_MARKERS if marker in data]
+    def model_node_contains(marker: bytes) -> bool:
+        start = 0
+        while True:
+            position = data.find(marker, start)
+            if position < 0:
+                return False
+            # Binary FBX model records carry the model name shortly after the
+            # ASCII "Model" property. ARP custom-property JSON does not.
+            context_start = max(0, position - 256)
+            context = data[context_start:position]
+            if b"Model" in context:
+                return True
+            start = position + len(marker)
+
+    dotted = [marker.decode("ascii") for marker in DOTTED_BONE_MARKERS if model_node_contains(marker)]
     underscore = [
-        marker.decode("ascii") for marker in UNDERSCORE_CONTRACT_MARKERS if marker in data
+        marker.decode("ascii") for marker in UNDERSCORE_CONTRACT_MARKERS if model_node_contains(marker)
     ]
     if dotted and not underscore:
         style = "dotted"

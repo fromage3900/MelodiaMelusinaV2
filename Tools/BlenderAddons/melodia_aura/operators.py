@@ -11,7 +11,7 @@ AURA_PRESETS = {
         'speed': 1.5,
         'turbulence': 2.0,
         'height': 1.5,
-        'description': 'Rising orange flames — perfect for fire spells, rage states'
+        'description': 'Rising orange flames - perfect for fire spells, rage states'
     },
     'ice': {
         'name': 'Ice Aura',
@@ -20,7 +20,7 @@ AURA_PRESETS = {
         'speed': 0.7,
         'turbulence': 0.8,
         'height': 1.0,
-        'description': 'Slow crystalline mist — ice spells, freeze effects'
+        'description': 'Slow crystalline mist - ice spells, freeze effects'
     },
     'lightning': {
         'name': 'Lightning Aura',
@@ -29,7 +29,7 @@ AURA_PRESETS = {
         'speed': 3.0,
         'turbulence': 4.0,
         'height': 2.0,
-        'description': 'Electric crackle — buffs, haste, shock spells'
+        'description': 'Electric crackle - buffs, haste, shock spells'
     },
     'healing': {
         'name': 'Healing Aura',
@@ -38,7 +38,7 @@ AURA_PRESETS = {
         'speed': 0.5,
         'turbulence': 0.3,
         'height': 1.2,
-        'description': 'Gentle green glow — cure spells, regen, support'
+        'description': 'Gentle green glow - cure spells, regen, support'
     },
     'dark': {
         'name': 'Dark Aura',
@@ -47,7 +47,7 @@ AURA_PRESETS = {
         'speed': 1.0,
         'turbulence': 1.5,
         'height': 1.8,
-        'description': 'Ominous purple — curse, doom, void magic'
+        'description': 'Ominous purple - curse, doom, void magic'
     },
     'holy': {
         'name': 'Holy Aura',
@@ -56,7 +56,7 @@ AURA_PRESETS = {
         'speed': 0.8,
         'turbulence': 0.5,
         'height': 2.0,
-        'description': 'Divine light — smite, barrier, judgment'
+        'description': 'Divine light - smite, barrier, judgment'
     },
 }
 

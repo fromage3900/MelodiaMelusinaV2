@@ -50,7 +50,7 @@ def probe_builder(name, builder_fn, params=None):
         entry["nodes"] = len(ng.nodes)
         entry["links"] = len(ng.links)
 
-        # Check for NaN in default values — skip geometry/shader sockets
+        # Check for NaN in default values - skip geometry/shader sockets
         nan_found = False
         for node in ng.nodes:
             for inp in node.inputs:
@@ -135,7 +135,7 @@ def probe_builder(name, builder_fn, params=None):
 
 
 def main():
-    # Imported as package at top of file — use those references.
+    # Imported as package at top of file - use those references.
     builders = [
         # music.py
         ("MEL_music_note_head", music.build_music_note_head),

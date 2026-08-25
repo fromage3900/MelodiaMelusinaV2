@@ -1,4 +1,4 @@
-"""Style Genome operators — apply genome, spawn genome graph/plan."""
+"""Style Genome operators - apply genome, spawn genome graph/plan."""
 
 from __future__ import annotations
 

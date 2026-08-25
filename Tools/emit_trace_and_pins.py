@@ -2,12 +2,12 @@
 
 Builds three artifacts under the same evidence discipline as every lane:
 
-1. `melodia.trace.v1` — JSONL chain: every claim/run/gate row -> evidence
+1. `melodia.trace.v1` - JSONL chain: every claim/run/gate row -> evidence
    file -> sha256 -> status. A claim without a file sha is listed, not
    believed.
-2. `digest_pins.v1.json` — sha256 pins of every spec + evidence input, plus
+2. `digest_pins.v1.json` - sha256 pins of every spec + evidence input, plus
    the ollama model digests, so any published score can be re-derived.
-3. `melodia.metrics.v1` — derived numbers only: task_success_rate,
+3. `melodia.metrics.v1` - derived numbers only: task_success_rate,
    recovery-under-failure, cost-per-task (raw tokens, no fake economics).
 
 Run:

@@ -1,4 +1,4 @@
-"""Castle kit & structure GN group builders — turrets, portcullis, slits, siege gear.
+"""Castle kit & structure GN group builders - turrets, portcullis, slits, siege gear.
 
 Seven new pieces for the CASTLE + STRUCTURES lane. Castle pieces follow the
 castle.py convention: primitives + instance arrays + store_attribute for
@@ -74,7 +74,7 @@ def _instance(tree, loc, points_sock, instance_sock):
 
 
 def build_castle_corner_turret(group_name="MEL_castle_corner_turret"):
-    """Corner turret — round body, conical roof, merlon ring.
+    """Corner turret - round body, conical roof, merlon ring.
 
     Stores turret_height (FLOAT) on the output for stack chaining.
     """
@@ -153,7 +153,7 @@ def build_castle_corner_turret(group_name="MEL_castle_corner_turret"):
 
 
 def build_castle_portcullis(group_name="MEL_castle_portcullis"):
-    """Portcullis — vertical bar lattice, frame, head beam, optional cross braces.
+    """Portcullis - vertical bar lattice, frame, head beam, optional cross braces.
 
     Stores portcullis_open (BOOLEAN) and bar_count (INT) on the output.
     """
@@ -268,7 +268,7 @@ def build_castle_portcullis(group_name="MEL_castle_portcullis"):
 
 
 def build_castle_arrow_slit(group_name="MEL_castle_arrow_slit"):
-    """Arrow-slit wall — defensive wall patch with instanced slit openings.
+    """Arrow-slit wall - defensive wall patch with instanced slit openings.
 
     Stores slit_count (INT) on the output for PCG reads.
     """
@@ -353,7 +353,7 @@ def build_castle_arrow_slit(group_name="MEL_castle_arrow_slit"):
 
 
 def build_castle_hoarding(group_name="MEL_castle_hoarding"):
-    """Hoarding — projecting wooden gallery: floor, posts, wall plate, canopy.
+    """Hoarding - projecting wooden gallery: floor, posts, wall plate, canopy.
 
     Stores gallery_level (INT) and has_canopy (BOOLEAN) on the output.
     """
@@ -450,7 +450,7 @@ def build_castle_hoarding(group_name="MEL_castle_hoarding"):
 
 
 def build_castle_siege_tower(group_name="MEL_castle_siege_tower"):
-    """Siege tower — four corner posts, stacked decks, optional roof cap.
+    """Siege tower - four corner posts, stacked decks, optional roof cap.
 
     Stores tower_levels (INT) on the output for PCG reads.
     """
@@ -549,7 +549,7 @@ def build_castle_siege_tower(group_name="MEL_castle_siege_tower"):
 
 
 def build_castle_barbican(group_name="MEL_castle_barbican"):
-    """Barbican gate — flanking pillars, lintel, turrets, portcullis slot.
+    """Barbican gate - flanking pillars, lintel, turrets, portcullis slot.
 
     Stores gate_mode (INT) on the output for PCG gate-state reads.
     """
@@ -654,7 +654,7 @@ def build_castle_barbican(group_name="MEL_castle_barbican"):
 
 
 def build_pergola_walkway(group_name="MEL_pergola_walkway"):
-    """Pergola walkway — twin post lines, top beams, cross rafters.
+    """Pergola walkway - twin post lines, top beams, cross rafters.
 
     Stores post_count (INT) on the output for PCG reads.
     """
@@ -755,11 +755,11 @@ register_builder("MEL_castle_hoarding", build_castle_hoarding, "Castle Hoarding"
     "Projecting wooden gallery with posts, floor, wall plate and canopy.",
     "castle")
 register_builder("MEL_castle_siege_tower", build_castle_siege_tower, "Castle Siege Tower",
-    "Siege tower blank — corner posts, stacked decks, optional roof cap.",
+    "Siege tower blank - corner posts, stacked decks, optional roof cap.",
     "castle")
 register_builder("MEL_castle_barbican", build_castle_barbican, "Castle Barbican",
-    "Barbican gate — pillars, lintel, portcullis slot and flanking turrets.",
+    "Barbican gate - pillars, lintel, portcullis slot and flanking turrets.",
     "castle")
 register_builder("MEL_pergola_walkway", build_pergola_walkway, "Pergola Walkway",
-    "Garden pergola — twin post lines, top beams and cross rafters.",
+    "Garden pergola - twin post lines, top beams and cross rafters.",
     "structures")

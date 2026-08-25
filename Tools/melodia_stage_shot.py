@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Melodia Stage one-command beauty / cine stills.
 
-Run (preferred — open stage first so load is fast):
+Run (preferred - open stage first so load is fast):
   blender KitbashExport/Melodia_Portfolio_Stage_v4.blend -b -P Tools/melodia_stage_shot.py -- --preset beauty --lights nikki
 
 Or let the script open the stage:
@@ -148,7 +148,7 @@ def apply_lights(preset_key: str) -> str:
     name = LIGHT_ALIASES.get(preset_key.lower(), preset_key)
     recipe = LIGHT_RECIPES.get(name)
     if not recipe:
-        log(f"WARN unknown lights {preset_key} — leaving as-is")
+        log(f"WARN unknown lights {preset_key} - leaving as-is")
         return name
     for light_name, (energy, color) in recipe.items():
         ob = bpy.data.objects.get(light_name)
@@ -160,7 +160,7 @@ def apply_lights(preset_key: str) -> str:
     for p in LIGHT_RECIPES:
         coll = bpy.data.collections.get(f"Lights_{p}")
         if coll:
-            # Marker collections only — do not hide_viewport (locks Outliner).
+            # Marker collections only - do not hide_viewport (locks Outliner).
             coll.hide_render = p != name
     # Actual studio lamps live in Lights (not Lights_Nikki).
     lights = bpy.data.collections.get("Lights")
@@ -190,7 +190,7 @@ def set_collection_render(name: str, visible: bool) -> None:
     coll = bpy.data.collections.get(name)
     if coll:
         coll.hide_render = not visible
-        # Do not touch hide_viewport — keeps Outliner toggles usable.
+        # Do not touch hide_viewport - keeps Outliner toggles usable.
 
 
 def _protect_water_advance_hair() -> None:
@@ -198,7 +198,7 @@ def _protect_water_advance_hair() -> None:
     mel = bpy.data.collections.get("Asset_melusina")
     if not mel:
         return
-    # Avoid collection.all_objects — can AV on linked overrides (4.2 vs newer stage).
+    # Avoid collection.all_objects - can AV on linked overrides (4.2 vs newer stage).
     for o in _mesh_objs_in_collection(mel):
         try:
             mats = [s.material.name if s.material else "" for s in o.material_slots]
@@ -231,7 +231,7 @@ def _mesh_objs_in_collection(coll: bpy.types.Collection | None) -> list[bpy.type
 
 
 def isolate_melusina() -> list[bpy.types.Object]:
-    # Solo Melusina — match STAGE_README defaults
+    # Solo Melusina - match STAGE_README defaults
     for name, on in (
         ("Asset_melusina", True),
         ("FX_Hero", True),
@@ -246,7 +246,7 @@ def isolate_melusina() -> list[bpy.types.Object]:
     for coll in bpy.data.collections:
         if coll.name.startswith("Asset_") and coll.name not in ("Asset_melusina", "Asset_sirmelodious"):
             coll.hide_render = True
-            # viewport stay toggleable — never hide_viewport here
+            # viewport stay toggleable - never hide_viewport here
         if coll.name.startswith("Wardrobe_"):
             coll.hide_render = True
     _protect_water_advance_hair()
@@ -354,7 +354,7 @@ def import_ornament(orn_id: str) -> list[bpy.types.Object]:
         for c in list(o.users_collection):
             c.objects.unlink(o)
         subject.objects.link(o)
-    log(f"subject=ornament:{orn_id} meshes={len(meshes)} ← {fbx_name}")
+    log(f"subject=ornament:{orn_id} meshes={len(meshes)} <- {fbx_name}")
     return meshes
 
 
@@ -399,7 +399,7 @@ def emit_passport(subject: str, objs: list[bpy.types.Object], capture: str, out_
     except ImportError:
         log(
             "passport skip: melodia_asset_passport module is missing (lost 2026-07-31, "
-            "only .pyc + a known-bad reconstruction remain — see _TASK_QUEUE.md); "
+            "only .pyc + a known-bad reconstruction remain - see _TASK_QUEUE.md); "
             "continuing without passport output"
         )
         return
@@ -429,11 +429,11 @@ def emit_passport(subject: str, objs: list[bpy.types.Object], capture: str, out_
         category=category,
         version="stage-shot",
         shader="Melodia Portfolio Stage",
-        capture=f"{capture} · {out_path.name}",
-        software="Blender · Melodia Portfolio Stage v4",
+        capture=f"{capture} - {out_path.name}",
+        software="Blender - Melodia Portfolio Stage v4",
         engine=bpy.context.scene.render.engine,
     )
-    log(f"passport → {paths.get('json')}")
+    log(f"passport -> {paths.get('json')}")
 
 
 def main() -> int:
@@ -451,7 +451,7 @@ def main() -> int:
     args = parser.parse_args(_argv_after_sep())
 
     ensure_stage()
-    # Do not rewrite scene.render.engine / samples — use whatever is in the .blend
+    # Do not rewrite scene.render.engine / samples - use whatever is in the .blend
     apply_lights(args.lights)
     cam = select_camera(args.preset)
 

@@ -37,7 +37,7 @@ report = {"blender": bpy.app.version_string, "scenes": [], "started": time.strft
 def scene_stats():
     """Collect measurable stats from the current scene.
 
-    After open_mainfile, the load is async — force an update so
+    After open_mainfile, the load is async - force an update so
     bpy.data.objects is actually populated before we count.
     """
     # Force depsgraph update to complete async load
@@ -131,7 +131,7 @@ def process_scene(dir_name, blend_files):
         bpy.ops.wm.open_mainfile(filepath=blend_path)
         entry["opened"] = True
 
-        # Poll for load completion — use scene collection refresh
+        # Poll for load completion - use scene collection refresh
         for i in range(30):
             # Access scene collection to force refresh
             if bpy.context.scene:

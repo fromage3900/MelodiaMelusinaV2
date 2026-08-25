@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Clean Bedrock research runner — invokes models via Converse API."""
+"""Clean Bedrock research runner - invokes models via Converse API."""
 import sys
 import os
 import datetime
@@ -108,7 +108,7 @@ def main():
         else:
             print(f"  ALL MODELS FAILED for {t}", file=sys.stderr, flush=True)
 
-    print("\n✅ Research complete.", file=sys.stderr, flush=True)
+    print("\n* Research complete.", file=sys.stderr, flush=True)
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""NPC source staging validator — checks the sourcing manifest against disk.
+"""NPC source staging validator - checks the sourcing manifest against disk.
 
 Report only by default; --apply moves nothing (sources are dropped in place) but
 writes Imports/NPCs/source_validation.json and warns on provenance gaps.

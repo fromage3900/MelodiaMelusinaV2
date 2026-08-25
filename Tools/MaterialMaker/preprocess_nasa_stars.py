@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bright Star Catalog subset → star_mask.png for Material Maker image node.
+"""Bright Star Catalog subset -> star_mask.png for Material Maker image node.
 
 MM has no CSV reader; run this before opening the celestial graph.
 
@@ -53,7 +53,7 @@ def render_star_mask(stars: list[dict], size: int) -> Image.Image:
         u, v = ra_dec_to_uv(star["ra_deg"], star["dec_deg"])
         x = int(u * (size - 1))
         y = int((1.0 - v) * (size - 1))
-        # Brighter stars (lower mag) → larger points
+        # Brighter stars (lower mag) -> larger points
         mag = star["mag"]
         radius = max(1, int(3.5 - mag * 0.6))
         brightness = int(max(80, min(255, 255 - mag * 25)))

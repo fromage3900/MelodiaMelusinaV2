@@ -1,4 +1,4 @@
-"""UV + trimsheet workflow — evaluated proxy for MioUV / UVPackmaster without losing GN source."""
+"""UV + trimsheet workflow - evaluated proxy for MioUV / UVPackmaster without losing GN source."""
 
 from __future__ import annotations
 
@@ -110,7 +110,7 @@ def ensure_mesh_uv_layer(obj, uv_name):
 
 
 def apply_export_uv(context, baked, src, props):
-    """Choose UV strategy for UE export duplicate — respect lock + procedural modes."""
+    """Choose UV strategy for UE export duplicate - respect lock + procedural modes."""
     if baked is None or baked.type != "MESH":
         return False
 
@@ -250,7 +250,7 @@ def commit_uv_from_proxy(context, source, proxy, uv_name=None, bake_geometry=Non
         source.data.update()
         return True, (
             f"Baked mesh + UV committed on '{source.name}' "
-            "(GN removed — duplicate before Regenerate if you need parametric source)"
+            "(GN removed - duplicate before Regenerate if you need parametric source)"
         )
 
     p_uv = proxy.data.uv_layers.get(uv_name) or proxy.data.uv_layers.active
@@ -262,7 +262,7 @@ def commit_uv_from_proxy(context, source, proxy, uv_name=None, bake_geometry=Non
 
     if not topology_match:
         return False, (
-            "Topology mismatch — regenerate proxy after changing Surreal parameters"
+            "Topology mismatch - regenerate proxy after changing Surreal parameters"
         )
 
     if uv_name not in source.data.uv_layers:

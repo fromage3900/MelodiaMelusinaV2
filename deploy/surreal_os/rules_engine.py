@@ -1,4 +1,4 @@
-"""Central rules — snap pairing, compose roles, surreal transforms."""
+"""Central rules - snap pairing, compose roles, surreal transforms."""
 
 from __future__ import annotations
 

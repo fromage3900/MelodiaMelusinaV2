@@ -405,14 +405,14 @@ register_builder("MEL_effect_wave", build_effect_wave, "Wave Effect",
     "Sine wave displacement along an axis, with normal-space toggle",
     "effects", role="modifier")
 register_builder("MEL_effect_cast", build_effect_cast, "Cast Effect",
-    "Pull mesh toward sphere or cylinder — spherical/cylindrical cast",
+    "Pull mesh toward sphere or cylinder - spherical/cylindrical cast",
     "effects", role="modifier")
 register_builder("MEL_effect_wireframe", build_effect_wireframe, "Wireframe Effect",
-    "Wireframe overlay — edges to curves swept with circle profile",
+    "Wireframe overlay - edges to curves swept with circle profile",
     "effects", role="modifier")
 register_builder("MEL_effect_smooth", build_effect_smooth, "Smooth Effect",
     "Geometry smoothing via Blur Attribute node",
     "effects", role="modifier")
 register_builder("MEL_effect_magic", build_effect_magic, "Magic Distortion",
-    "Combined magical distortion — 8 params, 10 presets (Liquid, Crystal, Portal, etc.)",
+    "Combined magical distortion - 8 params, 10 presets (Liquid, Crystal, Portal, etc.)",
     "effects", role="modifier")

@@ -11,7 +11,7 @@ class MELODIA_PT_pose_audit(Panel):
     bl_idname = "MELODIA_PT_pose_audit"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "Pose Audit"
+    bl_category = "Melodia"
 
     def draw(self, context):
         layout = self.layout

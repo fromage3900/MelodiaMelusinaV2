@@ -29,7 +29,7 @@ Source FBX ──► Pre-flight ──► Import onto ──► Batch retarget �
 | Source skeleton contract | `/Game/Melodia/Mocap/Source/SK_Source_Melusina` | ✅ Existing authoritative 464-bone source-rig mesh contract verified |
 | Source IK Rig | `/Game/Melodia/Mocap/Source/IK_Source_Melusina` | ✅ Created (464 bones) |
 | Target IK Rig | `/Game/Melodia/Mocap/Retarget/IK_Melusina_Body_Current` | ✅ Pre-existing |
-| Retargeter | `/Game/Melodia/Mocap/Retarget/RTG_Source_to_Melusina` | ✅ Created (5 retarget ops) |
+| Retargeter | `/Game/Melodia/Characters/Melusina/RTG_Source_to_Melusina` | ✅ Owner-confirmed reusable source-rig retargeter |
 | Staging output | `/Game/Melodia/Characters/Melusina/Animations/SourceRetargeted/` | Ready |
 
 ### Pipeline scripts

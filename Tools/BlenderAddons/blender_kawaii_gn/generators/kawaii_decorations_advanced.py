@@ -52,7 +52,7 @@ class KawaiiBowGN(KawaiiGNBase):
         link_from_input(links, input_node, 'Size', knot_radius.inputs[0])
         links.new(knot_radius.outputs[0], knot.inputs['Radius'])
 
-        # Ribbon loops (Kindchenschema head scale → puffier loops when cute)
+        # Ribbon loops (Kindchenschema head scale -> puffier loops when cute)
         loop = nodes.new('GeometryNodeMeshUVSphere')
         loop.location = (-600, 200)
         loop.inputs['Segments'].default_value = 24
@@ -81,7 +81,7 @@ class KawaiiBowGN(KawaiiGNBase):
         loop_right.inputs['Translation'].default_value = (0.6, 0, 0)
         links.new(loop.outputs['Mesh'], loop_right.inputs['Geometry'])
 
-        # Ribbon tails (Kindchenschema body scale → shorter tails when cute)
+        # Ribbon tails (Kindchenschema body scale -> shorter tails when cute)
         tail = nodes.new('GeometryNodeMeshCylinder')
         tail.location = (-600, -200)
         tail.inputs['Radius'].default_value = 0.08
@@ -148,7 +148,7 @@ class KawaiiStarDecorGN(KawaiiGNBase):
             tree, links, input_node, 'Roundness',
         )
 
-        # Star points (Kindchenschema head scale → puffier outer radius when cute)
+        # Star points (Kindchenschema head scale -> puffier outer radius when cute)
         star = nodes.new('GeometryNodeCurveStar')
         star.location = (-200, 0)
         star.inputs['Points'].default_value = 5
@@ -160,7 +160,7 @@ class KawaiiStarDecorGN(KawaiiGNBase):
         link_from_input(links, input_node, 'Size', outer_radius.inputs[1])
         links.new(outer_radius.outputs[0], star.inputs['Outer Radius'])
 
-        # Star body (Kindchenschema body scale → smaller inner core when cute)
+        # Star body (Kindchenschema body scale -> smaller inner core when cute)
         inner_ratio = nodes.new('ShaderNodeMath')
         inner_ratio.operation = 'MULTIPLY'
         inner_ratio.location = (-400, -100)
@@ -200,7 +200,7 @@ class KawaiiHeartDecorGN(KawaiiGNBase):
             tree, links, input_node, 'Roundness',
         )
 
-        # Heart lobes (Kindchenschema head scale → puffier lobes when cute)
+        # Heart lobes (Kindchenschema head scale -> puffier lobes when cute)
         lobe = nodes.new('GeometryNodeMeshUVSphere')
         lobe.location = (-600, 200)
         lobe.inputs['Segments'].default_value = 24
@@ -223,7 +223,7 @@ class KawaiiHeartDecorGN(KawaiiGNBase):
         lobe_right.inputs['Translation'].default_value = (0.35, 0, 0.15)
         links.new(lobe.outputs['Mesh'], lobe_right.inputs['Geometry'])
 
-        # Heart point (Kindchenschema body scale → shallower depth when cute)
+        # Heart point (Kindchenschema body scale -> shallower depth when cute)
         point = nodes.new('GeometryNodeMeshCone')
         point.location = (-600, -100)
         point.inputs['Radius'].default_value = 0.35

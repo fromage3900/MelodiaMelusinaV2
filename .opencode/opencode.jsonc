@@ -98,17 +98,17 @@
   },
 
   "mcp": {
-    // Enable only when Unreal Editor is open (exactly one instance on 9316).
+    // Rider hot for UE import tonight — one Editor on 9316, Blender Surreal on 9317.
     "monolith": {
       "type": "remote",
       "url": "http://127.0.0.1:9316/mcp",
-      "enabled": false
+      "enabled": true
     },
-    // Blender SurrealArch MCP -- enable when addon answers /api/ping on 9317.
+    // Blender SurrealArch MCP — enabled for musical kit v2 + Gaea tonight.
     "blender-mcp": {
       "type": "remote",
       "url": "http://127.0.0.1:9317",
-      "enabled": false
+      "enabled": true
     },
 
     // Locals ported from root .opencode.json (no secrets).

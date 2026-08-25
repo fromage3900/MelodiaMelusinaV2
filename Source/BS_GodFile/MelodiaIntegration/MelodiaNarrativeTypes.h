@@ -130,7 +130,7 @@ struct BS_GODFILE_API FMelodiaNarrativeRecord
 	 * UMelodiaNarrativeSubsystem::MigrateRecord.  Never bump it without one:
 	 * RestoreNarrativeRecord resets any record it cannot migrate.
 	 */
-	static constexpr int32 CurrentVersion = 4;
+	static constexpr int32 CurrentVersion = 5;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative")
 	int32 Version = CurrentVersion;
@@ -157,12 +157,26 @@ struct BS_GODFILE_API FMelodiaNarrativeRecord
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative")
 	FName ScriptCheckpoint;
 
+	/** Last First-Dream/JRPG encounter receipt. These are state facts, never live battle objects. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative|Encounter")
+	FName LastEncounterId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative|Encounter")
+	FName LastEncounterCommandId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative|Encounter")
+	EMelodiaBattleResult LastEncounterOutcome = EMelodiaBattleResult::Unavailable;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative")
 	TArray<FName> ConsumedIntentIds;
 
 	/** Active Persona-lite quest IDs; completion remains represented by typed narrative flags. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative")
 	TArray<FName> ActiveQuestIds;
+
+	/** Canonical completion set for read-only quest snapshots. Completion flags remain the content gate. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative")
+	TArray<FName> CompletedQuestIds;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative")
 	TArray<FName> ConsumedRewardIds;
@@ -227,4 +241,38 @@ struct BS_GODFILE_API FMelodiaNarrativeRecord
 	/** Logical water/platform state; the water gameplay subsystem remains the runtime authority. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Narrative|Water")
 	FMelodiaWaterGameplaySaveData WaterGameplayState;
+};
+
+/** Read-only runtime view for NPC UI, debug and proof. It grants no mutation capability. */
+USTRUCT(BlueprintType)
+struct BS_GODFILE_API FMelodiaNPCQuestRuntimeSnapshot
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|NPC|Quest")
+	FName NPCId;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|NPC|Quest")
+	FName QuestId;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|NPC|Quest")
+	bool bQuestActive = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|NPC|Quest")
+	bool bQuestCompleted = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|NPC|Quest")
+	FName ScriptCheckpoint;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|NPC|Quest")
+	FName EncounterId;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|NPC|Quest")
+	FName EncounterCommandId;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|NPC|Quest")
+	EMelodiaBattleResult EncounterOutcome = EMelodiaBattleResult::Unavailable;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|NPC|Quest")
+	bool bBattlePending = false;
 };
