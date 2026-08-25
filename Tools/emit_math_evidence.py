@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""emit_math_evidence.py — derive melodia.math.evidence.v1 from run artifacts.
+"""emit_math_evidence.py - derive melodia.math.evidence.v1 from run artifacts.
 
 This is the single source of truth for the published evidence JSON. It NEVER
 hand-edits numbers: every field is derived from a run artifact on disk.
@@ -11,7 +11,7 @@ Derives:
   - contract_tests : live run of Tools/run_contract_tests.py --json
   - math eval      : Saved/Audit/math_run_latest.json (tool-surface eval)
   - model runs     : Saved/Audit/math_run_models_latest.json (per-model rows)
-  - runtime gates  : Saved/gate_ledger.json (latest row per gate id) — a FAIL
+  - runtime gates  : Saved/gate_ledger.json (latest row per gate id) - a FAIL
                      row that the ledger has since superseded with PASS can
                      never be re-published, and vice versa
   - server         : tool list + policy from deploy/melodia_mcp_server.py and

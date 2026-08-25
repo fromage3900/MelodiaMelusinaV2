@@ -1,4 +1,4 @@
-"""Melodia Studio radial pie menus — main + room / window / genome sub-pies + hotkeys."""
+"""Melodia Studio radial pie menus - main + room / window / genome sub-pies + hotkeys."""
 
 from __future__ import annotations
 
@@ -113,25 +113,25 @@ class SURREAL_ARCH_MT_pie_main(bpy.types.Menu):
         pie = layout.menu_pie()
         has_props = _has_surreal_mesh(context)
 
-        # 4 — West : Generate (big action)
+        # 4 - West : Generate (big action)
         pie.operator("surreal_arch.generate", text="Generate", icon="SHADERFX")
-        # 6 — East : Room shape sub-pie
+        # 6 - East : Room shape sub-pie
         pie.operator("surreal_arch.pie_room", text="Room Shape", icon="MESH_CUBE")
-        # 2 — South : Window sub-pie
+        # 2 - South : Window sub-pie
         pie.operator("surreal_arch.pie_window", text="Window", icon="WINDOW")
-        # 8 — North : Genome sub-pie
+        # 8 - North : Genome sub-pie
         pie.operator("surreal_arch.pie_genome", text="Genome", icon="RNA")
-        # 7 — NW : Trim / Bake
+        # 7 - NW : Trim / Bake
         col = pie.column()
         col.operator("surreal_arch.trim_preset_zen_stone", text="Zen Stone Trim", icon="MOD_BOOLEAN")
         col.operator("surreal_arch.bake_trim_attributes", text="Bake Trim", icon="GROUP_VCOL")
-        # 1 — NE : Snap
+        # 1 - NE : Snap
         col2 = pie.column()
         col2.operator("surreal_arch.snap_to_selected", text="Snap", icon="SNAP_VERTEX")
         col2.operator("surreal_arch.toggle_snap_overlay", text="Snap Overlay", icon="HIDE_OFF")
-        # 5 — SW : Export
+        # 5 - SW : Export
         pie.operator("surreal_arch.export_ue5", text="Export UE5", icon="EXPORT")
-        # 3 — SE : Plan / Graph
+        # 3 - SE : Plan / Graph
         col3 = pie.column()
         if has_props:
             col3.operator("surreal_arch.spawn_graph_zen_sakura_walk", text="Sakura Walk", icon="OUTLINER_OB_GROUP_INSTANCE")
@@ -163,7 +163,7 @@ class SURREAL_ARCH_MT_pie_room(bpy.types.Menu):
             op.shape = shape
             op.do_generate = False
         # Extra row for advanced shapes (superellipse / freeform) as nested buttons below pie
-        # Blender pies are capped at 8 — superellipse & freeform live in the main room operators
+        # Blender pies are capped at 8 - superellipse & freeform live in the main room operators
         # Add a hint label in the remaining slot if available
         pie.separator()
         pie.separator()
@@ -192,7 +192,7 @@ class SURREAL_ARCH_MT_pie_window(bpy.types.Menu):
             op.shape = shape
             op.do_generate = False
         if has_props:
-            # Quick window toggle + count nudge row (drawn as extra pie items — Blender clips at 8, so add as column)
+            # Quick window toggle + count nudge row (drawn as extra pie items - Blender clips at 8, so add as column)
             pass
 
 
@@ -277,7 +277,7 @@ def _ctx_menu_draw(self, context):
     layout.operator("surreal_arch.pie_menu", text="Melodia Pie  (Shift+Q)", icon="SHADERFX")
     layout.operator("surreal_arch.pie_room", text="Room Shape Pie  (Alt+Q)", icon="MESH_CUBE")
     layout.operator("surreal_arch.pie_window", text="Window Pie  (Ctrl+Shift+Q)", icon="WINDOW")
-    layout.operator("surreal_arch.pie_score", text="♪ Score Pie  (Shift+M)", icon="PLAY")
+    layout.operator("surreal_arch.pie_score", text="* Score Pie  (Shift+M)", icon="PLAY")
 
 
 def _register_keymaps():
@@ -288,16 +288,16 @@ def _register_keymaps():
     if not kc:
         return
     km = kc.keymaps.new(name="3D View", space_type="VIEW_3D")
-    # Shift+Q — main pie (most used; MACHIN3tools uses Q alone, so Shift+Q is safe)
+    # Shift+Q - main pie (most used; MACHIN3tools uses Q alone, so Shift+Q is safe)
     kmi = km.keymap_items.new("surreal_arch.pie_menu", "Q", "PRESS", shift=True)
     _addon_keymaps.append((km, kmi))
-    # Alt+Q — room shape pie
+    # Alt+Q - room shape pie
     kmi2 = km.keymap_items.new("surreal_arch.pie_room", "Q", "PRESS", alt=True)
     _addon_keymaps.append((km, kmi2))
-    # Ctrl+Shift+Q — window pie
+    # Ctrl+Shift+Q - window pie
     kmi3 = km.keymap_items.new("surreal_arch.pie_window", "Q", "PRESS", shift=True, ctrl=True)
     _addon_keymaps.append((km, kmi3))
-    # Shift+Alt+Q — genome pie
+    # Shift+Alt+Q - genome pie
     kmi4 = km.keymap_items.new("surreal_arch.pie_genome", "Q", "PRESS", shift=True, alt=True)
     _addon_keymaps.append((km, kmi4))
 
@@ -313,7 +313,7 @@ def _unregister_keymaps():
 
 def register_keymaps_and_menus():
     _register_keymaps()
-    # Object context menu (right-click in 3D View) — idempotent
+    # Object context menu (right-click in 3D View) - idempotent
     try:
         global _handle_ctx_menu
         if _handle_ctx_menu is None:

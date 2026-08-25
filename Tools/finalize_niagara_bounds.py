@@ -1,4 +1,4 @@
-"""finalize_niagara_bounds.py — set system-level Fixed Bounds on owned systems.
+"""finalize_niagara_bounds.py - set system-level Fixed Bounds on owned systems.
 
 Contract conformance (Tools/niagara_ecosystem_audit.py --contract) requires
 SYSTEM-level fixed bounds (UNiagaraSystem::bFixedBounds + FixedBounds box).

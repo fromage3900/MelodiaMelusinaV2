@@ -99,6 +99,7 @@ void UMelodiaPersonaSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	if (Narrative)
 	{
 		Narrative->OnQuestRequested.AddUniqueDynamic(this, &ThisClass::HandleNarrativeQuest);
+		Narrative->OnQuestStateCommitted.AddUniqueDynamic(this, &ThisClass::HandleNarrativeQuestStateCommitted);
 		Narrative->OnSocialStatRequested.AddUniqueDynamic(this, &ThisClass::HandleSocialStatRequested);
 		Narrative->OnRewardRequested.AddUniqueDynamic(this, &ThisClass::HandleRewardRequested);
 	}
@@ -117,6 +118,7 @@ void UMelodiaPersonaSubsystem::Deinitialize()
 	if (Narrative)
 	{
 		Narrative->OnQuestRequested.RemoveDynamic(this, &ThisClass::HandleNarrativeQuest);
+		Narrative->OnQuestStateCommitted.RemoveDynamic(this, &ThisClass::HandleNarrativeQuestStateCommitted);
 		Narrative->OnSocialStatRequested.RemoveDynamic(this, &ThisClass::HandleSocialStatRequested);
 		Narrative->OnRewardRequested.RemoveDynamic(this, &ThisClass::HandleRewardRequested);
 	}
@@ -370,6 +372,13 @@ void UMelodiaPersonaSubsystem::HandleNarrativeQuest(const FName QuestId)
 	{
 		CompleteQuest(QuestId);
 	}
+}
+
+void UMelodiaPersonaSubsystem::HandleNarrativeQuestStateCommitted(const FName QuestId, const bool bCompleted)
+{
+	OnQuestStateChanged.Broadcast(QuestId,
+		bCompleted ? EMelodiaQuestState::Completed : EMelodiaQuestState::Active);
+	RefreshMinimapWidgets();
 }
 
 void UMelodiaPersonaSubsystem::HandleJRPGBattleStarted(const FName EncounterId)

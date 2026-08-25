@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Overnight Persona PIE Loop — core gameplay loop screenshots + tests.
+Overnight Persona PIE Loop - core gameplay loop screenshots + tests.
 
 Runs continually tonight: every PIE task for the core persona loop,
 captures screenshots, checks logs, and reports.
 
-Core loop tested: Quill dialogue → encounter → battle (Melusina) → result → Quill resume → exploration + persona stats/save
+Core loop tested: Quill dialogue -> encounter -> battle (Melusina) -> result -> Quill resume -> exploration + persona stats/save
 
 Usage:
   python Tools/overnight_persona_pie_loop.py --once          # single pass
@@ -29,11 +29,11 @@ SAVED_DIR.mkdir(parents=True, exist_ok=True)
 # ---- PIE tasks for core persona loop (Foundation Gates + persona) ----
 # Each entry: (map, duration, capture_interval, name_suffix, sample_vars)
 PIE_TASKS = [
-    # 1. Widget runtime gate (P0) — which BP_BattleUI is active
+    # 1. Widget runtime gate (P0) - which BP_BattleUI is active
     ("/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap", 12, 0.5, "widget_runtime", None),
-    # 2. Persona exploration — stats read/write, save
+    # 2. Persona exploration - stats read/write, save
     ("/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap", 15, 0.5, "persona_exploration", ["GroundSpeed", "bIsMoving"]),
-    # 3. Battle controller parity — attack/skill/item/flee
+    # 3. Battle controller parity - attack/skill/item/flee
     ("/Game/TurnBasedJRPGTemplate/Maps/BattleTestMap", 15, 0.25, "battle_parity", None),
     # 4. Save/load canonical slot
     ("/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap", 10, 0.5, "save_load", None),
@@ -59,13 +59,13 @@ def run_once(iteration=0):
     ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     print(f"\n=== Persona PIE Loop iteration {iteration} @ {ts} ===")
     if not wait_for_monolith(timeout=30):
-        print("[Loop] Monolith 9316 not ready — skipping this iteration (UE still starting?)")
+        print("[Loop] Monolith 9316 not ready - skipping this iteration (UE still starting?)")
         return False
     results = []
     for map_path, duration, interval, suffix, sample_vars in PIE_TASKS:
         out = SAVED_DIR / f"{ts}_iter{iteration}_{suffix}"
         name = f"persona_{suffix}_{ts}"
-        print(f"  → {suffix}: {map_path} ({duration}s, capture {interval}s) → {out}")
+        print(f"  -> {suffix}: {map_path} ({duration}s, capture {interval}s) -> {out}")
         try:
             kwargs = dict(map_path=map_path, duration=duration, output_dir=str(out), capture_interval=interval, test_name=name)
             if sample_vars:
@@ -76,7 +76,7 @@ def run_once(iteration=0):
             # Server completion status is "complete" (pie_smoke_runner.py:187);
             # "completed" never matches and would report every run as FAIL.
             ok = res.get("status") == "complete"
-            print(f"     {'PASS' if ok else 'FAIL'} — frames:{len(r.captured_frames)} elapsed:{res.get('elapsed_seconds', '?')}s")
+            print(f"     {'PASS' if ok else 'FAIL'} - frames:{len(r.captured_frames)} elapsed:{res.get('elapsed_seconds', '?')}s")
             results.append((suffix, ok, str(out)))
             # quick screenshot count
             pngs = list(out.glob("*.png")) + list(out.glob("**/*.png"))
@@ -88,7 +88,7 @@ def run_once(iteration=0):
     # summary
     summary = SAVED_DIR / f"{ts}_iter{iteration}_SUMMARY.json"
     summary.write_text(json.dumps({"time": ts, "iteration": iteration, "results": results}, indent=2))
-    print(f"[Loop] Summary → {summary}")
+    print(f"[Loop] Summary -> {summary}")
     return all(ok for _, ok, _ in results)
 
 def main():

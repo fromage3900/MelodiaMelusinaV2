@@ -1,4 +1,4 @@
-"""Corridor chain builders — delegated to shells module (v2.72.2)."""
+"""Corridor chain builders - delegated to shells module (v2.72.2)."""
 
 from __future__ import annotations
 

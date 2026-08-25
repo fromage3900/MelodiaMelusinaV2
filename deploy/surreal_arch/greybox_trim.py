@@ -1,4 +1,4 @@
-"""Greybox trim extensions — window reveals."""
+"""Greybox trim extensions - window reveals."""
 
 from __future__ import annotations
 

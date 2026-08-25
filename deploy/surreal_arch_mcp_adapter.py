@@ -1,5 +1,5 @@
 """
-[DEPRECATED 2026-08-06] Surreal Arch MCP adapter — wraps surreal_arch genome tools via port 9877 execute_code.
+[DEPRECATED 2026-08-06] Surreal Arch MCP adapter - wraps surreal_arch genome tools via port 9877 execute_code.
 
 Replaced by: deploy/blender_5.2_mcp.py (stdio MCP server, no TCP sockets, --factory-startup safe)
 Migration: use blender-5.2 MCP server in .mcp.json instead of this TCP socket adapter.

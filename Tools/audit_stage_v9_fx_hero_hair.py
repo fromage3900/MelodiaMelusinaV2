@@ -94,7 +94,7 @@ def main() -> None:
         "doctrine": {
             "fx_hero": "stage dressing only (sparkles/veil/jewelry/ribbon)",
             "hair_look": "Water (Advance).001 keep",
-            "hair_drip": "LiquiFeel tip proxies in Melusina_HairDrip — not FX_Hero",
+            "hair_drip": "LiquiFeel tip proxies in Melusina_HairDrip - not FX_Hero",
             "elixir": "Asset_melusina_elixir LiquiFeel glass only",
             "flip": "Melusina_WaterFX paused for this lane",
         },

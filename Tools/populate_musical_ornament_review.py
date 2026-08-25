@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Import musical ornament FBXs into Melodia Portfolio Stage v4 for review.
 
-Creates empty `MusicalOrnaments_Review` (Lane B — not Wardrobe_*) and places
+Creates empty `MusicalOrnaments_Review` (Lane B - not Wardrobe_*) and places
 the 7 SM_Orn_* meshes in a shrine-rail grid.
 
 Run:
@@ -155,7 +155,7 @@ def run(*, save: bool = False, clear: bool = False) -> dict:
     }
     AUDIT.parent.mkdir(parents=True, exist_ok=True)
     AUDIT.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
-    log(f"audit → {AUDIT} placed={len(placed)} missing={len(missing)}")
+    log(f"audit -> {AUDIT} placed={len(placed)} missing={len(missing)}")
 
     if save:
         bpy.ops.wm.save_mainfile()

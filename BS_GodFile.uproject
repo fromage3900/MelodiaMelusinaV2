@@ -40,6 +40,20 @@
 			]
 		},
 		{
+			"Name": "MeshPartition",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "GeometryScripting",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
 			"Name": "PCGBiomeCore",
 			"Enabled": true
 		},

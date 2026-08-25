@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build MF_ClothWindDrape — cloth wind/drape material function for kawaii fabric.
+Build MF_ClothWindDrape - cloth wind/drape material function for kawaii fabric.
 
 Pipeline: MaterialEditingLibrary (same path as setup_material_functions.py).
 
@@ -125,9 +125,9 @@ return offset;
     # ---- outputs ----
     o_wpo = fn_output(mf, "WPO", -200, 120)
     mel.connect_material_expressions(custom, "", o_wpo, "")
-    # NormalOffset: reuse custom output via a component mask on Z for tilt — keep simple:
+    # NormalOffset: reuse custom output via a component mask on Z for tilt - keep simple:
     o_norm = fn_output(mf, "NormalOffset", -200, 320)
-    # default 0 (unconnected) — safe; masters may ignore it
+    # default 0 (unconnected) - safe; masters may ignore it
     const0 = create_expression(mf, unreal.MaterialExpressionConstant3Vector, -400, 320)
     const0.set_editor_property("default_value", unreal.LinearColor(0, 0, 0, 1))
     mel.connect_material_expressions(const0, "", o_norm, "")

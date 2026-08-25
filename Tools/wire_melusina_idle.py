@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-wire_melusina_idle.py — fix Melusina's idle state (repoint to mocap idle).
+wire_melusina_idle.py - fix Melusina's idle state (repoint to the verified arms-down idle).
 
 Uses Monolith MCP convention: namespace as method, action in args dict.
 """
@@ -20,8 +20,11 @@ ABP = "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current"
 STATE_MACHINE = "MelusinaLocomotion"
 AUDIT_DIR = Path(__file__).resolve().parent.parent / "Saved" / "Audit"
 
-OLD_IDLE = "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle"
-NEW_IDLE = "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX"
+OLD_IDLE = "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX"
+# Temporary non-bind fallback only. The authored MUAL target is rejected: its sampled
+# frames are the skeleton bind pose. Do not promote this fallback as final art without
+# a fresh visual approval; the current lane still needs a production-quality idle.
+NEW_IDLE = "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle"
 
 
 def anim(action, params=None, timeout=60):
@@ -131,7 +134,7 @@ def apply_fix():
         report["uasset_mtime"] = mtime.isoformat()
         report["uasset_written_this_run"] = age_s < 600
         if age_s >= 600:
-            print(f"\n  WARNING: {uasset.name} is {age_s/3600:.1f}h old — work may be in-memory only")
+            print(f"\n  WARNING: {uasset.name} is {age_s/3600:.1f}h old - work may be in-memory only")
         else:
             print(f"\n  disk write confirmed: {uasset.name} @ {mtime:%H:%M:%S}Z")
 

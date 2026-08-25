@@ -246,7 +246,7 @@ def run_model(
                 "args_match": False,
                 "exec_ok": False,
                 "status": "hold",
-                "detail": "editor_required — Monolith unreachable on :9316",
+                "detail": "editor_required - Monolith unreachable on :9316",
             })
             continue
 
@@ -391,7 +391,7 @@ def _run_muse(timeout: float) -> tuple[int, dict[str, Any] | None]:
         "model": "muse-glimmer",
         "status": "skipped",
         "reason": (
-            "no ollama muse tag; OPENROUTER probe failed — "
+            "no ollama muse tag; OPENROUTER probe failed - "
             f"{probe.get('sample', 'set OPENROUTER_API_KEY or run Tools/setup_muse_glimmer.py --pull')}"
         ),
         "captured_at": datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds"),

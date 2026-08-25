@@ -57,7 +57,7 @@ def _patch_compose_world(monolith):
             self.report({"WARNING"}, "Select a plan mesh first")
             return {"CANCELLED"}
         if library.library_collection(create=False) is None:
-            self.report({"INFO"}, "Library not found — auto-initializing…")
+            self.report({"INFO"}, "Library not found - auto-initializing...")
             library.init_library(monolith, force_refresh=False)
             bpy.ops.object.select_all(action="DESELECT")
             obj.select_set(True)

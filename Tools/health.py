@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-health.py — single entry point for the Melodia project health command.
+health.py - single entry point for the Melodia project health command.
 
 Prints a one-screen pass/hold/fail summary to stdout and regenerates
 Saved/project_health.html (and Saved/Audit/project_health_claims.json) so the
@@ -32,7 +32,7 @@ DASHBOARD = HERE / "project_health_dashboard.py"
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Melodia project health — one command")
+    parser = argparse.ArgumentParser(description="Melodia project health - one command")
     parser.add_argument("--json", action="store_true", help="also write Saved/Audit/project_health_claims.json")
     parser.add_argument("--open", action="store_true", help="open the dashboard in a browser after writing")
     parser.add_argument("--watch", action="store_true", help="regenerate every 10s")

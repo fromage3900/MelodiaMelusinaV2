@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Solo Melusina Cycles smoke test — prove she can appear in pixels.
+"""Solo Melusina Cycles smoke test - prove she can appear in pixels.
 
 *** DO NOT RUN ON LIVE STAGE WITHOUT ARTIST CONSENT ***
   Honors Saved/Audit/MELUSINA_SHADER_AGENT_STOP.
-  Mutates hide_render / world nodes for a throwaway plate — no stage save.
+  Mutates hide_render / world nodes for a throwaway plate - no stage save.
 """
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ def log(m: str) -> None:
 
 def main() -> None:
     if STOP.is_file():
-        log(f"ABORT: {STOP} present — smoke test blocked on lookdev freeze.")
+        log(f"ABORT: {STOP} present - smoke test blocked on lookdev freeze.")
         return
     # Hide everything
     for o in bpy.data.objects:

@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "clip_id": "LIB_BLENDER_A_BL_FINALHANDKEYED_SOURCE_20260824_A7DCD302",
+  "clip_name": "A_BL_FinalHandKeyed_Source_20260824",
+  "display_name": "Melusina final hand-keyed Blender idle",
+  "source_type": "blender",
+  "source_file": "Exports/AnimationLibrary/Blender/A_BL_FinalHandKeyed_Source_20260824.fbx",
+  "source_name": "Owner-authored final-stage character_rigAction",
+  "provenance": "A_Melusina_Idle_v22.fbx <- Melodia_Portfolio_Stage_v22_FINAL_2026-08-15.blend:character_rigAction",
+  "license": "project-authored",
+  "canonical_rig": "SK_Source_Melusina",
+  "canonical_skeleton": "/Game/Melodia/Mocap/Source/SK_Source_Melusina",
+  "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+  "target_mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina",
+  "retarget_profile": "RTG_Source_to_Melusina",
+  "fps": 30,
+  "units": "cm",
+  "frame_start": 0,
+  "frame_end": 29,
+  "loop": true,
+  "root_motion": "in_place",
+  "context": "locomotion",
+  "consumer": "blendspace",
+  "animation_only": true,
+  "one_clip_per_file": true,
+  "status": "canonical",
+  "status_reasons": [
+    "owner-authored final-stage FBX source",
+    "verified offline source-rig contract: 464 bones, 30 FPS, centimetre header, animation-only FBX",
+    "offline motion probe verified changing spine and hand tracks",
+    "lane_a_ready=true; target IK retarget and live non-bind proof remain pending"
+  ],
+  "lane_a_ready": true,
+  "promotion_target": "",
+  "notify_contract": [],
+  "foot_contact_audit": {
+    "status": "pending_manual",
+    "required_for_promotion": true
+  }
+}

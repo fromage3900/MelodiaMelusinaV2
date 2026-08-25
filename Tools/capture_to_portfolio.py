@@ -1,4 +1,4 @@
-"""capture_to_portfolio.py — One-click viewport grab from the UE editor into the
+"""capture_to_portfolio.py - One-click viewport grab from the UE editor into the
 portfolio site's asset folder.
 
 Run this from the Unreal Editor Python console
@@ -17,7 +17,7 @@ What it does (honest, minimal, no AI claims):
      (the folder the portfolio site deploys).
   3. Appends a manifest row so the site can list "latest from the editor".
 
-It does NOT push or commit — that stays a deliberate human step (you review the
+It does NOT push or commit - that stays a deliberate human step (you review the
 shot before it ships). Run .\deploy\sync_site_to_github.ps1 afterwards to publish.
 """
 from __future__ import annotations

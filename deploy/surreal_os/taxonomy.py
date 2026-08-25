@@ -1,4 +1,4 @@
-"""Procedural taxonomy registry — I/O contracts for primitives/modifiers/generators."""
+"""Procedural taxonomy registry - I/O contracts for primitives/modifiers/generators."""
 
 from __future__ import annotations
 

@@ -1,10 +1,10 @@
-"""♪ Living Portrait — voice-driven viseme animation for Melusina rigs.
+"""* Living Portrait - voice-driven viseme animation for Melusina rigs.
 
 Reconstructed 2026-08-23 from surviving bytecode after the untracked original
 was lost in a deploy-tree mirror. Pipeline:
-  load voice file (USTX/UST/TimingJSON) → PhonemeEvents
-  detect rig blendshapes → VisemeBindings
-  generate → expression_mixer bakes shape-key f-curves per frame
+  load voice file (USTX/UST/TimingJSON) -> PhonemeEvents
+  detect rig blendshapes -> VisemeBindings
+  generate -> expression_mixer bakes shape-key f-curves per frame
 """
 
 from __future__ import annotations
@@ -118,7 +118,7 @@ class MPR_OT_detect_rig(bpy.types.Operator):
         report = rig_detection_report(arm)
         context.scene.melodia_portrait.last_report = report.splitlines()[0] if report else "No bindings"
         print("[LivingPortrait]\n" + report)
-        self.report({"INFO"}, f"{len(detect_rig_blendshapes(arm))} viseme binding(s) — see System Console")
+        self.report({"INFO"}, f"{len(detect_rig_blendshapes(arm))} viseme binding(s) - see System Console")
         return {"FINISHED"}
 
 
@@ -130,7 +130,7 @@ class MPR_OT_preview_portrait(bpy.types.Operator):
 
     def execute(self, context):
         from .viseme_mapper import get_viseme_weights
-        from .expression_mixer import _apply_shape_keys  # noqa: F401 — kept internal
+        from .expression_mixer import _apply_shape_keys  # noqa: F401 - kept internal
 
         arm, err = _resolve_armature(context)
         if err:
@@ -150,7 +150,7 @@ class MPR_OT_preview_portrait(bpy.types.Operator):
             return {"CANCELLED"}
         first = track.events[0]
         weights = get_viseme_weights(first.phoneme)
-        self.report({"INFO"}, f"'{first.phoneme}' → {weights}")
+        self.report({"INFO"}, f"'{first.phoneme}' -> {weights}")
         settings.last_report = f"preview {first.phoneme}: {weights}"
         return {"FINISHED"}
 

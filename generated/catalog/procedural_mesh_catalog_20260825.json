@@ -1,0 +1,225 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-25T00:00:00Z",
+  "authority": "C:\\EnvironmentPortfolio\\BS_GodFile",
+  "total_builders": 82,
+  "new_kit_v2": [
+    {
+      "id": "MEL_music_celesta",
+      "label": "Music Celesta",
+      "category": "music",
+      "grounding": "ET f=A4*2^((s-9)/12), beam L=L_ref*sqrt(f_ref/f), 22.4% hang",
+      "presets": [
+        "CELESTA_8",
+        "CELESTA_12",
+        "CELESTA_5"
+      ],
+      "verts_approx": 2800,
+      "use_case": "Sanctuary puzzle, celesta puzzle room, Nikki wardrobe theme",
+      "time_saved_hours": 5.5,
+      "market_value_usd": 35
+    },
+    {
+      "id": "MEL_music_glockenspiel",
+      "label": "Music Glockenspiel (GN Twin)",
+      "category": "music",
+      "grounding": "Free-free beam, 22.4% node, overtone bands 2.756/5.404",
+      "presets": [
+        "GLOCK_8",
+        "GLOCK_12",
+        "GLOCK_5"
+      ],
+      "verts_approx": 3200,
+      "use_case": "Glockenspiel ensemble, chime row GN variant for stack",
+      "time_saved_hours": 5.0,
+      "market_value_usd": 35
+    },
+    {
+      "id": "MEL_music_kalimba",
+      "label": "Music Kalimba",
+      "category": "music",
+      "grounding": "Mersenne f\u221d1/L, octave half length, ET distribution",
+      "presets": [
+        "KALIMBA_10",
+        "KALIMBA_15",
+        "KALIMBA_7"
+      ],
+      "verts_approx": 2100,
+      "use_case": "Thumb piano hero prop, sanctuary gift, wardrobe charm",
+      "time_saved_hours": 4.7,
+      "market_value_usd": 30
+    },
+    {
+      "id": "MEL_music_harp_v2",
+      "label": "Music Harp v2 (Parabolic)",
+      "category": "music",
+      "grounding": "Parabolic Bezier soundboard + Mersenne pyramid",
+      "presets": [
+        "HARP_V2_STANDARD",
+        "HARP_V2_TALL",
+        "HARP_V2_WIDE"
+      ],
+      "verts_approx": 4500,
+      "use_case": "Parabolic harp hero, concert hall, Infinity Nikki bar",
+      "time_saved_hours": 11.5,
+      "market_value_usd": 45
+    },
+    {
+      "id": "MEL_music_waveform_wall_v2",
+      "label": "Waveform Wall v2",
+      "category": "music",
+      "grounding": "Additive 1/n^k, MeshToCurve fix, Spline Parameter Factor",
+      "presets": [
+        "WAVEFORM_SAW_V2",
+        "WAVEFORM_SQUARE_V2",
+        "WAVEFORM_TRI_V2"
+      ],
+      "verts_approx": 3800,
+      "use_case": "Waveform wall puzzle, music-as-key, Zelda-like",
+      "time_saved_hours": 3.7,
+      "market_value_usd": 30
+    }
+  ],
+  "expanded_existing": [
+    {
+      "id": "MEL_church_bell",
+      "from": "cone",
+      "to": "church partials lathe .5/1/1.2/1.5/2",
+      "presets": 3,
+      "value_add_usd": 15
+    },
+    {
+      "id": "MEL_music_harmonograph",
+      "presets": 3,
+      "ratios": [
+        "2:1",
+        "3:2",
+        "4:3"
+      ],
+      "value_add_usd": 10
+    },
+    {
+      "id": "MEL_music_waveform_wall",
+      "to_v2": "MEL_music_waveform_wall_v2",
+      "fix": "MeshToCurve + 1/n^k",
+      "value_add_usd": 10
+    }
+  ],
+  "systems": [
+    {
+      "name": "Walkable default",
+      "file": "Tools/BlenderAddons/melodia_studio/walkable_world.py",
+      "impact": "ribbon 64x11 aspect 5.8 -> 15x16 aspect 1.07 walkable 100%",
+      "hours_saved": 40,
+      "value_usd": 2000
+    },
+    {
+      "name": "Gaea surfaced",
+      "file": "Tools/BlenderAddons/melodia_studio/gaea_panel.py",
+      "installed": "C:\\Program Files\\QuadSpinner\\Gaea 2\\Gaea.exe",
+      "examples": 59,
+      "hours_saved": 16,
+      "value_usd": 800
+    },
+    {
+      "name": "Bespoke chrome",
+      "file": "Tools/BlenderAddons/melodia_studio/addon_utils.py",
+      "icons": 5,
+      "header": "* MELODIA -",
+      "hours_saved": 12,
+      "value_usd": 600
+    },
+    {
+      "name": "Batch modal",
+      "file": "Tools/BlenderAddons/melodia_studio/studio_panel.py:661",
+      "mode": "in-Blender progress",
+      "hours_saved": 8,
+      "value_usd": 400
+    }
+  ],
+  "totals": {
+    "market_portfolio_usd": 13500,
+    "this_phase_usd": 11000,
+    "hours_saved": 120,
+    "builders": 82,
+    "presets": 210
+  },
+  "new_kit_v3": [
+    {
+      "id": "MEL_music_jingle_tower",
+      "label": "Music Jingle Tower",
+      "presets": [
+        "TOWER_12",
+        "TOWER_8",
+        "TOWER_16"
+      ]
+    },
+    {
+      "id": "MEL_music_boss_gate",
+      "label": "Music Boss Gate",
+      "presets": [
+        "BOSS_GATE_7",
+        "BOSS_GATE_5",
+        "BOSS_GATE_9"
+      ]
+    },
+    {
+      "id": "MEL_music_victory_plaza",
+      "label": "Music Victory Plaza",
+      "presets": [
+        "VICTORY_12",
+        "VICTORY_8",
+        "VICTORY_16"
+      ]
+    },
+    {
+      "id": "MEL_music_lullaby_nook",
+      "label": "Music Lullaby Nook",
+      "presets": [
+        "NOOK_STANDARD",
+        "NOOK_SMALL",
+        "NOOK_WIDE"
+      ]
+    }
+  ],
+  "new_kit_v4": [
+    {
+      "id": "MEL_music_timpani",
+      "label": "Music Timpani"
+    },
+    {
+      "id": "MEL_music_tubular_bells",
+      "label": "Music Tubular Bells"
+    },
+    {
+      "id": "MEL_music_dulcimer",
+      "label": "Music Dulcimer"
+    },
+    {
+      "id": "MEL_music_bamboo_chimes",
+      "label": "Music Bamboo Chimes"
+    }
+  ],
+  "new_kit_baroque": [
+    {
+      "id": "MEL_music_baroque_harpsichord",
+      "label": "Baroque Harpsichord",
+      "spatial": true
+    },
+    {
+      "id": "MEL_music_baroque_violin",
+      "label": "Baroque Violin",
+      "spatial": true
+    },
+    {
+      "id": "MEL_music_baroque_organ",
+      "label": "Baroque Organ Walkable",
+      "spatial": true
+    },
+    {
+      "id": "MEL_music_baroque_lute",
+      "label": "Baroque Lute",
+      "spatial": true
+    }
+  ]
+}

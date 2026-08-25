@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""art_gates.py — the art-side gate that this project never had.
+"""art_gates.py - the art-side gate that this project never had.
 
 Every other gate in this repo is Blueprint, UI, or git hygiene. `echo_gates.yml`
 runs bp_live_path, graph_reachability, ui_style_audit and bp_sweep; the git hooks
 check LFS size and branch names. Nothing has ever checked a material, a mesh, a
-texture or an asset name — while the project carries 904 masters, 1268 instances
+texture or an asset name - while the project carries 904 masters, 1268 instances
 and a Substrate Toon spine.
 
 `specs/ci_gates.json` has described art budgets since it was written and is read by
@@ -17,9 +17,9 @@ This file is the caller.
 
 Two halves, because they have different requirements:
 
-  offline  — naming, duplicate short names, Masters/ hygiene, spec sanity.
+  offline  - naming, duplicate short names, Masters/ hygiene, spec sanity.
              Pure disk + git. Runs in CI, runs with the editor closed, runs fast.
-  live     — shader instruction counts, material compile status.
+  live     - shader instruction counts, material compile status.
              Needs the editor and Monolith on 9316 (lib_gates imports `unreal`).
 
 Offline is the half that can run today on every push. Live is opt-in via --live.
@@ -353,7 +353,7 @@ def main() -> int:
     budgets, notes = load_budgets()
     assets = _tracked_uassets()
     if not assets:
-        print("art_gates: no tracked .uasset found — is this a git checkout?", file=sys.stderr)
+        print("art_gates: no tracked .uasset found - is this a git checkout?", file=sys.stderr)
         return 2
 
     gates = [

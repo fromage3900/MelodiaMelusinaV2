@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-wire_melusina_glide.py — add Glide state to ABP_Melusina_Current's state machine.
+wire_melusina_glide.py - add Glide state to ABP_Melusina_Current's state machine.
 
 THE FEATURE
 -----------
-Melusina is a magical girl — she needs a glide/float locomotion state that feels
+Melusina is a magical girl - she needs a glide/float locomotion state that feels
 like flying. The ABP already has:
   - bIsGliding variable (set by BP_MelusinaJRPGCharacter)
   - Speed, Velocity, Acceleration, bIsMoving, WasInAir variables
@@ -15,7 +15,7 @@ THE FIX
 Add a Glide state that:
   - Plays a glide animation (in-place float)
   - Entry: bIsGliding == true (from any state)
-  - Exit: bIsGliding == false → Land (airborne), Idle (grounded, stopped),
+  - Exit: bIsGliding == false -> Land (airborne), Idle (grounded, stopped),
     or Locomotion (grounded, moving)
 
 SOURCE
@@ -84,7 +84,7 @@ def get_live_state_names() -> set[str]:
 
 
 def plan_glide() -> dict:
-    """Dry run — show what would change."""
+    """Dry run - show what would change."""
     require_editor()
 
     existing = get_live_state_names()
@@ -99,20 +99,20 @@ def plan_glide() -> dict:
     report["glide_state_exists"] = already_exists
 
     if already_exists:
-        report["action"] = f"Glide state already exists — would only update animation binding"
+        report["action"] = f"Glide state already exists - would only update animation binding"
         report["steps"] = [
-            f"1. set_state_animation: Glide → {GLIDE_ANIM}",
+            f"1. set_state_animation: Glide -> {GLIDE_ANIM}",
         ]
     else:
         report["action"] = f"Add Glide state + wire transitions"
         report["steps"] = [
             f"1. add_state_to_machine: Glide @ {GLIDE_STATE_POSITION}",
-            f"2. set_state_animation: Glide → {GLIDE_ANIM}",
-            f"3. add_transition: Idle → Glide (rule: bIsGliding)",
-            f"4. add_transition: Locomotion → Glide (rule: bIsGliding)",
-            f"5. add_transition: Glide → Idle (rule: !bIsGliding AND Speed<10)",
-            f"6. add_transition: Glide → Locomotion (rule: !bIsGliding AND Speed>10)",
-            f"7. add_transition: Glide → Airborne (rule: !bIsGliding AND !bIsOnGround)",
+            f"2. set_state_animation: Glide -> {GLIDE_ANIM}",
+            f"3. add_transition: Idle -> Glide (rule: bIsGliding)",
+            f"4. add_transition: Locomotion -> Glide (rule: bIsGliding)",
+            f"5. add_transition: Glide -> Idle (rule: !bIsGliding AND Speed<10)",
+            f"6. add_transition: Glide -> Locomotion (rule: !bIsGliding AND Speed>10)",
+            f"7. add_transition: Glide -> Airborne (rule: !bIsGliding AND !bIsOnGround)",
             f"8. compile ABP",
             f"9. save ABP",
         ]
@@ -130,7 +130,7 @@ def plan_glide() -> dict:
 
 
 def apply_glide() -> dict:
-    """Apply — add Glide state + wire transitions."""
+    """Apply - add Glide state + wire transitions."""
     mode = "APPLY"
     print(f"[{mode}] adding Glide state to {STATE_MACHINE}")
 
@@ -269,7 +269,7 @@ def apply_glide() -> dict:
         report["uasset_mtime"] = mtime.isoformat()
         report["uasset_written_this_run"] = age_s < 600
         if age_s >= 600:
-            print(f"\n  WARNING: {uasset.name} is {age_s/3600:.1f}h old — work may be in-memory only")
+            print(f"\n  WARNING: {uasset.name} is {age_s/3600:.1f}h old - work may be in-memory only")
         else:
             print(f"\n  disk write confirmed: {uasset.name} @ {mtime:%H:%M:%S}Z")
 
@@ -283,7 +283,7 @@ def apply_glide() -> dict:
 
 
 def verify_glide() -> dict:
-    """Verify — prove the Glide state landed."""
+    """Verify - prove the Glide state landed."""
     require_editor()
 
     existing = get_live_state_names()

@@ -1,4 +1,4 @@
-"""World streaming system — scales terrain from 222 cells to 10,000+.
+"""World streaming system - scales terrain from 222 cells to 10,000+.
 
 Implements:
 - Chunked world generation (16×16 chunks)

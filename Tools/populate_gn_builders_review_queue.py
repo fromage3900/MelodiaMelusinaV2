@@ -2,7 +2,7 @@
 """Populate Review_Queue with all Melodia GN builders (RQ_MEL_* children).
 
 Each builder gets a child collection under Review_Queue containing one mesh
-with a Geometry Nodes modifier wired to that builder's node group — so
+with a Geometry Nodes modifier wired to that builder's node group - so
 Stage Prev/Solo/Next can cycle the full catalog.
 
 Run:

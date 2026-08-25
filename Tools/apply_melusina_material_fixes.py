@@ -52,7 +52,7 @@ FIX_SWITCHES = [
     {
         "mi": "MI_Melusina_Material_023",
         "path": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_023",
-        "reason": "bUseSeparateRoughnessMap=True, bUseSeparateMetallicMap=True already — verifying",
+        "reason": "bUseSeparateRoughnessMap=True, bUseSeparateMetallicMap=True already - verifying",
         "verify_only": True,
     },
 ]
@@ -75,10 +75,10 @@ for entry in FIX_SWITCHES:
         rough_ok = rough.get("is_overridden", False) and rough.get("value", False)
         metal_ok = metal.get("is_overridden", False) and metal.get("value", False)
         if rough_ok and metal_ok:
-            report(f"  OK — both switches already True and overridden")
+            report(f"  OK - both switches already True and overridden")
             fix_results.append({mi_name: {"status": "already_ok", "detail": "Switches already set correctly"}})
         else:
-            report(f"  WARN — expected both True, got Roughness={rough.get('value')}(overridden={rough.get('is_overridden')}), Metallic={metal.get('value')}(overridden={metal.get('is_overridden')})")
+            report(f"  WARN - expected both True, got Roughness={rough.get('value')}(overridden={rough.get('is_overridden')}), Metallic={metal.get('value')}(overridden={metal.get('is_overridden')})")
             fix_results.append({mi_name: {"status": "unexpected", "detail": "Switches not as expected"}})
         continue
 
@@ -147,7 +147,7 @@ for mi_name in CLOTHING_MIS:
     path = f"/Game/Melodia/Characters/Melusina/Materials/{mi_name}"
     data = monolith("material_query", "get_instance_parameters", {"asset_path": path})
     if data.get("isError"):
-        report(f"  {mi_name}: SKIP — could not query ({data.get('error')})")
+        report(f"  {mi_name}: SKIP - could not query ({data.get('error')})")
         continue
     switches = {s["name"]: s for s in data.get("static_switch", [])}
     rough = switches.get("bUseSeparateRoughnessMap", {})
@@ -178,7 +178,7 @@ for mi_name in CLOTHING_MIS:
                 report(f"    Recompile OK")
                 additional_fixes.append({mi_name: {"status": "fixed_and_compiled"}})
     else:
-        report(f"  {mi_name}: OK — both switches already correct")
+        report(f"  {mi_name}: OK - both switches already correct")
 
 # ── Summary ──────────────────────────────────────────────────────────────
 print("\n" + "=" * 60)
@@ -198,7 +198,7 @@ for entry in all_fixes:
     for name, detail in entry.items():
         status = detail.get("status", "unknown")
         err = detail.get("error", "")
-        print(f"  [{status.upper()}] {name}" + (f" — {err}" if err else ""))
+        print(f"  [{status.upper()}] {name}" + (f" - {err}" if err else ""))
 
 print()
 print("Done.")

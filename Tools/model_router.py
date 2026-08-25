@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Model Router — policy-based model selection, chat dispatch, cost ledger.
+"""Model Router - policy-based model selection, chat dispatch, cost ledger.
 
 Picks the best model per task class, with ordered fallbacks, then can run the
 chat call itself. Keys come from env (OPENROUTER_API_KEY / TOKENROUTER_API_KEY /
@@ -53,7 +53,7 @@ PRICES = {
     "nvidia/nemotron-3-super-120b-a12b:free": (0.0, 0.0),
     "openai/gpt-oss-20b:free": (0.0, 0.0),
     "mistralai/codestral-2508": (0.0000003, 0.0000009),
-    # Local Ollama tags — zero API cost
+    # Local Ollama tags - zero API cost
     # Verified installed 2026-08-20 via `ollama list`.
     "qwen2.5-coder:7b": (0.0, 0.0),
     "qwen2.5-coder:14b": (0.0, 0.0),
@@ -75,9 +75,9 @@ BLOCKED = {
     "meta/muse-spark-1.2": "requires 18+ confirmation at openrouter.ai/settings/preferences",
     # Corrupt weights on disk, verified 2026-08-20: loads, then emits repeated tokens.
     # Docs/OLLAMA_SETUP_FIX_2026-08-20.md. Remove after re-pull + coherence smoke test.
-    "qwen2.5-coder:14b": "corrupt weights on disk — emits repeated tokens; re-pull and smoke-test first",
+    "qwen2.5-coder:14b": "corrupt weights on disk - emits repeated tokens; re-pull and smoke-test first",
     # 1/8 on the discovery probe: right tool in prose, no JSON.
-    "deepseek-coder:6.7b": "no structured output — unusable as an MCP client without constrained decoding",
+    "deepseek-coder:6.7b": "no structured output - unusable as an MCP client without constrained decoding",
 }
 
 # Classes that must never silently reach a paid cloud endpoint.
@@ -119,7 +119,7 @@ PRODUCTION_MUST_NOT = {
 POLICY = {
     # ---- production lanes: real game artifacts, gate-accepted ----
     #
-    # QUARANTINED — do not add to any lane until re-verified:
+    # QUARANTINED - do not add to any lane until re-verified:
     #   qwen2.5-coder:14b  -- CORRUPT WEIGHTS ON DISK. Loads fine, then emits pure
     #                         repeated tokens ("8888888..."), 0/8 with all responses
     #                         unparsed. Isolated to this tag: qwen2.5-coder:7b is
@@ -150,7 +150,7 @@ POLICY = {
         ("mistralai/mistral-medium-3-5", "openrouter", "cloud fallback only"),
     ],
     "asset_qa": [
-        ("qwen2.5-coder:7b", "local", "art/credits/bp gate triage — only verified-coherent coder tag"),
+        ("qwen2.5-coder:7b", "local", "art/credits/bp gate triage - only verified-coherent coder tag"),
         ("deepseek-r1:14b", "local", "reasoning fallback for triage"),
         ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free wide-context fallback"),
     ],
@@ -192,7 +192,7 @@ POLICY = {
     "playtest": [
         ("x-ai/grok-4.5", "openrouter", "fresh-eyes on assertion JSON"),
         ("mistralai/mistral-medium-3-5", "openrouter", "report grading"),
-        ("qwen3-coder:14b", "local", "grade reports only — never record pass alone"),
+        ("qwen3-coder:14b", "local", "grade reports only - never record pass alone"),
     ],
     "author": [
         ("mistralai/mistral-medium-3-5", "openrouter", "creative/agentic frontier"),
@@ -313,7 +313,7 @@ def run_chat(task_class, prompt, system=None, json_out=False, attempt=0, max_tok
     keys = load_keys()
     candidates = POLICY[task_class][attempt:]
     last_err = None
-    # daemon + production lanes: local first — never silently fall through to paid
+    # daemon + production lanes: local first - never silently fall through to paid
     # cloud. Production lanes produce game artifacts; a surprise cloud bill or a
     # network dependency in the content pipeline is a defect, not a fallback.
     if task_class in LOCAL_ONLY_CLASSES:

@@ -36,12 +36,12 @@ from typing import Any
 PRESET_SCHEMA_VERSION = 1
 PRESET_SOURCE = "melodia_gn.presets"
 
-# —————————————————————————————————————————————————————————————————————————————
-# Preset data — one entry per builder, keys match actual builder input sockets.
-# —————————————————————————————————————————————————————————————————————————————
+# -----------------------------------------------------------------------------
+# Preset data - one entry per builder, keys match actual builder input sockets.
+# -----------------------------------------------------------------------------
 
 BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
-    # water.py — MEL_water_gerstner (effects)
+    # water.py - MEL_water_gerstner (effects)
     "MEL_water_gerstner": {
         "label": "Gerstner Waves",
         "preset_labels": {
@@ -87,7 +87,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # structures.py — MEL_gazebo (structures)
+    # structures.py - MEL_gazebo (structures)
     "MEL_gazebo": {
         "label": "Gazebo",
         "preset_labels": {
@@ -122,7 +122,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # castle.py — MEL_castle_tower (castle)
+    # castle.py - MEL_castle_tower (castle)
     "MEL_castle_tower": {
         "label": "Castle Tower",
         "preset_labels": {
@@ -151,7 +151,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # ribbon.py — MEL_ribbon_curve (effects)
+    # ribbon.py - MEL_ribbon_curve (effects)
     "MEL_ribbon_curve": {
         "label": "Ribbon Curve",
         "preset_labels": {
@@ -183,7 +183,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # set_dressing.py — MEL_water_them_gazebo (set_dressing)
+    # set_dressing.py - MEL_water_them_gazebo (set_dressing)
     "MEL_water_them_gazebo": {
         "label": "Water-Themed Gazebo",
         "preset_labels": {
@@ -212,7 +212,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # set_dressing.py — MEL_music_them_gazebo (set_dressing)
+    # set_dressing.py - MEL_music_them_gazebo (set_dressing)
     "MEL_music_them_gazebo": {
         "label": "Music-Themed Gazebo",
         "preset_labels": {
@@ -241,7 +241,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # recursive_castle.py — MEL_recursive_castle_spire (castle)
+    # recursive_castle.py - MEL_recursive_castle_spire (castle)
     "MEL_recursive_castle_spire": {
         "label": "Recursive Castle Spire",
         "preset_labels": {
@@ -273,7 +273,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # nikki_quarter.py — MEL_nikki_quarter (structures)
+    # nikki_quarter.py - MEL_nikki_quarter (structures)
     "MEL_nikki_quarter": {
         "label": "Nikki Flora Quarter",
         "preset_labels": {
@@ -310,7 +310,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # sky_observatory.py — MEL_sky_observatory (structures)
+    # sky_observatory.py - MEL_sky_observatory (structures)
     "MEL_sky_observatory": {
         "label": "Celestial Dream Observatory",
         "preset_labels": {
@@ -320,7 +320,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
         "preset_descriptions": {
             "CELESTIAL_DREAM": "Full hero island: orrery rings, planets, lanterns.",
-            "MINIMAL_ISLE": "Two rings, no fixtures — clean silhouette.",
+            "MINIMAL_ISLE": "Two rings, no fixtures - clean silhouette.",
             "RING_TEMPLE": "Five steep rings, lanterns and finial, high wobble.",
         },
         "presets": {
@@ -345,7 +345,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # escher_waterfall.py — MEL_escher_waterfall (castle)
+    # escher_waterfall.py - MEL_escher_waterfall (castle)
     "MEL_escher_waterfall": {
         "label": "Escher Waterfall",
         "preset_labels": {
@@ -355,7 +355,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
         "preset_descriptions": {
             "IMPOSSIBLE_TRIBAR": "Canonical channel loop with pillars and splash ring.",
-            "QUIET_LOOP": "Bare loop without fixtures — hero prop read.",
+            "QUIET_LOOP": "Bare loop without fixtures - hero prop read.",
             "CHAOS_CASCADE": "Deep channel, wide cascade, all fixtures on.",
         },
         "presets": {
@@ -380,7 +380,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music.py — MEL_music_staff (music)
+    # music.py - MEL_music_staff (music)
     "MEL_music_staff": {
         "label": "Music Staff",
         "preset_labels": {
@@ -409,7 +409,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # profiles.py — MEL_column (profiles)
+    # profiles.py - MEL_column (profiles)
     "MEL_column": {
         "label": "Column",
         "preset_labels": {
@@ -438,7 +438,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # pcg_integration.py — MEL_pcg_water_tags_v2 (set_dressing)
+    # pcg_integration.py - MEL_pcg_water_tags_v2 (set_dressing)
     "MEL_pcg_water_tags_v2": {
         "label": "PCG Water Tags v2",
         "preset_labels": {
@@ -467,7 +467,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # effects.py — MEL_effect_wave (effects)
+    # effects.py - MEL_effect_wave (effects)
     "MEL_effect_wave": {
         "label": "Wave Effect",
         "preset_labels": {
@@ -496,7 +496,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # filigree.py — MEL_harmonic_orb (music)
+    # filigree.py - MEL_harmonic_orb (music)
     "MEL_harmonic_orb": {
         "label": "Harmonic Orb",
         "preset_labels": {
@@ -525,7 +525,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music_instruments.py — MEL_brass_pipe (music)
+    # music_instruments.py - MEL_brass_pipe (music)
     "MEL_brass_pipe": {
         "label": "Brass Pipe",
         "preset_labels": {
@@ -550,7 +550,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music.py — MEL_music_note_head (music)
+    # music.py - MEL_music_note_head (music)
     "MEL_music_note_head": {
         "label": "Music Note Head",
         "preset_labels": {
@@ -582,7 +582,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # effects.py — MEL_effect_magic (effects) — 3 of 10 legacy looks
+    # effects.py - MEL_effect_magic (effects) - 3 of 10 legacy looks
     "MEL_effect_magic": {
         "label": "Magic Distortion",
         "preset_labels": {
@@ -591,8 +591,8 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "GRAVITY_WELL": "Gravity Well",
         },
         "preset_descriptions": {
-            "LIQUID": "Flowing animated noise, mid intensity — liquid-surface read.",
-            "CRYSTAL": "High-frequency chromatic facets, static — gem/ice read.",
+            "LIQUID": "Flowing animated noise, mid intensity - liquid-surface read.",
+            "CRYSTAL": "High-frequency chromatic facets, static - gem/ice read.",
             "GRAVITY_WELL": "Low-frequency pull toward a downward attractor.",
         },
         "presets": {
@@ -614,7 +614,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music.py — MEL_music_harmonic (music)
+    # music.py - MEL_music_harmonic (music)
     "MEL_music_harmonic": {
         "label": "Harmonic Driver",
         "preset_labels": {
@@ -646,7 +646,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music.py — MEL_music_treble_clef (music)
+    # music.py - MEL_music_treble_clef (music)
     "MEL_music_treble_clef": {
         "label": "Treble Clef",
         "preset_labels": {
@@ -675,7 +675,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music_heroes.py — MEL_music_key_unit (music)
+    # music_heroes.py - MEL_music_key_unit (music)
     "MEL_music_key_unit": {
         "label": "Music Key Unit",
         "preset_labels": {
@@ -704,7 +704,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music_heroes.py — MEL_music_piano_roll (music)
+    # music_heroes.py - MEL_music_piano_roll (music)
     "MEL_music_piano_roll": {
         "label": "Music Piano Roll",
         "preset_labels": {
@@ -736,7 +736,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music_heroes.py — MEL_music_sheet_rail (music)
+    # music_heroes.py - MEL_music_sheet_rail (music)
     "MEL_music_sheet_rail": {
         "label": "Sheet Music Rail",
         "preset_labels": {
@@ -768,7 +768,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music_heroes.py — MEL_music_room_shell (structures)
+    # music_heroes.py - MEL_music_room_shell (structures)
     "MEL_music_room_shell": {
         "label": "Music Room Shell",
         "preset_labels": {
@@ -806,7 +806,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # music_heroes.py — MEL_music_harp (music)
+    # music_heroes.py - MEL_music_harp (music)
     "MEL_music_harp": {
         "label": "Music Harp",
         "preset_labels": {
@@ -841,7 +841,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # filigree.py — MEL_filigree_spiral (filigree)
+    # filigree.py - MEL_filigree_spiral (filigree)
     "MEL_filigree_spiral": {
         "label": "Filigree Spiral",
         "preset_labels": {
@@ -873,7 +873,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # escher_belvedere.py — MEL_escher_belvedere (castle)
+    # escher_belvedere.py - MEL_escher_belvedere (castle)
     "MEL_escher_belvedere": {
         "label": "Escher Belvedere",
         "preset_labels": {
@@ -911,7 +911,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # escher_penrose_stairs.py — MEL_escher_penrose_stairs (castle)
+    # escher_penrose_stairs.py - MEL_escher_penrose_stairs (castle)
     "MEL_escher_penrose_stairs": {
         "label": "Escher Penrose Stairs",
         "preset_labels": {
@@ -946,7 +946,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # castle.py — MEL_castle_assembler (castle) — scalar sockets only
+    # castle.py - MEL_castle_assembler (castle) - scalar sockets only
     "MEL_castle_assembler": {
         "label": "Castle Full Assembler",
         "preset_labels": {
@@ -1031,7 +1031,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # ornament.py — P1 thin-kit (vine / radial / frame before new generators)
+    # ornament.py - P1 thin-kit (vine / radial / frame before new generators)
     "MEL_ornament_vine": {
         "label": "Ornament Vine",
         "preset_labels": {
@@ -1114,7 +1114,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # ornament_extras.py — remaining Filigree kit (3)
+    # ornament_extras.py - remaining Filigree kit (3)
     "MEL_filigree_corner_volute": {
         "label": "Filigree Corner Volute",
         "preset_labels": {
@@ -1200,7 +1200,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # operations.py + geometry_extras.py — remaining Operations kit (3)
+    # operations.py + geometry_extras.py - remaining Operations kit (3)
     "MEL_op_iterate": {
         "label": "Iterate + Power Falloff",
         "preset_labels": {
@@ -1394,11 +1394,958 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             },
         },
     },
+    "MEL_church_bell": {
+        "label": "Church Bell",
+        "preset_labels": {
+            "CHAPEL_BELL": "Chapel Bell",
+            "CATHEDRAL_BOURDON": "Cathedral Bourdon",
+            "HAND_BELL": "Hand Bell",
+        },
+        "preset_descriptions": {
+            "CHAPEL_BELL": "Medium chapel bell with traditional crown and clapper.",
+            "CATHEDRAL_BOURDON": "Large bourdon bell, wide mouth and slow swing.",
+            "HAND_BELL": "Small hand bell, narrow crown, fast clapper.",
+        },
+        "presets": {
+            "CHAPEL_BELL": {
+                "Height": 0.6, "Mouth Radius": 0.25, "Wall Thickness": 0.012,
+                "Crown Width": 0.08, "Has Clapper": True, "Clapper Swing": 5.0, "Pitch": 220.0,
+            },
+            "CATHEDRAL_BOURDON": {
+                "Height": 1.4, "Mouth Radius": 0.72, "Wall Thickness": 0.032,
+                "Crown Width": 0.18, "Has Clapper": True, "Clapper Swing": 12.0, "Pitch": 65.0,
+            },
+            "HAND_BELL": {
+                "Height": 0.32, "Mouth Radius": 0.14, "Wall Thickness": 0.007,
+                "Crown Width": 0.045, "Has Clapper": True, "Clapper Swing": 18.0, "Pitch": 440.0,
+            },
+        },
+    },
+    "MEL_bell_chime": {
+        "label": "Bell/Chime",
+        "preset_labels": {
+            "CHIME_TUBE": "Chime Tube",
+            "CUP_BELL": "Cup Bell",
+            "SPHERE_BELL": "Sphere Bell",
+        },
+        "preset_descriptions": {
+            "CHIME_TUBE": "Long tubular chime (22.4% node, shimmer bands).",
+            "CUP_BELL": "Inverted cup bell with clapper.",
+            "SPHERE_BELL": "Spherical bell with high partial count.",
+        },
+        "presets": {
+            "CHIME_TUBE": {
+                "Bell Type": 2, "Diameter": 0.32, "Depth": 1.8, "Wall Thickness": 0.04,
+                "Partial Count": 10, "Has Clapper": False, "Clapper Mass": 0.4,
+            },
+            "CUP_BELL": {
+                "Bell Type": 1, "Diameter": 0.42, "Depth": 0.55, "Wall Thickness": 0.06,
+                "Partial Count": 8, "Has Clapper": True, "Clapper Mass": 0.5,
+            },
+            "SPHERE_BELL": {
+                "Bell Type": 0, "Diameter": 0.38, "Depth": 0.42, "Wall Thickness": 0.05,
+                "Partial Count": 12, "Has Clapper": True, "Clapper Mass": 0.7,
+            },
+        },
+    },
+    "MEL_singing_bowl": {
+        "label": "Singing Bowl",
+        "preset_labels": {
+            "TEMPLE_BOWL": "Temple Bowl",
+            "DEEP_BOWL": "Deep Bowl",
+            "SHALLOW_BOWL": "Shallow Bowl",
+        },
+        "preset_descriptions": {
+            "TEMPLE_BOWL": "Balanced temple bowl with clear strike point.",
+            "DEEP_BOWL": "Deep resonating bowl, thick wall.",
+            "SHALLOW_BOWL": "Shallow bowl, thin wall, bright overtones.",
+        },
+        "presets": {
+            "TEMPLE_BOWL": {
+                "Radius": 0.16, "Wall Thickness": 0.005, "Depth": 0.09, "Rim Width": 0.02,
+                "Strike Point": 0.25, "Pitch": 256.0,
+            },
+            "DEEP_BOWL": {
+                "Radius": 0.22, "Wall Thickness": 0.008, "Depth": 0.14, "Rim Width": 0.03,
+                "Strike Point": 0.5, "Pitch": 128.0,
+            },
+            "SHALLOW_BOWL": {
+                "Radius": 0.12, "Wall Thickness": 0.003, "Depth": 0.05, "Rim Width": 0.015,
+                "Strike Point": 0.75, "Pitch": 512.0,
+            },
+        },
+    },
+    "MEL_tuning_fork": {
+        "label": "Tuning Fork",
+        "preset_labels": {
+            "A440_FORK": "A440 Fork",
+            "LOW_C_FORK": "Low C Fork",
+            "HIGH_E_FORK": "High E Fork",
+        },
+        "preset_descriptions": {
+            "A440_FORK": "Standard A440 fork with resonance box.",
+            "LOW_C_FORK": "Long low C fork, wide gap.",
+            "HIGH_E_FORK": "Short high E fork, narrow gap.",
+        },
+        "presets": {
+            "A440_FORK": {
+                "Tine Length": 0.35, "Tine Radius": 0.008, "Tine Gap": 0.04,
+                "Handle Length": 0.25, "Handle Radius": 0.012, "Box Width": 0.08,
+                "Box Height": 0.06, "Box Depth": 0.04, "Pitch": 440.0,
+            },
+            "LOW_C_FORK": {
+                "Tine Length": 0.52, "Tine Radius": 0.011, "Tine Gap": 0.06,
+                "Handle Length": 0.32, "Handle Radius": 0.014, "Box Width": 0.1,
+                "Box Height": 0.07, "Box Depth": 0.05, "Pitch": 130.81,
+            },
+            "HIGH_E_FORK": {
+                "Tine Length": 0.22, "Tine Radius": 0.006, "Tine Gap": 0.03,
+                "Handle Length": 0.18, "Handle Radius": 0.009, "Box Width": 0.06,
+                "Box Height": 0.045, "Box Depth": 0.03, "Pitch": 659.25,
+            },
+        },
+    },
+    "MEL_music_harmonograph": {
+        "label": "Harmonograph Tracery",
+        "preset_labels": {
+            "OCTAVE_SPIRAL": "Octave 2:1 Spiral",
+            "FIFTH_BLOOM": "Fifth 3:2 Bloom",
+            "FOURTH_WEAVE": "Fourth 4:3 Weave",
+        },
+        "preset_descriptions": {
+            "OCTAVE_SPIRAL": "2:1 octave ratio, classic damped spiral.",
+            "FIFTH_BLOOM": "3:2 fifth ratio, slow phase bloom.",
+            "FOURTH_WEAVE": "4:3 fourth ratio, tight lissajous weave.",
+        },
+        "presets": {
+            "OCTAVE_SPIRAL": {
+                "Turns": 3.0, "Frequency A": 2.0, "Frequency B": 1.0, "Phase": 0.0,
+                "Damping": 0.35, "Amplitude": 1.2, "Resolution": 400, "Thickness": 0.02, "Scale": 1.0,
+            },
+            "FIFTH_BLOOM": {
+                "Turns": 4.5, "Frequency A": 3.0, "Frequency B": 2.0, "Phase": 0.785,
+                "Damping": 0.28, "Amplitude": 1.4, "Resolution": 560, "Thickness": 0.018, "Scale": 1.1,
+            },
+            "FOURTH_WEAVE": {
+                "Turns": 5.0, "Frequency A": 4.0, "Frequency B": 3.0, "Phase": 1.57,
+                "Damping": 0.42, "Amplitude": 1.0, "Resolution": 640, "Thickness": 0.016, "Scale": 0.95,
+            },
+        },
+    },
+    "MEL_music_bass_clef": {
+        "label": "Bass Clef",
+        "preset_labels": {
+            "STANDARD_BASS": "Standard Bass",
+            "WIDE_BASS": "Wide Bass",
+            "TIGHT_CURL": "Tight Curl",
+        },
+        "preset_descriptions": {
+            "STANDARD_BASS": "Classic F-clef curl with two dots.",
+            "WIDE_BASS": "Broader curl for display sizes.",
+            "TIGHT_CURL": "Compact curl for small staves.",
+        },
+        "presets": {
+            "STANDARD_BASS": {
+                "Scale": 1.0, "Thickness": 0.018, "Curl Depth": 0.5, "Dot Size": 0.06, "Tail Length": 0.42,
+            },
+            "WIDE_BASS": {
+                "Scale": 1.3, "Thickness": 0.022, "Curl Depth": 0.62, "Dot Size": 0.075, "Tail Length": 0.52,
+            },
+            "TIGHT_CURL": {
+                "Scale": 0.75, "Thickness": 0.014, "Curl Depth": 0.38, "Dot Size": 0.045, "Tail Length": 0.32,
+            },
+        },
+    },
+    "MEL_music_waveform_wall": {
+        "label": "Waveform Wall",
+        "preset_labels": {
+            "SAW_WALL": "Saw Wall",
+            "SQUARE_WALL": "Square Wall",
+            "TRI_WALL": "Triangle Wall",
+        },
+        "preset_descriptions": {
+            "SAW_WALL": "Sawtooth additive 1/n wall.",
+            "SQUARE_WALL": "Square odd-harmonic wall.",
+            "TRI_WALL": "Triangle 1/n^2 soft wall.",
+        },
+        "presets": {
+            "SAW_WALL": {
+                "Width": 4.0, "Amplitude": 0.8, "Base Freq": 1.0, "Harmonic Blend": 0.55,
+                "Resolution": 128, "Thickness": 0.02, "Scale": 1.0,
+            },
+            "SQUARE_WALL": {
+                "Width": 4.0, "Amplitude": 0.65, "Base Freq": 1.2, "Harmonic Blend": 0.42,
+                "Resolution": 128, "Thickness": 0.018, "Scale": 1.0,
+            },
+            "TRI_WALL": {
+                "Width": 4.0, "Amplitude": 0.5, "Base Freq": 0.8, "Harmonic Blend": 0.35,
+                "Resolution": 128, "Thickness": 0.016, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_vinyl_disc": {
+        "label": "Vinyl Disc",
+        "preset_labels": {
+            "LP_33": "33 RPM LP",
+            "SINGLE_45": "45 Single",
+            "ETCHED_B_SIDE": "Etched B-Side",
+        },
+        "preset_descriptions": {
+            "LP_33": "Standard 12-inch 33 RPM with constant-pitch grooves.",
+            "SINGLE_45": "7-inch 45 RPM, fewer grooves.",
+            "ETCHED_B_SIDE": "Etched disc with sparse grooves and large label.",
+        },
+        "presets": {
+            "LP_33": {
+                "Radius": 0.15, "Thickness": 0.008, "Grooves": 42, "Has Label": True, "Spindle Hole": True, "Scale": 1.0,
+            },
+            "SINGLE_45": {
+                "Radius": 0.09, "Thickness": 0.007, "Grooves": 28, "Has Label": True, "Spindle Hole": True, "Scale": 1.0,
+            },
+            "ETCHED_B_SIDE": {
+                "Radius": 0.15, "Thickness": 0.009, "Grooves": 12, "Has Label": False, "Spindle Hole": True, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_lissajous_harp": {
+        "label": "Lissajous Harp",
+        "preset_labels": {
+            "CONCERT_HARP": "Concert Harp",
+            "SMALL_HARP": "Small Harp",
+            "WIDE_HARP": "Wide Harp",
+        },
+        "preset_descriptions": {
+            "CONCERT_HARP": "Full concert harp with lissajous string web.",
+            "SMALL_HARP": "Compact lap harp.",
+            "WIDE_HARP": "Broad orchestral harp, thick strings.",
+        },
+        "presets": {
+            "CONCERT_HARP": {
+                "Height": 1.6, "Width": 0.9, "Thickness": 0.04, "String Gauge": 0.004, "Scale": 1.0,
+            },
+            "SMALL_HARP": {
+                "Height": 0.9, "Width": 0.5, "Thickness": 0.03, "String Gauge": 0.003, "Scale": 1.0,
+            },
+            "WIDE_HARP": {
+                "Height": 1.8, "Width": 1.2, "Thickness": 0.05, "String Gauge": 0.005, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_frequency_ribcage": {
+        "label": "Frequency Ribcage",
+        "preset_labels": {
+            "RIBCAGE_STANDARD": "Standard Ribcage",
+            "TALL_RIBCAGE": "Tall Ribcage",
+            "WIDE_RIBCAGE": "Wide Ribcage",
+        },
+        "preset_descriptions": {
+            "RIBCAGE_STANDARD": "Harmonic rib tiers in 1/k decay.",
+            "TALL_RIBCAGE": "High vaulted ribcage.",
+            "WIDE_RIBCAGE": "Broad low ribcage.",
+        },
+        "presets": {
+            "RIBCAGE_STANDARD": {
+                "Span": 3.0, "Max Height": 2.2, "Rib Count": 7, "Spacing": 0.42, "Thickness": 0.04, "Scale": 1.0,
+            },
+            "TALL_RIBCAGE": {
+                "Span": 3.2, "Max Height": 3.5, "Rib Count": 9, "Spacing": 0.38, "Thickness": 0.045, "Scale": 1.0,
+            },
+            "WIDE_RIBCAGE": {
+                "Span": 5.0, "Max Height": 1.6, "Rib Count": 6, "Spacing": 0.62, "Thickness": 0.035, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_beam_cluster": {
+        "label": "Beam Cluster",
+        "preset_labels": {
+            "BEAM_4": "Four-Beam Cluster",
+            "BEAM_8_DENSE": "Eight Dense Beam",
+            "BEAM_SLANT": "Slanted Beam",
+        },
+        "preset_descriptions": {
+            "BEAM_4": "Standard 4-note beamed cluster.",
+            "BEAM_8_DENSE": "Dense 8-note fast passage beaming.",
+            "BEAM_SLANT": "Slanted beam with wide spacing.",
+        },
+        "presets": {
+            "BEAM_4": {
+                "Note Count": 4, "Spacing": 0.28, "Stem Length": 0.85, "Beam Thickness": 0.04, "Slant": 0.0, "Note Size": 0.38,
+            },
+            "BEAM_8_DENSE": {
+                "Note Count": 8, "Spacing": 0.18, "Stem Length": 0.9, "Beam Thickness": 0.035, "Slant": 0.08, "Note Size": 0.34,
+            },
+            "BEAM_SLANT": {
+                "Note Count": 4, "Spacing": 0.35, "Stem Length": 1.1, "Beam Thickness": 0.045, "Slant": 0.22, "Note Size": 0.42,
+            },
+        },
+    },
+    "MEL_music_chord_stack": {
+        "label": "Chord Stack",
+        "preset_labels": {
+            "TRIAD_STACK": "Triad Stack",
+            "SEVENTH_STACK": "Seventh Stack",
+            "SPREAD_CHORD": "Spread Chord",
+        },
+        "preset_descriptions": {
+            "TRIAD_STACK": "Three-note triad vertical stack.",
+            "SEVENTH_STACK": "Four-note seventh chord.",
+            "SPREAD_CHORD": "Wide spread voicing.",
+        },
+        "presets": {
+            "TRIAD_STACK": {
+                "Chord Size": 3, "Spread": 0.14, "Note Size": 0.4, "Stem Length": 0.9, "Stem Offset": 0.0, "Scale": 1.0,
+            },
+            "SEVENTH_STACK": {
+                "Chord Size": 4, "Spread": 0.16, "Note Size": 0.38, "Stem Length": 1.0, "Stem Offset": 0.02, "Scale": 1.0,
+            },
+            "SPREAD_CHORD": {
+                "Chord Size": 3, "Spread": 0.28, "Note Size": 0.42, "Stem Length": 1.2, "Stem Offset": 0.05, "Scale": 1.15,
+            },
+        },
+    },
+    "MEL_music_fermata": {
+        "label": "Fermata",
+        "preset_labels": {
+            "FERMATA_ARC": "Arc Fermata",
+            "FERMATA_DEEP": "Deep Fermata",
+            "FERMATA_DOT": "Dotted Fermata",
+        },
+        "preset_descriptions": {
+            "FERMATA_ARC": "Standard arc fermata over dot.",
+            "FERMATA_DEEP": "Deep curve fermata for large pauses.",
+            "FERMATA_DOT": "Dot-heavy fermata variant.",
+        },
+        "presets": {
+            "FERMATA_ARC": {
+                "Scale": 1.0, "Radius": 0.22, "Arc Height": 0.12, "Thickness": 0.018, "Dot Size": 0.04, "Has Dot": True,
+            },
+            "FERMATA_DEEP": {
+                "Scale": 1.2, "Radius": 0.28, "Arc Height": 0.18, "Thickness": 0.022, "Dot Size": 0.05, "Has Dot": True,
+            },
+            "FERMATA_DOT": {
+                "Scale": 1.0, "Radius": 0.2, "Arc Height": 0.1, "Thickness": 0.016, "Dot Size": 0.06, "Has Dot": True,
+            },
+        },
+    },
+    "MEL_music_repeat_bar": {
+        "label": "Repeat Bar",
+        "preset_labels": {
+            "REPEAT_STANDARD": "Standard Repeat",
+            "REPEAT_WIDE": "Wide Repeat",
+            "REPEAT_COMPACT": "Compact Repeat",
+        },
+        "preset_descriptions": {
+            "REPEAT_STANDARD": "Standard repeat bar with dots.",
+            "REPEAT_WIDE": "Wide repeat bar for large staves.",
+            "REPEAT_COMPACT": "Compact repeat for small notation.",
+        },
+        "presets": {
+            "REPEAT_STANDARD": {
+                "Scale": 1.0, "Height": 0.8, "Bar Thickness": 0.03, "Gap": 0.08, "Dot Size": 0.04,
+            },
+            "REPEAT_WIDE": {
+                "Scale": 1.25, "Height": 1.0, "Bar Thickness": 0.04, "Gap": 0.1, "Dot Size": 0.05,
+            },
+            "REPEAT_COMPACT": {
+                "Scale": 0.75, "Height": 0.55, "Bar Thickness": 0.022, "Gap": 0.06, "Dot Size": 0.03,
+            },
+        },
+    },
+    "MEL_music_soundhole_rosette": {
+        "label": "Soundhole Rosette",
+        "preset_labels": {
+            "ROSETTE_CLASSIC": "Classic Rosette",
+            "ROSETTE_MODERN": "Modern Rosette",
+            "ROSETTE_MINIMAL": "Minimal Rosette",
+        },
+        "preset_descriptions": {
+            "ROSETTE_CLASSIC": "Classic concentric ring rosette.",
+            "ROSETTE_MODERN": "Modern offset ring rosette.",
+            "ROSETTE_MINIMAL": "Minimal single-ring rosette.",
+        },
+        "presets": {
+            "ROSETTE_CLASSIC": {
+                "Outer Radius": 0.055, "Ring Thickness": 0.006, "Marker Count": 12, "Depth": 0.008, "Scale": 1.0,
+            },
+            "ROSETTE_MODERN": {
+                "Outer Radius": 0.065, "Ring Thickness": 0.008, "Marker Count": 16, "Depth": 0.01, "Scale": 1.1,
+            },
+            "ROSETTE_MINIMAL": {
+                "Outer Radius": 0.045, "Ring Thickness": 0.004, "Marker Count": 8, "Depth": 0.005, "Scale": 0.85,
+            },
+        },
+    },
+    "MEL_music_stand": {
+        "label": "Music Stand",
+        "preset_labels": {
+            "STAND_ORCHESTRAL": "Orchestral Stand",
+            "STAND_CHAMBER": "Chamber Stand",
+            "STAND_PRACTICE": "Practice Stand",
+        },
+        "preset_descriptions": {
+            "STAND_ORCHESTRAL": "Full orchestral stand with wide panel.",
+            "STAND_CHAMBER": "Chamber stand, narrower panel.",
+            "STAND_PRACTICE": "Compact practice stand.",
+        },
+        "presets": {
+            "STAND_ORCHESTRAL": {
+                "Panel Width": 0.55, "Panel Height": 0.38, "Panel Thickness": 0.012, "Stand Height": 1.1, "Lean": 12.0, "Leg Spread": 0.35, "Scale": 1.0,
+            },
+            "STAND_CHAMBER": {
+                "Panel Width": 0.42, "Panel Height": 0.32, "Panel Thickness": 0.01, "Stand Height": 0.95, "Lean": 10.0, "Leg Spread": 0.28, "Scale": 1.0,
+            },
+            "STAND_PRACTICE": {
+                "Panel Width": 0.32, "Panel Height": 0.26, "Panel Thickness": 0.008, "Stand Height": 0.85, "Lean": 8.0, "Leg Spread": 0.22, "Scale": 0.9,
+            },
+        },
+    },
+    "MEL_music_time_signature": {
+        "label": "Time Signature",
+        "preset_labels": {
+            "TIME_4_4": "4/4 Common",
+            "TIME_3_4": "3/4 Waltz",
+            "TIME_6_8": "6/8 Compound",
+        },
+        "preset_descriptions": {
+            "TIME_4_4": "Standard 4/4 common time.",
+            "TIME_3_4": "Waltz 3/4 time.",
+            "TIME_6_8": "Compound 6/8 time.",
+        },
+        "presets": {
+            "TIME_4_4": {
+                "Radius": 0.08, "Thickness": 0.012, "Beats": 4, "Cut Time": False, "Resolution": 16,
+            },
+            "TIME_3_4": {
+                "Radius": 0.07, "Thickness": 0.011, "Beats": 3, "Cut Time": False, "Resolution": 14,
+            },
+            "TIME_6_8": {
+                "Radius": 0.09, "Thickness": 0.013, "Beats": 6, "Cut Time": False, "Resolution": 18,
+            },
+        },
+    },
+    "MEL_music_triplet_note": {
+        "label": "Triplet Note",
+        "preset_labels": {
+            "TRIPLET_3": "Three-Note Triplet",
+            "TRIPLET_DENSE": "Dense Triplet",
+            "TRIPLET_WIDE": "Wide Triplet",
+        },
+        "preset_descriptions": {
+            "TRIPLET_3": "Standard 3-note triplet with bracket.",
+            "TRIPLET_DENSE": "Dense triplet with tight spacing.",
+            "TRIPLET_WIDE": "Wide spaced triplet.",
+        },
+        "presets": {
+            "TRIPLET_3": {
+                "Spacing": 0.28, "Stem Length": 0.85, "Beam Thickness": 0.04, "Slant": 0.0, "Note Size": 0.38, "Double Beam": False,
+            },
+            "TRIPLET_DENSE": {
+                "Spacing": 0.2, "Stem Length": 0.8, "Beam Thickness": 0.035, "Slant": 0.05, "Note Size": 0.34, "Double Beam": True,
+            },
+            "TRIPLET_WIDE": {
+                "Spacing": 0.36, "Stem Length": 0.95, "Beam Thickness": 0.045, "Slant": 0.0, "Note Size": 0.42, "Double Beam": False,
+            },
+        },
+    },
+    "MEL_music_tuning_fork": {
+        "label": "Tuning Fork (Musical)",
+        "preset_labels": {
+            "FORK_A440": "A440 Fork",
+            "FORK_C256": "C256 Fork",
+            "FORK_HIGH": "High Fork",
+        },
+        "preset_descriptions": {
+            "FORK_A440": "Standard A440 musical tuning fork.",
+            "FORK_C256": "Low C256 fork.",
+            "FORK_HIGH": "High overtone fork.",
+        },
+        "presets": {
+            "FORK_A440": {
+                "Total Height": 0.35, "Fork Width": 0.04, "Thickness": 0.008, "Prong Split": 0.5, "Scale": 1.0,
+            },
+            "FORK_C256": {
+                "Total Height": 0.42, "Fork Width": 0.05, "Thickness": 0.01, "Prong Split": 0.55, "Scale": 1.1,
+            },
+            "FORK_HIGH": {
+                "Total Height": 0.28, "Fork Width": 0.032, "Thickness": 0.006, "Prong Split": 0.45, "Scale": 0.85,
+            },
+        },
+    },
+    "MEL_music_metronome_pillar": {
+        "label": "Metronome Pillar",
+        "preset_labels": {
+            "METRONOME_CLASSIC": "Classic Metronome",
+            "METRONOME_TALL": "Tall Pillar",
+            "METRONOME_COMPACT": "Compact Metronome",
+        },
+        "preset_descriptions": {
+            "METRONOME_CLASSIC": "Classic pillar metronome with swinging pendulum.",
+            "METRONOME_TALL": "Tall obelisk metronome.",
+            "METRONOME_COMPACT": "Compact practice metronome.",
+        },
+        "presets": {
+            "METRONOME_CLASSIC": {
+                "Body Height": 1.8, "Base Width": 0.42, "Pendulum Angle": 18.0, "Show Pendulum": True, "Scale": 1.0,
+            },
+            "METRONOME_TALL": {
+                "Body Height": 2.6, "Base Width": 0.5, "Pendulum Angle": 22.0, "Show Pendulum": True, "Scale": 1.1,
+            },
+            "METRONOME_COMPACT": {
+                "Body Height": 1.2, "Base Width": 0.32, "Pendulum Angle": 15.0, "Show Pendulum": False, "Scale": 0.85,
+            },
+        },
+    },
+    "MEL_music_phrase": {
+        "label": "Music Phrase",
+        "preset_labels": {
+            "PHRASE_4BAR": "4-Bar Phrase",
+            "PHRASE_8BAR": "8-Bar Phrase",
+            "PHRASE_SHORT": "Short Motif",
+        },
+        "preset_descriptions": {
+            "PHRASE_4BAR": "Standard 4-bar phrase with staff and notes.",
+            "PHRASE_8BAR": "Extended 8-bar phrase.",
+            "PHRASE_SHORT": "Short 2-bar motif.",
+        },
+        "presets": {
+            "PHRASE_4BAR": {
+                "Length": 4.0, "Note Count": 16, "Staff Scale": 1.0, "Note Size": 1.0, "Show Clef": True,
+            },
+            "PHRASE_8BAR": {
+                "Length": 8.0, "Note Count": 32, "Staff Scale": 1.2, "Note Size": 0.95, "Show Clef": True,
+            },
+            "PHRASE_SHORT": {
+                "Length": 2.0, "Note Count": 8, "Staff Scale": 0.85, "Note Size": 1.1, "Show Clef": False,
+            },
+        },
+    },
+
+    "MEL_music_celesta": {
+        "label": "Music Celesta",
+        "preset_labels": {
+            "CELESTA_8": "8-Plate Celesta",
+            "CELESTA_12": "12-Plate Celesta",
+            "CELESTA_5": "5-Plate Mini",
+        },
+        "preset_descriptions": {
+            "CELESTA_8": "Standard 8 plates ET from A4, longest 0.42m.",
+            "CELESTA_12": "12 plates, wider resonator.",
+            "CELESTA_5": "Mini 5 plates, compact box.",
+        },
+        "presets": {
+            "CELESTA_8": {
+                "Plate Count": 8, "Longest Plate (m)": 0.42, "Plate Width": 0.042, "Plate Thickness": 0.012,
+                "Spacing": 0.06, "Box Height": 0.28, "Root Semitone": 9, "Mode Steps": 7, "Scale": 1.0,
+            },
+            "CELESTA_12": {
+                "Plate Count": 12, "Longest Plate (m)": 0.48, "Plate Width": 0.038, "Plate Thickness": 0.01,
+                "Spacing": 0.055, "Box Height": 0.32, "Root Semitone": 9, "Mode Steps": 7, "Scale": 1.0,
+            },
+            "CELESTA_5": {
+                "Plate Count": 5, "Longest Plate (m)": 0.32, "Plate Width": 0.045, "Plate Thickness": 0.014,
+                "Spacing": 0.07, "Box Height": 0.22, "Root Semitone": 9, "Mode Steps": 5, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_glockenspiel": {
+        "label": "Music Glockenspiel",
+        "preset_labels": {
+            "GLOCK_8": "8-Bar Glock",
+            "GLOCK_12": "12-Bar Glock",
+            "GLOCK_5": "5-Bar Mini",
+        },
+        "preset_descriptions": {
+            "GLOCK_8": "GN twin of chime row, 8 plates.",
+            "GLOCK_12": "12 plates, long frame.",
+            "GLOCK_5": "5 plates mini.",
+        },
+        "presets": {
+            "GLOCK_8": {
+                "Plate Count": 8, "Longest Plate (m)": 0.32, "Plate Width": 0.038, "Plate Thickness": 0.009,
+                "Gap": 0.052, "Support Height": 0.18, "Scale": 1.0,
+            },
+            "GLOCK_12": {
+                "Plate Count": 12, "Longest Plate (m)": 0.36, "Plate Width": 0.034, "Plate Thickness": 0.008,
+                "Gap": 0.048, "Support Height": 0.2, "Scale": 1.0,
+            },
+            "GLOCK_5": {
+                "Plate Count": 5, "Longest Plate (m)": 0.26, "Plate Width": 0.042, "Plate Thickness": 0.011,
+                "Gap": 0.06, "Support Height": 0.15, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_kalimba": {
+        "label": "Music Kalimba",
+        "preset_labels": {
+            "KALIMBA_10": "10-Tine Kalimba",
+            "KALIMBA_15": "15-Tine Kalimba",
+            "KALIMBA_7": "7-Tine Mini",
+        },
+        "preset_descriptions": {
+            "KALIMBA_10": "Standard 10 tines Mersenne.",
+            "KALIMBA_15": "15 tines, wide box.",
+            "KALIMBA_7": "7 tines mini.",
+        },
+        "presets": {
+            "KALIMBA_10": {
+                "Tine Count": 10, "Longest Tine (m)": 0.095, "Tine Width": 0.012, "Tine Thickness": 0.003,
+                "Spacing": 0.018, "Box Width": 0.14, "Box Depth": 0.18, "Box Height": 0.04, "Scale": 1.0,
+            },
+            "KALIMBA_15": {
+                "Tine Count": 15, "Longest Tine (m)": 0.11, "Tine Width": 0.01, "Tine Thickness": 0.0025,
+                "Spacing": 0.015, "Box Width": 0.18, "Box Depth": 0.22, "Box Height": 0.045, "Scale": 1.0,
+            },
+            "KALIMBA_7": {
+                "Tine Count": 7, "Longest Tine (m)": 0.08, "Tine Width": 0.014, "Tine Thickness": 0.0035,
+                "Spacing": 0.02, "Box Width": 0.12, "Box Depth": 0.15, "Box Height": 0.035, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_harp_v2": {
+        "label": "Music Harp v2",
+        "preset_labels": {
+            "HARP_V2_STANDARD": "Standard Parabolic Harp",
+            "HARP_V2_TALL": "Tall Harp",
+            "HARP_V2_WIDE": "Wide Harp",
+        },
+        "preset_descriptions": {
+            "HARP_V2_STANDARD": "Parabolic board, 32 strings Mersenne.",
+            "HARP_V2_TALL": "Tall board, 48 strings.",
+            "HARP_V2_WIDE": "Wide board, 24 strings.",
+        },
+        "presets": {
+            "HARP_V2_STANDARD": {
+                "Height": 1.8, "Depth": 0.62, "Soundboard Width": 0.44, "String Count": 32, "String Radius": 0.003, "Curvature": 0.22, "Scale": 1.0,
+            },
+            "HARP_V2_TALL": {
+                "Height": 2.4, "Depth": 0.75, "Soundboard Width": 0.5, "String Count": 48, "String Radius": 0.0025, "Curvature": 0.28, "Scale": 1.0,
+            },
+            "HARP_V2_WIDE": {
+                "Height": 1.6, "Depth": 0.85, "Soundboard Width": 0.62, "String Count": 24, "String Radius": 0.004, "Curvature": 0.18, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_waveform_wall_v2": {
+        "label": "Waveform Wall v2",
+        "preset_labels": {
+            "WAVEFORM_SAW_V2": "Saw V2",
+            "WAVEFORM_SQUARE_V2": "Square V2",
+            "WAVEFORM_TRI_V2": "Tri V2",
+        },
+        "preset_descriptions": {
+            "WAVEFORM_SAW_V2": "Saw 1/n with correct 1/n^k.",
+            "WAVEFORM_SQUARE_V2": "Square odd 1/n.",
+            "WAVEFORM_TRI_V2": "Triangle 1/n^2.",
+        },
+        "presets": {
+            "WAVEFORM_SAW_V2": {
+                "Width": 4.0, "Amplitude": 0.6, "Base Freq": 1.0, "Harmonics": 5, "Falloff Exp": 1.0, "Resolution": 128, "Thickness": 0.02, "Scale": 1.0,
+            },
+            "WAVEFORM_SQUARE_V2": {
+                "Width": 4.0, "Amplitude": 0.6, "Base Freq": 1.2, "Harmonics": 5, "Falloff Exp": 1.0, "Resolution": 128, "Thickness": 0.02, "Scale": 1.0,
+            },
+            "WAVEFORM_TRI_V2": {
+                "Width": 4.0, "Amplitude": 0.5, "Base Freq": 1.0, "Harmonics": 5, "Falloff Exp": 2.0, "Resolution": 128, "Thickness": 0.02, "Scale": 1.0,
+            },
+        },
+    },
+
+    "MEL_music_jingle_tower": {
+        "label": "Music Jingle Tower",
+        "preset_labels": {
+            "TOWER_12": "12-Note Tower",
+            "TOWER_8": "8-Note Tower",
+            "TOWER_16": "16-Note Tower",
+        },
+        "preset_descriptions": {
+            "TOWER_12": "12 floors from 12-note jingle, 0.35m per floor.",
+            "TOWER_8": "8 floors, compact.",
+            "TOWER_16": "16 floors, tall.",
+        },
+        "presets": {
+            "TOWER_12": {
+                "Note Count": 12, "Floor Height": 0.35, "Radius": 1.2, "Wall Thick": 0.12, "Segments": 16, "Scale": 1.0,
+            },
+            "TOWER_8": {
+                "Note Count": 8, "Floor Height": 0.4, "Radius": 1.0, "Wall Thick": 0.1, "Segments": 12, "Scale": 1.0,
+            },
+            "TOWER_16": {
+                "Note Count": 16, "Floor Height": 0.32, "Radius": 1.5, "Wall Thick": 0.14, "Segments": 20, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_boss_gate": {
+        "label": "Music Boss Gate",
+        "preset_labels": {
+            "BOSS_GATE_7": "7-Pipe Gate",
+            "BOSS_GATE_5": "5-Pipe Gate",
+            "BOSS_GATE_9": "9-Pipe Gate",
+        },
+        "preset_descriptions": {
+            "BOSS_GATE_7": "7 pipes Mersenne, wide gate 3.2m.",
+            "BOSS_GATE_5": "5 pipes, narrow.",
+            "BOSS_GATE_9": "9 pipes, dense.",
+        },
+        "presets": {
+            "BOSS_GATE_7": {
+                "Width": 3.2, "Height": 4.5, "Depth": 0.45, "Pipe Radius": 0.09, "Pipe Count": 7, "Scale": 1.0,
+            },
+            "BOSS_GATE_5": {
+                "Width": 2.6, "Height": 3.8, "Depth": 0.38, "Pipe Radius": 0.07, "Pipe Count": 5, "Scale": 1.0,
+            },
+            "BOSS_GATE_9": {
+                "Width": 4.0, "Height": 5.2, "Depth": 0.52, "Pipe Radius": 0.11, "Pipe Count": 9, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_victory_plaza": {
+        "label": "Music Victory Plaza",
+        "preset_labels": {
+            "VICTORY_12": "12-Ray Plaza",
+            "VICTORY_8": "8-Ray Plaza",
+            "VICTORY_16": "16-Ray Plaza",
+        },
+        "preset_descriptions": {
+            "VICTORY_12": "12 rays Gold 500 radial.",
+            "VICTORY_8": "8 rays, compact.",
+            "VICTORY_16": "16 rays, dense.",
+        },
+        "presets": {
+            "VICTORY_12": {
+                "Radius": 6.0, "Ray Count": 12, "Ray Width": 0.6, "Ray Height": 0.15, "Center Height": 0.8, "Scale": 1.0,
+            },
+            "VICTORY_8": {
+                "Radius": 4.5, "Ray Count": 8, "Ray Width": 0.5, "Ray Height": 0.12, "Center Height": 0.6, "Scale": 1.0,
+            },
+            "VICTORY_16": {
+                "Radius": 7.5, "Ray Count": 16, "Ray Width": 0.7, "Ray Height": 0.18, "Center Height": 1.0, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_lullaby_nook": {
+        "label": "Music Lullaby Nook",
+        "preset_labels": {
+            "NOOK_STANDARD": "Standard Nook",
+            "NOOK_SMALL": "Small Nook",
+            "NOOK_WIDE": "Wide Nook",
+        },
+        "preset_descriptions": {
+            "NOOK_STANDARD": "3.2x2.8 nook, soft pocket.",
+            "NOOK_SMALL": "2.2x1.8 mini.",
+            "NOOK_WIDE": "4.5x3.5 wide.",
+        },
+        "presets": {
+            "NOOK_STANDARD": {
+                "Width": 3.2, "Depth": 2.8, "Height": 2.2, "Wall Thick": 0.18, "Nook Depth": 0.6, "Scale": 1.0,
+            },
+            "NOOK_SMALL": {
+                "Width": 2.2, "Depth": 1.8, "Height": 1.6, "Wall Thick": 0.14, "Nook Depth": 0.4, "Scale": 1.0,
+            },
+            "NOOK_WIDE": {
+                "Width": 4.5, "Depth": 3.5, "Height": 2.6, "Wall Thick": 0.22, "Nook Depth": 0.8, "Scale": 1.0,
+            },
+        },
+    },
+
+    "MEL_music_timpani": {
+        "label": "Music Timpani",
+        "preset_labels": {
+            "TIMPANI_STANDARD": "Standard Timpani",
+            "TIMPANI_SMALL": "Small Timpani",
+            "TIMPANI_LARGE": "Large Timpani",
+        },
+        "preset_descriptions": {
+            "TIMPANI_STANDARD": "Bowl 0.42m, tension 0.5, Bessel 1.59/2.14.",
+            "TIMPANI_SMALL": "Small 0.32m, high tension.",
+            "TIMPANI_LARGE": "Large 0.62m, low tension.",
+        },
+        "presets": {
+            "TIMPANI_STANDARD": {
+                "Bowl Radius": 0.42, "Bowl Depth": 0.38, "Membrane Tension": 0.5, "Rim Width": 0.04, "Scale": 1.0,
+            },
+            "TIMPANI_SMALL": {
+                "Bowl Radius": 0.32, "Bowl Depth": 0.28, "Membrane Tension": 0.65, "Rim Width": 0.03, "Scale": 1.0,
+            },
+            "TIMPANI_LARGE": {
+                "Bowl Radius": 0.62, "Bowl Depth": 0.52, "Membrane Tension": 0.35, "Rim Width": 0.055, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_tubular_bells": {
+        "label": "Music Tubular Bells",
+        "preset_labels": {
+            "TUBULAR_8": "8-Tube Bells",
+            "TUBULAR_6": "6-Tube Bells",
+            "TUBULAR_10": "10-Tube Bells",
+        },
+        "preset_descriptions": {
+            "TUBULAR_8": "8 long tubes ET, 1.45m longest.",
+            "TUBULAR_6": "6 tubes, compact.",
+            "TUBULAR_10": "10 tubes, extended.",
+        },
+        "presets": {
+            "TUBULAR_8": {
+                "Tube Count": 8, "Longest Tube (m)": 1.45, "Tube Radius": 0.038, "Spacing": 0.11, "Scale": 1.0,
+            },
+            "TUBULAR_6": {
+                "Tube Count": 6, "Longest Tube (m)": 1.2, "Tube Radius": 0.032, "Spacing": 0.09, "Scale": 1.0,
+            },
+            "TUBULAR_10": {
+                "Tube Count": 10, "Longest Tube (m)": 1.65, "Tube Radius": 0.042, "Spacing": 0.12, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_dulcimer": {
+        "label": "Music Dulcimer",
+        "preset_labels": {
+            "DULCIMER_12": "12-Course Dulcimer",
+            "DULCIMER_8": "8-Course Dulcimer",
+            "DULCIMER_16": "16-Course Dulcimer",
+        },
+        "preset_descriptions": {
+            "DULCIMER_12": "12 courses trapezoid, Mersenne.",
+            "DULCIMER_8": "8 courses, small.",
+            "DULCIMER_16": "16 courses, wide.",
+        },
+        "presets": {
+            "DULCIMER_12": {
+                "Width": 1.1, "Depth": 0.62, "Height": 0.09, "Course Count": 12, "String Radius": 0.0025, "Scale": 1.0,
+            },
+            "DULCIMER_8": {
+                "Width": 0.85, "Depth": 0.48, "Height": 0.07, "Course Count": 8, "String Radius": 0.003, "Scale": 1.0,
+            },
+            "DULCIMER_16": {
+                "Width": 1.35, "Depth": 0.75, "Height": 0.11, "Course Count": 16, "String Radius": 0.002, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_bamboo_chimes": {
+        "label": "Music Bamboo Chimes",
+        "preset_labels": {
+            "BAMBOO_7": "7-Chime Bamboo",
+            "BAMBOO_5": "5-Chime Bamboo",
+            "BAMBOO_9": "9-Chime Bamboo",
+        },
+        "preset_descriptions": {
+            "BAMBOO_7": "7 hollow bamboo, 0.9m longest, low density.",
+            "BAMBOO_5": "5 chimes, compact.",
+            "BAMBOO_9": "9 chimes, extended.",
+        },
+        "presets": {
+            "BAMBOO_7": {
+                "Chime Count": 7, "Longest (m)": 0.9, "Radius": 0.028, "Wall": 0.004, "Gap": 0.09, "Scale": 1.0,
+            },
+            "BAMBOO_5": {
+                "Chime Count": 5, "Longest (m)": 0.75, "Radius": 0.022, "Wall": 0.003, "Gap": 0.08, "Scale": 1.0,
+            },
+            "BAMBOO_9": {
+                "Chime Count": 9, "Longest (m)": 1.05, "Radius": 0.032, "Wall": 0.005, "Gap": 0.1, "Scale": 1.0,
+            },
+        },
+    },
+
+    "MEL_music_baroque_harpsichord": {
+        "label": "Music Baroque Harpsichord",
+        "preset_labels": {
+            "HARPSICHORD_GILDED": "Gilded Harpsichord",
+            "HARPSICHORD_EBONY": "Ebony Harpsichord",
+            "HARPSICHORD_MINI": "Mini Harpsichord",
+        },
+        "preset_descriptions": {
+            "HARPSICHORD_GILDED": "Gilded case, 56 strings, lid 42 deg, cabriole legs.",
+            "HARPSICHORD_EBONY": "Ebony case, 48 strings, lid 35 deg.",
+            "HARPSICHORD_MINI": "Mini 32 strings, compact.",
+        },
+        "presets": {
+            "HARPSICHORD_GILDED": {
+                "Length": 1.85, "Width": 0.92, "Height": 0.88, "Lid Angle": 42.0, "String Count": 56, "Leg Height": 0.72, "Scale": 1.0,
+            },
+            "HARPSICHORD_EBONY": {
+                "Length": 1.65, "Width": 0.82, "Height": 0.78, "Lid Angle": 35.0, "String Count": 48, "Leg Height": 0.65, "Scale": 1.0,
+            },
+            "HARPSICHORD_MINI": {
+                "Length": 1.25, "Width": 0.62, "Height": 0.58, "Lid Angle": 28.0, "String Count": 32, "Leg Height": 0.5, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_baroque_violin": {
+        "label": "Music Baroque Violin",
+        "preset_labels": {
+            "VIOLIN_BAROQUE": "Baroque Violin",
+            "VIOLIN_GILDED": "Gilded Violin",
+            "VIOLIN_MINI": "Mini Violin",
+        },
+        "preset_descriptions": {
+            "VIOLIN_BAROQUE": "Baroque scroll 2.2 turns, tailpiece wreath.",
+            "VIOLIN_GILDED": "Gilded scroll 2.8 turns.",
+            "VIOLIN_MINI": "Mini violin, 1.5 turns.",
+        },
+        "presets": {
+            "VIOLIN_BAROQUE": {
+                "Body Length": 0.59, "Body Width": 0.21, "Body Depth": 0.08, "Scroll Turns": 2.2, "Scale": 1.0,
+            },
+            "VIOLIN_GILDED": {
+                "Body Length": 0.62, "Body Width": 0.23, "Body Depth": 0.09, "Scroll Turns": 2.8, "Scale": 1.0,
+            },
+            "VIOLIN_MINI": {
+                "Body Length": 0.42, "Body Width": 0.16, "Body Depth": 0.06, "Scroll Turns": 1.5, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_baroque_organ": {
+        "label": "Music Baroque Organ",
+        "preset_labels": {
+            "ORGAN_CATHEDRAL": "Cathedral Organ",
+            "ORGAN_CHAPEL": "Chapel Organ",
+            "ORGAN_CHAMBER": "Chamber Organ",
+        },
+        "preset_descriptions": {
+            "ORGAN_CATHEDRAL": "Walkable facade 6.5x8.5m 19 pipes ET.",
+            "ORGAN_CHAPEL": "Chapel 4.2x6.0m 13 pipes.",
+            "ORGAN_CHAMBER": "Chamber 3.0x4.5m 9 pipes.",
+        },
+        "presets": {
+            "ORGAN_CATHEDRAL": {
+                "Facade Width": 6.5, "Facade Height": 8.5, "Depth": 1.2, "Pipe Count": 19, "Longest Pipe (m)": 4.2, "Scale": 1.0,
+            },
+            "ORGAN_CHAPEL": {
+                "Facade Width": 4.2, "Facade Height": 6.0, "Depth": 0.9, "Pipe Count": 13, "Longest Pipe (m)": 3.2, "Scale": 1.0,
+            },
+            "ORGAN_CHAMBER": {
+                "Facade Width": 3.0, "Facade Height": 4.5, "Depth": 0.7, "Pipe Count": 9, "Longest Pipe (m)": 2.4, "Scale": 1.0,
+            },
+        },
+    },
+    "MEL_music_baroque_lute": {
+        "label": "Music Baroque Lute",
+        "preset_labels": {
+            "LUTE_STANDARD": "Standard Lute",
+            "LUTE_THEORBO": "Theorbo",
+            "LUTE_MANDORA": "Mandora",
+        },
+        "preset_descriptions": {
+            "LUTE_STANDARD": "Bowl 0.62x0.36 11 staves, neck 0.42.",
+            "LUTE_THEORBO": "Long theorbo, 14 staves, neck 0.68.",
+            "LUTE_MANDORA": "Mandora, 9 staves, short neck.",
+        },
+        "presets": {
+            "LUTE_STANDARD": {
+                "Bowl Length": 0.62, "Bowl Width": 0.36, "Bowl Depth": 0.18, "Stave Count": 11, "Neck Length": 0.42, "Scale": 1.0,
+            },
+            "LUTE_THEORBO": {
+                "Bowl Length": 0.72, "Bowl Width": 0.42, "Bowl Depth": 0.21, "Stave Count": 14, "Neck Length": 0.68, "Scale": 1.0,
+            },
+            "LUTE_MANDORA": {
+                "Bowl Length": 0.48, "Bowl Width": 0.28, "Bowl Depth": 0.14, "Stave Count": 9, "Neck Length": 0.32, "Scale": 1.0,
+            },
+        },
+    },
+
 }
 
-# —————————————————————————————————————————————————————————————————————————————
+# -----------------------------------------------------------------------------
 # Accessors
-# —————————————————————————————————————————————————————————————————————————————
+# -----------------------------------------------------------------------------
 
 
 def _entry(builder_id: str) -> dict[str, Any]:
@@ -1437,9 +2384,9 @@ def preset_param_sets(builder_id: str) -> list[dict]:
     return out
 
 
-# —————————————————————————————————————————————————————————————————————————————
+# -----------------------------------------------------------------------------
 # Export
-# —————————————————————————————————————————————————————————————————————————————
+# -----------------------------------------------------------------------------
 
 
 def export_builder_preset(builder_id: str, preset_name: str) -> dict:
@@ -1484,9 +2431,9 @@ def export_all_presets_json(path: str) -> str:
     return path
 
 
-# —————————————————————————————————————————————————————————————————————————————
+# -----------------------------------------------------------------------------
 # Audit (registry-aware; lazy GROUP_METADATA import so this file stays pure)
-# —————————————————————————————————————————————————————————————————————————————
+# -----------------------------------------------------------------------------
 
 
 def audit_presets() -> dict:
@@ -1527,9 +2474,9 @@ def audit_presets() -> dict:
     return report
 
 
-# —————————————————————————————————————————————————————————————————————————————
+# -----------------------------------------------------------------------------
 # Standalone entry point (for QA without bpy)
-# —————————————————————————————————————————————————————————————————————————————
+# -----------------------------------------------------------------------------
 
 
 def main() -> None:

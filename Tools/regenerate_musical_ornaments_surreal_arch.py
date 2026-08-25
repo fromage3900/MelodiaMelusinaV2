@@ -32,7 +32,7 @@ PRODUCT_FBX = ROOT / "Products" / "MusicalOrnamentKitbash" / "FBX"
 STATUS_PATH = ROOT / "Saved" / "Audit" / "musical_ornament_bake_manifest.json"
 TAU = math.tau
 
-# name → (surreal_arch_type | None, overrides, bpy_fallback_key)
+# name -> (surreal_arch_type | None, overrides, bpy_fallback_key)
 SPECS = [
     ("SM_Orn_TrebleClef", "TREBLE_CLEF", {
         "clef_size": 1.8,
@@ -477,7 +477,7 @@ def run() -> dict:
         "results": results,
     }
     STATUS_PATH.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
-    log(f"done {summary['ok']}/{len(results)} → {STATUS_PATH}")
+    log(f"done {summary['ok']}/{len(results)} -> {STATUS_PATH}")
     return summary
 
 

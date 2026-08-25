@@ -1,5 +1,5 @@
 """VN dialogue batch daemon. Output: Imports/Data/Dialogue/*.md
-Stop: deploy/OLLAMA_DIALOGUE_STOP or deploy/STOP_ALL  ·  Cap: 30 files.
+Stop: deploy/OLLAMA_DIALOGUE_STOP or deploy/STOP_ALL  -  Cap: 30 files.
 Beats: Sir Melodious dungeon entry/exit/defeat-consolation, bed-save whispers, boss intro barks.
 """
 from __future__ import annotations
@@ -24,11 +24,11 @@ PREFERRED_MODELS = [
 ]
 
 BEATS = [
-    ("SirEntry", "Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical"),
-    ("SirExitVictory", "Sir Melodious greets her after a victorious run — relieved warmth, gentle teasing"),
-    ("SirDefeatConsole", "Sir Melodious consoles her after a defeat — tender, no blame, quiet resolve"),
-    ("BedWhisper", "the bed's save-moment whisper — lullaby-like, second person, cozy-magical"),
-    ("BossBark", "a boss enemy's intro bark — melodic menace, dark-fairytale, two lines max"),
+    ("SirEntry", "Sir Melodious sends Melusina into the dungeon - proud, worried, a little theatrical"),
+    ("SirExitVictory", "Sir Melodious greets her after a victorious run - relieved warmth, gentle teasing"),
+    ("SirDefeatConsole", "Sir Melodious consoles her after a defeat - tender, no blame, quiet resolve"),
+    ("BedWhisper", "the bed's save-moment whisper - lullaby-like, second person, cozy-magical"),
+    ("BossBark", "a boss enemy's intro bark - melodic menace, dark-fairytale, two lines max"),
 ]
 
 def log(m):
@@ -94,7 +94,7 @@ def main():
     i = n
     while not any(s.exists() for s in STOPS) and i < cap:
         key, desc = random.choice(BEATS)
-        prompt = f"""Write ONE dialogue beat for a dark-fairytale-sweet rhythm JRPG (tone: gentle melancholy + whimsy, sheet-music magic vocabulary — melodies, rests, crescendos as metaphors). Beat: {desc}. Max 6 short lines, speaker-labeled (SIR MELODIOUS: / MELUSINA: / VOICE: as fits). No stage directions beyond one bracketed mood note. No markdown headers."""
+        prompt = f"""Write ONE dialogue beat for a dark-fairytale-sweet rhythm JRPG (tone: gentle melancholy + whimsy, sheet-music magic vocabulary - melodies, rests, crescendos as metaphors). Beat: {desc}. Max 6 short lines, speaker-labeled (SIR MELODIOUS: / MELUSINA: / VOICE: as fits). No stage directions beyond one bracketed mood note. No markdown headers."""
         body = json.dumps({"model": model, "prompt": prompt, "stream": False,
                            "options": {"temperature": 1.05, "num_predict": 400}}).encode()
         try:

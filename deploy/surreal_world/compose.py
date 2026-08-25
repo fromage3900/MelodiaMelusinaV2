@@ -1,4 +1,4 @@
-"""Topology-driven world composer — COLLECTION (default) or JOINED legacy mode."""
+"""Topology-driven world composer - COLLECTION (default) or JOINED legacy mode."""
 
 from __future__ import annotations
 
@@ -280,7 +280,7 @@ def compose_world(
     if style is None:
         return None, f"Unknown style: {style_key}"
     if library.library_collection(create=False) is None:
-        return None, "Library not initialized — run library_init first"
+        return None, "Library not initialized - run library_init first"
 
     instance.clear_composed_world(plan_obj)
     out_coll_name = f"{plan_obj.name}_Composed"
@@ -450,7 +450,7 @@ def compose_world(
                     spawned.append(new_obj)
 
     if not spawned:
-        return None, "No instances placed — check plan faces and library init"
+        return None, "No instances placed - check plan faces and library init"
 
     if compose_mode == "COLLECTION":
         if world_root:

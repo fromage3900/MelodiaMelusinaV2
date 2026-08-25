@@ -1,4 +1,4 @@
-"""quantum_niagara_bridge.py — quantum/exotic draw → Niagara ecosystem.
+"""quantum_niagara_bridge.py - quantum/exotic draw -> Niagara ecosystem.
 
 The decision-service link for the Melusina VFX patterns. Draws the winner
 from the authored reaction-pattern set through any provider in the quantum

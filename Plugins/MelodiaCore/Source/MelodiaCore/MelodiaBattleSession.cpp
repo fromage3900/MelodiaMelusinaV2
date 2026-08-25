@@ -13,10 +13,8 @@
 #include "MelodiaCombatStateComponent.h"
 #include "MelodiaCoreRulesLibrary.h"
 #include "MelodiaEncounterTrigger.h"
-#include "MelodiaOpeningFlowSubsystem.h"
 #include "MelodiaOpeningStateAnchor.h"
 #include "MelodiaOpeningStateComponent.h"
-#include "MelodiaRoguelikeRunSubsystem.h"
 #include "MelodiaKeySystemLibrary.h"
 #include "MelodiaRhythmExecutionComponent.h"
 #include "MelodiaRhythmHUDWidget.h"
@@ -1282,19 +1280,9 @@ void UMelodiaBattleSession::EndEncounter(const EMelodiaEncounterResult Result)
 		float ScorePercent = 0.0f;
 		LastBattleResults.Rank = UMelodiaCoreRulesLibrary::GetRankFromScore(SessionScore, ScorePercent);
 	}
-	if (Result == EMelodiaEncounterResult::Victory)
-	{
-		if (UMelodiaOpeningFlowSubsystem* OpeningFlow = UMelodiaOpeningFlowSubsystem::Get(this))
-		{
-			if (OpeningFlow->NotifyZenEncounterVictory(ActiveEnemyId))
-			{
-				if (UMelodiaRoguelikeRunSubsystem* Run = UMelodiaRoguelikeRunSubsystem::Get(this))
-				{
-					Run->GrantHeartMelodyTokens(MelodiaRulesGen::OpeningHeartTokensOnUnlock);
-				}
-			}
-		}
-	}
+	// First-Dream progression is authored in Quill and committed by
+	// UMelodiaNarrativeSubsystem. Battle presentation must not reopen the
+	// retired OpeningFlow/QuestManager reward path here.
 	if (ActiveBattleController && ActiveBattleController->GetWorld())
 	{
 		if (UMelodiaRhythmReactivitySubsystem* Reactivity = ActiveBattleController->GetWorld()->GetSubsystem<UMelodiaRhythmReactivitySubsystem>())

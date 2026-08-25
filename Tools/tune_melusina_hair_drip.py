@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Minimal Melusina water-hair — Flip globules + drip as the hair body.
+"""Minimal Melusina water-hair - Flip globules + drip as the hair body.
 
 Product: visible hair = Flip `fluid_surface` (coalescing globules + drip),
 not Stylized Hair PRO strands and not a water shader on SK_MelusinaHair.
@@ -10,9 +10,9 @@ not Stylized Hair PRO strands and not a water shader on SK_MelusinaHair.
   Niagara Melusina_WaterFX   = UE drip (closed-editor prep; do not drive Unreal)
 
 Do not start Flip bake while a beauty still is rendering.
-Rebake only if globules are missing from the existing 1–240 cache.
+Rebake only if globules are missing from the existing 1-240 cache.
 
-Usage (live 5.2 GUI, same PID — no second Blender):
+Usage (live 5.2 GUI, same PID - no second Blender):
   exec(open(r"G:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\tune_melusina_hair_drip.py").read())
 """
 from __future__ import annotations
@@ -104,7 +104,7 @@ def main() -> dict:
     drip = bpy.data.objects.get("FF_MelusinaHair_Drip")
     sheet = bpy.data.objects.get("FF_MelusinaHair_Sheet")
     if not wfx or not domain or not drip:
-        raise RuntimeError("Missing Melusina_WaterFX / domain / drip — run upgrade_stage_core_and_waterhair.py")
+        raise RuntimeError("Missing Melusina_WaterFX / domain / drip - run upgrade_stage_core_and_waterhair.py")
 
     # Tip samples
     tips: dict[str, Vector] = {}
@@ -122,9 +122,9 @@ def main() -> dict:
         hair_maxs.append(mx)
 
     if not tips:
-        raise RuntimeError("No Hair Strand.* tips — Melusina hair missing from stage")
+        raise RuntimeError("No Hair Strand.* tips - Melusina hair missing from stage")
 
-    # Prefer front bangs strand for “little drip”
+    # Prefer front bangs strand for "little drip"
     primary = tips.get("Hair Strand.002") or next(iter(tips.values()))
     report["tips"] = {k: [round(x, 4) for x in v] for k, v in tips.items()}
 
@@ -179,7 +179,7 @@ def main() -> dict:
     )
 
     # --- Product visibility: hair IS the Flip surface (globules + drip) ---
-    # Domain cube filled Cam_Beauty — hide from render. Show fluid_surface + drip.
+    # Domain cube filled Cam_Beauty - hide from render. Show fluid_surface + drip.
     domain.hide_render = True
     domain.hide_viewport = True
     drip.hide_viewport = False
@@ -216,7 +216,7 @@ def main() -> dict:
             report["errors"].append(f"{name} obstacle: {exc}")
     report["actions"].append({"strands": "obstacle_hide_render"})
 
-    # FLIP types — drip is inflow along the hair volume, not a one-shot fluid blob
+    # FLIP types - drip is inflow along the hair volume, not a one-shot fluid blob
     report["flip_types"] = {
         "domain": _ensure_flip(domain, "TYPE_DOMAIN"),
         "drip": _ensure_flip(drip, "TYPE_INFLOW"),
@@ -224,7 +224,7 @@ def main() -> dict:
     if sheet:
         report["flip_types"]["sheet"] = _ensure_flip(sheet, "TYPE_INFLOW")
 
-    # Soft sim window — match existing 1–240 cache; do not start a bake here
+    # Soft sim window - match existing 1-240 cache; do not start a bake here
     FLIP_CACHE.mkdir(parents=True, exist_ok=True)
     try:
         dprops = domain.flip_fluid.domain
@@ -280,12 +280,12 @@ def main() -> dict:
         "max": [round(x, 4) for x in dmx3],
     }
     if not inside:
-        report["errors"].append("Drip still outside domain after shift — inspect transforms")
+        report["errors"].append("Drip still outside domain after shift - inspect transforms")
 
     bobj = list(FLIP_CACHE.rglob("*.bobj")) if FLIP_CACHE.exists() else []
     report["cache_bobj_count"] = len(bobj)
     report["lanes"] = {
-        "hair_body": "Flip fluid_surface — globules + drip (product)",
+        "hair_body": "Flip fluid_surface - globules + drip (product)",
         "drip_inflow": "FF_MelusinaHair_Drip TYPE_INFLOW along strand volume",
         "strands": "Hair Strand.* Flip obstacle / hide_render",
         "fallback_ue": "SK_MelusinaHair + ABP_Melusina_WaterHair until owner sockets GC",
@@ -293,7 +293,7 @@ def main() -> dict:
     }
     report["next"] = [
         "Do not start Flip bake while a beauty still is rendering",
-        "Rebake 1–240 only if fluid_surface is a connected mass with no globules",
+        "Rebake 1-240 only if fluid_surface is a connected mass with no globules",
         "Export Alembic with domain frame range; socket GC + Niagara to head_x",
     ]
     if floor:

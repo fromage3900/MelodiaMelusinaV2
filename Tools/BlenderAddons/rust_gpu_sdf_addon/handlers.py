@@ -315,7 +315,7 @@ def draw_callback_3d(self, context):
 
     o_props = output_obj.sdf_props
 
-    # V15.9.8.1: コレクション展開対応 — engine.pyと同等のフラット展開
+    # V15.9.8.1: コレクション展開対応 - engine.pyと同等のフラット展開
     flat_elements = _flatten_stack_for_preview(output_obj, inv_world_output)
 
     prim_data = []

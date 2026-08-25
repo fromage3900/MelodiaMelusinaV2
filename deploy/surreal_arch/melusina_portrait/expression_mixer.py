@@ -13,7 +13,7 @@ Pipeline:
 from __future__ import annotations
 
 import bpy
-from dataclasses import dataclass, field  # noqa: F401 — restored after header corruption
+from dataclasses import dataclass, field  # noqa: F401 - restored after header corruption
 from mathutils import Vector
 
 from .phoneme_reader import VoiceTrack, PhonemeEvent

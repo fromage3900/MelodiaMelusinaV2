@@ -163,7 +163,7 @@ class TestExperienceContractAudit(unittest.TestCase):
         for heading in (
             "## Three-phase day", "## Fresh, Continue, and replay state contract",
             "## Battle outcome contract", "## Exactly-once matrix",
-            "## 0–30 minute pacing", "## Persona lens", "## Infinity Nikki lens",
+            "## 0-30 minute pacing", "## Persona lens", "## Infinity Nikki lens",
             "## Drift report", "## Content ID resolution",
             "## Live-only proof still required",
         ):

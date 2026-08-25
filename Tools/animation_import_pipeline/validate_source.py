@@ -57,7 +57,7 @@ def validate_fbx_with_blender(fbx_path: str) -> list[str]:
     scanner = os.path.normpath(scanner)
 
     if not os.path.exists(scanner):
-        errors.append(f"Scanner not found at {scanner} — install Blender + scan_cascadeur_fbx.py")
+        errors.append(f"Scanner not found at {scanner} - install Blender + scan_cascadeur_fbx.py")
         return errors
 
     report_path = os.path.join(
@@ -87,7 +87,7 @@ def validate_fbx_with_blender(fbx_path: str) -> list[str]:
         else:
             errors.append("Blender scan produced no report")
     except FileNotFoundError:
-        errors.append("Blender not found — set BLENDER_EXE env var or install Blender")
+        errors.append("Blender not found - set BLENDER_EXE env var or install Blender")
     except subprocess.TimeoutExpired:
         errors.append("Blender scan timed out (120s)")
     return errors
@@ -101,7 +101,7 @@ def validate_metadata(fbx_path: str, manifest: dict) -> list[str]:
     start = manifest.get("frame_start", manifest.get("start_frame", 0))
     end = manifest.get("frame_end", manifest.get("end_frame", 0))
     if end - start < 2:
-        errors.append(f"Animation range too short: {start}–{end}")
+        errors.append(f"Animation range too short: {start}-{end}")
     return errors
 
 
@@ -141,7 +141,7 @@ def main():
         print(f"  Root motion: {manifest.get('root_motion')}")
         start = manifest.get("frame_start", manifest.get("start_frame"))
         end = manifest.get("frame_end", manifest.get("end_frame"))
-        print(f"  Frames: {start}–{end}")
+        print(f"  Frames: {start}-{end}")
         print(f"  Context: {manifest.get('context')}")
         sys.exit(0)
 

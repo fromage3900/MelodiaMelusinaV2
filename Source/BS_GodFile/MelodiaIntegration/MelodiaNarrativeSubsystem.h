@@ -18,6 +18,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FMelodiaSocialStatRequested, FName,
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FMelodiaIntentRejected, FString, Intent, EMelodiaIntentFailure, Failure);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FMelodiaBattleCompleted, FName, EncounterId, EMelodiaBattleResult, Result);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FMelodiaBattleAborted, FName, EncounterId, FString, Reason);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FMelodiaQuestStateCommitted, FName, QuestId, bool, bCompleted);
 
 UCLASS()
 class BS_GODFILE_API UMelodiaNarrativeSubsystem final : public UGameInstanceSubsystem
@@ -58,8 +59,12 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Melodia|Integration")
 	FMelodiaBattleAborted OnBattleAborted;
 
+	/** Observation-only event emitted after a canonical quest transaction commits. */
+	UPROPERTY(BlueprintAssignable, Category = "Melodia|Integration")
+	FMelodiaQuestStateCommitted OnQuestStateCommitted;
+
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration")
-	bool StartBattle(FName EncounterId);
+	bool StartBattle(FName EncounterId, FName EncounterCommandId = NAME_None, FName CheckpointId = NAME_None);
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration")
 	bool CompleteQuest(FName QuestId);
@@ -76,6 +81,19 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration")
 	bool GrantDialogueReward(FName RewardId);
+
+	/**
+	 * Atomically completes one authored quest, completion flag and reward. The
+	 * stable intent id is the replay guard; Quill is the only supported caller.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration|Quest")
+	EMelodiaContentCommitResult CommitQuestCompletion(
+		FName QuestId,
+		FName CompletionFlagId,
+		FName RewardId,
+		FName CompletionIntentId,
+		FName CheckpointId,
+		EMelodiaContentCommitFailure& OutFailure);
 
 	/** Read-only completion query for a data-driven world challenge. */
 	UFUNCTION(BlueprintPure, Category = "Melodia|Integration|World Challenge")
@@ -149,6 +167,10 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Integration|Save")
 	FMelodiaNarrativeRecord GetNarrativeRecord() const { return NarrativeRecord; }
+
+	/** Typed, read-only P0 state for an NPC/quest pairing. */
+	UFUNCTION(BlueprintPure, Category = "Melodia|Integration|Quest")
+	FMelodiaNPCQuestRuntimeSnapshot GetNPCQuestRuntimeSnapshot(FName NPCId, FName QuestId) const;
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration|Save")
 	bool RestoreNarrativeRecord(const FMelodiaNarrativeRecord& Record);
@@ -230,6 +252,7 @@ public:
 private:
 	void HandleBattleVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);
 	void HandleQuestVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);
+	void HandleQuestCompleteVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);
 	void HandleFlagVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);
 	void HandleTravelVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);
 	void HandleRewardVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);

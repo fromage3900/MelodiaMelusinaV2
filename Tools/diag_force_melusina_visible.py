@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Force Melusina visible_get True — walk parents + layer collections."""
+"""Force Melusina visible_get True - walk parents + layer collections."""
 from __future__ import annotations
 
 import json

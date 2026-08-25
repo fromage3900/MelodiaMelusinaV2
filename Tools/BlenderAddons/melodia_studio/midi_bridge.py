@@ -375,7 +375,7 @@ def dress_terrain(terrain_obj, obj_path, style_id="verdant", seed=11, budget=140
         assert spec.loader is not None
         spec.loader.exec_module(td)
 
-    # Try to build a real field when a MIDI is available — this is the QOL
+    # Try to build a real field when a MIDI is available - this is the QOL
     # fix for the {} bug that left every dressing at 0 props. Offline tests
     # call with midi_path=None and still expect a string, so empty is kept
     # as a valid fallback.
@@ -388,7 +388,7 @@ def dress_terrain(terrain_obj, obj_path, style_id="verdant", seed=11, budget=140
             tracks, tpb = mv.parse_midi(midi_path)
             if tracks and tracks[0]:
                 notes = list(tracks[0])
-                # Include beatgrid if it exists — same as generate_world
+                # Include beatgrid if it exists - same as generate_world
                 bg = beatgrid_for(midi_path)
                 if bg:
                     try:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Playtest Harness — real-input PIE verification for the runtime gate.
+"""Playtest Harness - real-input PIE verification for the runtime gate.
 
 Drives the battle through Monolith's PIE machinery and produces the evidence
 pair required by the 2026-08-11 evidence standard: assertion report JSON next

@@ -1,4 +1,4 @@
-"""Phase 5 critique — refactor hints for new generators."""
+"""Phase 5 critique - refactor hints for new generators."""
 
 from __future__ import annotations
 

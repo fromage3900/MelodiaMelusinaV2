@@ -1,4 +1,4 @@
-"""Node builder utilities for Kawaii GN generators (Blender 4.2–5.1)."""
+"""Node builder utilities for Kawaii GN generators (Blender 4.2-5.1)."""
 from .gn_framework import get_input_socket, get_output_socket
 
 
@@ -103,7 +103,7 @@ def create_mesh_torus(nodes, links, location, major_radius=0.8, minor_radius=0.3
 
 
 def create_mesh_capsule(nodes, location, radius=0.12, height=0.4):
-    """Capsule substitute — Blender 5.1 removed GeometryNodeMeshCapsule."""
+    """Capsule substitute - Blender 5.1 removed GeometryNodeMeshCapsule."""
     cyl = nodes.new('GeometryNodeMeshCylinder')
     cyl.location = location
     cyl.inputs['Radius'].default_value = radius
@@ -117,7 +117,7 @@ def link_from_input(links, input_node, param_name, target_input):
 
 
 def kindchenschema_from_input(tree, links, input_node, cuteness_param='Roundness'):
-    """Build GN math nodes for head/body scale from 0–1 cuteness (Kindchenschema)."""
+    """Build GN math nodes for head/body scale from 0-1 cuteness (Kindchenschema)."""
     nodes = tree.nodes
     cuteness = get_input_socket(input_node, cuteness_param)
 

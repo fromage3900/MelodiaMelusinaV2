@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-T3D Blueprint Injector — injects a complete Blueprint graph spec in a SINGLE
+T3D Blueprint Injector - injects a complete Blueprint graph spec in a SINGLE
 Monolith transaction via `blueprint_query:build_blueprint_from_spec`.
 
 How it works:
@@ -10,7 +10,7 @@ How it works:
 3. Monolith builds and auto-compiles the Blueprint graph. No template Blueprint,
    no `copy_nodes`, no temp asset, no export_graph round-trip involved.
 
-This is ~10x faster than adding nodes one at a time. Library only — no CLI.
+This is ~10x faster than adding nodes one at a time. Library only - no CLI.
 """
 
 import json, subprocess, sys, os, uuid, tempfile
@@ -41,7 +41,7 @@ class T3DBlueprintInjector:
     Batch-injects Blueprint subgraphs using Monolith's build_blueprint_from_spec.
     
     Generates a complete graph spec as JSON and injects all nodes + connections
-    in a SINGLE Monolith transaction — ~10x faster than adding nodes one-by-one.
+    in a SINGLE Monolith transaction - ~10x faster than adding nodes one-by-one.
     
     Usage:
         injector = T3DBlueprintInjector()

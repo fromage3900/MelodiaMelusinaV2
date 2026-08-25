@@ -6,7 +6,7 @@ Run:
 
 Writes KitbashExport/OrnamentalMeshes/SM_Orn_{VaultRibs,CorbelBracket,CrownMolding,TorusKnot}.fbx
 (and Products/OrnamentKitbash/FBX copies) when SurrealArch generate succeeds.
-Falls back note if generate fails — use blender_ornament_cute_replacements.py.
+Falls back note if generate fails - use blender_ornament_cute_replacements.py.
 """
 from __future__ import annotations
 
@@ -173,7 +173,7 @@ def generate_one(name: str, arch_type: str, overrides: dict) -> bool:
         pass
     nverts = len(obj.data.vertices)
     dims = list(obj.dimensions)
-    log(f"OK {name} ← {arch_type} verts={nverts} dims={[round(d, 3) for d in dims]}")
+    log(f"OK {name} <- {arch_type} verts={nverts} dims={[round(d, 3) for d in dims]}")
     if nverts < 64:
         log(f"WARN low verts {name}")
         return False

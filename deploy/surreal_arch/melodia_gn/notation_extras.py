@@ -1,4 +1,4 @@
-"""Musical notation extras — bass clef, beam cluster, triplet, chord stack, fermata,
+"""Musical notation extras - bass clef, beam cluster, triplet, chord stack, fermata,
 repeat bar, meter sign, and music stand.
 
 Follows the music.py conventions: XY-plane glyphs swept with a tube profile, uniform
@@ -137,7 +137,7 @@ def _note_head(tree, gin, bx, by, scale_sock=None):
 
 
 def build_music_bass_clef(group_name="MEL_music_bass_clef"):
-    """Bass (F) clef glyph — sweeping C-body, bottom curl, vertical tail, two dots.
+    """Bass (F) clef glyph - sweeping C-body, bottom curl, vertical tail, two dots.
 
     Uses: add (join strokes), store_attribute (clef_family)
     """
@@ -258,7 +258,7 @@ def build_music_bass_clef(group_name="MEL_music_bass_clef"):
 
 
 def build_music_beam_cluster(group_name="MEL_music_beam_cluster"):
-    """Eighth-note beam cluster — N note heads on stems joined by a slanted beam.
+    """Eighth-note beam cluster - N note heads on stems joined by a slanted beam.
 
     Uses: linear_array (stems/heads), add (join parts), store_attribute (beam_span)
     """
@@ -387,7 +387,7 @@ def build_music_beam_cluster(group_name="MEL_music_beam_cluster"):
 
 
 def build_music_triplet_note(group_name="MEL_music_triplet_note"):
-    """Triplet note — three beamed eighth notes with an optional double beam.
+    """Triplet note - three beamed eighth notes with an optional double beam.
 
     Uses: linear_array (three stems/heads), add (join parts), store_attribute (tuplet_value)
     """
@@ -528,7 +528,7 @@ def build_music_triplet_note(group_name="MEL_music_triplet_note"):
 
 
 def build_music_chord_stack(group_name="MEL_music_chord_stack"):
-    """Chord stack — note heads piled vertically on a shared stem.
+    """Chord stack - note heads piled vertically on a shared stem.
 
     Uses: linear_array (stacked heads), add (join), store_attribute (chord_size)
     """
@@ -607,7 +607,7 @@ def build_music_chord_stack(group_name="MEL_music_chord_stack"):
 
 
 def build_music_fermata(group_name="MEL_music_fermata"):
-    """Fermata (hold) mark — arc over a short base line with an optional center dot.
+    """Fermata (hold) mark - arc over a short base line with an optional center dot.
 
     Uses: add (join strokes), store_attribute (fermata_span)
     """
@@ -738,7 +738,7 @@ def build_music_fermata(group_name="MEL_music_fermata"):
 
 
 def build_music_repeat_bar(group_name="MEL_music_repeat_bar"):
-    """Repeat-bar sign — double thick bars with two dots beside them.
+    """Repeat-bar sign - double thick bars with two dots beside them.
 
     Uses: add (join bars + dots), store_attribute (repeat_count)
     """
@@ -839,7 +839,7 @@ def build_music_repeat_bar(group_name="MEL_music_repeat_bar"):
 
 
 def build_music_time_signature(group_name="MEL_music_time_signature"):
-    """Meter sign — bold C (common time), optionally struck by a slash (cut time).
+    """Meter sign - bold C (common time), optionally struck by a slash (cut time).
 
     Uses: add (join arc halves), store_attribute (meter_beats)
     """
@@ -968,7 +968,7 @@ def build_music_time_signature(group_name="MEL_music_time_signature"):
 
 
 def build_music_stand(group_name="MEL_music_stand"):
-    """Music stand — angled panel, center pole, and two splayed legs.
+    """Music stand - angled panel, center pole, and two splayed legs.
 
     Uses: add (join parts), store_attribute (stand_height)
     """
@@ -1081,10 +1081,10 @@ def build_music_stand(group_name="MEL_music_stand"):
 
 # -- Registry --
 register_builder("MEL_music_bass_clef", build_music_bass_clef, "Music Bass Clef",
-    "Bass (F) clef glyph — sweeping body, bottom curl, tail, and two dots",
+    "Bass (F) clef glyph - sweeping body, bottom curl, tail, and two dots",
     "music")
 register_builder("MEL_music_beam_cluster", build_music_beam_cluster, "Music Beam Cluster",
-    "Eighth-note beam cluster — note heads on stems under a slanted beam",
+    "Eighth-note beam cluster - note heads on stems under a slanted beam",
     "music")
 register_builder("MEL_music_triplet_note", build_music_triplet_note, "Music Triplet Note",
     "Three beamed eighth notes with optional double beam and tuplet attribute",
@@ -1093,16 +1093,16 @@ register_builder("MEL_music_chord_stack", build_music_chord_stack, "Music Chord 
     "Vertical chord stack of note heads on a shared stem",
     "music")
 register_builder("MEL_music_fermata", build_music_fermata, "Music Fermata",
-    "Fermata (hold) mark — arc, base line, and optional center dot",
+    "Fermata (hold) mark - arc, base line, and optional center dot",
     "music")
 register_builder("MEL_music_repeat_bar", build_music_repeat_bar, "Music Repeat Bar",
-    "Repeat-bar sign — double thick bars with two dots",
+    "Repeat-bar sign - double thick bars with two dots",
     "music")
 register_builder("MEL_music_time_signature", build_music_time_signature, "Music Time Signature",
     "Common-time C meter sign with optional cut-time slash and beats attribute",
     "music")
 register_builder("MEL_music_stand", build_music_stand, "Music Stand",
-    "Music stand — angled panel, center pole, and splayed legs",
+    "Music stand - angled panel, center pole, and splayed legs",
     "music")
 
 

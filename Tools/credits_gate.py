@@ -1,4 +1,4 @@
-"""credits_gate.py — coverage gate for Docs/SOURCES_MATRIX.md vs Content/ folders.
+"""credits_gate.py - coverage gate for Docs/SOURCES_MATRIX.md vs Content/ folders.
 
 Every top-level directory under Content/ must have at least one coverage row in
 the Sources Matrix. A directory without a row is a credits gap: fail.
@@ -7,7 +7,7 @@ Also: every matrix row must carry a URL (or the literal `first-party` / `N/A`),
 and `pending` rows are warned on (they are legal, but only one unconfirmed row is
 expected at a time).
 
-Pure stdlib — runs in any shell, no Unreal import, no editor required.
+Pure stdlib - runs in any shell, no Unreal import, no editor required.
 Usage:
     python Tools/credits_gate.py            # exit 1 on uncovered dir or missing URL
     python Tools/credits_gate.py --strict   # same, plus fail on pending rows

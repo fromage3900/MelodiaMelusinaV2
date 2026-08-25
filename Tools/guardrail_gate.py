@@ -86,7 +86,7 @@ def _nemo_decision(tool_name: str, args: dict[str, Any]) -> dict[str, Any]:
             "engine": "nemo",
             "layer": "nemo-iorails",
             "allowed": True,
-            "reason": "nemo unavailable (.venv-guardrails missing) — bypassed by harness",
+            "reason": "nemo unavailable (.venv-guardrails missing) - bypassed by harness",
             "detail": {"mode": "bypass", "why": "no venv interpreter"},
         }
     payload = json.dumps({"tool": tool_name, "args": args, "schemas": schemas})
@@ -123,7 +123,7 @@ def guard(tool_name: str, args: dict[str, Any], mode: str) -> dict[str, Any]:
     if mode == "nemo":
         nemo = _nemo_decision(tool_name, args)
         if nemo.get("detail", {}).get("mode") == "bypass":
-            # venv missing — policy gate is the enforcement; record the bypass.
+            # venv missing - policy gate is the enforcement; record the bypass.
             verdict["nemo"] = nemo
         else:
             verdict = {

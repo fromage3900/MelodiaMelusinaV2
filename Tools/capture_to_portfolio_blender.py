@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""capture_to_portfolio.py — Blender-side viewport grab into the portfolio site.
+"""capture_to_portfolio.py - Blender-side viewport grab into the portfolio site.
 
 Drop this in Blender's Text Editor and hit Run, or execute from the Blender
 Python console:
@@ -12,7 +12,7 @@ What it does (honest, minimal):
   2. Stages a dated copy into my-site-clean/generated/assets/editor_capture/.
   3. Appends a manifest row.
 
-It does NOT push or commit — review the shot, then run the site deploy to ship.
+It does NOT push or commit - review the shot, then run the site deploy to ship.
 """
 from __future__ import annotations
 
@@ -42,7 +42,7 @@ def capture_active_viewport(caption: str = "Blender capture") -> str | None:
     DEST_DIR.mkdir(parents=True, exist_ok=True)
     stamped = DEST_DIR / f"capture_{_timestamp()}.png"
 
-    # OpenGL viewport render — what you see is what you get, fast.
+    # OpenGL viewport render - what you see is what you get, fast.
     bpy.ops.render.opengl(animation=False, view_context=True, write_still=True)
     rendered = Path(bpy.app.tempdir) / "0001.png"  # default still output
     if not rendered.exists():

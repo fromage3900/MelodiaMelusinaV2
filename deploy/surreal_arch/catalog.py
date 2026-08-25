@@ -1,4 +1,4 @@
-"""ARCH_CATALOG — unified metadata for search, picker, and dispatch hooks."""
+"""ARCH_CATALOG - unified metadata for search, picker, and dispatch hooks."""
 
 from __future__ import annotations
 

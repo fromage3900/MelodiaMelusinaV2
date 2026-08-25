@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Cathedral kit — headless capability audit of reusable melodia_gn builders.
+"""Cathedral kit - headless capability audit of reusable melodia_gn builders.
 
 Usage (inside project root):
   blender 5.2 --factory-startup -b -P Tools/cathedral_gn_audit.py

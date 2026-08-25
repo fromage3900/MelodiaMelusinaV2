@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Export the hand-keyframed idle from the v22 stage blend as a UE-ready FBX.
+"""Export the hand-keyframed idle from the v22 stage blend as a pre-retarget FBX.
 
 THE CLIP
 --------
@@ -12,16 +12,12 @@ Located 2026-08-16 in Melodia_Portfolio_Stage_v22_FINAL_2026-08-15.blend:
 That is the owner's authored idle. Every idle currently in UE is either a bad
 retarget or a Lane A import that fails the contract; this is the real source.
 
-WHY THIS ROUTE
---------------
-Tools/remap_melusina_rig_to_contract.py renames character_rig's ARP bones to the
-465-bone UE contract in memory (pelvis -> root_x, thigh_l -> thigh_stretch_l, dot
--> underscore, IK helpers dropped). Reusing it means the exported animation lands
-on bone names SK_Melusina_Skeleton actually has, so no retargeter is involved and
-none of the T-pose/A-pose misalignment that broke the Quaternius clips can apply.
-
-Mocap is the only chain that reaches SK_Melusina_Skeleton correctly *through a
-retargeter*; this export sidesteps retargeting entirely by exporting on-contract.
+ROUTE NOTE
+----------
+This receipt proves the owner-authored ARP stage lineage only. It is not proof that
+the resulting FBX is a live-skeleton animation and it must not be imported directly
+onto SK_Melusina_Skeleton. The hand-keyed take must continue through the source-rig
+contract and a dedicated IK retargeter before any target validation or promotion.
 
 STAGE SAFETY
 ------------
@@ -61,6 +57,9 @@ def main() -> int:
     import remap_melusina_rig_to_contract as remap
 
     report = {"blend": bpy.data.filepath, "ok": False}
+    report["ue_import"] = False
+    report["requires_ik_retarget"] = True
+    report["export_role"] = "arp_source_pre_retarget"
 
     arm = bpy.data.objects.get(ARM_NAME) or remap.find_character_rig()
     if arm is None:

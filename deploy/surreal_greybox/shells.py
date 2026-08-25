@@ -1,4 +1,4 @@
-"""Corridor + room shell builders — surreal_greybox phase 2."""
+"""Corridor + room shell builders - surreal_greybox phase 2."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ def bind(monolith):
 
 def _require():
     if _M is None:
-        raise RuntimeError("surreal_greybox.shells not bound — call bind(monolith) at register")
+        raise RuntimeError("surreal_greybox.shells not bound - call bind(monolith) at register")
 
 
 def _patch(name, fn):
@@ -198,7 +198,7 @@ def collect_door_cutters_for_rect(tree, props, rw, rd, t, dh, dw, base_x, node_y
 
 
 def _window_cutter_geometry(tree, props, win_w, win_h, depth, base_x, node_y, cx, cy, cz, facing_y=True):
-    """Build a GN cutter for the current gb_window_shape — falls back to box if GN cylinder unavailable."""
+    """Build a GN cutter for the current gb_window_shape - falls back to box if GN cylinder unavailable."""
     shape = getattr(props, "gb_window_shape", "RECT")
     arch_h = getattr(props, "gb_window_arch_height", 0.4)
     safe = getattr(_M, "_safe_node", None)
@@ -213,7 +213,7 @@ def _window_cutter_geometry(tree, props, win_w, win_h, depth, base_x, node_y, cx
     if shape in ("RECT", "LINTEL", None):
         return _box(win_w, depth, win_h, cx, cy, cz, base_x, node_y)
 
-    # Circle / Rosette — cylinder through wall
+    # Circle / Rosette - cylinder through wall
     if shape in ("CIRCLE", "ROSETTE"):
         if safe:
             try:
@@ -235,7 +235,7 @@ def _window_cutter_geometry(tree, props, win_w, win_h, depth, base_x, node_y, cx
                         cyl.inputs["Vertices"].default_value = 24 if shape == "CIRCLE" else 32
                     except Exception:
                         pass
-                    # Rotate 90° so axis points through wall
+                    # Rotate 90deg so axis points through wall
                     xf = safe(tree, "GeometryNodeTransform", (base_x + 50, node_y))
                     if xf:
                         tree.links.new(cyl.outputs[0], xf.inputs["Geometry"])
@@ -647,7 +647,7 @@ def _ngon_wall_ring(tree, props, radius, H, t, sides, base_x, node_y, cx=0.0, cy
     wall_th = t
     wz = t + (H - t) * 0.5
     wh = H - t
-    # Collect window cutters mapped angularly — distribute windows evenly around ring
+    # Collect window cutters mapped angularly - distribute windows evenly around ring
     # Reuse rectangular window logic as angular distribution: windows per ring = gb_window_count_ns + gb_window_count_ew fallback
     win_w = getattr(props, "gb_window_width", 0.8)
     win_h = getattr(props, "gb_window_height", 0.8)
@@ -675,13 +675,13 @@ def _ngon_wall_ring(tree, props, radius, H, t, sides, base_x, node_y, cx=0.0, cy
             rr = r * (1.0 if abs(_math.cos(ang)) > 0.5 else gb_ellipse)
         x = cx + rr * _math.cos(ang)
         y = cy + rr * _math.sin(ang)
-        # Tangent angle = ang + 90°
+        # Tangent angle = ang + 90deg
         tang = ang + _math.pi * 0.5
         # Wall segment: place box of length seg_len, thickness wall_th
-        # Need rotation — _gb_box does not rotate; use Transform node via _M helper if available
+        # Need rotation - _gb_box does not rotate; use Transform node via _M helper if available
         # Fallback: axis-aligned approx (still encloses ring, boolean doors not angular)
         # For now place axis-aligned wall centered at ang position with depth along tangent approx
-        # Proper rotation requires GeometryNodeTransform — build via GN if available
+        # Proper rotation requires GeometryNodeTransform - build via GN if available
         seg = _M._gb_box(tree, (wall_th, seg_len, wh), (x, y, wz), base_x + 300 + i * 20, node_y + i * 8, "wall")
         if seg is None:
             continue
@@ -806,7 +806,7 @@ def junction_column(tree, props, base_x, cx, cy, W, H, t, node_y):
 
 
 def corner_sleeve_bend(tree, props, base_x, W, L, H, t, node_y):
-    """L-bend inner corner sleeve — quarter floor + return walls (not solid infill)."""
+    """L-bend inner corner sleeve - quarter floor + return walls (not solid infill)."""
     parts = []
     sleeve = min(W, L) * 0.5
     wh = H - t
@@ -838,7 +838,7 @@ def corner_sleeve_bend(tree, props, base_x, W, L, H, t, node_y):
 
 
 def build_greybox_corridor_bend(tree, props, base_x=-1400):
-    """90° bent (L-shaped) corridor: Arm A along +Y, Arm B along +X."""
+    """90deg bent (L-shaped) corridor: Arm A along +Y, Arm B along +X."""
     L, W, H, t = corridor_dims(props)
     parts = []
     wz = t + (H - t) * 0.5

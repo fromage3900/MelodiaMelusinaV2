@@ -1,4 +1,4 @@
-"""Set-dressing GN group builders — themed structure adaptations (24 variants).
+"""Set-dressing GN group builders - themed structure adaptations (24 variants).
 
 Twelve water-themed pieces (gazebo through waterfall) and twelve
 music-themed pieces (bandstand through fountain). Every variant shares the
@@ -382,7 +382,7 @@ _WATER_DESC = {
     "dock": "Plank dock on posts with buoyancy floats.",
     "deck": "Floating deck platform with buoy markers.",
     "bridge": "Arched water bridge with twin rail lines.",
-    "canal": "Canal channel — twin walls and water surface plane.",
+    "canal": "Canal channel - twin walls and water surface plane.",
     "waterfall": "Waterfall sheet with cascade tubes and splash markers.",
 }
 _MUSIC_DESC = {
@@ -392,12 +392,12 @@ _MUSIC_DESC = {
     "portico": "Opera house portico with harmonic panels and notation density.",
     "wall": "Rehearsal room wall with score line notches.",
     "curtain": "Stage backdrop curtain with score line gradient.",
-    "bandstand": "Bandstand — drum, roof, stage with instrument count.",
+    "bandstand": "Bandstand - drum, roof, stage with instrument count.",
     "stage": "Opera stage apron with curtain cylinders.",
-    "shell": "Acoustic concert shell — dome and floor.",
-    "recital": "Recital room — walls with acoustic panels.",
+    "shell": "Acoustic concert shell - dome and floor.",
+    "recital": "Recital room - walls with acoustic panels.",
     "bridge": "Music bridge with staff-line rails.",
-    "fountain": "Musical fountain — stacked tiers with jet.",
+    "fountain": "Musical fountain - stacked tiers with jet.",
 }
 for _kind in _WATER_TYPES:
     register_builder(

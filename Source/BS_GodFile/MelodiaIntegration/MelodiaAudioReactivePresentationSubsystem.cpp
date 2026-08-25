@@ -4,6 +4,8 @@
 #include "Engine/GameInstance.h"
 #include "GameFramework/Actor.h"
 #include "Materials/MaterialParameterCollection.h"
+#include "NiagaraParameterCollection.h"
+#include "NiagaraFunctionLibrary.h"
 #include "MelodiaBattleSession.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 #include "MelodiaMusicClockSubsystem.h"
@@ -16,6 +18,9 @@ namespace
 {
 	// Grandmaster MPC: the deck melts into MPC_Melodia_Palette live editor agnostic.
 	constexpr TCHAR AudioMpcPath[] = TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette");
+	// Niagara cannot sample an MPC. NPC_Melodia_Palette is the Niagara-side twin and is
+	// already read by six+ NS_ systems; nothing wrote it before this subsystem did.
+	constexpr TCHAR AudioNpcPath[] = TEXT("/Game/EnvSandbox/VFX/MPC/NPC_Melodia_Palette.NPC_Melodia_Palette");
 }
 
 void UMelodiaAudioReactivePresentationSubsystem::Initialize(FSubsystemCollectionBase& Collection)
@@ -46,6 +51,14 @@ void UMelodiaAudioReactivePresentationSubsystem::Initialize(FSubsystemCollection
 	if (!AudioParameterCollection)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Melodia audio-reactive presentation disabled: missing %s"), AudioMpcPath);
+	}
+	// Missing NPC is not fatal: materials still pulse, FX simply stay unreactive. Warn
+	// loudly though -- a silent zero here is exactly how this went unnoticed until now.
+	NiagaraAudioParameterCollection = LoadObject<UNiagaraParameterCollection>(nullptr, AudioNpcPath);
+	if (!NiagaraAudioParameterCollection)
+	{
+		UE_LOG(LogTemp, Warning,
+			TEXT("Melodia Niagara audio-reactivity disabled: missing %s (materials unaffected)"), AudioNpcPath);
 	}
 	TickerHandle = FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateUObject(this, &ThisClass::TickPresentation));
 }
@@ -166,6 +179,47 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatPhase"), BeatPhase);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatPulse"), BeatPulseValue);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatIntensity"), BeatPulseValue);
+
+	// --- Niagara mirror -------------------------------------------------------------
+	// Same values, second collection. SetFloatParameter takes the FRIENDLY name, which
+	// ParameterNameFromFriendlyString expands to NPC.MelodiaPalette.<Name> -- passing the
+	// fully-qualified name here would silently write a parameter nobody reads.
+	if (NiagaraAudioParameterCollection)
+	{
+		if (UNiagaraParameterCollectionInstance* NiagaraInstance =
+				UNiagaraFunctionLibrary::GetNiagaraParameterCollection(World, NiagaraAudioParameterCollection))
+		{
+			const float Reactivity = bBattleActive ? BattleIntensity : 0.0f;
+			NiagaraInstance->SetFloatParameter(TEXT("GlobalReactivity"), Reactivity);
+			NiagaraInstance->SetFloatParameter(TEXT("Bass"), Reactivity);
+			NiagaraInstance->SetFloatParameter(TEXT("Mid"), ImpactPulse);
+			NiagaraInstance->SetFloatParameter(TEXT("Treble"), BeatPulseValue);
+			NiagaraInstance->SetFloatParameter(TEXT("BeatPhase"), BeatPhase);
+			NiagaraInstance->SetFloatParameter(TEXT("BeatPulse"), BeatPulseValue);
+			NiagaraInstance->SetFloatParameter(TEXT("BeatIntensity"), BeatPulseValue);
+
+			// --- Battle variation ---------------------------------------------------
+			// Read from UMelodiaRhythmReactivitySubsystem::GetSignal(), which is the OWNER
+			// of these values. An earlier version of this block recomputed
+			// ComboNormalized/VictoryPulse/EnemyTension from UMelodiaBattleSession, which
+			// created a second, subtly different definition of numbers this subsystem
+			// already maintains -- the same two-sources-of-truth problem that produced the
+			// duplicate wallet class and the duplicate palette asset. Reading the signal
+			// also gets Crescendo/CommandEnergy/BreakPulse/RhythmPulse for free.
+			if (const UMelodiaRhythmReactivitySubsystem* ReactivitySource =
+					UMelodiaRhythmReactivitySubsystem::Get(World))
+			{
+				const FMelodiaRhythmReactivitySignal& Signal = ReactivitySource->GetSignal();
+				NiagaraInstance->SetFloatParameter(TEXT("ComboNormalized"), Signal.ComboNormalized);
+				NiagaraInstance->SetFloatParameter(TEXT("CrescendoNormalized"), Signal.CrescendoNormalized);
+				NiagaraInstance->SetFloatParameter(TEXT("CommandEnergy"), Signal.CommandEnergy);
+				NiagaraInstance->SetFloatParameter(TEXT("RhythmPulse"), Signal.CommandPulse);
+				NiagaraInstance->SetFloatParameter(TEXT("BreakPulse"), Signal.BreakPulse);
+				NiagaraInstance->SetFloatParameter(TEXT("VictoryPulse"), Signal.VictoryPulse);
+				NiagaraInstance->SetFloatParameter(TEXT("EnemyTension"), Signal.EnemyTension);
+			}
+		}
+	}
 	return true;
 }
 

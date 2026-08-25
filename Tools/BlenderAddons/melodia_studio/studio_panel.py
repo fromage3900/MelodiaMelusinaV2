@@ -1,4 +1,4 @@
-"""Melodia Studio panel — MIDI-driven Resonant World generation.
+"""Melodia Studio panel - MIDI-driven Resonant World generation.
 
 QOL pass (2026-08-24, C-authority):
  - Unified N-panel category "Melodia" so all Melodia tools sit together
@@ -23,7 +23,7 @@ except Exception:
 
 from . import midi_bridge
 
-# Optional QOL helpers — offline-safe
+# Optional QOL helpers - offline-safe
 try:
     from . import addon_utils  # type: ignore
 except Exception:
@@ -46,7 +46,7 @@ except Exception:
 
 _MIDI_CACHE: list[str] = []
 _MIDI_CACHE_TIME: float = 0.0
-_MIDI_CACHE_TTL = 4.0  # seconds — avoids scanning on every draw, still live
+_MIDI_CACHE_TTL = 4.0  # seconds - avoids scanning on every draw, still live
 
 
 def _discover_cached() -> list[str]:
@@ -95,7 +95,7 @@ def _midi_enum(self, context):
 
 
 def _dressing_items():
-    """Dressing styles — single source of truth from terrain_dressing.
+    """Dressing styles - single source of truth from terrain_dressing.
     Falls back to a minimal list if terrain_dressing is unavailable."""
     try:
         from . import terrain_dressing as td
@@ -277,10 +277,10 @@ def _midi_preview_lines(midi_path: str) -> str:
         size = ""
         try:
             kb = os.path.getsize(midi_path) / 1024.0
-            size = f" · {kb:.0f} KB"
+            size = f" - {kb:.0f} KB"
         except Exception:
             pass
-        return f"{n} notes · TPB {tpb}{bg_txt}{size}"
+        return f"{n} notes - TPB {tpb}{bg_txt}{size}"
     except Exception as exc:
         return f"Preview unavailable: {exc}"
 
@@ -299,7 +299,7 @@ if bpy is not None:
             props = context.scene.melodia_studio
             midi = _selected_midi(props)
             if not midi:
-                self.report({'WARNING'}, "No MIDI selected — pick one or set Custom MIDI")
+                self.report({'WARNING'}, "No MIDI selected - pick one or set Custom MIDI")
                 return {'CANCELLED'}
 
             # Remove only exact tool-owned names. Prefix deletion can destroy
@@ -405,7 +405,7 @@ if bpy is not None:
             import mathutils
             meshes = [o for o in context.scene.objects if o.type == 'MESH' and o.data]
             if not meshes:
-                self.report({'WARNING'}, "No mesh to frame — Generate Terrain first")
+                self.report({'WARNING'}, "No mesh to frame - Generate Terrain first")
                 return {'CANCELLED'}
             mn = [1e18] * 3
             mx = [-1e18] * 3
@@ -518,7 +518,7 @@ if bpy is not None:
             # Find terrain mesh
             terrain = bpy.data.objects.get("Terrain")
             if terrain is None:
-                self.report({'WARNING'}, "No Terrain object — Generate first")
+                self.report({'WARNING'}, "No Terrain object - Generate first")
                 return {'CANCELLED'}
 
             # Render
@@ -671,13 +671,13 @@ if bpy is not None:
         bl_label = "Validate"
         def execute(self, context):
             if _mu is None:
-                self.report({'WARNING'}, "melodia_utils not importable — check Script Directories")
+                self.report({'WARNING'}, "melodia_utils not importable - check Script Directories")
                 return {'CANCELLED'}
             h = _mu.health_check()
             props = context.scene.melodia_studio
             if h["ok"]:
-                props.last_report = f"Health OK — {h['midi_count']} MIDIs, {h['repo_root']}"
-                self.report({'INFO'}, "Health OK — C: authority")
+                props.last_report = f"Health OK - {h['midi_count']} MIDIs, {h['repo_root']}"
+                self.report({'INFO'}, "Health OK - C: authority")
             else:
                 props.last_report = "Health: " + "; ".join(h["issues"][:2])
                 self.report({'WARNING'}, "; ".join(h["issues"][:2]))

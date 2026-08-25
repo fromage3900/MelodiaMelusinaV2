@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-git_safe_push.py — LFS batch budget gate (Docs/GIT_BATCH_DISCIPLINE.md).
+git_safe_push.py - LFS batch budget gate (Docs/GIT_BATCH_DISCIPLINE.md).
 
 Refuses to proceed when LFS objects would exceed LimitMB.
 
 Modes:
-  staged (default)     — git diff --cached (pre-push / local)
-  --range A..B         — files changed between commits (CI PR base..head)
-  --auto-limit         — 50 MB for collab/cursor/docs branches, else 512
+  staged (default)     - git diff --cached (pre-push / local)
+  --range A..B         - files changed between commits (CI PR base..head)
+  --auto-limit         - 50 MB for collab/cursor/docs branches, else 512
 
 Usage:
   python Tools/git_safe_push.py --check-only
@@ -232,7 +232,7 @@ def main() -> int:
     for status, rel in paths:
         if status == "D":
             continue
-        # Pointer-text-only edits (EOL) keep the same LFS oid — no storage delta.
+        # Pointer-text-only edits (EOL) keep the same LFS oid - no storage delta.
         if left_ref:
             head_blob = _read_blob(rel, at_ref=left_ref)
             new_blob = _read_blob(rel, at_ref=size_at)  # None => working/index

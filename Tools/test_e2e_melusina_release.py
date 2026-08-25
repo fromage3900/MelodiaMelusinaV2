@@ -89,7 +89,7 @@ def check_for_mojibake_or_corruption(content: str, filename: str) -> List[str]:
             errors.append(f"{filename}: Contains corrupted replacement artifact: '{match.group(0)}'")
 
     # 3. ANSI / Windows-1252 to UTF-8 double-encoding mojibake
-    mojibake_tokens = ["â€™", "â€œ", "â€", "Ã©", "Ã ", "Ã¼", "â€”"]
+    mojibake_tokens = ["â€™", "â€œ", "â€", "Ã©", "Ã ", "Ã¼", "â€""]
     for token in mojibake_tokens:
         if token in content:
             errors.append(f"{filename}: Contains mojibake byte sequence: '{token}'")
@@ -515,7 +515,7 @@ class TestTier4MelusinaRegressionSuite(unittest.TestCase):
 def run_suite() -> int:
     """Run all 4 tiers and display structured diagnostic summary."""
     print("=" * 80)
-    print("MELUSINA AGENT TEST HARNESS — END-TO-END RELEASE VERIFICATION SUITE")
+    print("MELUSINA AGENT TEST HARNESS - END-TO-END RELEASE VERIFICATION SUITE")
     print("=" * 80)
     print(f"GodFile Root:   {GODFILE_ROOT}")
     print(f"Workspace Root: {WORKSPACE_ROOT}")

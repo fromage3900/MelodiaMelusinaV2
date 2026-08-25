@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-sync_site_status.py — Generate an HONEST, owner-voiced status blob for the
+sync_site_status.py - Generate an HONEST, owner-voiced status blob for the
 Melodia Melusina portfolio site from the game repo's real gate ledger.
 
 This is the live-sync bridge. It reads BS_GodFile/Saved/gate_ledger.json
 (the single source of truth for "is this done") and emits a small JSON the
 site can render. It does NOT invent progress: a gate is only PASS when the
-ledger has a row for it. Nothing here claims the AI fleet is a product — the
+ledger has a row for it. Nothing here claims the AI fleet is a product - the
 AI is mentioned exactly once, as a drafting tool.
 
 Run from anywhere; paths resolve relative to repo root.
@@ -29,9 +29,9 @@ PILLARS = ["rhythm", "wardrobe", "ui", "world_puzzle"]
 
 # Honest one-line voice for each gate state (owner tone, no hype verbs).
 STATE_LINE = {
-    "PASS": "closed — owner-verified, never re-proved",
-    "FAIL": "open — real defect, named and tracked",
-    "OPEN": "open — not yet converged",
+    "PASS": "closed - owner-verified, never re-proved",
+    "FAIL": "open - real defect, named and tracked",
+    "OPEN": "open - not yet converged",
 }
 
 
@@ -81,7 +81,7 @@ def main():
     summary = (
         f"{pass_count}/{total} completion gates closed against the ledger. "
         "Remaining work is convergence, not construction. "
-        "The AI is a drafting tool I run locally — it is not the product."
+        "The AI is a drafting tool I run locally - it is not the product."
     )
 
     out = {

@@ -1,4 +1,4 @@
-"""Melodia Studio N-panel hub — genome carousel parent for nested Studio panels.
+"""Melodia Studio N-panel hub - genome carousel parent for nested Studio panels.
 
 Lean replacement for the missing Gate3 carousel: brand header + CTA row so
 GN Stack, Stage Studio, bridges, and portrait can nest under a real parent.
@@ -34,7 +34,7 @@ class SURREAL_ARCH_PT_genome_carousel(Panel):
             from .melodia_gn.core import GROUP_BUILDERS, CATEGORY_META
             n_build = len(GROUP_BUILDERS)
             n_cat = len(CATEGORY_META)
-            col.label(text=f"{n_build} GN builders · {n_cat} stack categories")
+            col.label(text=f"{n_build} GN builders - {n_cat} stack categories")
         except Exception:
             pass
 
@@ -98,7 +98,7 @@ def _run_sync_reload():
         "surreal_world",
         "surreal_os",
     )
-    # Skip this module — reloading it while this timer runs is still unsafe.
+    # Skip this module - reloading it while this timer runs is still unsafe.
     skip = {"surreal_arch.genome_carousel"}
     to_reload = [
         name

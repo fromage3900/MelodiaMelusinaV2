@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-ui_lint.py — UMG structural linter.
+ui_lint.py - UMG structural linter.
 
 Finds common widget tree defects without opening the editor.
 
 Modes:
-  Online  — queries Monolith MCP for live widget tree (ui_query:get_widget_tree)
-  Offline — reads T3D export text (project_query:export_asset_text)
+  Online  - queries Monolith MCP for live widget tree (ui_query:get_widget_tree)
+  Offline - reads T3D export text (project_query:export_asset_text)
 
 Checks:
   1. CanvasPanel wrappers left at default 100x30 slot size
@@ -167,7 +167,7 @@ def _check_list_container_root(widget: dict, path: str, violations: list[Violati
                 widget=f"{path}/{widget.get('name', '?')}",
                 check="list_container_root",
                 severity="error",
-                message=f"{cls} wrapper around {ccls} — use {ccls} directly as root",
+                message=f"{cls} wrapper around {ccls} - use {ccls} directly as root",
             ))
 
 
@@ -260,7 +260,7 @@ def _traverse_widget_tree(node: dict, path: str, violations: list[Violation]) ->
                     widget=p,
                     check="list_container_root",
                     severity="error",
-                    message=f"{cls} wrapper around {ccls} — use {ccls} directly as root",
+                    message=f"{cls} wrapper around {ccls} - use {ccls} directly as root",
                 ))
 
     # 5. Zero-size image
@@ -426,7 +426,7 @@ def main() -> None:
 
     for r in results:
         if r.violations:
-            print(f"\n{r.asset_path} — {len(r.errors)}E/{len(r.warnings)}W")
+            print(f"\n{r.asset_path} - {len(r.errors)}E/{len(r.warnings)}W")
             for v in r.violations:
                 print(f"  [{v.severity[0].upper()}] {v.check}: {v.message}")
 

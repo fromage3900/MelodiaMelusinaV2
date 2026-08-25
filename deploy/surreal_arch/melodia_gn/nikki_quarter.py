@@ -505,7 +505,7 @@ def _build_pavilion(tree, gin, loc):
                                x=0.0, y=0.0, z=0.04)
     pieces = [plat_out]
 
-    # Engawa step (zen teahouse language) — thinner inner floor above the deck
+    # Engawa step (zen teahouse language) - thinner inner floor above the deck
     engawa = safe_node(tree, "GeometryNodeMeshCube", (bx - 600, by + 160))
     eng_size = _combine(tree, (bx - 800, by + 160),
                         gin.outputs["Pavilion Width"], gin.outputs["Pavilion Depth"], 0.06)

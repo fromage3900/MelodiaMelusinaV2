@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-project_state.py — what is actually true right now, derived, not asserted.
+project_state.py - what is actually true right now, derived, not asserted.
 
 WHY
 
@@ -472,7 +472,7 @@ def main():
     lines = [
         "",
         rule("="),
-        f" MELODIA PROJECT STATE — {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}",
+        f" MELODIA PROJECT STATE - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}",
         " derived from git, filesystem and baselines. no document is quoted as fact.",
         rule("="),
     ]

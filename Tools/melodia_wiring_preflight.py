@@ -216,7 +216,7 @@ def print_text(report: dict[str, Any]) -> None:
         print(f"  [{item['status'].upper():7}] {item['id']}")
     print("\n  live gates:")
     for item in report["live_preconditions"]:
-        print(f"  [{item['status'].upper():7}] {item['id']} — {item['reason']}")
+        print(f"  [{item['status'].upper():7}] {item['id']} - {item['reason']}")
 
 
 def main(argv: list[str] | None = None) -> int:

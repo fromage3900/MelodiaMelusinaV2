@@ -1,13 +1,13 @@
 """
 FV2 accordion skirt: align + lightweight Cloth (no ARMATURE_AUTO).
 
-Blender 5.1 / Melodia stage. Prefer MCP chunked calls — ARMATURE_AUTO on 40k
+Blender 5.1 / Melodia stage. Prefer MCP chunked calls - ARMATURE_AUTO on 40k
 verts freezes the session. This script:
   1) Aligns FV2 mesh to Melusina hips
   2) Parents with KEEP_TRANSFORM (no deform weights yet)
   3) Builds Pin VG (top verts) + Cloth modifier
   4) Adds Collision on Melusina_Skirt / body mesh
-  5) Sets cache range — does NOT bake_all (scrub Timeline instead)
+  5) Sets cache range - does NOT bake_all (scrub Timeline instead)
 
 Optional later: Tools/bind_fv2_skirt_weights.py or Data Transfer weights.
 

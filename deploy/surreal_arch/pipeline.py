@@ -5,7 +5,7 @@ from . import bevel_bridge, higgsas_bridge
 
 
 def run_post_generate(obj, props, monolith, *, skip_bevel: bool = False, bevel_backend: str = "auto") -> None:
-    """Ordered post-pass: higgsas detail → bevel (modifier by default)."""
+    """Ordered post-pass: higgsas detail -> bevel (modifier by default)."""
     if obj is None or props is None:
         return
     try:
@@ -32,7 +32,7 @@ def uv_pack_hint(props) -> str | None:
         return None
     if getattr(props, "gb_trim_mode", "NONE") == "NONE":
         return None
-    return "trim_sheet_ready: use Level Design → UV Proxy → MioUV Pack → Commit UV"
+    return "trim_sheet_ready: use Level Design -> UV Proxy -> MioUV Pack -> Commit UV"
 
 
 def apply_pipeline_batch(objects, monolith, *, bevel_backend: str = "BEAVEL") -> int:

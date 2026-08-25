@@ -9,6 +9,9 @@
 #include "MelodiaRhythmReactivitySubsystem.h"
 #include "Engine/GameInstance.h"
 #include "HarmonixMetasound/Components/MusicClockComponent.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+#include "NiagaraSystem.h"
 
 void UMelodiaJRPGPresentationRhythmComponent::BeginPlay()
 {
@@ -19,6 +22,7 @@ void UMelodiaJRPGPresentationRhythmComponent::BeginPlay()
 	if (UMelodiaRhythmCombatSubsystem* RhythmCombat = GetWorld() ? GetWorld()->GetSubsystem<UMelodiaRhythmCombatSubsystem>() : nullptr)
 	{
 		RhythmCombat->OnRhythmComplete.AddDynamic(this, &UMelodiaJRPGPresentationRhythmComponent::HandleRhythmSessionCompleted);
+		RhythmCombat->OnLaneHitJudged.AddDynamic(this, &UMelodiaJRPGPresentationRhythmComponent::HandleLaneHitJudged);
 	}
 
 	UMelodiaMusicClockSubsystem* MusicClock = GetWorld() ? GetWorld()->GetSubsystem<UMelodiaMusicClockSubsystem>() : nullptr;
@@ -69,6 +73,7 @@ void UMelodiaJRPGPresentationRhythmComponent::EndPlay(const EEndPlayReason::Type
 	if (UMelodiaRhythmCombatSubsystem* RhythmCombat = GetWorld() ? GetWorld()->GetSubsystem<UMelodiaRhythmCombatSubsystem>() : nullptr)
 	{
 		RhythmCombat->OnRhythmComplete.RemoveDynamic(this, &UMelodiaJRPGPresentationRhythmComponent::HandleRhythmSessionCompleted);
+		RhythmCombat->OnLaneHitJudged.RemoveDynamic(this, &UMelodiaJRPGPresentationRhythmComponent::HandleLaneHitJudged);
 	}
 
 	if (UMelodiaMusicClockSubsystem* MusicClock = GetWorld() ? GetWorld()->GetSubsystem<UMelodiaMusicClockSubsystem>() : nullptr)
@@ -208,6 +213,73 @@ void UMelodiaJRPGPresentationRhythmComponent::HandleRhythmSessionCompleted(const
 			Accuracy,
 			/*InRhythmElement*/ 0);
 	}
+}
+
+void UMelodiaJRPGPresentationRhythmComponent::HandleLaneHitJudged(
+	const int32 LaneIndex, const EMelodiaSkillGrade Grade, const float TimingErrorMs)
+{
+	if (Grade == EMelodiaSkillGrade::Miss && !bSpawnLaneHitOnMiss)
+	{
+		return;
+	}
+
+	// Soft pointer: the asset lives in a sweepable Candidates/ folder, so a null
+	// resolve is an expected content state, not an error. Synchronous load is
+	// acceptable because the first press of a battle is already past the point
+	// where the encounter has streamed in.
+	UNiagaraSystem* Effect = LaneHitEffect.LoadSynchronous();
+	const AActor* Owner = GetOwner();
+	if (!Effect || !Owner)
+	{
+		return;
+	}
+
+	// Lanes are laid out across the owner's right axis, centred on lane 1.5 so a
+	// four-lane highway straddles the character rather than growing off one side.
+	constexpr float LaneCentre = 1.5f;
+	const FVector Location = Owner->GetActorLocation()
+		+ Owner->GetActorRightVector() * ((static_cast<float>(LaneIndex) - LaneCentre) * LaneSpacing)
+		+ FVector(0.0f, 0.0f, LaneHitHeight);
+
+	UNiagaraComponent* Spawned = UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+		Owner->GetWorld(), Effect, Location, Owner->GetActorRotation(),
+		FVector(1.0f), /*bAutoDestroy*/ true, /*bAutoActivate*/ true);
+	if (!Spawned)
+	{
+		return;
+	}
+
+	// GradeIntensity reuses GetPresentationScalar so the burst size, the on-screen
+	// flourish and the OSC stream all read the same per-grade weight. A second
+	// grade->number table here is exactly how those three drift apart.
+	EMelodiaRhythmGrade RhythmGrade = EMelodiaRhythmGrade::Miss;
+	FLinearColor LaneColor = FLinearColor(0.45f, 0.20f, 0.35f, 1.0f);
+	switch (Grade)
+	{
+	case EMelodiaSkillGrade::Perfect:
+		RhythmGrade = EMelodiaRhythmGrade::Perfect;
+		LaneColor = FLinearColor(1.00f, 0.86f, 0.42f, 1.0f);
+		break;
+	case EMelodiaSkillGrade::Great:
+		RhythmGrade = EMelodiaRhythmGrade::Great;
+		LaneColor = FLinearColor(0.62f, 0.84f, 1.00f, 1.0f);
+		break;
+	case EMelodiaSkillGrade::Good:
+		RhythmGrade = EMelodiaRhythmGrade::Good;
+		LaneColor = FLinearColor(0.72f, 0.62f, 0.95f, 1.0f);
+		break;
+	case EMelodiaSkillGrade::Miss:
+	default:
+		break;
+	}
+
+	Spawned->SetIntParameter(TEXT("LaneIndex"), LaneIndex);
+	Spawned->SetFloatParameter(TEXT("GradeIntensity"), GetPresentationScalar(RhythmGrade));
+	Spawned->SetColorParameter(TEXT("LaneColor"), LaneColor);
+	Spawned->SetVectorParameter(TEXT("ImpactPosition"), Location);
+
+	UE_LOG(LogTemp, Verbose, TEXT("MELODIA_LANEFX lane=%d grade=%s err=%.1fms"),
+		LaneIndex, *UEnum::GetValueAsString(Grade), TimingErrorMs);
 }
 
 float UMelodiaJRPGPresentationRhythmComponent::GetPresentationScalar(const EMelodiaRhythmGrade Grade)
