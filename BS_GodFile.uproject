@@ -18,7 +18,7 @@
 		},
 		{
 			"Name": "GaeaUnrealTools",
-			"Enabled": false
+			"Enabled": true
 		},
 		{
 			"Name": "MovieRenderPipeline",
