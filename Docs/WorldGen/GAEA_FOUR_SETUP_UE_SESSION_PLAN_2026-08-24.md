@@ -29,6 +29,28 @@ before visual promotion. The only currently proven metric geometry is the
 12 km x 12 km, 129 x 129 ASTER source mesh; its manifest records SHA-256
 `8042fe736e349f93399000222a5240de3ebe0e30500382101e30ad73fe0f534b`.
 
+## Source-only checkpoint — 2026-08-25
+
+While the gameplay lane owns the live editor, the deterministic fallback builder
+`Tools/WorldGen/build_highres_dem_mesh_terrain_handoffs.py` generated import-ready
+packages from that real ASTER source:
+
+`Saved/Audit/gaea_setups_highres_20260825/`
+
+The current denser package is:
+
+`Saved/Audit/gaea_setups_highres_20260825_1025/`
+
+Each setup in the current package has a `1025 x 1025` 16-bit heightfield, a
+metric OBJ with `1050625` vertices and `2097152` triangles, a dressing-plan
+contract, and a SHA-256 manifest. The package uses four distinct source windows
+and preserves the requested real-world extents. Its manifests say `target: Mesh
+Terrain`, `classic_landscape_used: false`, and
+`native_gaea_export_verified: false`.
+That last flag is intentional: this is a real DEM-derived fallback, not a
+fabricated claim of native Gaea output. It can be imported for the UE proof now;
+native Gaea export should replace it before final AAA lookdev.
+
 ## Four setups
 
 | Order | Setup | Gaea reference | Musical identity | First UE proof |
