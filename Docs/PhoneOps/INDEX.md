@@ -13,8 +13,8 @@ Front door for driving **MelodiaMelusinaV2** from iOS / Cursor mobile / SuperGro
 3. [../Handoffs/PIE_2026-08-11.md](../Handoffs/PIE_2026-08-11.md) — owner runtime truth (Kaleido triggers, UI alpha, Sir CTRL, highway)
 4. [MOBILE_LANES.md](MOBILE_LANES.md) — phone vs PC; Drive / Live Link / Polycam
 5. [SETUP.md](SETUP.md) — SuperGrok + Cursor Pro + phone/GitHub agents
-6. [NORTH_STAR.md](NORTH_STAR.md) — goal, this-week focus, milestones, open decisions
-7. [BACKLOG.md](BACKLOG.md) — Now / Next / Backlog (reconciled to RT queue)
+6. [NORTH_STAR.md](NORTH_STAR.md) — **Ship Melodia** · P0 live proof · P1 sendoffs (OpenCode first; NVIDIA withdrawn)
+7. [BACKLOG.md](BACKLOG.md) — Now / Next · P0 gates + [RECRUITER_SENDOFFS…](../Career/RECRUITER_SENDOFFS_2026-08-25.md)
 8. [ENV_PACK_RESEARCH_POINTER.md](ENV_PACK_RESEARCH_POINTER.md) — cute/mystical/underwater packs
 9. [../MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md](../MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md) — Polycam/Kiri → ZBrush → Rokoko
 10. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory

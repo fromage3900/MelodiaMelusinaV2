@@ -8,15 +8,24 @@
 All details sourced from `Docs/Career/STUDIO_*.md` files. Review each draft,
 personalize the brackets, and send.
 
+> **Active send order (2026-08-25):** see
+> [`RECRUITER_SENDOFFS_2026-08-25.md`](RECRUITER_SENDOFFS_2026-08-25.md).
+> **NVIDIA is WITHDRAWN** — do not apply. OpenCode is #1.
+
 ---
 
-## 1. NVIDIA — DevRel Manager, Higher Ed & Research (URGENT)
+## 1. NVIDIA — DevRel Manager, Higher Ed & Research — **WITHDRAWN**
 
-**Deadline: August 21, 2026** (tomorrow)
+> **Owner decision 2026-08-25: do not send.** Deadline Aug 21 also passed.
+> Keep this section as historical research only. Archive:
+> [`STUDIO_NVIDIA_DRAFT.md`](STUDIO_NVIDIA_DRAFT.md),
+> [`NVIDIA_DEVREL_PACKET_2026-08-20.md`](NVIDIA_DEVREL_PACKET_2026-08-20.md).
+
+**Deadline: August 21, 2026** (passed — withdrawn)
 **Role:** Developer Relations Manager, Foundational AI (JR2023172)
 **Location:** Toronto
 **Salary:** $170K–$275K CAD (L4/L5)
-**Apply:** https://jobs.nvidia.com/careers/job/893397075768
+**Apply:** ~~https://jobs.nvidia.com/careers/job/893397075768~~ — **do not apply**
 
 ### Email / cover letter points
 
@@ -242,16 +251,18 @@ D. All of the above + a job conversation (you're in Toronto, they're in Toronto)
 
 ---
 
-## Priority order for tomorrow
+## Priority order (updated 2026-08-25)
+
+Canonical paste-ready bodies: [`RECRUITER_SENDOFFS_2026-08-25.md`](RECRUITER_SENDOFFS_2026-08-25.md).
 
 | # | Company | Action | Deadline |
 |---|---------|--------|----------|
-| 1 | **NVIDIA** | Submit DevRel application + resume | **Aug 21** |
-| 2 | **OpenCode** | Send pitch email / DM Jay V | ASAP (momentum) |
-| 3 | **Nous Research** | Send MATH collaboration proposal | Rolling |
-| 4 | **Certain Affinity** | Send application | Rolling |
-| 5 | **Infold Games** | Visit campus portal, identify track | Oct 31 |
-| 6 | **Velan Studios** | Send application | Rolling |
+| 1 | **OpenCode** | Send pitch email / DM Jay V | ASAP (momentum) |
+| 2 | **Certain Affinity** | Send application | Rolling |
+| 3 | **Velan Studios** | Send application (prefer Env Artist) | Rolling |
+| 4 | **Infold Games** | Campus portal, Art & Visual Design | Oct 31 |
+| 5 | **Nous Research** | Optional collaboration — corrected evidence only | Rolling |
+| — | ~~NVIDIA~~ | **WITHDRAWN — do not send** | — |
 
 ---
 
@@ -327,9 +338,11 @@ Toronto, ON
 
 ---
 
-## B. NVIDIA — DevRel Manager (deadline Aug 21)
+## B. NVIDIA — DevRel Manager — **WITHDRAWN (do not send)**
 
-**Apply at:** https://jobs.nvidia.com/careers/job/893397075768
+> Owner decision 2026-08-25. Historical draft only.
+
+**Apply at:** ~~https://jobs.nvidia.com/careers/job/893397075768~~ — **do not apply**
 **Subject:** JR2023172 — Developer Relations Manager, Foundational AI (Toronto)
 
 > Hello,

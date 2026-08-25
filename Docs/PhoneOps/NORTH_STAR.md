@@ -1,48 +1,49 @@
 # North Star
 
-Phone-friendly control plane for MelodiaMelusinaV2. Detail lives in `CURRENT_STATE.md` / `ROADMAP.md`; this file is the steering brief.
+Phone-friendly control plane for MelodiaMelusinaV2. Authority: [`PROJECT.md`](../../PROJECT.md).
+P0 detail: [`../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
+Now/Next: [`BACKLOG.md`](BACKLOG.md).
 
 ## North star
 
-Ship a reusable **environment portfolio platform** (UE 5.8 + Blender 5.1) that can generate, shade, scatter, package, and present stylized worlds — with Melodia as the playable / narrative showcase — without agents owning final Sakura art taste.
+**Ship Melodia** — a stylized UE 5.8 rhythm-JRPG (First Dream vertical slice first).
+Environment platform, MCP, and AI experiments exist to accelerate shipping Melodia.
+They are not the product.
 
-One-liner: **agents run the studio; you keep art direction and publish gates.**
+One-liner: **agents accelerate Melodia; you keep art direction, story, and publish gates.**
 
 ## This-week focus (phone-steerable)
 
-Priority order for mobile + cloud agents (reconciled from `NEXT_ACTIONS.md` + `NEXT_HIGHEST_LEVERAGE_TASK.md`):
-
-1. Keep PhoneOps docs accurate as the mobile SSOT entry.
-2. Platform look-dev spine on **`L_Template`** (not Sakura): material grid / landscape slab / water / trimsheet capture path.
-3. MelodiaCore correctness lane when touching gameplay (modifier stacking, AV turn authority, reward→next stage) — see `NEXT_HIGHEST_LEVERAGE_TASK.md` GS-001+.
-4. Website/deploy honesty: `_github_deploy/` remains active package lane until `my-site-clean/` is explicitly promoted.
+1. **P0 live proof** — rhythm grade→result, HUD single-writer, wardrobe+Glide, music-as-key, battle map, static_gates (Aug 24 closeout). Prefer over new R&D.
+2. **P1 recruiter sendoffs** — OpenCode first, then Certain Affinity / Velan / Infold. **NVIDIA withdrawn.** See [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../Career/RECRUITER_SENDOFFS_2026-08-25.md).
+3. Keep PhoneOps docs accurate as the mobile SSOT entry.
+4. Website/deploy honesty: `_github_deploy/` until `my-site-clean/` is explicitly promoted.
+5. **P3 only when labeled** — Claireon parked; Nemotron only if editor-free.
 
 ## Milestones (compressed)
 
 | Phase | Status | Signal |
 |---|---|---|
-| UE 5.8 plugin / MCP stabilization | Mostly done | ROADMAP Phase 1 |
-| Zen style genomes + Blender OS | Active / partial | Tier B/C atoms still open |
-| Universal / landscape / water masters | Stable for portfolio use | `CURRENT_STATE` checkpoints |
-| PCG universal + style wrappers | Partial | Some Ex graphs still spline-blocked |
-| Portfolio package → website configs | Partial | handoff script exists; push/publish gated |
-| Melodia playable vertical slice | Active debt | MelodiaCore GS fixes |
-| Material Maker / Houdini phases | Planned | ROADMAP Phases 3 & 5 |
+| Melodia First Dream / P0 convergence | Active — gates open | Aug 24 closeout + playbook |
+| Historical shipping gates (runtime/save/repeat/package) | PASS rows exist | Ledger — not current P0 exit |
+| Portfolio / recruiter sendoff | Active P1 | OpenCode → Toronto studios |
+| Env / Blender / PCG platform | Infra when unblocks P0/P1 | Not the north star |
+| Claireon / Nemotron / MCP R&D | P3 scoped | Claireon disabled (C1076) |
 
 ## Open decisions
 
-Track here until locked in `Docs/AgentMemory/Decisions.md`.
+Track here until locked in `Docs/AgentMemory/Decisions.md` or `_DECISION_LOG.md`.
 
 | Decision | Options | Notes |
 |---|---|---|
-| Website lane | Keep `_github_deploy/` vs promote `my-site-clean/` | Decision doc currently favors `_github_deploy/` until explicit promotion |
-| Vertex paint blend on Universal master | Switch-gated additive vs leave unwired | Prototype in `_Scratch/` first per CURRENT_STATE |
-| MeshBlend runtime | Stay material-function only vs re-enable plugin cvar | `r.MeshBlend.Enable` historically off for 5.7/5.8 issues |
-| Store / Gumroad | `store_live` false until screenshots + upload | Monetization docs; publish is Red |
-| PhoneOps vs root status docs | PhoneOps as mobile entry; root docs remain production SSOT | Do not fork truth — reconcile, don’t duplicate forever |
+| Website lane | Keep `_github_deploy/` vs promote `my-site-clean/` | Favor `_github_deploy/` until explicit promotion |
+| NVIDIA applications | WITHDRAWN | Owner 2026-08-25 |
+| Claireon re-enable | After P0 + PCH fix | Do not put on critical path |
+| Store / Gumroad | `store_live` false until screenshots + upload | Publish is Red |
 
 ## Success checks (this week)
 
-- [ ] Phone agent can complete one Now item without touching Sakura / `_PROJECT/`
-- [ ] BACKLOG Now list matches producer priority
+- [ ] Phone agent can complete one P0 Now item without touching Sakura / `_PROJECT/`
+- [ ] BACKLOG Now list matches P0 closeout + OpenCode-first sendoffs
+- [ ] No outgoing draft cites withdrawn MATH figures or NVIDIA as active
 - [ ] Any cloud PR links back to a NORTH_STAR focus item

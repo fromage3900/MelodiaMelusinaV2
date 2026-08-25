@@ -100,7 +100,8 @@ Full details: [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL
 | [deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md](deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-12.md) | **GN expansion** — P0 landed closed-editor; water-hair cache is cine-only |
 | [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) | P0 PIE/runtime board — rhythm + Quill locked WORKED; battles still open |
 | [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) | Tonight’s cloud work: PRs #4/#6, untrack/ignore, tomorrow merge order |
-| [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) | Phone/cloud Now list aligned to merge → build → playtest |
+| [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) | Phone/cloud Now: P0 live proof + OpenCode-first sendoffs (NVIDIA withdrawn) |
+| [Docs/Career/RECRUITER_SENDOFFS_2026-08-25.md](Docs/Career/RECRUITER_SENDOFFS_2026-08-25.md) | Paste-ready recruiter sendoffs — OpenCode → Toronto studios; NVIDIA WITHDRAWN |
 | [README.md](README.md) | Front-door project status refreshed 2026-08-13 |
 
 ## Environment checkpoint — 2026-08-11

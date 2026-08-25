@@ -13,9 +13,20 @@ as the product. The previous framing ("the Melodia Platform", a pipeline-infrast
 inverted that and has been corrected; see
 [MELODIA_STUDIO_STARTUP_PARAGRAPH.md](MELODIA_STUDIO_STARTUP_PARAGRAPH.md).
 
-These drafts support applications for stylized environment art, world building, technical
-environment art, and tools/pipeline-adjacent roles. Final portfolio positioning should lead with
-visible art quality and reveal technical depth second.
+### Active sendoffs (2026-08-25)
+
+**Canonical paste-ready package:** [RECRUITER_SENDOFFS_2026-08-25.md](RECRUITER_SENDOFFS_2026-08-25.md)
+
+| # | Target | Status |
+|---|--------|--------|
+| 1 | OpenCode (Toronto) | **Send first** |
+| 2 | Certain Affinity (Toronto) | Next |
+| 3 | Velan Studios (Toronto) | Next |
+| 4 | Infold campus (Oct 31) | Portal |
+| 5 | Nous Research (optional) | Corrected evidence only |
+| — | NVIDIA Toronto | **WITHDRAWN** — archive only |
+
+Older draft bodies also live in [EMAIL_DRAFTS_2026-08-20.md](EMAIL_DRAFTS_2026-08-20.md) (priority table updated).
 
 ### Two things to never get wrong in an outgoing draft
 
@@ -31,10 +42,12 @@ visible art quality and reveal technical depth second.
 
 | Studio | File | Status |
 |---|---|---|
+| **OpenCode / Certain Affinity / Velan / Infold / Nous** | [RECRUITER_SENDOFFS_2026-08-25.md](RECRUITER_SENDOFFS_2026-08-25.md) | **Active send list** |
 | Epic MegaGrants (funding, not a job) | [EPIC_MEGAGRANTS_APPLICATION_DRAFT.md](EPIC_MEGAGRANTS_APPLICATION_DRAFT.md) | Draft — needs real numbers/URLs filled in |
 | Promethean AI | [STUDIO_PROMETHEAN_AI_DRAFT.md](STUDIO_PROMETHEAN_AI_DRAFT.md) | Draft — strong fit, Junior Artist (remote) |
 | Digital Extremes | [STUDIO_DIGITAL_EXTREMES_DRAFT.md](STUDIO_DIGITAL_EXTREMES_DRAFT.md) | Draft — good fit, pick one experience level honestly |
-| Infold Games | [STUDIO_INFOLD_GAMES_DRAFT.md](STUDIO_INFOLD_GAMES_DRAFT.md) | Draft — seniority gap flagged; corrected 2026-07-26 (actual flagship title is *Love and Deepspace*, a cinematic 3D otome game, not *Tower of Fantasy*) |
+| Infold Games | [STUDIO_INFOLD_GAMES_DRAFT.md](STUDIO_INFOLD_GAMES_DRAFT.md) | Draft — campus track preferred; see sendoffs |
 | Compulsion Games | [STUDIO_COMPULSION_GAMES_DRAFT.md](STUDIO_COMPULSION_GAMES_DRAFT.md) | Watchlist — closest requirement-match found, but no open posting confirmed; check Canadian work-auth eligibility first |
+| NVIDIA Toronto | [STUDIO_NVIDIA_DRAFT.md](STUDIO_NVIDIA_DRAFT.md) · [NVIDIA_DEVREL_PACKET…](NVIDIA_DEVREL_PACKET_2026-08-20.md) | **WITHDRAWN** — archive |
 
 Each studio draft has real, web-verified company info (dated), an honest fit assessment including gaps/mismatches (not just a pitch), a draft cover-letter opening to rewrite in your own voice, and a "before you submit" checklist. None of these are ready to send as-is — brackets need filling, and the "before you submit" items are real blockers, not formalities.
