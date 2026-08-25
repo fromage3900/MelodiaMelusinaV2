@@ -1,3 +1,10 @@
+> ## Start here — 2026-08-25 (career sendoffs)
+>
+> **NVIDIA WITHDRAWN** (owner). Paste-ready sendoffs:
+> [`Docs/Career/RECRUITER_SENDOFFS_2026-08-25.md`](Docs/Career/RECRUITER_SENDOFFS_2026-08-25.md)
+> — OpenCode first → Certain Affinity → Velan → Infold → Nous optional.
+> PhoneOps Now list updated: [`Docs/PhoneOps/BACKLOG.md`](Docs/PhoneOps/BACKLOG.md).
+
 > ## Start here — 2026-08-24
 >
 > **[`Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md)**

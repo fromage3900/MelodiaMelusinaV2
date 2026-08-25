@@ -1,5 +1,9 @@
 # NVIDIA Toronto — Application Strategy
 
+> **WITHDRAWN 2026-08-25 (owner decision).** Do **not** apply to JR2023172 or
+> pursue SIL internship redirect from this draft. Active sendoffs:
+> [`RECRUITER_SENDOFFS_2026-08-25.md`](RECRUITER_SENDOFFS_2026-08-25.md).
+
 > **Downstream of the game.** This is marketing / funding / hiring material for
 > **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
 > the game. **No agent may cite anything in this folder as project direction** — authority is
@@ -42,7 +46,7 @@ led by Jose M. Alvarez under Fidler).
 | Senior SW Engineer, AI Inference Systems | $170K–$275K | Aug 18 (yesterday) | High urgency |
 | 69 total Toronto roles | varies | rolling | ASIC, robotics, signal integrity, etc. |
 
-**The DevRel Manager role closes Aug 21. Apply today.**
+**The DevRel Manager role closed Aug 21. Owner withdrew NVIDIA from the send list 2026-08-25 — do not apply.**
 
 ---
 
