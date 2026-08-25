@@ -4,7 +4,7 @@ from __future__ import annotations
 
 
 def probe_zen_uv_proxy_bake(context, monolith):
-    """Return list of failure strings for proxy → bake commit workflow."""
+    """Return list of failure strings for proxy -> bake commit workflow."""
     import bpy
 
     from surreal_arch import uv_workflow

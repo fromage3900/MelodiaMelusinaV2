@@ -53,7 +53,7 @@ class SURREAL_ARCH_OT_uv_commit_from_proxy(bpy.types.Operator):
             proxy = context.active_object
             source = uv_workflow.find_source_for_proxy(proxy)
         if source is None or proxy is None:
-            self.report({"WARNING"}, "No UV proxy linked — create one first")
+            self.report({"WARNING"}, "No UV proxy linked - create one first")
             return {"CANCELLED"}
         ok, msg = uv_workflow.commit_uv_from_proxy(context, source, proxy)
         if not ok:
@@ -210,7 +210,7 @@ class SURREAL_ARCH_OT_uv_invoke_miouv(bpy.types.Operator):
             context.view_layer.objects.active = proxy
         invoked = _invoke_addon_op("miouv", ("pack", "unwrap", "island"))
         if not invoked:
-            self.report({"WARNING"}, "MioUV installed but no pack operator found — use UV Editor manually")
+            self.report({"WARNING"}, "MioUV installed but no pack operator found - use UV Editor manually")
             return {"CANCELLED"}
         self.report({"INFO"}, f"Invoked {invoked}")
         return {"FINISHED"}

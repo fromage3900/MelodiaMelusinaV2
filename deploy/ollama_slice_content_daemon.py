@@ -1,7 +1,7 @@
-"""Ollama slice-content daemon — generates review-ready JSON game data for the
+"""Ollama slice-content daemon - generates review-ready JSON game data for the
 20-min vertical slice. Follows the project's loop conventions (STOP file + pid).
 
-Scope (per AI_ORCHESTRATION_HANDOFFS_2026-07-17.md, HANDOFF 4 — nothing new invented):
+Scope (per AI_ORCHESTRATION_HANDOFFS_2026-07-17.md, HANDOFF 4 - nothing new invented):
   1. MelodySlime RNG variants  -> Imports/Data/EnemyVariants/   (mirrors FMelodiaEnemyDef)
   2. Skill charts              -> Imports/Data/Charts/          (mirrors FMelodiaChartNote)
   3. Room modifier pairs       -> Imports/Data/RoomMods/        (roguelike blessing/curse)
@@ -29,7 +29,7 @@ PID = ROOT / "deploy" / "OLLAMA_SLICE_LOOP.pid"
 MODEL = "qwen2.5-coder:7b"
 API = "http://127.0.0.1:11434/api/generate"
 
-# Real project constants — DO NOT let the model invent these.
+# Real project constants - DO NOT let the model invent these.
 ELEMENTS = ["Forte", "Tide", "Gale", "Stone", "Radiant", "Umbral", "Arcane"]
 # Baseline from the shipped MelodySlime family (BP_MelodySlime / demo enemy bands):
 SLIME_BASE = {"max_hp": 300.0, "base_damage": 15.0, "speed": 80, "toughness": 60.0, "bpm": 128.0}
@@ -51,7 +51,7 @@ def ollama(prompt: str, retries: int = 3) -> str:
             req = urllib.request.Request(API, data=body, headers={"Content-Type": "application/json"})
             with urllib.request.urlopen(req, timeout=300) as r:
                 return json.loads(r.read())["response"]
-        except Exception as exc:  # noqa: BLE001 — daemon must survive transient ollama hiccups
+        except Exception as exc:  # noqa: BLE001 - daemon must survive transient ollama hiccups
             log(f"ollama error (attempt {attempt + 1}): {exc}")
             time.sleep(10)
     return ""
@@ -153,7 +153,7 @@ def main() -> None:
     while not STOP.exists():
         counts = {k: count_existing(OUT / k) for k in CAPS}
         if all(counts[k] >= CAPS[k] for k in CAPS):
-            log(f"all caps reached {counts} — daemon done")
+            log(f"all caps reached {counts} - daemon done")
             break
         # Weighted toward enemies (the slice-gating content), then charts, then mods.
         pool = (["enemy"] * 3 if counts["EnemyVariants"] < CAPS["EnemyVariants"] else []) \

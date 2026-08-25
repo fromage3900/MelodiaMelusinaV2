@@ -15,7 +15,7 @@ _REGISTERED_MONOLITH = None
 
 
 def _register_class_once(cls):
-    """Idempotent register — Blender 5.2 raises ValueError on a second spawn_polyhedron."""
+    """Idempotent register - Blender 5.2 raises ValueError on a second spawn_polyhedron."""
     name = getattr(cls, "__name__", "")
     if name and getattr(bpy.types, name, None) is not None:
         return False
@@ -76,7 +76,7 @@ def _demote_properties_panel(monolith):
     panel = getattr(monolith, "SURREAL_ARCH_PT_panel", None)
     if panel is None or getattr(panel, "_melodia_legacy_demoted", False):
         return
-    panel.bl_label = "Melodia Studio · Modifier (legacy)"
+    panel.bl_label = "Melodia Studio - Modifier (legacy)"
     opts = set(getattr(panel, "bl_options", set()) or set())
     opts.add("DEFAULT_CLOSED")
     panel.bl_options = opts
@@ -456,7 +456,7 @@ def patch_monolith(monolith):
 
 
 def register_os_layer(monolith):
-    """Wire Surreal Architecture OS — genomes, grammar graphs, rules."""
+    """Wire Surreal Architecture OS - genomes, grammar graphs, rules."""
     try:
         import sys
         import os
@@ -605,7 +605,7 @@ def _wire_pipeline_and_bridges(monolith):
     from .catalog_dispatch import register_dispatch_entry
 
     def build_synthia_arch_stub(tree, props, base_x=-1400):
-        """GN placeholder — SYNTHIA types materialize in apply_geometry_nodes patch."""
+        """GN placeholder - SYNTHIA types materialize in apply_geometry_nodes patch."""
         safe = getattr(monolith, "_safe_node", None)
         if safe:
             node = safe(tree, "GeometryNodeMeshCube", (base_x, 0))

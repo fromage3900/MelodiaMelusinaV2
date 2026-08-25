@@ -42,7 +42,7 @@ def test_forbidden_quaternius() -> None:
     serene = guard.forbidden_lane_a_reasons(
         {
             "expected_skeleton": "SK_Source_Melusina_Skeleton",
-            "source_name": "Cascadeur — Melusina — Idle_Serene",
+            "source_name": "Cascadeur - Melusina - Idle_Serene",
             "clip_id": "Idle_Serene",
         },
         "A_CAS_Melusina_Idle_Serene.fbx",

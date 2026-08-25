@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-bp_sweep.py — audit every Blueprint in the project for the wiring defects that
+bp_sweep.py - audit every Blueprint in the project for the wiring defects that
 have actually shipped here, and rank them by how badly they lie.
 
 WHY THESE FIVE CHECKS

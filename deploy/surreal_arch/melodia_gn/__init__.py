@@ -28,7 +28,11 @@ from .water import (
     build_water_gerstner, build_water_ripples, build_water_foam, build_water_current_markers,
 )
 from .music_instruments import build_brass_pipe, build_reed_body, build_bell_chime
-from . import music_aaa  # noqa: F401 — AAA musical kit (registers via register_builder)
+from . import music_aaa  # noqa: F401 - AAA musical kit (registers via register_builder)
+from . import melodia_kit_v2  # noqa: F401 - Kit v2: celesta/glockenspiel/kalimba + harp/waveform v2
+from . import melodia_kit_v3  # noqa: F401 - Kit v3: jingle-driven tower/gate/plaza/nook
+from . import melodia_kit_v4  # noqa: F401 - Kit v4: timpani/tubular/dulcimer/bamboo
+from . import melodia_kit_baroque  # noqa: F401 - Baroque lens: harpsichord/violin/organ/lute (spatial)
 from .notation_extras import build_music_bass_clef, build_music_beam_cluster, build_music_triplet_note, build_music_chord_stack, build_music_fermata, build_music_repeat_bar, build_music_time_signature, build_music_stand
 from .ornament_extras import build_ornament_rosette_sixpetal, build_ornament_scallop_band, build_ornament_keyhole_frame, build_filigree_corner_volute, build_filigree_finial_cross, build_filigree_wreath_ring
 from .ribbon import (
@@ -73,7 +77,7 @@ from . import stack as _stack_mod
 from . import core as _core_mod
 _stack_mod.ALL_TREE_NAMES.clear()
 _stack_mod.ALL_TREE_NAMES.extend(name for name, _ in _core_mod.TREE_TYPES)
-# Prefer core.TREE_* — these names track the rebuilt containers
+# Prefer core.TREE_* - these names track the rebuilt containers
 _STACK_CATS = _core_mod.TREE_CATEGORIES
 _STACK_DESC = _core_mod.TREE_DESCRIPTIONS
 _STACK_CATMAP = _core_mod.TREE_CATEGORY_MAP

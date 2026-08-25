@@ -1,4 +1,4 @@
-"""Synthia math→geometry spawn bridge."""
+"""Synthia math->geometry spawn bridge."""
 from __future__ import annotations
 
 import bpy

@@ -833,7 +833,7 @@ def build_music_phrase(group_name="MEL_music_phrase"):
 
 
 def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
-    """Walkable staff railing — same tree id, implementation in music_heroes."""
+    """Walkable staff railing - same tree id, implementation in music_heroes."""
     from .music_heroes import build_music_sheet_rail as _impl
     return _impl(group_name)
 
@@ -845,7 +845,7 @@ register_builder("MEL_music_note_head", build_music_note_head, "Music Note Head"
     "Elliptical note head with stem, flag, and pitch/duration/velocity attributes",
     "music")
 register_builder("MEL_music_treble_clef", build_music_treble_clef, "Music Treble Clef",
-    "Treble clef glyph — 4 bezier segments merged and tube-swept",
+    "Treble clef glyph - 4 bezier segments merged and tube-swept",
     "music")
 register_builder("MEL_music_staff", build_music_staff, "Music Staff",
     "Five-line staff with bar lines and line-index attribute storage",
@@ -854,7 +854,7 @@ register_builder("MEL_music_harmonic", build_music_harmonic, "Music Harmonic Dri
     "5-layer additive harmonic pitch driver with fade envelope",
     "music", role="modifier")
 register_builder("MEL_music_phrase", build_music_phrase, "Music Phrase (Composite)",
-    "Composite musical phrase — staff + note heads + harmonic + clef",
+    "Composite musical phrase - staff + note heads + harmonic + clef",
     "music")
 register_builder("MEL_music_sheet_rail", build_music_sheet_rail, "Sheet Music Rail",
     "Walkable staff railing: posts, five swept lines, note heads at pitch-height",

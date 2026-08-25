@@ -1,5 +1,5 @@
 """
-Geometry Nodes Framework — Core system for creating procedural kawaii assets.
+Geometry Nodes Framework - Core system for creating procedural kawaii assets.
 
 This framework creates, manages, and applies Geometry Nodes setups with
 exposed parameters for real-time adjustment.
@@ -11,7 +11,7 @@ from typing import Dict, Any, Optional
 
 
 def get_input_socket(input_node, name: str):
-    """Resolve a Group Input output socket by name (Blender 4.2–5.1)."""
+    """Resolve a Group Input output socket by name (Blender 4.2-5.1)."""
     try:
         return input_node.outputs[name]
     except (KeyError, TypeError):
@@ -23,7 +23,7 @@ def get_input_socket(input_node, name: str):
 
 
 def get_output_socket(output_node, name: str = 'Geometry'):
-    """Resolve a Group Output input socket by name (Blender 4.2–5.1)."""
+    """Resolve a Group Output input socket by name (Blender 4.2-5.1)."""
     try:
         return output_node.inputs[name]
     except (KeyError, TypeError):
@@ -79,7 +79,7 @@ def clear_generator_tree_cache():
 
 
 def kindchenschema_scale(cuteness: float):
-    """Head/body scale factors from 0–1 cuteness (Kindchenschema proportions)."""
+    """Head/body scale factors from 0-1 cuteness (Kindchenschema proportions)."""
     c = max(0.0, min(1.0, cuteness))
     return (1.0 + c * 0.35, 1.0 - c * 0.15)
 

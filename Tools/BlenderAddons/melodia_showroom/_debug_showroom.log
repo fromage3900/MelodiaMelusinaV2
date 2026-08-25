@@ -1,0 +1,15 @@
+C:\EnvironmentPortfolio\BS_GodFile\Tools\BlenderAddons\melodia_showroom\_debug_showroom.py:108: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+01:16.609  render           | Saved: 'C:\EnvironmentPortfolio\BS_GodFile\Tools\MelodiaProceduralStudio\GeneratedScenes\showroom\debug_showroom.png'
+BOUNDS_X=0.0,32.0
+BOUNDS_Y=0.0,11.0
+BOUNDS_Z=0.0,6.0
+CENTRE=<Vector (16.0000, 5.5000, 3.0000)>
+SIZE=<Vector (32.0000, 11.0000, 6.0000)>
+SPAN=32.0
+CAM=<Vector (7.0400, -40.0556, 16.4400)>
+CAM_ROT=<Euler (x=1.2890, y=-0.0000, z=-0.1942), order='XYZ'>
+RENDER_WRITTEN=C:/EnvironmentPortfolio/BS_GodFile/Tools/MelodiaProceduralStudio/GeneratedScenes/showroom/debug_showroom.png
+Blender 5.2.0 LTS (hash fbe6228777e7 built 2026-07-14 01:35:40)
+
+Blender quit

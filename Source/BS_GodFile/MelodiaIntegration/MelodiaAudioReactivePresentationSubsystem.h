@@ -11,6 +11,7 @@
 class UMelodiaNarrativeSubsystem;
 class UMelodiaExternalJRPGBridgeSubsystem;
 class UMaterialParameterCollection;
+class UNiagaraParameterCollection;
 class UMelodiaInputContextSubsystem;
 
 /**
@@ -59,6 +60,19 @@ private:
 	TObjectPtr<UMelodiaExternalJRPGBridgeSubsystem> ExternalBridge;
 	UPROPERTY(Transient)
 	TObjectPtr<UMaterialParameterCollection> AudioParameterCollection;
+
+	/**
+	 * Niagara counterpart of AudioParameterCollection. Niagara cannot read a Material
+	 * Parameter Collection, so the beat namespace must be published twice: once to the
+	 * MPC for materials and once here for FX. NPC_Melodia_Palette declares 64 parameters
+	 * (BeatPulse/BeatPhase/BeatIntensity, ComboNormalized, VictoryPulse, EnemyTension,
+	 * the Melusina colour set) and is already sampled by NS_Melodia_ClickSparkle,
+	 * NS_Melodia_CursorTrail and NS_Melusina_Arc/ChaosDrift/Dust/EntropyDust -- but until
+	 * now nothing in game code ever wrote it, so every one of those systems read a
+	 * constant 0. This is that missing writer.
+	 */
+	UPROPERTY(Transient)
+	TObjectPtr<UNiagaraParameterCollection> NiagaraAudioParameterCollection;
 	FTSTicker::FDelegateHandle TickerHandle;
 	FMelodiaInputContextHandle BattleContextHandle;
 	bool bBattleActive = false;
@@ -67,6 +81,9 @@ private:
 
 	/** Previous frame's beat phase; a decrease means the beat wrapped. */
 	float LastBeatPhase = 0.0f;
+
+
+
 
 	/** BPM reported to the reactivity subsystem and on to TouchDesigner. Seeded at
 	 *  the source music's 128, then overwritten every tick from the music clock's

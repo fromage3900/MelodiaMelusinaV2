@@ -220,7 +220,7 @@ class MELODIA_PT_shotdeck(bpy.types.Panel):
     bl_category = "Melodia Shotdeck"
 
     def draw(self, context):
-        self.layout.operator(MELODIA_OT_render_shotdeck.bl_idname, text="Render Shot Deck…", icon="RENDER_STILL")
+        self.layout.operator(MELODIA_OT_render_shotdeck.bl_idname, text="Render Shot Deck...", icon="RENDER_STILL")
 
 
 CLASSES = (MELODIA_OT_render_shotdeck, MELODIA_PT_shotdeck)

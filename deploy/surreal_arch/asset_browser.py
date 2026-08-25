@@ -80,7 +80,7 @@ class SURREAL_ARCH_OT_publish_greybox_assets(bpy.types.Operator):
                     continue
                 try:
                     obj.asset_mark()
-                    obj.asset_data.description = f"Surreal Architecture — {at}"
+                    obj.asset_data.description = f"Surreal Architecture - {at}"
                 except Exception:
                     pass
                 created.append(obj)

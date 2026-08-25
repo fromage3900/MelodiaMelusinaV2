@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MM_Master_SurrealAnimatedPBR v2 — Full redesign with 3-layer architecture.
+MM_Master_SurrealAnimatedPBR v2 - Full redesign with 3-layer architecture.
 
 Usage:
   py Tools/MaterialMaker/build_surreal_tile_master_v2.py

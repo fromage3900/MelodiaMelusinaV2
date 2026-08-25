@@ -36,7 +36,20 @@ public class BS_GodFile : ModuleRules
 
 		if (Target.bBuildEditor)
 		{
-			PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd", "AssetTools", "NiagaraEditor", "PCGEditor" });
+			PrivateIncludePaths.Add(System.IO.Path.Combine(EngineDirectory, "Source/Runtime/Engine/Internal"));
+			PrivateDependencyModuleNames.AddRange(new string[] {
+				"UnrealEd",
+				"AssetTools",
+				"NiagaraEditor",
+				"PCGEditor",
+				"MeshPartition",
+				"MeshPartitionEditor",
+				"GeometryScriptingCore",
+				// UDynamicMesh itself lives in GeometryFramework, not GeometryScriptingCore.
+				// PCGScaleWorldEditorLibrary.cpp calls NewObject<UDynamicMesh>, IsEmpty,
+				// GetTriangleCount and ExtractMesh, which link only against this module.
+				"GeometryFramework"
+			});
 		}
 
 		// Uncomment if you are using Slate UI

@@ -1,4 +1,4 @@
-"""niagara_contract.py — canonical machine-readable Niagara User.* contract.
+"""niagara_contract.py - canonical machine-readable Niagara User.* contract.
 
 Single source of truth for the project-wide 20-parameter ecosystem contract.
 Both the authoring tools (Tools/author_*.py) and the audit tool
@@ -22,7 +22,7 @@ dependency) so both Tools and docs-side checks share one definition.
 from __future__ import annotations
 
 # ---------------------------------------------------------------------------
-# Canonical parameter table (ordered — this order is the contract's identity).
+# Canonical parameter table (ordered - this order is the contract's identity).
 #
 #   key:  name        -> audit type (float / vec3 / vec4)
 #   "ty": niagara authoring type name (NiagaraFloat / Vector3f / LinearColor)
@@ -39,7 +39,7 @@ _CONTRACT_TABLE = [
     {"key": "Reaction01", "ty": "NiagaraFloat", "type": "float", "src": "MPC_Melodia_Palette.BeatIntensity",
      "note": "short response envelope"},
     {"key": "ReactionColor", "ty": "LinearColor", "type": "vec4", "src": "MPC QuantumReactionColor (winner tint); driver white neutral",
-     "note": "palette lift — the quantum draw colors every system"},
+     "note": "palette lift - the quantum draw colors every system"},
     {"key": "ImpactPosition", "ty": "Vector3f", "type": "vec3", "src": "driver: player location",
      "note": "optional impact location"},
     {"key": "TargetPosition", "ty": "Vector3f", "type": "vec3", "src": "reserved (neutral 0)",

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""GUI helper: EEVEE Beauty Nikki still → dated PNG for site remount.
+"""GUI helper: EEVEE Beauty Nikki still -> dated PNG for site remount.
 
 Run in Stage v7 Text Editor after Blender MCP reconnects (or alone):
   exec(open(r"G:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\render_melusina_beauty_still.py").read())

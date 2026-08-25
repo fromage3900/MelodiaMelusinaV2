@@ -624,7 +624,7 @@ def test_economy_rhythm_and_cast_mcp() -> None:
 
 
 def test_p0_vertical_slice_mcp_chain() -> None:
-    """Full P0 MCP chain: encounter start → bank → casts → enemy → resolve → quest."""
+    """Full P0 MCP chain: encounter start -> bank -> casts -> enemy -> resolve -> quest."""
     import deploy.melodia_mcp_server as server
     from deploy.melodia_economy import MelodiaGlobalEconomy
 

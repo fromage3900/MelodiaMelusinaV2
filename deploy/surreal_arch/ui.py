@@ -225,7 +225,7 @@ def draw_level_design(layout, context, monolith):
         is_room = props.arch_type in ("GREYBOX_ROOM", "GB_ROOM_COMPOSITE", "GB_ROOM_CIRCULAR", "GB_ROOM_APSIDAL", "GB_ROOM_CIRCULAR", "GB_ROOM_APSIDAL") or monolith._match_greybox_arch(props.arch_type)
         # Show for any greybox arch so advanced shapes are discoverable
         rbox = layout.box()
-        rbox.label(text="Room Shell — shape & math", icon="MESH_CUBE")
+        rbox.label(text="Room Shell - shape & math", icon="MESH_CUBE")
         rcol = rbox.column(align=True)
         rcol.prop(props, "gb_room_shape", text="Shape")
         adv_shape = getattr(props, "gb_room_shape", "RECTANGLE") in ("CIRCULAR", "APSIDAL", "OCTAGON", "HEX", "ELLIPSE", "SUPERELLIPSE", "FREEFORM")
@@ -237,16 +237,16 @@ def draw_level_design(layout, context, monolith):
                 rcol.prop(props, "gb_room_ellipse_ratio", text="Ellipse Ratio")
             if getattr(props, "gb_room_shape", "") == "SUPERELLIPSE":
                 rcol.prop(props, "gb_room_super_n", text="Super N")
-            rcol.label(text="Tip: use Pie → Room Shape (Alt+Q) for quick switch", icon="INFO")
+            rcol.label(text="Tip: use Pie -> Room Shape (Alt+Q) for quick switch", icon="INFO")
         else:
             # Composite L/T/U hint
             if getattr(props, "gb_room_shape", "") in ("L_SHAPE", "T_SHAPE", "U_SHAPE"):
-                rcol.label(text="L/T/U uses W/D as wing sizes — see composite builder", icon="INFO")
+                rcol.label(text="L/T/U uses W/D as wing sizes - see composite builder", icon="INFO")
 
-    # ── Window cutouts — detailed ────────────────────────────────
+    # ── Window cutouts - detailed ────────────────────────────────
     if hasattr(props, "gb_window_shape"):
         wbox = layout.box()
-        wbox.label(text="Window Cutouts — detailed", icon="WINDOW")
+        wbox.label(text="Window Cutouts - detailed", icon="WINDOW")
         wcol = wbox.column(align=True)
         wcol.prop(props, "gb_windows_enabled", text="Enable Windows")
         if getattr(props, "gb_windows_enabled", False):
@@ -274,7 +274,7 @@ def draw_level_design(layout, context, monolith):
             frow.prop(props, "gb_window_e", text="E")
             frow.prop(props, "gb_window_w", text="W")
             fallback.prop(props, "gb_window_count", text="Per Wall")
-            wbox.label(text="Pie → Window (Ctrl+Shift+Q) cycles shape", icon="INFO")
+            wbox.label(text="Pie -> Window (Ctrl+Shift+Q) cycles shape", icon="INFO")
         else:
             wcol.label(text="Enable to expose shape / arch / frame / mullion / glazing", icon="INFO")
             wcol.prop(props, "gb_window_n", text="N")
@@ -346,7 +346,7 @@ def draw_level_design(layout, context, monolith):
             graph = meta.get("graph", "")
             xf = meta.get("transform", "")
             if graph or xf:
-                catalog.label(text=f"  {graph} · {xf}", icon="DOT")
+                catalog.label(text=f"  {graph} - {xf}", icon="DOT")
 
         if genome_groups:
             for family, gids in genome_groups.items():
@@ -362,7 +362,7 @@ def draw_level_design(layout, context, monolith):
     genome_box.operator("surreal_arch.spawn_zen_shrine_plan", text="Spawn Shrine Plan", icon="WORLD")
     if getattr(monolith, "_active_style_genome", None):
         g = monolith._active_style_genome
-        genome_box.label(text=f"Active: {g.get('id', '?')} → {g.get('default_graph', '')}", icon="INFO")
+        genome_box.label(text=f"Active: {g.get('id', '?')} -> {g.get('default_graph', '')}", icon="INFO")
     draw_graph_library(layout, context)
     uvbox = layout.box()
     uvbox.label(text="UV / Trimsheet", icon="UV")

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""PIE smoke runner — wraps Monolith's run_pie_smoke, poll_pie_smoke, and capture_pie_movement_clip.
+"""PIE smoke runner - wraps Monolith's run_pie_smoke, poll_pie_smoke, and capture_pie_movement_clip.
 
 Usage:
     python pie_smoke_runner.py ^
@@ -238,7 +238,7 @@ class PieSmokeRunner:
         bucket must_absent hits never fail ok (server default teardown_allowed).
         Previously ok only reflected session-lifecycle errors, so runs with
         "Blueprint Runtime Error"/"Accessed None" in the active bucket reported
-        ok:true — the silent-null-success false positive.
+        ok:true - the silent-null-success false positive.
         """
         lifecycle_ok = len(self.errors) == 0
 

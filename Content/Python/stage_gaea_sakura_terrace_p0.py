@@ -66,8 +66,16 @@ def _ensure_material():
     parent = _load(PARENT_MATERIAL)
     instance = unreal.load_asset(MATERIAL_PATH)
     created = False
+    if instance:
+        return instance, {
+            "path": MATERIAL_PATH,
+            "parent": PARENT_MATERIAL,
+            "created": False,
+            "state": "existing_saved_asset",
+            "parameter_write": "skipped_existing_asset",
+        }
     if not instance:
-        instance = unreal.EditorAssetLibrary.create_asset(
+        instance = unreal.AssetToolsHelpers.get_asset_tools().create_asset(
             "MI_Gaea_SakuraTerrace_Substrate",
             DEST_DIR,
             unreal.MaterialInstanceConstant,
@@ -203,7 +211,25 @@ def _ensure_map(mesh, material):
 def main() -> dict:
     mesh, mesh_state = _ensure_mesh()
     material, material_report = _ensure_material()
-    map_report = _ensure_map(mesh, material)
+    # LevelEditorSubsystem.new_level() can block forever in a headless
+    # PythonScript commandlet while waiting for an editor save dialog. Keep
+    # the proven mesh/material stage deterministic; map authoring resumes in
+    # the live editor once Monolith is connected.
+    command_line = ""
+    try:
+        command_line = str(unreal.SystemLibrary.get_command_line()).lower()
+    except Exception:
+        pass
+    if "run=pythonscript" in command_line:
+        map_report = {
+            "path": MAP_PATH,
+            "state": "deferred_to_live_editor",
+            "reason": "LevelEditorSubsystem.new_level is editor-interactive and was not run in commandlet mode",
+            "world_partition": "pending",
+            "classic_landscape_created": False,
+        }
+    else:
+        map_report = _ensure_map(mesh, material)
     report = {
         "schema": "melodia.gaea_ue_stage.v1",
         "setup_id": "sakura_terrace",

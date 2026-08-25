@@ -29,7 +29,7 @@ _SHOW_LEGACY = bpy.props.BoolProperty(
     name="Show legacy Modifier panel",
     description=(
         "Show the old Surreal Architecture drawer on the Modifier properties tab. "
-        "Off by default — use N → Melodia Studio."
+        "Off by default - use N -> Melodia Studio."
     ),
     default=False,
 )

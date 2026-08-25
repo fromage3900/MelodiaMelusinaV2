@@ -22,7 +22,7 @@ ROOT = TOOLS.parent
 AUDIT = ROOT / "Saved" / "Audit" / "stage_lighting_preflight.json"
 STOP = ROOT / "Saved" / "Audit" / "MELUSINA_SHADER_AGENT_STOP"
 
-# Mirror melodia_stage_shot.LIGHT_RECIPES — single place artists can check before shoot
+# Mirror melodia_stage_shot.LIGHT_RECIPES - single place artists can check before shoot
 LIGHT_RECIPES = {
     "Nikki": {
         "L_KeyWarm": (900, (1.0, 0.92, 0.85)),

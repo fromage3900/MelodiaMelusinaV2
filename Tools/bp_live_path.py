@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-bp_live_path.py — is this asset on the live path, or are you about to author
+bp_live_path.py - is this asset on the live path, or are you about to author
 into something nothing runs?
 
 NOT THE SAME AS Tools/graph_reachability.py. That one asks an INTRA-graph

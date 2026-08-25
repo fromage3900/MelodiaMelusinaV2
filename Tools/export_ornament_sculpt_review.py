@@ -95,13 +95,13 @@ def write_readme(out: Path, gothic_n: int, musical_n: int) -> None:
 Generated for Melodia kitbash sculpt / polish passes.
 
 ## Folders
-- `Gothic/` — {gothic_n} SM_Orn_* (SKU #1 ornamental kitbash)
-- `Musical/` — {musical_n} SM_Orn_* (sibling musical kitbash)
-- `OrnamentSculptReview.blend` — all meshes in a grid for Blender sculpt review
+- `Gothic/` - {gothic_n} SM_Orn_* (SKU #1 ornamental kitbash)
+- `Musical/` - {musical_n} SM_Orn_* (sibling musical kitbash)
+- `OrnamentSculptReview.blend` - all meshes in a grid for Blender sculpt review
 
 ## Workflow
 1. Open the `.blend` in Blender 5.1 (or import FBX into ZBrush / your sculpt tool).
-2. Sculpt / remesh / polish per mesh — keep `SM_Orn_*` names.
+2. Sculpt / remesh / polish per mesh - keep `SM_Orn_*` names.
 3. Export updated FBX back into the matching folder (`Gothic/` or `Musical/`).
 4. Copy finals into:
    - `KitbashExport/OrnamentalMeshes/` (gothic)

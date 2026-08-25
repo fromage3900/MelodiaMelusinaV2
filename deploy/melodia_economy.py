@@ -1,7 +1,7 @@
 """
-Melodia Global Economy — P0 gameplay economy for rhythm-combat skills.
+Melodia Global Economy - P0 gameplay economy for rhythm-combat skills.
 
-4 global float resources: healing, mana, utility, grief (all 0.0–100.0)
+4 global float resources: healing, mana, utility, grief (all 0.0-100.0)
 Grief modifier: higher grief => more mana gain, less healing gain per rhythm hit.
 All functions follow an immutable pattern: return (new_economy, result_dict).
 """
@@ -34,7 +34,7 @@ def _clamp_economy(eco: MelodiaGlobalEconomy) -> MelodiaGlobalEconomy:
 
 
 def on_rhythm_hit(economy: MelodiaGlobalEconomy, accuracy: float) -> tuple[MelodiaGlobalEconomy, dict[str, Any]]:
-    """Apply a rhythm hit with accuracy 0.0–1.0, modified by current grief level.
+    """Apply a rhythm hit with accuracy 0.0-1.0, modified by current grief level.
 
     Grief boosts mana gain but softly penalizes healing gain.
     Grief dissipates slightly on each successful hit.
@@ -164,7 +164,7 @@ def cast_utility_debuff(economy: MelodiaGlobalEconomy, tier: int = 1) -> tuple[M
 
 
 def activate_grief_hook(economy: MelodiaGlobalEconomy, dungeon_id: str) -> tuple[MelodiaGlobalEconomy, dict[str, Any]]:
-    """Set grief to 30 on dungeon entry — the grief hook activation."""
+    """Set grief to 30 on dungeon entry - the grief hook activation."""
     new_eco = _clamp_economy(replace(economy, grief=30.0))
     result: dict[str, Any] = {
         "event": "grief_hook_activated",

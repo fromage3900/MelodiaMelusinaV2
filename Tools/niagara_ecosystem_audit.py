@@ -1,4 +1,4 @@
-"""niagara_ecosystem_audit.py — project-wide Niagara ecosystem review.
+"""niagara_ecosystem_audit.py - project-wide Niagara ecosystem review.
 
 Read-only. Enumerates every Niagara system asset in the project (EnvSandbox,
 Melodia, MelodiaIntegration, _PROJECT) and reports per system:
@@ -27,7 +27,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mcp_client import monolith  # noqa: E402
-from niagara_contract import CONTRACT_PARAMS  # noqa: E402,F401 — canonical 20-param contract
+from niagara_contract import CONTRACT_PARAMS  # noqa: E402,F401 - canonical 20-param contract
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "Saved" / "Audit" / "niagara_ecosystem_review.json"

@@ -22,7 +22,7 @@ OUT_DIR = os.path.join(ROOT, "KitbashExport", "OrnamentalMeshes")
 PRODUCT_FBX = os.path.join(ROOT, "Products", "OrnamentKitbash", "FBX")
 STATUS_PATH = os.path.join(ROOT, "Saved", "Audit", "ornament_surreal_regen.json")
 
-# SM_Orn name → (arch_type, prop overrides)
+# SM_Orn name -> (arch_type, prop overrides)
 SPECS = [
     ("SM_Orn_RoseWindow_8Petal", "ROSE_WINDOW", {
         "rose_outer_radius": 1.6,
@@ -241,7 +241,7 @@ def generate_one(name: str, arch_type: str, overrides: dict) -> bpy.types.Object
         bpy.data.objects.remove(obj, do_unlink=True)
         return None
 
-    # Keep GeoNodes output clean — do NOT stack aest_goth_* polish
+    # Keep GeoNodes output clean - do NOT stack aest_goth_* polish
     # (those inject spikes/finials that wreck kitbash silhouettes).
 
     # Apply remaining SurrealArch node mods if any
@@ -260,7 +260,7 @@ def generate_one(name: str, arch_type: str, overrides: dict) -> bpy.types.Object
         pass
 
     nverts = len(obj.data.vertices)
-    log(f"OK {name} ← {arch_type} verts={nverts} dims={list(obj.dimensions)}")
+    log(f"OK {name} <- {arch_type} verts={nverts} dims={list(obj.dimensions)}")
     if nverts < 32:
         log(f"WARN low vert count for {name}")
     return obj
@@ -353,7 +353,7 @@ def run() -> dict:
     with open(STATUS_PATH, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
         f.write("\n")
-    log(f"done {summary['ok']}/{len(results)} → {STATUS_PATH}")
+    log(f"done {summary['ok']}/{len(results)} -> {STATUS_PATH}")
     return summary
 
 

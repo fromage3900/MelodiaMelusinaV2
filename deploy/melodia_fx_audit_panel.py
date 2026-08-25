@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Melodia FX Audit — effective render visibility + indirect-linkage report.
+"""Melodia FX Audit - effective render visibility + indirect-linkage report.
 
 Answers, per object in the scene:
   * Will it actually show up in a render of the active view layer?
     (object hide_render, collection hide_render chain, view-layer exclusion,
     object type, instance collections)
-  * Why not, if not — one-line reasons.
+  * Why not, if not - one-line reasons.
   * Is it indirectly linked (drives / is referenced by another object via
     modifiers, constraints, drivers, parents, GN object inputs, FLIP fluid
     roles, instanced collections, GP frames)?
@@ -363,10 +363,10 @@ def _md(report):
     lines = []
     s = report["summary"]
     stage = report["stage"] or "<unsaved>"
-    lines.append(f"# FX Render Audit — {Path(stage).name}")
-    lines.append(f"* {report['generated_at']} · Blender {report['blender']} · "
-                 f"view layer `{report['view_layer']}` · engine `{report['engine']}` · "
-                 f"frames {report['frame_range'][0]}–{report['frame_range'][1]}`")
+    lines.append(f"# FX Render Audit - {Path(stage).name}")
+    lines.append(f"* {report['generated_at']} - Blender {report['blender']} - "
+                 f"view layer `{report['view_layer']}` - engine `{report['engine']}` - "
+                 f"frames {report['frame_range'][0]}-{report['frame_range'][1]}`")
     lines.append("")
     lines.append("| Metric | Count |")
     lines.append("|---|---|")
@@ -379,7 +379,7 @@ def _md(report):
     lines.append(f"| Loop-friendly (N×24) | {s['loop_friendly']} |")
     if s.get("dup_collection_instances"):
         lines.append("")
-        lines.append("## ⚠ Duplicate collection instances (renders twice)")
+        lines.append("## * Duplicate collection instances (renders twice)")
         lines.append("")
         lines.append("| Collection | Times linked in scene |")
         lines.append("|---|---|")
@@ -388,7 +388,7 @@ def _md(report):
     lines.append("")
 
     def row_line(r):
-        why = ", ".join(r["reasons"]) if r["reasons"] else ("✅" if r["renders"] else "?")
+        why = ", ".join(r["reasons"]) if r["reasons"] else ("*" if r["renders"] else "?")
         anim = ""
         if r["animation"]:
             anim = "; ".join(f"{a['action']}@{a['start']}-{a['end']}"
@@ -409,7 +409,7 @@ def _md(report):
 
     indirect = [r for r in report["objects"] if not r["renders"] and r["references_count"]]
     if indirect:
-        lines.append("## Indirectly linked — NOT rendered, but referenced")
+        lines.append("## Indirectly linked - NOT rendered, but referenced")
         lines.append("")
         for r in indirect:
             lines.append(f"- **{r['name']}** ({r['type']}): "

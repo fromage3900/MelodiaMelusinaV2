@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-t3d_safe_wire.py — the composite, fail-closed T3D wiring operation.
+t3d_safe_wire.py - the composite, fail-closed T3D wiring operation.
 
 WHY
 

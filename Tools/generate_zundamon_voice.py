@@ -30,7 +30,7 @@ def check_voicevox():
             print(f"VOICEVOX v{data.get('version', '?')} ready")
             return True
     except Exception as e:
-        print(f"VOICEVOX not running on {VOICEVOX_URL} — {e}")
+        print(f"VOICEVOX not running on {VOICEVOX_URL} - {e}")
         print("Download from: https://voicevox.hiroshiba.jp/")
         return False
 
@@ -89,7 +89,7 @@ def generate_all(dialogue_path: str, output_dir: str, speaker: int,
 
         # Skip if already exists
         if wav_path.exists():
-            print(f"  [{i+1}/{total}] {line_id} — already exists, skipping")
+            print(f"  [{i+1}/{total}] {line_id} - already exists, skipping")
             results.append({"id": line_id, "path": str(wav_path), "status": "cached"})
             continue
 
@@ -105,11 +105,11 @@ def generate_all(dialogue_path: str, output_dir: str, speaker: int,
 
             wav = synthesize(query, speaker)
             wav_path.write_bytes(wav)
-            print(f"→ {wav_name} ({len(wav)/1024:.0f} KB)")
+            print(f"-> {wav_name} ({len(wav)/1024:.0f} KB)")
             results.append({"id": line_id, "path": str(wav_path), "status": "generated", "size_bytes": len(wav)})
 
         except Exception as e:
-            print(f"→ FAILED: {e}")
+            print(f"-> FAILED: {e}")
             results.append({"id": line_id, "path": str(wav_path), "status": "error", "error": str(e)})
 
         # Rate limit

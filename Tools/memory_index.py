@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Project Memory — searchable index over docs, ledger, and playtest reports.
+"""Project Memory - searchable index over docs, ledger, and playtest reports.
 
 Builds a keyword/structural index (headers weighted, then full text) so any
 lane can answer "where is X documented" without re-reading every file.

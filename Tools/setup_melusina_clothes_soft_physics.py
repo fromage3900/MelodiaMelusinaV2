@@ -1,6 +1,6 @@
 """Melusina wardrobe soft-sway + stable cloth preset (Blender 5.1 stage).
 
-Default preset = ``stable_wardrobe`` (Infinity Nikki–style simple cloth):
+Default preset = ``stable_wardrobe`` (Infinity Nikki-style simple cloth):
   - Per-island top Pin (holds main skirt waist + bottom ruffle island attach)
   - Soft low gravity, no self-collision on dense skirt
   - Body-only collider (never re-add Collision on wardrobe Cloth meshes)

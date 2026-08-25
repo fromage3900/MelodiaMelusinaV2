@@ -1,4 +1,4 @@
-"""Musical hero GN builders — life-size keys, piano-roll paths, walkable sheet rail, room shell, harp.
+"""Musical hero GN builders - life-size keys, piano-roll paths, walkable sheet rail, room shell, harp.
 
 Period language: instance spacing = key / string width. Pitch is stored along
 spline factor (or string index). Endless tiling uses curve length / period.
@@ -359,7 +359,7 @@ def _is_accidental_field(tree, loc, index_sock):
 
 
 def _instance_on_spline_group(tree, loc, proto, spline, count_sock):
-    """Resample curve by count, then instance proto — same pattern as MEL_instance_on_spline.
+    """Resample curve by count, then instance proto - same pattern as MEL_instance_on_spline.
 
     Inline on 5.2: nested GeometryNodeGroup Count/Spline sockets are unreliable.
     Still constructs MEL_instance_on_spline so the helper tree exists for reuse.
@@ -599,7 +599,7 @@ def build_music_piano_roll(group_name="MEL_music_piano_roll"):
 
 
 # ---------------------------------------------------------------------------
-# MEL_music_sheet_rail  (rewrite in place — same tree id)
+# MEL_music_sheet_rail  (rewrite in place - same tree id)
 # ---------------------------------------------------------------------------
 
 def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
@@ -659,7 +659,7 @@ def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
     color_node(rail_pos, "instance")
     _ = rail_lift  # spacing is encoded in the 5-point line Offset
 
-    # Posts — walkable uprights, same period language as the piano roll.
+    # Posts - walkable uprights, same period language as the piano roll.
     post_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 720, by + 80))
     _mesh_span_x(tree, post_line, gin.outputs["Length"], gin.outputs["Post Count"])
     color_node(post_line, "curve")
@@ -689,7 +689,7 @@ def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
         link_sockets(tree, post_geo, post_inst.inputs["Instance"])
     color_node(post_inst, "instance")
 
-    # Notes sit at pitch-height on the staff (harmonic → Z).
+    # Notes sit at pitch-height on the staff (harmonic -> Z).
     from .music import build_music_harmonic, build_music_note_head, build_music_treble_clef
 
     note_pts = safe_node(tree, "GeometryNodeMeshLine", (bx - 720, by - 220))

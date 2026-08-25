@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Melodia Gameplay Loop Monitor — live status dashboard for the persona-lite loop.
+Melodia Gameplay Loop Monitor - live status dashboard for the persona-lite loop.
 Shows what's connected, what's firing, and where it's breaking.
 
 Usage:
@@ -27,8 +27,8 @@ def monolith(action, args=None):
         return {"error": str(e)}
 
 def check_step(name, ok, detail=""):
-    icon = "✅" if ok else "❌"
-    return f"{icon} {name}" + (f" — {detail}" if detail else "")
+    icon = "*" if ok else "*"
+    return f"{icon} {name}" + (f" - {detail}" if detail else "")
 
 def scan_bp(asset_path):
     """Scan a Blueprint for function call nodes by keyword. Return raw text for regex search."""
@@ -87,7 +87,7 @@ def check_loop():
     
     # 4. Scan key Blueprints
     bps = {
-        "Battle→Narrative (CompleteBattle)": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController",
+        "Battle->Narrative (CompleteBattle)": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController",
         "RegisterSkill": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameInstance",
         "StartSession": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController",
         "RecordInputNow": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController",
@@ -118,7 +118,7 @@ def check_loop():
         results.append(check_step("Config: smoke encounter allowlisted", has_encounter))
         results.append(check_step("Config: KaleidoNave allowlisted", has_travel))
     
-    # 6. Tag check — does the BP_InteractionBattle CDO have the tag?
+    # 6. Tag check - does the BP_InteractionBattle CDO have the tag?
     tag_check = monolith("blueprint_query", {"action": "get_cdo_properties",
                                               "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_InteractionBattle"})
     if isinstance(tag_check, dict) and tag_check.get("result", {}).get("content"):
@@ -142,7 +142,7 @@ def check_loop():
 def display_results(results):
     """Display results as a formatted terminal dashboard."""
     total = len(results)
-    passed = sum(1 for r in results if r.startswith("✅"))
+    passed = sum(1 for r in results if r.startswith("*"))
     failed = total - passed
     
     print("\n" + "=" * 60)
@@ -158,11 +158,11 @@ def display_results(results):
     print(f"  {passed}/{total} connected ({pct:.0f}%)")
     
     if failed > 0:
-        print("\n  ❗  Missing connections detected — the loop WILL break here:")
+        print("\n  *  Missing connections detected - the loop WILL break here:")
         for r in results:
-            if r.startswith("❌"):
-                name = r.split("—")[0].replace("❌ ", "").strip()
-                print(f"     • {name}")
+            if r.startswith("*"):
+                name = r.split("-")[0].replace("* ", "").strip()
+                print(f"     * {name}")
         print()
     
     return passed == total
@@ -170,16 +170,16 @@ def display_results(results):
 
 def generate_html(results):
     """Generate a self-contained HTML dashboard."""
-    passed = sum(1 for r in results if r.startswith("✅"))
+    passed = sum(1 for r in results if r.startswith("*"))
     total = len(results)
     pct = (passed / total * 100) if total > 0 else 0
     
     rows_html = ""
     for r in results:
-        icon = "✅" if r.startswith("✅") else "❌"
-        name = r.split("—")[0].replace("✅ ", "").replace("❌ ", "").strip()
-        detail = r.split("—")[-1].strip() if "—" in r else ""
-        color = "#22c55e" if icon == "✅" else "#ef4444"
+        icon = "*" if r.startswith("*") else "*"
+        name = r.split("-")[0].replace("* ", "").replace("* ", "").strip()
+        detail = r.split("-")[-1].strip() if "-" in r else ""
+        color = "#22c55e" if icon == "*" else "#ef4444"
         rows_html += f"""
         <tr>
             <td style="font-size:24px">{icon}</td>
@@ -213,22 +213,22 @@ def generate_html(results):
 </style>
 </head>
 <body>
-<h1>♫ Melodia — Persona-Lite Loop Monitor</h1>
-<div class="sub">{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} · <span class="stat" style="background:{color}22;color:{color}">{passed}/{total} connected ({pct:.0f}%)</span></div>
+<h1>* Melodia - Persona-Lite Loop Monitor</h1>
+<div class="sub">{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - <span class="stat" style="background:{color}22;color:{color}">{passed}/{total} connected ({pct:.0f}%)</span></div>
 
 <div class="loop-diagram">
   <span class="step {'connected' if 'CompleteBattle' in str(results) else 'missing'}">New Game</span>
-  <span class="arrow">→</span>
+  <span class="arrow">-></span>
   <span class="step">Quill Dialogue</span>
-  <span class="arrow">→</span>
+  <span class="arrow">-></span>
   <span class="step">Battle Intent</span>
-  <span class="arrow">→</span>
+  <span class="arrow">-></span>
   <span class="step {'connected' if 'CompleteBattle' in str(results) else 'missing'}">Battle</span>
-  <span class="arrow">→</span>
+  <span class="arrow">-></span>
   <span class="step">CompleteBattle</span>
-  <span class="arrow">→</span>
+  <span class="arrow">-></span>
   <span class="step">Quill Resume</span>
-  <span class="arrow">→</span>
+  <span class="arrow">-></span>
   <span class="step">KaleidoNave</span>
 </div>
 
@@ -239,7 +239,7 @@ def generate_html(results):
 
 <p style="color:#555;margin-top:20px;font-size:12px">
   Auto-refresh: <button onclick="location.reload()">Refresh</button>
-  · Generated by Melodia Loop Monitor
+  - Generated by Melodia Loop Monitor
 </p>
 </body>
 </html>"""
@@ -262,7 +262,7 @@ def main():
         print(f"Dashboard written to: {out_path}")
         if args.open:
             webbrowser.open(str(out_path))
-        return 0 if all(r.startswith("✅") for r in results) else 1
+        return 0 if all(r.startswith("*") for r in results) else 1
     
     if args.watch:
         try:

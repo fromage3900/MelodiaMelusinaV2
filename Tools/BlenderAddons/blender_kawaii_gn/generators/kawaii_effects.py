@@ -66,7 +66,7 @@ class KawaiiSparklesGN(KawaiiGNBase):
         links.new(sphere.outputs['Mesh'], distribute.inputs['Mesh'])
         link_from_input(links, input_node, 'Count', distribute.inputs['Count'])
         
-        # Instance 4-point stars (Kindchenschema → puffier points when cute)
+        # Instance 4-point stars (Kindchenschema -> puffier points when cute)
         star = nodes.new('GeometryNodeCurveStar')
         star.location = (-400, 200)
         star.inputs['Vertices'].default_value = 4
@@ -161,7 +161,7 @@ class KawaiiRainbowGN(KawaiiGNBase):
             tree, links, input_node, 'Roundness',
         )
         
-        # Circle curve (Kindchenschema → wider arc when cute)
+        # Circle curve (Kindchenschema -> wider arc when cute)
         circle = nodes.new('GeometryNodeCurveCircle')
         circle.location = (-200, 0)
         circle.inputs['Radius'].default_value = 2.0

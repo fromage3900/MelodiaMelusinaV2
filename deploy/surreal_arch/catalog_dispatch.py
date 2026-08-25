@@ -1,4 +1,4 @@
-"""ARCH_CATALOG-driven dispatch sync — builder registry + param spec stubs."""
+"""ARCH_CATALOG-driven dispatch sync - builder registry + param spec stubs."""
 
 from __future__ import annotations
 

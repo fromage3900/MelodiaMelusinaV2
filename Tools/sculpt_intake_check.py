@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-sculpt_intake_check.py — offline gate for Imports/Sculpt/Inbox drops.
+sculpt_intake_check.py - offline gate for Imports/Sculpt/Inbox drops.
 
 No Unreal required. Blocks obvious foot-guns before an editor import:
   - empty / missing inbox
@@ -63,7 +63,7 @@ def main() -> int:
         if p.is_file() and p.name not in {"README.md", ".gitkeep"}
     ]
     if not files:
-        print(f"OK: inbox empty ({inbox}) — drop FBX when sculpt is ready.")
+        print(f"OK: inbox empty ({inbox}) - drop FBX when sculpt is ready.")
         return 0
 
     tracked = tracked_uasset_stems()
@@ -94,7 +94,7 @@ def main() -> int:
             base = re.sub(r"_v\d{2}$", "", stem, flags=re.I)
             if base.lower() in tracked or stem.lower() in tracked:
                 errors.append(
-                    f"{path.name}: tracked Content already has '{base}' — "
+                    f"{path.name}: tracked Content already has '{base}' - "
                     "do NOT import onto that path (redirector risk). Use a new UE path."
                 )
 

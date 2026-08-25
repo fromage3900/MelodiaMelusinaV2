@@ -1,4 +1,4 @@
-"""PCG integration GN group builders — tag schemas, material crosswalk.
+"""PCG integration GN group builders - tag schemas, material crosswalk.
 
 Water/music PCG tags are stored as FLOAT/INT/BOOLEAN attributes (Blender
 named attributes do not support STRING), matching the WP_/MN_ tag ladder
@@ -106,7 +106,7 @@ def _pcg_common(group_name, theme):
 
 
 def pcg_water_tags(group_name="MEL_pcg_water_tags"):
-    """PCG tag schema for water geometry — tag index, depth, foam, dynamic."""
+    """PCG tag schema for water geometry - tag index, depth, foam, dynamic."""
     return _pcg_common(group_name, "water")
 
 
@@ -116,7 +116,7 @@ def pcg_water_tags_v2(group_name="MEL_pcg_water_tags_v2"):
 
 
 def pcg_music_tags(group_name="MEL_pcg_music_tags"):
-    """PCG tag schema for music geometry — theme, instruments, tempo."""
+    """PCG tag schema for music geometry - theme, instruments, tempo."""
     return _pcg_common(group_name, "music")
 
 
@@ -182,30 +182,30 @@ def _material_common(group_name, water_mode_default=0):
 
 
 def material_crosswalk_integration(group_name="MEL_material_crosswalk"):
-    """Material crosswalk for UE export — base color, metallic, roughness, water mode."""
+    """Material crosswalk for UE export - base color, metallic, roughness, water mode."""
     return _material_common(group_name, water_mode_default=0)
 
 
 def material_crosswalk_v2(group_name="MEL_material_crosswalk_v2"):
-    """Enhanced crosswalk — water mode defaults to caustics lane (mode 1)."""
+    """Enhanced crosswalk - water mode defaults to caustics lane (mode 1)."""
     return _material_common(group_name, water_mode_default=1)
 
 
 # -- Registry --
 register_builder("MEL_pcg_water_tags", pcg_water_tags, "PCG Water Tags",
-    "PCG tag schema for water geometry — pcg_tag_index, water_depth, foam_intensity, pcg_is_dynamic.",
+    "PCG tag schema for water geometry - pcg_tag_index, water_depth, foam_intensity, pcg_is_dynamic.",
     "set_dressing", hidden=True, role="pcg_alias")
 register_builder("MEL_pcg_water_tags_v2", pcg_water_tags_v2, "PCG Water Tags v2",
-    "Enhanced water tag schema — adds Current Speed lane support.",
+    "Enhanced water tag schema - adds Current Speed lane support.",
     "set_dressing", role="pcg_keep")
 register_builder("MEL_pcg_music_tags", pcg_music_tags, "PCG Music Tags",
-    "PCG tag schema for music geometry — pcg_tag_index, instrument_count, tempo, pcg_is_dynamic.",
+    "PCG tag schema for music geometry - pcg_tag_index, instrument_count, tempo, pcg_is_dynamic.",
     "set_dressing", hidden=True, role="pcg_alias")
 register_builder("MEL_pcg_music_tags_v2", pcg_music_tags_v2, "PCG Music Tags v2",
-    "Enhanced music tag schema — adds Density lane support.",
+    "Enhanced music tag schema - adds Density lane support.",
     "set_dressing", role="pcg_keep")
 register_builder("MEL_material_crosswalk", material_crosswalk_integration, "Material Crosswalk",
-    "Material crosswalk for UE export — base color, metallic, roughness, water mode attributes.",
+    "Material crosswalk for UE export - base color, metallic, roughness, water mode attributes.",
     "set_dressing", hidden=True, role="pcg_alias")
 register_builder("MEL_material_crosswalk_v2", material_crosswalk_v2, "Material Crosswalk v2",
     "Enhanced crosswalk with caustics-first water mode default.",

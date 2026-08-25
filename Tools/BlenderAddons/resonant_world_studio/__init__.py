@@ -1,4 +1,4 @@
-"""Resonant World Studio — MIDI to walkable level, in one click.
+"""Resonant World Studio - MIDI to walkable level, in one click.
 
 Folder-based addon so it can be junction-linked from the repo and survive a
 Blender reinstall (see BLENDER_ADDON_MANIFEST).

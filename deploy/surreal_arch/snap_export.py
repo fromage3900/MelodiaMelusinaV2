@@ -40,7 +40,7 @@ def build_trim_groups(props, monolith=None):
         _g("barrel_vault", "TRIM_VAULT", "M_Trim_Vault")
     elif at == "GB_ROMANESQUE_APSE":
         _g("apse_shell", "TRIM_PANEL_RECESS", "M_Trim_Apse_Shell", snap_bind="apse_center",
-           notes="Semicircular choir recess — UE trim sheet apse band")
+           notes="Semicircular choir recess - UE trim sheet apse band")
         _g("barrel_vault", "TRIM_VAULT", "M_Trim_Vault")
         _g("apse_open", "TRIM_FRAME", "M_Trim_Frame", snap_bind="apse_open")
     elif at == "GB_BRUTALIST_PANEL_WALL":
@@ -54,7 +54,7 @@ def build_trim_groups(props, monolith=None):
         _g("sill_band", "TRIM_SILL", "M_Trim_Sill")
     elif at == "GB_SCIFI_PRESSURE_DOOR":
         _g("gasket_ring", "TRIM_GASKET", "M_Trim_Gasket", snap_bind="gasket",
-           notes="Recessed channel around door — UE trim sheet gasket")
+           notes="Recessed channel around door - UE trim sheet gasket")
         _g("pressure_frame", "TRIM_FRAME", "M_Trim_Frame", snap_bind="door")
         _g("door_void", "TRIM_OPENING", "M_Trim_Door_Void", snap_bind="door")
     elif at == "GB_ZEN_ROJI_STEP":
@@ -72,7 +72,7 @@ def build_trim_groups(props, monolith=None):
         _g("petal_accent", "TRIM_PETAL", "M_Trim_Petal", notes="Petal accent strips on hashira")
     elif at == "GB_ZEN_TSUKUBAI":
         _g("basin", "TRIM_BASIN", "M_Trim_Basin", snap_bind="basin",
-           notes="Recess bowl — UE trim sheet basin band")
+           notes="Recess bowl - UE trim sheet basin band")
         _g("flagstone", "TRIM_FLAGSTONE", "M_Trim_Flagstone")
         _g("pad", "TRIM_FLOOR", "M_Trim_Floor", snap_bind="floor")
     elif at == "GB_ZEN_ENGAWA":

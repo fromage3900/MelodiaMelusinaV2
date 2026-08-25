@@ -1,4 +1,4 @@
-"""Preset catalog bridge — research presets as canonical LD source (v2.72.2)."""
+"""Preset catalog bridge - research presets as canonical LD source (v2.72.2)."""
 
 from __future__ import annotations
 

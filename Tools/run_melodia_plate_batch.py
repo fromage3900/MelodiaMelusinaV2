@@ -148,7 +148,7 @@ def main() -> int:
     }
     AUDIT.parent.mkdir(parents=True, exist_ok=True)
     AUDIT.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
-    log(f"done {summary['ok']}/{len(results)} → {AUDIT}")
+    log(f"done {summary['ok']}/{len(results)} -> {AUDIT}")
     return 0 if summary["fail"] == 0 else 1
 
 

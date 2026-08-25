@@ -1,4 +1,4 @@
-"""Blender 5.2 MCP stdio adapter — launches blender.exe --background for each tool call.
+"""Blender 5.2 MCP stdio adapter - launches blender.exe --background for each tool call.
 
 No persistent daemon, no TCP sockets. Each tool spins up a headless Blender,
 executes the Python code, and returns JSON. Safe, auditable, no corruption vector.
@@ -113,13 +113,13 @@ def resource(uri: str, name: str, description: str, mime_type: str = "text/plain
 @resource("melodia://studio/overview", "Melodia Studio Overview",
           "Complete overview of Melodia Studio capabilities, genome system, and GN builders.")
 def _res_overview() -> str:
-    return """# Melodia Studio — Surreal Architecture Generator (v2.131.0)
+    return """# Melodia Studio - Surreal Architecture Generator (v2.131.0)
 
 A Blender 5.2 addon for procedural surreal architecture with style genomes,
 Greybox kits, 169 Geometry Node builders across 12 GN Stack categories, and Unreal Engine game pipeline.
 
 ## Architecture
-- **Monolith**: `surreal_architecture_gen` (~1.9MB, 38K lines) — main addon entry point
+- **Monolith**: `surreal_architecture_gen` (~1.9MB, 38K lines) - main addon entry point
 - **173 GN builders** / **12 GN Stack categories**: castle kit, music notation, ornaments, filigree, structures, effects, math ops
 - **56 styles** across 8 groups: asian, zen, baroque, gothic, civic, castle, woods, greybox
 - **18 Escher presets**: Penrose stairs, Mobius cathedral, fractal towers, etc.
@@ -127,13 +127,13 @@ Greybox kits, 169 Geometry Node builders across 12 GN Stack categories, and Unre
 - **41 UI panels** in Properties editor + 3 panels in View3D sidebar (Melodia Studio tab)
 
 ## Key MCP Tools
-- `list_genomes` — browse all 56 styles
-- `apply_style` — apply a style group+id to active object
-- `run_gn_builder` — build and apply a GN tree to an object
-- `generate_rhythm_dungeon` — BPM-driven dungeon layout generation
-- `validate_mesh` — check mesh health (non-manifold, UV, naming)
+- `list_genomes` - browse all 56 styles
+- `apply_style` - apply a style group+id to active object
+- `run_gn_builder` - build and apply a GN tree to an object
+- `generate_rhythm_dungeon` - BPM-driven dungeon layout generation
+- `validate_mesh` - check mesh health (non-manifold, UV, naming)
 
-## Workflow: Natural Language → Architecture
+## Workflow: Natural Language -> Architecture
 1. Create/select a mesh object
 2. Call `list_genomes` to see available styles
 3. Call `apply_style` with group and style_id
@@ -147,7 +147,7 @@ def _res_genome_workflow() -> str:
     return """# Surreal OS Genome Workflow Guide
 
 The genome system maps architectural DNA parameters to Geometry Node inputs.
-It's a shape grammar system — define a genome once, generate infinite variations.
+It's a shape grammar system - define a genome once, generate infinite variations.
 
 ## DNA Parameters (per object)
 - `genome_verticality` (0-1): tall/spires vs low/spread
@@ -171,20 +171,20 @@ It's a shape grammar system — define a genome once, generate infinite variatio
 
 ## Rhythm Game Integration (Cadence Strike)
 Map BPM to DNA:
-- BPM 80-100 → zen/asian (low ornament, wide spacing)
-- BPM 120-140 → gothic/civic (medium density, mixed symmetry)
-- BPM 160-180 → baroque/castle (dense, high verticality)
-- BPM 200+ → woods/experimental (chaotic, cosmic high)
+- BPM 80-100 -> zen/asian (low ornament, wide spacing)
+- BPM 120-140 -> gothic/civic (medium density, mixed symmetry)
+- BPM 160-180 -> baroque/castle (dense, high verticality)
+- BPM 200+ -> woods/experimental (chaotic, cosmic high)
 """
 
 @resource("melodia://pipeline/game-asset", "Game Asset Pipeline",
-          "End-to-end pipeline: Blender procedural architecture → Unreal Engine game asset.")
+          "End-to-end pipeline: Blender procedural architecture -> Unreal Engine game asset.")
 def _res_pipeline() -> str:
-    return """# Game Asset Pipeline: Blender → Unreal Engine
+    return """# Game Asset Pipeline: Blender -> Unreal Engine
 
 ## Overview
 Chain MCP servers for a single-prompt asset pipeline:
-Blender MCP → surreal_arch → Monolith → Unreal Engine
+Blender MCP -> surreal_arch -> Monolith -> Unreal Engine
 
 ## Pipeline Steps
 1. **Model in Blender**: Create mesh + `apply_style` + `run_gn_builder`

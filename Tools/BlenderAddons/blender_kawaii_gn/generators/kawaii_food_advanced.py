@@ -15,7 +15,7 @@ class KawaiiDonutGN(KawaiiGNBase):
     category = "food"
     generator_id = "kawaii_donut_gn"
     generator_name = "Kawaii Donut"
-    description = "Cute donut — Roundness scales icing ring, height, and lift"
+    description = "Cute donut - Roundness scales icing ring, height, and lift"
     
     @classmethod
     def add_parameters(cls, tree, input_node, output_node):
@@ -41,7 +41,7 @@ class KawaiiDonutGN(KawaiiGNBase):
             tree, links, input_node, 'Roundness',
         )
         
-        # Donut base (torus via curve sweep — MeshTorus removed in Blender 5.1)
+        # Donut base (torus via curve sweep - MeshTorus removed in Blender 5.1)
         donut_ctm, donut_circle, donut_profile = create_mesh_torus(
             nodes, links, (-600, 0), major_radius=0.8, minor_radius=0.3,
         )
@@ -54,7 +54,7 @@ class KawaiiDonutGN(KawaiiGNBase):
         link_from_input(links, input_node, 'Thickness', body_thickness.inputs[1])
         links.new(body_thickness.outputs[0], donut_profile.inputs['Radius'])
         
-        # Frosting (slightly larger torus on top) — Roundness scales icing ring + height
+        # Frosting (slightly larger torus on top) - Roundness scales icing ring + height
         frost_ctm, frost_circle, frost_profile = create_mesh_torus(
             nodes, links, (-600, 200), major_radius=0.8, minor_radius=0.35,
         )

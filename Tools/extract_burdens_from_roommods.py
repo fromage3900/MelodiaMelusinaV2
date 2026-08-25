@@ -198,7 +198,7 @@ def main() -> int:
         OUTPUT.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8")
         print(f"\nwrote {OUTPUT.relative_to(ROOT)}")
     else:
-        print("\n(dry run — pass --write to emit DT_Burdens.json)")
+        print("\n(dry run - pass --write to emit DT_Burdens.json)")
 
     # Recovery itself succeeded; flagged rows are data to review, not a tool failure.
     return 0

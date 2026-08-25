@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-lfs_health_audit.py — Echo-adjacent repo hygiene (promote stage).
+lfs_health_audit.py - Echo-adjacent repo hygiene (promote stage).
 
 1. Find HEAD blobs that should be LFS pointers but are raw binaries.
 2. Optionally measure a collab slice manifest against a max_mb budget.

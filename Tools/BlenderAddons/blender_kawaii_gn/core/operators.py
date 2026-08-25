@@ -1,4 +1,4 @@
-"""Kawaii GN operators — generate objects, category popups, and UE5 FBX export."""
+"""Kawaii GN operators - generate objects, category popups, and UE5 FBX export."""
 import os
 
 import bpy
@@ -148,10 +148,10 @@ class MELKAWAIIGN_OT_export_ue5(bpy.types.Operator):
 
             self.report(
                 {'INFO'},
-                f"Exported LOD0 → {self.filepath}, LOD1 → {lod1_path}, LOD2 → {lod2_path}",
+                f"Exported LOD0 -> {self.filepath}, LOD1 -> {lod1_path}, LOD2 -> {lod2_path}",
             )
         else:
-            self.report({'INFO'}, f"Exported {export_obj.name} → {self.filepath}")
+            self.report({'INFO'}, f"Exported {export_obj.name} -> {self.filepath}")
         return {'FINISHED'}
 
     def invoke(self, context, event):

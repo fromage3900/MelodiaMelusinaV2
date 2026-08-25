@@ -19,6 +19,20 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FMelodiaRhythmSessionCompleted,
 	EMelodiaSkillGrade, Grade, int32, HitCount, int32, MissCount);
 
 /**
+ * Broadcast once per JUDGED PRESS, including misses, from RegisterLaneHit.
+ *
+ * This is a strictly finer grain than FMelodiaRhythmSessionCompleted, which
+ * fires once per session on the aggregate. Presentation that needs to punctuate
+ * the individual press -- the lane-hit burst, a lane flash, a hitsound -- has to
+ * bind here; binding OnRhythmComplete gives it one event for a whole phrase.
+ *
+ * Presentation-only. This subsystem stays the combat authority and gains no
+ * knowledge of VFX: it announces the judgement and nothing listens back.
+ */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FMelodiaLaneHitJudged,
+	int32, LaneIndex, EMelodiaSkillGrade, Grade, float, TimingErrorMs);
+
+/**
  * The universal battle-scoped rhythm combat authority.
  *
  * This is the single place the rhythm layer produces a combat-affecting
@@ -158,6 +172,13 @@ public:
 	/** Fires once when a session completes. */
 	UPROPERTY(BlueprintAssignable, Category = "Melodia|Rhythm Combat")
 	FMelodiaRhythmSessionCompleted OnRhythmComplete;
+
+	/**
+	 * Fires on every judged press, misses included. See FMelodiaLaneHitJudged --
+	 * per-press presentation binds here, not to OnRhythmComplete.
+	 */
+	UPROPERTY(BlueprintAssignable, Category = "Melodia|Rhythm Combat")
+	FMelodiaLaneHitJudged OnLaneHitJudged;
 
 	/**
 	 * Invalidate the active session and any pending request.

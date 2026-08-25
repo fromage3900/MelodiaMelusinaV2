@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_melusina_face_rig.py — wire FACS-driven facial animation on Melusina.
+build_melusina_face_rig.py - wire FACS-driven facial animation on Melusina.
 
 THE PIPELINE
 ------------
@@ -11,7 +11,7 @@ by FACS (Facial Action Coding System) Action Units.
 This script:
   1. Verifies the 68 FACS morph targets exist on the live mesh
   2. Creates a Control Rig with FACS curve drivers
-  3. Wires lip-sync curves (15 visemes → FACS)
+  3. Wires lip-sync curves (15 visemes -> FACS)
   4. Wires emotion layer (additive FACS on top of base)
   5. Sets up blink timer (randomized, ~2 per 7s)
 
@@ -101,9 +101,9 @@ FACS_TARGETS = [
     "jawDrop",
 ]
 
-# 15 visemes for lip-sync (phoneme → morph target mapping)
+# 15 visemes for lip-sync (phoneme -> morph target mapping)
 VISEME_CURVES = {
-    "sil": [],  # silence — all curves 0
+    "sil": [],  # silence - all curves 0
     "aa": ["jawDrop", "lipsPart"],  # "ah" as in father
     "ee": ["lipCornerPullerL", "lipCornerPullerR", "lipsPart"],  # "ee" as in see
     "ih": ["lipsPart", "lipCornerPullerL", "lipCornerPullerR"],  # "ih" as in sit
@@ -187,7 +187,7 @@ def verify_facs_targets() -> dict:
 
 
 def plan_face_rig() -> dict:
-    """Dry run — show what would change."""
+    """Dry run - show what would change."""
     require_editor()
 
     report = {
@@ -205,7 +205,7 @@ def plan_face_rig() -> dict:
         "1. Verify 68 FACS morph targets on mesh",
         "2. Create Control Rig for face (if not exists)",
         "3. Add FACS curve drivers to Control Rig",
-        "4. Wire viseme curves (15 phonemes → FACS)",
+        "4. Wire viseme curves (15 phonemes -> FACS)",
         "5. Wire emotion layer (additive FACS)",
         "6. Add blink timer (randomized, ~2 per 7s)",
         "7. Compile ABP",
@@ -224,7 +224,7 @@ def plan_face_rig() -> dict:
 
 
 def apply_face_rig() -> dict:
-    """Apply — wire FACS facial animation."""
+    """Apply - wire FACS facial animation."""
     mode = "APPLY"
     print(f"[{mode}] wiring FACS facial animation")
 
@@ -244,7 +244,7 @@ def apply_face_rig() -> dict:
         print(f"  Missing: {target_check['missing']}")
 
     # 2. Create face Control Rig (via T3D or direct API)
-    # NOTE: Control Rig creation is complex — for now, document the contract
+    # NOTE: Control Rig creation is complex - for now, document the contract
     # and wire curves via Animation Blueprint's curve system directly.
     report["steps"] = []
 
@@ -290,7 +290,7 @@ def apply_face_rig() -> dict:
 
 
 def verify_face_rig() -> dict:
-    """Verify — prove the face rig landed."""
+    """Verify - prove the face rig landed."""
     require_editor()
 
     target_check = verify_facs_targets()

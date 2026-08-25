@@ -93,7 +93,7 @@ def _gate_evidence(rec: dict[str, Any] | None, gid: str) -> str:
     date = rec.get("date") or ""
     time = rec.get("time") or ""
     note = (rec.get("note") or "")[:180]
-    return f"Saved/gate_ledger.json {gid} {date} {time} — {note}"
+    return f"Saved/gate_ledger.json {gid} {date} {time} - {note}"
 
 
 def _json_load(path: Path) -> tuple[Any | None, str | None]:
@@ -183,7 +183,7 @@ def _doc_links() -> dict[str, Any]:
         status = "pass"
     return {
         "status": status,
-        "evidence": f"Tools/doc_link_check.py — {checked} local links, {broken} broken (fail at {DOC_LINK_FAIL_AT})",
+        "evidence": f"Tools/doc_link_check.py - {checked} local links, {broken} broken (fail at {DOC_LINK_FAIL_AT})",
         "broken": broken,
         "checked": checked,
     }
@@ -302,7 +302,7 @@ def _run_math() -> dict[str, Any]:
     return {
         "status": status,
         "evidence": (
-            f"{path.relative_to(ROOT).as_posix()} — {report['passed']}/{report['total']} "
+            f"{path.relative_to(ROOT).as_posix()} - {report['passed']}/{report['total']} "
             f"TCA={report['tca_pct']}% (harness self-eval, not an LLM)"
         ),
         "passed": report["passed"],
@@ -473,7 +473,7 @@ def collect(*, run_math: bool = True, run_mcp: bool = False) -> dict[str, Any]:
             (
                 f"ollama tags: {', '.join(muse)}"
                 if muse
-                else "no ollama tag, G:\\ Muse-Glimmer-30B-direct missing, OPENROUTER_API_KEY unset — skip, do not invent scores"
+                else "no ollama tag, G:\\ Muse-Glimmer-30B-direct missing, OPENROUTER_API_KEY unset - skip, do not invent scores"
             ),
         )
     )

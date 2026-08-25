@@ -1,4 +1,4 @@
-"""Filigree & Decorative Crest GN group builders — spiral scroll, decorative rosette, harmonic orb.
+"""Filigree & Decorative Crest GN group builders - spiral scroll, decorative rosette, harmonic orb.
 
 Part of the Melodia Studio procedural geometry system for Blender 5.1+.
 """
@@ -16,7 +16,7 @@ from .core import (
 
 
 def build_filigree_spiral(group_name="MEL_filigree_spiral"):
-    """Parametric Art Nouveau filigree scroll curve — logarithmic/archimedean spiral with tapered profile.
+    """Parametric Art Nouveau filigree scroll curve - logarithmic/archimedean spiral with tapered profile.
 
     Generates smooth filigree spirals with parameterized radius growth, turns, profile sweep,
     taper along spline length, and attributes for shader modulation (FiligreePhase, FiligreeWidth).

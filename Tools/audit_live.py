@@ -1,5 +1,5 @@
 """
-Live material audit script for SK_Melusina — Substrate Toon compliance.
+Live material audit script for SK_Melusina - Substrate Toon compliance.
 Connects to Monolith MCP at http://127.0.0.1:9316/mcp and Unreal Editor.
 """
 import json, os, sys, urllib.request, urllib.error
@@ -256,13 +256,13 @@ for idx in sorted(live_slots.keys()):
 
     if expected_mi and mi_name != expected_mi:
         if mi_name == "MI_Melusina_Material_023" and expected_mi.startswith("MI_Melusina_Material_02"):
-            issues.append(f"WRONG MI ASSIGNED: got '{mi_name}' expected '{expected_mi}' — celestial catch-all replaced dedicated material")
+            issues.append(f"WRONG MI ASSIGNED: got '{mi_name}' expected '{expected_mi}' - celestial catch-all replaced dedicated material")
         elif expected_mi.startswith("MI_Melusina_Outline_Shader_star_") and mi_name == "MI_Melusina_Material_023":
-            issues.append(f"WRONG MI ASSIGNED: got '{mi_name}' expected '{expected_mi}' — outline slot got celestial catch-all")
+            issues.append(f"WRONG MI ASSIGNED: got '{mi_name}' expected '{expected_mi}' - outline slot got celestial catch-all")
         elif mi_name != expected_mi:
             issues.append(f"MI MISMATCH: got '{mi_name}' expected '{expected_mi}'")
     elif idx == 0 and mi_name == "None":
-        issues.append("Slot 0 uses M_Master_Toon_Universal directly — no MI instance; should use a dedicated MI")
+        issues.append("Slot 0 uses M_Master_Toon_Universal directly - no MI instance; should use a dedicated MI")
 
     # Check parent
     data = mi_params.get(mi_name, {})
@@ -334,7 +334,7 @@ else:
         water_hair_entry["issues"].append(f"Unexpected parent: {parent}")
         water_hair_entry["status"] = "warn"
     if not water_hair.get("texture"):
-        water_hair_entry["issues"].append("No texture overrides — may be using parent defaults")
+        water_hair_entry["issues"].append("No texture overrides - may be using parent defaults")
         water_hair_entry["status"] = "warn"
     water_hair_entry["scalar_overrides"] = len(water_hair.get("scalar", []))
     water_hair_entry["vector_overrides"] = len(water_hair.get("vector", []))
@@ -363,8 +363,8 @@ def generate_recs(results):
         recs.append(f"Set bUseSeparateMetallicMap=True on {len(missing_metal)} slot(s): {[v['material_instance'] for _, v in missing_metal]}")
     recs.append("Verify TP_Melusina toon profile is properly applied at the M_Master_Toon_Universal level")
     recs.append("Run fix_up_redirectors.py and Map Check after any editor session")
-    recs.append("Slot 0 (Gradient__Radial__002) uses master directly — consider creating a proper MI")
-    recs.append("Slots 24/26/28 use raw Materials from _SkeletonFixSpike/ — consider converting to MIs")
+    recs.append("Slot 0 (Gradient__Radial__002) uses master directly - consider creating a proper MI")
+    recs.append("Slots 24/26/28 use raw Materials from _SkeletonFixSpike/ - consider converting to MIs")
     return recs
 
 def generate_priority(results):
@@ -425,7 +425,7 @@ print(f"\nJSON report written to {json_path}")
 
 # ── MD report ─────────────────────────────────────────────────────────
 lines = []
-lines.append("# Melusina Material Audit Report — LIVE (Monolith) — Substrate Toon Compliance")
+lines.append("# Melusina Material Audit Report - LIVE (Monolith) - Substrate Toon Compliance")
 lines.append(f"**Generated:** {report['audit_timestamp']}")
 lines.append(f"**Audit Mode:** ONLINE")
 lines.append(f"**Monolith Reachable:** True")
@@ -454,7 +454,7 @@ for k in sorted(per_slot.keys()):
     v = per_slot[k]
     mi_name = v["material_instance"]
     status = v["status"].upper()
-    issues_str = "; ".join(v["issues"][:3]) if v["issues"] else "—"
+    issues_str = "; ".join(v["issues"][:3]) if v["issues"] else "-"
     lines.append(f"| {k} | `{v['slot_name']}` | `{mi_name}` | {v['role']} | **{status}** | {issues_str} |")
 lines.append("")
 
@@ -485,7 +485,7 @@ lines.append("")
 for k in sorted(per_slot.keys()):
     v = per_slot[k]
     idx = f"Slot {k} (1-based: {k+1})"
-    lines.append(f"### {idx} — `{v['material_instance']}`")
+    lines.append(f"### {idx} - `{v['material_instance']}`")
     lines.append(f"**Status:** {v['status'].upper()}")
     lines.append(f"**Slot Name:** `{v['slot_name']}`")
     lines.append(f"**Role:** {v['role']}")
@@ -500,7 +500,7 @@ for k in sorted(per_slot.keys()):
     if v.get("textures_assigned"):
         lines.append("**Textures:**")
         for tname, tpath in v["textures_assigned"].items():
-            lines.append(f"  - `{tname}` → `{tpath}`")
+            lines.append(f"  - `{tname}` -> `{tpath}`")
     if v["issues"]:
         lines.append("**Issues:**")
         for iss in v["issues"]:
@@ -527,6 +527,6 @@ print(f"Grade: {report['summary']['grade']}")
 print()
 print("Priority fixes:")
 for idx, name, priority, reason in report["summary"]["priority_order"]:
-    print(f"  [{priority}] Slot {idx}: {name} — {reason}")
+    print(f"  [{priority}] Slot {idx}: {name} - {reason}")
 print()
 print("Done.")

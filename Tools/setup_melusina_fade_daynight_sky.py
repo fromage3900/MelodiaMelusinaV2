@@ -3,7 +3,7 @@ Melusina Fade Day/Night world for portfolio stage.
 
 *** DO NOT RUN ON LIVE STAGE WITHOUT ARTIST CONSENT ***
   - Calls world.node_tree.nodes.clear() (lookdev-destructive)
-  - Honors Saved/Audit/MELUSINA_SHADER_AGENT_STOP — aborts if present
+  - Honors Saved/Audit/MELUSINA_SHADER_AGENT_STOP - aborts if present
   - Never bpy.ops.wm.save_mainfile on Melodia_Portfolio_Stage_*.blend
 
 Rebuilds ``W_Melodia_FadeDayNight`` by mixing Fade Assets
@@ -66,7 +66,7 @@ def _ensure_fade_groups() -> tuple[bpy.types.NodeTree, bpy.types.NodeTree]:
 
 def setup_fade_daynight_sky(night_mix: float = DEFAULT_NIGHT) -> str:
     if STOP.is_file():
-        msg = f"ABORT: {STOP} present — world nodes.clear blocked (lookdev freeze)."
+        msg = f"ABORT: {STOP} present - world nodes.clear blocked (lookdev freeze)."
         print(f"[fade-daynight] {msg}")
         return msg
 
