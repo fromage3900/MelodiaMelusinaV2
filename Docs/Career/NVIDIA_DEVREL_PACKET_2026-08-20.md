@@ -1,16 +1,20 @@
 # NVIDIA Toronto DevRel Packet — JR2023172
 
+> **WITHDRAWN 2026-08-25 (owner decision).** Do **not** submit this application.
+> Deadline Aug 21 also passed. Keep as historical research only.
+> Active sendoffs: [`RECRUITER_SENDOFFS_2026-08-25.md`](RECRUITER_SENDOFFS_2026-08-25.md).
+
 > **Downstream of the game.** This is marketing / funding / hiring material for
 > **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
 > the game. **No agent may cite anything in this folder as project direction** — authority is
 > [`../../../PROJECT.md`](../../../PROJECT.md).
 
 **Role:** Developer Relations Manager, Higher Ed & Research — Foundational AI  
-**Req:** JR2023172 · Toronto · closes **Aug 21, 2026**  
+**Req:** JR2023172 · Toronto · closed **Aug 21, 2026** — **not applying**  
 **Applicant:** Brennan Shepherd · 4th-year 3D major (Humber) · Toronto, ON  
 **Strategy source:** [`STUDIO_NVIDIA_DRAFT.md`](STUDIO_NVIDIA_DRAFT.md)  
 **Framing:** Toronto SIL / Vector — **not** Santa Clara Nemotron product pitch  
-**Honesty:** Manager-level posting; student reach — apply anyway to enter the system  
+**Status:** Archive only — owner withdrew NVIDIA from the send list  
 
 ---
 
