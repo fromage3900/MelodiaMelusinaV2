@@ -53,6 +53,23 @@ def _load_icons():
                     pcoll.load(key, str(png), 'IMAGE')
                 except Exception:
                     pass
+        # Chrome: gold-ivory with pink/rose-gold header, rules, preset cards, pillar dots
+        try:
+            chrome_dir = _HERE / "melodia_chrome"
+            # fallback to sibling melodia_chrome package path
+            if not chrome_dir.is_dir():
+                chrome_dir = _ADDONS_ROOT / "melodia_chrome"
+            if chrome_dir.is_dir():
+                for png in chrome_dir.glob("*.png"):
+                    key = png.stem
+                    if key in pcoll:
+                        continue
+                    try:
+                        pcoll.load(key, str(png), 'IMAGE')
+                    except Exception:
+                        pass
+        except Exception:
+            pass
         # Secondary: reuse generated T_Melodia textures as icon backplates where useful
         # (lightweight, only load small subset to avoid polluting cache)
         try:

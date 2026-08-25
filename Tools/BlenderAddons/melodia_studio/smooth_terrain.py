@@ -9,14 +9,23 @@ Takes the walkable heightfield and produces a smooth, biomes-colored mesh:
 Pure Python + bpy. Blender 5.2 compatible.
 """
 
-import bpy
+try:
+    import bpy  # type: ignore
+except Exception:
+    bpy = None  # type: ignore
 import os
 import sys
 import math
 import random
+from pathlib import Path
 
-REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
-ADDON = os.path.join(REPO, "Tools", "BlenderAddons", "melodia_studio")
+# C-authority: use melodia_utils, fallback to expected repo
+try:
+    import melodia_utils as _mu  # type: ignore
+    REPO = str(_mu.repo_root())
+except Exception:
+    REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
+ADDON = str(Path(REPO) / "Tools" / "BlenderAddons" / "melodia_studio")
 if ADDON not in sys.path:
     sys.path.insert(0, ADDON)
 
