@@ -1,5 +1,5 @@
 """Gumroad/FAB listing copy daemon (Horizon-1 revenue support). Cap 8 drafts.
-Output: Docs/Gumroad/Drafts/*.md  ·  Stop: deploy/OLLAMA_GUMROAD_STOP or deploy/STOP_ALL
+Output: Docs/Gumroad/Drafts/*.md  -  Stop: deploy/OLLAMA_GUMROAD_STOP or deploy/STOP_ALL
 SKU facts sourced from Docs/MONETIZATION_GEOMETRY_FIX_EXPORT_2026-07-12.md (do not invent contents).
 """
 from __future__ import annotations
@@ -24,9 +24,9 @@ PREFERRED_MODELS = [
 ]
 
 SKUS = [
-    ("SKU1_OrnamentKitbash", "Ornament Kitbash — 15 gothic ornament meshes for stylized/toon scenes (arches, trims, filigree panels), FBX, game-ready kitbash set"),
-    ("SKU1b_MusicalOrnamentKitbash", "Musical Ornament Kitbash — 10 musical ornament meshes incl. 3 Melody Token medallions, FBX, stylized/toon"),
-    ("SKU2_SDFMathArtMaterials_FAB", "SDF Math-Art Toon Materials for UE5 — 61 procedural raymarched masters: Klein bottle, Mobius strip, Mandelbulb, Menger sponge, Penrose staircase, Julia set, gothic rose windows, parallax facades; no textures needed, pure material math"),
+    ("SKU1_OrnamentKitbash", "Ornament Kitbash - 15 gothic ornament meshes for stylized/toon scenes (arches, trims, filigree panels), FBX, game-ready kitbash set"),
+    ("SKU1b_MusicalOrnamentKitbash", "Musical Ornament Kitbash - 10 musical ornament meshes incl. 3 Melody Token medallions, FBX, stylized/toon"),
+    ("SKU2_SDFMathArtMaterials_FAB", "SDF Math-Art Toon Materials for UE5 - 61 procedural raymarched masters: Klein bottle, Mobius strip, Mandelbulb, Menger sponge, Penrose staircase, Julia set, gothic rose windows, parallax facades; no textures needed, pure material math"),
 ]
 
 def log(m):

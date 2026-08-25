@@ -1,4 +1,4 @@
-"""author_uni_shells.py — author real content for the 4 NS_Uni_* shell systems.
+"""author_uni_shells.py - author real content for the 4 NS_Uni_* shell systems.
 
 Deterministic imperative build (create_system -> create_emitter -> add_module
 -> set inputs -> add renderer -> set material -> set bounds), then compile and

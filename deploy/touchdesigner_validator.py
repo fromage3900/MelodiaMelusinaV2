@@ -746,7 +746,7 @@ def main():
         if critical:
             print(f"\nCRITICAL ISSUES FOUND ({len(critical)}):")
             for finding in critical[:5]:  # Show first 5
-                print(f"  ⚠️  {finding.get('category')}: {finding.get('message')}")
+                print(f"  *️  {finding.get('category')}: {finding.get('message')}")
 
 
 if __name__ == "__main__":

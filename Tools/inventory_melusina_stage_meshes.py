@@ -182,7 +182,7 @@ def main() -> int:
     if ensure_w and "--save" in args:
         out = Path(bpy.data.filepath or stage)
         bpy.ops.wm.save_as_mainfile(filepath=str(out))
-        log(f"SAVED wardrobe collections → {out}")
+        log(f"SAVED wardrobe collections -> {out}")
     return 0
 
 

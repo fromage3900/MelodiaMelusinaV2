@@ -1,4 +1,4 @@
-"""Stats overlay — small viewport HUD with live scene counters.
+"""Stats overlay - small viewport HUD with live scene counters.
 
 P2 from DEEPSEEK_HANDOFF_TOGGLEABLES: the original stats_overlay.py had
 register/unregister but was never wired into register_overhaul. This version
@@ -37,7 +37,7 @@ def _draw_stats_overlay():
     stats.append(f"Cameras: {len(bpy.data.cameras)}")
     stats.append(f"Selected: {len(ctx.selected_objects)}")
     active = getattr(ctx, "active_object", None)
-    stats.append(f"Active: {active.name if active else '—'}")
+    stats.append(f"Active: {active.name if active else '-'}")
 
     blf.size(_FONT_ID, 12)
     x, y = _START_X, region.height - _START_Y

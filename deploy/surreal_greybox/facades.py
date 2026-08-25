@@ -1,4 +1,4 @@
-"""Facade rhythm builders — pilotis halls and column grids (v2.72.2)."""
+"""Facade rhythm builders - pilotis halls and column grids (v2.72.2)."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ def bind(monolith):
 
 def _require():
     if _M is None:
-        raise RuntimeError("surreal_greybox.facades not bound — call bind(monolith) at register")
+        raise RuntimeError("surreal_greybox.facades not bound - call bind(monolith) at register")
 
 
 def _patch(name, fn):

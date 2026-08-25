@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Doc Health Agent — nightly scan for stale, missing, or contradictory documentation.
+"""Doc Health Agent - nightly scan for stale, missing, or contradictory documentation.
 
 Scans all .md files in Docs/ and root, extracts technical claims, cross-references
 against C++ source headers, and optionally uses qwen2.5-coder:7b (--ollama) for intelligent
@@ -395,7 +395,7 @@ def check_date_freshness(text: str, path: Path) -> list[dict]:
         if mtime_age < age - 1:
             findings.append({
                 "severity": "INFO", "file": file_rel,
-                "detail": f"mtime ({mtime.date()}) newer than newest date `{newest}` — doc modified without date bump",
+                "detail": f"mtime ({mtime.date()}) newer than newest date `{newest}` - doc modified without date bump",
             })
     except ValueError:
         pass
@@ -431,7 +431,7 @@ def write_report(
     report_path = REVIEWS / f"DOC_HEALTH_REPORT_{today}.md"
 
     lines: list[str] = [
-        f"# Doc Health Report — {today}",
+        f"# Doc Health Report - {today}",
         "",
     ]
     if args.ollama:
@@ -475,14 +475,14 @@ def write_report(
             groups[(sev, c.get("type", ""))].append(f)
 
         for (sev, typ), items in sorted(groups.items()):
-            icon = "❌" if sev == "MISSING" else "⚠️"
+            icon = "*" if sev == "MISSING" else "*️"
             plural = "" if len(items) == 1 else f" ({len(items)} occurrences)"
-            lines.append(f"### {icon} {sev} — `{typ}`{plural}")
+            lines.append(f"### {icon} {sev} - `{typ}`{plural}")
             lines.append("")
             for item in items[:20]:  # cap per group
                 c = item["claim"]
                 val = c.get("value", "")
-                lines.append(f"- `{c['file']}:{c['line']}` — `{val}`")
+                lines.append(f"- `{c['file']}:{c['line']}` - `{val}`")
                 lines.append(f"  - {item['detail']}")
                 ctx = c.get("context", "")[:100]
                 if ctx:
@@ -498,7 +498,7 @@ def write_report(
         lines.append("")
         for item in mon:
             c = item["claim"]
-            lines.append(f"- **{item['severity']}** `{c['file']}:{c['line']}` — `{c['value']}`")
+            lines.append(f"- **{item['severity']}** `{c['file']}:{c['line']}` - `{c['value']}`")
             lines.append(f"  - {item['detail']}")
         lines.append("")
 
@@ -524,7 +524,7 @@ def write_report(
         lines.append("## Stale Drive Paths")
         lines.append("")
         for sd in stale_drive[:30]:
-            lines.append(f"- `{sd['file']}:{sd['line']}` — {sd['detail']}")
+            lines.append(f"- `{sd['file']}:{sd['line']}` - {sd['detail']}")
         if len(stale_drive) > 30:
             lines.append(f"- *... and {len(stale_drive) - 30} more*")
         lines.append("")
@@ -536,13 +536,13 @@ def write_report(
         lines.append("## Stale Docs (>14 Days)")
         lines.append("")
         for dw in stale_docs:
-            lines.append(f"- `{dw['file']}` — {dw['detail']}")
+            lines.append(f"- `{dw['file']}` - {dw['detail']}")
         lines.append("")
     if info_dates:
         lines.append("## Docs Modified Without Date Bump")
         lines.append("")
         for dw in info_dates[:20]:
-            lines.append(f"- `{dw['file']}` — {dw['detail']}")
+            lines.append(f"- `{dw['file']}` - {dw['detail']}")
         if len(info_dates) > 20:
             lines.append(f"- *... and {len(info_dates) - 20} more*")
         lines.append("")
@@ -552,7 +552,7 @@ def write_report(
         lines.append("## Unresolved TODO/FIXME/HACK Markers")
         lines.append("")
         for tw in todo_warnings:
-            lines.append(f"- `{tw['file']}` — {tw['detail']}")
+            lines.append(f"- `{tw['file']}` - {tw['detail']}")
         lines.append("")
 
     # --- File inventory ---
@@ -570,7 +570,7 @@ def write_report(
 # ---------------------------------------------------------------------------
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Doc Health Agent — nightly stale/contradiction scanner")
+    p = argparse.ArgumentParser(description="Doc Health Agent - nightly stale/contradiction scanner")
     p.add_argument("--ollama", action="store_true", help="Use the configured local Ollama model for claim extraction")
     p.add_argument("--monolith", action="store_true", help="Connect to Monolith MCP for validation")
     p.add_argument("--quiet", action="store_true", help="Minimal output")

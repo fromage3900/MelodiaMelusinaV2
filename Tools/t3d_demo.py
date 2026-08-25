@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 """
-t3d_demo.py — T3D Pipeline Demo
+t3d_demo.py - T3D Pipeline Demo
 Wires multiple Blueprints simultaneously via Monolith MCP blueprint_query build_blueprint_from_spec.
 
 Launches 4 injections in parallel:
-  1. BP_BattleController     — 3 MELUSINA_LOOP log markers wired to the result matrix
-  2. BP_MelodiaBattleUI      — Heartbeat pulse animation on MelodiaNoteHighway when visible
-  3. BP_MelodiaJRPGGameInstance — Loop counter counting completed battles
-  4. BP_InteractionBattle    — Log node when encounter is triggered
+  1. BP_BattleController     - 3 MELUSINA_LOOP log markers wired to the result matrix
+  2. BP_MelodiaBattleUI      - Heartbeat pulse animation on MelodiaNoteHighway when visible
+  3. BP_MelodiaJRPGGameInstance - Loop counter counting completed battles
+  4. BP_InteractionBattle    - Log node when encounter is triggered
 
 Usage:
     python Tools/t3d_demo.py
@@ -223,7 +223,7 @@ def run_spec(spec: dict) -> dict:
 
 def main() -> int:
     print("=" * 60)
-    print("T3D Pipeline Demo — Simultaneous Blueprint Injection")
+    print("T3D Pipeline Demo - Simultaneous Blueprint Injection")
     print("=" * 60)
     print(f"Target MCP: {MCP_URL}")
     print(f"Blueprints to wire: {len(SPECS)}")

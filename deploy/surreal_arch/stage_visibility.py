@@ -1,7 +1,7 @@
-"""Melodia stage collection visibility — soft presets for portfolio cockpit UI.
+"""Melodia stage collection visibility - soft presets for portfolio cockpit UI.
 
 Policy (soft isolation):
-  - Viewport: LayerCollection.hide_viewport (Outliner eye) — never Collection.hide_viewport
+  - Viewport: LayerCollection.hide_viewport (Outliner eye) - never Collection.hide_viewport
   - Render: Collection.hide_render (camera icon)
   - Always clear lc.exclude on touched stage collections
   - Collection.hide_viewport (hard lock) is only cleared, never set (unless hard=True escape hatch)
@@ -13,7 +13,7 @@ import bpy
 
 from .branding import N_PANEL_CATEGORY, PRODUCT_NAME
 
-# Preset → (on collections, off collections)
+# Preset -> (on collections, off collections)
 _STAGE_PRESETS = {
     "solo_melusina": {
         "on": ("Asset_melusina", "Asset_sirmelodious", "Lights_Nikki", "Studio", "Cameras", "Characters", "FX_Hero"),
@@ -57,7 +57,7 @@ _STAGE_PRESETS = {
     },
     "beauty_clean": {
         # Lights parent holds L_KeyWarm / L_RimPink / L_GoldKick / L_FillCool.
-        # Lights_Nikki is an empty marker — omitting Lights renders unlit.
+        # Lights_Nikki is an empty marker - omitting Lights renders unlit.
         "on": ("Asset_melusina", "Asset_sirmelodious", "Lights", "Lights_Nikki", "Studio", "Cameras", "Characters"),
         "off": (
             "Review_Queue",
@@ -91,7 +91,7 @@ _STAGE_PRESETS = {
             "FX_Hero",
         ),
     },
-    # Review Queue focus: kitbash subject — Melusina soft-off
+    # Review Queue focus: kitbash subject - Melusina soft-off
     "review_all": {
         "on": (
             "Review_Queue",
@@ -345,14 +345,14 @@ def set_collection_flags(
 ) -> bool:
     """Soft-set visibility for a named collection.
 
-    viewport → LayerCollection.hide_viewport (current view layer)
-    render   → Collection.hide_render
-    hard     → escape hatch: also set Collection.hide_viewport (default False — never for stage)
+    viewport -> LayerCollection.hide_viewport (current view layer)
+    render   -> Collection.hide_render
+    hard     -> escape hatch: also set Collection.hide_viewport (default False - never for stage)
     """
     coll = bpy.data.collections.get(name)
     if not coll:
         return False
-    # Never force Sir Melodious off — that greys Asset_sirmelodious in the Outliner.
+    # Never force Sir Melodious off - that greys Asset_sirmelodious in the Outliner.
     if name == "Asset_sirmelodious" and not viewport:
         viewport = True
         if render is False:
@@ -434,7 +434,7 @@ def ensure_outliner_restrict_columns(
     hide: bool = True,
     render: bool = True,
 ) -> int:
-    """Show Outliner restriction toggles — especially Disable in Viewports (monitor/laptop).
+    """Show Outliner restriction toggles - especially Disable in Viewports (monitor/laptop).
 
     Soft LayerCollection hides still drive the eye; this only unhides the icon columns
     so the laptop/monitor column stays visible while reviewing stage collections.
@@ -516,7 +516,7 @@ def ensure_ornament_fix_collection() -> bpy.types.Collection | None:
 
 
 def isolate_sculpt_monetization_objects() -> dict:
-    """Sculpt focus via COLLECTIONS only — never set per-object hide flags."""
+    """Sculpt focus via COLLECTIONS only - never set per-object hide flags."""
     ensure_ornament_fix_collection()
     shown_colls = []
     for cname in (
@@ -698,7 +698,7 @@ class SURREAL_ARCH_OT_set_stage_visibility_preset(bpy.types.Operator):
             ("diorama_on", "Diorama", "Solo + Set_Diorama"),
             ("starlight_on", "Starlight", "Diorama + Surreal_Regen_Starlight"),
             ("beauty_clean", "Beauty Clean", "Minimal beauty plate"),
-            ("review_all", "Review Queue", "Kitbash focus — Review_Queue on, Melusina soft-off"),
+            ("review_all", "Review Queue", "Kitbash focus - Review_Queue on, Melusina soft-off"),
             ("review_queue_solo", "Review Queue Solo", "Only Review_Queue + lights/cameras"),
             (
                 "sculpt_monetization",

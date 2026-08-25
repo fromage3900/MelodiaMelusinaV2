@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-T3D Mesh LOD Injector — automates LOD group generation and configuration
+T3D Mesh LOD Injector - automates LOD group generation and configuration
 for SkeletalMesh assets via Monolith MCP's editor_query:run_python.
 
 Supports:
@@ -137,7 +137,7 @@ for i, sz in enumerate(sizes):
         lod_settings[i].set_editor_property("screen_size", sz)
         print("  LOD{{0}} screen_size -> {{1}}".format(i, sz))
     else:
-        print("  WARN: LOD{{0}} — no LODSettings entry, skipping".format(i))
+        print("  WARN: LOD{{0}} - no LODSettings entry, skipping".format(i))
 mesh.set_editor_property("lod_settings", lod_settings)
 unreal.EditorAssetLibrary.save_loaded_asset(mesh)
 print("OK: screen sizes set")
@@ -238,7 +238,7 @@ print(json.dumps(info, indent=2))
 # CLI usage
 # ---------------------------------------------------------------------------
 CLI_HELP = """
-T3DMeshLODInjector — SkeletalMesh LOD automation
+T3DMeshLODInjector - SkeletalMesh LOD automation
 
 Commands:
   generate-lods <mesh_path> <count1> [count2 ...]

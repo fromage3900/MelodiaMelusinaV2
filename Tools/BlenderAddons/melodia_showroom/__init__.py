@@ -1,6 +1,16 @@
-# Melodia Showroom — integrated terrain → dress → frame → render
+# Melodia Showroom - integrated terrain -> dress -> frame -> render
 # Copyright (c) 2026 fromage3900 / Melodia Project
 # License: MIT
+
+bl_info = {
+    "name": "Melodia Showroom",
+    "author": "fromage3900",
+    "version": (1, 1, 0),
+    "blender": (4, 0, 0),
+    "location": "View3D > Sidebar > Melodia",
+    "description": "Integrated terrain -> dress -> frame -> render (C: authority, reuses Melodia Studio bridge)",
+    "category": "Melodia",
+}
 
 try:
     from . import operators, panel, properties

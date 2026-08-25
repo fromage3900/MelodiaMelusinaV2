@@ -96,7 +96,7 @@ class KawaiiBricksGN(KawaiiGNBase):
         
         links.new(cube.outputs['Mesh'], subdivide.inputs['Mesh'])
         
-        # Kindchenschema puff — inflate corners when Roundness is high
+        # Kindchenschema puff - inflate corners when Roundness is high
         puff_mul = nodes.new('ShaderNodeMath')
         puff_mul.operation = 'MULTIPLY'
         puff_mul.location = (100, 320)
@@ -137,7 +137,7 @@ class KawaiiWallGN(KawaiiGNBase):
     category = "architecture"
     generator_id = "kawaii_wall_gn"
     generator_name = "Kawaii Wall"
-    description = "Cute wall — Roundness bulges width/height vs thickness (Kindchenschema)"
+    description = "Cute wall - Roundness bulges width/height vs thickness (Kindchenschema)"
     
     @classmethod
     def add_parameters(cls, tree, input_node, output_node):

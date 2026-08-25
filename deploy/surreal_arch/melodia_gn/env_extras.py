@@ -1,4 +1,4 @@
-"""Environment & set-dressing GN group builders — ponds, paths, buoys, stalls, fires.
+"""Environment & set-dressing GN group builders - ponds, paths, buoys, stalls, fires.
 
 Ten new pieces for the water/environment lane. Water pieces (lily pond, buoy
 line, waterfall pool) reuse the set_dressing water contract: they store
@@ -113,7 +113,7 @@ def _water_attrs(tree, gin, gout, geom):
 
 
 def build_env_lily_pond(group_name="MEL_env_lily_pond"):
-    """Lily pond — basin, water disc, floating lily pads, lotus blooms.
+    """Lily pond - basin, water disc, floating lily pads, lotus blooms.
 
     Water contract attributes: water_level, current_speed, ripple_carve.
     """
@@ -191,7 +191,7 @@ def build_env_lily_pond(group_name="MEL_env_lily_pond"):
 
 
 def build_env_stepping_stones(group_name="MEL_env_stepping_stones"):
-    """Stepping-stone path — twin meander lines of flattened stones.
+    """Stepping-stone path - twin meander lines of flattened stones.
 
     Stores stone_count (INT) and path_width (FLOAT) on the output.
     """
@@ -260,7 +260,7 @@ def build_env_stepping_stones(group_name="MEL_env_stepping_stones"):
 
 
 def build_env_reeds_patch(group_name="MEL_env_reeds_patch"):
-    """Reeds patch — clustered reed stems with height jitter.
+    """Reeds patch - clustered reed stems with height jitter.
 
     Stores reed_density (FLOAT) on the output for PCG material reads.
     """
@@ -371,7 +371,7 @@ def build_env_reeds_patch(group_name="MEL_env_reeds_patch"):
 
 
 def build_env_buoy_line(group_name="MEL_env_buoy_line"):
-    """Buoy line — moored buoy floats with anchor drop lines along a row.
+    """Buoy line - moored buoy floats with anchor drop lines along a row.
 
     Water contract attributes: water_level, current_speed, ripple_carve.
     """
@@ -446,7 +446,7 @@ def build_env_buoy_line(group_name="MEL_env_buoy_line"):
 
 
 def build_env_market_stall(group_name="MEL_env_market_stall"):
-    """Market stall — corner posts, flat canopy, front counter and awning skirt.
+    """Market stall - corner posts, flat canopy, front counter and awning skirt.
 
     Stores stall_type (INT) and has_stock (BOOLEAN) on the output.
     """
@@ -534,7 +534,7 @@ def build_env_market_stall(group_name="MEL_env_market_stall"):
 
 
 def build_env_campfire_ring(group_name="MEL_env_campfire_ring"):
-    """Campfire ring — stone ring, log pile, inner and outer flames.
+    """Campfire ring - stone ring, log pile, inner and outer flames.
 
     Stores fire_intensity (FLOAT) on the output for FX lanes.
     """
@@ -612,7 +612,7 @@ def build_env_campfire_ring(group_name="MEL_env_campfire_ring"):
 
 
 def build_env_village_well(group_name="MEL_env_village_well"):
-    """Village well — stone well base, twin posts, crossbar, conical roof, water.
+    """Village well - stone well base, twin posts, crossbar, conical roof, water.
 
     Stores water_level (FLOAT) and well_depth (FLOAT) on the output.
     """
@@ -709,7 +709,7 @@ def build_env_village_well(group_name="MEL_env_village_well"):
 
 
 def build_env_lantern_post(group_name="MEL_env_lantern_post"):
-    """Lantern post — pole, arm, glass lantern, cone cap.
+    """Lantern post - pole, arm, glass lantern, cone cap.
 
     Stores lantern_lit (BOOLEAN) and lantern_height (FLOAT) on the output.
     """
@@ -790,7 +790,7 @@ def build_env_lantern_post(group_name="MEL_env_lantern_post"):
 
 
 def build_env_hedgerow(group_name="MEL_env_hedgerow"):
-    """Hedgerow — trimmed row body with rounded bush topknots.
+    """Hedgerow - trimmed row body with rounded bush topknots.
 
     Stores hedge_height (FLOAT) on the output for PCG height reads.
     """
@@ -848,7 +848,7 @@ def build_env_hedgerow(group_name="MEL_env_hedgerow"):
 
 
 def build_env_waterfall_pool(group_name="MEL_env_waterfall_pool"):
-    """Waterfall pool — basin, water disc, cascade sheet, splash ring.
+    """Waterfall pool - basin, water disc, cascade sheet, splash ring.
 
     Water contract attributes: water_level, current_speed, ripple_carve.
     """
@@ -916,7 +916,7 @@ def build_env_waterfall_pool(group_name="MEL_env_waterfall_pool"):
 
 # -- Registry --
 register_builder("MEL_env_lily_pond", build_env_lily_pond, "Lily Pond",
-    "Lily pond — basin, water disc, floating pads, lotus blooms with water attribute contract.",
+    "Lily pond - basin, water disc, floating pads, lotus blooms with water attribute contract.",
     "set_dressing")
 register_builder("MEL_env_stepping_stones", build_env_stepping_stones, "Stepping Stones",
     "Twin meander path of flattened stones with stone_count and path_width attributes.",

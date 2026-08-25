@@ -1,7 +1,7 @@
 """
-fix_jump_windup_abp.py — Wire jump wind-up into ABP_Melusina_Current.
+fix_jump_windup_abp.py - Wire jump wind-up into ABP_Melusina_Current.
 
-The ABP's Idle→JumpStart transition uses bRuntimeIsInAir (from
+The ABP's Idle->JumpStart transition uses bRuntimeIsInAir (from
 UMelodiaLocomotionAnimInstance). IsJumpWindingUp() lives on
 AMelodiaSmokeCharacter, which is already cast in NativeUpdateAnimation.
 
@@ -25,7 +25,7 @@ CPP_PATH = os.path.join(
 
 
 def verify_current_state():
-    """Check the Idle→JumpStart transition rule."""
+    """Check the Idle->JumpStart transition rule."""
     result = monolith("animation_query", {
         "action": "get_transition_rule",
         "asset_path": ABP_PATH,
@@ -46,7 +46,7 @@ def fix():
     print("\n[1/4] Verifying current transition rule...")
     rule = verify_current_state()
     if '"bJumpWindupActive"' in str(rule) or '"expression"' in str(rule):
-        print("  Already fixed — skipping.")
+        print("  Already fixed - skipping.")
         return
 
     # Step 2: Check the C++ file has the wind-up line
@@ -75,7 +75,7 @@ def fix():
     print("\n[4/4] Verifying post-fix state...")
     verify_current_state()
 
-    print("\nDone. Idle→JumpStart now fires during jump wind-up.")
+    print("\nDone. Idle->JumpStart now fires during jump wind-up.")
 
 
 if __name__ == "__main__":

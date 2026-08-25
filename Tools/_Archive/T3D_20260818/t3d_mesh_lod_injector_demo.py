@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-t3d_mesh_lod_injector_demo.py — demo: generate LOD groups for SK_Melusina
+t3d_mesh_lod_injector_demo.py - demo: generate LOD groups for SK_Melusina
 and export the resulting LOD info via T3DMeshLODInjector.
 
 Usage:
@@ -37,7 +37,7 @@ def main():
     dry_run = "--dry-run" in sys.argv
 
     print("=" * 60)
-    print("T3D Mesh LOD Injector — SK_Melusina Demo")
+    print("T3D Mesh LOD Injector - SK_Melusina Demo")
     print("=" * 60)
     print(f"  Mesh: {MESH_PATH}")
     print(f"  Source tris: {LOD_COUNTS[0]}")

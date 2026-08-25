@@ -1,4 +1,4 @@
-"""Mesh tool GN group builders — bevel, inset, poke, subdivision, remesh, smooth.
+"""Mesh tool GN group builders - bevel, inset, poke, subdivision, remesh, smooth.
 
 Replaces manual modifier stacking with composable, param-exposed GN groups.
 Every builder follows the melodia_gn convention: register_builder at module end.
@@ -39,7 +39,7 @@ def _wire_mesh_bevel(tree, bevel, mesh_sock, offset_sock, segments_sock=None, pr
 
 
 def build_bevel_profile(group_name="MEL_bevel_profile"):
-    """Custom-profile bevel — width, segments, profile curve, vertex-only option.
+    """Custom-profile bevel - width, segments, profile curve, vertex-only option.
 
     Exposes profile amount (0=concave, 0.5=round, 1=chamfer) as a float
     so artists can shape the bevel without authoring a curve.
@@ -70,7 +70,7 @@ def build_bevel_profile(group_name="MEL_bevel_profile"):
 
 
 def build_weighted_bevel(group_name="MEL_weighted_bevel"):
-    """Weighted bevel — uses a float attribute to control bevel width per-edge.
+    """Weighted bevel - uses a float attribute to control bevel width per-edge.
 
     Reads an existing 'bevel_weight' attribute or falls back to uniform width.
     Useful for hard-surface where edge loops define sharpness.
@@ -121,7 +121,7 @@ def build_weighted_bevel(group_name="MEL_weighted_bevel"):
 
 
 def build_multi_bevel(group_name="MEL_multi_bevel"):
-    """Multi-stage bevel — applies 2-3 bevel modifiers in sequence with
+    """Multi-stage bevel - applies 2-3 bevel modifiers in sequence with
     decreasing widths for that 'chamfer-with-micro-bevel' hard-surface look.
     """
     tree, gin, gout = new_geometry_tree(group_name)
@@ -144,7 +144,7 @@ def build_multi_bevel(group_name="MEL_multi_bevel"):
         gin.outputs["Main Segments"], gin.outputs["Main Profile"],
     )
 
-    # Second bevel — micro chamfer on remaining sharp edges
+    # Second bevel - micro chamfer on remaining sharp edges
     bevel_2 = require_node(
         tree, "GeometryNodeMeshBevel", (bx + 150, by - 50), "GeometryNodeBevelMesh",
     )
@@ -158,7 +158,7 @@ def build_multi_bevel(group_name="MEL_multi_bevel"):
 
 
 def build_inset_faces(group_name="MEL_inset_faces"):
-    """Inset faces — extrude individual faces then scale them inward.
+    """Inset faces - extrude individual faces then scale them inward.
 
     Controls for thickness, depth, and per-face inset via selection.
     Mimics the standard Blender Inset Faces (I-key) in GN form.
@@ -210,7 +210,7 @@ def build_inset_faces(group_name="MEL_inset_faces"):
 
 
 def build_poke_faces(group_name="MEL_poke_faces"):
-    """Poke faces — triangulate quads by adding a center vertex.
+    """Poke faces - triangulate quads by adding a center vertex.
 
     GN approach: extrude each face to a point, creating pyramid geometry.
     Useful for stellated shapes, spike arrays, or faceted gems.
@@ -329,7 +329,7 @@ def build_subdivision_surface(group_name="MEL_subdivision_surface"):
 
 
 def build_remesh_dual(group_name="MEL_remesh_dual"):
-    """Dual-mesh remesh — converts mesh to its dual (faces become verts).
+    """Dual-mesh remesh - converts mesh to its dual (faces become verts).
 
     Good for organic topology after subdivision, creates hexagonal-like
     patterns from quads. Pair with subdivision for smooth organic results.
@@ -354,7 +354,7 @@ def build_remesh_dual(group_name="MEL_remesh_dual"):
 
 
 def build_smooth_laplacian(group_name="MEL_smooth_laplacian"):
-    """Laplacian mesh smooth — preserves volume better than simple blur.
+    """Laplacian mesh smooth - preserves volume better than simple blur.
 
     Uses Blur Attribute node with Laplacian mode on vertex positions.
     Good for cleanup after sculpting or generative mesh operations.
@@ -425,7 +425,7 @@ register_builder("MEL_bevel_profile", build_bevel_profile,
 register_builder("MEL_weighted_bevel", build_weighted_bevel,
     "Weighted Bevel", "Edge-weighted bevel using bevel_weight attribute", "mesh_tools")
 register_builder("MEL_multi_bevel", build_multi_bevel,
-    "Multi Bevel", "Two-stage bevel — main chamfer + micro-bevel for hard-surface", "mesh_tools")
+    "Multi Bevel", "Two-stage bevel - main chamfer + micro-bevel for hard-surface", "mesh_tools")
 register_builder("MEL_inset_faces", build_inset_faces,
     "Inset Faces", "Extrude-and-scale face inset with depth control", "mesh_tools")
 register_builder("MEL_poke_faces", build_poke_faces,
@@ -433,6 +433,6 @@ register_builder("MEL_poke_faces", build_poke_faces,
 register_builder("MEL_subdivision_surface", build_subdivision_surface,
     "Subdivision Surface", "Catmull-Clark subdivision with per-edge/per-vertex crease", "mesh_tools")
 register_builder("MEL_remesh_dual", build_remesh_dual,
-    "Remesh Dual", "Dual-mesh remesh — faces become vertices for organic topology", "mesh_tools")
+    "Remesh Dual", "Dual-mesh remesh - faces become vertices for organic topology", "mesh_tools")
 register_builder("MEL_smooth_laplacian", build_smooth_laplacian,
     "Smooth Laplacian", "Volume-preserving Laplacian smooth via Blur Attribute", "mesh_tools")

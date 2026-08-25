@@ -37,7 +37,7 @@ class KawaiiTableGN(KawaiiGNBase):
             tree, links, input_node, 'Roundness',
         )
 
-        # Tabletop — chunky top scales up with cuteness
+        # Tabletop - chunky top scales up with cuteness
         top = nodes.new('GeometryNodeMeshCube')
         top.location = (-400, 200)
 
@@ -71,7 +71,7 @@ class KawaiiTableGN(KawaiiGNBase):
         top_pos.inputs['Translation'].default_value = (0, 0, 0.95)
         links.new(top.outputs['Mesh'], top_pos.inputs['Geometry'])
 
-        # Legs — stubbier/shorter when cute
+        # Legs - stubbier/shorter when cute
         leg_h = nodes.new('ShaderNodeMath')
         leg_h.operation = 'MULTIPLY'
         leg_h.location = (-800, -150)

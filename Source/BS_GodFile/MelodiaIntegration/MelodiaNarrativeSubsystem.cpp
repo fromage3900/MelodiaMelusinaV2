@@ -121,7 +121,10 @@ bool UMelodiaNarrativeSubsystem::ConsumeOnce(TArray<FName>& ConsumedIds, const F
 	return true;
 }
 
-bool UMelodiaNarrativeSubsystem::StartBattle(const FName EncounterId)
+bool UMelodiaNarrativeSubsystem::StartBattle(
+	const FName EncounterId,
+	const FName EncounterCommandId,
+	const FName CheckpointId)
 {
 	const FString Intent = FString::Printf(TEXT("StartBattle(%s)"), *EncounterId.ToString());
 	if (!Config || !IsAllowed(Config->EncounterIds, EncounterId, Intent))
@@ -139,6 +142,14 @@ bool UMelodiaNarrativeSubsystem::StartBattle(const FName EncounterId)
 
 	PendingEncounterId = EncounterId;
 	bBattleCompletionConsumed = false;
+	NarrativeRecord.LastEncounterId = EncounterId;
+	NarrativeRecord.LastEncounterCommandId = EncounterCommandId.IsNone()
+		? FName(*FString::Printf(TEXT("battle:%s"), *EncounterId.ToString()))
+		: EncounterCommandId;
+	NarrativeRecord.LastEncounterOutcome = EMelodiaBattleResult::Unavailable;
+	NarrativeRecord.ScriptCheckpoint = CheckpointId.IsNone()
+		? NarrativeRecord.LastEncounterCommandId
+		: CheckpointId;
 	ActiveInterpreter->Stop();
 	OnBattleRequested.Broadcast(EncounterId);
 	return true;
@@ -245,6 +256,92 @@ bool UMelodiaNarrativeSubsystem::GrantDialogueReward(const FName RewardId)
 	}
 	OnRewardRequested.Broadcast(RewardId);
 	return true;
+}
+
+EMelodiaContentCommitResult UMelodiaNarrativeSubsystem::CommitQuestCompletion(
+	const FName QuestId,
+	const FName CompletionFlagId,
+	const FName RewardId,
+	const FName CompletionIntentId,
+	const FName CheckpointId,
+	EMelodiaContentCommitFailure& OutFailure)
+{
+	OutFailure = EMelodiaContentCommitFailure::None;
+	const FString Intent = FString::Printf(TEXT("CommitQuestCompletion(%s)"), *QuestId.ToString());
+	auto RejectContent = [this, &OutFailure, &Intent](
+		const EMelodiaContentCommitFailure Failure,
+		const EMelodiaIntentFailure IntentFailure,
+		const EMelodiaContentCommitResult Result = EMelodiaContentCommitResult::Rejected)
+	{
+		OutFailure = Failure;
+		Reject(Intent, IntentFailure);
+		return Result;
+	};
+
+	if (QuestId.IsNone() || CompletionFlagId.IsNone() || RewardId.IsNone()
+		|| CompletionIntentId.IsNone() || CheckpointId.IsNone())
+	{
+		return RejectContent(EMelodiaContentCommitFailure::InvalidId, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+	if (!Config)
+	{
+		return RejectContent(EMelodiaContentCommitFailure::AuthorityUnavailable, EMelodiaIntentFailure::MissingRuntime);
+	}
+	if (!Config->QuestIds.Contains(QuestId))
+	{
+		return RejectContent(EMelodiaContentCommitFailure::UnknownQuest, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+	if (!Config->NarrativeFlagIds.Contains(CompletionFlagId))
+	{
+		return RejectContent(EMelodiaContentCommitFailure::UnknownFlag, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+	if (!Config->DialogueRewardIds.Contains(RewardId))
+	{
+		return RejectContent(EMelodiaContentCommitFailure::UnknownReward, EMelodiaIntentFailure::UnknownIdentifier);
+	}
+
+	const bool bIntentConsumed = NarrativeRecord.ConsumedIntentIds.Contains(CompletionIntentId);
+	const bool bCompleted = NarrativeRecord.CompletedQuestIds.Contains(QuestId);
+	const bool bFlagSet = NarrativeRecord.Flags.FindRef(CompletionFlagId);
+	const bool bRewardConsumed = NarrativeRecord.ConsumedRewardIds.Contains(RewardId);
+	if (bIntentConsumed)
+	{
+		if (bCompleted && bFlagSet && bRewardConsumed && !NarrativeRecord.ActiveQuestIds.Contains(QuestId))
+		{
+			return EMelodiaContentCommitResult::AlreadyApplied;
+		}
+		return RejectContent(
+			EMelodiaContentCommitFailure::InconsistentState,
+			EMelodiaIntentFailure::IncompatibleSave,
+			EMelodiaContentCommitResult::InconsistentState);
+	}
+	if (bCompleted || bFlagSet || bRewardConsumed)
+	{
+		return RejectContent(
+			EMelodiaContentCommitFailure::InconsistentState,
+			EMelodiaIntentFailure::IncompatibleSave,
+			EMelodiaContentCommitResult::InconsistentState);
+	}
+
+	// All state and replay validation has passed before the first canonical write.
+	NarrativeRecord.ActiveQuestIds.Remove(QuestId);
+	NarrativeRecord.CompletedQuestIds.AddUnique(QuestId);
+	NarrativeRecord.Flags.Add(CompletionFlagId, true);
+	NarrativeRecord.ConsumedIntentIds.Add(CompletionIntentId);
+	NarrativeRecord.ConsumedRewardIds.Add(RewardId);
+	NarrativeRecord.ScriptCheckpoint = CheckpointId;
+	if (UQuillscriptSubsystem* Quill = GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>())
+	{
+		Quill->GetVariables().Add(CompletionFlagId, FText::FromString(TEXT("on")));
+	}
+	OnFlagChanged.Broadcast(CompletionFlagId, true);
+	OnQuestStateCommitted.Broadcast(QuestId, true);
+	OnRewardRequested.Broadcast(RewardId);
+	UE_LOG(LogTemp, Log,
+		TEXT("MELUSINA_P0_QUEST_COMMITTED source=quill quest=%s flag=%s reward=%s intent=%s checkpoint=%s"),
+		*QuestId.ToString(), *CompletionFlagId.ToString(), *RewardId.ToString(),
+		*CompletionIntentId.ToString(), *CheckpointId.ToString());
+	return EMelodiaContentCommitResult::Applied;
 }
 
 bool UMelodiaNarrativeSubsystem::IsWorldChallengeCompleted(
@@ -530,6 +627,8 @@ bool UMelodiaNarrativeSubsystem::CompleteBattle(const EMelodiaBattleResult Resul
 	bBattleCompletionConsumed = true;
 	const FName CompletedEncounter = PendingEncounterId;
 	PendingEncounterId = NAME_None;
+	NarrativeRecord.LastEncounterId = CompletedEncounter;
+	NarrativeRecord.LastEncounterOutcome = Result;
 	const bool bWon = Result == EMelodiaBattleResult::Victory;
 	const FName BattleWonFlag(TEXT("melodia_battle_won"));
 	if (Config && Config->NarrativeFlagIds.Contains(BattleWonFlag))
@@ -582,6 +681,8 @@ bool UMelodiaNarrativeSubsystem::AbortPendingBattle(const FString& Reason)
 	const FName AbortedEncounter = PendingEncounterId;
 	PendingEncounterId = NAME_None;
 	bBattleCompletionConsumed = true;
+	NarrativeRecord.LastEncounterId = AbortedEncounter;
+	NarrativeRecord.LastEncounterOutcome = EMelodiaBattleResult::Unavailable;
 	if (UQuillscriptSubsystem* Quill = GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>())
 	{
 		Quill->GetVariables().Add(TEXT("melodia_battle_result"), FText::FromString(TEXT("unavailable")));
@@ -638,6 +739,16 @@ bool UMelodiaNarrativeSubsystem::MigrateRecord(FMelodiaNarrativeRecord& Record)
 			Record.Version = 4;
 			break;
 
+		case 4:
+			// 4 -> 5 adds the First Dream encounter receipt and completed-quest
+			// read model. Older saves have no terminal encounter to reconstruct.
+			Record.CompletedQuestIds.Reset();
+			Record.LastEncounterId = NAME_None;
+			Record.LastEncounterCommandId = NAME_None;
+			Record.LastEncounterOutcome = EMelodiaBattleResult::Unavailable;
+			Record.Version = 5;
+			break;
+
 		default:
 			UE_LOG(LogTemp, Warning, TEXT("Melodia narrative record version %d has no migration path."), Record.Version);
 			return false;
@@ -664,6 +775,25 @@ bool UMelodiaNarrativeSubsystem::RestoreNarrativeRecord(const FMelodiaNarrativeR
 	}
 	RestorePersistentQuillVariables();
 	return true;
+}
+
+FMelodiaNPCQuestRuntimeSnapshot UMelodiaNarrativeSubsystem::GetNPCQuestRuntimeSnapshot(
+	const FName NPCId,
+	const FName QuestId) const
+{
+	FMelodiaNPCQuestRuntimeSnapshot Snapshot;
+	Snapshot.NPCId = NPCId;
+	Snapshot.QuestId = QuestId;
+	Snapshot.bQuestActive = NarrativeRecord.ActiveQuestIds.Contains(QuestId);
+	const FName ConventionalCompletionFlag(*FString::Printf(TEXT("%s.completed"), *QuestId.ToString()));
+	Snapshot.bQuestCompleted = NarrativeRecord.CompletedQuestIds.Contains(QuestId)
+		|| NarrativeRecord.Flags.FindRef(ConventionalCompletionFlag);
+	Snapshot.ScriptCheckpoint = NarrativeRecord.ScriptCheckpoint;
+	Snapshot.EncounterId = NarrativeRecord.LastEncounterId;
+	Snapshot.EncounterCommandId = NarrativeRecord.LastEncounterCommandId;
+	Snapshot.EncounterOutcome = NarrativeRecord.LastEncounterOutcome;
+	Snapshot.bBattlePending = !PendingEncounterId.IsNone();
+	return Snapshot;
 }
 
 int32 UMelodiaNarrativeSubsystem::GetSocialStat(FName StatId) const
@@ -938,6 +1068,7 @@ void UMelodiaNarrativeSubsystem::HandleQuillNotification(FString Message)
 	{
 		Handlers.Add(TEXT("battle"), &UMelodiaNarrativeSubsystem::HandleBattleVerb);
 		Handlers.Add(TEXT("quest"), &UMelodiaNarrativeSubsystem::HandleQuestVerb);
+		Handlers.Add(TEXT("questcomplete"), &UMelodiaNarrativeSubsystem::HandleQuestCompleteVerb);
 		Handlers.Add(TEXT("flag"), &UMelodiaNarrativeSubsystem::HandleFlagVerb);
 		Handlers.Add(TEXT("travel"), &UMelodiaNarrativeSubsystem::HandleTravelVerb);
 		Handlers.Add(TEXT("reward"), &UMelodiaNarrativeSubsystem::HandleRewardVerb);
@@ -991,12 +1122,38 @@ FString UMelodiaNarrativeSubsystem::GetWorldStateForValidation() const
 
 void UMelodiaNarrativeSubsystem::HandleBattleVerb(const FName Id, const TArray<FString>& Parts, const FString& Message)
 {
-	StartBattle(Id);
+	// Syntax: melodia:battle:<EncounterId>[:<CommandId>:<CheckpointId>].
+	// The short form remains source-compatible and derives a stable receipt.
+	if (Parts.Num() == 3)
+	{
+		StartBattle(Id);
+	}
+	else if (Parts.Num() == 5)
+	{
+		StartBattle(Id, FName(*Parts[3]), FName(*Parts[4]));
+	}
+	else
+	{
+		Reject(Message, EMelodiaIntentFailure::UnknownIntent);
+	}
 }
 
 void UMelodiaNarrativeSubsystem::HandleQuestVerb(const FName Id, const TArray<FString>& Parts, const FString& Message)
 {
 	CompleteQuest(Id);
+}
+
+void UMelodiaNarrativeSubsystem::HandleQuestCompleteVerb(const FName Id, const TArray<FString>& Parts, const FString& Message)
+{
+	// Syntax: melodia:questcomplete:<QuestId>:<CompletionFlagId>:<RewardId>:<IntentId>:<CheckpointId>
+	if (Parts.Num() != 7)
+	{
+		Reject(Message, EMelodiaIntentFailure::UnknownIntent);
+		return;
+	}
+
+	EMelodiaContentCommitFailure Failure = EMelodiaContentCommitFailure::None;
+	CommitQuestCompletion(Id, FName(*Parts[3]), FName(*Parts[4]), FName(*Parts[5]), FName(*Parts[6]), Failure);
 }
 
 void UMelodiaNarrativeSubsystem::HandleFlagVerb(const FName Id, const TArray<FString>& Parts, const FString& Message)

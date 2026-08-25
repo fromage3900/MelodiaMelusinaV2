@@ -1,4 +1,4 @@
-"""Melodia Studio — Render & Upload beauty plates to the live website repo.
+"""Melodia Studio - Render & Upload beauty plates to the live website repo.
 
 N-panel operators under Stage:
   surreal_arch.render_and_upload_plate
@@ -27,7 +27,7 @@ GIT_PUSH_DEFAULT = False
 
 
 def _project_root() -> Path:
-    # deploy/surreal_arch/stage_publish.py → deploy → BS_GodFile
+    # deploy/surreal_arch/stage_publish.py -> deploy -> BS_GodFile
     return Path(__file__).resolve().parents[2]
 
 
@@ -215,7 +215,7 @@ class SURREAL_ARCH_OT_render_and_upload_plate(Operator):
             self.report({"ERROR"}, msg)
             return {"CANCELLED"}
 
-        _assign_plate_slot(site, slot, out, alt=f"Hero beauty · {stamp}")
+        _assign_plate_slot(site, slot, out, alt=f"Hero beauty - {stamp}")
         plates = site / "content" / "site-plates.json"
         git_msg = ""
         if push_live:
@@ -242,7 +242,7 @@ class SURREAL_ARCH_OT_render_and_upload_plate(Operator):
                 self.report({"WARNING"}, status)
                 return {"FINISHED"}
 
-        status = f"Uploaded {slot} → {out.name}" + (" + pushed" if push_live else "")
+        status = f"Uploaded {slot} -> {out.name}" + (" + pushed" if push_live else "")
         if settings:
             settings.last_status = status
         _write_audit({
@@ -299,7 +299,7 @@ class SURREAL_ARCH_OT_push_last_plate_to_site(Operator):
         else:
             dest = src
 
-        _assign_plate_slot(site, slot, dest, alt=f"Last plate · {dest.name}")
+        _assign_plate_slot(site, slot, dest, alt=f"Last plate - {dest.name}")
         plates = site / "content" / "site-plates.json"
         git_msg = ""
         if push_live:
@@ -307,13 +307,13 @@ class SURREAL_ARCH_OT_push_last_plate_to_site(Operator):
                 site, [dest, plates], f"Push last plate {dest.name}"
             )
             if not ok:
-                status = f"Assigned {slot} → {dest.name}; git failed: {git_msg}"
+                status = f"Assigned {slot} -> {dest.name}; git failed: {git_msg}"
                 if settings:
                     settings.last_status = status
                 self.report({"WARNING"}, status)
                 return {"FINISHED"}
 
-        status = f"Assigned {slot} → {dest.name}" + (" + pushed" if push_live else "")
+        status = f"Assigned {slot} -> {dest.name}" + (" + pushed" if push_live else "")
         if settings:
             settings.last_status = status
         _write_audit({
@@ -345,7 +345,7 @@ class SURREAL_ARCH_PT_stage_publish(Panel):
         layout = self.layout
         settings = getattr(context.scene, "mel_stage_publish", None)
         box = layout.box()
-        box.label(text=f"{PRODUCT_NAME} → website", icon="WORLD")
+        box.label(text=f"{PRODUCT_NAME} -> website", icon="WORLD")
         if settings:
             box.prop(settings, "plate_slot", text="Slot")
             box.prop(settings, "push_live")

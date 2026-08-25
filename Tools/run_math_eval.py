@@ -74,7 +74,7 @@ def run_eval() -> dict[str, Any]:
                 "tool": task["tool"],
                 "pass": False,
                 "status": "hold",
-                "detail": "editor_required — Monolith unreachable on :9316",
+                "detail": "editor_required - Monolith unreachable on :9316",
             })
             continue
 

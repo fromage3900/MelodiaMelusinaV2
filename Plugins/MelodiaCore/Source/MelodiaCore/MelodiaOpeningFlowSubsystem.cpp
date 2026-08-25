@@ -2,7 +2,6 @@
 
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
-#include "MelodiaQuestManagerBase.h"
 #include "MelodiaRulesGenerated.h"
 
 UMelodiaOpeningFlowSubsystem* UMelodiaOpeningFlowSubsystem::Get(const UObject* WorldContextObject)
@@ -30,17 +29,9 @@ bool UMelodiaOpeningFlowSubsystem::NotifyDreamstateEntered()
 
 bool UMelodiaOpeningFlowSubsystem::NotifyDreamstateCompleted()
 {
-	const bool bTransitioned = TransitionTo(EMelodiaOpeningPhase::Dreamstate, EMelodiaOpeningPhase::ZenExploration);
-	if (bTransitioned)
-	{
-		if (AMelodiaQuestManagerBase* QuestManager = FindQuestManager())
-		{
-			FMelodiaQuestDef TutorialQuest;
-			TutorialQuest.QuestId = FName(MelodiaRulesGen::OpeningTutorialQuestId);
-			QuestManager->AcceptQuest(TutorialQuest);
-		}
-	}
-	return bTransitioned;
+	// Opening phase is presentation/travel state only. First-Dream quest state
+	// must arrive through Quill -> UMelodiaNarrativeSubsystem, never QuestManager.
+	return TransitionTo(EMelodiaOpeningPhase::Dreamstate, EMelodiaOpeningPhase::ZenExploration);
 }
 
 bool UMelodiaOpeningFlowSubsystem::NotifyZenEncounterVictory(const FName EnemyId)
@@ -48,11 +39,6 @@ bool UMelodiaOpeningFlowSubsystem::NotifyZenEncounterVictory(const FName EnemyId
 	if (Phase != EMelodiaOpeningPhase::ZenExploration || EnemyId != FName(MelodiaRulesGen::OpeningTutorialEnemyId))
 	{
 		return false;
-	}
-
-	if (AMelodiaQuestManagerBase* QuestManager = FindQuestManager())
-	{
-		QuestManager->CompleteQuest(FName(MelodiaRulesGen::OpeningTutorialQuestId));
 	}
 
 	const EMelodiaOpeningPhase Previous = Phase;
@@ -71,12 +57,6 @@ bool UMelodiaOpeningFlowSubsystem::NotifySirRescued()
 bool UMelodiaOpeningFlowSubsystem::NotifyReturnedHome()
 {
 	return TransitionTo(EMelodiaOpeningPhase::SirRescued, EMelodiaOpeningPhase::ReturnedHome);
-}
-
-AMelodiaQuestManagerBase* UMelodiaOpeningFlowSubsystem::FindQuestManager() const
-{
-	UWorld* World = GetGameInstance() ? GetGameInstance()->GetWorld() : nullptr;
-	return World ? AMelodiaQuestManagerBase::Get(World) : nullptr;
 }
 
 bool UMelodiaOpeningFlowSubsystem::ApplyTravelEvent(const EMelodiaOpeningTravelEvent TravelEvent)

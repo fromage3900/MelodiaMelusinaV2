@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """
-run_cascadeur_retarget_pipeline.py — batch-retarget Cascadeur/Quaternius clips to Melusina.
+run_cascadeur_retarget_pipeline.py - batch-retarget Cascadeur/Quaternius clips to Melusina.
 
 PURPOSE
 -------
 The Cascadeur inbox has ~40 FBX clips (Quaternius CC0 library) that are stuck in
 `manual_required` status. They need to be:
   1. Scanned offline (Blender) for contract compliance
-  2. Remapped (dots→underscores, meters→cm, 24→30 FPS) if needed
+  2. Remapped (dots->underscores, meters->cm, 24->30 FPS) if needed
   3. Imported onto SK_Source_Melusina via Monolith
   4. Retargeted via RTG_Source_to_Melusina
   5. Validated post-import
 
 USAGE
 -----
-    # Dry run — scan + plan only
+    # Dry run - scan + plan only
     python Tools/run_cascadeur_retarget_pipeline.py --dry-run
 
     # Run the full pipeline on all inbox clips

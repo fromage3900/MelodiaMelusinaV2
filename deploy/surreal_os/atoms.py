@@ -1,4 +1,4 @@
-"""Architectural atoms — resolve atom id to kit / trim / snap contracts."""
+"""Architectural atoms - resolve atom id to kit / trim / snap contracts."""
 
 from __future__ import annotations
 

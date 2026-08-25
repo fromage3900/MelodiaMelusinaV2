@@ -126,7 +126,7 @@ def build_plan(
         if speed is None:
             blockers.append("measured locomotion speed is missing")
         elif speed < 0.0 or speed > 750.0:
-            errors.append("measured speed is outside the canonical 0–750 axis")
+            errors.append("measured speed is outside the canonical 0-750 axis")
         plan["measured_speed"] = speed
         plan["measured_speed_source"] = speed_source if speed is not None else None
         plan["axis_range"] = [0.0, 750.0]

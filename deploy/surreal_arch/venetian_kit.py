@@ -1,4 +1,4 @@
-"""Venetian loggia greybox kit — bifora void rhythm + cornice shelf."""
+"""Venetian loggia greybox kit - bifora void rhythm + cornice shelf."""
 
 from __future__ import annotations
 

@@ -1,5 +1,5 @@
 """
-Rhythm game research runner — queries local Ollama (Qwen) in a loop
+Rhythm game research runner - queries local Ollama (Qwen) in a loop
 and logs structured findings for overnight research sessions.
 """
 
@@ -63,7 +63,7 @@ def query_ollama(model: str, prompt: str, temperature: float, max_tokens: int = 
 
 def run_iteration(model: str, temperature: float, iteration: int, md_file: Path, pairs: list):
     with open(md_file, "a", encoding="utf-8") as f:
-        f.write(f"\n## Iteration {iteration} — temp={temperature:.2f}, model={model}\n\n")
+        f.write(f"\n## Iteration {iteration} - temp={temperature:.2f}, model={model}\n\n")
 
     for i, prompt in enumerate(PROMPTS, 1):
         ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -92,7 +92,7 @@ def main():
     print(f"Model: {model} | Iterations: {args.iterations} | Delay: {args.delay}s")
 
     with open(md_file, "a", encoding="utf-8") as f:
-        f.write(f"# Rhythm Game Research — {date_str}\n\n")
+        f.write(f"# Rhythm Game Research - {date_str}\n\n")
 
     all_pairs: list[dict] = []
 

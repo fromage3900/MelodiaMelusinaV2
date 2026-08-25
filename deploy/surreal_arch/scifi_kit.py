@@ -1,4 +1,4 @@
-"""Sci-fi modular kit — pressure doors with gasket recess geometry."""
+"""Sci-fi modular kit - pressure doors with gasket recess geometry."""
 
 from __future__ import annotations
 
@@ -44,7 +44,7 @@ def build_scifi_pressure_door(tree, M, props, base_x=-1400):
 
 
 def _gasket_ring_parts(tree, M, props, base_x, dw, dh, t, end_y, node_y):
-    """Recessed gasket channel around door opening — trim-sheet friendly."""
+    """Recessed gasket channel around door opening - trim-sheet friendly."""
     mode = M._gb_trim_mode(props)
     if mode == "NONE":
         return []

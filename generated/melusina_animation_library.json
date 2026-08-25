@@ -1,7 +1,7 @@
 {
   "registry_schema": "MUAL-2",
   "library": "Melusina Universal Animation Source Library",
-  "generated_at_utc": "2026-08-16T20:28:36.131731+00:00",
+  "generated_at_utc": "2026-08-24T22:11:09.714709+00:00",
   "contract": {
     "canonical_rig": "SK_Source_Melusina",
     "canonical_skeleton": "/Game/Melodia/Mocap/Source/SK_Source_Melusina",
@@ -13,13 +13,68 @@
     "format": "animation-only FBX, one clip per file"
   },
   "counts": {
-    "manual_required": 86,
+    "canonical": 21,
+    "manual_required": 88,
     "legacy": 2,
-    "blocked": 1,
-    "promoted": 1,
-    "canonical": 20
+    "blocked": 3
   },
   "entries": [
+    {
+      "clip_id": "LIB_BLENDER_A_BL_FINALHANDKEYED_SOURCE_20260824_A7DCD302",
+      "clip_name": "A_BL_FinalHandKeyed_Source_20260824",
+      "source_type": "blender",
+      "artifact": "Exports/AnimationLibrary/Blender/A_BL_FinalHandKeyed_Source_20260824.fbx",
+      "sidecar": "Exports/AnimationLibrary/Blender/A_BL_FinalHandKeyed_Source_20260824.manifest.json",
+      "status": "canonical",
+      "reasons": [
+        "owner-authored final-stage FBX source",
+        "verified offline source-rig contract: 464 bones, 30 FPS, centimetre header, animation-only FBX",
+        "offline motion probe verified changing spine and hand tracks",
+        "lane_a_ready=true; target IK retarget and live non-bind proof remain pending"
+      ],
+      "manifest": {
+        "schema_version": 2,
+        "clip_id": "LIB_BLENDER_A_BL_FINALHANDKEYED_SOURCE_20260824_A7DCD302",
+        "clip_name": "A_BL_FinalHandKeyed_Source_20260824",
+        "display_name": "Melusina final hand-keyed Blender idle",
+        "source_type": "blender",
+        "source_file": "Exports/AnimationLibrary/Blender/A_BL_FinalHandKeyed_Source_20260824.fbx",
+        "source_name": "Owner-authored final-stage character_rigAction",
+        "provenance": "A_Melusina_Idle_v22.fbx <- Melodia_Portfolio_Stage_v22_FINAL_2026-08-15.blend:character_rigAction",
+        "license": "project-authored",
+        "canonical_rig": "SK_Source_Melusina",
+        "canonical_skeleton": "/Game/Melodia/Mocap/Source/SK_Source_Melusina",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "target_mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina",
+        "retarget_profile": "RTG_Source_to_Melusina",
+        "fps": 30,
+        "units": "cm",
+        "frame_start": 0,
+        "frame_end": 29,
+        "loop": true,
+        "root_motion": "in_place",
+        "context": "locomotion",
+        "consumer": "blendspace",
+        "animation_only": true,
+        "one_clip_per_file": true,
+        "status": "canonical",
+        "status_reasons": [
+          "owner-authored final-stage FBX source",
+          "verified offline source-rig contract: 464 bones, 30 FPS, centimetre header, animation-only FBX",
+          "offline motion probe verified changing spine and hand tracks",
+          "lane_a_ready=true; target IK retarget and live non-bind proof remain pending"
+        ],
+        "promotion_target": "",
+        "notify_contract": [],
+        "foot_contact_audit": {
+          "status": "pending_manual",
+          "required_for_promotion": true
+        },
+        "speed_evidence": {}
+      },
+      "artifact_bytes": 2831532,
+      "artifact_mtime_utc": "2026-08-24T22:04:29.202462+00:00"
+    },
     {
       "clip_id": "LIB_BLENDER_A_BL_MELUSINA_IDLE_LOOP_968B1CBF",
       "clip_name": "A_BL_Melusina_Idle_Loop",
@@ -64,10 +119,11 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 8852844,
-      "artifact_mtime_utc": "2026-08-13T05:00:08.395108+00:00"
+      "artifact_mtime_utc": "2026-08-20T16:12:54.131592+00:00"
     },
     {
       "clip_id": "LIB_BLENDER_A_BL_MELUSINA_IDLE_LOOP_CM_E9B3F95D",
@@ -113,10 +169,11 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 9450220,
-      "artifact_mtime_utc": "2026-08-13T17:20:28.478714+00:00"
+      "artifact_mtime_utc": "2026-08-20T16:12:54.159438+00:00"
     },
     {
       "clip_id": "LIB_BLENDER_A_BL_MELUSINA_IDLE_LOOP_RAW_60144BA8",
@@ -162,10 +219,11 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 8852940,
-      "artifact_mtime_utc": "2026-08-13T04:59:15.412886+00:00"
+      "artifact_mtime_utc": "2026-08-20T16:12:54.184813+00:00"
     },
     {
       "clip_id": "LIB_BLENDER_A_BL_SOURCE_IDLE_LOOP_ARP_CHARACTER_RIGACTION_00A821A4",
@@ -173,9 +231,9 @@
       "source_type": "blender",
       "artifact": "Exports/AnimationLibrary/Blender/A_BL_Source_Idle_Loop.arp_character_rigAction.fbx",
       "sidecar": null,
-      "status": "legacy",
+      "status": "blocked",
       "reasons": [
-        "ARP operator audit intermediate; only the sibling v2 artifact enters the canonical lane"
+        "rejected 2026-08-24: existing MUAL UE derivative is static bind pose at every sampled frame; it is not source-lineage evidence"
       ],
       "manifest": {
         "schema_version": 2,
@@ -202,19 +260,20 @@
         "consumer": "blendspace",
         "animation_only": true,
         "one_clip_per_file": true,
-        "status": "legacy",
+        "status": "blocked",
         "status_reasons": [
-          "ARP operator audit intermediate; only the sibling v2 artifact enters the canonical lane"
+          "rejected 2026-08-24: existing MUAL UE derivative is static bind pose at every sampled frame; it is not source-lineage evidence"
         ],
         "promotion_target": "",
         "notify_contract": [],
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 3402188,
-      "artifact_mtime_utc": "2026-08-16T19:22:13.009273+00:00"
+      "artifact_mtime_utc": "2026-08-20T16:12:54.098763+00:00"
     },
     {
       "clip_id": "LIB_BLENDER_A_BL_SOURCE_IDLE_LOOP_CA7DD1DE",
@@ -222,11 +281,9 @@
       "source_type": "blender",
       "artifact": "Exports/AnimationLibrary/Blender/A_BL_Source_Idle_Loop.fbx",
       "sidecar": "Exports/AnimationLibrary/Blender/A_BL_Source_Idle_Loop.manifest.json",
-      "status": "promoted",
+      "status": "blocked",
       "reasons": [
-        "v22 ARP operator baked controller action",
-        "ARP output normalized to the 464-bone SK_Source_Melusina contract",
-        "verified by Blender scanner: 30 FPS, 464 bones, no meshes, centimetre header"
+        "rejected 2026-08-24: existing MUAL UE derivative is static bind pose at every sampled frame; it is not source-lineage evidence"
       ],
       "manifest": {
         "schema_version": 2,
@@ -253,27 +310,196 @@
         "consumer": "blendspace",
         "animation_only": true,
         "one_clip_per_file": true,
-        "status": "promoted",
+        "status": "blocked",
         "status_reasons": [
-          "v22 ARP operator baked controller action",
-          "ARP output normalized to the 464-bone SK_Source_Melusina contract",
-          "verified by Blender scanner: 30 FPS, 464 bones, no meshes, centimetre header"
+          "rejected 2026-08-24: existing MUAL UE derivative is static bind pose at every sampled frame; it is not source-lineage evidence"
         ],
-        "promotion_target": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_MUAL_Source_Idle",
+        "promotion_target": "",
         "notify_contract": [],
         "foot_contact_audit": {
-          "status": "passed",
+          "status": "rejected",
           "required_for_promotion": true,
           "method": "footspeed",
           "left_count": 0,
           "right_count": 0,
-          "audited_consumer": "montage",
+          "audited_consumer": "blendspace",
           "mode": "static_pose",
-          "evidence_report": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\mual_foot_contact_audit_montage.json"
+          "evidence_report": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\mual_foot_contact_audit_blendspace.json"
+        },
+        "speed_evidence": {
+          "mode": "static_pose",
+          "status": "declared",
+          "speed_cm_s": 0.0,
+          "method": "static_pose_root_track_requires_ue_constancy_probe",
+          "evidence_report": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\mual_foot_contact_audit_blendspace.json"
         }
       },
       "artifact_bytes": 2862188,
-      "artifact_mtime_utc": "2026-08-16T19:23:11.538762+00:00"
+      "artifact_mtime_utc": "2026-08-20T16:12:54.109492+00:00"
+    },
+    {
+      "clip_id": "LIB_CASCADEUR_IDLE_SERENE_6F12F2F3",
+      "clip_name": "Idle_Serene",
+      "source_type": "cascadeur",
+      "artifact": "Imports/Animations/Cascadeur/Inbox/A_CAS_Melusina_Idle_Serene.fbx",
+      "sidecar": "Imports/Animations/Cascadeur/Inbox/A_CAS_Melusina_Idle_Serene.manifest.json",
+      "status": "manual_required",
+      "reasons": [
+        "new source requires explicit canonical-manifest evidence"
+      ],
+      "manifest": {
+        "schema_version": 2,
+        "clip_id": "LIB_CASCADEUR_IDLE_SERENE_6F12F2F3",
+        "clip_name": "Idle_Serene",
+        "display_name": "Idle_Serene",
+        "source_type": "cascadeur",
+        "source_file": "Imports/Animations/Cascadeur/Inbox/A_CAS_Melusina_Idle_Serene.fbx",
+        "source_name": "Cascadeur \u2014 Melusina \u2014 Idle_Serene",
+        "provenance": "Cascadeur \u2014 Melusina \u2014 Idle_Serene",
+        "license": "unknown",
+        "canonical_rig": "",
+        "canonical_skeleton": "/Game/Melodia/Mocap/Source/SK_Source_Melusina",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "target_mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina",
+        "retarget_profile": "RTG_Source_to_Melusina",
+        "fps": 30,
+        "units": "cm",
+        "frame_start": 0,
+        "frame_end": 60,
+        "loop": true,
+        "root_motion": "in_place",
+        "context": "locomotion",
+        "consumer": "blendspace",
+        "animation_only": true,
+        "one_clip_per_file": true,
+        "status": "manual_required",
+        "status_reasons": [
+          "new source requires explicit canonical-manifest evidence"
+        ],
+        "promotion_target": "",
+        "notify_contract": [],
+        "foot_contact_audit": {
+          "status": "pending_manual",
+          "required_for_promotion": true
+        },
+        "speed_evidence": {}
+      },
+      "artifact_bytes": 14125968,
+      "artifact_mtime_utc": "2026-08-20T19:23:02.098398+00:00"
+    },
+    {
+      "clip_id": "LIB_FOREIGN_A_MELUSINA_IDLE_V22_2647E011",
+      "clip_name": "A_Melusina_Idle_v22",
+      "source_type": "foreign",
+      "artifact": "Exports/MelusinaAnims/A_Melusina_Idle_v22.fbx",
+      "sidecar": null,
+      "status": "manual_required",
+      "reasons": [
+        "authoritative v22 hand-keyed ARP export; import onto SK_Source_Melusina and pass the dedicated source-to-target IK retarget gate before canonical status"
+      ],
+      "manifest": {
+        "schema_version": 2,
+        "clip_id": "LIB_FOREIGN_A_MELUSINA_IDLE_V22_2647E011",
+        "clip_name": "A_Melusina_Idle_v22",
+        "display_name": "A_Melusina_Idle_v22",
+        "source_type": "foreign",
+        "source_file": "Exports/MelusinaAnims/A_Melusina_Idle_v22.fbx",
+        "source_name": "A_Melusina_Idle_v22",
+        "provenance": "A_Melusina_Idle_v22",
+        "license": "unknown",
+        "canonical_rig": "",
+        "canonical_skeleton": "/Game/Melodia/Mocap/Source/SK_Source_Melusina",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "target_mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina",
+        "retarget_profile": "RTG_Source_to_Melusina",
+        "fps": 30,
+        "units": "cm",
+        "frame_start": 0,
+        "frame_end": 0,
+        "loop": false,
+        "root_motion": "in_place",
+        "context": "locomotion",
+        "consumer": "blendspace",
+        "animation_only": true,
+        "one_clip_per_file": true,
+        "status": "manual_required",
+        "status_reasons": [
+          "authoritative v22 hand-keyed ARP export; import onto SK_Source_Melusina and pass the dedicated source-to-target IK retarget gate before canonical status"
+        ],
+        "promotion_target": "",
+        "notify_contract": [],
+        "foot_contact_audit": {
+          "status": "pending_manual",
+          "required_for_promotion": true
+        },
+        "speed_evidence": {}
+      },
+      "artifact_bytes": 6639036,
+      "artifact_mtime_utc": "2026-08-20T16:12:54.198856+00:00",
+      "lineage": {
+        "authority_receipt": "Saved/Audit/melusina_idle_v22_export.json",
+        "stage_blend": "G:/EnvironmentPortfolio/BS_GodFile/Melodia_Portfolio_Stage_v22_FINAL_2026-08-15.blend",
+        "armature": "character_rig",
+        "nla_track": "idle_animation",
+        "strip": "characteridle_handkeyframed",
+        "action": "character_rigAction",
+        "frame_range": [
+          8,
+          31
+        ],
+        "ue_import": false,
+        "requires_ik_retarget": true
+      }
+    },
+    {
+      "clip_id": "LIB_FOREIGN_A_MELUSINA_IDLE_V22_ARP_3A7C9961",
+      "clip_name": "A_Melusina_Idle_v22_ARP",
+      "source_type": "foreign",
+      "artifact": "Exports/MelusinaAnims/A_Melusina_Idle_v22_ARP.fbx",
+      "sidecar": null,
+      "status": "legacy",
+      "reasons": [
+        "ARP pre-retarget export intermediate; retain the v22 stage receipt but do not treat this FBX as a UE clip"
+      ],
+      "manifest": {
+        "schema_version": 2,
+        "clip_id": "LIB_FOREIGN_A_MELUSINA_IDLE_V22_ARP_3A7C9961",
+        "clip_name": "A_Melusina_Idle_v22_ARP",
+        "display_name": "A_Melusina_Idle_v22_ARP",
+        "source_type": "foreign",
+        "source_file": "Exports/MelusinaAnims/A_Melusina_Idle_v22_ARP.fbx",
+        "source_name": "A_Melusina_Idle_v22_ARP",
+        "provenance": "A_Melusina_Idle_v22_ARP",
+        "license": "unknown",
+        "canonical_rig": "",
+        "canonical_skeleton": "/Game/Melodia/Mocap/Source/SK_Source_Melusina",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "target_mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina",
+        "retarget_profile": "RTG_Source_to_Melusina",
+        "fps": 30,
+        "units": "cm",
+        "frame_start": 0,
+        "frame_end": 0,
+        "loop": false,
+        "root_motion": "in_place",
+        "context": "locomotion",
+        "consumer": "blendspace",
+        "animation_only": true,
+        "one_clip_per_file": true,
+        "status": "legacy",
+        "status_reasons": [
+          "ARP pre-retarget export intermediate; retain the v22 stage receipt but do not treat this FBX as a UE clip"
+        ],
+        "promotion_target": "",
+        "notify_contract": [],
+        "foot_contact_audit": {
+          "status": "pending_manual",
+          "required_for_promotion": true
+        },
+        "speed_evidence": {}
+      },
+      "artifact_bytes": 3152508,
+      "artifact_mtime_utc": "2026-08-20T16:12:54.211634+00:00"
     },
     {
       "clip_id": "LIB_QUATERNIUS_A_CAS_MELUSINA_CROUCH_FWD_LOOP_7671A6C4",
@@ -319,7 +545,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354012,
       "artifact_mtime_utc": "2026-08-08T06:02:03.955070+00:00"
@@ -368,7 +595,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354012,
       "artifact_mtime_utc": "2026-08-08T06:02:13.193589+00:00"
@@ -417,7 +645,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:02:22.291952+00:00"
@@ -466,7 +695,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:02:32.234766+00:00"
@@ -515,7 +745,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:02:37.892018+00:00"
@@ -564,7 +795,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:02:42.657192+00:00"
@@ -613,7 +845,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354716,
       "artifact_mtime_utc": "2026-08-08T06:02:47.767622+00:00"
@@ -662,7 +895,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:02:52.521445+00:00"
@@ -711,7 +945,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:02:57.659312+00:00"
@@ -760,7 +995,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354156,
       "artifact_mtime_utc": "2026-08-08T06:03:03.316516+00:00"
@@ -809,7 +1045,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354764,
       "artifact_mtime_utc": "2026-08-08T06:03:08.872131+00:00"
@@ -858,7 +1095,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:03:17.875220+00:00"
@@ -907,7 +1145,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354716,
       "artifact_mtime_utc": "2026-08-08T06:03:27.585795+00:00"
@@ -956,7 +1195,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354220,
       "artifact_mtime_utc": "2026-08-08T06:03:39.035766+00:00"
@@ -1005,7 +1245,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354220,
       "artifact_mtime_utc": "2026-08-08T06:03:49.612148+00:00"
@@ -1054,7 +1295,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:03:59.548587+00:00"
@@ -1103,7 +1345,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:04:09.229322+00:00"
@@ -1152,7 +1395,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354716,
       "artifact_mtime_utc": "2026-08-08T06:04:18.919890+00:00"
@@ -1201,7 +1445,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354812,
       "artifact_mtime_utc": "2026-08-08T06:04:28.843290+00:00"
@@ -1250,7 +1495,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354844,
       "artifact_mtime_utc": "2026-08-08T06:04:38.461474+00:00"
@@ -1299,7 +1545,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354812,
       "artifact_mtime_utc": "2026-08-08T06:04:48.053169+00:00"
@@ -1348,7 +1595,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354812,
       "artifact_mtime_utc": "2026-08-08T06:04:58.206786+00:00"
@@ -1397,7 +1645,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354812,
       "artifact_mtime_utc": "2026-08-08T06:05:08.875818+00:00"
@@ -1446,7 +1695,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354716,
       "artifact_mtime_utc": "2026-08-08T06:05:18.912120+00:00"
@@ -1495,7 +1745,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354716,
       "artifact_mtime_utc": "2026-08-08T06:05:30.319822+00:00"
@@ -1544,7 +1795,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354316,
       "artifact_mtime_utc": "2026-08-08T06:05:40.938036+00:00"
@@ -1593,7 +1845,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354716,
       "artifact_mtime_utc": "2026-08-08T06:05:52.133424+00:00"
@@ -1642,7 +1895,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:06:03.045976+00:00"
@@ -1691,7 +1945,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354124,
       "artifact_mtime_utc": "2026-08-08T06:06:14.375802+00:00"
@@ -1740,7 +1995,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354124,
       "artifact_mtime_utc": "2026-08-08T06:06:25.427713+00:00"
@@ -1789,7 +2045,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354204,
       "artifact_mtime_utc": "2026-08-08T06:06:35.152707+00:00"
@@ -1838,7 +2095,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:06:44.449006+00:00"
@@ -1887,7 +2145,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354172,
       "artifact_mtime_utc": "2026-08-08T06:06:53.915735+00:00"
@@ -1936,7 +2195,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354172,
       "artifact_mtime_utc": "2026-08-08T06:07:03.363692+00:00"
@@ -1985,7 +2245,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354172,
       "artifact_mtime_utc": "2026-08-08T06:07:12.893519+00:00"
@@ -2034,7 +2295,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354780,
       "artifact_mtime_utc": "2026-08-08T06:07:21.915797+00:00"
@@ -2083,7 +2345,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23353948,
       "artifact_mtime_utc": "2026-08-08T06:07:30.654582+00:00"
@@ -2132,7 +2395,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354204,
       "artifact_mtime_utc": "2026-08-08T06:07:39.458633+00:00"
@@ -2181,7 +2445,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354716,
       "artifact_mtime_utc": "2026-08-08T06:07:48.404746+00:00"
@@ -2230,7 +2495,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354716,
       "artifact_mtime_utc": "2026-08-08T06:07:57.165318+00:00"
@@ -2279,7 +2545,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354684,
       "artifact_mtime_utc": "2026-08-08T06:08:06.163541+00:00"
@@ -2328,7 +2595,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23354684,
       "artifact_mtime_utc": "2026-08-08T06:08:15.133460+00:00"
@@ -2377,7 +2645,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 672044,
       "artifact_mtime_utc": "2026-08-08T23:17:03.007089+00:00"
@@ -2426,7 +2695,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 796732,
       "artifact_mtime_utc": "2026-08-08T23:17:03.423982+00:00"
@@ -2475,7 +2745,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 570028,
       "artifact_mtime_utc": "2026-08-08T23:17:03.605655+00:00"
@@ -2524,7 +2795,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 728812,
       "artifact_mtime_utc": "2026-08-08T23:17:03.964402+00:00"
@@ -2573,7 +2845,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 622668,
       "artifact_mtime_utc": "2026-08-08T23:17:04.225367+00:00"
@@ -2622,7 +2895,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 1068876,
       "artifact_mtime_utc": "2026-08-08T23:17:04.750712+00:00"
@@ -2671,7 +2945,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 455388,
       "artifact_mtime_utc": "2026-08-08T23:17:04.889773+00:00"
@@ -2720,7 +2995,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 476780,
       "artifact_mtime_utc": "2026-08-08T23:17:05.028695+00:00"
@@ -2769,7 +3045,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 737164,
       "artifact_mtime_utc": "2026-08-08T23:17:05.349343+00:00"
@@ -2818,7 +3095,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 798284,
       "artifact_mtime_utc": "2026-08-08T23:17:05.701645+00:00"
@@ -2867,7 +3145,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 580588,
       "artifact_mtime_utc": "2026-08-08T23:17:05.921222+00:00"
@@ -2916,7 +3195,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 673228,
       "artifact_mtime_utc": "2026-08-08T23:17:06.197259+00:00"
@@ -2965,7 +3245,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 557564,
       "artifact_mtime_utc": "2026-08-08T23:17:06.409214+00:00"
@@ -3014,7 +3295,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 582796,
       "artifact_mtime_utc": "2026-08-08T23:17:06.653592+00:00"
@@ -3063,7 +3345,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 738620,
       "artifact_mtime_utc": "2026-08-08T23:17:06.979528+00:00"
@@ -3112,7 +3395,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 592844,
       "artifact_mtime_utc": "2026-08-08T23:17:07.262779+00:00"
@@ -3161,7 +3445,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 539740,
       "artifact_mtime_utc": "2026-08-08T23:17:07.431874+00:00"
@@ -3210,7 +3495,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 419756,
       "artifact_mtime_utc": "2026-08-08T23:17:07.538785+00:00"
@@ -3259,7 +3545,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 419756,
       "artifact_mtime_utc": "2026-08-08T23:17:07.645949+00:00"
@@ -3308,7 +3595,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 419756,
       "artifact_mtime_utc": "2026-08-08T23:17:07.764676+00:00"
@@ -3357,7 +3645,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 621820,
       "artifact_mtime_utc": "2026-08-08T23:17:08.040273+00:00"
@@ -3406,7 +3695,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 635932,
       "artifact_mtime_utc": "2026-08-08T23:17:08.315486+00:00"
@@ -3455,7 +3745,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 503500,
       "artifact_mtime_utc": "2026-08-08T23:17:08.492781+00:00"
@@ -3504,7 +3795,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 570028,
       "artifact_mtime_utc": "2026-08-08T23:17:08.686160+00:00"
@@ -3553,7 +3845,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 545676,
       "artifact_mtime_utc": "2026-08-08T23:17:08.858533+00:00"
@@ -3602,7 +3895,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 758140,
       "artifact_mtime_utc": "2026-08-08T23:17:09.202523+00:00"
@@ -3651,7 +3945,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 612876,
       "artifact_mtime_utc": "2026-08-08T23:17:09.464779+00:00"
@@ -3700,7 +3995,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 589484,
       "artifact_mtime_utc": "2026-08-08T23:17:09.717727+00:00"
@@ -3749,7 +4045,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 575964,
       "artifact_mtime_utc": "2026-08-08T23:17:09.918255+00:00"
@@ -3798,7 +4095,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 626684,
       "artifact_mtime_utc": "2026-08-08T23:17:10.198294+00:00"
@@ -3847,7 +4145,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 786316,
       "artifact_mtime_utc": "2026-08-08T23:17:10.551157+00:00"
@@ -3896,7 +4195,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 485084,
       "artifact_mtime_utc": "2026-08-08T23:17:10.764969+00:00"
@@ -3945,7 +4245,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 476780,
       "artifact_mtime_utc": "2026-08-08T23:17:10.904535+00:00"
@@ -3994,7 +4295,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 683116,
       "artifact_mtime_utc": "2026-08-08T23:17:11.204234+00:00"
@@ -4043,7 +4345,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 491036,
       "artifact_mtime_utc": "2026-08-08T23:17:11.343379+00:00"
@@ -4092,7 +4395,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 508844,
       "artifact_mtime_utc": "2026-08-08T23:17:11.559259+00:00"
@@ -4141,7 +4445,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 591628,
       "artifact_mtime_utc": "2026-08-08T23:17:11.781040+00:00"
@@ -4190,7 +4495,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 848076,
       "artifact_mtime_utc": "2026-08-08T23:17:12.135385+00:00"
@@ -4239,7 +4545,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 619980,
       "artifact_mtime_utc": "2026-08-08T23:17:12.413913+00:00"
@@ -4288,7 +4595,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 632268,
       "artifact_mtime_utc": "2026-08-08T23:17:12.682177+00:00"
@@ -4337,7 +4645,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 592076,
       "artifact_mtime_utc": "2026-08-08T23:17:12.922118+00:00"
@@ -4386,7 +4695,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 592364,
       "artifact_mtime_utc": "2026-08-08T23:17:13.166153+00:00"
@@ -4435,7 +4745,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 23754684,
       "artifact_mtime_utc": "2026-06-16T23:03:12+00:00"
@@ -4484,7 +4795,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 2050639,
       "artifact_mtime_utc": "2026-07-15T19:49:36.944869+00:00"
@@ -4533,7 +4845,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 1834287,
       "artifact_mtime_utc": "2026-07-15T19:49:36.927114+00:00"
@@ -4582,7 +4895,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 5831252,
       "artifact_mtime_utc": "2026-07-15T19:49:36.990122+00:00"
@@ -4631,7 +4945,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 2483327,
       "artifact_mtime_utc": "2026-07-15T19:49:37.011417+00:00"
@@ -4680,7 +4995,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 2256967,
       "artifact_mtime_utc": "2026-07-15T19:49:37.055172+00:00"
@@ -4729,7 +5045,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 3445066,
       "artifact_mtime_utc": "2026-07-15T19:49:37.087092+00:00"
@@ -4778,7 +5095,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 2859305,
       "artifact_mtime_utc": "2026-07-15T19:49:37.034594+00:00"
@@ -4827,7 +5145,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 3777859,
       "artifact_mtime_utc": "2026-07-15T19:49:37.116471+00:00"
@@ -4876,7 +5195,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 3421826,
       "artifact_mtime_utc": "2026-07-15T19:49:37.175017+00:00"
@@ -4925,7 +5245,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 3445120,
       "artifact_mtime_utc": "2026-07-15T19:49:37.204707+00:00"
@@ -4974,7 +5295,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 3518307,
       "artifact_mtime_utc": "2026-07-15T19:49:37.145513+00:00"
@@ -5023,7 +5345,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 3395160,
       "artifact_mtime_utc": "2026-07-15T19:49:37.232078+00:00"
@@ -5072,7 +5395,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 2799439,
       "artifact_mtime_utc": "2026-07-15T19:49:37.256519+00:00"
@@ -5121,7 +5445,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 1121294,
       "artifact_mtime_utc": "2026-07-15T19:49:37.269875+00:00"
@@ -5170,7 +5495,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 5185668,
       "artifact_mtime_utc": "2026-07-15T19:49:37.310773+00:00"
@@ -5219,7 +5545,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 4886076,
       "artifact_mtime_utc": "2026-07-15T19:49:37.352106+00:00"
@@ -5268,7 +5595,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 2330151,
       "artifact_mtime_utc": "2026-07-15T19:49:37.371726+00:00"
@@ -5317,7 +5645,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 344745,
       "artifact_mtime_utc": "2026-08-08T19:12:40.944874+00:00"
@@ -5366,7 +5695,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 598993,
       "artifact_mtime_utc": "2026-08-08T19:12:40.964788+00:00"
@@ -5415,7 +5745,8 @@
         "foot_contact_audit": {
           "status": "pending_manual",
           "required_for_promotion": true
-        }
+        },
+        "speed_evidence": {}
       },
       "artifact_bytes": 3185487,
       "artifact_mtime_utc": "2026-07-15T19:49:37.398060+00:00"

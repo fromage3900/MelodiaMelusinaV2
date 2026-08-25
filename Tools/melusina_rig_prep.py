@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Melusina rig prep — FinalUERig43 (canonical).
+"""Melusina rig prep - FinalUERig43 (canonical).
 
 Task 1: repair the 53 invalid shape-key drivers (FaceitControlRig was dropped
        from this rig; its c_* controls are the driver targets).
@@ -202,7 +202,7 @@ def main() -> int:
         report["save_error"] = str(exc)
 
     path = write_json("melusina_rig_prep_report.json", report)
-    log(f"report → {path}")
+    log(f"report -> {path}")
     return 0
 
 

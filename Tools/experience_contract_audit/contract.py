@@ -51,7 +51,7 @@ def _need(description: str) -> str:
 
 
 def build_target_report(source_audit: dict[str, Any], root: Path) -> dict[str, Any]:
-    """Overlay the requested 20–30 minute design contract on parsed source truth."""
+    """Overlay the requested 20-30 minute design contract on parsed source truth."""
     progression = _load(root / "specs/progression/melodia_first_dream_progression.v1.json")
     golden = _load(root / "specs/p0/core_p0_dream_golden_run.v1.json")
     wardrobe = _load(root / "specs/wardrobe/wardrobe_catalog_manifest.v1.json")
@@ -127,7 +127,7 @@ def build_target_report(source_audit: dict[str, Any], root: Path) -> dict[str, A
         "phases": [
             {
                 "phase": "MorningPreparation",
-                "window": "0:00–5:00",
+                "window": "0:00-5:00",
                 "entry": "Restore the canonical narrative checkpoint or create a fresh day record.",
                 "player_contract": "Choose Sir or Priestess once, see the exact effect before confirmation, then leave with immediate feedback.",
                 "choices": preparation_choices,
@@ -136,7 +136,7 @@ def build_target_report(source_audit: dict[str, Any], root: Path) -> dict[str, A
             },
             {
                 "phase": "Expedition",
-                "window": "5:00–22:00",
+                "window": "5:00-22:00",
                 "entry": "Show Cos_Accessories_MelusinaV2 at the wardrobe station with Glide visibly locked.",
                 "player_contract": "Preview/equip one accessory, follow one motif, complete one existing Piano phrase, unlock Glide, cross the route it reveals, then play one stock JRPG encounter with rhythm grading.",
                 "world_challenge": {
@@ -157,7 +157,7 @@ def build_target_report(source_audit: dict[str, Any], root: Path) -> dict[str, A
             },
             {
                 "phase": "EveningReturn",
-                "window": "22:00–30:00",
+                "window": "22:00-30:00",
                 "entry": "Resume Quill once at the outcome-specific evening checkpoint.",
                 "player_contract": "Receive a reaction that reflects both the morning relationship and typed battle outcome; understand one reward's single purpose; save and advance the phase.",
                 "reaction_cardinality": "2 preparation choices × 4 outcomes = 8 authored reaction cases; IDs are NEED until authored.",
@@ -317,21 +317,21 @@ def build_target_report(source_audit: dict[str, Any], root: Path) -> dict[str, A
     ]
 
     pacing_defs = [
-        ("0:00–2:00", "MorningPreparation", "Walk, inspect the empty perch, approach preparation choice", "orientation and movement", "NPC/perch highlight and concise goal", "preparation choice becomes readable", "Resume at morning checkpoint; no command consumed", "source_built", True),
-        ("2:00–5:00", "MorningPreparation", "Choose Sir or Priestess once", "one scarce relationship choice", "show exact modifier/cue, slot consumed, evening promise", "meaningful day commitment", "Rejected commit leaves both choices available; Applied commit survives reload", "design_intent", True),
-        ("5:00–7:00", "Expedition", "Preview and equip the resonant accessory", "equip or back out", "Cos_Accessories_MelusinaV2 visible; Glide shown locked with reason", "outfit identity plus anticipated capability", "Failed equip consumes nothing and cannot advance", "design_intent", True),
-        ("7:00–9:00", "Expedition", "Follow one audible/visible motif", "route reading; Priestess cue changes readability, not access", "motif feedback points toward Piano host", "find the phrase challenge", "Return to last expedition checkpoint", "design_intent", True),
-        ("9:00–11:00", "Expedition", "Play the selected Piano phrase", "timing/input retry", "grade plus explicit retry; success commits once", "Glide unlock and world response", "Miss never consumes command or blocks retry", "design_intent", True),
-        ("11:00–14:00", "Expedition", "Use Glide across the previously blocked route", "take Glide route or inspect fallback", "movement state and accessory remain visible", "visible traversal payoff within six minutes of preview", "Fall returns safely before the gate; unlock remains committed", "design_intent", True),
-        ("14:00–22:00", "Expedition", "Choose Attack/Skill/Item/Flee and time rhythm inputs", "normal JRPG command choice with rhythm degree", "grade modifies command feedback; miss still resolves command", "typed victory/defeat/fled/unavailable", "Any outcome resumes Quill once; unavailable starts no phantom battle", "design_intent", True),
-        ("22:00–25:00", "EveningReturn", "Read and advance the choice+outcome reaction", "dialogue pacing only", "distinct Sir/Priestess and outcome copy", "relationship consequence", "Restore exact reaction checkpoint; no battle callback replay", "design_intent", True),
-        ("25:00–28:00", "EveningReturn", "Inspect one reward and confirm return", "accept presentation, not a second reward choice", "one purpose stated; disposition visible", "phase/checkpoint commit", "Rejected reward does not consume command or advance", "design_intent", True),
-        ("28:00–30:00", "EveningReturn", "Save, return to menu, Continue, verify state", "Continue or replay probe", "same choice/outfit/unlock/outcome/dialogue checkpoint", "restart proof and next-day handoff", "AlreadyApplied on repeated commands; no duplicate intents/rewards", "offline_proven", True),
+        ("0:00-2:00", "MorningPreparation", "Walk, inspect the empty perch, approach preparation choice", "orientation and movement", "NPC/perch highlight and concise goal", "preparation choice becomes readable", "Resume at morning checkpoint; no command consumed", "source_built", True),
+        ("2:00-5:00", "MorningPreparation", "Choose Sir or Priestess once", "one scarce relationship choice", "show exact modifier/cue, slot consumed, evening promise", "meaningful day commitment", "Rejected commit leaves both choices available; Applied commit survives reload", "design_intent", True),
+        ("5:00-7:00", "Expedition", "Preview and equip the resonant accessory", "equip or back out", "Cos_Accessories_MelusinaV2 visible; Glide shown locked with reason", "outfit identity plus anticipated capability", "Failed equip consumes nothing and cannot advance", "design_intent", True),
+        ("7:00-9:00", "Expedition", "Follow one audible/visible motif", "route reading; Priestess cue changes readability, not access", "motif feedback points toward Piano host", "find the phrase challenge", "Return to last expedition checkpoint", "design_intent", True),
+        ("9:00-11:00", "Expedition", "Play the selected Piano phrase", "timing/input retry", "grade plus explicit retry; success commits once", "Glide unlock and world response", "Miss never consumes command or blocks retry", "design_intent", True),
+        ("11:00-14:00", "Expedition", "Use Glide across the previously blocked route", "take Glide route or inspect fallback", "movement state and accessory remain visible", "visible traversal payoff within six minutes of preview", "Fall returns safely before the gate; unlock remains committed", "design_intent", True),
+        ("14:00-22:00", "Expedition", "Choose Attack/Skill/Item/Flee and time rhythm inputs", "normal JRPG command choice with rhythm degree", "grade modifies command feedback; miss still resolves command", "typed victory/defeat/fled/unavailable", "Any outcome resumes Quill once; unavailable starts no phantom battle", "design_intent", True),
+        ("22:00-25:00", "EveningReturn", "Read and advance the choice+outcome reaction", "dialogue pacing only", "distinct Sir/Priestess and outcome copy", "relationship consequence", "Restore exact reaction checkpoint; no battle callback replay", "design_intent", True),
+        ("25:00-28:00", "EveningReturn", "Inspect one reward and confirm return", "accept presentation, not a second reward choice", "one purpose stated; disposition visible", "phase/checkpoint commit", "Rejected reward does not consume command or advance", "design_intent", True),
+        ("28:00-30:00", "EveningReturn", "Save, return to menu, Continue, verify state", "Continue or replay probe", "same choice/outfit/unlock/outcome/dialogue checkpoint", "restart proof and next-day handoff", "AlreadyApplied on repeated commands; no duplicate intents/rewards", "offline_proven", True),
     ]
     pacing = []
     for index, row in enumerate(pacing_defs, 1):
         window, phase, verb, choice, feedback, payoff, recovery, proof, agency = row
-        start, end = [int(part.split(":")[0]) for part in window.split("–")]
+        start, end = [int(part.split(":")[0]) for part in window.split("-")]
         pacing.append({
             "beat_id": f"target.{index:02d}",
             "window": window,
@@ -407,7 +407,7 @@ def build_target_report(source_audit: dict[str, Any], root: Path) -> dict[str, A
                 "proof_tier": "design_intent",
             },
         ],
-        "feedback_loop": "choice → immediate effect card → expedition expression → outcome-specific evening reaction → canonical save",
+        "feedback_loop": "choice -> immediate effect card -> expedition expression -> outcome-specific evening reaction -> canonical save",
         "bond_scope": "No roster, ranks, weekdays, schedules, or additional activity periods in this slice.",
         "score": {"expressive_scored_separately": True, "consequential_scored_separately": True},
         "live_evidence": "LIVE_EVIDENCE_REQUIRED: slot scarcity, distinct effects, reaction fidelity, and reload persistence.",
@@ -422,7 +422,7 @@ def build_target_report(source_audit: dict[str, Any], root: Path) -> dict[str, A
             "live_evidence": "LIVE_EVIDENCE_REQUIRED: visual read at gameplay camera distance and after reload.",
         },
         "capability_preview": "Locked reason must name Glide and the phrase requirement; preview cannot grant or mutate capability state.",
-        "acquisition_equip_payoff": "source-backed accessory → atomic equip → phrase result → Glide unlock → visibly blocked route → crossing payoff",
+        "acquisition_equip_payoff": "source-backed accessory -> atomic equip -> phrase result -> Glide unlock -> visibly blocked route -> crossing payoff",
         "traversal_expression": "Glide routes only through IMelodiaTraversalCapabilityProvider and UMelodiaTraversalComponent.",
         "payoff_latency_minutes": 6,
         "currently_playable": False,
@@ -438,7 +438,7 @@ def build_target_report(source_audit: dict[str, Any], root: Path) -> dict[str, A
         {"id": "unavailable_terminal_gap", "severity": "outcome_drift", "finding": "QSC has unavailable fallback copy, but progression accepts only victory, defeat, and fled; unavailable lacks a typed terminal intent and resume-once proof.", "evidence": "Content/MelodiaIntegration/Narrative/MelodiaQuillSmoke.qsc; specs/progression/melodia_first_dream_progression.v1.json", "proof_tier": "source_built", "resolution": "Add typed unavailable routing through the existing bridge; no JRPG mutation or phantom reward."},
         {"id": "defeat_fled_collapse", "severity": "outcome_drift", "finding": "Defeat and fled have distinct QSC copy but share intent.first_dream.objective.face_echo.fail and the same saved failure flag.", "evidence": "specs/progression/melodia_first_dream_progression.v1.json", "proof_tier": "source_built", "resolution": "Preserve the typed result in the versioned fragment so evening/reload can distinguish them."},
         {"id": "reward_semantics_unresolved", "severity": "owner_decision", "finding": "The target evening promises one purposeful reward, while reward.first_resonance_echo is currently victory-only and other outcomes grant none.", "evidence": "specs/progression/melodia_first_dream_progression.v1.json", "proof_tier": "source_built", "resolution": "OWNER_DECISION_REQUIRED: victory-only reward versus one outcome-neutral completion reward."},
-        {"id": "twenty_vs_thirty_minute_contract", "severity": "scope_drift", "finding": "The current playtest is a 0–20 minute route; the target day loop is a 20–30 minute three-phase slice.", "evidence": "Docs/FIRST_DREAM_20_MINUTE_PLAYTEST_2026-08-01.md", "proof_tier": "source_built", "resolution": "Use the target pacing table for implementation; retain the older playtest as baseline evidence only."},
+        {"id": "twenty_vs_thirty_minute_contract", "severity": "scope_drift", "finding": "The current playtest is a 0-20 minute route; the target day loop is a 20-30 minute three-phase slice.", "evidence": "Docs/FIRST_DREAM_20_MINUTE_PLAYTEST_2026-08-01.md", "proof_tier": "source_built", "resolution": "Use the target pacing table for implementation; retain the older playtest as baseline evidence only."},
         {"id": "proof_gates_open", "severity": "proof_gap", "finding": "wardrobe_equip_roundtrip, rhythm_grade_to_result, music_world_key, wardrobe_gameplay_hook, result matrix, and HUD single-writer proof remain open for this combined loop.", "evidence": "C:/EnvironmentPortfolio/PROJECT.md; _VERTICAL_SLICE_SCOPE.md", "proof_tier": "LIVE_EVIDENCE_REQUIRED", "resolution": "Only runtime evidence may close runtime gates."},
     ]
 
@@ -551,7 +551,7 @@ def _cell(value: Any) -> str:
 def render_markdown(report: dict[str, Any]) -> str:
     phases = report["three_phase_day"]["phases"]
     lines = [
-        "# First Dream Persona / Infinity Nikki Experience Contract Audit — 2026-08-24",
+        "# First Dream Persona / Infinity Nikki Experience Contract Audit - 2026-08-24",
         "",
         "**Verdict:** the requested three-phase slice is now specified as a deterministic offline contract, not claimed as implemented. Current sources contain the narrative, progression, wardrobe vocabulary, capability seam, and stock encounter pieces, but the scarce preparation slot, resonant accessory binding, phrase-to-Glide transaction, combined four-outcome evening flow, and versioned day fragment remain design intent or live-evidence work.",
         "",
@@ -566,7 +566,7 @@ def render_markdown(report: dict[str, Any]) -> str:
         lines.append(f"| {_cell(phase['phase'])} | {_cell(phase['window'])} | {_cell(phase['player_contract'])} | {_cell(phase['exit_invariant'])} | {_cell(phase['proof_tier'])} |")
     lines.extend([
         "",
-        "The phase order is `MorningPreparation → Expedition → EveningReturn`. One preparation slot is consumed per day. No calendar, weekday, NPC schedule, gacha, styling contest, second battle system, or second save system is introduced.",
+        "The phase order is `MorningPreparation -> Expedition -> EveningReturn`. One preparation slot is consumed per day. No calendar, weekday, NPC schedule, gacha, styling contest, second battle system, or second save system is introduced.",
         "",
         "## Preparation choice contract",
         "",
@@ -582,31 +582,31 @@ def render_markdown(report: dict[str, Any]) -> str:
         "",
         "## Fresh, Continue, and replay state contract",
         "",
-        "Fresh slot: `" + " → ".join(report["state_graph"]["fresh_slot_path"]) + "`",
+        "Fresh slot: `" + " -> ".join(report["state_graph"]["fresh_slot_path"]) + "`",
         "",
         "Continue must restore:",
         "",
     ])
     for key, value in report["state_graph"]["continue_paths"].items():
-        lines.append(f"- `{key}` — {value}")
+        lines.append(f"- `{key}` - {value}")
     lines.extend(["", "Continue outcome restoration:", ""])
     for outcome, path in report["state_graph"]["continue_outcome_paths"].items():
-        lines.append(f"- `{outcome}` — `" + " → ".join(path) + "`")
-    lines.extend(["", "Replay: `" + " → ".join(report["state_graph"]["replay_path"]) + "`", "", "Atomic rejection: `" + " → ".join(report["state_graph"]["atomic_failure_path"]) + "`", "", "## Battle outcome contract", "", "| Outcome | Current source | Target continuation | Reward | Proof / open evidence |", "|---|---|---|---|---|"])
+        lines.append(f"- `{outcome}` - `" + " -> ".join(path) + "`")
+    lines.extend(["", "Replay: `" + " -> ".join(report["state_graph"]["replay_path"]) + "`", "", "Atomic rejection: `" + " -> ".join(report["state_graph"]["atomic_failure_path"]) + "`", "", "## Battle outcome contract", "", "| Outcome | Current source | Target continuation | Reward | Proof / open evidence |", "|---|---|---|---|---|"])
     for row in report["battle_outcomes"]:
         lines.append(f"| {_cell(row['outcome'])} | {_cell(row['source_state'])} | {_cell(row['target_state'])} | {_cell(row['reward'])} | {_cell(row['proof_tier'] + '; ' + row['runtime_proof'])} |")
     lines.extend(["", "Every outcome, including `unavailable`, enters EveningReturn and resumes Quill exactly once in the target contract. A rhythm miss changes degree of success, never access to the normal JRPG command or story progression.", "", "## Exactly-once matrix", "", "| Analysis row | Phase | Command ID | Atomic effect | Repeat | Failure | Proof |", "|---|---|---|---|---|---|---|"])
     for row in report["exactly_once_matrix"]:
         lines.append(f"| {_cell(row['analysis_id'])} | {_cell(row['phase'])} | {_cell(row['command_id'])} | {_cell(row['atomic_effect'])} | {_cell(row['repeat_disposition'])} | {_cell(row['failure_disposition'] + '; consume=false; advance=false')} | {_cell(row['proof_tier'])} |")
-    lines.extend(["", "## 0–30 minute pacing", "", "| Window | Phase | Player verb | Choice | Feedback | Payoff | Failure recovery | Proof |", "|---|---|---|---|---|---|---|---|"])
+    lines.extend(["", "## 0-30 minute pacing", "", "| Window | Phase | Player verb | Choice | Feedback | Payoff | Failure recovery | Proof |", "|---|---|---|---|---|---|---|---|"])
     for row in report["pacing_table"]:
         lines.append(f"| {_cell(row['window'])} | {_cell(row['phase'])} | {_cell(row['player_verb'])} | {_cell(row['choice'])} | {_cell(row['feedback'])} | {_cell(row['payoff'])} | {_cell(row['failure_recovery'])} | {_cell(row['proof_tier'])} |")
-    lines.extend(["", "## Persona lens", "", report["persona_lens"]["thesis"], "", f"Scarcity: {report['persona_lens']['scarce_activity_slot']}", "", "Expressive and consequential choices are scored separately. The feedback loop is: `" + report["persona_lens"]["feedback_loop"] + "`.", "", "## Infinity Nikki lens", "", report["infinity_nikki_lens"]["thesis"], "", f"Target loop: `{report['infinity_nikki_lens']['acquisition_equip_payoff']}`", "", f"Current playable verdict: **{report['infinity_nikki_lens']['currently_playable']}** — {report['infinity_nikki_lens']['current_reason']}", "", "## Drift report", "", "| ID | Severity | Finding | Resolution | Proof |", "|---|---|---|---|---|"])
+    lines.extend(["", "## Persona lens", "", report["persona_lens"]["thesis"], "", f"Scarcity: {report['persona_lens']['scarce_activity_slot']}", "", "Expressive and consequential choices are scored separately. The feedback loop is: `" + report["persona_lens"]["feedback_loop"] + "`.", "", "## Infinity Nikki lens", "", report["infinity_nikki_lens"]["thesis"], "", f"Target loop: `{report['infinity_nikki_lens']['acquisition_equip_payoff']}`", "", f"Current playable verdict: **{report['infinity_nikki_lens']['currently_playable']}** - {report['infinity_nikki_lens']['current_reason']}", "", "## Drift report", "", "| ID | Severity | Finding | Resolution | Proof |", "|---|---|---|---|---|"])
     for row in report["drift_report"]:
         lines.append(f"| {_cell(row['id'])} | {_cell(row['severity'])} | {_cell(row['finding'])} | {_cell(row['resolution'])} | {_cell(row['proof_tier'])} |")
     lines.extend(["", "## Required heuristic flags", ""])
     for name, result in report["heuristics"].items():
-        lines.append(f"- `{name}` — flagged `{str(result['flagged']).lower()}`: {result['finding']}")
+        lines.append(f"- `{name}` - flagged `{str(result['flagged']).lower()}`: {result['finding']}")
     lines.extend(["", "## Content ID resolution", "", "| Kind | ID or NEED | Resolution | Evidence |", "|---|---|---|---|"])
     for ref in report["id_resolution"]["references"]:
         lines.append(f"| {_cell(ref['kind'])} | {_cell(ref['value'])} | {_cell(ref['resolution'])} | {_cell(ref['evidence'])} |")

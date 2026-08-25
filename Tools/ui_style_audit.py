@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ui_style_audit.py — inventory every authored widget style, then propose tokens.
+ui_style_audit.py - inventory every authored widget style, then propose tokens.
 
 WHY THIS SPEEDS UP VISUAL POLISH
 

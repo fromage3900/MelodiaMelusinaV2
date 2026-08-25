@@ -1,4 +1,4 @@
-"""AAA musical geometry GN builders — ZBrush IMM-ready kit (Blender 5.2 APIs).
+"""AAA musical geometry GN builders - ZBrush IMM-ready kit (Blender 5.2 APIs).
 
 Eight production builders pushing the music category into AAA territory:
 waveform wall, vinyl disc, lissajous harp, piano key row, frequency ribcage,
@@ -117,7 +117,7 @@ def _xf(tree, loc, geo, loc_v=None, rot=None, scale=None):
 
 
 def _sock(v):
-    """Normalize node → its first output socket; pass sockets through."""
+    """Normalize node -> its first output socket; pass sockets through."""
     if v is None:
         return None
     if hasattr(v, "outputs") and not hasattr(v, "is_output"):
@@ -204,7 +204,7 @@ def _torus(tree, loc, major_sock, major_mult, minor_sock, minor_mult, major_seg=
         link_sockets(tree, mo.outputs[0], _in(outer, "Radius"))
     if mi:
         link_sockets(tree, mi.outputs[0], _in(inner, "Radius"))
-    # minor circle must stand perpendicular: rotate 90° Y
+    # minor circle must stand perpendicular: rotate 90deg Y
     inner_xf = _xf(tree, (loc[0] - 120, loc[1] - 60), inner.outputs["Curve"],
                    rot=(0, math.radians(90), 0))
     prof_curve = inner_xf.outputs["Geometry"] if inner_xf else inner.outputs["Curve"]
@@ -221,7 +221,7 @@ def _torus(tree, loc, major_sock, major_mult, minor_sock, minor_mult, major_seg=
 
 
 def _realize(tree, loc, geo):
-    """Realize instances — sets 'Realize All' (Blender 5.2+ input, default False)."""
+    """Realize instances - sets 'Realize All' (Blender 5.2+ input, default False)."""
     rl = safe_node(tree, "GeometryNodeRealizeInstances", loc)
     if rl is None:
         return geo
@@ -588,7 +588,7 @@ def build_imm_piano_keys(group_name="MEL_imm_piano_keys"):
     add_float_param(tree, "Black Length Ratio", 0.62, 0.3, 0.9)
     add_float_param(tree, "Scale", 1.0, 0.1, 5.0)
 
-    # 7 whites per octave — literal A × Octaves (avoid b_val/link slot collision)
+    # 7 whites per octave - literal A × Octaves (avoid b_val/link slot collision)
     total_whites = _math(tree, (-750, 430), "MULTIPLY",
                          a=7.0, b=gin.outputs["Octaves"] if gin.outputs.get("Octaves") else None,
                          b_val=2 if not gin.outputs.get("Octaves") else None)
@@ -1026,13 +1026,13 @@ def build_music_soundhole_rosette(group_name="MEL_music_soundhole_rosette"):
 
 
 # ────────────────────────────────────────────────────────────────────────
-# 9. Harmonograph — damped Lissajous tracery, Score-interval ratios
+# 9. Harmonograph - damped Lissajous tracery, Score-interval ratios
 # ────────────────────────────────────────────────────────────────────────
 
 def build_music_harmonograph(group_name="MEL_music_harmonograph"):
     """Damped harmonograph: x=A1 sin(f1 t+p1) e^(-d t), y=A2 sin(f2 t+p2) e^(-d t).
 
-    f1:f2 ratios map to musical intervals — octave 2:1, fifth 3:2, fourth 4:3,
+    f1:f2 ratios map to musical intervals - octave 2:1, fifth 3:2, fourth 4:3,
     major third 5:4 (set via Frequency A/B). Damping gives the classic decay
     spiral-in of pendulum harmonographs.
     """
@@ -1048,7 +1048,7 @@ def build_music_harmonograph(group_name="MEL_music_harmonograph"):
     add_float_param(tree, "Thickness", 0.02, 0.004, 0.12)
     add_float_param(tree, "Scale", 1.0, 0.1, 5.0)
 
-    # Parameter line: t along X — MUST become a CURVE before SetPosition,
+    # Parameter line: t along X - MUST become a CURVE before SetPosition,
     # because Spline Parameter Factor is undefined (=0) on mesh geometry.
     line = _point_line(tree, (-520, 300), gin.outputs["Resolution"],
                        start=(-1.6, 0, 0), step=(0.008, 0, 0))
@@ -1066,7 +1066,7 @@ def build_music_harmonograph(group_name="MEL_music_harmonograph"):
     if tau_t and turns_tau:
         link_sockets(tree, turns_tau.outputs[0], tau_t.inputs[1])
 
-    # envelope e^(-d·T): EXPONENT node computes e^x
+    # envelope e^(-d-T): EXPONENT node computes e^x
     env_in = None
     if gin.outputs.get("Damping"):
         dt = _math(tree, (-40, 380), "MULTIPLY",
@@ -1147,5 +1147,5 @@ register_builder("MEL_music_soundhole_rosette", build_music_soundhole_rosette, "
                  "Guitar soundhole medallion: flattened concentric rings + radial studs",
                  "music")
 register_builder("MEL_music_harmonograph", build_music_harmonograph, "Harmonograph Tracery",
-                 "Damped Lissajous pendulum drawing — f1:f2 = Score interval (2:1 oct, 3:2 fifth)",
+                 "Damped Lissajous pendulum drawing - f1:f2 = Score interval (2:1 oct, 3:2 fifth)",
                  "music")

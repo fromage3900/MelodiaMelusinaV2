@@ -9,7 +9,7 @@ class RW_PT_main(bpy.types.Panel):
     bl_idname = "RW_PT_main"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "Resonant World"
+    bl_category = "Melodia Studio"
 
     def draw(self, context):
         layout = self.layout
@@ -42,7 +42,7 @@ class RW_PT_metrics(bpy.types.Panel):
     bl_idname = "RW_PT_metrics"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "Resonant World"
+    bl_category = "Melodia Studio"
     bl_parent_id = "RW_PT_main"
 
     def draw(self, context):

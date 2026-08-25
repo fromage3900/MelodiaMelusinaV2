@@ -4,8 +4,6 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "MelodiaOpeningFlowSubsystem.generated.h"
 
-class AMelodiaQuestManagerBase;
-
 UENUM(BlueprintType)
 enum class EMelodiaOpeningPhase : uint8
 {
@@ -108,7 +106,6 @@ public:
 
 private:
 	bool TransitionTo(EMelodiaOpeningPhase ExpectedPhase, EMelodiaOpeningPhase NewPhase);
-	AMelodiaQuestManagerBase* FindQuestManager() const;
 
 	/** Bedroom exploration points visited this Morning, keyed by their authored
 	 * PointId. Cleared on ResetOpening(); deliberately not cleared on ordinary

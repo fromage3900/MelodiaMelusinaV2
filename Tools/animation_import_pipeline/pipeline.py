@@ -79,6 +79,10 @@ def cmd_preflight(args: argparse.Namespace) -> int:
     if was_legacy:
         errors.append("legacy sidecar is catalogued only; write a v2 sidecar before import")
     errors.extend(validate_v2(manifest) if not was_legacy else [])
+    if not was_legacy and manifest.get("status") != "canonical":
+        errors.append(
+            f"manifest status {manifest.get('status')!r} is not importable; only canonical source-rig clips may enter the UE chain"
+        )
     guard = _unit_guard(fbx, manifest)
     errors.extend(guard.get("errors", []))
     result = {"ok": not errors, "fbx": str(fbx), "manifest": manifest, "unit_guard": guard, "errors": errors}

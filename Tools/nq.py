@@ -1,4 +1,4 @@
-"""nq.py — thin CLI wrapper for Monolith query namespaces.
+"""nq.py - thin CLI wrapper for Monolith query namespaces.
 
 Usage:
     python Tools/nq.py niagara get_system_summary params.json

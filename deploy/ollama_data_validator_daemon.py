@@ -60,12 +60,12 @@ def run_pass():
         errs = check(f)
         if errs:
             bad[f] = errs
-    lines = [f"# Imports/Data Validation — {time.strftime('%Y-%m-%d %H:%M')}",
-             f"\nScanned: {len(files)} · Passed: {len(files) - len(bad)} · Flagged: {len(bad)}\n"]
+    lines = [f"# Imports/Data Validation - {time.strftime('%Y-%m-%d %H:%M')}",
+             f"\nScanned: {len(files)} - Passed: {len(files) - len(bad)} - Flagged: {len(bad)}\n"]
     if bad:
-        lines.append("## Quarantine candidates (review + fix or discard — NOT auto-moved)\n")
+        lines.append("## Quarantine candidates (review + fix or discard - NOT auto-moved)\n")
         for f, errs in sorted(bad.items()):
-            lines.append(f"- `{f.relative_to(ROOT)}` — " + "; ".join(errs))
+            lines.append(f"- `{f.relative_to(ROOT)}` - " + "; ".join(errs))
     (DATA / "VALIDATION.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     log(f"pass done: {len(files)} scanned, {len(bad)} flagged")
 

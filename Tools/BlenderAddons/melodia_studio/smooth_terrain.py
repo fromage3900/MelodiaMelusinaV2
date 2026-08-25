@@ -1,7 +1,7 @@
-"""Smooth terrain mesh generator — replaces voxel cubes with continuous landscape.
+"""Smooth terrain mesh generator - replaces voxel cubes with continuous landscape.
 
 Takes the walkable heightfield and produces a smooth, biomes-colored mesh:
-- Bilinear subdivision (each cell → 4×4 sub-cells)
+- Bilinear subdivision (each cell -> 4×4 sub-cells)
 - Smooth shading
 - Biome vertex colors (peak=snow, valley=grass, slope=rock, path=sand)
 - Deterministic (seed 3900)

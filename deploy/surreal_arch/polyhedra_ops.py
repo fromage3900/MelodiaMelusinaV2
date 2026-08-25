@@ -1,4 +1,4 @@
-"""Polyhedra spawn operators — registry-backed panel + spawn_polyhedron."""
+"""Polyhedra spawn operators - registry-backed panel + spawn_polyhedron."""
 from __future__ import annotations
 
 import bpy
@@ -67,5 +67,5 @@ def patch_kepler_panel(monolith):
 
 def register_polyhedra_operators(monolith):
     patch_kepler_panel(monolith)
-    # Do not register here — integration._register_class_once owns first-run hygiene.
+    # Do not register here - integration._register_class_once owns first-run hygiene.
     return [SURREAL_ARCH_OT_spawn_polyhedron]

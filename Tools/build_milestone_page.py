@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""build_milestone_page.py — a shareable status page built from real project state.
+"""build_milestone_page.py - a shareable status page built from real project state.
 
 Purpose: give a professor, collaborator or reviewer one private URL that shows where
 the project actually is, without them cloning 3 GB or reading a 400-file Docs tree.
@@ -150,16 +150,16 @@ def build(public=False):
             + ("no new violations." if art_clean or art_accepted else "see detailed report.")
             + "</b></p>")
     else:
-        art_section = ("<h2>Art gates (strict — true state, not baselined)</h2><pre>"
+        art_section = ("<h2>Art gates (strict - true state, not baselined)</h2><pre>"
                        + esc(art_out or "art_gates.py produced no output") + "</pre>")
 
-    heading = "Melodia — project status" if public else "Melodia — milestone status"
-    headline = "" if public else f" · HEAD <code>{esc(head)}</code>"
+    heading = "Melodia - project status" if public else "Melodia - milestone status"
+    headline = "" if public else f" - HEAD <code>{esc(head)}</code>"
     cards_extra = ("" if public else
                    f'<div class=card><div class=n>{art_accepted}</div>'
                    '<div class=l>art debt (baselined)</div></div>')
     foot = ("Figures are generated directly from the project's own evidence ledger and "
-            "git history at build time — nothing on this page is hand-written."
+            "git history at build time - nothing on this page is hand-written."
             if public else
             "Every figure here is derived at build time from <code>Saved/gate_ledger.json</code>, "
             "<code>git log</code> and <code>Tools/art_gates.py</code>. Nothing on this page is "

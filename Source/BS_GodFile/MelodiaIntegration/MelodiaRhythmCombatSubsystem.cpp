@@ -395,6 +395,10 @@ EMelodiaSkillGrade UMelodiaRhythmCombatSubsystem::RegisterLaneHit(const int32 La
 		{
 			++SessionMissCount;
 			UE_LOG(LogTemp, Verbose, TEXT("MELODIA_RHYTHM lane=%d pressed with no note in range"), LaneIndex);
+			// A judged miss inside a live session. Timing error is genuinely
+			// undefined here (there was no note to be early or late against), so
+			// it reports 0 rather than a fabricated number.
+			OnLaneHitJudged.Broadcast(LaneIndex, EMelodiaSkillGrade::Miss, 0.0f);
 			return EMelodiaSkillGrade::Miss;
 		}
 
@@ -413,6 +417,7 @@ EMelodiaSkillGrade UMelodiaRhythmCombatSubsystem::RegisterLaneHit(const int32 La
 		{
 			++SessionMissCount;
 			UE_LOG(LogTemp, Verbose, TEXT("MELODIA_RHYTHM lane=%d graded Miss (no musical time)"), LaneIndex);
+			OnLaneHitJudged.Broadcast(LaneIndex, EMelodiaSkillGrade::Miss, 0.0f);
 			return EMelodiaSkillGrade::Miss;
 		}
 
@@ -453,6 +458,11 @@ EMelodiaSkillGrade UMelodiaRhythmCombatSubsystem::RegisterLaneHit(const int32 La
 
 	UE_LOG(LogTemp, Verbose, TEXT("MELODIA_RHYTHM lane=%d error=%.1fms grade=%s hits=%d misses=%d"),
 		LaneIndex, TimingErrorMs, *UEnum::GetValueAsString(Grade), SessionHitCount, SessionMissCount);
+
+	// Per-press presentation seam. Broadcast AFTER the counters and the HUD text
+	// so any listener that reads GetSessionHitCount()/GetSessionMissCount() sees
+	// this press already counted rather than the previous frame's totals.
+	OnLaneHitJudged.Broadcast(LaneIndex, Grade, TimingErrorMs);
 
 	return Grade;
 }

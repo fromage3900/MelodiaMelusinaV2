@@ -31,7 +31,7 @@ def generate_enum_items(monolith):
 def format_enum_stub(monolith):
     """Format a Python snippet mirroring arch_type EnumProperty items."""
     lines = [
-        "# Auto-generated from ARCH_CATALOG — do not hand-edit; re-export via Level Design panel",
+        "# Auto-generated from ARCH_CATALOG - do not hand-edit; re-export via Level Design panel",
         "CATALOG_ARCH_TYPE_ITEMS = [",
     ]
     for at_id, label, desc in generate_enum_items(monolith):

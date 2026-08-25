@@ -90,7 +90,7 @@ class KawaiiBunnyPlushGN(KawaiiGNBase):
             location=(-500, -100),
         )
 
-        # Head sphere (smaller, on top) — Kindchenschema enlarges head vs body
+        # Head sphere (smaller, on top) - Kindchenschema enlarges head vs body
         head = nodes.new('GeometryNodeMeshUVSphere')
         head.location = (-400, 400)
         head.inputs['Segments'].default_value = 32
@@ -225,7 +225,7 @@ class KawaiiCatPlushGN(KawaiiGNBase):
             location=(-500, -100),
         )
 
-        # Head sphere — Kindchenschema enlarges head vs body
+        # Head sphere - Kindchenschema enlarges head vs body
         head = nodes.new('GeometryNodeMeshUVSphere')
         head.location = (-400, 400)
         head.inputs['Segments'].default_value = 32

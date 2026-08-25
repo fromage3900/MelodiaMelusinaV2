@@ -184,7 +184,7 @@ def build_gazebo(group_name="MEL_gazebo"):
         pass
     link_sockets(tree, set_pos_fin.outputs["Geometry"], switch_finial.inputs.get("True") or switch_finial.inputs.get("TRUE"))
 
-    # Engawa veranda (zen teahouse language) — annular deck around the posts
+    # Engawa veranda (zen teahouse language) - annular deck around the posts
     engawa_r = safe_node(tree, "ShaderNodeMath", (bx - 300, by - 360))
     engawa_r.operation = "ADD"
     link_sockets(tree, gin.outputs["Radius"], engawa_r.inputs[0])
@@ -201,7 +201,7 @@ def build_gazebo(group_name="MEL_gazebo"):
     link_sockets(tree, gin.outputs["Has Engawa"], engawa_sw.inputs["Switch"])
     link_sockets(tree, engawa.outputs["Mesh"], engawa_sw.inputs.get("True") or engawa_sw.inputs.get("TRUE"))
 
-    # Optional irimoya overlay — shallower second hip (teahouse concave roof)
+    # Optional irimoya overlay - shallower second hip (teahouse concave roof)
     iri = safe_node(tree, "GeometryNodeMeshCone", (bx + 200, by - 480))
     iri.inputs["Vertices"].default_value = 12
     link_sockets(tree, gin.outputs["Radius"], iri.inputs["Radius Bottom"])
@@ -423,11 +423,11 @@ def build_portico(group_name="MEL_portico"):
 from .core import register_builder
 
 register_builder("MEL_gazebo", build_gazebo, "Gazebo",
-    "Full gazebo — columns, beam ring, conical roof, star finial",
+    "Full gazebo - columns, beam ring, conical roof, star finial",
     "structures")
 register_builder("MEL_arch", build_arch, "Arch",
-    "Simple arch structure — column pair with arc span",
+    "Simple arch structure - column pair with arc span",
     "structures")
 register_builder("MEL_portico", build_portico, "Portico",
-    "Portico assembly — column grid with triangular pediment gable",
+    "Portico assembly - column grid with triangular pediment gable",
     "structures")

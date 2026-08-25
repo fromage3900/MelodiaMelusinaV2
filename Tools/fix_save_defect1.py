@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-fix_save_defect1.py — Fix BP_MelodiaJRPGGameInstance::OnNewGameStarted exec chain.
+fix_save_defect1.py - Fix BP_MelodiaJRPGGameInstance::OnNewGameStarted exec chain.
 
 Defect: OnNewGameStarted event runs only RegisterSkill x3 and terminates.
 The stock CreateSaveGameObject -> Set jRPGSaveGame_0 chain is reachable ONLY

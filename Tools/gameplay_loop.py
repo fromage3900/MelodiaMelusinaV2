@@ -80,7 +80,7 @@ def main():
         iteration += 1
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print("\n" + "="*60)
-        print(f" Gameplay Loop iteration {iteration} — {now}")
+        print(f" Gameplay Loop iteration {iteration} - {now}")
         print("="*60)
 
         results = []

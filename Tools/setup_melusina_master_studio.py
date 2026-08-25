@@ -1,5 +1,5 @@
 """
-Melusina master studio pass — Fade Sky + Komikaze set + Melusina-framed cameras.
+Melusina master studio pass - Fade Sky + Komikaze set + Melusina-framed cameras.
 
 STOP / consent:
   Do not run on live Melodia_Portfolio_Stage_*.blend without artist consent.
@@ -9,11 +9,11 @@ STOP / consent:
 
 Runs in open Blender 5.1 on Melodia_Portfolio_Stage_v4.blend (MCP or Text Editor).
 
-- Fade Assets sky world (Gradient Spherical → magical-night tint)
+- Fade Assets sky world (Gradient Spherical -> magical-night tint)
 - Studio cyclorama + Komikaze NPR on Studio_FloorCard / Backdrop / Set_Diorama only (Lane B)
 - Cameras recomposed to live Melusina head/hips (not scaffold placeholder)
 - Hides broken FV2 star-skirt from beauty; restores Melusina_Skirt
-- Does not full-replace Melusina character materials (Lane A hybrids stay —
+- Does not full-replace Melusina character materials (Lane A hybrids stay -
   Water Advance hair + SHAWL-style PBR/Komikaze mixes are authored on the character)
 - Never move Studio_FloorCard (boot contact pin)
 
@@ -115,7 +115,7 @@ def melusina_anchors() -> dict[str, Vector]:
     head = head or Vector((0, -0.16, 1.44))
     chest = chest or Vector((0, -0.18, 1.10))
     feet = feet or Vector((0, -0.20, 0.05))
-    # Beauty aim: upper chest / lower face — classic ¾ portrait
+    # Beauty aim: upper chest / lower face - classic ¾ portrait
     beauty = Vector((chest.x, chest.y, (chest.z + head.z) * 0.5))
     return {"head": head, "chest": chest, "feet": feet, "beauty": beauty}
 
@@ -215,7 +215,7 @@ def setup_studio_set() -> dict:
         backdrop.data.materials.clear()
         backdrop.data.materials.append(bmat)
         report["komikaze"]["Studio_Backdrop"] = bmat.name
-    # Sky Night fills the frame — keep card available but off for master beauty
+    # Sky Night fills the frame - keep card available but off for master beauty
     backdrop.hide_viewport = True
     backdrop.hide_render = True
     report["backdrop"] = backdrop.name
@@ -234,7 +234,7 @@ def setup_studio_set() -> dict:
         ring.data.materials.append(rmat)
         report["komikaze"]["Studio_FloorCard"] = rmat.name
 
-    # Diorama NPR (safe — never Melusina)
+    # Diorama NPR (safe - never Melusina)
     try:
         import komikaze_stage_looks as klooks
 
@@ -322,7 +322,7 @@ def reframes_cameras(anchors: dict[str, Vector]) -> dict:
             "lens": cam.data.lens,
             "look": [round(x, 3) for x in spec["look"]],
         }
-        log(f"{name} → loc={out[name]['loc']} lens={cam.data.lens}")
+        log(f"{name} -> loc={out[name]['loc']} lens={cam.data.lens}")
 
     beauty = bpy.data.objects.get("Cam_Beauty")
     if beauty:
@@ -331,7 +331,7 @@ def reframes_cameras(anchors: dict[str, Vector]) -> dict:
 
 
 def tune_lights() -> dict:
-    """Nikki beauty balance — key dominates, pink rim reads on hair."""
+    """Nikki beauty balance - key dominates, pink rim reads on hair."""
     energies = {
         "L_KeyWarm": (620.0, (1.0, 0.93, 0.84)),
         "L_RimPink": (380.0, (1.0, 0.45, 0.72)),
@@ -380,11 +380,11 @@ def tune_lights() -> dict:
 
 
 def cleanup_beauty_subjects() -> dict:
-    """Hide foam/FX/FV2 clutter only — never hide outfit Retopo clothing layers."""
+    """Hide foam/FX/FV2 clutter only - never hide outfit Retopo clothing layers."""
     report = {"hidden": [], "shown": []}
 
     # Real clutter / FX only. Do NOT hide Retopo_Plane* (skirtpanel/shawl/frontpanel/gloves)
-    # or Retopo_Cube* bows / Retopo_starfrill — those are Melusina outfit meshes.
+    # or Retopo_Cube* bows / Retopo_starfrill - those are Melusina outfit meshes.
     hide_exact = (
         "fluid_surface",
         "FX_KawaiiSparkles",
@@ -469,7 +469,7 @@ def cleanup_beauty_subjects() -> dict:
     ):
         c = bpy.data.collections.get(cname)
         if c:
-            # Render isolate only — never Collection.hide_viewport (hard Outliner lock)
+            # Render isolate only - never Collection.hide_viewport (hard Outliner lock)
             c.hide_render = not on
             c.hide_viewport = False
 
@@ -479,7 +479,7 @@ def cleanup_beauty_subjects() -> dict:
             c.hide_viewport = False
             report["hidden"].append(c.name)
 
-    # Quiet FX meshes for clean beauty (opt-in later) — render only
+    # Quiet FX meshes for clean beauty (opt-in later) - render only
     for name in ("FX_SheerVeil", "FX_RibbonJiggle", "FX_SanctusJewelryHero"):
         o = bpy.data.objects.get(name)
         if o:
@@ -519,7 +519,7 @@ def setup_render() -> dict:
 def main() -> dict:
     if STOP.is_file():
         msg = (
-            f"ABORT: {STOP} present — do not mutate Melusina/stage lookdev. "
+            f"ABORT: {STOP} present - do not mutate Melusina/stage lookdev. "
             "Artist consent + remove stop flag required."
         )
         log(msg)

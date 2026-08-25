@@ -14,14 +14,14 @@ Does:
   - copy LiquiFeel GN groups from melusina_ElixirGlass when present
   - try liquifeel ops on proxies when addon available
 
-Usage (GUI — preferred; do not auto-save stage):
+Usage (GUI - preferred; do not auto-save stage):
   Open Melodia_Portfolio_Stage_v10.blend yourself, then:
   exec(open(r"G:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\setup_melusina_liquifeel_hair_drip.py").read())
 
   CLI audit-only (no save):
   blender KitbashExport/Melodia_Portfolio_Stage_v10.blend -P Tools/setup_melusina_liquifeel_hair_drip.py
 
-  Explicit save of the stage (rare — requires env):
+  Explicit save of the stage (rare - requires env):
   set MELODIA_ALLOW_STAGE_SAVE=1
   blender ... -P Tools/setup_melusina_liquifeel_hair_drip.py -- --save
 """

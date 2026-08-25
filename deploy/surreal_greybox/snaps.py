@@ -1,4 +1,4 @@
-"""Snap point load/save helpers — extracted greybox assembly utilities."""
+"""Snap point load/save helpers - extracted greybox assembly utilities."""
 
 from __future__ import annotations
 

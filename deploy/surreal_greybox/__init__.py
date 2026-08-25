@@ -1,4 +1,4 @@
-"""surreal_greybox — extracted greybox primitives and snap helpers (v2.66).
+"""surreal_greybox - extracted greybox primitives and snap helpers (v2.66).
 
 Reconstructed 2026-08-23 from surviving bytecode after a deploy-tree /MIR
 dropped the untracked original. Aggregates the three core attach points;

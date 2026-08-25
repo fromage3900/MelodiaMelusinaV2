@@ -317,7 +317,7 @@ def main() -> None:
             print(c)
         sys.exit(1)
     else:
-        print("[OK] All fingerprints match baseline — no unexpected changes.")
+        print("[OK] All fingerprints match baseline - no unexpected changes.")
 
 
 if __name__ == "__main__":

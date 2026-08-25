@@ -147,11 +147,11 @@ class GraphBuilder:
 
     def build(self) -> dict:
         ax = self.lane("00", "00 | INPUT", "Source + Remote params")
-        bx = self.lane("01", "01 | PREPROCESS", "Scale · levels · buffer")
-        cx = self.lane("02", "02 | SEAMLESS TILE", "Kaleido · mirror · repeat")
-        nx = self.lane("08", "08 | NIKKI", "Rim · sparkle · dream grade")
+        bx = self.lane("01", "01 | PREPROCESS", "Scale - levels - buffer")
+        cx = self.lane("02", "02 | SEAMLESS TILE", "Kaleido - mirror - repeat")
+        nx = self.lane("08", "08 | NIKKI", "Rim - sparkle - dream grade")
         mx = self.lane("22", "22 | MADOKA", "Witch barrier analog", witch=True)
-        ix = self.lane("23", "23 | ITTO", "Oni geometry · ink cracks")
+        ix = self.lane("23", "23 | ITTO", "Oni geometry - ink cracks")
         celx = self.lane("14", "14 | CELESTIAL", "NASA spatial maps")
         hx = self.lane("05", "05 | HEIGHT", "Composite displacement")
         px = self.lane("06", "06 | PBR MAPS", "All channel split")
@@ -432,7 +432,7 @@ class GraphBuilder:
             "type": "graph",
             "name": "MM_Master_SurrealAnimatedPBR",
             "label": "MM Master Surreal Animated PBR",
-            "longdesc": "Surreal tileable PBR batch converter — Nikki / Madoka / Itto / Celestial lanes",
+            "longdesc": "Surreal tileable PBR batch converter - Nikki / Madoka / Itto / Celestial lanes",
             "shortdesc": "",
             "node_position": {"x": 0, "y": 0},
             "parameters": {},

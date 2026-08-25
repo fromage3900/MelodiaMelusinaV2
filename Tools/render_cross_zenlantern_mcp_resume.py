@@ -4,7 +4,7 @@
 Designed for interactive Blender (MCP / GUI) or:
   blender -b KitbashExport/Melodia_Portfolio_Stage_v14.blend -P Tools/render_cross_zenlantern_mcp_resume.py
 
-Respects MELUSINA_SHADER_AGENT_STOP — never save_mainfile.
+Respects MELUSINA_SHADER_AGENT_STOP - never save_mainfile.
 """
 from __future__ import annotations
 
@@ -220,7 +220,7 @@ def main() -> int:
             if o:
                 o.hide_render = False
                 show = [o]
-        # turn off lantern's own light — use stage glam
+        # turn off lantern's own light - use stage glam
         zl = bpy.data.objects.get("zenlantern_Light")
         if zl:
             zl.hide_render = True

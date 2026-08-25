@@ -573,7 +573,7 @@ class BreakdownEditor:
                 if component.get("analysis"):
                     for key, value in component["analysis"].items():
                         if isinstance(value, bool):
-                            structure.append(f"      ├─ {key}: {'✓' if value else '✗'}")
+                            structure.append(f"      ├─ {key}: {'*' if value else '*'}")
                         elif isinstance(value, (int, float)):
                             structure.append(f"      ├─ {key}: {value}")
                         elif key != "error" and value not in ["", None]:

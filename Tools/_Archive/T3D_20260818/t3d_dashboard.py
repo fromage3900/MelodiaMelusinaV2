@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-t3d_dashboard.py — text dashboards over the committed T3D material baseline.
+t3d_dashboard.py - text dashboards over the committed T3D material baseline.
 
 WHY
 
@@ -101,7 +101,7 @@ def load_verifier():
 # ---------------------------------------------------------------- views
 
 def view_overview(cat, assets):
-    lines = header("T3D BASELINE — OVERVIEW",
+    lines = header("T3D BASELINE - OVERVIEW",
                    datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
     total_nodes = cat.get("total_nodes", sum(a["nodes"] for a in assets))
     total_bytes = cat.get("total_payload_bytes", sum(a["payload_bytes"] for a in assets))
@@ -143,7 +143,7 @@ def view_families(cat, assets):
 
 
 def view_heaviest(cat, assets, top=15):
-    lines = header(f"HEAVIEST {top} ASSETS", "by node count — where the complexity actually lives")
+    lines = header(f"HEAVIEST {top} ASSETS", "by node count - where the complexity actually lives")
     ranked = sorted(assets, key=lambda a: -a["nodes"])[:top]
     peak = ranked[0]["nodes"] if ranked else 1
     lines.append(f"  {'asset':<40}{'nodes':>6}{'payload':>11}  {'':<20}")
@@ -227,7 +227,7 @@ def view_drift(cat, assets):
             continue
         if vb.reordered_only(baseline_text, payload):
             reordered += 1
-            detail.append(("REORDER", a["name"], "sibling order only — not a change"))
+            detail.append(("REORDER", a["name"], "sibling order only - not a change"))
         else:
             drifted += 1
             live_nodes = payload.count("Begin Object Class=")

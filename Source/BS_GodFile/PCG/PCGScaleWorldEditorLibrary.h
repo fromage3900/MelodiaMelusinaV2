@@ -30,4 +30,18 @@ public:
 		const FString& WorldAssetPath,
 		const FString& DestinationPath,
 		const FString& AssetName);
+
+	/**
+	 * Creates an isolated UE 5.8 MeshPartition terrain from an imported StaticMesh.
+	 *
+	 * MeshPartition's native component setter is intentionally not reflected to
+	 * Python. This editor-only bridge keeps the import path deterministic while
+	 * still using the engine's DynamicMesh and preview-section pipeline.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "PCG|Scale World")
+	static FString CreateMeshPartitionTerrain(
+		const FString& WorldAssetPath,
+		const FString& MeshAssetPath,
+		const FString& MaterialAssetPath,
+		const FString& ActorLabel);
 };

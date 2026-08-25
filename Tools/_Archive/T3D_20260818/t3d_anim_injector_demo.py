@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-t3d_anim_injector_demo.py — demo: tune Melusina locomotion blendspace
+t3d_anim_injector_demo.py - demo: tune Melusina locomotion blendspace
 and apply AnimBP variable defaults via T3DAnimBlueprintInjector.
 
 Usage:
@@ -36,7 +36,7 @@ def main():
     dry_run = "--dry-run" in sys.argv
 
     print("=" * 60)
-    print("T3D AnimBP Injector — Melusina Demo")
+    print("T3D AnimBP Injector - Melusina Demo")
     print("=" * 60)
     print(f"  Project: {PROJECT_ROOT}")
     print(f"  Dry run: {dry_run}")

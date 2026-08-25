@@ -817,32 +817,32 @@ def render_report(inventory: dict[str, Any], audit: dict[str, Any]) -> str:
         ))
     ]
     lines = [
-        f"# Non-UE Gate Truth Audit — {AUDIT_DATE}", "",
+        f"# Non-UE Gate Truth Audit - {AUDIT_DATE}", "",
         "## Verdict", "",
         f"**HOLD.** The inventory reconciles at **{inventory['entry_count']} files**, but the current offline shared contract run is "
         f"**{shared['passed']}/{shared['suite_count']}** and GMM discovery is **{gmm['status']}** "
         f"after running {gmm['tests_run']} tests. Unsafe candidates remain HOLD; no editor, network, build, or dependency install was used.", "",
         "## What was actually run", "",
-        f"- `{shared['command']}` — return {shared['returncode']}; {shared['passed']} pass, {shared['failed']} fail; floor {shared['coverage_floor']}.",
-        f"- `{gmm['command']}` — return {gmm['returncode']}; {gmm['summary']}.",
+        f"- `{shared['command']}` - return {shared['returncode']}; {shared['passed']} pass, {shared['failed']} fail; floor {shared['coverage_floor']}.",
+        f"- `{gmm['command']}` - return {gmm['returncode']}; {gmm['summary']}.",
         f"- Inventory results: PASS {counts['PASS']}, FAIL/grouped FAIL {counts['FAIL']}, HOLD_UNSAFE {counts['HOLD_UNSAFE']}, NOT_RUN {counts['NOT_RUN']}.", "",
         "Both commands ran in bounded subprocesses with `-B`. Tests were discovered with `pathlib` and `ast`; no test module was imported for inventory.", "",
         "## Pytest coverage truth", "",
         inventory["pytest"]["coverage_explanation"], "",
     ]
     for evidence in inventory["pytest"]["evidence"]:
-        lines.append(f"- `{evidence.get('path', inventory['pytest']['path'])}:{evidence['line']}` — `{evidence['source'].strip()}`")
+        lines.append(f"- `{evidence.get('path', inventory['pytest']['path'])}:{evidence['line']}` - `{evidence['source'].strip()}`")
     lines.extend(["", "## Shared runner failures", ""])
     failures = [item for item in shared["results"] if item["status"] == "FAIL"]
     if failures:
         for item in failures:
-            lines.append(f"- `{item['path']}` — {item.get('failure_excerpt') or item.get('reason') or 'failed'}")
+            lines.append(f"- `{item['path']}` - {item.get('failure_excerpt') or item.get('reason') or 'failed'}")
     else:
         lines.append("- None.")
     lines.extend(["", "## GMM discovery failures", ""])
     if gmm["failure_owners"]:
         for owner in gmm["failure_owners"]:
-            lines.append(f"- **{owner['owner']}** — {owner['issue']}.")
+            lines.append(f"- **{owner['owner']}** - {owner['issue']}.")
     else:
         lines.append("- None.")
     lines.extend(["", "## Weak oracle evidence", ""])
@@ -850,10 +850,10 @@ def render_report(inventory: dict[str, Any], audit: dict[str, Any]) -> str:
     if weak:
         for finding in weak:
             suite = f" for `{finding['suite_path']}`" if finding.get("suite_path") else ""
-            lines.append(f"- `{finding['path']}:{finding['line']}` — **{finding['kind']}**{suite}: `{finding['source']}`")
+            lines.append(f"- `{finding['path']}:{finding['line']}` - **{finding['kind']}**{suite}: `{finding['source']}`")
     for item in shared["results"]:
         if item.get("runtime_oracle_warning"):
-            lines.append(f"- `{item['path']}` runtime output — **{item['runtime_oracle_warning']}**.")
+            lines.append(f"- `{item['path']}` runtime output - **{item['runtime_oracle_warning']}**.")
     if not weak and not any(item.get("runtime_oracle_warning") for item in shared["results"]):
         lines.append("- None detected.")
     lines.extend(["", "## Fix queue (ownership, not fixes)", ""])
@@ -865,7 +865,7 @@ def render_report(inventory: dict[str, Any], audit: dict[str, Any]) -> str:
             lines.append("- None.")
         else:
             for item in items:
-                lines.append(f"- `{item['source']}` — {item['issue']}")
+                lines.append(f"- `{item['source']}` - {item['issue']}")
         lines.append("")
     lines.extend([
         "## Acceptance reconciliation", "",

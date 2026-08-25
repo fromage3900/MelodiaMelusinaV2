@@ -7,7 +7,7 @@ spawns a review grid with EXPORT quality + Prefer Melodia GN enabled.
 Headless folder/queue only:
   python Tools/prep_ornament_music_mesh_session.py
 
-Blender (preferred — opens stage + grid):
+Blender (preferred - opens stage + grid):
   "C:\\Program Files\\Blender Foundation\\Blender 5.1\\blender.exe" ^
     KitbashExport/Melodia_Portfolio_Stage_v4.blend ^
     -P Tools/prep_ornament_music_mesh_session.py
@@ -62,7 +62,7 @@ MUSICAL_TARGETS = [
     ("SM_Orn_PearlJewel", None, "music"),
 ]
 
-# Melodia GN natives (new lane — bake alongside if authoring GN ornaments)
+# Melodia GN natives (new lane - bake alongside if authoring GN ornaments)
 MELODIA_GN_TARGETS = [
     ("SM_Orn_GN_Vine", "ORN_VINE", "melodia_gn"),
     ("SM_Orn_GN_Radial", "ORN_RADIAL", "melodia_gn"),
@@ -173,7 +173,7 @@ def setup_blender_session(spawn_grid: bool = True) -> dict:
         monolith.register()
     except Exception as exc:
         report["errors"].append(f"register: {exc}")
-        # Continue — props may already exist in stage blend
+        # Continue - props may already exist in stage blend
 
     try:
         from surreal_arch.quality_props import register_quality_props
@@ -241,7 +241,7 @@ def setup_blender_session(spawn_grid: bool = True) -> dict:
         try:
             props.arch_type = arch
         except TypeError:
-            # Melodia GN natives may not be in enum — set via IDProperties fallback skip
+            # Melodia GN natives may not be in enum - set via IDProperties fallback skip
             report["errors"].append(f"{name}: enum rejected {arch}")
             continue
         if hasattr(props, "export_quality"):

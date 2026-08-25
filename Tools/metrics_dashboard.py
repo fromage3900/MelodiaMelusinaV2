@@ -395,7 +395,7 @@ def generate_html(health, props, log_markers, step_idx):
 </div>
 
 <div class="card" style="margin-bottom:16px;">
-  <h3>\U0001f4dd Live Log Feed — MELUSINA_LOOP Markers</h3>
+  <h3>\U0001f4dd Live Log Feed - MELUSINA_LOOP Markers</h3>
   <div class="log-feed">{log_rows}</div>
 </div>
 

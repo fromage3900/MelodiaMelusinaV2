@@ -1,4 +1,4 @@
-"""Composer library — bake Layer-1 pieces into SurrealArch_Library."""
+"""Composer library - bake Layer-1 pieces into SurrealArch_Library."""
 
 from __future__ import annotations
 

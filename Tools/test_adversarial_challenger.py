@@ -100,7 +100,7 @@ class TestAdversarialBPFixtures(unittest.TestCase):
         self.assertFalse(res_long.get("valid"))
 
         # 5. Unicode and special characters
-        res_unicode = server.melodia_bp_validate_fixture("✨fixture_🔥_测试!@#$%^&*()")
+        res_unicode = server.melodia_bp_validate_fixture("*fixture_*_测试!@#$%^&*()")
         self.assertFalse(res_unicode.get("valid"))
 
     def test_bp_get_template_adversarial(self) -> None:
@@ -156,7 +156,7 @@ class TestAdversarialPersonaQuests(unittest.TestCase):
         self.assertIsNone(res_sqli.get("matched_quest"))
 
         # Unicode & Emoji
-        res_emoji = server.melodia_persona_get_quests("quest.✨_夢_overture")
+        res_emoji = server.melodia_persona_get_quests("quest.*_夢_overture")
         self.assertIsNone(res_emoji.get("matched_quest"))
 
         # Oversized
