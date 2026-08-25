@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-mcp_client.py — the single MCP client for Tools/* pipeline scripts.
+mcp_client.py - the single MCP client for Tools/* pipeline scripts.
 
 Wraps the Monolith JSON-RPC endpoint used by the T3D wiring pipeline
 (bp_regression_checker.py, t3d_blueprint_injector.py, continuous_loop.py,

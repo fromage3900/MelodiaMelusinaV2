@@ -1,5 +1,5 @@
 """Wardrobe/cosmetic concept catalog daemon (Horizon-3 shelf-stocking).
-Output: Imports/Data/Cosmetics/*.json  ·  Stop: deploy/OLLAMA_WARDROBE_STOP or deploy/STOP_ALL
+Output: Imports/Data/Cosmetics/*.json  -  Stop: deploy/OLLAMA_WARDROBE_STOP or deploy/STOP_ALL
 Schema anchors: EMelodiaSpellElement palette moods, entitlement content packs, Heart/Swirl tokens.
 """
 from __future__ import annotations

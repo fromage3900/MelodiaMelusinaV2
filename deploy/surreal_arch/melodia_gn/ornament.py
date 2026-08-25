@@ -486,17 +486,17 @@ def build_ornament_panel(group_name="MEL_ornament_panel"):
 from .core import register_builder
 
 register_builder("MEL_ornament_vine", build_ornament_vine, "Ornament Vine (Art Nouveau)",
-    "Art Nouveau vine — sinusoidal S-curve sweep with power-tapered thickness",
+    "Art Nouveau vine - sinusoidal S-curve sweep with power-tapered thickness",
     "ornament")
 register_builder("MEL_ornament_radial", build_ornament_radial, "Ornament Radial (Gothic)",
-    "Gothic radial — circular spoke array with concentric rings",
+    "Gothic radial - circular spoke array with concentric rings",
     "ornament")
 register_builder("MEL_ornament_grid", build_ornament_grid, "Ornament Grid (Arabesque)",
-    "Arabesque geometric grid — cells with edge power falloff",
+    "Arabesque geometric grid - cells with edge power falloff",
     "ornament")
 register_builder("MEL_ornament_frame", build_ornament_frame, "Ornament Frame",
-    "Rectangular picture frame — bounding-box edges with corner taper",
+    "Rectangular picture frame - bounding-box edges with corner taper",
     "ornament")
 register_builder("MEL_ornament_panel", build_ornament_panel, "Ornament Panel (Composite)",
-    "Composite panel — interior ornament + frame, material zone attribute",
+    "Composite panel - interior ornament + frame, material zone attribute",
     "ornament")

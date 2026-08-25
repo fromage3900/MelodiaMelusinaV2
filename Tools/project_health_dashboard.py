@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-project_health_dashboard.py — generate the Melodia project health dashboard.
+project_health_dashboard.py - generate the Melodia project health dashboard.
 
 Reads the real health signals the project already defines (Echo ledger,
 echo_pipeline.json contract, mcp_tool_policy.v1.json, baseline files,
@@ -332,10 +332,10 @@ def check_doc_links() -> Claim:
         c.status = "pass"
     elif broken <= 50:
         c.status = "warn"
-        c.detail = f"{broken} broken local links — historical docs debt, not a Hermes/gate blocker"
+        c.detail = f"{broken} broken local links - historical docs debt, not a Hermes/gate blocker"
     else:
         c.status = "fail"
-        c.detail = f"{broken} broken local links — above threshold"
+        c.detail = f"{broken} broken local links - above threshold"
     return c
 
 
@@ -402,9 +402,9 @@ def check_battle_gates(ledger: dict) -> Claim:
         if "infinite loop" in note.lower() and status == "pass":
             c.detail = "Show-loop claim is stale; latest ledger row is pass"
     c.status = worst
-    c.evidence = "Saved/gate_ledger.json · " + " · ".join(parts)
+    c.evidence = "Saved/gate_ledger.json - " + " - ".join(parts)
     if worst == "pass":
-        c.detail = (c.detail + " · " if c.detail else "") + "Owner closed BP_BattleController::Show infinite-loop claim 2026-08-19"
+        c.detail = (c.detail + " - " if c.detail else "") + "Owner closed BP_BattleController::Show infinite-loop claim 2026-08-19"
     return c
 
 
@@ -543,7 +543,7 @@ def check_qwen_local(_ledger=None) -> Claim:
         c.detail = f"run JSON {best.get('captured_at')}: TCA={best.get('tca_pct')}% EXEC={best.get('exec_pct')}%"
     elif qwen:
         c.status = "hold"
-        c.detail = "tags installed; no completed run JSON yet — run python Tools/run_math_models.py --model qwen3.8-27b"
+        c.detail = "tags installed; no completed run JSON yet - run python Tools/run_math_models.py --model qwen3.8-27b"
     else:
         c.status = "open"
         c.detail = "no qwen tag; run Tools/setup_muse_glimmer.py or ollama pull"
@@ -593,7 +593,7 @@ def check_muse_glimmer(_ledger=None) -> Claim:
             body = json.loads(skip.read_text(encoding="utf-8"))
             c.evidence = str(body.get("reason") or "skipped")[:120]
         except json.JSONDecodeError:
-            c.evidence = "skipped — see Saved/Audit/math_run_muse-glimmer_skipped.json"
+            c.evidence = "skipped - see Saved/Audit/math_run_muse-glimmer_skipped.json"
     else:
         c.status = "open"
         c.evidence = "no ollama tag; OPENROUTER probe failed; run Tools/setup_muse_glimmer.py"
@@ -641,8 +641,8 @@ def check_toronto_lanes(_ledger=None) -> Claim:
     c.status = "pass"
     c.evidence = "artifacts: " + ", ".join(name for name, _st, _art in parts)
     c.detail = (
-        f"qsharp {qsharp.get('passed')}/{qsharp.get('total')} · guardrails "
-        f"{(guardrails.get('stats') or {}).get('pass_rate')}% · cohere {cohere.get('passed')}/{cohere.get('total')}"
+        f"qsharp {qsharp.get('passed')}/{qsharp.get('total')} - guardrails "
+        f"{(guardrails.get('stats') or {}).get('pass_rate')}% - cohere {cohere.get('passed')}/{cohere.get('total')}"
     )
     return c
 
@@ -731,20 +731,20 @@ def generate_html(claims: list[Claim], standing: str, standing_detail: str, now:
 <div class="header">
   <div>
     <div class="title">Melodia Project Health</div>
-    <div class="subtitle">Standing scorecard — Echo gates, local model tooling (Qwen / Muse), and the SWE Light wrapper</div>
+    <div class="subtitle">Standing scorecard - Echo gates, local model tooling (Qwen / Muse), and the SWE Light wrapper</div>
   </div>
-  <div class="meta">generated {ts} · {"editor up" if editor_up else "editor down"} · refresh 30s</div>
+  <div class="meta">generated {ts} - {"editor up" if editor_up else "editor down"} - refresh 30s</div>
 </div>
 
 <div class="section">Orchestra</div>
 <div class="card orchestra">
   <a href="dashboards.html">hub</a>
-  &nbsp;·&nbsp; <a href="loop_monitor.html">loop_monitor</a>
-  &nbsp;·&nbsp; <a href="live_dashboard.html">live PIE</a>
-  &nbsp;·&nbsp; <a href="metrics_dashboard.html">metrics PIE</a>
-  &nbsp;·&nbsp; <a href="agent-dashboard-t3d.html">T3D claims</a>
-  &nbsp;·&nbsp; <a href="t3d-catalog.html">T3D catalog</a>
-  &nbsp;·&nbsp; <a href="melusina-agent-harness.html">Hermes harness</a>
+  &nbsp;-&nbsp; <a href="loop_monitor.html">loop_monitor</a>
+  &nbsp;-&nbsp; <a href="live_dashboard.html">live PIE</a>
+  &nbsp;-&nbsp; <a href="metrics_dashboard.html">metrics PIE</a>
+  &nbsp;-&nbsp; <a href="agent-dashboard-t3d.html">T3D claims</a>
+  &nbsp;-&nbsp; <a href="t3d-catalog.html">T3D catalog</a>
+  &nbsp;-&nbsp; <a href="melusina-agent-harness.html">Hermes harness</a>
 </div>
 
 <div class="grid">
@@ -782,7 +782,7 @@ def generate_html(claims: list[Claim], standing: str, standing_detail: str, now:
 - The programatic gate/ledger layer is echo_run.py + Saved/gate_ledger.json; this dashboard is the human-readable view.</div>
 
 <div class="footer">
-  Generated {ts} via Tools/project_health_dashboard.py · data sources: Saved/gate_ledger.json, specs/echo_pipeline.json, specs/mcp_tool_policy.v1.json, specs/ci_gates.json, specs/art_gates_baseline.json, Docs/T3D_Baseline/bp_fingerprints.json, Tools/doc_link_check.py, strict UTF-8 walk · Part of the Melodia dashboard family (rebuild_all_dashboards.py)
+  Generated {ts} via Tools/project_health_dashboard.py - data sources: Saved/gate_ledger.json, specs/echo_pipeline.json, specs/mcp_tool_policy.v1.json, specs/ci_gates.json, specs/art_gates_baseline.json, Docs/T3D_Baseline/bp_fingerprints.json, Tools/doc_link_check.py, strict UTF-8 walk - Part of the Melodia dashboard family (rebuild_all_dashboards.py)
 </div>
 </body>
 </html>"""

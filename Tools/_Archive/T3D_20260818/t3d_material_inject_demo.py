@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-t3d_material_inject_demo.py — Apply TP_Melusina toon profile spec
+t3d_material_inject_demo.py - Apply TP_Melusina toon profile spec
 via the T3D Material Curve Injector pipeline.
 
 Reads  ->  Applies  ->  Verifies
@@ -9,7 +9,7 @@ Usage:
     python Tools/t3d_material_inject_demo.py              # apply spec, show summary
     python Tools/t3d_material_inject_demo.py --read       # read-back current state
     python Tools/t3d_material_inject_demo.py --verify     # compile + verify only
-    python Tools/t3d_material_inject_demo.py --all        # read → apply → verify
+    python Tools/t3d_material_inject_demo.py --all        # read -> apply -> verify
 """
 
 from __future__ import annotations
@@ -75,7 +75,7 @@ def main() -> int:
         result = apply_spec(inj)
         print(json.dumps(result, indent=2))
         if not result.get("ok"):
-            print("  FAILED — see errors above")
+            print("  FAILED - see errors above")
             return 1
 
     if mode in ("verify", "all"):

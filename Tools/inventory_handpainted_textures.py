@@ -215,7 +215,7 @@ def main() -> None:
     OUT_JSON.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
     lines = [
-        "# Handpainted texture inventory — 2026-08-12",
+        "# Handpainted texture inventory - 2026-08-12",
         "",
         "Channel-suffix disk hunt. Komikaze plates excluded. No copies (G: nearly full).",
         "",
@@ -230,14 +230,14 @@ def main() -> None:
     lines.append(f"| prop_cross / prop_lantern / prop_wand | {named_prop} named files |")
     lines += [
         "",
-        "## Three hero props — real map paths (no SKU-named BaseColor)",
+        "## Three hero props - real map paths (no SKU-named BaseColor)",
         "",
         "Komikaze plates are stills. These are the owner maps to wire.",
         "",
         "| Hero | Named `*_BaseColor` on disk | Real map path to use |",
         "|------|-----------------------------|----------------------|",
         "| StylizedCrossProp | none | `G:\\MelodiaMelusina\\MELUSINATILEABLE TEXTURES\\bricks\\floralbrickgreayscale\\Untitled material\\Untitled material_BaseColor.png` or `/Game/Textures/ZenTrim_Base4K_BaseColor`. Not `T_Hatch_Cross`. |",
-        "| ZenLantern | none | `C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Greybox_Kit\\SM_SM_StreetLamp_fbm\\ZenTrim_Base4K_BaseColor.uasset` plus `Content\\Textures\\ZenTrim_Base4K_{BaseColor,Normal,Roughness}.uasset`. Magicians `T_Lantern_*` is marketplace — not yours. |",
+        "| ZenLantern | none | `C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Greybox_Kit\\SM_SM_StreetLamp_fbm\\ZenTrim_Base4K_BaseColor.uasset` plus `Content\\Textures\\ZenTrim_Base4K_{BaseColor,Normal,Roughness}.uasset`. Magicians `T_Lantern_*` is marketplace - not yours. |",
         "| StylizedMagicalWand | none | Same ZenTrim set. Mesh `Content\\Greybox_Kit\\SM_Retopo_wand.fbx` (no sibling `.fbm`). Optional crystal: `G:\\MelodiaMelusina\\MELUSINATILEABLE TEXTURES\\crystal\\crystal_BaseColor.png`. |",
         "",
         "Character (already in UE): `Content\\Melodia\\Characters\\Melusina\\Textures\\T_MelusinaC_*` plus staged `Imports\\MelusinaTextures\\`. Source `.spp`: `G:\\MelodiaMelusina\\shirttextured.spp`. `ACTUALCOMPILEDMELUSINATEXTURES` is not on G: tonight.",
@@ -260,7 +260,7 @@ def main() -> None:
     lines += ["", "## Substance projects (.spp) largest", ""]
     for r in payload.get("substance_projects", [])[:20]:
         mb = r["bytes"] / (1024 * 1024)
-        lines.append(f"- `{r['path']}` ({mb:.1f} MB) · {r['class']}")
+        lines.append(f"- `{r['path']}` ({mb:.1f} MB) - {r['class']}")
     OUT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(json.dumps({"total": payload["total_hits"], "counts": counts, "json": str(OUT_JSON)}, indent=2))
 

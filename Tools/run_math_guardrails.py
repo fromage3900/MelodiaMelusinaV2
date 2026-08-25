@@ -125,7 +125,7 @@ def run_guardrailed(
             rows.append({
                 "id": task["id"], "gold_tool": task["tool"], "chosen_tool": None,
                 "tool_match": False, "args_match": False, "exec_ok": False,
-                "status": "hold", "detail": "editor_required — Monolith unreachable on :9316",
+                "status": "hold", "detail": "editor_required - Monolith unreachable on :9316",
                 "guardrail_verdicts": [], "attempts": 1, "blocked": False,
             })
             continue

@@ -135,7 +135,7 @@ bool FMelodiaNarrativeRecordDefaultsTest::RunTest(const FString& Parameters)
 	const FMelodiaNarrativeRecord Fresh;
 
 	TestEqual(TEXT("Fresh record is at CurrentVersion"), Fresh.Version, FMelodiaNarrativeRecord::CurrentVersion);
-	TestEqual(TEXT("CurrentVersion is 4 (Decision 013/043 + PCG water state)"), FMelodiaNarrativeRecord::CurrentVersion, 4);
+	TestEqual(TEXT("CurrentVersion is 5 (First Dream receipt + completed quest read model)"), FMelodiaNarrativeRecord::CurrentVersion, 5);
 	TestEqual(TEXT("Fresh record has no flags"), Fresh.Flags.Num(), 0);
 	TestEqual(TEXT("Fresh record has no social stats"), Fresh.SocialStats.Num(), 0);
 	TestEqual(TEXT("Fresh record phase index is 0"), Fresh.PhaseIndex, 0);
@@ -143,6 +143,8 @@ bool FMelodiaNarrativeRecordDefaultsTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("Fresh record has no owned cosmetics"), Fresh.OwnedCosmeticIds.Num(), 0);
 	TestEqual(TEXT("Fresh record has no equipped cosmetics"), Fresh.EquippedCosmeticIds.Num(), 0);
 	TestEqual(TEXT("Fresh record last pull is 0"), Fresh.LastPullUnixSeconds, 0);
+	TestTrue(TEXT("Fresh record has no completed quests"), Fresh.CompletedQuestIds.IsEmpty());
+	TestEqual(TEXT("Fresh record outcome is unavailable"), Fresh.LastEncounterOutcome, EMelodiaBattleResult::Unavailable);
 
 	// Guards the migration contract: bumping CurrentVersion without adding a
 	// MigrateRecord case makes every existing save unloadable. If this fails,
@@ -177,9 +179,13 @@ bool FMelodiaNarrativeRecordSaveFlagsTest::RunTest(const FString& Parameters)
 	Source.Flags.Add(TEXT("melodia_flag_a"), true);
 	Source.Flags.Add(TEXT("melodia_flag_b"), false);
 	Source.ScriptCheckpoint = TEXT("melodia_checkpoint_z");
+	Source.LastEncounterId = TEXT("melodia_first_dream_encounter");
+	Source.LastEncounterCommandId = TEXT("command.first_dream.harmony");
+	Source.LastEncounterOutcome = EMelodiaBattleResult::Fled;
 	Source.ConsumedIntentIds.Add(TEXT("social-stat:priestess_first_echo"));
 	Source.ConsumedRewardIds.Add(TEXT("melodia_reward_01"));
 	Source.ActiveQuestIds.Add(TEXT("melodia_quest_02"));
+	Source.CompletedQuestIds.Add(TEXT("melodia_quest_01"));
 	Source.SocialStats.Add(TEXT("melodia_harmony"), 3);
 	Source.SocialStats.Add(TEXT("melodia_tempo"), 5);
 	Source.BondRanks.Add(TEXT("melodia_bond_sir"), 2);
@@ -211,6 +217,10 @@ bool FMelodiaNarrativeRecordSaveFlagsTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("Consumed intents round-trip"), Loaded.ConsumedIntentIds.Num() == 1);
 	TestTrue(TEXT("Consumed rewards round-trip"), Loaded.ConsumedRewardIds.Num() == 1);
 	TestTrue(TEXT("Active quests round-trip"), Loaded.ActiveQuestIds.Num() == 1);
+	TestTrue(TEXT("Completed quests round-trip"), Loaded.CompletedQuestIds.Contains(TEXT("melodia_quest_01")));
+	TestEqual(TEXT("Encounter id round-trips"), Loaded.LastEncounterId, Source.LastEncounterId);
+	TestEqual(TEXT("Encounter command id round-trips"), Loaded.LastEncounterCommandId, Source.LastEncounterCommandId);
+	TestEqual(TEXT("Encounter outcome round-trips"), Loaded.LastEncounterOutcome, EMelodiaBattleResult::Fled);
 
 	// The version 2 additions. These are the ones most likely to be added without
 	// the SaveGame flag, because they look correct in the editor either way.
@@ -273,6 +283,83 @@ bool FMelodiaNarrativeRecordSaveFlagsTest::RunTest(const FString& Parameters)
 	}
 	TestTrue(TEXT("Migrated record serializes"), LegacyBytes.Num() > 0);
 
+	return true;
+}
+
+// ---------------------------------------------------------------------------
+// First Dream quest completion transaction
+// ---------------------------------------------------------------------------
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaFirstDreamQuestTransactionTest,
+	"Melodia.Integration.FirstDream.QuestTransaction",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaFirstDreamQuestTransactionTest::RunTest(const FString& Parameters)
+{
+	UGameInstance* OwningGameInstance = NewObject<UGameInstance>(GetTransientPackage());
+	UMelodiaNarrativeSubsystem* Subsystem = NewObject<UMelodiaNarrativeSubsystem>(OwningGameInstance);
+	UMelodiaIntegrationConfig* Config = NewObject<UMelodiaIntegrationConfig>(Subsystem);
+	const FName QuestId(TEXT("quest.harmony_awakening"));
+	const FName CompletionFlagId(TEXT("quest.harmony_awakening.completed"));
+	const FName RewardId(TEXT("reward.harmony_awakening"));
+	const FName IntentId(TEXT("intent.quest.harmony_awakening.complete"));
+	const FName CheckpointId(TEXT("checkpoint.quest.harmony_awakening.complete"));
+	Config->QuestIds.Add(QuestId);
+	Config->NarrativeFlagIds.Add(CompletionFlagId);
+	Config->DialogueRewardIds.Add(RewardId);
+	Config->bRelaxedAllowlistInEditor = false;
+	Subsystem->Config = Config;
+
+	// Exercise the authored Quill notification boundary rather than only calling
+	// the implementation directly. The resulting state must be one transaction.
+	Subsystem->HandleQuillNotification(
+		TEXT("melodia:questcomplete:quest.harmony_awakening:quest.harmony_awakening.completed:reward.harmony_awakening:intent.quest.harmony_awakening.complete:checkpoint.quest.harmony_awakening.complete"));
+
+	FMelodiaNarrativeRecord Record = Subsystem->GetNarrativeRecord();
+	TestTrue(TEXT("Completion flag committed"), Record.Flags.FindRef(CompletionFlagId));
+	TestTrue(TEXT("Quest completion committed"), Record.CompletedQuestIds.Contains(QuestId));
+	TestTrue(TEXT("Reward journal committed"), Record.ConsumedRewardIds.Contains(RewardId));
+	TestTrue(TEXT("Intent journal committed"), Record.ConsumedIntentIds.Contains(IntentId));
+	TestEqual(TEXT("Checkpoint committed"), Record.ScriptCheckpoint, CheckpointId);
+
+	const FMelodiaNPCQuestRuntimeSnapshot Snapshot =
+		Subsystem->GetNPCQuestRuntimeSnapshot(TEXT("npc.petal_priestess"), QuestId);
+	TestEqual(TEXT("Snapshot preserves NPC id"), Snapshot.NPCId, FName(TEXT("npc.petal_priestess")));
+	TestTrue(TEXT("Snapshot reports completed quest"), Snapshot.bQuestCompleted);
+	TestFalse(TEXT("Snapshot reports no active quest after completion"), Snapshot.bQuestActive);
+	TestEqual(TEXT("Snapshot exposes checkpoint"), Snapshot.ScriptCheckpoint, CheckpointId);
+
+	// Fresh-slot -> save bytes -> fresh subsystem is the restart proof. No global
+	// save fixture is used, so this catches a missing SaveGame field directly.
+	TArray<uint8> Bytes;
+	{
+		FMemoryWriter Writer(Bytes, true);
+		FObjectAndNameAsStringProxyArchive Ar(Writer, false);
+		Ar.ArIsSaveGame = true;
+		FMelodiaNarrativeRecord::StaticStruct()->SerializeItem(Ar, &Record, nullptr);
+	}
+	FMelodiaNarrativeRecord RestartRecord;
+	{
+		FMemoryReader Reader(Bytes, true);
+		FObjectAndNameAsStringProxyArchive Ar(Reader, false);
+		Ar.ArIsSaveGame = true;
+		FMelodiaNarrativeRecord::StaticStruct()->SerializeItem(Ar, &RestartRecord, nullptr);
+	}
+	UGameInstance* RestartGameInstance = NewObject<UGameInstance>(GetTransientPackage());
+	UMelodiaNarrativeSubsystem* RestartSubsystem = NewObject<UMelodiaNarrativeSubsystem>(RestartGameInstance);
+	RestartSubsystem->Config = Config;
+	TestTrue(TEXT("Restart record restores"), RestartSubsystem->RestoreNarrativeRecord(RestartRecord));
+	const FMelodiaNPCQuestRuntimeSnapshot RestartSnapshot =
+		RestartSubsystem->GetNPCQuestRuntimeSnapshot(TEXT("npc.petal_priestess"), QuestId);
+	TestTrue(TEXT("Restart snapshot preserves completion"), RestartSnapshot.bQuestCompleted);
+	TestEqual(TEXT("Restart snapshot preserves checkpoint"), RestartSnapshot.ScriptCheckpoint, CheckpointId);
+
+	EMelodiaContentCommitFailure Failure = EMelodiaContentCommitFailure::None;
+	TestEqual(TEXT("Replay is idempotent"),
+		Subsystem->CommitQuestCompletion(QuestId, CompletionFlagId, RewardId, IntentId, CheckpointId, Failure),
+		EMelodiaContentCommitResult::AlreadyApplied);
+	TestEqual(TEXT("Replay does not fabricate failure"), Failure, EMelodiaContentCommitFailure::None);
 	return true;
 }
 

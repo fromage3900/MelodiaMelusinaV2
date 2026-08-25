@@ -4,11 +4,11 @@
 Appends the kit pieces (with their live, editable melodia_gn modifier stacks)
 from CadenceCathedral_Review_2026-08-11.blend into the Review_Queue collection
 as one child collection per piece, plus the 126 m nave assembly as one queue
-item — matching the Prev/Solo/Next cycle structure (child collections).
+item - matching the Prev/Solo/Next cycle structure (child collections).
 
 Run:
   MELODIA_ALLOW_STAGE_SAVE=1; blender "<stage>.blend" -b -P Tools/populate_cathedral_review_queue.py -- --save
-Flags: --save (write blend) · --clear (remove prior RQ_Cathedral_* items first)
+Flags: --save (write blend) - --clear (remove prior RQ_Cathedral_* items first)
 """
 from __future__ import annotations
 
@@ -132,7 +132,7 @@ def run(*, save: bool = False, clear: bool = False) -> dict:
     }
     AUDIT.parent.mkdir(parents=True, exist_ok=True)
     AUDIT.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
-    log(f"audit → {AUDIT} placed={len(placed)} reused={len(reused)}")
+    log(f"audit -> {AUDIT} placed={len(placed)} reused={len(reused)}")
 
     if save:
         bpy.ops.wm.save_mainfile()

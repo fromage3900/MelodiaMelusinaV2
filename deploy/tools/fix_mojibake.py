@@ -39,7 +39,7 @@ CP1252_HIGH = {
 }
 
 MOJIBAKE_MARKERS = (
-    "ðŸ", "â€", "Ã", "Â", "â˜", "âœ", "â™", "âš", "â›", "âŠ", "â–", "â­",
+    "ðŸ", "â€", "Ã", "Â", "â˜", "âœ", "â™", "âš", "â›", "âŠ", "â-", "â­",
     "â¬", "âŒ", "âŸ", "Ï", "â€¢", "â€¦", "â€™", "â€œ", "â€", "â†", "â‰",
     "\u0178", "\u0152", "\u0161", "\u201c", "\u201d", "\u203a",
 )
@@ -77,7 +77,7 @@ def to_cp1252_bytes(s: str) -> bytes:
 def try_fix_string(s: str) -> str | None:
     if not looks_mojibake(s):
         return None
-    # already valid unicode with emoji — skip clean strings
+    # already valid unicode with emoji - skip clean strings
     if any(0x1F300 <= ord(c) <= 0x1FAFF for c in s) and "\u00e2" not in s and "\u00f0" not in s:
         return None
     if any(0x2460 <= ord(c) <= 0x2473 for c in s):  # circled digits ①-⑳

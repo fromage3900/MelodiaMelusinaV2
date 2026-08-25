@@ -40,7 +40,7 @@ def _all_tree_names() -> list[str]:
     ]
 
 
-# Back-compat alias (prefer _all_tree_names() — catalog rebuilds after import)
+# Back-compat alias (prefer _all_tree_names() - catalog rebuilds after import)
 ALL_TREE_NAMES: list[str] = []
 
 
@@ -496,7 +496,7 @@ class MEL_GN_PT_stack(Panel):
 
     @classmethod
     def poll(cls, context):
-        # Always show under Melodia Studio — categories must remain browsable
+        # Always show under Melodia Studio - categories must remain browsable
         # even before an object is selected (stack apply still needs an object).
         return True
 
@@ -519,7 +519,7 @@ class MEL_GN_PT_stack(Panel):
             self._draw_tree_browser(layout, _EmptyStack())
             n_trees = len(_gn_core.TREE_TYPES)
             n_cats = sum(1 for c in _gn_core.TREE_CATEGORIES.values() if c.get("trees"))
-            layout.label(text=f"Catalog: {n_trees} builders · {n_cats} sections", icon="NODETREE")
+            layout.label(text=f"Catalog: {n_trees} builders - {n_cats} sections", icon="NODETREE")
             return
 
         _sync_stack_from_mel_modifiers(obj)

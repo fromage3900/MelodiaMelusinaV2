@@ -1,11 +1,11 @@
-"""♪ Melodia Score — musical interface, BPM/scale orchestrator, waveform overlay.
+"""* Melodia Score - musical interface, BPM/scale orchestrator, waveform overlay.
 
 The music-first UI layer for Melodia Studio:
 - Scene-level Score props (BPM, key, mode, bars) on ``scene.melodia_score``
-- BPM → genome DNA mapping (rhythm dungeon table from the MCP adapter)
+- BPM -> genome DNA mapping (rhythm dungeon table from the MCP adapter)
 - Scale-degree-driven room orchestration (chord tones get arch windows)
 - Live waveform overlay drawn across the viewport top (gpu POST_PIXEL)
-- ♪ Score N-panel under the genome carousel
+- * Score N-panel under the genome carousel
 """
 
 from __future__ import annotations
@@ -58,7 +58,7 @@ def _props_of_active(context):
 
 class MelodiaScoreProps(bpy.types.PropertyGroup):
     bpm: bpy.props.IntProperty(
-        name="BPM", description="Tempo in beats per minute — drives spacing + DNA",
+        name="BPM", description="Tempo in beats per minute - drives spacing + DNA",
         default=120, min=40, max=240)
     key_root: bpy.props.EnumProperty(
         name="Key", description="Tonic note",
@@ -69,7 +69,7 @@ class MelodiaScoreProps(bpy.types.PropertyGroup):
         items=[(m, m.title(), f"{len(v)}-degree scale") for m, v in _MODES.items()],
         default="MAJOR")
     bars: bpy.props.IntProperty(
-        name="Bars", description="Measures → room count / window count",
+        name="Bars", description="Measures -> room count / window count",
         default=4, min=1, max=16)
     drive_genomes: bpy.props.BoolProperty(
         name="Drive Genome DNA", description="Apply BPM/scale mapping to genome_* factors",
@@ -120,7 +120,7 @@ def _degree_brightness(mode):
 
 
 def _bpm_dna(bpm):
-    """Rhythm-dungeon BPM→DNA table (mirrors blender_5.2_mcp mapping)."""
+    """Rhythm-dungeon BPM->DNA table (mirrors blender_5.2_mcp mapping)."""
     if bpm < 100:
         return dict(verticality=0.30, ornament=0.70, organic=0.75, cosmic=0.20, spacing=0.70)
     if bpm < 120:
@@ -138,7 +138,7 @@ def _bpm_dna(bpm):
 
 class SURREAL_ARCH_OT_apply_bpm_genome(bpy.types.Operator):
     bl_idname = "surreal_arch.apply_bpm_genome"
-    bl_label = "♩ Apply BPM Genome"
+    bl_label = "* Apply BPM Genome"
     bl_description = "Map tempo to architecture DNA: fast = dense/tall/cosmic, slow = organic/spread"
     bl_options = {"REGISTER", "UNDO"}
 
@@ -170,7 +170,7 @@ class SURREAL_ARCH_OT_apply_bpm_genome(bpy.types.Operator):
 
 class SURREAL_ARCH_OT_generate_scale_room(bpy.types.Operator):
     bl_idname = "surreal_arch.generate_scale_room"
-    bl_label = "♬ Generate Scale Room"
+    bl_label = "* Generate Scale Room"
     bl_description = ("Orchestrate room shell from key+mode+bars: chord tones become "
                       "arch windows, passing tones stay rect; bar count = window count; "
                       "spacing follows beat length")
@@ -310,7 +310,7 @@ class SURREAL_ARCH_OT_toggle_wave_overlay(bpy.types.Operator):
         else:
             _wave_handler = bpy.types.SpaceView3D.draw_handler_add(
                 _draw_wave_overlay, (), "WINDOW", "POST_PIXEL")
-            self.report({"INFO"}, "Waveform overlay ON — ♪ synced to Score BPM")
+            self.report({"INFO"}, "Waveform overlay ON - * synced to Score BPM")
         return {"FINISHED"}
 
 
@@ -353,7 +353,7 @@ def _ensure_tree(tree_name):
 class SURREAL_ARCH_OT_export_imm_kit(bpy.types.Operator):
     bl_idname = "surreal_arch.export_imm_kit"
     bl_label = "Export ZBrush IMM Kit"
-    bl_description = ("Batch-export musical builders as base-pivoted OBJ meshes into a folder — "
+    bl_description = ("Batch-export musical builders as base-pivoted OBJ meshes into a folder - "
                       "import in ZBrush and create an InsertMultiMesh brush per piece")
     bl_options = {"REGISTER"}
 
@@ -398,7 +398,7 @@ class SURREAL_ARCH_OT_export_imm_kit(bpy.types.Operator):
                 if final_mesh is None or len(final_mesh.vertices) == 0:
                     failed.append((tree_name, "empty evaluation"))
                     continue
-                # Base-pivot: min-Z → 0, centroid XY → origin
+                # Base-pivot: min-Z -> 0, centroid XY -> origin
                 xs = [v.co.x for v in final_mesh.vertices]
                 ys = [v.co.y for v in final_mesh.vertices]
                 zs = [v.co.z for v in final_mesh.vertices]
@@ -438,10 +438,10 @@ class SURREAL_ARCH_OT_export_imm_kit(bpy.types.Operator):
 
         readme = os.path.join(out_dir, "_IMM_README.txt")
         with open(readme, "w", encoding="utf-8") as f:
-            f.write("Melodia Studio — Musical Geometry IMM Kit\n")
+            f.write("Melodia Studio - Musical Geometry IMM Kit\n")
             f.write("=" * 44 + "\n\n")
             f.write("ZBrush workflow:\n")
-            f.write("1. Import > OBJ — pick any MEL_*.obj (becomes a Tool).\n")
+            f.write("1. Import > OBJ - pick any MEL_*.obj (becomes a Tool).\n")
             f.write("2. Tool > Make PolyMesh3D.\n")
             f.write("3. Brush > Create > Create Insert Multi Mesh Brush.\n")
             f.write("4. Repeat per piece; save brushes under ZStartup/ZPlugs/Imm/\n")
@@ -473,10 +473,10 @@ class SURREAL_ARCH_OT_export_imm_kit(bpy.types.Operator):
         return {"FINISHED"}
 
 
-# ── Panel ♪ Score ───────────────────────────────────────────────────────
+# ── Panel * Score ───────────────────────────────────────────────────────
 
 class SURREAL_ARCH_PT_music_score(bpy.types.Panel):
-    bl_label = "♪ Score — Tempo & Key"
+    bl_label = "* Score - Tempo & Key"
     bl_idname = "SURREAL_ARCH_PT_music_score"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
@@ -517,14 +517,14 @@ class SURREAL_ARCH_PT_music_score(bpy.types.Panel):
         kit.label(text="Musical Kit (GN Stack)", icon="IPO_BEZIER")
         grid = kit.grid_flow(row_major=True, columns=2, align=True)
         for tree_name, label in (
-            ("MEL_music_waveform_wall", "♪ Waveform Wall"),
+            ("MEL_music_waveform_wall", "* Waveform Wall"),
             ("MEL_music_vinyl_disc", "◎ Vinyl Disc"),
             ("MEL_music_lissajous_harp", "∿ Lissajous Harp"),
             ("MEL_imm_piano_keys", "▤ Piano Keys"),
             ("MEL_music_frequency_ribcage", "⌒ Freq Ribcage"),
             ("MEL_music_tuning_fork", "Ψ Tuning Fork"),
             ("MEL_music_metronome_pillar", "▲ Metronome"),
-            ("MEL_music_soundhole_rosette", "✿ Rosette"),
+            ("MEL_music_soundhole_rosette", "* Rosette"),
         ):
             op = grid.operator("mel_gn.stack_add", text=label)
             op.tree_name = tree_name
@@ -536,12 +536,12 @@ class SURREAL_ARCH_PT_music_score(bpy.types.Panel):
 
 
 class SURREAL_ARCH_MT_pie_score(bpy.types.Menu):
-    bl_label = "♪ Score"
+    bl_label = "* Score"
     bl_idname = "SURREAL_ARCH_MT_pie_score"
 
     def draw(self, context):
         pie = self.layout.menu_pie()
-        pie.operator("surreal_arch.apply_bpm_genome", text="BPM → Genome", icon="TIME")
+        pie.operator("surreal_arch.apply_bpm_genome", text="BPM -> Genome", icon="TIME")
         pie.operator("surreal_arch.generate_scale_room", text="Scale Room", icon="MESH_CIRCLE")
         pie.operator("surreal_arch.toggle_wave_overlay", text="Wave Overlay", icon="ANIM")
         pie.operator("surreal_arch.export_imm_kit", text="IMM Kit Export", icon="EXPORT")

@@ -114,7 +114,7 @@ def main() -> int:
 
     pre_unweighted = sum(s["unweighted"] for s in before.values())
     if pre_unweighted:
-        print(f"ABORT: {pre_unweighted} vertices already carry no influence — fix binding first")
+        print(f"ABORT: {pre_unweighted} vertices already carry no influence - fix binding first")
         return 1
 
     if not apply:

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Cadence Strike — Gothic Cathedral Kit builder (Blender-only, reusable GN setups).
+"""Cadence Strike - Gothic Cathedral Kit builder (Blender-only, reusable GN setups).
 
 Zero new python builders. Every kit piece is an object whose geometry comes from a
 stack of existing registered melodia_gn Geometry Node groups (modifiers left live and
@@ -276,7 +276,7 @@ ROLES = {
     "SM_Cathedral_EscherWaterfall": "escher_waterfall",
 }
 
-# simple trim materials (stone / gold / glass) — plain node materials, not builders
+# simple trim materials (stone / gold / glass) - plain node materials, not builders
 MATS = {
     "stone": (0.62, 0.60, 0.58, 1.0),
     "gold": (0.92, 0.78, 0.42, 1.0),

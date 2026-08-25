@@ -1,4 +1,4 @@
-"""Corridor offset kit — recessed wall panels and floor ledge for trim sheets."""
+"""Corridor offset kit - recessed wall panels and floor ledge for trim sheets."""
 
 from __future__ import annotations
 
@@ -61,7 +61,7 @@ def _offset_wall_panels(tree, M, props, base_x, span_l, W, H, t):
 
 
 def _floor_ledges(tree, M, props, base_x, span_l, W, H, t):
-    """Raised floor ledge bands — center runner + optional side strips."""
+    """Raised floor ledge bands - center runner + optional side strips."""
     ledge_h = max(getattr(props, "gb_baseboard_height", 0.12), 0.08)
     ledge_w = max(W * 0.12, 0.25)
     recess = M._gb_trim_depth(props, t)

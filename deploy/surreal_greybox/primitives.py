@@ -1,4 +1,4 @@
-"""Greybox primitive GN helpers — extracted from monolith for maintainability."""
+"""Greybox primitive GN helpers - extracted from monolith for maintainability."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ def bind(monolith):
 
 def _require():
     if _M is None:
-        raise RuntimeError("surreal_greybox.primitives not bound — call bind(monolith) at register")
+        raise RuntimeError("surreal_greybox.primitives not bound - call bind(monolith) at register")
 
 
 def gb_box(tree, size, loc_xyz, x, y, label="level"):

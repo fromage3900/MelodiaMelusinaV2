@@ -27,7 +27,7 @@ MANIFEST = os.path.join(ROOT, "Products", "OrnamentKitbash", "product_manifest.j
 AUDIT = os.path.join(ROOT, "Saved", "Audit", "ornament_fbx_stats.json")
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 
-# catalog asset_name → passport / intake asset_id
+# catalog asset_name -> passport / intake asset_id
 ID_MAP = {
     "SM_Orn_RoseWindow_8Petal": "rose_window",
     "SM_Orn_SpiralStaircase": "spiral_stair",
@@ -118,7 +118,7 @@ def write_passport(asset_id: str, title: str, stats: dict) -> dict:
     except ImportError as exc:
         log(
             f"passport skip for {asset_id}: melodia_asset_passport module is missing "
-            "(lost 2026-07-31, only .pyc + a known-bad reconstruction remain — see "
+            "(lost 2026-07-31, only .pyc + a known-bad reconstruction remain - see "
             f"_TASK_QUEUE.md): {exc}"
         )
         return {"paths": None}
@@ -128,10 +128,10 @@ def write_passport(asset_id: str, title: str, stats: dict) -> dict:
         project=title,
         category="Prop / ornament",
         version="cute-gn",
-        shader="SurrealArch GeoNodes · kitbash",
+        shader="SurrealArch GeoNodes - kitbash",
         capture="FBX scan",
-        software="Blender · SurrealArch v2.134",
-        engine="Geometry Nodes → FBX",
+        software="Blender - SurrealArch v2.134",
+        engine="Geometry Nodes -> FBX",
         stats={
             "triangles": stats["triangles"],
             "meshes": stats["meshes"],
@@ -195,7 +195,7 @@ def main() -> None:
         # Refresh cute descriptions for the four
         if asset_name == "SM_Orn_VaultRibs":
             m["description"] = (
-                "Crossing Bezier gothic vault ribs with apex flower boss — kitbash hero cluster."
+                "Crossing Bezier gothic vault ribs with apex flower boss - kitbash hero cluster."
             )
         elif asset_name == "SM_Orn_CorbelBracket":
             m["description"] = (
@@ -230,7 +230,7 @@ def main() -> None:
     with open(CATALOG, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2)
         f.write("\n")
-    log(f"catalog → {CATALOG}")
+    log(f"catalog -> {CATALOG}")
 
     if os.path.isfile(MANIFEST):
         with open(MANIFEST, encoding="utf-8") as f:
@@ -245,7 +245,7 @@ def main() -> None:
         with open(MANIFEST, "w", encoding="utf-8") as f:
             json.dump(man, f, indent=2)
             f.write("\n")
-        log(f"manifest → {MANIFEST}")
+        log(f"manifest -> {MANIFEST}")
 
     os.makedirs(os.path.dirname(AUDIT), exist_ok=True)
     with open(AUDIT, "w", encoding="utf-8") as f:
@@ -257,7 +257,7 @@ def main() -> None:
             f,
             indent=2,
         )
-    log(f"audit → {AUDIT} ({len(results)} meshes)")
+    log(f"audit -> {AUDIT} ({len(results)} meshes)")
     clear()
 
 

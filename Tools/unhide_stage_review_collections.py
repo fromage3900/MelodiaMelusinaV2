@@ -5,11 +5,11 @@ Fixes the common "I can't see or toggle most objects" state after solo-Melusina
 shots and headless scripts.
 
 Policy (matches Melodia Studio stage_visibility soft isolation):
-  - Clear Collection.hide_viewport (hard Outliner lock) — never set it
+  - Clear Collection.hide_viewport (hard Outliner lock) - never set it
   - Viewport: LayerCollection.hide_viewport / exclude (soft eye)
   - Render: Collection.hide_render only when requested
 
-Run in the OPEN Blender 5.1 (Scripting → Run Script), or:
+Run in the OPEN Blender 5.1 (Scripting -> Run Script), or:
   blender Melodia_Portfolio_Stage_v4.blend -b -P Tools/unhide_stage_review_collections.py -- --save
 
 Flags:
@@ -162,8 +162,8 @@ def run(*, show_all: bool, musical: bool, wardrobe: bool) -> None:
                 set_collection_flags(n, viewport=True, render=True)
         log("show_all: Asset/Wardrobe/FX/Lights/Set/Look + musical + waterfx")
 
-    log("TIP: Outliner display mode → View Layer. Soft eye toggles always work after Fix.")
-    log("TIP: Linked Melusina (library) shows chain icon — editing needs Make Library Override.")
+    log("TIP: Outliner display mode -> View Layer. Soft eye toggles always work after Fix.")
+    log("TIP: Linked Melusina (library) shows chain icon - editing needs Make Library Override.")
     try:
         bpy.ops.object.select_all(action="DESELECT")
         mel = bpy.data.collections.get("Asset_melusina")

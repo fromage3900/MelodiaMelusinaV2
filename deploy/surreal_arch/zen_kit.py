@@ -1,10 +1,10 @@
-"""Zen modular kit — roji, torii, tsukubai, engawa, bamboo fence, tobi-ishi, karesansui, machiai, stone bridge, cherry allee, water edge (v2.73)."""
+"""Zen modular kit - roji, torii, tsukubai, engawa, bamboo fence, tobi-ishi, karesansui, machiai, stone bridge, cherry allee, water edge (v2.73)."""
 
 from __future__ import annotations
 
 
 def build_zen_roji_step(tree, M, props, base_x=-1400):
-    """Roji dew-path segment — flat slab + raised edge stones for trim sheets."""
+    """Roji dew-path segment - flat slab + raised edge stones for trim sheets."""
     L = getattr(props, "gb_length", 4.0)
     W = getattr(props, "gb_width", 1.8)
     t = getattr(props, "gb_wall_thick", 0.12)
@@ -31,7 +31,7 @@ def build_zen_roji_step(tree, M, props, base_x=-1400):
 
 
 def build_zen_torii_gate(tree, M, props, base_x=-1400):
-    """Modular torii gate greybox — posts, nuki, kasagi lintel; path snaps through opening."""
+    """Modular torii gate greybox - posts, nuki, kasagi lintel; path snaps through opening."""
     W = getattr(props, "torii_width", getattr(props, "gb_width", 3.6))
     H = getattr(props, "torii_height", getattr(props, "gb_height", 4.2))
     pr = getattr(props, "torii_post_radius", max(W * 0.06, 0.14))
@@ -77,7 +77,7 @@ def build_zen_torii_gate(tree, M, props, base_x=-1400):
 
 
 def build_zen_sakura_torii(tree, M, props, base_x=-1400):
-    """Sakura torii variant — standard torii + blossom band on kasagi + petal accent strips."""
+    """Sakura torii variant - standard torii + blossom band on kasagi + petal accent strips."""
     W = getattr(props, "torii_width", getattr(props, "gb_width", 3.4))
     H = getattr(props, "torii_height", getattr(props, "gb_height", 4.0))
     pr = getattr(props, "torii_post_radius", max(W * 0.06, 0.14))
@@ -144,7 +144,7 @@ def build_zen_sakura_torii(tree, M, props, base_x=-1400):
 
 
 def build_zen_tsukubai(tree, M, props, base_x=-1400):
-    """Tsukubai stone basin pad — recess bowl + surround flagstones."""
+    """Tsukubai stone basin pad - recess bowl + surround flagstones."""
     W = getattr(props, "gb_width", 1.6)
     D = getattr(props, "gb_depth", 1.6)
     H = getattr(props, "gb_height", 0.45)
@@ -194,7 +194,7 @@ def build_zen_tsukubai(tree, M, props, base_x=-1400):
 
 
 def build_zen_engawa(tree, M, props, base_x=-1400):
-    """Engawa veranda — raised deck slab, post row, low railing beam along open edge."""
+    """Engawa veranda - raised deck slab, post row, low railing beam along open edge."""
     W = getattr(props, "gb_width", 5.0)
     D = getattr(props, "gb_depth", 2.4)
     H = getattr(props, "gb_height", 0.35)
@@ -236,7 +236,7 @@ def build_zen_engawa(tree, M, props, base_x=-1400):
 
 
 def build_zen_bamboo_fence(tree, M, props, base_x=-1400):
-    """Bamboo fence segment — posts + horizontal rails; tileable along path axis."""
+    """Bamboo fence segment - posts + horizontal rails; tileable along path axis."""
     L = getattr(props, "gb_length", 4.0)
     H = getattr(props, "zen_fence_height", getattr(props, "gb_height", 1.2))
     t = getattr(props, "gb_wall_thick", 0.06)
@@ -274,7 +274,7 @@ def build_zen_bamboo_fence(tree, M, props, base_x=-1400):
 
 
 def build_zen_tobiishi(tree, M, props, base_x=-1400):
-    """Tobi-ishi stepping stones — scattered flat stones along a path strip."""
+    """Tobi-ishi stepping stones - scattered flat stones along a path strip."""
     L = getattr(props, "gb_length", 5.0)
     W = getattr(props, "gb_width", 1.6)
     t = getattr(props, "gb_wall_thick", 0.1)
@@ -308,7 +308,7 @@ def build_zen_tobiishi(tree, M, props, base_x=-1400):
 
 
 def build_zen_karesansui(tree, M, props, base_x=-1400):
-    """Dry rock garden — raked gravel plane, ishigumi border, parallel rake grooves."""
+    """Dry rock garden - raked gravel plane, ishigumi border, parallel rake grooves."""
     W = getattr(props, "gb_width", 8.0)
     D = getattr(props, "gb_depth", 6.0)
     t = getattr(props, "gb_wall_thick", 0.12)
@@ -360,7 +360,7 @@ def build_zen_karesansui(tree, M, props, base_x=-1400):
 
 
 def build_zen_machiai(tree, M, props, base_x=-1400):
-    """Machiai waiting pavilion — open posts, shallow roof beam, bench slab."""
+    """Machiai waiting pavilion - open posts, shallow roof beam, bench slab."""
     W = getattr(props, "gb_width", 3.2)
     D = getattr(props, "gb_depth", 2.4)
     H = getattr(props, "gb_height", 2.2)
@@ -409,7 +409,7 @@ def build_zen_machiai(tree, M, props, base_x=-1400):
 
 
 def build_zen_stone_bridge(tree, M, props, base_x=-1400):
-    """Garden stone bridge — deck slab, low rails, bank abutments."""
+    """Garden stone bridge - deck slab, low rails, bank abutments."""
     span = getattr(props, "zen_bridge_span", 5.0)
     rise = getattr(props, "zen_bridge_rise", 0.55)
     W = getattr(props, "gb_width", 1.8)
@@ -455,7 +455,7 @@ def build_zen_stone_bridge(tree, M, props, base_x=-1400):
 
 
 def build_zen_cherry_allee(tree, M, props, base_x=-1400):
-    """Sakura path segment — walk slab, trunk bases, blossom canopy, petal scatter."""
+    """Sakura path segment - walk slab, trunk bases, blossom canopy, petal scatter."""
     L = getattr(props, "gb_length", 6.0)
     W = getattr(props, "gb_width", 2.6)
     H = getattr(props, "gb_height", 0.32)
@@ -506,7 +506,7 @@ def build_zen_cherry_allee(tree, M, props, base_x=-1400):
 
 
 def build_zen_water_edge(tree, M, props, base_x=-1400):
-    """Stream bank strip — channel bed, raised banks, stepping stones at bridge landings."""
+    """Stream bank strip - channel bed, raised banks, stepping stones at bridge landings."""
     L = getattr(props, "gb_length", 2.8)
     W = getattr(props, "gb_width", 2.4)
     depth = getattr(props, "zen_stream_depth", 0.35)
@@ -553,7 +553,7 @@ def build_zen_water_edge(tree, M, props, base_x=-1400):
 
 
 def build_zen_sando(tree, M, props, base_x=-1400):
-    """Shrine approach — paving slab, border stones, stone lantern rhythm."""
+    """Shrine approach - paving slab, border stones, stone lantern rhythm."""
     L = getattr(props, "gb_length", 8.0)
     W = getattr(props, "gb_width", 2.2)
     t = getattr(props, "gb_wall_thick", 0.12)
@@ -603,7 +603,7 @@ def build_zen_sando(tree, M, props, base_x=-1400):
 
 
 def build_zen_kairo(tree, M, props, base_x=-1400):
-    """Covered cloister — walkway, column row, tie beam, eave, garden wall."""
+    """Covered cloister - walkway, column row, tie beam, eave, garden wall."""
     L = getattr(props, "gb_length", 6.0)
     W = getattr(props, "gb_width", 2.4)
     H = getattr(props, "gb_height", 2.8)
@@ -665,7 +665,7 @@ def build_zen_kairo(tree, M, props, base_x=-1400):
 
 
 def build_zen_haiden(tree, M, props, base_x=-1400):
-    """Worship hall (haiden) — genkan steps, raised haijo floor, posts, ranma, noki eave."""
+    """Worship hall (haiden) - genkan steps, raised haijo floor, posts, ranma, noki eave."""
     W = getattr(props, "gb_width", 5.0)
     D = getattr(props, "gb_depth", 4.0)
     H = getattr(props, "gb_height", 3.2)
@@ -734,7 +734,7 @@ def build_zen_haiden(tree, M, props, base_x=-1400):
 
 
 def build_zen_goju_pagoda(tree, M, props, base_x=-1400):
-    """Five-story pagoda greybox (goju-no-tō) — tapered tier cores, roof slabs, sorin finial."""
+    """Five-story pagoda greybox (goju-no-tō) - tapered tier cores, roof slabs, sorin finial."""
     tiers = max(2, min(7, getattr(props, "pagoda_tiers", 5)))
     R = getattr(props, "pagoda_base_radius", 2.0)
     th = getattr(props, "pagoda_tier_height", 1.2)
@@ -781,7 +781,7 @@ def build_zen_goju_pagoda(tree, M, props, base_x=-1400):
 
 
 def build_zen_tahoto(tree, M, props, base_x=-1400):
-    """Tahōtō treasure pagoda — square mokoshi base, drum body, double roof, sorin."""
+    """Tahōtō treasure pagoda - square mokoshi base, drum body, double roof, sorin."""
     W = getattr(props, "gb_width", 3.2)
     H = getattr(props, "gb_height", 6.5)
     span = getattr(props, "zen_tahoto_roof_span", 0.35)
@@ -843,7 +843,7 @@ def build_zen_tahoto(tree, M, props, base_x=-1400):
 
 
 def build_zen_lantern(tree, M, props, base_x=-1400):
-    """Greybox ishi-dōrō (石灯籠) — kiso, sao, hibukuro, kasa, hōju stack."""
+    """Greybox ishi-dōrō (石灯籠) - kiso, sao, hibukuro, kasa, hōju stack."""
     H = getattr(props, "zen_lantern_height", 1.6)
     R = getattr(props, "zen_lantern_radius", 0.32)
     style = getattr(props, "zen_lantern_style", "KASUGA")
@@ -891,7 +891,7 @@ def build_zen_lantern(tree, M, props, base_x=-1400):
 
 
 def build_zen_honden(tree, M, props, base_x=-1400):
-    """Main sanctuary (honden) — raised sanctum, enclosed moya, engawa margin, deep noki."""
+    """Main sanctuary (honden) - raised sanctum, enclosed moya, engawa margin, deep noki."""
     W = getattr(props, "gb_width", 5.5)
     D = getattr(props, "gb_depth", 4.5)
     H = getattr(props, "gb_height", 3.6)

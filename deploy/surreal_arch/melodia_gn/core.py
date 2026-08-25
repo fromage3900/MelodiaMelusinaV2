@@ -65,7 +65,7 @@ def set_resample_count(resample, count_socket_or_value=None):
     if target is None:
         return
     if hasattr(count_socket_or_value, "id_data"):
-        # Linked as a socket elsewhere — caller should use link_sockets.
+        # Linked as a socket elsewhere - caller should use link_sockets.
         return
     try:
         target.default_value = count_socket_or_value
@@ -93,7 +93,7 @@ def safe_node(tree, bl_idname, loc, fallback_callable=None):
             except Exception:
                 pass
         log.warning(
-            "safe_node: '%s' not available in %s — %s",
+            "safe_node: '%s' not available in %s - %s",
             bl_idname, tree.name, exc,
         )
         if fallback_callable:
@@ -102,7 +102,7 @@ def safe_node(tree, bl_idname, loc, fallback_callable=None):
                 return fallback_callable()
             except Exception as fb_exc:
                 log.warning(
-                    "safe_node: fallback also failed for '%s' — %s",
+                    "safe_node: fallback also failed for '%s' - %s",
                     bl_idname, fb_exc,
                 )
         return None
@@ -358,7 +358,7 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "ui_label": "Music Piano Roll",
         "mel_tree": "MEL_music_piano_roll",
         "category": "Musical Notation",
-        "panel_hint": "Instance keys on a spline. Profile 0–3: PIANO / XYLO / MARIMBA / GLOCK.",
+        "panel_hint": "Instance keys on a spline. Profile 0-3: PIANO / XYLO / MARIMBA / GLOCK.",
     },
     "MUSIC_HARP": {
         "ui_label": "Music Harp",
@@ -572,7 +572,7 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "ui_label": "Magic Distortion",
         "mel_tree": "MEL_effect_magic",
         "category": "Magic Effects",
-        "panel_hint": "Combined magical distortion — intensity, noise, layers, chromatic, attractor.",
+        "panel_hint": "Combined magical distortion - intensity, noise, layers, chromatic, attractor.",
     },
     "EFFECT_WAVE": {
         "ui_label": "Wave Effect",
@@ -608,7 +608,7 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "ui_label": "Circular Array",
         "mel_tree": "MEL_circular_array",
         "category": "Primitives",
-        "panel_hint": "Instance geometry on a circle — cockpit GN Stack smoke click.",
+        "panel_hint": "Instance geometry on a circle - cockpit GN Stack smoke click.",
     },
     "GREYBOX_ROOM_KIT": {
         "ui_label": "Greybox Room Kit",
@@ -919,7 +919,7 @@ def mesh_line_to_curve(tree, loc, mesh_sock):
 
 
 def sweep_profile(tree, loc, curve_or_mesh_sock, radius_sock, profile_res=8, already_curve=False):
-    """AAA railing / vault pattern: curve + circle profile → mesh."""
+    """AAA railing / vault pattern: curve + circle profile -> mesh."""
     curve_sock = curve_or_mesh_sock
     if not already_curve:
         curve_sock = mesh_line_to_curve(tree, (loc[0] - 180, loc[1]), curve_or_mesh_sock)
@@ -939,7 +939,7 @@ def sweep_profile(tree, loc, curve_or_mesh_sock, radius_sock, profile_res=8, alr
             link_sockets(tree, radius_sock, profile.inputs["Radius"])
         except Exception:
             pass
-    # Rotate profile 90° X so it stands perpendicular to the curve.
+    # Rotate profile 90deg X so it stands perpendicular to the curve.
     # Without this, the circle lies flat and produces zero-area faces.
     prof_xf = safe_node(tree, "GeometryNodeTransform", (loc[0] - 80, loc[1] - 140))
     if prof_xf:
@@ -969,7 +969,7 @@ def add_music_influence_params(tree):
 
 
 def apply_universal_music_pass(tree, gin, geom, loc=(2400, 0)):
-    """Radial harmonic pulse — same math as monolith add_universal_music_pass.
+    """Radial harmonic pulse - same math as monolith add_universal_music_pass.
 
     Gated by Music Influence (skip wiring warp when socket missing).
     """
@@ -1192,11 +1192,11 @@ def _rebuild_derived_data():
     """Rebuild all lookup tables from GROUP_METADATA after all registrations.
 
     Called once by __init__.py after importing every builder module.
-    Idempotent — safe to call on addon reload.
+    Idempotent - safe to call on addon reload.
 
     IMPORTANT: mutate existing container objects in place. Other modules
     (e.g. stack.py) bind names via `from .core import TREE_CATEGORIES` at
-    import time — rebinding these globals would leave those aliases empty
+    import time - rebinding these globals would leave those aliases empty
     forever (Studio Health shows 165 builders while GN Stack sections stay blank).
     """
     global TREE_TYPES, TREE_LABEL_MAP, TREE_DESCRIPTIONS, TREE_CATEGORY_MAP, TREE_CATEGORIES
@@ -1229,7 +1229,7 @@ def _rebuild_derived_data():
         }
     )
 
-    # Build categorized lookup (category_id → {label, icon, trees})
+    # Build categorized lookup (category_id -> {label, icon, trees})
     cats: dict[str, dict] = {}
     for cid, cinfo in CATEGORY_META.items():
         cats[cid] = {
@@ -1257,3 +1257,20 @@ def _rebuild_derived_data():
 
     TREE_CATEGORIES.clear()
     TREE_CATEGORIES.update(cats)
+
+
+def purge_stale_builders():
+    """Drop entries whose module failed to reload (Sync & Reload ghosts).
+
+    Removes GROUP_METADATA entries that have no corresponding builder in
+    GROUP_BUILDERS - these are ghosts left behind by `Sync & Reload` when a
+    builder module is renamed or removed but its old registration lingers in
+    the live Blender session. Safe to call before _rebuild_derived_data().
+    """
+    # GROUP_BUILDERS is the source of truth populated by register_builder()
+    try:
+        stale = [k for k in list(GROUP_METADATA.keys()) if k not in GROUP_BUILDERS]
+    except NameError:
+        return
+    for k in stale:
+        GROUP_METADATA.pop(k, None)

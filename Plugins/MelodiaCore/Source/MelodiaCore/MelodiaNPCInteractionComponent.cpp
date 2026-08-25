@@ -7,31 +7,6 @@
 #include "Core/QuillscriptAsset.h"
 #include "Utils/Quill.h"
 
-namespace
-{
-	FName QuestForNPC(const FName NPCId)
-	{
-		if (NPCId == TEXT("SD_02_PetalPriestess")) return TEXT("melodia_q_echo_01");
-		if (NPCId == TEXT("CW_01_StarWeaver")) return TEXT("melodia_q_echo_02");
-		if (NPCId == TEXT("MD_01_TwilightDancer")) return TEXT("melodia_q_echo_03");
-		return NAME_None;
-	}
-
-	void NotifyPersonaQuest(UWorld* World, const FName NPCId)
-	{
-		const FName QuestId = QuestForNPC(NPCId);
-		UGameInstance* GameInstance = World ? World->GetGameInstance() : nullptr;
-		UClass* PersonaClass = FindObject<UClass>(nullptr, TEXT("/Script/BS_GodFile.MelodiaPersonaSubsystem"));
-		UGameInstanceSubsystem* Persona = GameInstance && PersonaClass ? GameInstance->GetSubsystemBase(PersonaClass) : nullptr;
-		UFunction* Handler = Persona ? Persona->FindFunction(TEXT("HandleNarrativeQuest")) : nullptr;
-		if (Handler && !QuestId.IsNone())
-		{
-			struct FQuestParams { FName QuestId; } Params{QuestId};
-			Persona->ProcessEvent(Handler, &Params);
-		}
-	}
-}
-
 FText UMelodiaNPCInteractionComponent::GetPromptText() const
 {
 	return InteractionPrompt;
@@ -40,24 +15,6 @@ FText UMelodiaNPCInteractionComponent::GetPromptText() const
 bool UMelodiaNPCInteractionComponent::HasDialogue() const
 {
 	return !QuillDialogue.IsNull() || !DialogueLines.IsEmpty() || !EncounterGuidance.IsEmpty();
-}
-
-static void TryAcceptQuest(UWorld* World, const FMelodiaQuestDef& QuestDef)
-{
-	if (!World || QuestDef.QuestId == NAME_None) return;
-	if (AMelodiaQuestManagerBase* QuestManager = AMelodiaQuestManagerBase::Get(World))
-	{
-		QuestManager->AcceptQuest(QuestDef);
-	}
-}
-
-static void TryCompleteQuest(UWorld* World, FName QuestId)
-{
-	if (!World || QuestId == NAME_None) return;
-	if (AMelodiaQuestManagerBase* QuestManager = AMelodiaQuestManagerBase::Get(World))
-	{
-		QuestManager->CompleteQuest(QuestId);
-	}
 }
 
 bool UMelodiaNPCInteractionComponent::BeginInteraction()
@@ -83,17 +40,11 @@ bool UMelodiaNPCInteractionComponent::BeginInteraction()
 		return true;
 	}
 
-	// No Quill asset assigned — fall through to legacy DialogueLines / EncounterGuidance.
+	// No Quill asset assigned — legacy dialogue remains presentation-only. Quest
+	// mutation is deliberately unavailable here: authored Quill notifications are
+	// the sole shipping route into UMelodiaNarrativeSubsystem.
 	UE_LOG(LogTemp, Log, TEXT("MELUSINA_NPC_LEGACY_DIALOGUE npc=%s dialogue_lines=%d guidance=%s"),
 		*NPCId.ToString(), DialogueLines.Num(), *EncounterGuidance.ToString());
-
-	NotifyPersonaQuest(GetWorld(), NPCId);
-
-	// Cozy: accept quest on first interaction (no-penalty duplicate guards inside AcceptQuest).
-	if (bIsQuestGiver)
-	{
-		TryAcceptQuest(GetWorld(), QuestToGive);
-	}
 
 	if (DialogueLines.IsValidIndex(CurrentDialogueIndex))
 	{
@@ -129,7 +80,6 @@ bool UMelodiaNPCInteractionComponent::AdvanceInteraction()
 	}
 
 	bInteractionActive = false;
-	TryCompleteQuest(GetWorld(), QuestToCompleteOnEnd);
 	OnInteractionFinished.Broadcast(NPCId);
 	return false;
 }
@@ -142,6 +92,5 @@ void UMelodiaNPCInteractionComponent::CancelInteraction()
 	}
 
 	bInteractionActive = false;
-	TryCompleteQuest(GetWorld(), QuestToCompleteOnEnd);
 	OnInteractionFinished.Broadcast(NPCId);
 }

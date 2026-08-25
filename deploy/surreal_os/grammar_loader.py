@@ -1,4 +1,4 @@
-"""YAML/JSON grammar graphs → GRAPH_REGISTRY-compatible specs."""
+"""YAML/JSON grammar graphs -> GRAPH_REGISTRY-compatible specs."""
 
 from __future__ import annotations
 

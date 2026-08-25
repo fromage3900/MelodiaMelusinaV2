@@ -1,4 +1,4 @@
-"""Romanesque modular kit — round-arch bay with colonette and impost block."""
+"""Romanesque modular kit - round-arch bay with colonette and impost block."""
 
 from __future__ import annotations
 
@@ -109,7 +109,7 @@ def _barrel_vault_cap(tree, M, span, thickness, rise, base_z, base_x, node_y):
 
 
 def build_romanesque_apse(tree, M, props, base_x=-1400):
-    """Semicircular apse termination — choir end cap with recess shell for trim sheets."""
+    """Semicircular apse termination - choir end cap with recess shell for trim sheets."""
     W = getattr(props, "gb_width", 4.0)
     D = getattr(props, "gb_depth", 3.5)
     H = getattr(props, "gb_height", 4.5)

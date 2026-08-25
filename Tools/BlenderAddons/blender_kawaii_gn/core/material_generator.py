@@ -1,5 +1,5 @@
 """
-Procedural Material Generator — Creates kawaii pastel materials with shaders.
+Procedural Material Generator - Creates kawaii pastel materials with shaders.
 
 Generates complete material setups with:
 - 8 curated pastel palettes

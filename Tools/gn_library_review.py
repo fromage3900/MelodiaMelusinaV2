@@ -266,7 +266,7 @@ def summarize(rows: list[dict]) -> dict:
 
 def write_markdown(rows: list[dict], summary: dict, path: Path) -> None:
     lines = [
-        f"# Melodia GN builder review — {summary['date']}",
+        f"# Melodia GN builder review - {summary['date']}",
         "",
         "Thesis: **stop adding Set Dressing volume.** Quality and thin-kit depth.",
         "Kawaii and Brutalist stay **standalone** (out of `GROUP_BUILDERS`).",
@@ -279,13 +279,13 @@ def write_markdown(rows: list[dict], summary: dict, path: Path) -> None:
         f"- STUDIO_LABELS: **{summary['studio_labels']} / {summary['registry_count']}** "
         f"({summary['label_coverage']*100:.1f}%)",
         f"- Fingerprints: **{summary['fingerprints']}** (12-tree heavy baseline)",
-        f"- Node count: min {summary['node_min']} · median {summary['node_median']} · max {summary['node_max']}",
+        f"- Node count: min {summary['node_min']} - median {summary['node_median']} - max {summary['node_max']}",
         "",
         "## Out of registry (do not merge)",
         "",
-        f"- Kawaii GN: {summary['out_of_registry']['kawaii_gn']['unique_generator_ids']} unique ids — "
+        f"- Kawaii GN: {summary['out_of_registry']['kawaii_gn']['unique_generator_ids']} unique ids - "
         f"`{summary['out_of_registry']['kawaii_gn']['path']}`",
-        f"- Brutalist GN: {summary['out_of_registry']['brutalist_gn']['unique_generator_ids']} unique ids — "
+        f"- Brutalist GN: {summary['out_of_registry']['brutalist_gn']['unique_generator_ids']} unique ids - "
         f"`{summary['out_of_registry']['brutalist_gn']['path']}`",
         "",
         "## Category mix",
@@ -314,9 +314,9 @@ def write_markdown(rows: list[dict], summary: dict, path: Path) -> None:
         cons = "yes" if r["construct"] else ("no" if r["construct"] is False else "?")
         preset = f"yes ({r['preset_looks']})" if r["has_preset"] else "no"
         label = "yes" if r["has_label"] else "no"
-        nodes = r["node_count"] if r["node_count"] is not None else "—"
+        nodes = r["node_count"] if r["node_count"] is not None else "-"
         fp = "yes" if r["has_fingerprint"] else "no"
-        open_s = ", ".join(r["quality_gates_open"]) if r["quality_gates_open"] else "—"
+        open_s = ", ".join(r["quality_gates_open"]) if r["quality_gates_open"] else "-"
         lines.append(
             f"| `{r['name']}` | {r['category_label'] or r['category']} | {cons} | "
             f"{preset} | {label} | {nodes} | {fp} | {open_s} |"

@@ -38,6 +38,18 @@ def _sidecar_for(fbx: Path) -> Path | None:
 
 def _status_for_path(path: Path, raw: dict[str, Any], source_type: str) -> tuple[str, list[str]]:
     lower = path.as_posix().lower()
+    if "a_melusina_idle_v22_arp" in lower:
+        return "legacy", [
+            "ARP pre-retarget export intermediate; retain the v22 stage receipt but do not treat this FBX as a UE clip",
+        ]
+    if "a_melusina_idle_v22" in lower:
+        return "manual_required", [
+            "authoritative v22 hand-keyed ARP export; import onto SK_Source_Melusina and pass the dedicated source-to-target IK retarget gate before canonical status",
+        ]
+    if "a_bl_source_idle_loop" in lower or "mual_target" in lower:
+        return "blocked", [
+            "rejected 2026-08-24: existing MUAL UE derivative is static bind pose at every sampled frame; it is not source-lineage evidence",
+        ]
     if ".arp" in path.stem.lower():
         return "legacy", ["ARP operator audit intermediate; only the sibling v2 artifact enters the canonical lane"]
     if "/inbox/" in lower and ("quaternius" in lower or "ual1" in json.dumps(raw).lower()):
@@ -69,11 +81,11 @@ def _entry_for_fbx(path: Path, project_root: Path) -> dict[str, Any]:
     if sidecar_error:
         status = "blocked"
         reasons = [f"sidecar parse failed: {sidecar_error}"]
-    elif raw.get("schema_version") == 2:
+    elif raw.get("schema_version") == 2 and status not in {"blocked", "legacy"}:
         status = str(raw.get("status") or status)
         reasons = list(raw.get("status_reasons") or reasons)
     manifest = to_v2_manifest({**raw, "status": status, "status_reasons": reasons}, _relative(path, project_root), status=status)
-    return {
+    entry = {
         "clip_id": manifest["clip_id"],
         "clip_name": manifest["clip_name"],
         "source_type": manifest["source_type"],
@@ -85,6 +97,19 @@ def _entry_for_fbx(path: Path, project_root: Path) -> dict[str, Any]:
         "artifact_bytes": path.stat().st_size,
         "artifact_mtime_utc": datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat(),
     }
+    if path.stem.lower() == "a_melusina_idle_v22":
+        entry["lineage"] = {
+            "authority_receipt": "Saved/Audit/melusina_idle_v22_export.json",
+            "stage_blend": "G:/EnvironmentPortfolio/BS_GodFile/Melodia_Portfolio_Stage_v22_FINAL_2026-08-15.blend",
+            "armature": "character_rig",
+            "nla_track": "idle_animation",
+            "strip": "characteridle_handkeyframed",
+            "action": "character_rigAction",
+            "frame_range": [8, 31],
+            "ue_import": False,
+            "requires_ik_retarget": True,
+        }
+    return entry
 
 
 def _entry_for_ue_source(path: Path, project_root: Path) -> dict[str, Any]:
@@ -133,6 +158,7 @@ def catalog(project_root: Path) -> dict[str, Any]:
         project_root / "Imports/Animations/Cascadeur/Source",
         project_root / "Imports/Animations/Cascadeur/Takes",
         project_root / "Exports/MelusinaAnim",
+        project_root / "Exports/MelusinaAnims",
         project_root / "Exports/AnimationLibrary",
     ]
     entries: list[dict[str, Any]] = []

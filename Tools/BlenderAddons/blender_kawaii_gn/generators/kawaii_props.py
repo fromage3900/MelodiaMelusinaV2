@@ -39,7 +39,7 @@ class KawaiiVaseGN(KawaiiGNBase):
             tree, links, input_node, 'Roundness',
         )
 
-        # Belly (main rounded body — scales up with cuteness)
+        # Belly (main rounded body - scales up with cuteness)
         belly = nodes.new('GeometryNodeMeshCylinder')
         belly.location = (-400, 0)
         belly.inputs['Vertices'].default_value = 32
@@ -59,7 +59,7 @@ class KawaiiVaseGN(KawaiiGNBase):
         link_from_input(links, input_node, 'Height', belly_height.inputs[1])
         links.new(belly_height.outputs[0], mesh_input(belly, 'Height'))
 
-        # Neck (narrow top — scales down with cuteness)
+        # Neck (narrow top - scales down with cuteness)
         neck = nodes.new('GeometryNodeMeshCylinder')
         neck.location = (-400, 200)
         neck.inputs['Vertices'].default_value = 24
@@ -85,7 +85,7 @@ class KawaiiVaseGN(KawaiiGNBase):
         neck_pos.inputs['Translation'].default_value = (0, 0, 0.675)
         links.new(neck.outputs['Mesh'], neck_pos.inputs['Geometry'])
 
-        # Base (narrow foot — scales down with cuteness)
+        # Base (narrow foot - scales down with cuteness)
         base = nodes.new('GeometryNodeMeshCylinder')
         base.location = (-400, -200)
         base.inputs['Vertices'].default_value = 24

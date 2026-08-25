@@ -6,7 +6,7 @@ importable and report clear not-connected status when the bridge is absent.
 
 from __future__ import annotations
 
-_STATUS = {"connected": False, "detail": "livelink_bridge stub — start LiveLink separately"}
+_STATUS = {"connected": False, "detail": "livelink_bridge stub - start LiveLink separately"}
 
 
 def is_connected() -> bool:

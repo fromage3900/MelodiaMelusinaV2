@@ -84,7 +84,7 @@ def main():
                     "in-range colours still render as plain hex",
                     ui.to_hex((1.0, 0.0, 0.0, 1.0))))
 
-    print(f"ui_style_audit colour assertions — {source}\n")
+    print(f"ui_style_audit colour assertions - {source}\n")
     failed = 0
     for ok, label, note in results:
         print(f"  {'PASS' if ok else '*** FAIL ***'}  {label}"

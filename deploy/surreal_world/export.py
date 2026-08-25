@@ -1,4 +1,4 @@
-"""UE world manifest export — surreal_arch_world_v1."""
+"""UE world manifest export - surreal_arch_world_v1."""
 
 from __future__ import annotations
 

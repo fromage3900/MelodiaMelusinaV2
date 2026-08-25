@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Melodia Continuous Improvement Loop.
-Auto-detects issues → fixes via T3D → re-verifies → reports.
+Auto-detects issues -> fixes via T3D -> re-verifies -> reports.
 Runs in a loop until everything passes or interrupted.
 
 Usage:
@@ -31,23 +31,23 @@ class ContinuousLoop:
         if result.get("ok"):
             return True
         self.report.append({"time": datetime.now().isoformat(), "check": name, "status": "FAIL", "detail": result.get("detail","")})
-        print(f"  ❌ {name}: {result.get('detail','')}")
+        print(f"  * {name}: {result.get('detail','')}")
         
         if fix_fn:
             fix_result = fix_fn()
             if fix_result.get("ok"):
                 self.total_fixes += 1
                 self.report[-1]["fix"] = fix_result.get("detail","")
-                print(f"     🔧 Fixed: {fix_result.get('detail','')}")
+                print(f"     * Fixed: {fix_result.get('detail','')}")
                 # Re-verify
                 check_result = check_fn()
                 if check_result.get("ok"):
                     self.report[-1]["status"] = "FIXED"
-                    print(f"     ✅ Verified")
+                    print(f"     * Verified")
                 else:
-                    print(f"     ❌ Fix didn't work: {check_result.get('detail','')}")
+                    print(f"     * Fix didn't work: {check_result.get('detail','')}")
             else:
-                print(f"     ❌ Fix failed: {fix_result.get('detail','')}")
+                print(f"     * Fix failed: {fix_result.get('detail','')}")
         return False
     
     def check_monolith(self):
@@ -97,7 +97,7 @@ class ContinuousLoop:
         A fingerprint guard snapshots the graph before injecting and re-fetches
         afterwards: any change other than the injected nodes (disappearing
         pre-existing nodes, or an unchanged fingerprint) is reported loudly and
-        treated as a failed fix — never silently proceeded with.
+        treated as a failed fix - never silently proceeded with.
         """
         bc_path = "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController"
         rhythm_class = "/Script/BS_GodFile.MelodiaRhythmCombatSubsystem"
@@ -143,7 +143,7 @@ class ContinuousLoop:
         guard_notes = []
         if pre_fp is not None and post_fp is not None and pre_fp == post_fp:
             guard_ok = False
-            guard_notes.append(f"FINGERPRINT UNCHANGED after injection — injected nodes had no effect on {bc_path}")
+            guard_notes.append(f"FINGERPRINT UNCHANGED after injection - injected nodes had no effect on {bc_path}")
         elif pre_fp is None or post_fp is None:
             guard_notes.append(f"WARNING: fingerprint unavailable (pre={pre_fp!r}, post={post_fp!r}); relying on graph diff only")
         disappeared = [n for n in pipeline if n in pre_graph and n not in post_graph]
@@ -187,7 +187,7 @@ class ContinuousLoop:
         self.iteration += 1
         now = datetime.now().strftime("%H:%M:%S")
         print(f"\n{'='*50}")
-        print(f"  Iteration {self.iteration} — {now}")
+        print(f"  Iteration {self.iteration} - {now}")
         print(f"  Total fixes so far: {self.total_fixes}")
         print(f"{'='*50}")
         
@@ -208,11 +208,11 @@ class ContinuousLoop:
         print(f"\n  {len(checks)-failures}/{len(checks)} passed, {failures} failed")
         
         if failures == 0:
-            print(f"\n  ✅ ALL CHECKS PASSED — System is healthy")
+            print(f"\n  * ALL CHECKS PASSED - System is healthy")
             return True
         
         if failures >= self.max_failures:
-            print(f"\n  ❌ Too many failures ({failures} >= {self.max_failures})")
+            print(f"\n  * Too many failures ({failures} >= {self.max_failures})")
             return False
         
         return None  # Keep going
@@ -230,11 +230,11 @@ td {{padding:8px;border-bottom:1px solid #1a1520;}}
 .pass {{color:#22c55e;}} .fail {{color:#ef4444;}} .fix {{color:#eab308;}}
 </style></head><body>
 <h1>Continuous Improvement Report</h1>
-<p>Total fixes applied: {self.total_fixes} · Iterations: {self.iteration}</p>
+<p>Total fixes applied: {self.total_fixes} - Iterations: {self.iteration}</p>
 <table>
 <tr><th>Time</th><th>Check</th><th>Status</th><th>Detail</th></tr>"""
         for r in self.report:
-            status_icon = {"FAIL":"❌","FIXED":"🔧","PASS":"✅"}.get(r.get("status",""),"❓")
+            status_icon = {"FAIL":"*","FIXED":"*","PASS":"*"}.get(r.get("status",""),"*")
             html += f"<tr><td>{r['time'][11:19]}</td><td>{r['check']}</td><td class='{r.get('status','').lower()}'>{status_icon} {r.get('status','')}</td><td>{r.get('detail','')} {r.get('fix','')}</td></tr>"
         html += "</table></body></html>"
         out.write_text(html, encoding="utf-8")
@@ -254,9 +254,9 @@ def main():
             result = loop.run_iteration()
             loop.generate_report()
             if result is True:
-                print("\n🎉 System is fully healthy! Watching for regressions...")
+                print("\n* System is fully healthy! Watching for regressions...")
             elif result is False:
-                print("\n⚠ Too many failures. Manual intervention needed.")
+                print("\n* Too many failures. Manual intervention needed.")
                 break
             time.sleep(args.interval)
     except KeyboardInterrupt:

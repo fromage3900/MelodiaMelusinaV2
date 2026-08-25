@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-bedrock_research.py — Use Amazon Bedrock Converse API to research
+bedrock_research.py - Use Amazon Bedrock Converse API to research
 top-tier UE indie dev practices, Chinese/Japanese git+UE resources, and
 Persona-style game integration parallelization methods.
 
@@ -34,7 +34,7 @@ bedrock_rt = boto3.client("bedrock-runtime", config=RETRY_CFG, region_name="us-e
 
 PROMPT_UE_INDI = """You are a research assistant with deep knowledge of Unreal Engine game development, particularly indie development practices from 2023-2026.
 
-Research and produce a comprehensive report on the **top 0.1% Unreal Engine indie development workflows and practices** — the practices used by the most successful, technically sophisticated solo devs and micro-teams shipping UE5 games in 2024-2026.
+Research and produce a comprehensive report on the **top 0.1% Unreal Engine indie development workflows and practices** - the practices used by the most successful, technically sophisticated solo devs and micro-teams shipping UE5 games in 2024-2026.
 
 Cover these areas:
 1. **Source control discipline**: Git + Git LFS strategies specifically for UE5 (what file types to track, what to gitignore, locking strategies for 2,000+ asset files)
@@ -68,7 +68,7 @@ For JAPANESE resources, cover:
 2. **Git/Git-LFS tutorials**: Specific Japanese-language guides, video series, blog posts
 3. **Unreal Engine tutorials**: Japanese creators on YouTube, NicoNico, Qiita, Zenn about UE5 + source control
 4. **GitHub repositories**: Japanese devs' UE5 projects with Git workflows
-5. **Persona-series specific**: Japanese technical analysis of Persona 5/4/3 game architecture, social link systems, calendar mechanics — especially how indie devs replicate these in UE5
+5. **Persona-series specific**: Japanese technical analysis of Persona 5/4/3 game architecture, social link systems, calendar mechanics - especially how indie devs replicate these in UE5
 
 For BOTH:
 - Provide **search terms** (both English and native script) that would find these resources (for Google/Bing, Baidu, Qiita/Zenn, Bilibili, NicoNico)
@@ -89,7 +89,7 @@ Cover these areas:
 2. **Event bus and command patterns**: How Persona games route inputs between layers (e.g., "social action triggers combat stat change triggers narrative flag")
 3. **Save system architecture**: How Persona games handle save round-trips across process restarts (critical for Persona's "one action per day" model)
 4. **Authority delegation**: Which layer owns which state (narrative owns story flags, combat owns HP/damage, social owns bond ranks, calendar owns day progression)
-5. **Persona 5 Royal technical analysis**: The specific integration points between the Velvet Room (meta-NPC), Mementos (dungeon), and daily life (social links) — how do these share data?
+5. **Persona 5 Royal technical analysis**: The specific integration points between the Velvet Room (meta-NPC), Mementos (dungeon), and daily life (social links) - how do these share data?
 6. **Indie reimplementations**: Games like "Persona 5 Royal" reimplementations, "Project Re Fantasy" clones, or indie Persona-like games that have published their architecture (e.g., "Aria the Galgame", "Twin Mirror" alternatives)
 7. **Parallel development patterns**: How to split Persona-style games across multiple dev lanes (social sim lane, combat lane, narrative lane, calendar lane) while maintaining integration integrity
 8. **Persona-specific anti-patterns**: What breaks when you try to parallelize Persona-style games (e.g., shared mutable state between calendar and combat, race conditions in stat updates)
@@ -130,13 +130,13 @@ def invoke_model(prompt: str, primary_model: str, fallback_model: str, max_token
                 inferenceConfig=inference_config,
             )
         except Exception as e:
-            print(f"  ✗ {model_id} failed: {e}", file=sys.stderr)
+            print(f"  * {model_id} failed: {e}", file=sys.stderr)
             continue
 
         output = response["output"]["message"]["content"][0]["text"]
         usage = response.get("usage", {})
         print(
-            f"  ✓ {model_id} succeeded — "
+            f"  * {model_id} succeeded - "
             f"input={usage.get('inputTokens', '?')} tokens, "
             f"output={usage.get('outputTokens', '?')} tokens",
             file=sys.stderr,
@@ -170,7 +170,7 @@ def main():
     results = {}
     for topic in topics:
         prompt, primary, fallback = PROMPTS[topic]
-        print(f"\n🔬 Researching: {topic}", file=sys.stderr)
+        print(f"\n* Researching: {topic}", file=sys.stderr)
         result = invoke_model(prompt, primary, fallback, max_tokens=8192)
         results[topic] = result
 
@@ -183,9 +183,9 @@ def main():
             f.write(f"Date: {__import__('datetime').datetime.now().isoformat()}\n\n")
             f.write("---\n\n")
             f.write(result)
-        print(f"  → Written to {filepath}", file=sys.stderr)
+        print(f"  -> Written to {filepath}", file=sys.stderr)
 
-    print("\n✅ All research complete.", file=sys.stderr)
+    print("\n* All research complete.", file=sys.stderr)
     return 0
 
 

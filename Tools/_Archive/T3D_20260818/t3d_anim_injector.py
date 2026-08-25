@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-T3D Animation Blueprint Injector — automates AnimBP, BlendSpace, and
+T3D Animation Blueprint Injector - automates AnimBP, BlendSpace, and
 IK Retargeter operations via Monolith MCP's editor_query:run_python and
 blueprint_query:build_blueprint_from_spec.
 
@@ -36,7 +36,7 @@ class T3DAnimBlueprintInjector:
         return result
 
     def _resolve_asset_path(self, path):
-        """Normalise an asset path — strip .AssetName suffix if present, ensure /Game/ prefix."""
+        """Normalise an asset path - strip .AssetName suffix if present, ensure /Game/ prefix."""
         path = path.replace("\\", "/")
         if "." in path:
             path = path.rsplit(".", 1)[0]
@@ -263,7 +263,7 @@ unreal.EditorAssetLibrary.save_loaded_asset(anim_bp)
 # CLI usage
 # ---------------------------------------------------------------------------
 CLI_HELP = """
-T3DAnimBlueprintInjector — AnimBP automation library
+T3DAnimBlueprintInjector - AnimBP automation library
 
 Commands:
   set-blendspace-sample <path> <index> <anim_path> <speed>

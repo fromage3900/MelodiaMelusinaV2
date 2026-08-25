@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Melodia Gameplay Loop — Automated Regression Test Suite (UE 5.8).
+Melodia Gameplay Loop - Automated Regression Test Suite (UE 5.8).
 
 Validates the full Melodia gameplay pipeline via Monolith MCP on localhost:9316,
 using the existing pie_smoke_runner and bp_regression_checker internals.
@@ -582,7 +582,7 @@ def generate_html_report(
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Melodia Regression Suite — {mode.upper()}</title>
+<title>Melodia Regression Suite - {mode.upper()}</title>
 <style>
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{ font-family: 'Courier New', monospace; background: #0b0a13; color: #f2d69e; padding: 24px; }}
@@ -662,7 +662,7 @@ def generate_html_report(
 # ---------------------------------------------------------------------------
 def run_suite(mode: str) -> int:
     print(f"\n{'=' * 60}")
-    print(f"  Melodia Regression Suite — mode: {mode.upper()}")
+    print(f"  Melodia Regression Suite - mode: {mode.upper()}")
     print(f"  Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{'=' * 60}\n")
 
@@ -677,7 +677,7 @@ def run_suite(mode: str) -> int:
         print("[PREFLIGHT] Monolith is reachable.\n")
     except Exception as e:
         print(f"[PREFLIGHT] Monolith NOT reachable: {e}")
-        print("[PREFLIGHT] Continuing — tests that require Monolith will fail gracefully.\n")
+        print("[PREFLIGHT] Continuing - tests that require Monolith will fail gracefully.\n")
 
     tests = get_all_tests(mode)
     results: list[TestResult] = []
@@ -698,7 +698,7 @@ def run_suite(mode: str) -> int:
         if result.passed:
             print(f"PASS ({elapsed_s:.1f}s)")
         elif result.passed is False:
-            print(f"FAIL ({elapsed_s:.1f}s) — {result.detail[:120]}")
+            print(f"FAIL ({elapsed_s:.1f}s) - {result.detail[:120]}")
         else:
             print(f"SKIP ({elapsed_s:.1f}s)")
         results.append(result)
@@ -736,7 +736,7 @@ def run_suite(mode: str) -> int:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(
-        description="Melodia Gameplay Loop — Automated Regression Test Suite",
+        description="Melodia Gameplay Loop - Automated Regression Test Suite",
     )
     p.add_argument("--quick", action="store_true", help="Quick mode (~5 min)")
     p.add_argument("--full", action="store_true", help="Full overnight mode (~2+ hr)")

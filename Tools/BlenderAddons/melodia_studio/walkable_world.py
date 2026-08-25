@@ -1,4 +1,4 @@
-"""Resonant World v4 — walkable terrain mapping.
+"""Resonant World v4 - walkable terrain mapping.
 
 v3 maps time to X and pitch-class to Y. Because Y = pitch % 12 it can never
 exceed 12 cells, while X grows with song length. A 64-beat song therefore

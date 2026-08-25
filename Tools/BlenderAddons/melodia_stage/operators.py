@@ -48,7 +48,7 @@ def _create_three_point_lighting(context, center, size):
     """Create key, fill, and rim lights around the subject."""
     lights = {}
 
-    # Key light — main, bright, 45° up-right-front
+    # Key light - main, bright, 45 deg up-right-front
     key_data = bpy.data.lights.new("MelodiaStage_Key", type='AREA')
     key_data.energy = 800
     key_data.size = size * 0.5
@@ -59,7 +59,7 @@ def _create_three_point_lighting(context, center, size):
     key_obj.rotation_euler = direction.to_track_quat('-Z', 'Y').to_euler()
     lights['key'] = key_obj
 
-    # Fill light — softer, opposite side, lower
+    # Fill light - softer, opposite side, lower
     fill_data = bpy.data.lights.new("MelodiaStage_Fill", type='AREA')
     fill_data.energy = 300
     fill_data.size = size * 0.8
@@ -70,7 +70,7 @@ def _create_three_point_lighting(context, center, size):
     fill_obj.rotation_euler = direction.to_track_quat('-Z', 'Y').to_euler()
     lights['fill'] = fill_obj
 
-    # Rim light — behind, for silhouette edge
+    # Rim light - behind, for silhouette edge
     rim_data = bpy.data.lights.new("MelodiaStage_Rim", type='SPOT')
     rim_data.energy = 500
     rim_data.spot_size = math.radians(45)

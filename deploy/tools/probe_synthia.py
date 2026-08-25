@@ -5,7 +5,7 @@ import bpy
 
 print("=== PROBE SYNTHIA ===")
 
-# User may install Synthia under a custom folder — enable by module name if present.
+# User may install Synthia under a custom folder - enable by module name if present.
 for mod in ("synthia", "Synthia", "blender_synthia"):
   if mod in bpy.context.preferences.addons:
     print(f"addon enabled: {mod}")
@@ -51,6 +51,6 @@ if has_spawn:
   except Exception as e:
     print(f"spawn smoke failed: {e}")
 else:
-  print("Synthia not installed — verify tier will SKIP")
+  print("Synthia not installed - verify tier will SKIP")
 
 print("=== PROBE SYNTHIA DONE ===")

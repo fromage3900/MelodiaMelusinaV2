@@ -1,5 +1,5 @@
 """
-apply_melusina_vfx.py — Applies Melusina WaterFX and WaterMist day1 presets,
+apply_melusina_vfx.py - Applies Melusina WaterFX and WaterMist day1 presets,
 water hair material, MPC bindings, and module scripts via Monolith MCP.
 
 Usage:
@@ -139,7 +139,7 @@ def step_apply_watermist_params() -> list[str]:
     lines = []
     lines.append(set_module_value(WATERMIST_PATH, "WaterMist", "InitializeParticle", "Lifetime Min", str(WATERMIST_DAY1_MODULE["LifetimeMin"])))
     lines.append(set_module_value(WATERMIST_PATH, "WaterMist", "InitializeParticle", "Lifetime Max", str(WATERMIST_DAY1_MODULE["LifetimeMax"])))
-    # SpawnRate is already bound to User.ProximitySpawnRateMultiplier — MPC binding established
+    # SpawnRate is already bound to User.ProximitySpawnRateMultiplier - MPC binding established
     lines.append("WaterMist.SpawnRate already bound to User.ProximitySpawnRateMultiplier")
     return lines
 

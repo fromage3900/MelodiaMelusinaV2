@@ -42,7 +42,7 @@ def spawn_castle_plan(location=(0, 0, 0), size=12.0):
 
 
 def spawn_zen_roji_plan(location=(0, 0, 0), path_len=16.0, courtyard_w=8.0):
-    """Roji approach: path strip + courtyard pad — torii at entry, sacred courtyard."""
+    """Roji approach: path strip + courtyard pad - torii at entry, sacred courtyard."""
     hl = path_len * 0.5
     cw = courtyard_w * 0.5
     verts = [

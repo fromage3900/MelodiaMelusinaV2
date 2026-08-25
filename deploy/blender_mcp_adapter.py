@@ -1,4 +1,4 @@
-"""Blender MCP stdio adapter — wraps TCP socket addon (port 9878) as standard MCP server for opencode."""
+"""Blender MCP stdio adapter - wraps TCP socket addon (port 9878) as standard MCP server for opencode."""
 from __future__ import annotations
 
 import json

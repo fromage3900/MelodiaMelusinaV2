@@ -1,4 +1,4 @@
-"""Polyhedra & Platonic Solid GN group builders — Icosahedron, Dodecahedron, Octahedron, Kepler-Poinsot Star Polyhedra.
+"""Polyhedra & Platonic Solid GN group builders - Icosahedron, Dodecahedron, Octahedron, Kepler-Poinsot Star Polyhedra.
 
 Integrates Platonic & Kepler-Poinsot polyhedral geometry into the Melodia GN system for Blender 5.1+.
 """
@@ -16,7 +16,7 @@ from .core import (
 
 
 def build_polyhedra_icosahedron(group_name="MEL_polyhedra_icosahedron"):
-    """Platonic Icosahedron / Geodesic Sphere GN builder — 20 triangular faces with subdivision control.
+    """Platonic Icosahedron / Geodesic Sphere GN builder - 20 triangular faces with subdivision control.
 
     Uses IcoSphere mesh primitive with scale, bevel, and shade smooth parameters.
     """
@@ -152,7 +152,7 @@ def _inner_span(tree, loc, outer_sock, thick_sock, extra_cut=0.0):
 
 
 def build_polyhedra_dodecahedron(group_name="MEL_polyhedra_dodecahedron"):
-    """Platonic dodecahedron — dual of a regular icosahedron (12 pentagonal faces).
+    """Platonic dodecahedron - dual of a regular icosahedron (12 pentagonal faces).
 
     IcoSphere subdivisions=1 is the icosahedron. Dual Mesh turns its 20 faces into
     20 vertices / 12 faces. Not a subdivided icosphere labeled as a dodecahedron.

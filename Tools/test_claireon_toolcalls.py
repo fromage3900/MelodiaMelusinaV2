@@ -293,7 +293,7 @@ def main() -> int:
     ap.add_argument("--all", action="store_true", help="Run every installed Ollama model")
     ap.add_argument("--timeout", type=float, default=1200.0,
                     help="Per-call timeout in seconds. Default 1200 (20 min) because "
-                         "OLLAMA_MODELS may live on a slow disk — a cold 14B+ load can "
+                         "OLLAMA_MODELS may live on a slow disk - a cold 14B+ load can "
                          "take 5-11 minutes. See Tools/fix_ollama_setup.ps1.")
     args = ap.parse_args()
 
@@ -319,7 +319,7 @@ def main() -> int:
 
     failures: list[str] = []
     for model in models:
-        # One model's failure must not abort the sweep — a cold-load timeout on a
+        # One model's failure must not abort the sweep - a cold-load timeout on a
         # 30B is expected on a slow store and should not lose the other results.
         try:
             report = run_model(model, args.timeout)
@@ -331,7 +331,7 @@ def main() -> int:
             return 130
         except Exception as exc:
             failures.append(f"{model}: {exc}")
-            print(f"\n  {model}: SWEEP ERROR — {exc}", file=sys.stderr, flush=True)
+            print(f"\n  {model}: SWEEP ERROR - {exc}", file=sys.stderr, flush=True)
 
     if failures:
         print("\nModels that errored (not scored, NOT estimated):", file=sys.stderr)

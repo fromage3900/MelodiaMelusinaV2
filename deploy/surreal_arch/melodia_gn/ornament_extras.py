@@ -1,4 +1,4 @@
-"""Ornament and filigree extras — six-petal rosette, scallop band, keyhole frame,
+"""Ornament and filigree extras - six-petal rosette, scallop band, keyhole frame,
 corner volute, finial cross, and wreath ring.
 
 Follows the ornament.py / filigree.py conventions: instanced radial arrays with
@@ -74,7 +74,7 @@ def _profile_out(node):
 def _sweep(tree, bx, by, curve_sock, profile_sock):
     """Sweep a curve path with a curve profile (AAA railing).
 
-    Do not MeshToCurve first — scallop/keyhole/time-signature paths are already
+    Do not MeshToCurve first - scallop/keyhole/time-signature paths are already
     bezier curves; MeshToCurve on those yields empty geometry.
     """
     mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx, by))
@@ -150,7 +150,7 @@ def _rotate_radial(tree, inst_sock, count_sock, bx, by, tilt_sock=None):
 
 
 def build_ornament_rosette_sixpetal(group_name="MEL_ornament_rosette_sixpetal"):
-    """Six-petal (or N-petal) rosette — radial petal ellipses around a domed medallion.
+    """Six-petal (or N-petal) rosette - radial petal ellipses around a domed medallion.
 
     Uses: circular_array (petals), add (join), store_attribute (rosette_petals)
     """
@@ -235,7 +235,7 @@ def build_ornament_rosette_sixpetal(group_name="MEL_ornament_rosette_sixpetal"):
 
 
 def build_ornament_scallop_band(group_name="MEL_ornament_scallop_band"):
-    """Scallop band — repeated semicircular arcs instanced along a baseline.
+    """Scallop band - repeated semicircular arcs instanced along a baseline.
 
     Uses: linear_array (arcs), add (join), store_attribute (scallop_radius)
     """
@@ -324,7 +324,7 @@ def build_ornament_scallop_band(group_name="MEL_ornament_scallop_band"):
 
 
 def build_ornament_keyhole_frame(group_name="MEL_ornament_keyhole_frame"):
-    """Keyhole frame — rounded rectangle outline with a circular ring on top.
+    """Keyhole frame - rounded rectangle outline with a circular ring on top.
 
     Uses: add (join ring + rect), merge (corner weld), store_attribute (frame_width)
     """
@@ -474,7 +474,7 @@ def build_ornament_keyhole_frame(group_name="MEL_ornament_keyhole_frame"):
 
 
 def build_filigree_corner_volute(group_name="MEL_filigree_corner_volute"):
-    """Corner volute — Archimedean spiral arm with a taper and finial dot.
+    """Corner volute - Archimedean spiral arm with a taper and finial dot.
 
     Uses: power (spiral taper), add (join arm + finial), store_attribute (FiligreePhase)
     """
@@ -605,7 +605,7 @@ def build_filigree_corner_volute(group_name="MEL_filigree_corner_volute"):
 
 
 def build_filigree_finial_cross(group_name="MEL_filigree_finial_cross"):
-    """Finial cross — bar-and-ball cross with four domed tips and optional center ball.
+    """Finial cross - bar-and-ball cross with four domed tips and optional center ball.
 
     Uses: add (join bars), switch (center ball), store_attribute (finial_height)
     """
@@ -728,7 +728,7 @@ def build_filigree_finial_cross(group_name="MEL_filigree_finial_cross"):
 
 
 def build_filigree_wreath_ring(group_name="MEL_filigree_wreath_ring"):
-    """Wreath ring — torus band ringed with tilted laurel leaves.
+    """Wreath ring - torus band ringed with tilted laurel leaves.
 
     Uses: circular_array (leaves), add (join), store_attribute (wreath_leaves)
     """
@@ -801,21 +801,21 @@ def build_filigree_wreath_ring(group_name="MEL_filigree_wreath_ring"):
 
 # -- Registry --
 register_builder("MEL_ornament_rosette_sixpetal", build_ornament_rosette_sixpetal, "Ornament Rosette Sixpetal",
-    "Six-petal (or N-petal) rosette — radial petal ellipses around a domed medallion",
+    "Six-petal (or N-petal) rosette - radial petal ellipses around a domed medallion",
     "ornament")
 register_builder("MEL_ornament_scallop_band", build_ornament_scallop_band, "Ornament Scallop Band",
-    "Scallop band — repeated semicircular arcs instanced along a baseline",
+    "Scallop band - repeated semicircular arcs instanced along a baseline",
     "ornament")
 register_builder("MEL_ornament_keyhole_frame", build_ornament_keyhole_frame, "Ornament Keyhole Frame",
-    "Keyhole frame — rounded rectangle outline with a circular ring on top",
+    "Keyhole frame - rounded rectangle outline with a circular ring on top",
     "ornament")
 register_builder("MEL_filigree_corner_volute", build_filigree_corner_volute, "Filigree Corner Volute",
-    "Corner volute — Archimedean spiral arm with a taper and finial dot",
+    "Corner volute - Archimedean spiral arm with a taper and finial dot",
     "filigree")
 register_builder("MEL_filigree_finial_cross", build_filigree_finial_cross, "Filigree Finial Cross",
-    "Finial cross — bar-and-ball cross with four domed tips and optional center ball",
+    "Finial cross - bar-and-ball cross with four domed tips and optional center ball",
     "filigree")
 register_builder("MEL_filigree_wreath_ring", build_filigree_wreath_ring, "Filigree Wreath Ring",
-    "Wreath ring — torus band ringed with tilted laurel leaves",
+    "Wreath ring - torus band ringed with tilted laurel leaves",
     "filigree")
 

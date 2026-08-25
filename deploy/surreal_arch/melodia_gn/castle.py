@@ -340,7 +340,7 @@ def build_castle_gatehouse(group_name="MEL_castle_gatehouse"):
 
 
 def build_castle_gothic_window(group_name="MEL_castle_gothic_window"):
-    """Gothic pointed-arch window — portal slab minus cutter, plus tracery.
+    """Gothic pointed-arch window - portal slab minus cutter, plus tracery.
 
     Language matches gothic_kit GB_GOTHIC_PORTAL / bay: boolean wall, pointed
     cap, mullions. Universal Musical Influence at the end (default 0).
@@ -374,7 +374,7 @@ def build_castle_gothic_window(group_name="MEL_castle_gothic_window"):
     link_sockets(tree, gin.outputs["Height"], frame_size.inputs["Z"])
     link_sockets(tree, frame_size.outputs["Vector"], frame.inputs["Size"])
 
-    # Inner rectangular cutter — Width/Height minus 2× frame thick
+    # Inner rectangular cutter - Width/Height minus 2× frame thick
     thick2 = safe_node(tree, "ShaderNodeMath", (bx - 700, by + 140))
     thick2.operation = "MULTIPLY"
     link_sockets(tree, gin.outputs["Frame Thick"], thick2.inputs[0])
@@ -492,10 +492,10 @@ def build_castle_gothic_window(group_name="MEL_castle_gothic_window"):
 
 
 def build_castle_buttress(group_name="MEL_castle_buttress"):
-    """Flying buttress — arched support strut with true parabolic arch profile.
+    """Flying buttress - arched support strut with true parabolic arch profile.
 
     Parametric arch curve: Z(x) = ArchRise * (1 - (x/Reach)^ArchPower)
-    ArchPower=1.0 → linear ramp, >1.0 → gothic pointed, <1.0 → romanesque shallow.
+    ArchPower=1.0 -> linear ramp, >1.0 -> gothic pointed, <1.0 -> romanesque shallow.
     """
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
@@ -513,7 +513,7 @@ def build_castle_buttress(group_name="MEL_castle_buttress"):
     link_float_to_vector(tree, gin.outputs["Height"], strut, "Size", component=2)
     link_float_to_vector(tree, gin.outputs["Thickness"], strut, "Size", component=1)
 
-    # Tapered pier (outer support) — wider at base
+    # Tapered pier (outer support) - wider at base
     pier = safe_node(tree, "GeometryNodeMeshCube", (bx - 200, by))
     link_float_to_vector(tree, gin.outputs["Reach"], pier, "Size", component=0)
     link_float_to_vector(tree, gin.outputs["Height"], pier, "Size", component=2)
@@ -905,7 +905,7 @@ def build_castle_spiral_stairs(group_name="MEL_castle_spiral_stairs"):
 
 
 def build_castle_drawbridge(group_name="MEL_castle_drawbridge"):
-    """Drawbridge — plank floor with chain suspension and hinge rotation.
+    """Drawbridge - plank floor with chain suspension and hinge rotation.
 
     Parametric: Span, Width, Plank Count, Chain Sag, Hinge Angle.
     """
@@ -1022,7 +1022,7 @@ def build_castle_drawbridge(group_name="MEL_castle_drawbridge"):
 
 
 def build_castle_corner_bastion(group_name="MEL_castle_corner_bastion"):
-    """Corner bastion — 90-degree wall junction with integrated tower.
+    """Corner bastion - 90-degree wall junction with integrated tower.
 
     Creates two wall arms meeting at a corner with a tower at the intersection.
     """
@@ -1199,7 +1199,7 @@ def build_castle_assembler(group_name="MEL_castle_assembler"):
 from .core import register_builder
 
 register_builder("MEL_castle_crenellation", build_castle_crenellation, "Castle Crenellation",
-    "Battlement top — alternating merlons and crenels along a wall",
+    "Battlement top - alternating merlons and crenels along a wall",
     "castle")
 register_builder("MEL_castle_wall_segment", build_castle_wall_segment, "Castle Wall Segment",
     "Wall body with optional crenellation toggle via Switch node",
@@ -1214,19 +1214,19 @@ register_builder("MEL_castle_gothic_window", build_castle_gothic_window, "Castle
     "Pointed arch window with tracery bars",
     "castle")
 register_builder("MEL_castle_buttress", build_castle_buttress, "Castle Buttress",
-    "Flying buttress — tapered strut with angled arch support",
+    "Flying buttress - tapered strut with angled arch support",
     "castle")
 register_builder("MEL_castle_keep", build_castle_keep, "Castle Keep",
-    "Central keep — multi-tier core with corner towers and tier taper",
+    "Central keep - multi-tier core with corner towers and tier taper",
     "castle")
 register_builder("MEL_castle_curtain_wall", build_castle_curtain_wall, "Castle Curtain Wall",
-    "Wall between towers — walkway and support pillars via linear array",
+    "Wall between towers - walkway and support pillars via linear array",
     "castle")
 register_builder("MEL_castle_machicolations", build_castle_machicolations, "Castle Machicolations",
-    "Projecting parapet — murder holes via grid array of boolean voids",
+    "Projecting parapet - murder holes via grid array of boolean voids",
     "castle")
 register_builder("MEL_castle_spiral_stairs", build_castle_spiral_stairs, "Castle Spiral Stairs",
-    "Spiral staircase — hollow shaft with wedge steps on helix",
+    "Spiral staircase - hollow shaft with wedge steps on helix",
     "castle")
 register_builder("MEL_castle_assembler", build_castle_assembler, "Castle Full Assembler",
     "Full castle composition \u2014 walls, towers, keep, gatehouse, courtyard",

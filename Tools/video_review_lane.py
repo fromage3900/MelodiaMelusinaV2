@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Video Review Lane — fresh-eyes regression review of PIE captures.
+"""Video Review Lane - fresh-eyes regression review of PIE captures.
 
 Reviews frames (PNG/JPG) or a video (ffmpeg-extracted frames) with a vision
 model and writes a JSON report with per-frame observations + verdict.

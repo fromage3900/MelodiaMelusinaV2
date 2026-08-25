@@ -1,5 +1,5 @@
 """
-Offline audit script for SK_Melusina material instances — Substrate Toon compliance.
+Offline audit script for SK_Melusina material instances - Substrate Toon compliance.
 
 This is an OFFLINE audit: it does NOT require a running Unreal Editor or Monolith MCP.
 It cross-references:
@@ -53,16 +53,16 @@ SLOT_MAP = {
     18: ("skirtpanel_002",                  "MI_Melusina_skirtpanel_002",                  "skirt front panel",                                 ""),
     19: ("Outline_Shader_star_025",         "MI_Melusina_Outline_Shader_star_025",         "outline shader",                                    ""),
     20: ("SHAWL_001",                       "MI_Melusina_SHAWL_001",                       "shawl/shoulder wrap",                               ""),
-    21: ("frontpanel_001",                  "MI_Melusina_frontpanel_001",                  "front panel (bodice)",                              "had Marble_1/Marble_5 placeholders — fixed Jul 2026"),
+    21: ("frontpanel_001",                  "MI_Melusina_frontpanel_001",                  "front panel (bodice)",                              "had Marble_1/Marble_5 placeholders - fixed Jul 2026"),
     22: ("Outline_Shader_star_023",         "MI_Melusina_Outline_Shader_star_023",         "outline shader",                                    ""),
-    23: ("GLOVES_001",                      "MI_Melusina_GLOVES_001",                      "gloves",                                            "had Marble_1 placeholder — fixed Jul 2026"),
+    23: ("GLOVES_001",                      "MI_Melusina_GLOVES_001",                      "gloves",                                            "had Marble_1 placeholder - fixed Jul 2026"),
     24: ("Outline_Shader_star_030",         "MI_Melusina_Outline_Shader_star_030",         "outline shader",                                    ""),
     25: ("Material_017",                    "MI_Melusina_Material_017",                    "body/clothing material",                            ""),
-    26: ("Skipped — Material_019",          "NONE",                                        "NO MATERIAL ASSIGNED",                              "intentionally empty: no source texture match"),
+    26: ("Skipped - Material_019",          "NONE",                                        "NO MATERIAL ASSIGNED",                              "intentionally empty: no source texture match"),
     27: ("Outline_Shader_star_028",         "MI_Melusina_Outline_Shader_star_028",         "outline shader",                                    ""),
-    28: ("Skipped — Material_018",          "NONE",                                        "NO MATERIAL ASSIGNED",                              "intentionally empty: no source texture match"),
+    28: ("Skipped - Material_018",          "NONE",                                        "NO MATERIAL ASSIGNED",                              "intentionally empty: no source texture match"),
     29: ("Outline_Shader_star_027",         "MI_Melusina_Outline_Shader_star_027",         "outline shader",                                    ""),
-    30: ("Skipped — Iridescence_002",       "NONE",                                        "NO MATERIAL ASSIGNED",                              "intentionally empty: needs thin-film shader"),
+    30: ("Skipped - Iridescence_002",       "NONE",                                        "NO MATERIAL ASSIGNED",                              "intentionally empty: needs thin-film shader"),
     31: ("Outline_Shader_star_026",         "MI_Melusina_Outline_Shader_star_026",         "outline shader",                                    ""),
     32: ("Outline_Shader_star_032",         "MI_Melusina_Outline_Shader_star_032",         "outline shader",                                    ""),
     33: ("SKIRT_003",                       "MI_Melusina_SKIRT_003",                       "skirt main",                                        ""),
@@ -83,7 +83,7 @@ WATER_HAIR_PATH = "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Wat
 
 KNOWN_PARENT_MASTER = "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal"
 
-# ── Expected texture prefix → slot mapping ───────────────────────────────
+# ── Expected texture prefix -> slot mapping ───────────────────────────────
 TEXTURE_PREFIX_MAP = {
     "T_Melusina_M_Melusina":        "body main (SBW_MELUSINA_006/007)",
     "T_Melusina_m_sleeve":          "sleeve (slot 3)",
@@ -319,16 +319,16 @@ def audit_offline():
 
         if mi_name == "NONE":
             slot_info["status"] = "empty_intentional"
-            slot_info["issues"] = ["Intentional empty slot — no source texture match found"]
+            slot_info["issues"] = ["Intentional empty slot - no source texture match found"]
         else:
             issues = []
             # Check texture coverage
             if not slot_info["has_core_maps"]:
                 issues.append(f"Missing core maps (BaseColor/Normal/Roughness/Metallic): found {tex_maps_found}")
             if not slot_info["has_basecolor"]:
-                issues.append("Missing BaseColor texture — will render flat/default color")
+                issues.append("Missing BaseColor texture - will render flat/default color")
             if not slot_info["has_normal"]:
-                issues.append("Missing Normal map — will lack surface detail")
+                issues.append("Missing Normal map - will lack surface detail")
 
             # Known issues from documentation
             if mi_name in KNOWN_ISSUES:
@@ -339,7 +339,7 @@ def audit_offline():
             if mi_name in KNOWN_UNRESOLVED_ISSUES:
                 issues.append(f"Needs verification: {KNOWN_UNRESOLVED_ISSUES[mi_name]}")
 
-            # Check if it's an outline shader — these have simpler requirements
+            # Check if it's an outline shader - these have simpler requirements
             if slot_info["material_family"] == "outline":
                 if not slot_info["has_basecolor"]:
                     issues.append("Outline may need BaseColor if using texture-based outlines")
@@ -360,7 +360,7 @@ def audit_offline():
         "role": "hair (water shader with Komikaze NPR)",
         "texture_source": "Blender Water (Advance).001 with embedded Komikaze",
         "unsafe_features": ["gerstner_wpo", "screen_refraction", "shoreline_foam", "world_depth_fade"],
-        "issues": ["Uses water master, not M_Master_Toon_Universal — verify Substrate Toon path active"],
+        "issues": ["Uses water master, not M_Master_Toon_Universal - verify Substrate Toon path active"],
         "status": "warn",
     }
     results["water_hair"] = water_hair
@@ -428,7 +428,7 @@ def generate_recommendations(results):
 
     # Verify TP_Melusina assignment
     recs.append("Verify TP_Melusina toon profile is assigned to all clothing/body MIs (not outlines/halftones)")
-    recs.append("Run in-editor verification: open each MI → check Details → Substrate Toon BSDF → Toon Profile")
+    recs.append("Run in-editor verification: open each MI -> check Details -> Substrate Toon BSDF -> Toon Profile")
 
     # Water hair verification
     recs.append("Verify MI_Melusina_WaterHair has Substrate Toon path active (it uses water master, not Universal)")
@@ -470,7 +470,7 @@ def write_json_report(report):
 
 def write_md_report(report):
     lines = []
-    lines.append("# Melusina Material Audit Report — Substrate Toon Compliance")
+    lines.append("# Melusina Material Audit Report - Substrate Toon Compliance")
     lines.append(f"**Generated:** {report['audit_timestamp']}")
     lines.append(f"**Audit Mode:** {report['audit_mode'].upper()}")
     lines.append(f"**Monolith Reachable:** {report['monolith_reachable']}")
@@ -496,7 +496,7 @@ def write_md_report(report):
     for k in sorted(k for k in report["per_slot_results"].keys() if isinstance(k, int)):
         v = report["per_slot_results"][k]
         idx = f"Slot {k} (1-based: {k+1})"
-        lines.append(f"### {idx} — `{v['material_instance']}`")
+        lines.append(f"### {idx} - `{v['material_instance']}`")
         lines.append(f"**Status:** {v['status'].upper()}")
         lines.append(f"**Slot Name:** `{v['slot_name']}`")
         lines.append(f"**Role:** {v['role']}")
@@ -504,7 +504,7 @@ def write_md_report(report):
         lines.append(f"**Parent:** `{v['parent_master']}`")
         lines.append(f"**Substrate Toon:** {'YES' if v.get('substrate_toon_compliant') else 'NO'}")
         if v["has_material_assigned"]:
-            lines.append(f"**Textures Found:** {len(v['texture_maps_found'])} maps — {', '.join(v['texture_maps_found']) if v['texture_maps_found'] else 'NONE'}")
+            lines.append(f"**Textures Found:** {len(v['texture_maps_found'])} maps - {', '.join(v['texture_maps_found']) if v['texture_maps_found'] else 'NONE'}")
             lines.append(f"**Core Maps (BC/N/R/M):** {'YES' if v['has_core_maps'] else 'NO'}")
             lines.append(f"**Full Maps (7/7):** {'YES' if v['has_full_maps'] else 'NO'}")
         if v["issues"]:
@@ -565,7 +565,7 @@ def write_md_report(report):
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("SK_Melusina Material Audit — Substrate Toon Compliance")
+    print("SK_Melusina Material Audit - Substrate Toon Compliance")
     print("=" * 60)
     print()
 
@@ -584,6 +584,6 @@ if __name__ == "__main__":
     print()
     print("Priority fixes:")
     for idx, name, priority, reason in report["summary"]["priority_order"]:
-        print(f"  [{priority}] Slot {idx}: {name} — {reason}")
+        print(f"  [{priority}] Slot {idx}: {name} - {reason}")
     print()
     print("Done.")

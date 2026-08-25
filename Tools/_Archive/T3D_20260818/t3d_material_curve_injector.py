@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-T3D Material Curve Injector — inject material parameter curves, scalars, colors,
+T3D Material Curve Injector - inject material parameter curves, scalars, colors,
 and textures via Monolith MCP.
 
 Two-tier dispatch:
-  - Material instances (UMaterialInstance) → material_query:set_instance_parameter
-  - Toon profiles / Blueprint-based assets → editor_query:run_python
+  - Material instances (UMaterialInstance) -> material_query:set_instance_parameter
+  - Toon profiles / Blueprint-based assets -> editor_query:run_python
 
 CLI:
     python t3d_material_curve_injector.py --asset <path> --set-scalar <name>=<value>
@@ -62,7 +62,7 @@ class T3DMaterialCurveInjector:
         if not m:
             return None
 
-        # Collect per-channel key tables  channel → [(time, value)]
+        # Collect per-channel key tables  channel -> [(time, value)]
         channels: dict[int, list[tuple[float, float]]] = {}
         pattern = re.compile(
             r'ColorCurves\[(\d+)\]='  # channel index

@@ -1,0 +1,147 @@
+{
+  "schema": "melodia.p0.live_gate_evidence_matrix.v1",
+  "generated_at": "2026-08-24",
+  "scope": "documentation-only preparation; no claim of a current healthy UE session",
+  "execution_state": "MOVING_BASELINE_HOLD",
+  "baseline_history": [
+    {
+      "sha": "9e7e44488bfdc0317b59c478549e3e9daacdb457",
+      "event": "initial"
+    },
+    {
+      "sha": "df404e84a5e0be32cac489c080d6e612f7c19d98",
+      "event": "refresh_1"
+    },
+    {
+      "sha": "35aa86bcf63a2e117f9e84cd5579c27b509575ee",
+      "event": "refresh_2_triggers_hold"
+    }
+  ],
+  "proof_tiers": {
+    "T0_source": "Static source/topology only; no execution claim.",
+    "T1_offline": "Contract, syntax, or native build; no editor-route claim.",
+    "T2_scoped_runtime": "One named PIE route with marker and clean scoped log.",
+    "T3_player_visible": "Real input plus visible viewport/UI behavior.",
+    "T4_durable_loop": "Required save/reload or replay boundary passes."
+  },
+  "historical_evidence": [
+    {
+      "id": "enemy_territory_control",
+      "tier": "T2_scoped_runtime",
+      "status": "PASS_SCOPED_WITH_ABSTRACT_AGGRESSIVE_BASE_LIMIT",
+      "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+      "session_id": "pie_smoke_43_113022",
+      "marker": "MELODIA_P0_ENEMY_TERRITORY_FUNCTION_PROBE_20260822",
+      "duration_seconds": 30,
+      "average_spawned": 1,
+      "detector_spawned": 1,
+      "aggressive_base_direct_spawn": "NOT_AVAILABLE_ABSTRACT",
+      "forbidden_runtime_matches": 0,
+      "source": "Saved/Echo/BattleIntegrationMap/enemy_territory_matrix_20260822_report.json"
+    },
+    {
+      "id": "hud_single_writer_source",
+      "tier": "T1_offline",
+      "status": "PASS_SOURCE_CONTRACT",
+      "command": "python Tools/test_melodia_hud_ownership_contract.py",
+      "live_proof": "PENDING"
+    },
+    {
+      "id": "wardrobe_transaction",
+      "tier": "T1_offline",
+      "status": "PASS",
+      "passed": 67,
+      "total": 67,
+      "command": "python Tools/test_melodia_wardrobe_transaction_contract.py",
+      "live_proof": "PENDING"
+    },
+    {
+      "id": "echo_contract",
+      "tier": "T1_offline",
+      "status": "PASS",
+      "passed": 77,
+      "total": 77,
+      "command": "python Tools/test_echo_contract.py",
+      "live_proof": "NOT_APPLICABLE_TO_RUNTIME"
+    }
+  ],
+  "serialized_live_gates": [
+    {
+      "order": 0,
+      "id": "controller_regression_control",
+      "required_tier": "T2_scoped_runtime",
+      "status": "HOLD_BASELINE",
+      "proof": "Average plus detector; zero Blueprint Runtime Error, Accessed None, Fatal, and Ensure after the marker."
+    },
+    {
+      "order": 1,
+      "id": "hud_single_writer",
+      "required_tier": "T3_player_visible",
+      "status": "HOLD_BASELINE",
+      "proof": "Exactly one main battle widget and one rhythm surface through a visible open/close cycle."
+    },
+    {
+      "order": 2,
+      "id": "rhythm_owner",
+      "required_tier": "T3_player_visible",
+      "status": "HOLD_BASELINE",
+      "proof": "One real key input reaches damage exactly once."
+    },
+    {
+      "order": 3,
+      "id": "rhythm_grade_to_result",
+      "required_tier": "T3_player_visible",
+      "status": "HOLD_BASELINE",
+      "proof": "One rated input reaches the stock resolver and shows a matching result."
+    },
+    {
+      "order": 4,
+      "id": "wardrobe_equip_roundtrip",
+      "required_tier": "T4_durable_loop",
+      "status": "HOLD_BASELINE",
+      "proof": "Approved cosmetic grant/equip is restored by save, reload, and ApplyWardrobeState."
+    },
+    {
+      "order": 5,
+      "id": "wardrobe_gameplay_hook",
+      "required_tier": "T3_player_visible",
+      "status": "HOLD_BASELINE",
+      "proof": "An approved capability changes Glide availability and restores correctly."
+    },
+    {
+      "order": 6,
+      "id": "music_world_key",
+      "required_tier": "T4_durable_loop",
+      "status": "OWNER_DECISION_AND_HOLD_BASELINE",
+      "proof": "One owner-approved level host plays a phrase then commits across replay/reload."
+    },
+    {
+      "order": 7,
+      "id": "choral_sheep_integration",
+      "required_tier": "T3_player_visible",
+      "status": "RIG_OWNER_DECISION_AND_HOLD_BASELINE",
+      "proof": "Approved rig plus definition, first spawn, follow, and Graze/Harmonize/Guide range smoke."
+    }
+  ],
+  "entry_requirements": [
+    "One healthy editor only, bound to the agreed endpoint.",
+    "Named non-protected test map.",
+    "Recorded dirty-package and errored-Blueprint baseline.",
+    "Stable owner-approved baseline SHA.",
+    "Prewritten marker, expected actors, duration, teardown check, and forbidden patterns."
+  ],
+  "owner_decisions": [
+    {
+      "id": "music_world_key_host",
+      "decision": "Name one allowed active level and host; global attachment is prohibited."
+    },
+    {
+      "id": "choral_sheep_first_map",
+      "decision": "Resolve the conflict between L_ChoralSheep_Prototype and MelodiaIntegrationMap in the owning runbook."
+    },
+    {
+      "id": "choral_sheep_rig",
+      "decision": "Provide the owner-approved rig at the reserved path; Groom and animation remain optional for the first smoke."
+    }
+  ]
+}

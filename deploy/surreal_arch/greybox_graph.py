@@ -1,4 +1,4 @@
-"""Room graph presets — spawn and auto-snap module chains."""
+"""Room graph presets - spawn and auto-snap module chains."""
 
 from __future__ import annotations
 
@@ -125,7 +125,7 @@ def _preview_chain(spec):
 GRAPH_REGISTRY = {
     "CLOISTER": {
         "label": "Cloister Walk",
-        "description": "Gothic monastery walk — corridor bend into portal bay",
+        "description": "Gothic monastery walk - corridor bend into portal bay",
         "preview": _preview_chain(GRAPH_CLOISTER),
         "style": "gothic",
         "module_count": len(GRAPH_CLOISTER),
@@ -133,7 +133,7 @@ GRAPH_REGISTRY = {
     },
     "SCI_FI_DECK": {
         "label": "Sci-Fi Deck Spine",
-        "description": "Industrial spine — long hall, T-junction, command room",
+        "description": "Industrial spine - long hall, T-junction, command room",
         "preview": _preview_chain(GRAPH_SCI_FI_DECK),
         "style": "scifi",
         "module_count": len(GRAPH_SCI_FI_DECK),
@@ -141,7 +141,7 @@ GRAPH_REGISTRY = {
     },
     "ROMANESQUE_CLOISTER": {
         "label": "Romanesque Cloister Loop",
-        "description": "Arcade bay and offset corridor rhythm — bay-end snaps",
+        "description": "Arcade bay and offset corridor rhythm - bay-end snaps",
         "preview": _preview_chain(GRAPH_ROMANESQUE_CLOISTER),
         "style": "romanesque",
         "module_count": len(GRAPH_ROMANESQUE_CLOISTER),
@@ -157,7 +157,7 @@ GRAPH_REGISTRY = {
     },
     "ROMANESQUE_APSE": {
         "label": "Romanesque Choir + Apse",
-        "description": "Arcade walk terminating in semicircular apse — Cistercian choir layout",
+        "description": "Arcade walk terminating in semicircular apse - Cistercian choir layout",
         "preview": _preview_chain(GRAPH_ROMANESQUE_APSE),
         "style": "romanesque",
         "module_count": len(GRAPH_ROMANESQUE_APSE),
@@ -165,7 +165,7 @@ GRAPH_REGISTRY = {
     },
     "VENETIAN_CANAL": {
         "label": "Venetian Canal Block",
-        "description": "Loggia rhythm along offset corridor — sottoportego + waterfront facade",
+        "description": "Loggia rhythm along offset corridor - sottoportego + waterfront facade",
         "preview": _preview_chain(GRAPH_VENETIAN_CANAL),
         "style": "venetian",
         "module_count": len(GRAPH_VENETIAN_CANAL),
@@ -173,7 +173,7 @@ GRAPH_REGISTRY = {
     },
     "SCI_FI_DECK_EXPANSION": {
         "label": "Sci-Fi Command Deck",
-        "description": "Expanded deck spine — T-junction, airlock, command room, return corridor",
+        "description": "Expanded deck spine - T-junction, airlock, command room, return corridor",
         "preview": _preview_chain(GRAPH_SCI_FI_DECK_EXPANSION),
         "style": "scifi",
         "module_count": len(GRAPH_SCI_FI_DECK_EXPANSION),
@@ -189,7 +189,7 @@ GRAPH_REGISTRY = {
     },
     "ZEN_ROJI_PATH": {
         "label": "Zen Roji Approach",
-        "description": "Torii gate, dew-path steps, tsukubai basin, stone lantern — tea garden entry",
+        "description": "Torii gate, dew-path steps, tsukubai basin, stone lantern - tea garden entry",
         "preview": _preview_chain(GRAPH_ZEN_ROJI_PATH),
         "style": "zen",
         "module_count": len(GRAPH_ZEN_ROJI_PATH),
@@ -205,7 +205,7 @@ GRAPH_REGISTRY = {
     },
     "ZEN_TEA_GARDEN": {
         "label": "Zen Tea Garden",
-        "description": "Compact roji — torii, tobi-ishi, bamboo screen, tsukubai, engawa, teahouse",
+        "description": "Compact roji - torii, tobi-ishi, bamboo screen, tsukubai, engawa, teahouse",
         "preview": _preview_chain(GRAPH_ZEN_TEA_GARDEN),
         "style": "zen",
         "module_count": len(GRAPH_ZEN_TEA_GARDEN),
@@ -213,7 +213,7 @@ GRAPH_REGISTRY = {
     },
     "ZEN_KARESANSHUI_WALK": {
         "label": "Zen Karesansui Walk",
-        "description": "Torii → roji path → dry garden → machiai waiting pavilion",
+        "description": "Torii -> roji path -> dry garden -> machiai waiting pavilion",
         "preview": _preview_chain(GRAPH_ZEN_KARESANSHUI_WALK),
         "style": "zen",
         "module_count": len(GRAPH_ZEN_KARESANSHUI_WALK),
@@ -221,7 +221,7 @@ GRAPH_REGISTRY = {
     },
     "ZEN_SAKURA_WALK": {
         "label": "Zen Sakura Walk",
-        "description": "Cherry blossom garden route — allee, stream edge, stone bridge, karesansui",
+        "description": "Cherry blossom garden route - allee, stream edge, stone bridge, karesansui",
         "preview": _preview_chain(GRAPH_ZEN_SAKURA_WALK),
         "style": "zen",
         "module_count": len(GRAPH_ZEN_SAKURA_WALK),

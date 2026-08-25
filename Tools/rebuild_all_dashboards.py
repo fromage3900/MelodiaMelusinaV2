@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-rebuild_all_dashboards.py — regenerate every pipeline dashboard in one command.
+rebuild_all_dashboards.py - regenerate every pipeline dashboard in one command.
 
 Runs the existing dashboard generators (from the repo root, via subprocess) and
 prints a summary table of the output files:

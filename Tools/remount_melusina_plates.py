@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Scan / apply Melusina dated plate remounts → site-plates.json slots + optional path rewrite.
+"""Scan / apply Melusina dated plate remounts -> site-plates.json slots + optional path rewrite.
 
 Never remounts solid-mauve *_001 blanks. Prefers dated melusina_*_YYYYMMDD_nn.png.
-Writes named slots (SSOT) — pages hydrate via data-plate + content/site-plates.json.
+Writes named slots (SSOT) - pages hydrate via data-plate + content/site-plates.json.
 
 Usage:
   python Tools/remount_melusina_plates.py --scan
@@ -47,7 +47,7 @@ SHOT_ROLES = {
     "glam_audvis": ["hero_audvis"],
 }
 
-# shot → plate slot keys
+# shot -> plate slot keys
 SHOT_TO_SLOTS = {
     "beauty_nikki": ["index.hero", "recruiter.hero", "hub.melusina", "stage.beauty"],
     "beauty": ["index.hero", "recruiter.hero", "hub.melusina", "stage.beauty"],
@@ -185,7 +185,7 @@ def apply_remount(chosen: dict[str, dict]) -> dict:
             }
             if prev.get("caption"):
                 slots[key]["caption"] = prev["caption"]
-        notes.append(f"{shot} → {row['file']} ({', '.join(slot_keys)})")
+        notes.append(f"{shot} -> {row['file']} ({', '.join(slot_keys)})")
 
     beauty = chosen.get("beauty_nikki") or chosen.get("beauty")
     if beauty:
@@ -271,7 +271,7 @@ def refresh_passport_capture(beauty_web: str | None) -> dict | None:
         return {
             "error": (
                 "melodia_asset_passport module is missing (lost 2026-07-31, only .pyc "
-                f"+ a known-bad reconstruction remain — see _TASK_QUEUE.md): {exc}"
+                f"+ a known-bad reconstruction remain - see _TASK_QUEUE.md): {exc}"
             )
         }
 
@@ -284,9 +284,9 @@ def refresh_passport_capture(beauty_web: str | None) -> dict | None:
     for label, value in rows:
         if label == "Capture":
             fname = Path(beauty_web).name
-            new_rows.append([label, f"beauty Nikki dated · {fname}"])
+            new_rows.append([label, f"beauty Nikki dated - {fname}"])
         elif label == "Software" and ("v4" in str(value) or "v7" not in str(value)):
-            new_rows.append([label, "Blender · Melodia Portfolio Stage v7"])
+            new_rows.append([label, "Blender - Melodia Portfolio Stage v7"])
         elif label == "Engine" and "Cycles" in str(value):
             new_rows.append([label, "Blender EEVEE"])
         else:
@@ -305,11 +305,11 @@ def refresh_passport_capture(beauty_web: str | None) -> dict | None:
         if isinstance(cfg, dict):
             for key in ("capture", "Capture", "still"):
                 if key in cfg:
-                    cfg[key] = f"beauty Nikki dated · {Path(beauty_web).name}"
+                    cfg[key] = f"beauty Nikki dated - {Path(beauty_web).name}"
             # rows-like
             if isinstance(cfg.get("rows"), list):
                 cfg["rows"] = [
-                    [a, (f"beauty Nikki dated · {Path(beauty_web).name}" if a == "Capture" else b)]
+                    [a, (f"beauty Nikki dated - {Path(beauty_web).name}" if a == "Capture" else b)]
                     for a, b in cfg["rows"]
                 ]
             pc.write_text(json.dumps(cfg, indent=2) + "\n", encoding="utf-8")

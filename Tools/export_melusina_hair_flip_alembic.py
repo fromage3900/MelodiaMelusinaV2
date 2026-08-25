@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Export Flip Fluids fluid_surface to Alembic for UE Geometry Cache (Layer C cine).
 
-Uses the domain custom frame range (not a hardcoded 1–96). Does not save the
+Uses the domain custom frame range (not a hardcoded 1-96). Does not save the
 stage. Does not replace SK_MelusinaHair. Restores scene timeline after export.
 
 GUI:

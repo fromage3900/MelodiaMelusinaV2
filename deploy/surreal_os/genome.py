@@ -1,4 +1,4 @@
-"""Style Genome — load, validate, apply to SurrealArchProperties."""
+"""Style Genome - load, validate, apply to SurrealArchProperties."""
 
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ def _validate_genome(data: dict) -> list[str]:
 
 
 def genome_family(genome: dict) -> str:
-    """Resolve catalog family — explicit `family` field or id-prefix fallback."""
+    """Resolve catalog family - explicit `family` field or id-prefix fallback."""
     fam = genome.get("family")
     if fam:
         return str(fam)

@@ -71,10 +71,15 @@ def main() -> int:
     assert "UnknownChallenge" in types and "UnknownAnchor" in types
     assert "FMelodiaStateAnchorOperation" in types
 
-    challenge_validation = cpp.index("Config->WorldChallengeIds.Contains(ChallengeId)")
-    challenge_mutation = cpp.index("NarrativeRecord.Flags.Add(CompletionFlagId, true)")
-    anchor_validation = cpp.index("Config->StateAnchorIds.Contains(AnchorId)")
-    anchor_mutation = cpp.index("NarrativeRecord.ConsumedIntentIds.Add(ApplyIntentId)")
+    # Scope the validate-before-mutate ordering to each commit function's own body:
+    # the mutation statements also appear in earlier unrelated functions, so a
+    # whole-file .index() would compare against the wrong call site.
+    challenge_body = cpp[cpp.index("UMelodiaNarrativeSubsystem::CommitWorldChallenge("):]
+    anchor_body = cpp[cpp.index("UMelodiaNarrativeSubsystem::ApplyStateAnchor("):]
+    challenge_validation = challenge_body.index("Config->WorldChallengeIds.Contains(ChallengeId)")
+    challenge_mutation = challenge_body.index("NarrativeRecord.Flags.Add(CompletionFlagId, true)")
+    anchor_validation = anchor_body.index("Config->StateAnchorIds.Contains(AnchorId)")
+    anchor_mutation = anchor_body.index("NarrativeRecord.ConsumedIntentIds.Add(ApplyIntentId)")
     assert challenge_validation < challenge_mutation
     assert anchor_validation < anchor_mutation
     assert "All validation is complete before the first canonical field is changed" in cpp

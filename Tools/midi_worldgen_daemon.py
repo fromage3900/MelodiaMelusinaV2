@@ -1,4 +1,4 @@
-"""MIDI World-Gen Daemon — scan, generate, render, ledger.
+"""MIDI World-Gen Daemon - scan, generate, render, ledger.
 
 Runs on a schedule (Hermes cron). For each new or changed MIDI file:
   1. Build walkable heightfields for all 5 presets (serpentine + spiral)

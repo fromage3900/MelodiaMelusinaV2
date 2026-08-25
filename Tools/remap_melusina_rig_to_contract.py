@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Remap character_rig (ARP dotted names) -> SK_Melusina_Skeleton contract names.
 
-Cursor/Blender lane. This script RENAMES BONES IN MEMORY ONLY — it never saves
+Cursor/Blender lane. This script RENAMES BONES IN MEMORY ONLY - it never saves
 the stage blend. It is the Blender-side half of the V2 split-mesh integration:
 
   1. Load stage blend (or use the already-open file).

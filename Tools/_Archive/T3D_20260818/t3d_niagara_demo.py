@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-t3d_niagara_demo.py — Demo applying Melusina WaterFX presets to Niagara systems
+t3d_niagara_demo.py - Demo applying Melusina WaterFX presets to Niagara systems
 and water hair materials via the T3D Niagara Injector.
 
 Usage:
@@ -69,7 +69,7 @@ def dry_run_preset(name: str, preset: dict):
 
 def main() -> int:
     import argparse
-    parser = argparse.ArgumentParser(description="T3D Niagara Demo — Melusina WaterFX Presets")
+    parser = argparse.ArgumentParser(description="T3D Niagara Demo - Melusina WaterFX Presets")
     parser.add_argument("--dry-run", action="store_true", help="Print what would be done")
     parser.add_argument("--preset", choices=["waterfx", "day1", "waterhair", "all"],
                         default="all", help="Which preset to apply")
@@ -97,7 +97,7 @@ def main() -> int:
         return 0
 
     print("=" * 60)
-    print("T3D Niagara Demo — Melusina WaterFX Preset Application")
+    print("T3D Niagara Demo - Melusina WaterFX Preset Application")
     print("=" * 60)
     print(f"  MCP URL: {args.mcp_url or 'http://127.0.0.1:9316/mcp'}")
 

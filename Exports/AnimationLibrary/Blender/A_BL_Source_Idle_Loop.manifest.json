@@ -23,13 +23,14 @@
   "consumer": "blendspace",
   "animation_only": true,
   "one_clip_per_file": true,
-  "status": "promoted",
+  "status": "blocked",
   "status_reasons": [
-    "v22 ARP operator baked controller action",
-    "ARP output normalized to the 464-bone SK_Source_Melusina contract",
-    "verified by Blender scanner: 30 FPS, 464 bones, no meshes, centimetre header"
+    "rejected 2026-08-24: existing UE derivative A_BL_Source_Idle_Loop__MUAL_TARGET is static bind pose at every sampled frame",
+    "the authoritative hand-keyed source is the v22 stage receipt Saved/Audit/melusina_idle_v22_export.json",
+    "do not use this derivative or its prior UE report as source-lineage evidence; re-enter through the dedicated source-to-target IK route"
   ],
-  "promotion_target": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_MUAL_Source_Idle",
+  "promotion_target": "",
+  "promotion_targets": [],
   "notify_contract": [],
   "speed_evidence": {
     "mode": "static_pose",
@@ -39,7 +40,7 @@
     "evidence_report": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\mual_foot_contact_audit_blendspace.json"
   },
   "foot_contact_audit": {
-    "status": "passed",
+    "status": "rejected",
     "required_for_promotion": true,
     "method": "footspeed",
     "left_count": 0,

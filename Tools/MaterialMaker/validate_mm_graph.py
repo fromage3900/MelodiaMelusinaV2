@@ -90,7 +90,7 @@ def validate_ptex(path: Path, *, expect_dynamic: bool, emissive_node: str, min_e
         params = node.get("parameters", {})
         if ntype == "tones" and INVALID_TONES_KEYS & set(params):
             issues.append(
-                f"{node.get('name')}: `tones` node uses value/contrast — use `tones_range` instead"
+                f"{node.get('name')}: `tones` node uses value/contrast - use `tones_range` instead"
             )
         if ntype == "image":
             if "fix_ratio" in params:

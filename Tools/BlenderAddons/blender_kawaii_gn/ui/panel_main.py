@@ -59,7 +59,7 @@ class KawaiiGNSceneProps(bpy.types.PropertyGroup):
 
 class MELKAWAIIGN_PT_main(bpy.types.Panel):
     """Main panel."""
-    bl_label = "✨ Kawaii Geometry Nodes (v2.0.40) ✨"
+    bl_label = "* Kawaii Geometry Nodes (v2.0.40) *"
     bl_idname = "MELKAWAIIGN_PT_main"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
@@ -79,7 +79,7 @@ class MELKAWAIIGN_PT_main(bpy.types.Panel):
         box = layout.box()
         box.label(text="Global Settings", icon='SETTINGS')
         box.prop(props, 'cuteness_level', text="Cuteness")
-        box.label(text="Cuteness → Roundness on supported GNs", icon='INFO')
+        box.label(text="Cuteness -> Roundness on supported GNs", icon='INFO')
         box.label(text="Cupcake/Donut: Roundness scales icing + base", icon='BLANK1')
         box.label(text="Donut: Roundness also lifts icing Z (CombineXYZ)", icon='BLANK1')
         box.prop(props, 'pastel_theme', text="Theme")
@@ -121,7 +121,7 @@ def register():
     bpy.utils.register_class(KawaiiGNSceneProps)
     bpy.utils.register_class(MELKAWAIIGN_PT_main)
     bpy.types.Scene.kawaii_gn_props = bpy.props.PointerProperty(type=KawaiiGNSceneProps)
-    print("[Kawaii GN v2.0.40] Main panel — Blender 5.1 GN I/O + node API compatibility")
+    print("[Kawaii GN v2.0.40] Main panel - Blender 5.1 GN I/O + node API compatibility")
 
 
 def unregister():

@@ -1,4 +1,4 @@
-"""Water GN group builders — Gerstner waves, ripples, foam, current markers."""
+"""Water GN group builders - Gerstner waves, ripples, foam, current markers."""
 
 from __future__ import annotations
 
@@ -47,7 +47,7 @@ def build_water_gerstner(group_name="MEL_water_gerstner"):
 
     sum_node = None
     for i in range(4):
-        # k dot p — wave number times position along the wind direction
+        # k dot p - wave number times position along the wind direction
         kx = safe_node(tree, "ShaderNodeMath", (bx - 800 + i * 320, by + i * 40))
         kx.operation = "MULTIPLY"
         kx.inputs[0].default_value = 1.0 / (2.0 + i * 1.5)
@@ -388,13 +388,13 @@ def build_water_current_markers(group_name="MEL_water_current_markers"):
 
 # -- Registry --
 register_builder("MEL_water_gerstner", build_water_gerstner, "Gerstner Waves",
-    "Multi-layer Gerstner wave displacement — wind direction, speed, amplitude, animated.",
+    "Multi-layer Gerstner wave displacement - wind direction, speed, amplitude, animated.",
     "effects", role="modifier")
 register_builder("MEL_water_ripples", build_water_ripples, "Water Ripples",
     "Expanding ripple rings from an impact point with per-ring decay.",
     "effects", role="modifier")
 register_builder("MEL_water_foam", build_water_foam, "Water Foam",
-    "Foam patch instances with lifetime — velocity-threshold wake and impact foam.",
+    "Foam patch instances with lifetime - velocity-threshold wake and impact foam.",
     "effects")
 register_builder("MEL_water_current_markers", build_water_current_markers, "Current Markers",
     "Flow-direction arrow instances with current_dir attribute for navigation reads.",

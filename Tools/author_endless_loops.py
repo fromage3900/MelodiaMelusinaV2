@@ -1,4 +1,4 @@
-"""author_endless_loops.py — build the endless-loop petal/leaf systems.
+"""author_endless_loops.py - build the endless-loop petal/leaf systems.
 
 Canonical loop materials (created 2026-08-14):
   M_Niagara_PetalMesh_Loop   (dup of M_NiagaraPetal_Loop_v2_Candidate)
@@ -7,9 +7,9 @@ Canonical loop materials (created 2026-08-14):
   M_Niagara_SDF_Loop         (dup of M_Niagara_SakuraSprite)
 
 Systems built (candidates):
-  NS_Melodia_PetalEndlessLoop_Candidate  — GPU mesh petals, LoopBehavior=Infinite,
+  NS_Melodia_PetalEndlessLoop_Candidate  - GPU mesh petals, LoopBehavior=Infinite,
                                            phase-stable lifecycle material, quiet at rest.
-  NS_Melodia_LeafPileLoop_Candidate      — GPU leaf-card sprites stacking into piles,
+  NS_Melodia_LeafPileLoop_Candidate      - GPU leaf-card sprites stacking into piles,
                                            LoopBehavior=Infinite, SubUV 2x2 dead-leaf atlas.
 
 Run from Tools/:  python author_endless_loops.py

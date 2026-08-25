@@ -1,4 +1,4 @@
-"""Single-call kit registration — reduces monolith touch points for new greybox modules."""
+"""Single-call kit registration - reduces monolith touch points for new greybox modules."""
 
 from __future__ import annotations
 

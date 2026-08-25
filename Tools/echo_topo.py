@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-echo_topo.py — Topological DAG processor for the Echo gate layer.
+echo_topo.py - Topological DAG processor for the Echo gate layer.
 
 Loads the topological manifest at specs/echo_topo.json, computes in-degree for
 every gate across all layers, and provides:
 
-  * eligible            — gates whose predecessors all have PASS ledger rows
-  * order               — full topological sort (Kahn's algorithm)
-  * schedule            — classify eligible gates into model_router lanes
-  * check-promote       — verify a promote gate's predecessors are satisfied
-  * summary             — ASCII DAG + per-layer status matrix
+  * eligible            - gates whose predecessors all have PASS ledger rows
+  * order               - full topological sort (Kahn's algorithm)
+  * schedule            - classify eligible gates into model_router lanes
+  * check-promote       - verify a promote gate's predecessors are satisfied
+  * summary             - ASCII DAG + per-layer status matrix
 
 The manifest uses dot-notation for cross-layer references:
   "predecessors": ["ch1_gameplay.promote"]
@@ -99,9 +99,9 @@ def build_adjacency(manifest: dict[str, Any]) -> tuple[
     Build adjacency structures from the manifest.
 
     Returns:
-      gates      — {full_id: gate_dict}
-      preds      — {full_id: set(pred_full_ids)}
-      in_degree  — {full_id: int}
+      gates      - {full_id: gate_dict}
+      preds      - {full_id: set(pred_full_ids)}
+      in_degree  - {full_id: int}
     """
     gates = _flatten_gates(manifest)
     preds: dict[str, set[str]] = {}
@@ -171,7 +171,7 @@ def topological_order(
             if indeg[dependent] == 0:
                 queue.append(dependent)
                 queue.sort()
-    # Any remaining have cycles — append them (they'll show as BLOCKED)
+    # Any remaining have cycles - append them (they'll show as BLOCKED)
     for gid in gates:
         if gid not in order:
             order.append(gid)
@@ -266,7 +266,7 @@ def cmd_eligible(as_json: bool = False) -> int:
     for full_id in order:
         gate = gates[full_id]
         status = all_statuses[full_id]
-        is_eligible = "YES" if full_id in ready else "—"
+        is_eligible = "YES" if full_id in ready else "-"
         ps = gate.get("predecessors", [])
         pred_str = ", ".join(ps) if ps else "(none)"
         print(f"  {full_id:<40} {gate.get('chapter', 0):<4} {status:<6} {is_eligible:<7} {pred_str[:30]}")
@@ -278,7 +278,7 @@ def cmd_eligible(as_json: bool = False) -> int:
             cls = classify_gate(full_id, gate)
             print(f"    [{gate.get('lane', '?'):<11}] {cls:<12} {full_id}")
     else:
-        print("\n  No gates eligible — all remaining have unmet predecessors.")
+        print("\n  No gates eligible - all remaining have unmet predecessors.")
     return 0
 
 
@@ -307,10 +307,10 @@ def cmd_check_promote(gate_id: str, manifest: dict | None = None) -> int:
 
     ok, failed = check_promote(gate_id)
     if ok:
-        print(f"[OK] {gate_id} — all predecessors satisfied, promote is eligible.")
+        print(f"[OK] {gate_id} - all predecessors satisfied, promote is eligible.")
         return 0
     else:
-        print(f"[BLOCKED] {gate_id} — predecessors not yet PASS:")
+        print(f"[BLOCKED] {gate_id} - predecessors not yet PASS:")
         for f in failed:
             print(f"  {f}")
         return 1
@@ -332,7 +332,7 @@ def cmd_schedule(as_json: bool = False) -> int:
     for row in rows:
         by_class.setdefault(row["task_class"], []).append(row)
 
-    print("# Topo scheduling — eligible gates classified into model lanes")
+    print("# Topo scheduling - eligible gates classified into model lanes")
     print(f"  {len(rows)} gate(s) ready for dispatch\n")
     for cls in sorted(by_class):
         print(f"  [{cls}]")
@@ -350,14 +350,14 @@ def cmd_summary() -> int:
     ledger = _load_ledger()
     statuses = {gid: gate_status(gid, ledger) for gid in gates}
 
-    print("# Echo Topo DAG — Project Gate Summary")
+    print("# Echo Topo DAG - Project Gate Summary")
     print(f"  layers: {len(manifest.get('layers', {}))}")
     print(f"  gates:  {len(gates)}")
     print(f"  ledger: {_LEDGER.parent.name}/{_LEDGER.name}")
     print()
 
     for layer_id, layer in manifest.get("layers", {}).items():
-        print(f"  ## Chapter {layer.get('chapter', '?')} — {layer.get('label', layer_id)}")
+        print(f"  ## Chapter {layer.get('chapter', '?')} - {layer.get('label', layer_id)}")
         for gid, gate in layer.get("gates", {}).items():
             full = f"{layer_id}.{gid}"
             s = statuses.get(full, "OPEN")

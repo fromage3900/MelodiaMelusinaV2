@@ -7,8 +7,8 @@
   Never save Melodia_Portfolio_Stage_*.blend unless MELODIA_ALLOW_STAGE_SAVE=1.
 
 Collections kept (rebuilt):
-  OrnamentGN_Editable  — gothic fix-list (_edit_SM_Orn_*)
-  MusicalGN_Editable   — full musical kitbash (_edit_SM_Orn_*)
+  OrnamentGN_Editable  - gothic fix-list (_edit_SM_Orn_*)
+  MusicalGN_Editable   - full musical kitbash (_edit_SM_Orn_*)
 
 Removed:
   MusicalOrnaments_Review / OrnamentFix_Review objects + empty collections
@@ -17,7 +17,7 @@ Removed:
 
 Does NOT overwrite KitbashExport FBX.
 
-Blender (preferred — live stage):
+Blender (preferred - live stage):
   exec(open(r'G:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\cleanup_stage_keep_editable_gn.py').read())
 
 Headless:
@@ -150,7 +150,7 @@ def purge_review_meshes() -> dict:
 
 
 def isolate_editable_collections() -> list[str]:
-    """DISABLED — isolation hid collections and made meshes untoggleable.
+    """DISABLED - isolation hid collections and made meshes untoggleable.
 
     Previously: hide_viewport/hide_render on non-essentials + sculpt_monetization preset.
     Do not re-enable without an explicit user request and a matching restore path.
@@ -174,7 +174,7 @@ def spawn_editable() -> dict:
 
 def main(*, save: bool = True) -> dict:
     if STOP.is_file():
-        msg = f"ABORT: {STOP} present — cleanup deletes review collections; blocked."
+        msg = f"ABORT: {STOP} present - cleanup deletes review collections; blocked."
         log(msg)
         return {"ok": False, "error": "MELUSINA_SHADER_AGENT_STOP"}
 
@@ -182,7 +182,7 @@ def main(*, save: bool = True) -> dict:
     log(f"purged objects={purge['deleted_object_count']} cols={purge['deleted_collections']}")
 
     spawn = spawn_editable()
-    # Do NOT isolate collections — that locked viewport toggles on the stage.
+    # Do NOT isolate collections - that locked viewport toggles on the stage.
     shown = isolate_editable_collections()
 
     payload = {
@@ -209,7 +209,7 @@ def main(*, save: bool = True) -> dict:
         if is_stage and not allow:
             payload["saved"] = None
             payload["save_refused"] = (
-                "REFUSED stage save — set MELODIA_ALLOW_STAGE_SAVE=1 with artist consent"
+                "REFUSED stage save - set MELODIA_ALLOW_STAGE_SAVE=1 with artist consent"
             )
             log(payload["save_refused"])
         else:

@@ -1,4 +1,4 @@
-"""Gothic modular kit builders — bay, portal, buttress, tracery panel."""
+"""Gothic modular kit builders - bay, portal, buttress, tracery panel."""
 
 from __future__ import annotations
 

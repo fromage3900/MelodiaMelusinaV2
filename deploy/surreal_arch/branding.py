@@ -1,4 +1,4 @@
-"""Melodia Studio product identity — display branding only.
+"""Melodia Studio product identity - display branding only.
 
 MODULE_ID is melodia_studio. surreal_arch.* operator prefixes remain unchanged.
 The enabled Blender module file is still surreal_architecture_gen.py.
@@ -7,7 +7,7 @@ The enabled Blender module file is still surreal_architecture_gen.py.
 from __future__ import annotations
 
 PRODUCT_NAME = "Melodia Studio"
-PRODUCT_SUBTITLE = "Architecture · Ornament · Genome"
+PRODUCT_SUBTITLE = "Architecture - Ornament - Genome"
 PRODUCT_TAGLINE = "powered by SurrealArch kits"
 MODULE_ID = "melodia_studio"
 N_PANEL_CATEGORY = "Melodia Studio"
@@ -61,7 +61,7 @@ def unify_npanel_categories() -> list[str]:
         cat = getattr(cls, "bl_category", None)
         if space != "VIEW_3D":
             continue
-        # Modern Primitive (blender_org.modern_primitive) shares MPR_PT_* ids —
+        # Modern Primitive (blender_org.modern_primitive) shares MPR_PT_* ids -
         # do not steal its Tool/MPR category or nest Convert To under Melodia.
         if "modern_primitive" in mod:
             continue

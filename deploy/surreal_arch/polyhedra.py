@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Polyhedra mesh builders — Kepler-Poinsot, Platonic, Archimedean, compounds."""
+"""Polyhedra mesh builders - Kepler-Poinsot, Platonic, Archimedean, compounds."""
 
 from __future__ import annotations
 
@@ -230,24 +230,24 @@ def build_rhombic_dodecahedron(size: float = 1.0):
 
 
 POLYHEDRA_REGISTRY = {
-    "SSDC": {"label": "Small Stellated Dodecahedron", "group": "kepler", "emoji": "⭐", "build": lambda s: build_kepler_poinsot("SSDC", s)},
-    "GD": {"label": "Great Dodecahedron", "group": "kepler", "emoji": "🔶", "build": lambda s: build_kepler_poinsot("GD", s)},
-    "GSDC": {"label": "Great Stellated Dodecahedron", "group": "kepler", "emoji": "✦", "build": lambda s: build_kepler_poinsot("GSDC", s)},
-    "GI": {"label": "Great Icosahedron", "group": "kepler", "emoji": "✸", "build": lambda s: build_kepler_poinsot("GI", s)},
-    "TET": {"label": "Tetrahedron", "group": "platonic", "emoji": "🔺", "build": build_tetrahedron},
-    "CUBE": {"label": "Cube", "group": "platonic", "emoji": "⬛", "build": build_cube},
-    "OCT": {"label": "Octahedron", "group": "platonic", "emoji": "💎", "build": build_octahedron},
-    "DODEC": {"label": "Dodecahedron", "group": "platonic", "emoji": "⬡", "build": build_dodecahedron},
-    "ICOS": {"label": "Icosahedron", "group": "platonic", "emoji": "🔷", "build": build_icosahedron},
-    "CUBOCTA": {"label": "Cuboctahedron", "group": "archimedean", "emoji": "🔘", "build": build_cuboctahedron},
-    "TRUNC_ICOS": {"label": "Truncated Icosahedron", "group": "archimedean", "emoji": "⚽", "build": build_truncated_icosahedron},
-    "RHOMBICUBOCTA": {"label": "Rhombicuboctahedron", "group": "archimedean", "emoji": "🔳", "build": build_rhombicuboctahedron},
-    "STELLA_OCTANGULA": {"label": "Stella Octangula", "group": "compound", "emoji": "✡", "build": build_stella_octangula},
-    "RHOMBIC_DODEC": {"label": "Rhombic Dodecahedron", "group": "compound", "emoji": "♦", "build": build_rhombic_dodecahedron},
+    "SSDC": {"label": "Small Stellated Dodecahedron", "group": "kepler", "emoji": "*", "build": lambda s: build_kepler_poinsot("SSDC", s)},
+    "GD": {"label": "Great Dodecahedron", "group": "kepler", "emoji": "*", "build": lambda s: build_kepler_poinsot("GD", s)},
+    "GSDC": {"label": "Great Stellated Dodecahedron", "group": "kepler", "emoji": "*", "build": lambda s: build_kepler_poinsot("GSDC", s)},
+    "GI": {"label": "Great Icosahedron", "group": "kepler", "emoji": "*", "build": lambda s: build_kepler_poinsot("GI", s)},
+    "TET": {"label": "Tetrahedron", "group": "platonic", "emoji": "*", "build": build_tetrahedron},
+    "CUBE": {"label": "Cube", "group": "platonic", "emoji": "*", "build": build_cube},
+    "OCT": {"label": "Octahedron", "group": "platonic", "emoji": "*", "build": build_octahedron},
+    "DODEC": {"label": "Dodecahedron", "group": "platonic", "emoji": "*", "build": build_dodecahedron},
+    "ICOS": {"label": "Icosahedron", "group": "platonic", "emoji": "*", "build": build_icosahedron},
+    "CUBOCTA": {"label": "Cuboctahedron", "group": "archimedean", "emoji": "*", "build": build_cuboctahedron},
+    "TRUNC_ICOS": {"label": "Truncated Icosahedron", "group": "archimedean", "emoji": "*", "build": build_truncated_icosahedron},
+    "RHOMBICUBOCTA": {"label": "Rhombicuboctahedron", "group": "archimedean", "emoji": "*", "build": build_rhombicuboctahedron},
+    "STELLA_OCTANGULA": {"label": "Stella Octangula", "group": "compound", "emoji": "*", "build": build_stella_octangula},
+    "RHOMBIC_DODEC": {"label": "Rhombic Dodecahedron", "group": "compound", "emoji": "*", "build": build_rhombic_dodecahedron},
 }
 
 GROUP_LABELS = {
-    "kepler": "Kepler–Poinsot",
+    "kepler": "Kepler-Poinsot",
     "platonic": "Platonic Solids",
     "archimedean": "Archimedean",
     "compound": "Compounds",

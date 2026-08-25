@@ -1,4 +1,4 @@
-"""Brutalist modular kit — recess-panel walls with pilaster rhythm."""
+"""Brutalist modular kit - recess-panel walls with pilaster rhythm."""
 
 from __future__ import annotations
 

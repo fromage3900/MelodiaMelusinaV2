@@ -2,8 +2,8 @@
 """Spawn ornaments with LIVE Geometry Nodes (editable) in proper collections.
 
 Collections:
-  OrnamentGN_Editable  — gothic monetization fix-list
-  MusicalGN_Editable   — full musical kitbash (10) + Melodia GN where routed
+  OrnamentGN_Editable  - gothic monetization fix-list
+  MusicalGN_Editable   - full musical kitbash (10) + Melodia GN where routed
 
 Keeps SurrealArch / Melodia GN modifiers live (apply_modifiers=False).
 Does NOT overwrite KitbashExport FBX. No WIP / HandRemake / review-folder deps.
@@ -61,7 +61,7 @@ GOTHIC_TARGETS = [
     }),
 ]
 
-# Full musical kitbash (10) — SurrealArch / Melodia GN builders only
+# Full musical kitbash (10) - SurrealArch / Melodia GN builders only
 MUSICAL_TARGETS = [
     ("SM_Orn_TrebleClef", "TREBLE_CLEF", {
         "clef_size": 2.0, "clef_thickness": 0.06, "clef_curls": 1.5,
@@ -354,7 +354,7 @@ def spawn_group(
     results = []
     for i, (name, arch, ov) in enumerate(targets):
         lane = lane_for(name, default_lane)
-        log(f"spawn {name} ({arch}) → {col_name}")
+        log(f"spawn {name} ({arch}) -> {col_name}")
         results.append(spawn_one(name, arch, ov, lane, col, i, row_offset=row_offset))
     return col, results
 
@@ -378,9 +378,9 @@ def main() -> dict:
         "how_to_edit": [
             f"Gothic: select _edit_SM_Orn_* in {COL_GOTHIC}",
             f"Musical: select _edit_SM_Orn_* in {COL_MUSICAL}",
-            "Modifier Properties → SurrealArch / MelodiaGN node trees",
-            "Melodia Studio → RNA tweaks → generate again",
-            "When final: apply modifiers → export FBX to KitbashExport flat SSOT",
+            "Modifier Properties -> SurrealArch / MelodiaGN node trees",
+            "Melodia Studio -> RNA tweaks -> generate again",
+            "When final: apply modifiers -> export FBX to KitbashExport flat SSOT",
         ],
         "results": results,
         "ok_count": sum(1 for r in results if r.get("ok")),

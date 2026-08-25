@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Melodia MCP Server — Dedicated surface for Persona-lite, QuillScript, Rhythm Combat,
+Melodia MCP Server - Dedicated surface for Persona-lite, QuillScript, Rhythm Combat,
 and Blueprint fixture integration.
 
 Runs as an MCP stdio server.  All write paths require explicit approval and pass
@@ -1055,7 +1055,7 @@ def melodia_animation_get_runtime_abp(bp_path: str) -> dict[str, Any]:
         "parent_class": parent_class.get("name"),
         "parent_path": parent_class.get("path"),
         "status": "inherited",
-        "warning": "AnimClass inherited from parent — verify skeleton match",
+        "warning": "AnimClass inherited from parent - verify skeleton match",
     }
 
 
@@ -1140,7 +1140,7 @@ def melodia_audio_validate_metasound(metasound_path: str) -> dict[str, Any]:
         "metasound_path": metasound_path,
         "source": "offline",
         "valid": on_disk,
-        "note": "Monolith unreachable — disk-only presence check",
+        "note": "Monolith unreachable - disk-only presence check",
     }
 
 
@@ -1232,7 +1232,7 @@ def melodia_ui_validate_widget(widget_path: str) -> dict[str, Any]:
         "widget_path": widget_path,
         "source": "offline",
         "valid": on_disk,
-        "note": "Monolith unreachable — disk-only presence check",
+        "note": "Monolith unreachable - disk-only presence check",
     }
 
 
@@ -1262,7 +1262,7 @@ def melodia_ui_get_battle_hud() -> dict[str, Any]:
 
 
 def melodia_system_compile_feedback(asset_path: str | None = None) -> dict[str, Any]:
-    """Return compile feedback for an asset — RCF metric groundwork. Offline-safe stub."""
+    """Return compile feedback for an asset - RCF metric groundwork. Offline-safe stub."""
     if not _monolith_is_live():
         return {
             "schema": "melodia.system.compile_feedback.v1",
@@ -1271,7 +1271,7 @@ def melodia_system_compile_feedback(asset_path: str | None = None) -> dict[str, 
             "asset_path": asset_path,
             "compile_errors": [],
             "compile_warnings": [],
-            "note": "RCF groundwork — live compile feedback requires Monolith on :9316",
+            "note": "RCF groundwork - live compile feedback requires Monolith on :9316",
         }
 
     result = _monolith_call(
@@ -1385,7 +1385,7 @@ def melodia_economy_cast_skill(skill_id: str, tier: int = 1) -> dict[str, Any]:
 
 
 def melodia_economy_activate_grief_hook(dungeon_id: str) -> dict[str, Any]:
-    """Activate grief hook for dungeon entry — sets grief to 30."""
+    """Activate grief hook for dungeon entry - sets grief to 30."""
     global _ECONOMY_STATE
     new_eco, result = activate_grief_hook(_ECONOMY_STATE, dungeon_id)
     _ECONOMY_STATE = new_eco
@@ -2478,7 +2478,7 @@ TOOLS: list[dict[str, Any]] = [
     },
     {
         "name": "melodia_system_compile_feedback",
-        "description": "Return compile feedback for an asset — RCF metric groundwork. Offline-safe stub.",
+        "description": "Return compile feedback for an asset - RCF metric groundwork. Offline-safe stub.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -2495,11 +2495,11 @@ TOOLS: list[dict[str, Any]] = [
     },
     {
         "name": "melodia_economy_rhythm_hit",
-        "description": "Apply a rhythm hit with accuracy 0.0–1.0; grief modifies mana/healing gains.",
+        "description": "Apply a rhythm hit with accuracy 0.0-1.0; grief modifies mana/healing gains.",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "accuracy": {"type": "number", "description": "Hit accuracy 0.0–1.0"},
+                "accuracy": {"type": "number", "description": "Hit accuracy 0.0-1.0"},
             },
             "required": ["accuracy"],
         },
@@ -2522,7 +2522,7 @@ TOOLS: list[dict[str, Any]] = [
     },
     {
         "name": "melodia_economy_activate_grief_hook",
-        "description": "Activate grief hook for a dungeon — sets grief to 30.",
+        "description": "Activate grief hook for a dungeon - sets grief to 30.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -2767,7 +2767,7 @@ def main() -> None:
             args = params.get("arguments", {})
             result: dict[str, Any]
 
-            # Dispatch table — every tool is read-only, so approval is checked
+            # Dispatch table - every tool is read-only, so approval is checked
             # but none of these mutate state.
             if tool_name == "melodia_persona_get_stats":
                 policy = authorize_tool(tool_name, "read", args.get("approval", "none"))

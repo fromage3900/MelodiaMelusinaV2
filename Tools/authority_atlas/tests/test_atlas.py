@@ -57,7 +57,7 @@ class AuthorityAtlasTests(unittest.TestCase):
         self.assertIn("20260824", JSON_RELATIVE_PATH)
         self.assertIn("2026-08-24", REPORT_RELATIVE_PATH)
         report = render_markdown(self.atlas)
-        self.assertIn("# Gameplay Authority Atlas — 2026-08-24", report)
+        self.assertIn("# Gameplay Authority Atlas - 2026-08-24", report)
         self.assertNotIn("2026-08-23", report)
         self.assertIn("Static reachability is not runtime proof", report)
         self.assertIn("Focused GMM blast radius", report)
