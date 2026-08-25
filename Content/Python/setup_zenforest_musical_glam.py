@@ -192,18 +192,27 @@ def _import_alphas(unreal, dry_run: bool) -> list[dict]:
         }
         if not exists_dst and not dry_run and exists_src:
             # Use import via Interchange or copy? Simplest: use EditorAssetLibrary duplicate if src already in Content/Alphas_Sparkles
-            # Content/Alphas_Sparkles files are already in UE as /Game/Alphas_Sparkles/T_... — try duplicate
-            src_asset_guess = f"/Game/Alphas_Sparkles/{src_name.rsplit('.',1)[0]}"
-            if unreal.EditorAssetLibrary.does_asset_exist(src_asset_guess):
+            # Alphas live in the registry under /Game/_PROJECT/VFX/Textures (canonical),
+            # with a quarantine mirror at /Game/EnvSandbox/VFX/_Quarantine_2026-08-15.
+            # Never import from the quarantine tree. Try canonical candidates in order.
+            stem = src_name.rsplit('.', 1)[0]
+            candidates = [
+                f"/Game/_PROJECT/VFX/Textures/{stem}",
+                f"/Game/Alphas_Sparkles/{stem}",
+                f"/Game/VFX/{stem}",
+            ]
+            src_asset = next((c for c in candidates
+                              if unreal.EditorAssetLibrary.does_asset_exist(c)), None)
+            if src_asset:
                 try:
-                    unreal.EditorAssetLibrary.duplicate_asset(src_asset_guess, dst_asset)
-                    entry["action"] = "duplicated_from_Alphas_Sparkles"
+                    unreal.EditorAssetLibrary.duplicate_asset(src_asset, dst_asset)
+                    entry["action"] = f"duplicated_from:{src_asset}"
                     entry["dst_exists"] = True
                 except Exception as exc:
                     entry["action"] = f"duplicate_failed: {exc}"
             else:
                 entry["action"] = "src_asset_not_in_registry__manual_import_needed"
-                entry["hint"] = f"Import {src_path} to {dst_asset} via Content Browser (LFS-tracked .png)"
+                entry["hint"] = f"Import {src_path} to {dst_asset} via Content Browser (LFS-tracked .png); canonical home /Game/_PROJECT/VFX/Textures/"
         results.append(entry)
     return results
 
@@ -350,15 +359,29 @@ def _ensure_niagara_actors(unreal, eas, les, focal, half, dry_run: bool) -> list
             actor = eas.spawn_actor_from_class(unreal.NiagaraActor.static_class(), loc, unreal.Rotator(0,0,0))
             actor.set_actor_label(label)
             comp = actor.get_component_by_class(unreal.NiagaraComponent)
+            warn = None
             if comp:
-                comp.set_editor_property("asset", asset)
-                comp.set_editor_property("b_auto_activate", True)
-                # Tag for portfolio + magical
+                # Each property set independently: UE 5.8 exposes b_auto_activate only as a
+                # setter (see audit_zenforest_niagara.py note) and a bad attribute name must
+                # not abort the spawn report the way it did on the first full run.
+                try:
+                    comp.set_editor_property("asset", asset)
+                except Exception as exc:
+                    warn = f"asset_assign_failed: {exc}"
+                try:
+                    comp.set_editor_property("b_auto_activate", True)
+                except Exception:
+                    # NiagaraActor activates its component on spawn by default; non-fatal.
+                    pass
                 try:
                     actor.set_editor_property("tags", ["ZenMusicalGlam", "Portfolio_Hero"])
                 except Exception:
                     pass
-            results.append({"label": label, "exists": True, "action": "spawned", "template": tmpl, "location": [loc.x, loc.y, loc.z]})
+            entry = {"label": label, "exists": True, "action": "spawned",
+                     "template": tmpl, "location": [loc.x, loc.y, loc.z]}
+            if warn:
+                entry["warn"] = warn
+            results.append(entry)
         except Exception as exc:
             results.append({"label": label, "exists": False, "action": f"spawn_failed: {exc}"})
     return results
