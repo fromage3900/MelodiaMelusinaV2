@@ -13,13 +13,15 @@ Front door for driving **MelodiaMelusinaV2** from iOS / Cursor mobile / SuperGro
 3. [../Handoffs/PIE_2026-08-11.md](../Handoffs/PIE_2026-08-11.md) — owner runtime truth (Kaleido triggers, UI alpha, Sir CTRL, highway)
 4. [MOBILE_LANES.md](MOBILE_LANES.md) — phone vs PC; Drive / Live Link / Polycam
 5. [SETUP.md](SETUP.md) — SuperGrok + Cursor Pro + phone/GitHub agents
-6. [NORTH_STAR.md](NORTH_STAR.md) — **Ship Melodia** · P0 live proof · P1 sendoffs (OpenCode first; NVIDIA withdrawn)
-7. [BACKLOG.md](BACKLOG.md) — Now / Next · P0 gates + [RECRUITER_SENDOFFS…](../Career/RECRUITER_SENDOFFS_2026-08-25.md)
-8. [ENV_PACK_RESEARCH_POINTER.md](ENV_PACK_RESEARCH_POINTER.md) — cute/mystical/underwater packs
-9. [../MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md](../MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md) — Polycam/Kiri → ZBrush → Rokoko
-10. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory
-11. [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) — **Implemented** jcode swarm install + Recipes A/B
-12. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
+6. [REMOTE_WSL_AGENT_STACK_2026-08-25.md](REMOTE_WSL_AGENT_STACK_2026-08-25.md) — **phone → Blink/SSH → WSL/tmux agents** (cloud-readable audit; PC install needs approval)
+7. [AGENT_LANE_HANDOFF.md](AGENT_LANE_HANDOFF.md) — lane handoff fields + STATUS states (not a second PM system)
+8. [NORTH_STAR.md](NORTH_STAR.md) — **Ship Melodia** · P0 live proof · P1 sendoffs (OpenCode first; NVIDIA withdrawn)
+9. [BACKLOG.md](BACKLOG.md) — Now / Next · P0 gates + [RECRUITER_SENDOFFS…](../Career/RECRUITER_SENDOFFS_2026-08-25.md)
+10. [ENV_PACK_RESEARCH_POINTER.md](ENV_PACK_RESEARCH_POINTER.md) — cute/mystical/underwater packs
+11. [../MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md](../MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md) — Polycam/Kiri → ZBrush → Rokoko
+12. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory
+13. [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) — **Implemented** jcode swarm install + Recipes A/B
+14. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
 
 Harness: [`.jcode/README.md`](../../.jcode/README.md) · `.\deploy\start_jcode_swarm.ps1`
 
@@ -46,6 +48,12 @@ Then, if you need deeper truth:
 ```text
 Read Docs/Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md.
 Drive is connected. Pull my Melodia scan/research folder, consolidate into the repo, open one draft PR. No process docs. No UE/Blender from cloud unless Remote Control is on.
+```
+
+```text
+You are on MelodiaMelusinaV2 cloud. Read Docs/PhoneOps/REMOTE_WSL_AGENT_STACK_2026-08-25.md
+and Docs/PhoneOps/AGENT_LANE_HANDOFF.md. Docs only. Do not install Windows/WSL/SSH from cloud.
+Summarize READY NOW vs NEEDS APPROVAL in ≤12 bullets.
 ```
 
 ```text

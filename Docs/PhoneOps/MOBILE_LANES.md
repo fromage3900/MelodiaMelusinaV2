@@ -8,6 +8,7 @@ How to work MelodiaMelusinaV2 from iOS / SuperGrok / Cursor cloud without fighti
 |------|------|--------------|
 | **Phone / cloud** | Docs, issues, Quill drafts, Polycam capture → Drive, PR review, Echo *doc* hygiene | Editor writes, LFS mesh pushes, Live Link sockets, PIE |
 | **PC + editor** | One Unreal, port 9316, Monolith, import/intake, RT-001…007 | Parallel second editor |
+| **PC + WSL/tmux** (planned) | Private Blink/SSH → WSL agent CLIs → Git; see [REMOTE_WSL_AGENT_STACK_2026-08-25.md](REMOTE_WSL_AGENT_STACK_2026-08-25.md) | Public SSH; auto-loops; cloud agents pretending to configure Windows |
 
 ## Connectors
 
