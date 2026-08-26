@@ -3,7 +3,7 @@
 Infrastructure plan for operating MelodiaMelusinaV2 from an iPhone through a private path into Windows → WSL2 → tmux → agent CLIs → Git.
 
 **Scope:** docs and conventions only. No gameplay, Unreal, Blender, or architecture changes.  
-**Authority:** [`_AGENT_WORKING_AGREEMENT.md`](../../_AGENT_WORKING_AGREEMENT.md). Product priority is [`BACKLOG.md`](BACKLOG.md) and the current [`P0 status`](../Handoffs/CURRENT_P0_STATUS_2026-08-25.md). Melodia ship remains P0.
+**Authority:** [`_AGENT_WORKING_AGREEMENT.md`](../../_AGENT_WORKING_AGREEMENT.md). Product priority is [`BACKLOG.md`](BACKLOG.md) and the current [`P0 status on main`](https://github.com/fromage3900/MelodiaMelusinaV2/blob/main/Docs/Handoffs/CURRENT_P0_STATUS_2026-08-25.md). Melodia ship remains P0.
 
 ## Target path
 
