@@ -66,6 +66,15 @@ def walkable_tool_dir():
 
 # Musical -> spatial mapping presets. chunk_beats controls how much song
 # time is packed per world chunk; the scale/height factors shape relief.
+#
+# NOTE (2026-08-25): surface_height_divisor / cave_height_divisor are
+# RESERVED for a future midi_voxel_v3 that honours per-preset height.
+# The current generator hardcodes vel//32 (surface) and vel//40 (cave)
+# -- see tests/test_midi_bridge.py::test_height_divisors_are_honoured
+# (expectedFailure). Effective topology knobs today are chunk_beats +
+# use_beatgrid; divisors are stored but do not affect voxel output.
+# Do not author presets that differ ONLY in divisor -- they will be
+# byte-identical until the generator is threaded.
 DEFAULT_PRESETS = {
     "resonant_default": {
         "label": "Resonant Default",
@@ -221,6 +230,27 @@ DEFAULT_PRESETS = {
         "aura_emission": 3.3,
     },
 }
+
+# Ancient Cultures instrument presets (see ancient_cultures.py) merged in at
+# import so the UI dropdown and batch tooling pick them up automatically.
+try:
+    from .ancient_cultures import ANCIENT_PRESETS as _ANCIENT_PRESETS  # type: ignore
+    for _k, _v in _ANCIENT_PRESETS.items():
+        DEFAULT_PRESETS.setdefault(_k, dict(_v))
+except Exception:
+    try:
+        import os as _os, importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location(
+            "ancient_cultures",
+            _os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                          "ancient_cultures.py"))
+        if _spec is not None and _spec.loader is not None:
+            _ac = _ilu.module_from_spec(_spec)
+            _spec.loader.exec_module(_ac)
+            for _k, _v in getattr(_ac, "ANCIENT_PRESETS", {}).items():
+                DEFAULT_PRESETS.setdefault(_k, dict(_v))
+    except Exception:
+        pass
 
 
 def load_presets():
