@@ -330,9 +330,12 @@ def plan_dressing(field, style_id="verdant", seed=7, budget=1400):
         if remaining <= 0:
             break
         want = int(len(candidates) * spec["density"])
-        # max(1, ...) here used to override the budget, letting each kind add
-        # one more prop past the cap.
-        want = min(max(1, want), remaining)
+        # At least one sample per kind when candidates exist, but never exceed remaining.
+        if want == 0 and candidates:
+            want = 1
+        want = min(want, remaining)
+        if want <= 0:
+            continue
 
         s_lo, s_hi = spec["scale"]
         for (cell, info) in candidates[:want]:
@@ -416,3 +419,37 @@ def plan_magic(field, style_id="verdant"):
         out.append(entry)
 
     return out, {"systems": len(out), "style": style_id}
+
+
+# ---------------------------------------------------------------- ancient cultures merge
+# Adds sun discs, oracle stones, papyrus reeds etc. Idempotent; works both as a
+# package-relative import and standalone (tests do `import terrain_dressing`).
+try:
+    from .ancient_cultures import (  # type: ignore
+        ANCIENT_DRESSING_KINDS as _AC_KINDS,
+        ANCIENT_DRESSING_STYLES as _AC_STYLES,
+    )
+    for _k, _v in _AC_KINDS.items():
+        DRESSING_KINDS.setdefault(_k, dict(_v))
+    for _k, _v in _AC_STYLES.items():
+        DRESSING_STYLES.setdefault(_k, dict(_v))
+except Exception:  # standalone fallback
+    try:
+        import os as _os, importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location(
+            "ancient_cultures",
+            _os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                          "ancient_cultures.py"))
+        if _spec is not None and _spec.loader is not None:
+            _ac = _ilu.module_from_spec(_spec)
+            _spec.loader.exec_module(_ac)
+            for _k, _v in getattr(_ac, "ANCIENT_DRESSING_KINDS", {}).items():
+                DRESSING_KINDS.setdefault(_k, dict(_v))
+            for _k, _v in getattr(_ac, "ANCIENT_DRESSING_STYLES", {}).items():
+                DRESSING_STYLES.setdefault(_k, dict(_v))
+    except Exception:
+        pass
+
+# Keep full_bloom as the true stress case: everything currently registered.
+DRESSING_STYLES["full_bloom"]["dressing"] = list(DRESSING_KINDS.keys())
+DRESSING_STYLES["full_bloom"]["magic"] = list(MAGIC_SYSTEMS.keys())
