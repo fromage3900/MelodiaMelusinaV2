@@ -3,20 +3,24 @@
 Infrastructure plan for operating MelodiaMelusinaV2 from an iPhone through a private path into Windows → WSL2 → tmux → agent CLIs → Git.
 
 **Scope:** docs and conventions only. No gameplay, Unreal, Blender, or architecture changes.  
-**Authority:** [`_AGENT_WORKING_AGREEMENT.md`](../../_AGENT_WORKING_AGREEMENT.md). Melodia ship remains P0.
+**Authority:** [`_AGENT_WORKING_AGREEMENT.md`](../../_AGENT_WORKING_AGREEMENT.md). Product priority is [`BACKLOG.md`](BACKLOG.md) and the current [`P0 status`](../Handoffs/CURRENT_P0_STATUS_2026-08-25.md). Melodia ship remains P0.
 
 ## Target path
 
 ```text
-iPhone
-  → Blink / SSH / Mosh
-  → Windows (private overlay only — not public internet)
+iPhone / Blink
+  → private overlay (for example, Tailscale)
+  → one SSH endpoint: Windows OpenSSH or WSL OpenSSH
   → WSL2 (prefer existing Ubuntu)
   → tmux session: melusina
   → Claude Code / Codex / Kimi / OpenCode / Pi / Hermes
   → Git
   → MelodiaMelusinaV2
 ```
+
+### Transport boundary
+
+Blink is the phone terminal client. The private overlay provides reachability. SSH is the required terminal transport; Mosh is optional after the SSH path works. Choose one SSH endpoint for Phase 1: Windows OpenSSH forwarding into WSL, or an SSH server inside WSL. Do not install or expose both by default.
 
 ## Two environments (do not conflate)
 
@@ -87,7 +91,7 @@ Git, SSH client, tmux binary, Node, npm, Python, in-repo Hermes daemon scripts.
 
 ### NEEDS INSTALLATION (Windows PC — verify first)
 
-OpenSSH Server (or SSH into WSL only), Tailscale (recommended), Mosh (optional), agent CLIs you choose, tmux **inside** WSL, messaging gateway only if Hermes is used as mobile orchestrator.
+One selected SSH endpoint — Windows OpenSSH **or** OpenSSH inside WSL, not both by default — plus Tailscale or another private overlay, Mosh (optional), the agent CLIs you choose, tmux **inside** WSL, and a messaging gateway only if Hermes is used as mobile orchestrator.
 
 ### NEEDS APPROVAL
 
@@ -119,7 +123,7 @@ PowerShell:
 winver
 wsl -l -v
 Get-Service sshd -ErrorAction SilentlyContinue | Format-List Status,StartType
-Get-Command git, tailscale, mosh -ErrorAction SilentlyContinue
+Get-Command sshd, git, tailscale, mosh -ErrorAction SilentlyContinue
 git --version
 ```
 
@@ -128,7 +132,7 @@ Inside preferred WSL distro:
 ```bash
 uname -a
 tmux -V
-command -v claude codex kimi opencode pi hermes ollama node npm python3 git
+command -v sshd claude codex kimi opencode pi hermes ollama node npm python3 git
 pwd
 git -C /path/to/MelodiaMelusinaV2 status -sb
 git -C /path/to/MelodiaMelusinaV2 branch --show-current
@@ -194,17 +198,18 @@ Each lane identifies itself via [AGENT_LANE_HANDOFF.md](AGENT_LANE_HANDOFF.md): 
 | Path | Status |
 |------|--------|
 | Cursor iOS → Cloud Agents → GitHub | Ready now |
-| Blink → SSH/Mosh → Windows → WSL | Needs PC audit + private overlay |
+| Blink → private overlay → selected SSH endpoint → WSL | Needs PC audit + private overlay; Mosh is optional |
 | Tailscale | Recommended next step on PC; do not install from cloud |
 | Public SSH | Never |
 
 ## Exact next steps
 
 1. Owner runs PC audit commands above; paste results into a cloud/phone follow-up.
-2. Approve Tailscale (or name overlay) + which CLIs.
-3. On WSL only: install missing pieces, create `melusina` tmux helpers, no auto-loops.
-4. Start using [AGENT_LANE_HANDOFF.md](AGENT_LANE_HANDOFF.md) for lane tips; keep `_TASK_QUEUE.md` / P0 ledger as product authority.
-5. Keep P0 Melodia live proof on the editor box; this stack stays infrastructure.
+2. Choose the Phase-1 SSH endpoint: Windows OpenSSH or WSL OpenSSH.
+3. Approve Tailscale (or name overlay) + which CLIs.
+4. On WSL only: install missing pieces, create `melusina` tmux helpers, no auto-loops.
+5. Start using [AGENT_LANE_HANDOFF.md](AGENT_LANE_HANDOFF.md) for lane tips; keep `_TASK_QUEUE.md` / P0 ledger as product authority.
+6. Keep P0 Melodia live proof on the editor box; this stack stays infrastructure.
 
 ## Related
 
