@@ -1,0 +1,105 @@
+{
+  "schema": "melodia.gaea_setup.v1",
+  "setup_id": "aurora_glacier",
+  "status": "native_graph_provenance_locked_export_pending",
+  "display_name": "Aurora Glacier — Glacial Fugue",
+  "world_seed": 3900,
+  "musical_binding": {
+    "movement_id": "aurora_glacier",
+    "midi_preset": "glacial_fugue",
+    "dressing_style": "ice_cathedral",
+    "design_intent": "A traversable glacier basin whose carved channels, snow shelves, and exposed strata make a slow fugue route legible at kilometer scale."
+  },
+  "source": {
+    "provider": "QuadSpinner Gaea installed example graph",
+    "dataset": "procedural glacier source; geographic DEM not claimed",
+    "source_mesh": null,
+    "source_extent_m": null,
+    "working_window_m": [8000.0, 6000.0],
+    "source_units": "meters",
+    "scale_policy": "explicit_metric_target; verify against native Gaea export metadata before UE import"
+  },
+  "gaea_reference": {
+    "path": "C:/Program Files/QuadSpinner/Gaea 2/Examples/Glacier - Complex Setup.terrain",
+    "gaea_version": "2.2.3.2",
+    "graph_metadata_version": "2.2.0.0",
+    "validated": true,
+    "file_sha256": "C4800B1DECF6351653F7363A071C36AC5C917F220AC0F65FADB4A53D6985F4AB",
+    "node_count": 57,
+    "key_nodes": [
+      "MultiFractal",
+      "Erosion2",
+      "Rivers",
+      "Lake",
+      "FlowMap",
+      "Snow",
+      "ColorErosion",
+      "Glacier",
+      "SatMap",
+      "DataExtractor"
+    ],
+    "open_app_observation": {
+      "gaea_process_seen": true,
+      "gaea_version_seen": "2.2.3.2",
+      "open_graph_path_confirmed_from_process": false,
+      "candidate_reason": "The graph is installed locally and contains a native Glacier node plus the erosion, snow, hydrology, and mask stages required by this setup."
+    }
+  },
+  "recipe": {
+    "graph_chain": [
+      "MultiFractal",
+      "Erosion2",
+      "Glacier",
+      "Rivers",
+      "Lake",
+      "FlowMap",
+      "Snow",
+      "ColorErosion",
+      "SatMap",
+      "DataExtractor"
+    ],
+    "target_resolution": 8193,
+    "output_extent_m": [8000.0, 6000.0],
+    "height_range_m": [0.0, 1800.0],
+    "terrain_height_policy": "native Gaea height export is authoritative; target range is a validation envelope, not a baked claim",
+    "required_masks": ["flow", "snow", "debris", "slope", "curvature", "height", "ice_or_shore"],
+    "water_policy": "keep lake/ocean surfaces separate from MeshTerrain collision; route water masks to Oceanology NextGen only after its UE5.8 package is present"
+  },
+  "outputs": {
+    "mesh_obj": "Saved/Audit/gaea_setups/aurora_glacier/AuroraGlacier_8193.obj",
+    "heightfield_png16": "Saved/Audit/gaea_setups/aurora_glacier/AuroraGlacier_8193_height.png",
+    "masks": ["flow", "snow", "debris", "slope", "curvature", "height", "ice_or_shore"],
+    "manifest": "Saved/Audit/gaea_setups/aurora_glacier/handoff_manifest.json",
+    "export_status": "pending_native_gaea_export"
+  },
+  "ue5_8": {
+    "target": "Mesh Terrain",
+    "content_namespace": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/AuroraGlacier",
+    "classic_landscape_used": false,
+    "gaea2unreal_role": "export_bridge_and_metadata_source; MeshTerrain adapter remains the runtime target",
+    "mesh_terrain_import_scale_cm_per_m": 100.0,
+    "substrate_material_policy": "world-aligned triplanar ice, exposed rock, snow, and wet channel layers driven by Gaea masks",
+    "water_material_policy": "Oceanology NextGen isolated water actor; never bake water into terrain collision",
+    "pcg_profile": "glacier_fugue",
+    "uds_policy": "add UDS sky only in the isolated render/test level after terrain import is clean",
+    "hero_capture": "Saved/Audit/gaea_setups/aurora_glacier/PIE_AuroraGlacier_1920x1080.png"
+  },
+  "evidence": {
+    "native_gaea_export_verified": false,
+    "mesh_terrain_handoff_verified": false,
+    "clean_pie_verified": false,
+    "lookdev_approved": false,
+    "note": "This contract locks the source graph and intended metric target. It is not a claim that a native export or UE capture exists."
+  },
+  "gates": [
+    "native_gaea_height_and_mask_export",
+    "metric_extent_verified",
+    "mesh_terrain_partition_built",
+    "substrate_mask_layers_verified",
+    "pcg_reads_partition",
+    "water_is_separate_from_terrain",
+    "uds_sky_in_isolated_level",
+    "clean_pie",
+    "lookdev_approved"
+  ]
+}
