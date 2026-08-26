@@ -1,0 +1,78 @@
+{
+  "task_id": "T3",
+  "generated": "2026-08-19",
+  "prompt": "Find all callers of HandleQuillNotification in C++ and Blueprint. Trace paths that reach it from QuillScript notification dispatch.",
+  "ground_truth": {
+    "definition": {
+      "file": "Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeSubsystem.cpp",
+      "line": 646,
+      "signature": "void UMelodiaNarrativeSubsystem::HandleQuillNotification(FString Message)"
+    },
+    "callers_cpp": [
+      {
+        "kind": "dynamic_delegate_bind",
+        "file": "Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeSubsystem.cpp",
+        "line": 64,
+        "detail": "Quill->OnNotified.AddUniqueDynamic(this, &ThisClass::HandleQuillNotification)"
+      },
+      {
+        "kind": "unit_test_direct",
+        "file": "Source/BS_GodFile/MelodiaIntegration/Tests/MelodiaIntegrationTests.cpp",
+        "lines": [439, 451, 462, 473, 483, 491],
+        "detail": "Subsystem->HandleQuillNotification(...) in integration tests"
+      }
+    ],
+    "callers_blueprint": [],
+    "note_blueprint": "No Blueprint graph references found in tracked source; dispatch is C++ delegate bind only.",
+    "dispatch_path_from_quill": [
+      {
+        "step": 1,
+        "component": "QuillscriptInterpreter",
+        "file": "Plugins/QuillScript/Source/Quillscript/Private/Core/QuillscriptInterpreter.cpp",
+        "line": 849,
+        "action": "QuillscriptSubsystem->OnNotified.Broadcast(Message)"
+      },
+      {
+        "step": 2,
+        "component": "UQuillscriptSubsystem",
+        "file": "Plugins/QuillScript/Source/Quillscript/Public/Core/QuillscriptSubsystem.h",
+        "line": 113,
+        "action": "FNotificationDelegate OnNotified"
+      },
+      {
+        "step": 3,
+        "component": "UMelodiaNarrativeSubsystem",
+        "file": "MelodiaNarrativeSubsystem.cpp",
+        "line": 64,
+        "action": "OnNotified bound to HandleQuillNotification at Initialize"
+      },
+      {
+        "step": 4,
+        "component": "UMelodiaNarrativeSubsystem",
+        "file": "MelodiaNarrativeSubsystem.cpp",
+        "line": 646,
+        "action": "HandleQuillNotification parses melodia: prefix and dispatches to verb handlers"
+      }
+    ],
+    "related_not_caller": [
+      {
+        "symbol": "HandleQuillScriptPlay",
+        "file": "MelodiaNarrativeSubsystem.cpp",
+        "line": 609,
+        "detail": "Separate OnScriptPlay bind; not HandleQuillNotification"
+      }
+    ],
+    "verb_handlers": ["battle", "quest", "flag", "travel", "reward", "stat", "item"]
+  },
+  "scoring": {
+    "must_include": [
+      "QuillscriptInterpreter OnNotified.Broadcast",
+      "AddUniqueDynamic bind in MelodiaNarrativeSubsystem Initialize",
+      "Integration test direct calls"
+    ],
+    "must_not_claim": [
+      "Blueprint callers without evidence",
+      "HandleQuillScriptPlay as HandleQuillNotification caller"
+    ]
+  }
+}

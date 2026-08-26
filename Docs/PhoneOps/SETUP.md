@@ -10,11 +10,13 @@ How this MelodiaMelusinaV2 workspace is driven from phone, GitHub cloud agents, 
 | Cloud code | Cursor Cloud Agents (`MelodiaMelusinaV2`) | Read/write repo, PRs, docs, audits |
 | Deep research | SuperGrok (or similar) | Scratchpads, strategy, cross-tool synthesis — often no git push |
 | Local production | UE 5.8 + Blender 5.2 + MCP | Materials, PCG, Live Link, capture (desktop) |
-| Source of truth | This GitHub repo | `main` + `cursor/*-098b` agent branches |
+| Planned private SSH | Blink → Tailscale (or overlay) → Windows → WSL2 → tmux | Local agent CLIs; **not** public SSH — [REMOTE_WSL_AGENT_STACK_2026-08-25.md](REMOTE_WSL_AGENT_STACK_2026-08-25.md) |
+| Source of truth | This GitHub repo | `main` + `cursor/*` agent branches |
 
 Repo: `github.com/fromage3900/MelodiaMelusinaV2`  
 UProject: `BS_GodFile.uproject` (UE 5.8)  
-Foundation plan: `Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`
+Foundation plan: `Docs/GAME_FOUNDATION_PLAN_2026-08-11.md`  
+Lane handoff: [AGENT_LANE_HANDOFF.md](AGENT_LANE_HANDOFF.md)
 
 ## Cursor Pro (phone / cloud)
 

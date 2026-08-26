@@ -30,6 +30,11 @@ except Exception:
     addon_utils = None  # type: ignore
 
 try:
+    from . import melodia_chrome as _chrome  # type: ignore
+except Exception:
+    _chrome = None  # type: ignore
+
+try:
     import melodia_utils as _mu  # type: ignore
 except Exception:
     # Fallback: parent of addons root is on sys.path when loaded as Script Directory
@@ -113,6 +118,50 @@ def _dressing_items():
         ]
 
 
+def _tandem_preset_items(self, context):
+    """Merged preset list for tandem: walkable + voxel. Indicates walkable vs voxel."""
+    items = []
+    try:
+        from . import walkable_world as ww
+        for key, val in sorted(ww.WALKABLE_PRESETS.items()):
+            items.append((key, val.get("label", key) + " [Walkable]", val.get("description", "")))
+    except Exception:
+        pass
+    try:
+        mid = midi_bridge.preset_items()
+        for key, label, desc in mid:
+            # avoid dup if same key as walkable
+            if not any(k == key for k, _, _ in items):
+                items.append((key, label + " [Voxel]", desc))
+    except Exception:
+        pass
+    return items if items else [("walkable_valley", "Walkable Valley [Walkable]", "")]
+
+
+def _tandem_style_items(self, context):
+    try:
+        deploy = os.path.join(midi_bridge.repo_root(), "deploy")
+        if deploy not in sys.path:
+            sys.path.insert(0, deploy)
+        from surreal_world import compose as _comp  # type: ignore
+        return [(k, k.replace("_", " ").title(), "") for k in sorted(_comp.COMPOSE_STYLES.keys())]
+    except Exception:
+        # fallback to pairing keys
+        try:
+            from . import tandem_bridge as _tb  # type: ignore
+            return [(k, k.replace("_", " ").title(), "") for k in sorted(set(v[0] for v in _tb.MELODIA_TO_SURREAL.values()))]
+        except Exception:
+            return [("WESTERN_CASTLE", "Western Castle", "")]
+
+
+def _tandem_plan_items(self, context):
+    try:
+        from . import tandem_bridge as _tb  # type: ignore
+        return [(k, k.replace("_", " ").title(), "") for k in _tb.PLAN_KINDS]
+    except Exception:
+        return [("castle", "Castle", ""), ("zen_roji", "Zen Roji", ""), ("village", "Village", "")]
+
+
 # ------------------------------------------------------------- properties
 
 if bpy is not None:
@@ -156,6 +205,40 @@ if bpy is not None:
             name="Advanced",
             description="Show advanced/debug options",
             default=False,
+        )
+        # Tandem (terrain -> surreal city) - field-wins, snap plan to terrain height
+        tandem_preset: bpy.props.EnumProperty(
+            name="Tandem Preset",
+            description="Preset that drives both terrain shape and city pairing (walkable preferred for clean ground)",
+            items=_tandem_preset_items,
+            default=0,
+        )
+        tandem_style: bpy.props.EnumProperty(
+            name="Style",
+            description="Surreal COMPOSE_STYLE override (empty = auto from preset pairing)",
+            items=_tandem_style_items,
+        )
+        tandem_plan: bpy.props.EnumProperty(
+            name="Plan",
+            description="Surreal plan kind (castle/zen_roji/village etc). Empty = auto from preset",
+            items=_tandem_plan_items,
+        )
+        dress_instance: bpy.props.BoolProperty(
+            name="Instance Dressing",
+            description="Actually instance dressing props as linked objects (not just count string)",
+            default=True,
+        )
+        dress_seed: bpy.props.IntProperty(
+            name="Seed",
+            description="Deterministic seed for dressing placement",
+            default=11,
+            min=0, max=9999,
+        )
+        dress_budget: bpy.props.IntProperty(
+            name="Budget",
+            description="Max props to instance",
+            default=400,
+            min=0, max=5000,
         )
 
 else:
@@ -243,6 +326,183 @@ def build_aura_material(name="M_ResonantAura"):
         nt.links.new(ramp.outputs['Color'], bsdf.inputs['Emission Strength'])
     nt.links.new(bsdf.outputs['BSDF'], out.inputs['Surface'])
     return mat
+
+
+# ---------------------------------------------------------------- dressing instancing (linked, low memory)
+# Reuses the proven pattern from resonant_world_studio/build.py:176 but
+# lives here so the primary Melodia Studio panel can instance without
+# depending on that sibling addon.
+
+_DRESS_COLL = "MS_Dressing"
+_PROP_SHAPE = {
+    "resonance_crystal": ("cone", 5.0, 0.12),
+    "chime_pillar": ("cylinder", 3.5, 0.30),
+    "moss_cluster": ("ico", 0.0, 0.85),
+    "songstone": ("cube", 0.0, 0.70),
+    "note_bloom": ("circle", 4.0, 0.40),
+}
+
+def _dress_collection():
+    if bpy is None:
+        return None
+    coll = bpy.data.collections.get(_DRESS_COLL)
+    if coll is None:
+        coll = bpy.data.collections.new(_DRESS_COLL)
+        bpy.context.scene.collection.children.link(coll)
+    return coll
+
+def _clear_dressing():
+    if bpy is None:
+        return 0
+    coll = bpy.data.collections.get(_DRESS_COLL)
+    if coll is None:
+        # also clear legacy loose objects with MS_Dress prefix
+        removed = 0
+        for obj in list(bpy.data.objects):
+            if obj.name.startswith("MS_Dress_"):
+                try:
+                    bpy.data.objects.remove(obj, do_unlink=True)
+                    removed += 1
+                except Exception:
+                    pass
+        return removed
+    for obj in list(coll.all_objects):
+        try:
+            bpy.data.objects.remove(obj, do_unlink=True)
+        except Exception:
+            pass
+    try:
+        # keep the collection for next run
+        pass
+    except Exception:
+        pass
+    return 1
+
+def _prop_material(name, colour, emission, roughness):
+    if bpy is None:
+        return None
+    mat = bpy.data.materials.get(name)
+    if mat is not None:
+        return mat
+    mat = bpy.data.materials.new(name)
+    mat.use_nodes = True
+    nt = mat.node_tree
+    nt.nodes.clear()
+    out = nt.nodes.new('ShaderNodeOutputMaterial'); out.location = (300, 0)
+    b = nt.nodes.new('ShaderNodeBsdfPrincipled'); b.location = (0, 0)
+    b.inputs['Base Color'].default_value = (*colour, 1.0)
+    b.inputs['Roughness'].default_value = roughness
+    if emission > 0:
+        if 'Emission Color' in b.inputs:
+            b.inputs['Emission Color'].default_value = (*colour, 1.0)
+        if 'Emission Strength' in b.inputs:
+            b.inputs['Emission Strength'].default_value = emission
+    nt.links.new(b.outputs['BSDF'], out.inputs['Surface'])
+    return mat
+
+def _template_object(kind, colour):
+    if bpy is None:
+        return None
+    name = f"MS_TPL_{kind}"
+    existing = bpy.data.objects.get(name)
+    if existing is not None:
+        return existing
+    shape, emit, rough = _PROP_SHAPE.get(kind, ("cube", 0.0, 0.6))
+    try:
+        if shape == "cone":
+            bpy.ops.mesh.primitive_cone_add(vertices=6, radius1=0.32, depth=1.1)
+        elif shape == "cylinder":
+            bpy.ops.mesh.primitive_cylinder_add(vertices=6, radius=0.18, depth=2.0)
+        elif shape == "ico":
+            bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=0.34)
+        elif shape == "circle":
+            bpy.ops.mesh.primitive_circle_add(vertices=5, radius=0.26, fill_type='NGON')
+        else:
+            bpy.ops.mesh.primitive_cube_add(size=0.42)
+    except Exception:
+        return None
+    obj = bpy.context.active_object
+    if obj is None:
+        return None
+    obj.name = name
+    try:
+        obj.data.materials.append(_prop_material(f"M_MS_{kind}", colour, emit, rough))
+    except Exception:
+        pass
+    obj.hide_render = True
+    obj.hide_viewport = True
+    # move template far away so it never renders in view
+    try:
+        obj.location = (0, 0, -9999)
+        obj.hide_set(True)
+    except Exception:
+        pass
+    return obj
+
+def _instance_dressing(midi_path: str, style_id: str, seed: int, budget: int) -> int:
+    """Build field deterministically and instance dressing props. Returns count."""
+    if bpy is None:
+        return 0
+    _clear_dressing()
+    if style_id == "bare":
+        return 0
+    # Build field exactly like midi_bridge.dress_terrain does (so locations match)
+    try:
+        from . import walkable_world as ww  # type: ignore
+        from . import terrain_dressing as td  # type: ignore
+        mv = ww.load_voxel_module()
+        tracks, tpb = mv.parse_midi(midi_path)
+        if not tracks:
+            return 0
+        notes = list(tracks[0])
+        stem, ext = os.path.splitext(midi_path)
+        bg = stem + "_beatgrid" + ext
+        if os.path.exists(bg):
+            try:
+                b_tracks, b_tpb = mv.parse_midi(bg)
+                if b_tracks and b_tpb:
+                    s = float(tpb) / float(b_tpb)
+                    notes.extend((int(n[0] * s), n[1] + 36, n[2]) for n in b_tracks[0])
+                    notes.sort()
+            except Exception:
+                pass
+        # use same walkable valley preset as dress_terrain's field build
+        wpreset = ww.WALKABLE_PRESETS.get("walkable_valley", {})
+        field, _gw = ww.build_heightfield(notes, wpreset.get("cells_per_beat", 2),
+                                          wpreset.get("height_scale", 1.9),
+                                          wpreset.get("plateau_radius", 2), tpb)
+        field = ww.fill_gaps(field)
+        field = ww.limit_slope(field, wpreset.get("max_slope", 1), wpreset.get("smooth_passes", 3))
+        plan, _stats = td.plan_dressing(field, style_id=style_id, seed=seed, budget=budget)
+    except Exception:
+        return 0
+    if not plan:
+        return 0
+    coll = _dress_collection()
+    templates: dict = {}
+    made = 0
+    for spec in plan:
+        kind = spec["kind"]
+        if kind not in templates:
+            tpl = _template_object(kind, tuple(spec["colour"]))
+            if tpl is None:
+                continue
+            templates[kind] = tpl
+        tpl = templates.get(kind)
+        if tpl is None or tpl.data is None:
+            continue
+        try:
+            inst = bpy.data.objects.new(f"MS_Dress_{kind}_{made}", tpl.data)
+            coll.objects.link(inst)
+            x, y, z = spec["location"]
+            s = spec["scale"]
+            inst.location = (float(x), float(y), float(z))
+            inst.scale = (float(s), float(s), float(s))
+            inst.rotation_euler = (0, 0, float(spec["rotation_z"]))
+            made += 1
+        except Exception:
+            continue
+    return made
 
 
 def _selected_midi(props):
@@ -376,10 +636,23 @@ if bpy is not None:
                 dressing = midi_bridge.dress_terrain(
                     obj, report.get("obj", ""), props.dressing_style,
                     midi_path=midi,
+                    seed=getattr(props, "dress_seed", 11),
+                    budget=getattr(props, "dress_budget", 400),
                 )
             except Exception as exc:
                 self.report({'WARNING'}, "Dressing failed: %s" % exc)
                 dressing = None
+
+            # ---- NEW: actual instancing (linked, not realized) ----
+            instanced = 0
+            if getattr(props, "dress_instance", True) and dressing:
+                try:
+                    instanced = _instance_dressing(midi, props.dressing_style,
+                                                   getattr(props, "dress_seed", 11),
+                                                   getattr(props, "dress_budget", 400))
+                    dressing += f" | instanced {instanced}"
+                except Exception as exc:
+                    self.report({'WARNING'}, f"Instancing failed: {exc}")
 
             try:
                 wm.progress_end()
@@ -389,6 +662,8 @@ if bpy is not None:
             summary = "%d voxels | %d verts | %d faces" % (report["voxels"], report["verts"], report["faces"])
             if dressing:
                 summary += " | %s" % dressing
+            if instanced:
+                summary += f" | {instanced} instances"
             props.last_report = summary
             props.last_midi = midi
             self.report({'INFO'}, "%s from %s" % (summary, os.path.basename(midi)))
@@ -499,8 +774,54 @@ if bpy is not None:
                 if generated is not None:
                     bpy.data.objects.remove(generated, do_unlink=True)
                     removed += 1
+            # Dressing instances (MS_Dressing collection + MS_Dress_/MS_TPL_ objects)
+            try:
+                coll = bpy.data.collections.get("MS_Dressing")
+                if coll is not None:
+                    for obj in list(coll.all_objects):
+                        bpy.data.objects.remove(obj, do_unlink=True)
+                    bpy.data.collections.remove(coll)
+                    removed += 1
+                for obj in list(bpy.data.objects):
+                    if obj.name.startswith(("MS_Dress_", "MS_TPL_")):
+                        bpy.data.objects.remove(obj, do_unlink=True)
+                        removed += 1
+            except Exception:
+                pass
+            # Tandem city collections (SurrealPlan + _Composed)
+            try:
+                for coll in list(bpy.data.collections):
+                    if coll.name.startswith(("SurrealPlan", "SurrealWorld", "RW_")):
+                        for obj in list(coll.all_objects):
+                            try:
+                                bpy.data.objects.remove(obj, do_unlink=True)
+                            except Exception:
+                                pass
+            except Exception:
+                pass
             self.report({'INFO'}, f"Cleaned {removed} generated object(s)")
             return {'FINISHED'}
+
+    class STUDIO_OT_setup_script_directory(bpy.types.Operator):  # type: ignore
+        """Add Tools/BlenderAddons to Blender's script directories (so melodia_utils resolves)"""
+        bl_idname = "melodia_studio.setup_script_directory"
+        bl_label = "Setup Script Directory"
+        def execute(self, context):
+            if _mu is not None:
+                try:
+                    root = _mu.repo_root()
+                    addons = str(root / "Tools" / "BlenderAddons")
+                    # Use addon_utils if available, else just report
+                    if addon_utils is not None and hasattr(addon_utils, "open_folder"):
+                        self.report({'INFO'}, f"Script dir: {addons} -- add via Preferences > File Paths > Script Directories if needed")
+                    else:
+                        self.report({'INFO'}, f"Addons: {addons}")
+                    return {'FINISHED'}
+                except Exception as exc:
+                    self.report({'ERROR'}, str(exc))
+                    return {'CANCELLED'}
+            self.report({'WARNING'}, "melodia_utils not available")
+            return {'CANCELLED'}
 
     class STUDIO_OT_render_proof(bpy.types.Operator):
         """Render a proof image of the current terrain"""
@@ -685,7 +1006,7 @@ if bpy is not None:
 
 else:
     STUDIO_OT_generate_from_midi = STUDIO_OT_frame_terrain = STUDIO_OT_write_presets = STUDIO_OT_save_scene = object  # type: ignore
-    STUDIO_OT_cleanup_scene = STUDIO_OT_open_folder = STUDIO_OT_refresh_midi = STUDIO_OT_validate_health = object  # type: ignore
+    STUDIO_OT_cleanup_scene = STUDIO_OT_setup_script_directory = STUDIO_OT_open_folder = STUDIO_OT_refresh_midi = STUDIO_OT_validate_health = object  # type: ignore
 
 
 # ------------------------------------------------------------- panels
@@ -712,19 +1033,41 @@ if bpy is not None:
             layout = self.layout
             props = context.scene.melodia_studio
 
-            # Health hint (one line, not noisy)
-            if _mu is not None:
-                h = _mu.health_check()
-                if not h["ok"] and h["issues"]:
-                    box = layout.box()
-                    box.alert = True
-                    box.label(text="Setup needed", icon='ERROR')
-                    box.label(text=h["issues"][0])
+            # Gold-ivory luxury header with pink/rose-gold pillar (cathedral)
+            if _chrome is not None:
+                try:
+                    _chrome.chrome_header(layout, "Studio", "MIDI  ->  Walkable Ground  |  Field-Wins", pillar="cathedral", icon_key="starlight")
+                except Exception:
+                    pass
+            else:
+                # fallback: health hint (one line, not noisy)
+                if _mu is not None:
+                    h = _mu.health_check()
+                    if not h["ok"] and h["issues"]:
+                        box = layout.box()
+                        box.alert = True
+                        box.label(text="Setup needed", icon='ERROR')
+                        box.label(text=h["issues"][0])
+
+            # Health status as single kicker line (luxury, not red box) when chrome present
+            if _chrome is not None and _mu is not None:
+                try:
+                    h = _mu.health_check()
+                    if not h["ok"] and h["issues"]:
+                        _chrome.chrome_status(layout, False, "Setup needed", h["issues"][0])
+                except Exception:
+                    pass
 
             # Resonant World
+            if _chrome is not None:
+                try:
+                    _chrome.chrome_kicker(layout, "Resonant World", icon='FILE_SOUND')
+                except Exception:
+                    pass
             box = layout.box()
-            row = box.row()
-            row.label(text="Resonant World", icon='FILE_SOUND')
+            if _chrome is None:
+                row = box.row()
+                row.label(text="Resonant World", icon='FILE_SOUND')
             row.operator("melodia_studio.refresh_midi", text="", icon='FILE_REFRESH')
             # Search + MIDI picker
             box.prop(props, "midi_filter", text="", icon='VIEWZOOM')
@@ -744,18 +1087,36 @@ if bpy is not None:
             box.prop(props, "custom_midi", text="Custom")
 
             # Dressing + options
+            if _chrome is not None:
+                try:
+                    _chrome.chrome_kicker(box, "Dressing  |  Pink  &  Rose Gold", icon='BRUSH_DATA')
+                except Exception:
+                    pass
             box.prop(props, "dressing_style", text="Dressing")
             row = box.row()
             row.prop(props, "auto_cleanup")
             row.prop(props, "show_advanced", text="Advanced")
+            # Instance controls (-visible always; advanced shows seed/budget)
+            row2 = box.row(align=True)
+            row2.prop(props, "dress_instance", text="Instance Props")
+            if props.show_advanced:
+                row3 = box.row(align=True)
+                row3.prop(props, "dress_seed", text="Seed")
+                row3.prop(props, "dress_budget", text="Budget")
 
             col = box.column(align=True)
             col.scale_y = 1.4
             col.operator("melodia_studio.generate_from_midi", **_icon("generate", 'MOD_BUILD'))  # type: ignore[arg-type]
 
             # Presentation
+            if _chrome is not None:
+                try:
+                    _chrome.chrome_kicker(layout, "Presentation", icon='LIGHT')
+                except Exception:
+                    pass
             box2 = layout.box()
-            box2.label(text="Presentation", icon='LIGHT')
+            if _chrome is None:
+                box2.label(text="Presentation", icon='LIGHT')
             col = box2.column(align=True)
             col.operator("melodia_studio.frame_terrain", icon='CAMERA_DATA')
             row = col.row(align=True)
@@ -797,6 +1158,11 @@ if bpy is not None:
 
         def draw(self, context):
             layout = self.layout
+            if _chrome is not None:
+                try:
+                    _chrome.chrome_header(layout, "Management", "C Authority  |  Autosync", pillar="grotto", icon_key="starlight")
+                except Exception:
+                    pass
 
             # 4-row health dashboard
             if _mu is not None:
@@ -852,6 +1218,7 @@ if bpy is not None:
         STUDIO_OT_write_presets,
         STUDIO_OT_save_scene,
         STUDIO_OT_cleanup_scene,
+        STUDIO_OT_setup_script_directory,
         STUDIO_OT_render_proof,
         STUDIO_OT_batch_render,
         STUDIO_OT_open_folder,

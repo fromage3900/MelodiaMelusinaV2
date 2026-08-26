@@ -101,6 +101,8 @@ Full details: [SOURCE_CONTROL_STATUS_2026-08-13.md](Docs/Handoffs/SOURCE_CONTROL
 | [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md) | P0 PIE/runtime board — rhythm + Quill locked WORKED; battles still open |
 | [Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md](Docs/Handoffs/CLOUD_AGENT_GIT_HEALTH_2026-08-12.md) | Tonight’s cloud work: PRs #4/#6, untrack/ignore, tomorrow merge order |
 | [Docs/PhoneOps/BACKLOG.md](Docs/PhoneOps/BACKLOG.md) | Phone/cloud Now: P0 live proof + OpenCode-first sendoffs (NVIDIA withdrawn) |
+| [Docs/PhoneOps/REMOTE_WSL_AGENT_STACK_2026-08-25.md](Docs/PhoneOps/REMOTE_WSL_AGENT_STACK_2026-08-25.md) | Phone → Blink/SSH → WSL/tmux agent stack — cloud-readable audit; PC installs need approval |
+| [Docs/PhoneOps/AGENT_LANE_HANDOFF.md](Docs/PhoneOps/AGENT_LANE_HANDOFF.md) | Lightweight lane handoff fields + STATUS states |
 | [Docs/Career/RECRUITER_SENDOFFS_2026-08-25.md](Docs/Career/RECRUITER_SENDOFFS_2026-08-25.md) | Paste-ready recruiter sendoffs — OpenCode → Toronto studios; NVIDIA WITHDRAWN |
 | [README.md](README.md) | Front-door project status refreshed 2026-08-13 |
 
