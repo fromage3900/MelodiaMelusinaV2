@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "2.0.0.15",
+	"VersionName": "2.2.0.7",
 	"FriendlyName": "Gaea2Unreal",
 	"Description": "Enhance your landscape creation workflow.",
 	"Category": "Gaea",
@@ -10,7 +10,7 @@
 	"DocsURL": "https://gaea.app/uedocs",
 	"MarketplaceURL": "",
 	"SupportURL": "",
-	"EngineVersion": "5.7.0",
+	"EngineVersion": "5.8.0",
 	"CanContainContent": true,
 	"IsBetaVersion": true,
 	"Installed": true,

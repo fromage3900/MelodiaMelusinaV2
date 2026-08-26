@@ -9,16 +9,27 @@ Makes terrain feel alive with:
 Blender 5.2 compatible.
 """
 
-import bpy
+try:
+    import bpy  # type: ignore
+except Exception:
+    bpy = None  # type: ignore
 import os
 import sys
+from pathlib import Path
 
-REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
-ADDON = os.path.join(REPO, "Tools", "BlenderAddons", "melodia_studio")
+try:
+    import melodia_utils as _mu  # type: ignore
+    REPO = str(_mu.repo_root())
+except Exception:
+    REPO = r"C:\EnvironmentPortfolio\BS_GodFile"
+ADDON = str(Path(REPO) / "Tools" / "BlenderAddons" / "melodia_studio")
 if ADDON not in sys.path:
     sys.path.insert(0, ADDON)
 
 import walkable_world as ww
+if bpy is None:
+    # offline: keep importable without building lights
+    pass
 
 
 def apply_atmosphere(scene, midi_path, preset_id="walkable_valley"):
