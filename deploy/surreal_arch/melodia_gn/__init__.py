@@ -33,6 +33,9 @@ from . import melodia_kit_v2  # noqa: F401 - Kit v2: celesta/glockenspiel/kalimb
 from . import melodia_kit_v3  # noqa: F401 - Kit v3: jingle-driven tower/gate/plaza/nook
 from . import melodia_kit_v4  # noqa: F401 - Kit v4: timpani/tubular/dulcimer/bamboo
 from . import melodia_kit_baroque  # noqa: F401 - Baroque lens: harpsichord/violin/organ/lute (spatial)
+from . import chimes_gn  # noqa: F401 - GN chime family (ET-tuned, port of chime_row physics)
+from . import music_harps_real  # noqa: F401 - Realistic harps: concert/Ur lyre/kora/siku
+from . import music_terrain  # noqa: F401 - Walkable roll field/staff bridge terrain
 from .notation_extras import build_music_bass_clef, build_music_beam_cluster, build_music_triplet_note, build_music_chord_stack, build_music_fermata, build_music_repeat_bar, build_music_time_signature, build_music_stand
 from .ornament_extras import build_ornament_rosette_sixpetal, build_ornament_scallop_band, build_ornament_keyhole_frame, build_filigree_corner_volute, build_filigree_finial_cross, build_filigree_wreath_ring
 from .ribbon import (

@@ -22,6 +22,7 @@
   },
   "gaea_reference": {
     "path": "C:/Program Files/QuadSpinner/Gaea 2/Examples/Collapsed Gullies.terrain",
+    "gaea_version": "2.2.3.2",
     "validated": true,
     "resolution": 2048,
     "bake_resolution": 2048,
