@@ -1,0 +1,48 @@
+# Melodia Helix Core typemap
+#
+# Review with the owner, then apply from an administrator-capable shell:
+#   p4 typemap -i < Perforce/typemap.melodia.txt
+#
+# +l is the exclusive-open modifier. Apply this before the first binary submit.
+# The depot name is intentionally explicit: //melodia.
+
+binary+l //melodia/....uasset
+binary+l //melodia/....umap
+binary+l //melodia/....blend
+binary+l //melodia/....fbx
+binary+l //melodia/....obj
+binary+l //melodia/....vrm
+binary+l //melodia/....usd
+binary+l //melodia/....usda
+binary+l //melodia/....usdc
+binary+l //melodia/....png
+binary+l //melodia/....jpg
+binary+l //melodia/....jpeg
+binary+l //melodia/....tga
+binary+l //melodia/....tif
+binary+l //melodia/....tiff
+binary+l //melodia/....exr
+binary+l //melodia/....hdr
+binary+l //melodia/....psd
+binary+l //melodia/....wav
+binary+l //melodia/....mp3
+binary+l //melodia/....ogg
+binary+l //melodia/....mp4
+binary+l //melodia/....webm
+binary+l //melodia/....abc
+binary+l //melodia/....mc
+binary+l //melodia/....mcc
+
+text //melodia/....cpp
+text //melodia/....h
+text //melodia/....cs
+text //melodia/....py
+text //melodia/....sh
+text //melodia/....ps1
+text //melodia/....json
+text //melodia/....yaml
+text //melodia/....yml
+text //melodia/....ini
+text //melodia/....uproject
+text //melodia/....uplugin
+text //melodia/....md
