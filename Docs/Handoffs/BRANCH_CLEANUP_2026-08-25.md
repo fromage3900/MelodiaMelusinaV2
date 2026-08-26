@@ -105,3 +105,65 @@ abandon deliberately; do not push as-is. Unchanged guidance from `_TASK_QUEUE.md
 
 Deleting merged branches matters beyond tidiness: per `Docs/GIT_BATCH_DISCIPLINE.md` rule 5, LFS
 objects reachable only from pushed dead branches are billed indefinitely.
+
+---
+
+## Executed 2026-08-26 (cloud)
+
+Owner approved close-only + remote delete of the safe set. Performed from Cursor Cloud.
+
+### PRs closed (content already on `main`)
+
+| PR | Branch | Note |
+|---|---|---|
+| #1 | `cursor/v2-game-foundation-098b` | Squash-merged content present |
+| #5 | `cursor/model-lanes-agents-slim-f425` | Same |
+| #7 | `cursor/pie-rhythm-highway-notes-1a53` | Same |
+| #8 | `cursor/twinmotion-realityscan-handoff-1a53` | Same |
+| #10 | `feature/credits-20260813` | Same |
+
+### Left open
+
+| PR | Branch | Why |
+|---|---|---|
+| #9 | `feature/repo-lockin-20260813` | **164 files still unmerged** (incl. human-owned `L_SakuraPath.umap`) |
+
+PR #14 (`cursor/phone-wsl-infra-docs-ca02`) was **merged** to `main` (`23acba70`) before this cleanup finished; remote tip deleted after confirming `REMOTE_WSL_AGENT_STACK` on `main` matched the branch tip.
+
+### Remote branches deleted
+
+```text
+cursor/git-health-batches-e6ac
+cursor/model-lanes-agents-slim-f425
+cursor/phone-artist-bridge-handoff-0f00
+cursor/pie-rhythm-highway-notes-1a53
+cursor/restore-party-callsite-0f00
+cursor/restore-party-controller-e6ac
+cursor/toronto-ai-startup-research-ca02
+cursor/twinmotion-realityscan-handoff-1a53
+cursor/v2-game-foundation-098b
+cursor/phone-wsl-infra-docs-ca02
+feature/credits-20260813
+feature/echo-topo-chapter2
+```
+
+Local-only names from the SAFE list (`claireon-test`, `claude/magical-williamson-a3534a`,
+`feature/claireon-test-20260819`, `safety/pre-g-sync-20260821`) were already absent on `origin`.
+
+### Remotes deliberately kept
+
+```text
+origin/main
+origin/feature/repo-lockin-20260813          # PR #9
+origin/pr/melusina-v22-sync
+origin/cursor/nemotron-research-docs-2d2d
+origin/cursor/recruiter-sendoffs-no-nvidia-ca02
+```
+
+### Still owed (owner / PC)
+
+1. On the Windows checkout: delete any matching **local** branches (`git branch -d …`) and
+   `git fetch --prune`, then optional `git gc --prune=now`.
+2. Land KEEP work: recruiter tip (verify vs `main`) → nemotron docs → `pr/melusina-v22-sync` →
+   repo-lockin remainder with Sakura held out.
+3. Do **not** reopen closed PRs to “finish” them — start fresh branches from current `main` if needed.

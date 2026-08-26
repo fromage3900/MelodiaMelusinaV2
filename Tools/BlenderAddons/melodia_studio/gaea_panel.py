@@ -26,6 +26,11 @@ except Exception:
     except Exception:
         _mu = None  # type: ignore
 
+try:
+    from . import melodia_chrome as _chrome  # type: ignore
+except Exception:
+    _chrome = None  # type: ignore
+
 # Gaea install detection (C: authority, QuadSpinner)
 _GAEA_CANDIDATES = [
     Path(r"C:\Program Files\QuadSpinner\Gaea 2\Gaea.exe"),
@@ -216,14 +221,23 @@ if bpy is not None:
 
         def draw(self, context):
             layout = self.layout
-            # Bespoke header
-            if addon_utils is not None:
+            if _chrome is not None:
+                try:
+                    _chrome.chrome_header(layout, "Gaea", "Heightfields  |  Erosion  |  UE Mesh Terrain", pillar="grotto", icon_key="generate")
+                except Exception:
+                    pass
+            elif addon_utils is not None:
                 try:
                     addon_utils.draw_melodia_header(layout, "Gaea", "Heightfields * Erosion * UE Mesh Terrain", icon_key="generate")
                 except Exception:
                     layout.label(text="*  MELODIA  -  GAEA")
             else:
                 layout.label(text="*  MELODIA  -  GAEA")
+            if _chrome is not None:
+                try:
+                    _chrome.chrome_kicker(layout, "G a e a   S u r f a c e", icon='IMAGE_DATA')
+                except Exception:
+                    pass
 
             st = _gaea_status()
             box = layout.box()
