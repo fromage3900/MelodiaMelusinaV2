@@ -94,6 +94,14 @@
       "requires_ue": true,
       "phase_tonight": null,
       "risk": "write"
+    },
+    {
+      "id": "T8",
+      "prompt": "Same read-only UE inspection task on two MCP surfaces in SEPARATE OpenCode sessions (restart between): (M) Monolith only vs (C) Claireon. Suggested task: T1 or 'count persistent actors in L_KaleidoNave'. Record input tokens at first tool-bearing request, tokens per turn, tool-call count, wall time, incorrect tool selections.",
+      "requires_ue": true,
+      "phase_tonight": "claireon_session",
+      "surfaces": ["monolith", "claireon"],
+      "rule": "alternate sessions not simultaneous"
     }
   ],
   "metrics": [
@@ -122,7 +130,7 @@
       "id": "B",
       "name": "claireon",
       "approx_tool_count": 5,
-      "status": "not_installed"
+      "status": "pending_worktree_build"
     },
     {
       "id": "C_monolith_only",
