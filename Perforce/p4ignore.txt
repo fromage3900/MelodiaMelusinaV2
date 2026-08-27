@@ -1,0 +1,58 @@
+# Melodia Perforce workspace ignore template
+#
+# Set this file explicitly in the P4 workspace:
+#   p4 set P4IGNORE=Perforce/p4ignore.txt
+#
+# Keep the Perforce client view narrow. These rules are a second safety layer,
+# not a substitute for a correct depot view.
+
+.git/
+.git/**
+.gitattributes
+.gitignore
+.githooks/
+.codex/
+.cursor/
+.claude/
+.opencode/
+.mcp.json
+.env
+.env.*
+*.tmp
+*.temp
+*.log
+*.bak
+*.bundle
+*.zip
+*.7z
+
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+.vscode/
+.idea/
+*.sln
+*.slnx
+*.VC.db
+*.VC.opendb
+*.pdb
+*.dll
+*.lib
+*.exp
+
+# Unreal-generated local data
+Content/**/Binaries/
+Content/**/Intermediate/
+Content/**/Saved/
+Content/**/__ExternalActors__/._*
+Content/**/__ExternalObjects__/._*
+
+# Blender and DCC caches
+**/.blend1
+**/.blend2
+**/__pycache__/
+**/.venv/
+**/cache/
+**/flip_cache_*/

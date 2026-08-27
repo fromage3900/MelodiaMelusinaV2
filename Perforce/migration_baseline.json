@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "kind": "perforce-migration-baseline",
+  "recorded_utc": "2026-08-26",
+  "repository": "fromage3900/MelodiaMelusinaV2",
+  "git_baseline": {
+    "branch": "main",
+    "commit": "23acba70c32883b947272ed41295f288ea63b47e",
+    "comparison_baseline": "70f85d56c01943f1444eeac36278a4163e94c8e2",
+    "authority_before_perforce_acceptance": "github-main",
+    "prep_branch": "cursor/perforce-docs-batch-ca02",
+    "note": "Refresh commit after each merge to main; run preflight on PC"
+  },
+  "planned_perforce": {
+    "depot": "//melodia",
+    "workspace_roots": [
+      "Content/",
+      "Exports/",
+      "RawArt/"
+    ],
+    "typemap": "Perforce/typemap.melodia.txt",
+    "ignore_file": "Perforce/p4ignore.txt",
+    "server_and_credentials": "owner-provisioned; never store credentials in this repository"
+  },
+  "git_owned_until_cutover": [
+    "Source/",
+    "Tools/",
+    "Docs/",
+    "deploy/",
+    "Plugins/",
+    "Config/",
+    "specs/",
+    ".github/",
+    "*.uproject",
+    "evidence and gate-ledger text"
+  ],
+  "holds": [
+    "friend-PC checkout and all uncommitted work",
+    "current Git/LFS copies until Perforce seed and restore are independently verified",
+    "PR #15 V22 texture/locomotion lane",
+    "PR #9 repo-lockin inventory",
+    "restored UE mannequin retarget lane as the conservative P0 reference"
+  ],
+  "acceptance": [
+    "Perforce backup exists and restores a representative binary",
+    "typemap enforces exclusive checkout for Unreal/art binaries",
+    "two-editor checkout conflict is refused",
+    "clean PC opens L_KaleidoNave without missing references",
+    "P0 wardrobe-to-Glide-to-traversal-to-save/restart proof remains reproducible",
+    "all affected Git paths remain recoverable until the cutover sign-off"
+  ]
+}
