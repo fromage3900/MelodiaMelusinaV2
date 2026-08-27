@@ -61,6 +61,21 @@ survived intact the whole time.
 
 ## 🔴 Found live, via your own PIE test — the actual P0 blocker
 
+> ## ⚠️ SUPERSEDED — reparent is DONE, this whole section is history
+>
+> Everything below this banner, through "Do not repeat the 'retire the duplicate' fix," describes
+> the reparent as **blocked pending approval**. That is no longer true. Later the same day, the
+> reparent was carried out, compiled, saved, and **live-verified in PIE**: `BP_BattleController_2`
+> now holds a correctly-typed `jRPGPlayerController` = `BP_MelodiaJRPGPlayerController_C_0`, a full
+> battle ran end to end, and WASD/possession/party roster all confirmed correct at runtime.
+>
+> Current truth, including three additional defects found and fixed during the reparent (a blocked
+> `HasInput` macro, 50 dangling pins from the duplicated graph, and a compile-wipes-CDO ordering
+> trap) plus what is still open (the Melodia rhythm HUD not bound to the battle controller —
+> now the top-priority gap), lives in
+> **`Docs/Handoffs/P0_CLOSEOUT_HANDOFF_2026-08-26.md`**. Read that document instead of acting on
+> anything below this banner. This section is kept for history only.
+
 **`BP_MelodiaJRPGPlayerController` is a byte-for-byte duplicate of stock `BP_JRPGPlayerController`**
 (same parent — native `PlayerController` — same 21 functions, 24 of 25 identical variables), not a
 true subclass. Anything in the stock battle system that hard-casts to `BP_JRPGPlayerController_C`

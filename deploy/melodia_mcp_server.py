@@ -1460,14 +1460,18 @@ def melodia_encounter_enemy_action(encounter_id: str) -> dict[str, Any]:
         return {"schema": "melodia.encounter.enemy_action.v1", "error": f"encounter not found: {encounter_id}"}
 
     drain = 15.0
-    new_eco = _clamp_economy(_replace(_ECONOMY_STATE, mana=_ECONOMY_STATE.mana - drain))
+    mana_before = _ECONOMY_STATE.mana
+    new_eco = _clamp_economy(_replace(_ECONOMY_STATE, mana=mana_before - drain))
     _ECONOMY_STATE = new_eco
 
     return {
         "schema": "melodia.encounter.enemy_action.v1",
         "encounter_id": encounter_id,
         "action": "mana_drain",
-        "mana_drained": drain,
+        # The applied delta, not the nominal cost: mana clamps at 0, so a drain
+        # against a near-empty pool removes less than 15. A HUD bound to this
+        # field must not show a drain that did not happen.
+        "mana_drained": mana_before - new_eco.mana,
         "new_state": _economy_dict(_ECONOMY_STATE),
     }
 
@@ -1478,16 +1482,21 @@ def melodia_encounter_resolve(encounter_id: str) -> dict[str, Any]:
     if not enc:
         return {"schema": "melodia.encounter.resolve.v1", "error": f"encounter not found: {encounter_id}"}
 
-    history = get_cast_history()
+    history = sorted(get_cast_history())
     blocked = "utility_debuff" in history
     enc["resolved"] = True
+    # Latch the outcome onto the encounter record. The live cast history is
+    # per-encounter and is cleared by the next encounter_start, so anything
+    # that needs to know what this encounter earned must read it from here.
+    enc["cast_history"] = history
+    enc["blocked_enemy"] = blocked
 
     return {
         "schema": "melodia.encounter.resolve.v1",
         "encounter_id": encounter_id,
         "status": "resolved",
         "blocked_enemy": blocked,
-        "cast_history": sorted(history),
+        "cast_history": history,
         "quest_advancement": blocked,
     }
 
@@ -1498,17 +1507,23 @@ def melodia_encounter_resolve(encounter_id: str) -> dict[str, Any]:
 
 def melodia_quest_check_p0(quest_id: str) -> dict[str, Any]:
     """Check P0 quest status based on cast history and encounter state."""
-    history = get_cast_history()
+    resolved = [e for e in _ENCOUNTERS.values() if e.get("resolved")]
     resolved_encounters = [eid for eid, e in _ENCOUNTERS.items() if e.get("resolved")]
-    has_combat_skills = bool(history)
     encounter_resolved = len(resolved_encounters) > 0
+
+    # Read the latched resolve record, not the live cast history: encounter_start
+    # clears the live history, so deriving completion from it let any subsequent
+    # encounter silently un-complete a quest that had already been finished.
+    won = [e for e in resolved if e.get("blocked_enemy")]
+    has_combat_skills = bool(won)
     complete = has_combat_skills and encounter_resolved
+    history = sorted(won[-1].get("cast_history", [])) if won else sorted(get_cast_history())
 
     return {
         "schema": "melodia.quest.check_p0.v1",
         "quest_id": quest_id,
         "status": "complete" if complete else "in_progress",
-        "cast_history": sorted(history),
+        "cast_history": history,
         "resolved_encounters": resolved_encounters,
         "has_combat_skills": has_combat_skills,
         "encounter_resolved": encounter_resolved,
