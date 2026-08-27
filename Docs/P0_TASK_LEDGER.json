@@ -38,7 +38,8 @@
     {
       "id": "hud_single_writer",
       "status": "open",
-      "contract": "UMelodiaUIBridgeSubsystem is the sole Melodia writer for battle-time presentation and the instantiated runtime widget identity is proven."
+      "contract": "UMelodiaUIBridgeSubsystem is the sole Melodia writer for battle-time presentation and the instantiated runtime widget identity is proven.",
+      "latest_partial_evidence": "2026-08-26 live PIE on MelodiaIntegrationMap: BP_BattleController.melodiaBattleUI and .MelodiaUI are both None. The Melodia rhythm-highway HUD is not bound to the battle controller."
     },
     {
       "id": "rhythm_grade_to_result",
@@ -70,7 +71,7 @@
       "id": "battle_integration_map",
       "status": "hold",
       "contract": "Victory, Defeat, Fled, and unavailable each produce the typed result and resume or abort Quill exactly once on the current integration map.",
-      "latest_partial_evidence": "2026-08-26 scoped idle PIE smoke passed for 8.02 seconds with the expected Melusina runtime identity and zero forbidden runtime matches; no battle was started and the four outcomes remain unproven."
+      "latest_partial_evidence": "2026-08-26 scoped idle PIE smoke passed for 8.02 seconds with the expected Melusina runtime identity and zero forbidden runtime matches; no battle was started and the four outcomes remain unproven. A later 2026-08-26 12-second PIE smoke on the same map did start a battle (gameState Explore to Battle; BP_BattleController.currentAttackingUnit = BP_SirMelodiousPlayerUnit_C_0, currentTurn = 2) with zero Blueprint Runtime Error or Accessed None, after BP_MelodiaJRPGPlayerController was reparented to stock BP_JRPGPlayerController_C so that BP_BattleController.jRPGPlayerController now resolves to BP_MelodiaJRPGPlayerController_C_0; the four terminal outcomes (Victory/Defeat/Fled/unavailable) remain unproven."
     }
   ],
   "bounded_historical_evidence": [
@@ -104,6 +105,37 @@
     "battle_hud": "Source is converged: UMelodiaJRPGBattleOverlaySubsystem is a retired compatibility observer and creates no widgets. Runtime hud_single_writer proof remains open.",
     "music_world_key": "Piano and UMelodiaPCGNarrativeChallengeBridgeComponent are source-built. Live host attachment, level wiring, visible route payoff, and replay proof remain open.",
     "rhythm_owner": "The gate measures one execution path into stock JRPG damage, not zero MelodiaCore callers. Load-bearing presentation and reactivity callers are permitted."
+  },
+  "vendor_compatibility_track": {
+    "status": "HOLD_VENDOR_INPUTS_MISSING",
+    "scope": "Oceanology Expanded and ACFU are optional isolated compatibility investigations. They are not P0 dependencies and may not acquire narrative, battle, rhythm, quest, inventory, save, wardrobe, traversal, or UI authority.",
+    "report": "Docs/Reports/OCEANOLOGY_ACFU_MELUSINA_COMPATIBILITY_2026-08-26.md",
+    "ledger": "Docs/Reports/OCEANOLOGY_ACFU_COMPATIBILITY_LEDGER_2026-08-26.json",
+    "latest_evidence": [
+      "Oceanology purchase provenance exists on G:, but no vendor archive, .uplugin descriptor, or source is currently available; the project-local directory is a disabled descriptor-less binary remnant.",
+      "The located ACFU UE5.8 Melusina lab is correctly isolated, but the ACFU vendor source/plugin is absent. No UCFU descriptor was found.",
+      "F: was mounted but did not answer bounded directory enumeration and remains an unresolved archive location rather than proof of absence.",
+      "Current pre-vendor MelodiaCore baseline passes 14/14 targeted editor automation tests across rhythm, presentation, water gameplay, and wiring.",
+      "Melusina_BP registry, readiness, materialization, topology, skill bridge, native adapter, and HUD single-writer offline checks pass; live viewport and gameplay proof remain open.",
+      "Live headless PIE was not launched against the observed shared-editor baseline because four UI packages were dirty and WBP_MelodiaRhythmHighway was errored. No shared assets were saved or modified.",
+      "A subsequent unattended NullRHI commandlet loaded project modules but stalled before automation discovery because UE-LocalDataCachePath targets unavailable F:/UE_DDC and Zen found no valid data path. The bounded process was terminated without emitting a test result.",
+      "A process-local DDC retry emitted no new log and did not reach automation discovery within the bounded window. It was terminated without changing the machine-level environment; the headless gate remains HOLD rather than pass or fail."
+    ],
+    "blockers": [
+      "oceanology_vendor_descriptor_or_archive_missing",
+      "acfu_vendor_source_plugin_missing",
+      "clean_editor_baseline_required_for_live_melusina_pie",
+      "valid_process_local_unreal_ddc_required_for_headless_commandlet"
+    ],
+    "next_gates": [
+      "Fingerprint each restored vendor package and preserve version/provenance metadata.",
+      "Compile each vendor plugin in a separate disposable UE5.8 host before proposing any live-project change.",
+      "Run Oceanology-only water and underwater presentation tests without replacing canonical Melodia water gameplay state.",
+      "Run ACFU-only Melusina spawn, animation, hair, damage-receive, and package tests without enabling ACFU in BS_GodFile.",
+      "Repeat Melusina identity, animation, HUD ownership, and MelodiaCore rhythm tests after each isolated vendor build.",
+      "Require an explicit owner-approved narrow adapter proposal before any live-game integration."
+    ],
+    "live_game_mutation_authorized": false
   },
   "deferred_post_p0_expansion": [
     {

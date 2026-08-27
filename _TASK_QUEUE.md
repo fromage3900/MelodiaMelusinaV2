@@ -33,6 +33,10 @@
 | `rhythm_grade_to_result` — grade changes a JRPG result | P0 | **Available** | — | The seam that defines the game. Rhythm is owner-locked WORKED; the grade→damage edge is unproven. |
 | Fix `WBP_MelodiaRhythmHighway` lane legend → Q/W/O/P | P0 | **Available** | — | Still shows retired D/F/J/K. Live keys are Q/W/O/P via `BP_BattleUI::OnKeyDown`. Small, visible, unambiguous. |
 | `static_gates` — clear the two baseline drifts | P0 | **Available** | — | FAIL 2026-08-14. `M_Master_Simple_Universal` 25→26 nodes, `M_Master_Toon_Landscape_HeightBlend` 290→304 nodes. Other four sub-gates passed. Either re-baseline deliberately or revert the drift. |
+| Bind `BP_BattleController.melodiaBattleUI` / `.MelodiaUI` to the Melodia rhythm-highway HUD | P0 | **Available — TOP PRIORITY** | — | Both are `None` on the live battle controller (verified 2026-08-26 PIE). Blocks `rhythm_owner`, `hud_single_writer`, and `rhythm_grade_to_result` gates. |
+| Un-abstract `BP_MelodySlimeBattle_Hub` | P0 | **Available** | — | Still an abstract class; the Melody Slime is not battle-triggerable in the hub map until it can be spawned. |
+| Re-add `ShowQuestRewards` override (`BP_ItemObtainDialogue`) on `BP_MelodiaJRPGPlayerController` | P0 | **Available** | — | Dropped when the duplicated EventGraph was stripped during the 2026-08-26 reparent fix. |
+| `bp_sweep` / `verify_baseline` static gates still FAIL | P0 | **Available** | — | Pre-existing, unrelated to the 2026-08-26 battle fix. `bp_sweep`: `DUPES != 0`, ~15 `/Game/Melodia/<path>` vs `/Game/<path>` mirror-tree duplicate short names. `verify_baseline`: 16 drifted assets, all materials, zero gameplay assets. |
 
 ### P1 — Convergence hygiene
 
@@ -83,6 +87,7 @@
 | Credits completion | 2026-08-13 | `Docs/CREDITS.md` + `Docs/SOURCES_MATRIX.md` + `Tools/credits_gate.py` (PASS 66 dirs) |
 | Repo lock-in merge | 2026-08-20 | `309a575d` (2,243-file asset half) + `caee6389` (text/code half) squash-merged to local `main` |
 | Stage v18 re-fetch | 2026-08-20 | False alarm; both copies byte-perfect against oid `e8f3aebd…09264`. Reclaimed 1.7 GB from `.git/lfs/bad/` |
+| `BP_MelodiaJRPGPlayerController` reparent — fixed project-wide battle `Accessed None` cascade | 2026-08-26 | Was a byte-for-byte duplicate of stock `BP_JRPGPlayerController`, not a subclass — every hard-typed cast failed against it. Reparented to `BP_JRPGPlayerController_C`, duplicated EventGraph stripped 569→14 nodes (1.44 MB→74 KB). PIE-verified: 12s smoke on `MelodiaIntegrationMap`, `ok:true`, 0 Blueprint Runtime Error / Accessed None; `BP_BattleController.jRPGPlayerController` cast to `BP_MelodiaJRPGPlayerController_C_0` now succeeds; Sir Melodious confirmed live party member and took a battle turn. See `Docs/Handoffs/P0_CLOSEOUT_HANDOFF_2026-08-26.md`. |
 
 ---
 

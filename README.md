@@ -55,7 +55,8 @@ L_MelusinaMorning
 | Harmonix rhythm | ♪ WORKED (owner-locked) | `RHYTHM_GAME_LOCKED_2026-08-12.md` |
 | PIE runtime input | ♪ PASS (ledger 2026-08-13) | `Saved/gate_ledger.json` |
 | Save/Load | ♪ PASS | `repeat_consume` + `package_launch` gates |
-| Stock JRPG battle | ◻ BROKEN | Morning → KaleidoNave path open |
+| Stock JRPG battle | ♪ Root cause fixed, PIE-verified (2026-08-26) | `Docs/Handoffs/P0_CLOSEOUT_HANDOFF_2026-08-26.md` |
+| Rhythm-highway HUD binding | ◻ OPEN — top priority | `BP_BattleController.melodiaBattleUI`/`.MelodiaUI` = None |
 | T3D wiring gate | ♪ EXPANDING | `t3d_safe_wire.py` active |
 
 ### 2. ♪ Melodia MCP + Local Model Tooling (MATH)

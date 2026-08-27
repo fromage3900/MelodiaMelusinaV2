@@ -1,3 +1,33 @@
+> ## Start here — 2026-08-26 (battle root cause fixed, PIE-verified)
+>
+> **`BP_MelodiaJRPGPlayerController` was a byte-for-byte duplicate of stock
+> `BP_JRPGPlayerController`, not a subclass** — every stock hard-typed cast to
+> `BP_JRPGPlayerController_C` failed against it, which caused the project-wide `Accessed None`
+> battle-system cascade. Reparented to `BP_JRPGPlayerController_C`; duplicated EventGraph
+> stripped 569 → 14 nodes (1.44 MB → 74 KB), so it now inherits stock logic instead of running
+> a damaged copy of it.
+>
+> **Verified live in PIE** on `MelodiaIntegrationMap`: 12-second smoke, `ok: true`, 0 Blueprint
+> Runtime Error / Accessed None across active runtime and teardown. Melusina possessed and
+> WASD-moving (owner-confirmed); Sir Melodious is the live party member
+> (`currentHP=120`/`currentMP=100`) and took a turn in battle
+> (`BP_BattleController.currentAttackingUnit` = `BP_SirMelodiousPlayerUnit_C_0`, `currentTurn`
+> = 2); `BP_BattleController.jRPGPlayerController` cast to `BP_MelodiaJRPGPlayerController_C_0`
+> now succeeds — root cause proven fixed at runtime. Screenshot:
+> `Saved/Screenshots/WindowsEditor/HighresScreenshot00021.png`.
+>
+> **Still open — top priority:** `BP_BattleController.melodiaBattleUI` and `.MelodiaUI` are
+> both `None` — the Melodia rhythm-highway HUD is not bound to the battle controller, blocking
+> `rhythm_owner`, `hud_single_writer`, and `rhythm_grade_to_result`. Also open:
+> `BP_MelodySlimeBattle_Hub` is still abstract (not spawnable); the child's `ShowQuestRewards`
+> override (`BP_ItemObtainDialogue`) was dropped with the duplicate graph and needs re-adding;
+> `bp_sweep` and `verify_baseline` static gates still FAIL, both pre-existing and unrelated to
+> this fix (mirror-tree duplicate short names / material-only drift).
+>
+> **No gate rows were recorded this session** — the above is PIE-verified evidence, not a
+> ledger PASS. Full detail:
+> [`Docs/Handoffs/P0_CLOSEOUT_HANDOFF_2026-08-26.md`](Docs/Handoffs/P0_CLOSEOUT_HANDOFF_2026-08-26.md).
+
 > ## Start here — 2026-08-25 (career sendoffs)
 >
 > **NVIDIA WITHDRAWN** (owner). Paste-ready sendoffs:
