@@ -63,16 +63,20 @@ Pipeline per variant i ∈ [0..11]:
 
 Liquid Cathedral's validated recipe (`GAEA_SETUP_LIQUID_CATHEDRAL_2026-08-24.json`) already contains: ASTER metric terrain (Yoshino 12 km window), `Canyon → HydroFix → FlowMap → SeaLevel → SatMap → WaveShine` chain, **waterline mask at 36 m**, and a literal `"Canyon River with Sea"` Gaea reference graph. That sea/waterline mask *is* our false-ocean plane geometry donor.
 
-### 2.1 Terrain tonight (headless-capable path)
+### 2.1 Terrain tonight (headless-capable path — Swarm CLI)
+
+**Executed 2026-08-26:** built via the Gaea **Swarm CLI** (headless, `Gaea.Swarm.exe`), giving a clean CLI automation lane that the future `gaea-mcp` will wrap:
 
 ```powershell
-Tools\WorldGen\prepare_gaea_unreal_export_native.ps1 `
-  -Source  "C:/Program Files/QuadSpinner/Gaea 2/Examples/Canyon River with Sea.terrain" `
-  -Destination "Saved/Audit/gaea_setups/sea_above/" `
-  -Report  "Saved/Audit/gaea_setups/sea_above/handoff_manifest.json"
+$wf = 'C:\Program Files\QuadSpinner\Gaea 2\Gaea.Swarm.exe'
+& $wf --Filename 'Saved/Audit/gaea_setups/aurora_glacier/AuroraGlacier_MeshTerrainExport_Final.terrain' `
+     --buildpath 'Saved/Audit/gaea_setups/aurora_glacier/build' --silent
 ```
 
-The script injects a `QuadSpinner.Gaea.Nodes.Unreal` node (`WillExport`, Height + 3 masks, PNG, `x2017`) directly into the `.terrain` via Gaea 2.2.3.2 assemblies — no GUI required. Rename node id to `Unreal_SeaAbove`. Output: heightfield + flow/slope/waterline masks → import as **Mesh Terrain** (not classic Landscape) into `/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/SeaAbove/`.
+- **Donor graph tonight: Aurora Glacier** (a proven export-marked graph from yesterday's lane). It produced `AuroraGlacier_Height.png`, `_Flow.png`, `_Curvature.png` @ **2048×2048** into `Saved/Audit/gaea_setups/aurora_glacier/build/` — verified via `gaea_build_verify.json` (Height = Mesh Terrain donor; Flow/Curvature = masks).
+- When the **Canyon River with Sea** graph is baked, it adds exactly one thing Aurora lacks: the **`Sea.Water` waterline mask** (the false-ocean geometry donor). Both headless prep scripts are committed for that (reflection `load` lane + Swarm CLI).
+
+Import as **Mesh Terrain** (not classic Landscape) into `/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/SeaAbove/`.
 
 Material: follow the `apply_gaea_substrate_materials.py` pattern to mint `MI_Gaea_SeaAbove_Substrate` off `M_Master_Toon_Landscape_HeightBlend` — triplanar active, `ShoreWetnessBoost≈0.46`, plus the Nikki polish trio (`PastelLift`, `DreamSaturation`, `DreamContrast`). Master untouched.
 
