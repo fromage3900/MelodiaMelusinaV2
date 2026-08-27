@@ -22,6 +22,8 @@ Front door for driving **MelodiaMelusinaV2** from iOS / Cursor mobile / SuperGro
 12. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory
 13. [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) — **Implemented** jcode swarm install + Recipes A/B
 14. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
+15. [../INTEGRATION_ROADMAP_2026-08-26.md](../INTEGRATION_ROADMAP_2026-08-26.md) — GitHub + Perforce + Tailscale + optional GitLab mirror
+16. [../PERFORCE_MIGRATION_HANDOFF_2026-08-26.md](../PERFORCE_MIGRATION_HANDOFF_2026-08-26.md) — Perforce prep (not live)
 
 Harness: [`.jcode/README.md`](../../.jcode/README.md) · `.\deploy\start_jcode_swarm.ps1`
 

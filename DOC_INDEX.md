@@ -47,6 +47,9 @@ it. **No agent may cite anything in them as project direction.**
 | Doc | What |
 |---|---|
 | [`Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md) | **Next phase.** Perforce for content, git for code. Plan only; not before the three completion gates close. |
+| [`Docs/PERFORCE_MIGRATION_HANDOFF_2026-08-26.md`](Docs/PERFORCE_MIGRATION_HANDOFF_2026-08-26.md) | Perforce prep handoff — PREP ONLY, P4 not live |
+| [`Docs/Handoffs/PERFORCE_SETUP_GUIDE_2026-08-26.md`](Docs/Handoffs/PERFORCE_SETUP_GUIDE_2026-08-26.md) | Helix + Tailscale + hybrid content seed steps |
+| [`Docs/INTEGRATION_ROADMAP_2026-08-26.md`](Docs/INTEGRATION_ROADMAP_2026-08-26.md) | GitHub + P4 + phone/WSL + optional GitLab mirror |
 | [`Docs/Reports/LFS_HEALTH_2026-08-13.md`](Docs/Reports/LFS_HEALTH_2026-08-13.md) | LFS evidence. `Exports/` is 63% of LFS; one `.git/lfs/bad` object is live-referenced. |
 | [`Docs/AGENT_TOOLS.md`](Docs/AGENT_TOOLS.md) | Tool catalogue split out of AGENTS.md (32 KB subagent cap). |
 | [`Docs/CREDITS.md`](Docs/CREDITS.md) | All asset credits: creator, source URL, license, usage — Epic/Fab, ArtStation, CC0, BOOTH, first-party, assembled kit, staging provenance. |

@@ -68,7 +68,7 @@
 | `.gitattributes` LFS gaps: `.bmp`, `.pyd`, `.lib` | P3 | **Blocked — owner** | — | Never-touch file. 3 `.bmp` already committed raw (~200 KB). |
 | Nested `.git_disabled` pack committed | P3 | **Available** | — | See `Docs/Reports/LFS_HEALTH_2026-08-13.md`. |
 | Decide `l_melodia_dreamstate..umap` (double-dot typo) | P3 | **Blocked — owner** | — | Rename or delete; not touching without assent. |
-| **Perforce decision** | P3 | **Blocked — owner** | — | `Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`. The three gates it waited on are now closed, so this is purely an owner call. |
+| **Perforce decision** | P3 | **PREP on branch — owner P0 decide** | — | Plan: [`Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md). Prep: handoff + setup + [`Docs/INTEGRATION_ROADMAP_2026-08-26.md`](Docs/INTEGRATION_ROADMAP_2026-08-26.md). **P4 not live.** Run `python Tools/perforce_migration_preflight.py --json` on PC after merge. |
 
 ### Done — do not reopen
 
