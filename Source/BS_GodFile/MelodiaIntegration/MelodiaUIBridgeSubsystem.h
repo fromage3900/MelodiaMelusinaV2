@@ -8,7 +8,14 @@
 class UMelodiaNarrativeSubsystem;
 class UMelodiaExternalJRPGBridgeSubsystem;
 class UMelodiaBattleKeyboardLegendWidget;
+class UMelodiaBattleResultsWidget;
+class UMelodiaBattleSession;
 class UUserWidget;
+
+// Underlying-type enums used by the reflected handlers below; complete
+// definitions live in the MelodiaCore plugin (MelodiaBattleTypes.h).
+enum class EMelodiaEncounterResult : uint8;
+enum class EMelodiaBattlePhase : uint8;
 
 /**
  * Creates and manages Melodia UI widgets on top of the stock JRPG UI.
@@ -95,6 +102,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Melodia|UI|Bridge|Config")
 	FSoftClassPath MelodiaBattleWidgetPath;
 
+	/** Widget class path for the persistent live-results widget shown even outside battle. */
+	UPROPERTY(EditDefaultsOnly, Category = "Melodia|UI|Bridge|Config")
+	FSoftClassPath LiveResultsWidgetPath;
+
 private:
 	UFUNCTION()
 	void HandleBattleRequested(FName EncounterId);
@@ -106,11 +117,21 @@ private:
 	void HandleExternalBattleStarted(FName EncounterId);
 	UFUNCTION()
 	void HandleExternalBattleEnded(uint8 BattleResult);
+	UFUNCTION()
+	void HandleNarrativeFlagChanged(FName FlagId, bool bValue);
+	UFUNCTION()
+	void HandleQuestStateCommitted(FName QuestId, bool bCompleted);
+	UFUNCTION()
+	void HandleBattleSessionEnded(EMelodiaEncounterResult Result);
+	UFUNCTION()
+	void HandleBattlePhaseChanged(EMelodiaBattlePhase NewPhase, EMelodiaBattlePhase PreviousPhase);
 
 	void CreateBattleUIInternal();
 	void RemoveBattleUIInternal();
 	void CreateBattlePresentationOverlaysInternal();
 	void RemoveBattlePresentationOverlaysInternal();
+	void CreateLiveResultsWidgetInternal();
+	void PushLiveGameDataToActiveWidgets();
 
 	/** Next-tick trampoline: the stock widget is built during InitBattle, after the battle-started broadcast. */
 	void EnsureStockBattleUIControllerReferenceDeferred();
@@ -119,10 +140,17 @@ private:
 	TObjectPtr<UMelodiaNarrativeSubsystem> NarrativeSubsystem;
 
 	UPROPERTY(Transient)
+	TObjectPtr<UMelodiaBattleSession> BattleSession;
+
+	UPROPERTY(Transient)
 	TObjectPtr<UMelodiaExternalJRPGBridgeSubsystem> ExternalBridge;
 
 	UPROPERTY(Transient)
 	TObjectPtr<UUserWidget> MelodiaBattleWidget;
+
+	/** Persistent results surface fed by battle/narrative events; survives battle teardown. */
+	UPROPERTY(Transient)
+	TObjectPtr<UMelodiaBattleResultsWidget> LiveResultsWidget;
 
 	/**
 	 * All battle-time Melodia widgets are owned by this subsystem. Keeping the
