@@ -71,6 +71,12 @@ Gameplay queue ≠ `NEXT_ACTIONS.md` (that is platform); use vertical-slice / co
 **Every lane must not:** build a fifth wardrobe track, a fourth rhythm path, or a second HUD
 writer. Converge onto the named owner. A new parallel implementation is a defect, not progress.
 
+**UI/visual-artist work:** load the `.claude/skills/melodia-ui-artist` skill — it carries the
+real token SSOT (`melodia-design-system/tokens.json`), the Quill dialogue WBP chain
+(`Content/Melodia/UI/Quill/`, tracked), the `ui_style_audit.py` inventory flow, and the
+editor-driven apply workflow. Do not hand-edit `.uasset`; `Content/Melodia/UI/Textures/` is
+intentionally gitignored, do not track it.
+
 ---
 
 ## T3D Wiring Pipeline (Automation Pipeline)
