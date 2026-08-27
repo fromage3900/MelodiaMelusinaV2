@@ -1,11 +1,19 @@
 {
   "schema": "melodia.p0.task_ledger.v2",
-  "as_of": "2026-08-26",
+  "as_of": "2026-08-27",
   "authority": {
     "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
     "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
     "scope": "Close the existing First Dream loop before adding economy, song-family, HUD, dungeon, enemy, or quest breadth.",
     "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct. Historical passes apply only to their captured baselines and are not current shipping certification."
+  },
+  "agent_work_log_2026-08-27": {
+    "commit": "d242f74d",
+    "scope": "Quill dialogue WBPs made trackable (gitignore allowlist), interpreter selection/background viewport guard fixed, live-results bridge wired, 5 narrative presentation assignments committed.",
+    "gitignore": "Allowlist Content/Melodia/UI/Quill/ so WBP_MelodiaQuill{Dialog,Selection,Background,ChoiceEntry} are tracked; Textures/ (~200 Figma exports) remain intentionally ignored.",
+    "dialogue_ui_fix": "QuillscriptInterpreter.cpp ShowSelectionBox/ShowBackgroundBox guard flipped to !IsInViewport() && !GetParent(), matching ShowDialogBox idiom at L1198. Previously inverted guard kept selection/background out of the viewport.",
+    "livecoding": "Live Coding trigger_build reported patch_applied=true, but compile_log ends in 'Live coding failed'. Root cause is AGENTS.md rule 15: the bridge header adds new UFUNCTION/UPROPERTY/forward-declared enums, which cannot be hot-patched. A full closed-editor UBT rebuild is required (user step per Lane-1 constraint). UnrealEditor-BS_GodFile.dll on disk unchanged (2026-08-24).",
+    "static_gates_impact": "Gitignore D1 audit finding resolved; Quill WBPs now in version control. Remaining static gates unchanged; bridge/hud changes are committed source but not yet compiled, so hud_single_writer and static_gates remain open."
   },
   "latest_verified_evidence": {
     "recorded_on": "2026-08-26",

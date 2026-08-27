@@ -159,3 +159,12 @@ No gate should close from source presence alone.
 - Delta: 10 commits ahead
 
 This document is a routing/status note, not a replacement for the canonical P0 ledger.
+
+---
+
+## 2026-08-27 — Quill dialogue UI + gitignore consolidation
+
+- Commit `d242f74d` on `main`: made `Content/Melodia/UI/Quill/` (WBP_MelodiaQuill{Dialog,Selection,Background,ChoiceEntry}) trackable via a narrow `.gitignore` allowlist (Textures/ ~200 Figma exports stay ignored); flipped the `ShowSelectionBox`/`ShowBackgroundBox` viewport guard in `QuillscriptInterpreter.cpp` to `!IsInViewport() && !GetParent()` (matches `ShowDialogBox` at L1198 — the inverted guard was the functional bug keeping dialogue choices/backgrounds out of view); wired the live-results bridge in `MelodiaUIBridgeSubsystem.{h,cpp}`; committed 5 narrative presentation `.uasset` assignments.
+- **Live Coding did NOT take the bridge header** (AGENTS.md rule 15: new UFUNCTION/UPROPERTY/enum forward-decls need a full closed-editor UBT build — user step per Lane-1 constraint). `UnrealEditor-BS_GodFile.dll` on disk unchanged (2026-08-24). Interpreter `.cpp` fix is live-codable; bridge needs the closed-editor rebuild.
+- `hud_single_writer` and `static_gates` remain **open** until the bridge compiles and the runtime widget identity is re-proven.
+
