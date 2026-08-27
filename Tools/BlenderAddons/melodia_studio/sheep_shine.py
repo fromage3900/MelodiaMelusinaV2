@@ -34,6 +34,72 @@ VARIATIONS = {
 
 _ACCENT_EMIT = 1.2          # resonance accent emission strength
 
+# --- Chromatic octave kit (tonight's contract): one coat per pitch class ------
+# ChoralSheep 12-variant system -- variant N sings scale-degree N.
+# PC label -> hue fraction of the color wheel; base/accent derive as pastel
+# (Nikkilike softness) so all 12 read as one flock, twelve notes.
+PITCH_CLASS_HUES = {
+    0:  ("C",  0.000),
+    1:  ("Cs", 0.083),
+    2:  ("D",  0.167),
+    3:  ("Ds", 0.250),
+    4:  ("E",  0.333),
+    5:  ("F",  0.417),
+    6:  ("Fs", 0.500),
+    7:  ("G",  0.583),
+    8:  ("Gs", 0.667),
+    9:  ("A",  0.750),
+    10: ("As", 0.833),
+    11: ("B",  0.917),
+}
+
+
+def _pastel_pair(hue, sat=0.38, val=0.92):
+    """Pastel body + saturated accent RGB triple from a hue fraction."""
+    import colorsys
+    base = colorsys.hsv_to_rgb(hue, sat * 0.55, val)
+    accent = colorsys.hsv_to_rgb(hue, sat, min(1.0, val * 1.06))
+    return base, accent
+
+
+def chromatic_variations():
+    """Build the 12-entry {label: (base, sheen, accent)} chromatic kit."""
+    out = {}
+    for pc, (label, hue) in PITCH_CLASS_HUES.items():
+        base, accent = _pastel_pair(hue)
+        # sheen rises through the octave: the leading tone shimmers hardest
+        sheen = 0.46 + (pc / 12.0) * 0.18
+        out[label] = (base, round(sheen, 3), accent)
+    return out
+
+
+def build_chromatic_materials():
+    """Create all 12 pitch-class wool materials; returns list of material names."""
+    built = []
+    for label, (base, sheen, accent) in chromatic_variations().items():
+        name = f"ChoralWool_PC_{label}"
+        build_wool_material(name, base=base, sheen=sheen, accent=accent)
+        built.append(name)
+        print(f"[sheep] built chromatic coat {name}")
+    return built
+
+
+def apply_pitch_class(pc, target=None):
+    """Apply the chromatic coat for pitch class 0..11 (C..B)."""
+    if pc not in PITCH_CLASS_HUES:
+        raise KeyError(f"pitch class must be 0..11, got {pc!r}")
+    label = PITCH_CLASS_HUES[pc][0]
+    base, sheen, accent = chromatic_variations()[label]
+    matname = f"ChoralWool_PC_{label}"
+    build_wool_material(matname, base=base, sheen=sheen, accent=accent)
+    sheep = target or _find_sheep_mesh()
+    if not sheep.data.materials:
+        sheep.data.materials.append(bpy.data.materials.get(matname))
+    else:
+        sheep.data.materials[0] = bpy.data.materials.get(matname)
+    print(f"[sheep] applied pitch-class coat {matname} (pc={pc})")
+    return matname
+
 
 def _find_sheep_mesh():
     """Return the sheep mesh object by known names, else the largest mesh."""
