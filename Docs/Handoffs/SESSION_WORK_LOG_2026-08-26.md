@@ -46,3 +46,33 @@ ab367cde 2026-08-26 22:20 chore(worldgen): track SeaAbove Gaea export prep + wra
 - UE editor open → drive `Content/Python/stage_*gaea_mesh_terrain_import*.py` against `AuroraGlacier_Height.png`.
 - Stabilize Gaea Swarm CLI or use GUI build for staged example variants.
 - Optional: implement `apply_recipe` MCP tool for full declarative environment builds.
+
+## 2026-08-27 addendum — Universal Landscape Master finalization
+
+### Additional commits
+```
+94c253b3 2026-08-27 fix(universal): MF_NikkiDream pin fallbacks + add MF pin inspector
+3c30ff5c 2026-08-27 feat(landscape): finalize universal landscape master — triplanar pro + PBR defaults
+```
+
+### Additional deliverables
+6. Fixed stale `BaseColor`/`BaseColorIn` pin mismatch in `setup_master_universal.py` Nikki dream chain.
+7. Added `Content/Python/check_mf_pins.py` diagnostic helper for material function pin names.
+8. Added `Content/Python/upgrade_landscape_triplanar_pro.py` — creates `MF_Triplanar_LandscapePro` and wires a default-off pro triplanar overlay into `M_Master_Toon_Landscape_HeightBlend` with slope mask, axis weights, procedural breakup, and waterline-aware tiling.
+9. Added `Content/Python/apply_healthy_landscape_defaults.py` — applies healthy PBR texture defaults from `portfolio_texture_catalog` to the landscape master + 11 existing instances, and creates 4 triplanar-enabled variants in `Instances/Landscape/Triplanar/`.
+10. Added `Content/Python/finalize_universal_landscape_master.py` — single orchestrator that runs (8) and (9), saves all packages, and writes `Saved/Audit/universal_landscape_master_finalized.json`.
+
+### Additional files changed/added
+- `Content/Python/setup_master_universal.py`
+- `Content/Python/check_mf_pins.py`
+- `Content/Python/upgrade_landscape_triplanar_pro.py`
+- `Content/Python/apply_healthy_landscape_defaults.py`
+- `Content/Python/finalize_universal_landscape_master.py`
+- `Docs/Handoffs/UNIVERSAL_LANDSCAPE_MASTER_FINALIZATION_2026-08-27.md`
+
+### Updated next steps
+- Run `finalize_universal_landscape_master.py` inside UE Editor Python.
+- Verify triplanar instances on a test landscape mesh.
+- Drive `stage_*_gaea_mesh_terrain_import*.py` against `AuroraGlacier_Height.png` for Sea Above.
+- Assign `MI_Landscape_Triplanar_StoneWarm` / `MI_Landscape_CoastalCliff` and tune `WaterPaletteAlign` + `TriplanarPro_WaterlineTilingBoost` for the false-ocean shoreline.
+
