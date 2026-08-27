@@ -1,3 +1,49 @@
+> ## Start here — 2026-08-27 (two P0 gates CLOSED, Quill dialogue restored)
+>
+> **Root cause of the multi-week stall was a stale DLL.** Bridge source from 08-26 23:36 added new
+> `UFUNCTION`/`UPROPERTY`/enums, which Live Coding cannot hot-patch — it reported
+> `patch_applied=true` then failed, and `UnrealEditor-BS_GodFile.dll` sat at 08-24 23:29.
+> **Every PIE result before 08-27 12:28 tested three-day-old binaries.** Fixed by a closed-editor
+> UBT rebuild (332 actions, `Result: Succeeded`).
+>
+> **`battle_integration_map` → PASS.** The blocker was one empty array: `BP_InteractionBattle`
+> (tag `melodia_smoke_encounter`) had `enemyList = []`, so the JRPG bridge rejected every battle
+> with *"tagged battle actor has no authored enemy roster"*. Authored one row (`BP_WeakEnemy_C`,
+> spawnChance 1.0, level 1). All four terminal outcomes then driven live through the authored
+> `MelodiaQuillSmoke` golden run: `unavailable`, `victory` (typed=0), `defeat` (typed=1),
+> `fled` (typed=2) — **Quill resumed exactly once on every one**. P0-NARR-01 atomic commit proven
+> live on the victory branch (quest → reward → flag → script ended); the fled branch committed only
+> the flag, proving it is branch-conditional.
+>
+> **`hud_single_writer` → PASS pending owner decision. CORRECTION to the 08-26 entry below:**
+> `melodiaBattleUI`/`MelodiaUI` being `None` is **NOT** a broken binding and does **not** block this
+> gate. Live reads during a battle show `battleUI = BP_BattleUI_C_0` and that widget's
+> `battleController = BP_BattleController_2`, `MATCH=True`. Those two properties are **vestigial
+> pre-bridge variables**; the 08-26 note measured the wrong ones.
+> `EnsureStockBattleUIControllerReference` returns true *silently* when already linked, so the
+> absence of `MELODIA_BATTLEUI_LINK` is success, not failure. Owner decision: retire the two vars.
+>
+> **Quill dialogue is visible again (owner-confirmed on screen).** `WBP_MelodiaQuillDialog`'s
+> `Event Play` override shadowed the native `Play_Implementation`, so `AddToViewportAtLayer()` never
+> ran — an unfinished typewriter feature had replaced the working override with no parent call.
+> Fixed by injecting `K2Node_CallParentFunction` via the text-injection pipeline. Its two sibling
+> widgets were never affected (their `Event Play` nodes are disabled, so they already fell through
+> to native).
+>
+> **Disk was blocking any cook:** C: was 6.8 GB free / 100%. Moved ~12 GB of staged archives to
+> `G:/BS_GodFile_Archive/20260827/`. **C: now ~17-19 GB free.**
+>
+> **Still open:** `rhythm_owner`, `rhythm_grade_to_result`, `wardrobe_equip_roundtrip`,
+> `wardrobe_gameplay_hook`, `music_world_key` all open; `static_gates` still FAIL. Slime and Cosmic
+> Reaver meshes do not exist in UE Content (import from Blender first, then build the 3 agreed
+> MelodySlime size variants). Choral Sheep is **not a quest** — it is a non-combat companion blocked
+> on an unskinned source mesh (0 vertex groups). Known defect: killing the player unit crashes the
+> editor on an `AnimMontage.h:781` assert. The Melodia enemy-asset sweep did **not** complete.
+>
+> Full detail:
+> [`Docs/Handoffs/P0_BATTLE_UI_CLOSEOUT_HANDOFF_2026-08-27.md`](Docs/Handoffs/P0_BATTLE_UI_CLOSEOUT_HANDOFF_2026-08-27.md).
+> Commits: `e1d1b4cd` (Quill fix), `1a28a4ac` (gates + roster + handoff), `99464233` (sweep amendment).
+
 > ## Start here — 2026-08-26 (battle root cause fixed, PIE-verified)
 >
 > **`BP_MelodiaJRPGPlayerController` was a byte-for-byte duplicate of stock
