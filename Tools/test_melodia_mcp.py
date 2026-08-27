@@ -576,11 +576,63 @@ def test_encounter_start_schema() -> None:
 def test_encounter_enemy_action_schema() -> None:
     """Enemy action must drain mana and return economy state."""
     import deploy.melodia_mcp_server as server
+    from deploy.melodia_economy import MelodiaGlobalEconomy
+    from dataclasses import replace as _replace
+
+    # Seed enough mana that the full nominal drain can actually be applied --
+    # mana_drained reports the APPLIED delta, so without a known starting pool
+    # this assertion would silently depend on whatever earlier tests left behind.
+    server._ECONOMY_STATE = _replace(MelodiaGlobalEconomy(), mana=50.0)
     server.melodia_encounter_start("test_drain_enc")
     result = server.melodia_encounter_enemy_action("test_drain_enc")
     assert result["schema"] == "melodia.encounter.enemy_action.v1"
     assert result["mana_drained"] == 15.0
     assert "new_state" in result
+
+
+def test_encounter_enemy_action_clamps_drain_report() -> None:
+    """A drain against a near-empty pool must report what it actually removed."""
+    import deploy.melodia_mcp_server as server
+    from deploy.melodia_economy import MelodiaGlobalEconomy
+    from dataclasses import replace as _replace
+
+    server._ECONOMY_STATE = _replace(MelodiaGlobalEconomy(), mana=4.0)
+    server.melodia_encounter_start("test_drain_clamp_enc")
+    result = server.melodia_encounter_enemy_action("test_drain_clamp_enc")
+    assert result["new_state"]["mana"] == 0.0
+    assert result["mana_drained"] == 4.0, (
+        "mana_drained must be the applied delta, not the nominal 15.0 cost"
+    )
+
+
+def test_quest_completion_is_latched() -> None:
+    """A completed quest must not be un-completed by a later unrelated encounter.
+
+    encounter_start clears the live cast history, so deriving the completion
+    verdict from it made a finished quest regress to in_progress on the next
+    encounter. The verdict now reads the latched resolve record instead.
+    """
+    import deploy.melodia_mcp_server as server
+    from deploy.melodia_economy import MelodiaGlobalEconomy
+
+    server._ECONOMY_STATE = MelodiaGlobalEconomy()
+    server._ENCOUNTERS.clear()
+
+    server.melodia_encounter_start("latch_win")
+    for _ in range(40):
+        server.melodia_economy_rhythm_hit(0.95)
+    for skill in ("healing_song", "mana_song", "utility_debuff"):
+        assert server.melodia_economy_cast_skill(skill, 1).get("success") is True
+    assert server.melodia_encounter_resolve("latch_win")["quest_advancement"] is True
+    assert server.melodia_quest_check_p0("p0_vertical_slice")["status"] == "complete"
+
+    # Merely starting another encounter must not revoke the completion.
+    server.melodia_encounter_start("latch_followup")
+    assert server.melodia_quest_check_p0("p0_vertical_slice")["status"] == "complete"
+
+    # Nor may losing that follow-up encounter revoke it.
+    server.melodia_encounter_resolve("latch_followup")
+    assert server.melodia_quest_check_p0("p0_vertical_slice")["status"] == "complete"
 
 
 def test_encounter_resolve_schema() -> None:
@@ -683,8 +735,10 @@ def run_all() -> int:
         test_economy_hud_schema,
         test_encounter_start_schema,
         test_encounter_enemy_action_schema,
+        test_encounter_enemy_action_clamps_drain_report,
         test_encounter_resolve_schema,
         test_quest_check_p0_schema,
+        test_quest_completion_is_latched,
         test_economy_rhythm_and_cast_mcp,
         test_p0_vertical_slice_mcp_chain,
     ]
