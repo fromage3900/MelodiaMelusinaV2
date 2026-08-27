@@ -124,7 +124,7 @@ Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote
 | `ProceduralDungeon` | Runtime dungeon assembly | ♪ Active |
 | `ProceduralModelingToolkit` | Runtime mesh generation | ♪ Active |
 | `GaeaUnrealTools` | Terrain/heightfield import | ♪ Active |
-| `MelodiaTokenWallet` | Token/NFT stub | ◻ Scaffolded |
+| `MelodiaTokenWallet` | Token | ◻ Scaffolded |
 
 ---
 
