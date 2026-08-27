@@ -225,3 +225,27 @@ Unresolved: map conflict `L_ChoralSheep_Prototype` vs `MelodiaIntegrationMap`.
 
 Full evidence in `Docs/P0_TASK_LEDGER.json` → `agent_work_log_2026-08-27`.
 Backup of the pre-session ledger: `Docs/P0_TASK_LEDGER.json.bak-20260827`.
+
+---
+
+## 10. Amendment — incomplete sweep (read before planning enemy work)
+
+**The Melodia battle-enemy inventory was NOT completed.** A background sweep of every Melodia enemy
+asset (parent classes, backing meshes/materials, `DA_MelodiaEnemyCatalog` / `DT_MelodySlime_*` wiring,
+and the minimum change to make a real Melodia enemy fight) was launched but **terminated early on an
+API session limit**. No findings were produced. Treat enemy-asset knowledge in this handoff as
+partial — only these facts are verified:
+
+- `BP_WeakEnemy` / `BP_AverageEnemy` / `BP_BossEnemy` ARE valid `BP_EnemyUnitBase` subclasses and are
+  accepted as `enemyList` roster keys.
+- `BP_MelodiaEnemy_SingleStock` and `BP_MelodiaEnemy_Base` are NOT — rejected at the key
+  (`ClassProperty` MetaClass mismatch).
+- `BP_MelodySlimeBattle` parents to `BP_BattleBase_C` (an encounter, not a unit) and derives from the
+  `_ThirdParty` template copy.
+- No slime / Cosmic Reaver **meshes** were found in Content by name search.
+
+**Not yet checked:** `/Game/Melodia/Enemies/*` parent classes (`BP_Enemy_CrystalShard`,
+`BP_Enemy_SakuraPhantom`, `BP_Enemy_StoneGolem`, `BP_MelodiaEnemyBase`,
+`CrystalShard/BP_CrystalShard_SlimePlaceholder`), what `DA_MelodiaEnemyCatalog` and the
+`DT_MelodySlime_*` tables define, whether anything consumes them, and whether MelodiaCore holds enemy
+classes. Re-run that sweep first next session.
