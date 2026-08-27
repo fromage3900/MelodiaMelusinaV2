@@ -13,7 +13,8 @@
     "gitignore": "Allowlist Content/Melodia/UI/Quill/ so WBP_MelodiaQuill{Dialog,Selection,Background,ChoiceEntry} are tracked; Textures/ (~200 Figma exports) remain intentionally ignored.",
     "dialogue_ui_fix": "QuillscriptInterpreter.cpp ShowSelectionBox/ShowBackgroundBox guard flipped to !IsInViewport() && !GetParent(), matching ShowDialogBox idiom at L1198. Previously inverted guard kept selection/background out of the viewport.",
     "livecoding": "Live Coding trigger_build reported patch_applied=true, but compile_log ends in 'Live coding failed'. Root cause is AGENTS.md rule 15: the bridge header adds new UFUNCTION/UPROPERTY/forward-declared enums, which cannot be hot-patched. A full closed-editor UBT rebuild is required (user step per Lane-1 constraint). UnrealEditor-BS_GodFile.dll on disk unchanged (2026-08-24).",
-    "static_gates_impact": "Gitignore D1 audit finding resolved; Quill WBPs now in version control. Remaining static gates unchanged; bridge/hud changes are committed source but not yet compiled, so hud_single_writer and static_gates remain open."
+    "static_gates_impact": "Gitignore D1 audit finding resolved; Quill WBPs now in version control. Remaining static gates unchanged; bridge/hud changes are committed source but not yet compiled, so hud_single_writer and static_gates remain open.",
+    "ui_artist_skill": "03e62bb2: added .claude/skills/melodia-ui-artist (token SSOT, Quill WBP chain, ui_style_audit flow, editor apply workflow) + compact AGENTS.md pointer; commit landed; livecoding still blocked on full UBT rebuild (user step)."
   },
   "latest_verified_evidence": {
     "recorded_on": "2026-08-26",
