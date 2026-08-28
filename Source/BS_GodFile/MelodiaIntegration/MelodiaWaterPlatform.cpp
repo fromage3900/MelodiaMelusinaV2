@@ -49,7 +49,7 @@ void AMelodiaWaterPlatform::BeginPlay()
 		State.PlatformId = PlatformId;
 		State.NetworkId = WaterNetworkId;
 		State.MotionMode = MotionMode;
-		State.RouteId = MotionComponent ? MotionComponent->RouteId : NAME_None;
+		State.RouteId = MotionComponent ? MotionComponent->RouteId : FGameplayTag::EmptyTag;
 		State.bActive = MotionMode == EMelodiaWaterPlatformMotionMode::PhysicsBuoyant;
 		WaterGameplay->RegisterPlatform(State);
 	}
@@ -60,11 +60,11 @@ void AMelodiaWaterPlatform::InitializeFromPCGPoint(FPCGPoint Point, const UPCGMe
 	PointSeed = Point.Seed;
 	if (PlatformId.IsNone())
 	{
-		PlatformId = FName(*FString::Printf(TEXT("WaterPlatform_%08X"), static_cast<uint32>(PointSeed)));
+		PlatformId = FGameplayTag::RequestTagName(FName(*FString::Printf(TEXT("WaterPlatform_%08X"), static_cast<uint32>(PointSeed))));
 	}
 	SetActorTransform(Point.Transform);
 	AuthoredTransform = Point.Transform;
-	Tags.AddUnique(FName(*FString::Printf(TEXT("StableId_%s"), *PlatformId.ToString())));
+	Tags.AddUnique(FName(*FString::Printf(TEXT("StableId_%s"), *PlatformId.GetTagName().ToString())));
 	Tags.AddUnique(TEXT("GameplayDataLayer_DL_Musical_HeroGameplay"));
 	if (bNoMerging)
 	{
@@ -79,7 +79,7 @@ void AMelodiaWaterPlatform::InitializeFromPCGPoint(FPCGPoint Point, const UPCGMe
 		const FString Value = Tag.ToString();
 		if (Value.StartsWith(TEXT("WaterStableId_")))
 		{
-			PlatformId = FName(*Value.RightChop(14));
+			PlatformId = FGameplayTag::RequestTagName(FName(*Value.RightChop(14)));
 		}
 		else if (Value.StartsWith(TEXT("WaterRole_")))
 		{
@@ -87,11 +87,11 @@ void AMelodiaWaterPlatform::InitializeFromPCGPoint(FPCGPoint Point, const UPCGMe
 		}
 		else if (Value.StartsWith(TEXT("WaterNetwork_")))
 		{
-			WaterNetworkId = FName(*Value.RightChop(13));
+			WaterNetworkId = FGameplayTag::RequestTagName(FName(*Value.RightChop(13)));
 		}
 		else if (Value.StartsWith(TEXT("WaterRoute_")) && MotionComponent)
 		{
-			MotionComponent->RouteId = FName(*Value.RightChop(11));
+			MotionComponent->RouteId = FGameplayTag::RequestTagName(FName(*Value.RightChop(11)));
 		}
 		else if (Value == TEXT("WaterMotion_KinematicRoute"))
 		{

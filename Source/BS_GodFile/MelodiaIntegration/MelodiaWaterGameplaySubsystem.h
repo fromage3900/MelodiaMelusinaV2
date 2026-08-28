@@ -88,10 +88,10 @@ public:
 private:
 	struct FNetworkRuntime
 	{
-		TMap<FName, FMelodiaWaterNodeConfig> NodeConfigs;
-		TMap<FName, FMelodiaWaterNodeState> NodeStates;
-		TMap<FName, FMelodiaWaterLinkConfig> LinkConfigs;
-		TMap<FName, bool> OpenRoutes;
+		TMap<FGameplayTag, FMelodiaWaterNodeConfig> NodeConfigs;
+		TMap<FGameplayTag, FMelodiaWaterNodeState> NodeStates;
+		TMap<FGameplayTag, FMelodiaWaterLinkConfig> LinkConfigs;
+		TMap<FGameplayTag, bool> OpenRoutes;
 	};
 
 	void RecomputeFlow(FGameplayTag NetworkId);
@@ -103,9 +103,9 @@ private:
 	FName RouteKey(const FMelodiaWaterLinkConfig& Link) const;
 	void ApplyPendingNodeState(FGameplayTag NetworkId, FGameplayTag NodeId, FMelodiaWaterNodeState& State);
 
-	TMap<FName, FNetworkRuntime> Networks;
-	TMap<FName, FMelodiaWaterPlatformState> PlatformStates;
-	TSet<FName> CompletedPuzzleIds;
+	TMap<FGameplayTag, FNetworkRuntime> Networks;
+	TMap<FGameplayTag, FMelodiaWaterPlatformState> PlatformStates;
+	TSet<FGameplayTag> CompletedPuzzleIds;
 	int32 PuzzleRevision = 0;
 	FMelodiaWaterGameplaySaveData PendingSaveState;
 	bool bHasPendingSaveState = false;

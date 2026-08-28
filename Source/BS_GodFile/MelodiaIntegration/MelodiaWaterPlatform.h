@@ -52,7 +52,7 @@ public:
 	TObjectPtr<UMelodiaWaterBuoyancyComponent> BuoyancyComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG")
-	FName PlatformId = NAME_None;
+	FGameplayTag PlatformId = FGameplayTag::EmptyTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG")
 	int32 WorldSeed = 0;
@@ -73,7 +73,7 @@ public:
 	FName GameplayRole = TEXT("water_platform");
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG")
-	FName WaterNetworkId = NAME_None;
+	FGameplayTag WaterNetworkId = FGameplayTag::EmptyTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG")
 	FName OwningChunk = NAME_None;
