@@ -1,0 +1,47 @@
+{
+  "schema": "melodia.cutscene_manifest.v1",
+  "cutscene_id": "cutscene.sea_above_revelation",
+  "display_name": "Revelation of the Sea Above",
+  "map_destination": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "quest_binding": "quest.cutscene.sea_above",
+  "camera_tracks": [
+    {
+      "track_id": "cam_01_overlook_pan",
+      "start_location": [0.0, -1200.0, 350.0],
+      "end_location": [0.0, -600.0, 480.0],
+      "pitch_yaw_roll": [25.0, 90.0, 0.0],
+      "duration_seconds": 6.0
+    },
+    {
+      "track_id": "cam_02_sky_membrane_tilt",
+      "start_location": [0.0, -400.0, 500.0],
+      "end_location": [0.0, -200.0, 650.0],
+      "pitch_yaw_roll": [65.0, 90.0, 0.0],
+      "duration_seconds": 8.0
+    },
+    {
+      "track_id": "cam_03_melusina_gaze",
+      "start_location": [120.0, -150.0, 220.0],
+      "end_location": [80.0, -100.0, 230.0],
+      "pitch_yaw_roll": [15.0, 140.0, 0.0],
+      "duration_seconds": 6.0
+    }
+  ],
+  "presentation_effects": {
+    "mpc_palette": "/Game/EnvSandbox/Materials/MPC/MPC_Melodia_Palette",
+    "membrane_pulse_scalar": "MembranePulse",
+    "pulse_cycle_seconds": 16.0,
+    "membrane_sheen_range": [0.18, 0.32],
+    "upward_droplets_vfx": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/VFX/NS_SeaAbove_UpwardDroplets_Prototype"
+  },
+  "narrative_postconditions": {
+    "witnessed_flag": "flag.cutscene.sea_above_witnessed",
+    "pulse_active_flag": "flag.sea_above.membrane_pulse_active",
+    "quest_completed_flag": "flag.cutscene.sea_above_completed",
+    "reward_id": "reward.cutscene.sea_above_memory",
+    "social_stat_granted": {
+      "stat": "melodia_resonance",
+      "delta": 5
+    }
+  }
+}
