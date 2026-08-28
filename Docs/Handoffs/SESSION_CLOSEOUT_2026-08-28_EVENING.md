@@ -1,5 +1,11 @@
 # Session Closeout — 2026-08-28 evening
 
+> **Final amendment:** this handoff captured an intermediate broken state. The tree now builds,
+> the `FGameplayTag` migration and `/Melodia` shader mapping are complete, and
+> `Melodia.Wardrobe.EquipRoundtrip` passes. Current evidence is in
+> `SESSION_CLOSEOUT_2026-08-28_FINAL_CPP_RIDER.md`; statements below that the build is broken,
+> shaders are unreachable or wardrobe tests never ran are historical only.
+
 Continues `P0_PHASE1_CLOSEOUT_AND_QUILL_TRIGGER_2026-08-28.md`, which covers Phase 1 and the Quill
 trigger repair. This document covers what happened after those, and the three things that are
 **still open at handoff**.

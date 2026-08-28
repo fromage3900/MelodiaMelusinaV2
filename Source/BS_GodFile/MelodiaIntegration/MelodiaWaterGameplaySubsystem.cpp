@@ -52,12 +52,9 @@ bool UMelodiaWaterGameplaySubsystem::RegisterNode(const FMelodiaWaterNodeConfig&
 		return false;
 	}
 
-	const FName NetworkKey = Config.NetworkId.GetTagName();
-	const FName NodeKey = Config.NodeId.GetTagName();
-
-	FNetworkRuntime& Network = Networks.FindOrAdd(NetworkKey);
-	Network.NodeConfigs.Add(NodeKey, Config);
-	FMelodiaWaterNodeState& State = Network.NodeStates.FindOrAdd(NodeKey);
+	FNetworkRuntime& Network = Networks.FindOrAdd(Config.NetworkId);
+	Network.NodeConfigs.Add(Config.NodeId, Config);
+	FMelodiaWaterNodeState& State = Network.NodeStates.FindOrAdd(Config.NodeId);
 	if (!State.NetworkId.IsValid())
 	{
 		State.NetworkId = Config.NetworkId;
@@ -79,11 +76,9 @@ bool UMelodiaWaterGameplaySubsystem::RegisterLink(const FMelodiaWaterLinkConfig&
 		return false;
 	}
 
-	const FName NetworkKey = Config.NetworkId.GetTagName();
-
-	FNetworkRuntime& Network = Networks.FindOrAdd(NetworkKey);
-	Network.LinkConfigs.Add(Config.LinkId.GetTagName(), Config);
-	const FName Key = RouteKey(Config);
+	FNetworkRuntime& Network = Networks.FindOrAdd(Config.NetworkId);
+	Network.LinkConfigs.Add(Config.LinkId, Config);
+	const FGameplayTag Key = RouteKey(Config);
 	Network.OpenRoutes.FindOrAdd(Key) = Config.bInitiallyOpen;
 	if (bHasPendingSaveState)
 	{
@@ -172,13 +167,13 @@ bool UMelodiaWaterGameplaySubsystem::ApplyOperation(const FMelodiaWaterOperation
 	case EMelodiaWaterGameplayOperation::OpenValve:
 	case EMelodiaWaterGameplayOperation::CloseValve:
 	{
-		const FGameplayTag RouteTag = Request.RouteId.IsValid() ? Request.RouteId : Request.DeviceId;
+		const FGameplayTag RouteTag = Request.RouteId;
 		if (!RouteTag.IsValid())
 		{
-			Reject(Request, TEXT("valve operation has no route or device ID"));
+			Reject(Request, TEXT("valve operation has no route ID"));
 			return false;
 		}
-		Network->OpenRoutes.FindOrAdd(RouteTag.GetTagName()) = Request.Operation == EMelodiaWaterGameplayOperation::OpenValve;
+		Network->OpenRoutes.FindOrAdd(RouteTag) = Request.Operation == EMelodiaWaterGameplayOperation::OpenValve;
 		break;
 	}
 	case EMelodiaWaterGameplayOperation::Reset:
@@ -200,7 +195,7 @@ bool UMelodiaWaterGameplaySubsystem::ApplyOperation(const FMelodiaWaterOperation
 	{
 		if (Request.RouteId.IsValid())
 		{
-			Network->OpenRoutes.FindOrAdd(Request.RouteId.GetTagName()) = true;
+			Network->OpenRoutes.FindOrAdd(Request.RouteId) = true;
 		}
 		if (Request.PuzzleId.IsValid() && !CompletedPuzzleIds.Contains(Request.PuzzleId))
 		{
@@ -227,7 +222,7 @@ bool UMelodiaWaterGameplaySubsystem::GetNodeState(FGameplayTag NetworkId, FGamep
 {
 	OutState = FMelodiaWaterNodeState();
 	const FNetworkRuntime* Network = FindNetwork(NetworkId);
-	const FMelodiaWaterNodeState* Found = Network ? Network->NodeStates.Find(NodeId.GetTagName()) : nullptr;
+	const FMelodiaWaterNodeState* Found = Network ? Network->NodeStates.Find(NodeId) : nullptr;
 	if (!Found)
 	{
 		return false;
@@ -257,9 +252,9 @@ bool UMelodiaWaterGameplaySubsystem::GetResolvedWaterFlow(FGameplayTag WaterBody
 	}
 
 	bool bFound = false;
-	for (const TPair<FName, FNetworkRuntime>& Pair : Networks)
+	for (const TPair<FGameplayTag, FNetworkRuntime>& Pair : Networks)
 	{
-		for (const TPair<FName, FMelodiaWaterNodeConfig>& NodePair : Pair.Value.NodeConfigs)
+		for (const TPair<FGameplayTag, FMelodiaWaterNodeConfig>& NodePair : Pair.Value.NodeConfigs)
 		{
 			if (NodePair.Value.WaterBodyId == WaterBodyId)
 			{
@@ -280,10 +275,10 @@ bool UMelodiaWaterGameplaySubsystem::IsWaterRouteOpen(FGameplayTag NetworkId, FG
 	return Network && IsRouteOpen(*Network, RouteId);
 }
 
-bool UMelodiaWaterGameplaySubsystem::GetPlatformMotionState(FGameplayTag PlatformId, FMelodiaWaterPlatformState& OutState) const
+bool UMelodiaWaterGameplaySubsystem::GetPlatformMotionState(FName PlatformId, FMelodiaWaterPlatformState& OutState) const
 {
 	OutState = FMelodiaWaterPlatformState();
-	const FMelodiaWaterPlatformState* Found = PlatformStates.Find(PlatformId.GetTagName());
+	const FMelodiaWaterPlatformState* Found = PlatformStates.Find(PlatformId);
 	if (!Found)
 	{
 		return false;
@@ -294,12 +289,12 @@ bool UMelodiaWaterGameplaySubsystem::GetPlatformMotionState(FGameplayTag Platfor
 
 bool UMelodiaWaterGameplaySubsystem::RegisterPlatform(const FMelodiaWaterPlatformState& State)
 {
-	if (!State.PlatformId.IsValid())
+	if (State.PlatformId.IsNone())
 	{
 		return false;
 	}
-	FMelodiaWaterPlatformState& Registered = PlatformStates.FindOrAdd(State.PlatformId.GetTagName());
-	if (!Registered.PlatformId.IsValid())
+	FMelodiaWaterPlatformState& Registered = PlatformStates.FindOrAdd(State.PlatformId);
+	if (Registered.PlatformId.IsNone())
 	{
 		Registered = State;
 		if (bHasPendingSaveState)
@@ -319,13 +314,13 @@ bool UMelodiaWaterGameplaySubsystem::RegisterPlatform(const FMelodiaWaterPlatfor
 
 bool UMelodiaWaterGameplaySubsystem::UpdatePlatformState(const FMelodiaWaterPlatformState& State)
 {
-	if (!State.PlatformId.IsValid() || !PlatformStates.Contains(State.PlatformId.GetTagName()))
+	if (State.PlatformId.IsNone() || !PlatformStates.Contains(State.PlatformId))
 	{
 		return false;
 	}
 	FMelodiaWaterPlatformState Sanitized = State;
 	Sanitized.RouteProgress = FMath::Clamp(Sanitized.RouteProgress, 0.0f, 1.0f);
-	PlatformStates[State.PlatformId.GetTagName()] = Sanitized;
+	PlatformStates[State.PlatformId] = Sanitized;
 	return true;
 }
 
@@ -340,20 +335,20 @@ void UMelodiaWaterGameplaySubsystem::CaptureSaveState(FMelodiaWaterGameplaySaveD
 	OutData.PuzzleRevision = PuzzleRevision;
 	OutData.CompletedPuzzleIds = CompletedPuzzleIds;
 
-	TArray<FName> NetworkIds;
+	TArray<FGameplayTag> NetworkIds;
 	Networks.GetKeys(NetworkIds);
-	NetworkIds.Sort(FNameLexicalLess());
-	for (const FName NetworkId : NetworkIds)
+	NetworkIds.Sort([](const FGameplayTag& A, const FGameplayTag& B) { return A.GetTagName().LexicalLess(B.GetTagName()); });
+	for (const FGameplayTag NetworkId : NetworkIds)
 	{
 		const FNetworkRuntime* Network = Networks.Find(NetworkId);
 		if (!Network)
 		{
 			continue;
 		}
-		TArray<FName> NodeIds;
+		TArray<FGameplayTag> NodeIds;
 		Network->NodeStates.GetKeys(NodeIds);
-		NodeIds.Sort(FNameLexicalLess());
-		for (const FName NodeId : NodeIds)
+		NodeIds.Sort([](const FGameplayTag& A, const FGameplayTag& B) { return A.GetTagName().LexicalLess(B.GetTagName()); });
+		for (const FGameplayTag NodeId : NodeIds)
 		{
 			FMelodiaWaterSavedNodeState Saved;
 			Saved.NetworkId = NetworkId;
@@ -361,10 +356,10 @@ void UMelodiaWaterGameplaySubsystem::CaptureSaveState(FMelodiaWaterGameplaySaveD
 			Saved.State = Network->NodeStates[NodeId];
 			OutData.NodeStates.Add(Saved);
 		}
-		TArray<FName> RouteIds;
+		TArray<FGameplayTag> RouteIds;
 		Network->OpenRoutes.GetKeys(RouteIds);
-		RouteIds.Sort(FNameLexicalLess());
-		for (const FName RouteId : RouteIds)
+		RouteIds.Sort([](const FGameplayTag& A, const FGameplayTag& B) { return A.GetTagName().LexicalLess(B.GetTagName()); });
+		for (const FGameplayTag RouteId : RouteIds)
 		{
 			FMelodiaWaterSavedRouteState SavedRoute;
 			SavedRoute.NetworkId = NetworkId;
@@ -409,12 +404,12 @@ void UMelodiaWaterGameplaySubsystem::RestoreSaveState(const FMelodiaWaterGamepla
 	}
 	for (const FMelodiaWaterPlatformState& Saved : Data.PlatformStates)
 	{
-		if (PlatformStates.Contains(Saved.PlatformId.GetTagName()))
+		if (PlatformStates.Contains(Saved.PlatformId))
 		{
-			PlatformStates[Saved.PlatformId.GetTagName()] = Saved;
+			PlatformStates[Saved.PlatformId] = Saved;
 		}
 	}
-	for (const TPair<FName, FNetworkRuntime>& Pair : Networks)
+	for (const TPair<FGameplayTag, FNetworkRuntime>& Pair : Networks)
 	{
 		RecomputeFlow(Pair.Key);
 	}
@@ -438,21 +433,21 @@ void UMelodiaWaterGameplaySubsystem::RecomputeFlow(FGameplayTag NetworkId)
 	{
 		return;
 	}
-	for (TPair<FName, FMelodiaWaterNodeState>& Pair : Network->NodeStates)
+	for (TPair<FGameplayTag, FMelodiaWaterNodeState>& Pair : Network->NodeStates)
 	{
 		Pair.Value.FlowVelocity = FVector::ZeroVector;
 	}
-	for (const TPair<FName, FMelodiaWaterLinkConfig>& Pair : Network->LinkConfigs)
+	for (const TPair<FGameplayTag, FMelodiaWaterLinkConfig>& Pair : Network->LinkConfigs)
 	{
 		const FMelodiaWaterLinkConfig& Link = Pair.Value;
 		if (!IsRouteOpen(*Network, RouteKey(Link)))
 		{
 			continue;
 		}
-		const FMelodiaWaterNodeConfig* SourceConfig = Network->NodeConfigs.Find(Link.SourceNodeId.GetTagName());
-		const FMelodiaWaterNodeConfig* DestinationConfig = Network->NodeConfigs.Find(Link.DestinationNodeId.GetTagName());
-		FMelodiaWaterNodeState* SourceState = Network->NodeStates.Find(Link.SourceNodeId.GetTagName());
-		FMelodiaWaterNodeState* DestinationState = Network->NodeStates.Find(Link.DestinationNodeId.GetTagName());
+		const FMelodiaWaterNodeConfig* SourceConfig = Network->NodeConfigs.Find(Link.SourceNodeId);
+		const FMelodiaWaterNodeConfig* DestinationConfig = Network->NodeConfigs.Find(Link.DestinationNodeId);
+		FMelodiaWaterNodeState* SourceState = Network->NodeStates.Find(Link.SourceNodeId);
+		FMelodiaWaterNodeState* DestinationState = Network->NodeStates.Find(Link.DestinationNodeId);
 		if (!SourceConfig || !DestinationConfig || !SourceState || !DestinationState)
 		{
 			continue;
@@ -479,19 +474,19 @@ bool UMelodiaWaterGameplaySubsystem::FindNode(FGameplayTag NetworkId, FGameplayT
 	{
 		return false;
 	}
-	OutConfig = OutNetwork->NodeConfigs.Find(NodeId.GetTagName());
-	OutState = OutNetwork->NodeStates.Find(NodeId.GetTagName());
+	OutConfig = OutNetwork->NodeConfigs.Find(NodeId);
+	OutState = OutNetwork->NodeStates.Find(NodeId);
 	return OutConfig && OutState;
 }
 
 const UMelodiaWaterGameplaySubsystem::FNetworkRuntime* UMelodiaWaterGameplaySubsystem::FindNetwork(FGameplayTag NetworkId) const
 {
-	return Networks.Find(NetworkId.GetTagName());
+	return Networks.Find(NetworkId);
 }
 
 UMelodiaWaterGameplaySubsystem::FNetworkRuntime* UMelodiaWaterGameplaySubsystem::FindNetwork(FGameplayTag NetworkId)
 {
-	return Networks.Find(NetworkId.GetTagName());
+	return Networks.Find(NetworkId);
 }
 
 bool UMelodiaWaterGameplaySubsystem::IsRouteOpen(const FNetworkRuntime& Network, FGameplayTag RouteId) const
@@ -500,13 +495,13 @@ bool UMelodiaWaterGameplaySubsystem::IsRouteOpen(const FNetworkRuntime& Network,
 	{
 		return false;
 	}
-	const bool* Open = Network.OpenRoutes.Find(RouteId.GetTagName());
+	const bool* Open = Network.OpenRoutes.Find(RouteId);
 	return Open ? *Open : false;
 }
 
-FName UMelodiaWaterGameplaySubsystem::RouteKey(const FMelodiaWaterLinkConfig& Link) const
+FGameplayTag UMelodiaWaterGameplaySubsystem::RouteKey(const FMelodiaWaterLinkConfig& Link) const
 {
-	return Link.RouteId.IsValid() ? Link.RouteId.GetTagName() : Link.LinkId.GetTagName();
+	return Link.RouteId.IsValid() ? Link.RouteId : Link.LinkId;
 }
 
 void UMelodiaWaterGameplaySubsystem::ApplyPendingNodeState(FGameplayTag NetworkId, FGameplayTag NodeId, FMelodiaWaterNodeState& State)
