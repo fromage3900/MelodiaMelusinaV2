@@ -3,8 +3,16 @@ import math
 import sys
 import unittest
 from pathlib import Path
-import numpy as np
-from PIL import Image
+
+try:
+    import numpy as np
+    from PIL import Image
+    HAS_DEPS = True
+except ImportError:
+    HAS_DEPS = False
+
+if not HAS_DEPS:
+    raise unittest.SkipTest("numpy and/or PIL not available in this Python environment")
 
 TEST_DIR = Path(__file__).resolve().parent
 PYTHON_DIR = TEST_DIR.parent

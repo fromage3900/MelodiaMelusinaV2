@@ -1,0 +1,26 @@
+Begin Object Class=/Script/UMGEditor.WidgetBlueprint Name="WBP_IntensityWarning"
+   Begin Object Class=/Script/UMG.CanvasPanel Name="CanvasPanel_Root"
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="Layer1_VoidPlate"
+      Brush=(ImageSize=(X=1920.0,Y=1080.0),DrawAs=Image,TintColor=(SpecifiedColor=(R=0.141,G=0.106,B=0.180,A=0.920)))
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="Layer2_IridescentSheen"
+      Brush=(ImageSize=(X=1920.0,Y=1080.0),DrawAs=Image,TintColor=(SpecifiedColor=(R=0.624,G=0.580,B=0.776,A=0.150)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="Layer3_FiligreeChrome"
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="FiligreeCorner_TL"
+      Brush=(ImageSize=(X=128.0,Y=128.0),DrawAs=Image,TintColor=(SpecifiedColor=(R=0.788,G=0.659,B=0.416,A=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="FiligreeCorner_TR"
+      Brush=(ImageSize=(X=128.0,Y=128.0),DrawAs=Image,TintColor=(SpecifiedColor=(R=0.788,G=0.659,B=0.416,A=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="FiligreeCorner_BL"
+      Brush=(ImageSize=(X=128.0,Y=128.0),DrawAs=Image,TintColor=(SpecifiedColor=(R=0.788,G=0.659,B=0.416,A=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="FiligreeCorner_BR"
+      Brush=(ImageSize=(X=128.0,Y=128.0),DrawAs=Image,TintColor=(SpecifiedColor=(R=0.788,G=0.659,B=0.416,A=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanel Name="Layer4_ActiveContent"
+   End Object
+End Object
