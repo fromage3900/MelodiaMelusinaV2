@@ -1,0 +1,22 @@
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="LerpSheen"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetMathLibrary"',MemberName="Lerp")
+   NodePosX=0
+   NodePosY=0
+   NodeGuid={{GUID:lerp}}
+   CustomProperties Pin (PinId={{GUID:sheen_a}},PinName="A",Direction="EGPD_Input",PinType.PinCategory="real",PinType.PinSubCategory="double",DefaultValue="{{pristine_sheen}}",)
+   CustomProperties Pin (PinId={{GUID:sheen_b}},PinName="B",Direction="EGPD_Input",PinType.PinCategory="real",PinType.PinSubCategory="double",DefaultValue="{{healed_sheen}}",)
+   CustomProperties Pin (PinId={{GUID:sheen_alpha}},PinName="Alpha",Direction="EGPD_Input",PinType.PinCategory="real",PinType.PinSubCategory="double",DefaultValue="{{pulse_alpha}}",)
+   CustomProperties Pin (PinId={{GUID:sheen_out}},PinName="ReturnValue",Direction="EGPD_Output",PinType.PinCategory="real",PinType.PinSubCategory="double",LinkedTo=(SetSheenParam {{GUID:sheen_val}},),)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="SetSheenParam"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetMaterialLibrary"',MemberName="SetScalarParameterValue")
+   NodePosX=350
+   NodePosY=0
+   NodeGuid={{GUID:setsheen}}
+   CustomProperties Pin (PinId={{GUID:sheen_exec}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:sheen_then}},PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:sheen_ctx}},PinName="WorldContextObject",Direction="EGPD_Input",PinType.PinCategory="object",PinType.PinSubCategoryObject=Class'"/Script/CoreUObject.Object"',)
+   CustomProperties Pin (PinId={{GUID:sheen_coll}},PinName="Collection",Direction="EGPD_Input",PinType.PinCategory="object",PinType.PinSubCategoryObject=Class'"/Script/Engine.MaterialParameterCollection"',DefaultObject=MaterialParameterCollection'"{{mpc_path}}"',)
+   CustomProperties Pin (PinId={{GUID:sheen_name}},PinName="ParameterName",Direction="EGPD_Input",PinType.PinCategory="name",PinType.PinSubCategory="",DefaultValue="MembraneSheen",)
+   CustomProperties Pin (PinId={{GUID:sheen_val}},PinName="ParameterValue",Direction="EGPD_Input",PinType.PinCategory="real",PinType.PinSubCategory="float",LinkedTo=(LerpSheen {{GUID:sheen_out}},),)
+End Object

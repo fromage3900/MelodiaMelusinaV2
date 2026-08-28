@@ -12,6 +12,8 @@ Install these outside the repository:
 - Visual Studio 2022 with Desktop development with C++, Windows SDK, and
   compatible MSVC toolsets.
 - Git and Git LFS.
+- Perforce P4V/P4 CLI for the asset-authoring lane. The current pilot server is local-only at
+  `localhost:1667`; collaborators should not rely on it until a shared server is announced.
 - Python 3.11.
 - Node.js 20 for the website lane.
 - Blender 5.2 for the production DCC lane. Blender 5.1 can be selected through
@@ -72,6 +74,23 @@ This creates the UEBlueprintMCP environment from
 Use the corresponding `Scripts\python.exe` when running those tools instead of
 assuming the global Python has every optional dependency.
 
+## 3.1 Source-control health and Perforce pilot
+
+Git is the working authority for code, configuration, tools, docs, and automation. Perforce is being
+introduced for large creative assets and server-enforced locking. The current local pilot has seeded
+`//melodia/Exports/...`; it is a validation depot, not a collaborator-facing service.
+
+```powershell
+p4 info -s
+p4 files //melodia/Exports/...
+python Tools/source_control_triage.py
+```
+
+`Tools/source_control_triage.py` writes a report only. Its Windows Scheduled Task runs every 12 hours.
+It never stages, commits, pushes, resets, or deletes files. Commit only an explicitly reviewed text-only
+batch via `specs/source_control_batches.json`; do not place `Content/`, `Exports/`, `RawArt/`, or binary
+assets in that manifest.
+
 ## 4. Choose an onboarding tier
 
 From Git Bash:
@@ -89,7 +108,8 @@ Blender-only and does not include `BS_GodFile.uproject` or Unreal plugins. The
 `lightweight` tier is the UE-capable plugin tier: it includes the project file,
 tracked plugin source/manifests, and targeted gameplay/plugin LFS content. The
 `full` tier is for build, PIE, and packaging work and may require the full LFS
-checkout.
+checkout. `Exports/` remains available through Git/LFS until the Perforce cutover acceptance test is
+complete; do not assume the workstation-local pilot is reachable from another machine.
 
 UE plugin binaries are not tracked. After a `lightweight` or `full` checkout,
 install VS 2022 Desktop development with C++ and the Windows SDK, close Unreal,
