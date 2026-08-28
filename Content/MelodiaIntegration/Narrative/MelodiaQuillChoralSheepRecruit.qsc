@@ -33,7 +33,6 @@ $ Notify melodia:stat:intent.choral_sheep.call_response:melodia_harmony:2
   It has answered your pitch! The bond of resonance is struck. It wants to travel with us!
 
 $ Notify melodia:flag:flag.companion.choral_sheep_recruited:true
-$ Notify melodia:reward:reward.companion.choral_sheep
 
 - Melusina
   Welcome to our ensemble, little one. We will explore the resonant world together.
