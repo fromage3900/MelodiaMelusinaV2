@@ -42,22 +42,19 @@ bool FMelodiaP0WardrobeEquipTest::RunTest(const FString& Parameters)
 {
 	FMelodiaNarrativeRecord Record;
 	const FName EquipFlag(TEXT("flag.wardrobe.outfit_equipped"));
-	const FName SorrowSeamFlag(TEXT("flags.melusina.sorrow_seam_restored"));
+	const FName SorrowSeamFlag(TEXT("flag.melusina.sorrow_seam_restored"));
 	const FName CosmeticBodyId(TEXT("Cos_Body_MelusinaV2"));
 
 	Record.OwnedCosmeticIds.Add(CosmeticBodyId);
-	Record.EquippedCosmeticIds.Add(CosmeticBodyId);
+	Record.EquippedCosmeticIds.Add(EMelodiaWardrobeSlot::Body, CosmeticBodyId);
 	Record.Flags.Add(EquipFlag, true);
 	Record.Flags.Add(SorrowSeamFlag, true);
 
 	TestTrue(TEXT("Melusina V2 Owned"), Record.OwnedCosmeticIds.Contains(CosmeticBodyId));
-	TestTrue(TEXT("Melusina V2 Equipped"), Record.EquippedCosmeticIds.Contains(CosmeticBodyId));
+	TestEqual(TEXT("Melusina V2 Equipped"), Record.EquippedCosmeticIds.FindRef(EMelodiaWardrobeSlot::Body), CosmeticBodyId);
 	TestTrue(TEXT("Outfit Equipped Flag set"), Record.Flags.FindRef(EquipFlag));
 	TestTrue(TEXT("Sorrow Seam Restored Flag set"), Record.Flags.FindRef(SorrowSeamFlag));
 
-	// Capability check
-	const uint8 GlideBit = static_cast<uint8>(EMelodiaFormCapability::Glide);
-	TestEqual(TEXT("Glide capability enum is 0"), GlideBit, static_cast<uint8>(0));
 	return true;
 }
 

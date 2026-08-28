@@ -38,7 +38,7 @@
     "capability_enum_value": 0,
     "required_flags": [
       "flag.wardrobe.outfit_equipped",
-      "flags.melusina.sorrow_seam_restored"
+      "flag.melusina.sorrow_seam_restored"
     ]
   },
   "traversal_impact": {
