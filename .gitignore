@@ -49,6 +49,7 @@ dotnet6/
 .mcp.json
 .pytest_cache/
 .rider/
+.run/
 .windsurf/
 ._site_aside_untracked/
 _ollama_experiments/
@@ -282,3 +283,11 @@ Plugins/Claireon/
 
 # Editor .uproject backups made before plugin toggles
 *.uproject.bak_*
+
+# --- Vendored third-party editor plugin (Fab / marketplace install) ---
+# Plugins/Oceanology_Plugin is a 13 GB, ~2,950-file Fab install (Binaries/ and Intermediate/
+# included) landed 2026-08-27. It is deliberately NOT tracked: vendoring it would add 13 GB to
+# an already-24 GB .git, and the .uproject carries its MarketplaceURL so the editor prompts a
+# per-machine Fab install instead.
+# Re-install from: com.epicgames.launcher://ue/Fab/product/4e59bf12-d0c8-46f4-b5f9-37d48d0b6e63
+Plugins/Oceanology_Plugin/
