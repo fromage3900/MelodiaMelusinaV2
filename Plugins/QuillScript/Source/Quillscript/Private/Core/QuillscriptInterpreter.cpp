@@ -434,9 +434,11 @@ void AQuillscriptInterpreter::Wakeup_Implementation()
 	this->ApplyScriptSettingsDuring();
 
 	// Restore UI.
+	// ShowBackgroundBox() was called twice here and ShowSelectionBox() not at all, so a script
+	// resumed mid-choice restored its dialog and backdrop but never its selection box.
 	this->ShowDialogBox();
 	this->ShowBackgroundBox();
-	this->ShowBackgroundBox();
+	this->ShowSelectionBox();
 
 	SUCCESS("Script is awaken");
 }
