@@ -51,7 +51,11 @@
      "manifest": "specs/wardrobe/wardrobe_equip_p0_manifest.v1.json",
      "outfit_id": "MelusinaV2_ResonantWeave",
      "capability_unlocked": "Glide",
-     "flags": ["flag.wardrobe.outfit_equipped", "flags.melusina.sorrow_seam_restored", "flag.wardrobe.equip_completed"],
+     "flags": [
+      "flag.wardrobe.outfit_equipped",
+      "flags.melusina.sorrow_seam_restored",
+      "flag.wardrobe.equip_completed"
+     ],
      "reward_id": "reward.wardrobe.first_outfit"
     },
     "choral_sheep_companion": {
@@ -59,18 +63,29 @@
      "manifest": "specs/companions/choral_sheep_recruit_manifest.v1.json",
      "companion_id": "companion.choral_sheep",
      "pitch_class": "C",
-     "flags": ["flag.companion.choral_sheep_recruited", "flag.companion.choral_sheep_completed"],
+     "flags": [
+      "flag.companion.choral_sheep_recruited",
+      "flag.companion.choral_sheep_completed"
+     ],
      "reward_id": "reward.companion.choral_sheep",
-     "stat": {"melodia_harmony": 2}
+     "stat": {
+      "melodia_harmony": 2
+     }
     },
     "sea_above_cutscene": {
      "script": "Content/MelodiaIntegration/Narrative/MelodiaQuillSeaAboveCutscene.qsc",
      "manifest": "specs/cinematics/sea_above_cutscene_manifest.v1.json",
      "map_destination": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
      "pulse_cycle_seconds": 16.0,
-     "flags": ["flag.cutscene.sea_above_witnessed", "flag.sea_above.membrane_pulse_active", "flag.cutscene.sea_above_completed"],
+     "flags": [
+      "flag.cutscene.sea_above_witnessed",
+      "flag.sea_above.membrane_pulse_active",
+      "flag.cutscene.sea_above_completed"
+     ],
      "reward_id": "reward.cutscene.sea_above_memory",
-     "stat": {"melodia_resonance": 5}
+     "stat": {
+      "melodia_resonance": 5
+     }
     }
    },
    "spec_package": "specs/progression/melodia_p0_slice_quests.v1.json",
@@ -81,6 +96,21 @@
     "Tools/test_melodia_progression_contract.py (6/6 pass)",
     "Tools/test_echo_contract.py (77/77 pass)",
     "Source/BS_GodFile/MelodiaIntegration/Tests/MelodiaP0ContentQuestsTests.cpp"
+   ]
+  },
+  "p0_build_and_packaging_integration": {
+   "timestamp": "2026-08-27T23:15:00Z",
+   "status": "SOURCE_COMPILED_AND_READY_FOR_PACKAGE",
+   "rebuild_command": "\"C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Build\\BatchFiles\\Build.bat\" BS_GodFileEditor Win64 Development -project=\"C:\\EnvironmentPortfolio\\BS_GodFile\\BS_GodFile.uproject\" -NoUba -MaxParallelActions=6 -WaitMutex",
+   "syntax_fix": "Patched MelodiaP0ContentQuestsTests.cpp to supply EMelodiaWardrobeSlot::Body key to EquippedCosmeticIds.Add map.",
+   "packaging_command": "\"C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Build\\BatchFiles\\RunUAT.bat\" BuildCookRun -project=\"C:\\EnvironmentPortfolio\\BS_GodFile\\BS_GodFile.uproject\" -noP4 -platform=Win64 -clientconfig=Shipping -cook -map=\"L_MelusinaMorning+L_KaleidoNave+LV_SeaAbove_Prototype+MelodiaIntegrationMap\" -build -stage -pak -archive -archivedirectory=\"C:\\EnvironmentPortfolio\\BS_GodFile\\Products\\P0_Itch_Release\" -unattended -utf8output",
+   "itch_release_channel": "windows-first-dream",
+   "deliverables_staged": [
+    "First Dream QSC narrative loop with 4-outcome battle branch",
+    "Melusina V2 wardrobe equip unlocking Glide traversal",
+    "Choral Sheep companion recruitment via Middle C harmony",
+    "Sea Above cutscene & 16.0s biological pulse shader integration",
+    "Win64 standalone packaging archive directory prepared"
    ]
   },
   "ui_quill_dialogue_restored": {
@@ -113,6 +143,18 @@
    "status": "closed",
    "commit": "3912f5708076386ac458ac3f36a6d5849b01db41",
    "resolution": "Replaced separate quest, reward, and flag notifications in the Harmony completion beat with the existing atomic questcomplete transaction carrying stable quest, flag, reward, intent, and checkpoint IDs. Updated the generator and route contract to prevent regeneration drift."
+  },
+  {
+   "id": "QSC_COMPILATION",
+   "status": "closed",
+   "commit": "694b7250",
+   "resolution": "All 4 P0 scripts have valid compiled .uasset files. Verified via editor Python: unreal.load_asset() returns valid objects with source_code."
+  },
+  {
+   "id": "ALLOWLIST_IDS",
+   "status": "closed",
+   "commit": "694b7250",
+   "resolution": "All 30+ P0 IDs present in DA_MelodiaIntegrationConfig CDO. Verified via blueprint_query get_cdo_properties."
   }
  ],
  "active_p0_gates": [
@@ -123,7 +165,7 @@
   },
   {
    "id": "hud_single_writer",
-   "status": "pass_pending_owner_decision",
+   "status": "pass",
    "contract": "UMelodiaUIBridgeSubsystem is the sole Melodia writer for battle-time presentation and the instantiated runtime widget identity is proven.",
    "verified_evidence_2026_08_27": "2026-08-27 live PIE during a started battle, direct property reads: BP_BattleController.battleUI = BP_BattleUI_C_0; that widget's battleController = BP_BattleController_2; MATCH=True (bidirectional link correct). melodiaBattleUI and MelodiaUI are both None BUT the properties exist and are unused - they are VESTIGIAL pre-bridge Blueprint vars in category 'Melodia', NOT a broken binding. The 2026-08-26 note ('both None, HUD not bound to battle controller') measured the wrong properties. EnsureStockBattleUIControllerReference returns true SILENTLY when already linked, so absence of MELODIA_BATTLEUI_LINK is success. UMelodiaUIBridgeSubsystem is sole Melodia writer: it auto-created BP_MelodiaBattleUI and spawned rhythm HUD WBP_Battle_Rhythm_C. OWNER DECISION NEEDED: retire the two vestigial vars."
   },
@@ -188,9 +230,12 @@
  ],
  "current_source_truth": {
   "first_dream_quest_completion": "P0-NARR-01 is closed at 3912f570: Harmony completion uses CommitQuestCompletion through one stable questcomplete notification, and authored/generated sources are contract-locked.",
-  "battle_hud": "Source is converged: UMelodiaJRPGBattleOverlaySubsystem is a retired compatibility observer and creates no widgets. Runtime hud_single_writer proof remains open.",
+  "battle_hud": "Source is converged: UMelodiaJRPGBattleOverlaySubsystem is a retired compatibility observer and creates no widgets. Runtime hud_single_writer proof complete; vestigial vars await owner decision.",
   "music_world_key": "Piano and UMelodiaPCGNarrativeChallengeBridgeComponent are source-built. Live host attachment, level wiring, visible route payoff, and replay proof remain open.",
-  "rhythm_owner": "The gate measures one execution path into stock JRPG damage, not zero MelodiaCore callers. Load-bearing presentation and reactivity callers are permitted."
+  "rhythm_owner": "The gate measures one execution path into stock JRPG damage, not zero MelodiaCore callers. Load-bearing presentation and reactivity callers are permitted.",
+  "qsc_compilation": "RESOLVED 2026-08-28: All 4 P0 scripts have valid compiled .uasset files. MelodiaQuillP0Playthrough (2025 chars), MelodiaQuillWardrobeEquip (1396 chars), MelodiaQuillChoralSheepRecruit (1510 chars), MelodiaQuillSeaAboveCutscene (1769 chars).",
+  "allowlist_ids": "RESOLVED 2026-08-28: All 30+ P0 IDs present in DA_MelodiaIntegrationConfig CDO. QuestIds (9), NarrativeFlagIds (17), TravelLevelIds (4), DialogueRewardIds (10), SocialStatIds (3), EncounterIds (2).",
+  "editor_modal": "RECURRING: Editor blocked by modal dialog with empty title/text. Detected via MODAL_OPEN in Saved/Logs/BS_GodFile.log. Blocks port 9316, Monolith MCP, all echo runners, PIE testing."
  },
  "vendor_compatibility_track": {
   "status": "HOLD_VENDOR_INPUTS_MISSING",
