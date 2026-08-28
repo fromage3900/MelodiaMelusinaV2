@@ -274,7 +274,8 @@
   "allowlist_ids": "RESOLVED 2026-08-28: All 30+ P0 IDs present in DA_MelodiaIntegrationConfig CDO. QuestIds (9), NarrativeFlagIds (17), TravelLevelIds (4), DialogueRewardIds (10), SocialStatIds (3), EncounterIds (2).",
   "editor_modal": "RECURRING: Editor blocked by modal dialog with empty title/text. Detected via MODAL_OPEN in Saved/Logs/BS_GodFile.log. Blocks port 9316, Monolith MCP, all echo runners, PIE testing.",
   "melodia_shader_module": "ADDED 2026-08-28: Source/MelodiaShader is a real UBT module (Runtime, PostConfigInit) holding .usf/.ush source under Shaders/. Adding or renaming it requires a closed-editor Build.bat pass; Live Coding cannot register new reflected types.",
-  "live_results_widget_path": "RESOLVED in source 2026-08-28: MelodiaUIBridgeSubsystem::Initialize() backfills LiveResultsWidgetPath (cpp:131-133) the same way it backfills MelodiaBattleWidgetPath. Requires the closed-editor rebuild to take effect."
+  "live_results_widget_path": "RESOLVED in source 2026-08-28: MelodiaUIBridgeSubsystem::Initialize() backfills LiveResultsWidgetPath (cpp:131-133) the same way it backfills MelodiaBattleWidgetPath. Requires the closed-editor rebuild to take effect.",
+  "universal_luxury_wbp_system": "SCAFFOLDED 2026-08-28: All 30 Melodia WBP atoms mapped from Figma Grandmaster (tokens.json, Batch N/O ornate filigrees) to /Game/Melodia/UI/ with 4-layer depth hierarchy (Void Plate, Iridescent Sheen, Champagne Gold Filigree, Active Content). T3D specs generated in specs/ui/, design token palette exported to Saved/Audit/melodia_ui_tokens_unreal.json, and system audit written to Saved/Audit/melodia_universal_wbp_system.json."
  },
  "vendor_compatibility_track": {
   "status": "HOLD_VENDOR_INPUTS_MISSING",

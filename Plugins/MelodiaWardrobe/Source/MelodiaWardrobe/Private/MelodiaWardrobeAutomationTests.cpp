@@ -37,39 +37,39 @@ bool FMelodiaWardrobeEquipRoundtripTest::RunTest(const FString& Parameters)
     // Test 1: Grant a cosmetic
     const FName TestCosmeticId = FName(TEXT("Cos_Accessories_MelusinaV2"));
     const FName TestGrantId = FName(TEXT("TestGrant_001"));
-    
-    TestTrue(TEXT("GrantCosmetic returns true on success"), 
+
+    TestTrue(TEXT("GrantCosmetic returns true on success"),
         Wardrobe->GrantCosmetic(TestCosmeticId, TestGrantId));
-    
-    TestTrue(TEXT("IsOwned returns true after grant"), 
+
+    TestTrue(TEXT("IsOwned returns true after grant"),
         Wardrobe->IsOwned(TestCosmeticId));
 
     // Test 2: Equip the cosmetic
-    TestTrue(TEXT("EquipCosmetic returns true on success"), 
+    TestTrue(TEXT("EquipCosmetic returns true on success"),
         Wardrobe->EquipCosmetic(TestCosmeticId));
 
     // Test 3: Verify equipped state
     const FMelodiaWardrobeState State = Wardrobe->GetState();
-    TestTrue(TEXT("Equipped map contains the cosmetic"), 
+    TestTrue(TEXT("Equipped map contains the cosmetic"),
         State.EquippedCosmeticIds.FindRef(EMelodiaWardrobeSlot::Accessories) == TestCosmeticId);
 
     // Test 4: Unequip
-    TestTrue(TEXT("UnequipSlot returns true on success"), 
+    TestTrue(TEXT("UnequipSlot returns true on success"),
         Wardrobe->UnequipSlot(EMelodiaWardrobeSlot::Accessories));
 
     // Test 5: Verify unequipped state
     const FMelodiaWardrobeState StateAfterUnequip = Wardrobe->GetState();
-    TestFalse(TEXT("Equipped map no longer contains the cosmetic after unequip"), 
+    TestFalse(TEXT("Equipped map no longer contains the cosmetic after unequip"),
         StateAfterUnequip.EquippedCosmeticIds.Contains(EMelodiaWardrobeSlot::Accessories));
 
     // Test 6: Idempotency - grant same cosmetic again should return true but not duplicate
-    TestTrue(TEXT("GrantCosmetic is idempotent (returns true for already owned)"), 
+    TestTrue(TEXT("GrantCosmetic is idempotent (returns true for already owned)"),
         Wardrobe->GrantCosmetic(TestCosmeticId, NAME_None));
 
     // Test 7: GrantId dedupe - same GrantId should be rejected within session
     const FName TestGrantId2 = FName(TEXT("TestGrant_002"));
     Wardrobe->GrantCosmetic(TestCosmeticId, TestGrantId2); // Should succeed (different GrantId)
-    TestTrue(TEXT("Same GrantId rejected within session"), 
+    TestTrue(TEXT("Same GrantId rejected within session"),
         !Wardrobe->GrantCosmetic(TestCosmeticId, TestGrantId2)); // Should fail (same GrantId)
 
     GI->Shutdown();
@@ -89,24 +89,23 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 
 bool FMelodiaWardrobeGameplayHookTest::RunTest(const FString& Parameters)
 {
-    UWorld* World = GEngine->GetWorldContexts()[0].World();
-    if (!World)
-    {
-        TestFalse(TEXT("No world available"), true);
-        return false;
-    }
-
-    UMelodiaWardrobeSubsystem* Wardrobe = UMelodiaWardrobeSubsystem::Get(World);
+    UGameInstance* GI = NewObject<UGameInstance>(GEngine);
+    GI->InitializeStandalone(TEXT("MelodiaWardrobeGameplayHookWorld"));
+    UWorld* World = GI->GetWorld();
+    UMelodiaWardrobeSubsystem* Wardrobe = GI->GetSubsystem<UMelodiaWardrobeSubsystem>();
     if (!Wardrobe)
     {
         TestFalse(TEXT("Wardrobe subsystem not available"), true);
+        GI->Shutdown();
+        GEngine->DestroyWorldContext(World);
+        World->DestroyWorld(false);
         return false;
     }
 
     // Test 1: Resonant Weave outfit should unlock Glide capability
     const FName OutfitId = FName(TEXT("Cos_Accessories_MelusinaV2"));
     const FName GrantId = FName(TEXT("GlideTestGrant_001"));
-    
+
     Wardrobe->GrantCosmetic(OutfitId, GrantId);
     Wardrobe->EquipCosmetic(OutfitId);
 
@@ -130,6 +129,10 @@ bool FMelodiaWardrobeGameplayHookTest::RunTest(const FString& Parameters)
     TestTrue(TEXT("Glide capability is restored after re-equip"),
         Wardrobe->IsCapabilityActive(EMelodiaFormCapability::Glide, NAME_None));
 
+    GI->Shutdown();
+    GEngine->DestroyWorldContext(World);
+    World->DestroyWorld(false);
+
     return true;
 }
 
@@ -143,26 +146,25 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 
 bool FMelodiaWardrobeSaveLoadRoundtripTest::RunTest(const FString& Parameters)
 {
-    UWorld* World = GEngine->GetWorldContexts()[0].World();
-    if (!World)
-    {
-        TestFalse(TEXT("No world available"), true);
-        return false;
-    }
+    UGameInstance* GI = NewObject<UGameInstance>(GEngine);
+    GI->InitializeStandalone(TEXT("MelodiaWardrobeSaveLoadWorld"));
+    UWorld* World = GI->GetWorld();
+    UMelodiaWardrobeSubsystem* Wardrobe = GI->GetSubsystem<UMelodiaWardrobeSubsystem>();
+    UMelodiaNarrativeSubsystem* Narrative = GI->GetSubsystem<UMelodiaNarrativeSubsystem>();
 
-    UMelodiaWardrobeSubsystem* Wardrobe = UMelodiaWardrobeSubsystem::Get(World);
-    UMelodiaNarrativeSubsystem* Narrative = UMelodiaNarrativeSubsystem::GetMelodiaNarrativeSubsystem(World);
-    
     if (!Wardrobe || !Narrative)
     {
         TestFalse(TEXT("Subsystems not available"), true);
+        GI->Shutdown();
+        GEngine->DestroyWorldContext(World);
+        World->DestroyWorld(false);
         return false;
     }
 
     // Setup: Grant and equip a cosmetic
     const FName OutfitId = FName(TEXT("Cos_Accessories_MelusinaV2"));
     const FName GrantId = FName(TEXT("SaveLoadTestGrant_001"));
-    
+
     Wardrobe->GrantCosmetic(OutfitId, GrantId);
     Wardrobe->EquipCosmetic(OutfitId);
 
@@ -173,7 +175,7 @@ bool FMelodiaWardrobeSaveLoadRoundtripTest::RunTest(const FString& Parameters)
 
     // Simulate save: capture narrative record
     FMelodiaNarrativeRecord Record = Narrative->GetNarrativeRecord();
-    
+
     // Verify record has the wardrobe data
     TestTrue(TEXT("Narrative record contains owned cosmetic after grant"),
         Record.OwnedCosmeticIds.Contains(OutfitId));
@@ -185,10 +187,14 @@ bool FMelodiaWardrobeSaveLoadRoundtripTest::RunTest(const FString& Parameters)
 
     // Verify state after load
     const FMelodiaWardrobeState StateAfterLoad = Wardrobe->GetState();
-    TestEqual(TEXT("Owned count matches after load"), 
+    TestEqual(TEXT("Owned count matches after load"),
         StateAfterLoad.OwnedCosmeticIds.Num(), OwnedCountBefore);
-    TestEqual(TEXT("Equipped count matches after load"), 
+    TestEqual(TEXT("Equipped count matches after load"),
         StateAfterLoad.EquippedCosmeticIds.Num(), EquippedCountBefore);
+
+    GI->Shutdown();
+    GEngine->DestroyWorldContext(World);
+    World->DestroyWorld(false);
 
     return true;
 }
@@ -203,27 +209,26 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 
 bool FMelodiaWardrobeTraversalIntegrationTest::RunTest(const FString& Parameters)
 {
-    UWorld* World = GEngine->GetWorldContexts()[0].World();
-    if (!World)
-    {
-        TestFalse(TEXT("No world available"), true);
-        return false;
-    }
-
-    UMelodiaWardrobeSubsystem* Wardrobe = UMelodiaWardrobeSubsystem::Get(World);
+    UGameInstance* GI = NewObject<UGameInstance>(GEngine);
+    GI->InitializeStandalone(TEXT("MelodiaWardrobeTraversalWorld"));
+    UWorld* World = GI->GetWorld();
+    UMelodiaWardrobeSubsystem* Wardrobe = GI->GetSubsystem<UMelodiaWardrobeSubsystem>();
     if (!Wardrobe)
     {
         TestFalse(TEXT("Wardrobe subsystem not available"), true);
+        GI->Shutdown();
+        GEngine->DestroyWorldContext(World);
+        World->DestroyWorld(false);
         return false;
     }
 
     // Test: QueryTraversalCapability through the interface
     FName BlockReason = NAME_None;
     const bool bCanGlide = Wardrobe->QueryTraversalCapability(
-        FName(TEXT("capability.melodia.glide")), 
-        NAME_None, 
+        FName(TEXT("capability.melodia.glide")),
+        NAME_None,
         BlockReason);
-    
+
     // Without equipped outfit, should be blocked
     TestFalse(TEXT("Glide is blocked without equipped outfit"), bCanGlide);
 
@@ -236,11 +241,15 @@ bool FMelodiaWardrobeTraversalIntegrationTest::RunTest(const FString& Parameters
     // Now glide should be available
     BlockReason = NAME_None;
     const bool bCanGlideAfterEquip = Wardrobe->QueryTraversalCapability(
-        FName(TEXT("capability.melodia.glide")), 
-        NAME_None, 
+        FName(TEXT("capability.melodia.glide")),
+        NAME_None,
         BlockReason);
-    
+
     TestTrue(TEXT("Glide is available after equipping Resonant Weave"), bCanGlideAfterEquip);
+
+    GI->Shutdown();
+    GEngine->DestroyWorldContext(World);
+    World->DestroyWorld(false);
 
     return true;
 }
