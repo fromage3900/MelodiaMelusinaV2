@@ -1,11 +1,19 @@
 {
  "schema": "melodia.p0.task_ledger.v2",
- "as_of": "2026-08-27",
+ "as_of": "2026-08-28",
  "authority": {
-  "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
-  "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
+  "status": "P0_PHASE1_CLOSED_PHASE2_4_OPEN",
+  "authoritative_handoff": "Docs/P0_CLOSEOUT_PLAN_2026-08-28.md",
   "scope": "Close the existing First Dream loop before adding economy, song-family, HUD, dungeon, enemy, or quest breadth.",
-  "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct. Historical passes apply only to their captured baselines and are not current shipping certification."
+  "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct. Historical passes apply only to their captured baselines and are not current shipping certification.",
+  "superseded_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
+  "phase_state": {
+   "phase_0_hygiene": "closed",
+   "phase_1_allowlist_and_compile": "closed 2026-08-28 (offline proof)",
+   "phase_2_live_prove_four_pillars": "open - editor + PIE",
+   "phase_3_rhythm_music_gates": "open - editor + PIE",
+   "phase_4_closeout": "open - one item landed in source, four remain"
+  }
  },
  "agent_work_log_2026-08-27": {
   "commit": "d242f74d",
@@ -123,6 +131,35 @@
    "tooling": "Used the text injection pipeline as primary path; add_node cannot create K2Node_CallParentFunction."
   }
  },
+ "agent_work_log_2026-08-28": {
+  "timestamp": "2026-08-28",
+  "branch": "feature/p0-phase1-allowlist-quill-trigger",
+  "scope": "Phase 1 verification, MelodiaShader module landing, closed-editor rebuild.",
+  "phase_1_closed": {
+   "allowlist": "DA_MelodiaIntegrationConfig.uasset saved 13:07; all 27 delta IDs verified present on disk (quests, narrative flags, dialogue rewards, melodia_elegance/melodia_resonance, LV_SeaAbove_Prototype).",
+   "qsc_compilation": "All five P0 .qsc have .uasset counterparts written 13:07-13:08, each newer than its source: P0Playthrough, WardrobeEquip, ChoralSheepRecruit, SeaAboveCutscene, HarmonyAwakening.",
+   "offline_test": "python -m unittest Content.Python.Tests.test_qsc_allowlist_contract -> 4/4 PASS.",
+   "caveat": "Offline proof only. No Phase 1 item is a live gate row; the echo ledger is unchanged by this session."
+  },
+  "melodia_shader_module": {
+   "added": "Source/MelodiaShader (Build.cs, Private/MelodiaShader.cpp, Public/MelodiaShader.h) - backs the AGENTS.md 2.1 Rider shader-authoring protocol with a real module.",
+   "loading_phase_fix": "BS_GodFile.uproject: MelodiaShader LoadingPhase corrected Default -> PostConfigInit. A module registering a virtual shader directory must load before the shader compiler runs.",
+   "dependency": "BS_GodFile.Build.cs takes a MelodiaShader dependency."
+  },
+  "build": {
+   "first_attempt": "FAILED (RulesError) at 14:29 after 973s: could not find definition for module MelodiaShader, referenced via BS_GodFileEditor.Target.cs. The .uproject and Build.cs referenced the module at 14:12-14:13, but Source/MelodiaShader/ was not created until 14:33-14:34.",
+   "retries": "Two 14:30 retries died at UBT startup (Build.bat already running, then UBT log file locked) while the 973s pass was still in flight. Not compile errors.",
+   "rebuild": "Closed-editor Build.bat BS_GodFileEditor Win64 Development re-run after the module source existed. Required because Live Coding cannot register new reflected types.",
+   "note": "The rebuild was launched before the LoadingPhase fix, so its emitted .target/.modules carry LoadingPhase=Default; a follow-up metadata pass bakes PostConfigInit."
+  },
+  "live_results_widget_path": "Phase 4 item already landed in source: MelodiaUIBridgeSubsystem.cpp:131-133 backfills LiveResultsWidgetPath in Initialize(), mirroring the MelodiaBattleWidgetPath backfill. Paid by this closed-editor rebuild.",
+  "remaining": {
+   "phase_2": "P0 Playthrough victory branch; wardrobe_equip_roundtrip across a full process restart; wardrobe_gameplay_hook (Glide); Choral Sheep script-side; Sea Above travel + membrane pulse.",
+   "phase_3": "rhythm_owner, rhythm_grade_to_result, music_world_key. The music_world_key blocker is level/Blueprint wiring of UMelodiaPCGNarrativeChallengeBridgeComponent, not code.",
+   "phase_4": "Owner call on the two material drifts then rerun static_gates with editor up; owner call to retire vestigial melodiaBattleUI/MelodiaUI vars; repackage and rerun package_launch (08-14 baseline, 150+ commits stale); full 20-30 min golden run then record ledger rows.",
+   "blocker": "All of the above are editor-bound. echo_run status reports \"editor reachable on 9316: no\" while the editor is down."
+  }
+ },
  "latest_verified_evidence": {
   "recorded_on": "2026-08-26",
   "source_commit": "3912f5708076386ac458ac3f36a6d5849b01db41",
@@ -235,7 +272,9 @@
   "rhythm_owner": "The gate measures one execution path into stock JRPG damage, not zero MelodiaCore callers. Load-bearing presentation and reactivity callers are permitted.",
   "qsc_compilation": "RESOLVED 2026-08-28: All 4 P0 scripts have valid compiled .uasset files. MelodiaQuillP0Playthrough (2025 chars), MelodiaQuillWardrobeEquip (1396 chars), MelodiaQuillChoralSheepRecruit (1510 chars), MelodiaQuillSeaAboveCutscene (1769 chars).",
   "allowlist_ids": "RESOLVED 2026-08-28: All 30+ P0 IDs present in DA_MelodiaIntegrationConfig CDO. QuestIds (9), NarrativeFlagIds (17), TravelLevelIds (4), DialogueRewardIds (10), SocialStatIds (3), EncounterIds (2).",
-  "editor_modal": "RECURRING: Editor blocked by modal dialog with empty title/text. Detected via MODAL_OPEN in Saved/Logs/BS_GodFile.log. Blocks port 9316, Monolith MCP, all echo runners, PIE testing."
+  "editor_modal": "RECURRING: Editor blocked by modal dialog with empty title/text. Detected via MODAL_OPEN in Saved/Logs/BS_GodFile.log. Blocks port 9316, Monolith MCP, all echo runners, PIE testing.",
+  "melodia_shader_module": "ADDED 2026-08-28: Source/MelodiaShader is a real UBT module (Runtime, PostConfigInit) holding .usf/.ush source under Shaders/. Adding or renaming it requires a closed-editor Build.bat pass; Live Coding cannot register new reflected types.",
+  "live_results_widget_path": "RESOLVED in source 2026-08-28: MelodiaUIBridgeSubsystem::Initialize() backfills LiveResultsWidgetPath (cpp:131-133) the same way it backfills MelodiaBattleWidgetPath. Requires the closed-editor rebuild to take effect."
  },
  "vendor_compatibility_track": {
   "status": "HOLD_VENDOR_INPUTS_MISSING",
