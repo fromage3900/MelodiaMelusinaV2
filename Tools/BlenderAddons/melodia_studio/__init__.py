@@ -4,10 +4,10 @@
 bl_info = {
     "name": "Melodia Studio",
     "author": "fromage3900",
-    "version": (1, 4, 0),
+    "version": (1, 5, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Melodia Studio",
-    "description": "MIDI-driven Resonant World generation - walkable default + instanced dressing + Tandem City (field-wins snap to Surreal GN, no monolith edits) (C: authority)",
+    "description": "MIDI-driven Resonant World generation - walkable default + instanced dressing + Tandem City (field-wins snap to Surreal GN, no monolith edits) (C: authority) — D7 divisor threaded + AddonPreferences",
     "category": "Melodia Studio",
 }
 

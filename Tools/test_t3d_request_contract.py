@@ -11,6 +11,8 @@ SCHEMA_PATH = ROOT / "specs" / "schemas" / "t3d_mutation_request.v1.json"
 REQUESTS = [
     ROOT / "specs" / "t3d" / "live_probe_print.json",
     ROOT / "specs" / "wardrobe" / "wardrobe_t3d_request.example.json",
+    ROOT / "specs" / "t3d" / "sea_above_pulse_driver.json",
+    ROOT / "specs" / "t3d" / "sea_above_anomaly_burst.json",
 ]
 
 
