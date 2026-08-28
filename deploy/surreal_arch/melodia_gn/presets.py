@@ -2341,6 +2341,136 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # --- Bevel polish V3 (Infinity Nikki soft look) ---
+    "MEL_auto_bevel": {
+        "label": "Auto Bevel (Ease)",
+        "preset_labels": {
+            "NIKKI_SOFT": "Nikki Soft",
+            "HARD_SURFACE": "Hard Surface",
+            "PORCELAIN": "Porcelain",
+        },
+        "preset_descriptions": {
+            "NIKKI_SOFT": "Infinity Nikki pastel — 0.03 width, 3 segs, 30 deg, smooth on.",
+            "HARD_SURFACE": "Crisp chamfer — 0.08 width, 2 segs, 45 deg.",
+            "PORCELAIN": "Micro soft 0.015 width, 4 segs, 25 deg.",
+        },
+        "presets": {
+            "NIKKI_SOFT": {"Width": 0.03, "Segments": 3, "Profile": 0.5, "Angle Threshold": 30.0, "Shade Smooth": True},
+            "HARD_SURFACE": {"Width": 0.08, "Segments": 2, "Profile": 0.25, "Angle Threshold": 45.0, "Shade Smooth": True},
+            "PORCELAIN": {"Width": 0.015, "Segments": 4, "Profile": 0.65, "Angle Threshold": 25.0, "Shade Smooth": True},
+        },
+    },
+    "MEL_weighted_bevel": {
+        "label": "Weighted Bevel",
+        "preset_labels": {
+            "NIK_SOFT_WEIGHTED": "Nikki Weighted Soft",
+            "SHARP_INSET": "Sharp Inset",
+            "AUTO_FALLBACK": "Auto Angle Fallback",
+        },
+        "preset_descriptions": {
+            "NIK_SOFT_WEIGHTED": "Base 0.04 + weight scale 1.0, auto-angle 30 deg fallback.",
+            "SHARP_INSET": "Base 0.06 weighted 1.5, narrow.",
+            "AUTO_FALLBACK": "Base 0.03 weight on, auto angle handles unpainted edges.",
+        },
+        "presets": {
+            "NIK_SOFT_WEIGHTED": {"Base Width": 0.04, "Segments": 3, "Weight Scale": 1.0, "Use Bevel Weight": True, "Auto Angle Threshold": 30.0},
+            "SHARP_INSET": {"Base Width": 0.06, "Segments": 2, "Weight Scale": 1.5, "Use Bevel Weight": True, "Auto Angle Threshold": 45.0},
+            "AUTO_FALLBACK": {"Base Width": 0.03, "Segments": 3, "Weight Scale": 1.0, "Use Bevel Weight": True, "Auto Angle Threshold": 30.0},
+        },
+    },
+    "MEL_curvature_bevel": {
+        "label": "Curvature Bevel",
+        "preset_labels": {
+            "DRAPE_SOFT": "Drape Soft",
+            "FILIGREE_CRISP": "Filigree Crisp",
+            "ORNATE_BLEND": "Ornate Blend",
+        },
+        "preset_descriptions": {
+            "DRAPE_SOFT": "Drape curvature 0.8 thresh 0.5 — fabric-like.",
+            "FILIGREE_CRISP": "Filigree 1.5 curvature, tight.",
+            "ORNATE_BLEND": "Balanced ornate 1.0.",
+        },
+        "presets": {
+            "DRAPE_SOFT": {"Base Width": 0.025, "Curvature Scale": 0.8, "Segments": 3, "Threshold": 0.5},
+            "FILIGREE_CRISP": {"Base Width": 0.018, "Curvature Scale": 1.5, "Segments": 3, "Threshold": 0.35},
+            "ORNATE_BLEND": {"Base Width": 0.022, "Curvature Scale": 1.0, "Segments": 3, "Threshold": 0.45},
+        },
+    },
+
+    # --- Infinity Nikki expanded kit V3 ---
+    "MEL_nikki_bloom_pavilion": {
+        "label": "Nikki Bloom Pavilion",
+        "preset_labels": {
+            "SAKURA_BLOOM": "Sakura Bloom",
+            "STARLIGHT_CANOPY": "Starlight Canopy",
+            "HEART_PAVILION": "Heart Pavilion",
+        },
+        "preset_descriptions": {
+            "SAKURA_BLOOM": "Radius 2.4, 8 petals, bloom 0.5, heart on.",
+            "STARLIGHT_CANOPY": "Radius 3.2, 12 petals, bloom 0.8, heart on.",
+            "HEART_PAVILION": "Small 1.8 radius, 6 petals, bloom 0.35.",
+        },
+        "presets": {
+            "SAKURA_BLOOM": {"Radius": 2.4, "Height": 2.8, "Petal Count": 8, "Canopy Bloom": 0.5, "Heart Filigree": True, "Pastel Tint": 0.5},
+            "STARLIGHT_CANOPY": {"Radius": 3.2, "Height": 3.4, "Petal Count": 12, "Canopy Bloom": 0.8, "Heart Filigree": True, "Pastel Tint": 0.75},
+            "HEART_PAVILION": {"Radius": 1.8, "Height": 2.2, "Petal Count": 6, "Canopy Bloom": 0.35, "Heart Filigree": True, "Pastel Tint": 0.6},
+        },
+    },
+    "MEL_nikki_wardrobe_nook": {
+        "label": "Nikki Wardrobe Nook",
+        "preset_labels": {
+            "BOUDOIR": "Boudoir",
+            "ATELIER": "Atelier",
+            "CLOSET_PODIUM": "Closet Podium",
+        },
+        "preset_descriptions": {
+            "BOUDOIR": "Width 3.2, depth 2.0, rods 2, mirror+pedestal.",
+            "ATELIER": "Wide 4.0, 3 rods, mirror on.",
+            "CLOSET_PODIUM": "Narrow 2.4, 1 rod, pedestal focus.",
+        },
+        "presets": {
+            "BOUDOIR": {"Width": 3.2, "Depth": 2.0, "Height": 2.6, "Rod Count": 2, "Mirror": True, "Pedestal": True},
+            "ATELIER": {"Width": 4.0, "Depth": 2.4, "Height": 2.8, "Rod Count": 3, "Mirror": True, "Pedestal": True},
+            "CLOSET_PODIUM": {"Width": 2.4, "Depth": 1.6, "Height": 2.4, "Rod Count": 1, "Mirror": False, "Pedestal": True},
+        },
+    },
+    "MEL_nikki_podium_runway": {
+        "label": "Nikki Podium Runway",
+        "preset_labels": {
+            "RUNWAY_SHORT": "Short Runway",
+            "RUNWAY_GRAND": "Grand Runway",
+            "PETAL_RUNWAY": "Petal Runway",
+        },
+        "preset_descriptions": {
+            "RUNWAY_SHORT": "Length 4, width 1.6, petals on.",
+            "RUNWAY_GRAND": "Length 8, width 2.2, lights 8, petals on.",
+            "PETAL_RUNWAY": "Length 6, sakura petals dense.",
+        },
+        "presets": {
+            "RUNWAY_SHORT": {"Length": 4.0, "Width": 1.6, "Height": 0.4, "Light Count": 4, "Sakura Petals": True},
+            "RUNWAY_GRAND": {"Length": 8.0, "Width": 2.2, "Height": 0.45, "Light Count": 8, "Sakura Petals": True},
+            "PETAL_RUNWAY": {"Length": 6.0, "Width": 1.8, "Height": 0.38, "Light Count": 6, "Sakura Petals": True},
+        },
+    },
+    "MEL_nikki_sheet_rail_hero": {
+        "label": "Nikki Sheet Rail Hero",
+        "preset_labels": {
+            "BLOOM_PASTEL": "Bloom Pastel",
+            "STARLIGHT_RAIL": "Starlight Rail",
+            "HEART_RAIL": "Heart Rail",
+        },
+        "preset_descriptions": {
+            "BLOOM_PASTEL": "Pastel bloom style 0 — soft nikki, 12 notes, clef on, auto bevel.",
+            "STARLIGHT_RAIL": "Starlight style 1 — taller, airy.",
+            "HEART_RAIL": "Heart style 2 — token crest, warm.",
+        },
+        "presets": {
+            "BLOOM_PASTEL": {"Length": 6.0, "Height": 1.05, "Line Thickness": 0.04, "Line Spacing": 0.12, "Note Count": 12, "Style": 0, "Show Clef": True, "Auto Bevel": True},
+            "STARLIGHT_RAIL": {"Length": 8.0, "Height": 1.25, "Line Thickness": 0.035, "Line Spacing": 0.14, "Note Count": 16, "Style": 1, "Show Clef": True, "Auto Bevel": True},
+            "HEART_RAIL": {"Length": 5.0, "Height": 1.15, "Line Thickness": 0.045, "Line Spacing": 0.12, "Note Count": 8, "Style": 2, "Show Clef": True, "Auto Bevel": True},
+        },
+    },
+
 }
 
 # -----------------------------------------------------------------------------
