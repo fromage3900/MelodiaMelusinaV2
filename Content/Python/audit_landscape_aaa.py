@@ -104,7 +104,7 @@ def _audit_in_ue() -> dict:
                 parameter = str(expr.get_editor_property("parameter_name"))
                 collection_name = collection.get_name() if collection else ""
                 collection_bindings.append({"collection": collection_name, "parameter": parameter})
-has_audio_reactivity = bool(
+                has_audio_reactivity = bool(
                     collection
                     and collection_name == "MPC_Melodia_Palette"
                     and parameter == "GlobalReactivity"

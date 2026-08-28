@@ -6,16 +6,32 @@ See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do
 
 ---
 
-## Current P0 authority — 2026-08-24
+## Current P0 authority — 2026-08-28
 
-Read [`Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md)
-first. Active gates: `rhythm_owner`, `hud_single_writer`, `rhythm_grade_to_result`,
-`wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, `music_world_key`, `static_gates`, and the
-four-outcome `battle_integration_map`.
+Read [`Docs/P0_CLOSEOUT_PLAN_2026-08-28.md`](Docs/P0_CLOSEOUT_PLAN_2026-08-28.md) first. The
+[2026-08-24 convergence plan](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md)
+is the standing architecture record behind it, not the current task list.
+
+**Phase 1 is closed.** The authored 08-27 content is live, no longer inert:
+
+- `DA_MelodiaIntegrationConfig` carries the full 27-ID delta — quests, narrative flags, dialogue
+  rewards, `melodia_elegance` / `melodia_resonance`, and `LV_SeaAbove_Prototype` in `TravelLevelIds`.
+- All five P0 `.qsc` have compiled `.uasset` counterparts, each newer than its source.
+- `python -m unittest Content.Python.Tests.test_qsc_allowlist_contract` → 4/4 PASS.
+
+**Phases 2–4 are open, and every remaining item is editor-bound.** Two ledgers, read both:
+
+| Ledger | State |
+|---|---|
+| `Saved/gate_ledger.json` (echo) | 5 pass — `runtime`, `save_load`, `repeat_consume`, `package_launch`, `hud_single_writer`. 5 open — `rhythm_owner`, `rhythm_grade_to_result`, `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, `music_world_key`. |
+| `Docs/P0_TASK_LEDGER.json` → `active_p0_gates` | Same five open, plus `static_gates` **fail** against the frozen baseline and `battle_integration_map` **pass**. |
+
+`echo_run status` reports `editor reachable on 9316: no` whenever the editor is down — editor gates
+HOLD, and nothing in Phase 2–4 can advance until it is up.
+
 The old nine-item economy expansion is post-P0 (`Docs/P0_TASK_LEDGER.json`). August 13–14
-`runtime`/save/replay/package passes are bounded evidence, not current shipping certification.
-Current source retires the old overlay as a no-widget observer and builds the Piano Narrative
-adapter; live HUD identity and world-route/replay proof remain open.
+`runtime`/save/replay/package passes are bounded evidence, not current shipping certification —
+`package_launch` in particular is the 08-14 baseline and is now 150+ commits stale.
 
 ---
 
@@ -88,7 +104,7 @@ Maximize productivity and eliminate silent defects by using JetBrains Rider and 
 - **RiderLink Live Test Running:** Run `IMPLEMENT_SIMPLE_AUTOMATION_TEST` suites directly from the C++ gutter icon in Rider against the running editor session via RiderLink. Avoid heavy commandlet restarts when validating logic.
 - **Modern Pointer Standards:** Upgrade legacy raw `UObject*` member pointers in headers to `TObjectPtr<T>` (use Rider's `Alt+Enter` quick-fix) to ensure engine garbage-collection barrier tracking.
 - **IWYU & Include Pruning:** Use Rider's Unreal IWYU inspection to strip unneeded `#include` directives and prevent unity-build symbol pollution.
-- **Shader Authoring:** Edit `.usf` and `.ush` shaders directly in Rider with full syntax validation, macro expansion, and semantic highlighting.
+- **Shader Authoring:** Edit `.usf` and `.ush` shaders directly in Rider with full syntax validation, macro expansion, and semantic highlighting. As of 2026-08-28 this is backed by a real module — `Source/MelodiaShader` (`Type: Runtime`, `LoadingPhase: PostConfigInit`), with the shader source under `Source/MelodiaShader/Shaders/`. `PostConfigInit` is required, not cosmetic: a module that registers a virtual shader directory must load before the shader compiler runs. Adding or renaming a module here needs a **closed-editor** `Build.bat` pass — Live Coding cannot register new reflected types.
 - **Static Analysis & Quality Gates:** Run `qodana.yaml` with the `QDJB` profile to catch memory leaks, missing reflection tags, and uninitialized properties before code reaches review.
 
 ### 2. Unreal Engine 5.8 Architectural Standards
@@ -230,7 +246,11 @@ Production JRPG + QuillScript integration in UE 5.8. The target loop is:
 
 The loop is not yet fully proven. The August 13–14 runtime, save/load, repeat-callback, and
 Development-package rows are bounded historical evidence only. Do not report the current shipping
-baseline complete until the active August 24 P0 gates above are recorded against that baseline.
+baseline complete until the active P0 gates above are recorded against that baseline.
+
+As of 2026-08-28 the offline half of that loop is real: the allowlist carries every authored ID and
+all five P0 `.qsc` are compiled. What is unproven is the *live* half — no gate past Phase 1 can be
+claimed without a PIE session and a `Saved/gate_ledger.json` row. Prose is not a row.
 
 ## Quantum usage
 
