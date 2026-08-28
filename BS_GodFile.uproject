@@ -8,6 +8,11 @@
 			"Name": "BS_GodFile",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "MelodiaShader",
+			"Type": "Runtime",
+			"LoadingPhase": "PostConfigInit"
 		}
 	],
 	"Plugins": [
@@ -321,6 +326,14 @@
 		},
 		{
 			"Name": "StateTree",
+			"Enabled": true
+		},
+		{
+			"Name": "HoudiniEngine",
+			"Enabled": true
+		},
+		{
+			"Name": "VRM4U",
 			"Enabled": true
 		}
 	]
