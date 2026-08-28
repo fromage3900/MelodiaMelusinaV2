@@ -1,0 +1,130 @@
+// Copyright 2026 BS_GodFile. All Rights Reserved.
+//
+// MelodiaNikkiCommon.ush — shared Nikki aesthetic helpers for surface + ocean shaders.
+//
+// These are the HLSL bodies from the Nikki material functions (expand_nikki_features.py),
+// extracted into Rider-authorable shader source. They can be #included by both:
+//   - Surface material functions (MF_Nikki* in the material editor)
+//   - The Oceanology MI emissive/foam channels (when integrating the ocean)
+//
+// The functions here are ADAPTED from the Python build script HLSL, not copied
+// verbatim — they use the shared helpers from MelodiaInkCommon.ush for consistency.
+
+#pragma once
+#include "MelodiaInkCommon.ush"
+
+// ============================================================================
+// SDF Ribbon — world-space SDF band ribbon hugging silhouettes
+// (from MF_NikkiSDFRibbon)
+// ============================================================================
+
+float3 MelNikkiSdfRibbon(
+    float3 baseColor, float mask,
+    float bandScale, float sharpness, float strength,
+    float3 ribbonColor, float edgeFalloff, float edgeStrength
+)
+{
+    float bands = sin(mask * bandScale * MEL_TAU) * 0.5 + 0.5;
+    float dist = MelSaturate(1.0 - abs(mask - 0.5) * 2.0 * sharpness);
+    float rib = bands * dist * MelSaturate(strength);
+    float3 base = lerp(baseColor, ribbonColor, rib);
+    float edge = MelSaturate(1.0 - mask) * edgeFalloff;
+    return lerp(base, ribbonColor, edge * MelSaturate(edgeStrength));
+}
+
+// ============================================================================
+// Pearl Sheen — dual-layer pearlescent iridescence
+// (from MF_NikkiPearlSheen)
+// ============================================================================
+
+float3 MelNikkiPearlSheen(
+    float3 baseColor, float3 normal, float3 cameraVector,
+    float mask, float frequency, float secondFrequency,
+    float strength, float3 pearlTint
+)
+{
+    float ndv = MelSaturate(dot(normalize(normal), normalize(cameraVector)));
+    float fres = pow(1.0 - ndv, 2.0);
+
+    float3 ir1 = 0.5 + 0.5 * cos(MEL_TAU * (fres * frequency + float3(0.0, 0.33, 0.67)));
+    float3 ir2 = 0.5 + 0.5 * cos(MEL_TAU * (pow(ndv, 2.0) * secondFrequency + float3(0.25, 0.5, 0.75)));
+    float3 pearl = lerp(ir1, ir2, 0.5);
+    pearl = lerp(baseColor, pearl * pearlTint, MelSaturate(strength) * fres);
+
+    return pearl + baseColor * mask * 0.05;
+}
+
+// ============================================================================
+// Glitter Halo — world-aligned hash glitter + fresnel halo
+// (from MF_NikkiGlitterHalo)
+// ============================================================================
+
+float3 MelNikkiGlitterHalo(
+    float3 baseColor, float3 normal, float3 cameraVector, float3 worldPosition,
+    float mask, float scale, float amount, float intensity,
+    float3 glitterColor, float haloStrength, float haloPower, float twinkleSpeed, float time
+)
+{
+    float2 cell = floor(worldPosition.xy * scale);
+    float r = MelHash(cell);
+    float tw = 0.5 + 0.5 * sin(time * twinkleSpeed + r * MEL_TAU);
+    float ndv = MelSaturate(dot(normalize(normal), normalize(cameraVector)));
+    float halo = pow(1.0 - ndv, haloPower) * haloStrength;
+    float glit = step(1.0 - amount, r) * tw * mask;
+    return baseColor + glitterColor * (glit + halo) * MelSaturate(intensity);
+}
+
+// ============================================================================
+// Petal Shadow — blooming petal shadow field
+// (from MF_NikkiPetalShadow)
+// ============================================================================
+
+float3 MelNikkiPetalShadow(
+    float3 baseColor, float3 worldPosition,
+    float petalScale, float petalRadius, float softness, float strength,
+    float bloomSpeed, float time, float3 petalTint
+)
+{
+    float2 p = worldPosition.xy * petalScale;
+    float2 q = float2(frac(p.x), frac(p.y)) - 0.5;
+    float d = length(q) - petalRadius;
+    float petal = MelSaturate(1.0 - abs(d) * softness);
+    float phase = 0.5 + 0.5 * sin(time * bloomSpeed);
+    float mask = petal * phase * MelSaturate(strength);
+    return lerp(baseColor, baseColor * petalTint, mask);
+}
+
+// ============================================================================
+// Sticker Edge — anime sticker edge-light
+// (from MF_NikkiStickerEdge)
+// ============================================================================
+
+float3 MelNikkiStickerEdge(
+    float3 baseColor, float mask,
+    float edgeWidth, float bands, float bandSoftness,
+    float strength, float3 edgeColor
+)
+{
+    float lum = MelLuminanceNTSC(baseColor);
+    float edge = MelSaturate(1.0 - lum * 2.0) * edgeWidth;
+    float banded = floor(edge * bands) / max(bands, 1.0);
+    float3 rim = lerp(baseColor, edgeColor, MelSaturate(banded * bandSoftness));
+    return lerp(baseColor, rim, MelSaturate(strength));
+}
+
+// ============================================================================
+// Squish WPO — gentle breathing world-position offset
+// (from MF_NikkiSquishWPO)
+// Returns a float3 offset, not a color
+// ============================================================================
+
+float3 MelNikkiSquishWPO(
+    float3 normal, float3 worldPosition, float mask,
+    float3 direction, float amount, float speed, float time
+)
+{
+    float ndv = MelSaturate(dot(normalize(normal), normalize(float3(0,0,1))));
+    float bob = sin(dot(worldPosition, direction) * 3.0 + time * speed);
+    float fres = 1.0 - ndv;
+    return normal * bob * amount * (0.4 + fres * 0.6) * mask;
+}
