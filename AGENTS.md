@@ -79,6 +79,33 @@ intentionally gitignored, do not track it.
 
 ---
 
+## 🚀 Rider & UE 5.8 Engineering Protocols (IDE & Engine Maximization)
+
+Maximize productivity and eliminate silent defects by using JetBrains Rider and Unreal Engine 5.8 native systems to their full capacity:
+
+### 1. JetBrains Rider Superpowers
+- **Blueprint Reflection & Code Vision:** Rider parses `.uasset` binary files in the background. Look at Code Vision lenses above `UCLASS`, `UFUNCTION`, and `UPROPERTY` declarations for derived Blueprint counts, asset usages, and overridden CDO property values without starting the editor.
+- **RiderLink Live Test Running:** Run `IMPLEMENT_SIMPLE_AUTOMATION_TEST` suites directly from the C++ gutter icon in Rider against the running editor session via RiderLink. Avoid heavy commandlet restarts when validating logic.
+- **Modern Pointer Standards:** Upgrade legacy raw `UObject*` member pointers in headers to `TObjectPtr<T>` (use Rider's `Alt+Enter` quick-fix) to ensure engine garbage-collection barrier tracking.
+- **IWYU & Include Pruning:** Use Rider's Unreal IWYU inspection to strip unneeded `#include` directives and prevent unity-build symbol pollution.
+- **Shader Authoring:** Edit `.usf` and `.ush` shaders directly in Rider with full syntax validation, macro expansion, and semantic highlighting.
+- **Static Analysis & Quality Gates:** Run `qodana.yaml` with the `QDJB` profile to catch memory leaks, missing reflection tags, and uninitialized properties before code reaches review.
+
+### 2. Unreal Engine 5.8 Architectural Standards
+- **Hierarchical `FGameplayTag` over raw `FName`:** For puzzle networks, quest IDs, and combat event channels, prefer `FGameplayTag` (`Melodia.Water.Network.*`, `Melodia.Rhythm.*`) instead of raw `FName` strings. Tags provide IDE auto-complete, compile-time validation, and eliminate typo-induced silent no-ops.
+- **StateTree for Flow & Combat Logic:** Use UE 5.8 StateTree (built on `StructUtils`) for quest progression, NPC behaviors, and dialog branching. It is lightweight, deterministic, and avoids spaghetti Blueprint execution chains.
+- **World Partition Data Layers:** Use non-destructive Data Layers (`DL_Lighting_Day`, `DL_Lighting_Night`, `DL_PCG_Foliage`) in showcase levels (`L_KaleidoNave`, `L_FallenMoon`) to switch environment and cinematic passes without duplicating maps.
+- **CommonUI Input Routing:** Route player interactions through `CommonActivatableWidget` and CommonUI input routing to handle auto-focus, gamepad/keyboard legends, and back-button stacks cleanly.
+- **CPU Profiling Instrumentation:** Wrap performance-critical tick loops, rhythm calculations, and subsystem queries in `TRACE_CPUPROFILER_EVENT_SCOPE(Name)` for immediate visualization in Unreal Insights (`.utrace`).
+- **Native Editor Data Validation:** Implement C++ `UEditorValidatorSubsystem` rules to enforce asset safety rules (texture compression, Substrate inputs, socket bindings) on save.
+
+### 3. Melodia MCP & Monolith Multi-Agent Protocol
+- **Single Editor Lock:** All editor-mutating tools (Monolith, T3D injectors, PIE runners) must serialize through a single holder. Never run competing MCP instances on the same graph or level.
+- **Discover Before Declaring Impossible:** Query Monolith's 1330+ actions (`monolith_discover`) before claiming an editor capability cannot be automated.
+- **Safe Reflection over Python Wrapping:** Never inspect user-defined enums (like `D_DamageType`) via raw Python `load_blueprint_class()`; use Monolith's C++ reflection queries (`get_cdo_properties`, `get_graph_data`) to prevent fatal Python glue crashes.
+
+---
+
 ## T3D Wiring Pipeline (Automation Pipeline)
 
 ### Pipeline Overview
@@ -188,7 +215,7 @@ looked correct in every graph read:
 ### Specs, injection recipes, CI gates, Monolith action tables
 
 Full reference (toon profiles, Niagara MPC, inject snippets, `ci_gates.json`, Monolith
-blueprint/material/editor/project/niagara actions):  
+blueprint/material/editor/project/niagara actions):
 [`Docs/Production/T3D_MONOLITH_REFERENCE.md`](Docs/Production/T3D_MONOLITH_REFERENCE.md).
 
 ---
