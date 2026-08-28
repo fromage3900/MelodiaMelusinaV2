@@ -1,0 +1,49 @@
+@ Start
+
+- Melusina
+  We have reached the high balcony of the cathedral. Look up at the sky...
+
+- Sir Melodious
+  Behold, Melusina. The ancient wonder of our world—the Sea Above.
+
+* Gaze upward into the inverted celestial ocean. | -> WitnessSeaAbove
+* Step to the edge of the overlook railing.     | -> ApproachEdge
+
+<@> ApproachEdge
+
+- Melusina
+  The wind carries salt and starlight. The sky isn't air at all—it's an immense canopy of luminous water.
+
+- Sir Melodious
+  Watch the surface membrane. The biological pulse is beginning.
+
+-> WitnessSeaAbove
+
+<@> WitnessSeaAbove
+
+- .
+  Above the cathedral arches, an inverted ocean rolls in deep sapphire and turquoise waves. Every sixteen seconds, a deep bioluminescent pulse radiates across the celestial membrane.
+
+- .
+  Small droplets break from the surface and fall upward into the sky, sparkling like inverted rain against the bell-tower shadows.
+
+$ Notify melodia:travel:/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype
+$ Notify melodia:stat:intent.sea_above.witness:melodia_resonance:5
+$ Notify melodia:flag:flag.cutscene.sea_above_witnessed:true
+$ Notify melodia:flag:flag.sea_above.membrane_pulse_active:true
+$ Notify melodia:reward:reward.cutscene.sea_above_memory
+
+- Melusina
+  It is breathtaking. The entire ocean breathes in rhythm above us.
+
+- Sir Melodious
+  And now, with the Resonant Weave and our choral companion at your side, you are ready to explore where no melody-weaver has walked before.
+
+$ Notify melodia:questcomplete:quest.cutscene.sea_above:flag.cutscene.sea_above_completed:reward.cutscene.sea_above_memory:intent.cutscene.sea_above.complete:checkpoint.cutscene.sea_above.complete
+
+@ Finish
+
+- .
+  Melusina witnesses the magnificent spectacle of the Sea Above. The vertical slice journey reaches its breathtaking pinnacle.
+
+$ End

@@ -1,0 +1,48 @@
+@ Start
+
+- Melusina
+  Look, Sir Melodious! A small creature is grazing by the resonance spring. Its wool glows with iridescent chromatic sheen.
+
+- Sir Melodious
+  A Choral Sheep! A motif creature of the first octave. Listen to the small bell around its fleece—it chimes in middle C.
+
+* Sing a gentle call in middle C. | -> CallResponse
+* Approach slowly and offer resonant grass. | -> ApproachSlowly
+
+<@> ApproachSlowly
+
+- Melusina
+  Softly now... here is sweet dew clover.
+
+- Sir Melodious
+  It tilts its head, listening for your melodic pitch before it trusts us.
+
+-> CallResponse
+
+<@> CallResponse
+
+- Melusina
+  Do-mi-sol... (Melusina sings a warm, clear triad matching the bell cadence).
+
+- .
+  The Choral Sheep bleats in harmonized resonance, a pure and joyful C-major chord echoing from its fleece.
+
+$ Notify melodia:stat:intent.choral_sheep.call_response:melodia_harmony:2
+
+- Sir Melodious
+  It has answered your pitch! The bond of resonance is struck. It wants to travel with us!
+
+$ Notify melodia:flag:flag.companion.choral_sheep_recruited:true
+$ Notify melodia:reward:reward.companion.choral_sheep
+
+- Melusina
+  Welcome to our ensemble, little one. We will explore the resonant world together.
+
+$ Notify melodia:questcomplete:quest.companion.choral_sheep:flag.companion.choral_sheep_completed:reward.companion.choral_sheep:intent.companion.choral_sheep.complete:checkpoint.companion.choral_sheep.complete
+
+@ Finish
+
+- .
+  The Choral Sheep joins Melusina's party as a faithful motif companion, ready to chime during exploration and rhythm battles.
+
+$ End
