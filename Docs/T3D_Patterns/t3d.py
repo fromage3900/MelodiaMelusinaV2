@@ -82,6 +82,27 @@ def wardrobe_common_args(parser):
     parser.add_argument('--set', action='append', metavar='K=V')
 
 
+def sea_above_wire(args, *, allow_mutation: bool) -> int:
+    text = load(args.pattern)
+    supplied = kv(args.set)
+    missing = [token for token in tokens(text) if token not in supplied]
+    if missing:
+        print(f"missing --set for: {', '.join(missing)}")
+        return 2
+    if args.go and not args.expected_fingerprint:
+        print('REFUSED: --go requires --expected-fingerprint')
+        return 2
+    ok, manifest, evidence_dir = safe_wire(
+        args.asset,
+        args.graph,
+        {'t3d': text, 'placeholders': supplied, 'compile': True},
+        args.expected_fingerprint,
+        dry_run=not (args.go and allow_mutation),
+    )
+    print(json.dumps({'ok': ok, 'outcome': manifest.get('outcome'), 'evidence': str(evidence_dir)}, indent=2))
+    return 0 if ok else 1
+
+
 def wardrobe_wire(args, *, allow_mutation: bool, require_battle_enable: bool = False) -> int:
     if require_battle_enable and not args.enable_battle:
         print('REFUSED: battle wardrobe gate is disabled; pass --enable-battle for an explicit owner-approved dry run.')
@@ -179,6 +200,12 @@ def main():
     s = sub.add_parser('validate_wardrobe_catalog')
     s.add_argument('--catalog', default=str(PROJECT_ROOT / 'specs' / 'wardrobe' / 'wardrobe_catalog_manifest.v1.json'))
     s.add_argument('--drafts', default=str(PROJECT_ROOT / 'Plugins' / 'MelodiaWardrobe' / 'Content' / 'MelodiaWardrobe' / 'Drafts'))
+    s = sub.add_parser('validate_sea_above_nodes')
+    wardrobe_common_args(s)
+    s = sub.add_parser('inject_sea_above_node')
+    wardrobe_common_args(s)
+    s.add_argument('--expected-fingerprint')
+    s.add_argument('--go', action='store_true')
     a = ap.parse_args()
 
     if a.cmd == 'list':
@@ -206,6 +233,14 @@ def main():
 
     if a.cmd == 'wire_wardrobe_battle_gate':
         return wardrobe_wire(a, allow_mutation=True, require_battle_enable=True)
+
+    if a.cmd == 'validate_sea_above_nodes':
+        a.expected_fingerprint = None
+        a.go = False
+        return sea_above_wire(a, allow_mutation=False)
+
+    if a.cmd == 'inject_sea_above_node':
+        return sea_above_wire(a, allow_mutation=True)
 
     text = load(a.pattern)
     supplied = kv(a.set)
