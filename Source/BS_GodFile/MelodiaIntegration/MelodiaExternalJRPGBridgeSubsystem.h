@@ -17,6 +17,8 @@ class BS_GODFILE_API UMelodiaExternalJRPGBridgeSubsystem final : public UGameIns
 	GENERATED_BODY()
 
 public:
+	UMelodiaExternalJRPGBridgeSubsystem();
+
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 
