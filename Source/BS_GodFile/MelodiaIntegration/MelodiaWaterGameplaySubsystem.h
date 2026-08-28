@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "MelodiaWaterGameplayTypes.h"
 #include "MelodiaWaterGameplaySubsystem.generated.h"
@@ -31,31 +32,31 @@ public:
 
 	/** Removes world bindings while retaining logical node/route state for save/load. */
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Water|Gameplay")
-	bool UnregisterNetworkBindings(FName NetworkId);
+	bool UnregisterNetworkBindings(FGameplayTag NetworkId);
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Water|Gameplay")
 	bool ApplyOperation(const FMelodiaWaterOperationRequest& Request);
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Water|Gameplay")
-	bool ApplyResonance(FName NetworkId, FName TargetWaterNodeId, FName ResonanceChannel, float Strength, FName PuzzleId, FName RouteId, AActor* SourceActor);
+	bool ApplyResonance(FGameplayTag NetworkId, FGameplayTag TargetWaterNodeId, FGameplayTag ResonanceChannel, float Strength, FGameplayTag PuzzleId, FGameplayTag RouteId, AActor* SourceActor);
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Gameplay")
-	bool GetNodeState(FName NetworkId, FName NodeId, FMelodiaWaterNodeState& OutState) const;
+	bool GetNodeState(FGameplayTag NetworkId, FGameplayTag NodeId, FMelodiaWaterNodeState& OutState) const;
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Gameplay")
-	float GetWaterLevelForNode(FName NetworkId, FName NodeId) const;
+	float GetWaterLevelForNode(FGameplayTag NetworkId, FGameplayTag NodeId) const;
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Gameplay")
-	float GetPressureForNode(FName NetworkId, FName NodeId) const;
+	float GetPressureForNode(FGameplayTag NetworkId, FGameplayTag NodeId) const;
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Gameplay")
-	bool GetResolvedWaterFlow(FName WaterBodyId, FVector& OutFlow) const;
+	bool GetResolvedWaterFlow(FGameplayTag WaterBodyId, FVector& OutFlow) const;
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Gameplay")
-	bool IsWaterRouteOpen(FName NetworkId, FName RouteId) const;
+	bool IsWaterRouteOpen(FGameplayTag NetworkId, FGameplayTag RouteId) const;
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Gameplay")
-	bool GetPlatformMotionState(FName PlatformId, FMelodiaWaterPlatformState& OutState) const;
+	bool GetPlatformMotionState(FGameplayTag PlatformId, FMelodiaWaterPlatformState& OutState) const;
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Water|Gameplay")
 	bool RegisterPlatform(const FMelodiaWaterPlatformState& State);
@@ -64,7 +65,7 @@ public:
 	bool UpdatePlatformState(const FMelodiaWaterPlatformState& State);
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Gameplay")
-	bool IsPuzzleSolved(FName PuzzleId) const;
+	bool IsPuzzleSolved(FGameplayTag PuzzleId) const;
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Water|Save")
 	void CaptureSaveState(UPARAM(ref) FMelodiaWaterGameplaySaveData& OutData) const;
@@ -93,14 +94,14 @@ private:
 		TMap<FName, bool> OpenRoutes;
 	};
 
-	void RecomputeFlow(FName NetworkId);
+	void RecomputeFlow(FGameplayTag NetworkId);
 	void Reject(const FMelodiaWaterOperationRequest& Request, const FString& Reason);
-	bool FindNode(FName NetworkId, FName NodeId, FNetworkRuntime*& OutNetwork, FMelodiaWaterNodeConfig*& OutConfig, FMelodiaWaterNodeState*& OutState);
-	const FNetworkRuntime* FindNetwork(FName NetworkId) const;
-	FNetworkRuntime* FindNetwork(FName NetworkId);
-	bool IsRouteOpen(const FNetworkRuntime& Network, FName RouteId) const;
+	bool FindNode(FGameplayTag NetworkId, FGameplayTag NodeId, FNetworkRuntime*& OutNetwork, FMelodiaWaterNodeConfig*& OutConfig, FMelodiaWaterNodeState*& OutState);
+	const FNetworkRuntime* FindNetwork(FGameplayTag NetworkId) const;
+	FNetworkRuntime* FindNetwork(FGameplayTag NetworkId);
+	bool IsRouteOpen(const FNetworkRuntime& Network, FGameplayTag RouteId) const;
 	FName RouteKey(const FMelodiaWaterLinkConfig& Link) const;
-	void ApplyPendingNodeState(FName NetworkId, FName NodeId, FMelodiaWaterNodeState& State);
+	void ApplyPendingNodeState(FGameplayTag NetworkId, FGameplayTag NodeId, FMelodiaWaterNodeState& State);
 
 	TMap<FName, FNetworkRuntime> Networks;
 	TMap<FName, FMelodiaWaterPlatformState> PlatformStates;
