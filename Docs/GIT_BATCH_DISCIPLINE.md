@@ -8,6 +8,18 @@ until the object is unreferenced *and* the month rolls over.
 
 That means the cost lever is not "commit less often". It is:
 
+## Hybrid transition status
+
+Git remains authoritative for text, code, configuration, documentation, tools, and automation. Perforce
+is being introduced for lock-sensitive and large creative assets. The local pilot has seeded 50 files at
+`//melodia/Exports/...` in Perforce change `2`; Git copies remain until backup and clean-machine cutover
+validation. `Content/` has not moved. One source-control owner per path is mandatory after cutover.
+
+The Windows Scheduled Task `Melodia Source Control Triage` runs
+`Tools/source_control_triage.py` every 12 hours in report-only mode. It classifies binary and Perforce
+paths as review-only. An explicit manifest at `specs/source_control_batches.json` is required before
+`--commit-ready` can create a text-only isolated Git commit.
+
 ## The rules
 
 1. **Text is cheap; binaries are expensive.**
