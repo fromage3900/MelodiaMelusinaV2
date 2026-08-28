@@ -1,3 +1,44 @@
+> ## Start here — 2026-08-28 evening (P0 Phase 1 CLOSED · Quill trigger repaired · **tree does not compile**)
+>
+> **Read `Docs/Handoffs/SESSION_CLOSEOUT_2026-08-28_EVENING.md` before doing anything.**
+>
+> **⚠ THE C++ TREE DOES NOT COMPILE.** Commit `694b7250` (05:27) migrated
+> `UMelodiaWaterGameplaySubsystem`'s API from `FName` to `FGameplayTag` but left its callers — and
+> its own `TSet<FName>` storage — behind. ~20 errors across six water-lane files, plus
+> `MelodiaWardrobeAutomationTests.cpp` missing `GameFramework/GameInstance.h`. A build was in
+> flight at handoff to complete the migration forward. **Confirm it went green before trusting any
+> PIE result** — the running editor DLL was 03:06, the migration landed 05:27, so every PIE run
+> after 05:27 tested pre-migration binaries.
+>
+> **P0 Phase 1 is CLOSED.** `DA_MelodiaIntegrationConfig` extended with the 26-id delta (quests
+> 4→9, flags 5→18, rewards 6→11, stats 1→3, travel 3→4). All five orphan `.qsc` imported to
+> `.uasset` — **12 of 12 scripts playable**, was 7. `test_qsc_allowlist_contract` went red → 4/4
+> green on its own. The 08-27 content commit is no longer inert.
+>
+> **The real Phase 2 blocker was found and fixed: there was no working Quill trigger anywhere.**
+> `BP_KaleidoNaveArrivalTrigger` held the complete correct chain (spawn interpreter → cast → set →
+> `Start`) hanging off a **custom** event nothing called, with `BeginPlay`/`ActorBeginOverlap`/`Tick`
+> all disabled, and was placed in no level. Repaired: overlap volume added, event enabled and wired,
+> and the hardcoded script promoted to instance-editable `QuillScriptToPlay` so **one** trigger
+> drives all five scripts. PIE-proven from the saved placement — script starts and
+> `MELODIA_INPUT_CONTEXT None -> Dialogue (movement=0)`. Four pillar triggers placed in
+> `L_MelusinaMorning` and `LV_SeaAbove_Prototype`.
+>
+> **Live crash fixed in source, not yet built:** `HandleQuillNotification` captured raw `this` into
+> a fire-and-forget async Ollama HTTP callback — `EXCEPTION_ACCESS_VIOLATION` whenever PIE ended
+> with a request in flight. Now a `TWeakObjectPtr`. (`MelodiaOllamaValidation.cpp` already guarded
+> this exact hazard since 2026-07-31; only the caller was wrong.)
+>
+> **Doc corrections:** `P0_COMPLETE_REVIEW_AND_EXPANSION_PLAN` §4 is **wrong** that RiderLink needs
+> installing — it is installed engine-side and loads every session; cloning it into
+> `Plugins/Developer/` would create a module conflict. The `MelodiaShader` module compiles but its
+> shaders are **not reachable from any material** — nothing calls `AddShaderSourceDirectoryMapping`.
+>
+> Sea Above docs branch merged (`67ed8a33`) incl. the **Shorelistener** P0 outfit board.
+> Branch: `feature/p0-phase1-allowlist-quill-trigger` (4 commits, unmerged).
+> Also: `Docs/Handoffs/P0_PHASE1_CLOSEOUT_AND_QUILL_TRIGGER_2026-08-28.md`,
+> `Docs/VFX_NIAGARA_FLIPBOOK_SYSTEM_PLAN_2026-08-28.md`.
+
 > ## Start here — 2026-08-27 (two P0 gates CLOSED, Quill dialogue restored)
 >
 > **Root cause of the multi-week stall was a stale DLL.** Bridge source from 08-26 23:36 added new
