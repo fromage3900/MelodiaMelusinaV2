@@ -450,3 +450,195 @@ When you return with the new outfit and perches, I'll:
 - Place perches in all shipping levels
 - PIE test the full traversal system
 - Record the wardrobe_gameplay_hook gate
+
+---
+
+## 8. Missing v22_FINAL Library (Critical for v25)
+
+The v24 RELINK .blend (679KB stub, Aug 23) references a **v22_FINAL library** at 2.2GB that is MISSING from the filesystem. This library was the master asset lookdev scene that all portfolio stages linked to. Without it, v24 cannot render and v25 cannot build on v24.
+
+### What Happened
+
+```
+v22_FINAL (2.2GB) — master lookdev library, created ~Aug 12-15
+    ├── v16, v17, v18 portfolio stages — linked to v22
+    ├── v23 lookdev grandmaster — linked to v22
+    └── v24 RELINK — attempted to repoint v22 links, failed (679KB stub)
+```
+
+The v22_FINAL library is NOT on the G: drive, NOT on the C: drive, and NOT in any .git LFS pointer. It was likely stored on a temporary drive, an external SSD, or AWS Glacier.
+
+### Recovery Options
+
+| Option | Likelihood | How |
+|--------|-----------|-----|
+| AWS Glacier restore | HIGH — you mentioned doing Glacier backup on Aug 13 | Initiate restore from AWS Glacier vault, wait 3-5 hours for expedited |
+| External drive | MEDIUM — check any USB drives or external SSDs | Search for `*.blend` files > 1GB on all mounted drives |
+| OneDrive version history | LOW — the file is too large for OneDrive sync | Check OneDrive.com for version history if it was ever synced |
+| Temp drive (found.000) | LOW — the G: drive has a `found.000` directory (recovered files) | Check `G:\found.000` for any .blend fragments |
+
+### Immediate Action
+
+Before doing anything else, search for the v22_FINAL library:
+
+```bash
+# Search all mounted drives for .blend files > 1GB
+for drive in C D E F G H; do
+  if [ -d "/${drive}" ]; then
+    echo "--- Drive ${drive}: ---"
+    find "/${drive}" -name "*.blend" -size +1G -type f 2>/dev/null
+  fi
+done
+```
+
+If not found, initiate an AWS Glacier restore. Without v22_FINAL, the v25 lookdev scene must be built from scratch (FinalUERig43 + new assets) rather than updating v24.
+
+---
+
+## 9. Rokoko Suite — Detailed Pricing & Setup
+
+Since the subagent researched Rokoko specifically:
+
+### Hardware
+
+| Item | Price | Purpose |
+|------|-------|---------|
+| SmartSuit Pro II | $2,295–$2,745 | Full-body mocap, 19 IMU sensors, 200 fps |
+| SmartGloves | $599 | Finger tracking |
+| Face Tracker | $200 | Facial mocap via iPhone or Android |
+
+### Software
+
+| Item | Price | Purpose |
+|------|-------|---------|
+| Rokoko Studio | Free | Record, edit, export mocap |
+| Rokoko Studio Plus | $50/mo | Live streaming to Blender/UE |
+| Rokoko Blender Plugin | Free | Import mocap directly into Blender |
+| Rokoko UE Plugin | Free | Stream mocap live into UE 5.8 (Epic Marketplace) |
+
+### Network Requirements
+
+- Wi-Fi router (5 GHz recommended)
+- Disable firewalls during recording
+- Static IP recommended for live streaming
+- USB power hub for the Wi-Fi hub
+
+### Total Cost
+
+| Setup | Cost |
+|-------|------|
+| Minimum (suit only + free software) | ~$2,370 + tax |
+| Recommended (suit + gloves + Plus plan) | ~$3,000 + $50/mo |
+| Full (suit + gloves + face + Plus plan) | ~$3,200 + $50/mo |
+
+### Pipeline Architecture
+
+```
+Performer → SmartSuit Pro II → Wi-Fi Hub → Rokoko Studio
+                                        │
+                    ┌───────────────────┼───────────────────┐
+                    │                   │                   │
+                    ▼                   ▼                   ▼
+            Live Stream          FBX Export         CSV Export
+            to Blender           to UE 5.8          for ML
+            (real-time)          (offline)          training
+```
+
+### Verdict
+
+**Defer Rokoko.** You have 87 Cascadeur .fbx files already retargeted to Melusina. The Cascadeur pipeline is working. Rokoko adds:
+- Real-time mocap streaming (great for prototyping)
+- Facial mocap (Cascadeur doesn't do face)
+- Your own recorded movements
+
+But it costs $2,370+ and adds a parallel pipeline. Focus on ZBrush sculpts + v25 first. Add Rokoko later for facial mocap and custom recordings.
+
+---
+
+## 10. Lookdev Scene Defects (Must Fix for v25)
+
+From the v24 RELINK and v23 lookdev grandmaster:
+
+### Critical Defects
+
+| Defect | Impact | Fix |
+|--------|--------|-----|
+| **Bloom/bokeh blowout** | Renders are overexposed | Reduce bloom intensity, fix bokeh threshold |
+| **15 missing library textures** | Materials show as pink/black | Re-link textures from v22 or rebuild materials |
+| **3 empty collections** | Sir Melodious, Review_Queue, Set_Diorama are empty | Populate with v25 assets |
+| **v24 RELINK is a 679KB stub** | Cannot render v24 | Rebuild from scratch or restore v22_FINAL |
+
+### v25 Scene Build Strategy
+
+Since v22_FINAL is missing, the v25 lookdev scene should be built from scratch:
+
+1. Create new .blend file (`Melodia_Portfolio_Stage_v25_ultimate.blend`)
+2. Link Melusina from FinalUERig43 (not v22)
+3. Link Sir Melodious from sirmelodious1 (not v22)
+4. Link Choral Sheep from choralsheep.blend
+5. Add new outfit and perches (when you return)
+6. Set up fresh lighting (avoid bloom blowout)
+7. Use Substance Painter textures (HeartTiles, melodsytoken, pea, shirttextured)
+8. Render hero shots
+
+---
+
+## 11. Execution Order Dependency Chain
+
+```
+[Find/restore v22_FINAL] ──or──> [Build v25 from scratch]
+        │
+        ▼
+[FinalUERig43.blend] ──GoZ──> [ZBrush sculpts (YOU)]
+        │                              │
+        │                              ▼
+        │                    [Decimation + UV unwrap]
+        │                              │
+        │                              ▼
+        │                    [Bake normal/AO/curvature maps]
+        │                              │
+        │                              ▼
+        │                    [Substance Painter texturing]
+        │                              │
+        │                              ▼
+        │                    [Export FBX + textures]
+        │                              │
+        ├──────────────────────────────┤
+        │                              │
+        ▼                              ▼
+[sirmelodious1.blend]          [UE import new path]
+        │                              │
+        ▼                              ▼
+[ZBrush feather sculpt]        [Retarget Cascadeur anims]
+        │                              │
+        ▼                              ▼
+[Substance retexture]          [Create Material Instances]
+        │                              │
+        └──────────────┬───────────────┘
+                       │
+                       ▼
+              [BP_MelusinaCharacter]
+              [BP_SirMelodious_Flight]
+              [BP_SirMelodiousPerch]
+                       │
+                       ▼
+                 [PIE test traversal]
+                       │
+                       ▼
+              [Record P0 gates]
+```
+
+---
+
+## 12. Known Defects to Fix During v25
+
+| Defect | Where | Fix |
+|--------|-------|-----|
+| SK_Melusina read-only .uasset silent reverts | Content/Melodia/Characters/Melusina/ | `attrib -R` before saving |
+| Idle T-pose in UE | Content/Melodia/Characters/Melusina/Animations/ | Replace with A_Melusina_Idle_v22 |
+| Missing face rig blendshapes | SK_Melusina | Add in ZBrush, export as morph targets |
+| Duplicate BP_BattleUI paths | Content/Melodia/_PROJECT/ vs Content/Melodia/ | Quarantine older copies |
+| Oceanology .uplugin EngineVersion | Plugins/Oceanology_Plugin/ | Fixed to 5.8.0, verify post-rebuild |
+| M_PP_MelodiaInk 4 missing pins | Content/_PROJECT/ | Wire SceneColor, cR, cB, smeared |
+| Bloom/bokeh blowout | v23/v24 lookdev | Reduce intensity in v25 |
+| 15 missing library textures | v24 RELINK | Rebuild from Substance Painter exports |
