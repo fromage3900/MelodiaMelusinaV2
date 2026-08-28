@@ -33,6 +33,8 @@ class BS_GODFILE_API UMelodiaUIBridgeSubsystem final : public UGameInstanceSubsy
 	GENERATED_BODY()
 
 public:
+	UMelodiaUIBridgeSubsystem();
+
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 
@@ -132,7 +134,13 @@ private:
 	void RemoveBattlePresentationOverlaysInternal();
 	void CreateLiveResultsWidgetInternal();
 	void PushLiveGameDataToActiveWidgets();
+	void LinkMelodiaWidgetsToBattleController();
 
+public:
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Bridge")
+	void LinkWidgetsToBattleControllerPublic() { LinkMelodiaWidgetsToBattleController(); }
+
+private:
 	/** Next-tick trampoline: the stock widget is built during InitBattle, after the battle-started broadcast. */
 	void EnsureStockBattleUIControllerReferenceDeferred();
 

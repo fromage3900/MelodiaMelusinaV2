@@ -28,6 +28,14 @@ namespace
 	// the bridge -- which already owns battle UI lifetime -- spawns and binds it.
 	// Tracked here (not as a UPROPERTY) so this stays a .cpp-only, Live-Coding-safe change.
 	constexpr TCHAR DefaultMelodiaRhythmHUDPath[] = TEXT("/Game/Melodia/UI/WBP_Battle_Rhythm.WBP_Battle_Rhythm_C");
+
+	// LiveResultsWidgetPath is EditDefaultsOnly on a native GameInstanceSubsystem: there is no
+	// Blueprint asset to set it on, and UCLASS() carries no config specifier, so an ini entry
+	// cannot reach it either. Initialize() backfilled MelodiaBattleWidgetPath but never this one,
+	// so CreateLiveResultsWidgetInternal always failed its TryLoadClass and logged
+	// "cannot load live-results widget class from " with an empty path. WBP_Battle_Results is
+	// verified to derive from MelodiaBattleResultsWidget.
+	constexpr TCHAR DefaultLiveResultsWidgetPath[] = TEXT("/Game/Melodia/UI/WBP_Battle_Results.WBP_Battle_Results_C");
 	constexpr TCHAR RhythmPromptClassPath[] = TEXT("/Game/MelodiaIntegration/UI/BP_MelodiaRhythmPrompt.BP_MelodiaRhythmPrompt_C");
 	constexpr int32 RhythmPromptZOrder = 100;
 	constexpr int32 KeyboardLegendZOrder = 110;
@@ -49,6 +57,19 @@ static FAutoConsoleCommandWithWorld GMelodiaLinkBattleUIController(
 		}
 	}));
 
+// Link Melodia UI widgets (melodiaBattleUI and MelodiaUI) to BP_BattleController
+static FAutoConsoleCommandWithWorld GMelodiaLinkMelodiaWidgets(
+	TEXT("melodia.BattleUI.LinkMelodiaWidgets"),
+	TEXT("Link the Melodia battle widget and rhythm HUD to BP_BattleController's melodiaBattleUI and MelodiaUI variables."),
+	FConsoleCommandWithWorldDelegate::CreateLambda([](UWorld* World)
+	{
+		UGameInstance* GameInstance = World ? World->GetGameInstance() : nullptr;
+		if (UMelodiaUIBridgeSubsystem* Bridge = GameInstance ? GameInstance->GetSubsystem<UMelodiaUIBridgeSubsystem>() : nullptr)
+		{
+			Bridge->LinkWidgetsToBattleControllerPublic();
+		}
+	}));
+
 UMelodiaUIBridgeSubsystem* UMelodiaUIBridgeSubsystem::Get(const UObject* WorldContextObject)
 {
 	if (WorldContextObject)
@@ -64,9 +85,15 @@ UMelodiaUIBridgeSubsystem* UMelodiaUIBridgeSubsystem::Get(const UObject* WorldCo
 	return nullptr;
 }
 
+UMelodiaUIBridgeSubsystem::UMelodiaUIBridgeSubsystem()
+{
+	UE_LOG(LogTemp, Log, TEXT("MelodiaUIBridgeSubsystem::Constructor called"));
+}
+
 void UMelodiaUIBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+	UE_LOG(LogTemp, Log, TEXT("MelodiaUIBridgeSubsystem::Initialize called"));
 
 	if (UGameInstance* GI = GetGameInstance())
 	{
@@ -99,6 +126,11 @@ void UMelodiaUIBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	if (MelodiaBattleWidgetPath.IsNull())
 	{
 		MelodiaBattleWidgetPath = FSoftClassPath(DefaultMelodiaBattleWidgetPath);
+	}
+
+	if (LiveResultsWidgetPath.IsNull())
+	{
+		LiveResultsWidgetPath = FSoftClassPath(DefaultLiveResultsWidgetPath);
 	}
 }
 
@@ -411,6 +443,74 @@ void UMelodiaUIBridgeSubsystem::CreateBattleUIInternal()
 	if (UMelodiaRhythmCombatSubsystem* Rhythm = World->GetSubsystem<UMelodiaRhythmCombatSubsystem>())
 	{
 		Rhythm->BindRhythmHUD(GBridgeRhythmHUD.Get());
+	}
+
+	// Link Melodia UI widgets to BP_BattleController so the owner systems can access them.
+	LinkMelodiaWidgetsToBattleController();
+}
+
+void UMelodiaUIBridgeSubsystem::LinkMelodiaWidgetsToBattleController()
+{
+	UGameInstance* GameInstance = GetGameInstance();
+	UWorld* World = GameInstance ? GameInstance->GetWorld() : nullptr;
+	if (!World)
+	{
+		return;
+	}
+
+	AActor* BattleController = nullptr;
+	for (TActorIterator<AActor> It(World); It; ++It)
+	{
+		if (It->GetClass()->GetName().StartsWith(TEXT("BP_BattleController")))
+		{
+			BattleController = *It;
+			break;
+		}
+	}
+	if (!BattleController)
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("MELODIA_UI_LINK no BP_BattleController actor in the world; nothing to link."));
+		return;
+	}
+
+	// Set melodiaBattleUI (BP_MelodiaBattleUI_C)
+	const FObjectPropertyBase* MelodiaBattleUIProperty = FindFProperty<FObjectPropertyBase>(BattleController->GetClass(), TEXT("melodiaBattleUI"));
+	if (MelodiaBattleUIProperty && IsValid(MelodiaBattleWidget.Get()))
+	{
+		if (!MelodiaBattleUIProperty->PropertyClass || MelodiaBattleWidget->IsA(MelodiaBattleUIProperty->PropertyClass))
+		{
+			MelodiaBattleUIProperty->SetObjectPropertyValue_InContainer(BattleController, MelodiaBattleWidget.Get());
+			UE_LOG(LogTemp, Log, TEXT("MELODIA_UI_LINK set melodiaBattleUI on %s"), *BattleController->GetName());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_UI_LINK refusing to write melodiaBattleUI: type mismatch (widget=%s, property=%s)"),
+				*MelodiaBattleWidget->GetClass()->GetName(), *MelodiaBattleUIProperty->PropertyClass->GetName());
+		}
+	}
+	else if (!MelodiaBattleUIProperty)
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("MELODIA_UI_LINK BP_BattleController has no melodiaBattleUI property."));
+	}
+
+	// Set MelodiaUI (UserWidget) - use the rhythm HUD
+	const FObjectPropertyBase* MelodiaUIProperty = FindFProperty<FObjectPropertyBase>(BattleController->GetClass(), TEXT("MelodiaUI"));
+	if (MelodiaUIProperty && GBridgeRhythmHUD.IsValid())
+	{
+		if (!MelodiaUIProperty->PropertyClass || GBridgeRhythmHUD->IsA(MelodiaUIProperty->PropertyClass))
+		{
+			MelodiaUIProperty->SetObjectPropertyValue_InContainer(BattleController, GBridgeRhythmHUD.Get());
+			UE_LOG(LogTemp, Log, TEXT("MELODIA_UI_LINK set MelodiaUI on %s"), *BattleController->GetName());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_UI_LINK refusing to write MelodiaUI: type mismatch (hud=%s, property=%s)"),
+				*GBridgeRhythmHUD->GetClass()->GetName(), *MelodiaUIProperty->PropertyClass->GetName());
+		}
+	}
+	else if (!MelodiaUIProperty)
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("MELODIA_UI_LINK BP_BattleController has no MelodiaUI property."));
 	}
 }
 

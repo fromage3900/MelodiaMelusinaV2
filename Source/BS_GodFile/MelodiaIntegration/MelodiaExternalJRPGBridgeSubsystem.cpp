@@ -47,6 +47,11 @@ namespace
 	}
 }
 
+UMelodiaExternalJRPGBridgeSubsystem::UMelodiaExternalJRPGBridgeSubsystem()
+{
+	UE_LOG(LogTemp, Log, TEXT("MelodiaExternalJRPGBridgeSubsystem::Constructor called"));
+}
+
 UMelodiaExternalJRPGBridgeSubsystem* UMelodiaExternalJRPGBridgeSubsystem::GetGameInstanceSubsystem(UGameInstance* GameInstance)
 {
 	return GameInstance ? GameInstance->GetSubsystem<UMelodiaExternalJRPGBridgeSubsystem>() : nullptr;
@@ -55,6 +60,7 @@ UMelodiaExternalJRPGBridgeSubsystem* UMelodiaExternalJRPGBridgeSubsystem::GetGam
 void UMelodiaExternalJRPGBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+	UE_LOG(LogTemp, Log, TEXT("MelodiaExternalJRPGBridgeSubsystem::Initialize called"));
 	if (UGameInstance* GI = GetGameInstance())
 	{
 		NarrativeSubsystem = GI->GetSubsystem<UMelodiaNarrativeSubsystem>();
