@@ -1,6 +1,7 @@
 #include "MelodiaPCGWaterGameplayBridgeComponent.h"
 
 #include "MelodiaWaterGameplaySubsystem.h"
+#include "Stats/Stats.h"
 
 UMelodiaPCGWaterGameplayBridgeComponent::UMelodiaPCGWaterGameplayBridgeComponent()
 {
@@ -65,6 +66,7 @@ bool UMelodiaPCGWaterGameplayBridgeComponent::UnregisterWaterBindings()
 
 void UMelodiaPCGWaterGameplayBridgeComponent::HandleNoteJudged(FPCGHeroMusicNoteEvent Event)
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaPCGWaterGameplayBridge_HandleNoteJudged);
 	if (!bBound || static_cast<uint8>(Event.Grade) < static_cast<uint8>(MinimumAcceptedGrade))
 	{
 		return;
@@ -79,6 +81,7 @@ void UMelodiaPCGWaterGameplayBridgeComponent::HandleNoteJudged(FPCGHeroMusicNote
 
 void UMelodiaPCGWaterGameplayBridgeComponent::HandlePatternCompleted()
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaPCGWaterGameplayBridge_HandlePatternCompleted);
 	if (!bBound || CompletionPuzzleId.IsNone())
 	{
 		return;
@@ -97,6 +100,7 @@ float UMelodiaPCGWaterGameplayBridgeComponent::GetStrengthForGrade(EMelodiaRhyth
 
 void UMelodiaPCGWaterGameplayBridgeComponent::SubmitResonance(float Strength, FName PuzzleId, FName RouteId, AActor* SourceActor)
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaPCGWaterGameplayBridge_SubmitResonance);
 	if (WaterNetworkId.IsNone() || TargetWaterNodeId.IsNone())
 	{
 		return;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "MelodiaCoreRulesLibrary.h"
 #include "MelodiaWaterGameplayTypes.generated.h"
 
@@ -35,13 +36,13 @@ struct BS_GODFILE_API FMelodiaWaterNodeConfig
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Node")
-	FName NetworkId = NAME_None;
+	FGameplayTag NetworkId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Node")
-	FName NodeId = NAME_None;
+	FGameplayTag NodeId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Node")
-	FName WaterBodyId = NAME_None;
+	FGameplayTag WaterBodyId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Node")
 	float InitialLevel = 0.0f;
@@ -71,10 +72,10 @@ struct BS_GODFILE_API FMelodiaWaterNodeState
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Water|State")
-	FName NetworkId = NAME_None;
+	FGameplayTag NetworkId;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Water|State")
-	FName NodeId = NAME_None;
+	FGameplayTag NodeId;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Water|State")
 	float Level = 0.0f;
@@ -101,19 +102,19 @@ struct BS_GODFILE_API FMelodiaWaterLinkConfig
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Link")
-	FName NetworkId = NAME_None;
+	FGameplayTag NetworkId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Link")
-	FName LinkId = NAME_None;
+	FGameplayTag LinkId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Link")
-	FName RouteId = NAME_None;
+	FGameplayTag RouteId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Link")
-	FName SourceNodeId = NAME_None;
+	FGameplayTag SourceNodeId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Link")
-	FName DestinationNodeId = NAME_None;
+	FGameplayTag DestinationNodeId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Link", meta = (ClampMin = "0.0"))
 	float TransferCapacity = 1.0f;
@@ -137,25 +138,25 @@ struct BS_GODFILE_API FMelodiaWaterOperationRequest
 	EMelodiaWaterGameplayOperation Operation = EMelodiaWaterGameplayOperation::ResonancePulse;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation")
-	FName NetworkId = NAME_None;
+	FGameplayTag NetworkId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation")
-	FName SourceNodeId = NAME_None;
+	FGameplayTag SourceNodeId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation")
-	FName TargetWaterNodeId = NAME_None;
+	FGameplayTag TargetWaterNodeId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation")
-	FName DeviceId = NAME_None;
+	FGameplayTag DeviceId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation")
-	FName ResonanceChannel = NAME_None;
+	FGameplayTag ResonanceChannel;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation")
-	FName RouteId = NAME_None;
+	FGameplayTag RouteId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation")
-	FName PuzzleId = NAME_None;
+	FGameplayTag PuzzleId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation", meta = (ClampMin = "0.0"))
 	float Amount = 0.0f;
@@ -176,10 +177,10 @@ struct BS_GODFILE_API FMelodiaWaterStateChange
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Water|State")
-	FName NetworkId = NAME_None;
+	FGameplayTag NetworkId;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Water|State")
-	FName NodeId = NAME_None;
+	FGameplayTag NodeId;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Water|State")
 	FMelodiaWaterNodeState PreviousState;
@@ -191,7 +192,7 @@ struct BS_GODFILE_API FMelodiaWaterStateChange
 	EMelodiaWaterGameplayOperation Operation = EMelodiaWaterGameplayOperation::ResonancePulse;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Water|State")
-	FName DeviceId = NAME_None;
+	FGameplayTag DeviceId;
 };
 
 USTRUCT(BlueprintType)
@@ -200,13 +201,13 @@ struct BS_GODFILE_API FMelodiaWaterPlatformState
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Platform")
-	FName PlatformId = NAME_None;
+	FGameplayTag PlatformId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Platform")
-	FName NetworkId = NAME_None;
+	FGameplayTag NetworkId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Platform")
-	FName RouteId = NAME_None;
+	FGameplayTag RouteId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Platform")
 	EMelodiaWaterPlatformMotionMode MotionMode = EMelodiaWaterPlatformMotionMode::KinematicRoute;
@@ -230,10 +231,10 @@ struct BS_GODFILE_API FMelodiaWaterSavedNodeState
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Water|Save")
-	FName NetworkId = NAME_None;
+	FGameplayTag NetworkId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Water|Save")
-	FName NodeId = NAME_None;
+	FGameplayTag NodeId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Water|Save")
 	FMelodiaWaterNodeState State;
@@ -245,10 +246,10 @@ struct BS_GODFILE_API FMelodiaWaterSavedRouteState
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Water|Save")
-	FName NetworkId = NAME_None;
+	FGameplayTag NetworkId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Water|Save")
-	FName RouteId = NAME_None;
+	FGameplayTag RouteId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Water|Save")
 	bool bOpen = false;
@@ -272,13 +273,13 @@ struct BS_GODFILE_API FMelodiaWaterGameplaySaveData
 	TArray<FMelodiaWaterPlatformState> PlatformStates;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Water|Save")
-	TSet<FName> CompletedPuzzleIds;
+	TSet<FGameplayTag> CompletedPuzzleIds;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category = "Melodia|Water|Save")
 	int32 PuzzleRevision = 0;
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaWaterGameplayStateChanged, FMelodiaWaterStateChange, Change);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaWaterGameplayPuzzleSolved, FName, PuzzleId);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FMelodiaWaterGameplayOperationRejected, FName, NetworkId, FString, Reason);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaWaterGameplayPuzzleSolved, FGameplayTag, PuzzleId);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FMelodiaWaterGameplayOperationRejected, FGameplayTag, NetworkId, FString, Reason);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaWaterResonanceRequested, FMelodiaWaterOperationRequest, Request);
