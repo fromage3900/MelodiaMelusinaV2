@@ -1048,12 +1048,30 @@ void UMelodiaNarrativeSubsystem::HandleQuillNotification(FString Message)
 	// Async Ollama validation, logging-only and non-gating (Decision 016/009:
 	// this must never block or alter the intent path). The helper logs
 	// MELODIA_Ollama_Validation with the verdict; fire-and-forget.
-	MelodiaOllamaValidation::ValidateMessageAsync(Context, [this, Message](bool bValid, const FString& RawReply)
+	//
+	// FIX 2026-08-28: this captured raw `this` and crashed with
+	// EXCEPTION_ACCESS_VIOLATION reading 0x000000030000032a whenever PIE ended
+	// while an Ollama request was still in flight -- the subsystem is destroyed
+	// with the game instance, the HTTP response lands afterwards, and the
+	// callback dereferences freed memory. "Fire-and-forget" is exactly the
+	// hazard: the request outlives the object that queued it.
+	// MelodiaOllamaValidation::ValidateMessageAsync already guards its own
+	// captures for this reason (see the 2026-07-31 note in that file); the
+	// caller has to do the same. Weak pointer, checked before any use.
+	TWeakObjectPtr<UMelodiaNarrativeSubsystem> WeakSelf(this);
+	MelodiaOllamaValidation::ValidateMessageAsync(Context, [WeakSelf, Message](bool bValid, const FString& RawReply)
 	{
-		if (!bValid && Config && Config->bStrictAiValidation)
+		UMelodiaNarrativeSubsystem* Self = WeakSelf.Get();
+		if (!Self)
+		{
+			// Subsystem torn down while the request was in flight (PIE ended).
+			return;
+		}
+
+		if (!bValid && Self->Config && Self->Config->bStrictAiValidation)
 		{
 			UE_LOG(LogTemp, Error, TEXT("MELODIA_STRICT_AI_REJECT intent=%s"), *Message);
-			Reject(Message, EMelodiaIntentFailure::UnknownIntent);
+			Self->Reject(Message, EMelodiaIntentFailure::UnknownIntent);
 		}
 	});
 

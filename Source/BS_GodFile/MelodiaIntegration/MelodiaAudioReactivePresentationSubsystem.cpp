@@ -16,6 +16,8 @@
 #include "Components/MeshComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "EngineUtils.h"
+#include "ProfilingDebugging/CpuProfilerTrace.h"
+#include "Stats/Stats.h"
 
 namespace
 {
@@ -52,6 +54,7 @@ namespace
 
 	void DriveOceanBeatValues(UWorld* World, float BeatPulse, float CombatEnergy, float ImpactPulse)
 	{
+		TRACE_CPUPROFILER_EVENT_SCOPE(Melodia_DriveOceanBeatValues);
 		const double Now = FPlatformTime::Seconds();
 		TArray<FOceanBeatDriveEntry>& Entries = GOceanBeatDrives.FindOrAdd(World);
 		bool bRescan = (Now - GOceanRescanTime) > OceanDriveRescanInterval;
@@ -204,6 +207,7 @@ void UMelodiaAudioReactivePresentationSubsystem::PulseImpact(float Strength)
 
 bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTime)
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(UMelodiaAudioReactivePresentationSubsystem_TickPresentation);
 	UWorld* World = GetWorld();
 	if (!AudioParameterCollection || !World)
 	{
