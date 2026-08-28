@@ -23,13 +23,28 @@ from ..branding import N_PANEL_CATEGORY
 
 
 def _filter_tree(tree_name: str, filter_text: str) -> bool:
-    """Check if a tree matches the current search filter."""
+    """Check if a tree matches the current search filter (label/desc/preset/style)."""
     if not filter_text:
         return True
     ft = filter_text.lower()
     label = _gn_core.TREE_LABEL_MAP.get(tree_name, tree_name).lower()
     desc = _gn_core.TREE_DESCRIPTIONS.get(tree_name, "").lower()
-    return ft in tree_name.lower() or ft in label or ft in desc
+    if ft in tree_name.lower() or ft in label or ft in desc:
+        return True
+    # Preset & style ease: also matches 'nikki bloom', 'auto bevel', 'sheet rail' via presets map
+    try:
+        from .presets import BUILDERS_PRESETS
+        entry = BUILDERS_PRESETS.get(tree_name)
+        if entry:
+            for pn, lab in entry.get("preset_labels", {}).items():
+                if ft in pn.lower() or ft in str(lab).lower():
+                    return True
+            for pdesc in entry.get("preset_descriptions", {}).values():
+                if ft in str(pdesc).lower():
+                    return True
+    except Exception:
+        pass
+    return False
 
 
 def _all_tree_names() -> list[str]:
@@ -558,7 +573,7 @@ class MEL_GN_PT_stack(Panel):
         box = layout.box()
         col = box.column(align=True)
 
-        # Filter row
+        # Filter row — unified search: matches label/description + preset names (ease-of-use)
         row = col.row(align=True)
         row.prop(stack, "filter_text", text="", icon="VIEWZOOM")
         if stack.filter_text:
@@ -568,10 +583,15 @@ class MEL_GN_PT_stack(Panel):
                 icon="ADD",
             )
             op.tree_name = stack.filter_text
+        else:
+            row.label(text="Search 203 builders · presets · styles", icon="INFO")
         hide_row = col.row(align=True)
         wm = bpy.context.window_manager
         if hasattr(wm, "mel_gn_show_hidden"):
             hide_row.prop(wm, "mel_gn_show_hidden", text="Show hidden / factory clones")
+        # Ease-of-use hint — Infinity Nikki wardrobe + bevel quick-picks
+        hint = col.row(align=True)
+        hint.label(text="Tip: try 'nikki' · 'bloom' · 'wardrobe' · 'auto bevel' · 'sheet rail'", icon="COLOR")
 
         # Stats row
         item_count = len(stack.items)

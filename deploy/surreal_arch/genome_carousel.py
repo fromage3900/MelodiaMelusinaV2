@@ -69,6 +69,18 @@ class SURREAL_ARCH_PT_genome_carousel(Panel):
             icon="CHECKMARK",
         )
 
+        # D: legacy Properties drawer banner — A keeps it hidden unless Preferences toggled
+        try:
+            layout.separator(factor=0.3)
+            box = layout.box()
+            col = box.column(align=True)
+            col.scale_y = 0.85
+            col.label(text="Properties → Modifier drawer is legacy", icon="INFO")
+            col.label(text="N → Melodia Studio is the product UI. Enable legacy in")
+            col.label(text="Preferences → Add-ons → Melodia Studio → Show legacy Modifier panel")
+        except Exception:
+            pass
+
 
 def _run_sync_reload():
     """Hot-reload overhaul modules on the main thread after the operator returns.
