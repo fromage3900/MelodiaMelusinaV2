@@ -2,6 +2,8 @@
 
 Split out of `AGENTS.md` on 2026-08-13. **Read [`AGENTS.md`](../AGENTS.md) first.**
 
+Rider/Junie-assisted Unreal work must also follow [`RIDER_JUNIE_UNREAL_WORKFLOW_2026-08-28.md`](RIDER_JUNIE_UNREAL_WORKFLOW_2026-08-28.md), which defines the current portable-path, fail-closed-proof, live-UE-validation, shared-Rider-config, Junie-guidance, and atomic-commit train.
+
 ## How work is partitioned
 
 The rule, from AGENTS.md safe-working rule 17: **parallelise research, never the editor.**
