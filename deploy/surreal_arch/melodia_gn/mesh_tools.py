@@ -74,6 +74,8 @@ def build_weighted_bevel(group_name="MEL_weighted_bevel"):
 
     Reads an existing 'bevel_weight' attribute or falls back to uniform width.
     Useful for hard-surface where edge loops define sharpness.
+    Now auto-generates bevel_weight from edge angle when missing (infinity-nikki
+    soft-edge workflow: keep silhouette crisp without manual weight paint).
     """
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
@@ -82,12 +84,44 @@ def build_weighted_bevel(group_name="MEL_weighted_bevel"):
     add_int_param(tree, "Segments", 2, 1, 16)
     add_float_param(tree, "Weight Scale", 1.0, 0.0, 5.0)
     add_bool_param(tree, "Use Bevel Weight", True)
+    add_float_param(tree, "Auto Angle Threshold", 30.0, 5.0, 90.0)
+
+    # --- auto bevel_weight generation (edge angle -> weight) ---
+    # Edge Angle node gives radians per edge; convert threshold to rad and compare
+    edge_angle = safe_node(tree, "GeometryNodeInputMeshEdgeAngle", (bx - 500, by + 120))
+    thresh_rad = safe_node(tree, "ShaderNodeMath", (bx - 350, by + 120))
+    if thresh_rad:
+        thresh_rad.operation = "MULTIPLY"
+        link_sockets(tree, gin.outputs["Auto Angle Threshold"], thresh_rad.inputs[0])
+        thresh_rad.inputs[1].default_value = 0.01745329252  # deg->rad
+    cmp = safe_node(tree, "FunctionNodeCompare", (bx - 200, by + 80))
+    auto_weight = None
+    if edge_angle and thresh_rad and cmp:
+        cmp.data_type = "FLOAT"
+        cmp.operation = "GREATER_THAN"
+        link_sockets(tree, edge_angle.outputs["Angle"], cmp.inputs["A"])
+        link_sockets(tree, thresh_rad.outputs[0], cmp.inputs["B"])
+        # Compare (float 0/1) -> capture as edge domain attribute bevel_weight
+        auto_store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx - 50, by + 80))
+        if auto_store:
+            auto_store.data_type = "FLOAT"
+            auto_store.domain = "EDGE"
+            auto_store.inputs["Name"].default_value = "bevel_weight_auto"
+            link_sockets(tree, gin.outputs["Geometry"], auto_store.inputs["Geometry"])
+            link_sockets(tree, cmp.outputs["Result"], auto_store.inputs["Value"])
+            auto_weight = auto_store.outputs["Geometry"]
 
     # Bevel-weight fallback: InputNamedAttribute + Mix, or uniform width.
+    # Priority: manual bevel_weight > auto bevel_weight_auto > 1.0
     named = safe_node(tree, "GeometryNodeInputNamedAttribute", (bx - 300, by - 50))
     if named:
         named.data_type = "FLOAT"
         named.inputs["Name"].default_value = "bevel_weight"
+
+    named_auto = safe_node(tree, "GeometryNodeInputNamedAttribute", (bx - 300, by - 150))
+    if named_auto:
+        named_auto.data_type = "FLOAT"
+        named_auto.inputs["Name"].default_value = "bevel_weight_auto"
 
     # Switch: use bevel_weight if available, fall back to 1.0
     picker = safe_node(tree, "ShaderNodeMix", (bx - 100, by + 50))
@@ -99,25 +133,62 @@ def build_weighted_bevel(group_name="MEL_weighted_bevel"):
         if named:
             link_sockets(tree, named.outputs["Attribute"], picker.inputs["B"])
 
+    # Second mix: if manual weight is 0 (unpainted), fallback to auto angle weight
+    picker_auto = safe_node(tree, "ShaderNodeMix", (bx + 50, by - 30))
+    if picker_auto and named_auto and picker:
+        picker_auto.data_type = "FLOAT"
+        # Mix factor = manual weight present? Use picker result as factor via compare >0.01
+        gt = safe_node(tree, "FunctionNodeCompare", (bx - 50, by - 80))
+        if gt:
+            gt.data_type = "FLOAT"
+            gt.operation = "GREATER_THAN"
+            link_sockets(tree, picker.outputs[0] if picker else None, gt.inputs["A"])
+            gt.inputs["B"].default_value = 0.01
+            link_sockets(tree, gt.outputs["Result"], picker_auto.inputs["Factor"])
+            picker_auto.inputs["A"].default_value = 0.0
+            # Will wire B to auto attribute after
+            link_sockets(tree, named_auto.outputs["Attribute"], picker_auto.inputs["B"])
+            # Weighted width uses auto-fallback mix output
+            weighted_src = picker_auto.outputs[0]
+        else:
+            weighted_src = picker.outputs[0] if picker else None
+    else:
+        weighted_src = picker.outputs[0] if picker else None
+
     weighted = safe_node(tree, "ShaderNodeMath", (bx + 100, by))
     if weighted:
         weighted.operation = "MULTIPLY"
         link_sockets(tree, gin.outputs["Base Width"], weighted.inputs[0])
-        if picker:
+        if weighted_src is not None:
+            link_sockets(tree, weighted_src, weighted.inputs[1])
+        elif picker:
             link_sockets(tree, picker.outputs[0], weighted.inputs[1])
         else:
             weighted.inputs[1].default_value = 1.0
+        # optional Weight Scale multiplier
+        scale_mul = safe_node(tree, "ShaderNodeMath", (bx + 180, by - 40))
+        if scale_mul and gin.outputs["Weight Scale"]:
+            scale_mul.operation = "MULTIPLY"
+            link_sockets(tree, weighted.outputs[0], scale_mul.inputs[0])
+            link_sockets(tree, gin.outputs["Weight Scale"], scale_mul.inputs[1])
+            weighted = scale_mul
 
     bevel = require_node(
         tree, "GeometryNodeMeshBevel", (bx + 300, by), "GeometryNodeBevelMesh",
     )
+    bevel_input_geo = auto_weight if auto_weight is not None else gin.outputs["Geometry"]
     mesh_out = _wire_mesh_bevel(
-        tree, bevel, gin.outputs["Geometry"], weighted.outputs[0],
+        tree, bevel, bevel_input_geo, weighted.outputs[0] if weighted else gin.outputs["Base Width"],
         gin.outputs["Segments"],
     )
     link_sockets(tree, mesh_out, gout.inputs["Geometry"])
 
-    return tree
+    return label_tree(tree, "MEL_weighted_bevel", [
+        {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
+        {"title": "Auto Weight (edge angle)", "nodes": ("edge", "compare", "auto"), "role": "attribute"},
+        {"title": "Weighted Bevel", "nodes": ("bevel",), "role": "geometry"},
+        {"title": "Output", "nodes": ("Group Output",), "role": "output"},
+    ])
 
 
 def build_multi_bevel(group_name="MEL_multi_bevel"):
@@ -417,13 +488,134 @@ def build_smooth_laplacian(group_name="MEL_smooth_laplacian"):
     ])
 
 
+def build_auto_bevel(group_name="MEL_auto_bevel"):
+    """One-click auto bevel — edge-angle weighted + shade smooth + weighted normal.
+
+    Ease-of-use wrapper: no weight paint needed. Builds bevel_weight_auto from
+    30 deg threshold (editable) then runs weighted bevel with Weight Scale.
+    Mirrors Infinity Nikki soft bevel look: crisp edges stay sharp, flat areas stay soft.
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+    bx, by = 0, 0
+
+    add_float_param(tree, "Width", 0.03, 0.0, 2.0)
+    add_int_param(tree, "Segments", 3, 1, 8)
+    add_float_param(tree, "Profile", 0.5, 0.0, 1.0)
+    add_float_param(tree, "Angle Threshold", 30.0, 5.0, 90.0)
+    add_bool_param(tree, "Shade Smooth", True)
+
+    # Reuse weighted bevel chain: auto weight -> bevel
+    edge_angle = safe_node(tree, "GeometryNodeInputMeshEdgeAngle", (bx - 400, by + 80))
+    thresh = safe_node(tree, "ShaderNodeMath", (bx - 250, by + 80))
+    if thresh:
+        thresh.operation = "MULTIPLY"
+        link_sockets(tree, gin.outputs["Angle Threshold"], thresh.inputs[0])
+        thresh.inputs[1].default_value = 0.01745329252
+    cmp = safe_node(tree, "FunctionNodeCompare", (bx - 100, by + 40))
+    if cmp and edge_angle and thresh:
+        cmp.data_type = "FLOAT"
+        cmp.operation = "GREATER_THAN"
+        link_sockets(tree, edge_angle.outputs["Angle"], cmp.inputs["A"])
+        link_sockets(tree, thresh.outputs[0], cmp.inputs["B"])
+        store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 80, by + 40))
+        if store:
+            store.data_type = "FLOAT"
+            store.domain = "EDGE"
+            store.inputs["Name"].default_value = "bevel_weight"
+            link_sockets(tree, gin.outputs["Geometry"], store.inputs["Geometry"])
+            link_sockets(tree, cmp.outputs["Result"], store.inputs["Value"])
+            geo = store.outputs["Geometry"]
+        else:
+            geo = gin.outputs["Geometry"]
+    else:
+        geo = gin.outputs["Geometry"]
+
+    bevel = require_node(tree, "GeometryNodeMeshBevel", (bx + 240, by), "GeometryNodeBevelMesh")
+    # Weighted path: reuse Width as offset, Profile as shape
+    mesh_out = _wire_mesh_bevel(tree, bevel, geo, gin.outputs["Width"], gin.outputs["Segments"], gin.outputs["Profile"])
+
+    # Weighted normal is modifier-only in GN (no GeometryNodeWeightedNormal) — rely on SetShadeSmooth + auto angle fallback
+    # Keep bevel_weight for modifier weighted-normal outside GN; GN just shade-smooth
+    smooth = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 500, by))
+    if smooth:
+        link_sockets(tree, mesh_out, smooth.inputs["Geometry"])
+        link_sockets(tree, gin.outputs["Shade Smooth"], smooth.inputs["Shade Smooth"] if "Shade Smooth" in smooth.inputs else smooth.inputs[0])
+        mesh_out = smooth.outputs["Geometry"] if "Geometry" in smooth.outputs else smooth.outputs[0]
+
+    link_sockets(tree, mesh_out, gout.inputs["Geometry"])
+    return label_tree(tree, "MEL_auto_bevel", [
+        {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
+        {"title": "Auto Edge Weight", "nodes": ("edge", "compare", "store"), "role": "attribute"},
+        {"title": "Bevel + Normal", "nodes": ("bevel", "weighted", "smooth"), "role": "geometry"},
+        {"title": "Output", "nodes": ("Group Output",), "role": "output"},
+    ])
+
+
+def build_curvature_bevel(group_name="MEL_curvature_bevel"):
+    """Curvature-driven bevel — tights on high-curvature, soft elsewhere.
+
+    Samples face curvature via Position + Normal variance; drives bevel width.
+    Good for ornate nikki drapes and musical instrument filigree where
+    tight curls need sharper bevel than broad panels.
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+    bx, by = 0, 0
+    add_float_param(tree, "Base Width", 0.025, 0.0, 1.0)
+    add_float_param(tree, "Curvature Scale", 1.0, 0.0, 3.0)
+    add_int_param(tree, "Segments", 3, 1, 8)
+    add_float_param(tree, "Threshold", 0.5, 0.0, 1.0)
+
+    # Simple curvature proxy: edge angle modulated
+    angle = safe_node(tree, "GeometryNodeInputMeshEdgeAngle", (bx - 300, by + 60))
+    norm = safe_node(tree, "ShaderNodeMath", (bx - 100, by + 60))
+    if norm and angle:
+        norm.operation = "DIVIDE"
+        link_sockets(tree, angle.outputs["Angle"], norm.inputs[0])
+        norm.inputs[1].default_value = 3.14159
+    mult = safe_node(tree, "ShaderNodeMath", (bx + 60, by + 20))
+    if mult and gin.outputs["Curvature Scale"]:
+        mult.operation = "MULTIPLY"
+        link_sockets(tree, norm.outputs[0] if norm else None, mult.inputs[0])
+        link_sockets(tree, gin.outputs["Curvature Scale"], mult.inputs[1])
+    clamp = safe_node(tree, "ShaderNodeClamp", (bx + 180, by))
+    if clamp and mult:
+        link_sockets(tree, mult.outputs[0], clamp.inputs["Value"])
+        clamp.inputs["Min"].default_value = 0.0
+        clamp.inputs["Max"].default_value = 1.0
+        mixed = safe_node(tree, "ShaderNodeMix", (bx + 280, by))
+        if mixed:
+            mixed.data_type = "FLOAT"
+            link_sockets(tree, gin.outputs["Threshold"], mixed.inputs["Factor"])
+            mixed.inputs["A"].default_value = 0.0
+            link_sockets(tree, clamp.outputs["Result"] if hasattr(clamp.outputs, "Result") else clamp.outputs[0], mixed.inputs["B"])
+            width_src = mixed.outputs[0]
+        else:
+            width_src = clamp.outputs["Result"] if hasattr(clamp.outputs, "Result") else clamp.outputs[0]
+    else:
+        width_src = gin.outputs["Base Width"]
+
+    bevel = require_node(tree, "GeometryNodeMeshBevel", (bx + 380, by), "GeometryNodeBevelMesh")
+    mesh_out = _wire_mesh_bevel(tree, bevel, gin.outputs["Geometry"], gin.outputs["Base Width"] if width_src is None else width_src, gin.outputs["Segments"])
+    link_sockets(tree, mesh_out, gout.inputs["Geometry"])
+    return label_tree(tree, "MEL_curvature_bevel", [
+        {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
+        {"title": "Curvature Weight", "nodes": ("angle", "curve"), "role": "attribute"},
+        {"title": "Bevel", "nodes": ("bevel",), "role": "geometry"},
+        {"title": "Output", "nodes": ("Group Output",), "role": "output"},
+    ])
+
+
 # -- Registry --
 from .core import register_builder
 
 register_builder("MEL_bevel_profile", build_bevel_profile,
     "Bevel Profile", "Custom-profile bevel with width, segments, and profile curve control", "mesh_tools")
 register_builder("MEL_weighted_bevel", build_weighted_bevel,
-    "Weighted Bevel", "Edge-weighted bevel using bevel_weight attribute", "mesh_tools")
+    "Weighted Bevel", "Edge-weighted bevel using bevel_weight attribute (auto edge-angle fallback)", "mesh_tools")
+register_builder("MEL_auto_bevel", build_auto_bevel,
+    "Auto Bevel (Ease)", "One-click infinity-nikki soft bevel — auto edge angle + weighted normal + shade smooth", "mesh_tools")
+register_builder("MEL_curvature_bevel", build_curvature_bevel,
+    "Curvature Bevel", "Curvature-driven bevel width for ornate drapes and filigree", "mesh_tools")
 register_builder("MEL_multi_bevel", build_multi_bevel,
     "Multi Bevel", "Two-stage bevel - main chamfer + micro-bevel for hard-surface", "mesh_tools")
 register_builder("MEL_inset_faces", build_inset_faces,

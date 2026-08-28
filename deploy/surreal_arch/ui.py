@@ -220,6 +220,58 @@ def draw_level_design(layout, context, monolith):
         tcol.prop(props, "gb_trim_recess")
         tcol.prop(props, "gb_frame", text="Door frame")
         tcol.prop(props, "gb_bake_trim_colors", text="Bake trim colors")
+    # ── Programme Brief P0 ───────────────────────────────────────
+    _pb = None
+    try:
+        from surreal_os import programme_brief as _pb_mod
+        _pb = _pb_mod
+    except ImportError:
+        try:
+            from deploy.surreal_os import programme_brief as _pb_mod2  # type: ignore
+            _pb = _pb_mod2
+        except Exception:
+            _pb = None
+    if _pb is not None:
+        try:
+            _arch_to_brief = {
+                "GB_ZEN_MACHIAI": "CHASHITSU",
+                "GB_ZEN_KARESANSUI": "KAIRO_ENCLOSURE",
+                "GB_ZEN_HAIDEN": "HAIDEN",
+                "GB_ZEN_SANDO": "SANDO",
+                "GB_ZEN_KAIRO": "KAIRO",
+                "GB_ZEN_GOJU_PAGODA": "SANDO",
+                "GB_ROOM_COMPOSITE": "CHASHITSU",
+                "GREYBOX_ROOM": "CHASHITSU",
+            }
+            _bid = str(getattr(props, "arch_type", "") or "")
+            if "ZEN" in _bid:
+                _programme = _arch_to_brief.get(_bid, "CHASHITSU")
+            elif "GOTHIC" in _bid:
+                _programme = "NAVE"
+            else:
+                _programme = _arch_to_brief.get(_bid, "CHASHITSU")
+            _brief = _pb.get_brief(_programme)
+            if _brief:
+                b = layout.box()
+                b.label(text="Brief: " + str(_brief.get("label", _programme)), icon="CHECKMARK")
+                try:
+                    summary = _pb.brief_summary(props, _programme)
+                    row = b.row()
+                    row.label(text=summary, icon="INFO")
+                    errs = _pb.validate_props(props, _programme)
+                    if errs:
+                        for e in errs[:2]:
+                            b.label(text="x " + str(e), icon="ERROR")
+                        b.label(text="Adjust W/D/H or Shape to meet brief", icon="QUESTION")
+                    else:
+                        b.label(text="Brief OK", icon="CHECKMARK")
+                    prow = b.row(align=True)
+                    prow.label(text="Programme: " + str(_programme), icon="BOOKMARKS")
+                except Exception as _be:
+                    b.label(text="Brief check: " + str(_be), icon="ERROR")
+        except Exception:
+            pass
+
     # ── Room shell: advanced shapes ──────────────────────────────
     if hasattr(props, "gb_room_shape"):
         is_room = props.arch_type in ("GREYBOX_ROOM", "GB_ROOM_COMPOSITE", "GB_ROOM_CIRCULAR", "GB_ROOM_APSIDAL", "GB_ROOM_CIRCULAR", "GB_ROOM_APSIDAL") or monolith._match_greybox_arch(props.arch_type)
