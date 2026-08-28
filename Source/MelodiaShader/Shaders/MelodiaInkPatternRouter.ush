@@ -1,0 +1,195 @@
+// Copyright 2026 BS_GodFile. All Rights Reserved.
+//
+// MelodiaInkPatternRouter.ush — interchanging pattern router for M_PP_MelodiaInk.
+//
+// This is Option B from the ink expansion design: a pattern-index float driven
+// by musical state that crossfades between HLSL pattern functions inside the
+// same Custom node. Each pattern is a distinct visual style, and the router
+// blends between them based on what's happening in the game.
+//
+// Pattern modes:
+//   0: Halftone (the original Ben-Day dots — preserved for compatibility)
+//   1: SDF notation (staff lines, note-heads, crescendo — from MelodiaInkSdfNotation.ush)
+//   2: Watercolor wash (soft, blooming, Nikki dream — adapted from MF_NikkiDreamWatercolor)
+//   3: Shattered print (jagged, dissonant — for tension/break states)
+//
+// The router doesn't just switch — it CROSSFADES. PatternBlend (0..1) controls
+// the mix between the current pattern and the next. This can be driven by a
+// parameter or by musical state (e.g. PatternIndex = floor(EnemyTension * 3)
+// to switch toward shattered as tension rises).
+//
+// Authoring: Rider validates this as HLSL. Consumed by the Custom node in
+// M_PP_MelodiaInk.
+
+#pragma once
+#include "MelodiaInkCommon.ush"
+#include "MelodiaInkSdfNotation.ush"
+#include "MelodiaInkBioluminescent.ush"
+
+// ============================================================================
+// Pattern 0: Halftone (the original, preserved)
+// Ported from the existing Custom node HLSL in build_dreamprint_material.py
+// ============================================================================
+
+float3 MelPatternHalftone(
+    float3 src, float2 uv, float luma,
+    FMelodiaInkAudio audio, FMelodiaInkParams params, float3 inkCol
+)
+{
+    float ang = params.DotAngle * 0.0174533;
+    float2 cuv = MelRotateUV(uv, params.DotAngle);
+    float2 cell = frac(cuv / max(params.DotPitch, 1e-4));
+    float2 cdist = abs(cell - 0.5) * 2.0;
+    float dotDist = length(cdist) * 0.7071;
+
+    float midInk = MelSaturate(1.0 - abs(luma - 0.5) * 4.0) * MelSaturate(audio.Mid);
+    float dotRadius = (0.18 + (1.0 - luma) * 0.55 * params.DotLumaDrive) * params.DotScale;
+    dotRadius *= 1.0 + audio.BeatPulse * 0.18 + audio.ComboNormalized * 0.10
+               + audio.Bass * 0.06 + midInk * 0.15;
+
+    float dotEdge = max(fwidth(dotDist) * 2.0, 0.002);
+    float dotMask = 1.0 - smoothstep(max(dotRadius - dotEdge, 0.0), dotRadius + dotEdge, dotDist);
+
+    float shadowInk = MelSaturate((1.0 - luma) * 0.6 + params.PaperShadow * 0.4);
+    float inkAmt = dotMask * params.HalftoneOn * shadowInk;
+
+    return lerp(src, lerp(src, inkCol * 0.7 + src * 0.3, 1.0),
+                inkAmt * params.Strength * (0.6 + audio.InkReact * 0.4));
+}
+
+// ============================================================================
+// Pattern 2: Watercolor wash
+// Adapted from MF_NikkiDreamWatercolor HLSL (expand_nikki_features.py)
+// Soft, blooming, dream-like — for calm/exploration states
+// ============================================================================
+
+float3 MelPatternWatercolor(
+    float3 src, float2 uv, float luma,
+    FMelodiaInkAudio audio, FMelodiaInkParams params, float3 inkCol
+)
+{
+    float3 col = src;
+
+    // Seed noise from UV for per-pixel variation
+    float seed = dot(uv * 1000.0, float2(12.9898, 78.233));
+    float n = MelHash(uv * 100.0);
+
+    // Bleed amount — more in shadows, jittered per-pixel
+    float bleed = MelSaturate((1.0 - luma) * 0.4 + n * 0.15);
+
+    // Soft hue rotation — gentle, dream-like
+    float3 hue = float3(cos(n * MEL_TAU), sin(n * MEL_TAU), 0.0) * 0.02;
+
+    // Pooling mask — watercolor pools in low-luma areas
+    float pool = MelSaturate(1.0 - luma * 1.5);
+
+    // Audio drives the bleed size
+    float bassBleed = MelSaturate(audio.Bass) * 0.2;
+    bleed += bassBleed;
+
+    float3 washed = col * (1.0 + hue) + params.PaperColor * bleed * 0.3;
+    col = lerp(col, washed, params.Strength * (0.3 + pool * 0.4));
+
+    // Gentle dream lift — brightens midtones slightly with combo
+    float dreamLift = MelSaturate(audio.ComboNormalized) * 0.05;
+    col += dreamLift * smoothstep(0.2, 0.8, luma);
+
+    return col;
+}
+
+// ============================================================================
+// Pattern 3: Shattered print
+// Jagged, dissonant — for tension/break states
+// ============================================================================
+
+float3 MelPatternShattered(
+    float3 src, float2 uv, float luma,
+    FMelodiaInkAudio audio, FMelodiaInkParams params, float3 inkCol
+)
+{
+    float3 col = src;
+    float tension = MelSaturate(audio.EnemyTension);
+    float breakP = MelSaturate(audio.BreakPulse);
+
+    // Jagged displacement — the "shatter" effect
+    float2 shatter = float2(
+        sin(uv.y * 40.0 + View.GameTime * 2.0) * 0.005 * (tension + breakP),
+        cos(uv.x * 35.0 + View.GameTime * 1.7) * 0.005 * (tension + breakP)
+    );
+
+    // Fragment mask — creates broken-glass pattern
+    float2 frag = frac(uv * 8.0 + shatter * 100.0);
+    float fragMask = step(0.45, frag.x) * step(0.55, frag.y);
+
+    // Edge glow on fragments
+    float edge = 1.0 - MelSoftStep(0.05, abs(frag.x - 0.5));
+    edge += 1.0 - MelSoftStep(0.05, abs(frag.y - 0.5));
+
+    // Dark ink in fragments, glowing edges
+    float shatterAmt = (tension * 0.6 + breakP * 0.4) * params.Strength;
+    col = lerp(col, inkCol * 0.4, fragMask * shatterAmt * 0.5);
+    col += params.AccentTint * edge * shatterAmt * 0.3;
+
+    return col;
+}
+
+// ============================================================================
+// The router — selects and blends between patterns
+// ============================================================================
+
+float3 MelInkPatternRouter(
+    float3 src,          // SceneColor (PostProcessInput0)
+    float2 uv,           // Screen UV
+    FMelodiaInkAudio audio,
+    FMelodiaInkParams params,
+    float3 inkCol        // pre-computed ink color
+)
+{
+    float luma = MelLuminance(src);
+    float3 col = src;
+
+    // Determine current and next pattern indices
+    // If PatternIndex is set explicitly (non-integer), we blend.
+    // If PatternIndex is an integer, we can still blend via PatternBlend.
+    float idx = params.PatternIndex;
+    float idxFloor = floor(idx);
+    float idxFrac = idx - idxFloor;
+    float blend = max(idxFrac, params.PatternBlend);
+
+    int current = (int)idxFloor;
+    int next = current + 1;
+    // Wrap
+    if (next > 3) next = 0;
+
+    // Compute both patterns
+    float3 patternCurrent;
+    float3 patternNext;
+
+    // Current pattern
+    if (current == 0)
+        patternCurrent = MelPatternHalftone(src, uv, luma, audio, params, inkCol);
+    else if (current == 1)
+        patternCurrent = MelInkSdfNotation(src, uv, audio, params, inkCol);
+    else if (current == 2)
+        patternCurrent = MelPatternWatercolor(src, uv, luma, audio, params, inkCol);
+    else
+        patternCurrent = MelPatternShattered(src, uv, luma, audio, params, inkCol);
+
+    // Next pattern
+    if (next == 0)
+        patternNext = MelPatternHalftone(src, uv, luma, audio, params, inkCol);
+    else if (next == 1)
+        patternNext = MelInkSdfNotation(src, uv, luma, audio, params, inkCol);
+    else if (next == 2)
+        patternNext = MelPatternWatercolor(src, uv, luma, audio, params, inkCol);
+    else
+        patternNext = MelPatternShattered(src, uv, luma, audio, params, inkCol);
+
+    // Crossfade
+    col = lerp(patternCurrent, patternNext, blend);
+
+    // Apply bioluminescent bridge on top of whichever pattern is active
+    col = MelInkBioluminescent(col, uv, audio, params, inkCol);
+
+    return col;
+}
