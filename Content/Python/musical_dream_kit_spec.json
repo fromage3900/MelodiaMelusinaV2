@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "biome": "Musical Dream",
+  "authored_at": "2026-08-26",
+  "destination_paths": {
+    "meshes": "/Game/EnvSandbox/Meshes/MusicalDream",
+    "instances": "/Game/EnvSandbox/Materials/Instances/MusicalDream"
+  },
+  "piano_rolls": {
+    "purpose": "Walkable, spline-meshable piano-key paths laid over water or land.",
+    "collision": "CTF_USE_SIMPLE_AS_COMPLEX (walkable)",
+    "instances": [
+      "MI_PianoRoll_Ivory",
+      "MI_PianoRoll_Ebony",
+      "MI_PianoRoll_Keybed"
+    ],
+    "meshes": [
+      "SM_PianoRoll_Straight_White_2m",
+      "SM_PianoRoll_Straight_Black_2m",
+      "SM_PianoRoll_Straight_White_4m",
+      "SM_PianoRoll_Straight_Black_4m",
+      "SM_PianoRoll_Straight_White_8m",
+      "SM_PianoRoll_Straight_Black_8m",
+      "SM_PianoRoll_Arc_90_White",
+      "SM_PianoRoll_Arc_180_White",
+      "SM_PianoRoll_Ramp_15",
+      "SM_PianoRoll_Ramp_30",
+      "SM_PianoRoll_Cap_Start",
+      "SM_PianoRoll_Cap_End"
+    ],
+    "placement_notes": [
+      "Use SplineMeshComponent on a BP_DreamPath spline. Cap_Start/End close both ends.",
+      "Arcs span 90/180 with radius 400cm; can be tiled for tighter turns.",
+      "Ramps rise 15/30 degrees over 200cm; use for height changes between two piano paths."
+    ]
+  },
+  "coral_reef": {
+    "purpose": "Instanced scatter for water-floor dressing. Reads against Oceanology water V7.",
+    "collision": "no collision (scatter only)",
+    "instances": [
+      "MI_Coral_Reef_Warm",
+      "MI_Coral_Reef_Cool",
+      "MI_Coral_Reef_Pearl"
+    ],
+    "meshes": [
+      "SM_Coral_Branching_A",
+      "SM_Coral_Branching_B",
+      "SM_Coral_Branching_C",
+      "SM_Coral_Plate_S",
+      "SM_Coral_Plate_M",
+      "SM_Coral_Plate_L",
+      "SM_Coral_Brain_A",
+      "SM_Coral_Bubble_A",
+      "SM_Coral_SeaWhip_A"
+    ],
+    "placement_notes": [
+      "Drive scatter with PCG: 3 branching + 2 plate + 1 brain per 5m x 5m tile.",
+      "Sea whips go near path edges (piano roll approach lanes).",
+      "Color by palette: warm near sandy shallows, cool in deeper water, pearl in the highlight zone."
+    ]
+  },
+  "filigree": {
+    "purpose": "Modular musical-ornament trim that frames piano roll paths and accents coral formations.",
+    "collision": "no collision (decorative)",
+    "instances": [
+      "MI_Filigree_Gold",
+      "MI_Filigree_MelusinaAccent"
+    ],
+    "meshes": [
+      "SM_Filigree_Straight_Treble_2m",
+      "SM_Filigree_Straight_Treble_4m",
+      "SM_Filigree_Corner_Inside_90",
+      "SM_Filigree_Corner_Outside_90",
+      "SM_Filigree_Cap_Start",
+      "SM_Filigree_Cap_End",
+      "SM_Filigree_SheetMusicCorner"
+    ],
+    "placement_notes": [
+      "SplineMeshComponent on a 1m inset spline along the piano path; trim follows the path.",
+      "Inside corners hug the path; outside corners extend 60cm outward as accent.",
+      "SheetMusicCorner anchors a 60x60cm staff-and-clef at path junctions."
+    ]
+  },
+  "toon_profile": "TP_Melusina",
+  "parents_used": {
+    "piano_rolls": [
+      "/Game/EnvSandbox/Materials/Instances/Environment/MI_Env_Wood_Trim",
+      "/Game/EnvSandbox/Materials/Instances/Environment/MI_Env_Stone_Cathedral"
+    ],
+    "coral_reef": [
+      "/Game/EnvSandbox/Materials/Instances/Environment/MI_Universal_IridescentShell"
+    ],
+    "filigree": [
+      "/Game/EnvSandbox/Materials/Instances/Environment/Baroque/MI_Baroque_GildedFiligree"
+    ]
+  },
+  "convention": "All MIs inherit from existing toon-family instances. M_Master_Toon_Universal is NOT modified."
+}
