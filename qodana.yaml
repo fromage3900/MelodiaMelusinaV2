@@ -1,46 +1,73 @@
-#-------------------------------------------------------------------------------#
-#               Qodana analysis is configured by qodana.yaml file               #
-#             https://www.jetbrains.com/help/qodana/qodana-yaml.html            #
-#-------------------------------------------------------------------------------#
+# Qodana Configuration for BS_GodFile (Unreal Engine 5.8)
+# https://www.jetbrains.com/help/qodana/qodana-yaml.html
 
-#################################################################################
-#              WARNING: Do not store sensitive information in this file,        #
-#               as its contents will be included in the Qodana report.          #
-#################################################################################
 version: "1.0"
 
-#Specify IDE code to run analysis without container (Applied in CI/CD pipeline)
-ide: QDNET
+# IDE mode — runs locally with JetBrains C++ / Unreal Engine analyzer
+ide: QDJB
 
-#Specify inspection profile for code analysis
+# Inspection profile
 profile:
-  name: qodana.starter
+  name: qodana.recommended
 
-#Enable inspections
-#include:
-#  - name: <SomeEnabledInspectionId>
+# Unreal C++ specific and core quality inspections
+include:
+  - name: CppMemberFunctionMayBeConst
+  - name: CppParameterMayBeConst
+  - name: CppLocalVariableMayBeConst
+  - name: CppUseNullptr
+  - name: CppUseAuto
+  - name: CppUseEnumClass
+  - name: CppUseOverride
+  - name: CppUseDefault
+  - name: CppUseDelete
+  - name: CppUseNoexcept
+  - name: CppUseNodiscard
+  - name: CppUseMaybeUnused
+  - name: CppRedundantInclude
+  - name: CppUnusedIncludeDirective
+  - name: CppMemberInitializersOrder
+  - name: CppClangTidyClangDiagnosticUnusedVariable
+  - name: CppClangTidyClangDiagnosticUnusedValue
 
-#Disable inspections
-#exclude:
-#  - name: <SomeDisabledInspectionId>
-#    paths:
-#      - <path/where/not/run/inspection>
+# Exclude non-source and third-party plugin paths
+exclude:
+  - name: All
+    paths:
+      - Content/
+      - Saved/
+      - Intermediate/
+      - DerivedDataCache/
+      - CompatibilityLabs/
+      - ThirdParty/
+      - _ThirdParty/
+      - Plugins/HoudiniEngine/
+      - Plugins/Claireon/
+      - Plugins/KawaiiPhysics/
+      - Plugins/PCGExtendedToolkit/
+      - Plugins/ProceduralDungeon/
+      - Plugins/ProceduralModelingToolkit/
+      - Plugins/GaeaUnrealTools/
+      - Plugins/Oceanology_Plugin/
+      - Plugins/UEBlueprintMCP/
+      - Plugins/UnrealMCP/
+      - Plugins/Monolith/
+      - Plugins/MeshBlend/
+      - Plugins/MelodiaNPR/
+      - Plugins/MelodiaTokenWallet/
+      - Plugins/MelodiaWardrobe/
+      - Plugins/MelodiaCore/
+      - Plugins/QuillScript/
+      - .hermes/
+      - .jcode/
+      - .opencode/
+      - Tools/
+      - deploy/
+      - Docs/
 
-#Execute shell command before Qodana execution (Applied in CI/CD pipeline)
-#bootstrap: sh ./prepare-qodana.sh
-
-#Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
-#plugins:
-#  - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
-
-# Quality gate. Will fail the CI/CD pipeline if any condition is not met
-# severityThresholds - configures maximum thresholds for different problem severities
-# testCoverageThresholds - configures minimum code coverage on a whole project and newly added code
-# Code Coverage is available in Ultimate and Ultimate Plus plans
-#failureConditions:
-#  severityThresholds:
-#    any: 15
-#    critical: 5
-#  testCoverageThresholds:
-#    fresh: 70
-#    total: 50
+# Quality gate: Enforce clean builds and zero critical defects
+failureConditions:
+  severityThresholds:
+    critical: 0
+    high: 5
+    any: 30
