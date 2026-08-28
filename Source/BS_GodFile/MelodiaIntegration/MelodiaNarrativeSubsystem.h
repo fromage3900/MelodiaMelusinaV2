@@ -26,6 +26,8 @@ class BS_GODFILE_API UMelodiaNarrativeSubsystem final : public UGameInstanceSubs
 	GENERATED_BODY()
 
 public:
+	UMelodiaNarrativeSubsystem();
+
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 

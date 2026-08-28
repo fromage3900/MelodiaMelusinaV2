@@ -13,6 +13,9 @@
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaInputContextSubsystem.h"
 #include "Containers/Ticker.h"
+#include "Components/MeshComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
+#include "EngineUtils.h"
 
 namespace
 {
@@ -21,6 +24,100 @@ namespace
 	// Niagara cannot sample an MPC. NPC_Melodia_Palette is the Niagara-side twin and is
 	// already read by six+ NS_ systems; nothing wrote it before this subsystem did.
 	constexpr TCHAR AudioNpcPath[] = TEXT("/Game/EnvSandbox/VFX/MPC/NPC_Melodia_Palette.NPC_Melodia_Palette");
+
+	// --- Oceanology presentation drive ----------------------------------------
+	// Oceanology's water surface cannot sample MPC_Melodia_Palette: its master
+	// (M_Oceanology) is plugin-owned and must never be edited, and material
+	// instances cannot add collection samples. So the beat reaches the ocean the
+	// sanctioned way instead: this subsystem (already the single MPC beat writer)
+	// creates one dynamic material instance per ocean surface component and writes
+	// the verified parameter surface (106 params captured 2026-08-27 via material
+	// reflection on M_Oceanology_Inst) by name:
+	//   BeatPulse  -> PhaseGLow / HighlightBoost
+	//   Bass/Combat-> ScatterBoost
+	//   ImpactPulse-> DeepScatteringColor shift
+	// No Oceanology headers are included; the actor class is matched by name so
+	// this file stays buildable with the plugin disabled. Game-worlds only --
+	// the editor viewport must never be mutated by runtime presentation.
+	struct FOceanBeatDriveEntry
+	{
+		TWeakObjectPtr<UMeshComponent> Component;
+		TWeakObjectPtr<UMaterialInstanceDynamic> Mid;
+	};
+	// Keyed by world so PIE and any secondary world never share MIDs.
+	static TMap<const UWorld*, TArray<FOceanBeatDriveEntry>> GOceanBeatDrives;
+	static double GOceanRescanTime = 0.0;
+	constexpr float OceanDriveRescanInterval = 2.0f;
+	constexpr TCHAR OceanActorClassNameToken[] = TEXT("Oceanology");
+
+	void DriveOceanBeatValues(UWorld* World, float BeatPulse, float CombatEnergy, float ImpactPulse)
+	{
+		const double Now = FPlatformTime::Seconds();
+		TArray<FOceanBeatDriveEntry>& Entries = GOceanBeatDrives.FindOrAdd(World);
+		bool bRescan = (Now - GOceanRescanTime) > OceanDriveRescanInterval;
+		if (bRescan)
+		{
+			GOceanRescanTime = Now;
+			Entries.RemoveAll([](const FOceanBeatDriveEntry& Entry)
+			{
+				return !Entry.Component.IsValid() || !Entry.Mid.IsValid();
+			});
+			for (TActorIterator<AActor> It(World); It; ++It)
+			{
+				AActor* Actor = *It;
+				if (!Actor || !Actor->GetClass()->GetName().Contains(OceanActorClassNameToken))
+				{
+					continue;
+				}
+				// One drive per mesh component; skip components already driven.
+				bool bDriven = false;
+				for (const FOceanBeatDriveEntry& Entry : Entries)
+				{
+					if (Entry.Component.Get() == Actor->FindComponentByClass<UMeshComponent>() ||
+					    (Entry.Component.IsValid() && Entry.Component->GetOwner() == Actor))
+					{
+						bDriven = true;
+						break;
+					}
+				}
+				if (bDriven)
+				{
+					continue;
+				}
+				if (UMeshComponent* Mesh = Actor->FindComponentByClass<UMeshComponent>())
+				{
+					if (UMaterialInterface* BaseMaterial = Mesh->GetMaterial(0))
+					{
+						if (UMaterialInstanceDynamic* Mid = UMaterialInstanceDynamic::Create(BaseMaterial, Actor))
+						{
+							Mesh->SetMaterial(0, Mid);
+							FOceanBeatDriveEntry Entry;
+							Entry.Component = Mesh;
+							Entry.Mid = Mid;
+							Entries.Add(Entry);
+							UE_LOG(LogTemp, Log, TEXT("MELODIA_OCEAN_BEAT_DRIVE: bound MID on %s (base %s)"), *Actor->GetName(), *BaseMaterial->GetName());
+						}
+					}
+				}
+			}
+		}
+		for (const FOceanBeatDriveEntry& Entry : Entries)
+		{
+			UMaterialInstanceDynamic* Mid = Entry.Mid.Get();
+			if (!Mid)
+			{
+				continue;
+			}
+			// Baselines are the M_Oceanology_Inst defaults; deltas lift on the beat.
+			Mid->SetScalarParameterValue(TEXT("PhaseGLow"), 0.75f + BeatPulse * 0.75f);
+			Mid->SetScalarParameterValue(TEXT("HighlightBoost"), 10.0f + BeatPulse * 10.0f);
+			Mid->SetScalarParameterValue(TEXT("ScatterBoost"), 10.0f + CombatEnergy * 5.0f);
+			// DeepScatteringColor base (0.05, 0.25, 0.30); ImpactPulse pulls it toward
+			// violet/emissive on impacts. Alpha untouched (0.15 absorption stays base).
+			Mid->SetVectorParameterValue(TEXT("DeepScatteringColor"),
+				FLinearColor(0.05f + ImpactPulse * 0.10f, 0.25f - ImpactPulse * 0.05f, 0.30f + ImpactPulse * 0.20f, 0.15f));
+		}
+	}
 }
 
 void UMelodiaAudioReactivePresentationSubsystem::Initialize(FSubsystemCollectionBase& Collection)
@@ -179,6 +276,15 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatPhase"), BeatPhase);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatPulse"), BeatPulseValue);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatIntensity"), BeatPulseValue);
+
+	// --- Oceanology surface drive ------------------------------------------------
+	// Same values as the MPC publish above, written as MI parameters because the
+	// plugin master cannot sample the collection (see DriveOceanBeatValues header).
+	// Game-worlds only: the drive must never mutate editor-viewport materials.
+	if (World->IsGameWorld())
+	{
+		DriveOceanBeatValues(World, BeatPulseValue, bBattleActive ? BattleIntensity : 0.0f, ImpactPulse);
+	}
 
 	// --- Niagara mirror -------------------------------------------------------------
 	// Same values, second collection. SetFloatParameter takes the FRIENDLY name, which
