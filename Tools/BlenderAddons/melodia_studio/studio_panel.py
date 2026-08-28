@@ -59,7 +59,18 @@ def _discover_cached() -> list[str]:
     now = time.time()
     if _MIDI_CACHE and (now - _MIDI_CACHE_TIME) < _MIDI_CACHE_TTL:
         return _MIDI_CACHE
-    found = midi_bridge.discover_midi()
+    # honour AddonPreferences midi_extra_dirs (semicolon-separated)
+    extra = None
+    if bpy is not None:
+        try:
+            prefs = bpy.context.preferences.addons.get("melodia_studio")
+            if prefs and hasattr(prefs, "preferences"):
+                raw = getattr(prefs.preferences, "midi_extra_dirs", "") or ""
+                if raw.strip():
+                    extra = [p.strip() for p in raw.split(";") if p.strip()]
+        except Exception:
+            extra = None
+    found = midi_bridge.discover_midi(extra_dirs=extra)
     _MIDI_CACHE = found
     _MIDI_CACHE_TIME = now
     return found
@@ -162,9 +173,35 @@ def _tandem_plan_items(self, context):
         return [("castle", "Castle", ""), ("zen_roji", "Zen Roji", ""), ("village", "Village", "")]
 
 
-# ------------------------------------------------------------- properties
+# ------------------------------------------------------------- addon preferences (v1.5 +)
 
 if bpy is not None:
+    class MelodiaStudioPreferences(bpy.types.AddonPreferences):
+        """Addon Preferences — C: authority root + extra MIDI dirs. Surface in Edit > Preferences > Add-ons > Melodia Studio."""
+        bl_idname = "melodia_studio"
+
+        project_root: bpy.props.StringProperty(
+            name="Project Root",
+            description="Override BS_GodFile root (default: auto-detect C:\\EnvironmentPortfolio\\BS_GodFile via $MELODIA_PROJECT_ROOT or walk-up). Leave empty for auto.",
+            subtype='DIR_PATH',
+            default="",
+        )
+        midi_extra_dirs: bpy.props.StringProperty(
+            name="Extra MIDI Dirs",
+            description="Semicolon-separated extra MIDI search dirs (e.g., G:\\MyMIDIs;D:\\Songs). Appended to Content/MelodiaIntegration/MIDI and Imports/Audio.",
+            default="",
+        )
+
+        def draw(self, context):
+            layout = self.layout
+            layout.label(text="C Authority — empty = auto-detect (env $MELODIA_PROJECT_ROOT preferred)", icon='INFO')
+            layout.prop(self, "project_root")
+            layout.prop(self, "midi_extra_dirs")
+            # hint
+            row = layout.row()
+            row.label(text="Extra dirs are appended to discover_midi()", icon='FILE_SOUND')
+
+
     class StudioProps(bpy.types.PropertyGroup):
         midi_file: bpy.props.EnumProperty(
             name="MIDI",
@@ -1196,6 +1233,39 @@ if bpy is not None:
                 if vers:
                     row = box.row()
                     row.label(text="Addons: %d" % len(vers), icon='PACKAGE')
+                # GN preset badge — live audit if surreal_arch on path
+                try:
+                    import importlib.util as _ilu
+                    import pathlib as _pl
+                    _gn_presets = _pl.Path(midi_bridge.repo_root()) / "deploy" / "surreal_arch" / "melodia_gn" / "presets.py"
+                    if _gn_presets.exists():
+                        spec = _ilu.spec_from_file_location("_gn_presets_tmp", str(_gn_presets))
+                        if spec and spec.loader:
+                            mod = _ilu.module_from_spec(spec)
+                            spec.loader.exec_module(mod)
+                            rep = mod.audit_presets() if hasattr(mod, "audit_presets") else {}
+                            cov = rep.get("coverage_ratio", 0)
+                            pb = rep.get("preset_builders", 0)
+                            rb = rep.get("registered_builders") or rep.get("preset_builders", 0)
+                            row = box.row()
+                            row.label(text=f"GN: {pb}/{rb} presets {cov*100:.0f}%", icon='NODETREE')
+                except Exception:
+                    pass
+                # AppData drift hint
+                try:
+                    if _mu is not None and hasattr(_mu, "addon_versions"):
+                        av = _mu.addon_versions()
+                        tools_ver = None
+                        appdata_ver = None
+                        for k, v in (av or {}).items():
+                            if "melodia_studio" in k.lower():
+                                tools_ver = v
+                                break
+                        if tools_ver:
+                            row = box.row()
+                            row.label(text=f"Melodia Studio {tools_ver}", icon='INFO')
+                except Exception:
+                    pass
             else:
                 layout.label(text=midi_bridge.repo_root(), icon='FILE_FOLDER')
                 layout.label(text="melodia_utils not available", icon='ERROR')
@@ -1212,6 +1282,7 @@ if bpy is not None:
                          text="Showroom").folder = "showroom"  # type: ignore[attr-defined]
 
     classes = [
+        MelodiaStudioPreferences,
         StudioProps,
         STUDIO_OT_generate_from_midi,
         STUDIO_OT_frame_terrain,
