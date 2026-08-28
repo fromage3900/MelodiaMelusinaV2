@@ -377,7 +377,7 @@ plausible to a folder outside `Content/` first.
 2. Do not save existing portfolio/Melodia maps or unrelated materials.
 3. Duplicate before changing template assets.
 4. Prefer one small, verifiable change per session.
-5. Use the filesystem backup at `CompatibilityLabs/ProductionPreIntegrationBackup_2026-07-26` for rollback; Git object storage is damaged.
+5. Use the filesystem backup at `CompatibilityLabs/ProductionPreIntegrationBackup_2026-07-26` for rollback — the working tree is ~151 GB of largely-unversioned art and a `git clean -fd` or `checkout -- .` would destroy it permanently; the git object store itself is healthy (verified by `git fsck --full` in 2026-08-28).
 6. Static graph inspection is not runtime proof.
 7. **One editor instance. Always.** On 2026-08-08 three ran concurrently on this project:
    five crash reports in one hour, assets changing mid-edit, and 39 unsaved packages lost to

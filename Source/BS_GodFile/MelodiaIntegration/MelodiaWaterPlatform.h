@@ -28,7 +28,7 @@ public:
 	void InitializeFromPCGPoint(FPCGPoint Point, const UPCGMetadata* Metadata);
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Platform")
-	FName GetStablePlatformId() const { return PlatformId; }
+        FName GetStablePlatformId() const { return PlatformId; }
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Platform")
 	EMelodiaWaterPlatformMotionMode GetMotionMode() const { return MotionMode; }
@@ -52,7 +52,7 @@ public:
 	TObjectPtr<UMelodiaWaterBuoyancyComponent> BuoyancyComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG")
-	FGameplayTag PlatformId = FGameplayTag::EmptyTag;
+        FName PlatformId = NAME_None;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG")
 	int32 WorldSeed = 0;

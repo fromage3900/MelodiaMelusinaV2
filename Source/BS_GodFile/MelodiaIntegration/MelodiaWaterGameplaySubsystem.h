@@ -56,7 +56,7 @@ public:
 	bool IsWaterRouteOpen(FGameplayTag NetworkId, FGameplayTag RouteId) const;
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Gameplay")
-	bool GetPlatformMotionState(FGameplayTag PlatformId, FMelodiaWaterPlatformState& OutState) const;
+	bool GetPlatformMotionState(FName PlatformId, FMelodiaWaterPlatformState& OutState) const;
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Water|Gameplay")
 	bool RegisterPlatform(const FMelodiaWaterPlatformState& State);
@@ -100,11 +100,11 @@ private:
 	const FNetworkRuntime* FindNetwork(FGameplayTag NetworkId) const;
 	FNetworkRuntime* FindNetwork(FGameplayTag NetworkId);
 	bool IsRouteOpen(const FNetworkRuntime& Network, FGameplayTag RouteId) const;
-	FName RouteKey(const FMelodiaWaterLinkConfig& Link) const;
+	FGameplayTag RouteKey(const FMelodiaWaterLinkConfig& Link) const;
 	void ApplyPendingNodeState(FGameplayTag NetworkId, FGameplayTag NodeId, FMelodiaWaterNodeState& State);
 
 	TMap<FGameplayTag, FNetworkRuntime> Networks;
-	TMap<FGameplayTag, FMelodiaWaterPlatformState> PlatformStates;
+        TMap<FName, FMelodiaWaterPlatformState> PlatformStates;
 	TSet<FGameplayTag> CompletedPuzzleIds;
 	int32 PuzzleRevision = 0;
 	FMelodiaWaterGameplaySaveData PendingSaveState;

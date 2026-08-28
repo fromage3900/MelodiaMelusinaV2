@@ -12,6 +12,7 @@ public class BS_GodFile : ModuleRules
 			"Core",
 			"CoreUObject",
 			"Engine",
+			"GameplayTags",
 			"Water",
 			"Niagara",
 			"MetasoundEngine",

@@ -1,5 +1,10 @@
 # P0 Closeout — Loose-End Review and Updated Plan
 
+> **2026-08-28 final C++ amendment:** the water `FGameplayTag` migration is complete, the
+> `MelodiaShader` virtual path is registered, the closed-editor Development Editor build passes,
+> and `Melodia.Wardrobe.EquipRoundtrip` passes with a real cataloged accessory. The focused test is
+> preparation evidence only; the save/restart/material and Glide gates remain open.
+
 **Date:** 2026-08-28
 **Supersedes as the P0 router:** `Docs/Handoffs/P0_BATTLE_UI_CLOSEOUT_HANDOFF_2026-08-27.md` (still the
 evidence record for the two gates it closed).

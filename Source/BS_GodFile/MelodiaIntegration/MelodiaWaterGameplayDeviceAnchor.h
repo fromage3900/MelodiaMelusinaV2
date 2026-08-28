@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameplayTagContainer.h"
 #include "PCGPoint.h"
 #include "MelodiaWaterGameplayDeviceAnchor.generated.h"
 
@@ -37,13 +38,13 @@ public:
 	FName GameplayRole = NAME_None;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Anchor")
-	FName WaterNetworkId = NAME_None;
+	FGameplayTag WaterNetworkId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Anchor")
-	FName WaterNodeId = NAME_None;
+	FGameplayTag WaterNodeId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Anchor")
-	FName RouteId = NAME_None;
+	FGameplayTag RouteId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Anchor")
 	FName GameplayDataLayer = TEXT("DL_Musical_HeroGameplay");

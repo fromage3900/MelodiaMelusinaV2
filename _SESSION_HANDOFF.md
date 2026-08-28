@@ -38,6 +38,13 @@
 > Branch: `feature/p0-phase1-allowlist-quill-trigger` (4 commits, unmerged).
 > Also: `Docs/Handoffs/P0_PHASE1_CLOSEOUT_AND_QUILL_TRIGGER_2026-08-28.md`,
 > `Docs/VFX_NIAGARA_FLIPBOOK_SYSTEM_PLAN_2026-08-28.md`.
+>
+> **Houdini lane (later 08-28):** Sea Above reef texture suite (24 files, 11/11 tilable-verified)
+> + 4 clutter meshes COOKED and manifest-backed in `Saved/Audit/sea_above/`; hython 22.0.368
+> proven headless (no Engine license → HDA-in-UE parked). Long-term reference:
+> `Docs/Production/HOUDINI_CREATIVE_PIPELINE_REFERENCE_2026-08-28.md` — read before any Houdini
+> work (Apprentice blocks FBX/Alembic export; File-SOP "write" is the path; never run hython
+> bare in a shared console — a hang wedged one session).
 
 > ## Start here — 2026-08-27 (two P0 gates CLOSED, Quill dialogue restored)
 >

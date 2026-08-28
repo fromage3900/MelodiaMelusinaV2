@@ -26,7 +26,7 @@ public:
 	bool InteractWithDevice(AActor* Instigator);
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Water|Controller")
-	bool SetRouteOpen(bool bOpen, FName InRouteId);
+	bool SetRouteOpen(bool bOpen, FGameplayTag InRouteId);
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Water|Controller")
 	FMelodiaWaterNodeState GetCurrentState() const { return CurrentState; }
@@ -44,10 +44,10 @@ public:
 	float InteractionStrength = 1.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Controller")
-	FName InteractionRouteId = NAME_None;
+	FGameplayTag InteractionRouteId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Controller")
-	FName CompletionPuzzleId = NAME_None;
+	FGameplayTag CompletionPuzzleId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Controller")
 	bool bAutoRegister = true;

@@ -1,0 +1,2609 @@
+/*
+* Copyright (c) <2021> Side Effects Software Inc.
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*
+* 1. Redistributions of source code must retain the above copyright notice,
+*    this list of conditions and the following disclaimer.
+*
+* 2. The name of Side Effects Software may not be used to endorse or
+*    promote products derived from this software without specific prior
+*    written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY SIDE EFFECTS SOFTWARE "AS IS" AND ANY EXPRESS
+* OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+* OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
+* NO EVENT SHALL SIDE EFFECTS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT,
+* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+* LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+* OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+* LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#include "HoudiniPDGManager.h"
+
+#include "Modules/ModuleManager.h"
+#include "MessageEndpointBuilder.h"
+#include "HAL/FileManager.h"
+
+#include "HoudiniApi.h"
+#include "HoudiniAsset.h"
+#include "HoudiniEngine.h"
+#include "HoudiniEngineUtils.h"
+#include "HoudiniEngineString.h"
+#include "HoudiniEngineRuntime.h"
+#include "HoudiniAssetComponent.h"
+#include "HoudiniEngineManager.h"
+#include "HoudiniPDGAssetLink.h"
+#include "HoudiniPackageParams.h"
+
+#include "HoudiniEnginePrivatePCH.h"
+#include "HoudiniMeshTranslator.h"
+#include "HoudiniOutputTranslator.h"
+#include "HoudiniPDGTranslator.h"
+#include "HoudiniPDGImporterMessages.h"
+
+#include "HAPI/HAPI_Common.h"
+
+HOUDINI_PDG_DEFINE_LOG_CATEGORY();
+HOUDINI_COMMANDLET_DEFINE_LOG_CATEGORY();
+
+#define LOCTEXT_NAMESPACE HOUDINI_LOCTEXT_NAMESPACE
+
+FHoudiniPDGManager::FHoudiniPDGManager()
+{
+}
+
+FHoudiniPDGManager::~FHoudiniPDGManager()
+{
+}
+
+bool
+FHoudiniPDGManager::InitializePDGAssetLink(
+	const HAPI_NodeId& InNodeId, UObject* InOuter, UHoudiniPDGAssetLink*& PDGAssetLink, const bool& bHasBeenLoaded)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniPDGManager::InitializePDGAssetLink);
+	if (InNodeId < 0)
+		return false;
+
+	if (!FHoudiniEngineUtils::IsHoudiniNodeValid((HAPI_NodeId)InNodeId))
+		return false;
+
+	// Create a new PDG Asset Link Object
+	bool bRegisterPDGAssetLink = false;		
+	if (!IsValid(PDGAssetLink))
+	{
+		PDGAssetLink = NewObject<UHoudiniPDGAssetLink>(InOuter, UHoudiniPDGAssetLink::StaticClass(), NAME_None, RF_Transactional);
+		bRegisterPDGAssetLink = true;
+	}
+
+	if (!IsValid(PDGAssetLink))
+		return false;
+	
+	PDGAssetLink->AssetID = InNodeId;
+	
+	// Get the HDA's info
+	HAPI_NodeInfo AssetInfo;
+	FHoudiniApi::NodeInfo_Init(&AssetInfo);
+	HOUDINI_CHECK_ERROR_RETURN( FHoudiniApi::GetNodeInfo(
+		FHoudiniEngine::Get().GetSession(), (HAPI_NodeId)PDGAssetLink->AssetID, &AssetInfo), false);
+
+	// Get the node path
+	FString AssetNodePath;
+	FHoudiniEngineString::ToFString(AssetInfo.internalNodePathSH, PDGAssetLink->AssetNodePath);
+
+	// Get the node name
+	FString AssetName;
+	FHoudiniEngineString::ToFString(AssetInfo.nameSH, PDGAssetLink->AssetName);
+
+	const bool bZeroWorkItemTallys = true;
+	if (!FHoudiniPDGManager::PopulateTOPNetworks(PDGAssetLink, bZeroWorkItemTallys))
+	{
+		// We couldn't find any valid TOPNet/TOPNode, this is not a PDG Asset
+		// Make sure the HDA doesn't have a PDGAssetLink
+		return false;
+	}
+
+	// If the PDG asset link comes from a loaded asset, we also need to register it
+	if (bHasBeenLoaded)
+	{
+		bRegisterPDGAssetLink = true;
+	}
+
+	// We have found valid TOPNetworks and TOPNodes,
+	// This is a PDG HDA, so add the AssetLink to it
+	PDGAssetLink->LinkState = EPDGLinkState::Linked;
+
+	if (PDGAssetLink->SelectedTOPNetworkIndex < 0)
+		PDGAssetLink->SelectedTOPNetworkIndex = 0;
+
+	if (bRegisterPDGAssetLink)
+	{
+		// Register this PDG Asset Link to the PDG Manager
+		TWeakObjectPtr<UHoudiniPDGAssetLink> AssetLinkPtr(PDGAssetLink);
+		PDGAssetLinks.Add(AssetLinkPtr);
+	}
+
+	// If the commandlet is enabled, check if we have started and established communication with the commandlet yet
+	// if not, try to start the commandlet
+	bool bCommandletIsEnabled = false;
+	const UHoudiniRuntimeSettings * HoudiniRuntimeSettings = GetDefault<UHoudiniRuntimeSettings>();
+	if (IsValid(HoudiniRuntimeSettings))
+	{
+		bCommandletIsEnabled = HoudiniRuntimeSettings->bPDGAsyncCommandletImportEnabled;
+	}
+
+	if (bCommandletIsEnabled)
+	{
+		const EHoudiniBGEOCommandletStatus CommandletStatus = UpdateAndGetBGEOCommandletStatus();
+		if (CommandletStatus == EHoudiniBGEOCommandletStatus::NotStarted && bCommandletIsEnabled)
+		{
+			CreateBGEOCommandletAndEndpoint();
+		}
+	}
+
+	return true;
+}
+
+bool
+FHoudiniPDGManager::UpdatePDGAssetLink(UHoudiniPDGAssetLink* PDGAssetLink)
+{
+	if (!IsValid(PDGAssetLink))
+		return false;
+
+	// TODO COOKABLE: Improve! do not rely on GetOuter
+	UHoudiniAssetComponent* ParentHAC = Cast<UHoudiniAssetComponent>(PDGAssetLink->GetOuter());
+	UHoudiniCookable* ParentHC = Cast<UHoudiniCookable>(PDGAssetLink->GetOuter());
+	EHoudiniAssetState ParentState = ParentHAC ? ParentHAC->GetAssetState() : ParentHC ? ParentHC->GetCurrentState() : EHoudiniAssetState::None;
+	HAPI_NodeId ParentNodeId = ParentHAC ? ParentHAC->GetAssetId() : ParentHC ? ParentHC->GetNodeId() : -1;
+
+		// If the PDG Asset link is inactive, indicate that our HDA must be instantiated
+	if (PDGAssetLink->LinkState == EPDGLinkState::Inactive)
+	{
+		if(!ParentHAC && !ParentHC)
+		{
+			// No valid parent, error!
+			PDGAssetLink->LinkState = EPDGLinkState::Error_Not_Linked;
+			HOUDINI_LOG_ERROR(TEXT("No valid Houdini Asset Component parent for PDG Asset Link!"));
+		}
+		else if (ParentState == EHoudiniAssetState::NeedInstantiation)
+		{
+			PDGAssetLink->LinkState = EPDGLinkState::Linking;
+			if (ParentHAC)
+				ParentHAC->SetAssetState(EHoudiniAssetState::PreInstantiation);
+			else if (ParentHC)
+				ParentHC->SetCurrentState(EHoudiniAssetState::PreInstantiation);
+		}
+		else
+		{
+			PDGAssetLink->LinkState = EPDGLinkState::Error_Not_Linked;
+			HOUDINI_LOG_ERROR(TEXT("Unable to link the PDG Asset link! Try to rebuild the HDA."));
+		}
+	}
+	
+	if (PDGAssetLink->LinkState == EPDGLinkState::Linking)
+	{
+		return true;
+	}
+
+	if (PDGAssetLink->LinkState != EPDGLinkState::Linked)
+	{
+		if (ParentNodeId < 0)
+			return false;
+
+		if (!FHoudiniEngineUtils::IsHoudiniNodeValid((HAPI_NodeId)ParentNodeId))
+			return false;
+
+		PDGAssetLink->AssetID = ParentNodeId;
+	}
+
+	if(!PopulateTOPNetworks(PDGAssetLink))
+	{
+		PDGAssetLink->LinkState = EPDGLinkState::Error_Not_Linked;
+		HOUDINI_LOG_ERROR(TEXT("Failed to populte the PDG Asset Link."));
+		return false;
+	}
+
+	return true;
+}
+
+
+bool
+FHoudiniPDGManager::PopulateTOPNetworks(UHoudiniPDGAssetLink* PDGAssetLink, bool bInZeroWorkItemTallys)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniPDGManager::PopulateTOPNetworks);
+
+	// Find all TOP networks from linked HDA, as well as the TOP nodes within, and populate internal state.
+	if (!IsValid(PDGAssetLink))
+		return false;
+
+	// Get all the network nodes within the asset, recursively.
+	// We're getting all networks because TOP network SOPs aren't considered being of TOP network type, but SOP type
+	int32 NetworkNodeCount = 0;
+	HOUDINI_CHECK_ERROR_RETURN( FHoudiniApi::ComposeChildNodeList(
+		FHoudiniEngine::Get().GetSession(), (HAPI_NodeId)PDGAssetLink->AssetID,
+		HAPI_NODETYPE_SOP | HAPI_NODETYPE_TOP, HAPI_NODEFLAGS_NETWORK | HAPI_NODEFLAGS_NON_BYPASS, true, &NetworkNodeCount), false);
+
+	if (NetworkNodeCount <= 0)
+		return false;
+
+	TArray<HAPI_NodeId> AllNetworkNodeIDs;
+	AllNetworkNodeIDs.SetNum(NetworkNodeCount);
+	HOUDINI_CHECK_ERROR_RETURN(FHoudiniApi::GetComposedChildNodeList(
+		FHoudiniEngine::Get().GetSession(), (HAPI_NodeId)PDGAssetLink->AssetID,
+		AllNetworkNodeIDs.GetData(), NetworkNodeCount), false);
+
+	// For each Network we found earlier, only add those with TOP child nodes 
+	// Therefore guaranteeing that we only add TOP networks
+	TArray<UTOPNetwork*> AllTOPNetworks;
+	for (const HAPI_NodeId& CurrentNodeId : AllNetworkNodeIDs)
+	{
+		if (CurrentNodeId < 0)
+		{
+			continue;
+		}
+
+		HAPI_NodeInfo CurrentNodeInfo;
+		FHoudiniApi::NodeInfo_Init(&CurrentNodeInfo);
+		if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetNodeInfo(
+			FHoudiniEngine::Get().GetSession(), CurrentNodeId, &CurrentNodeInfo))
+		{
+			continue;
+		}
+		
+
+		// Check that this TOP Net is not nested in another TOP Net...
+		// This can happen with ROP Geometry TOPs for example...
+		bool bIsNestedInTOPNet = false;
+		HAPI_NodeId CurrentParentId = CurrentNodeInfo.parentId;
+		while (CurrentParentId > 0)
+		{
+			if (AllNetworkNodeIDs.Contains(CurrentParentId))
+			{
+				bIsNestedInTOPNet = true;
+				break;
+			}
+
+			HAPI_NodeInfo ParentNodeInfo;
+			FHoudiniApi::NodeInfo_Init(&ParentNodeInfo);
+			if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetNodeInfo(
+				FHoudiniEngine::Get().GetSession(), CurrentParentId, &ParentNodeInfo))
+			{
+				break;
+			}
+
+			// Get our parent's parent
+			CurrentParentId = ParentNodeInfo.parentId;
+		}
+
+		// Skip nested TOP nets
+		if (bIsNestedInTOPNet)
+			continue;
+
+		// Get the list of all non bypassed TOP nodes within the current network (ignoring schedulers)
+		int32 TOPNodeCount = 0;
+		if (HAPI_RESULT_SUCCESS != FHoudiniApi::ComposeChildNodeList(
+			FHoudiniEngine::Get().GetSession(), CurrentNodeId,
+			HAPI_NodeType::HAPI_NODETYPE_TOP, HAPI_NODEFLAGS_TOP_NONSCHEDULER | HAPI_NODEFLAGS_NON_BYPASS, true, &TOPNodeCount))
+		{
+			continue;
+		}
+
+		TArray<HAPI_NodeId> AllTOPNodeIDs;
+		AllTOPNodeIDs.SetNum(TOPNodeCount);
+		HOUDINI_CHECK_ERROR_RETURN(FHoudiniApi::GetComposedChildNodeList(
+			FHoudiniEngine::Get().GetSession(), CurrentNodeId, AllTOPNodeIDs.GetData(), TOPNodeCount), false);
+
+		// Skip networks without TOP nodes
+		if (AllTOPNodeIDs.Num() <= 0)
+		{
+			continue;
+		}
+
+		// TODO:
+		// Apply the show and output filter on that node
+		bool bShow = true;
+
+		// Get the node path
+		FString CurrentNodePath;
+		FHoudiniEngineUtils::HapiGetNodePath(CurrentNodeInfo.id, PDGAssetLink->AssetID, CurrentNodePath);
+		
+		// Get the node name
+		FString CurrentNodeName;
+		FHoudiniEngineString::ToFString(CurrentNodeInfo.nameSH, CurrentNodeName);
+
+		UTOPNetwork* CurrentTOPNetwork = nullptr;
+		int32 FoundTOPNetIndex = INDEX_NONE;	
+		UTOPNetwork* FoundTOPNet = PDGAssetLink->GetTOPNetworkByNodePath(CurrentNodeName, PDGAssetLink->AllTOPNetworks, FoundTOPNetIndex);
+		if (IsValid(FoundTOPNet))
+		{
+			// Reuse the existing corresponding TOP NET
+			CurrentTOPNetwork = FoundTOPNet;
+			PDGAssetLink->AllTOPNetworks.RemoveAt(FoundTOPNetIndex);
+		}
+		else
+		{
+			// Create a new instance for the TOP NET
+			CurrentTOPNetwork = NewObject<UTOPNetwork>(PDGAssetLink, UTOPNetwork::StaticClass(), NAME_None, RF_Transactional);
+		}
+
+		// Update the TOP NET
+		CurrentTOPNetwork->NodeId = CurrentNodeId;
+		CurrentTOPNetwork->NodeName = CurrentNodeName;
+		CurrentTOPNetwork->NodePath = CurrentNodePath;
+		CurrentTOPNetwork->ParentName = PDGAssetLink->AssetName;
+		CurrentTOPNetwork->bShowResults = bShow;
+		
+		// Only add network that have valid TOP Nodes
+		if (PopulateTOPNodes(AllTOPNodeIDs, CurrentTOPNetwork, PDGAssetLink, bInZeroWorkItemTallys))
+		{
+			// See if we need to select a new TOP node
+			bool bReselectValidTOP = false;
+			if (CurrentTOPNetwork->SelectedTOPIndex < 0)
+				bReselectValidTOP = true;
+			else if (!CurrentTOPNetwork->AllTOPNodes.IsValidIndex(CurrentTOPNetwork->SelectedTOPIndex))
+				bReselectValidTOP = true;
+			else if (!IsValid(CurrentTOPNetwork->AllTOPNodes[CurrentTOPNetwork->SelectedTOPIndex]) ||
+						CurrentTOPNetwork->AllTOPNodes[CurrentTOPNetwork->SelectedTOPIndex]->bHidden)
+				bReselectValidTOP = true;
+
+			if (bReselectValidTOP)
+			{
+				// Select the first valid TOP node (not hidden)
+				for (int Idx = 0; Idx < CurrentTOPNetwork->AllTOPNodes.Num(); Idx++)
+				{
+					UTOPNode *TOPNode = CurrentTOPNetwork->AllTOPNodes[Idx];
+					if (!IsValid(TOPNode) || TOPNode->bHidden)
+						continue;
+
+					CurrentTOPNetwork->SelectedTOPIndex = Idx;
+					break;
+				}
+			}
+
+			AllTOPNetworks.Add(CurrentTOPNetwork);
+		}
+	}
+
+	// Clear previous TOP networks, nodes and generated data
+	for (UTOPNetwork* CurrentTOPNet : PDGAssetLink->AllTOPNetworks)
+	{
+		if (!IsValid(CurrentTOPNet))
+			continue;
+		
+		PDGAssetLink->ClearTOPNetworkWorkItemResults(CurrentTOPNet);
+	}
+	//PDGAssetLink->ClearAllTOPData();
+	PDGAssetLink->AllTOPNetworks = AllTOPNetworks;
+
+	return (AllTOPNetworks.Num() > 0);
+}
+
+
+bool
+FHoudiniPDGManager::PopulateTOPNodes(
+	const TArray<HAPI_NodeId>& InTopNodeIDs, UTOPNetwork* InTOPNetwork, UHoudiniPDGAssetLink* InPDGAssetLink, bool bInZeroWorkItemTallys)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniPDGManager::PopulateTOPNodes);
+	if (!IsValid(InPDGAssetLink))
+		return false;
+
+	if (!IsValid(InTOPNetwork))
+		return false;
+
+	// 
+	int32 TOPNodeCount = 0;
+
+	// Holds list of found TOP nodes
+	TArray<UTOPNode*> AllTOPNodes;
+	for(const HAPI_NodeId& CurrentTOPNodeID : InTopNodeIDs)
+	{
+		HAPI_NodeInfo CurrentNodeInfo;
+		FHoudiniApi::NodeInfo_Init(&CurrentNodeInfo);
+		if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetNodeInfo(
+			FHoudiniEngine::Get().GetSession(), CurrentTOPNodeID, &CurrentNodeInfo))
+		{
+			continue;
+		}
+
+		// Increase the number of valid TOP Node
+		// (before applying the node filter)
+		TOPNodeCount++;
+
+		// Get the node path
+		FString NodePath;
+		FHoudiniEngineUtils::HapiGetNodePath(CurrentNodeInfo.id, InTOPNetwork->NodeId, NodePath);
+
+		// Get the node name
+		FString NodeName;
+		FHoudiniEngineString::ToFString(CurrentNodeInfo.nameSH, NodeName);
+
+		// See if we can find an existing version of this TOPNOde
+		UTOPNode* CurrentTOPNode = nullptr;
+		int32 FoundNodeIndex = INDEX_NONE;
+		UTOPNode* FoundNode = InPDGAssetLink->GetTOPNodeByNodePath(NodePath, InTOPNetwork->AllTOPNodes, FoundNodeIndex);
+		if (IsValid(FoundNode))
+		{
+			CurrentTOPNode = FoundNode;
+			InTOPNetwork->AllTOPNodes.RemoveAt(FoundNodeIndex);
+
+			if (bInZeroWorkItemTallys)
+			{
+				CurrentTOPNode->ZeroWorkItemTally();
+				CurrentTOPNode->NodeState = EPDGNodeState::None;
+			}
+		}
+		else
+		{
+			// Didn't find an existing UTOPNode for this node, create a new UTOPNode instance
+			CurrentTOPNode = NewObject<UTOPNode>(InPDGAssetLink, UTOPNode::StaticClass(), NAME_None, RF_Transactional);
+		}
+
+		CurrentTOPNode->NodeId = CurrentTOPNodeID;
+		CurrentTOPNode->NodeName = NodeName;
+		CurrentTOPNode->NodePath = NodePath;
+		CurrentTOPNode->ParentName = InTOPNetwork->ParentName + TEXT("_") + InTOPNetwork->NodeName;
+		CurrentTOPNode->bHasChildNodes = CurrentNodeInfo.childNodeCount > 0;
+
+		// Filter display/autoload using name
+		CurrentTOPNode->bHidden = false;
+		if (InPDGAssetLink->bUseTOPNodeFilter && !InPDGAssetLink->TOPNodeFilter.IsEmpty())
+		{
+			// Only display nodes that matches the filter
+			if (!NodeName.StartsWith(InPDGAssetLink->TOPNodeFilter))
+				CurrentTOPNode->bHidden = true;
+		}
+
+		// Automatically load results for nodes that match the filter
+		if (InPDGAssetLink->bUseTOPOutputFilter)
+		{
+			bool bAutoLoad = false;
+			if (InPDGAssetLink->TOPOutputFilter.IsEmpty())
+				bAutoLoad = true;
+			else if (NodeName.StartsWith(InPDGAssetLink->TOPOutputFilter))
+				bAutoLoad = true;
+
+			CurrentTOPNode->bAutoLoad = bAutoLoad;
+
+			// Show autoloaded results by default
+			CurrentTOPNode->SetVisibleInLevel(bAutoLoad);
+		}
+
+		AllTOPNodes.Add(CurrentTOPNode);
+	}
+
+	for (UTOPNode* CurTOPNode : InTOPNetwork->AllTOPNodes)
+	{
+		if (!IsValid(CurTOPNode))
+			continue;
+		
+		UHoudiniPDGAssetLink::ClearTOPNodeWorkItemResults(CurTOPNode);
+	}
+
+	InTOPNetwork->AllTOPNodes = AllTOPNodes;
+
+	return (TOPNodeCount > 0);
+}
+
+
+void 
+FHoudiniPDGManager::DirtyTOPNode(UTOPNode* InTOPNode)
+{
+	if (!IsValid(InTOPNode))
+		return;
+	
+	// Dirty the specified TOP node...
+	if (HAPI_RESULT_SUCCESS != FHoudiniApi::DirtyPDGNode(
+		FHoudiniEngine::Get().GetSession(), InTOPNode->NodeId, true))
+	{
+		HOUDINI_LOG_ERROR(TEXT("PDG Dirty TOP Node - Failed to dirty %s!"), *(InTOPNode->NodeName));
+	}
+	
+	// ... and clear its work item results.
+	UHoudiniPDGAssetLink::ClearTOPNodeWorkItemResults(InTOPNode);
+}
+
+// void
+// FHoudiniPDGManager::DirtyAllTasksOfTOPNode(FTOPNode& InTOPNode)
+// {
+// 	// Dirty the specified TOP node...
+// 	if (HAPI_RESULT_SUCCESS != FHoudiniApi::DirtyPDGNode(
+// 		FHoudiniEngine::Get().GetSession(), InTOPNode.NodeId, true))
+// 	{
+// 		HOUDINI_LOG_ERROR(TEXT("PDG Dirty TOP Node - Failed to dirty %s!"), *InTOPNode.NodeName);
+// 	}
+// }
+
+bool
+FHoudiniPDGManager::CookTOPNode(UTOPNode* InTOPNode)
+{
+	if (!IsValid(InTOPNode))
+		return false;
+		
+	if (!FHoudiniEngine::Get().GetSession())
+		return false;
+
+	if (InTOPNode->NodeState == EPDGNodeState::Cooking || InTOPNode->AnyWorkItemsPending())
+	{
+		HOUDINI_LOG_WARNING(TEXT("PDG Cook TOP Node - %s is already/still cooking, ignoring 'Cook TOP Node' request."), *(InTOPNode->NodePath));
+		return false;
+	}
+
+	if (HAPI_RESULT_SUCCESS != FHoudiniApi::CookPDG(
+		FHoudiniEngine::Get().GetSession(), InTOPNode->NodeId, 0, 0))
+	{
+		HOUDINI_LOG_ERROR(TEXT("PDG Cook TOP Node - Failed to cook %s!"), *(InTOPNode->NodeName));
+		return false;
+	}
+
+	InTOPNode->LoadState = EPDGLoadState::Loading;
+
+	return true;
+}
+
+
+bool
+FHoudiniPDGManager::DirtyAll(UTOPNetwork* InTOPNet)
+{
+	if (!IsValid(InTOPNet))
+		return false;
+
+	if (!FHoudiniEngine::Get().GetSession())
+		return false;
+	
+	// Dirty the specified TOP network...
+	if (HAPI_RESULT_SUCCESS != FHoudiniApi::DirtyPDGNode(FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, true))
+	{
+		HOUDINI_LOG_ERROR(TEXT("PDG Dirty All - Failed to dirty all of %s's TOP nodes!"), *(InTOPNet->NodeName));
+		return false;
+	}
+
+	// ... and clear its work item results.
+	UHoudiniPDGAssetLink::ClearTOPNetworkWorkItemResults(InTOPNet);
+
+	InTOPNet->NetworkState = EPDGNodeState::Dirtied;
+	InTOPNet->LoadState = EPDGLoadState::None;
+	return true;
+}
+
+
+bool
+FHoudiniPDGManager::CookOutput(UHoudiniCookable* InHC,  UTOPNetwork* InTOPNet)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniPDGManager::CookOutput);
+
+	FHoudiniStatusManager::Get()->StartPDG(InHC);
+
+	if (!IsValid(InTOPNet) || !FHoudiniEngine::Get().GetSession() || InTOPNet->NetworkState == EPDGNodeState::Cooking)
+		return false;
+
+	FHoudiniEngine::Get().GetHoudiniEngineManager()->UploadedParametersAndInputs(InHC);
+
+	HAPI_PDG_GraphContextId GraphContextId = -1;
+	HAPI_Result Result = FHoudiniApi::GetPDGGraphContextId(FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, &GraphContextId);
+
+	if (Result != HAPI_RESULT_SUCCESS)
+	{
+		HOUDINI_LOG_ERROR(TEXT("PDG Cook Output - Failed to get %s's graph context ID!"), *(InTOPNet->NodeName));
+		return false;
+	}
+
+	int32 PDGState = -1;
+	Result = FHoudiniApi::GetPDGState(FHoudiniEngine::Get().GetSession(), GraphContextId, &PDGState);
+
+	if (Result != HAPI_RESULT_SUCCESS)
+	{
+		HOUDINI_LOG_ERROR(TEXT("PDG Cook Output - Failed to get %s's PDG state."), *(InTOPNet->NodeName));
+		return false;
+	}
+
+	if (static_cast<HAPI_PDG_State>(PDGState) == HAPI_PDG_STATE_COOKING)
+	{
+		InTOPNet->NetworkState = EPDGNodeState::Cooking;
+		HOUDINI_LOG_WARNING(TEXT("PDG Cook Output - %s is already/still cooking, ignoring 'Cook Output' request."), *(InTOPNet->NodeName));
+		return false;
+	}
+
+	Result = FHoudiniApi::CookPDGAllOutputs(FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, 0, 0);
+	if(Result != HAPI_RESULT_SUCCESS)
+	{
+		HOUDINI_LOG_ERROR(TEXT("PDG Cook Output - Failed to cook %s's output!"), *(InTOPNet->NodeName));
+		InTOPNet->NetworkState = EPDGNodeState::Cook_Failed;
+		FHoudiniStatusManager::Get()->EndCooking(InHC, false);
+		return false;
+	}
+
+	InTOPNet->NetworkState = EPDGNodeState::Cooking;
+
+	EPDGLoadState NewLoadState = InTOPNet->bAutoLoadResults ? EPDGLoadState::Loading : EPDGLoadState::LoadDisabled;
+
+	InTOPNet->LoadState = NewLoadState;
+	for(UTOPNode* TOPNode : InTOPNet->AllTOPNodes)
+	{
+		TOPNode->LoadState = NewLoadState;
+		TOPNode->SetWorkItemsDirty();
+	}
+
+	return true;
+}
+
+
+void 
+FHoudiniPDGManager::PauseCook(UTOPNetwork* InTOPNet)
+{
+	if(!IsValid(InTOPNet) || !FHoudiniEngine::Get().GetSession())
+		return;
+
+	if(InTOPNet->NetworkState == EPDGNodeState::Cooking)
+	{
+		HAPI_PDG_GraphContextId GraphContextId = -1;
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::GetPDGGraphContextId(FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, &GraphContextId))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Pause Cook - Failed to get %s's graph context ID!"), *(InTOPNet->NodeName));
+			return;
+		}
+
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::PausePDGCook(FHoudiniEngine::Get().GetSession(), GraphContextId))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Pause Cook - Failed to pause %s!"), *(InTOPNet->NodeName));
+			return;
+		}
+		InTOPNet->NetworkState = EPDGNodeState::Paused;
+	}
+	else if(InTOPNet->LoadState == EPDGLoadState::Loading)
+	{
+		InTOPNet->LoadState = EPDGLoadState::Loading_Paused;
+	}
+}
+
+void
+FHoudiniPDGManager::ResumeCook(UTOPNetwork* InTOPNet)
+{
+	if(!IsValid(InTOPNet) || !FHoudiniEngine::Get().GetSession())
+		return;
+
+	if(InTOPNet->NetworkState == EPDGNodeState::Paused)
+	{
+		HAPI_PDG_GraphContextId GraphContextId = -1;
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::GetPDGGraphContextId(FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, &GraphContextId))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Pause Cook - Failed to get %s's graph context ID!"), *(InTOPNet->NodeName));
+			return;
+		}
+
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::CookPDG(FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, 0, 0))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Pause Cook - Failed to pause %s!"), *(InTOPNet->NodeName));
+			return;
+		}
+		InTOPNet->NetworkState = EPDGNodeState::Paused;
+	}
+
+	if(InTOPNet->LoadState == EPDGLoadState::Loading_Paused)
+	{
+		InTOPNet->LoadState = EPDGLoadState::Loading;
+	}
+}
+
+
+void
+FHoudiniPDGManager::CancelCook(UTOPNetwork* InTOPNet)
+{
+	if(!IsValid(InTOPNet) || !FHoudiniEngine::Get().GetSession())
+		
+	if (InTOPNet->NetworkState != EPDGNodeState::Cooking)
+	{
+		HAPI_PDG_GraphContextId GraphContextId = -1;
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::GetPDGGraphContextId(
+			FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, &GraphContextId))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Cancel Cook - Failed to get %s's graph context ID!"), *(InTOPNet->NodeName));
+			return;
+		}
+
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::CancelPDGCook(
+			FHoudiniEngine::Get().GetSession(), GraphContextId))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Cancel Cook - Failed to cancel cook for %s!"), *(InTOPNet->NodeName));
+			return;
+		}
+	}
+
+
+	InTOPNet->NetworkState = EPDGNodeState::Cancelled;
+	InTOPNet->LoadState = EPDGLoadState::None;
+}
+
+void
+FHoudiniPDGManager::PauseCook(UTOPNode* InTOPNode)
+{
+	if(!IsValid(InTOPNode) || !FHoudiniEngine::Get().GetSession())
+		return;
+
+	if(InTOPNode->NodeState == EPDGNodeState::Cooking)
+	{
+		HAPI_PDG_GraphContextId GraphContextId = -1;
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::GetPDGGraphContextId(FHoudiniEngine::Get().GetSession(), InTOPNode->NodeId, &GraphContextId))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Pause Cook - Failed to get %s's graph context ID!"), *(InTOPNode->NodeName));
+			return;
+		}
+
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::PausePDGCook(FHoudiniEngine::Get().GetSession(), GraphContextId))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Pause Cook - Failed to pause %s!"), *(InTOPNode->NodeName));
+			return;
+		}
+		InTOPNode->NodeState = EPDGNodeState::Paused;
+	}
+	else if(InTOPNode->LoadState == EPDGLoadState::Loading)
+	{
+		InTOPNode->LoadState = EPDGLoadState::Loading_Paused;
+	}
+}
+
+
+void
+FHoudiniPDGManager::ResumeCook(UTOPNode* InTOPNet)
+{
+	if(!IsValid(InTOPNet) || !FHoudiniEngine::Get().GetSession())
+		return;
+
+	if(InTOPNet->NodeState == EPDGNodeState::Paused)
+	{
+		HAPI_PDG_GraphContextId GraphContextId = -1;
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::GetPDGGraphContextId(FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, &GraphContextId))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Pause Cook - Failed to get %s's graph context ID!"), *(InTOPNet->NodeName));
+			return;
+		}
+
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::CookPDG(FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, 0, 0))
+		{
+			HOUDINI_LOG_ERROR(TEXT("PDG Pause Cook - Failed to pause %s!"), *(InTOPNet->NodeName));
+			return;
+		}
+		InTOPNet->NodeState = EPDGNodeState::Paused;
+	}
+
+	if(InTOPNet->LoadState == EPDGLoadState::Loading_Paused)
+	{
+		InTOPNet->LoadState = EPDGLoadState::Loading;
+	}
+}
+
+
+void
+FHoudiniPDGManager::CancelCook(UTOPNode* InTOPNet)
+{
+	if(!IsValid(InTOPNet) || !FHoudiniEngine::Get().GetSession())
+
+		if(InTOPNet->NodeState != EPDGNodeState::Cooking)
+		{
+			HAPI_PDG_GraphContextId GraphContextId = -1;
+			if(HAPI_RESULT_SUCCESS != FHoudiniApi::GetPDGGraphContextId(
+				FHoudiniEngine::Get().GetSession(), InTOPNet->NodeId, &GraphContextId))
+			{
+				HOUDINI_LOG_ERROR(TEXT("PDG Cancel Cook - Failed to get %s's graph context ID!"), *(InTOPNet->NodeName));
+				return;
+			}
+
+			if(HAPI_RESULT_SUCCESS != FHoudiniApi::CancelPDGCook(
+				FHoudiniEngine::Get().GetSession(), GraphContextId))
+			{
+				HOUDINI_LOG_ERROR(TEXT("PDG Cancel Cook - Failed to cancel cook for %s!"), *(InTOPNet->NodeName));
+				return;
+			}
+		}
+
+	InTOPNet->NodeState = EPDGNodeState::Cancelled;
+	InTOPNet->LoadState = EPDGLoadState::None;
+}
+
+void
+FHoudiniPDGManager::Update()
+{
+	// Process Commandlet output.
+
+	if(FPlatformProcess::IsProcRunning(BGEOCommandletProcHandle) && BGEOReadPipe)
+	{
+		FString NewOutput = FPlatformProcess::ReadPipe(BGEOReadPipe);
+
+		TArray<FString> Lines;
+		NewOutput.ParseIntoArrayLines(Lines);
+
+		for(const FString& Line : Lines)
+		{
+			if (!Line.IsEmpty())
+			{
+				HOUDINI_COMMANDLET_MESSAGE(TEXT("%s"), *Line);
+			}
+		}
+	}
+
+
+	// Clean up registered PDG Asset Links
+	for(int32 Idx = PDGAssetLinks.Num() - 1; Idx >= 0; Idx--)
+	{
+		TWeakObjectPtr<UHoudiniPDGAssetLink> Ptr = PDGAssetLinks[Idx];
+		if (!Ptr.IsValid() || Ptr.IsStale())
+		{
+			PDGAssetLinks.RemoveAt(Idx);
+			continue;
+		}
+
+		UHoudiniPDGAssetLink* CurPDGAssetLink = PDGAssetLinks[Idx].Get();
+		if (!IsValid(CurPDGAssetLink))
+		{
+			PDGAssetLinks.RemoveAt(Idx);
+			continue;
+		}
+
+		// Remove PDG AL that dont have a valid/registered cookable
+		UHoudiniCookable* OuterHC = CurPDGAssetLink->GetOuterHoudiniCookable();
+		if (!IsValid(OuterHC) ||!FHoudiniEngineRuntime::Get().IsCookableRegistered(OuterHC))
+		{
+			PDGAssetLinks.RemoveAt(Idx);
+			continue;
+		}
+	}
+
+	// Do nothing if we dont have any valid PDG asset Link
+	if (PDGAssetLinks.Num() <= 0)
+		return;
+
+	// Update the PDG contexts and handle all pdg events and work item status updates
+	UpdatePDGContexts();
+
+	// Prcoess any workitem result if we have any
+	ProcessWorkItemResults();
+}
+
+// Query all the PDG graph context in the current Houdini Engine session.
+// Handle PDG events, work item status updates.
+// Forward relevant events to PDGAssetLink objects.
+void
+FHoudiniPDGManager::UpdatePDGContexts()
+{
+	// Get current PDG graph contexts
+	ReinitializePDGContext();
+
+	int MaxNumberOfPDGEvents = 100;
+
+	TArray<HAPI_PDG_EventInfo> PDGEventInfos;
+	PDGEventInfos.SetNum(MaxNumberOfPDGEvents);
+
+	// Process next set of events for each graph context
+	if (PDGContextIDs.Num() > 0)
+	{
+		// TODO: member?
+		//HAPI_PDG_State PDGState;
+		for(const HAPI_PDG_GraphContextId& CurrentContextID : PDGContextIDs)
+		{
+			double StartTime = FPlatformTime::Seconds();
+
+			int32 TotalPDGEventCount = 0;
+			int32 RemainingPDGEventCount = 0;
+
+			while ((FPlatformTime::Seconds() - StartTime) < 0.03)
+			{
+				int32 ThisEventCount = 0;
+
+				HAPI_Result Result = FHoudiniApi::GetPDGEvents(
+					FHoudiniEngine::Get().GetSession(), 
+					CurrentContextID, 
+					PDGEventInfos.GetData(), MaxNumberOfPDGEvents, &ThisEventCount, &RemainingPDGEventCount);
+
+				TotalPDGEventCount += ThisEventCount;
+
+				if(Result != HAPI_RESULT_SUCCESS)
+				{
+					HOUDINI_LOG_ERROR(TEXT("Failed to get PDG events, error code: %d"), Result);
+					break;
+				}
+
+				for(int Index = 0; Index < ThisEventCount; ++Index)
+				{
+					ProcessPDGEvent(CurrentContextID, PDGEventInfos[Index]);
+				}
+
+				if(RemainingPDGEventCount == 0)
+					break;
+			}
+
+			if (TotalPDGEventCount > 0)
+				HOUDINI_LOG_MESSAGE(TEXT("PDG: Tick processed %d events, %d remaining."), TotalPDGEventCount, RemainingPDGEventCount);
+		}
+	}
+
+	for (auto CurAssetLink : PDGAssetLinks)
+	{
+		UHoudiniPDGAssetLink* const AssetLink = CurAssetLink.Get();
+		if (!IsValid(AssetLink))
+			continue;
+
+		// Check if the post bake delegate should be fired
+		AssetLink->BroadcastPostAutoBakeDelegateIfRequired();
+
+		// Refresh UI if necessary, otherwise just make sure the work item tally is up to date
+		if (AssetLink->bNeedsUIRefresh)
+		{
+			FHoudiniPDGManager::RefreshPDGAssetLinkUI(AssetLink);
+			AssetLink->bNeedsUIRefresh = false;
+		}
+		else
+		{
+			AssetLink->UpdateWorkItemTally();
+		}
+	}
+}
+
+// Query the currently active PDG graph contexts in the Houdini Engine session.
+// Should be done each time to get latest set of graph contexts.
+void
+FHoudiniPDGManager::ReinitializePDGContext()
+{
+	int32 NumContexts = 0;
+	FHoudiniApi::GetPDGGraphContextsCount(FHoudiniEngine::Get().GetSession(), &NumContexts);
+
+	if(NumContexts > 0)
+	{
+		PDGContextNames.SetNum(NumContexts);
+		PDGContextIDs.SetNum(NumContexts);
+
+		if(HAPI_RESULT_SUCCESS != FHoudiniApi::GetPDGGraphContexts(
+				FHoudiniEngine::Get().GetSession(),
+				PDGContextNames.GetData(), PDGContextIDs.GetData(), 0, NumContexts))
+		{
+			PDGContextNames.SetNum(0);
+			PDGContextIDs.SetNum(0);
+		}
+	}
+	else 
+	{
+		PDGContextNames.SetNum(0);
+		PDGContextIDs.SetNum(0);
+	}
+}
+
+// Process a PDG event. Notify the relevant PDGAssetLink object.
+void
+FHoudiniPDGManager::ProcessPDGEvent(const HAPI_PDG_GraphContextId& InContextID, HAPI_PDG_EventInfo& EventInfo)
+{
+	UTOPNetwork* TOPNetwork = nullptr;
+	UTOPNode* TOPNode = nullptr;
+
+	HAPI_PDG_EventType EventType = (HAPI_PDG_EventType)EventInfo.eventType;
+	HAPI_PDG_WorkItemState CurrentWorkItemState = (HAPI_PDG_WorkItemState)EventInfo.currentState;
+	HAPI_PDG_WorkItemState LastWorkItemState = (HAPI_PDG_WorkItemState)EventInfo.lastState;
+
+	// Debug: get the HAPI_PDG_EventType as a string
+	const FString EventName = FHoudiniEngineUtils::HapiGetEventTypeAsString(EventType);
+	const FString CurrentWorkItemStateName = FHoudiniEngineUtils::HapiGetWorkItemStateAsString(CurrentWorkItemState);
+	const FString LastWorkItemStateName = FHoudiniEngineUtils::HapiGetWorkItemStateAsString(LastWorkItemState);
+
+	UHoudiniCookable* Cookable = nullptr;
+
+	if (EventType == HAPI_PDG_EVENT_SCHEDULER_ADDED)
+		return;
+
+	bool bFoundNetworkAndNode = GetTOPAssetLinkNetworkAndNode(EventInfo.nodeId, Cookable, TOPNetwork, TOPNode);
+
+	UHoudiniPDGAssetLink* PDGAssetLink = bFoundNetworkAndNode ? Cookable->GetPDGAssetLink() : nullptr;
+
+	FString TOPNodeName = bFoundNetworkAndNode ? *(TOPNode->NodePath) : TEXT("<no-node>");
+	HOUDINI_PDG_MESSAGE(TEXT("[ProcessPDGEvent]: TOPNode: %s, WorkItem ID: %d, Event Type: %s, Current State: %s, Last State %s"),
+		*TOPNodeName, EventInfo.workItemId, *EventName, *CurrentWorkItemStateName, *LastWorkItemStateName);
+	
+	FLinearColor MsgColor = FLinearColor::White;
+
+	bool bUpdatePDGNodeState = false;
+	switch (EventType)
+	{	
+		case HAPI_PDG_EVENT_NULL:
+			if (!bFoundNetworkAndNode)
+			{
+				HOUDINI_LOG_WARNING(TEXT("[ProcessPDGEvent]: Could not find matching TOPNode for event %s, workitem id %d, node id %d"), *EventName, EventInfo.workItemId, EventInfo.nodeId);
+				return;
+			}
+			SetTOPNodePDGState(PDGAssetLink, TOPNode, EPDGNodeState::None);
+			break;
+
+		case HAPI_PDG_EVENT_NODE_CLEAR:
+			if (!bFoundNetworkAndNode)
+			{
+				HOUDINI_LOG_WARNING(TEXT("[ProcessPDGEvent]: Could not find matching TOPNode for event %s, workitem id %d, node id %d"), *EventName, EventInfo.workItemId, EventInfo.nodeId);
+				return;
+			}
+			NotifyTOPNodePDGStateClear(PDGAssetLink, TOPNode);
+			break;
+
+		case HAPI_PDG_EVENT_WORKITEM_ADD:
+			if (!bFoundNetworkAndNode)
+			{
+				HOUDINI_LOG_WARNING(TEXT("[ProcessPDGEvent]: Could not find matching TOPNode for event %s, workitem id %d, node id %d"), *EventName, EventInfo.workItemId, EventInfo.nodeId);
+				return;
+			}
+			CreateOrRelinkWorkItem(TOPNode, InContextID, EventInfo.workItemId);
+			bUpdatePDGNodeState = true;
+			NotifyTOPNodeCreatedWorkItem(PDGAssetLink, TOPNode, EventInfo.workItemId);
+			break;
+
+		case HAPI_PDG_EVENT_WORKITEM_REMOVE:
+			if (!bFoundNetworkAndNode)
+			{
+				HOUDINI_LOG_WARNING(TEXT("[ProcessPDGEvent]: Could not find matching TOPNode for event %s, workitem id %d, node id %d"), *EventName, EventInfo.workItemId, EventInfo.nodeId);
+				return;
+			}
+			RemoveWorkItem(PDGAssetLink, EventInfo.workItemId, TOPNode);
+			bUpdatePDGNodeState = true;
+			NotifyTOPNodeRemovedWorkItem(PDGAssetLink, TOPNode, EventInfo.workItemId);
+			break;
+
+		case HAPI_PDG_EVENT_COOK_WARNING:
+			MsgColor = FLinearColor::Yellow;
+			break;
+
+		case HAPI_PDG_EVENT_COOK_ERROR:
+			MsgColor = FLinearColor::Red;
+			break;
+
+		case HAPI_PDG_EVENT_COOK_COMPLETE:
+			if (!bFoundNetworkAndNode)
+			{
+				HOUDINI_LOG_WARNING(TEXT("[ProcessPDGEvent]: Could not find matching TOPNode for event %s, workitem id %d, node id %d"), *EventName, EventInfo.workItemId, EventInfo.nodeId);
+				return;
+			}
+			SetTOPNodePDGState(PDGAssetLink, TOPNode, EPDGNodeState::Cook_Complete);
+			FHoudiniStatusManager::Get()->EndPDG(Cookable, true);
+			TOPNode->HandleOnPDGEventCookComplete();
+			TOPNetwork->HandleOnPDGEventCookCompleteReceivedByChildNode(PDGAssetLink, TOPNode);
+			break;
+
+		case HAPI_PDG_EVENT_DIRTY_START:
+			if (!bFoundNetworkAndNode)
+			{
+				HOUDINI_LOG_WARNING(TEXT("[ProcessPDGEvent]: Could not find matching TOPNode for event %s, workitem id %d, node id %d"), *EventName, EventInfo.workItemId, EventInfo.nodeId);
+				return;
+			}
+			SetTOPNodePDGState(PDGAssetLink, TOPNode, EPDGNodeState::Dirtying);
+			break;
+
+		case HAPI_PDG_EVENT_DIRTY_STOP:
+			if (!bFoundNetworkAndNode)
+			{
+				HOUDINI_LOG_WARNING(TEXT("[ProcessPDGEvent]: Could not find matching TOPNode for event %s, workitem id %d, node id %d"), *EventName, EventInfo.workItemId, EventInfo.nodeId);
+				return;
+			}
+			SetTOPNodePDGState(PDGAssetLink, TOPNode, EPDGNodeState::Dirtied);
+			break;
+
+		case HAPI_PDG_EVENT_WORKITEM_STATE_CHANGE:
+		{
+			if (!bFoundNetworkAndNode)
+			{
+				HOUDINI_LOG_WARNING(TEXT("[ProcessPDGEvent]: Could not find matching TOPNode for event %s, workitem id %d, node id %d"), *EventName, EventInfo.workItemId, EventInfo.nodeId);
+				return;
+			}
+
+			// Last states
+			bUpdatePDGNodeState = true;
+			if (LastWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_WAITING && CurrentWorkItemState != HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_WAITING)
+			{
+			}
+			else if (LastWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKING && CurrentWorkItemState != HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKING)
+			{
+			}
+			else if (LastWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_SCHEDULED && CurrentWorkItemState != HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_SCHEDULED)
+			{
+			}
+			else if ( (LastWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_CACHE || LastWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_SUCCESS)
+					&& CurrentWorkItemState != HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_CACHE &&  CurrentWorkItemState != HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_SUCCESS)
+			{
+				// Handled previously cooked WI
+			}
+			else if (LastWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_FAIL && CurrentWorkItemState != HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_FAIL)
+			{
+			}
+			else if (LastWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_UNDEFINED && CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_UNCOOKED)
+			{
+			}
+			else if (LastWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_UNCOOKED && CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_WAITING)
+			{
+			}
+			else
+			{
+				// TODO: 
+				// unhandled state change
+				HOUDINI_PDG_WARNING(TEXT("Unhandled PDG state change! Node: %s, WorkItemID %d"), IsValid(TOPNode) ? *TOPNode->NodePath : TEXT(""), EventInfo.workItemId);
+			}
+
+			if (LastWorkItemState == CurrentWorkItemState)
+			{
+				// TODO: 
+				// Not a change!! shouldnt happen!
+				HOUDINI_PDG_WARNING(TEXT("Last state == current state! Node: %s, WorkItemID %d, state %d"), IsValid(TOPNode) ? *TOPNode->NodePath : TEXT(""), EventInfo.workItemId, EventInfo.lastState);
+			}
+
+			// New states
+			if (CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_WAITING)
+			{
+				NotifyTOPNodeWaitingWorkItem(PDGAssetLink, TOPNode, EventInfo.workItemId);
+			}
+			else if (CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_UNCOOKED)
+			{
+
+			}
+			else if (CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_DIRTY)
+			{
+				// ClearWorkItemResult(InContextID, EventInfo, *TOPNode);
+				ClearWorkItemResult(PDGAssetLink, EventInfo.workItemId, TOPNode);
+				// RemoveWorkItem(PDGAssetLink, EventInfo.workitemId, *TOPNode);
+			}
+			else if (CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_SCHEDULED)
+			{
+				NotifyTOPNodeScheduledWorkItem(PDGAssetLink, TOPNode, EventInfo.workItemId);
+			}
+			else if (CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKING)
+			{
+				NotifyTOPNodeCookingWorkItem(PDGAssetLink, TOPNode, EventInfo.workItemId);
+			}
+			else if (CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_SUCCESS 
+				|| CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_CACHE)
+			{
+				NotifyTOPNodeCookedWorkItem(PDGAssetLink, TOPNode, EventInfo.workItemId);
+
+				// On cook success, handle results
+				CreateOrRelinkWorkItemResult(TOPNode, InContextID, EventInfo.workItemId, TOPNode->bAutoLoad);
+			}
+			else if (CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_FAIL)
+			{
+				// TODO: on cook failure, get log path?
+				NotifyTOPNodeErrorWorkItem(PDGAssetLink, TOPNode, EventInfo.workItemId);
+				MsgColor = FLinearColor::Red;
+			}
+			else if (CurrentWorkItemState == HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_COOKED_CANCEL)
+			{
+				NotifyTOPNodeCookCancelledWorkItem(PDGAssetLink, TOPNode, EventInfo.workItemId);
+			}
+		}
+		break;
+
+		case HAPI_PDG_EVENT_COOK_START:
+			if (!bFoundNetworkAndNode)
+			{
+				// This seems to be a valid event so ignore it.
+				//HOUDINI_LOG_WARNING(TEXT("[ProcessPDGEvent]: Could not find matching TOPNode for event %s, workitem id %d, node id %d"), *EventName, EventInfo.workItemId, EventInfo.nodeId);
+				return;
+			}
+			TOPNode->HandleOnPDGEventCookStart();
+			break;
+		// Unhandled events
+		case HAPI_PDG_EVENT_DIRTY_ALL:
+		case HAPI_PDG_EVENT_WORKITEM_ADD_DEP:
+		case HAPI_PDG_EVENT_WORKITEM_REMOVE_DEP:
+		case HAPI_PDG_EVENT_WORKITEM_ADD_PARENT:
+		case HAPI_PDG_EVENT_WORKITEM_REMOVE_PARENT:
+		case HAPI_PDG_EVENT_UI_SELECT:
+		case HAPI_PDG_EVENT_NODE_CREATE:
+		case HAPI_PDG_EVENT_NODE_REMOVE:
+		case HAPI_PDG_EVENT_NODE_RENAME:
+		case HAPI_PDG_EVENT_NODE_CONNECT:
+		case HAPI_PDG_EVENT_NODE_DISCONNECT:
+		case HAPI_PDG_EVENT_WORKITEM_SET_INT:					// DEPRECATED 
+		case HAPI_PDG_EVENT_WORKITEM_SET_FLOAT:					// DEPRECATED 
+		case HAPI_PDG_EVENT_WORKITEM_SET_STRING:				// DEPRECATED 
+		case HAPI_PDG_EVENT_WORKITEM_SET_FILE:					// DEPRECATED 
+		case HAPI_PDG_EVENT_WORKITEM_SET_PYOBJECT:				// DEPRECATED 
+		case HAPI_PDG_EVENT_WORKITEM_SET_GEOMETRY:				// DEPRECATED 
+		case HAPI_PDG_EVENT_WORKITEM_RESULT:
+		case HAPI_PDG_EVENT_WORKITEM_PRIORITY:					// DEPRECATED 
+		case HAPI_PDG_EVENT_WORKITEM_ADD_STATIC_ANCESTOR:
+		case HAPI_PDG_EVENT_WORKITEM_REMOVE_STATIC_ANCESTOR:
+		case HAPI_PDG_EVENT_NODE_PROGRESS_UPDATE:
+		case HAPI_PDG_EVENT_ALL:
+		case HAPI_PDG_EVENT_LOG:
+		case HAPI_PDG_CONTEXT_EVENTS:
+			break;
+	}
+
+	if (bUpdatePDGNodeState)
+	{
+		// Work item events
+		EPDGNodeState CurrentTOPNodeState = TOPNode->NodeState;
+		if (CurrentTOPNodeState == EPDGNodeState::Cooking)
+		{
+			if (TOPNode->AreAllWorkItemsComplete())
+			{
+				// At the end of a node/net cook, ensure that the work items are in sync with HAPI and remove any
+				// work items with invalid ids or that don't exist on the HAPI side anymore.
+				SyncAndPruneWorkItems(TOPNode);
+				// Check that all work items are still complete after the sync
+				if (TOPNode->AreAllWorkItemsComplete())
+				{
+					if (TOPNode->AnyWorkItemsFailed())
+					{
+						SetTOPNodePDGState(PDGAssetLink, TOPNode, EPDGNodeState::Cook_Failed);
+					}
+					else
+					{
+						SetTOPNodePDGState(PDGAssetLink, TOPNode, EPDGNodeState::Cook_Complete);
+					}
+				}
+			}
+		}
+		else if (TOPNode->AnyWorkItemsPending())
+		{
+			SetTOPNodePDGState(PDGAssetLink, TOPNode, EPDGNodeState::Cooking);
+		}
+	}
+
+	if (EventInfo.msgSH >= 0)
+	{
+		FString EventMsg;
+		FHoudiniEngineString::ToFString(EventInfo.msgSH, EventMsg);
+		if (!EventMsg.IsEmpty())
+		{
+			// TODO: Event MSG?
+			// Somehow update the PDG event msg UI ??
+			// Simply log for now...
+			if (MsgColor == FLinearColor::Red)
+			{
+				HOUDINI_LOG_ERROR(TEXT("%s"), *EventMsg);
+			}
+			else if (MsgColor == FLinearColor::Yellow)
+			{
+				HOUDINI_LOG_WARNING(TEXT("%s"), *EventMsg);
+			}
+			else
+			{
+				HOUDINI_LOG_MESSAGE(TEXT("%s"), *EventMsg);
+			}
+		}
+	}
+}
+
+void
+FHoudiniPDGManager::ResetPDGEventInfo(HAPI_PDG_EventInfo& InEventInfo)
+{
+	InEventInfo.nodeId = -1;
+	InEventInfo.workItemId = -1;
+	InEventInfo.dependencyId = -1;
+	InEventInfo.currentState = HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_UNDEFINED;
+	InEventInfo.lastState = HAPI_PDG_WorkItemState::HAPI_PDG_WORKITEM_UNDEFINED;
+	InEventInfo.eventType = HAPI_PDG_EventType::HAPI_PDG_EVENT_NULL;
+}
+
+
+bool
+FHoudiniPDGManager::GetTOPAssetLinkNetworkAndNode(
+	const HAPI_NodeId& InNodeID, UHoudiniCookable*& OutCookable, UTOPNetwork*& OutTOPNetwork, UTOPNode*& OutTOPNode)
+{	
+	// Returns the PDGAssetLink and FTOPNode data associated with this TOP node ID
+	OutCookable = nullptr;
+	OutTOPNetwork = nullptr;
+	OutTOPNode = nullptr;
+
+	int CookableCount = FHoudiniEngineRuntime::Get().GetRegisteredHoudiniCookableCount();
+	for(int nIdx = 0; nIdx < CookableCount; nIdx++)
+	{
+		UHoudiniCookable* CurrentCookable = FHoudiniEngineRuntime::Get().GetRegisteredHoudiniCookableAt(nIdx);
+		UHoudiniPDGAssetLink* AssetLink = CurrentCookable->GetPDGAssetLink();
+		if(!AssetLink)
+			continue;
+
+		if(AssetLink->GetTOPNodeAndNetworkByNodeId((int32)InNodeID, OutTOPNetwork, OutTOPNode))
+		{
+			if(OutTOPNetwork != nullptr && OutTOPNode != nullptr)
+			{
+				OutCookable = CurrentCookable;
+				return true;
+			}
+		}
+
+	}
+
+	OutCookable = nullptr;
+	OutTOPNetwork = nullptr;
+	OutTOPNode = nullptr;
+
+	return false;
+}
+
+void
+FHoudiniPDGManager::SetTOPNodePDGState(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const EPDGNodeState& InPDGState)
+{
+	if (!IsValid(InTOPNode))
+		return;
+	
+	InTOPNode->NodeState = InPDGState;
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+}
+
+void
+FHoudiniPDGManager::NotifyTOPNodePDGStateClear(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode)
+{
+	if (!IsValid(InTOPNode))
+		return;
+
+	//Debug.LogFormat("NotifyTOPNodePDGStateClear:: {0}", topNode._nodeName);
+	InTOPNode->NodeState = EPDGNodeState::None;
+	InTOPNode->ZeroWorkItemTally();
+	InTOPNode->OnDirtyNode();
+
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally ZeroAll"), *(InTOPNode->NodePath));
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+	
+}
+
+void
+FHoudiniPDGManager::NotifyTOPNodeCreatedWorkItem(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const int32& InWorkItemID)
+{
+	if (!IsValid(InTOPNode))
+		return;
+	
+	InTOPNode->OnWorkItemCreated(InWorkItemID);
+
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally Created WorkItem, Total %d"), *(InTOPNode->NodePath), InTOPNode->GetWorkItemTally().NumWorkItems());
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+}
+
+void
+FHoudiniPDGManager::NotifyTOPNodeRemovedWorkItem(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const int32& InWorkItemID)
+{
+	if (!IsValid(InTOPNode))
+		return;
+	
+	InTOPNode->OnWorkItemRemoved(InWorkItemID);
+
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally Removed WorkItem, Total %d"), *(InTOPNode->NodePath), InTOPNode->GetWorkItemTally().NumWorkItems());
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+}
+
+void
+FHoudiniPDGManager::NotifyTOPNodeCookedWorkItem(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const int32& InWorkItemID)
+{
+	if (!IsValid(InTOPNode))
+		return;
+
+	InTOPNode->OnWorkItemCooked(InWorkItemID);
+
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally CookedWorkItems Total %d"), *(InTOPNode->NodePath), InTOPNode->GetWorkItemTally().NumCookedWorkItems());
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+}
+
+void
+FHoudiniPDGManager::NotifyTOPNodeLoadedWorkItem(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const int32& InWorkItemID)
+{
+	if(!IsValid(InTOPNode))
+		return;
+
+	InTOPNode->OnWorkItemLoaded(InWorkItemID);
+
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally CookedWorkItems Total %d"), *(InTOPNode->NodePath), InTOPNode->GetWorkItemTally().NumCookedWorkItems());
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+}
+void
+FHoudiniPDGManager::NotifyTOPNodeErrorWorkItem(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const int32& InWorkItemID)
+{
+	if (!IsValid(InTOPNode))
+		return;
+
+	InTOPNode->OnWorkItemErrored(InWorkItemID);
+	
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally ErroredWorkItems Total %d"), *(InTOPNode->NodePath), InTOPNode->GetWorkItemTally().NumErroredWorkItems());
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+}
+
+void
+FHoudiniPDGManager::NotifyTOPNodeWaitingWorkItem(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const int32& InWorkItemID)
+{
+	if (!IsValid(InTOPNode))
+		return;
+
+	InTOPNode->OnWorkItemWaiting(InWorkItemID);
+
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally WaitingWorkItems Total %d"), *(InTOPNode->NodePath), InTOPNode->GetWorkItemTally().NumErroredWorkItems());
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+}
+
+void
+FHoudiniPDGManager::NotifyTOPNodeScheduledWorkItem(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const int32& InWorkItemID)
+{
+	if (!IsValid(InTOPNode))
+		return;
+
+	InTOPNode->OnWorkItemScheduled(InWorkItemID);
+
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally ScheduledWorkItems Total %d"), *(InTOPNode->NodePath), InTOPNode->GetWorkItemTally().NumScheduledWorkItems());
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+}
+
+void
+FHoudiniPDGManager::NotifyTOPNodeCookingWorkItem(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const int32& InWorkItemID)
+{
+	if (!IsValid(InTOPNode))
+		return;
+
+	InTOPNode->OnWorkItemCooking(InWorkItemID);
+
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally CookingWorkItems Total %d"), *(InTOPNode->NodePath), InTOPNode->GetWorkItemTally().NumCookingWorkItems());
+
+	// InPDGAssetLink->bNeedsUIRefresh = true;
+	//FHoudiniPDGManager::RefreshPDGAssetLinkUI(InPDGAssetLink);
+}
+
+void
+FHoudiniPDGManager::NotifyTOPNodeCookCancelledWorkItem(UHoudiniPDGAssetLink* InPDGAssetLink, UTOPNode* InTOPNode, const int32& InWorkItemID)
+{
+	if (!IsValid(InTOPNode))
+		return;
+
+	InTOPNode->OnWorkItemCookCancelled(InWorkItemID);
+
+	HOUDINI_PDG_MESSAGE(TEXT("PDG: %s: WorkItemTally CookCancelledWorkItems Total %d"), *(InTOPNode->NodePath), InTOPNode->GetWorkItemTally().NumCookCancelledWorkItems());
+}
+
+void
+FHoudiniPDGManager::ClearWorkItemResult(UHoudiniPDGAssetLink* InAssetLink, const HAPI_PDG_WorkItemId& InWorkItemID, UTOPNode* InTOPNode)
+{
+	if (!IsValid(InAssetLink))
+		return;
+
+	// TODO!!!
+	// Clear all work items' results for the specified TOP node. 
+	// This destroys any loaded results (geometry etc).
+	//session.LogErrorOverride = false;
+	InAssetLink->ClearWorkItemResultByID(InWorkItemID, InTOPNode);
+	// session.LogErrorOverride = true;
+}
+
+void
+FHoudiniPDGManager::RemoveWorkItem(UHoudiniPDGAssetLink* InAssetLink, const HAPI_PDG_WorkItemId& InWorkItemID, UTOPNode* InTOPNode)
+{
+	if (!IsValid(InAssetLink))
+		return;
+
+	// Clear all of the work item's results for the specified TOP node and also remove the work item itself from
+	// the TOP node.
+	InAssetLink->DestroyWorkItemByID(InWorkItemID, InTOPNode);
+}
+
+void
+FHoudiniPDGManager::RefreshPDGAssetLinkUI(UHoudiniPDGAssetLink* InAssetLink)
+{
+	if (!IsValid(InAssetLink))
+		return;
+
+	// Only update the editor properties if the PDG asset link's Actor is selected
+	// else, just update the workitemtally
+	InAssetLink->UpdateWorkItemTally();
+
+	UHoudiniAssetComponent* ParentHAC = Cast<UHoudiniAssetComponent>(InAssetLink->GetOuter());
+	UHoudiniCookable* ParentHC = Cast<UHoudiniCookable>(InAssetLink->GetOuter());
+
+	if (!IsValid(ParentHAC) && !IsValid(ParentHC))
+		return;
+	
+	AActor* ActorOwner = ParentHC ? ParentHC->GetOwner() : ParentHAC->GetOwner();
+	if (ActorOwner != nullptr && ActorOwner->IsSelected())
+	{
+		FHoudiniEngineUtils::UpdateEditorProperties(true);
+	}
+}
+
+void
+FHoudiniPDGManager::NotifyAssetCooked(UHoudiniCookable* InHC, const bool& bSuccess)
+{
+
+	if (!IsValid(InHC))
+		return;
+
+	UHoudiniPDGAssetLink* AssetLink = InHC->GetPDGAssetLink();
+	if(!IsValid(AssetLink))
+		return;
+
+	if (bSuccess)
+	{
+		if (AssetLink->LinkState == EPDGLinkState::Linked)
+		{
+			if (AssetLink->bAutoCook)
+			{
+				FHoudiniPDGManager::CookOutput(InHC, AssetLink->GetSelectedTOPNetwork());
+			}
+		}
+		else
+		{
+			UpdatePDGAssetLink(AssetLink);
+		}
+	}
+	else
+	{
+		AssetLink->LinkState = EPDGLinkState::Error_Not_Linked;
+	}
+}
+
+int32
+FHoudiniPDGManager::CreateOrRelinkWorkItem(
+	UTOPNode* InTOPNode,
+	const HAPI_PDG_GraphContextId& InContextID,
+	HAPI_PDG_WorkItemId InWorkItemID)
+{
+	if (!IsValid(InTOPNode))
+	{
+		HOUDINI_LOG_WARNING(TEXT("Failed to get work %d info: InTOPNode is null."), InWorkItemID);
+		return INDEX_NONE;
+	}
+	
+	HAPI_PDG_WorkItemInfo WorkItemInfo;
+	if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetWorkItemInfo(
+		FHoudiniEngine::Get().GetSession(), InContextID, InWorkItemID, &WorkItemInfo))
+	{
+		HOUDINI_LOG_ERROR(TEXT("Failed to get work item %d info for %s"), InWorkItemID, *(InTOPNode->NodeName));
+		// TODO? continue?
+		return INDEX_NONE;
+	}
+
+	// Try to find the existing WorkItem by ID.
+	int32 Index = InTOPNode->ArrayIndexOfWorkResultByID(InWorkItemID);
+	if (Index == INDEX_NONE)
+	{
+		// Try to find the first entry with WorkItemID == INDEX_NONE. The WorkItemIDs are
+		// transient, so not saved when the map / asset link is saved. So when loading a map containing the asset
+		// link all the IDs are INDEX_NONE and so we re-use any stale entries in array index order (should be reliable
+		// if work items generate in the same order. In the future we might have to consider adding support for a
+		// custom ID attribute for more stable re-linking of work items).
+		Index = InTOPNode->ArrayIndexOfFirstInvalidWorkResult();
+		if (Index == INDEX_NONE)
+		{
+			// If we couldn't find a stale entry to re-use, create a new one
+			FTOPWorkResult LocalWorkResult;
+			LocalWorkResult.WorkItemID = InWorkItemID;
+			LocalWorkResult.WorkItemIndex = WorkItemInfo.index;
+			Index = InTOPNode->WorkResult.Add(LocalWorkResult);
+		}
+		else
+		{
+			// We found a stale entry, re-use it
+			FTOPWorkResult& ReUsedWorkResult = InTOPNode->WorkResult[Index];
+			ReUsedWorkResult.WorkItemID = InWorkItemID;
+			ReUsedWorkResult.WorkItemIndex = WorkItemInfo.index;
+		}
+	}
+
+	return Index;
+}
+
+bool
+FHoudiniPDGManager::CreateOrRelinkWorkItemResult(
+	UTOPNode* InTOPNode,
+	const HAPI_PDG_GraphContextId& InContextID,
+	HAPI_PDG_WorkItemId InWorkItemID,
+	bool bInLoadResultObjects)
+{
+	if (!IsValid(InTOPNode))
+	{
+		HOUDINI_LOG_WARNING(TEXT("Failed to get work %d info: InTOPNode is null."), InWorkItemID);
+		return false;
+	}
+	
+	HAPI_PDG_WorkItemInfo WorkItemInfo;
+	if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetWorkItemInfo(
+		FHoudiniEngine::Get().GetSession(), InContextID, InWorkItemID, &WorkItemInfo))
+	{
+		HOUDINI_LOG_ERROR(TEXT("Failed to get work item %d info for %s"), InWorkItemID, *(InTOPNode->NodeName));
+		// TODO? continue?
+		return false;
+	}
+
+	// Try to find the existing WorkResult by ID.
+	int32 WorkResultArrayIndex = InTOPNode->ArrayIndexOfWorkResultByID(InWorkItemID);
+	FTOPWorkResult* WorkResult = nullptr;
+	if (WorkResultArrayIndex != INDEX_NONE)
+		WorkResult = InTOPNode->GetWorkResultByArrayIndex(WorkResultArrayIndex);
+	if (!WorkResult)
+	{
+		// TODO: This shouldn't really happen, it means a work item finished cooking and generated a result before
+		// we received an event that the work item was added/generated.
+		WorkResultArrayIndex = CreateOrRelinkWorkItem(InTOPNode, InContextID, InWorkItemID);
+		if (WorkResultArrayIndex != INDEX_NONE)
+		{
+			WorkResult = InTOPNode->GetWorkResultByArrayIndex(WorkResultArrayIndex);
+		}
+	}
+
+	if (!WorkResult)
+	{
+		HOUDINI_LOG_ERROR(TEXT("Failed to get or add a FTOPWorkResult for WorkItemID %d for %s"), InWorkItemID, *(InTOPNode->NodeName));
+		return false;
+	}
+
+	TArray<FTOPWorkResultObject> NewResultObjects;
+	TSet<int32> ResultIndicesThatWereReused;
+	if (WorkItemInfo.outputFileCount > 0)
+	{
+		TArray<HAPI_PDG_WorkItemOutputFile> OutputFiles;
+		OutputFiles.SetNum(WorkItemInfo.outputFileCount);
+		const int32 resultCount = WorkItemInfo.outputFileCount;
+		if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetWorkItemOutputFiles(
+            FHoudiniEngine::Get().GetSession(),
+            InTOPNode->NodeId, InWorkItemID, OutputFiles.GetData(), resultCount))
+		{
+			HOUDINI_LOG_ERROR(TEXT("Failed to get work item %d result info for %s"), InWorkItemID, *(InTOPNode->NodeName));
+			// TODO? continue?
+			return false;
+		}
+
+		FString WorkItemName;
+		FHoudiniEngineString::ToFString(WorkItemInfo.nameSH, WorkItemName);
+
+		// Load each result geometry
+		const int32 NumResults = OutputFiles.Num();
+		for (int32 Idx = 0; Idx < NumResults; Idx++)
+		{
+			const HAPI_PDG_WorkItemOutputFile& OutputFile = OutputFiles[Idx];
+			if (OutputFile.tagSH <= 0 || OutputFile.filePathSH <= 0)
+				continue;
+
+			FString CurrentTag;
+			FHoudiniEngineString::ToFString(OutputFile.tagSH, CurrentTag);
+			if(CurrentTag.IsEmpty() || !CurrentTag.StartsWith(TEXT("file")))
+				continue;
+
+			FString CurrentPath = FString();
+			FHoudiniEngineString::ToFString(OutputFile.filePathSH, CurrentPath);
+
+			// Construct the name and look for an existing work result, re-use it if found, otherwise create a new one
+			const FString WorkResultName = FString::Printf(
+				TEXT("%s_%s_%d_%d"),
+				*(InTOPNode->ParentName),
+				*WorkItemName,
+				WorkResultArrayIndex,
+				Idx);
+
+			// int32 ExistingObjectIndex = WorkResult->ResultObjects.IndexOfByPredicate([WorkResultName](const FTOPWorkResultObject& InResultObject)
+			// {
+			// 	return InResultObject.Name == WorkResultName;
+			// });
+			int32 ExistingObjectIndex = WorkResult->ResultObjects.IndexOfByPredicate([Idx](const FTOPWorkResultObject& InResultObject)
+			{
+				return InResultObject.WorkItemResultInfoIndex == Idx;
+			});
+			if (WorkResult->ResultObjects.IsValidIndex(ExistingObjectIndex))
+			{
+				FTOPWorkResultObject& ExistingResultObject = WorkResult->ResultObjects[ExistingObjectIndex];
+
+				ExistingResultObject.Name = WorkResultName;
+				ExistingResultObject.FilePath = CurrentPath;
+				ExistingResultObject.SetAutoBakedSinceLastLoad(false);
+				ExistingResultObject.WorkItemId = InWorkItemID;
+				if (ExistingResultObject.GetState() == EPDGWorkResultState::Loaded && !bInLoadResultObjects)
+				{
+					ExistingResultObject.SetState(EPDGWorkResultState::ToDelete);
+				}
+				else
+				{
+					// When the commandlet is not being used, we could leave the outputs in place and have
+					// translators try to re-use objects/components. When the commandlet is being used, the packages
+					// are always saved and standalone, so if we want to automatically clean up old results then we
+					// need to destroy the existing outputs
+					if (BGEOCommandletStatus == EHoudiniBGEOCommandletStatus::Connected)
+					{
+						constexpr bool bDeleteOutputActors = false;
+						InTOPNode->DeleteWorkResultObjectOutputs(WorkResultArrayIndex, ExistingObjectIndex, bDeleteOutputActors);
+					}
+					
+					if ((ExistingResultObject.GetState() == EPDGWorkResultState::Loaded ||
+						 ExistingResultObject.GetState() ==  EPDGWorkResultState::ToDelete ||
+						 ExistingResultObject.GetState() == EPDGWorkResultState::Deleting) && bInLoadResultObjects)
+					{
+						ExistingResultObject.SetState(EPDGWorkResultState::ToLoad);
+						InTOPNode->OnWorkItemCooked(InWorkItemID);
+					}
+					else
+					{
+						ExistingResultObject.SetState(bInLoadResultObjects ? EPDGWorkResultState::ToLoad : EPDGWorkResultState::NotLoaded);
+					}
+				}
+
+				NewResultObjects.Add(ExistingResultObject);
+				ResultIndicesThatWereReused.Add(ExistingObjectIndex);
+			}
+			else
+			{
+				FTOPWorkResultObject ResultObj;
+				ResultObj.Name = WorkResultName;
+				ResultObj.FilePath = CurrentPath;
+				ResultObj.SetState(bInLoadResultObjects ? EPDGWorkResultState::ToLoad : EPDGWorkResultState::NotLoaded);
+				ResultObj.WorkItemResultInfoIndex = Idx;
+				ResultObj.WorkItemId = InWorkItemID;
+				ResultObj.SetAutoBakedSinceLastLoad(false);
+
+				NewResultObjects.Add(ResultObj);
+			}
+		}
+	}
+	// Destroy any old ResultObjects that were not re-used
+	const int32 NumPrevResultObjects = WorkResult->ResultObjects.Num();
+	for (int32 ResultObjectIndex = 0; ResultObjectIndex < NumPrevResultObjects; ++ResultObjectIndex)
+	{
+		if (ResultIndicesThatWereReused.Contains(ResultObjectIndex))
+			continue;
+		InTOPNode->DeleteWorkResultObjectOutputs(WorkResultArrayIndex, ResultObjectIndex);
+	}
+	WorkResult->ResultObjects = NewResultObjects;
+
+	return true;
+}
+
+int32
+FHoudiniPDGManager::SyncAndPruneWorkItems(UTOPNode* InTOPNode)
+{
+	TSet<int32> WorkItemIDSet;
+	TArray<HAPI_PDG_WorkItemId> WorkItemIDs;
+	int NumWorkItems = -1;
+
+	if (!IsValid(InTOPNode))
+		return -1;
+	
+	HAPI_Session const * const HAPISession = FHoudiniEngine::Get().GetSession();
+	if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetNumWorkItems(HAPISession, InTOPNode->NodeId, &NumWorkItems))
+	{
+		HOUDINI_LOG_WARNING(TEXT("GetNumWorkItems call failed on TOP Node %s (%d)"), *(InTOPNode->NodeName), InTOPNode->NodeId);
+		return -1;
+	}
+	
+	WorkItemIDs.SetNum(NumWorkItems);
+	if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetWorkItems(HAPISession, InTOPNode->NodeId, WorkItemIDs.GetData(), NumWorkItems))
+	{
+		HOUDINI_LOG_WARNING(TEXT("GetWorkItems call failed on TOP Node %s (%d)"), *(InTOPNode->NodeName), InTOPNode->NodeId);
+		return -1;
+	}
+
+	HAPI_PDG_GraphContextId ContextId;
+	if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetPDGGraphContextId(HAPISession, InTOPNode->NodeId, &ContextId))
+	{
+		HOUDINI_LOG_WARNING(TEXT("GetPDGGraphContextId call failed on TOP Node %s (%d)"), *(InTOPNode->NodeName), InTOPNode->NodeId);
+		return -1;
+	}
+
+	bool bChanged = false;
+	for (const HAPI_PDG_WorkItemId& WorkItemID : WorkItemIDs)
+	{
+		WorkItemIDSet.Add(static_cast<int32>(WorkItemID));
+
+		// If the WorkItemID is not present in FTOPWorkResult array, sync from HAPI
+		if (InTOPNode->GetWorkResultByID(WorkItemID) == nullptr)
+		{
+			CreateOrRelinkWorkItemResult(InTOPNode, ContextId, WorkItemID);
+			InTOPNode->OnWorkItemCreated(WorkItemID);
+			bChanged = true;
+		}
+	}
+
+	// TODO: refactor functions that access the TOPNode's array and properties directly to rather be functions on the
+	// UTOPNode and make access to these arrays protected/private
+
+	// Remove any work result entries with invalid IDs or where the WorkItemID is not in the set of ids returned by
+	// HAPI (only if we could get the IDs from HAPI).
+	const FGuid CookableGUID(InTOPNode->GetHoudiniCookableGuid());
+	int32 NumRemoved = 0;
+	const int32 NumWorkItemsInArray = InTOPNode->WorkResult.Num();
+	for (int32 Index = NumWorkItemsInArray - 1; Index >= 0; --Index)
+	{
+		FTOPWorkResult& WorkResult = InTOPNode->WorkResult[Index];
+		if (WorkResult.WorkItemID == INDEX_NONE || !WorkItemIDSet.Contains(WorkResult.WorkItemID))
+		{
+			HOUDINI_PDG_WARNING(
+				TEXT("Pruning a FTOPWorkResult entry from TOP Node %d, WorkItemID %d, WorkItemIndex %d, Array Index %d"),
+				InTOPNode->NodeId, WorkResult.WorkItemID, WorkResult.WorkItemIndex, Index);
+			WorkResult.ClearAndDestroyResultObjects(CookableGUID);
+			InTOPNode->WorkResult.RemoveAt(Index);
+			InTOPNode->OnWorkItemRemoved(WorkResult.WorkItemID);
+			NumRemoved++;
+			bChanged = true;
+		}
+	}
+
+	if (bChanged)
+	{
+		// Ensure that the outer level (or actor in the case of OFPA) is marked as dirty so that references to the
+		// output actors / objects are saved
+		InTOPNode->MarkPackageDirty();
+	}
+	
+	return NumRemoved;
+}
+
+void
+FHoudiniPDGManager::FixupTOPNodes()
+{
+	// We need to make sure every Work Item has a TOP Node pointer... this could be improved if we can set the TOP Node when loaded/created.
+	for(auto& CurrentPDGAssetLink : PDGAssetLinks)
+	{
+		UHoudiniPDGAssetLink* AssetLink = CurrentPDGAssetLink.Get();
+		if(!AssetLink)
+			continue;
+
+		for(UTOPNetwork* CurrentTOPNet : AssetLink->AllTOPNetworks)
+		{
+			for(UTOPNode* CurrentTOPNode : CurrentTOPNet->AllTOPNodes)
+			{
+				const int32 NumWorkResults = CurrentTOPNode->WorkResult.Num();
+				for(int32 WorkResultArrayIndex = 0; WorkResultArrayIndex < NumWorkResults; ++WorkResultArrayIndex)
+				{
+					FTOPWorkResult& CurrentWorkResult = CurrentTOPNode->WorkResult[WorkResultArrayIndex];
+					const int32 NumWorkResultObjects = CurrentWorkResult.ResultObjects.Num();
+
+					for(int32 WorkResultObjectArrayIndex = 0; WorkResultObjectArrayIndex < NumWorkResultObjects; ++WorkResultObjectArrayIndex)
+					{
+						CurrentWorkResult.ResultObjects[WorkResultObjectArrayIndex].TOPNode = CurrentTOPNode;
+					}
+				}
+			}
+		}
+	}
+}
+
+void
+FHoudiniPDGManager::ProcessWorkItemResults()
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniPDGManager::ProcessWorkItemResults);
+
+	FixupTOPNodes();
+
+	double StartTime = FPlatformTime::Seconds();
+
+	bool bKeepProcessing = true;
+
+	const EHoudiniBGEOCommandletStatus CommandletStatus = UpdateAndGetBGEOCommandletStatus();
+	for (auto& CurrentPDGAssetLink : PDGAssetLinks)
+	{
+		if(!bKeepProcessing)
+			break;
+
+		// Iterate through all PDG Asset Link
+		UHoudiniPDGAssetLink* AssetLink = CurrentPDGAssetLink.Get();
+		if (!AssetLink)
+			continue;
+
+		// Set up package parameters to:
+		// Cook to temp houdini engine directory
+		// and if the PDG asset link is associated with a Houdini Asset Component (HAC):
+		//		set the outer package to the HAC
+		//		set the HoudiniAssetName according to the HAC
+		//		set the ComponentGUID according to the HAC
+		// otherwise we set the outer to the asset link's parent and leave naming and GUID blank
+		FHoudiniPackageParams PackageParams;
+		PackageParams.PackageMode = FHoudiniPackageParams::GetDefaultStaticMeshesCookMode();
+		PackageParams.ReplaceMode = FHoudiniPackageParams::GetDefaultReplaceMode();
+
+		PackageParams.BakeFolder = FHoudiniEngineRuntime::Get().GetDefaultBakeFolder();
+		PackageParams.TempCookFolder = FHoudiniEngineRuntime::Get().GetDefaultTemporaryCookFolder();
+
+		UObject* AssetLinkParent = AssetLink->GetOuter();
+		UHoudiniAssetComponent* HAC = AssetLinkParent != nullptr ? Cast<UHoudiniAssetComponent>(AssetLinkParent) : nullptr;
+		UHoudiniCookable* HC = AssetLinkParent != nullptr ? Cast<UHoudiniCookable>(AssetLinkParent) : nullptr;
+		if (HC)
+		{
+			AActor* Owner = HC->GetOwner();
+			PackageParams.OuterPackage = Owner ? Cast<UObject>(Owner->GetLevel()) : Cast<UObject>(HC->GetPackage());
+			PackageParams.HoudiniAssetName = HC->GetHoudiniAssetName();
+			PackageParams.HoudiniAssetActorName = Owner ? Owner->GetActorNameOrLabel() : HC->GetName();
+			PackageParams.ComponentGUID = HC->GetCookableGUID();
+		}
+		else if (HAC)
+		{
+			PackageParams.OuterPackage = HAC->GetComponentLevel();
+			PackageParams.HoudiniAssetName = HAC->GetHoudiniAssetName();
+			PackageParams.HoudiniAssetActorName = HAC->GetOwner()->GetActorNameOrLabel();
+			PackageParams.ComponentGUID = HAC->GetComponentGUID();
+		}
+		else
+		{
+			PackageParams.OuterPackage = AssetLinkParent ? AssetLinkParent->GetOutermost() : nullptr;
+			PackageParams.HoudiniAssetName = FString();
+			PackageParams.HoudiniAssetActorName = FString();
+		}
+		PackageParams.ObjectName = FString();
+
+		// Static mesh generation / build settings, get it from the HAC if available, otherwise from the plugin
+		// defaults
+		const FHoudiniStaticMeshGenerationProperties& StaticMeshGenerationProperties = HAC ? HAC->GetStaticMeshGenerationProperties() : FHoudiniEngineRuntimeUtils::GetDefaultStaticMeshGenerationProperties();
+		const FMeshBuildSettings& MeshBuildSettings = HAC ? HAC->GetStaticMeshBuildSettings() : FHoudiniEngineRuntimeUtils::GetDefaultMeshBuildSettings();
+
+		// All TOP Nets
+		for (UTOPNetwork* CurrentTOPNet : AssetLink->AllTOPNetworks)
+		{
+			if(!bKeepProcessing)
+				break;
+
+			if (!IsValid(CurrentTOPNet))
+				continue;
+				
+			if (CurrentTOPNet->LoadState == EPDGLoadState::Loading_Paused || 
+				CurrentTOPNet->NetworkState == EPDGNodeState::Paused || 
+				CurrentTOPNet->NetworkState == EPDGNodeState::Cancelled)
+				continue;
+			
+			// All TOP Nodes
+			for (UTOPNode* CurrentTOPNode : CurrentTOPNet->AllTOPNodes)
+			{
+				if(!bKeepProcessing)
+					break;
+
+				if (!IsValid(CurrentTOPNode))
+					continue;
+
+
+				if(CurrentTOPNode->LoadState == EPDGLoadState::Loading_Paused ||
+					CurrentTOPNode->NodeState == EPDGNodeState::Paused ||
+					CurrentTOPNode->NodeState == EPDGNodeState::Cancelled)
+					continue;
+
+				// All WorkResult
+				CurrentTOPNode->bCachedHaveNotLoadedWorkResults = false;
+				CurrentTOPNode->bCachedHaveLoadedWorkResults = false;
+				
+				const int32 NumWorkResults = CurrentTOPNode->WorkResult.Num();
+				for (int32 WorkResultArrayIndex = 0; WorkResultArrayIndex < NumWorkResults; ++WorkResultArrayIndex)
+				{
+					if(!bKeepProcessing)
+						break;
+
+					// All WorkResultObjects
+
+					FTOPWorkResult& CurrentWorkResult = CurrentTOPNode->WorkResult[WorkResultArrayIndex];
+					const int32 NumWorkResultObjects = CurrentWorkResult.ResultObjects.Num();
+
+					for (int32 WorkResultObjectArrayIndex = 0; WorkResultObjectArrayIndex < NumWorkResultObjects; ++WorkResultObjectArrayIndex)
+					{
+						if(!bKeepProcessing)
+							break;
+
+						FTOPWorkResultObject& CurrentWorkResultObj = CurrentWorkResult.ResultObjects[WorkResultObjectArrayIndex];
+						if (CurrentWorkResultObj.GetState() == EPDGWorkResultState::ToLoad || 
+							CurrentWorkResultObj.GetState() == EPDGWorkResultState::ToLoadNonCommandlet )
+						{
+							// Load this WRObj
+							PackageParams.PDGTOPNetworkName = CurrentTOPNet->NodeName;
+							PackageParams.PDGTOPNodeName = CurrentTOPNode->NodeName;
+							PackageParams.PDGWorkItemIndex = CurrentWorkResult.WorkItemIndex;
+							// Use the array index to ensure uniqueness among the work items of the node (
+							// CurrentWorkResult.WorkItemIndex is not necessarily unique)
+							PackageParams.PDGWorkResultArrayIndex = WorkResultArrayIndex;
+
+							if (CommandletStatus == EHoudiniBGEOCommandletStatus::Connected && CurrentWorkResultObj.GetState() != EPDGWorkResultState::ToLoadNonCommandlet)
+							{
+								CurrentWorkResultObj.SetState(EPDGWorkResultState::Loading);
+
+								BGEOCommandletEndpoint->Send(new FHoudiniPDGImportBGEOMessage(
+									CurrentWorkResultObj.FilePath,
+									CurrentWorkResultObj.Name,
+									PackageParams,
+									CurrentTOPNode->NodeId,
+									CurrentWorkResult.WorkItemID,
+									StaticMeshGenerationProperties,
+									MeshBuildSettings
+								), BGEOCommandletAddress);
+							}
+							else
+							{
+								CurrentWorkResultObj.SetState(EPDGWorkResultState::Loading);
+
+								if (FHoudiniPDGTranslator::CreateAllResultObjectsForPDGWorkItem(
+									AssetLink,
+									CurrentTOPNode,
+									CurrentWorkResultObj,
+									PackageParams))
+								{
+									CurrentWorkResultObj.SetState(EPDGWorkResultState::Loaded);
+									CurrentWorkResultObj.SetAutoBakedSinceLastLoad(false);
+									CurrentTOPNode->bCachedHaveLoadedWorkResults = true;
+
+									CurrentTOPNode->OnWorkItemLoaded(CurrentWorkResultObj.WorkItemId);
+
+									// Broadcast that we have loaded the work result object to those interested
+									AssetLink->OnWorkResultObjectLoaded.Broadcast(
+										AssetLink, CurrentTOPNode, WorkResultArrayIndex,
+										CurrentWorkResultObj.WorkItemResultInfoIndex);
+								}
+								else
+								{
+									CurrentWorkResultObj.SetState(EPDGWorkResultState::Error);
+									CurrentTOPNode->OnWorkItemErrored(CurrentWorkResult.WorkItemID);
+								}
+							}
+
+							// See how long processing is taking, pick it up next free if needed.
+							double EndTime = FPlatformTime::Seconds();
+							double DeltaTime = EndTime - StartTime;
+
+							const double MaxFrameTime = 0.05;
+
+							if(DeltaTime > MaxFrameTime)
+							{
+								// Remaining work items will be picked up next frame. This allows UE to be more responsive.
+								bKeepProcessing = false;
+							}
+						}
+						else if (CurrentWorkResultObj.GetState() == EPDGWorkResultState::Loaded)
+						{
+							CurrentTOPNode->bCachedHaveLoadedWorkResults = true;
+						}
+						else if (CurrentWorkResultObj.GetState() == EPDGWorkResultState::ToDelete)
+						{
+							CurrentWorkResultObj.SetState(EPDGWorkResultState::Deleting);
+
+							// Delete and clean up that WRObj
+							CurrentTOPNode->DeleteWorkResultObjectOutputs(WorkResultArrayIndex, WorkResultObjectArrayIndex);
+							CurrentTOPNode->bCachedHaveNotLoadedWorkResults = true;
+							CurrentTOPNode->OnWorkItemCooked(CurrentWorkResultObj.WorkItemId);
+						}
+						else if (CurrentWorkResultObj.GetState() == EPDGWorkResultState::Deleted)
+						{
+							CurrentTOPNode->bCachedHaveNotLoadedWorkResults = true;
+						}
+						else if (CurrentWorkResultObj.GetState() == EPDGWorkResultState::NotLoaded)
+						{
+							CurrentTOPNode->bCachedHaveNotLoadedWorkResults = true;
+						}
+					}
+				}
+			}
+			CurrentTOPNet->EvaluateWorkItems();
+		}
+	}
+}
+
+void FHoudiniPDGManager::HandleImportBGEODiscoverMessage(
+	const FHoudiniPDGImportBGEODiscoverMessage& InMessage,
+	const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& InContext)
+{
+	HOUDINI_LOG_DISPLAY(TEXT("Received Discover from %s"), *InContext->GetSender().ToString());
+	// Ignore any discover acks received if we already have a valid local address
+	// for the commandlet
+	if (BGEOCommandletAddress.IsValid())
+		return;
+
+	if (BGEOCommandletProcHandle.IsValid() && InMessage.CommandletGuid.IsValid() && BGEOCommandletGuid == InMessage.CommandletGuid)
+	{
+		BGEOCommandletAddress = InContext->GetSender();
+	}
+}
+
+void FHoudiniPDGManager::HandleImportBGEOResultMessage(
+	const FHoudiniPDGImportBGEOResultMessage& InMessage, 
+	const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& InContext)
+{
+	// Find asset link and work result object
+	UHoudiniCookable* Cookable = nullptr;
+	UTOPNetwork* TOPNetwork = nullptr;
+	UTOPNode* TOPNode = nullptr;
+	if(!GetTOPAssetLinkNetworkAndNode(InMessage.TOPNodeId, Cookable, TOPNetwork, TOPNode) ||
+		!IsValid(Cookable) || !IsValid(TOPNode))
+	{
+		HOUDINI_LOG_WARNING(TEXT("Failed to find TOP node with id %d, aborting output object creation."), InMessage.TOPNodeId);
+		return;
+	}
+
+	UHoudiniPDGAssetLink* AssetLink = Cookable->GetPDGAssetLink();
+
+	FTOPWorkResult* WorkResult = nullptr;
+	const int32 WorkResultArrayIndex = TOPNode->ArrayIndexOfWorkResultByID(InMessage.WorkItemId);
+	if(WorkResultArrayIndex != INDEX_NONE)
+	WorkResult = TOPNode->GetWorkResultByArrayIndex(WorkResultArrayIndex);
+	if(WorkResult == nullptr)
+	{
+		HOUDINI_LOG_WARNING(TEXT("Failed to find TOP work result with id %d, aborting output object creation."), InMessage.WorkItemId);
+		return;
+	}
+	const FString& WorkResultObjectName = InMessage.Name;
+	FTOPWorkResultObject* WorkResultObject = WorkResult->ResultObjects.FindByPredicate(
+		[&WorkResultObjectName](const FTOPWorkResultObject& WorkResultObject)
+		{
+			return WorkResultObject.Name == WorkResultObjectName;
+		}
+	);
+	if(WorkResultObject == nullptr)
+	{
+		HOUDINI_LOG_WARNING(TEXT("Failed to find TOP work result object with name %s, aborting output object creation."), *InMessage.Name);
+		return;
+	}
+
+	if(WorkResultObject->GetState() != EPDGWorkResultState::Loading)
+	{
+		HOUDINI_LOG_WARNING(TEXT("TOP work result object (%s) not in Importing state, aborting output object creation."), *InMessage.Name);
+		return;
+	}
+	HOUDINI_LOG_MESSAGE(TEXT("Received BGEO import result message"));
+	if (InMessage.ImportResult == EHoudiniPDGImportBGEOResult::HPIBR_Success || InMessage.ImportResult == EHoudiniPDGImportBGEOResult::HPIBR_PartialSuccess)
+	{
+		WorkResultObject->SetState(EPDGWorkResultState::Loaded);
+
+		TOPNode->OnWorkItemLoaded(WorkResult->WorkItemID);
+
+		// Set package params outer
+		FHoudiniPackageParams PackageParams;
+		InMessage.PopulatePackageParams(PackageParams);
+
+		UObject* AssetLinkParent = AssetLink->GetOuter();
+		UHoudiniAssetComponent* HAC = AssetLinkParent != nullptr ? Cast<UHoudiniAssetComponent>(AssetLinkParent) : nullptr;
+		UHoudiniCookable* HC = AssetLinkParent != nullptr ? Cast<UHoudiniCookable>(AssetLinkParent) : nullptr;
+		if (HC)
+		{
+			AActor* Owner = HC->GetOwner();
+			PackageParams.OuterPackage = Owner ? Cast<UObject>(Owner->GetLevel()) : Cast<UObject>(HC->GetPackage());
+		}
+		else if (HAC)
+		{
+			PackageParams.OuterPackage = HAC->GetComponentLevel();
+		}
+		else
+		{
+			if (AssetLinkParent)
+			{
+				PackageParams.OuterPackage = AssetLinkParent->GetPackage();
+			}
+		}
+
+		// Construct UHoudiniOutputs
+		bool bHasUnsupportedOutputs = false;
+		TArray<TObjectPtr<UHoudiniOutput>> NewOutputs;
+		TMap<FHoudiniOutputObjectIdentifier, FHoudiniInstancerPartData> InstancedOutputPartData;
+		NewOutputs.Reserve(InMessage.Outputs.Num());
+		for (const FHoudiniPDGImportNodeOutput& Output : InMessage.Outputs)
+		{
+			UHoudiniOutput* NewOutput = NewObject<UHoudiniOutput>(
+				AssetLink,
+				UHoudiniOutput::StaticClass(),
+				NAME_None,//FName(*OutputName),
+				RF_NoFlags);
+			NewOutputs.Add(NewOutput);
+			const int32 NumHGPO = Output.HoudiniGeoPartObjects.Num();
+			for (int32 Index = 0; Index < NumHGPO; ++Index)
+			{
+				const FHoudiniGeoPartObject& HGPO = Output.HoudiniGeoPartObjects[Index];
+				NewOutput->AddNewHGPO(HGPO);
+				
+				if (Output.InstancedOutputPartData.IsValidIndex(Index))
+				{
+					FHoudiniOutputObjectIdentifier Identifier;
+					Identifier.ObjectId = HGPO.ObjectId;
+					Identifier.GeoId = HGPO.GeoId;
+					Identifier.PartId = HGPO.PartId;
+					Identifier.PartName = HGPO.PartName;
+					FHoudiniInstancerPartData InstancedPartData = Output.InstancedOutputPartData[Index];
+					InstancedOutputPartData.Add(Identifier, InstancedPartData);
+				}
+			}
+			const int32 NumObjects = Output.OutputObjects.Num();
+			for (int32 Index = 0; Index < NumObjects; ++Index)
+			{
+				const FHoudiniPDGImportNodeOutputObject& ImportOutputObject = Output.OutputObjects[Index];
+				FHoudiniOutputObjectIdentifier Identifier = ImportOutputObject.Identifier;
+
+				const FString& FullPackagePath = ImportOutputObject.PackagePath;
+				FString PackagePath;
+				FString PackageName;
+				const bool bDidSplit = FullPackagePath.Split(TEXT("."), &PackagePath, &PackageName, ESearchCase::IgnoreCase, ESearchDir::FromEnd);
+				if (!bDidSplit)
+					PackagePath = FullPackagePath;
+
+				FHoudiniOutputObject OutputObject;
+				UPackage* Package = FindPackage(nullptr, *PackagePath);
+				if (!IsValid(Package))
+				{
+					// Editor might have picked up the package yet, try to load it
+					Package = LoadPackage(nullptr, *PackagePath, LOAD_NoWarn);
+				}
+				if (IsValid(Package))
+				{
+					OutputObject.OutputObject = FindObject<UObject>(Package, *PackageName);
+				}
+				Identifier.bLoaded = true;
+				NewOutput->GetOutputObjects().Add(Identifier, OutputObject);
+			}
+			NewOutput->UpdateOutputType();
+			const EHoudiniOutputType OutputType = NewOutput->GetType();
+			if (OutputType != EHoudiniOutputType::Mesh && OutputType != EHoudiniOutputType::Instancer)
+			{
+				bHasUnsupportedOutputs = true;
+			}
+		}
+
+		bool bSuccess = true;
+		if (bHasUnsupportedOutputs)
+		{
+			HOUDINI_LOG_MESSAGE(TEXT("Processing output types not supported by commandlet for %s"), *InMessage.Name);
+			bSuccess = FHoudiniPDGTranslator::CreateAllResultObjectsForPDGWorkItem(
+				AssetLink, TOPNode, *WorkResultObject, PackageParams, 
+				{
+					EHoudiniOutputType::Landscape,
+					EHoudiniOutputType::Curve,
+					EHoudiniOutputType::Skeletal,
+					EHoudiniOutputType::LandscapeSpline,  // TODO: could we support splines and curves via the commandlet / BGEO?
+				}
+			);
+			
+			if (bSuccess)
+			{
+				// Clear/remove the outputs on WorkResultObject that are supported by the commandlet, since we
+				// are going to replace them with NewOutputs now
+				TArray<TObjectPtr<UHoudiniOutput>>& CurrentOutputs = WorkResultObject->GetResultOutputs();
+				const int32 NumCurrentOutputs = CurrentOutputs.Num();
+				for (int32 Index = 0; Index < NumCurrentOutputs; ++Index)
+				{
+					UHoudiniOutput* CurOutput = CurrentOutputs[Index];
+					const EHoudiniOutputType OutputType = CurOutput->GetType();
+					if (OutputType != EHoudiniOutputType::Mesh && OutputType != EHoudiniOutputType::Instancer)
+					{
+						// Was created in editor, override the dummy one in NewOutputs with CurOutput
+						if (NewOutputs.IsValidIndex(Index))
+						{
+							if (OutputType == NewOutputs[Index]->GetType())
+							{
+								UHoudiniOutput* TempOutput = NewOutputs[Index];
+								FHoudiniOutputTranslator::ClearOutput(TempOutput);
+								NewOutputs[Index] = CurOutput;
+							}
+							else
+							{
+								HOUDINI_LOG_ERROR(TEXT("Unexpected commandlet output type at index %d!"), Index);
+							}
+						}
+						else
+						{
+							HOUDINI_LOG_ERROR(TEXT("Expected output index %d from commandlet to be exist!"), Index);
+						}
+					}
+				}
+			}
+		}
+		
+		if (bSuccess && FHoudiniPDGTranslator::LoadExistingAssetsAsResultObjectsForPDGWorkItem(
+				AssetLink,
+				TOPNode,
+				*WorkResultObject,
+				PackageParams,
+				NewOutputs,
+				{EHoudiniOutputType::Mesh, EHoudiniOutputType::Instancer},
+				&InstancedOutputPartData))
+		{
+			const int32 NumOutputs = NewOutputs.Num();
+			for (int32 OutputIndex = 0; OutputIndex < NumOutputs; ++OutputIndex)
+			{
+				UHoudiniOutput *NewOutput = NewOutputs[OutputIndex];
+
+				if (NewOutput->GetType() != EHoudiniOutputType::Mesh)
+					continue;
+				
+				const FHoudiniPDGImportNodeOutput& Output = InMessage.Outputs[OutputIndex];
+				int32 NumObjects = Output.OutputObjects.Num();
+				for (int32 Index = 0; Index < NumObjects; ++Index)
+				{
+					const FHoudiniPDGImportNodeOutputObject& ImportOutputObject = Output.OutputObjects[Index];
+					FHoudiniOutputObjectIdentifier Identifier = ImportOutputObject.Identifier;
+					FHoudiniOutputObject *OutputObject = NewOutput->GetOutputObjects().Find(Identifier);
+					if (OutputObject)
+					{
+						for(auto Component : OutputObject->OutputComponents)
+						{
+							if (UActorComponent* ActorComponent = Cast<UActorComponent>(Component))
+							{
+								// TODO: Add support for KeepTags attribute here, if needed.
+								ActorComponent->ComponentTags = FHoudiniEngineUtils::GetDefaultComponentTags(ActorComponent);
+							}
+							
+							// Update generic property attributes
+							FHoudiniEngineUtils::UpdateGenericPropertiesAttributes(
+								Component,
+								ImportOutputObject.GenericAttributes.PropertyAttributes);
+						}
+
+						// Copy cached attributes
+						OutputObject->CachedAttributes.Append(ImportOutputObject.CachedAttributes);
+					}
+				}
+			}
+		}
+		else
+		{
+			bSuccess = false;
+		}
+	
+	}
+	else
+	{
+		HOUDINI_LOG_WARNING(TEXT("Commandlet failed to import bgeo for %s. Errors:"), *InMessage.Name);
+		for (const FString& Error : InMessage.Errors)
+		{
+			HOUDINI_LOG_WARNING(TEXT("Error Received from Commandlet: %s"), *Error);
+		}
+
+		// Try to load it outside the async importer.
+		WorkResultObject->SetState(EPDGWorkResultState::ToLoadNonCommandlet);
+
+		HOUDINI_LOG_WARNING(TEXT("Work Item will now be loaded outside of the Commandlet."));
+
+	}
+}
+
+bool FHoudiniPDGManager::CreateBGEOCommandletAndEndpoint()
+{
+	if (!BGEOCommandletEndpoint.IsValid())
+	{
+		BGEOCommandletAddress.Invalidate();
+		BGEOCommandletEndpoint = FMessageEndpoint::Builder(TEXT("Houdini BGEO Commandlet"))
+			.Handling<FHoudiniPDGImportBGEOResultMessage>(this, &FHoudiniPDGManager::HandleImportBGEOResultMessage)
+			.Handling<FHoudiniPDGImportBGEODiscoverMessage>(this, &FHoudiniPDGManager::HandleImportBGEODiscoverMessage)
+			.ReceivingOnThread(ENamedThreads::GameThread);
+		
+		if (!BGEOCommandletEndpoint.IsValid())
+		{
+			HOUDINI_LOG_WARNING(TEXT("Could not set up messaging end point for BGEO commandlet"));
+			return false;
+		}
+
+		BGEOCommandletEndpoint->Subscribe<FHoudiniPDGImportBGEODiscoverMessage>();
+	}
+
+	if (!BGEOCommandletProcHandle.IsValid() || !FPlatformProcess::IsProcRunning(BGEOCommandletProcHandle))
+	{
+		// Start the bgeo commandlet
+		static const FString BGEOCommandletName = TEXT("HoudiniGeoImport");
+		BGEOCommandletGuid = FGuid::NewGuid();
+		BGEOCommandletAddress.Invalidate();
+
+		// Get the absolute path to the project file, if known, otherwise get
+		// the project name. For the path: quote it for the command line.
+		IFileManager& FileManager = IFileManager::Get();
+		FString ProjectPathOrName = FApp::GetProjectName();
+		if (FPaths::IsProjectFilePathSet())
+		{
+			const FString ProjectPath = FPaths::GetProjectFilePath();
+			if (!ProjectPath.IsEmpty())
+			{
+				ProjectPathOrName = FString::Printf(
+                    TEXT("\"%s\""),
+                    *FileManager.ConvertToAbsolutePathForExternalAppForRead(*ProjectPath)
+                );
+			}
+		}
+
+		if (ProjectPathOrName.IsEmpty())
+			return false;
+
+		// Use the running editor executable, which may be a project editor binary outside Engine/Binaries.
+		FString ExePath = FPlatformProcess::ExecutablePath();
+		if (!ExePath.IsEmpty())
+			ExePath = FileManager.ConvertToAbsolutePathForExternalAppForRead(*ExePath);
+
+		if (ExePath.IsEmpty())
+			return false;
+		
+		const FString CommandLineParameters = FString::Printf(
+			TEXT("%s -messaging -run=%s -guid=%s -listen=%s -managerpid=%d"),
+			*ProjectPathOrName,
+			*BGEOCommandletName,
+			*BGEOCommandletGuid.ToString(),
+			*BGEOCommandletEndpoint->GetAddress().ToString(),
+			FPlatformProcess::GetCurrentProcessId());
+
+		// Create a pipe for output capture
+		const UHoudiniRuntimeSettings* HoudiniRuntimeSettings = GetDefault<UHoudiniRuntimeSettings>();
+		if (HoudiniRuntimeSettings->bSendCommandletOutputToConsole)
+		{
+			FPlatformProcess::CreatePipe(BGEOReadPipe, BGEOWritePipe, true);
+			FPlatformProcess::ClosePipe(BGEOWritePipe, nullptr);
+			BGEOWritePipe = nullptr;
+		}
+		else
+		{
+			BGEOReadPipe = nullptr;
+			BGEOWritePipe = nullptr;
+		}
+
+		BGEOCommandletProcHandle = FPlatformProcess::CreateProc(
+			*ExePath,
+			*CommandLineParameters,
+			false,
+			true,
+			false,
+			&BGEOCommandletProcessId,
+			0,
+			nullptr,
+			BGEOWritePipe,
+			BGEOReadPipe);
+
+
+
+		if (!BGEOCommandletProcHandle.IsValid())
+		{
+
+			FPlatformProcess::ClosePipe(BGEOReadPipe, nullptr);
+			BGEOReadPipe = nullptr;
+			return false;
+		}
+	}
+
+	return true;
+}
+
+void FHoudiniPDGManager::StopBGEOCommandletAndEndpoint()
+{
+	if(BGEOReadPipe)
+	{
+		FPlatformProcess::ClosePipe(BGEOReadPipe, nullptr);
+		BGEOReadPipe = nullptr;
+	}
+
+	if(BGEOWritePipe)
+	{
+		FPlatformProcess::ClosePipe(BGEOWritePipe, nullptr);
+		BGEOWritePipe = nullptr;
+	}
+
+	BGEOCommandletEndpoint.Reset();
+	BGEOCommandletAddress.Invalidate();
+	BGEOCommandletGuid.Invalidate();
+
+	if (BGEOCommandletProcHandle.IsValid() && FPlatformProcess::IsProcRunning(BGEOCommandletProcHandle))
+	{
+		FPlatformProcess::TerminateProc(BGEOCommandletProcHandle, true);
+		if (BGEOCommandletProcHandle.IsValid())
+		{
+			FPlatformProcess::WaitForProc(BGEOCommandletProcHandle);
+			FPlatformProcess::CloseProc(BGEOCommandletProcHandle);
+		}
+	}
+
+	BGEOCommandletStatus = EHoudiniBGEOCommandletStatus::NotStarted;
+}
+
+EHoudiniBGEOCommandletStatus FHoudiniPDGManager::UpdateAndGetBGEOCommandletStatus()
+{
+	if (BGEOCommandletProcHandle.IsValid())
+	{
+		if (!FPlatformProcess::IsProcRunning(BGEOCommandletProcHandle))
+			BGEOCommandletStatus = EHoudiniBGEOCommandletStatus::Crashed;
+		else if (BGEOCommandletAddress.IsValid())
+			BGEOCommandletStatus = EHoudiniBGEOCommandletStatus::Connected;
+		else
+			BGEOCommandletStatus = EHoudiniBGEOCommandletStatus::Running;
+	}
+	else
+		BGEOCommandletStatus = EHoudiniBGEOCommandletStatus::NotStarted;
+
+	return BGEOCommandletStatus;
+}
+
+
+bool
+FHoudiniPDGManager::IsPDGAsset(const HAPI_NodeId& InAssetId)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniPDGManager::IsPDGAsset);
+	if (InAssetId < 0)
+		return false;
+
+	// First check if an unreal_pdg_asset detail attribute exists - and get its value 
+	// This is faster than looking at all the nodes on an HDA - especially when the HDA contains a lot of nodes/assets
+	{
+		HAPI_AttributeInfo AttribInfo;
+		FHoudiniApi::AttributeInfo_Init(&AttribInfo);
+		HAPI_Result Result = FHoudiniApi::GetAttributeInfo(
+			FHoudiniEngine::Get().GetSession(),
+			InAssetId, 0, HAPI_UNREAL_ATTRIB_PDG_ASSET, HAPI_ATTROWNER_DETAIL, &AttribInfo);
+
+		if (Result == HAPI_RESULT_SUCCESS && AttribInfo.exists)
+		{
+			TArray<int32> IntData;
+			FHoudiniHapiAccessor Accessor(InAssetId, 0, HAPI_UNREAL_ATTRIB_PDG_ASSET);
+			bool bSuccess = Accessor.GetAttributeData(HAPI_ATTROWNER_DETAIL, IntData, 0, 1);
+			if (bSuccess && !IntData.IsEmpty())
+			{
+				return (IntData[0] != 0);
+			}
+		}
+	}
+
+	// TOO LONG ON BIG HDAS!
+	// Get the list of all non bypassed TOP nodes within the current network (ignoring schedulers)
+	int32 TOPNodeCount = 0;
+	if (HAPI_RESULT_SUCCESS != FHoudiniApi::ComposeChildNodeList(
+		FHoudiniEngine::Get().GetSession(), InAssetId,
+		HAPI_NodeType::HAPI_NODETYPE_TOP, HAPI_NODEFLAGS_TOP_NONSCHEDULER | HAPI_NODEFLAGS_NON_BYPASS, true, &TOPNodeCount))
+	{
+		return false;
+	}
+
+	// We found valid TOP Nodes, this is a PDG HDA
+	if (TOPNodeCount > 0)
+		return true;
+
+	// No valid TOP node found in SOP/TOP Networks, this is not a PDG HDA
+	return false;
+	
+	/*
+	// Get all the network nodes within the asset, recursively.
+	// We're getting all networks because TOP network SOPs aren't considered being of TOP network type, but SOP type
+	int32 NetworkNodeCount = 0;
+	HOUDINI_CHECK_ERROR_RETURN(FHoudiniApi::ComposeChildNodeList(
+		FHoudiniEngine::Get().GetSession(), InAssetId,
+		HAPI_NODETYPE_SOP | HAPI_NODETYPE_TOP, HAPI_NODEFLAGS_NETWORK | HAPI_NODEFLAGS_NON_BYPASS, false, &NetworkNodeCount), false);
+
+	if (NetworkNodeCount <= 0)
+		return false;
+
+	TArray<HAPI_NodeId> AllNetworkNodeIDs;
+	AllNetworkNodeIDs.SetNum(NetworkNodeCount);
+	HOUDINI_CHECK_ERROR_RETURN(FHoudiniApi::GetComposedChildNodeList(
+		FHoudiniEngine::Get().GetSession(), InAssetId,
+		AllNetworkNodeIDs.GetData(), NetworkNodeCount), false);
+
+	// For each Network we found earlier, only consider those with TOP child nodes
+	// If we find TOP nodes in a valid network, then consider this HDA a PDG HDA
+	HAPI_NodeInfo CurrentNodeInfo;
+	FHoudiniApi::NodeInfo_Init(&CurrentNodeInfo);
+	for (const HAPI_NodeId& CurrentNodeId : AllNetworkNodeIDs)
+	{
+		if (CurrentNodeId < 0)
+		{
+			continue;
+		}
+
+		if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetNodeInfo(
+			FHoudiniEngine::Get().GetSession(), CurrentNodeId, &CurrentNodeInfo))
+		{
+			continue;
+		}
+
+		// Skip non TOP or SOP networks
+		if (CurrentNodeInfo.type != HAPI_NodeType::HAPI_NODETYPE_TOP
+			&& CurrentNodeInfo.type != HAPI_NodeType::HAPI_NODETYPE_SOP)
+		{
+			continue;
+		}
+
+		// Get the list of all TOP nodes within the current network (ignoring schedulers)
+		int32 TOPNodeCount = 0;
+		if (HAPI_RESULT_SUCCESS != FHoudiniApi::ComposeChildNodeList(
+			FHoudiniEngine::Get().GetSession(), CurrentNodeId,
+			HAPI_NodeType::HAPI_NODETYPE_TOP, HAPI_NODEFLAGS_TOP_NONSCHEDULER | HAPI_NODEFLAGS_NON_BYPASS, false, &TOPNodeCount))
+		{
+			continue;
+		}
+
+		// We found valid TOP Nodes, this is a PDG HDA
+		if (TOPNodeCount > 0)
+			return true;
+	}
+
+	// No valid TOP node found in SOP/TOP Networks, this is not a PDG HDA
+	return false;
+	*/
+}
+
+#undef LOCTEXT_NAMESPACE

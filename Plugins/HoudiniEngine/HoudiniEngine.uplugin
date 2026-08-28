@@ -1,0 +1,45 @@
+{
+	"FileVersion" : 3,
+	"FriendlyName" : "Houdini Engine",
+	"Version" : 22000368,
+	"VersionName" : "3.0 - H22.0.368",
+	"CreatedBy" : "Side Effects Software Inc.",
+	"CreatedByURL": "https://www.sidefx.com/",
+	"DocsURL": "https://www.sidefx.com/docs/unreal/",
+	"SupportURL" : "https://www.sidefx.com/bugs/submit/",
+	"Description" : "Houdini Engine for Unreal Engine.",
+	"IsBetaVersion" : false,
+	"Category": "Procedural",
+	"EnabledByDefault" : true,
+
+	"Modules" :
+	[
+		{
+			"Name": "HoudiniEngine",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name" : "HoudiniEngineEditor",
+			"Type" : "Editor",
+			"LoadingPhase" : "PostEngineInit"
+		},
+		{
+			"Name" : "HoudiniEngineRuntime",
+			"Type" : "Runtime",
+			"LoadingPhase" : "Default"
+		}
+	],
+
+	"Plugins" :
+	[
+		{
+			"Name": "PCG",
+			"Enabled": true
+		}
+	],
+
+	"CanContainContent" : true,
+	"Installed": true
+}
+

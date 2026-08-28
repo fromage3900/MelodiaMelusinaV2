@@ -29,7 +29,7 @@ void UMelodiaWaterBuoyancyComponent::InitializePlatformState()
 {
 	if (const AMelodiaWaterPlatform* Platform = Cast<AMelodiaWaterPlatform>(GetOwner()))
 	{
-		if (WaterNetworkId.IsNone())
+		if (!WaterNetworkId.IsValid())
 		{
 			WaterNetworkId = Platform->WaterNetworkId;
 		}
