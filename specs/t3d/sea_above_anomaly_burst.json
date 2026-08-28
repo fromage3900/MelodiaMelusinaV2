@@ -1,0 +1,38 @@
+{
+  "$schema": "../schemas/t3d_mutation_request.v1.json",
+  "schema": "melodia.t3d_mutation_request.v1",
+  "request_id": "t3d-sea-above-anomaly-burst-v1",
+  "asset_path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Blueprints/BP_SeaAboveAnomalyController",
+  "expected_before_fingerprint": "REPLACE_FROM_LIVE_QUERY",
+  "operations": [
+    {"verb": "inject_nodes_t3d", "description": "Add threshold check and anomaly trigger invocation to BP_SeaAboveAnomalyController."}
+  ],
+  "nodes": [
+    {"id": "CheckThreshold", "class": "K2Node_CallFunction", "semantic_label": "threshold_gate"},
+    {"id": "Branch_Pulse", "class": "K2Node_IfThenElse", "semantic_label": "pulse_branch"},
+    {"id": "TriggerAnomaly", "class": "K2Node_CallFunction", "semantic_label": "trigger_anomaly_invocation"}
+  ],
+  "expected_postconditions": {
+    "required_nodes": ["CheckThreshold", "Branch_Pulse", "TriggerAnomaly"],
+    "forbidden_nodes": [],
+    "required_connections": [],
+    "expected_delta": {
+      "new_nodes": ["CheckThreshold", "Branch_Pulse", "TriggerAnomaly"],
+      "new_connections": []
+    },
+    "compile_error_count": 0,
+    "reexport_after_save": true
+  },
+  "verification": {
+    "compile_zero_errors": true,
+    "assert_graph_match": true,
+    "reexport_after_save": true
+  },
+  "t3d": "Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name=\"CheckThreshold\"\n   FunctionReference=(MemberParent=Class'\"/Script/Engine.KismetMathLibrary\"',MemberName=\"GreaterEqual_DoubleDouble\")\n   NodePosX=0\n   NodePosY=0\n   NodeGuid={{GUID:gte}}\n   CustomProperties Pin (PinId={{GUID:val_a}},PinName=\"A\",Direction=\"EGPD_Input\",PinType.PinCategory=\"real\",PinType.PinSubCategory=\"double\",DefaultValue=\"{{pulse_value}}\",)\n   CustomProperties Pin (PinId={{GUID:val_b}},PinName=\"B\",Direction=\"EGPD_Input\",PinType.PinCategory=\"real\",PinType.PinSubCategory=\"double\",DefaultValue=\"{{threshold}}\",)\n   CustomProperties Pin (PinId={{GUID:gte_out}},PinName=\"ReturnValue\",Direction=\"EGPD_Output\",PinType.PinCategory=\"bool\",PinType.PinSubCategoryObject=None,LinkedTo=(Branch_Pulse {{GUID:branch_cond}},),)\nEnd Object\nBegin Object Class=/Script/BlueprintGraph.K2Node_IfThenElse Name=\"Branch_Pulse\"\n   NodePosX=250\n   NodePosY=0\n   NodeGuid={{GUID:branch}}\n   CustomProperties Pin (PinId={{GUID:branch_in}},PinName=\"execute\",Direction=\"EGPD_Input\",PinType.PinCategory=\"exec\",PinType.PinSubCategoryObject=None,)\n   CustomProperties Pin (PinId={{GUID:branch_cond}},PinName=\"Condition\",Direction=\"EGPD_Input\",PinType.PinCategory=\"bool\",PinType.PinSubCategoryObject=None,LinkedTo=(CheckThreshold {{GUID:gte_out}},),)\n   CustomProperties Pin (PinId={{GUID:branch_then}},PinName=\"then\",Direction=\"EGPD_Output\",PinType.PinCategory=\"exec\",PinType.PinSubCategoryObject=None,LinkedTo=(TriggerAnomaly {{GUID:anomaly_in}},),)\n   CustomProperties Pin (PinId={{GUID:branch_else}},PinName=\"else\",Direction=\"EGPD_Output\",PinType.PinCategory=\"exec\",PinType.PinSubCategoryObject=None,)\nEnd Object\nBegin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name=\"TriggerAnomaly\"\n   FunctionReference=(MemberParent=Class'\"{{anomaly_handler_class}}\"',MemberName=\"{{anomaly_trigger_function}}\")\n   NodePosX=550\n   NodePosY=0\n   NodeGuid={{GUID:anomaly}}\n   CustomProperties Pin (PinId={{GUID:anomaly_in}},PinName=\"execute\",Direction=\"EGPD_Input\",PinType.PinCategory=\"exec\",PinType.PinSubCategoryObject=None,LinkedTo=(Branch_Pulse {{GUID:branch_then}},),)\nEnd Object\n",
+  "placeholders": {
+    "pulse_value": "0.85",
+    "threshold": "0.80",
+    "anomaly_handler_class": "/Script/Engine.KismetSystemLibrary",
+    "anomaly_trigger_function": "PrintString"
+  }
+}
