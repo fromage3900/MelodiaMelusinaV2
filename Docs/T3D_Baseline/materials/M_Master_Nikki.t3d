@@ -7,6 +7,42 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionBumpOffset Name="MaterialExpressionBumpOffset_3" ExportPath="/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_3'"
    End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_10" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_11" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_12" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_13" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_14" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_15" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_16" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_17" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_18" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_19" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_20" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_20'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_21" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_21'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_4" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_5" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_6" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_7" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_8" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_9" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_9'"
+   End Object
    Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_2" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant_2'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_3" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant_3'"
@@ -155,6 +191,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_0'"
    End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_1'"
+   End Object
    Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_10'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_100" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_100'"
@@ -202,6 +240,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_18'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_2'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_20'"
    End Object
@@ -420,7 +460,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="M_Master_NikkiEditorOnlyData" ExportPath="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:M_Master_NikkiEditorOnlyData'"
       WorldPositionOffset=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_25'")
       FrontMaterial=(Expression="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubstrateToonBSDF_1'")
-      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_18'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_50'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_33'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_15'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_3'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_19'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_56'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_35'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_58'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_60'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_12'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_11'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_40'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_2'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_2'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_0'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_1'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_0'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionFresnel_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionPixelDepth'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionPixelDepth_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_10'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_4'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_2'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_7'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_8'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionOneMinus_0'","/Script/Engine.MaterialExpressionTextureCoordinate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureCoordinate_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_12'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_10'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_15'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_11'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant_2'","/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_3'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_5'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_6'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_7'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_5'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_12'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_1'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_1'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_6'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_7'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_18'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_19'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_20'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_3'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_3'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_22'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_23'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_4'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionFresnel_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_24'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_13'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant_3'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_14'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_25'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_15'","/Script/Engine.MaterialExpressionPixelDepth'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionPixelDepth_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_26'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_27'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_28'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_9'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_4'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_5'","/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDivide_1'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSaturate_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_16'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_29'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_17'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_30'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_19'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionOneMinus_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_20'","/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubstrateToonBSDF_1'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_47'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_48'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_49'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_51'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_52'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_53'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_16'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_17'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_18'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_13'","/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureObjectParameter_0'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionWorldPosition_1'","/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVertexNormalWS_1'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_54'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_55'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_57'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_20'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_14'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_5'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_2'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_59'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_61'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_62'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_63'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_21'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_19'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_10'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_64'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_85'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_86'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_87'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_22'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_23'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_24'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_20'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_11'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_88'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_89'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_25'","/Script/Engine.MaterialExpressionLightVector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLightVector_0'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_3'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionOneMinus_2'","/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionPower_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_1'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_18'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_90'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_4'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_6'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSine_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_5'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_7'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_19'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_91'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_92'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_93'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_94'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_95'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_26'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_21'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_5'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_8'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_20'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_96'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_97'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_98'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_27'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_22'","/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVertexNormalWS_2'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_21'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_99'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_100'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_101'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_28'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_23'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionWorldPosition_2'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_22'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_102'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_103'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_104'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_105'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_29'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_24'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_23'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_106'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_107'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_108'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_109'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_110'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_111'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_30'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_25'","/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTime_1'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_24'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_112'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_113'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_114'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_115'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_116'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_31'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_26'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_27'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_117'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_118'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_32'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_25'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_9'"))
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_18'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_50'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_33'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_15'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_3'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_19'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_56'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_35'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_58'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_60'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_12'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_11'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_40'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_2'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_2'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_0'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_1'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_0'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionFresnel_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionPixelDepth'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionPixelDepth_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_10'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_4'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_2'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_7'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_8'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionOneMinus_0'","/Script/Engine.MaterialExpressionTextureCoordinate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureCoordinate_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_12'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_10'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_15'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_11'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant_2'","/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_3'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_5'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_6'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_7'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_5'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_12'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_1'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_1'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_6'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_7'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_18'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_19'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_20'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_3'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_3'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_22'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_23'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_4'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionFresnel_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_24'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_13'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant_3'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_14'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_25'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_15'","/Script/Engine.MaterialExpressionPixelDepth'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionPixelDepth_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_26'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_27'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_28'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_9'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_4'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubtract_5'","/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDivide_1'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSaturate_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_16'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_29'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_17'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_30'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_19'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionOneMinus_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_20'","/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSubstrateToonBSDF_1'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_47'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_48'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_49'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_51'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_52'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_53'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_16'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_17'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_18'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_13'","/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureObjectParameter_0'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionWorldPosition_1'","/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVertexNormalWS_1'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_54'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_55'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_57'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_20'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_14'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_5'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_2'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_59'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_61'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_62'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_63'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_21'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_19'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_10'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_64'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_85'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_86'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_87'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_22'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_23'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_24'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_20'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_11'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_88'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_89'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_25'","/Script/Engine.MaterialExpressionLightVector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLightVector_0'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_3'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionOneMinus_2'","/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionPower_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionLinearInterpolate_1'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_18'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_90'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_4'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_6'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionSine_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_5'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_7'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_19'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_91'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_92'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_93'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_94'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_95'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_26'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_21'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionDotProduct_5'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_8'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_20'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_96'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_97'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_98'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_27'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_22'","/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVertexNormalWS_2'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_21'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_99'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_100'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_101'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_28'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_23'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionWorldPosition_2'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_22'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_102'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_103'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_104'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_105'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_29'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_24'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_23'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_106'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_107'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_108'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_109'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_110'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_111'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_30'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_25'","/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTime_1'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_24'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_112'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_113'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_114'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_115'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_116'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_31'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_26'","/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_27'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_117'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_118'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_32'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_25'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_9'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_4'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_5'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_6'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_7'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_8'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_9'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_10'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_11'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_12'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_13'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_14'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_15'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_16'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_17'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_18'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_19'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_20'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_21'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_2'"))
+      SubstrateConversionVersion=0
    End Object
    Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionAdd_1'"
       A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_17'")
@@ -445,6 +486,149 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       MaterialExpressionEditorX=-1850
       MaterialExpressionEditorY=100
       MaterialExpressionGuid=8CA4170146C33EF7458B39B7B0534471
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_10" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_10'"
+      Text="MELODIA_COLUMN:07 | Nikki Iridescence & Sheen\nNikki-surface iridescence + fabric sheen modulators."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-1240
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=6C15648246FCF370F3BA58A1745D426F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_11" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_11'"
+      Text="MELODIA_COLUMN:08 | Nikki Sticker Shade\nAnime sticker/cel flattening (bands + softness). Default OFF."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-1740
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=ADB1941C4C2F6A236A091DAD33A5D67C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_12" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_12'"
+      Text="MELODIA_COLUMN:09 | Nikki Twinkle Iris\nIridescent twinkle + pastel fabric sheen. Default ON."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-1490
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=28C6859B4042483C0F507EA65128F412
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_13" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_13'"
+      Text="MELODIA_COLUMN:10 | Nikki Pastel Grade\nPastel grade: sakura ramp + dream bloom. Default ON."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-1240
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=A95E43B3411F266F930DA4841C74FBD4
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_14" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_14'"
+      Text="MELODIA_COLUMN:11 | Shadow Dream\nCustom N.L shadow band grading: tint + strength + softness for dreamy cel shadows."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-990
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=B08672EE4BCD0049087F4DBC8924A7AD
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_15" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_15'"
+      Text="MELODIA_COLUMN:12 | Kawaii Squish\nBreathing WPO squish (sin*bob). bKawaiiSquish_Active + bNikkiSquishWPO_Active."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-840
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=96D4F2BA417D54424A74FA979D7F912E
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_16" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_16'"
+      Text="MELODIA_COLUMN:13 | Nikki SDF Ribbon\nSDF band ribbon on silhouettes (scale/sharpness/edge). Default OFF."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-740
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=D7D648DF494C011B5FBAEFBF7D33CB5F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_17" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_17'"
+      Text="MELODIA_COLUMN:14 | Nikki Pearl Sheen\nDual-layer pearlescent sheen. Default OFF."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-490
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=6D08C5A2475294C97D4D29B0452767E7
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_18" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_18'"
+      Text="MELODIA_COLUMN:15 | Nikki Dream Watercolor\nWatercolor bleed in shadows (hue-rotating noise). Default OFF."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=DBADBA9B4EB1D34C2FDD80AE2499152C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_19" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_19'"
+      Text="MELODIA_COLUMN:16 | Nikki Sticker Edge\nAnime sticker edge-light (Fwidth band + pastel rim). Default OFF."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=10
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=D86943B74B3AB958B9194C838E4B9A30
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_20" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_20'"
+      Text="MELODIA_COLUMN:17 | Nikki Glitter Halo\nWorld-aligned hash glitter + fresnel halo. Default OFF."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=260
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=24DED0B74A914F0C0AAFE3A6A10A00A6
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_21" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_21'"
+      Text="MELODIA_COLUMN:18 | Nikki Petal Shadow\nBlooming petal shadow field. Default OFF."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=510
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=27A28A4F48059184898E0988D30865E1
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_4" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_4'"
+      Text="MELODIA_COLUMN:01 | Base Surface\nMaster tint / UV / roughness-metallic base. UVScale + UVRotation/Offset are the mesh-space controls; everything above builds on this column."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-1690
+      MaterialExpressionEditorY=-760
+      MaterialExpressionGuid=7396D65C4EEF000D6B3E459227D3BC96
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_5" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_5'"
+      Text="MELODIA_COLUMN:02 | Textures\nNikki surface PBR slots (Albedo/Normal/ORM/Height)."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-2490
+      MaterialExpressionEditorY=-960
+      MaterialExpressionGuid=6A51813141945F826806B2B8751CD57C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_6" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_6'"
+      Text="MELODIA_COLUMN:03 | Atmosphere\nDepth-based atmosphere fade for Nikki surfaces."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-820
+      MaterialExpressionEditorY=-1020
+      MaterialExpressionGuid=B625D8E64CDD26046BB15D9C4E43B10F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_7" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_7'"
+      Text="MELODIA_COLUMN:04 | Emissive\nNikki signature self-glow: EmissiveStrength + EmissiveFloor."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-620
+      MaterialExpressionEditorY=-260
+      MaterialExpressionGuid=253A138E4B1727AEBECA61A61304FFAD
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_8" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_8'"
+      Text="MELODIA_COLUMN:05 | Triplanar\nWorld-aligned projection. bTriplanar_Active gates the lane (default OFF); slope mask + per-channel blend weights control how much world-space detail mixes with Layer A UVs."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-2490
+      MaterialExpressionEditorY=-840
+      MaterialExpressionGuid=BB060AC34578278337ED6D9A536C99CC
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_9" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionComment_9'"
+      Text="MELODIA_COLUMN:06 | Parallax\nPOM depth. ParallaxStrength/Scale/Height drive the offset; NormalStrength/Power reshape the sampled normal after the offset."
+      CommentColor=(R=0.060000,G=0.090000,B=0.140000,A=1.000000)
+      MaterialExpressionEditorX=-2440
+      MaterialExpressionGuid=A5D53B514578FA235E6413890323BAF1
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
    End Object
    Begin Object Name="MaterialExpressionConstant_2" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant_2'"
@@ -1163,10 +1347,21 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=10.000000
       ParameterName="UVScale"
       ExpressionGUID=95E69E8A4914B1C9D9F35C9B9C3E655C
-      Group="Base"
+      Group="06 | Parallax"
+      SortPriority=501
       MaterialExpressionEditorX=-2300
       MaterialExpressionEditorY=140
       MaterialExpressionGuid=915F827643C4751DA20633B014C67B21
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_1'"
+      DefaultValue=1.000000
+      ParameterName="TriplanarScale"
+      ExpressionGUID=072E706B42395C464347F3A80EED9140
+      Group="04 Texture Layout"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=797074774E8A65637EC94CBBD479B26D
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
    End Object
    Begin Object Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_10'"
@@ -1175,7 +1370,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=500000.000000
       ParameterName="AtmosphericEnd"
       ExpressionGUID=792A8E0A4E76D7D1A860DCB7DC381BC7
-      Group="Atmosphere"
+      Group="03 | Atmosphere"
+      SortPriority=201
       MaterialExpressionEditorX=-680
       MaterialExpressionEditorY=-520
       MaterialExpressionGuid=7AD7937548565C09CEB91B978CBD6D10
@@ -1186,7 +1382,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=0.500000
       ParameterName="NikkiWatercolor_Jitter"
       ExpressionGUID=BDF1E93C404B7FD082450088DB7E9C71
-      Group="04 | Nikki Cute"
+      Group="15 | Nikki Dream Watercolor"
+      SortPriority=1403
       MaterialExpressionEditorX=-100
       MaterialExpressionEditorY=420
       MaterialExpressionGuid=9AF22DE74259E43409B33DA57CE41DBD
@@ -1198,7 +1395,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiWatercolor_Strength"
       ExpressionGUID=16301CFD4C2B1E927293169B87F7ECEE
-      Group="04 | Nikki Cute"
+      Group="15 | Nikki Dream Watercolor"
+      SortPriority=1404
       MaterialExpressionEditorX=-100
       MaterialExpressionEditorY=480
       MaterialExpressionGuid=A1E743824DB2B9A6B03F6CA8077EBE7E
@@ -1210,7 +1408,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=2.000000
       ParameterName="NikkiStickerEdge_Width"
       ExpressionGUID=B50116774457EB268567DF870CCD3E8A
-      Group="04 | Nikki Cute"
+      Group="16 | Nikki Sticker Edge"
+      SortPriority=1502
       MaterialExpressionEditorX=150
       MaterialExpressionEditorY=360
       MaterialExpressionGuid=B931F7D443CB9E750C6DAAB52EF4B9EB
@@ -1223,7 +1422,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=8.000000
       ParameterName="NikkiStickerEdge_Bands"
       ExpressionGUID=1A1315E548DC38904CBB9A99AFC2FE45
-      Group="04 | Nikki Cute"
+      Group="16 | Nikki Sticker Edge"
+      SortPriority=1503
       MaterialExpressionEditorX=150
       MaterialExpressionEditorY=420
       MaterialExpressionGuid=35D4AFD9453133DC4E6547A8D505FE5D
@@ -1235,7 +1435,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiStickerEdge_Softness"
       ExpressionGUID=E8B7A2E245F212BDA59E8990D968CE11
-      Group="04 | Nikki Cute"
+      Group="16 | Nikki Sticker Edge"
+      SortPriority=1504
       MaterialExpressionEditorX=150
       MaterialExpressionEditorY=480
       MaterialExpressionGuid=E0DB4588498F0A1BA074979E430F024C
@@ -1247,7 +1448,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiStickerEdge_Strength"
       ExpressionGUID=25250D7D4BDC83D8162212B8F868D34E
-      Group="04 | Nikki Cute"
+      Group="16 | Nikki Sticker Edge"
+      SortPriority=1505
       MaterialExpressionEditorX=150
       MaterialExpressionEditorY=540
       MaterialExpressionGuid=6F6D4DF24C8150D83198E6BB3FD9D148
@@ -1260,7 +1462,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=128.000000
       ParameterName="NikkiGlitterHalo_Scale"
       ExpressionGUID=528FC14841961CCC71FD9680D29B8C78
-      Group="04 | Nikki Cute"
+      Group="17 | Nikki Glitter Halo"
+      SortPriority=1602
       MaterialExpressionEditorX=400
       MaterialExpressionEditorY=360
       MaterialExpressionGuid=5241C99040BD532B85B558A5741A6BD8
@@ -1272,7 +1475,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiGlitterHalo_Amount"
       ExpressionGUID=493919984EA37FCF39D6FB8D66087AB3
-      Group="04 | Nikki Cute"
+      Group="17 | Nikki Glitter Halo"
+      SortPriority=1603
       MaterialExpressionEditorX=400
       MaterialExpressionEditorY=420
       MaterialExpressionGuid=49E653D94CEA09088411D38158183BBC
@@ -1284,7 +1488,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=2.000000
       ParameterName="NikkiGlitterHalo_Intensity"
       ExpressionGUID=962EF2AD4BC801FDED82D68F5A2CF06A
-      Group="04 | Nikki Cute"
+      Group="17 | Nikki Glitter Halo"
+      SortPriority=1604
       MaterialExpressionEditorX=400
       MaterialExpressionEditorY=480
       MaterialExpressionGuid=E0411F604C8F6D7B86B4C1B686A1EEA9
@@ -1296,7 +1501,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiGlitterHalo_HaloStrength"
       ExpressionGUID=B130F2724D6A7C607499ACB7A9A1BAC9
-      Group="04 | Nikki Cute"
+      Group="17 | Nikki Glitter Halo"
+      SortPriority=1605
       MaterialExpressionEditorX=400
       MaterialExpressionEditorY=540
       MaterialExpressionGuid=5A4CAC26405D51A53470FAAD1C5924EA
@@ -1309,7 +1515,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=16.000000
       ParameterName="NikkiGlitterHalo_HaloPower"
       ExpressionGUID=CB8B2DE1484C4C4CC82591AA38313CBF
-      Group="04 | Nikki Cute"
+      Group="17 | Nikki Glitter Halo"
+      SortPriority=1606
       MaterialExpressionEditorX=400
       MaterialExpressionEditorY=600
       MaterialExpressionGuid=69C871644098658F08A21086D3243ABF
@@ -1321,7 +1528,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=8.000000
       ParameterName="NikkiGlitterHalo_TwinkleSpeed"
       ExpressionGUID=02D9EFAC4FECBFC997AC7A8EF9D7B74A
-      Group="04 | Nikki Cute"
+      Group="17 | Nikki Glitter Halo"
+      SortPriority=1607
       MaterialExpressionEditorX=400
       MaterialExpressionEditorY=660
       MaterialExpressionGuid=2F9F78C4489394DF4F7842A6E6961678
@@ -1334,7 +1542,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=64.000000
       ParameterName="NikkiPetal_Scale"
       ExpressionGUID=D24D87CB4490A8DC2D0C069E085C5223
-      Group="05 | Shadow Dream"
+      Group="18 | Nikki Petal Shadow"
+      SortPriority=1702
       MaterialExpressionEditorX=650
       MaterialExpressionEditorY=380
       MaterialExpressionGuid=E85B691E45924D442F37BD81B6D29A8D
@@ -1347,7 +1556,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=0.500000
       ParameterName="NikkiPetal_Radius"
       ExpressionGUID=2E5FE02449FD7BD6EEE2DA8E7EF942E9
-      Group="05 | Shadow Dream"
+      Group="18 | Nikki Petal Shadow"
+      SortPriority=1703
       MaterialExpressionEditorX=650
       MaterialExpressionEditorY=440
       MaterialExpressionGuid=47674E5B4000A9E35D94F3962A3BFD4E
@@ -1360,7 +1570,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=32.000000
       ParameterName="NikkiPetal_Softness"
       ExpressionGUID=34390D8B4B53BD575D7A6FB9EB786F7D
-      Group="05 | Shadow Dream"
+      Group="18 | Nikki Petal Shadow"
+      SortPriority=1704
       MaterialExpressionEditorX=650
       MaterialExpressionEditorY=500
       MaterialExpressionGuid=D7141E864B56CBE795DCEFA1DA6868E9
@@ -1372,7 +1583,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiPetal_Strength"
       ExpressionGUID=D6C068BD417754944C700BBD316A5033
-      Group="05 | Shadow Dream"
+      Group="18 | Nikki Petal Shadow"
+      SortPriority=1705
       MaterialExpressionEditorX=650
       MaterialExpressionEditorY=560
       MaterialExpressionGuid=BD2DF9EC4572C56090494FB1B20C6A47
@@ -1384,7 +1596,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=8.000000
       ParameterName="NikkiPetal_BloomSpeed"
       ExpressionGUID=B26211AB42EF875E85E588B5B5AA6D29
-      Group="05 | Shadow Dream"
+      Group="18 | Nikki Petal Shadow"
+      SortPriority=1706
       MaterialExpressionEditorX=650
       MaterialExpressionEditorY=620
       MaterialExpressionGuid=8F87495245CADD024F3BC88F17B452F3
@@ -1396,7 +1609,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=2.000000
       ParameterName="NikkiSquish_Amount"
       ExpressionGUID=54ABD5134CB46B93A9266AB38A554912
-      Group="06 | Kawaii Squish"
+      Group="12 | Kawaii Squish"
+      SortPriority=1103
       MaterialExpressionEditorX=-700
       MaterialExpressionEditorY=1080
       MaterialExpressionGuid=A3AB46EF4B0E99EF5E18E3AFD695ABD6
@@ -1408,7 +1622,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=8.000000
       ParameterName="NikkiSquish_Speed"
       ExpressionGUID=61160AF04E66CF417FECACBF11098C12
-      Group="06 | Kawaii Squish"
+      Group="12 | Kawaii Squish"
+      SortPriority=1104
       MaterialExpressionEditorX=-700
       MaterialExpressionEditorY=1140
       MaterialExpressionGuid=BBE2DB4340BAC9EF77071D949F01DFE2
@@ -1421,7 +1636,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=10.000000
       ParameterName="UVScale"
       ExpressionGUID=95D8AC4E43B0FB8D4403E0835E8391CB
-      Group="Base"
+      Group="06 | Parallax"
+      SortPriority=501
       MaterialExpressionEditorX=-2300
       MaterialExpressionEditorY=140
       MaterialExpressionGuid=A4E732984766D3CB84A08A86DBCE5F21
@@ -1431,7 +1647,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="ParallaxStrength"
       ExpressionGUID=32B2997B4A7A4C5FEF2FCDA69BFF1DB1
-      Group="Parallax"
+      Group="06 | Parallax"
+      SortPriority=500
       MaterialExpressionEditorX=-2100
       MaterialExpressionEditorY=420
       MaterialExpressionGuid=26562EC64F663B9A33330B91A51789B6
@@ -1443,7 +1660,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=0.950000
       ParameterName="RampPosMid"
       ExpressionGUID=5E1C189D4989A9581BB08983C84E8803
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=7
       MaterialExpressionEditorX=-1120
       MaterialExpressionEditorY=-60
       MaterialExpressionGuid=BF3C6095443C5F3AFEB33A99F42096D2
@@ -1455,16 +1673,28 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=4.000000
       ParameterName="RampContrast"
       ExpressionGUID=815EF58244E01FFFFD3751AA59F78C3B
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=8
       MaterialExpressionEditorX=-1120
       MaterialExpressionGuid=192877B546B2B93E39DD16A5EF56321D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_2'"
+      DefaultValue=1.000000
+      ParameterName="TriplanarBlendSharpness"
+      ExpressionGUID=A6F764C74628D0FDC1FAE7B53BC3B88F
+      Group="04 Texture Layout"
+      MaterialExpressionEditorX=-2300
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=31DF9DA842E71AC4B8F094B2562495D3
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
    End Object
    Begin Object Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionScalarParameter_20'"
       SliderMax=1.000000
       ParameterName="RampStrength"
       ExpressionGUID=3EEE92E14A4CAD9C5DA69CAB6007A60B
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=9
       MaterialExpressionEditorX=-1120
       MaterialExpressionEditorY=60
       MaterialExpressionGuid=D3D69A32481582D583EF68BA0E9735A7
@@ -1474,7 +1704,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="RoughnessMin"
       ExpressionGUID=7BD5C61D442CB7BD71E1328550AA6405
-      Group="Base"
+      Group="01 | Base Surface"
+      SortPriority=1
       MaterialExpressionEditorX=-1300
       MaterialExpressionEditorY=100
       MaterialExpressionGuid=1AD6DEE0403B6B48E0EE59B8018F7FB9
@@ -1485,7 +1716,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.500000
       ParameterName="RoughnessMax"
       ExpressionGUID=287B87044C227E87772C07932CAA5D95
-      Group="Base"
+      Group="01 | Base Surface"
+      SortPriority=2
       MaterialExpressionEditorX=-1300
       MaterialExpressionEditorY=160
       MaterialExpressionGuid=9C52B5184DC764A184AC4EA6ABC4F286
@@ -1496,7 +1728,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="IridescenceRoughnessAtten"
       ExpressionGUID=747EB1CD43676E267EF9988B748B674D
-      Group="Nikki"
+      Group="07 | Nikki Iridescence & Sheen"
+      SortPriority=604
       MaterialExpressionEditorX=-1100
       MaterialExpressionEditorY=380
       MaterialExpressionGuid=1858F6584710D085172EC898B7AB19DC
@@ -1506,7 +1739,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="MetallicScale"
       ExpressionGUID=A57E90F44F4A9DF6012FFC9637B187FC
-      Group="Base"
+      Group="01 | Base Surface"
+      SortPriority=3
       MaterialExpressionEditorX=-1300
       MaterialExpressionEditorY=520
       MaterialExpressionGuid=7AC9142E42FAE427E56670B7A9E70F59
@@ -1517,7 +1751,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=100000.000000
       ParameterName="AtmosphericStart"
       ExpressionGUID=B772DFB9408CE09D38017792D8BE85CC
-      Group="Atmosphere"
+      Group="03 | Atmosphere"
+      SortPriority=200
       MaterialExpressionEditorX=-680
       MaterialExpressionEditorY=-580
       MaterialExpressionGuid=15D1DFEB44150BF7D9FAEBBD4DA260C2
@@ -1529,7 +1764,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=500000.000000
       ParameterName="AtmosphericEnd"
       ExpressionGUID=BBC545084529106505CBD69735E7CFE1
-      Group="Atmosphere"
+      Group="03 | Atmosphere"
+      SortPriority=201
       MaterialExpressionEditorX=-680
       MaterialExpressionEditorY=-520
       MaterialExpressionGuid=067ACD1E4F342B40FE762E81D5FA3116
@@ -1539,7 +1775,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="AtmosphericStrength"
       ExpressionGUID=3EC67F824FF57E79E0A817A0367705F1
-      Group="Atmosphere"
+      Group="03 | Atmosphere"
+      SortPriority=202
       MaterialExpressionEditorX=-680
       MaterialExpressionEditorY=-460
       MaterialExpressionGuid=57C669104084383B1B3EC8A7024663DE
@@ -1550,7 +1787,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=4.000000
       ParameterName="NikkiEmissiveStrength"
       ExpressionGUID=17402AA44CF297812D27A9A8B31052F2
-      Group="Nikki"
+      Group="04 | Emissive"
+      SortPriority=300
       MaterialExpressionEditorX=-480
       MaterialExpressionEditorY=-120
       MaterialExpressionGuid=88263C2E4EDCF44A30A6048244F49483
@@ -1562,7 +1800,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=4.000000
       ParameterName="RampContrast"
       ExpressionGUID=56DB0BD248046CEC1E0F2787B4BFF958
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=8
       MaterialExpressionEditorX=-1120
       MaterialExpressionGuid=81746EA345B2173B7E733094FB30703D
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
@@ -1572,7 +1811,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="EmissiveFloor"
       ExpressionGUID=0DC240C94F0DA56DCFB235A01A7C07FE
-      Group="Nikki"
+      Group="04 | Emissive"
+      SortPriority=301
       MaterialExpressionEditorX=-480
       MaterialExpressionEditorY=-40
       MaterialExpressionGuid=BAD8562B4F6423A3ECA6A1971C23A026
@@ -1584,7 +1824,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="TriplanarPro_Scale"
       ExpressionGUID=287BDC3C4498F5797AB282ACB9229038
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=401
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-560
       MaterialExpressionGuid=49EFC796410D601FAAD60ABFEE13EBF4
@@ -1597,7 +1838,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=32.000000
       ParameterName="TriplanarPro_Sharpness"
       ExpressionGUID=39F5A02846938410A58C1486B809F66F
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=402
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-500
       MaterialExpressionGuid=30DD89EA4E29153E6604A784A4750C61
@@ -1608,7 +1850,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="TriplanarPro_BlendStrength"
       ExpressionGUID=2E172C34480F4FE53B4D53A5EF103F03
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=403
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-440
       MaterialExpressionGuid=8F0CC12C4ECB66B25053E78E19999C4E
@@ -1621,7 +1864,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=10.000000
       ParameterName="UVScale"
       ExpressionGUID=8D63D8A04A1853EF0FEB1C8B396BBF30
-      Group="Base"
+      Group="06 | Parallax"
+      SortPriority=501
       MaterialExpressionEditorX=-2300
       MaterialExpressionEditorY=140
       MaterialExpressionGuid=CD95F3DB4315D5D6F3C4F9AE95AF77E3
@@ -1631,7 +1875,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="TriplanarPro_BreakupStrength"
       ExpressionGUID=C78182434E9700136B82039D4388DF36
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=404
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-220
       MaterialExpressionGuid=25A5482245FE1DC4C27C5FA7B86F9E49
@@ -1644,7 +1889,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=32.000000
       ParameterName="TriplanarPro_BreakupScale"
       ExpressionGUID=5E92AE1848BC470B978D739A76B27413
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=405
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-160
       MaterialExpressionGuid=03D0183044C36F6AB9BB93B6128A8FF3
@@ -1657,7 +1903,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=8.000000
       ParameterName="TriplanarPro_BreakupContrast"
       ExpressionGUID=279D5EB144F9E6ADF6959691A1E60A13
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=406
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-100
       MaterialExpressionGuid=9E8E7D5A49A2DB4DE88FFE9CC04BB14C
@@ -1670,7 +1917,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=8.000000
       ParameterName="NikkiStickerBandCount"
       ExpressionGUID=0174BCCE49E0647938ADFE90D2E6C95F
-      Group="04 | Nikki Cute"
+      Group="08 | Nikki Sticker Shade"
+      SortPriority=702
       MaterialExpressionEditorX=-1600
       MaterialExpressionEditorY=340
       MaterialExpressionGuid=486A8AE0471A1B96933363BA57836C14
@@ -1682,7 +1930,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiStickerBandSoftness"
       ExpressionGUID=D84A0D1A415C53B9184FD8A04966473E
-      Group="04 | Nikki Cute"
+      Group="08 | Nikki Sticker Shade"
+      SortPriority=703
       MaterialExpressionEditorX=-1600
       MaterialExpressionEditorY=400
       MaterialExpressionGuid=BC389D924C763BFAB22D55845981E6FC
@@ -1694,7 +1943,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.500000
       ParameterName="RoughnessMax"
       ExpressionGUID=6BC25A1442847B622BE9E4843419F11E
-      Group="Base"
+      Group="01 | Base Surface"
+      SortPriority=2
       MaterialExpressionEditorX=-1300
       MaterialExpressionEditorY=160
       MaterialExpressionGuid=9F8E1D934C5688A604A78F8E95C0EA7D
@@ -1705,7 +1955,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiStickerStrength"
       ExpressionGUID=F83550AC428248D747339FBAE9F9BAB6
-      Group="04 | Nikki Cute"
+      Group="08 | Nikki Sticker Shade"
+      SortPriority=704
       MaterialExpressionEditorX=-1600
       MaterialExpressionEditorY=460
       MaterialExpressionGuid=6B1220B94EED9579B1A217ADF06EFABF
@@ -1716,7 +1967,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="MetallicScale"
       ExpressionGUID=989B163B486B573A049B1186DACC671F
-      Group="Base"
+      Group="01 | Base Surface"
+      SortPriority=3
       MaterialExpressionEditorX=-1300
       MaterialExpressionEditorY=520
       MaterialExpressionGuid=BFAE0FA343EBFEB84A07ADBEE0602A39
@@ -1727,7 +1979,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiFabricSheen"
       ExpressionGUID=C3C50116495D2E87FB3D4296369BA1F6
-      Group="04 | Nikki Cute"
+      Group="09 | Nikki Twinkle Iris"
+      SortPriority=802
       MaterialExpressionEditorX=-1350
       MaterialExpressionEditorY=360
       MaterialExpressionGuid=D501273B4DB274C13F4525BF0CC9023E
@@ -1739,7 +1992,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.500000
       ParameterName="RoughnessMax"
       ExpressionGUID=47F60B9B42093B7F8693BDA65DEB9D43
-      Group="Base"
+      Group="01 | Base Surface"
+      SortPriority=2
       MaterialExpressionEditorX=-1300
       MaterialExpressionEditorY=160
       MaterialExpressionGuid=E526E62B42EB8FBC4C8442885B17C4BB
@@ -1751,7 +2005,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=500000.000000
       ParameterName="AtmosphericEnd"
       ExpressionGUID=428A557D469C2EBC417992975D6B9647
-      Group="Atmosphere"
+      Group="03 | Atmosphere"
+      SortPriority=201
       MaterialExpressionEditorX=-680
       MaterialExpressionEditorY=-520
       MaterialExpressionGuid=F287F80C4958FC048D8157B3B6C3BBC6
@@ -1762,7 +2017,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=8.000000
       ParameterName="NikkiIridescence"
       ExpressionGUID=7825C37A4AB26C8DA5CFEA9986A17CC5
-      Group="04 | Nikki Cute"
+      Group="09 | Nikki Twinkle Iris"
+      SortPriority=803
       MaterialExpressionEditorX=-1350
       MaterialExpressionEditorY=420
       MaterialExpressionGuid=6EF29A054C726DE78C2E73BBDFE502D7
@@ -1775,7 +2031,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=8.000000
       ParameterName="NikkiTwinkleScale"
       ExpressionGUID=E1C53F514D6503596279DBAD6F648CBF
-      Group="04 | Nikki Cute"
+      Group="09 | Nikki Twinkle Iris"
+      SortPriority=804
       MaterialExpressionEditorX=-1350
       MaterialExpressionEditorY=480
       MaterialExpressionGuid=BB622180412895B5F9DC6C985B0F8481
@@ -1787,7 +2044,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiTwinkleAmount"
       ExpressionGUID=236C509C44A948D879C73EAB6E2A044A
-      Group="04 | Nikki Cute"
+      Group="09 | Nikki Twinkle Iris"
+      SortPriority=805
       MaterialExpressionEditorX=-1350
       MaterialExpressionEditorY=540
       MaterialExpressionGuid=3FB02B8141394D2610B238BB7DE4234C
@@ -1799,7 +2057,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiPastelStrength"
       ExpressionGUID=A2C3E47840FBB6E07334469BF4309D6C
-      Group="04 | Nikki Cute"
+      Group="10 | Nikki Pastel Grade"
+      SortPriority=904
       MaterialExpressionEditorX=-1100
       MaterialExpressionEditorY=400
       MaterialExpressionGuid=977EBF1B4548DF0DAD54CF8BDB498986
@@ -1810,7 +2069,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="MetallicScale"
       ExpressionGUID=66C7ACD64E2FABBD76AD6CBD17A51F92
-      Group="Base"
+      Group="01 | Base Surface"
+      SortPriority=3
       MaterialExpressionEditorX=-1300
       MaterialExpressionEditorY=520
       MaterialExpressionGuid=B64AF8CC426EB46A445EAB9913768401
@@ -1821,7 +2081,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=0.500000
       ParameterName="NikkiPastelLift"
       ExpressionGUID=6CD8CD5C4EE7992A55EE36BD4A213359
-      Group="04 | Nikki Cute"
+      Group="10 | Nikki Pastel Grade"
+      SortPriority=905
       MaterialExpressionEditorX=-1100
       MaterialExpressionEditorY=460
       MaterialExpressionGuid=5F46504D4CDE1E69E4B53C89E8CA20CF
@@ -1834,7 +2095,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=0.950000
       ParameterName="NikkiPastelPosMid"
       ExpressionGUID=0C8CC4D24CF42F1D27B07AA1D5F223F4
-      Group="04 | Nikki Cute"
+      Group="10 | Nikki Pastel Grade"
+      SortPriority=906
       MaterialExpressionEditorX=-1100
       MaterialExpressionEditorY=520
       MaterialExpressionGuid=B03558ED4A49FE1A797D84A9A179F27A
@@ -1846,7 +2108,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiPastelBloom"
       ExpressionGUID=90033873442E190CA01F2A9713E75052
-      Group="04 | Nikki Cute"
+      Group="10 | Nikki Pastel Grade"
+      SortPriority=907
       MaterialExpressionEditorX=-1100
       MaterialExpressionEditorY=580
       MaterialExpressionGuid=24769F2746594E400FC977AC083A6AF3
@@ -1858,7 +2121,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.500000
       ParameterName="ShadowDreamStrength"
       ExpressionGUID=B4CC2D8D4ED601505DA630A318F0BF83
-      Group="05 | Shadow Dream"
+      Group="11 | Shadow Dream"
+      SortPriority=1002
       MaterialExpressionEditorX=-850
       MaterialExpressionEditorY=340
       MaterialExpressionGuid=F0F5B196417E70D91A582AB4970F5870
@@ -1871,7 +2135,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=8.000000
       ParameterName="ShadowSoftness"
       ExpressionGUID=FBCA14F94EC9F52E94F1FFA304D0718B
-      Group="05 | Shadow Dream"
+      Group="11 | Shadow Dream"
+      SortPriority=1003
       MaterialExpressionEditorX=-850
       MaterialExpressionEditorY=400
       MaterialExpressionGuid=34601B584024081FB1E4F6B2396607D1
@@ -1883,7 +2148,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=4.000000
       ParameterName="SquishAmount"
       ExpressionGUID=21F83DD84887AD73F4735CA8E4E60FED
-      Group="06 | Kawaii Squish"
+      Group="12 | Kawaii Squish"
+      SortPriority=1102
       MaterialExpressionEditorX=-500
       MaterialExpressionEditorY=340
       MaterialExpressionGuid=3612E6324F2A34BC5AE4FC85BCE95833
@@ -1896,7 +2162,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=32.000000
       ParameterName="NikkiSDFRibbon_Scale"
       ExpressionGUID=C4E0A0664024CD4483870085DA438A3A
-      Group="04 | Nikki Cute"
+      Group="13 | Nikki SDF Ribbon"
+      SortPriority=1202
       MaterialExpressionEditorX=-600
       MaterialExpressionEditorY=340
       MaterialExpressionGuid=122428EB486E045F894C27A8B0D90157
@@ -1909,7 +2176,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=16.000000
       ParameterName="NikkiSDFRibbon_Sharpness"
       ExpressionGUID=8444FD31420E578FD00DD0A3E03DB1DC
-      Group="04 | Nikki Cute"
+      Group="13 | Nikki SDF Ribbon"
+      SortPriority=1203
       MaterialExpressionEditorX=-600
       MaterialExpressionEditorY=400
       MaterialExpressionGuid=28BFB82E4D269FC80412CEBBE6057449
@@ -1921,7 +2189,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiSDFRibbon_Strength"
       ExpressionGUID=E1C1FA5D47778F7BC2400DB8D21074C0
-      Group="04 | Nikki Cute"
+      Group="13 | Nikki SDF Ribbon"
+      SortPriority=1204
       MaterialExpressionEditorX=-600
       MaterialExpressionEditorY=460
       MaterialExpressionGuid=1ABE115E4C39A33A401CDB8B7D9C340F
@@ -1934,7 +2203,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=16.000000
       ParameterName="NikkiSDFRibbon_EdgeFalloff"
       ExpressionGUID=14F52392457C4A8D4E43509E8A888FF9
-      Group="04 | Nikki Cute"
+      Group="13 | Nikki SDF Ribbon"
+      SortPriority=1205
       MaterialExpressionEditorX=-600
       MaterialExpressionEditorY=520
       MaterialExpressionGuid=388F25ED41D1805C31BF84A285285D70
@@ -1946,7 +2216,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiSDFRibbon_EdgeStrength"
       ExpressionGUID=D665CBF24E498C937D8039BD38FCCC6B
-      Group="04 | Nikki Cute"
+      Group="13 | Nikki SDF Ribbon"
+      SortPriority=1206
       MaterialExpressionEditorX=-600
       MaterialExpressionEditorY=580
       MaterialExpressionGuid=2024594343B2BD4854524AB8011D66CC
@@ -1959,7 +2230,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=16.000000
       ParameterName="NikkiPearl_Frequency"
       ExpressionGUID=B6307F9E44442501E6A73698EFD78E5F
-      Group="04 | Nikki Cute"
+      Group="14 | Nikki Pearl Sheen"
+      SortPriority=1302
       MaterialExpressionEditorX=-350
       MaterialExpressionEditorY=360
       MaterialExpressionGuid=A6CA911944888CC94ED4E9A55F3A67E5
@@ -1972,7 +2244,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=16.000000
       ParameterName="NikkiPearl_SecondFrequency"
       ExpressionGUID=591B85F1430AC1EFF8A9978FD0A4F418
-      Group="04 | Nikki Cute"
+      Group="14 | Nikki Pearl Sheen"
+      SortPriority=1303
       MaterialExpressionEditorX=-350
       MaterialExpressionEditorY=420
       MaterialExpressionGuid=D3D744A64C87E87E55DBDAB8DA778789
@@ -1984,7 +2257,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiPearl_Strength"
       ExpressionGUID=8BC47B3C4997CF0B3FD4F481F194F1AA
-      Group="04 | Nikki Cute"
+      Group="14 | Nikki Pearl Sheen"
+      SortPriority=1304
       MaterialExpressionEditorX=-350
       MaterialExpressionEditorY=480
       MaterialExpressionGuid=E62E295C4D912F3163D0798418F7FACC
@@ -1996,7 +2270,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       SliderMax=1.000000
       ParameterName="NikkiWatercolor_Bleed"
       ExpressionGUID=B272468F485D67B67859ADBF2BC46637
-      Group="04 | Nikki Cute"
+      Group="15 | Nikki Dream Watercolor"
+      SortPriority=1402
       MaterialExpressionEditorX=-100
       MaterialExpressionEditorY=360
       MaterialExpressionGuid=B23ED48F47935415836875B6E47AC541
@@ -2017,7 +2292,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=True
       ParameterName="bNikkiPastelGrade_Active"
       ExpressionGUID=4C53FFBC440FF78FDC64CEAB12D44D30
-      Group="04 | Nikki Cute"
+      Group="10 | Nikki Pastel Grade"
+      SortPriority=900
       MaterialExpressionEditorX=-1100
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=AFDB5DAA4749EB551D695EB13BDEE561
@@ -2029,7 +2305,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_10'")
       ParameterName="bShadowDream_Active"
       ExpressionGUID=5015E6384C44CE727AFC74A655F1B9EA
-      Group="05 | Shadow Dream"
+      Group="11 | Shadow Dream"
+      SortPriority=1000
       MaterialExpressionEditorX=-850
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=00E490FB42D114514CA7FC9E0493D8D0
@@ -2041,7 +2318,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_7'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
       ParameterName="bKawaiiSquish_Active"
       ExpressionGUID=0F7C8A5F4EDF0C802853398AEC512663
-      Group="06 | Kawaii Squish"
+      Group="12 | Kawaii Squish"
+      SortPriority=1100
       MaterialExpressionEditorX=-500
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=0D76D353493A3129D58F10A7137AD1B2
@@ -2053,7 +2331,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_10'")
       ParameterName="bNikkiSDFRibbon_Active"
       ExpressionGUID=24DD526C4AFE7C8FCA4C32B6D27164F7
-      Group="04 | Nikki Cute"
+      Group="13 | Nikki SDF Ribbon"
+      SortPriority=1200
       MaterialExpressionEditorX=-600
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=93DE29C44030EE0B5946CDB0602B195E
@@ -2065,7 +2344,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_19'")
       ParameterName="bNikkiPearlSheen_Active"
       ExpressionGUID=A52D1CD64F9E02A987908896BBC5287A
-      Group="04 | Nikki Cute"
+      Group="14 | Nikki Pearl Sheen"
+      SortPriority=1300
       MaterialExpressionEditorX=-350
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=3AFC0B76432C7A63306BC0918ABF74AB
@@ -2077,7 +2357,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_20'")
       ParameterName="bNikkiDreamWatercolor_Active"
       ExpressionGUID=3BB38CCE419192D4DD0715A2209CEB2F
-      Group="04 | Nikki Cute"
+      Group="15 | Nikki Dream Watercolor"
+      SortPriority=1400
       MaterialExpressionEditorX=-100
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=54021080455F4002C8AB30A91B141E25
@@ -2089,7 +2370,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_21'")
       ParameterName="bNikkiStickerEdge_Active"
       ExpressionGUID=398A82D54FC1E7601DAEFB92A62EA910
-      Group="04 | Nikki Cute"
+      Group="16 | Nikki Sticker Edge"
+      SortPriority=1500
       MaterialExpressionEditorX=150
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=8E07E2B546477DC862E034B725BE896D
@@ -2101,7 +2383,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_22'")
       ParameterName="bNikkiGlitterHalo_Active"
       ExpressionGUID=26C48B224B15BE83EF3F4A93525C5597
-      Group="04 | Nikki Cute"
+      Group="17 | Nikki Glitter Halo"
+      SortPriority=1600
       MaterialExpressionEditorX=400
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=24F087FD463E04435A8B13B2F42B63BD
@@ -2113,7 +2396,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionStaticSwitchParameter_23'")
       ParameterName="bNikkiPetalShadow_Active"
       ExpressionGUID=DBC8E6BE42CD0643629F9DB654101C1E
-      Group="05 | Shadow Dream"
+      Group="18 | Nikki Petal Shadow"
+      SortPriority=1700
       MaterialExpressionEditorX=650
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=C0170A6C42EE67F254DB988BE121DBC6
@@ -2125,7 +2409,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionConstant3Vector_9'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
       ParameterName="bNikkiSquishWPO_Active"
       ExpressionGUID=525EF7FE47FABD53164D9CA4F2C85BA0
-      Group="06 | Kawaii Squish"
+      Group="12 | Kawaii Squish"
+      SortPriority=1101
       MaterialExpressionEditorX=-500
       MaterialExpressionEditorY=900
       MaterialExpressionGuid=1439840244DE049775CAB7A2EBA259A9
@@ -2137,7 +2422,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_5'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
       ParameterName="bTriplanarPro_Active"
       ExpressionGUID=D337DDF345E2BE61AAD83EA66DAA9742
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=400
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-700
       MaterialExpressionGuid=DFBEE03F4B970C7BA3926395EF7531DC
@@ -2149,7 +2435,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       B=(Expression="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMaterialFunctionCall_4'",OutputIndex=1)
       ParameterName="bNikkiStickerShade_Active"
       ExpressionGUID=2B9BA0E04CF0F27E81659DA6BDE7A13F
-      Group="04 | Nikki Cute"
+      Group="08 | Nikki Sticker Shade"
+      SortPriority=700
       MaterialExpressionEditorX=-1600
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=238D5A5140A2FF57E3CD3DBD5C60C089
@@ -2162,7 +2449,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=True
       ParameterName="bNikkiTwinkleIris_Active"
       ExpressionGUID=DCB3E8354E9C3C6A5CD3D38FAB7CBCA7
-      Group="04 | Nikki Cute"
+      Group="09 | Nikki Twinkle Iris"
+      SortPriority=800
       MaterialExpressionEditorX=-1350
       MaterialExpressionEditorY=200
       MaterialExpressionGuid=8C49A1154EAD49158D767A935A2A7B09
@@ -2233,7 +2521,9 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionTextureObjectParameter_0" ExportPath="/Script/Engine.MaterialExpressionTextureObjectParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureObjectParameter_0'"
       ParameterName="Albedo"
       ExpressionGUID=B8AC2E17465F553CC40757A3C4541594
-      Group="03 | Triplanar"
+      Group="02 | Textures"
+      SortPriority=100
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-820
       MaterialExpressionGuid=AA95E75146F1F44776D5A7B3BDC74CE1
@@ -2243,7 +2533,9 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionTextureSampleParameter2D_0" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_0'"
       ParameterName="HeightMap"
       ExpressionGUID=A3AC31CE484A7A1AE251E8A8EF90965C
-      Group="Parallax"
+      Group="02 | Textures"
+      SortPriority=103
+      Texture="/Script/Engine.Texture2D'/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512'"
       MaterialExpressionEditorX=-2100
       MaterialExpressionEditorY=220
       MaterialExpressionGuid=D0B61B0F45FFFBA44CA747B7181B92D3
@@ -2252,8 +2544,9 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionTextureSampleParameter2D_15" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_15'"
       ParameterName="NormalMap"
       ExpressionGUID=FE420D864DE7AFEC6CF514B8E5E176D7
-      Group="Base"
-      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      Group="02 | Textures"
+      SortPriority=101
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal'"
       SamplerType=SAMPLERTYPE_Normal
       MaterialExpressionEditorX=-1550
       MaterialExpressionEditorY=420
@@ -2263,9 +2556,10 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionTextureSampleParameter2D_2" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_2'"
       ParameterName="NormalMap"
       ExpressionGUID=1E6D6276491BB84C46495E9F5EC81DDF
-      Group="Base"
+      Group="02 | Textures"
+      SortPriority=101
       Coordinates=(Expression="/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_2'")
-      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal'"
       SamplerType=SAMPLERTYPE_Normal
       MaterialExpressionEditorX=-1550
       MaterialExpressionEditorY=420
@@ -2275,8 +2569,10 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionTextureSampleParameter2D_4" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_4'"
       ParameterName="HeightMap"
       ExpressionGUID=88B75C7C426E259D6971F29E970D6CA0
-      Group="Parallax"
+      Group="02 | Textures"
+      SortPriority=103
       Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionMultiply_10'")
+      Texture="/Script/Engine.Texture2D'/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512'"
       MaterialExpressionEditorX=-2100
       MaterialExpressionEditorY=220
       MaterialExpressionGuid=BA1E286A45857BA12CF2E2985F111EBA
@@ -2285,8 +2581,10 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionTextureSampleParameter2D_5" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_5'"
       ParameterName="Albedo"
       ExpressionGUID=B2756C7646C23E62F16A9B96F4D9B936
-      Group="Base"
+      Group="02 | Textures"
+      SortPriority=100
       Coordinates=(Expression="/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_3'")
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
       MaterialExpressionEditorX=-1550
       MaterialExpressionEditorY=-200
       MaterialExpressionGuid=DCB175E941AEB2F7B62CF797F3E78AE2
@@ -2295,9 +2593,10 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionTextureSampleParameter2D_6" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_6'"
       ParameterName="NormalMap"
       ExpressionGUID=996D179E42ABA0E5DB298983B00C2FA6
-      Group="Base"
+      Group="02 | Textures"
+      SortPriority=101
       Coordinates=(Expression="/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_3'")
-      Texture="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal'"
       SamplerType=SAMPLERTYPE_Normal
       MaterialExpressionEditorX=-1550
       MaterialExpressionEditorY=420
@@ -2307,8 +2606,11 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionTextureSampleParameter2D_7" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionTextureSampleParameter2D_7'"
       ParameterName="ORM"
       ExpressionGUID=882D1CB4401E788BF5BFE1A2DD1C0121
-      Group="Base"
+      Group="02 | Textures"
+      SortPriority=102
       Coordinates=(Expression="/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_3'")
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM'"
+      SamplerType=SAMPLERTYPE_LinearColor
       MaterialExpressionEditorX=-1550
       MaterialExpressionEditorY=140
       MaterialExpressionGuid=2744DF7E4534BC7120118DB7BA007AF1
@@ -2324,7 +2626,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.980000,G=0.930000,B=0.960000,A=1.000000)
       ParameterName="BaseTint"
       ExpressionGUID=D32103CE4EC4D6698CC8F6A460BBEA01
-      Group="Base"
+      Group="01 | Base Surface"
+      SortPriority=0
       MaterialExpressionEditorX=-1550
       MaterialExpressionEditorY=-420
       MaterialExpressionGuid=94C551544ABA394B01092198D18CE40A
@@ -2334,7 +2637,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.200000,G=0.150000,B=0.300000,A=1.000000)
       ParameterName="RampLow"
       ExpressionGUID=99FB4CE243958CD216FED88ACD9C2E9C
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=4
       MaterialExpressionEditorX=-1120
       MaterialExpressionEditorY=-620
       MaterialExpressionGuid=4289C07540CAFA8B904F52B38BA361C3
@@ -2343,7 +2647,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionVectorParameter_16" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_16'"
       ParameterName="TriplanarPro_ProjectionOffset"
       ExpressionGUID=D548AE8D4CB2FD030EC2FF985478690F
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=407
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-40
       MaterialExpressionGuid=A8B296D74A510934EB9D5F9713A92C78
@@ -2353,7 +2658,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    Begin Object Name="MaterialExpressionVectorParameter_17" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionVectorParameter_17'"
       ParameterName="TriplanarPro_ProjectionRotation"
       ExpressionGUID=5E62587443000799DD8B19AD00B756FA
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=408
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=20
       MaterialExpressionGuid=36C8AFFF4EEF73C466F2CDA794CB360E
@@ -2364,7 +2670,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=1.000000,G=1.000000,B=1.000000,A=0.000000)
       ParameterName="TriplanarPro_AxisWeights"
       ExpressionGUID=53D3752349113BAA7E3ABE880392D524
-      Group="03 | Triplanar"
+      Group="05 | Triplanar"
+      SortPriority=409
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=80
       MaterialExpressionGuid=AA3830DF496AE40ABD099796CBAC647E
@@ -2375,7 +2682,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=1.000000,G=0.950000,B=0.900000,A=1.000000)
       ParameterName="RampHigh"
       ExpressionGUID=67DEE7C94D56231ACEF0F0855194267D
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=6
       MaterialExpressionEditorX=-1120
       MaterialExpressionEditorY=-340
       MaterialExpressionGuid=C04AD524470C4EE130E586A32F55EC01
@@ -2385,7 +2693,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.720000,G=0.550000,B=0.680000,A=1.000000)
       ParameterName="NikkiStickerShadeColor"
       ExpressionGUID=96BC7BED47A706344BEC218D1E79D2F9
-      Group="04 | Nikki Cute"
+      Group="08 | Nikki Sticker Shade"
+      SortPriority=701
       MaterialExpressionEditorX=-1600
       MaterialExpressionEditorY=280
       MaterialExpressionGuid=944F7C4A4D34D6217276DD80F250E258
@@ -2396,7 +2705,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=1.000000,G=0.800000,B=0.950000,A=1.000000)
       ParameterName="NikkiIrisTint"
       ExpressionGUID=DD0C288E49AF19CC7EB789A16B7E7162
-      Group="04 | Nikki Cute"
+      Group="09 | Nikki Twinkle Iris"
+      SortPriority=801
       MaterialExpressionEditorX=-1350
       MaterialExpressionEditorY=300
       MaterialExpressionGuid=D58A11E24F735DA09ADA04AABCC97AAE
@@ -2407,7 +2717,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.950000,G=0.850000,B=0.920000,A=1.000000)
       ParameterName="NikkiPastelRampLow"
       ExpressionGUID=81933364489587FF0F18558513BD2454
-      Group="04 | Nikki Cute"
+      Group="10 | Nikki Pastel Grade"
+      SortPriority=901
       MaterialExpressionEditorX=-1100
       MaterialExpressionEditorY=300
       MaterialExpressionGuid=765FF8B0423833D5075D61BEF1FE3C81
@@ -2418,7 +2729,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.990000,G=0.930000,B=0.900000,A=1.000000)
       ParameterName="NikkiPastelRampMid"
       ExpressionGUID=C30535844561936C9C349EB58E9AA543
-      Group="04 | Nikki Cute"
+      Group="10 | Nikki Pastel Grade"
+      SortPriority=902
       MaterialExpressionEditorX=-1100
       MaterialExpressionEditorY=340
       MaterialExpressionGuid=444DD29B46FAF0D4128F8BA28108BA35
@@ -2429,7 +2741,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=1.000000,G=0.980000,B=0.960000,A=1.000000)
       ParameterName="NikkiPastelRampHigh"
       ExpressionGUID=F234BCE247797A8E8BDA7F832485166C
-      Group="04 | Nikki Cute"
+      Group="10 | Nikki Pastel Grade"
+      SortPriority=903
       MaterialExpressionEditorX=-1100
       MaterialExpressionEditorY=380
       MaterialExpressionGuid=863A404C4093F9F3055C75824BE09302
@@ -2440,7 +2753,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.480000,G=0.420000,B=0.620000,A=1.000000)
       ParameterName="ShadowDreamTint"
       ExpressionGUID=4D6445FB40DEB79BDAACE68C703565AC
-      Group="05 | Shadow Dream"
+      Group="11 | Shadow Dream"
+      SortPriority=1001
       MaterialExpressionEditorX=-850
       MaterialExpressionEditorY=280
       MaterialExpressionGuid=98B8A2E54FF227DA87DAC3B77A25DE87
@@ -2451,7 +2765,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.950000,G=0.800000,B=0.900000,A=1.000000)
       ParameterName="NikkiSDFRibbon_Color"
       ExpressionGUID=BA20E05A4E5686610FC415BE7DA4B45B
-      Group="04 | Nikki Cute"
+      Group="13 | Nikki SDF Ribbon"
+      SortPriority=1201
       MaterialExpressionEditorX=-600
       MaterialExpressionEditorY=280
       MaterialExpressionGuid=23BA74104C0C007A30DA66B09BD34EC0
@@ -2462,7 +2777,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.980000,G=0.900000,B=0.950000,A=1.000000)
       ParameterName="NikkiPearl_Tint"
       ExpressionGUID=96534BB9484B36C0EEAFE682D3710B5D
-      Group="04 | Nikki Cute"
+      Group="14 | Nikki Pearl Sheen"
+      SortPriority=1301
       MaterialExpressionEditorX=-350
       MaterialExpressionEditorY=300
       MaterialExpressionGuid=35FA37DC4A99E03C3E5567B055966672
@@ -2473,7 +2789,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.750000,G=0.550000,B=0.850000,A=1.000000)
       ParameterName="NikkiWatercolor_BleedColor"
       ExpressionGUID=776741C64A6CD603181E89822C9D63CE
-      Group="04 | Nikki Cute"
+      Group="15 | Nikki Dream Watercolor"
+      SortPriority=1401
       MaterialExpressionEditorX=-100
       MaterialExpressionEditorY=300
       MaterialExpressionGuid=938647824950EB6858CF7983AB8FB46D
@@ -2484,7 +2801,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.980000,G=0.880000,B=0.940000,A=1.000000)
       ParameterName="NikkiStickerEdge_Color"
       ExpressionGUID=AD4EFDE340F9A31E5CAC0CBB14A8AB9B
-      Group="04 | Nikki Cute"
+      Group="16 | Nikki Sticker Edge"
+      SortPriority=1501
       MaterialExpressionEditorX=150
       MaterialExpressionEditorY=300
       MaterialExpressionGuid=757A4CBC4719DE83EBEA43895013D12F
@@ -2495,7 +2813,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=1.000000,G=0.950000,B=0.900000,A=1.000000)
       ParameterName="RampHigh"
       ExpressionGUID=DE03C0DB49EEB539886CBB850D8FD686
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=6
       MaterialExpressionEditorX=-1120
       MaterialExpressionEditorY=-340
       MaterialExpressionGuid=B59BE80846451D2DD97E23B6B47036CA
@@ -2505,7 +2824,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=1.000000,G=0.950000,B=0.850000,A=1.000000)
       ParameterName="NikkiGlitterHalo_Color"
       ExpressionGUID=15B3511940E9DBF34C4E22A5EB5229BB
-      Group="04 | Nikki Cute"
+      Group="17 | Nikki Glitter Halo"
+      SortPriority=1601
       MaterialExpressionEditorX=400
       MaterialExpressionEditorY=300
       MaterialExpressionGuid=CAC3507A434EEB9F2A82D994B1C5D294
@@ -2516,7 +2836,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.980000,G=0.850000,B=0.900000,A=1.000000)
       ParameterName="NikkiPetal_Tint"
       ExpressionGUID=37E8CCBC49DF3A943565D4A2E7330C57
-      Group="05 | Shadow Dream"
+      Group="18 | Nikki Petal Shadow"
+      SortPriority=1701
       MaterialExpressionEditorX=650
       MaterialExpressionEditorY=320
       MaterialExpressionGuid=463AB58A45B3044D7B4AD4920E7EA216
@@ -2527,7 +2848,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=1.300000,G=2.100000,B=0.700000,A=0.000000)
       ParameterName="NikkiSquish_Direction"
       ExpressionGUID=94A7E5BA4D2255E1748093930D021835
-      Group="06 | Kawaii Squish"
+      Group="12 | Kawaii Squish"
+      SortPriority=1105
       MaterialExpressionEditorX=-700
       MaterialExpressionEditorY=1020
       MaterialExpressionGuid=077F40464206E7B3C1FDA68BD8F4ABFC
@@ -2538,7 +2860,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.620000,G=0.720000,B=0.820000,A=1.000000)
       ParameterName="AtmosphericColor"
       ExpressionGUID=92A95331439C86A45CA78B975DCF2D18
-      Group="Atmosphere"
+      Group="03 | Atmosphere"
+      SortPriority=203
       MaterialExpressionEditorX=-680
       MaterialExpressionEditorY=-880
       MaterialExpressionGuid=E65D0148428F738A6A037489E61BE4ED
@@ -2548,7 +2871,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=1.000000,G=1.000000,B=1.000000,A=1.000000)
       ParameterName="BaseTint"
       ExpressionGUID=A9E8BAC248544629408AE5892710EC6E
-      Group="Base"
+      Group="01 | Base Surface"
+      SortPriority=0
       MaterialExpressionEditorX=-1550
       MaterialExpressionEditorY=-420
       MaterialExpressionGuid=561B5FEF4990C3E6F01FD59E3A8DA767
@@ -2558,7 +2882,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.200000,G=0.150000,B=0.300000,A=1.000000)
       ParameterName="RampLow"
       ExpressionGUID=B4C400214D92B2642BD118ACFE2C7205
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=4
       MaterialExpressionEditorX=-1120
       MaterialExpressionEditorY=-620
       MaterialExpressionGuid=9B6BCE8C42BE9330ABD346B653F04287
@@ -2568,7 +2893,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.850000,G=0.600000,B=0.750000,A=1.000000)
       ParameterName="RampMid"
       ExpressionGUID=B86CFE41487BBF22EF71938F3491931C
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=5
       MaterialExpressionEditorX=-1120
       MaterialExpressionEditorY=-480
       MaterialExpressionGuid=144B3E1F40DA5D2F137985A2DEC251DC
@@ -2578,7 +2904,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=1.000000,G=0.950000,B=0.900000,A=1.000000)
       ParameterName="RampHigh"
       ExpressionGUID=032AFE4142A467FC4EF674B836E1557D
-      Group="ColorRamp"
+      Group="01 | Base Surface"
+      SortPriority=6
       MaterialExpressionEditorX=-1120
       MaterialExpressionEditorY=-340
       MaterialExpressionGuid=2CD1EAAE4D5970B1A324CA846DF4B2A7
@@ -2588,7 +2915,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       DefaultValue=(R=0.620000,G=0.720000,B=0.820000,A=1.000000)
       ParameterName="AtmosphericColor"
       ExpressionGUID=FABEC8954CA57C10E41DF5B6B548C230
-      Group="Atmosphere"
+      Group="03 | Atmosphere"
+      SortPriority=203
       MaterialExpressionEditorX=-680
       MaterialExpressionEditorY=-880
       MaterialExpressionGuid=32D03E424BBAF89499E7878673515A9F
@@ -2622,13 +2950,20 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki'"
       Desc="NikkiFeat:FeatWP"
    End Object
-   StateId=5EAD1DD6432E901FE460CA98F206AA03
-   ReferencedTextureGuids(1)=19EA7FC444C054EDEBEB9BAD0285CF29
+   StateId=39C36D144595D0BF7BDCCABAE9AB18A3
+   ReferencedTextureGuids(0)=73D4A5E14AB936D52FC5C09C91556F1F
+   ReferencedTextureGuids(1)=B2E8090E4EE2E8EBBA7B97AAEFE004A2
+   ReferencedTextureGuids(2)=4E5F81B54219F23A171BCB8B8B6F099F
+   ReferencedTextureGuids(3)=8EFA798B4E6690C43F8DDD985BF58404
    EditorOnlyData="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:M_Master_NikkiEditorOnlyData'"
    TextureStreamingDataVersion=1
-   TextureStreamingData(0)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="DefaultTexture",TextureReference="/Engine/EngineResources/DefaultTexture.DefaultTexture")
-   TextureStreamingData(1)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="FlatNormal",TextureReference="/Engine/EngineMaterials/FlatNormal.FlatNormal")
-   ReferencedDefaultTextures(0)="/Script/Engine.Texture2D'/Engine/EngineMaterials/FlatNormal.FlatNormal'"
-   ReferencedDefaultTextures(1)="/Script/Engine.Texture2D'/Engine/EngineResources/DefaultTexture.DefaultTexture'"
-   LightingGuid=1C9BC924422AAB58FA4DFFB56D371B37
+   TextureStreamingData(0)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="Marble_7_-_512x512",TextureReference="/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512")
+   TextureStreamingData(1)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="Perlin_1_-_512x512",TextureReference="/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512")
+   TextureStreamingData(2)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="T_Neutral_Normal",TextureReference="/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal")
+   TextureStreamingData(3)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="T_Neutral_ORM",TextureReference="/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM")
+   ReferencedDefaultTextures(0)="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal'"
+   ReferencedDefaultTextures(1)="/Script/Engine.Texture2D'/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512'"
+   ReferencedDefaultTextures(2)="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
+   ReferencedDefaultTextures(3)="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM'"
+   LightingGuid=A5E4B2CF47C73524A7F47CA05A06DF8E
 End Object
