@@ -120,6 +120,29 @@ Source of truth: `jellyfish_mesh.json` + `jellyfish_mesh_manifest.json` + `jelly
 `T_Jelly_ArmLogic_LUT` / kelp LUT — Wrap U (time), Clamp V. Bell maps — Wrap U, Clamp V
 (radial domain; verified U-only by ingest).
 
+## DREAMS LANE — volumetrics, frozen cloth, flora, Starskiff MK2
+
+**Volumes (UE 5.3+ Sparse Volume Textures):** `Volumes/VOL_GodRays.vdb`,
+`VOL_GhostFog.vdb` (leviathan's ghost — place at the ribcage), `VOL_NebulaVeil.vdb`
+(above the jellyfish). Import: Content Browser → import .vdb → Sparse Volume Texture;
+material maps the grid as density/mask — colour, noise and animation live in the
+material (noise-in-material by design; grids are smooth SDF shells).
+
+**Frozen cloth morphs:** `SM_Banner.fbx` (morphs SwayA/SwayB/Billow) and
+`SM_Shroud.fbx` (Gather/Drift/Settle) — skeletal with root bone; drive like the bell
+morphs (slow crossfades; gust coupling to SeaAbovePulse optional). Silk = the
+Shorewake dress material family.
+
+**Dream flora:** `SM_Flora_Reed/Chime/Fern` (code-L-system) — PCG scatter through the
+reef kit; tips take CoralSkin/Iridescence; chime bells = the Bell motif seed.
+
+**Starskiff MK2** (`SM_Starskiff_MK2.fbx`, built on a COPY of the owner's desktop
+project): hull assembly + `GunwaleGlow` + `MastLantern` + FX sockets
+(`FX_WakeEmitter_L/R`, `FX_SailCloth`, `FX_Lantern`). Materials: hull = the staged
+`T_Starskiff_Hull_*` set; wake emitters = `T_Starskiff_Wake_Emission` with amplitude
+× `(1 + 1.5 * SeaAbovePulse)`; mount `SM_Banner.fbx` at `FX_SailCloth`. Boat
+traversal/gameplay is game-code (owner design) — the asset is traversal-READY.
+
 ## Kelp sway material recipe (R3) — no runtime sim, one MPC reader
 
 For `MI_Kelp_Sway` (parent: any two-sided master you already own — **do not edit masters**):
