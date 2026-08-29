@@ -37,6 +37,7 @@ from . import chimes_gn  # noqa: F401 - GN chime family (ET-tuned, port of chime
 from . import music_harps_real  # noqa: F401 - Realistic harps: concert/Ur lyre/kora/siku
 from . import music_terrain  # noqa: F401 - Walkable roll field/staff bridge terrain
 from . import infinity_nikki_kit  # noqa: F401 - Infinity Nikki expanded wardrobe kit (bloom pavilion/nook/runway)
+from . import monolith  # noqa: F401 - Gothic coastal monolith kit (5 builders)
 from .notation_extras import build_music_bass_clef, build_music_beam_cluster, build_music_triplet_note, build_music_chord_stack, build_music_fermata, build_music_repeat_bar, build_music_time_signature, build_music_stand
 from .ornament_extras import build_ornament_rosette_sixpetal, build_ornament_scallop_band, build_ornament_keyhole_frame, build_filigree_corner_volute, build_filigree_finial_cross, build_filigree_wreath_ring
 from .ribbon import (
