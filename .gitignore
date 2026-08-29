@@ -291,3 +291,28 @@ Plugins/Claireon/
 # per-machine Fab install instead.
 # Re-install from: com.epicgames.launcher://ue/Fab/product/4e59bf12-d0c8-46f4-b5f9-37d48d0b6e63
 Plugins/Oceanology_Plugin/
+
+# --- 2026-08-28: authored P0/lookdev content rescued from the blanket Content/* and
+# Content/EnvSandbox/* ignores. Surgical whitelists only -- EnvSandbox is 13GB and
+# Content/Landscape (462MB of regenerable Gaea node output) stays ignored on purpose.
+# .uasset/.umap are LFS-tracked (.gitattributes:31-32).
+!Content/EnvSandbox/
+Content/EnvSandbox/*
+!Content/EnvSandbox/Monoliths/
+Content/EnvSandbox/Monoliths/*
+!Content/EnvSandbox/Monoliths/SeaAbove/
+!Content/EnvSandbox/Monoliths/SeaAbove/**
+!Content/EnvSandbox/Materials/
+Content/EnvSandbox/Materials/*
+!Content/EnvSandbox/Materials/Instances/
+Content/EnvSandbox/Materials/Instances/*
+!Content/EnvSandbox/Materials/Instances/Terrain/
+!Content/EnvSandbox/Materials/Instances/Terrain/**
+!Content/EnvSandbox/Meshes/
+Content/EnvSandbox/Meshes/*
+!Content/EnvSandbox/Meshes/WPTerrains/
+!Content/EnvSandbox/Meshes/WPTerrains/**
+!Content/_PROJECT/
+Content/_PROJECT/*
+!Content/_PROJECT/ResonantWorld/
+!Content/_PROJECT/ResonantWorld/**

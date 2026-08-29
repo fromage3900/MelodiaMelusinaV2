@@ -227,7 +227,7 @@
       "contract": "One existing Piano phrase commits one idempotent typed world result and visibly opens one player-facing route.",
       "evidence": "Saved/Audit/music_world_key/p0_2026-08-28/assertions.json",
       "result": "Bridge commit path PROVEN 5/5 deterministic in MelodiaIntegrationMap (APPLIED then ALREADY_APPLIED x2; 5 commit lines in engine log for 15 broadcasts).",
-      "blocker": "Driven by OnPatternCompleted broadcast, NOT real gameplay input. Sol plan requires phrase driven through gameplay overlap/input. Player-input -> broadcast link unproven.",
+      "blocker": "Driven by OnPatternCompleted broadcast, NOT real gameplay input. Live 2026-08-28 inspection of L_PCG_Hero_WaterGameplayProof found the placed actor is base APCGHeroMusicGraphHost (its HandleProgressionEvent is empty and never calls MarkCompleted) and the map has no route/transition actor. Player overlap/input -> completion and visible payoff are therefore unproven and cannot pass as authored.",
       "wiring_landed": [
         "DA_MelodiaIntegrationConfig.WorldChallengeIds was EMPTY, now challenge.first_resonance_echo",
         "NarrativeFlagIds += challenge.first_resonance_echo.completed",
@@ -238,8 +238,8 @@
       "id": "static_gates",
       "status": "fail",
       "contract": "The current frozen baseline passes the graph, live-path, Blueprint sweep, UI, and material-baseline checks without waivers.",
-      "latest_partial_evidence": "2026-08-26 editor-backed graph_reachability and bp_live_path passed; the full Blueprint/UI/material chain was not rerun, so the gate remains fail.",
-      "blocker": "Drift is 16 assets, not the 2 named in P0_CLOSEOUT_PLAN (stale). verify_baseline.py --update has no partial accept. Owner approved \"intended\" while being shown only 2. Unreviewed: 3x Impressionist fns ~tripled; M_Master_Toon_Unified shrank."
+      "latest_partial_evidence": "2026-08-28 22:46 EDT full editor-backed chain: graph_reachability PASS, bp_live_path PASS, bp_sweep PASS, ui_lint PASS, verify_baseline FAIL (39 clean, 16 drifted, 0 unreadable/failed; 18 reorder-only assets counted clean).",
+      "blocker": "Drift is 16 assets, not the 2 named in P0_CLOSEOUT_PLAN (stale). verify_baseline.py --update has no partial accept. Owner approved \"intended\" while being shown only 2. Unreviewed material/function changes include MF_AnimeSkinWrap 144->172 nodes, three Impressionist functions with large growth, M_Master_Toon_Unified same node count but smaller export, and M_Master_Toon_Universal 1201->1257 nodes. No re-baseline was performed."
     },
     {
       "id": "battle_integration_map",
