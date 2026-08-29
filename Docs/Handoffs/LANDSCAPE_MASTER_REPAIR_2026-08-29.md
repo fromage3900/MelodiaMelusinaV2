@@ -164,6 +164,57 @@ triplanar work.
 
 ---
 
+## 8. Nikki wiring completion recipe (owner directive 2026-08-29 ~18:00)
+
+Owner ruling: the Nikki wiring on this master **remains unfinished** until `MF_NikkiDreamGrade.Emissive`
+has its consumer. The §6 "art decision" framing is superseded. Derived from the pre-surgery T3D
+export (`Docs/T3D_Baseline/materials/M_Master_Toon_Landscape_HeightBlend.t3d`) + post-repair edges
+in §3.
+
+**Graph facts established offline:**
+- `MF_NikkiDreamGrade` call = `MaterialExpressionMaterialFunctionCall_5` at (2180, 880). One input
+  (`BaseColorIn` ← `LinearInterpolate_56` post-repair), two outputs: **0 = Emissive, 1 = Color**.
+- Post-repair, `.Color` has 2 consumers (`SSP_1.A` via OutputIndex=1, `LI_57.A`); **`.Emissive`
+  (OutputIndex=0) has 0** — pre-repair it was the value wrongly wired into base colour.
+- `MF_NikkiDreamGrade.Emissive` internally = animated view-dependent glow (Noise + Sine + Time +
+  fresnel `DotProduct(CameraVectorWS, PixelNormalWS)` + OneMinus), so it belongs in EmissiveColor.
+- Current emissive chain: `SubstrateToonBSDF_0.EmissiveColor ← Multiply_6` where `A ← Multiply_59`
+  (`MF_Madoka` Emissive OutputIndex=1 × `ScalarParameter_96`) and `B ← SparkleMask.R`
+  (`T_Spark_Twinkle8`, group "11 | Nikki Sparkle"). Pure Madoka; the grade glow is missing.
+- Neither sibling master calls `MF_NikkiDreamGrade` (`M_Master_Nikki*` use the newer NikkiX chain:
+  PastelGrade/TwinkleIris/SDFRibbon/PearlSheen/DreamWatercolor). There is no sibling pattern to
+  mirror — this recipe reconstructs the original author's intent instead: pre-repair, `SSP_1`
+  (bNikkiFast) consumed the grade's **Emissive** output as its True-branch, i.e. the glow showed
+  when `bNikkiFast=True`. Finish by moving that value to EmissiveColor behind the same gate.
+- `bNikkiFast` and `bNikkiHero` both default **False** (no DefaultValue lines in their blocks), so
+  a gated add prunes to zero cost and identical pixels in the default configuration.
+
+**Hand-wiring steps (material editor, `M_Master_Toon_Landscape_HeightBlend`):**
+
+1. New `StaticSwitchParameter` near SSP_1 (≈ −2100, 5456):
+   - `ParameterName = bNikkiFast` (**same name as SSP_1** — shares the existing switch value; new
+     unique ExpressionGUID), `Group = 10 | Nikki Rim & Glow`, `SortPriority = 902`, DefaultValue **False**.
+   - `A` ← `MaterialFunctionCall_5` **Emissive output (upper pin, OutputIndex 0)**.
+   - `B` ← new `Constant` = **0.0**.
+2. New `Add` near Multiply_6 (≈ −60, 760): `A` ← `MaterialExpressionMultiply_6`, `B` ← the new switch.
+3. Rewire `MaterialExpressionSubstrateToonBSDF_0.EmissiveColor` ← the new **Add** (was Multiply_6).
+4. Save; verify by read-back (§5 rule — a save return value proves nothing).
+
+**Verification after wiring:**
+- Stats (probe instance, `bNikkiFast=True`): expect ≈ 612–616 PS instr (610 was the pre-glow fast
+  config) and samplers still 13. Default config must stay **593 / 13** (glow pruned).
+- `validate_material`: still zero errors; no cycle introduced (MFC_5 → SSP → Add → Substrate is
+  strictly forward; `MFC_5.BaseColorIn` still comes from `LI_56`).
+- Re-export T3D and confirm `EmissiveColor=(Expression=...Add...)` + the new `bNikkiFast` switch.
+- Visually: `bNikkiFast=True` should now show the grade's animated shimmer in emissive — the value
+  the author originally leaked into base colour, now in the correct output.
+
+Not in scope (unchanged): the ~53 orphaned parameters. `MF_NikkiDreamGrade` takes only
+`BaseColorIn`, so `Madoka*`/`Itto*`/`ShadowDream*`/`ShadowFlower*` cannot hook into the call site;
+they belong to other lanes and need their own owner decisions.
+
+---
+
 ## What went wrong, and the rule it re-proves
 
 The first Atlantis material pass **wrote all 333 `.uasset` files and reported success while changing
