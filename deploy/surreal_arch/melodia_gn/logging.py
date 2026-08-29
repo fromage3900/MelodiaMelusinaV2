@@ -1,10 +1,10 @@
-﻿"""Structured logging for melodia_gn ΓÇö replaces silent error swallowing.
+"""Structured logging for melodia_gn  --  replaces silent error swallowing.
 
 Levels:
-  debug   ΓÇö only printed when melodia_gn_debug is enabled in addon prefs
-  info    ΓÇö normal operational messages
-  warning ΓÇö non-fatal issues (always printed)
-  error   ΓÇö failures (always printed + raises optional exception)
+  debug    --  only printed when melodia_gn_debug is enabled in addon prefs
+  info     --  normal operational messages
+  warning  --  non-fatal issues (always printed)
+  error    --  failures (always printed + raises optional exception)
 
 Usage:
   from .logging import log
@@ -68,7 +68,7 @@ class Logger:
 log = Logger()
 
 
-# ΓöÇΓöÇ Preference bridge ΓöÇΓöÇ
+# ---- Preference bridge ----
 
 def _resolve_debug_pref():
     """Try to read melodia_gn_debug from SurrealArch preferences.

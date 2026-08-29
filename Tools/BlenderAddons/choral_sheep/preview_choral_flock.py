@@ -8,9 +8,9 @@ Runs in two modes:
   2. Outside Blender (CI): no-op, reports what would happen — use sheep_shine.py interactively
 
 Usage (Blender 5.2):
-    blender --background --python Tools/BlenderAddons/melodia_studio/preview_choral_flock.py -- --out Saved/Audit/choral_sheep/blender_preview
+    blender --background --python Tools/BlenderAddons/choral_sheep/preview_choral_flock.py -- --out Saved/Audit/choral_sheep/blender_preview
 Or inside existing Blender Python console:
-    exec(compile(open("Tools/BlenderAddons/melodia_studio/preview_choral_flock.py").read(),"x","exec"))
+    exec(compile(open("Tools/BlenderAddons/choral_sheep/preview_choral_flock.py").read(),"x","exec"))
 """
 import sys
 import argparse

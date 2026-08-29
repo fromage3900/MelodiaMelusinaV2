@@ -1,4 +1,4 @@
-"""Magic effect GN group builders ΓÇö displace, wave, cast, wireframe, smooth as Geometry Nodes.
+"""Magic effect GN group builders  --  displace, wave, cast, wireframe, smooth as Geometry Nodes.
 
 Replaces the legacy modifier-based magic distortion system with composable GN groups.
 """
@@ -53,7 +53,7 @@ def build_effect_displace(group_name="MEL_effect_displace"):
 
 
 def build_effect_wave(group_name="MEL_effect_wave"):
-    """Wave displacement ΓÇö sine wave along a configurable axis."""
+    """Wave displacement  --  sine wave along a configurable axis."""
     tree, gin, gout = new_geometry_tree(group_name)
 
     add_float_param(tree, "Amplitude", 0.3, 0.0, 2.0)
@@ -120,7 +120,7 @@ def build_effect_wave(group_name="MEL_effect_wave"):
 
 
 def build_effect_cast(group_name="MEL_effect_cast"):
-    """Spherical/cylindrical cast ΓÇö pull mesh toward a sphere or cylinder."""
+    """Spherical/cylindrical cast  --  pull mesh toward a sphere or cylinder."""
     tree, gin, gout = new_geometry_tree(group_name)
 
     add_float_param(tree, "Factor", 0.5, -2.0, 2.0)
@@ -182,7 +182,7 @@ def build_effect_cast(group_name="MEL_effect_cast"):
 
 
 def build_effect_wireframe(group_name="MEL_effect_wireframe"):
-    """Wireframe as GN ΓÇö duplicate edges as cylinders."""
+    """Wireframe as GN  --  duplicate edges as cylinders."""
     tree, gin, gout = new_geometry_tree(group_name)
 
     add_float_param(tree, "Thickness", 0.02, 0.001, 0.5)
@@ -256,7 +256,7 @@ def build_effect_smooth(group_name="MEL_effect_smooth"):
 
 
 def build_effect_magic(group_name="MEL_effect_magic"):
-    """Combined magical distortion ΓÇö preset selector with all parameters.
+    """Combined magical distortion  --  preset selector with all parameters.
 
     Replicates the 10 presets from the legacy magic system as a single GN modifier.
     Presets: LIQUID, CRYSTAL, PORTAL, DISSOLVE, TIMERIFT, DREAMWEAVE,

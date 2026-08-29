@@ -483,33 +483,14 @@ def _instance_dressing(midi_path: str, style_id: str, seed: int, budget: int) ->
     _clear_dressing()
     if style_id == "bare":
         return 0
-    # Build field exactly like midi_bridge.dress_terrain does (so locations match)
+    # Build field using shared core.field.build_field() pipeline
     try:
-        from . import walkable_world as ww  # type: ignore
-        from . import terrain_dressing as td  # type: ignore
-        mv = ww.load_voxel_module()
-        tracks, tpb = mv.parse_midi(midi_path)
-        if not tracks:
+        from . import terrain_dressing as td
+        from .core.field import build_field
+        result = build_field(midi_path, "walkable_valley", source="walkable")
+        if not result["ok"]:
             return 0
-        notes = list(tracks[0])
-        stem, ext = os.path.splitext(midi_path)
-        bg = stem + "_beatgrid" + ext
-        if os.path.exists(bg):
-            try:
-                b_tracks, b_tpb = mv.parse_midi(bg)
-                if b_tracks and b_tpb:
-                    s = float(tpb) / float(b_tpb)
-                    notes.extend((int(n[0] * s), n[1] + 36, n[2]) for n in b_tracks[0])
-                    notes.sort()
-            except Exception:
-                pass
-        # use same walkable valley preset as dress_terrain's field build
-        wpreset = ww.WALKABLE_PRESETS.get("walkable_valley", {})
-        field, _gw = ww.build_heightfield(notes, wpreset.get("cells_per_beat", 2),
-                                          wpreset.get("height_scale", 1.9),
-                                          wpreset.get("plateau_radius", 2), tpb)
-        field = ww.fill_gaps(field)
-        field = ww.limit_slope(field, wpreset.get("max_slope", 1), wpreset.get("smooth_passes", 3))
+        field = result["field"]
         plan, _stats = td.plan_dressing(field, style_id=style_id, seed=seed, budget=budget)
     except Exception:
         return 0
@@ -1102,8 +1083,8 @@ if bpy is not None:
                 except Exception:
                     pass
             box = layout.box()
+            row = box.row()
             if _chrome is None:
-                row = box.row()
                 row.label(text="Resonant World", icon='FILE_SOUND')
             row.operator("melodia_studio.refresh_midi", text="", icon='FILE_REFRESH')
             # Search + MIDI picker

@@ -6,7 +6,7 @@ generate a family of named color variations that fit Melodia's Resonant World
 palette. Geometry is never touched -- materials only, so the rig is safe.
 
 How to run (Blender > Scripting workspace > Python console):
-    exec(compile(open(r"C:/EnvironmentPortfolio/BS_GodFile/Tools/BlenderAddons/melodia_studio/sheep_shine.py", encoding="utf-8").read(), "x", "exec"))
+    exec(compile(open(r"C:/EnvironmentPortfolio/BS_GodFile/Tools/BlenderAddons/choral_sheep/sheep_shine.py", encoding="utf-8").read(), "x", "exec"))
 Then call the functions interactively, e.g.:
     build_wool_material("ChoralWool_Pearl")        # name one sheep material 'shine'
     apply_variation("ChoralWool_Sakura")           # recolour the sheep in place
