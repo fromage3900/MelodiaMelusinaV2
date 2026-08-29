@@ -1150,7 +1150,6 @@ CATEGORY_META: dict[str, dict] = {
     "operations":  {"label": "Operations",           "icon": "AUTOMERGE_ON"},
     "mesh_tools":  {"label": "Mesh Tools",           "icon": "EDITMODE_HLT"},
     "set_dressing": {"label": "Set Dressing",        "icon": "PLUGIN"},
-    "monolith":    {"label": "Monolith Kit",         "icon": "MOD_BUILD"},
 }
 
 
