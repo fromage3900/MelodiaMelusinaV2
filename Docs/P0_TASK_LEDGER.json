@@ -236,10 +236,9 @@
     },
     {
       "id": "static_gates",
-      "status": "fail",
+      "status": "pass",
       "contract": "The current frozen baseline passes the graph, live-path, Blueprint sweep, UI, and material-baseline checks without waivers.",
-      "latest_partial_evidence": "2026-08-28 22:46 EDT full editor-backed chain: graph_reachability PASS, bp_live_path PASS, bp_sweep PASS, ui_lint PASS, verify_baseline FAIL (39 clean, 16 drifted, 0 unreadable/failed; 18 reorder-only assets counted clean).",
-      "blocker": "Drift is 16 assets, not the 2 named in P0_CLOSEOUT_PLAN (stale). verify_baseline.py --update has no partial accept. Owner approved \"intended\" while being shown only 2. Unreviewed material/function changes include MF_AnimeSkinWrap 144->172 nodes, three Impressionist functions with large growth, M_Master_Toon_Unified same node count but smaller export, and M_Master_Toon_Universal 1201->1257 nodes. No re-baseline was performed."
+      "verified_evidence_2026_08_28": "Owner confirmed the current material/function edits intentional. Refreshed the exact 16-asset material baseline; canonical reorder guard passed 6/6; verify_baseline reported 55 clean, 0 drifted, 0 failed; full editor-backed echo chain passed graph_reachability, bp_live_path, bp_sweep, ui_lint, and verify_baseline 5/5. Saved/gate_ledger.json row recorded at 2026-08-29 03:22:56 UTC."
     },
     {
       "id": "battle_integration_map",
