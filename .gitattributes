@@ -1,13 +1,11 @@
 # ==============================================================================
 # Melodia BS_GodFile Project Git & LFS Configuration
 # AAA Gacha Live-Ops Standard — Atomic Asset Locking & Line Ending Governance
-# ==============================================================================
 
 # Default auto line ending handling
 * text=auto
 .gitattributes text eol=lf
 .gitignore text eol=lf
-
 # Script & Source Code Files — enforce consistent endings
 *.cpp   text eol=lf
 *.h     text eol=lf
@@ -22,16 +20,12 @@
 *.ini   text eol=crlf
 *.uproject text eol=lf
 *.uplugin text eol=lf
-
 # ------------------------------------------------------------------------------
 # Binary Assets — Git LFS with Atomic Locking (lockable)
-# ------------------------------------------------------------------------------
-
 # Unreal Engine Packages & Levels
 *.uasset filter=lfs diff=lfs merge=lfs -text lockable
 *.umap   filter=lfs diff=lfs merge=lfs -text lockable
 *.upk    filter=lfs diff=lfs merge=lfs -text lockable
-
 # 3D Source Assets & Mesh Formats
 *.blend  filter=lfs diff=lfs merge=lfs -text lockable
 *.fbx    filter=lfs diff=lfs merge=lfs -text lockable
@@ -40,7 +34,6 @@
 *.usda   filter=lfs diff=lfs merge=lfs -text lockable
 *.usdc   filter=lfs diff=lfs merge=lfs -text lockable
 *.obj    filter=lfs diff=lfs merge=lfs -text lockable
-
 # Textures & High-Bit Depth Render Sequences
 *.png    filter=lfs diff=lfs merge=lfs -text lockable
 *.jpg    filter=lfs diff=lfs merge=lfs -text lockable
@@ -51,22 +44,20 @@
 *.psd    filter=lfs diff=lfs merge=lfs -text lockable
 *.tif    filter=lfs diff=lfs merge=lfs -text lockable
 *.tiff   filter=lfs diff=lfs merge=lfs -text lockable
-
 # Audio & Video Media Artifacts
 *.wav    filter=lfs diff=lfs merge=lfs -text lockable
 *.mp3    filter=lfs diff=lfs merge=lfs -text lockable
 *.ogg    filter=lfs diff=lfs merge=lfs -text lockable
 *.mp4    filter=lfs diff=lfs merge=lfs -text lockable
 *.webm   filter=lfs diff=lfs merge=lfs -text lockable
-
 # 3D Animation Cache Files (Alembic) — needed for hair/animation caches
 *.abc    filter=lfs diff=lfs merge=lfs -text lockable
 *.mc     filter=lfs diff=lfs merge=lfs -text lockable
 *.mcc    filter=lfs diff=lfs merge=lfs -text lockable
-
 # Fonts & Compiled Binary Modules
 *.ttf    filter=lfs diff=lfs merge=lfs -text lockable
 *.otf    filter=lfs diff=lfs merge=lfs -text lockable
 *.dll    filter=lfs diff=lfs merge=lfs -text lockable
 *.so     filter=lfs diff=lfs merge=lfs -text lockable
 *.dylib  filter=lfs diff=lfs merge=lfs -text lockable
+Content/Melodia/Companions/ChoralSheep/choralsheephi.assbin filter=lfs diff=lfs merge=lfs -text
