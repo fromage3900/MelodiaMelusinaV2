@@ -1,6 +1,7 @@
 """Smooth terrain mesh generator - replaces voxel cubes with continuous landscape.
 
-Takes the walkable heightfield and produces a smooth, biomes-colored mesh:
+Takes the walkable heightfield (built via core.field.build_field()) and produces
+a smooth, biomes-colored mesh:
 - Bilinear subdivision (each cell -> 4×4 sub-cells)
 - Smooth shading
 - Biome vertex colors (peak=snow, valley=grass, slope=rock, path=sand)
@@ -60,30 +61,13 @@ def generate_smooth_terrain(midi_path, preset_id="walkable_valley"):
 
 
 def _build_field(midi_path, preset_id):
-    """Build heightfield from MIDI."""
-    mv = ww.load_voxel_module()
-    tracks, tpb = mv.parse_midi(midi_path)
-    if not tracks:
+    """Build heightfield from MIDI using shared core.field.build_field()."""
+    from .core.field import build_field
+
+    result = build_field(midi_path, preset_id, source="walkable")
+    if not result["ok"]:
         return None, None, None
-    preset = ww.WALKABLE_PRESETS.get(preset_id)
-    if preset is None:
-        return None, None, None
-    notes = list(tracks[0])
-    stem, ext = os.path.splitext(midi_path)
-    bg = stem + "_beatgrid" + ext
-    if os.path.exists(bg):
-        b_tracks, b_tpb = mv.parse_midi(bg)
-        if b_tracks and b_tpb:
-            scale = float(tpb) / float(b_tpb)
-            notes.extend((int(n[0] * scale), n[1] + 36, n[2]) for n in b_tracks[0])
-            notes.sort()
-    field, _gw = ww.build_heightfield(
-        notes, preset["cells_per_beat"], preset["height_scale"],
-        preset["plateau_radius"], tpb, preset.get("fold", "serpentine"))
-    field = ww.limit_slope(ww.fill_gaps(field), preset["max_slope"],
-                           preset["smooth_passes"])
-    metrics = ww.walkability(field, preset["max_slope"])
-    return field, preset, metrics
+    return result["field"], result["preset"], result["metrics"]
 
 
 def _subdivide_field(field, factor=4):

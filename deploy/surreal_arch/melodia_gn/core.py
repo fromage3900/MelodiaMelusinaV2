@@ -191,7 +191,7 @@ def link_sockets(tree, from_socket, to_socket):
         tree.links.new(from_socket, to_socket)
     except Exception as exc:
         log.warning(
-            "link_sockets: cannot link %s ΓåÆ %s in %s ΓÇö %s",
+            "link_sockets: cannot link %s  --  %s in %s  --  %s",
             getattr(from_socket, "name", "?"),
             getattr(to_socket, "name", "?"),
             getattr(tree, "name", "?"),
@@ -218,7 +218,7 @@ def color_node(node, tag="default"):
         node.use_custom_color = True
         node.color = c
     except Exception as exc:
-        log.debug("color_node: cannot color node '%s' ΓÇö %s", getattr(node, "name", "?"), exc)
+        log.debug("color_node: cannot color node '%s'  --  %s", getattr(node, "name", "?"), exc)
 
 
 def label_tree(tree, title: str | None = None, frames: list | tuple | None = None):
@@ -705,7 +705,7 @@ def new_geometry_tree(name):
             bpy.data.node_groups.remove(old)
             log.debug("new_geometry_tree: replaced existing tree '%s'", name)
         except Exception as exc:
-            log.warning("new_geometry_tree: cannot remove old tree '%s' ΓÇö %s", name, exc)
+            log.warning("new_geometry_tree: cannot remove old tree '%s'  --  %s", name, exc)
     tree = bpy.data.node_groups.new(name, "GeometryNodeTree")
     try:
         tree.is_modifier = True
@@ -721,7 +721,7 @@ def new_geometry_tree(name):
         link_sockets(tree, group_in.outputs["Geometry"], group_out.inputs["Geometry"])
     except Exception as exc:
         log.warning(
-            "new_geometry_tree: cannot link default I/O on '%s' ΓÇö %s", name, exc,
+            "new_geometry_tree: cannot link default I/O on '%s'  --  %s", name, exc,
         )
     color_node(group_in, "input")
     color_node(group_out, "output")
@@ -774,7 +774,7 @@ def make_group_input(tree, socket_type, name, default=None, min_val=None, max_va
             sock = inputs.new(socket_type, name)
         except Exception as exc:
             log.warning(
-                "make_group_input: cannot create input '%s' (%s) in tree '%s' ΓÇö %s",
+                "make_group_input: cannot create input '%s' (%s) in tree '%s'  --  %s",
                     name, socket_type, getattr(tree, "name", "?"), exc,
             )
             return None
@@ -788,17 +788,17 @@ def make_group_input(tree, socket_type, name, default=None, min_val=None, max_va
         try:
             sock.default_value = default
         except Exception as exc:
-            log.debug("make_group_input: cannot set default on '%s' ΓÇö %s", name, exc)
+            log.debug("make_group_input: cannot set default on '%s'  --  %s", name, exc)
     if min_val is not None:
         try:
             sock.min_value = min_val
         except Exception as exc:
-            log.debug("make_group_input: cannot set min on '%s' ΓÇö %s", name, exc)
+            log.debug("make_group_input: cannot set min on '%s'  --  %s", name, exc)
     if max_val is not None:
         try:
             sock.max_value = max_val
         except Exception as exc:
-            log.debug("make_group_input: cannot set max on '%s' ΓÇö %s", name, exc)
+            log.debug("make_group_input: cannot set max on '%s'  --  %s", name, exc)
     return sock
 
 
@@ -809,7 +809,7 @@ def make_group_output(tree, socket_type, name):
             return iface.new_socket(name=name, in_out="OUTPUT", socket_type=socket_type)
         except Exception as exc:
             log.debug(
-                "make_group_output: interface.new_socket failed for '%s' ΓÇö %s",
+                "make_group_output: interface.new_socket failed for '%s'  --  %s",
                 name, exc,
             )
     outputs = getattr(tree, "outputs", None)
@@ -818,7 +818,7 @@ def make_group_output(tree, socket_type, name):
             return outputs.new(socket_type, name)
         except Exception as exc:
             log.warning(
-                "make_group_output: cannot create output '%s' in tree '%s' ΓÇö %s",
+                "make_group_output: cannot create output '%s' in tree '%s'  --  %s",
                 name, getattr(tree, "name", "?"), exc,
             )
             return None
@@ -834,7 +834,7 @@ def link_float_to_vector(tree, source_sock, target_node, target_input_name, comp
     """
     if source_sock is None or target_node is None:
         log.debug(
-            "link_float_to_vector: skipping ΓÇö source=%s target=%s",
+            "link_float_to_vector: skipping  --  source=%s target=%s",
             source_sock, getattr(target_node, "name", None),
         )
         return
@@ -1130,9 +1130,9 @@ def add_mesh_torus_linked(tree, loc, major_radius_sock, minor_radius_sock,
     return sweep
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Builder registry ΓÇö populated by each module via register_builder()
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
+# Builder registry  --  populated by each module via register_builder()
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 
 GROUP_BUILDERS: dict[str, callable] = {}
 GROUP_METADATA: dict[str, dict] = {}

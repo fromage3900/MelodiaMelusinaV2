@@ -1,4 +1,4 @@
-"""Structure GN group builders ΓÇö gazebo, column, arch, roof assemblies.
+"""Structure GN group builders  --  gazebo, column, arch, roof assemblies.
 
 Composes primitives and profiles into reusable architectural structures.
 """
@@ -18,8 +18,8 @@ def build_gazebo(group_name="MEL_gazebo"):
     """Composable gazebo: circular array of columns + beam ring + roof + star finial.
 
     Inputs:
-      Column Profile ΓÇö geometry input to instance as columns
-      Roof Profile ΓÇö geometry input for roof panels
+      Column Profile  --  geometry input to instance as columns
+      Roof Profile  --  geometry input for roof panels
       Radius, Column Count, Roof Pitch, Height
     """
     tree, gin, gout = new_geometry_tree(group_name)
@@ -43,7 +43,7 @@ def build_gazebo(group_name="MEL_gazebo"):
     col_profile = gin.outputs["Column Profile"] if "Column Profile" in gin.outputs else None
     roof_profile = gin.outputs["Roof Profile"] if "Roof Profile" in gin.outputs else None
 
-    # ΓöÇΓöÇ Circular array of columns ΓöÇΓöÇ
+    # ---- Circular array of columns ----
     circle_col = safe_node(tree, "GeometryNodeMeshCircle", (bx - 200, by + 600))
     link_sockets(tree, gin.outputs["Radius"], circle_col.inputs["Radius"])
     link_sockets(tree, gin.outputs["Column Count"], circle_col.inputs["Vertices"])
@@ -81,7 +81,7 @@ def build_gazebo(group_name="MEL_gazebo"):
     realize_col = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 400, by + 600))
     link_sockets(tree, scale_col.outputs["Instances"], realize_col.inputs["Geometry"])
 
-    # ΓöÇΓöÇ Beam ring on top of columns ΓöÇΓöÇ
+    # ---- Beam ring on top of columns ----
     circle_beam = safe_node(tree, "GeometryNodeMeshCircle", (bx - 200, by + 300))
     link_sockets(tree, gin.outputs["Radius"], circle_beam.inputs["Radius"])
     link_sockets(tree, gin.outputs["Column Count"], circle_beam.inputs["Vertices"])
@@ -111,7 +111,7 @@ def build_gazebo(group_name="MEL_gazebo"):
     link_sockets(tree, beam_z.outputs[0], combine_beam.inputs["Z"])
     link_sockets(tree, combine_beam.outputs["Vector"], set_pos_beam.inputs["Position"])
 
-    # ΓöÇΓöÇ Roof ΓöÇΓöÇ
+    # ---- Roof ----
     # Cone at top of columns
     roof_cone = safe_node(tree, "GeometryNodeMeshCone", (bx - 200, by))
     link_sockets(tree, gin.outputs["Column Count"], roof_cone.inputs["Vertices"])
@@ -147,7 +147,7 @@ def build_gazebo(group_name="MEL_gazebo"):
     solid_roof.inputs["Offset Scale"].default_value = 0.02
     solid_roof.mode = "FACES"
 
-    # ΓöÇΓöÇ Star finial on top ΓöÇΓöÇ
+    # ---- Star finial on top ----
     finial_cone = safe_node(tree, "GeometryNodeMeshCone", (bx + 400, by + 100))
     finial_cone.inputs["Vertices"].default_value = 5
     finial_cone.inputs["Radius Top"].default_value = 0.0
@@ -232,7 +232,7 @@ def build_gazebo(group_name="MEL_gazebo"):
     link_sockets(tree, gin.outputs["Has Irimoya"], iri_sw.inputs["Switch"])
     link_sockets(tree, iri_pos.outputs["Geometry"], iri_sw.inputs.get("True") or iri_sw.inputs.get("TRUE"))
 
-    # ΓöÇΓöÇ Join everything ΓöÇΓöÇ
+    # ---- Join everything ----
     join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 600, by - 100))
     link_sockets(tree, realize_col.outputs["Geometry"], join.inputs["Geometry"])
     link_sockets(tree, set_pos_beam.outputs["Geometry"], join.inputs["Geometry"])
@@ -353,7 +353,7 @@ def build_arch(group_name="MEL_arch"):
 
 
 def build_portico(group_name="MEL_portico"):
-    """Portico / pediment ΓÇö triangle gable roof over columns."""
+    """Portico / pediment  --  triangle gable roof over columns."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 

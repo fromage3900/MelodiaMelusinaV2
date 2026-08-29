@@ -1,7 +1,7 @@
-"""Modifier stack system ΓÇö track GN state, expose N-panel UI for stacking.
+"""Modifier stack system  --  track GN state, expose N-panel UI for stacking.
 
 Uses a CollectionProperty on the active object to store modifier configs,
-mirrors Bagapie-style workflow: add modifier ΓåÆ select preset ΓåÆ adjust params.
+mirrors Bagapie-style workflow: add modifier  --  select preset  --  adjust params.
 """
 
 from __future__ import annotations
@@ -59,9 +59,9 @@ def _all_tree_names() -> list[str]:
 ALL_TREE_NAMES: list[str] = []
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 # Data Model
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 
 class MEL_GN_StackItem(PropertyGroup):
     """One stack entry: references a GN modifier + its preset."""
@@ -86,9 +86,9 @@ class MEL_GN_StackSettings(PropertyGroup):
     )
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 # Operators
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 class MEL_GN_OT_apply_preset(Operator):
@@ -493,12 +493,12 @@ def _sync_stack_from_mel_modifiers(obj):
             break
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Panel UI ΓÇö Melodia GN Stack (N-panel, nested under genome carousel)
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
+# Panel UI  --  Melodia GN Stack (N-panel, nested under genome carousel)
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 
 class MEL_GN_PT_stack(Panel):
-    """Melodia GN Stack ΓÇö nested under Melodia Studio carousel."""
+    """Melodia GN Stack  --  nested under Melodia Studio carousel."""
 
     bl_label = "GN Stack"
     bl_idname = "MEL_GN_PT_stack"
@@ -539,13 +539,13 @@ class MEL_GN_PT_stack(Panel):
 
         _sync_stack_from_mel_modifiers(obj)
 
-        # ΓöÇΓöÇ Header row: search + stats ΓöÇΓöÇ
+        # ---- Header row: search + stats ----
         self._draw_header(layout, stack)
 
-        # ΓöÇΓöÇ Categorised tree browser ΓöÇΓöÇ
+        # ---- Categorised tree browser ----
         self._draw_tree_browser(layout, stack)
 
-        # ΓöÇΓöÇ Active stack items ΓöÇΓöÇ
+        # ---- Active stack items ----
         if stack.items:
             layout.separator(factor=0.4)
             self._draw_stack_items(layout, stack, obj)
@@ -556,7 +556,7 @@ class MEL_GN_PT_stack(Panel):
             col.label(text="No modifiers on stack", icon="INFO")
             col.label(text="Choose a GN tree above to begin", icon="BLANK1")
 
-        # ΓöÇΓöÇ Utility row ΓöÇΓöÇ
+        # ---- Utility row ----
         if stack.items:
             row = layout.row(align=True)
             row.operator("mel_gn.stack_clear", text="Clear All", icon="TRASH")
@@ -566,7 +566,7 @@ class MEL_GN_PT_stack(Panel):
                 icon="ADD",
             ).tree_name = "MEL_circular_array"
 
-    # ΓöÇΓöÇ Sub-drawing helpers ΓöÇΓöÇ
+    # ---- Sub-drawing helpers ----
 
     def _draw_header(self, layout, stack):
         """Search filter and stack count summary."""
@@ -610,14 +610,14 @@ class MEL_GN_PT_stack(Panel):
         ft = stack.filter_text
         from ..icon_loader import icon_kwargs
 
-        # ΓöÇΓöÇ Compact add bar ΓöÇΓöÇ
+        # ---- Compact add bar ----
         row = layout.row(align=True)
         row.operator("mel_gn.stack_add", text="Add Modifier", icon="ADD")
         if not ft:
             op = row.operator("mel_gn.stack_add", text="", icon="SHADERFX")
             op.tree_name = "MEL_circular_array"
 
-        # ΓöÇΓöÇ Categorised sections ΓöÇΓöÇ
+        # ---- Categorised sections ----
         box = layout.box()
         any_visible = False
         for category_id, cat_info in _gn_core.TREE_CATEGORIES.items():
@@ -702,7 +702,7 @@ class MEL_GN_PT_stack(Panel):
             op.preset_name = preset["name"]
 
     def _draw_stack_items(self, layout, stack, obj):
-        """Draw stack items ΓÇö each is one GN modifier on the object."""
+        """Draw stack items  --  each is one GN modifier on the object."""
         box = layout.box()
         col = box.column(align=True)
 
@@ -717,7 +717,7 @@ class MEL_GN_PT_stack(Panel):
             category_id = _gn_core.TREE_CATEGORY_MAP.get(item.tree_name, "")
             cat_info = _gn_core.TREE_CATEGORIES.get(category_id, {})
 
-            # ΓöÇΓöÇ Item row ΓöÇΓöÇ
+            # ---- Item row ----
             item_box = col.box()
             if is_active:
                 item_box = item_box.column()
@@ -775,7 +775,7 @@ class MEL_GN_PT_stack(Panel):
             )
             op.item_index = i
 
-            # ΓöÇΓöÇ Expanded info ΓöÇΓöÇ
+            # ---- Expanded info ----
             if item.expand:
                 info_col = item_box.column(align=True)
 
@@ -801,7 +801,7 @@ class MEL_GN_PT_stack(Panel):
                 if category_id:
                     status_row.label(text=cat_info.get("label", category_id), icon=cat_info.get("icon", "DOT"))
 
-            # ΓöÇΓöÇ Move/remove controls row ΓöÇΓöÇ
+            # ---- Move/remove controls row ----
             ctrl_row = item_box.row(align=True)
 
             # Move up
@@ -838,9 +838,9 @@ class MEL_GN_PT_stack(Panel):
             ctrl_row.label(text="")
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 # Helpers
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 
 from .core import GROUP_BUILDERS as _GB
 
@@ -865,9 +865,9 @@ def _build_tree_on_demand(tree_name: str):
     return None
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 # Registration helpers
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ----------------------------------------------------------------------------------------------------------------------------------------------
 
 CLASSES = [
     MEL_GN_StackItem,

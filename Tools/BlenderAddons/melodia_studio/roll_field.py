@@ -1,9 +1,8 @@
 """Roll field exporter - MIDI -> walkable note-field JSON for GN/UE consumers.
 
 Single source of truth so Blender GN (music_terrain.py) and UE PCG instance
-the SAME walkable piano-roll. Reuses the proven walkable_world chain
-(build_heightfield -> fill_gaps -> limit_slope) plus per-cell pitch mapping
-from the serpentine fold, so every cell is standable and slope-limited.
+the SAME walkable piano-roll. Delegates the heightfield build to
+core.field.build_field() so every cell is standable and slope-limited.
 
 Pure Python, no bpy. Deterministic for a given (midi, preset).
 
@@ -19,66 +18,46 @@ Schema: melodia_roll_field_v1
 from __future__ import annotations
 
 import json
+import math
 import os
 from pathlib import Path
 
 FORMAT_ID = "melodia_roll_field_v1"
 
 
-def _addon_dir() -> str:
-    return os.path.dirname(os.path.abspath(__file__))
-
-
 def build_roll_field(midi_path: str, preset_id: str = "walkable_valley") -> dict:
     """MIDI -> walkable roll field dict. Raises on bad input."""
-    here = _addon_dir()
-    if here not in os.sys.path:
-        os.sys.path.insert(0, here)
-    import walkable_world as ww  # type: ignore
+    from .core.field import build_field, load_voxel_module
+    from . import walkable_world as ww
 
-    mv = ww.load_voxel_module()
-    preset = ww.WALKABLE_PRESETS.get(preset_id) or ww.WALKABLE_PRESETS["walkable_valley"]
+    result = build_field(midi_path, preset_id, source="walkable")
+    if not result["ok"]:
+        raise ValueError(result.get("reason", "build_field failed"))
 
-    tracks, tpb = mv.parse_midi(midi_path)
-    if not tracks:
-        raise ValueError("no tracks in %s" % midi_path)
+    field = result["field"]
+    grid_w = result["grid_w"]
+    metrics = result["metrics"]
+    notes = result["notes"]
+    preset = result["preset"]
 
-    notes = list(tracks[0])
+    # Check if beatgrid was actually used (build_field doesn't expose this)
     stem, ext = os.path.splitext(midi_path)
-    bg = stem + "_beatgrid" + ext
-    used_bg = False
-    if os.path.exists(bg):
-        try:
-            b_tracks, b_tpb = mv.parse_midi(bg)
-            if b_tracks and b_tpb:
-                s = float(tpb) / float(b_tpb)
-                notes.extend((int(n[0] * s), n[1] + 36, n[2]) for n in b_tracks[0])
-                notes.sort()
-                used_bg = True
-        except Exception:
-            pass
+    used_bg = os.path.exists(stem + "_beatgrid" + ext)
 
-    # Melody notes carry pitch; beatgrid notes were transposed +36 by the chain.
-    # Track per-note pitch so cells know their semitone.
-    melody_only, _, _tpb1 = (None, None, None)
-    field, grid_w = ww.build_heightfield(
-        notes, preset["cells_per_beat"], preset["height_scale"],
-        preset["plateau_radius"], tpb, preset.get("fold", "serpentine"),
-    )
-    field = ww.fill_gaps(field)
-    field = ww.limit_slope(field, preset["max_slope"], preset["smooth_passes"])
-    metrics = ww.walkability(field, preset["max_slope"])
+    # We need tpb for pitch mapping; re-parse to get it
+    mv = load_voxel_module()
+    tracks, tpb = mv.parse_midi(midi_path)
 
     # Map each cell back to a representative pitch: nearest melody onset cell.
     # The serpentine fold maps onset index -> (cx, cy); recompute that map.
     max_tick = max((n[0] for n in notes), default=0)
-    total_cells = max(1, int((max_tick / float(tpb)) * preset["cells_per_beat"]) + 1)
-    gw = max(4, int(round(math_sqrt(total_cells))))
+    total_cells = max(1, int((max_tick / float(tpb)) * preset.get("cells_per_beat", 2)) + 1)
+    gw = max(4, int(round(math.sqrt(total_cells))))
     pitch_at_cell: dict[tuple[int, int], int] = {}
     vel_at_cell: dict[tuple[int, int], int] = {}
     for n in notes:
         onset, pitch, vel = n[0], n[1], n[2]
-        cell = int((onset / float(tpb)) * preset["cells_per_beat"])
+        cell = int((onset / float(tpb)) * preset.get("cells_per_beat", 2))
         cx, cy = ww.fold_xy(cell, gw, preset.get("fold", "serpentine"))
         key = (cx, cy)
         # keep the highest-velocity claim; ties keep first (sorted order stable)
@@ -111,10 +90,6 @@ def build_roll_field(midi_path: str, preset_id: str = "walkable_valley") -> dict
     }
 
 
-def math_sqrt(v: float) -> float:
-    return float(v) ** 0.5
-
-
 def write_roll_field(midi_path: str, out_json: str | Path,
                      preset_id: str = "walkable_valley") -> Path:
     data = build_roll_field(midi_path, preset_id)
@@ -126,7 +101,7 @@ def write_roll_field(midi_path: str, out_json: str | Path,
 
 if __name__ == "__main__":
     import sys
-    root = Path(_addon_dir()).parents[2]
+    root = Path(__file__).resolve().parents[3]
     midi = root / "Content" / "MelodiaIntegration" / "MIDI" / "128BPMarpeggiomelody.mid"
     if len(sys.argv) > 1:
         midi = Path(sys.argv[1])

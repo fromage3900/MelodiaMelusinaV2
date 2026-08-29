@@ -1,4 +1,4 @@
-﻿"""Profile GN group builders ΓÇö column, baluster, post, rail, star finial, lissajous curve."""
+"""Profile GN group builders  --  column, baluster, post, rail, star finial, lissajous curve."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from .primitives import build_circular_array
 
 
 def build_column(group_name="MEL_column"):
-    """Parametric column ΓÇö octagonal or round, with optional capital/base and fluting."""
+    """Parametric column  --  octagonal or round, with optional capital/base and fluting."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
@@ -90,7 +90,7 @@ def build_column(group_name="MEL_column"):
 
 
 def build_baluster(group_name="MEL_baluster"):
-    """Classic baluster profile ΓÇö bulb shape via curve profile."""
+    """Classic baluster profile  --  bulb shape via curve profile."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
@@ -116,7 +116,7 @@ def build_baluster(group_name="MEL_baluster"):
     link_sockets(tree, profile.outputs["Mesh"], set_pos.inputs["Geometry"])
 
     # Profile shape: wider at base and top, bulbous in middle
-    # Position ΓåÆ Separate XYZ ΓåÆ multiply by height, compute bulge profile
+    # Position  --  Separate XYZ  --  multiply by height, compute bulge profile
     pos = safe_node(tree, "GeometryNodeInputPosition", (bx - 500, by))
     sep_xyz = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 400, by))
     link_sockets(tree, pos.outputs["Position"], sep_xyz.inputs["Vector"])
@@ -204,7 +204,7 @@ def build_post(group_name="MEL_post"):
 
 
 def build_rail(group_name="MEL_rail"):
-    """Railing rail ΓÇö sweep a profile along a curve path."""
+    """Railing rail  --  sweep a profile along a curve path."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
@@ -227,7 +227,7 @@ def build_rail(group_name="MEL_rail"):
     rect.inputs["Vertices X"].default_value = 2
     rect.inputs["Vertices Y"].default_value = 2
 
-    # Curve to mesh ΓÇö sweep profile along spline
+    # Curve to mesh  --  sweep profile along spline
     curve_to_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx, by))
     link_sockets(tree, gin.outputs["Geometry"], curve_to_mesh.inputs["Curve"])
     cm_prof = curve_to_mesh.inputs.get("Profile Curve") or curve_to_mesh.inputs.get("Profile")
@@ -252,7 +252,7 @@ def build_rail(group_name="MEL_rail"):
 
 
 def build_star_finial(group_name="MEL_star_finial"):
-    """Star/crown finial ΓÇö pointed star on top of a post."""
+    """Star/crown finial  --  pointed star on top of a post."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
@@ -289,7 +289,7 @@ def build_star_finial(group_name="MEL_star_finial"):
 
 
 def build_lissajous_curve(group_name="MEL_lissajous"):
-    """Lissajous curve ΓÇö A * sin(a*t + delta), B * sin(b*t) for decorative arches."""
+    """Lissajous curve  --  A * sin(a*t + delta), B * sin(b*t) for decorative arches."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
@@ -300,7 +300,7 @@ def build_lissajous_curve(group_name="MEL_lissajous"):
     add_float_param(tree, "Delta", 0.0, 0.0, 6.283)
     add_int_param(tree, "Steps", 200, 16, 1024)
 
-    # Mesh Line ΓåÆ Set Position with lissajous formula
+    # Mesh Line  --  Set Position with lissajous formula
     line = safe_node(tree, "GeometryNodeMeshLine", (bx - 400, by + 100))
     line.mode = "END_POINTS"
     link_sockets(tree, gin.outputs["Steps"], line.inputs["Count"])

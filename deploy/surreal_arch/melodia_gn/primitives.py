@@ -1,4 +1,4 @@
-﻿"""Primitive GN group builders ΓÇö circular array, linear array, grid array, bounding box, instance on spline."""
+"""Primitive GN group builders  --  circular array, linear array, grid array, bounding box, instance on spline."""
 
 from __future__ import annotations
 
@@ -165,7 +165,7 @@ def build_grid_array(group_name="MEL_grid_array"):
 
 
 def build_bounding_box(group_name="MEL_bounding_box"):
-    """Bounding box group ΓÇö outputs size and center for proportional sizing."""
+    """Bounding box group  --  outputs size and center for proportional sizing."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
@@ -207,7 +207,7 @@ def build_bounding_box(group_name="MEL_bounding_box"):
 
 
 def build_instance_on_spline(group_name="MEL_instance_on_spline"):
-    """Instance geometry along a curve ΓÇö used for railings, arches, fences."""
+    """Instance geometry along a curve  --  used for railings, arches, fences."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
