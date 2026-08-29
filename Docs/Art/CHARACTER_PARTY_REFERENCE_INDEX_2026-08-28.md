@@ -1,23 +1,46 @@
 # Melodia Melusina — Character / Party Reference Index
 
-Date: 2026-08-28
-Status: design canon for P0 cast; exploratory for later-party concepts unless noted
+**Originally established:** 2026-08-28  
+**Updated:** 2026-08-29  
+**Status:** canonical for Melusina, Sir Melodious, Mara Vell, and Ebenezer; proposed/soft-lock for Iris Fen and later characters.
 
 ## Purpose
 
-This document consolidates the character and outfit direction established during the Sea Above P0 design pass so future art/animation/gameplay agents do not drift from the authored visual language.
+This document consolidates the current cast, wardrobe, companion, and chapter-introduction direction so future art/animation/gameplay agents do not drift from the authored visual language.
 
-## Canonical P0 trio
+For the 2026-08-29 chapter/canon changes, also read:
+- `Docs/Art/DAILY_CANON_AUDIT_2026-08-29.md`
+- `Docs/Monoliths/P1_FARAWAY_MOTHER_PLAN_2026-08-29.md`
+- `Docs/Monoliths/P2_GOD_THAT_MOLTS_PLAN_2026-08-29.md`
 
-### Melusina
+---
+
+# Opening cast progression
+
+```text
+P0 — Sea Above
+Melusina + Sir Melodious
+
+P1 — Faraway Mother
+introduce Mara Vell + Ebenezer
+
+P2 — God That Molts
+preferred introduction point for Iris Fen
+```
+
+The Reef That Looks Back is deferred to a later water-return chapter and is no longer the current P1.
+
+---
+
+## Melusina
 
 - Young adult, approximately 19–20; do not push the face/body toward child/chibi proportions.
-- Painterly stylization is the target. Avoid glossy collectible/anime-plastic rendering.
-- Core visual language: deep warm skin, large expressive eyes, pointed ears, tiny top hat, black bow, puff sleeves, fitted decorative bodice, apron/panel skirt construction, heeled boots, pearl/chain ornament, and highly distinctive translucent blue/lilac water-glass hair.
+- Painterly stylization is the target. Avoid glossy collectible/anime-plastic rendering and photoreal portrait rendering.
+- Core visual language: deep warm skin, large expressive bright eyes, pointed ears, tiny top hat, black bow, puff sleeves, fitted decorative bodice, apron/panel skirt construction, heeled boots, pearl/chain ornament, and highly distinctive translucent blue/lilac water-glass hair.
 - Hair is a hero material: translucent, segmented/strand-like, iridescent, painterly, capable of bubbles/tide response.
 - Early outfits should be simpler than later couture. The magic/material response supplies visual complexity.
 
-#### Sea Above first unlock — Shorelistener
+### Sea Above first unlock — Shorelistener
 
 Thesis: **the world is water**.
 
@@ -25,53 +48,101 @@ Primary verb: sense Tide Seams and temporarily stitch waters that should not tou
 
 Core presentation cues:
 - restrained pearlescent sailor/Victorian/naturalist direction;
-- one translucent asymmetric listening hem;
+- one translucent asymmetric Listening Hem;
 - one Second Horizon brooch/clasp;
 - broad tide-gradient rather than dense all-over ornament;
-- hem, hair and droplets physically lean toward impossible water rather than relying on detective-vision UI.
+- hem, hair, and droplets physically lean toward impossible water rather than relying on detective-vision UI.
 
-#### First party-assisted traversal outfit — Wakebound Survey Set
+Shader/look-dev references:
+- `Docs/Art/SHOREWAKE_DRESS_P0_SHADER_COOKBOOK_2026-08-28.md`
+- `Docs/Art/Images/shorewake_shader_flow_sea_above_p0_visual_target_2026-08-29.jpg`
+
+### Wakebound Survey Set
 
 A field-ready evolution of Shorelistener created around Mara's instrumentation.
 
 - Approximately 70% familiar Melusina, 20% Shorelistener carryover, 10% Mara-tech influence.
-- Shorter/lighter exploration silhouette, survey harness, tide-marked clasp, listening hem, practical boots, compact field kit.
-- Interfaces with the Sounding Skiff rather than replacing Shorelistener's perception ability.
+- Shorter/lighter exploration silhouette, survey harness, tide-marked clasp, Listening Hem, practical boots, compact field kit.
+- Remains useful as a traversal outfit concept even though Starskiff is no longer required for P1.
 
-Reference boards generated during this pass:
-- `melusina_tide_singer_concept_sheet.png`
-- `wakebound_survey_set_concept_sheet.png`
+### Faraway Mother / fabric theory
 
-These names are the intended archival names if/when the full-resolution raster exports are copied into `Docs/Art/Images/CharacterConcepts/`.
+P1 establishes the next wardrobe ontology:
+
+> **The world is fabric.**
+
+Working theory/outfit family: **Hemkeeper**.
+
+Do not force a full new hero outfit into P1 if production scope cannot support it. Shorelistener may first gain a fabric/tension interpretation behavior, with Hemkeeper becoming the later full unlock.
 
 ---
 
-### Mara Vell — Littoral Surveyor
+## Sir Melodious — Tide-Watcher / Resonance Companion
 
-Status: preferred first full party member after Sir Melodious.
+Canon visual rules:
+- genuinely bird-shaped compact cockatoo companion, not a humanoid mascot;
+- plumage: **iridescent white**, catching seafoam/lilac/pearl shifts;
+- crest: long elegant **treble-clef-shaped crest**;
+- coat/cape: dapper deep green + plum, silver trim/lining, musical embroidery/details;
+- preserve broad expressive wings, compact rounded body, cockatoo/parrot posture and beak anatomy;
+- **never show human-like white sclera**; eyes remain dark glossy avian eyes.
 
-Core contrast with Melusina:
-- Melusina interprets possibility.
+Role:
+- anomaly sense through believable bird behavior;
+- pressure/orientation/resonance response;
+- **Resonance Call**: sing a short phrase and listen for environmental answer;
+- strongest at reading distant environmental relationships rather than physically testing objects.
+
+Sir Melodious is the most theatrical and fully characterized companion bird. Other named birds must not dilute his role by copying his clothes, speech, or resonance function.
+
+---
+
+## Mara Vell — Surveyor of Measure
+
+**Status:** first full party member introduced in P1 Faraway Mother.
+
+Core contrast:
+- Melusina interprets possibility/relationship.
 - Mara measures and establishes reference.
 
-Visual language:
-- weathered navy / cream / brass / oxidized teal / coral-rust accents;
-- Edwardian coastal surveyor + fisher + field naturalist, not generic steampunk;
-- cropped/naval field coat, divided fieldwear or wide trousers, heavy boots, belts/pockets/tools, long wind-beaten scarf;
-- practical auburn/copper-brown hair; sharper, grounded silhouette compared with Melusina.
+### Visual direction
 
-Instrument: **English concertina**.
+Mara's visual target was refined on 2026-08-29 toward the same stylized illustration family as Melusina rather than photoreal concept rendering.
 
-Primary tool/weapon: **Sounding Staff**, a calibrated collapsible depth/resonance instrument that happens to function as a combat staff.
+Preserve:
+- adult young-woman proportions;
+- dark, dense, graphic curls as the preferred hair silhouette;
+- expressive readable eyes and simplified painterly facial planes;
+- practical field clothing with strong authored asymmetry;
+- layered indigo/navy/cream/worn-brown fabrics;
+- brass, oxidized teal, sea-glass, coral/rust accents;
+- surveyor / cartographer / field naturalist equipment;
+- slightly oversized working layers, satchel, straps, pockets, tools;
+- elegance emerging from function rather than generic steampunk ornament.
+
+Avoid:
+- photoreal skin/portrait rendering;
+- generic Victorian fashion-model styling;
+- heavy exposed machinery everywhere;
+- turning her into a naval officer stereotype;
+- generated-sheet name drift. She is **Mara Vell**, not Electra Vell.
+
+A private collaborator photo reference may inform silhouette/energy locally, but source photos should not be committed to the public repository without explicit permission.
+
+### Tools / systems
+
+Instrument: **English concertina** remains the preferred music instrument unless later playtesting changes it.
+
+Primary tool/weapon: **Sounding Staff**, a calibrated collapsible depth/resonance/reference instrument that can function as a combat staff.
 
 Gameplay identity:
-- **Survey** — identify anomaly/material/pressure/structural behavior;
+- **Survey** — identify anomaly/material/pressure/structural/tension behavior;
 - **Anchor** — establish a temporary fixed point inside unstable reality;
-- **Stabilize** — hold party/environment interactions in a reliable state.
+- **Stabilize** — hold an interaction in a reliable state.
 
 ### Meridian Heart
 
-Mara carries a mostly hidden mechanical/biomechanical heart-regulator rather than a flashy exposed cyborg chest.
+Mara carries a mostly hidden mechanical/biomechanical pressure/resonance regulator rather than a flashy exposed cyborg chest.
 
 Design language:
 - pearl ceramic shell;
@@ -81,106 +152,183 @@ Design language:
 - mechanical escapement / pressure regulator;
 - tiny warm amber pulse when anchoring.
 
-Narrative/system thesis: **Melusina survives the impossible by adapting to it; Mara survives by maintaining a constant.**
+Narrative thesis:
 
-Near Monoliths the heart can return contradictory but simultaneously valid time/pressure readings. This should be used sparingly as quiet dread, not glitch-horror UI.
+> **Melusina survives the impossible by adapting to it; Mara survives by maintaining a constant.**
 
-Reference board:
-- `mara_vell_littoral_surveyor_character_sheet.png`
-
----
-
-### Sir Melodious — Tide-Watcher
-
-Canon visual correction:
-
-- Sir Melodious is a genuinely bird-shaped compact cockatoo companion, not a humanoid mascot.
-- Plumage: **iridescent white**, catching seafoam/lilac/pearl shifts.
-- Crest: long, elegant **treble-clef-shaped crest**.
-- Coat/cape: dapper deep green + plum, lined/trimmed in silver, musical embroidery/details.
-- Preserve broad expressive wings, compact rounded body, parrot/cockatoo posture and beak anatomy.
-- **Never show human-like white sclera.** Eyes should remain dark, glossy avian eyes; do not over-humanize him.
-
-P0 role:
-- anomaly sense through believable bird behavior;
-- crest/flight/posture react to pressure/orientation anomalies before exposition;
-- **Resonance Call**: sing a short phrase and listen for environmental answer;
-- can guide toward hidden resonant routes without becoming a generic waypoint marker.
-
-Party triangle:
-- Melusina **senses**.
-- Sir Melodious **responds**.
-- Mara **measures**.
-
-A useful recurring relationship beat: Sir Melodious mimics the Meridian Heart's timing while perched on Mara; when the heart desynchronizes near a Monolith, he may stop first.
-
-Reference board:
-- `sir_melodious_tide_watcher_concept_sheet.png`
+Near Monoliths the Heart can return contradictory but simultaneously valid readings. Use sparingly as quiet dread, not glitch-horror UI.
 
 ---
 
-## First traversal mount — The Sounding Skiff
+## Ebenezer — Mara's Green-Cheek Conure
+
+**Status:** canonical second named companion parrot.
+
+Species anchor:
+- green-cheek conure;
+- compact/sturdy parrot body;
+- dark head;
+- pale eye ring;
+- green wings/back;
+- scalloped chest;
+- warm red/orange belly and tail;
+- curved conure beak;
+- tactile climbing/perching behavior.
+
+Personality lane:
+- curious;
+- tactile;
+- independent;
+- slightly grumpy/opinionated;
+- resourceful;
+- fiercely loyal in his own way;
+- attracted to shiny instruments, tags, paper, maps, threads, seams, and objects he is not supposed to touch.
+
+Role:
+- Mara's field companion and unofficial survey colleague;
+- tests physical reality with beak, claws, balance, and curiosity;
+- spots immediate local anomalies before instruments finish resolving them.
+
+Functional contrast:
+
+```text
+Sir Melodious = listens/responds to distant resonance and impossible scale
+Ebenezer       = touches/tests immediate physical reality
+```
+
+Fantasy stylization is encouraged, but he must remain unmistakably a conure.
+
+**Do not turn Ebenezer into a falcon/hawk/eagle.** Avoid raptor brow, long predatory legs, eagle chest, or hawk wing planform.
+
+Minimal practical gear is acceptable:
+- identification/leg band;
+- tiny survey charm;
+- lightweight harness attachment;
+- one or two asymmetrical field details.
+
+He should not be dressed as elaborately as Sir Melodious.
+
+### P1 signature beat
+
+In Faraway Mother, Ebenezer physically tugs/bites what appears to be a small hanging cloth scrap and causes a distant kilometer-scale fold to twitch.
+
+That moment establishes his narrative verb without duplicating Sir Melodious or Mara.
+
+---
+
+# Named-bird ceiling
+
+Current design rule:
+- Sir Melodious = full character bird;
+- Ebenezer = working field companion bird;
+- optional third named bird later only if it introduces a genuinely different ecological/omen role.
+
+Do **not** assign a parrot/cockatoo familiar to every party member.
+
+Ordinary wild/domestic birds can remain common world ecology.
+
+---
+
+## First traversal mount — Starskiff / Sounding Skiff
 
 Designer/engineer: Mara. Driver/attuner: Melusina.
 
-Core fantasy: **Melusina senses impossible water; Mara stabilizes it; together they ride it.**
+Core fantasy:
 
-Not a normal boat or hoverboard. Shape language: folded skiff + hydrofoil + manta/ray + oceanographic instrument.
+> **Melusina senses impossible water; Mara stabilizes it; together they ride it.**
 
-P1-capable verbs:
-- Horizon Skim — fast travel across normal/stitched water;
-- Current Rail — lock onto authored Tide Seam/current routes;
-- Anchor Brake — Mara stabilizes a dangerous current or holds position;
-- Sounding Leap — wave-assisted seam-to-seam jump;
-- later: Bellwake Drift — ride wake/pulse structures from Monolith physiology.
+Shape language: believable small skiff + manta/hydrofoil influence + hydrographic instrument.
 
-The Skiff should begin visually prototype-like and field-practical, not legendary/endgame.
+Planned verbs:
+- Skim;
+- Current Rail;
+- Anchor Brake;
+- Sounding Leap;
+- later Bellwake Drift.
+
+**2026-08-29 scope correction:** Starskiff remains valid traversal R&D but is **not required for P1 Faraway Mother**. Keep its Oceanology architecture work separate and reintroduce it when a later water/current chapter needs it.
 
 ---
 
-## Exploratory future party concepts
+# P2 preferred new party concept
 
-These are **not canon-locked** yet. They are useful role/silhouette tests and should remain flexible until chapter structure is set.
+## Iris Fen — material/apothecary specialist
+
+**Status:** proposed / soft lock for P2 The God That Molts.
+
+Core contrast:
+- Melusina: relationship / interpretation;
+- Mara: measurement / reference;
+- Iris: composition / state / reaction.
+
+Working identity:
+- field apothecary;
+- ecological/material researcher;
+- dye/reagent specialist;
+- possible funerary botanist / residue-reader.
+
+Proposed gameplay verb: **Catalyze**.
+
+Catalyze exposes or changes material states:
+- accelerate reactions;
+- reveal residues;
+- soften hardened membranes;
+- crystallize unstable secretions;
+- interrupt self-sealing material;
+- expose pigment/tissue/mineral boundaries;
+- create temporary traversal opportunities.
+
+Visual lane:
+- moss / amber / plum / smoke;
+- stained gloves;
+- specimen pockets / reagent glass;
+- pressed plant, seed, pigment, shell motifs;
+- materially rich but less couture-heavy than Melusina.
+
+Do not finalize her full character sheet until P1 production scope is clearer.
+
+---
+
+# Exploratory future party concepts
+
+These remain flexible:
 
 ### Odette Vane — Orchard Mourner
 - memory / grief / restoration;
 - possible viola da gamba or memorial string instrument;
-- restores remembered environmental states temporarily;
-- strong fit for Orchard / memory chapter.
+- restores remembered environmental states temporarily.
 
 ### Perrin Salt — Wreck Runner
 - salvage / mobility / risk;
 - tin whistle / pipe candidate;
-- fast traversal, wreck diving, route improvisation;
-- possible foil to Mara's exactness.
-
-### Iris Fen — Mire Apothecary
-- ecology / chemistry / wetland systems;
-- glass-chime or tuned reagent instrument language;
-- alters fluid/plant state rather than dealing generic elemental magic.
+- fast traversal / route improvisation.
 
 ### Noel Carthe — Hollow Cartographer
 - distance / correspondence / impossible maps;
-- harmonium/portable astrolabe-instrument language;
-- late-midgame fit for Horizon Nodes and spatial compression.
-
-Reference board:
-- `four_fantasy_allies_concept_sheet.png`
+- harmonium / portable astrolabe-instrument language;
+- late-midgame fit for spatial compression.
 
 ---
 
-## Art-direction guardrails
+# Non-canon generated concepts
+
+The following were produced during image exploration but are **not approved roster/features**:
+- `Calypso — Keeper of Shorewake`;
+- customizable `Player 2` / second protagonist.
+
+Individual visual fragments may be recycled later, but agents must not treat these names/features as canon.
+
+---
+
+# Art-direction guardrails
 
 1. Character silhouettes remain authored and slightly handmade; generated boards are reference acceleration, not final model sheets.
 2. Preserve painterly value/color breakup and imperfect ornamental decisions rather than over-cleaning every surface.
-3. Early unlocks add **one strong silhouette idea**; midgame unlocks add a new material idea; late outfits may alter the silhouette's rules.
-4. Fashion is information. Outfit effects should communicate through fabric/hair/material behavior before UI text.
-5. Avoid making every party member equally ornate. Melusina is the wardrobe pillar; other characters should have distinctive but more focused hero garments/tools.
-6. Sir Melodious remains unmistakably avian.
-
-## Immediate production handoff
-
-- Use this document as the canonical character brief when building CLO/ZBrush/Blender assets.
-- Build Wakebound from Melusina's existing silhouette rather than replacing her base wardrobe wholesale.
-- Mara's first production target should be coat + fieldwear + concertina + Sounding Staff; Meridian Heart can remain hidden/partial for P0/P1.
-- Sir Melodious's current sculpt can be retained; prioritize material/crest/coat correction and animation personality over redesigning anatomy.
+3. Use Reverse: 1999 as an acknowledged influence for archival elegance, fashion specificity, literary props, and melancholy restraint — never as a direct face/costume/UI template.
+4. Melodia's differentiator is **rhythm + wardrobe + impossible ecology + landscape-scale anatomy**.
+5. Early unlocks add one strong silhouette/material idea; late outfits may alter the silhouette's rules.
+6. Fashion is information. Outfit effects should communicate through fabric/hair/material behavior before UI text.
+7. Avoid making every party member equally ornate. Melusina remains the wardrobe pillar.
+8. Sir Melodious remains unmistakably avian.
+9. Ebenezer remains unmistakably conure-shaped.
+10. Do not commit private human source photographs to the public repo without explicit permission.
