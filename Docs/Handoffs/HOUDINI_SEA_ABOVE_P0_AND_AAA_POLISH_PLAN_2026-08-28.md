@@ -330,6 +330,92 @@ The shell recovered mid-session and everything above was then actually run. Fina
 Also fixed this session: the wedge-proof probe (`probe_hython_license.ps1`) now genuinely isolates
 hython/hserver (Start-Process + hard timeout + kill) — the console wedge from earlier cannot recur.
 
+### R1 EXECUTED — coral generator + EnvSandbox staging (owner-directed, same session)
+
+- `build_coral_generator.py`: **6 code-grown coral meshes** — staghorn recursive branching tree
+  (1920 prims, downward-biased growth), ribbed hanging table (720), tube-sponge cluster, warped
+  fan, folded brain, 26-arm reef cluster. VDB-growth upgrade path reserved; export is the proven
+  File-SOP path (.obj + .bgeo.sc). Manifest: `coral_mesh_manifest.json`.
+- `coral_textures.py`: tilable **CoralSkin** albedo (rose→lavender patches), normal,
+  emissive-pore mask (scaled by `User.SeaAbovePulse` in material) → **14/14 tiling pass**.
+- `stage_to_sandbox.py`: **25/25 assets staged, hash-verified** into
+  `Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/{Textures,Meshes}/` with
+  `stage_manifest.json` + `IMPORT_QUEUE.md` (per-file sRGB/compression/LOD/scale contract for
+  the editor holder). Editor was down — no .uasset creation; that step is queued, not skipped.
+- FBX re-confirmed Apprentice-blocked; `.obj` delivered instead (UE-native import).
+- New landmines recorded in the reference doc: raw-string escaped docstrings break injected SOP
+  code; `hou.Vector3` has no `rotateAroundAxis` (use Rodrigues); Voronoi/noise periods must be
+  powers of two on 1024 grids.
+
+### R3 EXECUTED — kelp + sway LUT (owner-directed "go", same session)
+
+- `build_kelp_vat.py`: **3 kelp ribbon meshes** (Tall 2.0 m, Mid 1.5 m wide, Cluster of 3 merged
+  stalks) — S-curved spines, cupped cross-section, twist taper; `uv.y = growth axis` is the
+  binding contract with the LUT. Cooked .obj + .bgeo.sc, `kelp_mesh_manifest.json`.
+- `kelp_vat_textures.py`: **`T_SeaAbove_KelpSway_LUT`** (512² RGB data) — the OBJ-compatible
+  "VAT": U = time (loop-perfect integer harmonics, gust-modulated), V = height along stalk,
+  R/G = lateral bend offsets, B = bow. Material recipe (in `IMPORT_QUEUE.md`): WPO samples the
+  LUT at `(Time*Speed, uv.y)`; amplitude ×=`(1 + 1.5 * User.SeaAbovePulse)` — pulse-reactive,
+  zero runtime sim, one MPC reader.
+- **U-loop verified seam-free** (wrap step 0.254 L vs 0.204 gradient, ratio 1.246). Note: a
+  first wrap check compared the V axis and "failed" at 31 levels — that check was wrong
+  (V=height intentionally clamps; base is pinned), fixed to a U-axis ratio check.
+- Design decision recorded: true per-vertex FLIPBOOK VAT needs UV1/vertex-ID indexing, which
+  OBJ cannot carry — it is the Engine-license upgrade path; meshes ship as .bgeo.sc in audit
+  for exactly that future.
+- Restage: **29/29 assets hash-verified** in the sandbox (16 textures + 13 meshes); IMPORT_QUEUE
+  carries the full kelp sway recipe.
+
+### R4 + R5 EXECUTED — parallel subagent pass + Blender render QA (same session)
+
+**R5 (subagent, texture suite v2)** — delivered and verified: droplet flipbook atlas (the B1
+deliverable, now cooked), membrane reveal + ripple normal (B2), tilable wet-rock suite
+(albedo/normal/wetline), barnacle crust mask, 12-PC pulse-band LUT, foam mask, sediment ramp.
+Ingest after merge: **19/0 tiling pass** (centered radials, strips and the atlas correctly
+excluded as non-wrap outputs). Subagent also added the 10 CONTRACT rows + exclusions.
+
+**R4 (coordinator-authored)** — the island subagent returned an EMPTY report and produced NO
+file (verified on disk before believing anything) — recorded as a coordination lesson: subagent
+reports are claims, disk is truth. The coordinator authored `build_island_generator.py` on the
+house pattern: 3 floating islands (dome + plateau clamp + hanging drips + tendril on C; 2870/
+3486 prims on A/C) + 2 rock chunks. Two template-injection misses found by the cook (SEED
+placeholder absent; chunk code used lowercase seed_off) — both fixed in one pass each.
+
+**Sandbox now: 44/44 staged, hash-verified (26 textures + 18 meshes).** IMPORT_QUEUE updated
+for all R4/R5 assets.
+
+**Blender render QA suite (coordinator):** `render_qa_blender.py` (headless Blender 5.2, Cycles
+CPU, SeaAbove 3-point rig — warm key / aqua fill / cool rim, camera auto-fit, x100 mesh scale,
+clay shading; textures render flat + on ×2-wrapped spheres for seam/value checks; version-tolerant
+OBJ import; `--skip-existing` resume) + `assemble_contact_sheets.py` (PIL, labeled sheets).
+Output: **62 renders** + `render_manifest.json` + 4 sheets in `Saved/Audit/sea_above/renders/`
+(`_SHEET_Meshes`, `_SHEET_Textures_Flat`, `_SHEET_Textures_Spheres`, `_SHEET_OVERVIEW`).
+Two operational facts recorded: background Blender 5.2 can hang at EXIT after all work is
+flushed (kill is safe once render_manifest.json exists), and the full-suite CPU render takes
+>15 min — run with `--skip-existing` to resume.
+
+---
+
+### R6 EXECUTED — THE JELLYFISH (owner-directed finale, same session)
+
+Massive jellyfish-esque structure: **~90 m bell with 3 morph targets** (PulseContract /
+PulseExpand / SurrealLurch — all four pose variants generated from one code path with
+**verified identical topology**, 4320 pts / 4224 faces each) + **8 ribbon arms at ~320 m
+each — 3.5 football fields per arm** — with the surreal logic baked two ways: into the rest
+geometry (Moebius half-twist, bifurcation drift at s=0.5, anti-gravity rise after the fall)
+and into **loop-verified LUTs** (`T_Jelly_ArmLogic_LUT` U-loop ratio 0.937, biolum 0.851;
+traveling cyan-magenta bioluminescence pooled by bend magnitude). Bell ships as skeletal FBX
+with morphs (Blender export — Apprentice cannot), arms as Nanite-able static FBX; motion =
+WPO on the LUTs, one MPC reader. QA renders in `renders/jelly/`. Staged: **48/48 hash-OK**
+(28 textures + 20 meshes incl. 2 FBX).
+
+**New lessons recorded:** `_inject` + quoted placeholders double-wrap strings
+(`MODE = "__MODE__"` + repr → `"'bell'"` — the arms only ran because the broken comparison
+fell into their branch; caught by a debug print of the injected line); a dangling selection
+made `bpy.ops.object.join()` swallow the bell into the arms mesh (deselect-before-join);
+JSON pose values are dicts — iterating one yields keys, not points; **user addons break
+background Blender — always `-b --factory-startup -noaudio`**.
+
 ---
 
 ## 4. Evidence standard for this lane

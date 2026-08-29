@@ -53,6 +53,15 @@ this document (how the lane actually works).
 | Houdini scale is **metres** — UE imports at 100× (cm). Recorded in every mesh manifest | manifest `ue_import` |
 | Workstation runtimes: Python 3.14.5, numpy 2.4.6, Pillow 12.2.0; Blender headless is a valid fallback runtime for numpy-only scripts (Non-Color pass-through + bottom-up flip in `reef_common._save_bpy`) | session runs |
 | Python 3.14 is strict: `global X` declared after any use of X in the same function is a hard `SyntaxError` | sand suite first run |
+| **Raw-string escaped quotes poison injected SOP code**: `\"\"\"` inside an r-string template reaches the SOP as literal `\"` — use `#` comments in code templates | staghorn cook failures |
+| **`hou.Vector3` has no `rotateAroundAxis`** — use a Rodrigues rotation helper (in `build_coral_generator.py`) | `AttributeError: 'Vector3' object has no attribute 'rotateAroundAxis'` |
+| Noise/Voronoi lattice periods must **divide the grid size** — on 1024 that means powers of two only (96 fails, 128 works) | `ValueError: period 96 must divide size 1024` |
+| R1 corals are **code-grown** (branching/rings in Python SOPs), not VDB-advection — deliberate trade for headless determinism; VDB upgrade path reserved | `coral_mesh_manifest.json` |
+| **OBJ carries a single UV set and no custom attribs** — true per-vertex VAT (vertex-ID indexing) cannot ship via the OBJ path. The R3 kelp sway ships as a **half-wrap LUT** instead: U = time (loop-perfect integer harmonics), V = height (mesh `uv.y`), material WPO samples it; U-loop seam must be verified on the **U axis** (a V-axis check false-fails by comparing pinned base to free tip) | `kelp_vat_textures.py` output; `IMPORT_QUEUE.md` sway recipe |
+| **FBX IMPORT works on Apprentice** (only EXPORT is blocked): `hou.hipFile.importFBX(path)` — no `suppress_warnings` kwarg. This is the weight-lab's read path for meshes + skeleton rest poses | `probe_fbx_import.py`, 2026-08-28 |
+| **1D gradients must be broadcast-materialized** before in-place ops: `np.broadcast_to(grad, (size, size, 3)).copy()` — a pure 1D-profile base stays (size,1,3) and `*=` throws | dress_lookdev.py first run |
+| **Render QA suite**: `render_qa_blender.py` runs inside headless Blender (5.2 works; 4.3/4.5 also installed at `C:\Program Files\Blender Foundation\`) — Cycles CPU is the reliable background engine, SeaAbove 3-point rig, camera auto-fit, meshes at ×100 scale, textures flat + on ×2-wrapped spheres; `--tex-dir/--tex-out` renders any other texture folder. Blender 5.2 can **hang at exit after all work is flushed** — `--skip-existing` resumes; killing is safe once `render_manifest.json` exists. Sheet assembly is `assemble_contact_sheets.py` in system Python (Pillow is not in Blender's interpreter) | 62+ renders + 4 sheets in `Saved/Audit/sea_above/renders/` |
+| **Subagent reports are claims; disk is truth** — an R4 subagent returned "completed" with an empty report and no file. Always `Test-Path` + `py_compile` a delegated artifact before building on it | this session |
 
 ## 3. Proven code patterns (copy these, do not reinvent)
 
@@ -171,7 +180,8 @@ optional offline quantum layout curator.
 
 1. **Houdini Engine license** (FREE tier via SideFX login) — unblocks HDA cooking in UE and
    `.bgeo.sc` import; without it, UE consumes only the `.obj` copies.
-2. **Editor-import queue** — texture sets + clutter meshes are cooked but not yet in
-   `Content/`; the holder imports per manifest when an editor window opens.
-3. **R1 coral cooks** — the generator spec exists (plan §3A); hython is proven; nobody has
-   authored `build_coral_generator.py` yet.
+2. **Editor-import queue** — reef assets are staged and hash-verified in
+   `Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/` (see `IMPORT_QUEUE.md` there); the
+   holder imports per manifest when an editor window opens.
+3. ~~R1 coral cooks~~ **DONE** — `build_coral_generator.py` + `coral_textures.py` + staging all
+   executed 2026-08-28 (see plan doc §3A "R1 EXECUTED"). Next creative unlock: R3 kelp VAT.
