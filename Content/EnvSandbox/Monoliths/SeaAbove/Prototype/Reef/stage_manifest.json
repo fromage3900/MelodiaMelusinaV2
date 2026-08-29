@@ -6,444 +6,565 @@
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_Albedo.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Sand_Albedo.png",
-      "bytes": 775904,
-      "sha256": "68919c185945c2a15f1f4f89e7a75e212c40e21233e1324b39a70c50866a629a",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_Height.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Sand_Height.png",
-      "bytes": 366514,
-      "sha256": "c0aa7d4bfce35064c20ab9d04ba21fc719e1d1f21187e085f05f60e2c89e9ae4",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_Normal.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Sand_Normal.png",
-      "bytes": 621129,
-      "sha256": "27bbfe768e1995c32060e9edd97fea14a129fabb4238768357f5fac00bab840f",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_WetMask.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Sand_WetMask.png",
-      "bytes": 108121,
-      "sha256": "a5b9814b93dd959614db3e31ca14468727f143253e81167cab3e4be796e95fd2",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_RippleMask.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Sand_RippleMask.png",
-      "bytes": 195990,
-      "sha256": "29afc3bfed68308d2f25279c50f21ad6177c7f5bc87299d4554be6da0f3a931d",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Caustics.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Caustics.png",
-      "bytes": 195101,
-      "sha256": "a491b09248c404ca70bbe19919279d0c5b18f662f33bdbd1669d7900d397a96e",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ShellMask_Nautilus.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_ShellMask_Nautilus.png",
-      "bytes": 19521,
-      "sha256": "add90d18f04e2866a1d1792f6275c99398ceff7873f55450ae9740b6b31caf66",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ShellMask_Scallop.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_ShellMask_Scallop.png",
-      "bytes": 188985,
-      "sha256": "4a7faf3b06eb1bfedef3b5869d1ebd752d79ab23d4b4114c99ef6cc12cc181d8",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ShellMask_Conch.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_ShellMask_Conch.png",
-      "bytes": 221241,
-      "sha256": "b597dbd37040fc21478c4580896eee7165943983787b633b742be1d426514696",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ShellMask_SandDollar.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_ShellMask_SandDollar.png",
-      "bytes": 15247,
-      "sha256": "cf4b028612aadce2dd61b1d43f7504fc31a84956cb92ff180f343e5953b0192d",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_Atlas.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Clutter_Atlas.png",
-      "bytes": 140789,
-      "sha256": "d04b5ebbb101cddcf6af9435f77836670d8e10f5206bbe51e2299538166d8994",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ClutterFloor_Mask.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_ClutterFloor_Mask.png",
-      "bytes": 19941,
-      "sha256": "1e3f50f3f662c0b9e3b1d9977162a7f11c95f852b87c1a3fe5dad2808bb03a09",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_CoralSkin_Albedo.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_CoralSkin_Albedo.png",
-      "bytes": 1189316,
-      "sha256": "a7a9a292796130681cb15541595a879309a51cfe296cc56f70f5d8ee91cbdca8",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_CoralSkin_Normal.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_CoralSkin_Normal.png",
-      "bytes": 1261022,
-      "sha256": "b97303447f546183ae8b728192a2361346152ba3efcd2cd83122fd2d23c59ffc",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_CoralSkin_EmissiveMask.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_CoralSkin_EmissiveMask.png",
-      "bytes": 112689,
-      "sha256": "5f892ddec45462b4c1f0ca91148ca247b5321ca185bf328458514eee86f2e833",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_KelpSway_LUT.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_KelpSway_LUT.png",
-      "bytes": 52604,
-      "sha256": "e3be566d7c1434b20a36b5b8247ff64aa07bd0dbae9a1b88c483122474872bc8",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_ArmLogic_LUT.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_Jelly_ArmLogic_LUT.png",
-      "bytes": 84612,
-      "sha256": "497d98261732de0cfeda60e50c0476b05c8165787135f9d87959623569ee1d3e",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Biolum_LUT.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_Jelly_Biolum_LUT.png",
-      "bytes": 59651,
-      "sha256": "afb17918ee123157737d7be591cf608f16cf3d411c06efba7584cd634418bb42",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_BaseColor.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_Jelly_Bell_BaseColor.png",
-      "bytes": 638489,
-      "sha256": "22e5fb42bf6329c2b509e517481f8adb7efa472a6b8175fc9570084620b9c7d3",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_Normal.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_Jelly_Bell_Normal.png",
-      "bytes": 377834,
-      "sha256": "d50e98c5e510bfa57fc901e0440b24bec7f89c520d62cba1525f58fcf5bf33ba",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_Opacity.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_Jelly_Bell_Opacity.png",
-      "bytes": 213163,
-      "sha256": "69c7fa3775990a4204198c33b7ef5602b5adce518e2217661bc2ce8818128c0a",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_CanalMask.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_Jelly_Bell_CanalMask.png",
-      "bytes": 57022,
-      "sha256": "2a2a321baf3ebcf4b1748ab8daef3b50c40b952e9e60f7e0e646bae97de61fd2",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_Irid_Mottle.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_Jelly_Bell_Irid_Mottle.png",
-      "bytes": 273925,
-      "sha256": "509003e7627493fe638a96dd16b616cac70ed5909f94e918a3388662f7ef3089",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Iridescence_LUT.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_Jelly_Iridescence_LUT.png",
-      "bytes": 18834,
-      "sha256": "a9e089f24ce6a1a0f2edef37c382ef1d579f0e5fff196dc70fdad29ccdc13104",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Nematocyst_Glints.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_Jelly_Nematocyst_Glints.png",
-      "bytes": 116606,
-      "sha256": "70a1723eb063b573354efdc5b5c80739be2c9c6cb8b676a671a15ecac4cd1e34",
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Leviathan_Bone_BaseColor.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Leviathan_Bone_BaseColor.png",
+      "bytes": 907208,
+      "sha256": "fb23ea2b7a2fc007c96cc9a57988ee1d2dea2b251b7c38f116f57340823d5375",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Leviathan_Bone_Normal.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Leviathan_Bone_Normal.png",
+      "bytes": 1040122,
+      "sha256": "236a8d9b6e60382f4a8a9a84f4590340e13c030d676ad58d2429948e042ad215",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Leviathan_Bone_Roughness.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Leviathan_Bone_Roughness.png",
+      "bytes": 334978,
+      "sha256": "0cd9ad6eca317cbc3a72985ee5db9925137cceaf742056cc0774a579a83f9912",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Organ_Pipe_BaseColor.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Organ_Pipe_BaseColor.png",
+      "bytes": 537804,
+      "sha256": "5608fdfce8f2ac9a249b29acc71c5b128e9c68ab4d7e6a760682cf4347d5a6e4",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Organ_Pipe_Normal.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Organ_Pipe_Normal.png",
+      "bytes": 500290,
+      "sha256": "7c0329b53e1afb1be740340e4b508136b65783cf3baa6da7390ac360237cd9e9",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Organ_Pipe_Emissive.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Organ_Pipe_Emissive.png",
+      "bytes": 261158,
+      "sha256": "3c8e8201707c50f8d497f14a151916a4c36f3f0fbd52ebe8ee247fed7e7ffe75",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Leviathan_Bone_BaseColor.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Leviathan_Bone_BaseColor.png",
+      "bytes": 907208,
+      "sha256": "fb23ea2b7a2fc007c96cc9a57988ee1d2dea2b251b7c38f116f57340823d5375",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Leviathan_Bone_Normal.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Leviathan_Bone_Normal.png",
+      "bytes": 1040122,
+      "sha256": "236a8d9b6e60382f4a8a9a84f4590340e13c030d676ad58d2429948e042ad215",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Leviathan_Bone_Roughness.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Leviathan_Bone_Roughness.png",
+      "bytes": 334978,
+      "sha256": "0cd9ad6eca317cbc3a72985ee5db9925137cceaf742056cc0774a579a83f9912",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Organ_Pipe_BaseColor.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Organ_Pipe_BaseColor.png",
+      "bytes": 537804,
+      "sha256": "5608fdfce8f2ac9a249b29acc71c5b128e9c68ab4d7e6a760682cf4347d5a6e4",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Organ_Pipe_Normal.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Organ_Pipe_Normal.png",
+      "bytes": 500290,
+      "sha256": "7c0329b53e1afb1be740340e4b508136b65783cf3baa6da7390ac360237cd9e9",
+      "verified": true,
+      "kind": "texture"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Organ_Pipe_Emissive.png",
+      "source": "Saved/Audit/sea_above/houdini_variants/T_Organ_Pipe_Emissive.png",
+      "bytes": 261158,
+      "sha256": "3c8e8201707c50f8d497f14a151916a4c36f3f0fbd52ebe8ee247fed7e7ffe75",
       "verified": true,
       "kind": "texture"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Droplet_Atlas.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Droplet_Atlas.png",
-      "bytes": 177239,
-      "sha256": "3ef7ba0703247653d9443ca40a3d44a18796f96b0db835d86ddbf0ea295e38bd",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Membrane_Reveal.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Membrane_Reveal.png",
-      "bytes": 235049,
-      "sha256": "86041a356caf197491688dc0ba6d0e907c1d78f92a899a46f4043bc2fc019043",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Membrane_Ripple_N.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Membrane_Ripple_N.png",
-      "bytes": 547889,
-      "sha256": "251316a0db0d1785edfe5e6d71f7751e926eb97d1309a6b088f43bca0e6a6d75",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_WetRock_Albedo.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_WetRock_Albedo.png",
-      "bytes": 1136649,
-      "sha256": "a44b7172cfede1cb8590d39a777557991d23b0abb7bec370ceba3e65c24c608b",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_WetRock_Normal.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_WetRock_Normal.png",
-      "bytes": 1550908,
-      "sha256": "4ce77d5db86edd4bba992419c9d55ca5a1a6192475ca9dcc95122a28172921f0",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_WetRock_Wetline.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_WetRock_Wetline.png",
-      "bytes": 689333,
-      "sha256": "6e6e71350d722370886ae6782f546b819fc26c620c7b04b9311568556702f08a",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_BarnacleCrust_Mask.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_BarnacleCrust_Mask.png",
-      "bytes": 391977,
-      "sha256": "74d6110cd0414ec968833eb54ce36168717eef920123071c701189264dcba078",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_PulseBand_LUT.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_PulseBand_LUT.png",
-      "bytes": 572,
-      "sha256": "aaaf3bbe27d5fed6db0f30249fdcf4e84af6f22cbff16e426678b392e797e1ab",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Foam_Mask.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Foam_Mask.png",
-      "bytes": 315800,
-      "sha256": "c0872c6e4ec4a2149673621e893dcd6725c81a0e7ab1a7d30f5b9f11fa968c3c",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sediment_Ramp.png",
       "source": "Saved/Audit/sea_above/houdini_variants/T_SeaAbove_Sediment_Ramp.png",
-      "bytes": 47240,
-      "sha256": "e3603e2139059cbbe98d0194a3ca42d1e4dae7a1ff1964c53cd5ec4f8484f35c",
-      "verified": true,
-      "kind": "texture"
+      "locked": true,
+      "kind": "texture",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     }
   ],
   "meshes": [
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Clutter_PebbleSet.obj",
-      "bytes": 169963,
-      "sha256": "74f738ee6e0eb750c9c7c15bc65191f289b74a0d90a031e88a09a08c9a6b000c",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_Starfish.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Clutter_Starfish.obj",
-      "bytes": 1106,
-      "sha256": "d8bfa39aad00296c4ae93b769ef8ee396521d78e055ef6d8126c4aab41084745",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Clutter_SpiralShell.obj",
-      "bytes": 34829,
-      "sha256": "645ca27c74e2fbcd83dc416c5698044fde05afdd8a5c34dbad2dd61d3630d3b2",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Clutter_SeaWeed.obj",
-      "bytes": 11123,
-      "sha256": "c25549ee6395f049c39ca4122340c60814ba95c731a3c8fd123423e2cf536c37",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Coral_Staghorn.obj",
-      "bytes": 109171,
-      "sha256": "cf13955eae21ee384d3c1590334903d5830cc114cd2b4d936570a03939fb5305",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Table.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Coral_Table.obj",
-      "bytes": 47104,
-      "sha256": "ec79a4f96a79051bcaa6e8bfb1268e0df91e11dcaa2970ca446cb286fc052e56",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Coral_TubeSponges.obj",
-      "bytes": 25282,
-      "sha256": "fc51ca662e9fe08d2ab1d46c77841da367bb7be35427edbff38266071bc8b606",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Coral_Fan.obj",
-      "bytes": 29459,
-      "sha256": "ccfcf75fb5fd9ddd5405c0f330955bc5853e21d64b763e82a59983a40058c02d",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Brain.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Coral_Brain.obj",
-      "bytes": 58620,
-      "sha256": "ac788e3cd1c5b6f373642834488d3331219329e8005c5df97f9b11515064c012",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Coral_ReefCluster.obj",
-      "bytes": 65949,
-      "sha256": "a0567a54cff75cd66d61929619f21efef4380f707e18b0c5aa5e5afb32324027",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Kelp_Tall.obj",
-      "bytes": 15815,
-      "sha256": "33347814800aa8346a3b8bce283a9d3721e1c84e89c3cbc41e32eb51c087041d",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Kelp_Mid.obj",
-      "bytes": 13291,
-      "sha256": "72d5fe932a03538d9ec22e42565d4c571f19a8dae39254d6ece818b4ce86b1a4",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Cluster.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Kelp_Cluster.obj",
-      "bytes": 35398,
-      "sha256": "1c120fb379fa757b07e8ca6dc635adb16545578ec33586b4cb7fb2b181349681",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Island_A.obj",
-      "bytes": 199878,
-      "sha256": "fe8ac5c1a0ded1e9a50585d3a9a4156f77e74cd7991831371ea63440e160449e",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Island_B.obj",
-      "bytes": 176509,
-      "sha256": "94db87b089a360e8ae1c0355c13f63c1eab46e6c287c8667c5b82e6a79814f79",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_Island_C.obj",
-      "bytes": 255528,
-      "sha256": "7cdbf8102c87fcd98b3756fd2583e4a466cc594ef8c6790185b5894a976f64ca",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_M.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_RockChunk_M.obj",
-      "bytes": 55215,
-      "sha256": "c66861d83a7d8b5ccf360255d3a10d5cf6b995a2c6d0f358405104a8a098b225",
-      "verified": true,
-      "kind": "mesh_obj"
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_L.obj",
       "source": "Saved/Audit/sea_above/meshes/SM_RockChunk_L.obj",
-      "bytes": 54026,
-      "sha256": "3519fc4c71a8b14eb400d9e80e06f8512a6b8361802fde85830dede5afdcaf83",
+      "locked": true,
+      "kind": "mesh_obj",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Leviathan.obj",
+      "source": "Saved/Audit/sea_above/meshes/SM_Leviathan.obj",
+      "bytes": 383970,
+      "sha256": "1d03bf6d530e3835b05c478a3a227005278b0c004f5bde467cbb9c1bed6d1a01",
       "verified": true,
       "kind": "mesh_obj"
     },
     {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan.obj",
+      "source": "Saved/Audit/sea_above/meshes/SM_DrownedOrgan.obj",
+      "bytes": 250011,
+      "sha256": "e27f89a08e508016d6df5d9dd75c47d179f35c9e969645a1db2710d98245dfff",
+      "verified": true,
+      "kind": "mesh_obj"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Reed.obj",
+      "source": "Saved/Audit/sea_above/meshes/SM_Flora_Reed.obj",
+      "bytes": 460193,
+      "sha256": "22bdd980bc0799c3605f8afe8790296910ac542506decd3ce89a5e49d360fbbc",
+      "verified": true,
+      "kind": "mesh_obj"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Chime.obj",
+      "source": "Saved/Audit/sea_above/meshes/SM_Flora_Chime.obj",
+      "bytes": 159650,
+      "sha256": "8cc671d77698ba342f3b48438e80b588c372f8268eca7260e66f31bc4c0198c8",
+      "verified": true,
+      "kind": "mesh_obj"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Fern.obj",
+      "source": "Saved/Audit/sea_above/meshes/SM_Flora_Fern.obj",
+      "bytes": 75555,
+      "sha256": "c1ac6b8d06c4adf83dd8d72c431d0706d1f5b42a0b12138aa17f9f16ce0d5cc0",
+      "verified": true,
+      "kind": "mesh_obj"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Banner.fbx",
+      "source": "Saved/Audit/sea_above/meshes/SM_Banner.fbx",
+      "bytes": 47308,
+      "sha256": "7e046aa796d0bc0dc0d17ddfb59fb5f36003f092c3f91787f5ec131c7470efa4",
+      "verified": true,
+      "kind": "mesh_fbx"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Shroud.fbx",
+      "source": "Saved/Audit/sea_above/meshes/SM_Shroud.fbx",
+      "bytes": 50700,
+      "sha256": "e365da1bd760d5da53784650e753e89e7db5512b19a7349e0b5f094b9d8e0f4f",
+      "verified": true,
+      "kind": "mesh_fbx"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Volumes/VOL_GodRays.vdb",
+      "source": "Saved/Audit/sea_above/volumes/VOL_GodRays.vdb",
+      "bytes": 199052,
+      "sha256": "7ea2c25cb564f18a5d3d07aebd0bdc952307c13b32adaa5fa593e26e35a35364",
+      "verified": true,
+      "kind": "volume_vdb_svt"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Volumes/VOL_GhostFog.vdb",
+      "source": "Saved/Audit/sea_above/volumes/VOL_GhostFog.vdb",
+      "bytes": 228947,
+      "sha256": "007b1f7cf1533dc4b6aebd41031458eeb60a7ae0274ded37d58e722342d6d65f",
+      "verified": true,
+      "kind": "volume_vdb_svt"
+    },
+    {
+      "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Volumes/VOL_NebulaVeil.vdb",
+      "source": "Saved/Audit/sea_above/volumes/VOL_NebulaVeil.vdb",
+      "bytes": 693911,
+      "sha256": "015af496c63dee9f98c2dfddea0853e12a0551397c5f31fe86de015edc667d65",
+      "verified": true,
+      "kind": "volume_vdb_svt"
+    },
+    {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Bell.fbx",
       "source": "Saved/Audit/sea_above/meshes/JELLY_Bell.fbx",
-      "bytes": 507004,
-      "sha256": "e09138af11dfbd880c0d3a526a5d2827c18ef93e14f2da3d233d20c10ef4e2d7",
-      "verified": true,
-      "kind": "mesh_fbx_morphs"
+      "locked": true,
+      "kind": "mesh_fbx_morphs",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     },
     {
       "file": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Arms.fbx",
       "source": "Saved/Audit/sea_above/meshes/JELLY_Arms.fbx",
-      "bytes": 449884,
-      "sha256": "88e539365c38881032fde963524826e5bea2da6741fbfb9240fb2f963994a5d0",
-      "verified": true,
-      "kind": "mesh_fbx_morphs"
+      "locked": true,
+      "kind": "mesh_fbx_morphs",
+      "note": "destination write-locked (editor/viewer open?) - re-run staging when free"
     }
   ]
 }
