@@ -43,7 +43,7 @@ namespace
 	// the editor viewport must never be mutated by runtime presentation.
 	struct FOceanBeatDriveEntry
 	{
-		TWeakObjectPtr<UMeshComponent> Component;
+		TWeakObjectPtr<AActor> OceanActor;
 		TWeakObjectPtr<UMaterialInstanceDynamic> Mid;
 	};
 	// Keyed by world so PIE and any secondary world never share MIDs.
@@ -63,7 +63,7 @@ namespace
 			GOceanRescanTime = Now;
 			Entries.RemoveAll([](const FOceanBeatDriveEntry& Entry)
 			{
-				return !Entry.Component.IsValid() || !Entry.Mid.IsValid();
+				return !Entry.OceanActor.IsValid();
 			});
 			for (TActorIterator<AActor> It(World); It; ++It)
 			{
@@ -72,12 +72,11 @@ namespace
 				{
 					continue;
 				}
-				// One drive per mesh component; skip components already driven.
+				// One drive per ocean actor; skip actors already driven.
 				bool bDriven = false;
 				for (const FOceanBeatDriveEntry& Entry : Entries)
 				{
-					if (Entry.Component.Get() == Actor->FindComponentByClass<UMeshComponent>() ||
-					    (Entry.Component.IsValid() && Entry.Component->GetOwner() == Actor))
+					if (Entry.OceanActor.Get() == Actor)
 					{
 						bDriven = true;
 						break;
@@ -87,38 +86,70 @@ namespace
 				{
 					continue;
 				}
-				if (UMeshComponent* Mesh = Actor->FindComponentByClass<UMeshComponent>())
+
+				UMaterialInstanceDynamic* TargetMid = nullptr;
+				if (UFunction* GetMidFunc = Actor->FindFunction(TEXT("GetWaterMID")))
 				{
-					if (UMaterialInterface* BaseMaterial = Mesh->GetMaterial(0))
+					struct FGetMidParams
 					{
-						if (UMaterialInstanceDynamic* Mid = UMaterialInstanceDynamic::Create(BaseMaterial, Actor))
-						{
-							Mesh->SetMaterial(0, Mid);
-							FOceanBeatDriveEntry Entry;
-							Entry.Component = Mesh;
-							Entry.Mid = Mid;
-							Entries.Add(Entry);
-							UE_LOG(LogTemp, Log, TEXT("MELODIA_OCEAN_BEAT_DRIVE: bound MID on %s (base %s)"), *Actor->GetName(), *BaseMaterial->GetName());
-						}
+						UMaterialInstanceDynamic* ReturnValue = nullptr;
+					};
+					FGetMidParams Params;
+					Actor->ProcessEvent(GetMidFunc, &Params);
+					TargetMid = Params.ReturnValue;
+				}
+
+				if (!TargetMid)
+				{
+					if (UMeshComponent* Mesh = Actor->FindComponentByClass<UMeshComponent>())
+					{
+						TargetMid = Cast<UMaterialInstanceDynamic>(Mesh->GetMaterial(0));
 					}
 				}
+
+				FOceanBeatDriveEntry Entry;
+				Entry.OceanActor = Actor;
+				Entry.Mid = TargetMid;
+				Entries.Add(Entry);
+				UE_LOG(LogTemp, Log, TEXT("MELODIA_OCEAN_BEAT_DRIVE: registered Oceanology actor %s (MID: %s)"),
+					*Actor->GetName(), TargetMid ? *TargetMid->GetName() : TEXT("None"));
 			}
 		}
 		for (const FOceanBeatDriveEntry& Entry : Entries)
 		{
-			UMaterialInstanceDynamic* Mid = Entry.Mid.Get();
-			if (!Mid)
+			AActor* Actor = Entry.OceanActor.Get();
+			if (!Actor)
 			{
 				continue;
 			}
-			// Baselines are the M_Oceanology_Inst defaults; deltas lift on the beat.
-			Mid->SetScalarParameterValue(TEXT("PhaseGLow"), 0.75f + BeatPulse * 0.75f);
-			Mid->SetScalarParameterValue(TEXT("HighlightBoost"), 10.0f + BeatPulse * 10.0f);
-			Mid->SetScalarParameterValue(TEXT("ScatterBoost"), 10.0f + CombatEnergy * 5.0f);
-			// DeepScatteringColor base (0.05, 0.25, 0.30); ImpactPulse pulls it toward
-			// violet/emissive on impacts. Alpha untouched (0.15 absorption stays base).
-			Mid->SetVectorParameterValue(TEXT("DeepScatteringColor"),
-				FLinearColor(0.05f + ImpactPulse * 0.10f, 0.25f - ImpactPulse * 0.05f, 0.30f + ImpactPulse * 0.20f, 0.15f));
+
+			// 1. Direct MID parameter writes if dynamic material instance is resolved
+			if (UMaterialInstanceDynamic* Mid = Entry.Mid.Get())
+			{
+				// Baselines are the M_Oceanology_Inst defaults; deltas lift on the beat.
+				Mid->SetScalarParameterValue(TEXT("PhaseGLow"), 0.75f + BeatPulse * 0.75f);
+				Mid->SetScalarParameterValue(TEXT("HighlightBoost"), 10.0f + BeatPulse * 10.0f);
+				Mid->SetScalarParameterValue(TEXT("ScatterBoost"), 10.0f + CombatEnergy * 5.0f);
+				// Project grafted parameters on M_Water_Oceanology_Melodia
+				Mid->SetScalarParameterValue(TEXT("Biolum_Intensity"), 1.0f + BeatPulse * 1.5f);
+				Mid->SetScalarParameterValue(TEXT("Toon_Weight"), 0.65f + BeatPulse * 0.15f);
+				// DeepScatteringColor base (0.05, 0.25, 0.30); ImpactPulse pulls it toward
+				// violet/emissive on impacts. Alpha untouched (0.15 absorption stays base).
+				Mid->SetVectorParameterValue(TEXT("DeepScatteringColor"),
+					FLinearColor(0.05f + ImpactPulse * 0.10f, 0.25f - ImpactPulse * 0.05f, 0.30f + ImpactPulse * 0.20f, 0.15f));
+			}
+
+			// 2. Reflected parameter drive via Oceanology public actor interface
+			if (UFunction* SetScalarFunc = Actor->FindFunction(TEXT("SetScalarParameterValue")))
+			{
+				struct FSetScalarParams
+				{
+					FName ParameterName;
+					float Value;
+				};
+				FSetScalarParams BiolumParams = { FName(TEXT("Biolum_Intensity")), 1.0f + BeatPulse * 1.5f };
+				Actor->ProcessEvent(SetScalarFunc, &BiolumParams);
+			}
 		}
 	}
 }

@@ -29,6 +29,7 @@ protected:
 	virtual void NativeConstruct() override;
 	virtual void NativeDestruct() override;
 	virtual FReply NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent) override;
+	virtual FReply NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidgetOptional), Category = "Melodia|Quill")
 	TObjectPtr<UTextBlock> SpeakerText;

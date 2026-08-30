@@ -313,6 +313,13 @@ protected:
 	bool TryGetCurrentMusicBeat(double& OutBeat) const;
 	void MarkCompleted();
 
+	/**
+	 * Notes accepted by the BASE completion rule (non-Miss). Subclasses that override
+	 * HandleProgressionEvent run their own ordered/stationed progression and never touch this.
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Hero Music|Score")
+	int32 ProgressedNoteCount = 0;
+
 private:
 	UFUNCTION()
 	void HandleNodeActivated(FPCGHeroMusicNoteEvent Event);

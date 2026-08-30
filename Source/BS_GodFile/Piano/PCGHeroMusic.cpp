@@ -633,6 +633,38 @@ void APCGHeroMusicGraphHost::ApplyCrescendoResponse()
 
 void APCGHeroMusicGraphHost::HandleProgressionEvent(const FPCGHeroMusicNoteEvent& Event)
 {
+	// Default completion rule: play every registered note node once, in any order.
+	//
+	// This body used to be empty. APCGHeroMusicGraphHost is UCLASS(Blueprintable) and not
+	// Abstract, so a base host can be (and is) placed in a level; with no rule here it could
+	// never reach MarkCompleted(), OnPatternCompleted never broadcast, and every downstream
+	// consumer was unreachable. That included UMelodiaPCGNarrativeChallengeBridgeComponent,
+	// which is what commits the world challenge that unlocks form.first_resonance_echo.
+	//
+	// Subclasses (Cathedral / ArpeggioBridge / BellTreeGarden) override this with their own
+	// ordered or stationed progression and do not use ProgressedNoteCount.
+	if (ScoreState.bCompleted)
+	{
+		return;
+	}
+
+	if (Event.Grade == EMelodiaRhythmGrade::Miss)
+	{
+		RecordProgressionMiss();
+		return;
+	}
+
+	++ProgressedNoteCount;
+
+	// Prefer the authored profile; otherwise require every note node actually present.
+	const int32 RequiredNotes = Profile
+		? FMath::Max(1, Profile->ExpectedNoteCount)
+		: FMath::Max(1, GetRegisteredNodeCount());
+
+	if (ProgressedNoteCount >= RequiredNotes)
+	{
+		MarkCompleted();
+	}
 }
 
 APCGResonanceCathedralHost::APCGResonanceCathedralHost()
