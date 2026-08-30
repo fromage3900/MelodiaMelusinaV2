@@ -14,6 +14,7 @@ Run:
 """
 
 import json
+import sys
 from pathlib import Path
 
 import bmesh
@@ -121,7 +122,14 @@ def render_scene(objects, out_path):
 
 
 def main():
-    payload = json.loads(MESH_JSON.read_text(encoding="utf-8"))
+    # optional argv: [json_path, body_fbx_name, arms_fbx_name, render_dir, render_prefix]
+    argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+    mesh_json = Path(argv[0]) if len(argv) > 0 else MESH_JSON
+    body_name = argv[1] if len(argv) > 1 else "JELLY_Seraph_Body.fbx"
+    arms_name = argv[2] if len(argv) > 2 else "JELLY_Seraph_Arms.fbx"
+    render_dir = Path(argv[3]) if len(argv) > 3 else RENDER_DIR
+    prefix = argv[4] if len(argv) > 4 else "SERAPH"
+    payload = json.loads(mesh_json.read_text(encoding="utf-8"))
     bpy.ops.wm.read_factory_settings(use_empty=True)
 
     arm = bpy.data.armatures.new("JELLY_Seraph_Root")
@@ -148,45 +156,45 @@ def main():
                                arm_geo["faces"], arm_geo["uvs"]))
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    RENDER_DIR.mkdir(parents=True, exist_ok=True)
+    render_dir.mkdir(parents=True, exist_ok=True)
 
     bpy.ops.object.select_all(action="DESELECT")
     for o in static_objs + [arm_obj]:
         o.select_set(True)
-    bpy.ops.export_scene.fbx(filepath=str(OUT_DIR / "JELLY_Seraph_Body.fbx"),
+    bpy.ops.export_scene.fbx(filepath=str(OUT_DIR / body_name),
                              use_selection=True, add_leaf_bones=False,
                              bake_anim=False, object_types={"ARMATURE", "MESH"},
                              mesh_smooth_type="OFF")
     bpy.ops.object.select_all(action="DESELECT")
     for a in arms:
         a.select_set(True)
-    bpy.ops.export_scene.fbx(filepath=str(OUT_DIR / "JELLY_Seraph_Arms.fbx"),
+    bpy.ops.export_scene.fbx(filepath=str(OUT_DIR / arms_name),
                              use_selection=True, add_leaf_bones=False,
                              bake_anim=False, object_types={"MESH"},
                              mesh_smooth_type="OFF")
-    print(f"[seraph-fbx] FBX written: JELLY_Seraph_Body.fbx "
-          f"({len(static_objs)} parts) + JELLY_Seraph_Arms.fbx ({len(arms)} arms)")
+    print(f"[seraph-fbx] FBX written: {body_name} "
+          f"({len(static_objs)} parts) + {arms_name} ({len(arms)} arms)")
 
-    render_scene(static_objs + arms, RENDER_DIR / "SERAPH_Overview.png")
+    render_scene(static_objs + arms, render_dir / f"{prefix}_Overview.png")
     tiers = [o for o in static_objs if "tier" in o.name or "halo" in o.name]
-    render_scene(tiers + arms, RENDER_DIR / "SERAPH_Crown.png")
+    render_scene(tiers + arms, render_dir / f"{prefix}_Crown.png")
 
     manifest = {
         "schema": "melodia.sea_above_reef_meshes.v1",
-        "kind": "jellyfish v3 SERAPH FBX + QA renders",
+        "kind": f"jellyfish {prefix} FBX + QA renders",
         "static_parts": len(static_objs),
         "shapekey_sets": ["Basis"] + POSES,
         "arms": len(arms),
-        "body_fbx": str(OUT_DIR / "JELLY_Seraph_Body.fbx"),
-        "arms_fbx": str(OUT_DIR / "JELLY_Seraph_Arms.fbx"),
-        "renders": [str(RENDER_DIR / "SERAPH_Overview.png"),
-                    str(RENDER_DIR / "SERAPH_Crown.png")],
-        "source_json": str(MESH_JSON),
+        "body_fbx": str(OUT_DIR / body_name),
+        "arms_fbx": str(OUT_DIR / arms_name),
+        "renders": [str(render_dir / f"{prefix}_Overview.png"),
+                    str(render_dir / f"{prefix}_Crown.png")],
+        "source_json": str(mesh_json),
         "blender": bpy.app.version_string,
     }
-    (OUT_DIR / "jellyfish_v3_seraph_fbx_manifest.json").write_text(
+    (OUT_DIR / f"jellyfish_{prefix.lower()}_fbx_manifest.json").write_text(
         json.dumps(manifest, indent=2), encoding="utf-8")
-    print("[seraph-fbx] manifest -> jellyfish_v3_seraph_fbx_manifest.json")
+    print(f"[seraph-fbx] manifest -> jellyfish_{prefix.lower()}_fbx_manifest.json")
 
 
 main()

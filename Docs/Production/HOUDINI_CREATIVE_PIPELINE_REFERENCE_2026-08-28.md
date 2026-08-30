@@ -9,6 +9,10 @@ reference, not a handoff: later agents extend the systems here, they do not rein
 this document (how the lane actually works).
 **Tool home:** `Tools/Houdini/sea_above_reef/` — artifacts land in `Saved/Audit/sea_above/`.
 
+**Companion closeout review:** `Docs/Handoffs/SESSION_REVIEW_HOUDINI_CREATIVE_LANE_2026-08-28.md`
+— the session-wide inventory (27 scripts, 55+8 staged assets, 121 renders), verification
+ledger, consolidated lessons, and the open-items list.
+
 ---
 
 ## 1. The lane's law (read before writing any Houdini code here)
@@ -60,7 +64,8 @@ this document (how the lane actually works).
 | **OBJ carries a single UV set and no custom attribs** — true per-vertex VAT (vertex-ID indexing) cannot ship via the OBJ path. The R3 kelp sway ships as a **half-wrap LUT** instead: U = time (loop-perfect integer harmonics), V = height (mesh `uv.y`), material WPO samples it; U-loop seam must be verified on the **U axis** (a V-axis check false-fails by comparing pinned base to free tip) | `kelp_vat_textures.py` output; `IMPORT_QUEUE.md` sway recipe |
 | **FBX IMPORT works on Apprentice** (only EXPORT is blocked): `hou.hipFile.importFBX(path)` — no `suppress_warnings` kwarg. This is the weight-lab's read path for meshes + skeleton rest poses | `probe_fbx_import.py`, 2026-08-28 |
 | **1D gradients must be broadcast-materialized** before in-place ops: `np.broadcast_to(grad, (size, size, 3)).copy()` — a pure 1D-profile base stays (size,1,3) and `*=` throws | dress_lookdev.py first run |
-| **Render QA suite**: `render_qa_blender.py` runs inside headless Blender (5.2 works; 4.3/4.5 also installed at `C:\Program Files\Blender Foundation\`) — Cycles CPU is the reliable background engine, SeaAbove 3-point rig, camera auto-fit, meshes at ×100 scale, textures flat + on ×2-wrapped spheres; `--tex-dir/--tex-out` renders any other texture folder. Blender 5.2 can **hang at exit after all work is flushed** — `--skip-existing` resumes; killing is safe once `render_manifest.json` exists. Sheet assembly is `assemble_contact_sheets.py` in system Python (Pillow is not in Blender's interpreter) | 62+ renders + 4 sheets in `Saved/Audit/sea_above/renders/` |
+| **Render QA suite**: `render_qa_blender.py` runs inside headless Blender (5.2 works; 4.3/4.5 also installed at `C:\Program Files\Blender Foundation\`) — Cycles CPU is the reliable background engine, SeaAbove 3-point rig, camera auto-fit, meshes at ×100 scale, textures flat + on ×2-wrapped spheres; `--tex-dir/--tex-out` renders any other texture folder. Blender 5.2 can **hang at exit after all work is flushed** — `--skip-existing` resumes; killing is safe once `render_manifest.json` exists. Sheet assembly is `assemble_contact_sheets.py` in system Python (Pillow is not in Blender's interpreter) | 121 renders + 4 sheets in `Saved/Audit/sea_above/renders/`; jelly renders verified visually after two shipped render defects were caught by the visual review (clip_end blanking cm-scale scenes; light offsets in the wrong units) |
+| **Background Blender render/QA traps**: always `-b --factory-startup -noaudio` (user addons abort scripts); raise `cam_data.clip_end` (default 100 units blanks cm-scale scenes); scale light/energy/camera distances with the bounding diag; **deselect before `bpy.ops.object.join()`** or it eats selected neighbors; JSON pose values may be dicts (iterating yields keys, not points); `mat.blend_method` is gone in 5.x | `render_qa_blender.py` + `jelly_shapekeys.py` session |
 | **Subagent reports are claims; disk is truth** — an R4 subagent returned "completed" with an empty report and no file. Always `Test-Path` + `py_compile` a delegated artifact before building on it | this session |
 
 ## 3. Proven code patterns (copy these, do not reinvent)
