@@ -12,15 +12,18 @@
 **Never trust a PID written here or anywhere else** — run `Get-Process UnrealEditor`.
 `origin` = MelodiaMelusinaV2.
 
-> **Ledger reconciliation 2026-08-29.** Shipping gates (`runtime`, `save_load`, `repeat_consume`, `package_launch`)
-> have PASS rows in `Saved/gate_ledger.json`. In addition, `battle_integration_map` (all 4 outcomes),
-> `hud_single_writer`, `static_gates` (5/5 PASS, 2026-08-29 `session-e4ee8de9`), and `allowlist_ids`
-> are certified PASS.
+> **Gate status is not maintained here.** Run `python -B Tools/echo_run.py status`.
+> The previous block in this spot listed five gates as open; two of them (`rhythm_owner`,
+> `rhythm_grade_to_result`) had PASS rows, and it claimed `allowlist_ids` was "certified PASS"
+> when that gate **has no ledger row at any status**. See
+> `Docs/Plans/SHOREWAKE_TRAVERSAL_PLAN_AND_P0_CLOSEOUT_2026-08-29.md` §1.1 for the two standing
+> evidence caveats.
 >
-> **Active P0 remaining focus:** in-editor live proof for `rhythm_owner`, `rhythm_grade_to_result`,
-> `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook` (Shorewake Glide/Swim), and `music_world_key`.
-> Shorewake transform lookdev and Sea Above level loop stage script (`stage_seaabove_level_loop.py`)
-> are verified green (2026-08-29).
+> **Genuinely open (no ledger row, ever):** `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`,
+> `music_world_key`. Note that the last two are the **same edge measured twice** — the catalog
+> gates `form.first_resonance_echo` (which grants Glide) on flag
+> `challenge.first_resonance_echo.completed`, which is what `CommitWorldChallenge` sets when a
+> played phrase completes.
 
 > **Materials lane — 2026-08-29 evening (commit `2c201fe3`, 2-hour takeover box).**
 > | Item | Status |
@@ -39,6 +42,9 @@
 > | Jellyfish v3 SERAPH (Houdini lane) | **Done 2026-08-29 late** — 190 m dome, 3 golden-ratio floating tiers (Fibonacci lobes 21/13/8), halo ring, 55-filament cilia crown, 13 × 640 m golden-angle arms; zero topology mismatches; FBX + renders; UE import queued |
 > | Jellyfish v4 CATHEDRAL (Houdini lane) | **Done 2026-08-29 late** — v3 SERAPH + 8 flying-buttress arches + helix spire + 5 three-stage fountain cascades + 21 drape curtains (94 parts, zero mismatches); FBX + renders; UE import queued |
 > | Cloth-mountain terrain generator v0 (Faraway Mother) | **Done 2026-08-29 late** — `build_cloth_mountains.py`: 2 km tile, pleated strata + seam valleys + embroidery path; 148k-pt OBJ + clay renders; v0.1: modulate/warp pleats so strata fade |
+> | Five-biome cloth-terrain suite v0.1 (Faraway Mother) | **Done 2026-08-29 late** — commit `c1fc7cda`: Hemlands/PleatedRange/EmbroideredBasin/VeiledMountains/SeamRoad; OBJ + .r16 heightmaps + 10 clay renders; ~4 min full cook |
+> | A God That Molts shell kit v0 (Bible #05) | **Done 2026-08-29 late** — `build_molted_god.py`: 4 instars (Settlement 14 m / Cathedral 44 m / Mountain 280 m / FreshMolt 340 m split), golden-ratio tergum bands + golden-angle pores + jagged dorsal fracture; OBJs + renders; v1 next: through-hole pores, membrane interiors, fracture plate kit |
+> | Subagent delegation | **Cancelled by owner ("not cycling anything")** — remaining queued work runs in-line; UE import session (jelly FBXs + terrain OBJs) still pending an editor window |
 > | Mara Elletra Vell base from Melusina | **Done 2026-08-29 late** — `SK_Mara_Vell_Body` (shared skeleton) + `MI_Mara_Skin_006/007` moonlit retint on Universal, slots 0–2 assigned; gown via Outfit Hub + own outline/eye pass next |
 > | P1 arc draft: Mara Elletra Vell + The Faraway Mother | **Draft for owner canon** — `Docs/Plans/P1_MARA_ELLETRA_VELL_AND_THE_FARAWAY_MOTHER_2026-08-29.md` + `specs/progression/melodia_mara_faraway_mother_quest.v1.json` (allowlist quarantined behind owner gate) |
 > | Banner/Shroud fabric master (Kelp is an explicit placeholder) | **Available** |
@@ -52,9 +58,9 @@
 
 | Task | Pri | Status | Agent | Notes |
 |---|---|---|---|---|
-| Wire `OnPatternCompleted` → one 7-verb narrative notification | P0 | **Available** | — | **Highest-leverage single edge in the project.** `Piano/PCGHeroMusic.cpp:620` broadcasts; the only consumer is water (`MelodiaPCGWaterGameplayBridgeComponent.cpp:48`). One edge into `UMelodiaNarrativeSubsystem` closes `music_world_key` and turns three built-but-disconnected systems into a loop. Preserve the presentation-only boundary — music opens doors, it never deals damage. |
+| ~~Wire `OnPatternCompleted` → narrative notification~~ | P0 | **Superseded — the edge already exists** | — | **This row was wrong on two counts.** (1) The narrative edge is NOT missing: `MelodiaPCGNarrativeChallengeBridgeComponent.cpp:62` binds `OnPatternCompleted` and `:141` calls `CommitWorldChallenge`. Water is not the only consumer. (2) The contract is **8 verbs**, not 7 — `item` was added (`MelodiaNarrativeSubsystem.cpp:1093-1101`: battle, quest, questcomplete, flag, travel, reward, stat, item). **The real blocker was `APCGHeroMusicGraphHost::HandleProgressionEvent` being an empty body** (`Piano/PCGHeroMusic.cpp:634`), so a base host placed in a level could never reach `MarkCompleted()` and never broadcast. Fixed 2026-08-29 with a default completion rule; needs a closed-editor build. Preserve the presentation-only boundary — music opens doors, it never deals damage. |
 | Merge `MelodiaJRPGBattleOverlaySubsystem` into `MelodiaUIBridgeSubsystem` | P0 | **Done** | — | `hud_single_writer` certified PASS (2026-08-27 `session-7aa8ad8a`). `UMelodiaUIBridgeSubsystem` is the sole Melodia writer. |
-| Shorewake Outfit Transformation (`Cos_ShorewakeDress`) | P0 | **Done (Staged & Tested)** | — | 48-panel mesh joined, 3 morphs (`Nikki_Bloom`, `Nikki_Swirl`, `ShimmerWave`), 48 mat slots, PBR textures, Quill quest (`MelodiaQuillShorewake.qsc`), and 5/5 contract tests pass. QA renders in `Saved/Audit/sea_above/renders/skiff/`. |
+| Shorewake Outfit Transformation (`Cos_ShorewakeDress`) | P0 | **Art done — NOT equippable** | — | ⚠ **`Cos_ShorewakeDress` is not in `DA_MelodiaCosmeticCatalog`** (which holds only the five `*_MelusinaV2` ids), so `EquipCosmetic("Cos_ShorewakeDress")` is rejected at runtime by `MelodiaWardrobeSubsystem.cpp:420-421`. Also **three** `SK_ShorewakeDress` meshes exist with no canonical: `Reef/Meshes/` (its FBX is marked SUPERSEDED by `Reef/IMPORT_QUEUE.md:155`), `Clothes/SK_ShorewakeDress_Magical` (Pass C, merged onto the owner's rigged FBX, 5 morphs — **use this one**), and `ChaosTest/SK_ShorewakeDress_ChaosProxy`. Source USDZ + rigged FBX live in `~/Downloads` and `~/OneDrive/Desktop`, **outside the repo** — not reproducible from a clean clone (mirrored to `G:\BS_GodFile_Mirror\20260830\_external_sources\` 2026-08-29). Original row follows: | 48-panel mesh joined, 3 morphs (`Nikki_Bloom`, `Nikki_Swirl`, `ShimmerWave`), 48 mat slots, PBR textures, Quill quest (`MelodiaQuillShorewake.qsc`), and 5/5 contract tests pass. QA renders in `Saved/Audit/sea_above/renders/skiff/`. |
 | Sea Above Level Loop & Enemy Placement | P0 | **Done (Staged & Tested)** | — | `stage_seaabove_level_loop.py` places player, arrival trigger, Starskiff MK2, PCG Arpeggio bridge, `SeaAbove_SmokeBattleEncounter`, and `SeaAbove_Littoral_EnemyPatrol`. 5/5 contract tests pass. |
 | Prove the Glide/Dash/Swim capability path end-to-end | P0 | **Available** | — | `wardrobe_gameplay_hook`. The Infinity Nikki pattern is wired (`MelodiaTraversalCapabilityProvider.h:32-38`) and Shorewake quest grant is authored. |
 | `rhythm_grade_to_result` — grade changes a JRPG result | P0 | **Available** | — | The seam that defines the game. Rhythm is owner-locked WORKED; the grade→damage edge is unproven in live PIE. |
