@@ -1,0 +1,155 @@
+{
+  "format": "gmm_brass_preset_v1",
+  "instrument_type": "french_horn",
+  "key": "F",
+  "ensemble": "double",
+  "description": "Period French horn in F (double horn capability) — .422\" bore, .125\" wall, hand-hammered bell",
+  "modifier_stacks": [
+    {
+      "id": "horn_body_tube",
+      "type": "brass_tube",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "radius": 10.7,
+        "thickness": 3.2,
+        "length": 380.0,
+        "resolution": 32
+      }
+    },
+    {
+      "id": "horn_bell",
+      "type": "brass_bell_profile",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "base_radius": 10.7,
+        "tip_radius": 14.0,
+        "height": 30.0,
+        "resolution": 64
+      }
+    },
+    {
+      "id": "valve_1_f",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "radius": 16.0,
+        "piston_diameter": 14.0,
+        "port_width": 6.0,
+        "stroke": 35.0
+      }
+    },
+    {
+      "id": "valve_2_f",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "radius": 16.0,
+        "piston_diameter": 14.0,
+        "port_width": 6.0,
+        "stroke": 35.0
+      }
+    },
+    {
+      "id": "valve_3_f",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "radius": 16.0,
+        "piston_diameter": 14.0,
+        "port_width": 6.0,
+        "stroke": 35.0
+      }
+    },
+    {
+      "id": "valve_1_bb",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "radius": 16.0,
+        "piston_diameter": 14.0,
+        "port_width": 6.0,
+        "stroke": 35.0
+      }
+    },
+    {
+      "id": "valve_2_bb",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "radius": 16.0,
+        "piston_diameter": 14.0,
+        "port_width": 6.0,
+        "stroke": 35.0
+      }
+    },
+    {
+      "id": "valve_3_bb",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "radius": 16.0,
+        "piston_diameter": 14.0,
+        "port_width": 6.0,
+        "stroke": 35.0
+      }
+    },
+    {
+      "id": "mp_cup_horn",
+      "type": "brass_mouthpiece_cup",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "cup_depth": 20.0,
+        "cup_radius": 11.0,
+        "rim_thickness": 2.8,
+        "back_bore_diameter": 4.9
+      }
+    },
+    {
+      "id": "mp_shank_horn",
+      "type": "brass_mouthpiece_shank",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "shank_length": 40.0,
+        "major_diameter": 16.0,
+        "minor_diameter": 11.0,
+        "taper_type": "parabolic"
+      }
+    },
+    {
+      "id": "horn_bracing_1",
+      "type": "brass_bracing_hoop",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "tube_radius": 10.7,
+        "hoop_diameter": 2.0,
+        "count": 2,
+        "angle_offset": 45.0
+      }
+    },
+    {
+      "id": "horn_bracing_2",
+      "type": "brass_bracing_hoop",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "tube_radius": 10.7,
+        "hoop_diameter": 2.0,
+        "count": 2,
+        "angle_offset": 135.0
+      }
+    }
+  ],
+  "ue_binding": "/Game/Brass/Presets/FrenchHorn/GeometryModifiers",
+  "next_action": "hython Tools/Houdini/build_brass_preset.py"
+}

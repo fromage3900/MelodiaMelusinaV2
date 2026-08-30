@@ -135,3 +135,26 @@ All fixed in-place; determinism unchanged.
 **Remaining for tonight/tomorrow (H3+):** Blender dress mesh (adapt V2 skirt) →
 `apply_houdini_weights.py` → weight-lab run to GREEN → skinned FBX → holder imports + binds MI
 + wardrobe slot. Skiff proxy hull + import. Owner inputs §5 still stand.
+
+---
+
+## 7. OWNER SUPERSEDED THE AUTOMATED PATH (2026-08-29, live)
+
+**The owner hand-delivered the dress end-to-end in one session:** posed on Melusina in Blender,
+manual weight painting, rigged, texturing in Substance, imported into UE. Consequences:
+
+- The **weight lab's role changes**: from pipeline step to **optional QA tool** (run it against
+  the owner's imported asset to certify 0 zero-weight / ≤4 influences if ever wanted — not a
+  blocker, the owner's hand weights ARE the weights).
+- **My flat-layout `SK_ShorewakeDress.fbx` is SUPERSEDED** — do not import it; it carries the
+  Nikki morphs (Bloom/Swirl/ShimmerWave) but no pose/weights. The owner's rigged import is the
+  asset of record.
+- **Morph carry-over is unverified**: whether the owner's FBX path preserved the three
+  transformation morphs depends on their export route. If absent, re-authoring them on the
+  owner's rigged mesh is one Blender pass (per-panel stagger math already in
+  `dress_transform.py`).
+- **What the owner needs now is the UE-side material + transformation layer** — already
+  specified: `Reef/IMPORT_QUEUE.md` (iridescent bell recipe pattern) and
+  `shorewake_transform_manifest.json` (sequence table) + the staged
+  `T_MelusinaC_DressShorewake_*` set in `Clothes/`. Substance exports slot straight into the
+  same MI binding contract.

@@ -416,6 +416,56 @@ made `bpy.ops.object.join()` swallow the bell into the arms mesh (deselect-befor
 JSON pose values are dicts — iterating one yields keys, not points; **user addons break
 background Blender — always `-b --factory-startup -noaudio`**.
 
+**Lookdev v2 (iridescence + veil, same night):** 7 new textures — bell BaseColor/Normal/
+Opacity/CanalMask/Irid_Mottle, the **`T_Jelly_Iridescence_LUT`** (U = N·V facing, V = film
+phase, pastel-near-facing → spectral-at-grazing sine-spectrum palette), and tilable
+**Nematocyst glints**. Ingest grew a third category — **U-only wrap** for radial-domain bell
+maps (U verified, V is a designed gradient that must not tile) — and now sits at **25/0 pass
+overall**. The full **iridescent material recipe + magical parameter manifest** (Iridescence-
+Intensity/Power, FilmPhaseSpeed, CanalGlow, Sweep/Flutter/PulseGain, BiolumSpeed/Intensity,
+GlintPanner, morph driver table with SurrealLurch timing) lives in the sandbox
+`IMPORT_QUEUE.md`. Sandbox total: **55/55 staged, hash-verified** (35 textures + 20 meshes).
+
+### WONDERS EXECUTED — THE LEVIATHAN + THE DROWNED ORGAN (owner "something cool", night cap)
+
+- **`build_leviathan.py`** — colossal sunken ribcage, fossilized **died swimming upward**
+  (spine run 140 m, tail rises 30 m): 22 vertebrae (tapering torus rings + neural spines,
+  tail tilted upward), 11 rib pairs arcing down then inward, stylized skull with eye rings
+  and jaw. 6682 pts / 6736 prims. Static, Nanite-able.
+- **`build_drowned_organ.py`** — cathedral pipe organ: **24 pipes in 12 pitch-class ranks**
+  (deepest = tallest), facade arc, console + arch frame; 4446 pts / 4140 prims. `uv.x` maps
+  each pipe to its PC band → tint from `T_SeaAbove_PulseBand_LUT` (the shared chromatic
+  system); mouth-ring emissive × `User.SeaAbovePulse` — **the reef becomes an instrument.**
+- **`bone_organ_textures.py`** — eroded bone suite + brushed-brass/patina pipe set; one
+  marginal seam (cusped sawtooth profile) caught by ingest, fixed with a smooth cosine seam.
+  Final ingest: **31/0 tiling pass**.
+- Sandbox now **63/63 staged hash-OK** (41 textures + 22 meshes); 2 jelly FBX skips were the
+  owner's editor holding them open (locks handled gracefully by the stager — the editor is IN
+  USE, coordinate before touching `Content/`). QA renders of both wonders verified visually;
+  sheets rebuilt (20-cell mesh sheet).
+
+### DREAMS LANE EXECUTED — volumetrics + frozen cloth + dream flora + STARSKIFF MK2 (owner "all three")
+
+- **Volumetrics**: `build_volumetrics.py` — GodRays shafts, GhostFog (leviathan's
+  ghost), NebulaVeil — **3/3 .vdb written** (Apprentice vdb write probe-verified) and
+  staged to `Reef/Volumes/` for UE 5.3+ Sparse Volume Texture import.
+- **Frozen cloth**: `build_frozen_cloth.py` — analytic drape poses (Vellum upgrade
+  documented), 6 same-topology pose sets → `cloth_shapekeys.py` → **SM_Banner.fbx
+  (SwayA/SwayB/Billow) + SM_Shroud.fbx (Gather/Drift/Settle)** — morph-bearing, via the
+  proven jelly-bell path.
+- **Dream flora**: `build_dream_flora.py` — code-L-system (rewriting + turtle walk, no
+  SOP parm roulette): GlassReed / ChimeBlossom (bell tips) / SpiralFern — PCG-scatter
+  flora with the Bell motif seeded.
+- **STARSKIFF MK2**: `expand_starskiff.py` opened a COPY of the owner's desktop
+  `Starskiff_Shorewake_Project.blend` (original untouched), added GunwaleGlow +
+  MastLantern + FX sockets (wake L/R, sail cloth, lantern), exported
+  `SM_Starskiff_MK2.fbx` — traversal-READY asset (boat gameplay = owner's game-code
+  design). Gunwale skipped gracefully (rim name differs in the saved blend — one-line
+  fix queued). QA render through the project's own camera queued next session.
+- Sandbox total: **77/77 staged hash-OK** (47 textures + 30 meshes incl. 5 morph-bearing
+  FBXs) + 3 VDB volumes in `Reef/Volumes/`. Owner's editor was IN USE throughout (jelly
+  FBX locks) — stager skipped locks gracefully; no Content conflicts.
+
 ---
 
 ## 4. Evidence standard for this lane
