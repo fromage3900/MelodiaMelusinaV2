@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 """
-Copernicus Dress Bake — SOP → COP (replaces bake_rasterize_ao.py PIL).
+Copernicus Dress Bake — SOP -> COP (replaces bake_rasterize_ao.py PIL).
 
 Builds a Houdini .hip via HOM (hython) that contains:
 
-  SOP Network:  File SOP (posed OBJ) → Attribute Wrangle (thickness/curvature/convex, VEX)
-                → Attribute Wrangle (AO 64 rays, self-exclusion)
-                → Null OUT_SOP (feeds COP)
+  SOP Network:  File SOP (posed OBJ) -> Attribute Wrangle (thickness/curvature/convex, VEX)
+                -> Attribute Wrangle (AO 64 rays, self-exclusion)
+                -> Null OUT_SOP (feeds COP)
 
-  COP Network:  SOP Import (OUT_SOP) → Labs Maps Baker → Attribute Interpolate (barycentric, bg 1.0)
-                → Curvature COP → Denoise (OIDN) → File Output (PNG 4K BC/N/ORM/Emissive)
+  COP Network:  SOP Import (OUT_SOP) -> Labs Maps Baker -> Attribute Interpolate (barycentric, bg 1.0)
+                -> Curvature COP -> Denoise (OIDN) -> File Output (PNG 4K BC/N/ORM/Emissive)
 
 Determinism: SEED=20260828 on every RNG node, recorded in COP `seed` parm + manifest.
 Run:  hython Tools/Houdini/copernicus/copernicus_dress_bake.py [--seed 20260828] [--size 1024] [--hip melodia_dress_cop.hip]
@@ -149,8 +149,8 @@ for name, chan in [("BaseColor","Cd"), ("Normal","N"), ("Emission","emit"), ("Ro
 copnet.layoutChildren()
 hou.hipFile.save(hip)
 print("[Copernicus] Saved " + hip)
-print("[Copernicus] Networks: SOP dress_bake (File→VEX thickness/curvature→VEX AO 64→OUT_SOP)")
-print("[Copernicus]           COP cop_dress_bake (SOP Import→Labs Baker bg1.0→AttrInterp→Curvature→OIDN→File Outputs)")
+print("[Copernicus] Networks: SOP dress_bake (File->VEX thickness/curvature->VEX AO 64->OUT_SOP)")
+print("[Copernicus]           COP cop_dress_bake (SOP Import->Labs Baker bg1.0->AttrInterp->Curvature->OIDN->File Outputs)")
 '''
 
 def build_hip_code(hip_path: Path, posed_obj: str, seed: int, size: int) -> str:
@@ -200,10 +200,10 @@ def main():
         "size": args.size,
         "hip": str(hip_path),
         "posed_obj": args.posed_obj,
-        "replaces": "Tools/Houdini/sea_above_reef/bake_rasterize_ao.py (PIL) → COP Labs Maps Baker bg 1.0 + OIDN",
+        "replaces": "Tools/Houdini/sea_above_reef/bake_rasterize_ao.py (PIL) -> COP Labs Maps Baker bg 1.0 + OIDN",
         "networks": {
-            "sop": "File → VEX thickness/curvature/convex → VEX AO 64 rays → OUT_SOP",
-            "cop": "SOP Import → Labs Maps Baker (barycentric) → Attr Interpolate bg1.0 → Curvature → OIDN Denoise → File Outputs",
+            "sop": "File -> VEX thickness/curvature/convex -> VEX AO 64 rays -> OUT_SOP",
+            "cop": "SOP Import -> Labs Maps Baker (barycentric) -> Attr Interpolate bg1.0 -> Curvature -> OIDN Denoise -> File Outputs",
         },
         "outputs": [
             f"Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_{k}.png"
@@ -214,7 +214,7 @@ def main():
     out_json = OUT_AUDIT / "copernicus_dress_manifest.json"
     out_json.parent.mkdir(parents=True, exist_ok=True)
     out_json.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    print(f"[Copernicus] Manifest → {out_json}")
+    print(f"[Copernicus] Manifest -> {out_json}")
 
 if __name__ == "__main__":
     main()
