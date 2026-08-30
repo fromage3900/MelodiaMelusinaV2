@@ -5357,10 +5357,10 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
       Description="DreamCompositeGate"
       Inputs(0)=(InputName="DreamColor",Input=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionCustom_1'"))
       Inputs(1)=(InputName="BaseColor",Input=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionStaticSwitchParameter_17'"))
-      Inputs(2)=(InputName="DreamWarmth")
-      Inputs(3)=(InputName="DreamIntensity")
-      Inputs(4)=(InputName="Composition")
-      Inputs(5)=(InputName="Threshold")
+      Inputs(2)=(InputName="DreamWarmth",Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionVectorParameter_16'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Inputs(3)=(InputName="DreamIntensity",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionScalarParameter_75'"))
+      Inputs(4)=(InputName="Composition",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionScalarParameter_76'"))
+      Inputs(5)=(InputName="Threshold",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal:MaterialExpressionScalarParameter_77'"))
       MaterialExpressionGuid=D371D1E34BB7D1D72B22ACA5739C38D9
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal'"
    End Object
@@ -14087,7 +14087,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
    bUsedWithSkeletalMesh=True
    bUsedWithNanite=True
    EditorX=1152
-   StateId=DC5775D24CB7BB664C0AF0B8F953ACFD
+   StateId=BA244AC24E3EC7EC8A04E8AEB072AA24
    ReferencedTextureGuids(0)=73D4A5E14AB936D52FC5C09C91556F1F
    ReferencedTextureGuids(1)=B2E8090E4EE2E8EBBA7B97AAEFE004A2
    ReferencedTextureGuids(2)=4D8D081C43F132D69B99BB8595B653D2
@@ -14126,5 +14126,5 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Universal" Export
    ReferencedDefaultTextures(13)="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_9_-_512x512.Marble_9_-_512x512'"
    ReferencedDefaultTextures(14)="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_Height.T_Neutral_Height'"
    ParameterOverviewExpansion=(("-12Global Celestial", True),("-12Global Character", True),("-12Global Cinematic", True),("-12Global Constellation Field", True),("-12Global Elemental", True),("-12Global FairyDust", True),("-12Global FlowerShadow", True),("-12Global Gilding", True),("-12Global Hybrid", True),("-12Global Itto", True),("-12Global Junji Ito Horror", True),("-12Global LayerA", True),("-12Global LayerB", True),("-12Global Layers", True),("-12Global MacroDetail", True),("-12Global Madoka", True),("-12Global Magical", True),("-12Global Nikki", True),("-12Global Palette", True),("-12Global Parallax", True),("-12Global ShadowDream", True),("-12Global Surface", True),("-12Global Temporal", True),("-12Global TimeOfDay", True),("-12Global TrimBlend", True),("-12Global Triplanar", True),("-12Global UV", True),("-12Global Witch Labyrinth", True),("-12Global World", True),("-12Global Real Parallax", True),("-12Global 01 | Base Surface", True),("-12Global 02 | Palette Ramp", True),("-12Global 03 | Texture Layer A", True),("-12Global 03 | Triplanar", True),("-12Global 04 | Texture Layer B", True),("-12Global 05 | Parallax", True),("-12Global 06 | Macro & Detail", True),("-12Global 07 | Temporal / Ink", True),("-12Global 08 | Nikki Rim & Glow", True),("-12Global 09 | Nikki Sparkle", True),("-12Global 10 | Nikki Iridescence & Sheen", True),("-12Global 11 | Gilding", True),("-12Global 12 | Shadow Garden (Flowers)", True),("-12Global 13 | Shadow Dream", True),("-12Global 14 | Celestial (Nebula)", True),("-12Global 15 | Fairy Dust", True),("-12Global 16 | Magical (Henshin)", True),("-12Global 17 | Character", True),("-12Global 18 | Elemental", True),("-12Global 19 | World / Weather", True),("-12Global 20 | Cinematic", True),("-12Global 21 | Time of Day", True),("-12Global 22 | Madoka", True),("-12Global 23 | Itto", True),("-12Global VertexPaintBlend", True),("-12Global ColorRamp", True),("-12Global Wind", True),("-12Global Channels", True),("-12Global LayerC", True),("-12Global", True),("-12Global 02 | Triplanar", True),("-12Global 05 | Texture Layer C", True),("-12Global 06 | Layer Blend A-to-B", True),("-12Global 07 | Layer Blend B-to-C", True),("-12Global 01b | Channels", True),("-12Global 05b | Parallax", True),("-12Global 10a | Color Ramp", True),("-12Global 10b | Dream Rim (magic)", True),("-12Global 10c | Dream Bloom (magic)", True),("-12Global 10d | Dream Flow (living magic)", True),("-12Global 10e | Dream Pulse (breathing)", True),("-12Global 10f | Kaleidoscope Sigil (magic)", True),("-12Global 10g | Dawn Wash (magic)", True),("-12Global 10h | Dream Mist (magic)", True),("-12Global 10i | Twinkle Glints (magic)", True),("-12Global 11b | Impasto Paint", True),("-12Global 16b | Ink Wear", True),("-12Global 16c | Vein Glow", True),("-12Global 17 | Macro & Detail", True),("-12Global 22 | Temporal / Ink", True),("-12Global 23 | Palette", True),("-12Global 99 | Deprecated (MeshBlend)", True),("-12Global Impasto", True),("-12Global MeshBlend", True),("-12Global 02b | Distance Field Contact", True),("-12Global 10j | Dream Halo (magic)", True))
-   LightingGuid=4075830F445875D64B0985A075706625
+   LightingGuid=C9C248F24F67AFD8E37C96B816D1BBFF
 End Object

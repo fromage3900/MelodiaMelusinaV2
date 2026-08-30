@@ -37,26 +37,26 @@
           "name": "M_Master_Nikki",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
           "file": "materials/M_Master_Nikki.t3d",
-          "payload_bytes": 304590,
-          "nodes": 230,
-          "sha256": "453eba8cc6a1638eb952848b13944f4b7a843817d5d5d19bbcc69d6ea070eb97",
+          "payload_bytes": 333918,
+          "nodes": 251,
+          "sha256": "e5c474e38e2d281197bd83bfb03b6d6a0b8f2d7b6887604857bac4e4f7c9e23b",
           "tags": [
             "nikki"
           ],
-          "lines": 2970
+          "lines": 3244
         },
         {
           "name": "M_Master_Nikki_Landscape",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
           "file": "materials/M_Master_Nikki_Landscape.t3d",
-          "payload_bytes": 351078,
-          "nodes": 248,
-          "sha256": "7963ac79476241f0957a5d9252238ccf85d340d4dd501ede7c3ce0405c4416c2",
+          "payload_bytes": 382522,
+          "nodes": 269,
+          "sha256": "0526f479f55ef231cc20d71ffd84376e7323b8ea4c182bd12e720a9e185f6995",
           "tags": [
             "landscape",
             "nikki"
           ],
-          "lines": 3184
+          "lines": 3458
         },
         {
           "name": "M_Master_SDF_Toon",
@@ -94,13 +94,13 @@
           "name": "M_Master_Toon_Landscape_HeightBlend",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend",
           "file": "materials/M_Master_Toon_Landscape_HeightBlend.t3d",
-          "payload_bytes": 474329,
-          "nodes": 322,
-          "sha256": "032604654f996a7794b61c7e039cf2caab041a80fcc45c47ad449b30e8c19499",
+          "payload_bytes": 480555,
+          "nodes": 326,
+          "sha256": "525b643af50bdc553de435ab90cc39b1205db4f1eb83b9753f57be564969fe23",
           "tags": [
             "landscape"
           ],
-          "lines": 3778
+          "lines": 3824
         },
         {
           "name": "M_Master_Toon_Unified",
@@ -116,16 +116,16 @@
           "name": "M_Master_Toon_Universal",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
           "file": "materials/M_Master_Toon_Universal.t3d",
-          "payload_bytes": 1647170,
+          "payload_bytes": 1647965,
           "nodes": 1257,
-          "sha256": "20e746f0a293f5bcccb941f6ad91db5083cc13b4fb2a6ce7d23285094ea68f1c",
+          "sha256": "55781ff5c49fa89f0d106a0c68a99f1353f4ea934bc0299fc99dfb456862222d",
           "tags": [],
           "lines": 14131
         }
       ],
       "count": 10,
-      "payload_bytes": 4535047,
-      "nodes": 3431
+      "payload_bytes": 4602840,
+      "nodes": 3477
     },
     "Material Functions": {
       "display": "Material Functions",
@@ -663,7 +663,7 @@
       "nodes": 17
     }
   },
-  "total_payload_bytes": 6810438,
-  "total_nodes": 5376,
+  "total_payload_bytes": 6878231,
+  "total_nodes": 5422,
   "format": "raw T3D payload text (LF). Metadata lives in this catalog, not in the files."
 }
