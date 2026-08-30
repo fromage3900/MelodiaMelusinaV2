@@ -64,7 +64,36 @@ import queue → MI):
 Stitch-platform for Mara's meeting: one small kitbash-able platform + lantern set (reuse
 Starskiff lantern materials — `MI_Starskiff_LanternGlass` exists as of tonight).
 
-## 5. Materials already in place for this arc (from tonight)
+## 5. Assets already in place (tonight)
+
+### 5.1 Mara base — built from the Melusina base (owner directive)
+
+- `SK_Mara_Vell_Body` = duplicate of `SK_Melusina_V2_Body` (15.5 MB), **sharing
+  `SK_Melusina_Skeleton`** — no skeleton fork, `ABP_Melusina_Current` remains the shared anim
+  authority.
+- `MI_Mara_Skin_006` / `MI_Mara_Skin_007` = duplicates of Melusina's SBW skin family on
+  `M_Master_Toon_Universal`, retinted to Mara's **moonlit-veil palette**
+  (`DreamTint` 0.82/0.92/1.0, `ShadowDreamTint` 0.30/0.28/0.52) and assigned to body slots 0–2.
+  Slots 3–4 (outline, iris) still shared with Melusina — Mara's outline + eye identity is a
+  follow-up pass. Read-back verified, saved.
+- **Next for Mara:** her veil-seamstress gown (Outfit Hub stages A–E, the Shorewake pipeline),
+  own outline/eye pass, then world placement + `MelodiaQuillMaraVeilReading.qsc` after owner
+  canon.
+
+### 5.2 Jellyfish v3 SERAPH (second expansion, same session)
+
+- **190 m main dome**, three **floating veil tiers** with golden-ratio radii
+  (95 / 58.7 / 36.3 m) and Fibonacci lobe cascade (21/13/8), detached halo ring (40.6 m),
+  **55-filament cilia crown** (deep-sea burglar alarm), **13 arms × 640 m** (7 football fields
+  each) on golden-angle phyllotaxis, double bifurcation + 1.5π twist + stronger rise.
+- 59 static parts + 13 arms; topology contract verified (zero mismatches); every static part
+  carries the 4-pose shape-key set; LUTs unchanged.
+- `JELLY_Seraph_Body.fbx` (root armature + 59 parts) + `JELLY_Seraph_Arms.fbx` + clay QA
+  renders (`Saved/Audit/sea_above/renders/jelly_v3/`) — visually verified.
+- v1/v2 kept untouched: the three variants form a size family (90 → 136 → 190 m) for depth
+  staging — a reef juvenile, a cathedral adult, and the SERAPH.
+
+### 5.3 Starskiff MI family (from earlier tonight)
 
 - Starskiff MI family live on `M_Master_Toon_Universal`: Hull_Regal, Brass, Cushion,
   LanternGlass, PlankNail, Wake_Emission (emissive wired).
