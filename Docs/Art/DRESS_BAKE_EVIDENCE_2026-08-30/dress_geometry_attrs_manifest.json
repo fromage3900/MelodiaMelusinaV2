@@ -1,0 +1,13 @@
+{
+ "schema": "melodia.shorewake_geometry_attrs.v1",
+ "seed": 20260830,
+ "houdini": "22.0.368",
+ "low_obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\SM_ShorewakeDress_48MAT_v2.obj",
+ "out_obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\SM_ShorewakeDress_48MAT_v2_attrs.obj",
+ "points": 183741,
+ "has_uv": false,
+ "thickness_scale_auto": 0.09973033277928166,
+ "bbox_diag": 2.4932583194820412,
+ "encoding": "OBJ vertex color: R=thickness G=convex B=concave",
+ "thickness_sample_mean": 0.35357393410063376
+}

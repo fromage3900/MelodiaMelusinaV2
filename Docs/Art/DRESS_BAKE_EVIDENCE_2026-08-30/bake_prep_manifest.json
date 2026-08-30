@@ -1,0 +1,22 @@
+{
+ "schema": "melodia.shorewake_bake_prep.v1",
+ "source_blend": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\Shorewake_48MAT_consolidated.blend",
+ "target_object": "SM_ShorewakeDress_48MAT",
+ "verts": 183741,
+ "polys": 206780,
+ "panel_count": 7,
+ "panels": [
+  "SW_Dress_P01",
+  "SW_Dress_P02",
+  "SW_Dress_P32",
+  "SW_Dress_P45",
+  "SW_Dress_P47",
+  "SW_Dress_P48",
+  "SW_Trim_G2"
+ ],
+ "uv_bbox_overlaps": [],
+ "uv_overlap_count": 0,
+ "uv_in_0_1": true,
+ "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\SM_ShorewakeDress_48MAT_v2.obj",
+ "note": "custom split normals via auto_smooth 60deg; polys forced smooth"
+}
