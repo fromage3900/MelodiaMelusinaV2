@@ -10,7 +10,6 @@ from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, label_tree, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param, add_vector_param,
     make_group_input, mesh_line_to_curve, sweep_profile,
-    add_music_influence_params, apply_universal_music_pass,
 )
 
 
@@ -40,7 +39,6 @@ def build_ornament_vine(group_name="MEL_ornament_vine"):
     add_float_param(tree, "Wave Amp", 0.15, 0.0, 0.5)
     add_float_param(tree, "Wave Freq", 2.0, 0.5, 5.0)
     add_int_param(tree, "Segments", 48, 8, 128)
-    add_music_influence_params(tree)
 
     # Base curve: Mesh Line along X
     base_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 600, by + 400))
@@ -127,8 +125,7 @@ def build_ornament_vine(group_name="MEL_ornament_vine"):
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 1500, by + 100))
     shade.inputs["Shade Smooth"].default_value = True
     link_sockets(tree, store_thick.outputs["Geometry"], shade.inputs["Geometry"])
-    music_geo = apply_universal_music_pass(tree, gin, shade.outputs["Geometry"], (bx + 1700, by))
-    link_sockets(tree, music_geo, gout.inputs["Geometry"])
+    link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
 
     color_node(base_line, "curve")
     color_node(set_pos, "attribute")
@@ -157,7 +154,6 @@ def build_ornament_radial(group_name="MEL_ornament_radial"):
     add_int_param(tree, "Ring Count", 3, 1, 8)
     add_float_param(tree, "Profile Radius", 0.015, 0.005, 0.08)
     add_float_param(tree, "Center Void", 0.0, 0.0, 0.5)
-    add_music_influence_params(tree)
 
     # Spokes: linear array rotated by circular_array
     spoke_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 400, by + 400))
@@ -227,8 +223,7 @@ def build_ornament_radial(group_name="MEL_ornament_radial"):
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 600, by + 100))
     shade.inputs["Shade Smooth"].default_value = True
     link_sockets(tree, join.outputs["Geometry"], shade.inputs["Geometry"])
-    music_geo = apply_universal_music_pass(tree, gin, shade.outputs["Geometry"], (bx + 800, by))
-    link_sockets(tree, music_geo, gout.inputs["Geometry"])
+    link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
 
     color_node(circle_pts, "curve")
     color_node(spoke_radial, "instance")
