@@ -1,0 +1,35 @@
+{
+  "$schema": "../schemas/t3d_mutation_request.v1.json",
+  "schema": "melodia.t3d_mutation_request.v1",
+  "request_id": "t3d-sea-above-pulse-driver-v1",
+  "asset_path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Blueprints/BP_SeaAbovePulseDriver",
+  "expected_before_fingerprint": "REPLACE_FROM_LIVE_QUERY",
+  "operations": [
+    {"verb": "inject_nodes_t3d", "description": "Add biological pulse MPC parameter driver node to BP_SeaAbovePulseDriver."}
+  ],
+  "nodes": [
+    {"id": "SetMPCParam", "class": "K2Node_CallFunction", "semantic_label": "sea_above_mpc_pulse_driver"}
+  ],
+  "expected_postconditions": {
+    "required_nodes": ["SetMPCParam"],
+    "forbidden_nodes": [],
+    "required_connections": [],
+    "expected_delta": {
+      "new_nodes": ["SetMPCParam"],
+      "new_connections": []
+    },
+    "compile_error_count": 0,
+    "reexport_after_save": true
+  },
+  "verification": {
+    "compile_zero_errors": true,
+    "assert_graph_match": true,
+    "reexport_after_save": true
+  },
+  "t3d": "Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name=\"SetMPCParam\"\n   FunctionReference=(MemberParent=Class'\"/Script/Engine.KismetMaterialLibrary\"',MemberName=\"SetScalarParameterValue\")\n   NodePosX=0\n   NodePosY=0\n   NodeGuid={{GUID:mpccall}}\n   CustomProperties Pin (PinId={{GUID:mpcexec}},PinName=\"execute\",Direction=\"EGPD_Input\",PinType.PinCategory=\"exec\",PinType.PinSubCategoryObject=None,)\n   CustomProperties Pin (PinId={{GUID:mpcthen}},PinName=\"then\",Direction=\"EGPD_Output\",PinType.PinCategory=\"exec\",PinType.PinSubCategoryObject=None,)\n   CustomProperties Pin (PinId={{GUID:mpcctx}},PinName=\"WorldContextObject\",Direction=\"EGPD_Input\",PinType.PinCategory=\"object\",PinType.PinSubCategoryObject=Class'\"/Script/CoreUObject.Object\"',)\n   CustomProperties Pin (PinId={{GUID:mpccoll}},PinName=\"Collection\",Direction=\"EGPD_Input\",PinType.PinCategory=\"object\",PinType.PinSubCategoryObject=Class'\"/Script/Engine.MaterialParameterCollection\"',DefaultObject=MaterialParameterCollection'\"{{mpc_path}}\"',)\n   CustomProperties Pin (PinId={{GUID:mpcname}},PinName=\"ParameterName\",Direction=\"EGPD_Input\",PinType.PinCategory=\"name\",PinType.PinSubCategory=\"\",DefaultValue=\"{{parameter_name}}\",)\n   CustomProperties Pin (PinId={{GUID:mpcval}},PinName=\"ParameterValue\",Direction=\"EGPD_Input\",PinType.PinCategory=\"real\",PinType.PinSubCategory=\"float\",DefaultValue={{parameter_value}},)\nEnd Object\n",
+  "placeholders": {
+    "mpc_path": "/Game/EnvSandbox/Materials/MPC/MPC_Melodia_Palette",
+    "parameter_name": "MembranePulse",
+    "parameter_value": "1.0"
+  }
+}
