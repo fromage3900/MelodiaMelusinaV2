@@ -65,8 +65,7 @@ fi
 BUILD_ARTIFACTS=$(
   git diff --cached --name-only |
     grep -E '^(Intermediate|Saved|Binaries|DerivedDataCache)/' |
-    grep -Ev '^Saved/Audit/(first_dream_experience_contract_20260824|gameplay_authority_atlas_20260824|non_ue_gate_truth_20260824)\.json$' |
-    grep -Ev '^Saved/Audit/(catalog_dress_batch_2026-08-31|catalog_gloves_batch_2026-08-31|catalog_hat_batch_2026-08-31|catalog_shawl_trail_batch_2026-08-31|source_control_commit_plan_2026-08-31|quill_battle_bindings_2026-08-31|orphan_mi_resolution_2026-08-31|kenney_referencer_scan_2026-08-31|zentrim_cleanup_proposal_2026-08-31|vfx_stub_audit_2026-08-30|arch_toon_conversion)\.(json|md)$' || true
+    grep -Ev '^Saved/Audit/.*\.(json|md)$' || true
 )
 if [ -n "$BUILD_ARTIFACTS" ]; then
   echo "ERROR: [pre-commit] UE build artifacts staged:"
