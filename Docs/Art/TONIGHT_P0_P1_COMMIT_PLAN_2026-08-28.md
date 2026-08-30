@@ -1,8 +1,10 @@
 # Tonight P0/P1 Commit Execution Plan — 2026-08-28
 
-This is the one-file entry point for working from another PC after the docs stack is merged.
+> **Status: SESSION SNAPSHOT / ARCHIVE CANDIDATE.** This file records the Aug 28 execution plan and should not be treated as current standing policy. For current workflow/priority context, read `Docs/RECENT_COMMIT_TRIAGE_AND_DOC_STATUS_2026-08-30.md`, `AGENTS.md`, and `Docs/AGENT_LANES.md`. Preserve this file as historical implementation context until its still-useful guidance has been absorbed into canonical handoffs.
 
-## Start here
+This was the one-file entry point for working from another PC after the Aug 28 docs stack was merged.
+
+## Start here (historical Aug 28 sequence)
 
 1. Pull `main`.
 2. Read `Docs/Art/SEA_ABOVE_P0_BEAUTY_LOCK_TONIGHT_2026-08-28.md`.
@@ -30,7 +32,7 @@ fx(starskiff): add prototype wake and rail response
 
 ## P0 gate before P1 feature work
 
-Do not let Starskiff or P1 consume the night until these are true:
+Do not let Starskiff or P1 work outrank these P0 gates unless a newer explicit owner/canonical instruction supersedes this snapshot:
 
 - shoreline hero camera is locked;
 - real ocean / fog gap / false ocean / Bell layers read clearly;
@@ -65,7 +67,7 @@ BP_StarskiffRail
 IMC_Starskiff
 ```
 
-Do not spread Oceanology-specific calls across gameplay Blueprints. Do not import an old vehicle/buoyancy framework as a dependency tonight.
+Do not spread Oceanology-specific calls across gameplay Blueprints. Do not import an old vehicle/buoyancy framework as a project dependency without an explicit integration decision.
 
 Optional public reference repos can be cloned outside the project with:
 
@@ -88,9 +90,9 @@ git pull --ff-only origin main
 
 If `git status` is not clean, do not discard local Unreal work just to pull. Commit/stash intentionally first.
 
-## Tonight's definition of done
+## Historical definition of done for the Aug 28 session
 
-P0 should end with a player remembering five images:
+P0 was intended to end with a player remembering five images:
 
 ```text
 beautiful coast
@@ -100,4 +102,4 @@ beautiful coast
 → quiet impossible aftermath
 ```
 
-P1 work earns time only after that sequence reads.
+That sequence remains useful art direction, but the original session scheduling language is no longer authoritative.
