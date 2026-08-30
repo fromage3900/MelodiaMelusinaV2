@@ -2771,6 +2771,98 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # mother.py — Faraway Mother Monolith
+    "MEL_mother_head_silhouette": {
+        "label": "Mother Head Silhouette",
+        "preset_labels": {
+            "MOONLIT_FACE": "Moonlit Face",
+            "DISTANT_DREAMER": "Distant Dreamer",
+            "AWASH_GRIEF": "Awash Grief",
+        },
+        "preset_descriptions": {
+            "MOONLIT_FACE": "Default moonlit face profile — readable silhouette, soft ridges.",
+            "DISTANT_DREAMER": "Distant dreamer — small silhouette, low noise, hazy.",
+            "AWASH_GRIEF": "Awash grief — tall silhouette, sharp ridges, dramatic.",
+        },
+        "presets": {
+            "MOONLIT_FACE": {"Width": 20.0, "Height": 8.0, "Depth": 6.0, "Ridge Count": 5, "Noise Scale": 3.0, "Noise Detail": 4.0},
+            "DISTANT_DREAMER": {"Width": 30.0, "Height": 5.0, "Depth": 8.0, "Ridge Count": 3, "Noise Scale": 1.5, "Noise Detail": 2.0},
+            "AWASH_GRIEF": {"Width": 15.0, "Height": 12.0, "Depth": 4.0, "Ridge Count": 8, "Noise Scale": 5.0, "Noise Detail": 6.0},
+        },
+    },
+    "MEL_mother_hair_cascade": {
+        "label": "Mother Hair Cascade",
+        "preset_labels": {
+            "MOONLIT_FALLS": "Moonlit Falls",
+            "SILKEN_DRIFT": "Silken Drift",
+            "WILD_TRESSES": "Wild Tresses",
+        },
+        "preset_descriptions": {
+            "MOONLIT_FALLS": "Moonlit waterfall cascade — long, slow, silver-blue.",
+            "SILKEN_DRIFT": "Silken drift — short, wide, gentle flow.",
+            "WILD_TRESSES": "Wild tresses — long, curled, untamed.",
+        },
+        "presets": {
+            "MOONLIT_FALLS": {"Length": 12.0, "Width": 2.0, "Strand Count": 12, "Curl": 0.3, "Twist": 0.5},
+            "SILKEN_DRIFT": {"Length": 6.0, "Width": 4.0, "Strand Count": 8, "Curl": 0.1, "Twist": 0.2},
+            "WILD_TRESSES": {"Length": 18.0, "Width": 3.0, "Strand Count": 20, "Curl": 0.7, "Twist": 1.0},
+        },
+    },
+    "MEL_mother_valley_depression": {
+        "label": "Mother Valley Depression",
+        "preset_labels": {
+            "TORSO_WALK": "Torso Walk",
+            "HEART_CHAMBER": "Heart Chamber",
+            "DEEP_ABYSS": "Deep Abyss",
+        },
+        "preset_descriptions": {
+            "TORSO_WALK": "Default torso valley — walkable depression, moderate fog.",
+            "HEART_CHAMBER": "Heart chamber — small, deep, dense fog, intimate.",
+            "DEEP_ABYSS": "Deep abyss — vast, deep, maximum fog.",
+        },
+        "presets": {
+            "TORSO_WALK": {"Radius": 15.0, "Depth": 6.0, "Floor Noise": 1.0, "Fog Level": 0.6, "Steepness": 0.5},
+            "HEART_CHAMBER": {"Radius": 8.0, "Depth": 10.0, "Floor Noise": 0.5, "Fog Level": 0.85, "Steepness": 0.8},
+            "DEEP_ABYSS": {"Radius": 30.0, "Depth": 20.0, "Floor Noise": 2.0, "Fog Level": 0.95, "Steepness": 0.3},
+        },
+    },
+    "MEL_mother_fog_volume": {
+        "label": "Mother Fog Volume",
+        "preset_labels": {
+            "DISTANT_HINT": "Distant Hint",
+            "CLOSING_IN": "Closing In",
+            "TOTAL_OBSCURANCE": "Total Obscurance",
+        },
+        "preset_descriptions": {
+            "DISTANT_HINT": "Distant hint — sparse fog, implied mass, silver-blue.",
+            "CLOSING_IN": "Closing in — dense fog, looming presence.",
+            "TOTAL_OBSCURANCE": "Total obscurance — thick fog, no visibility.",
+        },
+        "presets": {
+            "DISTANT_HINT": {"Width": 40.0, "Height": 20.0, "Depth": 10.0, "Density": 0.02, "Tint Strength": 0.8, "Noise Scale": 1.5, "Falloff": 2.0},
+            "CLOSING_IN": {"Width": 25.0, "Height": 15.0, "Depth": 8.0, "Density": 0.06, "Tint Strength": 0.9, "Noise Scale": 2.5, "Falloff": 1.5},
+            "TOTAL_OBSCURANCE": {"Width": 15.0, "Height": 10.0, "Depth": 5.0, "Density": 0.12, "Tint Strength": 1.0, "Noise Scale": 4.0, "Falloff": 0.8},
+        },
+    },
+    "MEL_mother_fabric_ridge": {
+        "label": "Mother Fabric Ridge",
+        "preset_labels": {
+            "SKIN_FOLDS": "Skin Folds",
+            "DRAPED_VEIL": "Draped Veil",
+            "TENSE_MEMBRANE": "Tense Membrane",
+        },
+        "preset_descriptions": {
+            "SKIN_FOLDS": "Default skin folds — regular ridges, medium depth, organic.",
+            "DRAPED_VEIL": "Draped veil — long, flowing folds, gentle sharpness.",
+            "TENSE_MEMBRANE": "Tense membrane — sharp, shallow folds, drum-like.",
+        },
+        "presets": {
+            "SKIN_FOLDS": {"Width": 30.0, "Height": 6.0, "Fold Depth": 1.5, "Fold Count": 6, "Fold Sharpness": 2.0, "Noise Detail": 3.0},
+            "DRAPED_VEIL": {"Width": 40.0, "Height": 4.0, "Fold Depth": 0.8, "Fold Count": 4, "Fold Sharpness": 1.0, "Noise Detail": 2.0},
+            "TENSE_MEMBRANE": {"Width": 20.0, "Height": 8.0, "Fold Depth": 0.5, "Fold Count": 12, "Fold Sharpness": 4.0, "Noise Detail": 5.0},
+        },
+    },
+
 }
 
 # -----------------------------------------------------------------------------
