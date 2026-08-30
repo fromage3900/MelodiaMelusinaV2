@@ -1,0 +1,26 @@
+{
+  "gate5": {
+    "intake": "MelodiaStudioV3/Review/WorldGen + Flora/Petals GPU Fixed event",
+    "status": "queued",
+    "pid": 54700,
+    "petalFix": "7 systems CPU->GPU, Dynamic->Fixed, wire Gust DeathEvent"
+  },
+  "gate3": {
+    "status": "queued",
+    "cmd": "blender --factory-startup --background --python deploy/surreal_arch/tests_standalone.py (install+build+export)"
+  },
+  "gate4": {
+    "status": "queued",
+    "cmd": "hython copernicus_petal_variants.py --dry && hython copernicus_dress_bake.py --dry (fix cp1252 arrow first)"
+  },
+  "gate6": {
+    "condition": "all gates pass \u2192 4 commits + tag melodia-studio-v3-baseline (do not push)",
+    "status": "queued"
+  },
+  "gate2": {
+    "status": "done",
+    "diffCheck": 0,
+    "pyCompile": "deploy 12 OK, copernicus 3 OK, dress_bake arrow bug open",
+    "unicode": "0 bad"
+  }
+}
