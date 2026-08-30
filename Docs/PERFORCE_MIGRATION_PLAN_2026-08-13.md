@@ -1,7 +1,13 @@
 # Next phase — Perforce for content, git for code
 
-**Status: PLAN, not started. Owner decision recorded 2026-08-13; execution deferred until
-the three remaining completion gates close.**
+**Status: IN PROGRESS. Hybrid Git + Perforce was approved and the completion gates are closed.**
+
+**Pilot status, 2026-08-27:** Helix Core is running locally at `localhost:1667`, with depot
+`//melodia/...`. The typemap has server-enforced `binary+l` locks for `.uasset`, `.umap`, `.blend`,
+and `.fbx`, and maps `.json` as text. The lock behavior was verified from two workspaces. Perforce
+change `1` is the one-file lock pilot; change `2` seeds `//melodia/Exports/...` with 50 files.
+The staged source and Perforce workspace matched before submit. The Git `Exports/` copies remain
+intentionally until cutover validation and backup sign-off.
 
 Do not begin this migration while `save_load`, `repeat_consume` and `package_launch` are
 open. Moving source control mid-vertical-slice costs a week and buys nothing the slice needs.
@@ -70,14 +76,13 @@ walk scoped to the workspace root**, and re-baseline. Same applies to
 
 ## Phases
 
-**P0 — decide (owner, ~30 min).** Hybrid vs all-in-P4 vs stay on git+LFS. Nothing below
-starts until this is answered. If the answer is "stay on git", the `Exports/` finding still
-stands: get 5.6 GB of `.blend` out of LFS.
+**P0 — decide (owner, ~30 min).** **Complete.** Hybrid Git + Perforce selected.
 
-**P1 — server.** Helix Core Free on the workstation or a small VPS. Depot `//melodia`.
-Users: owner + collaborators. Backup before any data lands.
+**P1 — server.** **Pilot complete.** Local Helix Core runs at `localhost:1667`; depot
+`//melodia` exists. The server is workstation-local, so collaborators require a shared/VPS server
+before this can become the team authority. Establish and verify a backup before further seeding.
 
-**P2 — typemap first, before any submit.** This is the step that is painful to retrofit:
+**P2 — typemap first, before any submit.** **Complete for the pilot.** This is the step that is painful to retrofit:
 ```
 binary+l   //melodia/....uasset
 binary+l   //melodia/....umap
@@ -88,7 +93,10 @@ text       //melodia/....json
 `+l` = exclusive checkout. Getting this wrong after 65 GB is submitted means re-typing every
 file.
 
-**P3 — seed the depot.** `Content/`, `Exports/`, and the `G:\MelodiaMelusina\` raw-art tree
+**P3 — seed the depot.** **Exports complete; Content and RawArt blocked.** Perforce change `2`
+contains 50 `Exports/` files. `Content/` is 72.09 GB and has active asset edits; local free space
+was 35.93 GB during the seed, so do not attempt it until storage and ownership gates are met.
+The remaining scope is `Content/` and the `G:\MelodiaMelusina\` raw-art tree
 (the textures and rigs currently referenced by docs but present on exactly one machine —
 see `Docs/MELUSINA_BLENDER_WARDROBE_SSOT.md`). Verify by hash, not by eye. Keep the git
 copies until P6 signs off.

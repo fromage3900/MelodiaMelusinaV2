@@ -185,6 +185,8 @@ Content/EnvSandbox/*
 !Content/EnvSandbox/Environments/**
 !Content/EnvSandbox/PCG/
 !Content/EnvSandbox/PCG/**
+!Content/EnvSandbox/Monoliths/
+!Content/EnvSandbox/Monoliths/**
 
 # Nested site repo + deploy staging dir (mirrors, not tracked content)
 my-site-clean/

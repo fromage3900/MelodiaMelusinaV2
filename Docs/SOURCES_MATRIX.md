@@ -62,6 +62,11 @@ Status values:
 | `Sakura` | Sakura level art direction (human-owned boundary) | fromage3900 | first-party | Owner | verified |
 | `ZenForestTest_sharedassets` | ZenForest test work (built on ED + first-party assets) | fromage3900 + Epic Games | first-party · https://fab.com/s/7ee8c5704aaa | Owner + UE-Only | verified |
 | `_QuarantinePostProcess_20260801` | Quarantined post-process experiments | fromage3900 | first-party | Owner | verified |
+| `00_Archive` | First-party character backups (legacy staging) | fromage3900 | first-party | Owner | verified |
+| `GeneratedScenes` | First-party generated scene variants (aurora, autumn, celestial, etc.) | fromage3900 | first-party | Owner | verified |
+| `UI` | First-party UI stylesheet (WidgetStyleSheet.json) | fromage3900 | first-party | Owner | verified |
+| `Widgets` | First-party battle-phase widget blueprints (Command/Enemy/Results) | fromage3900 | first-party | Owner | verified |
+| `ZenForestTest_MusicalGlam` | First-party test level + materials + lighting | fromage3900 | first-party | Owner | verified |
 | `kenney_fantasy-ui-borders` | UI borders pack | Kenney | https://kenney.nl/assets/fantasy-ui-borders | CC0 | verified |
 | `magicianlabatory` | Magician's Library Environment & VFX Pack | Coreb Games | https://www.fab.com/listings/25a46fa5-1f75-44e0-806c-026cfc1d45f8 | Marketplace EULA | verified |
 | `Greybox_Kit` (ZenTrim wand/streetlamp re-topo) | First-party re-topo + material pass | fromage3900 | first-party | Owner | verified |
