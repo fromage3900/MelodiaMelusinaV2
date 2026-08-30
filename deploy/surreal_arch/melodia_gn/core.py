@@ -1152,6 +1152,7 @@ CATEGORY_META: dict[str, dict] = {
     "mesh_tools":  {"label": "Mesh Tools",           "icon": "EDITMODE_HLT"},
     "set_dressing": {"label": "Set Dressing",        "icon": "PLUGIN"},
     "mother":      {"label": "Faraway Mother",       "icon": "MESH_MONKEY"},
+    "white_current": {"label": "White Current",      "icon": "MOD_FLUID"},
 }
 
 

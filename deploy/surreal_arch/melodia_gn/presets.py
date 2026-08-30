@@ -2920,6 +2920,116 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # white_current.py — The White Current Monolith
+    "MEL_white_seam_spline": {
+        "label": "White Seam Spline",
+        "preset_labels": {
+            "RIVER_TRACE": "River Trace",
+            "LAKE_EDGE": "Lake Edge",
+            "DEEP_CURRENT": "Deep Current",
+        },
+        "preset_descriptions": {
+            "RIVER_TRACE": "Default river trace — moderate width, gentle flow.",
+            "LAKE_EDGE": "Lake edge — wide seam, still water, high intensity.",
+            "DEEP_CURRENT": "Deep current — narrow seam, fast flow, turbulent.",
+        },
+        "presets": {
+            "RIVER_TRACE": {"Width": 0.15, "Flow Speed": 1.0, "Seam Intensity": 1.5, "Turbulence": 0.3, "Spline Resolution": 64},
+            "LAKE_EDGE": {"Width": 0.4, "Flow Speed": 0.2, "Seam Intensity": 2.5, "Turbulence": 0.05, "Spline Resolution": 48},
+            "DEEP_CURRENT": {"Width": 0.08, "Flow Speed": 3.0, "Seam Intensity": 1.0, "Turbulence": 0.8, "Spline Resolution": 96},
+        },
+    },
+    "MEL_eel_silhouette": {
+        "label": "Eel Silhouette",
+        "preset_labels": {
+            "PALE_GHOST": "Pale Ghost",
+            "DEEP_DIVER": "Deep Diver",
+            "SURFACE_SKIMMER": "Surface Skimmer",
+        },
+        "preset_descriptions": {
+            "PALE_GHOST": "Pale ghost — translucent, glowing, slow movement.",
+            "DEEP_DIVER": "Deep diver — long body, many fins, deep glow.",
+            "SURFACE_SKIMMER": "Surface skimmer — short body, fast wave, bright glow.",
+        },
+        "presets": {
+            "PALE_GHOST": {"Length": 15.0, "Body Width": 0.8, "Fin Count": 8, "Glow Intensity": 2.0, "Translucency": 0.7, "Wave Phase": 0.0},
+            "DEEP_DIVER": {"Length": 25.0, "Body Width": 1.2, "Fin Count": 16, "Glow Intensity": 3.5, "Translucency": 0.5, "Wave Phase": 1.5},
+            "SURFACE_SKIMMER": {"Length": 8.0, "Body Width": 0.5, "Fin Count": 4, "Glow Intensity": 4.0, "Translucency": 0.9, "Wave Phase": 3.0},
+        },
+    },
+    "MEL_water_network": {
+        "label": "Water Network",
+        "preset_labels": {
+            "RIVER_SYSTEM": "River System",
+            "LAKE_CHAIN": "Lake Chain",
+            "DELTAS": "Deltas",
+        },
+        "preset_descriptions": {
+            "RIVER_SYSTEM": "River system — many nodes, high density, strong flow.",
+            "LAKE_CHAIN": "Lake chain — few nodes, low density, still water.",
+            "DELTAS": "Deltas — medium nodes, branching, moderate flow.",
+        },
+        "presets": {
+            "RIVER_SYSTEM": {"Node Count": 24, "Connection Density": 0.7, "Flow Direction": 0.0, "White Level": 0.8, "Network Scale": 30.0},
+            "LAKE_CHAIN": {"Node Count": 8, "Connection Density": 0.3, "Flow Direction": 0.5, "White Level": 0.95, "Network Scale": 20.0},
+            "DELTAS": {"Node Count": 16, "Connection Density": 0.5, "Flow Direction": 1.0, "White Level": 0.7, "Network Scale": 25.0},
+        },
+    },
+    "MEL_moonlit_surf": {
+        "label": "Moonlit Surf",
+        "preset_labels": {
+            "CALM_MOON": "Calm Moon",
+            "WAVES": "Waves",
+            "STORM": "Storm",
+        },
+        "preset_descriptions": {
+            "CALM_MOON": "Calm moon — still water, high reflection, visible seam.",
+            "WAVES": "Waves — moderate waves, medium reflection.",
+            "STORM": "Storm — high waves, low reflection, turbulent.",
+        },
+        "presets": {
+            "CALM_MOON": {"Surface Size": 30.0, "Wave Height": 0.1, "Moon Reflection": 0.9, "Seam Visibility": 0.9, "Wave Scale": 1.0},
+            "WAVES": {"Surface Size": 30.0, "Wave Height": 0.5, "Moon Reflection": 0.6, "Seam Visibility": 0.6, "Wave Scale": 2.0},
+            "STORM": {"Surface Size": 30.0, "Wave Height": 1.5, "Moon Reflection": 0.3, "Seam Visibility": 0.3, "Wave Scale": 4.0},
+        },
+    },
+    "MEL_white_haze_volume": {
+        "label": "White Haze Volume",
+        "preset_labels": {
+            "DISTANT_MASS": "Distant Mass",
+            "CLOSING_IN": "Closing In",
+            "TOTAL_WHITE": "Total White",
+        },
+        "preset_descriptions": {
+            "DISTANT_MASS": "Distant mass — sparse haze, white-blue, implies vast body.",
+            "CLOSING_IN": "Closing in — dense haze, white tint, looming presence.",
+            "TOTAL_WHITE": "Total white — thick haze, pure white, zero visibility.",
+        },
+        "presets": {
+            "DISTANT_MASS": {"Width": 50.0, "Height": 15.0, "Depth": 8.0, "Density": 0.02, "Tint Strength": 0.85, "Noise Scale": 1.2, "Falloff": 2.5},
+            "CLOSING_IN": {"Width": 30.0, "Height": 10.0, "Depth": 5.0, "Density": 0.05, "Tint Strength": 0.9, "Noise Scale": 2.0, "Falloff": 1.5},
+            "TOTAL_WHITE": {"Width": 15.0, "Height": 8.0, "Depth": 3.0, "Density": 0.1, "Tint Strength": 1.0, "Noise Scale": 3.0, "Falloff": 0.8},
+        },
+    },
+    "MEL_current_marker": {
+        "label": "Current Marker",
+        "preset_labels": {
+            "FLOW_ARROWS": "Flow Arrows",
+            "GLOW_TRAIL": "Glow Trail",
+            "DENSE_PATH": "Dense Path",
+        },
+        "preset_descriptions": {
+            "FLOW_ARROWS": "Flow arrows — moderate count, standard spacing, glow.",
+            "GLOW_TRAIL": "Glow trail — many arrows, tight spacing, bright glow.",
+            "DENSE_PATH": "Dense path — many arrows, wide spacing, fast flow.",
+        },
+        "presets": {
+            "FLOW_ARROWS": {"Count": 16, "Spacing": 2.0, "Arrow Size": 0.3, "Glow Intensity": 1.5, "Flow Speed": 1.0},
+            "GLOW_TRAIL": {"Count": 32, "Spacing": 1.0, "Arrow Size": 0.2, "Glow Intensity": 3.0, "Flow Speed": 2.0},
+            "DENSE_PATH": {"Count": 24, "Spacing": 3.0, "Arrow Size": 0.4, "Glow Intensity": 1.0, "Flow Speed": 3.0},
+        },
+    },
+
 }
 
 # -----------------------------------------------------------------------------
