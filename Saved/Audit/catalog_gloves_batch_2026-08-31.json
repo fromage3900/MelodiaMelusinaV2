@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "spec_only",
+    "source_audit": "wardrobe_p0_audit_2026-08-30.json",
+    "note": "Catalog gloves batch materialization spec. No .uasset writes. Editor materialization pending."
+  },
+  "catalog_path": "/MelodiaWardrobe/Catalog/DA_MelodiaCosmeticCatalog",
+  "slot": "gloves",
+  "gloves_batch": [
+    {
+      "CosmeticId": "Cos_Gloves_MelusinaTide",
+      "Slot": "gloves",
+      "Rarity": "Common",
+      "ElementMood": "Tide",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 5, "swirl": 2 },
+      "ResonantFormId": null,
+      "MaterializePriority": 1
+    },
+    {
+      "CosmeticId": "Cos_Gloves_MelusinaRadiant",
+      "Slot": "gloves",
+      "Rarity": "Refined",
+      "ElementMood": "Radiant",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 8, "swirl": 3 },
+      "ResonantFormId": null,
+      "MaterializePriority": 2
+    },
+    {
+      "CosmeticId": "Cos_Gloves_MelusinaForte",
+      "Slot": "gloves",
+      "Rarity": "Grandmaster",
+      "ElementMood": "Forte",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 8, "swirl": 4 },
+      "ResonantFormId": null,
+      "MaterializePriority": 3
+    },
+    {
+      "CosmeticId": "Cos_Gloves_Melusina",
+      "Slot": "gloves",
+      "Rarity": "Grandmaster",
+      "ElementMood": "Gale",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 9, "swirl": 4 },
+      "ResonantFormId": null,
+      "MaterializePriority": 4
+    },
+    {
+      "CosmeticId": "Cos_Gloves_MelusinaShadows",
+      "Slot": "gloves",
+      "Rarity": "Couture",
+      "ElementMood": "Umbral",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 8, "swirl": 4 },
+      "ResonantFormId": null,
+      "MaterializePriority": 5
+    },
+    {
+      "CosmeticId": "Cos_Gloves_MelusinaStone",
+      "Slot": "gloves",
+      "Rarity": "Couture",
+      "ElementMood": "Stone",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 9, "swirl": 3 },
+      "ResonantFormId": null,
+      "MaterializePriority": 6
+    }
+  ],
+  "p0_gate_impact": {
+    "wardrobe_slot_coverage": "gloves_slot_added",
+    "note": "Gloves slot now has 6 catalog entries. PIE test still required."
+  }
+}
