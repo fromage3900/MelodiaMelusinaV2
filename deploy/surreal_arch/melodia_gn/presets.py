@@ -2863,6 +2863,63 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    "MEL_mother_shoulder_fold": {
+        "label": "Mother Shoulder Fold",
+        "preset_labels": {
+            "GENTLE_SLOPE": "Gentle Slope",
+            "DRAMATIC_FOLD": "Dramatic Fold",
+            "UNILATERAL_TORSO": "Unilateral Torso",
+        },
+        "preset_descriptions": {
+            "GENTLE_SLOPE": "Gentle shoulder slope — low folds, subtle asymmetry.",
+            "DRAMATIC_FOLD": "Dramatic fold — deep folds, strong asymmetry.",
+            "UNILATERAL_TORSO": "Unilateral torso — one-sided fold, organic.",
+        },
+        "presets": {
+            "GENTLE_SLOPE": {"Width": 25.0, "Length": 40.0, "Fold Count": 4, "Fold Depth": 1.2, "Asymmetry": 0.3, "Noise Detail": 3.0},
+            "DRAMATIC_FOLD": {"Width": 30.0, "Length": 50.0, "Fold Count": 8, "Fold Depth": 3.0, "Asymmetry": 0.7, "Noise Detail": 5.0},
+            "UNILATERAL_TORSO": {"Width": 20.0, "Length": 35.0, "Fold Count": 5, "Fold Depth": 2.0, "Asymmetry": 1.0, "Noise Detail": 2.0},
+        },
+    },
+
+    "MEL_mother_heart_gate": {
+        "label": "Mother Heart Gate",
+        "preset_labels": {
+            "INTIMATE_GATE": "Intimate Gate",
+            "GRAND_ARCH": "Grand Arch",
+            "PILLAR_HALL": "Pillar Hall",
+        },
+        "preset_descriptions": {
+            "INTIMATE_GATE": "Intimate gate — small arch, subtle glow, personal scale.",
+            "GRAND_ARCH": "Grand arch — tall pointed arch, strong glow, monumental.",
+            "PILLAR_HALL": "Pillar hall — wide gate, many pillars, ceremonial.",
+        },
+        "presets": {
+            "INTIMATE_GATE": {"Width": 3.0, "Height": 4.5, "Arch Point": 0.5, "Frame Thickness": 0.2, "Pillar Count": 2, "Glow Intensity": 1.0},
+            "GRAND_ARCH": {"Width": 4.0, "Height": 7.0, "Arch Point": 0.7, "Frame Thickness": 0.35, "Pillar Count": 4, "Glow Intensity": 2.5},
+            "PILLAR_HALL": {"Width": 8.0, "Height": 5.0, "Arch Point": 0.2, "Frame Thickness": 0.25, "Pillar Count": 8, "Glow Intensity": 1.5},
+        },
+    },
+
+    "MEL_mother_moonlight_rig": {
+        "label": "Mother Moonlight Rig",
+        "preset_labels": {
+            "SILVER_DREAM": "Silver Dream",
+            "MOONLIT_KEY": "Moonlit Key",
+            "DRAMATIC_SHADOW": "Dramatic Shadow",
+        },
+        "preset_descriptions": {
+            "SILVER_DREAM": "Silver dream — soft key, gentle fill, ethereal.",
+            "MOONLIT_KEY": "Moonlit key — standard three-point, silver-blue.",
+            "DRAMATIC_SHADOW": "Dramatic shadow — strong key, deep shadows, high contrast.",
+        },
+        "presets": {
+            "SILVER_DREAM": {"Key Intensity": 2.0, "Key Angle": 25.0, "Fill Intensity": 1.0, "Rim Intensity": 1.5, "Moon Tint": 0.9},
+            "MOONLIT_KEY": {"Key Intensity": 3.0, "Key Angle": 35.0, "Fill Intensity": 0.5, "Rim Intensity": 1.5, "Moon Tint": 0.8},
+            "DRAMATIC_SHADOW": {"Key Intensity": 5.0, "Key Angle": 45.0, "Fill Intensity": 0.2, "Rim Intensity": 2.0, "Moon Tint": 0.7},
+        },
+    },
+
 }
 
 # -----------------------------------------------------------------------------
