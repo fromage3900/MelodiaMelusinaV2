@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "offline_feasibility",
+    "source": "Docs/Plans/MATERIAL_HEALTH_AND_CONSOLIDATION_PLAN_2026-08-30.md"
+  },
+  "workstreams": {
+    "A_organize": {
+      "offline_ready": [
+        "melodia_material_list_pbr (disk)",
+        "Tools/duplicate_assets_audit.py",
+        "Tools/audit_project_hygiene.py"
+      ],
+      "requires_live": [
+        "bp_sweep.py (some checks)",
+        "graph_reachability.py (needs live paths)"
+      ],
+      "blocker": "None for disk-only tasks. Run now."
+    },
+    "B_label": {
+      "offline_ready": [],
+      "requires_live": [
+        "finalize_ppv_hero_stack.py",
+        "strip_ppv_color_overrides.py"
+      ],
+      "blocker": "PPV state must be read from live editor."
+    },
+    "C_consolidate": {
+      "offline_ready": [
+        "Tools/duplicate_assets_audit.py",
+        "melodia_material_get_compile_stats (cached)"
+      ],
+      "requires_live": [
+        "Actual delete_asset operations"
+      ],
+      "blocker": "Identify candidates offline, execute live."
+    },
+    "D_remove_stubs": {
+      "offline_ready": [
+        "Tools/bp_sweep.py (partial)",
+        "Tools/graph_reachability.py"
+      ],
+      "requires_live": [
+        "bp_live_path.py verification"
+      ],
+      "blocker": "Reachability can run offline on disk."
+    },
+    "E_material_health": {
+      "offline_ready": [
+        "melodia_material_audit (offline/cached)",
+        "melodia_material_list_pbr"
+      ],
+      "requires_live": [
+        "melodia_material_get_compile_stats (live)",
+        "build_dreamprint_material.py"
+      ],
+      "blocker": "Compile stats from live Monolith are authoritative."
+    }
+  },
+  "immediate_offline_actions": [
+    "Run melodia_material_list_pbr + duplicate_assets_audit.py \u2192 produces PBR catalog",
+    "Run bp_sweep.py (offline mode) \u2192 identifies 5 defect classes",
+    "Run graph_reachability.py \u2192 identifies unreachable exec islands"
+  ],
+  "blocked_on_owner": [
+    "Dismiss editor modals to unblock Monolith MCP",
+    "Confirm localhost:9316/health returns 200"
+  ]
+}
