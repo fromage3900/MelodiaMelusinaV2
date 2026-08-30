@@ -12,12 +12,32 @@
 **Never trust a PID written here or anywhere else** — run `Get-Process UnrealEditor`.
 `origin` = MelodiaMelusinaV2.
 
-> **Ledger reconciliation 2026-08-20.** The four shipping gates (`runtime`, `save_load`,
-> `repeat_consume`, `package_launch`) **all have PASS rows** in `Saved/gate_ledger.json` — two
-> owner-verified. This queue previously listed three of them as Available; that was six days
-> stale. Verify with `python Tools/echo_run.py status`, not with prose.
+> **Ledger reconciliation 2026-08-29.** Shipping gates (`runtime`, `save_load`, `repeat_consume`, `package_launch`)
+> have PASS rows in `Saved/gate_ledger.json`. In addition, `battle_integration_map` (all 4 outcomes),
+> `hud_single_writer`, `static_gates` (5/5 PASS, 2026-08-29 `session-e4ee8de9`), and `allowlist_ids`
+> are certified PASS.
 >
-> **What is actually left:** the orchestra convergence, and `static_gates` (FAIL 2026-08-14).
+> **Active P0 remaining focus:** in-editor live proof for `rhythm_owner`, `rhythm_grade_to_result`,
+> `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook` (Shorewake Glide/Swim), and `music_world_key`.
+> Shorewake transform lookdev and Sea Above level loop stage script (`stage_seaabove_level_loop.py`)
+> are verified green (2026-08-29).
+
+> **Materials lane — 2026-08-29 evening (commit `2c201fe3`, 2-hour takeover box).**
+> | Item | Status |
+> |---|---|
+> | Nikki glow wiring on `M_Master_Toon_Landscape_HeightBlend` (`MF_NikkiDreamGrade.Emissive` → `bNikkiFast`-gated Add → `EmissiveColor`) | **Done + saved** (default 593 PS pruned; fast lane 910 PS / 13 samplers clean) |
+> | `SK_ShorewakeDress` real material | **Done** — `MI_Melusina_Dress_Shorewake` created + assigned to slot 0; `Material_001` retired |
+> | Leviathan/Organ textures (6) | **Done** — imported with correct sRGB/normalmap flags |
+> | Leviathan/Organ material instances | **Done** — `MI_SeaAbove_Leviathan_Bone`, `MI_SeaAbove_Organ_Pipe` (Organ Pipe emissive wired) |
+> | Landscape master surgery closeout | **Done** — commit `c5e15395` + recipe `06bbbee3` |
+> | `SM_Leviathan.obj` / `SM_DrownedOrgan.obj` mesh imports | **Available** — MIs ready and waiting |
+> | `MI_Melusina_WaterHair` creation on v7 + `SK_MelusinaHair` 4-slot fix | **Available** — prior doc claim that the MI exists was wrong (deleted from tracking; recreate fresh) |
+> | `SK_Melusina_V2_Shirt` outline slot | **Available** — reference wiring on other V2 pieces (`MI_Melusina_Outline_004/_005`) |
+> | Ocean visual pass + `DA_Color_AnimeLightBlue`/`DA_Foam_Stylized` + `Toon_Weight` dial | **Available** — owner eyeball task |
+> | Banner/Shroud fabric master (Kelp is an explicit placeholder) | **Available** |
+> | Reef/height-blend masters: mirror `M_Master_Toon_Universal`'s Madoka/Itto input wiring | **Available** — owner look decision first |
+> | SDF lane consumer decision (`MF_SDF_BandRelief`, `MF_LandscapeStorybookSDF` referenced by zero masters) | **Available** — wire or archive |
+> | Research + execution log | `Docs/Research/MATERIAL_TAKEOVER_RESEARCH_2026-08-29.md` (gitignored lane, on disk) |
 
 ---
 
@@ -26,17 +46,16 @@
 | Task | Pri | Status | Agent | Notes |
 |---|---|---|---|---|
 | Wire `OnPatternCompleted` → one 7-verb narrative notification | P0 | **Available** | — | **Highest-leverage single edge in the project.** `Piano/PCGHeroMusic.cpp:620` broadcasts; the only consumer is water (`MelodiaPCGWaterGameplayBridgeComponent.cpp:48`). One edge into `UMelodiaNarrativeSubsystem` closes `music_world_key` and turns three built-but-disconnected systems into a loop. Preserve the presentation-only boundary — music opens doors, it never deals damage. |
-| Merge `MelodiaJRPGBattleOverlaySubsystem` into `MelodiaUIBridgeSubsystem` | P0 | **Available** | — | Two GameInstance subsystems independently create battle widgets (`:64`/`:83` vs `:124`/`:348`/`:365`). This is the concrete `hud_single_writer` violation and is fixable regardless of the stock-UI question. |
-| Answer: does stock `BP_BattleUI` still need to render? | P0 | **Available** | — | Needs ONE editor session, one writer: `melodia_ui_get_battle_hud` + `melodia_ui_validate_widget`. Blocks the rest of the UI pillar. Record the answer in the contract. |
-| Establish whether the live pawn has a populated `MelodiaWardrobeComponent` | P0 | **Available** | — | **Nothing outside `Plugins/MelodiaWardrobe/` calls `UMelodiaWardrobeSubsystem`.** The pillar is complete and possibly unconnected. `MELUSINA_V2_REBUILD...` records pawn-mesh promotion and default garment map as OPEN. |
-| Prove the Glide/Dash/Swim capability path end-to-end | P0 | **Available** | — | `wardrobe_gameplay_hook`. The Infinity Nikki pattern is already wired (`MelodiaTraversalCapabilityProvider.h:32-38`). The header warns that a capability without a provider mapping AND a caller is a name with no behaviour. |
-| `rhythm_grade_to_result` — grade changes a JRPG result | P0 | **Available** | — | The seam that defines the game. Rhythm is owner-locked WORKED; the grade→damage edge is unproven. |
+| Merge `MelodiaJRPGBattleOverlaySubsystem` into `MelodiaUIBridgeSubsystem` | P0 | **Done** | — | `hud_single_writer` certified PASS (2026-08-27 `session-7aa8ad8a`). `UMelodiaUIBridgeSubsystem` is the sole Melodia writer. |
+| Shorewake Outfit Transformation (`Cos_ShorewakeDress`) | P0 | **Done (Staged & Tested)** | — | 48-panel mesh joined, 3 morphs (`Nikki_Bloom`, `Nikki_Swirl`, `ShimmerWave`), 48 mat slots, PBR textures, Quill quest (`MelodiaQuillShorewake.qsc`), and 5/5 contract tests pass. QA renders in `Saved/Audit/sea_above/renders/skiff/`. |
+| Sea Above Level Loop & Enemy Placement | P0 | **Done (Staged & Tested)** | — | `stage_seaabove_level_loop.py` places player, arrival trigger, Starskiff MK2, PCG Arpeggio bridge, `SeaAbove_SmokeBattleEncounter`, and `SeaAbove_Littoral_EnemyPatrol`. 5/5 contract tests pass. |
+| Prove the Glide/Dash/Swim capability path end-to-end | P0 | **Available** | — | `wardrobe_gameplay_hook`. The Infinity Nikki pattern is wired (`MelodiaTraversalCapabilityProvider.h:32-38`) and Shorewake quest grant is authored. |
+| `rhythm_grade_to_result` — grade changes a JRPG result | P0 | **Available** | — | The seam that defines the game. Rhythm is owner-locked WORKED; the grade→damage edge is unproven in live PIE. |
 | Fix `WBP_MelodiaRhythmHighway` lane legend → Q/W/O/P | P0 | **Available** | — | Still shows retired D/F/J/K. Live keys are Q/W/O/P via `BP_BattleUI::OnKeyDown`. Small, visible, unambiguous. |
-| `static_gates` — clear the two baseline drifts | P0 | **Available** | — | FAIL 2026-08-14. `M_Master_Simple_Universal` 25→26 nodes, `M_Master_Toon_Landscape_HeightBlend` 290→304 nodes. Other four sub-gates passed. Either re-baseline deliberately or revert the drift. |
-| Bind `BP_BattleController.melodiaBattleUI` / `.MelodiaUI` to the Melodia rhythm-highway HUD | P0 | **Available — TOP PRIORITY** | — | Both are `None` on the live battle controller (verified 2026-08-26 PIE). Blocks `rhythm_owner`, `hud_single_writer`, and `rhythm_grade_to_result` gates. |
+| `static_gates` — clear baseline drifts | P0 | **Done** | — | PASS 2026-08-29 (`session-e4ee8de9`). Baseline refreshed (16 assets), 55 clean exports, 0 drifted. |
+| Bind `BP_BattleController.melodiaBattleUI` / `.MelodiaUI` to the Melodia rhythm-highway HUD | P0 | **Done** | — | Confirmed vestigial pre-bridge variables; `BP_BattleController.battleUI` is correctly linked to `BP_BattleUI_C_0` (`MATCH=True`). |
 | Un-abstract `BP_MelodySlimeBattle_Hub` | P0 | **Available** | — | Still an abstract class; the Melody Slime is not battle-triggerable in the hub map until it can be spawned. |
 | Re-add `ShowQuestRewards` override (`BP_ItemObtainDialogue`) on `BP_MelodiaJRPGPlayerController` | P0 | **Available** | — | Dropped when the duplicated EventGraph was stripped during the 2026-08-26 reparent fix. |
-| `bp_sweep` / `verify_baseline` static gates still FAIL | P0 | **Available** | — | Pre-existing, unrelated to the 2026-08-26 battle fix. `bp_sweep`: `DUPES != 0`, ~15 `/Game/Melodia/<path>` vs `/Game/<path>` mirror-tree duplicate short names. `verify_baseline`: 16 drifted assets, all materials, zero gameplay assets. |
 
 ### P1 — Convergence hygiene
 

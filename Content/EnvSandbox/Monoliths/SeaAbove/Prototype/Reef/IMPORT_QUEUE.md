@@ -2,12 +2,31 @@
 
 Raw assets staged by `Tools/Houdini/sea_above_reef/stage_to_sandbox.py`
 (sha256-verified against `Saved/Audit/sea_above/` sources; see `stage_manifest.json`).
-**Nothing here is imported yet** — this folder holds the source files; the editor
-creates the `.uasset`s. Contact sheets and audit copies were deliberately NOT staged.
+Contact sheets and audit copies were deliberately NOT staged.
 
 Import target namespace: `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/…`
 (UE 5.x: enable *Show External Files* in the Content Browser to import in place,
 or use Add → Import from this folder.)
+
+> **STATUS 2026-08-29 (materials takeover, commit `2c201fe3`) — most of this queue is DONE.**
+> - **Textures: 35/41 imported** (incl. the whole table below with the flags listed, plus the
+>   sRGB-on-data defects corrected in the 01:16 water-materials session). The last six —
+>   `T_Leviathan_Bone_{BaseColor,Normal,Roughness}` + `T_Organ_Pipe_{BaseColor,Normal,Emissive}` —
+>   were imported 2026-08-29 evening with correct flags (normals `TC_Normalmap`/linear,
+>   `WorldNormalMap`; roughness linear `WorldSpecular`; color maps sRGB).
+> - **Meshes: all coral/kelp/island/rock/flora/cloth/jelly uassets exist** (morphs on
+>   `JELLY_Bell` verified intact). **Still missing: `SM_Leviathan.obj` + `SM_DrownedOrgan.obj`
+>   mesh imports** — their MIs are ready and waiting
+>   (`MI_SeaAbove_Leviathan_Bone`, `MI_SeaAbove_Organ_Pipe`, created + saved 2026-08-29 on
+>   `M_Master_Toon_Universal`, Organ Pipe with `bUseEmissiveMap=true`).
+> - **Instances: reef MI set live** (CoralSkin/2S, Kelp, Sand, WetRock on
+>   `M_Master_Toon_Universal`; Jelly_Bell/Arms on the Alpha master). Kelp/Banner/Shroud are on
+>   Kelp as an explicit placeholder (Banner/Shroud want a fabric master eventually).
+> - **Shorewake dress**: `SK_ShorewakeDress` slot 0 now on
+>   `MI_Melusina_Dress_Shorewake` (auto-import `Material_001` retired).
+> - Remaining material work: ocean visual pass + `Toon_Weight` dial (§7 of
+>   `Docs/OCEANOLOGY_STYLIZATION_AND_TRAVERSAL_INTEGRATION_RESEARCH_2026-08-29.md`),
+>   Banner/Shroud fabric master, textured render QA pass.
 
 ## Textures → `Reef/Textures/`
 
@@ -132,6 +151,12 @@ material (noise-in-material by design; grids are smooth SDF shells).
 `SM_Shroud.fbx` (Gather/Drift/Settle) — skeletal with root bone; drive like the bell
 morphs (slow crossfades; gust coupling to SeaAbovePulse optional). Silk = the
 Shorewake dress material family.
+
+> **SUPERSEDED (2026-08-29):** `Meshes/SK_ShorewakeDress.fbx` (the flat-layout join with
+> Nikki morphs) is superseded by the OWNER's rigged, posed, weighted dress import
+> (Blender + Substance, imported into UE). Do not import the flat one — it is kept only as
+> the morph-authoring reference. Re-author the morphs on the owner's rig if they are absent
+> in-engine (one Blender pass; math in `dress_transform.py`).
 
 **Dream flora:** `SM_Flora_Reed/Chime/Fern` (code-L-system) — PCG scatter through the
 reef kit; tips take CoralSkin/Iridescence; chime bells = the Bell motif seed.
