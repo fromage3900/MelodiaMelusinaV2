@@ -1,4 +1,33 @@
-> ## Start here — 2026-08-28 evening (P0 Phase 1 CLOSED · Quill trigger repaired · **tree does not compile**)
+> ## Start here — 2026-08-29 (P0 Closeout · Shorewake Transformation Verified · C++ Build Green · Tests 100% Pass)
+>
+> **Authority:** `Docs/Plans/SHOREWAKE_TRAVERSAL_PLAN_AND_P0_CLOSEOUT_2026-08-29.md` ·
+> `Docs/P0_TASK_LEDGER.json` (`agent_work_log_2026-08-29`).
+>
+> **C++ Build Status:** Fully compiled and green. The `FGameplayTag` migration across `UMelodiaWaterGameplaySubsystem`
+> and all companion headers is resolved and passing. `run_tests.ps1 -Suite All` passes 100%
+> (304 GMM Simulation & Contract Tests, 45 P0 Content & Integration Tests, 77 ECHO Pipeline Contracts).
+>
+> **Gates Certified PASS:**
+> - `static_gates`: Certified PASS 2026-08-29 (`session-e4ee8de9`) with 55 clean exports and 0 baseline drift.
+> - `battle_integration_map`: Certified PASS across all 4 terminal outcomes (`session-7aa8ad8a`).
+> - `hud_single_writer`: Certified PASS (`session-7aa8ad8a`).
+> - `allowlist_ids` / P0 Phase 1: All 12/12 QuillScript narrative files compiled and active.
+>
+> **Shorewake Transformation & Traversal Deliverables:**
+> - Ingested 48 USDZ panels (`melusinashorewake.usdz`) -> unified `SK_ShorewakeDress` (183k verts, 206k polys)
+>   with `Dress_Root` armature and 48 individual material slots (`SW_Dress_P01..P48`).
+> - Authored 3 cascade morphs: `Nikki_Bloom` (radial flare/lift), `Nikki_Swirl` (70° Z-rotation), `ShimmerWave` (micro-shimmer).
+> - Generated visual QA renders in `Saved/Audit/sea_above/renders/skiff/SHOREWAKE_TRANSFORM_QA.png` and
+>   `SHOREWAKE_48MAT_SLOTS.png`.
+> - Authored `MelodiaQuillShorewake.qsc` questline and verified `test_shorewake_quest_contract.py` (5/5 PASS).
+>
+> **Sea Above Level Loop & Enemy Placements:**
+> - `stage_seaabove_level_loop.py` sets up non-destructive additive placements on the user's landscape,
+>   including `SeaAbove_SmokeBattleEncounter` and `SeaAbove_Littoral_EnemyPatrol`.
+>
+> ---
+>
+> ## Start here — 2026-08-28 evening (P0 Phase 1 CLOSED · Quill trigger repaired · C++ migration in progress)
 >
 > **Read `Docs/Handoffs/SESSION_CLOSEOUT_2026-08-28_EVENING.md` before doing anything.**
 >
@@ -34,17 +63,30 @@
 > `Plugins/Developer/` would create a module conflict. The `MelodiaShader` module compiles but its
 > shaders are **not reachable from any material** — nothing calls `AddShaderSourceDirectoryMapping`.
 >
+> **CORRECTED 2026-08-29 — the second half of that sentence is false.**
+> `Source/MelodiaShader/Private/MelodiaShader.cpp:11` calls
+> `AddShaderSourceDirectoryMapping(TEXT("/Melodia"), ShaderDir)` in `StartupModule()`, and the
+> module loads at `PostConfigInit` precisely so it registers before the shader compiler runs.
+> The module also **moved** — it is `Source/MelodiaShader/`, not `Source/BS_GodFile/MelodiaShader/`
+> as most docs (including `.claude/skills/melodia-shader-rider/SKILL.md:39`) still say.
+> The *real* remaining gap is narrower: the `/Melodia` virtual path has **zero consumers** —
+> nothing `#include`s it from any material, Custom node, or build script. Six `.ush` files exist
+> (not seven; `MelodiaShader.Build.cs:16` names a `MelodiaInkHalftone.ush` that does not exist).
+>
 > Sea Above docs branch merged (`67ed8a33`) incl. the **Shorelistener** P0 outfit board.
 > Branch: `feature/p0-phase1-allowlist-quill-trigger` (4 commits, unmerged).
 > Also: `Docs/Handoffs/P0_PHASE1_CLOSEOUT_AND_QUILL_TRIGGER_2026-08-28.md`,
 > `Docs/VFX_NIAGARA_FLIPBOOK_SYSTEM_PLAN_2026-08-28.md`.
 >
-> **Houdini lane (later 08-28):** Sea Above reef texture suite (24 files, 11/11 tilable-verified)
-> + 4 clutter meshes COOKED and manifest-backed in `Saved/Audit/sea_above/`; hython 22.0.368
-> proven headless (no Engine license → HDA-in-UE parked). Long-term reference:
-> `Docs/Production/HOUDINI_CREATIVE_PIPELINE_REFERENCE_2026-08-28.md` — read before any Houdini
-> work (Apprentice blocks FBX/Alembic export; File-SOP "write" is the path; never run hython
-> bare in a shared console — a hang wedged one session).
+> **Houdini lane (later 08-28):** full creative day delivered and reviewed — reef texture suite
+> (35 staged), coral/kelp/island/jellyfish meshes (20 staged incl. `JELLY_Bell.fbx` with 3 morph
+> targets + 320 m ribbon arms), Starskiff/Shorewake lookdev (8 in `Clothes/`), Blender render QA
+> (121 renders + sheets), ingest verifier at 25/0 with three-category wrap semantics. Read
+> before ANY Houdini work: `Docs/Production/HOUDINI_CREATIVE_PIPELINE_REFERENCE_2026-08-28.md`
+> (Apprentice blocks FBX/Alembic export but FBX import works; File-SOP "write" is the geometry
+> path; never run hython bare in a shared console). Full closeout review + open items:
+> `Docs/Handoffs/SESSION_REVIEW_HOUDINI_CREATIVE_LANE_2026-08-28.md`. Next lane session = the
+> editor import queue (`Reef/IMPORT_QUEUE.md`).
 
 > ## Start here — 2026-08-27 (two P0 gates CLOSED, Quill dialogue restored)
 >

@@ -12,7 +12,8 @@
       "quest.first_dream",
       "quest.wardrobe.equip_outfit",
       "quest.companion.choral_sheep",
-      "quest.cutscene.sea_above"
+      "quest.cutscene.sea_above",
+      "quest.shorewake.initiation"
     ],
     "flags": [
       "melodia_q_echo_0N_complete",
@@ -29,7 +30,9 @@
       "flag.companion.choral_sheep_completed",
       "flag.cutscene.sea_above_witnessed",
       "flag.sea_above.membrane_pulse_active",
-      "flag.cutscene.sea_above_completed"
+      "flag.cutscene.sea_above_completed",
+      "flag.quest.shorewake_completed",
+      "flag.sea_above.starskiff_ready"
     ],
     "travel": [
       "L_KaleidoNave",
@@ -47,7 +50,8 @@
       "reward.first_resonance_echo",
       "reward.wardrobe.first_outfit",
       "reward.companion.choral_sheep",
-      "reward.cutscene.sea_above_memory"
+      "reward.cutscene.sea_above_memory",
+      "reward.shorewake_weave"
     ],
     "social_stats": [
       "melodia_harmony",

@@ -206,7 +206,7 @@ class _EffectsSubPanelBase:
 SYNTHIA_EQUATION_PRESETS = [
     ('helix',         "* Helix",          "Parametric helix"),
     ('spiral',        "* Spiral",         "Archimedean spiral"),
-    ('torus_knot',    "🪢 Torus Knot",     "(p,q) torus knot"),
+    ('torus_knot',    "Torus Knot",     "(p,q) torus knot"),
     ('lissajous',     "* Lissajous",      "Lissajous figure"),
     ('lorenz',        "* Lorenz",         "Lorenz attractor"),
     ('rossler',       "* Rössler",        "Rössler attractor"),
@@ -1211,8 +1211,8 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('WALL_STRAIGHT',   "* Wall Straight",      "Standard wall segment (snaps to unit grid)"),
             ('WALL_CORNER',     "* Wall Corner",        "90deg corner wall piece"),
             ('WALL_DOOR',       "* Wall + Door",        "Wall containing a doorway opening"),
-            ('WALL_WINDOW',     "🪟 Wall + Window",      "Wall containing a window opening"),
-            ('CEILING_TILE',    "⬛ Ceiling Tile",       "Ceiling matching the floor unit"),
+            ('WALL_WINDOW',     "Wall + Window",      "Wall containing a window opening"),
+            ('CEILING_TILE',    "Ceiling Tile",       "Ceiling matching the floor unit"),
             ('CORNER_PIECE',    "* Corner Pillar",      "Decorative corner column (modular snap)"),
             # === Escher modular structures ===
             ('CASCADING_BEAMS', "* Cascading Beams",    "Erindale-style recursive parallel beams"),
@@ -1226,16 +1226,16 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('ZEN_LANTERN',      "* Stone Lantern",     "Toro stone lantern with capped roof"),
             ('ZEN_TEAHOUSE',     "* Tea House",         "Small Zen pavilion with curved roof"),
             ('ZEN_BRIDGE',       "* Garden Bridge",     "Curved Japanese garden bridge"),
-            ('ZEN_STONE_GARDEN', "🪨 Stone Garden",      "Raked sand with arranged stones"),
+            ('ZEN_STONE_GARDEN', "Stone Garden",      "Raked sand with arranged stones"),
             # ===== Baroque / Classical (v2.58) =====
             ('BAROQUE_VAULT',       "* Baroque Vault",       "Barrel, groin, or ribbed vault ceiling"),
             ('BAROQUE_FACADE',      "* Baroque Facade",      "~14 m seven-bay facade - pilaster rhythm, piano nobile windows"),
             ('BAROQUE_NICHE',       "* Baroque Niche",       "Recessed aedicula niche in wall plane"),
             ('BAROQUE_BALUSTRADE',  "* Baroque Balustrade",  "Baluster railing with handrail"),
-            # ===== 🇨🇳 Chinese traditional architecture =====
+            # ===== Chinese traditional architecture =====
             ('CN_DOUGONG',       "* Dougong 斗栱",       "Chinese bracket-set cluster (cap-block + radial arms + tiers)"),
             ('CN_TIERED_PAGODA', "* Chinese Pagoda 塔",  "Multi-tier Chinese pagoda - flared eaves, octagonal plan, finial spire"),
-            # ===== 🇰🇷 Korean traditional architecture =====
+            # ===== Korean traditional architecture =====
             ('KR_HANOK',         "* Korean Hanok 핝옥",  "Elevated single-story hanok with low-pitched gable roof + ondol platform"),
             # ===== * Castle / city piece library (v2.23) =====
             ('WATCHTOWER',       "* Watchtower",        "Corner watchtower: shaft + machicolation + conical roof"),
@@ -1261,7 +1261,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('STONE_BRIDGE',     "* Stone Bridge",      "Multi-arch stone bridge with railings"),
             ('WINDMILL',         "* Windmill",          "Tower windmill with rotating blades and cap"),
             ('CHAPEL',           "* Chapel",            "Small church with single bell tower + arched windows"),
-            ('VILLAGE_WELL',     "🪣 Village Well",      "Stone village well with bucket + roof shelter"),
+            ('VILLAGE_WELL',     "Village Well",      "Stone village well with bucket + roof shelter"),
             ('MARKET_STALL',     "* Market Stall",      "Merchant stall with awning + counter + hanging sign"),
             ('OBELISK',          "* Obelisk",           "Tall narrow stone obelisk monument with pyramidion top"),
             # ===== * Town & civic library (v2.24) =====
@@ -1291,16 +1291,16 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('WAYSIDE_SHRINE',   "* Wayside Shrine",    "~4 m Shinto/Buddhist honden - plinth, niche, peaked roof + finial"),
             # ===== * Natural / landscape (v2.25) =====
             ('STYLIZED_TREE',    "* Stylized Tree",     "Low-poly stylized tree with branches and foliage clusters"),
-            ('BOULDER_PILE',     "🪨 Boulder Pile",      "Cluster of irregular weathered boulders"),
+            ('BOULDER_PILE',     "Boulder Pile",      "Cluster of irregular weathered boulders"),
             # ===== * Decor (v2.25) =====
             ('HERALDIC_BANNER',  "* Heraldic Banner",   "Hanging banner / pennant on a pole"),
             ('TORCH_SCONCE',     "* Torch Sconce",      "Wall-mounted iron torch holder with flame"),
             # === Advanced walls (with adjustable window grids) ===
-            ('WALL_MULTI_WINDOW',  "🪟 Wall (Multi-Pane)",  "Wall with grid of mullioned windows"),
-            ('WALL_ARCHED_WINDOW', "🪟 Wall (Arched)",       "Wall with arched-top window"),
-            ('WALL_BAY_WINDOW',    "🪟 Wall (Bay Window)",   "Wall with projecting bay window"),
+            ('WALL_MULTI_WINDOW',  "Wall (Multi-Pane)",  "Wall with grid of mullioned windows"),
+            ('WALL_ARCHED_WINDOW', "Wall (Arched)",       "Wall with arched-top window"),
+            ('WALL_BAY_WINDOW',    "Wall (Bay Window)",   "Wall with projecting bay window"),
             # === * Advanced GN / Blender 5.1 showcase ===
-            ('RAYCAST_FACADE',    "🪟 Raycast Facade",     "Curtain wall with panel distribution via Raycast node"),
+            ('RAYCAST_FACADE',    "Raycast Facade",     "Curtain wall with panel distribution via Raycast node"),
             ('VOLUME_CLOUD',      "* Volume Cloud Palace", "Puffy volumetric palace via Mesh->Volume->Mesh pipeline"),
             ('GEODESIC_VORONOI',  "* Geodesic Voronoi Dome","Voronoi-tiled structural dome with Edge Angle + Named Attributes"),
             ('DNA_HELIX',         "* DNA Helix Tower",    "Double helix tower with cross-rungs using Curve to Mesh"),
@@ -1316,9 +1316,9 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             # ── v2.50 generators ──────────────────────────────────────────
             ('ARCHWAY_ADV', "* Advanced Archway",  "~3 m structural portal - Roman/Gothic/Tudor/Moorish/Ogee styles"),
             ('BRIDGE_ADV',  "* Advanced Bridge",   "Multi-style bridge (Stone arch/Roman/Suspension/Truss/Covered/Beam)"),
-            ('FENCE',       "🪵 Fence Generator",   "Multi-style fence / barrier (Picket/Iron/Ranch/Stone/Lattice/Bamboo/Modern)"),
+            ('FENCE',       "Fence Generator",   "Multi-style fence / barrier (Picket/Iron/Ranch/Stone/Lattice/Bamboo/Modern)"),
             # v2.55 - Curved Room greybox
-            ('GB_ROOM_CIRCULAR',  "⭕ Circular Room",    "Full circular drum room with boolean door/window cuts"),
+            ('GB_ROOM_CIRCULAR',  "Circular Room",    "Full circular drum room with boolean door/window cuts"),
             ('GB_ROOM_APSIDAL',   "* Apsidal Room",     "~12×28 m nave + semicircular apse - Roman basilica / cathedral plan"),
             ('GB_CORRIDOR_ARC',   "* Arc Corridor",     "Curved hallway - inner wall boolean door + optional window cuts"),
             ('GB_ROOM_ROTUNDA',   "* Rotunda",          "~18 m dia. Pantheon-style drum - gallery + oculus dome cap"),
@@ -1338,12 +1338,12 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('HIGG_SURFACE_WALL', "* Higgsas Surface Wall",  "Brick/Hex/Voronoi/Cairo surface wall using NTBricks Grid"),
             ('HIGG_COLONNADE',    "* Higgsas Colonnade",     "Column row/ring using NTCircular Array or NTArray"),
             # v2.70 - Synthia math->geometry arch types
-            ('SYNTHIA_TORUS_KNOT', "🪢 Synthia Torus Knot", "Math viz torus knot (Synthia or fallback)"),
+            ('SYNTHIA_TORUS_KNOT', "Synthia Torus Knot", "Math viz torus knot (Synthia or fallback)"),
             ('SYNTHIA_MOBIUS',     "* Synthia Möbius",     "Möbius strip math sculpture"),
             ('SYNTHIA_LORENZ',     "* Synthia Lorenz",     "Lorenz attractor sculpture"),
             ('SYNTHIA_PLATONIC',   "* Synthia Platonic",   "Platonic solids via Synthia geometry preset"),
             # v2.52 - Escher Greybox
-            ('GB_ESCHER_RELATIVITY',   "🪜 Relativity Room",    "Room with 3 gravity directions - floor/wall/ceiling staircases"),
+            ('GB_ESCHER_RELATIVITY',   "Relativity Room",    "Room with 3 gravity directions - floor/wall/ceiling staircases"),
             ('GB_ESCHER_PENROSE_LOOP', "* Penrose Loop",        "Rooftop ring staircase that endlessly ascends and returns"),
             ('GB_ESCHER_GRAVITY_SHIFT',"* Gravity Shift",      "Corridor that rotates 90deg - floor becomes a wall"),
             ('GB_ESCHER_BELVEDERE',    "* Belvedere",          "2-story loggia with cross-connected impossible columns"),
@@ -1366,7 +1366,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('GB_ROMANESQUE_ARCADE', "* Romanesque Arcade", "Round-arch bay with colonette, impost block, barrel vault"),
             ('GB_ROMANESQUE_APSE', "* Romanesque Apse", "Semicircular choir apse with recess shell - bay termination"),
             ('GB_BRUTALIST_PANEL_WALL', "* Brutalist Panel Wall", "Pilaster rhythm + recess panels - trim-sheet wall module"),
-            ('GB_VENETIAN_LOGGIA', "🇮🇹 Venetian Loggia Bay", "Bifora void rhythm + cornice shelf - greybox loggia module"),
+            ('GB_VENETIAN_LOGGIA', "Venetian Loggia Bay", "Bifora void rhythm + cornice shelf - greybox loggia module"),
             ('GB_SCIFI_PRESSURE_DOOR', "* Sci-Fi Pressure Door", "Gasket ring recess + frame offset + MUST_CONNECT door snap"),
             ('GB_ZEN_ROJI_STEP', "* Zen Roji Step", "Dew-path stone segment - edge trim + path snaps"),
             ('GB_ZEN_TORII_GATE', "* Zen Torii Gate", "Modular torii greybox - hashira/nuki/kasagi + gate snap"),
@@ -1374,11 +1374,11 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('GB_ZEN_TAHOTO', "* Zen Tahoto", "Treasure pagoda - mokoshi base, drum, double roof"),
             ('GB_ZEN_HONDEN', "* Zen Honden", "Main sanctuary - raised moya, engawa, deep noki"),
             ('GB_ZEN_LANTERN', "* Zen Stone Lantern", "Greybox tōrō - kiso, sao, hibukuro, kasa, hōju"),
-            ('GB_ZEN_TSUKUBAI', "🪨 Zen Tsukubai", "Stone water basin pad - recess bowl + flagstones"),
+            ('GB_ZEN_TSUKUBAI', "Zen Tsukubai", "Stone water basin pad - recess bowl + flagstones"),
             ('GB_ZEN_ENGAWA', "* Zen Engawa", "Veranda deck - posts, railing, roji/garden snaps"),
             ('GB_ZEN_BAMBOO_FENCE', "* Zen Bamboo Fence", "Tileable bamboo screen - post + rail rhythm"),
-            ('GB_ZEN_TOBIISHI', "🪨 Zen Tobi-ishi", "Stepping stone path - scattered flat stones + path snaps"),
-            ('GB_ZEN_KARESANSUI', "🪨 Zen Karesansui", "Dry rock garden - raked gravel, border stones, groove trim"),
+            ('GB_ZEN_TOBIISHI', "Zen Tobi-ishi", "Stepping stone path - scattered flat stones + path snaps"),
+            ('GB_ZEN_KARESANSUI', "Zen Karesansui", "Dry rock garden - raked gravel, border stones, groove trim"),
             ('GB_ZEN_MACHIAI', "* Zen Machiai", "Waiting pavilion - posts, roof beam, bench slab"),
             ('GB_ZEN_STONE_BRIDGE', "* Zen Stone Bridge", "Greybox garden bridge - deck, rails, abutments"),
             ('GB_ZEN_CHERRY_ALLEE', "* Zen Cherry Allee", "Sakura path - walk slab, blossom canopy trim strips"),
@@ -1393,12 +1393,12 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('COLLAPSED_FLOOR', "* Collapsed Floor",    "Angled slab with exposed beams and rubble slide"),
             # v2.51 - Modular frames & structural
             ('DOOR_FRAME',      "* Door Frame",         "Standalone door frame with jambs, lintel, sill and optional arch cap"),
-            ('WINDOW_FRAME',    "🪟 Window Frame",       "Standalone window frame with sill, mullion or shutters"),
+            ('WINDOW_FRAME',    "Window Frame",       "Standalone window frame with sill, mullion or shutters"),
             ('WALL_T_JOIN',     "* T-Join Wall",        "T-intersection wall module - the missing modular kit piece"),
             ('WALL_ARROW_SLITS',"* Arrow Slit Wall",   "Castle wall with cross-shaped arrow slits and battlements"),
-            ('RETAINING_WALL',  "🪨 Retaining Wall",    "Stepped battered retaining wall - terrain seam piece"),
+            ('RETAINING_WALL',  "Retaining Wall",    "Stepped battered retaining wall - terrain seam piece"),
             # v2.51 - Environment props
-            ('BARREL_STACK',    "🪣 Barrel Stack",       "2-3 wooden barrels with hoop rings"),
+            ('BARREL_STACK',    "Barrel Stack",       "2-3 wooden barrels with hoop rings"),
             ('CRATE_PILE',      "* Crate Pile",         "Stack of wooden crates with scatter and plank lines"),
             ('CAMPFIRE',        "* Campfire",           "Radial log pile with stone ring and flame stand-in"),
             ('HALF_TIMBER_WALL',"* Half-Timber Wall",  "Tudor X-brace timber wall panel with plaster infill"),
@@ -1952,7 +1952,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         name="Quality Preset",
         description="One-click multiplier for resolution / complexity (overrides individual sliders when changed)",
         items=[
-            ('LOW',    "🪶 Low",    "Game-ready greybox (fast)"),
+            ('LOW',    "Low",    "Game-ready greybox (fast)"),
             ('MEDIUM', "* Medium", "Balanced (default)"),
             ('HIGH',   "* High",   "Detailed (slower)"),
             ('ULTRA',  "* Ultra",  "Maximum detail (slow)"),
@@ -2278,8 +2278,8 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
     higgsas_surface_style: bpy.props.EnumProperty(
         name="Surface Pattern",
         items=[('BRICK',    "* Brick Courses",   "Staggered brick / block courses (NTBricks Grid)"),
-               ('HEX',     "⬡ Hex Tile",          "Hexagonal floor or wall tile (NTHexagon Grid)"),
-               ('VORONOI', "🪨 Stone Voronoi",    "Natural stone cell pattern (NTDistance to Edge Voronoi)"),
+               ('HEX',     "Hex Tile",          "Hexagonal floor or wall tile (NTHexagon Grid)"),
+               ('VORONOI', "Stone Voronoi",    "Natural stone cell pattern (NTDistance to Edge Voronoi)"),
                ('CAIRO',   "* Cairo Tile",         "Islamic cairo pentagon tiling (NTCairo Tile Grid)"),
                ('TRIANGLE',"△ Triangle Grid",     "Triangular surface tiling (NTTriangle Grid)"),],
         default='BRICK', update=auto_update_callback)
@@ -2300,10 +2300,10 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('U_SHAPE',   "U U-Shape",       "Three sides open in the middle"),
             ('CIRCULAR',  "○ Circular",     "Full circle footprint (tower / rotunda)"),
             ('APSIDAL',   "◐ Apsidal",      "Rectangle + semicircular apse end"),
-            ('OCTAGON',   "⬡ Octagon",      "Regular octagon - gothic / sci-fi hub"),
-            ('HEX',       "⬡ Hexagon",      "Regular hexagon - honeycomb / shrine"),
-            ('ELLIPSE',   "⬭ Ellipse",      "Elliptical hall (baroque / orbital)"),
-            ('SUPERELLIPSE', "⬔ Superellipse", "Squircle / superellipse (n>2) - modern vault"),
+            ('OCTAGON',   "Octagon",      "Regular octagon - gothic / sci-fi hub"),
+            ('HEX',       "Hexagon",      "Regular hexagon - honeycomb / shrine"),
+            ('ELLIPSE',   "Ellipse",      "Elliptical hall (baroque / orbital)"),
+            ('SUPERELLIPSE', "Superellipse", "Squircle / superellipse (n>2) - modern vault"),
             ('FREEFORM',  "〰 Freeform Curve", "GN curve footprint (editable curve profile)"),
         ],
         default='RECTANGLE', update=auto_update_callback)
@@ -2691,7 +2691,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('LANTERN',     "* Lantern",          "Lamppost"),
             ('OGEE_ARCH',   "* Ogee Arch",       "Venetian ogee arch"),
             ('TREFOIL',     "* Trefoil",          "Three-lobed ornament"),
-            ('WINDOW',      "🪟 Window",          "Window with arch top"),
+            ('WINDOW',      "Window",          "Window with arch top"),
             ('SMALL_CUBE',  "* Bevel Cube",      "Small beveled cube"),
         ],
         default='BALUSTER',
@@ -2790,14 +2790,14 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         description="Material from the stylized library to apply",
         items=[
             ('AUTO',        "* Auto (by Type)",      "Pick best material for current architecture type"),
-            ('STONE',       "🪨 Stone",                "Stylized PBR stone"),
+            ('STONE',       "Stone",                "Stylized PBR stone"),
             ('MARBLE',      "* Marble",               "White veined marble"),
             ('WATER',       "* Musical Water",        "Animated waves driven by harmonics"),
-            ('STAINED',     "🪟 Stained Glass",        "Jewel-tone Voronoi panels"),
+            ('STAINED',     "Stained Glass",        "Jewel-tone Voronoi panels"),
             ('IRIDESCENT',  "* Iridescent",           "Color-shifting metal"),
             ('GOLD',        "* Gold",                 "Warm metallic gold"),
             ('CLEF_GLOW',   "* Clef Glow",            "Emissive musical glow"),
-            ('GOTHIC_DARK', "🪦 Gothic Dark",          "Worn dark stone"),
+            ('GOTHIC_DARK', "Gothic Dark",          "Worn dark stone"),
             ('GENSHIN',     "* Genshin Toon",         "Cel-shaded pastel anime style"),
         ],
         default='AUTO',
@@ -3026,7 +3026,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('CRYSTAL_GROW', "* Crystal Grow",   "Spike-like crystals emitted from bbox faces"),
             ('ORGANIC_GROW', "* Organic Tendrils","Branching tendrils from bbox corners"),
             ('NOISE_INFLATE',"* Noise Inflate",  "Noise-displaced inflated bbox"),
-            ('WIRE_CAGE',    "⬡ Wire Cage",       "Low-poly wireframe cage around bbox"),
+            ('WIRE_CAGE',    "Wire Cage",       "Low-poly wireframe cage around bbox"),
         ],
         default='SHELL',
         update=auto_update_callback,
@@ -3072,7 +3072,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         items=[
             ('SINE',     "ã€deg Sine",     "Smooth sinusoidal wave"),
             ('NOISE',    "* Noise",   "Turbulent Perlin noise"),
-            ('VORONOI',  "⬡ Voronoi", "Cell / Voronoi pattern"),
+            ('VORONOI',  "Voronoi", "Cell / Voronoi pattern"),
             ('FRACTAL',  "* Fractal", "Fractal Brownian motion"),
             ('SPIRAL',   "* Spiral", "Logarithmic spiral warp"),
         ],
@@ -3097,7 +3097,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         name="Profile Type",
         description="Bevel profile curve shape",
         items=[
-            ('SUPERELLIPSE', "⬭ Superellipse",  "Parametric rounded/chamfered profile"),
+            ('SUPERELLIPSE', "Superellipse",  "Parametric rounded/chamfered profile"),
             ('CUSTOM',       "* Custom Curve",  "Draw your own profile in the Bevel modifier"),
             ('CHAMFER',      "* Chamfer",       "Flat 45deg cut (n=1 superellipse)"),
             ('CONCAVE',      "⌒ Concave",       "Inward-curving bevel (profile < 0.5)"),
@@ -3163,7 +3163,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         name="Sci-Fi Effect",
         description="Non-destructive surface effect applied on top of any mesh",
         items=[
-            ('GREEBLE',      "⬛ Greeble Panels",   "Raised rectangular hull plates - classic hard-surface sci-fi detail"),
+            ('GREEBLE',      "Greeble Panels",   "Raised rectangular hull plates - classic hard-surface sci-fi detail"),
             ('CIRCUIT',      "* Circuit Board",    "PCB trace network + component pads on the surface"),
             ('NEON_TRIM',    "* Neon Trim",        "Glowing tube outlines along sharp edges (Curve-to-Mesh sweep)"),
             ('PANEL_LINES',  "▬ Panel Lines",       "Engraved panel line grid with chamfered trenches"),
@@ -3171,7 +3171,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('DAMAGE',       "* Battle Damage",    "Blast craters, dents and erosion via Voronoi displacement"),
             ('HOLOGRAM',     "* Hologram Shell",   "Offset translucent copy lattice for holographic projection feel"),
             ('VENT_GRILLE',  "▦ Vent Grille",       "Louvered vent grilles on a selected face cluster"),
-            ('HEX_ARMOUR',   "⬡ Hex Armour",       "Hexagonal tile plating via Voronoi-extruded surface"),
+            ('HEX_ARMOUR',   "Hex Armour",       "Hexagonal tile plating via Voronoi-extruded surface"),
         ],
         default='GREEBLE',
         update=auto_update_callback,
@@ -3197,10 +3197,10 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         items=[
             # Gothic
             ('GOTH_TRACERY',  "* Gothic Tracery",   "Distribute Gothic cross/star ornaments across the surface"),
-            ('GOTH_DRIP',     "🩸 Dripping Wax",     "Vertical wax/blood drips along the lower half"),
+            ('GOTH_DRIP',     "Dripping Wax",     "Vertical wax/blood drips along the lower half"),
             ('GOTH_SPIKES',   "* Gargoyle Spikes",  "Sharp spikes pointing outward along the surface"),
             ('GOTH_RIBS',     "* Cathedral Ribs",   "Vertical Gothic rib pillars wrapping the silhouette"),
-            ('GOTH_WEATHERED',"🪦 Weathered Stone",  "Eroded, cracked, age-worn stone surface"),
+            ('GOTH_WEATHERED',"Weathered Stone",  "Eroded, cracked, age-worn stone surface"),
             # Vaporwave
             ('VAP_WIRE',      "* Neon Wireframe",   "Pastel neon wireframe overlay"),
             ('VAP_PIXEL',     "* Pixel Shatter",    "Voxelized cube-shatter look"),
@@ -3221,29 +3221,29 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('SPI_RING',      "* Sacred Ring",      "Orbiting sacred ring(s) around the object"),
             ('SPI_ASTRAL',    "* Astral Echo",      "Floating duplicate offset upward, ghosted"),
             ('SPI_EYE',       "* Third Eye",        "Single inset eye-shape on the front face"),
-            ('SPI_LOTUS',     "🪷 Lotus Bloom",      "Lotus petals around the base"),
+            ('SPI_LOTUS',     "Lotus Bloom",      "Lotus petals around the base"),
             # ── v2.16: procedurally rich variants ───────────────────
             # Gothic
             ('GOTH_LATTICE',  "* Gothic Lattice",   "Fractal Gothic lattice grown across the surface"),
             ('GOTH_NICHES',   "* Arched Niches",    "Inset arched niches via voronoi mask + extrude"),
-            ('GOTH_FANS',     "🪭 Buttress Fans",    "Radial fan ribs sprouting from the base"),
+            ('GOTH_FANS',     "Buttress Fans",    "Radial fan ribs sprouting from the base"),
             ('GOTH_FINIALS',  "* Finial Crown",     "Pointed Gothic finials clustered along the top edge"),
-            ('GOTH_LEADWORK', "🪟 Lead Glasswork",   "Stained-glass voronoi lead lines wrapping the mesh"),
+            ('GOTH_LEADWORK', "Lead Glasswork",   "Stained-glass voronoi lead lines wrapping the mesh"),
             ('GOTH_SPIRES',   "* Spire Forest",     "Procedural spire growth from upward-facing peaks"),
             # Vaporwave
             ('VAP_SLICES',    "* Glitch Slices",    "Horizontal Z-band slices offset by noise (VHS glitch)"),
             ('VAP_SCANLINES', "* CRT Scanlines",    "Raised horizontal scanline ridges across the surface"),
             ('VAP_BUSTS',     "* Marble Busts",     "Classical bust columns scattered around the base"),
-            ('VAP_SLABS',     "🪩 Holo Slabs",       "Floating tilted holographic slabs orbiting the mesh"),
+            ('VAP_SLABS',     "Holo Slabs",       "Floating tilted holographic slabs orbiting the mesh"),
             ('VAP_SUN',       "* Retro Sun",        "Banded retro sun half-disc behind the object"),
             ('VAP_NEON_WRAP', "* Neon Wrap",        "Neon tube ribbon spiraling around the silhouette"),
             # Zen
             ('ZEN_ORBIT',     "* Lantern Orbit",    "Paper lanterns orbiting in concentric rings"),
             ('ZEN_SMOKE',     "* Incense Smoke",    "Helical incense smoke trails rising from the base"),
             ('ZEN_POND',      "* Carp Pond",        "Reflective water disk + lily pads beneath the object"),
-            ('ZEN_TERRACE',   "🪨 Stone Terraces",   "Stepped terraced rock layers grown from the bbox"),
+            ('ZEN_TERRACE',   "Stone Terraces",   "Stepped terraced rock layers grown from the bbox"),
             ('ZEN_GINKGO',    "* Ginkgo Drift",     "Ginkgo leaves drifting around in noise field"),
-            ('ZEN_RUNES',     "🈁 Calligraphy Runes","Kanji-style raised marks distributed on faces"),
+            ('ZEN_RUNES',     "Calligraphy Runes","Kanji-style raised marks distributed on faces"),
             # Spiritual
             ('SPI_RUNES',     "* Rune Circle",      "Glyphic rune circle inscribed on the floor"),
             ('SPI_HALO',      "* Fractal Halo",     "Fractal subdivided halo above the object"),
@@ -3255,7 +3255,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
             ('MUS_PULSE',     "* Music Pulse",      "Whole-mesh sine pulse driven by musical_freq_a"),
             ('MUS_EQ_BARS',   "* EQ Bars",          "Vertical EQ bars around the silhouette, heights driven by harmonics"),
             ('MUS_WAVE_DISP', "* Sound Wave Displace","Noise displacement amplitude scaled by music influence"),
-            ('MUS_BEAT_RING', "⭕ Beat Ring",        "Orbiting ring of orbs with sine-pulsing radii"),
+            ('MUS_BEAT_RING', "Beat Ring",        "Orbiting ring of orbs with sine-pulsing radii"),
             ('MUS_HARMONIC',  "* Harmonic Lattice", "Stack of horizontal noise grooves at frequencies a+b"),
             # ── v2.17: advanced GN ──────────────────────────────────
             ('ADV_RAY_GROW',  "* Raycast Growth",   "Rays from origin -> instances at hit normals"),
@@ -3392,7 +3392,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         name="Facade Material",
         items=[
             ('CONCRETE', "* Concrete",    "Raw concrete with horizontal banding"),
-            ('GLASS',    "🪟 Glass",       "Full curtain-wall glazing"),
+            ('GLASS',    "Glass",       "Full curtain-wall glazing"),
             ('BRICK',    "* Brick",       "Red brick coursing"),
             ('LED',      "* LED Panels",  "Cyberpunk LED panel grid"),
             ('SCIFI',    "* Sci-Fi",      "Panelled hull plating"),
@@ -6377,7 +6377,7 @@ def build_gb_corridor_arc_cross(tree, props, base_x=-1400):
 
 
 # ==============================================================================
-# 🪝  M.C. ESCHER GREYBOX PRESETS  (v2.52)
+#  M.C. ESCHER GREYBOX PRESETS  (v2.52)
 #   Solid, traversable level geometry inspired by Escher's impossible architecture.
 #   Each piece works as a standalone room/connector in a game level.
 # ==============================================================================
@@ -11735,7 +11735,7 @@ ZEN_ARCHITECTURE_GLOSSARY = {
     'shimenawa':('注連縄', 'Sacred rope - archaic shime-torii form'),
     # ── Pagoda tō 塔 ──────────────────────────────────────────────────
     'maku':     ('間',   'Bay between pillars on each story'),
-    'noki':     ('è»'',   'Deep eave overhang per tier'),
+    'noki': ('eave', 'Deep eave overhang per tier'),
     'kibana':   ('木鼻', 'Eave-tip upturn beam - corner ornament'),
     'shinbashira': ('心柱', 'Central heart column through all stories'),
     'sorin':    ('相輪', 'Spire assembly: roban, fukubachi, kurin, suien, hoju'),
@@ -13975,7 +13975,7 @@ def build_baroque_balustrade(tree, props, base_x=-1400):
 
 
 # ======================================================================
-# 🇨🇳 Chinese & 🇰🇷 Korean traditional architecture builders
+# Chinese & Korean traditional architecture builders
 # Distinct from the Japanese ZEN_* builders - derived from the Xie & Wang
 # (2023) modular system for Chinese carpentry and Hanok references.
 # ======================================================================
@@ -17882,7 +17882,7 @@ def build_bridge_advanced(tree, props, base_x=-1400):
 
 
 # ==============================================================================
-# 🪵  ADVANCED FENCE GENERATOR  (v2.50)
+#  ADVANCED FENCE GENERATOR  (v2.50)
 # ==============================================================================
 
 def build_fence(tree, props, base_x=-1400):
@@ -19795,7 +19795,7 @@ class SURREAL_ARCH_OT_cool_volume_palace(bpy.types.Operator):
 
 class SURREAL_ARCH_OT_cool_raycast_facade(bpy.types.Operator):
     """Spawn a Raycast Curtain Wall Facade."""
-    bl_idname = "surreal_arch.cool_raycast_facade"; bl_label = "🪟 Raycast Facade"
+    bl_idname = "surreal_arch.cool_raycast_facade"; bl_label = "Raycast Facade"
     bl_options = {'REGISTER', 'UNDO'}
     def execute(self, context):
         obj = _cool_setup(context, 'RAYCAST_FACADE')
@@ -19836,7 +19836,7 @@ class SURREAL_ARCH_PT_advanced_gn(_SubPanelBase, bpy.types.Panel):
         r.operator("surreal_arch.cool_geodome",        text="* Geodome",   icon='MESH_UVSPHERE')
         r.operator("surreal_arch.cool_spiderdome",     text="* Spider",    icon='FORCE_VORTEX')
         r = col.row(align=True); r.scale_y = 1.3
-        r.operator("surreal_arch.cool_raycast_facade", text="🪟 Facade",    icon='MOD_MIRROR')
+        r.operator("surreal_arch.cool_raycast_facade", text="Facade",    icon='MOD_MIRROR')
         r.operator("surreal_arch.cool_volume_palace",  text="* Volume",    icon='VOLUME_DATA')
 
         # ── Field & Weave ───────────────────────────────────────────────
@@ -25094,7 +25094,7 @@ class SURREAL_ARCH_PT_compose(_SubPanelBase, bpy.types.Panel):
 #   ② Vegetation Scatter     - Poisson tree/bush distribution on a target
 #   ③ Lighting Rig           - auto-place point lights at strategic positions
 #
-# Also: 🪞 Polish All - global bevel/auto-smooth pass on selection.
+# Also: Polish All - global bevel/auto-smooth pass on selection.
 # ══════════════════════════════════════════════════════════════════════
 
 
@@ -25201,7 +25201,7 @@ class SURREAL_ARCH_OT_spawn_terrain(bpy.types.Operator):
         items=[
             ('HILL',   "* Hill",   "Dome rises from center, falls off at edges"),
             ('ISLAND', "* Island", "Plateau with sharp drop-off perimeter"),
-            ('CLIFF',  "🪨 Cliff",  "One side drops away vertically"),
+            ('CLIFF',  "Cliff",  "One side drops away vertically"),
             ('PLAIN',  "* Plain",  "Gentle rolling noise base"),
         ],
         default='HILL', update=auto_update_callback)
@@ -25358,7 +25358,7 @@ class SURREAL_ARCH_OT_scatter_vegetation(bpy.types.Operator):
         name="Piece",
         items=[
             ('_lib_STYLIZED_TREE',   "* Stylized Tree",   "Default tree"),
-            ('_lib_BOULDER_PILE',    "🪨 Boulder Pile",   "Rock cluster"),
+            ('_lib_BOULDER_PILE',    "Boulder Pile",   "Rock cluster"),
             ('_lib_STREET_LAMP',     "* Street Lamp",   "Lamp post"),
             ('_lib_HERALDIC_BANNER', "* Banner",        "Heraldic banner"),
         ],
@@ -25523,14 +25523,14 @@ class SURREAL_ARCH_OT_lighting_rig(bpy.types.Operator):
         return {'FINISHED'}
 
 
-# ─── 🪞 POLISH ALL - global bevel + auto-smooth pass ───────────────
+# ─── POLISH ALL - global bevel + auto-smooth pass ───────────────
 
 class SURREAL_ARCH_OT_polish_all(bpy.types.Operator):
     """Add a consistent SurrealArch_Bevel modifier + smooth shading to every
     selected mesh. Use this on Layer 2 composed worlds for a cohesive AAA
     rounded-edge look across all pieces."""
     bl_idname = "surreal_arch.polish_all"
-    bl_label = "🪞 Polish Selected (cohesive bevel)"
+    bl_label = "Polish Selected (cohesive bevel)"
     bl_options = {'REGISTER', 'UNDO'}
 
     bevel_width: bpy.props.FloatProperty(
@@ -25592,7 +25592,7 @@ class SURREAL_ARCH_OT_polish_all(bpy.types.Operator):
                     bpy.ops.object.modifier_apply(modifier=bv.name)
                 except Exception: pass
             polished += 1
-        self.report({'INFO'}, f"🪞 Polished {polished} mesh(es)")
+        self.report({'INFO'}, f"Polished {polished} mesh(es)")
         return {'FINISHED'}
 
 
@@ -26625,7 +26625,7 @@ class SURREAL_ARCH_PT_layer3(_SubPanelBase, bpy.types.Panel):
         row = s6.row(align=True)
         row.scale_y = 1.25
         row.operator("surreal_arch.polish_all",
-                     text="🪞 Polish Selected", icon='MOD_BEVEL')
+                     text="Polish Selected", icon='MOD_BEVEL')
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -26654,10 +26654,10 @@ def _make_aest_op(suffix, effect_key, label, descr):
 
 # Gothic one-click ops
 SURREAL_ARCH_OT_aest_goth_tracery   = _make_aest_op('goth_tracery',   'GOTH_TRACERY',   "* Gothic Tracery",    "Distribute Gothic cross ornaments on any mesh")
-SURREAL_ARCH_OT_aest_goth_drip      = _make_aest_op('goth_drip',      'GOTH_DRIP',      "🩸 Dripping Wax",      "Vertical wax/blood drips")
+SURREAL_ARCH_OT_aest_goth_drip      = _make_aest_op('goth_drip',      'GOTH_DRIP',      "Dripping Wax",      "Vertical wax/blood drips")
 SURREAL_ARCH_OT_aest_goth_spikes    = _make_aest_op('goth_spikes',    'GOTH_SPIKES',    "* Gargoyle Spikes",   "Sharp spikes pointing outward")
 SURREAL_ARCH_OT_aest_goth_ribs      = _make_aest_op('goth_ribs',      'GOTH_RIBS',      "* Cathedral Ribs",    "Vertical Gothic rib pillars")
-SURREAL_ARCH_OT_aest_goth_weathered = _make_aest_op('goth_weathered', 'GOTH_WEATHERED', "🪦 Weathered Stone",   "Eroded, cracked stone surface")
+SURREAL_ARCH_OT_aest_goth_weathered = _make_aest_op('goth_weathered', 'GOTH_WEATHERED', "Weathered Stone",   "Eroded, cracked stone surface")
 # Vaporwave one-click ops
 SURREAL_ARCH_OT_aest_vap_wire       = _make_aest_op('vap_wire',       'VAP_WIRE',       "* Neon Wireframe",    "Pastel neon wireframe overlay")
 SURREAL_ARCH_OT_aest_vap_pixel      = _make_aest_op('vap_pixel',      'VAP_PIXEL',      "* Pixel Shatter",     "Voxelized cube-shatter look")
@@ -26678,26 +26678,26 @@ SURREAL_ARCH_OT_aest_spi_beam       = _make_aest_op('spi_beam',       'SPI_BEAM'
 SURREAL_ARCH_OT_aest_spi_ring       = _make_aest_op('spi_ring',       'SPI_RING',       "* Sacred Ring",       "Orbiting rings around object")
 SURREAL_ARCH_OT_aest_spi_astral     = _make_aest_op('spi_astral',     'SPI_ASTRAL',     "* Astral Echo",       "Floating ghost duplicate")
 SURREAL_ARCH_OT_aest_spi_eye        = _make_aest_op('spi_eye',        'SPI_EYE',        "* Third Eye",         "Single inset eye on front")
-SURREAL_ARCH_OT_aest_spi_lotus      = _make_aest_op('spi_lotus',      'SPI_LOTUS',      "🪷 Lotus Bloom",       "Lotus petals around base")
+SURREAL_ARCH_OT_aest_spi_lotus      = _make_aest_op('spi_lotus',      'SPI_LOTUS',      "Lotus Bloom",       "Lotus petals around base")
 # v2.16 - additional procedurally-rich effects
 SURREAL_ARCH_OT_aest_goth_lattice   = _make_aest_op('goth_lattice',   'GOTH_LATTICE',   "* Gothic Lattice",    "Fractal Gothic lattice + finial nodes")
 SURREAL_ARCH_OT_aest_goth_niches    = _make_aest_op('goth_niches',    'GOTH_NICHES',    "* Arched Niches",     "Voronoi-masked inset arched niches")
-SURREAL_ARCH_OT_aest_goth_fans      = _make_aest_op('goth_fans',      'GOTH_FANS',      "🪭 Buttress Fans",     "Radial fan ribs from base")
+SURREAL_ARCH_OT_aest_goth_fans      = _make_aest_op('goth_fans',      'GOTH_FANS',      "Buttress Fans",     "Radial fan ribs from base")
 SURREAL_ARCH_OT_aest_goth_finials   = _make_aest_op('goth_finials',   'GOTH_FINIALS',   "* Finial Crown",      "Pointed finials clustered along top")
-SURREAL_ARCH_OT_aest_goth_leadwork  = _make_aest_op('goth_leadwork',  'GOTH_LEADWORK',  "🪟 Lead Glasswork",    "Stained-glass voronoi lead lines")
+SURREAL_ARCH_OT_aest_goth_leadwork  = _make_aest_op('goth_leadwork',  'GOTH_LEADWORK',  "Lead Glasswork",    "Stained-glass voronoi lead lines")
 SURREAL_ARCH_OT_aest_goth_spires    = _make_aest_op('goth_spires',    'GOTH_SPIRES',    "* Spire Forest",      "Procedural spires from peaks")
 SURREAL_ARCH_OT_aest_vap_slices     = _make_aest_op('vap_slices',     'VAP_SLICES',     "* Glitch Slices",     "VHS-style Z-band glitch")
 SURREAL_ARCH_OT_aest_vap_scanlines  = _make_aest_op('vap_scanlines',  'VAP_SCANLINES',  "* CRT Scanlines",     "Raised horizontal scanlines")
 SURREAL_ARCH_OT_aest_vap_busts      = _make_aest_op('vap_busts',      'VAP_BUSTS',      "* Marble Busts",      "Classical bust columns around base")
-SURREAL_ARCH_OT_aest_vap_slabs      = _make_aest_op('vap_slabs',      'VAP_SLABS',      "🪩 Holo Slabs",        "Orbiting holographic slabs")
+SURREAL_ARCH_OT_aest_vap_slabs      = _make_aest_op('vap_slabs',      'VAP_SLABS',      "Holo Slabs",        "Orbiting holographic slabs")
 SURREAL_ARCH_OT_aest_vap_sun        = _make_aest_op('vap_sun',        'VAP_SUN',        "* Retro Sun",         "Banded retro sun half-disc")
 SURREAL_ARCH_OT_aest_vap_neon_wrap  = _make_aest_op('vap_neon_wrap',  'VAP_NEON_WRAP',  "* Neon Wrap",         "Spiraling neon tube around mesh")
 SURREAL_ARCH_OT_aest_zen_orbit      = _make_aest_op('zen_orbit',      'ZEN_ORBIT',      "* Lantern Orbit",     "Paper lanterns in orbit rings")
 SURREAL_ARCH_OT_aest_zen_smoke      = _make_aest_op('zen_smoke',      'ZEN_SMOKE',      "* Incense Smoke",     "Helical smoke trails rising")
 SURREAL_ARCH_OT_aest_zen_pond       = _make_aest_op('zen_pond',       'ZEN_POND',       "* Carp Pond",         "Water disc + lily pads beneath")
-SURREAL_ARCH_OT_aest_zen_terrace    = _make_aest_op('zen_terrace',    'ZEN_TERRACE',    "🪨 Stone Terraces",    "Stepped rock terraces around bbox")
+SURREAL_ARCH_OT_aest_zen_terrace    = _make_aest_op('zen_terrace',    'ZEN_TERRACE',    "Stone Terraces",    "Stepped rock terraces around bbox")
 SURREAL_ARCH_OT_aest_zen_ginkgo     = _make_aest_op('zen_ginkgo',     'ZEN_GINKGO',     "* Ginkgo Drift",      "Ginkgo leaves drifting around")
-SURREAL_ARCH_OT_aest_zen_runes      = _make_aest_op('zen_runes',      'ZEN_RUNES',      "🈁 Calligraphy",       "Kanji-style raised marks on faces")
+SURREAL_ARCH_OT_aest_zen_runes      = _make_aest_op('zen_runes',      'ZEN_RUNES',      "Calligraphy",       "Kanji-style raised marks on faces")
 SURREAL_ARCH_OT_aest_spi_runes      = _make_aest_op('spi_runes',      'SPI_RUNES',      "* Rune Circle",       "Glyphic rune circle on floor")
 SURREAL_ARCH_OT_aest_spi_halo       = _make_aest_op('spi_halo',       'SPI_HALO',       "* Fractal Halo",      "Fractal subdivided halo above")
 SURREAL_ARCH_OT_aest_spi_triangles  = _make_aest_op('spi_triangles',  'SPI_TRIANGLES',  "△ Sacred Triangles", "Overlapping sacred-geometry triangles")
@@ -26708,7 +26708,7 @@ SURREAL_ARCH_OT_aest_spi_portal     = _make_aest_op('spi_portal',     'SPI_PORTA
 SURREAL_ARCH_OT_aest_mus_pulse      = _make_aest_op('mus_pulse',      'MUS_PULSE',      "* Music Pulse",       "Radial sine pulse driven by musical_freq_a")
 SURREAL_ARCH_OT_aest_mus_eq_bars    = _make_aest_op('mus_eq_bars',    'MUS_EQ_BARS',    "* EQ Bars",           "Vertical EQ bars (heights = pseudo-spectrum)")
 SURREAL_ARCH_OT_aest_mus_wave_disp  = _make_aest_op('mus_wave_disp',  'MUS_WAVE_DISP',  "* Sound Wave Disp",   "Noise displacement scaled by music influence")
-SURREAL_ARCH_OT_aest_mus_beat_ring  = _make_aest_op('mus_beat_ring',  'MUS_BEAT_RING',  "⭕ Beat Ring",         "Pulsing orbital ring of orbs")
+SURREAL_ARCH_OT_aest_mus_beat_ring  = _make_aest_op('mus_beat_ring',  'MUS_BEAT_RING',  "Beat Ring",         "Pulsing orbital ring of orbs")
 SURREAL_ARCH_OT_aest_mus_harmonic   = _make_aest_op('mus_harmonic',   'MUS_HARMONIC',   "* Harmonic Lattice",  "Stacked sine grooves at freq_a + freq_b")
 SURREAL_ARCH_OT_aest_adv_ray_grow   = _make_aest_op('adv_ray_grow',   'ADV_RAY_GROW',   "* Raycast Growth",    "Distribute + raycast outward growth")
 SURREAL_ARCH_OT_aest_adv_near_fur   = _make_aest_op('adv_near_fur',   'ADV_NEAR_FUR',   "* Nearest Fur",       "Normal-aligned fur cones at every vertex")
@@ -26812,15 +26812,15 @@ class SURREAL_ARCH_PT_aesthetic_effects(_EffectsSubPanelBase, bpy.types.Panel):
         cat_specs = [
             ("* Gothic", [
                 ('surreal_arch.aest_goth_tracery',   "* Tracery"),
-                ('surreal_arch.aest_goth_drip',      "🩸 Drip"),
+                ('surreal_arch.aest_goth_drip',      "Drip"),
                 ('surreal_arch.aest_goth_spikes',    "* Spikes"),
                 ('surreal_arch.aest_goth_ribs',      "* Ribs"),
-                ('surreal_arch.aest_goth_weathered', "🪦 Weathered"),
+                ('surreal_arch.aest_goth_weathered', "Weathered"),
                 ('surreal_arch.aest_goth_lattice',   "* Lattice"),
                 ('surreal_arch.aest_goth_niches',    "* Niches"),
-                ('surreal_arch.aest_goth_fans',      "🪭 Fans"),
+                ('surreal_arch.aest_goth_fans',      "Fans"),
                 ('surreal_arch.aest_goth_finials',   "* Finials"),
-                ('surreal_arch.aest_goth_leadwork',  "🪟 Leadwork"),
+                ('surreal_arch.aest_goth_leadwork',  "Leadwork"),
                 ('surreal_arch.aest_goth_spires',    "* Spires"),
             ]),
             ("* Vaporwave", [
@@ -26832,7 +26832,7 @@ class SURREAL_ARCH_PT_aesthetic_effects(_EffectsSubPanelBase, bpy.types.Panel):
                 ('surreal_arch.aest_vap_slices',    "* Slices"),
                 ('surreal_arch.aest_vap_scanlines', "* Scanlines"),
                 ('surreal_arch.aest_vap_busts',     "* Busts"),
-                ('surreal_arch.aest_vap_slabs',     "🪩 Slabs"),
+                ('surreal_arch.aest_vap_slabs',     "Slabs"),
                 ('surreal_arch.aest_vap_sun',       "* Sun"),
                 ('surreal_arch.aest_vap_neon_wrap', "* Neon Wrap"),
             ]),
@@ -26845,9 +26845,9 @@ class SURREAL_ARCH_PT_aesthetic_effects(_EffectsSubPanelBase, bpy.types.Panel):
                 ('surreal_arch.aest_zen_orbit',   "* Lanterns"),
                 ('surreal_arch.aest_zen_smoke',   "* Smoke"),
                 ('surreal_arch.aest_zen_pond',    "* Pond"),
-                ('surreal_arch.aest_zen_terrace', "🪨 Terraces"),
+                ('surreal_arch.aest_zen_terrace', "Terraces"),
                 ('surreal_arch.aest_zen_ginkgo',  "* Ginkgo"),
-                ('surreal_arch.aest_zen_runes',   "🈁 Calligraphy"),
+                ('surreal_arch.aest_zen_runes',   "Calligraphy"),
             ]),
             ("* Spiritual", [
                 ('surreal_arch.aest_spi_aura',      "* Aura"),
@@ -26857,7 +26857,7 @@ class SURREAL_ARCH_PT_aesthetic_effects(_EffectsSubPanelBase, bpy.types.Panel):
                 ('surreal_arch.aest_spi_ring',      "* Ring"),
                 ('surreal_arch.aest_spi_astral',    "* Astral"),
                 ('surreal_arch.aest_spi_eye',       "* Third Eye"),
-                ('surreal_arch.aest_spi_lotus',     "🪷 Lotus"),
+                ('surreal_arch.aest_spi_lotus',     "Lotus"),
                 ('surreal_arch.aest_spi_runes',     "* Runes"),
                 ('surreal_arch.aest_spi_halo',      "* Halo"),
                 ('surreal_arch.aest_spi_triangles', "△ Triangles"),
@@ -26869,7 +26869,7 @@ class SURREAL_ARCH_PT_aesthetic_effects(_EffectsSubPanelBase, bpy.types.Panel):
                 ('surreal_arch.aest_mus_pulse',     "* Pulse"),
                 ('surreal_arch.aest_mus_eq_bars',   "* EQ Bars"),
                 ('surreal_arch.aest_mus_wave_disp', "* Wave Disp"),
-                ('surreal_arch.aest_mus_beat_ring', "⭕ Beat Ring"),
+                ('surreal_arch.aest_mus_beat_ring', "Beat Ring"),
                 ('surreal_arch.aest_mus_harmonic',  "* Harmonic"),
             ]),
             ("* Advanced GN", [
@@ -27208,7 +27208,7 @@ def _scifi_one_click(effect):
 
 
 class SURREAL_ARCH_OT_scifi_greeble(bpy.types.Operator):
-    bl_idname="surreal_arch.scifi_greeble"; bl_label="⬛ Greeble"; bl_options={'REGISTER','UNDO'}
+    bl_idname="surreal_arch.scifi_greeble"; bl_label="Greeble"; bl_options={'REGISTER','UNDO'}
     execute=_scifi_one_click('GREEBLE')
 
 class SURREAL_ARCH_OT_scifi_circuit(bpy.types.Operator):
@@ -27232,7 +27232,7 @@ class SURREAL_ARCH_OT_scifi_damage(bpy.types.Operator):
     execute=_scifi_one_click('DAMAGE')
 
 class SURREAL_ARCH_OT_scifi_hex(bpy.types.Operator):
-    bl_idname="surreal_arch.scifi_hex"; bl_label="⬡ Hex Armour"; bl_options={'REGISTER','UNDO'}
+    bl_idname="surreal_arch.scifi_hex"; bl_label="Hex Armour"; bl_options={'REGISTER','UNDO'}
     execute=_scifi_one_click('HEX_ARMOUR')
 
 class SURREAL_ARCH_OT_scifi_clear(bpy.types.Operator):
@@ -27362,7 +27362,7 @@ class SURREAL_ARCH_PT_scifi(_EffectsSubPanelBase, bpy.types.Panel):
         col = box.column(align=True)
 
         r = col.row(align=True); r.scale_y = 1.5
-        r.operator("surreal_arch.scifi_greeble",      text="⬛ Greeble",    icon='MESH_GRID')
+        r.operator("surreal_arch.scifi_greeble",      text="Greeble",    icon='MESH_GRID')
         r.operator("surreal_arch.scifi_circuit",      text="* Circuit",    icon='NODETREE')
         r.operator("surreal_arch.scifi_neon",         text="* Neon Trim",  icon='LIGHT_SUN')
 
@@ -27372,7 +27372,7 @@ class SURREAL_ARCH_PT_scifi(_EffectsSubPanelBase, bpy.types.Panel):
         r.operator("surreal_arch.scifi_damage",       text="* Damage",     icon='FORCE_TURBULENCE')
 
         r = col.row(align=True); r.scale_y = 1.5
-        r.operator("surreal_arch.scifi_hex",          text="⬡ Hex Armour", icon='MESH_ICOSPHERE')
+        r.operator("surreal_arch.scifi_hex",          text="Hex Armour", icon='MESH_ICOSPHERE')
         r.operator("surreal_arch.scifi_apply",        text="* Apply Custom",icon='CHECKMARK')
         r.operator("surreal_arch.scifi_clear",        text="* Clear",      icon='TRASH')
 
@@ -27437,7 +27437,7 @@ class SURREAL_ARCH_PT_auto_building(_SubPanelBase, bpy.types.Panel):
         col2.prop(props, "bld_floor_height_b",text="Floor Height")
 
         box3 = layout.box()
-        box3.label(text="🪟 Windows")
+        box3.label(text="Windows")
         col3 = box3.column(align=True)
         col3.prop(props, "bld_win_cols", text="Columns")
         col3.prop(props, "bld_win_rows", text="Rows / Floor")
@@ -28464,7 +28464,7 @@ _ARCH_PRESETS = {
         'op_id': 'surreal_arch.preset_arc_cross_junction',
     },
     'ZEN_COURTYARD': {
-        'group': 'ASIAN', 'label': '🪨 Zen Courtyard',
+        'group': 'ASIAN', 'label': 'Zen Courtyard',
         'desc': 'ZEN_SHRINE_COURTYARD graph - torii, karesansui, engawa, teahouse',
         'op_id': 'surreal_arch.preset_zen_courtyard',
     },
@@ -28546,7 +28546,7 @@ _ARCH_PRESETS = {
         'op_id': 'surreal_arch.preset_gothic_bell_tower',
     },
     'GREYBOX_STAIR': {
-        'group': 'GREYBOX', 'label': '🪜 Stair Ascent',
+        'group': 'GREYBOX', 'label': 'Stair Ascent',
         'desc': '~3 m blockout stair + landing (Z=0 walk plane)',
         'op_id': 'surreal_arch.preset_greybox_stair_ascent',
     },
@@ -28654,7 +28654,7 @@ _ARCH_PRESETS = {
         'op_id': 'surreal_arch.preset_zen_pagoda_spire',
     },
     'ZEN_KARESANSHUI_WALK': {
-        'group': 'ASIAN', 'label': '🪨 Zen Karesansui Walk',
+        'group': 'ASIAN', 'label': 'Zen Karesansui Walk',
         'desc': 'ZEN_KARESANSHUI_WALK graph - torii, roji, dry garden, machiai',
         'op_id': 'surreal_arch.preset_zen_karesansui_walk',
     },
@@ -28669,7 +28669,7 @@ _ARCH_PRESET_GROUPS = (
     ('GREYBOX', '* Greybox', 'MESH_CUBE'),
     ('CIVIC', '* Civic', 'HOME'),
     ('GOTHIC', '* Gothic', 'OUTLINER_DATA_LIGHT'),
-    ('ASIAN', '🇯🇵 Asian', 'OUTLINER_OB_GREASEPENCIL'),
+    ('ASIAN', 'Asian', 'OUTLINER_OB_GREASEPENCIL'),
     ('CASTLE', '* Castle', 'OUTLINER_OB_LATTICE'),
     ('EXPERIMENTAL', '* Experimental', 'EXPERIMENTAL'),
 )
@@ -28692,7 +28692,7 @@ _ARCH_PICKER_STYLE_GROUPS = (
         'CIVIC', 'TOWN', 'BAROQUE', 'TOWERS',
     )),
     ('GOTHIC', '* Gothic', ('GOTHIC',)),
-    ('ASIAN', '🇯🇵 Asian', ('ASIAN',)),
+    ('ASIAN', 'Asian', ('ASIAN',)),
     ('CASTLE', '* Castle', ('CASTLE',)),
     ('EXPERIMENTAL', '* Experimental', (
         'ESCHER', 'MUSICAL', 'ADVANCED', 'LANDSCAPE',
@@ -29081,7 +29081,7 @@ SURREAL_ARCH_OT_synthia_mobius = _make_synthia_preset(
 
 SURREAL_ARCH_OT_synthia_torus_knot = _make_synthia_preset(
     "SURREAL_ARCH_OT_synthia_torus_knot", "surreal_arch.synthia_torus_knot",
-    "🪢 Torus Knot", 'torus_knot', 'EQUATION', 'GOLD')
+    "Torus Knot", 'torus_knot', 'EQUATION', 'GOLD')
 
 SURREAL_ARCH_OT_synthia_lissajous = _make_synthia_preset(
     "SURREAL_ARCH_OT_synthia_lissajous", "surreal_arch.synthia_lissajous",
@@ -29652,7 +29652,7 @@ class SURREAL_ARCH_OT_sv_diagnose(bpy.types.Operator):
     node types are available. Run this when a preset's tree-building feels
     broken - it'll tell you which Sverchok nodes are missing."""
     bl_idname = "surreal_arch.sv_diagnose"
-    bl_label = "🩺 Diagnose Sverchok Compatibility"
+    bl_label = "Diagnose Sverchok Compatibility"
     bl_options = {'REGISTER'}
 
     def execute(self, context):
@@ -29688,7 +29688,7 @@ class SURREAL_ARCH_OT_sv_diagnose(bpy.types.Operator):
                 except: pass
         # Print to console
         print("\n══════════════════════════════════════════════════════")
-        print("🩺  SVERCHOK COMPATIBILITY DIAGNOSTIC")
+        print(" SVERCHOK COMPATIBILITY DIAGNOSTIC")
         print("══════════════════════════════════════════════════════")
         print(f"\n* Available nodes ({len(avail)}):")
         for nname, descr in avail:
@@ -29703,7 +29703,7 @@ class SURREAL_ARCH_OT_sv_diagnose(bpy.types.Operator):
             print("\n* All preset nodes available!")
         print()
         self.report({'INFO'},
-            f"🩺 Sverchok diagnostic: {len(avail)} nodes ok, {len(missing)} missing - see Window->Toggle System Console")
+            f"Sverchok diagnostic: {len(avail)} nodes ok, {len(missing)} missing - see Window->Toggle System Console")
         return {'FINISHED'}
 
 
@@ -30022,7 +30022,7 @@ def sverchok_spiral_tower():
 
 
 def sverchok_torus_knot():
-    """🪢 (p,q) Torus Knot - Escher's interlocking ribbon. Default p=3, q=2 (trefoil)."""
+    """(p,q) Torus Knot - Escher's interlocking ribbon. Default p=3, q=2 (trefoil)."""
     import math
     res_mult, scale_mult, complexity_mult, _phase = _sv_params()
     R, r = 2.0 * scale_mult, 0.6 * scale_mult
@@ -30715,7 +30715,7 @@ def sverchok_rose_window():
 
 
 def sverchok_spiral_staircase():
-    """🪜 Spiral staircase - N steps arrayed helically around a central column."""
+    """Spiral staircase - N steps arrayed helically around a central column."""
     import math
     n_steps = 16
     step_rise = 0.22
@@ -31849,7 +31849,7 @@ SURREAL_ARCH_OT_sv_spiral = _make_sverchok_op(
     "* Spiral Tower",  sverchok_spiral_tower)
 SURREAL_ARCH_OT_sv_torus_knot   = _make_sverchok_op(
     "SURREAL_ARCH_OT_sv_torus_knot","surreal_arch.sv_torus_knot",
-    "🪢 Torus Knot",     sverchok_torus_knot)
+    "Torus Knot",     sverchok_torus_knot)
 SURREAL_ARCH_OT_sv_tessellation = _make_sverchok_op(
     "SURREAL_ARCH_OT_sv_tessellation","surreal_arch.sv_tessellation",
     "* Tessellation",   sverchok_tessellation)
@@ -31881,7 +31881,7 @@ SURREAL_ARCH_OT_sv_rose_window   = _make_sverchok_op(
     "* Rose Window", sverchok_rose_window)
 SURREAL_ARCH_OT_sv_staircase     = _make_sverchok_op(
     "SURREAL_ARCH_OT_sv_staircase", "surreal_arch.sv_staircase",
-    "🪜 Spiral Stairs", sverchok_spiral_staircase)
+    "Spiral Stairs", sverchok_spiral_staircase)
 SURREAL_ARCH_OT_sv_vault         = _make_sverchok_op(
     "SURREAL_ARCH_OT_sv_vault", "surreal_arch.sv_vault",
     "* Vault Ceiling", sverchok_vault_ceiling)
@@ -31934,7 +31934,7 @@ class SURREAL_ARCH_OT_compose_scene(bpy.types.Operator):
         name="Style",
         items=[
             ('DARK_SOULS', "* Dark Souls Ruin", "Crumbled cathedral with twisted spires, chandeliers, scattered tombstones"),
-            ('ESCHER',     "🪜 Escher Surreal",  "Möbius staircases, cascading arches, recursive portals"),
+            ('ESCHER',     "Escher Surreal",  "Möbius staircases, cascading arches, recursive portals"),
             ('GOTHIC_CITY',"* Gothic City",    "Multiple palazzo facades + bridges + radial buildings"),
         ],
         default='DARK_SOULS',
@@ -32488,43 +32488,43 @@ _ARCH_PARAM_SPEC = {
                       ['bridge_style', 'bridge_span', 'bridge_width', 'bridge_rise']),
                      ("* Structure", 'MESH_CUBE',
                       ['bridge_arches', 'bridge_deck_thick', 'bridge_railings'])],
-    'FENCE':        [("🪵 Fence", 'DRIVER_ROTATIONAL_DIFFERENCE',
+    'FENCE':        [("Fence", 'DRIVER_ROTATIONAL_DIFFERENCE',
                       ['fence_style', 'fence_length', 'fence_height']),
-                     ("🪵 Details", 'MESH_CUBE',
+                     ("Details", 'MESH_CUBE',
                       ['fence_post_spacing', 'fence_rails', 'fence_picket_gap'])],
     # ─── v2.55 Curved Rooms ─────────────────────────────────────────
-    'GB_ROOM_CIRCULAR':  [("⭕ Circular", 'MESH_CIRCLE',
+    'GB_ROOM_CIRCULAR':  [("Circular", 'MESH_CIRCLE',
                            ['gb_width', 'gb_height', 'gb_wall_thick', 'gb_door_width', 'gb_door_height',
                             'gb_ceiling']),
-                          ("🪟 Windows", 'MESH_GRID',
+                          ("Windows", 'MESH_GRID',
                            ['gb_windows_enabled', 'gb_window_count', 'gb_window_width',
                             'gb_window_height', 'gb_window_sill'])],
     'GB_ROOM_APSIDAL':   [("* Nave", 'MESH_CUBE',
                            ['gb_width', 'gb_depth', 'gb_height', 'gb_wall_thick']),
                           ("* Door", 'PREFERENCES',
                            ['gb_door_width', 'gb_door_height', 'gb_ceiling']),
-                          ("🪟 Windows", 'MESH_GRID',
+                          ("Windows", 'MESH_GRID',
                            ['gb_windows_enabled', 'gb_window_count', 'gb_window_width',
                             'gb_window_height', 'gb_window_sill'])],
     'GB_CORRIDOR_ARC':   [("* Arc", 'FORCE_VORTEX',
                            ['gb_width', 'gb_height', 'gb_wall_thick', 'gb_radius', 'gb_steps', 'gb_ceiling']),
                           ("* Door", 'MESH_CUBE',
                            ['gb_door_width', 'gb_door_height']),
-                          ("🪟 Windows", 'MESH_GRID',
+                          ("Windows", 'MESH_GRID',
                            ['gb_windows_enabled', 'gb_window_count', 'gb_window_width',
                             'gb_window_height', 'gb_window_sill'])],
     'GB_ROOM_ROTUNDA':   [("* Rotunda", 'MESH_CIRCLE',
                            ['gb_width', 'gb_height', 'gb_floors', 'gb_wall_thick']),
                           ("* Gallery", 'PREFERENCES',
                            ['gb_run', 'gb_door_width', 'gb_door_height']),
-                          ("🪟 Windows", 'MESH_GRID',
+                          ("Windows", 'MESH_GRID',
                            ['gb_windows_enabled', 'gb_window_count', 'gb_window_width',
                             'gb_window_height', 'gb_window_sill'])],
     'GB_CORRIDOR_ARC_CROSS': [("* Cross", 'FORCE_VORTEX',
                                ['gb_width', 'gb_height', 'gb_wall_thick', 'gb_radius']),
                               ("* Door", 'MESH_CUBE',
                                ['gb_door_width', 'gb_door_height']),
-                              ("🪟 Windows", 'MESH_GRID',
+                              ("Windows", 'MESH_GRID',
                                ['gb_windows_enabled', 'gb_window_count', 'gb_window_width',
                                 'gb_window_height', 'gb_window_sill'])],
     # ─── v2.53 Lebbeus Woods ────────────────────────────────────────
@@ -32574,9 +32574,9 @@ _ARCH_PARAM_SPEC = {
                           ("* Array", 'DRIVER_ROTATIONAL_DIFFERENCE',
                            ['higgsas_array_mode'])],
     # ─── v2.52 Escher Greybox ────────────────────────────────────────
-    'GB_ESCHER_RELATIVITY':   [("🪜 Chamber", 'MESH_CUBE',
+    'GB_ESCHER_RELATIVITY':   [("Chamber", 'MESH_CUBE',
                                 ['gb_width', 'gb_height', 'gb_wall_thick']),
-                               ("🪜 Stairs", 'PREFERENCES',
+                               ("Stairs", 'PREFERENCES',
                                 ['gb_steps', 'gb_rise'])],
     'GB_ESCHER_PENROSE_LOOP': [("* Loop", 'MESH_CUBE',
                                 ['gb_width', 'gb_depth', 'gb_height', 'gb_wall_thick']),
@@ -32596,7 +32596,7 @@ _ARCH_PARAM_SPEC = {
     # ─── v2.52 Extended Greybox ──────────────────────────────────────
     'GB_CORRIDOR_BEND':  [("* Bend Dimensions", 'MESH_CUBE',
                            ['gb_length', 'gb_corridor_profile', 'gb_height', 'gb_wall_thick']),
-                          ("🪚 Trim & panels", 'MOD_BOOLEAN',
+                          ("Trim & panels", 'MOD_BOOLEAN',
                            ['gb_trim_mode', 'gb_trim_recess', 'gb_corridor_rib_mode',
                             'gb_wainscot_height', 'gb_baseboard_height']),
                           ("* Ceiling", 'PREFERENCES',
@@ -32612,44 +32612,44 @@ _ARCH_PARAM_SPEC = {
     'GB_CORRIDOR_DOOR_END': [("* Door End", 'MESH_CUBE',
                               ['gb_length', 'gb_corridor_profile', 'gb_height', 'gb_wall_thick',
                                'gb_door_width', 'gb_door_height']),
-                             ("🪚 Trim", 'MOD_BOOLEAN',
+                             ("Trim", 'MOD_BOOLEAN',
                               ['gb_trim_mode', 'gb_trim_recess', 'gb_frame']),
                              ("* Ceiling", 'PREFERENCES', ['gb_corridor_ceiling'])],
     'GB_GOTHIC_PORTAL': [("* Portal", 'MESH_CUBE',
                           ['gb_width', 'gb_height', 'gb_wall_thick', 'gb_door_width', 'gb_door_height',
                            'gothic_width', 'gothic_radius']),
-                         ("🪚 Trim", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess'])],
+                         ("Trim", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess'])],
     'GB_GOTHIC_BAY': [("* Bay", 'MESH_CUBE',
                        ['gothic_width', 'gb_height', 'gb_wall_thick']),
-                      ("🪟 Opening", 'MESH_GRID',
+                      ("Opening", 'MESH_GRID',
                        ['gb_windows_enabled', 'gb_window_width', 'gb_window_height', 'gb_window_sill']),
-                      ("🪚 Trim", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess'])],
+                      ("Trim", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess'])],
     'GB_GOTHIC_BUTTRESS': [("* Buttress", 'MESH_CUBE',
                             ['buttress_span', 'gb_height', 'gb_wall_thick'])],
     'GB_GOTHIC_TRACERY_PANEL': [("* Tracery", 'MESH_PLANE',
                                  ['gothic_width', 'gothic_thickness'])],
     'GB_CORRIDOR_OFFSET': [("* Offset Corridor", 'MESH_CUBE',
                             ['gb_length', 'gb_corridor_profile', 'gb_height', 'gb_wall_thick']),
-                           ("🪚 Trim Panels", 'MOD_BOOLEAN',
+                           ("Trim Panels", 'MOD_BOOLEAN',
                             ['gb_trim_mode', 'gb_trim_recess', 'gb_baseboard_height', 'unit_size']),
                            ("* Ceiling", 'PREFERENCES', ['gb_corridor_ceiling', 'gb_corridor_rib_mode'])],
     'GB_ROMANESQUE_ARCADE': [("* Bay", 'MESH_CUBE',
                               ['gb_width', 'gb_height', 'gb_wall_thick', 'gb_leg_thick']),
                              ("⌒ Arch", 'MOD_CURVE',
                               ['gb_corridor_ceiling']),
-                             ("🪚 Trim", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess'])],
+                             ("Trim", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess'])],
     'GB_ROMANESQUE_APSE': [("* Apse", 'MESH_CUBE',
                             ['gb_width', 'gb_depth', 'gb_height', 'gb_wall_thick']),
-                           ("🪚 Shell", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess', 'unit_size'])],
+                           ("Shell", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess', 'unit_size'])],
     'GB_BRUTALIST_PANEL_WALL': [("* Wall", 'MESH_CUBE',
                                  ['gb_length', 'gb_height', 'gb_wall_thick', 'unit_size']),
-                                ("🪚 Panels", 'MOD_BOOLEAN',
+                                ("Panels", 'MOD_BOOLEAN',
                                  ['gb_trim_mode', 'gb_trim_recess', 'gb_baseboard_height'])],
-    'GB_VENETIAN_LOGGIA': [("🇮🇹 Loggia", 'MESH_CUBE',
+    'GB_VENETIAN_LOGGIA': [("Loggia", 'MESH_CUBE',
                             ['gb_width', 'gb_height', 'gb_wall_thick', 'unit_size']),
-                           ("🪟 Bifora", 'MESH_GRID',
+                           ("Bifora", 'MESH_GRID',
                             ['bifora_lights', 'gb_window_sill', 'gb_window_height']),
-                           ("🪚 Cornice", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess'])],
+                           ("Cornice", 'MOD_BOOLEAN', ['gb_trim_mode', 'gb_trim_recess'])],
     'GB_SCIFI_PRESSURE_DOOR': [("* Door End", 'MESH_CUBE',
                                 ['gb_length', 'gb_corridor_profile', 'gb_height', 'gb_wall_thick',
                                  'gb_door_width', 'gb_door_height']),
@@ -32659,7 +32659,7 @@ _ARCH_PARAM_SPEC = {
                            ['gb_room_shape', 'gb_width', 'gb_depth', 'gb_height', 'gb_wall_thick']),
                           ("* Doors", 'MESH_PLANE',
                            ['gb_door_width', 'gb_door_height', 'gb_door_n', 'gb_door_s', 'gb_door_e', 'gb_door_w']),
-                          ("🪟 Windows", 'MESH_GRID',
+                          ("Windows", 'MESH_GRID',
                            ['gb_windows_enabled', 'gb_window_count_ns', 'gb_window_count_ew',
                             'gb_window_width', 'gb_window_height', 'gb_window_sill',
                             'gb_window_frame_thickness']),
@@ -32668,14 +32668,14 @@ _ARCH_PARAM_SPEC = {
                            ['gb_floors', 'gb_height', 'gb_width', 'gb_depth', 'gb_wall_thick']),
                           ("* Doors", 'MESH_PLANE',
                            ['gb_door_width', 'gb_door_height']),
-                          ("🪟 Windows", 'MESH_GRID',
+                          ("Windows", 'MESH_GRID',
                            ['gb_windows_enabled', 'gb_window_count_ns', 'gb_window_count_ew',
                             'gb_window_width', 'gb_window_height', 'gb_window_sill',
                             'gb_window_frame_thickness']),
                           ("Extras", 'PREFERENCES', ['gb_railing_style'])],
     'GB_COMBAT_ROOM':    [("* Room", 'MESH_CUBE',
                            ['gb_width', 'gb_depth', 'gb_height', 'gb_wall_thick']),
-                          ("🪟 Windows", 'MESH_GRID',
+                          ("Windows", 'MESH_GRID',
                            ['gb_windows_enabled', 'gb_window_count_ns', 'gb_window_count_ew',
                             'gb_window_width', 'gb_window_height', 'gb_window_sill',
                             'gb_window_frame_thickness']),
@@ -32702,7 +32702,7 @@ _ARCH_PARAM_SPEC = {
     # ─── v2.51 Modular frames ─────────────────────────────────────────
     'DOOR_FRAME':      [("* Door Frame", 'MESH_PLANE',
                          ['door_width', 'door_height', 'wall_thickness', 'frame_arch_cap'])],
-    'WINDOW_FRAME':    [("🪟 Window Frame", 'MESH_PLANE',
+    'WINDOW_FRAME':    [("Window Frame", 'MESH_PLANE',
                          ['window_width', 'window_height', 'wall_thickness',
                           'frame_with_shutters'])],
     'WALL_T_JOIN':     [("* T-Join Wall", 'MOD_BUILD',
@@ -32711,14 +32711,14 @@ _ARCH_PARAM_SPEC = {
                          ['wall_segments', 'unit_size', 'wall_height', 'wall_thickness']),
                         ("* Battlements", 'MESH_CUBE',
                          ['crenel_merlon_count'])],
-    'RETAINING_WALL':  [("🪨 Retaining Wall", 'MOD_BUILD',
+    'RETAINING_WALL':  [("Retaining Wall", 'MOD_BUILD',
                          ['wall_segments', 'unit_size', 'wall_thickness']),
-                        ("🪨 Terraces", 'MESH_CUBE',
+                        ("Terraces", 'MESH_CUBE',
                          ['retaining_steps', 'retaining_batter'])],
     'HALF_TIMBER_WALL':[("* Half-Timber", 'MOD_BUILD',
                          ['wall_segments', 'unit_size', 'wall_height', 'wall_thickness'])],
     # ─── v2.51 Environment Props ──────────────────────────────────────
-    'BARREL_STACK':    [("🪣 Barrels", 'OBJECT_DATA',
+    'BARREL_STACK':    [("Barrels", 'OBJECT_DATA',
                          ['base_radius', 'height', 'prop_count', 'prop_scatter', 'seed'])],
     'CRATE_PILE':      [("* Crates", 'OBJECT_DATA',
                          ['base_radius', 'prop_count', 'prop_scatter', 'seed'])],
@@ -32730,14 +32730,14 @@ _ARCH_PARAM_SPEC = {
                          ("* Doors", 'MESH_PLANE',
                           ['gb_door_width', 'gb_door_height',
                            'gb_door_n', 'gb_door_s', 'gb_door_e', 'gb_door_w']),
-                         ("🪟 Windows", 'MESH_GRID',
+                         ("Windows", 'MESH_GRID',
                           ['gb_windows_enabled', 'gb_window_count_ns', 'gb_window_count_ew',
                            'gb_window_width', 'gb_window_height', 'gb_window_sill',
                            'gb_window_frame_thickness']),
                          ("Extras", 'PREFERENCES', ['gb_ceiling'])],
     'GREYBOX_CORRIDOR': [("* Corridor", 'MESH_CUBE',
                           ['gb_length', 'gb_corridor_profile', 'gb_height', 'gb_wall_thick']),
-                         ("🪚 Trim & panels", 'MOD_BOOLEAN',
+                         ("Trim & panels", 'MOD_BOOLEAN',
                           ['gb_trim_mode', 'gb_trim_recess', 'gb_corridor_rib_mode',
                            'gb_wainscot_height', 'gb_baseboard_height']),
                          ("* Ceiling", 'PREFERENCES',
@@ -32765,13 +32765,13 @@ _ARCH_PARAM_SPEC = {
     'GREYBOX_DOORWAY':  [("* Doorway", 'MESH_CUBE',
                           ['gb_width', 'gb_height', 'gb_wall_thick',
                            'gb_door_width', 'gb_door_height']),
-                         ("🪚 Trim", 'MOD_BOOLEAN',
+                         ("Trim", 'MOD_BOOLEAN',
                           ['gb_trim_mode', 'gb_trim_recess', 'gb_frame'])],
     'GREYBOX_ARENA':    [("* Arena", 'MESH_CIRCLE',
                           ['gb_radius', 'gb_tiers', 'gb_sides', 'gb_rise', 'gb_run'])],
     'GREYBOX_TOWER':    [("* Tower Blockout", 'MESH_CUBE',
                           ['gb_floors', 'gb_height', 'gb_width', 'gb_depth', 'gb_wall_thick']),
-                         ("🪟 Openings", 'MESH_PLANE',
+                         ("Openings", 'MESH_PLANE',
                           ['gb_door_width', 'gb_door_height'])],
     'GREYBOX_PIPE_RUN': [("* Pipe Run", 'MESH_CAPSULE',
                           ['gb_segments', 'gb_radius', 'gb_length'])],
@@ -32799,7 +32799,7 @@ _ARCH_PARAM_SPEC = {
                            'pagoda_roof_overhang'])],
     'JP_KURA_STOREHOUSE':[("* Kura Storehouse", 'HOME',
                           ['base_radius', 'height'])],
-    'KR_JANGSEUNG':     [("🪵 Jangseung Totem", 'MESH_CAPSULE',
+    'KR_JANGSEUNG':     [("Jangseung Totem", 'MESH_CAPSULE',
                           ['base_radius', 'height'])],
     'KR_HONG_SAL_MUN':  [("* Hong-Sal-Mun Gate", 'MESH_CUBE',
                           ['base_radius', 'height', 'arch_thickness'])],
@@ -32829,9 +32829,9 @@ _ARCH_PARAM_SPEC = {
                           ['base_radius', 'height']),
                          ("* Finish", 'PREFERENCES',
                           ['bevel_amount', 'bevel_subdiv_level', 'auto_smooth'])],
-    'VILLAGE_WELL':     [("🪣 Well Ring", 'MESH_TORUS',
+    'VILLAGE_WELL':     [("Well Ring", 'MESH_TORUS',
                           ['base_radius']),
-                         ("🪣 Shelter", 'PREFERENCES',
+                         ("Shelter", 'PREFERENCES',
                           ['height'])],
     'MARKET_STALL':     [("* Stall Frame", 'MESH_CUBE',
                           ['base_radius', 'height']),
@@ -32870,13 +32870,13 @@ _ARCH_PARAM_SPEC = {
                           ['base_radius', 'height'])],
     'CRYPT_ENTRANCE':   [("* Crypt Entrance", 'MESH_UVSPHERE',
                           ['base_radius'])],
-    'WAYSIDE_SHRINE':   [("🪦 Wayside Shrine", 'MESH_CUBE',
+    'WAYSIDE_SHRINE':   [("Wayside Shrine", 'MESH_CUBE',
                           ['base_radius', 'height']),
-                         ("🪦 Roof & Finial", 'PREFERENCES',
+                         ("Roof & Finial", 'PREFERENCES',
                           ['bevel_amount', 'bevel_subdiv_level', 'auto_smooth'])],
     'STYLIZED_TREE':    [("* Stylized Tree", 'OUTLINER_OB_GREASEPENCIL',
                           ['height', 'recursion_depth'])],
-    'BOULDER_PILE':     [("🪨 Boulder Pile", 'MESH_ICOSPHERE',
+    'BOULDER_PILE':     [("Boulder Pile", 'MESH_ICOSPHERE',
                           ['base_radius', 'seed'])],
     'HERALDIC_BANNER':  [("* Heraldic Banner", 'MOD_CLOTH',
                           ['height'])],
@@ -32888,7 +32888,7 @@ _ARCH_PARAM_SPEC = {
                            'palazzo_floor_h', 'palazzo_arches_per_floor',
                            'palazzo_arch_style', 'palazzo_string_courses',
                            'palazzo_back_wall'])],
-    'BIFORA':           [("🪟 Bifora Window", 'MESH_GRID',
+    'BIFORA':           [("Bifora Window", 'MESH_GRID',
                           ['bifora_width', 'bifora_height',
                            'bifora_use_ogee', 'bifora_quatrefoil',
                            'bifora_lights'])],
@@ -32904,7 +32904,7 @@ _ARCH_PARAM_SPEC = {
                          ("* Footprint", 'MESH_GRID',
                           ['bld_width', 'bld_depth_b',
                            'bld_floor_count_b', 'bld_floor_height_b']),
-                         ("🪟 Windows", 'MESH_PLANE',
+                         ("Windows", 'MESH_PLANE',
                           ['bld_win_cols', 'bld_win_rows',
                            'bld_win_w', 'bld_win_h']),
                          ("Extras", 'PREFERENCES',
@@ -33020,9 +33020,9 @@ _ARCH_PARAM_SPEC = {
                           ['base_radius', 'height'])],
     'CRENEL':             [("Crenellation", 'MOD_BUILD',
                           ['crenel_merlon_count', 'crenel_gap_ratio', 'rail_length'])],
-    'ZEN_STONE_GARDEN': [("🪨 Karesansui (枯山水)", 'MESH_PLANE',
+    'ZEN_STONE_GARDEN': [("Karesansui (枯山水)", 'MESH_PLANE',
                           ['stone_garden_size', 'stone_garden_ripples']),
-                         ("🪨 Ishigumi (石組)", 'MESH_ICOSPHERE',
+                         ("Ishigumi (石組)", 'MESH_ICOSPHERE',
                           ['stone_garden_stones', 'stone_garden_sansonseki', 'stone_garden_tsukubai'])],
 }
 
@@ -33176,13 +33176,13 @@ class SURREAL_ARCH_PT_presets(_SubPanelBase, bpy.types.Panel):
         layout.separator()
 
         # =================================================================
-        # ⭕  CURVED ROOMS  - arc-plan rooms and corridors
+        #  CURVED ROOMS  - arc-plan rooms and corridors
         # =================================================================
         box = layout.box()
-        box.label(text="⭕  Curved Rooms  (arc-plan greybox)")
+        box.label(text=" Curved Rooms  (arc-plan greybox)")
         col = box.column(align=True)
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_gb_room_circular", text="⭕  Circular Room")
+        row.operator("surreal_arch.preset_gb_room_circular", text=" Circular Room")
         row.operator("surreal_arch.preset_gb_room_apsidal",  text="*  Apsidal")
         row.operator("surreal_arch.preset_gb_room_rotunda",  text="*  Rotunda")
         row = col.row(align=True); row.scale_y = 1.2
@@ -33224,20 +33224,20 @@ class SURREAL_ARCH_PT_presets(_SubPanelBase, bpy.types.Panel):
         col = box.column(align=True)
         row = col.row(align=True); row.scale_y = 1.2
         row.operator("surreal_arch.preset_higg_brick_wall",  text="*  Brick Wall")
-        row.operator("surreal_arch.preset_higg_stone_wall",  text="🪨  Stone Wall")
-        row.operator("surreal_arch.preset_higg_hex_floor",   text="⬡  Hex Floor")
+        row.operator("surreal_arch.preset_higg_stone_wall",  text=" Stone Wall")
+        row.operator("surreal_arch.preset_higg_hex_floor",   text=" Hex Floor")
         row = col.row(align=True); row.scale_y = 1.2
         row.operator("surreal_arch.preset_higg_colonnade",   text="*  Colonnade")
         row.operator("surreal_arch.higgsas_load_arch",       text="*  Load All Nodes", icon='NODETREE')
 
         # =================================================================
-        # 🪝  ESCHER GREYBOX  - impossible / surreal level geometry
+        #  ESCHER GREYBOX  - impossible / surreal level geometry
         # =================================================================
         box = layout.box()
-        box.label(text="🪜  Escher Greybox  (impossible geometry)")
+        box.label(text=" Escher Greybox  (impossible geometry)")
         col = box.column(align=True)
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_gb_escher_relativity",  text="🪜  Relativity")
+        row.operator("surreal_arch.preset_gb_escher_relativity",  text=" Relativity")
         row.operator("surreal_arch.preset_gb_escher_penrose",     text="*  Penrose Loop")
         row.operator("surreal_arch.preset_gb_escher_gravity",     text="*  Gravity Shift")
         row = col.row(align=True); row.scale_y = 1.2
@@ -33275,8 +33275,8 @@ class SURREAL_ARCH_PT_presets(_SubPanelBase, bpy.types.Panel):
         row.operator("surreal_arch.preset_wall_corner",   text="*  Corner")
         row.operator("surreal_arch.preset_wall_door",     text="*  Door Wall")
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_wall_window",   text="🪟  Window Wall")
-        row.operator("surreal_arch.preset_ceiling",       text="⬛  Ceiling")
+        row.operator("surreal_arch.preset_wall_window",   text=" Window Wall")
+        row.operator("surreal_arch.preset_ceiling",       text=" Ceiling")
         row.operator("surreal_arch.preset_corner_pillar", text="*  Pillar")
         row = col.row(align=True); row.scale_y = 1.2
         row.operator("surreal_arch.preset_tile",          text="*  Floor Tile")
@@ -33314,10 +33314,10 @@ class SURREAL_ARCH_PT_presets(_SubPanelBase, bpy.types.Panel):
         row.operator("surreal_arch.preset_bridge_suspension",  text="*  Suspension")
         row = col.row(align=True); row.scale_y = 1.2
         row.operator("surreal_arch.preset_bridge_truss",   text="*  Truss")
-        row.operator("surreal_arch.preset_fence_picket",   text="🪵  Picket Fence")
+        row.operator("surreal_arch.preset_fence_picket",   text=" Picket Fence")
         row.operator("surreal_arch.preset_fence_iron",     text="*  Iron Fence")
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_fence_stone",    text="🪨  Stone Wall")
+        row.operator("surreal_arch.preset_fence_stone",    text=" Stone Wall")
 
         # =================================================================
         # *  RAILINGS / STAIRS / DECORATION
@@ -33327,7 +33327,7 @@ class SURREAL_ARCH_PT_presets(_SubPanelBase, bpy.types.Panel):
         col = box.column(align=True)
         row = col.row(align=True); row.scale_y = 1.2
         row.operator("surreal_arch.preset_railing", text="*  Railing")
-        row.operator("surreal_arch.preset_stairs",  text="🪜  Stairs")
+        row.operator("surreal_arch.preset_stairs",  text=" Stairs")
         row.operator("surreal_arch.preset_spiral",  text="*  Spiral")
         row = col.row(align=True); row.scale_y = 1.2
         row.operator("surreal_arch.preset_balcony", text="*  Balcony")
@@ -33349,11 +33349,11 @@ class SURREAL_ARCH_PT_presets(_SubPanelBase, bpy.types.Panel):
         row.operator("surreal_arch.preset_gothic",  text="*  Gothic")
         row.operator("surreal_arch.preset_ogee",    text="*  Ogee")
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_bifora",  text="🪟  Bifora")
+        row.operator("surreal_arch.preset_bifora",  text=" Bifora")
         row.operator("surreal_arch.preset_cusped",  text="*  Cusped")
         row.operator("surreal_arch.preset_lancet",  text="‖  Lancet")
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_window",  text="🪟  Window")
+        row.operator("surreal_arch.preset_window",  text=" Window")
         row.operator("surreal_arch.preset_door",    text="*  Door")
         row.operator("surreal_arch.preset_trefoil", text="*  Trefoil")
         row = col.row(align=True); row.scale_y = 1.2
@@ -33375,26 +33375,26 @@ class SURREAL_ARCH_PT_presets(_SubPanelBase, bpy.types.Panel):
         row.operator("surreal_arch.preset_teahouse",    text="*  Tea House")
         row.operator("surreal_arch.preset_zen_bridge",  text="*  Zen Bridge")
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_stone_garden", text="🪨  Stone Garden")
+        row.operator("surreal_arch.preset_stone_garden", text=" Stone Garden")
 
         # =================================================================
-        # 🪟  ADVANCED WALLS (more detailed greybox)
+        #  ADVANCED WALLS (more detailed greybox)
         # =================================================================
         box = layout.box()
-        box.label(text="🪟  Advanced Walls (greybox+)")
+        box.label(text=" Advanced Walls (greybox+)")
         col = box.column(align=True)
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_wall_multi",    text="🪟  Multi-Pane")
-        row.operator("surreal_arch.preset_wall_arched",   text="🪟  Arched")
-        row.operator("surreal_arch.preset_wall_bay",      text="🪟  Bay Window")
+        row.operator("surreal_arch.preset_wall_multi",    text=" Multi-Pane")
+        row.operator("surreal_arch.preset_wall_arched",   text=" Arched")
+        row.operator("surreal_arch.preset_wall_bay",      text=" Bay Window")
         row = col.row(align=True); row.scale_y = 1.2
         row.operator("surreal_arch.preset_wall_t_join",   text="*  T-Join")
         row.operator("surreal_arch.preset_arrow_slits",   text="*  Arrow Slits")
         row.operator("surreal_arch.preset_half_timber",   text="*  Half-Timber")
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_retaining_wall",text="🪨  Retaining Wall")
+        row.operator("surreal_arch.preset_retaining_wall",text=" Retaining Wall")
         row.operator("surreal_arch.preset_door_frame",    text="*  Door Frame")
-        row.operator("surreal_arch.preset_window_frame",  text="🪟  Window Frame")
+        row.operator("surreal_arch.preset_window_frame",  text=" Window Frame")
 
         # =================================================================
         # *  RUINS & DESTRUCTION
@@ -33416,18 +33416,18 @@ class SURREAL_ARCH_PT_presets(_SubPanelBase, bpy.types.Panel):
         box.label(text="*  Environment Props")
         col = box.column(align=True)
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_barrel_stack", text="🪣  Barrels")
+        row.operator("surreal_arch.preset_barrel_stack", text=" Barrels")
         row.operator("surreal_arch.preset_crate_pile",   text="*  Crates")
         row.operator("surreal_arch.preset_campfire",     text="*  Campfire")
 
         # =================================================================
-        # 🪝  ESCHER MATH  - the surreal/impossible
+        #  ESCHER MATH  - the surreal/impossible
         # =================================================================
         box = layout.box()
-        box.label(text="🪜  Escher Math")
+        box.label(text=" Escher Math")
         col = box.column(align=True)
         row = col.row(align=True); row.scale_y = 1.2
-        row.operator("surreal_arch.preset_penrose",      text="🪜  Penrose")
+        row.operator("surreal_arch.preset_penrose",      text=" Penrose")
         row.operator("surreal_arch.preset_fractal",      text="*  Fractal")
         row.operator("surreal_arch.preset_hyperbolic",   text="*  Hyperbolic")
         row = col.row(align=True); row.scale_y = 1.2
@@ -33474,15 +33474,15 @@ _ARCH_CATEGORIES = [
         ('GB_ROMANESQUE_ARCADE',"* Romanesque Arcade"),
         ('GB_ROMANESQUE_APSE', "* Romanesque Apse"),
         ('GB_BRUTALIST_PANEL_WALL',"* Brutalist Panel"),
-        ('GB_VENETIAN_LOGGIA', "🇮🇹 Venetian Loggia"),
+        ('GB_VENETIAN_LOGGIA', "Venetian Loggia"),
         ('GB_SCIFI_PRESSURE_DOOR', "* Pressure Door"),
         ('GB_ZEN_ROJI_STEP', "* Roji Step"),
         ('GB_ZEN_TORII_GATE', "* Torii Gate"),
-        ('GB_ZEN_TSUKUBAI', "🪨 Tsukubai"),
+        ('GB_ZEN_TSUKUBAI', "Tsukubai"),
         ('GB_ZEN_ENGAWA', "* Engawa"),
         ('GB_ZEN_BAMBOO_FENCE', "* Bamboo Fence"),
-        ('GB_ZEN_TOBIISHI', "🪨 Tobi-ishi"),
-        ('GB_ZEN_KARESANSUI', "🪨 Karesansui"),
+        ('GB_ZEN_TOBIISHI', "Tobi-ishi"),
+        ('GB_ZEN_KARESANSUI', "Karesansui"),
         ('GB_ZEN_MACHIAI', "* Machiai"),
         ('GB_ZEN_STONE_BRIDGE', "* Stone Bridge"),
         ('GB_ZEN_CHERRY_ALLEE', "* Cherry Allee"),
@@ -33511,16 +33511,16 @@ _ARCH_CATEGORIES = [
     ('ARCH_INFRA', "* Archways & Infrastructure", 'DRIVER_ROTATIONAL_DIFFERENCE', [
         ('ARCHWAY_ADV', "* Advanced Archway"),
         ('BRIDGE_ADV',  "* Advanced Bridge"),
-        ('FENCE',       "🪵 Fence Generator"),
+        ('FENCE',       "Fence Generator"),
         ('STONE_BRIDGE',"* Stone Bridge"),
         ('DRAWBRIDGE',  "* Drawbridge"),
         ('ZEN_BRIDGE',  "* Zen Bridge"),
         ('BRIDGE',      "* Venetian Bridge"),
         ('RAILING',     "* Railing"),
-        ('STAIRCASE',   "🪜 Staircase"),
+        ('STAIRCASE',   "Staircase"),
     ]),
-    ('CURVED_GB', "⭕ Curved Rooms", 'FORCE_VORTEX', [
-        ('GB_ROOM_CIRCULAR',     "⭕ Circular Room"),
+    ('CURVED_GB', "Curved Rooms", 'FORCE_VORTEX', [
+        ('GB_ROOM_CIRCULAR',     "Circular Room"),
         ('GB_ROOM_APSIDAL',      "* Basilica Nave"),
         ('GB_CORRIDOR_ARC',      "* Arc Corridor"),
         ('GB_ROOM_ROTUNDA',      "* Pantheon Rotunda"),
@@ -33546,8 +33546,8 @@ _ARCH_CATEGORIES = [
         ('BRICK_WALL',        "* Brick Wall *"),
         ('PILLAR',            "* Pillar *"),
     ]),
-    ('ESCHER_GB', "🪜 Escher Greybox", 'MOD_MIRROR', [
-        ('GB_ESCHER_RELATIVITY',   "🪜 Relativity Room"),
+    ('ESCHER_GB', "Escher Greybox", 'MOD_MIRROR', [
+        ('GB_ESCHER_RELATIVITY',   "Relativity Room"),
         ('GB_ESCHER_PENROSE_LOOP', "* Penrose Loop"),
         ('GB_ESCHER_GRAVITY_SHIFT',"* Gravity Shift"),
         ('GB_ESCHER_BELVEDERE',    "* Belvedere"),
@@ -33560,15 +33560,15 @@ _ARCH_CATEGORIES = [
         ('COLLAPSED_FLOOR', "* Collapsed Floor"),
     ]),
     ('PROPS', "* Environment Props", 'OBJECT_DATA', [
-        ('BARREL_STACK',    "🪣 Barrel Stack"),
+        ('BARREL_STACK',    "Barrel Stack"),
         ('CRATE_PILE',      "* Crate Pile"),
         ('CAMPFIRE',        "* Campfire"),
-        ('VILLAGE_WELL',    "🪣 Village Well"),
+        ('VILLAGE_WELL',    "Village Well"),
         ('MARKET_STALL',    "* Market Stall"),
         ('TORCH_SCONCE',    "* Torch Sconce"),
         ('STREET_LAMP',     "* Street Lamp"),
         ('HERALDIC_BANNER', "* Banner"),
-        ('BOULDER_PILE',    "🪨 Boulder Pile"),
+        ('BOULDER_PILE',    "Boulder Pile"),
         ('STYLIZED_TREE',   "* Stylized Tree"),
     ]),
     ('FOUNDATIONS', "* Foundations / Modular", 'MOD_BUILD', [
@@ -33576,25 +33576,25 @@ _ARCH_CATEGORIES = [
         ('WALL_CORNER',        "* Corner"),
         ('WALL_T_JOIN',        "* T-Join"),
         ('WALL_DOOR',          "* Door Wall"),
-        ('WALL_WINDOW',        "🪟 Window Wall"),
-        ('WALL_MULTI_WINDOW',  "🪟 Multi-Pane Wall"),
-        ('WALL_ARCHED_WINDOW', "🪟 Arched Wall"),
-        ('WALL_BAY_WINDOW',    "🪟 Bay Wall"),
+        ('WALL_WINDOW',        "Window Wall"),
+        ('WALL_MULTI_WINDOW',  "Multi-Pane Wall"),
+        ('WALL_ARCHED_WINDOW', "Arched Wall"),
+        ('WALL_BAY_WINDOW',    "Bay Wall"),
         ('WALL_ARROW_SLITS',   "* Arrow Slit Wall"),
         ('HALF_TIMBER_WALL',   "* Half-Timber Wall"),
-        ('RETAINING_WALL',     "🪨 Retaining Wall"),
+        ('RETAINING_WALL',     "Retaining Wall"),
         ('DOOR_FRAME',         "* Door Frame"),
-        ('WINDOW_FRAME',       "🪟 Window Frame"),
+        ('WINDOW_FRAME',       "Window Frame"),
         ('FLOOR_TILE',         "* Floor Tile"),
-        ('CEILING_TILE',       "⬛ Ceiling"),
-        ('WINDOW',             "🪟 Window"),
+        ('CEILING_TILE',       "Ceiling"),
+        ('WINDOW',             "Window"),
         ('DOOR',               "* Door"),
         ('BRICK_WALL',         "* Brick Wall"),
         ('CORNER_PIECE',       "* Corner Piece"),
         ('RAILING',            "* Railing"),
         ('BALCONY',            "* Balcony"),
         ('CORNICE',            "* Cornice"),
-        ('STAIRCASE',          "🪜 Staircase"),
+        ('STAIRCASE',          "Staircase"),
     ]),
     ('TOWERS', "* Towers & Spires", 'OUTLINER_OB_FORCE_FIELD', [
         ('TOWER',         "* Tower"),
@@ -33626,7 +33626,7 @@ _ARCH_CATEGORIES = [
         ('MODULAR_HOUSE',    "* Modular House"),
         ('CURVED_BUILDING',  "* Curved Building"),
         ('RADIAL_BUILDING',  "* Radial Building"),
-        ('PALAZZO',          "🇮🇹 Palazzo"),
+        ('PALAZZO',          "Palazzo"),
         ('DOME',             "* Dome"),
         ('ARCH',             "* Arch"),
         ('FOUNTAIN',         "* Fountain"),
@@ -33643,10 +33643,10 @@ _ARCH_CATEGORIES = [
         ('BLACKSMITH',     "* Blacksmith"),
         ('STABLE',         "* Stable"),
         ('MARKET_STALL',   "* Market Stall"),
-        ('VILLAGE_WELL',   "🪣 Village Well"),
+        ('VILLAGE_WELL',   "Village Well"),
         ('CHAPEL',         "* Gothic Chapel"),
         ('CRYPT_ENTRANCE', "* Crypt"),
-        ('WAYSIDE_SHRINE', "🪦 Wayside Shrine"),
+        ('WAYSIDE_SHRINE', "Wayside Shrine"),
         ('GREYBOX_ARENA',  "* Town Square Arena"),
     ]),
     ('BAROQUE', "* Baroque / Classical", 'MATERIAL_DATA', [
@@ -33655,17 +33655,17 @@ _ARCH_CATEGORIES = [
         ('BAROQUE_NICHE',      "* Baroque Niche"),
         ('BAROQUE_BALUSTRADE', "* Baroque Balustrade"),
         ('DOME',               "* Dome"),
-        ('PALAZZO',            "🇮🇹 Palazzo"),
+        ('PALAZZO',            "Palazzo"),
     ]),
     ('GOTHIC', "* Gothic / Sacred", 'OUTLINER_DATA_LIGHT', [
         ('ARCHWAY_ADV',  "* Advanced Archway"),
         ('GOTHIC_ARCH',  "* Gothic Arch"),
         ('OGEE_ARCH',    "⌒ Ogee Arch"),
         ('CUSPED_ARCH',  "⌒ Cusped Arch"),
-        ('LANCET',       "🪟 Lancet"),
+        ('LANCET',       "Lancet"),
         ('TREFOIL',      "* Trefoil"),
         ('ROSE_WINDOW',  "* Rose Window"),
-        ('BIFORA',       "🪟 Bifora"),
+        ('BIFORA',       "Bifora"),
         ('GB_GOTHIC_PORTAL', "* Gothic Portal"),
         ('GB_GOTHIC_BAY', "* Gothic Bay"),
         ('GB_GOTHIC_BUTTRESS', "* Gothic Buttress"),
@@ -33674,21 +33674,21 @@ _ARCH_CATEGORIES = [
         ('GB_ROMANESQUE_ARCADE', "* Romanesque Arcade"),
         ('GB_ROMANESQUE_APSE', "* Romanesque Apse"),
     ]),
-    ('ASIAN', "🇯🇵🇨🇳🇰🇷 Asian Architecture", 'OUTLINER_OB_GREASEPENCIL', [
+    ('ASIAN', "Asian Architecture", 'OUTLINER_OB_GREASEPENCIL', [
         ('ZEN_PAGODA',         "* Japan Pagoda"),
         ('ZEN_TORII',          "* Torii Gate"),
         ('ZEN_SHOJI',          "* Shoji Screen"),
         ('ZEN_LANTERN',        "* Stone Lantern"),
         ('ZEN_TEAHOUSE',       "* Teahouse"),
         ('ZEN_BRIDGE',         "* Zen Bridge"),
-        ('ZEN_STONE_GARDEN',   "🪨 Zen Garden"),
+        ('ZEN_STONE_GARDEN',   "Zen Garden"),
         ('CN_DOUGONG',         "* China Dougong"),
         ('CN_TIERED_PAGODA',   "* China Pagoda"),
         ('CN_MOON_GATE',       "* Moon Gate"),
         ('CN_PAILOU',          "* Pailou"),
         ('CN_TING_PAVILION',   "* Ting Pavilion"),
         ('KR_HANOK',           "* Korea Hanok"),
-        ('KR_JANGSEUNG',       "🪵 Jangseung"),
+        ('KR_JANGSEUNG',       "Jangseung"),
         ('KR_HONG_SAL_MUN',    "* Hong-Sal-Mun"),
         ('JP_KURA_STOREHOUSE', "* Kura"),
     ]),
@@ -33698,8 +33698,8 @@ _ARCH_CATEGORIES = [
         ('STAFF',             "𝄠 Staff"),
         ('SHEET_MUSIC_RAIL',  "* Sheet Music"),
     ]),
-    ('ESCHER', "🪜 Escher / Impossible", 'FORCE_VORTEX', [
-        ('PENROSE',         "🪜 Penrose Stairs"),
+    ('ESCHER', "Escher / Impossible", 'FORCE_VORTEX', [
+        ('PENROSE',         "Penrose Stairs"),
         ('ESCHER_PATH',     "* Escher Path"),
         ('FRACTAL',         "* Fractal"),
         ('HYPERBOLIC',      "* Hyperbolic"),
@@ -33710,7 +33710,7 @@ _ARCH_CATEGORIES = [
     ]),
     ('LANDSCAPE', "* Landscape / Decor", 'OUTLINER_OB_GREASEPENCIL', [
         ('STYLIZED_TREE', "* Stylized Tree"),
-        ('BOULDER_PILE',  "🪨 Boulder Pile"),
+        ('BOULDER_PILE',  "Boulder Pile"),
         ('ROOF_TILES',    "* Roof Tiles"),
     ]),
     ('ADVANCED', "* Advanced GeoNodes", 'GEOMETRY_NODES', [
@@ -33924,7 +33924,7 @@ class SURREAL_ARCH_PT_more_presets(_SubPanelBase, bpy.types.Panel):
         row.operator("surreal_arch.preset_singing_bridge",  text="*  Singing Bridge")
         row = col.row(align=True); row.scale_y = 1.15
         row.operator("surreal_arch.preset_fractal_palazzo", text="*  Fractal Palazzo")
-        row.operator("surreal_arch.preset_penrose_palazzo", text="🪜  Penrose Palazzo")
+        row.operator("surreal_arch.preset_penrose_palazzo", text=" Penrose Palazzo")
 
 
 class SURREAL_ARCH_PT_instancer(_SubPanelBase, bpy.types.Panel):
@@ -35021,7 +35021,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "bulge_amount")
 
         if t in {'RAILING', 'BUILDING'}:
-            box = layout.box(); box.label(text="*️  Railing")
+            box = layout.box(); box.label(text="* Railing")
             col = box.column(align=True)
             col.prop(props, "rail_length")
             col.prop(props, "rail_baluster_count")
@@ -35030,7 +35030,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "rail_top_size")
 
         if t == 'STAIRCASE':
-            box = layout.box(); box.label(text="🪜 Staircase")
+            box = layout.box(); box.label(text="Staircase")
             col = box.column(align=True)
             col.prop(props, "stair_step_count")
             col.prop(props, "stair_rise")
@@ -35058,7 +35058,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "buttress_finial_size")
 
         if t == 'BUILDING':
-            box = layout.box(); box.label(text="*️  Composition")
+            box = layout.box(); box.label(text="* Composition")
             col = box.column(align=True)
             col.prop(props, "building_floors")
             col.prop(props, "building_floor_height")
@@ -35071,7 +35071,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "building_arches_per_face")
 
         if t == 'WINDOW':
-            box = layout.box(); box.label(text="🪟 Window")
+            box = layout.box(); box.label(text="Window")
             col = box.column(align=True)
             col.prop(props, "window_width")
             col.prop(props, "window_height")
@@ -35206,7 +35206,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "wall_door_height")
 
         if t == 'WALL_WINDOW':
-            box = layout.box(); box.label(text="🪟 Window Opening")
+            box = layout.box(); box.label(text="Window Opening")
             col = box.column(align=True)
             col.prop(props, "wall_window_width")
             col.prop(props, "wall_window_height")
@@ -35252,7 +35252,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
 
         # === Advanced wall parameters ===
         if t == 'WALL_MULTI_WINDOW':
-            box = layout.box(); box.label(text="🪟 Multi-Pane Window")
+            box = layout.box(); box.label(text="Multi-Pane Window")
             col = box.column(align=True)
             col.prop(props, "wall_segments")
             col.prop(props, "wall_window_grid_x", text="Pane Cols")
@@ -35260,7 +35260,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "wall_window_mullion", text="Mullion Width")
 
         if t == 'WALL_ARCHED_WINDOW':
-            box = layout.box(); box.label(text="🪟 Arched Window")
+            box = layout.box(); box.label(text="Arched Window")
             col = box.column(align=True)
             col.prop(props, "wall_segments")
             col.prop(props, "wall_window_width")
@@ -35269,7 +35269,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "wall_arched_radius")
 
         if t == 'WALL_BAY_WINDOW':
-            box = layout.box(); box.label(text="🪟 Bay Window")
+            box = layout.box(); box.label(text="Bay Window")
             col = box.column(align=True)
             col.prop(props, "wall_segments")
             col.prop(props, "wall_window_width", text="Bay Width")
@@ -35295,7 +35295,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
             col.label(text="Notes follow Harmonic A & B params!")
 
         if t == 'PENROSE':
-            box = layout.box(); box.label(text="🪜 Penrose")
+            box = layout.box(); box.label(text="Penrose")
             col = box.column(align=True)
             col.prop(props, "penrose_steps_per_side")
             col.prop(props, "penrose_side_length")
@@ -35459,7 +35459,7 @@ class SURREAL_ARCH_PT_materials(_SubPanelBase, bpy.types.Panel):
 
 class SURREAL_ARCH_PT_venetian(_SubPanelBase, bpy.types.Panel):
     """Venetian Gothic features (after Boscarino et al.)."""
-    bl_label = "🇮🇹  Venetian Gothic"
+    bl_label = " Venetian Gothic"
     bl_idname = "SURREAL_ARCH_PT_venetian"
 
     def draw(self, context):
@@ -35489,7 +35489,7 @@ class SURREAL_ARCH_PT_venetian(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "ogee_finial")
 
         if t == 'BIFORA':
-            box = layout.box(); box.label(text="🪟 Bifora / Trifora / Quadrifora")
+            box = layout.box(); box.label(text="Bifora / Trifora / Quadrifora")
             col = box.column(align=True)
             col.prop(props, "bifora_width")
             col.prop(props, "bifora_height")
@@ -35918,7 +35918,7 @@ class SURREAL_ARCH_PT_sverchok(_SubPanelBase, bpy.types.Panel):
         row.operator("surreal_arch.sv_floor",        text="*  Floor")
         row = col.row(align=True); row.scale_y = 1.25
         row.operator("surreal_arch.sv_balcony",      text="*  Balcony")
-        row.operator("surreal_arch.sv_staircase",    text="🪜  Spiral Stairs")
+        row.operator("surreal_arch.sv_staircase",    text=" Spiral Stairs")
         row.operator("surreal_arch.sv_vault",        text="*  Vault")
 
         # === Gothic Sverchok ===
@@ -35931,11 +35931,11 @@ class SURREAL_ARCH_PT_sverchok(_SubPanelBase, bpy.types.Panel):
 
         # === Escher Math Sverchok ===
         box = layout.box()
-        box.label(text="🪜  Escher Math")
+        box.label(text=" Escher Math")
         col = box.column(align=True)
         row = col.row(align=True); row.scale_y = 1.25
         row.operator("surreal_arch.sv_spiral",       text="*  Spiral Tower")
-        row.operator("surreal_arch.sv_torus_knot",   text="🪢  Torus Knot")
+        row.operator("surreal_arch.sv_torus_knot",   text=" Torus Knot")
         row.operator("surreal_arch.sv_twisted",      text="*  Twisted Tower")
         row = col.row(align=True); row.scale_y = 1.25
         row.operator("surreal_arch.sv_tessellation", text="*  Tessellation")
@@ -35959,14 +35959,14 @@ class SURREAL_ARCH_PT_sverchok(_SubPanelBase, bpy.types.Panel):
         # Editor action row (Open / Re-evaluate / Clean)
         r1 = col.row(align=True)
         r1.scale_y = 1.15
-        r1.operator("surreal_arch.sv_open_editor", text="🪟 Open Editor",  icon='NODETREE')
+        r1.operator("surreal_arch.sv_open_editor", text="Open Editor",  icon='NODETREE')
         r1.operator("surreal_arch.sv_reevaluate",  text="* Re-evaluate",  icon='FILE_REFRESH')
         r1.operator("surreal_arch.sv_clean_trees", text="* Clean Stale",  icon='TRASH')
         # v2.47: Diagnostic
         r1d = col.row(align=True)
         r1d.scale_y = 1.15
         r1d.operator("surreal_arch.sv_diagnose",
-                     text="🩺 Diagnose Sverchok Compatibility",
+                     text="Diagnose Sverchok Compatibility",
                      icon='CONSOLE')
         col.label(text="Tip: each preset opens a parameter dialog first.")
 
@@ -36010,7 +36010,7 @@ class SURREAL_ARCH_PT_synthia(_SubPanelBase, bpy.types.Panel):
         row.operator("surreal_arch.synthia_klein",    text="* Klein")
         row.operator("surreal_arch.synthia_mobius",   text="* Möbius")
         row = box.row(align=True); row.scale_y = 1.15
-        row.operator("surreal_arch.synthia_torus_knot", text="🪢 Torus Knot")
+        row.operator("surreal_arch.synthia_torus_knot", text="Torus Knot")
         row.operator("surreal_arch.synthia_lissajous",  text="* Lissajous")
         row = box.row(align=True); row.scale_y = 1.15
         row.operator("surreal_arch.synthia_golden",   text="* Golden Spiral")
@@ -36172,7 +36172,7 @@ class SURREAL_ARCH_PT_higgsas(_SubPanelBase, bpy.types.Panel):
 
 
 class SURREAL_ARCH_PT_optimization(_SubPanelBase, bpy.types.Panel):
-    bl_label = "*️  Bevel / Optimization / Output"
+    bl_label = "* Bevel / Optimization / Output"
     bl_idname = "SURREAL_ARCH_PT_optimization"
     bl_order = 35
 
@@ -36217,7 +36217,7 @@ class SURREAL_ARCH_PT_optimization(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "bevel_clamp_overlap")
             col.prop(props, "bevel_material_index", text="Material Slot")
 
-        box = layout.box(); box.label(text="*️  Optimization")
+        box = layout.box(); box.label(text="* Optimization")
         col = box.column(align=True)
         col.prop(props, "poly_target")
         col.prop(props, "aggressive_decimation")
@@ -36285,7 +36285,7 @@ def _draw_old_legacy_unused(self, context):
 
         row = col_p.row(align=True)
         row.scale_y = 1.25
-        row.operator("surreal_arch.preset_penrose", text="🪜 Penrose")
+        row.operator("surreal_arch.preset_penrose", text="Penrose")
         row.operator("surreal_arch.preset_pillar",  text="* Pillar")
         row.operator("surreal_arch.preset_dome",    text="* Dome")
 
@@ -36316,7 +36316,7 @@ def _draw_old_legacy_unused(self, context):
         layout.separator()
 
         # Architecture type
-        layout.label(text="*️  Architecture Type:")
+        layout.label(text="* Architecture Type:")
         layout.prop(props, "arch_type", text="")
 
         layout.separator()
@@ -36342,7 +36342,7 @@ def _draw_old_legacy_unused(self, context):
             col.prop(props, "bulge_amount")
 
         if t in {'RAILING', 'BUILDING'}:
-            box = layout.box(); box.label(text="*️  Railing")
+            box = layout.box(); box.label(text="* Railing")
             col = box.column(align=True)
             col.prop(props, "rail_length")
             col.prop(props, "rail_baluster_count")
@@ -36351,7 +36351,7 @@ def _draw_old_legacy_unused(self, context):
             col.prop(props, "rail_top_size")
 
         if t == 'STAIRCASE':
-            box = layout.box(); box.label(text="🪜 Staircase")
+            box = layout.box(); box.label(text="Staircase")
             col = box.column(align=True)
             col.prop(props, "stair_step_count")
             col.prop(props, "stair_rise")
@@ -36379,7 +36379,7 @@ def _draw_old_legacy_unused(self, context):
             col.prop(props, "buttress_finial_size")
 
         if t == 'BUILDING':
-            box = layout.box(); box.label(text="*️  Building Composition")
+            box = layout.box(); box.label(text="* Building Composition")
             col = box.column(align=True)
             col.prop(props, "building_floors")
             col.prop(props, "building_floor_height")
@@ -36388,7 +36388,7 @@ def _draw_old_legacy_unused(self, context):
             col.prop(props, "building_with_buttress")
 
         if t == 'PENROSE':
-            box = layout.box(); box.label(text="🪜 Penrose Stairs")
+            box = layout.box(); box.label(text="Penrose Stairs")
             col = box.column(align=True)
             col.prop(props, "penrose_steps_per_side")
             col.prop(props, "penrose_side_length")
@@ -36521,7 +36521,7 @@ def _draw_old_legacy_unused(self, context):
         col.prop(props, "symmetry_break")
 
         # Optimization
-        box = layout.box(); box.label(text="*️  Optimization")
+        box = layout.box(); box.label(text="* Optimization")
         col = box.column(align=True)
         col.prop(props, "poly_target")
         col.prop(props, "aggressive_decimation")
@@ -37626,8 +37626,8 @@ _AESTHETIC_GROUPS = {
         ('ANALOG_HORROR',    '* Analog Horror'),
     ],
     'ZEN': [
-        ('ENSO_GATEWAY',     '⭕ Enso Gateway'),
-        ('KARESANSUI',       '🪨 Karesansui'),
+        ('ENSO_GATEWAY',     'Enso Gateway'),
+        ('KARESANSUI',       'Karesansui'),
         ('BAMBOO_GROVE',     '* Bamboo Grove'),
         ('MOSS_TEMPLE',      '* Moss Temple'),
         ('CHERRY_PAGODA',    '* Cherry Pagoda'),
@@ -37653,7 +37653,7 @@ _AESTHETIC_GROUPS = {
         ('ABYSSAL_RIFT',   '* Abyssal Rift'),
         ('WORMHOLE_GATE',  '* Wormhole Gate'),
         ('ANGEL_NUMBERS',  '* Angel Numbers'),
-        ('GRAVITY_TEMPLE', '🪐 Gravity Temple'),
+        ('GRAVITY_TEMPLE', 'Gravity Temple'),
     ],
     'CRAZY': [
         ('TOTAL_CHAOS',    '* Total Chaos'),
@@ -37845,7 +37845,7 @@ ESCHER_PRESETS = {
 # Display groupings for the Escher panel
 _ESCHER_GROUPS = {
     'IMPOSSIBLE': [
-        ('PENROSE_STAIRS',     '🪜 Penrose Stairs'),
+        ('PENROSE_STAIRS',     'Penrose Stairs'),
         ('ESCHER_PATH_LOOP',   '* Escher Path Loop'),
     ],
     'TOPOLOGY': [
@@ -37864,11 +37864,11 @@ _ESCHER_GROUPS = {
     ],
     'SVERCHOK': [
         ('SV_SPIRAL_TOWER',    '* Spiral Tower'),
-        ('SV_MOBIUS_STAIRS',   '🪜 Möbius Stairs'),
+        ('SV_MOBIUS_STAIRS',   'Möbius Stairs'),
         ('SV_RECURSIVE_PORTAL','* Recursive Portal'),
         ('SV_CASCADING_ARCHES','* Cascading Arches'),
         ('SV_TWISTED_SPIRE',   '* Twisted Spire'),
-        ('SV_TORUS_KNOT',      '🪢 Torus Knot'),
+        ('SV_TORUS_KNOT',      'Torus Knot'),
         ('SV_TESSELLATION',    '* SV Tessellation'),
         ('SV_FRACTAL_CURVE',   '* Fractal Curve'),
     ],
@@ -37951,7 +37951,7 @@ class SURREAL_ARCH_OT_escher_preset(bpy.types.Operator):
     def execute(self, context):
         ok, msg = _apply_escher_preset(context, self.preset)
         if ok:
-            self.report({'INFO'}, f"🪜 {msg}")
+            self.report({'INFO'}, f"{msg}")
         else:
             self.report({'WARNING'}, f"* {msg}")
         return {'FINISHED'}
@@ -37980,9 +37980,9 @@ class SURREAL_ARCH_OT_escher_random(bpy.types.Operator):
 
 
 class SURREAL_ARCH_PT_escher(_EffectsSubPanelBase, bpy.types.Panel):
-    """🪝 M.C. Escher Presets - impossible architecture, topology,
+    """M.C. Escher Presets - impossible architecture, topology,
     tessellation, hyperbolic, and Sverchok algorithmic spawns."""
-    bl_label = "🪜 M.C. Escher Presets"
+    bl_label = "M.C. Escher Presets"
     bl_idname = "SURREAL_ARCH_PT_escher"
     bl_order = 4
 
@@ -38000,7 +38000,7 @@ class SURREAL_ARCH_PT_escher(_EffectsSubPanelBase, bpy.types.Panel):
 
         # Category specs
         cat_specs = [
-            ('IMPOSSIBLE',   "🪜 Impossible Architecture"),
+            ('IMPOSSIBLE',   "Impossible Architecture"),
             ('TOPOLOGY',     "* Topology / Non-Orientable"),
             ('TESSELLATION', "* Tessellation"),
             ('HYPERBOLIC',   "* Hyperbolic + Fractal"),
