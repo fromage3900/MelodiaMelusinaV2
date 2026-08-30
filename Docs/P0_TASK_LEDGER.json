@@ -161,6 +161,12 @@
    "status": "closed",
    "commit": "0fe7b877",
    "resolution": "P0 Houdini backlog ingested into UE: 55 textures (B1 droplet atlas, B2 membrane set, R5 suite v2, clutter/kelp/coral skins) and 23 meshes (coral archetypes, clutter, kelp, islands, rock chunks, leviathan, organ, flora) -> Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/. Import contract verified per-file (sRGB/LOD/compression) by committed harnesses Content/Python/ingest_sea_above_p0.py + verify_tex_contract.py; evidence copy Docs/Echo/campaign_05_ingest_report_2026-08-30.json. Droplet atlas corrected to sRGB=false/TEXTUREGROUP_EFFECTS/TC_MASKS per flipbook plan B1. Editor recovery prerequisite: windowless zombie editor PID 51260 (invisible modal, log-stale 20min) killed; single-editor rule restored; Monolith 9316 re-bound only after clean editor restart (its first bind failed silently behind the zombie). Open follow-ups: MI_Niagara_MelodiaFlipbook_Droplet wiring, Track A PIE evidence."
+  },
+  {
+   "id": "SHOREWAKE_DRESS_BAKE",
+   "status": "closed",
+   "commit": "a72732ab",
+   "resolution": "Shorewake dress AO/normal fixed via full Houdini-led bake chain replacing the broken Substance attempt (owner had not painted; whole bake redone). Chain: shorewake_bake_prep.py (Blender: UV audit 0 overlaps in 0-1, smooth+angle shading, v2 OBJ) -> dress_geometry_attrs.py (Houdini VEX: per-vertex thickness via two-sided raycast, curvature via angle-defect, encoded as OBJ vertex colors) -> shorewake_bake_blender.py (Cycles: tangent normal DirectX pre-flipped from subdivided high, thickness/curvature/position EMIT bakes; Cycles AO discarded - open panels self-shadow to black) -> dress_ao_vex.py (Houdini VEX: 64-ray cosine hemisphere AO with <2mm self-hit exclusion, mean 0.977) -> bake_rasterize_ao.py (numpy barycentric UV rasterizer, 12.5M texels, no render engine). Mantra baketexture verified WATERMARKED on Apprentice (test bake) - documented, avoided. 4096 maps imported as T_MelusinaC_DressShorewake_{Normal,AO,Curvature,Thickness,Position}_HB; MI_Melusina_Dress_Shorewake NormalMap->HB normal, HeightMap->HB AO (master-derived AO seam, no master edits). Verified by re-read via get_instance_parameters. Evidence manifests Docs/Art/DRESS_BAKE_EVIDENCE_2026-08-30/. Open: curvature/thickness/position maps available but master exposes no params - future shimmer pass. Setup review: Docs/Art/DRESS_HOUDINI_SETUP_REVIEW_2026-08-30.md."
   }
  ],
  "active_p0_gates": [
