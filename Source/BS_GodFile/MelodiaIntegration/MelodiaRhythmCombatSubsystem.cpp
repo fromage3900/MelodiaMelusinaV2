@@ -6,6 +6,7 @@
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaIntegrationConfig.h"
 #include "Engine/GameInstance.h"
+#include "EngineUtils.h"
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "Engine/AssetManager.h"
 
@@ -61,6 +62,10 @@ void UMelodiaRhythmCombatSubsystem::Deinitialize()
 	// The world is going away; there is no turn to advance and ProcessEvent into
 	// a tearing-down world is not safe. Drop the deferral without dispatching.
 	DeferredSkill = nullptr;
+
+	// Restore before the world tears down so a scaled unit that outlives this
+	// subsystem (PIE restart reusing actors) never carries a buff forward.
+	RestoreRhythmAttackScalar();
 
 	SkillCatalog.Reset();
 	Super::Deinitialize();
@@ -537,6 +542,12 @@ bool UMelodiaRhythmCombatSubsystem::FinishSession()
 	if (UObject* SkillToUse = DeferredSkill)
 	{
 		DeferredSkill = nullptr;
+
+		// Fold the latched scalar into the attacker's stats so the stock damage
+		// calculation consumes it. Must precede dispatch: stock reads the stats
+		// during the montage that UseSkill starts.
+		ApplyRhythmAttackScalar();
+
 		InvokeStockUseSkill(SkillToUse);
 	}
 
@@ -594,6 +605,113 @@ bool UMelodiaRhythmCombatSubsystem::UseSkillWithRhythm(UObject* StockSkill)
 	UE_LOG(LogTemp, Log, TEXT("MELODIA_RHYTHM session=%d deferring UseSkill on '%s' until the session closes"),
 		SessionId, *StockSkill->GetName());
 	return true;
+}
+
+void UMelodiaRhythmCombatSubsystem::ApplyRhythmAttackScalar()
+{
+	// Lazy restore: a previous turn's scale is undone here rather than on a timer,
+	// so stats cannot compound across turns even if a session ended abnormally.
+	RestoreRhythmAttackScalar();
+
+	const float Scalar = PendingDamageMultiplier;
+	if (FMath::IsNearlyEqual(Scalar, 1.0f))
+	{
+		// Identity multiplier is stock behaviour. Touch nothing.
+		return;
+	}
+
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+
+	AActor* BattleController = nullptr;
+	for (TActorIterator<AActor> It(World); It; ++It)
+	{
+		if (It->GetClass()->GetName().StartsWith(TEXT("BP_BattleController")))
+		{
+			BattleController = *It;
+			break;
+		}
+	}
+	if (!BattleController)
+	{
+		// Ordinary outside battle -- a rhythm session can close with no fight running.
+		return;
+	}
+
+	const FObjectPropertyBase* AttackerProperty =
+		FindFProperty<FObjectPropertyBase>(BattleController->GetClass(), TEXT("currentAttackingUnit"));
+	if (!AttackerProperty)
+	{
+		UE_LOG(LogTemp, Error, TEXT("MELODIA_RHYTHM_ATTACK '%s' has no 'currentAttackingUnit'; the stock contract changed."),
+			*BattleController->GetClass()->GetName());
+		return;
+	}
+
+	UObject* Unit = AttackerProperty->GetObjectPropertyValue_InContainer(BattleController);
+	if (!IsValid(Unit))
+	{
+		// No unit is mid-turn. Expected between turns; not an error.
+		return;
+	}
+
+	FIntProperty* MinAttack = FindFProperty<FIntProperty>(Unit->GetClass(), TEXT("minAttack"));
+	FIntProperty* MaxAttack = FindFProperty<FIntProperty>(Unit->GetClass(), TEXT("maxAttack"));
+	if (!MinAttack || !MaxAttack)
+	{
+		UE_LOG(LogTemp, Error, TEXT("MELODIA_RHYTHM_ATTACK unit '%s' lacks minAttack/maxAttack; the stock contract changed."),
+			*Unit->GetClass()->GetName());
+		return;
+	}
+
+	SavedMinAttack = MinAttack->GetPropertyValue_InContainer(Unit);
+	SavedMaxAttack = MaxAttack->GetPropertyValue_InContainer(Unit);
+
+	// Round rather than truncate so a 1.5x Perfect on a 40-56 spread reads 60-84,
+	// not 60-83; stock stats are whole numbers and the UI prints them verbatim.
+	MinAttack->SetPropertyValue_InContainer(Unit, FMath::RoundToInt(SavedMinAttack * Scalar));
+	MaxAttack->SetPropertyValue_InContainer(Unit, FMath::RoundToInt(SavedMaxAttack * Scalar));
+
+	ScaledAttackUnit = Unit;
+	bAttackScalarApplied = true;
+
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_RHYTHM_ATTACK_SCALED unit=%s scalar=%.2f attack %d-%d -> %d-%d"),
+		*Unit->GetName(), Scalar, SavedMinAttack, SavedMaxAttack,
+		MinAttack->GetPropertyValue_InContainer(Unit), MaxAttack->GetPropertyValue_InContainer(Unit));
+}
+
+void UMelodiaRhythmCombatSubsystem::RestoreRhythmAttackScalar()
+{
+	if (!bAttackScalarApplied)
+	{
+		return;
+	}
+
+	// Clear the flag first: a unit destroyed mid-battle must not leave the
+	// subsystem believing a scale is still outstanding.
+	bAttackScalarApplied = false;
+
+	UObject* Unit = ScaledAttackUnit.Get();
+	ScaledAttackUnit = nullptr;
+	if (!IsValid(Unit))
+	{
+		return;
+	}
+
+	FIntProperty* MinAttack = FindFProperty<FIntProperty>(Unit->GetClass(), TEXT("minAttack"));
+	FIntProperty* MaxAttack = FindFProperty<FIntProperty>(Unit->GetClass(), TEXT("maxAttack"));
+	if (!MinAttack || !MaxAttack)
+	{
+		return;
+	}
+
+	MinAttack->SetPropertyValue_InContainer(Unit, SavedMinAttack);
+	MaxAttack->SetPropertyValue_InContainer(Unit, SavedMaxAttack);
+
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_RHYTHM_ATTACK_RESTORED unit=%s attack restored to %d-%d"),
+		*Unit->GetName(), SavedMinAttack, SavedMaxAttack);
 }
 
 void UMelodiaRhythmCombatSubsystem::InvokeStockUseSkill(UObject* StockSkill)
@@ -727,6 +845,10 @@ void UMelodiaRhythmCombatSubsystem::InvalidateSession()
 			*DeferredSkill->GetName(), ActiveSessionId);
 		DeferredSkill = nullptr;
 	}
+
+	// A dropped session must not leave a buffed attacker behind. Every teardown
+	// path funnels through here, so this is where the scale is guaranteed undone.
+	RestoreRhythmAttackScalar();
 
 	ActiveSkillId = NAME_None;
 	ActiveSessionId = 0;
