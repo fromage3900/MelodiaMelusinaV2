@@ -34,6 +34,9 @@
 > | `MI_Melusina_WaterHair` creation on v7 + `SK_MelusinaHair` 4-slot fix | **Available** — prior doc claim that the MI exists was wrong (deleted from tracking; recreate fresh) |
 > | `SK_Melusina_V2_Shirt` outline slot | **Available** — reference wiring on other V2 pieces (`MI_Melusina_Outline_004/_005`) |
 > | Ocean visual pass + `DA_Color_AnimeLightBlue`/`DA_Foam_Stylized` + `Toon_Weight` dial | **Available** — owner eyeball task |
+> | Starskiff MI family (Hull_Regal, Brass, Cushion, LanternGlass, PlankNail, Wake_Emission) on Universal | **Done 2026-08-29 late** — 25 skiff textures now instanced; masks (patina/jewel/edgewear/damask) unwired pending a mask-input pass |
+> | Jellyfish v2 GRAND (Houdini lane) | **Done 2026-08-29 late** — 136 m bell (24 lobes) + 12 × 480 m double-bifurcating 1.5π-twist arms; topology contract verified ×3 poses; FBX + QA renders in `Saved/Audit/sea_above/`; UE import queued |
+> | P1 arc draft: Mara Elletra Vell + The Faraway Mother | **Draft for owner canon** — `Docs/Plans/P1_MARA_ELLETRA_VELL_AND_THE_FARAWAY_MOTHER_2026-08-29.md` + `specs/progression/melodia_mara_faraway_mother_quest.v1.json` (allowlist quarantined behind owner gate) |
 > | Banner/Shroud fabric master (Kelp is an explicit placeholder) | **Available** |
 > | Reef/height-blend masters: mirror `M_Master_Toon_Universal`'s Madoka/Itto input wiring | **Available** — owner look decision first |
 > | SDF lane consumer decision (`MF_SDF_BandRelief`, `MF_LandscapeStorybookSDF` referenced by zero masters) | **Available** — wire or archive |
