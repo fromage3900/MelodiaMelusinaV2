@@ -154,6 +154,9 @@ def test_notifications_and_native_route_are_single_authority() -> None:
                     len(parts) == 5 and parts[2] == "give",
                     f"{path.name}: malformed item intent {token}",
                 )
+            elif parts[1] == "questcomplete":
+                require(len(parts) == 7, f"{path.name}: malformed quest completion intent {token}")
+                require(all(parts[2:]), f"{path.name}: empty quest completion field {token}")
             else:
                 require(len(parts) == 3, f"{path.name}: malformed intent {token}")
 
@@ -161,6 +164,16 @@ def test_notifications_and_native_route_are_single_authority() -> None:
     narrative_cpp = read(NARRATIVE_CPP)
     bridge_cpp = read(BRIDGE_CPP)
     persona_cpp = read(PERSONA_CPP)
+    generator = read(ROOT / "Tools/generate_and_inject_content.py")
+
+    atomic_harmony_completion = (
+        "$ Notify melodia:questcomplete:quest.harmony_awakening:"
+        "quest.harmony_awakening.completed:reward.harmony_awakening:"
+        "intent.quest.harmony_awakening.complete:checkpoint.quest.harmony_awakening.complete"
+    )
+    require_count(read(ROOT / "Content/MelodiaIntegration/Narrative/MelodiaQuillHarmonyAwakening.qsc"),
+                  atomic_harmony_completion)
+    require_count(generator, atomic_harmony_completion)
 
     require("UFUNCTION()\n\tvoid HandleQuillNotification" in narrative_header,
             "Quill notification callback is not reflected")

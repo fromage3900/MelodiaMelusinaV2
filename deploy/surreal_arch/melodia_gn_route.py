@@ -1,4 +1,4 @@
-﻿"""Melodia GN routing ΓÇö default path for new ornament / music / castle arches."""
+﻿"""Melodia GN routing — default path for new ornament / music / castle arches."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import bpy
 
 from .melodia_gn.core import STUDIO_LABELS, label_tree
 
-# arch_type ΓåÆ (builder_callable_import_path_key, node group name)
+# arch_type → (builder_callable_import_path_key, node group name)
 ARCH_TO_GN = {
     "GAZEBO": ("structures.build_gazebo", "MEL_gazebo"),
     "PORTICO": ("structures.build_portico", "MEL_portico"),
@@ -22,8 +22,8 @@ ARCH_TO_GN = {
     "ORN_FRAME": ("ornament.build_ornament_frame", "MEL_ornament_frame"),
     "ORN_PANEL": ("ornament.build_ornament_panel", "MEL_ornament_panel"),
     "ORN_GRID": ("ornament.build_ornament_grid", "MEL_ornament_grid"),
-    # Live musical RNA aliases ΓåÆ Melodia GN (prefer_melodia_gn).
-    # FILIGREE_* stays on monolith builders ΓÇö gothic kitbash SPECS need style props.
+    # Live musical RNA aliases → Melodia GN (prefer_melodia_gn).
+    # FILIGREE_* stays on monolith builders — gothic kitbash SPECS need style props.
     "TREBLE_CLEF": ("music.build_music_treble_clef", "MEL_music_treble_clef"),
     "NOTE_HEAD": ("music.build_music_note_head", "MEL_music_note_head"),
     "STAFF": ("music.build_music_staff", "MEL_music_staff"),
@@ -158,7 +158,7 @@ def try_apply_melodia_gn(obj, props, monolith=None) -> bool:
 
     entry = ARCH_TO_GN.get(arch)
     if entry is None:
-        print(f"[Melodia GN] prefer on for {arch} but no ARCH_TO_GN map ΓÇö fall through")
+        print(f"[Melodia GN] prefer on for {arch} but no ARCH_TO_GN map — fall through")
         return False
 
     dotted, group_name = entry

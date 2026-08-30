@@ -20,7 +20,24 @@ def _addon_dir():
 
 
 def repo_root():
-    """BS_GodFile root, from Tools/BlenderAddons/melodia_studio/ -> up 3."""
+    """BS_GodFile root, from Tools/BlenderAddons/melodia_studio/ -> up 3.
+
+    Honors AddonPreferences project_root (if set in Blender) and $MELODIA_PROJECT_ROOT env.
+    """
+    # 1) Blender AddonPreferences override
+    try:
+        import bpy  # type: ignore
+        prefs = bpy.context.preferences.addons.get("melodia_studio")  # type: ignore
+        if prefs and hasattr(prefs, "preferences"):
+            pr = getattr(prefs.preferences, "project_root", "") or ""
+            if pr.strip() and os.path.isdir(pr.strip()):
+                return os.path.normpath(pr.strip())
+    except Exception:
+        pass
+    # 2) Env override
+    env = os.environ.get("MELODIA_PROJECT_ROOT", "").strip()
+    if env and os.path.isdir(env):
+        return os.path.normpath(env)
     return os.path.normpath(os.path.join(_addon_dir(), "..", "..", ".."))
 
 
@@ -66,6 +83,11 @@ def walkable_tool_dir():
 
 # Musical -> spatial mapping presets. chunk_beats controls how much song
 # time is packed per world chunk; the scale/height factors shape relief.
+#
+# D7 FIXED 2026-08-26: midi_voxel_v3.generate now honours
+# surface_height_divisor / cave_height_divisor (vel//div). Threaded via
+# midi_bridge.generate_world surface_div/cave_div kwargs. Presets that differ
+# only in divisor now yield distinct voxel heights.
 DEFAULT_PRESETS = {
     "resonant_default": {
         "label": "Resonant Default",
@@ -222,6 +244,27 @@ DEFAULT_PRESETS = {
     },
 }
 
+# Ancient Cultures instrument presets (see ancient_cultures.py) merged in at
+# import so the UI dropdown and batch tooling pick them up automatically.
+try:
+    from .ancient_cultures import ANCIENT_PRESETS as _ANCIENT_PRESETS  # type: ignore
+    for _k, _v in _ANCIENT_PRESETS.items():
+        DEFAULT_PRESETS.setdefault(_k, dict(_v))
+except Exception:
+    try:
+        import os as _os, importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location(
+            "ancient_cultures",
+            _os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                          "ancient_cultures.py"))
+        if _spec is not None and _spec.loader is not None:
+            _ac = _ilu.module_from_spec(_spec)
+            _spec.loader.exec_module(_ac)
+            for _k, _v in getattr(_ac, "ANCIENT_PRESETS", {}).items():
+                DEFAULT_PRESETS.setdefault(_k, dict(_v))
+    except Exception:
+        pass
+
 
 def load_presets():
     """Presets from disk, falling back to the built-in defaults."""
@@ -333,9 +376,14 @@ def generate_world(midi_path, preset_id="resonant_default", out_obj=None):
                 report["beatgrid"] = bg
                 report["beat_notes"] = len(rescaled)
 
+    # D7 fix: per-preset divisors now honoured (vel//surface_div vs cave_div)
     chunks = mv.generate(all_tracks, tpb,
-                         chunk_beats=int(preset.get("chunk_beats", 4)))
+                         chunk_beats=int(preset.get("chunk_beats", 4)),
+                         surface_div=int(preset.get("surface_height_divisor", 32)),
+                         cave_div=int(preset.get("cave_height_divisor", 40)))
     report["voxels"] = len(chunks)
+    report["surface_div"] = int(preset.get("surface_height_divisor", 32))
+    report["cave_div"] = int(preset.get("cave_height_divisor", 40))
 
     stats = {}
     for block in chunks.values():

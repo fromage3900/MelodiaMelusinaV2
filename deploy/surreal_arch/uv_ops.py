@@ -249,6 +249,42 @@ class SURREAL_ARCH_OT_uv_invoke_uvpackmaster(bpy.types.Operator):
         return {"CANCELLED"}
 
 
+class SURREAL_ARCH_OT_zentrim_contact_sheet(bpy.types.Operator):
+    bl_idname = "surreal_arch.zentrim_contact_sheet"
+    bl_label = "ZenTrim Contact Sheet"
+    bl_description = "Generate ZenTrim contact sheet PNG + UV manifest JSON (all GB_ZEN kits, SURREAL_TRIM palette, TRIM_SHEET atlas)"
+    bl_options = {"REGISTER"}
+
+    def execute(self, context):
+        import subprocess
+        import sys
+        import os
+        repo = None
+        try:
+            # BS_GodFile root is 2 up from deploy/surreal_arch
+            from pathlib import Path
+            repo = Path(__file__).resolve().parents[1]
+            script = repo / "Tools" / "generate_zentrim_contact_sheet.py"
+            if not script.exists():
+                # fallback to parent repo
+                repo = Path(__file__).resolve().parents[2]
+                script = repo / "BS_GodFile" / "Tools" / "generate_zentrim_contact_sheet.py"
+            py = sys.executable
+            result = subprocess.run([py, str(script)], capture_output=True, text=True, timeout=30)
+            out = (result.stdout or "") + (result.stderr or "")
+            if result.returncode == 0:
+                # Show in UI
+                self.report({"INFO"}, "ZenTrim contact sheet + UV manifest ready in generated/")
+                print(out)
+                return {"FINISHED"}
+            else:
+                self.report({"ERROR"}, out[-400:])
+                return {"CANCELLED"}
+        except Exception as e:
+            self.report({"ERROR"}, str(e))
+            return {"CANCELLED"}
+
+
 UV_OPERATOR_CLASSES = (
     SURREAL_ARCH_OT_uv_create_edit_proxy,
     SURREAL_ARCH_OT_uv_commit_from_proxy,
@@ -261,4 +297,5 @@ UV_OPERATOR_CLASSES = (
     SURREAL_ARCH_OT_trim_preset_zen_wood,
     SURREAL_ARCH_OT_trim_preset_zen_stone,
     SURREAL_ARCH_OT_open_uv_editor,
+    SURREAL_ARCH_OT_zentrim_contact_sheet,
 )

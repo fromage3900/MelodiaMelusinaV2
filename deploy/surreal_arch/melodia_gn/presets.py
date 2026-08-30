@@ -41,6 +41,59 @@ PRESET_SOURCE = "melodia_gn.presets"
 # -----------------------------------------------------------------------------
 
 BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
+    "MEL_audio_spectrum_terrain": {
+        "label": "Audio Spectrum Terrain",
+        "preset_labels": {
+            "DREAMING_HIGHLANDS": "Dreaming Highlands",
+            "BASS_CANYON": "Bass Canyon",
+            "FULL_SONG_CONTINENT": "Full Song Continent",
+            "SEA_ABOVE_FALSE_HORIZON": "Sea Above False Horizon",
+        },
+        "preset_descriptions": {
+            "DREAMING_HIGHLANDS": "Balanced melodic landscape for broad walkable composition studies.",
+            "BASS_CANYON": "Low-frequency canyon relief with restrained upper-band detail.",
+            "FULL_SONG_CONTINENT": "Large high-resolution terrain intended for tiled bake/export runs.",
+            "SEA_ABOVE_FALSE_HORIZON": "Kilometre-scale subdued frequency terrain for the false-ocean horizon and Bell silhouette.",
+        },
+        "presets": {
+            "DREAMING_HIGHLANDS": {"Low Hz": 80.0, "High Hz": 9000.0, "Band Width": 0.08, "Audio Gain": 7.0, "Size X M": 120.0, "Size Y M": 72.0, "Resolution X": 256, "Resolution Y": 128, "Height M": 16.0},
+            "BASS_CANYON": {"Low Hz": 25.0, "High Hz": 800.0, "Band Width": 0.16, "Audio Gain": 12.0, "Size X M": 160.0, "Size Y M": 64.0, "Resolution X": 256, "Resolution Y": 96, "Height M": 35.0},
+            "FULL_SONG_CONTINENT": {"Low Hz": 30.0, "High Hz": 16000.0, "Band Width": 0.04, "Audio Gain": 9.0, "Size X M": 1000.0, "Size Y M": 600.0, "Resolution X": 768, "Resolution Y": 384, "Height M": 90.0},
+            "SEA_ABOVE_FALSE_HORIZON": {"Low Hz": 18.0, "High Hz": 1800.0, "Band Width": 0.06, "Audio Gain": 5.0, "Size X M": 1600.0, "Size Y M": 900.0, "Resolution X": 768, "Resolution Y": 384, "Height M": 42.0, "Music Influence": 0.08, "Musical Amplitude": 6.0, "Musical Freq A": 1.0, "Musical Freq B": 2.0},
+        },
+    },
+    "MEL_audio_spectrum_towers": {
+        "label": "Audio Spectrum Towers",
+        "preset_labels": {"CHOIR_CITY": "Choir City", "BASS_FORTRESS": "Bass Fortress", "MEGASPECTRUM_WALL": "Megaspectrum Wall", "SEA_ABOVE_BELL_RIBS": "Sea Above Bell Ribs"},
+        "preset_descriptions": {
+            "CHOIR_CITY": "Mid/high-frequency skyline for choral architectural studies.",
+            "BASS_FORTRESS": "Heavy low-band towers with large readable silhouettes.",
+            "MEGASPECTRUM_WALL": "Dense 512-bin wall for large-scale instancing and export tests.",
+            "SEA_ABOVE_BELL_RIBS": "Low-frequency kilometre-scale rib field for the Bell proxy silhouette.",
+        },
+        "presets": {
+            "CHOIR_CITY": {"Low Hz": 120.0, "High Hz": 12000.0, "Band Width": 0.06, "Audio Gain": 10.0, "Size X M": 180.0, "Frequency Bins": 192, "Tower Width M": 0.7, "Tower Depth M": 4.0, "Height M": 45.0},
+            "BASS_FORTRESS": {"Low Hz": 20.0, "High Hz": 500.0, "Band Width": 0.18, "Audio Gain": 16.0, "Size X M": 240.0, "Frequency Bins": 96, "Tower Width M": 2.0, "Tower Depth M": 12.0, "Height M": 80.0},
+            "MEGASPECTRUM_WALL": {"Low Hz": 20.0, "High Hz": 20000.0, "Band Width": 0.025, "Audio Gain": 8.0, "Size X M": 1000.0, "Frequency Bins": 512, "Tower Width M": 1.4, "Tower Depth M": 8.0, "Height M": 120.0},
+            "SEA_ABOVE_BELL_RIBS": {"Low Hz": 18.0, "High Hz": 900.0, "Band Width": 0.09, "Audio Gain": 7.0, "Size X M": 1400.0, "Frequency Bins": 384, "Tower Width M": 2.5, "Tower Depth M": 18.0, "Height M": 180.0, "Music Influence": 0.12, "Musical Amplitude": 8.0, "Musical Freq A": 1.0, "Musical Freq B": 5.0},
+        },
+    },
+    "MEL_audio_radial_field": {
+        "label": "Audio Radial Field",
+        "preset_labels": {"MONOLITH_RIPPLES": "Monolith Ripples", "CHORAL_CRATER": "Choral Crater", "HORIZON_EATER_FIELD": "Horizon Eater Field", "SEA_ABOVE_MEMBRANE": "Sea Above Membrane"},
+        "preset_descriptions": {
+            "MONOLITH_RIPPLES": "Compact concentric response around a musical world key.",
+            "CHORAL_CRATER": "Wide vocal-band arena membrane.",
+            "HORIZON_EATER_FIELD": "Massive low-frequency environmental pulse field.",
+            "SEA_ABOVE_MEMBRANE": "Regional circular membrane deformation tuned for the 12-20 second Bell pulse concept.",
+        },
+        "presets": {
+            "MONOLITH_RIPPLES": {"Low Hz": 60.0, "High Hz": 6000.0, "Band Width": 0.08, "Audio Gain": 9.0, "Size X M": 100.0, "Radial Segments": 192, "Height M": 12.0, "Radius M": 50.0},
+            "CHORAL_CRATER": {"Low Hz": 120.0, "High Hz": 12000.0, "Band Width": 0.05, "Audio Gain": 14.0, "Size X M": 260.0, "Radial Segments": 384, "Height M": 32.0, "Radius M": 130.0},
+            "HORIZON_EATER_FIELD": {"Low Hz": 18.0, "High Hz": 1200.0, "Band Width": 0.12, "Audio Gain": 18.0, "Size X M": 1200.0, "Radial Segments": 768, "Height M": 140.0, "Radius M": 600.0},
+            "SEA_ABOVE_MEMBRANE": {"Low Hz": 16.0, "High Hz": 700.0, "Band Width": 0.1, "Audio Gain": 6.0, "Size X M": 1800.0, "Radial Segments": 768, "Height M": 55.0, "Radius M": 900.0, "Music Influence": 0.16, "Musical Amplitude": 10.0, "Musical Freq A": 0.75, "Musical Freq B": 6.0},
+        },
+    },
     # water.py - MEL_water_gerstner (effects)
     "MEL_water_gerstner": {
         "label": "Gerstner Waves",
@@ -1286,11 +1339,17 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "SMALL_CELL": "Small Cell",
             "HALL": "Hall",
             "CLOISTER_WALK": "Cloister Walk",
+            "SEA_ABOVE_REVEAL_GALLERY": "Sea Above Reveal Gallery",
+            "BELL_ANATOMY_CHAMBER": "Bell Anatomy Chamber",
+            "FALSE_HORIZON_OBSERVATORY": "False Horizon Observatory",
         },
         "preset_descriptions": {
             "SMALL_CELL": "Tight 4x4 cell with a ceiling.",
             "HALL": "Long assembly hall, high ceiling.",
             "CLOISTER_WALK": "Wide cloister bay with thinner walls.",
+            "SEA_ABOVE_REVEAL_GALLERY": "Cinematic 16:9 approach gallery with a broad false-horizon reveal volume.",
+            "BELL_ANATOMY_CHAMBER": "Monumental chamber sized for membrane ribs and low-frequency anatomy studies.",
+            "FALSE_HORIZON_OBSERVATORY": "Open-ceiling review room for fixed-camera Sea Above composition.",
         },
         "presets": {
             "SMALL_CELL": {
@@ -1305,6 +1364,9 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
                 "Room Length": 10.0, "Room Width": 4.5, "Room Height": 3.6,
                 "Wall Thickness": 0.2, "Ceiling": True,
             },
+            "SEA_ABOVE_REVEAL_GALLERY": {"Room Length": 30.0, "Room Width": 12.0, "Room Height": 9.0, "Wall Thickness": 0.45, "Ceiling": True, "Music Influence": 0.035, "Musical Amplitude": 1.5, "Musical Freq A": 1.0, "Musical Freq B": 3.0},
+            "BELL_ANATOMY_CHAMBER": {"Room Length": 26.0, "Room Width": 26.0, "Room Height": 15.0, "Wall Thickness": 0.65, "Ceiling": True, "Music Influence": 0.06, "Musical Amplitude": 2.2, "Musical Freq A": 0.75, "Musical Freq B": 5.0},
+            "FALSE_HORIZON_OBSERVATORY": {"Room Length": 22.0, "Room Width": 16.0, "Room Height": 11.0, "Wall Thickness": 0.4, "Ceiling": False, "Music Influence": 0.025, "Musical Amplitude": 1.2, "Musical Freq A": 2.0, "Musical Freq B": 4.0},
         },
     },
     "MEL_greybox_openings": {
@@ -2250,11 +2312,13 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "HARPSICHORD_GILDED": "Gilded Harpsichord",
             "HARPSICHORD_EBONY": "Ebony Harpsichord",
             "HARPSICHORD_MINI": "Mini Harpsichord",
+            "HARPSICHORD_SEA_ABOVE_HERO": "Sea Above Hero Harpsichord",
         },
         "preset_descriptions": {
             "HARPSICHORD_GILDED": "Gilded case, 56 strings, lid 42 deg, cabriole legs.",
             "HARPSICHORD_EBONY": "Ebony case, 48 strings, lid 35 deg.",
             "HARPSICHORD_MINI": "Mini 32 strings, compact.",
+            "HARPSICHORD_SEA_ABOVE_HERO": "Room-scale gilded instrument architecture with restrained low-frequency influence.",
         },
         "presets": {
             "HARPSICHORD_GILDED": {
@@ -2266,6 +2330,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "HARPSICHORD_MINI": {
                 "Length": 1.25, "Width": 0.62, "Height": 0.58, "Lid Angle": 28.0, "String Count": 32, "Leg Height": 0.5, "Scale": 1.0,
             },
+            "HARPSICHORD_SEA_ABOVE_HERO": {"Length": 2.7, "Width": 1.35, "Height": 1.15, "Lid Angle": 48.0, "String Count": 72, "Leg Height": 0.95, "Scale": 2.2, "Realize for export": True, "Music Influence": 0.08, "Musical Amplitude": 0.6, "Musical Freq A": 2.0, "Musical Freq B": 5.0},
         },
     },
     "MEL_music_baroque_violin": {
@@ -2274,11 +2339,13 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "VIOLIN_BAROQUE": "Baroque Violin",
             "VIOLIN_GILDED": "Gilded Violin",
             "VIOLIN_MINI": "Mini Violin",
+            "VIOLIN_BELL_RELIQUARY": "Bell Reliquary Violin",
         },
         "preset_descriptions": {
             "VIOLIN_BAROQUE": "Baroque scroll 2.2 turns, tailpiece wreath.",
             "VIOLIN_GILDED": "Gilded scroll 2.8 turns.",
             "VIOLIN_MINI": "Mini violin, 1.5 turns.",
+            "VIOLIN_BELL_RELIQUARY": "Gallery-scale sculptural violin for Bell anatomy composition.",
         },
         "presets": {
             "VIOLIN_BAROQUE": {
@@ -2290,6 +2357,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "VIOLIN_MINI": {
                 "Body Length": 0.42, "Body Width": 0.16, "Body Depth": 0.06, "Scroll Turns": 1.5, "Scale": 1.0,
             },
+            "VIOLIN_BELL_RELIQUARY": {"Body Length": 0.72, "Body Width": 0.27, "Body Depth": 0.11, "Scroll Turns": 3.2, "Scale": 4.0, "Realize for export": True, "Music Influence": 0.1, "Musical Amplitude": 0.45, "Musical Freq A": 3.0, "Musical Freq B": 7.0},
         },
     },
     "MEL_music_baroque_organ": {
@@ -2298,11 +2366,13 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "ORGAN_CATHEDRAL": "Cathedral Organ",
             "ORGAN_CHAPEL": "Chapel Organ",
             "ORGAN_CHAMBER": "Chamber Organ",
+            "ORGAN_ABYSSAL_CATHEDRAL": "Abyssal Cathedral Organ",
         },
         "preset_descriptions": {
             "ORGAN_CATHEDRAL": "Walkable facade 6.5x8.5m 19 pipes ET.",
             "ORGAN_CHAPEL": "Chapel 4.2x6.0m 13 pipes.",
             "ORGAN_CHAMBER": "Chamber 3.0x4.5m 9 pipes.",
+            "ORGAN_ABYSSAL_CATHEDRAL": "Hero-scale walkable organ facade for Sea Above reveal staging.",
         },
         "presets": {
             "ORGAN_CATHEDRAL": {
@@ -2314,6 +2384,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "ORGAN_CHAMBER": {
                 "Facade Width": 3.0, "Facade Height": 4.5, "Depth": 0.7, "Pipe Count": 9, "Longest Pipe (m)": 2.4, "Scale": 1.0,
             },
+            "ORGAN_ABYSSAL_CATHEDRAL": {"Facade Width": 11.0, "Facade Height": 14.0, "Depth": 2.4, "Pipe Count": 31, "Longest Pipe (m)": 7.0, "Scale": 1.5, "Realize for export": True, "Music Influence": 0.07, "Musical Amplitude": 1.4, "Musical Freq A": 1.0, "Musical Freq B": 4.0},
         },
     },
     "MEL_music_baroque_lute": {
@@ -2322,11 +2393,13 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "LUTE_STANDARD": "Standard Lute",
             "LUTE_THEORBO": "Theorbo",
             "LUTE_MANDORA": "Mandora",
+            "LUTE_PELAGIC_VAULT": "Pelagic Vault Lute",
         },
         "preset_descriptions": {
             "LUTE_STANDARD": "Bowl 0.62x0.36 11 staves, neck 0.42.",
             "LUTE_THEORBO": "Long theorbo, 14 staves, neck 0.68.",
             "LUTE_MANDORA": "Mandora, 9 staves, short neck.",
+            "LUTE_PELAGIC_VAULT": "Large vaulted-bowl sculpture with subtle membrane-like musical deformation.",
         },
         "presets": {
             "LUTE_STANDARD": {
@@ -2338,9 +2411,164 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "LUTE_MANDORA": {
                 "Bowl Length": 0.48, "Bowl Width": 0.28, "Bowl Depth": 0.14, "Stave Count": 9, "Neck Length": 0.32, "Scale": 1.0,
             },
+            "LUTE_PELAGIC_VAULT": {"Bowl Length": 0.9, "Bowl Width": 0.54, "Bowl Depth": 0.28, "Stave Count": 18, "Neck Length": 0.82, "Scale": 3.2, "Realize for export": True, "Music Influence": 0.12, "Musical Amplitude": 0.5, "Musical Freq A": 2.0, "Musical Freq B": 6.0},
         },
     },
 
+    # --- Bevel polish V3 (Infinity Nikki soft look) ---
+    "MEL_auto_bevel": {
+        "label": "Auto Bevel (Ease)",
+        "preset_labels": {
+            "NIKKI_SOFT": "Nikki Soft",
+            "HARD_SURFACE": "Hard Surface",
+            "PORCELAIN": "Porcelain",
+        },
+        "preset_descriptions": {
+            "NIKKI_SOFT": "Infinity Nikki pastel — 0.03 width, 3 segs, 30 deg, smooth on.",
+            "HARD_SURFACE": "Crisp chamfer — 0.08 width, 2 segs, 45 deg.",
+            "PORCELAIN": "Micro soft 0.015 width, 4 segs, 25 deg.",
+        },
+        "presets": {
+            "NIKKI_SOFT": {"Width": 0.03, "Segments": 3, "Profile": 0.5, "Angle Threshold": 30.0, "Shade Smooth": True},
+            "HARD_SURFACE": {"Width": 0.08, "Segments": 2, "Profile": 0.25, "Angle Threshold": 45.0, "Shade Smooth": True},
+            "PORCELAIN": {"Width": 0.015, "Segments": 4, "Profile": 0.65, "Angle Threshold": 25.0, "Shade Smooth": True},
+        },
+    },
+    "MEL_weighted_bevel": {
+        "label": "Weighted Bevel",
+        "preset_labels": {
+            "NIK_SOFT_WEIGHTED": "Nikki Weighted Soft",
+            "SHARP_INSET": "Sharp Inset",
+            "AUTO_FALLBACK": "Auto Angle Fallback",
+        },
+        "preset_descriptions": {
+            "NIK_SOFT_WEIGHTED": "Base 0.04 + weight scale 1.0, auto-angle 30 deg fallback.",
+            "SHARP_INSET": "Base 0.06 weighted 1.5, narrow.",
+            "AUTO_FALLBACK": "Base 0.03 weight on, auto angle handles unpainted edges.",
+        },
+        "presets": {
+            "NIK_SOFT_WEIGHTED": {"Base Width": 0.04, "Segments": 3, "Weight Scale": 1.0, "Use Bevel Weight": True, "Auto Angle Threshold": 30.0},
+            "SHARP_INSET": {"Base Width": 0.06, "Segments": 2, "Weight Scale": 1.5, "Use Bevel Weight": True, "Auto Angle Threshold": 45.0},
+            "AUTO_FALLBACK": {"Base Width": 0.03, "Segments": 3, "Weight Scale": 1.0, "Use Bevel Weight": True, "Auto Angle Threshold": 30.0},
+        },
+    },
+    "MEL_curvature_bevel": {
+        "label": "Curvature Bevel",
+        "preset_labels": {
+            "DRAPE_SOFT": "Drape Soft",
+            "FILIGREE_CRISP": "Filigree Crisp",
+            "ORNATE_BLEND": "Ornate Blend",
+        },
+        "preset_descriptions": {
+            "DRAPE_SOFT": "Drape curvature 0.8 thresh 0.5 — fabric-like.",
+            "FILIGREE_CRISP": "Filigree 1.5 curvature, tight.",
+            "ORNATE_BLEND": "Balanced ornate 1.0.",
+        },
+        "presets": {
+            "DRAPE_SOFT": {"Base Width": 0.025, "Curvature Scale": 0.8, "Segments": 3, "Threshold": 0.5},
+            "FILIGREE_CRISP": {"Base Width": 0.018, "Curvature Scale": 1.5, "Segments": 3, "Threshold": 0.35},
+            "ORNATE_BLEND": {"Base Width": 0.022, "Curvature Scale": 1.0, "Segments": 3, "Threshold": 0.45},
+        },
+    },
+
+    # --- Infinity Nikki expanded kit V3 ---
+    "MEL_nikki_bloom_pavilion": {
+        "label": "Nikki Bloom Pavilion",
+        "preset_labels": {
+            "SAKURA_BLOOM": "Sakura Bloom",
+            "STARLIGHT_CANOPY": "Starlight Canopy",
+            "HEART_PAVILION": "Heart Pavilion",
+        },
+        "preset_descriptions": {
+            "SAKURA_BLOOM": "Radius 2.4, 8 petals, bloom 0.5, heart on.",
+            "STARLIGHT_CANOPY": "Radius 3.2, 12 petals, bloom 0.8, heart on.",
+            "HEART_PAVILION": "Small 1.8 radius, 6 petals, bloom 0.35.",
+        },
+        "presets": {
+            "SAKURA_BLOOM": {"Radius": 2.4, "Height": 2.8, "Petal Count": 8, "Canopy Bloom": 0.5, "Heart Filigree": True, "Pastel Tint": 0.5},
+            "STARLIGHT_CANOPY": {"Radius": 3.2, "Height": 3.4, "Petal Count": 12, "Canopy Bloom": 0.8, "Heart Filigree": True, "Pastel Tint": 0.75},
+            "HEART_PAVILION": {"Radius": 1.8, "Height": 2.2, "Petal Count": 6, "Canopy Bloom": 0.35, "Heart Filigree": True, "Pastel Tint": 0.6},
+        },
+    },
+    "MEL_nikki_wardrobe_nook": {
+        "label": "Nikki Wardrobe Nook",
+        "preset_labels": {
+            "BOUDOIR": "Boudoir",
+            "ATELIER": "Atelier",
+            "CLOSET_PODIUM": "Closet Podium",
+        },
+        "preset_descriptions": {
+            "BOUDOIR": "Width 3.2, depth 2.0, rods 2, mirror+pedestal.",
+            "ATELIER": "Wide 4.0, 3 rods, mirror on.",
+            "CLOSET_PODIUM": "Narrow 2.4, 1 rod, pedestal focus.",
+        },
+        "presets": {
+            "BOUDOIR": {"Width": 3.2, "Depth": 2.0, "Height": 2.6, "Rod Count": 2, "Mirror": True, "Pedestal": True},
+            "ATELIER": {"Width": 4.0, "Depth": 2.4, "Height": 2.8, "Rod Count": 3, "Mirror": True, "Pedestal": True},
+            "CLOSET_PODIUM": {"Width": 2.4, "Depth": 1.6, "Height": 2.4, "Rod Count": 1, "Mirror": False, "Pedestal": True},
+        },
+    },
+    "MEL_nikki_podium_runway": {
+        "label": "Nikki Podium Runway",
+        "preset_labels": {
+            "RUNWAY_SHORT": "Short Runway",
+            "RUNWAY_GRAND": "Grand Runway",
+            "PETAL_RUNWAY": "Petal Runway",
+        },
+        "preset_descriptions": {
+            "RUNWAY_SHORT": "Length 4, width 1.6, petals on.",
+            "RUNWAY_GRAND": "Length 8, width 2.2, lights 8, petals on.",
+            "PETAL_RUNWAY": "Length 6, sakura petals dense.",
+        },
+        "presets": {
+            "RUNWAY_SHORT": {"Length": 4.0, "Width": 1.6, "Height": 0.4, "Light Count": 4, "Sakura Petals": True},
+            "RUNWAY_GRAND": {"Length": 8.0, "Width": 2.2, "Height": 0.45, "Light Count": 8, "Sakura Petals": True},
+            "PETAL_RUNWAY": {"Length": 6.0, "Width": 1.8, "Height": 0.38, "Light Count": 6, "Sakura Petals": True},
+        },
+    },
+    "MEL_nikki_sheet_rail_hero": {
+        "label": "Nikki Sheet Rail Hero",
+        "preset_labels": {
+            "BLOOM_PASTEL": "Bloom Pastel",
+            "STARLIGHT_RAIL": "Starlight Rail",
+            "HEART_RAIL": "Heart Rail",
+        },
+        "preset_descriptions": {
+            "BLOOM_PASTEL": "Pastel bloom style 0 — soft nikki, 12 notes, clef on, auto bevel.",
+            "STARLIGHT_RAIL": "Starlight style 1 — taller, airy.",
+            "HEART_RAIL": "Heart style 2 — token crest, warm.",
+        },
+        "presets": {
+            "BLOOM_PASTEL": {"Length": 6.0, "Height": 1.05, "Line Thickness": 0.04, "Line Spacing": 0.12, "Note Count": 12, "Style": 0, "Show Clef": True, "Auto Bevel": True},
+            "STARLIGHT_RAIL": {"Length": 8.0, "Height": 1.25, "Line Thickness": 0.035, "Line Spacing": 0.14, "Note Count": 16, "Style": 1, "Show Clef": True, "Auto Bevel": True},
+            "HEART_RAIL": {"Length": 5.0, "Height": 1.15, "Line Thickness": 0.045, "Line Spacing": 0.12, "Note Count": 8, "Style": 2, "Show Clef": True, "Auto Bevel": True},
+        },
+    },
+
+}
+
+# Melodia Studio v3 planetary families.  Mode is a continuous shared shape
+# vocabulary: 0 continent, 1 canyon, 2 reef, 3 arches, 4 cave mouth,
+# 5 monolith field, 6 settlement shelf, 7 false horizon, 8 floating island,
+# 9 fully island-masked.
+BUILDERS_PRESETS["MEL_planetary_musical_terrain"] = {
+    "label": "Planetary Musical Terrain",
+    "presets": {
+    "PLANETARY_EXPLORATION_PREVIEW": {"Terrain Mode": 0, "Seed": 1337, "Size X M": 256.0, "Size Y M": 256.0, "Resolution X": 129, "Resolution Y": 129, "Macro Height M": 54.0, "Macro Scale M": 420.0, "Mid Height M": 13.0, "Mid Scale M": 90.0, "Micro Height M": 2.0, "Micro Scale M": 16.0, "Reserved Path M": 10.0, "Audio Height M": 0.0, "Music Influence": 0.0},
+    "SEA_ABOVE_FALSE_HORIZON_V3": {"Terrain Mode": 7, "Seed": 8088, "Size X M": 1024.0, "Size Y M": 512.0, "Resolution X": 513, "Resolution Y": 257, "Base Height M": -18.0, "Macro Height M": 130.0, "Macro Scale M": 880.0, "Mid Height M": 22.0, "Mid Scale M": 140.0, "Shore Height M": 2.0, "Low Hz": 18.0, "High Hz": 600.0, "Audio Gain": 3.0, "Audio Height M": 18.0, "Music Influence": 0.06},
+    "MUSICAL_RUINS_CANYON": {"Terrain Mode": 1, "Seed": 440, "Size X M": 512.0, "Size Y M": 512.0, "Resolution X": 257, "Resolution Y": 257, "Macro Height M": 105.0, "Macro Scale M": 360.0, "Mid Height M": 28.0, "Mid Scale M": 72.0, "Reserved Path M": 14.0, "Low Hz": 55.0, "High Hz": 2200.0, "Audio Height M": 9.0, "Music Influence": 0.04},
+    "FLOATING_BAROQUE_SETTLEMENT": {"Terrain Mode": 8, "Seed": 1729, "Size X M": 384.0, "Size Y M": 384.0, "Resolution X": 257, "Resolution Y": 257, "Base Height M": 80.0, "Macro Height M": 76.0, "Macro Scale M": 300.0, "Island Radius": 0.66, "Reserved Path M": 18.0, "Low Hz": 80.0, "High Hz": 4200.0, "Audio Height M": 7.0, "Music Influence": 0.08},
+    "REEF_CATHEDRAL_SHELF": {"Terrain Mode": 2, "Seed": 31415, "Size X M": 512.0, "Size Y M": 384.0, "Resolution X": 257, "Resolution Y": 193, "Base Height M": -42.0, "Macro Height M": 68.0, "Macro Scale M": 260.0, "Mid Height M": 34.0, "Mid Scale M": 54.0, "Shore Height M": -5.0, "Low Hz": 28.0, "High Hz": 1400.0, "Audio Height M": 14.0, "Music Influence": 0.1},
+    "TRAVERSAL_CORRIDOR_CONTINENT": {"Terrain Mode": 6, "Seed": 20260830, "Size X M": 1024.0, "Size Y M": 1024.0, "Resolution X": 513, "Resolution Y": 513, "Macro Height M": 92.0, "Macro Scale M": 740.0, "Mid Height M": 18.0, "Reserved Path M": 24.0, "Audio Height M": 4.0, "Music Influence": 0.03},
+    },
+    "preset_descriptions": {
+        "PLANETARY_EXPLORATION_PREVIEW": "Fast deterministic planetary composition and seam review.",
+        "SEA_ABOVE_FALSE_HORIZON_V3": "Kilometre-scale false horizon with restrained low-frequency musical relief.",
+        "MUSICAL_RUINS_CANYON": "Traversal-first canyon shelf for musical ruin placement.",
+        "FLOATING_BAROQUE_SETTLEMENT": "Island-masked elevated shelf for a floating Baroque settlement.",
+        "REEF_CATHEDRAL_SHELF": "Submerged reef/cathedral terrain with strong cavity and shoreline masks.",
+        "TRAVERSAL_CORRIDOR_CONTINENT": "Continent tile with a wide reserved path mask for player routes.",
+    },
 }
 
 # -----------------------------------------------------------------------------

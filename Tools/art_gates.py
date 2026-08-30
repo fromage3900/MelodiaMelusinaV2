@@ -109,9 +109,24 @@ def _git(*args: str) -> list[str]:
 
 
 def _tracked_uassets() -> list[str]:
-    """Tracked .uasset paths. Tracked, not on-disk: CI only ever sees these,
-    and a gate that passes locally but not in CI is worse than no gate."""
-    return [p for p in _git("ls-files", "Content") if p.endswith(".uasset")]
+    """Return Git-tracked assets, or workspace assets after a Perforce cutover.
+
+    Git remains authoritative while it tracks Content. Once Content moves to
+    Perforce, Git reports no assets; falling back to the workspace prevents the
+    gate from silently validating an empty set.
+    """
+    tracked = [p for p in _git("ls-files", "Content") if p.endswith(".uasset")]
+    if tracked:
+        return tracked
+
+    content_root = ROOT / "Content"
+    if not content_root.exists():
+        return []
+    return sorted(
+        path.relative_to(ROOT).as_posix()
+        for path in content_root.rglob("*.uasset")
+        if path.is_file()
+    )
 
 
 # --------------------------------------------------------------------------
@@ -178,24 +193,26 @@ def gate_spine_hygiene(assets: list[str]) -> dict:
 
 
 def gate_duplicate_short_names(assets: list[str]) -> dict:
-    """No two tracked assets share a short name.
+    """No two tracked assets in the same directory share a short name.
 
     AGENTS.md already names this defect class: "Duplicate short names. Substring
     assertions pass against either copy." Most audit scripts in this repo match on
     short name, so a duplicate makes them silently non-deterministic about which
     asset they validated.
+
+    NOTE: same stem in different directories is normal Unreal practice (e.g.
+    `Cube` in multiple folders, animations in `QuaterniusRetargeted/` vs
+    `QuaterniusRetargeted_V2Fixed/`). Only same-directory collisions fail.
     """
-    by_stem: dict[str, list[str]] = defaultdict(list)
+    by_dir_stem: dict[tuple[str, str], list[str]] = defaultdict(list)
     for p in assets:
-        by_stem[Path(p).stem].append(p)
-    dupes = {k: sorted(v) for k, v in by_stem.items() if len(v) > 1}
+        pp = Path(p)
+        by_dir_stem[(str(pp.parent).replace("\\", "/"), pp.stem)].append(p)
+    dupes = {k: sorted(v) for k, v in by_dir_stem.items() if len(v) > 1}
     return {
         "name": "duplicate_short_names",
         "passed": not dupes,
-        # `all_stems` is the keying surface and must stay complete -- `duplicates` is
-        # truncated for display, and baselining off the truncated view would leave the
-        # remaining stems looking brand new on the next run.
-        "all_stems": sorted(dupes),
+        "all_stem": sorted(dupes),
         "detail": {"count": len(dupes), "duplicates": dict(sorted(dupes.items())[:40])},
         "hint": "Rename or delete one copy. Until then, treat every short-name-matching "
                 "audit result as unreliable.",

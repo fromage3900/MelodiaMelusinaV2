@@ -1,7 +1,7 @@
-"""Expression mixer ΓÇö keyframe blendshapes on the Melusina armature from a viseme track.
+"""Expression mixer — keyframe blendshapes on the Melusina armature from a viseme track.
 
 Pipeline:
-  1. Parse voice file ΓåÆ VoiceTrack (phoneme_reader)
+  1. Parse voice file → VoiceTrack (phoneme_reader)
   2. Detect viseme bindings on armature (viseme_mapper)
   3. For each animation frame:
        a. Compute viseme weights from active phoneme(s)
@@ -29,9 +29,9 @@ from .viseme_mapper import (
 )
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Settings container (stored on the armature or scene)
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 @dataclass
 class PortraitSettings:
@@ -44,9 +44,9 @@ class PortraitSettings:
     smooth_frames: int = 2           # interpolation window for viseme transitions
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Core keyframe engine
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 def generate_portrait_animation(
     armature_obj,
@@ -122,9 +122,9 @@ def generate_portrait_animation(
     }
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Internal helpers
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 def _compute_frame_viseme_weights(
     track: VoiceTrack,
@@ -182,7 +182,7 @@ def _compute_idle_overlay(
 ) -> dict[str, float]:
     """Compute subtle idle animation weights.
 
-    Returns a dict of shape_key_name ΓåÆ value for:
+    Returns a dict of shape_key_name → value for:
       - Eye blink (periodic)
       - Breath (sinusoidal chest rise)
       - Subtle head sway (sinusoidal)
@@ -194,14 +194,14 @@ def _compute_idle_overlay(
     blink_phase = (time_sec % blink_period) / blink_period
     blink_dur_ratio = settings.eye_blink_duration / blink_period
     if blink_phase < blink_dur_ratio:
-        # Triangular blink: 0ΓåÆ1ΓåÆ0
+        # Triangular blink: 0→1→0
         t = blink_phase / blink_dur_ratio
         blink_val = 1.0 - abs(2.0 * t - 1.0)  # peak at t=0.5
         overlay["_idle_blink"] = blink_val * settings.idle_amplitude
     else:
         overlay["_idle_blink"] = 0.0
 
-    # Subtle breathing ΓÇö smooth sinusoidal chest motion
+    # Subtle breathing — smooth sinusoidal chest motion
     import math
     breath_val = math.sin(time_sec * 1.2) * 0.5 + 0.5  # 0-1 range, ~5s cycle
     overlay["_idle_breath"] = breath_val * settings.idle_amplitude * 0.3
@@ -329,9 +329,9 @@ def _clear_shape_key_animation(
                 kb.value = 0.0
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # High-level convenience
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 def clear_all_portrait_animation(armature_obj) -> int:
     """Remove all keyframed shape key animation from the rig. Returns count cleared."""

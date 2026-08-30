@@ -25,6 +25,7 @@ from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node,
     label_tree, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param, register_builder,
+    add_music_influence_params, apply_universal_music_pass,
 )
 
 
@@ -101,6 +102,7 @@ def build_music_baroque_harpsichord(group_name="MEL_music_baroque_harpsichord"):
     add_float_param(tree, "Leg Height", 0.72, 0.4, 1.1)
     add_float_param(tree, "Scale", 1.0, 0.3, 3.0)
     add_bool_param(tree, "Realize for export", False)
+    add_music_influence_params(tree)
 
     # Case - ogee-edged box
     case = safe_node(tree, "GeometryNodeMeshCube", (bx-400, by+200))
@@ -239,7 +241,8 @@ def build_music_baroque_harpsichord(group_name="MEL_music_baroque_harpsichord"):
     link_sockets(tree, shade.outputs["Geometry"], xf.inputs["Geometry"])
     sc2 = _combine(tree, (bx+800, by+100), gin.outputs["Scale"], gin.outputs["Scale"], gin.outputs["Scale"])
     link_sockets(tree, sc2.outputs["Vector"], xf.inputs["Scale"])
-    link_sockets(tree, xf.outputs["Geometry"], gout.inputs["Geometry"])
+    influenced = apply_universal_music_pass(tree, gin, xf.outputs["Geometry"], (1080, 40))
+    link_sockets(tree, influenced, gout.inputs["Geometry"])
     return label_tree(tree, group_name, [
         {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
         {"title": "Baroque Case", "nodes": ("cube", "transform", "lid"), "role": "geometry"},
@@ -263,6 +266,7 @@ def build_music_baroque_violin(group_name="MEL_music_baroque_violin"):
     add_float_param(tree, "Scroll Turns", 2.2, 1.0, 3.5)
     add_float_param(tree, "Scale", 1.0, 0.3, 3.0)
     add_bool_param(tree, "Realize for export", False)
+    add_music_influence_params(tree)
 
     body = safe_node(tree, "GeometryNodeMeshCube", (bx-200, by+200))
     body.inputs["Size"].default_value = (1.0, 1.0, 1.0)
@@ -345,7 +349,8 @@ def build_music_baroque_violin(group_name="MEL_music_baroque_violin"):
     link_sockets(tree, shade.outputs["Geometry"], xf.inputs["Geometry"])
     sc2 = _combine(tree, (bx+800, by+140), gin.outputs["Scale"], gin.outputs["Scale"], gin.outputs["Scale"])
     link_sockets(tree, sc2.outputs["Vector"], xf.inputs["Scale"])
-    link_sockets(tree, xf.outputs["Geometry"], gout.inputs["Geometry"])
+    influenced = apply_universal_music_pass(tree, gin, xf.outputs["Geometry"], (1080, 80))
+    link_sockets(tree, influenced, gout.inputs["Geometry"])
     return label_tree(tree, group_name, [
         {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
         {"title": "Baroque Body", "nodes": ("cube",), "role": "geometry"},
@@ -370,6 +375,7 @@ def build_music_baroque_organ(group_name="MEL_music_baroque_organ"):
     add_float_param(tree, "Longest Pipe (m)", 4.2, 1.5, 7.0)
     add_float_param(tree, "Scale", 1.0, 0.3, 2.0)
     add_bool_param(tree, "Realize for export", False)
+    add_music_influence_params(tree)
 
     # Facade case
     case = safe_node(tree, "GeometryNodeMeshCube", (bx-400, by+200))
@@ -479,7 +485,8 @@ def build_music_baroque_organ(group_name="MEL_music_baroque_organ"):
     link_sockets(tree, shade.outputs["Geometry"], xf.inputs["Geometry"])
     sc2 = _combine(tree, (bx+800, by+120), gin.outputs["Scale"], gin.outputs["Scale"], gin.outputs["Scale"])
     link_sockets(tree, sc2.outputs["Vector"], xf.inputs["Scale"])
-    link_sockets(tree, xf.outputs["Geometry"], gout.inputs["Geometry"])
+    influenced = apply_universal_music_pass(tree, gin, xf.outputs["Geometry"], (1080, 80))
+    link_sockets(tree, influenced, gout.inputs["Geometry"])
     return label_tree(tree, group_name, [
         {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
         {"title": "Facade Case", "nodes": ("cube",), "role": "geometry"},
@@ -507,6 +514,7 @@ def build_music_baroque_lute(group_name="MEL_music_baroque_lute"):
     add_float_param(tree, "Neck Length", 0.42, 0.2, 0.75)
     add_float_param(tree, "Scale", 1.0, 0.3, 3.0)
     add_bool_param(tree, "Realize for export", False)
+    add_music_influence_params(tree)
 
     # Bowl - staves as scaled cubes around Y
     line = safe_node(tree, "GeometryNodeMeshLine", (bx-400, by+200))
@@ -607,7 +615,8 @@ def build_music_baroque_lute(group_name="MEL_music_baroque_lute"):
     link_sockets(tree, shade.outputs["Geometry"], xf.inputs["Geometry"])
     sc2 = _combine(tree, (bx+800, by+20), gin.outputs["Scale"], gin.outputs["Scale"], gin.outputs["Scale"])
     link_sockets(tree, sc2.outputs["Vector"], xf.inputs["Scale"])
-    link_sockets(tree, xf.outputs["Geometry"], gout.inputs["Geometry"])
+    influenced = apply_universal_music_pass(tree, gin, xf.outputs["Geometry"], (1080, 80))
+    link_sockets(tree, influenced, gout.inputs["Geometry"])
     return label_tree(tree, group_name, [
         {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
         {"title": "Bowl Staves", "nodes": ("line", "cube", "rotate"), "role": "geometry"},

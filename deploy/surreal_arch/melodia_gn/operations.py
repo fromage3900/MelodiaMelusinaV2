@@ -1,4 +1,4 @@
-﻿"""Composite operations ΓÇö multi-iteration power falloff and bounded auto-fit content.
+﻿"""Composite operations — multi-iteration power falloff and bounded auto-fit content.
 
 MEL_op_iterate: instance geometry N times with power-scale falloff along axis
 MEL_op_bounded: auto-scale content to fit a target bounding box

@@ -1,4 +1,4 @@
-"""Ornamental GN group builders ΓÇö vine, radial, grid, frame, panel with power/add/subtract/bbox/attr operations."""
+"""Ornamental GN group builders — vine, radial, grid, frame, panel with power/add/subtract/bbox/attr operations."""
 
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ def _ensure_group_node(tree, group_name, builder, loc):
 
 
 def build_ornament_vine(group_name="MEL_ornament_vine"):
-    """Art Nouveau vine ΓÇö sinusoidal S-curve sweep with power-tapered thickness.
+    """Art Nouveau vine — sinusoidal S-curve sweep with power-tapered thickness.
 
     Uses: power (taper), store_attribute (thickness along vine), bounding_box (auto-fit)
     """
@@ -145,7 +145,7 @@ def build_ornament_vine(group_name="MEL_ornament_vine"):
 
 
 def build_ornament_radial(group_name="MEL_ornament_radial"):
-    """Gothic radial ΓÇö circular array of spokes + concentric rings, with subtract for voids.
+    """Gothic radial — circular array of spokes + concentric rings, with subtract for voids.
 
     Uses: circular_array (spokes), add (rings), subtract (voids), bounding_box (center/radius)
     """
@@ -247,7 +247,7 @@ def build_ornament_radial(group_name="MEL_ornament_radial"):
 
 
 def build_ornament_grid(group_name="MEL_ornament_grid"):
-    """Geometric grid ΓÇö cells arranged in rows/cols with power-scale falloff and subtract voids.
+    """Geometric grid — cells arranged in rows/cols with power-scale falloff and subtract voids.
 
     Uses: grid_array (cells), add (merge), subtract (checkerboard), power (edge falloff)
     """
@@ -315,7 +315,7 @@ def build_ornament_grid(group_name="MEL_ornament_grid"):
         link_sockets(tree, idx.outputs["Index"], checker.inputs[0])
         checker.inputs[1].default_value = 2
 
-        # Selection: keep only even indices ΓÇö currently unused pending selector implementation
+        # Selection: keep only even indices — currently unused pending selector implementation
 
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 800, by + 200))
     shade.inputs["Shade Smooth"].default_value = True
@@ -336,7 +336,7 @@ def build_ornament_grid(group_name="MEL_ornament_grid"):
 
 
 def build_ornament_frame(group_name="MEL_ornament_frame"):
-    """Rectangular frame ΓÇö extruded edges from bounding box, with corner taper.
+    """Rectangular frame — extruded edges from bounding box, with corner taper.
 
     Uses: bounding_box (dimensions), power (corner taper)
     """
@@ -381,7 +381,7 @@ def build_ornament_frame(group_name="MEL_ornament_frame"):
 
 
 def build_ornament_panel(group_name="MEL_ornament_panel"):
-    """Composite ornamental panel ΓÇö selects vine/radial/grid, adds frame, stores material zone attr.
+    """Composite ornamental panel — selects vine/radial/grid, adds frame, stores material zone attr.
 
     Uses: add (combine frame + interior), store_attribute (material zone), switch (style selector)
     """
