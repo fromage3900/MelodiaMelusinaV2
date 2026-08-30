@@ -1655,7 +1655,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
     zen_lantern_layers: bpy.props.IntProperty(
         name="Element Count",
         default=6, min=2, max=8,
-        description="Stacked tÅrÅ elements from kiso/kidan through hÅju (2=minimal, 8=full stack)",
+        description="Stacked tōrō elements from kiso/kidan through hōju (2=minimal, 8=full stack)",
         update=auto_update_callback,
     )
 
@@ -1685,7 +1685,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
                                                      description="Arrange one classic 3-stone Buddhist triad (master/attendant/companion)",
                                                      update=auto_update_callback)
     stone_garden_tsukubai: bpy.props.BoolProperty(
-        name="Tsukubai (è¹²è¸ž)",
+        name="Tsukubai (蹲踞)",
         description="Stone water basin - roji purification feature beside the gravel field",
         default=False,
         update=auto_update_callback,
@@ -1693,42 +1693,42 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
 
     # === * Zen - research-backed component controls (geometry only) ===
     zen_lantern_style: bpy.props.EnumProperty(
-        name="TÅrÅ Style (ç¯ç± )",
+        name="Tōrō Style (灯籠)",
         description="Traditional stone-lantern typology (Kasuga shrine, snow-viewing, Oribe tea, cape/oki)",
         items=[
-            ('KASUGA', "Kasuga-dÅrÅ (æ˜¥æ-¥ç¯ç± )", "Tall sao, hexagonal hibukuro - Kasuga Taisha prototype"),
+            ('KASUGA', "Kasuga-dōrō (春日灯籠)", "Tall sao, hexagonal hibukuro - Kasuga Taisha prototype"),
             ('YUKIMI', "Yukimi-dōrō (雪見灯籠)", "Wide low kasa for snow-viewing; short or absent sao"),
             ('ORIBE',  "Oribe-gata (織部形)", "Square hibukuro, restrained tea-garden proportions"),
-            ('MISAKI', "Misaki-dÅrÅ (å²¬ç¯ç± )", "Low oki/cape lantern - minimal shaft, broad kasa"),
+            ('MISAKI', "Misaki-dōrō (岬灯籠)", "Low oki/cape lantern - minimal shaft, broad kasa"),
         ],
         default='KASUGA',
         update=auto_update_callback,
     )
     zen_lantern_warabide: bpy.props.FloatProperty(
-        name="Warabide Curl (è*¨æ‰‹)",
+        name="Warabide Curl (蕨手)",
         description="Upward curl at kasa corners - young bracken-shoot motif",
         default=0.35, min=0.0, max=1.0, subtype='FACTOR',
         update=auto_update_callback,
     )
     zen_lantern_higuchi: bpy.props.EnumProperty(
-        name="Higuchi (ç«å£)",
+        name="Higuchi (火口)",
         description="Fire-opening motif on hibukuro faces",
         items=[
-            ('ROUND', "Maru (ä¸¸)", "Full-moon circular opening - traditionally faces east"),
-            ('SQUARE', "Kaku (è§')", "Square geometric opening"),
-            ('MOON', "Tsuki (æœˆ)", "Crescent moon opening - traditionally faces west"),
+            ('ROUND', "Maru (丸)", "Full-moon circular opening - traditionally faces east"),
+            ('SQUARE', "Kaku (角)", "Square geometric opening"),
+            ('MOON', "Tsuki (杈)", "Crescent moon opening - traditionally faces west"),
         ],
         default='ROUND',
         update=auto_update_callback,
     )
     zen_lantern_hoju_scale: bpy.props.FloatProperty(
-        name="HÅju Scale (å®ç )",
+        name="Hōju Scale (宝珠)",
         description="Wish-granting jewel finial size at apex",
         default=1.0, min=0.3, max=2.5,
         update=auto_update_callback,
     )
     zen_lantern_kasa_overhang: bpy.props.FloatProperty(
-        name="Kasa Overhang (ç¬ )",
+        name="Kasa Overhang (笠)",
         description="Umbrella roof radius multiplier",
         default=1.0, min=0.6, max=1.8,
         update=auto_update_callback,
@@ -1740,24 +1740,24 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         update=auto_update_callback,
     )
     zen_lantern_show_ukebana: bpy.props.BoolProperty(
-        name="Ukebana (è«‹èŠ±)",
+        name="Ukebana (請花)",
         description="Lotus seat supporting the hōju - symbolizes kū (void)",
         default=True,
         update=auto_update_callback,
     )
 
     torii_style: bpy.props.EnumProperty(
-        name="Torii Style (é³¥å±...)",
+        name="Torii Style (鳥居)",
         items=[
-            ('MYOJIN', "MyÅjin (æ˜Žç¥ž)", "Curved kasagi + shimaki - most common shrine gate"),
-            ('SHINMEI', "Shinmei (ç¥žæ˜Ž)", "Straight Ise-style - kasagi + nuki only"),
-            ('ISE', "Ise (ä¼Šå‹¢)", "Shinmei with pentagonal-section kasagi"),
+            ('MYOJIN', "Myōjin (明神)", "Curved kasagi + shimaki - most common shrine gate"),
+            ('SHINMEI', "Shinmei (神明)", "Straight Ise-style - kasagi + nuki only"),
+            ('ISE', "Ise (伊勢)", "Shinmei with pentagonal-section kasagi"),
         ],
         default='MYOJIN',
         update=auto_update_callback,
     )
     torii_nuki_height: bpy.props.FloatProperty(
-        name="Nuki Height (è²«)",
+        name="Nuki Height (貫)",
         description="Tie-beam height as fraction of total torii height",
         default=0.70, min=0.45, max=0.85, subtype='FACTOR',
         update=auto_update_callback,
@@ -1775,15 +1775,15 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         update=auto_update_callback,
     )
     torii_show_shimenawa: bpy.props.BoolProperty(
-        name="Shimenawa (æ³¨é€£ç¸„)",
+        name="Shimenawa (注連縄)",
         description="Sacred braided rope between hashira - archaic shime-torii motif",
         default=False,
         update=auto_update_callback,
     )
 
     pagoda_sorin_rings: bpy.props.IntProperty(
-        name="Kurin Rings (ä¹è¼ª)",
-        description="Metal rings on sÅrin spire (traditionally nine)",
+        name="Kurin Rings (九輪)",
+        description="Metal rings on sōrin spire (traditionally nine)",
         default=9, min=0, max=13,
         update=auto_update_callback,
     )
@@ -1801,10 +1801,10 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
     )
 
     shoji_kumiko: bpy.props.EnumProperty(
-        name="Kumiko Pattern (çµ„å­)",
+        name="Kumiko Pattern (組子)",
         items=[
-            ('GRID', "Yoko-kumiko (æ¨ªçµ„å­)", "Simple orthogonal lattice"),
-            ('ASANOHA', "Asanoha (éº»ã®è'‰)", "Hemp-leaf diagonal motif"),
+            ('GRID', "Yoko-kumiko (横組子)", "Simple orthogonal lattice"),
+            ('ASANOHA', "Asanoha (麻の葉)", "Hemp-leaf diagonal motif"),
             ('YUKITSUBAKI', "Yukitsubaki (雪椿)", "Snow-camellia diamond motif"),
         ],
         default='GRID',
@@ -1824,19 +1824,19 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         update=auto_update_callback,
     )
     teahouse_nijiriguchi: bpy.props.BoolProperty(
-        name="Nijiriguchi (èº™å£)",
+        name="Nijiriguchi (躙口)",
         description="Low crawl-through guest entrance",
         default=False,
         update=auto_update_callback,
     )
     teahouse_ro: bpy.props.BoolProperty(
-        name="Ro Hearth (ç‚‰)",
+        name="Ro Hearth (炉)",
         description="Sunken winter hearth cut in tatami floor",
         default=True,
         update=auto_update_callback,
     )
     teahouse_chumon: bpy.props.BoolProperty(
-        name="Chumon Gate (ä¸­é-€)",
+        name="Chumon Gate (中門)",
         description="Roji inner garden gate on engawa approach",
         default=False,
         update=auto_update_callback,
@@ -1846,7 +1846,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
         name="Bridge Style",
         items=[
             ('TAIKOBASHI', "Taikobashi (太鼓橋)", "Steep drum bridge - reflection forms full circle"),
-            ('SORIBASHI', "Soribashi (åæ©‹)", "Gentler arched moon bridge"),
+            ('SORIBASHI', "Soribashi (反橋)", "Gentler arched moon bridge"),
         ],
         default='TAIKOBASHI',
         update=auto_update_callback,
@@ -3070,7 +3070,7 @@ class SurrealArchProperties(bpy.types.PropertyGroup):
     magic_warp_type: bpy.props.EnumProperty(
         name="Warp Shape",
         items=[
-            ('SINE',     "ã€deg Sine",     "Smooth sinusoidal wave"),
+            ('SINE',     "Sine",     "Smooth sinusoidal wave"),
             ('NOISE',    "* Noise",   "Turbulent Perlin noise"),
             ('VORONOI',  "⬡ Voronoi", "Cell / Voronoi pattern"),
             ('FRACTAL',  "* Fractal", "Fractal Brownian motion"),
@@ -11706,7 +11706,7 @@ def apply_smart_uv_unwrap(obj, props, context):
 
 # ----------------------------------------------------------------------
 # * ZEN ARCHITECTURE - EXPERT RESEARCH GLOSSARY (v2.56)
-# Sources: JAANUS, NAJGA, Wikipedia tÅrÅ/torii/pagoda, Goshuin Meguri.
+# Sources: JAANUS, NAJGA, Wikipedia tōrō/torii/pagoda, Goshuin Meguri.
 # Geometry-only reference for builders - materials assigned in UE.
 # ----------------------------------------------------------------------
 
@@ -11716,7 +11716,7 @@ ZEN_ARCHITECTURE_GLOSSARY = {
     'kiso':     ('基礎', 'Foundation disc - earth element with sao and kidan'),
     'sao':      ('竿',   'Vertical shaft/post - may be circular, square, or absent in yukimi'),
     'chudai':   ('中台', 'Middle platform under fire box - sui (water)'),
-    'hibukuro': ('ç«è¢‹', 'Fire chamber; higuchi (ç«å£) openings face sun/moon'),
+    'hibukuro': ('火袋', 'Fire chamber; higuchi (火口) openings face sun/moon'),
     'kasa':     ('笠',   'Umbrella roof; warabide (蕨手) curl at corners - fuu (wind)'),
     'ukebana':  ('請花', 'Lotus seat under finial - kuu (void/aether) with hoju'),
     'hoju':     ('宝珠', 'Jewel finial - cintamani at apex'),
@@ -11724,31 +11724,31 @@ ZEN_ARCHITECTURE_GLOSSARY = {
     'kasuga_doro':  ('春日灯籠', 'Hex hibukuro, deer motifs, tall sao - Kasuga Taisha'),
     'yukimi_doro':  ('雪見灯籠', 'Wide kasa for snow viewing; tachi or oki variants'),
     'oribe_gata':   ('織部形', 'Square hibukuro - tea master Furuta Oribe'),
-    'misaki_doro':  ('å²¬ç¯ç± ', 'Low cape/oki lantern at water edge'),
+    'misaki_doro':  ('岬灯籠', 'Low cape/oki lantern at water edge'),
     # ── Torii 鳥居 ────────────────────────────────────────────────────
     'hashira':  ('柱',   'Vertical posts; slight uchikorobi inward tilt on myojin'),
     'kasagi':   ('笠木', 'Top lintel - upswept curve on myojin style'),
-    'shimaki':  ('å³¶æœ¨', 'Secondary lintel under kasagi'),
-    'nuki':     ('è²«',   'Penetrating tie beam through hashira'),
+    'shimaki':  ('島杨', 'Secondary lintel under kasagi'),
+    'nuki':     ('貫',   'Penetrating tie beam through hashira'),
     'gakuzuka': ('額束', 'Center tablet strut; may bear shrine name'),
     'kusabi':   ('楔',   'Wedges securing nuki in hashira'),
     'shimenawa':('注連縄', 'Sacred rope - archaic shime-torii form'),
     # ── Pagoda tō 塔 ──────────────────────────────────────────────────
     'maku':     ('間',   'Bay between pillars on each story'),
-    'noki':     ('è»'',   'Deep eave overhang per tier'),
+    'noki':     ('軒',   'Deep eave overhang per tier'),
     'kibana':   ('木鼻', 'Eave-tip upturn beam - corner ornament'),
     'shinbashira': ('心柱', 'Central heart column through all stories'),
     'sorin':    ('相輪', 'Spire assembly: roban, fukubachi, kurin, suien, hoju'),
     'mokoshi':  ('裳階', 'Skirt pent roof wrapping lower story'),
     # ── Chashitsu 茶室 ────────────────────────────────────────────────
-    'roji':     ('éœ²åœdeg', 'Dewy-path garden approach; soto/uchi roji'),
-    'chumon':   ('ä¸­é-€', 'Inner roji gate'),
-    'engawa':   ('ç¸å´', 'Perimeter veranda buffer to garden'),
+    'roji':     ('露地', 'Dewy-path garden approach; soto/uchi roji'),
+    'chumon':   ('中門', 'Inner roji gate'),
+    'engawa':   ('縁側', 'Perimeter veranda buffer to garden'),
     'tokonoma': ('床の間', 'Alcove - tokobashira, otoshigake, kakejiku'),
     'nijiriguchi': ('躙口', 'Crawl entrance - strips social rank'),
-    'ro':       ('ç‚‰',   'Sunken winter hearth in tatami'),
-    'furo':     ('é¢¨ç‚‰', 'Summer portable brazier'),
-    'tsukubai': ('è¹²è¸ž', 'Stone water basin for roji purification'),
+    'ro':       ('炉',   'Sunken winter hearth in tatami'),
+    'furo':     ('風炉', 'Summer portable brazier'),
+    'tsukubai': ('蹲踞', 'Stone water basin for roji purification'),
     # ── Shōji 隝子 ────────────────────────────────────────────────────
     'kumiko':   ('組子', 'Lattice joinery - asanoha, yukitsubaki, etc.'),
     'shamoji':  ('隝子枠', 'Outer frame holding shōji panels'),
@@ -11882,20 +11882,20 @@ ASIAN_ARCHITECTURE_GLOSSARY = {
     # ── Chinese 中国 ──────────────────────────────────────────────────
     'dougong': ('斗栱', 'Bracket cluster - cap-block, arms, and tiered cantilevers'),
     'pailou': ('牌楼', 'Memorial archway with tiered roofs spanning a road'),
-    'moon_gate': ('æœˆäº®é-¨', 'Circular garden doorway in a garden wall'),
-    'ting_pavilion': ('äº­', 'Open hexagonal garden pavilion with curved roof'),
+    'moon_gate': ('月亮門', 'Circular garden doorway in a garden wall'),
+    'ting_pavilion': ('亭', 'Open hexagonal garden pavilion with curved roof'),
     'tiered_pagoda': ('塔', 'Multi-tier pagoda - flared eaves, finial spire'),
-    'flared_eaves': ('é£žæª', 'Upward-curving roof corners on Chinese tiers'),
+    'flared_eaves': ('飞檐', 'Upward-curving roof corners on Chinese tiers'),
     # ── Korean 핝국 ───────────────────────────────────────────────────
-    'hanok': ('í*œì˜¥', 'Timber frame dwelling with low-pitched roof'),
+    'hanok': ('한옥', 'Timber frame dwelling with low-pitched roof'),
     'ondol': ('온돌', 'Heated floor system under raised wooden platform'),
-    'maru': ('ë§ˆë£¨', 'Open wooden floor zone between rooms'),
-    'jangseung': ('ìž¥ìŠ¹', 'Village guardian totem pole with carved face'),
+    'maru': ('마루', 'Open wooden floor zone between rooms'),
+    'jangseung': ('장승', 'Village guardian totem pole with carved face'),
     'hongsalmun': ('홍살문', 'Red-arrow gate - two posts with diagonal arms'),
     # ── Japanese 日杬 (non-Zen vernacular) ────────────────────────────
     'kura': ('蔵', 'Fire-resistant storehouse - thick walls, whitewashed plaster'),
     'dozo': ('坟蔵', 'Earthen-walled kura construction'),
-    'namako_kabe': ('æµ-é¼ å£', 'Black-and-white tiled kura wall pattern'),
+    'namako_kabe': ('海鼠壁', 'Black-and-white tiled kura wall pattern'),
 }
 
 GOTHIC_ARCH_TYPES = frozenset({
@@ -12276,7 +12276,7 @@ def build_zen_pagoda(tree, props, base_x=-1400):
                 color_node(spire_sw, "ornament")
                 parts.append(spire_sw.outputs['Mesh'])
 
-    # Kurin (ä¹è¼ª) rings + fukubachi dome + hÅju jewel on sÅrin spire
+    # Kurin (九輪) rings + fukubachi dome + hōju jewel on sōrin spire
     fukubachi = _safe_node(tree, 'GeometryNodeMeshUVSphere', (base_x, tiers * 400 + 80))
     if fukubachi:
         try:
@@ -12604,7 +12604,7 @@ def build_zen_shoji(tree, props, base_x=-1400):
         tree.links.new(bar.outputs['Mesh'], bt.inputs['Geometry'])
         parts.append(bt.outputs['Geometry'])
 
-    # Kumiko (çµ„å­) diagonal motifs inside each cell
+    # Kumiko (組子) diagonal motifs inside each cell
     if kumiko in ('ASANOHA', 'YUKITSUBAKI'):
         inner_W = W - frame_thick * 2
         inner_H = H - frame_thick * 2
@@ -13138,7 +13138,7 @@ def build_zen_teahouse(tree, props, base_x=-1400):
         rsw.inputs['Fill Caps'].default_value = True
         parts.append(rsw.outputs['Mesh'])
 
-    # Finial (hÅju) at apex
+    # Finial (hōju) at apex
     fin = tree.nodes.new('GeometryNodeMeshUVSphere'); fin.location = (base_x+200, 1400); color_node(fin, "ornament")
     fin.inputs['Radius'].default_value = 0.10
     fint = tree.nodes.new('GeometryNodeTransform'); fint.location = (base_x+420, 1400)
@@ -13981,7 +13981,7 @@ def build_baroque_balustrade(tree, props, base_x=-1400):
 # ======================================================================
 
 def build_cn_dougong(tree, props):
-    """Chinese dougong (æ--æ ±) bracket cluster: cap-block (dou) + radial
+    """Chinese dougong (斗拱) bracket cluster: cap-block (dou) + radial
     bracket arms (gong) stacked in tiers. Uses extruded filled curves so
     the geometry is real beams, not cones."""
     pieces = []
@@ -14216,7 +14216,7 @@ def build_cn_tiered_pagoda(tree, props):
 
 
 def build_kr_hanok(tree, props):
-    """Korean hanok (í*œì˜¥): elevated stone platform, wooden column grid,
+    """Korean hanok (한옥): elevated stone platform, wooden column grid,
     plastered walls, low-pitched gable roof with curved-up corners.
     Reuses teahouse_width/depth/height/pitch_factor properties."""
     pieces = []
@@ -16014,7 +16014,7 @@ def build_public_fountain(tree, props, base_x=-1400):
 
 # ─── CN TING PAVILION (hexagonal garden pavilion) ───────────────────
 def build_cn_ting_pavilion(tree, props, base_x=-1400):
-    """Chinese garden pavilion (äº­): hexagonal stone base + 6 columns +
+    """Chinese garden pavilion (亭): hexagonal stone base + 6 columns +
     upturned hex roof + finial."""
     import math
     R = max(1.2, getattr(props, 'base_radius', 1.0) * 1.6)
@@ -34280,12 +34280,12 @@ _ASIAN_QUICK_LAUNCH = (
         ('CN_MOON_GATE', 'Moon Gate'),
         ('CN_TING_PAVILION', 'Pavilion'),
     )),
-    ('í*œêµ­ Korea', (
+    ('한국 Korea', (
         ('KR_HANOK', 'Hanok'),
         ('KR_HONG_SAL_MUN', 'Hongsalmun'),
         ('KR_JANGSEUNG', 'Jangseung'),
     )),
-    ('æ-¥æœ¬ Japan', (
+    ('日本 Japan', (
         ('JP_KURA_STOREHOUSE', 'Kura'),
     )),
 )
@@ -35013,7 +35013,7 @@ class SURREAL_ARCH_PT_geometry(_SubPanelBase, bpy.types.Panel):
             col.prop(props, "complexity_level")
 
         if t in {'ORGANIC', 'HYBRID', 'TOWER', 'BUILDING'}:
-            box = layout.box(); box.label(text="ã€degï¸  Organic / Twist")
+            box = layout.box(); box.label(text="Organic / Twist")
             col = box.column(align=True)
             col.prop(props, "flow_amount")
             col.prop(props, "wave_frequency")
@@ -36334,7 +36334,7 @@ def _draw_old_legacy_unused(self, context):
             col.prop(props, "complexity_level")
 
         if t in {'ORGANIC', 'HYBRID', 'TOWER', 'BUILDING'}:
-            box = layout.box(); box.label(text="ã€degï¸  Organic / Twist")
+            box = layout.box(); box.label(text="Organic / Twist")
             col = box.column(align=True)
             col.prop(props, "flow_amount")
             col.prop(props, "wave_frequency")
@@ -38555,10 +38555,15 @@ def unregister():
             bpy.utils.unregister_class(cls)
         except RuntimeError:
             pass
+    # branding.unify_npanel_categories() nests this monolith-owned panel below
+    # the modular carousel.  Restore its source declaration after unregister so
+    # a register -> unregister -> register smoke does not require the modular
+    # parent to exist before the monolith classes are registered.
+    SURREAL_ARCH_PT_plan_edit_floating.bl_parent_id = ""
+    SURREAL_ARCH_PT_plan_edit_floating.bl_category = "SurrealArch"
 
 
 if __name__ == "__main__":
     register()
-
 
 
