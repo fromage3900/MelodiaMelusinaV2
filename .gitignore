@@ -42,6 +42,7 @@ dotnet6/
 .windsurf/
 ._site_aside_untracked/
 _ollama_experiments/
+_ExternalReference/
 
 # Local level overrides (editor-generated)
 Content/ZenForestTest.ini
@@ -236,7 +237,6 @@ Tools/BlenderAddons/**/*.blend1
 !Tools/melodia_stage_paths.py
 !Tools/melodia_website_root.py
 !Tools/populate_gn_builders_review_queue.py
-!Tools/melodia_stage_shot.py
 melodia-design-system/
 KitbashExport/
 research/
