@@ -1,0 +1,559 @@
+{
+  "generated": "2026-08-30",
+  "task": "glitter verification & next polish",
+  "workspace": "C:/EnvironmentPortfolio/BS_GodFile",
+  "script": "Content/Python/materialize_glitter_polished.py",
+  "masters": {
+    "M_Glitter_Enhanced_Master": {
+      "uasset": "Content/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master.uasset",
+      "game_path": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+      "exists": true,
+      "size_bytes": 23698,
+      "mirror": "Content/_PROJECT/04_Materials/Glitter/M_Glitter_Enhanced_Master.uasset",
+      "mirror_exists": true,
+      "method": "binary string scan (ascii 3+)",
+      "scalar_params": [
+        "GlitterAmount",
+        "GlitterSize",
+        "Roughness",
+        "SparkleIntensity",
+        "UVScale",
+        "Metallic",
+        "BaseOpacity"
+      ],
+      "vector_params": [
+        "GlitterColor"
+      ],
+      "texture_params": [
+        "GlitterTexture",
+        "SparkleMap",
+        "BaseColor",
+        "NormalMap",
+        "Normal",
+        "BaseOpacity",
+        "Texture"
+      ],
+      "referenced_textures": [
+        "/Game/_PROJECT/04_Materials/Textures/Grainy/Grainy_3_-_512x512",
+        "/Game/_PROJECT/04_Materials/Textures/Swirl/Swirl_1_-_512x512",
+        "/Game/_PROJECT/04_Materials/Textures/Voronoi/Voronoi_11_-_512x512"
+      ],
+      "inst_variant": "Content/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master_Inst.uasset (10623 bytes, parent link present)",
+      "notes": "Primary stone/brick master. Exposes Roughness + UVScale for tile control. Inst variant exposes GlitterColor, Roughness, UVScale, NormalMap."
+    },
+    "M_Glitter_UltimateSparkling": {
+      "uasset": "Content/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling.uasset",
+      "game_path": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+      "exists": true,
+      "size_bytes": 25708,
+      "mirror": "Content/_PROJECT/04_Materials/MooaToon/Glitter/M_Glitter_UltimateSparkling.uasset",
+      "mirror_exists": true,
+      "method": "binary string scan",
+      "scalar_params": [
+        "SparkleIntensity",
+        "AudioDrive"
+      ],
+      "vector_params": [
+        "SparkleColor1",
+        "SparkleColor2",
+        "SparkleColor3"
+      ],
+      "texture_params": [
+        "BaseColor"
+      ],
+      "audio_reactive": true,
+      "audio_params": [
+        "AudioDrive"
+      ],
+      "inst_variant": "Content/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling_Inst.uasset (10906 bytes)",
+      "notes": "Full sparkle master. Triple SparkleColor vector params + SparkleIntensity scalar. AudioDrive scalar hints MPC linkage (unique among glitter masters). No Roughness scalar \u2014 roughness comes from tilable texture."
+    },
+    "M_Glitter_WorldAligned": {
+      "uasset": "Content/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned.uasset",
+      "game_path": "/Game/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned",
+      "exists": true,
+      "size_bytes": 28674,
+      "mirror": "Content/_PROJECT/04_Materials/MooaToon/Glitter/M_Glitter_WorldAligned.uasset",
+      "mirror_exists": true,
+      "method": "binary string scan",
+      "scalar_params": [
+        "Roughness",
+        "RoughnessAmount",
+        "MetallicAmount",
+        "TwinkleIntensity",
+        "WorldUVScale"
+      ],
+      "vector_params": [
+        "DeepLayerColor",
+        "MidLayerColor",
+        "FastLayerColor",
+        "ColorSaturation"
+      ],
+      "texture_params": [
+        "BaseColor"
+      ],
+      "notes": "World-aligned tiling master. WorldUVScale is the tiling scalar (not UVScale). RoughnessAmount + TwinkleIntensity scalar spread. Tri-color layer vectors for depth."
+    },
+    "M_Glitter_VolumetricInk_Master": {
+      "uasset": "Content/EnvSandbox/Materials/Masters/M_Glitter_VolumetricInk_Master.uasset",
+      "game_path": "/Game/EnvSandbox/Materials/Masters/M_Glitter_VolumetricInk_Master",
+      "exists": true,
+      "size_bytes": 23724,
+      "mirror": "Content/_PROJECT/04_Materials/Glitter/M_Glitter_VolumetricInk_Master.uasset",
+      "mirror_exists": true,
+      "method": "binary string scan",
+      "scalar_params": [
+        "GlitterAmount",
+        "GlitterSize",
+        "Roughness",
+        "SparkleIntensity",
+        "UVScale",
+        "Metallic",
+        "BaseOpacity"
+      ],
+      "vector_params": [
+        "GlitterColor"
+      ],
+      "texture_params": [
+        "GlitterTexture",
+        "SparkleMap",
+        "BaseColor",
+        "NormalMap"
+      ],
+      "notes": "Clone of Enhanced signature (same Grainy/Swirl/Voronoi refs). Reserved for ink/volumetric use. Not in 15-MI PLAN \u2014 optional fourth master."
+    }
+  },
+  "planned_15_polished": {
+    "dest_game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished",
+    "dest_disk": "Content/EnvSandbox/Materials/Instances/Glitter/Polished",
+    "dest_exists_on_disk": false,
+    "total_planned": 15,
+    "existing_count": 0,
+    "missing_count": 15,
+    "status_table": [
+      {
+        "mi": "MI_Glitter_Atlantis_BrickStoneCleanBlueA_Tile4_R065",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Atlantis_BrickStoneCleanBlueA_Tile4_R065",
+        "master": "M_Glitter_Enhanced_Master",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+        "tex_base": "KB3D_ATL_BrickStoneCleanBlueA",
+        "tex_exists": true,
+        "roughness": 0.65,
+        "uv_scale": 4.0,
+        "glitter_size": 0.9,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Atlantis_BrickStoneCleanBlueB_Tile6_R068",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Atlantis_BrickStoneCleanBlueB_Tile6_R068",
+        "master": "M_Glitter_Enhanced_Master",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+        "tex_base": "KB3D_ATL_BrickStoneCleanBlueB",
+        "tex_exists": true,
+        "roughness": 0.68,
+        "uv_scale": 6.0,
+        "glitter_size": 1.1,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Atlantis_BrickStoneCleanBlueC_Tile8_R070",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Atlantis_BrickStoneCleanBlueC_Tile8_R070",
+        "master": "M_Glitter_Enhanced_Master",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+        "tex_base": "KB3D_ATL_BrickStoneCleanBlueC",
+        "tex_exists": true,
+        "roughness": 0.7,
+        "uv_scale": 8.0,
+        "glitter_size": 1.3,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Atlantis_BrickStoneCleanBeigeA_Tile6_R072",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Atlantis_BrickStoneCleanBeigeA_Tile6_R072",
+        "master": "M_Glitter_Enhanced_Master",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+        "tex_base": "KB3D_ATL_BrickStoneCleanBeigeA",
+        "tex_exists": true,
+        "roughness": 0.72,
+        "uv_scale": 6.0,
+        "glitter_size": 1.0,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Atlantis_BrickStoneCleanA_Tile4_R078",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Atlantis_BrickStoneCleanA_Tile4_R078",
+        "master": "M_Glitter_Enhanced_Master",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+        "tex_base": "KB3D_ATL_BrickStoneCleanA",
+        "tex_exists": true,
+        "roughness": 0.78,
+        "uv_scale": 4.0,
+        "glitter_size": 0.85,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Halo_Ultimate_Blue_R032",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Halo_Ultimate_Blue_R032",
+        "master": "M_Glitter_UltimateSparkling",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+        "tex_base": "KB3D_ATL_StoneCleanTrimA",
+        "tex_exists": true,
+        "roughness": 0.32,
+        "sparkle_intensity": 3.5,
+        "sparkle_color": "SOFT_BLUE (0.545,0.627,0.843,1.0)",
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Pile_Ultimate_Pink_R028",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Pile_Ultimate_Pink_R028",
+        "master": "M_Glitter_UltimateSparkling",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+        "tex_base": "KB3D_ATL_GoldWornA",
+        "tex_exists": true,
+        "roughness": 0.28,
+        "sparkle_intensity": 4.5,
+        "sparkle_color": "SOFT_PINK (0.912,0.627,0.749,1.0)",
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Stage_Ultimate_BluePink_R035",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Stage_Ultimate_BluePink_R035",
+        "master": "M_Glitter_UltimateSparkling",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+        "tex_base": "KB3D_ATL_BrickStoneCleanA",
+        "tex_exists": true,
+        "roughness": 0.35,
+        "sparkle_intensity": 2.8,
+        "sparkle_color": "SOFT_BLUE",
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Crown_Ultimate_Gold_R028",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Crown_Ultimate_Gold_R028",
+        "master": "M_Glitter_UltimateSparkling",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+        "tex_base": "KB3D_ATL_GoldWornA",
+        "tex_exists": true,
+        "roughness": 0.28,
+        "sparkle_intensity": 5.0,
+        "sparkle_color": "SOFT_PINK (crown accent)",
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Ember_Ultimate_Warm_R045",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Ember_Ultimate_Warm_R045",
+        "master": "M_Glitter_UltimateSparkling",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+        "tex_base": "KB3D_ATL_BrickStoneCleanBeigeA",
+        "tex_exists": true,
+        "roughness": 0.45,
+        "sparkle_intensity": 3.0,
+        "sparkle_color": "SOFT_PINK warm",
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Floor_WorldAligned_Tile2_R085",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Floor_WorldAligned_Tile2_R085",
+        "master": "M_Glitter_WorldAligned",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned",
+        "tex_base": "KB3D_ATL_StoneCleanTrimB",
+        "tex_exists": true,
+        "roughness": 0.85,
+        "world_uv_scale": 2.0,
+        "tiling": 2.0,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Vault_WorldAligned_Tile4_R080",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Vault_WorldAligned_Tile4_R080",
+        "master": "M_Glitter_WorldAligned",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned",
+        "tex_base": "KB3D_ATL_BrickStoneCleanTrimB",
+        "tex_exists": true,
+        "roughness": 0.8,
+        "world_uv_scale": 4.0,
+        "tiling": 4.0,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Buttress_WorldAligned_Tile6_R082",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Buttress_WorldAligned_Tile6_R082",
+        "master": "M_Glitter_WorldAligned",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned",
+        "tex_base": "KB3D_ATL_StoneCleanTrimC",
+        "tex_exists": true,
+        "roughness": 0.82,
+        "world_uv_scale": 6.0,
+        "tiling": 6.0,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Column_WorldAligned_Tile4_R078",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Column_WorldAligned_Tile4_R078",
+        "master": "M_Glitter_WorldAligned",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned",
+        "tex_base": "KB3D_ATL_StoneCleanTrimD",
+        "tex_exists": true,
+        "roughness": 0.78,
+        "world_uv_scale": 4.0,
+        "tiling": 4.0,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      },
+      {
+        "mi": "MI_Glitter_Ivy_WorldAligned_Tile8_R092",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Ivy_WorldAligned_Tile8_R092",
+        "master": "M_Glitter_WorldAligned",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned",
+        "tex_base": "KB3D_ATL_BrickStoneCleanA",
+        "tex_exists": true,
+        "roughness": 0.92,
+        "world_uv_scale": 8.0,
+        "tiling": 8.0,
+        "exists_on_disk": false,
+        "status": "MISSING"
+      }
+    ],
+    "roughness_spread": "0.28 - 0.92 (stone 0.85 brick 0.78 beige 0.72 blue-stone 0.65 marble 0.32 gold 0.28 ivy 0.92)",
+    "uv_spread": "UVScale 2/4/6/8 + WorldUVScale 2/4/6/8",
+    "palette": "soft blue (0.545,0.627,0.843) / soft pink (0.912,0.627,0.749)",
+    "atlas_source": "/Game/EnvSandbox/Textures/Atlantis (KB3D_ATL_*) \u2014 50+ tilables verified present",
+    "conclusion": "All 15 MIs are MISSING from disk \u2014 destination folder does not exist. Script has not been run with dry_run=False in-editor. Binary scan confirms masters + textures are ready; materialize_glitter_polished.py can create all 15."
+  },
+  "existing_glitter_MIs_audit": {
+    "summary": "6 glitter-related MIs found; 4 are bare SDF stubs (no overrides), 2 are NikkiHero show MIs (custom master). Flag: SDF quartet shares identical (default) roughness/tile \u2014 defect class: no per-MI differentiation.",
+    "items": [
+      {
+        "mi": "MI_Glitter_Enhanced_Master",
+        "disk": "Content/EnvSandbox/Materials/SDF/Instances/MI_Glitter_Enhanced_Master.uasset",
+        "game_path": "/Game/EnvSandbox/Materials/SDF/Instances/MI_Glitter_Enhanced_Master",
+        "parent": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+        "size_bytes": 7361,
+        "has_scalar_overrides": false,
+        "has_vector_overrides": false,
+        "has_texture_overrides": false,
+        "roughness_param_present": false,
+        "tile_param_present": false,
+        "verdict": "BARE STUB \u2014 no ScalarParameterValues/VectorParameterValues/TextureParameterValues in binary. Shares master default roughness + UVScale. Flag: needs polished replacement.",
+        "flag_same_roughness": true
+      },
+      {
+        "mi": "MI_Glitter_UltimateSparkling",
+        "disk": "Content/EnvSandbox/Materials/SDF/Instances/MI_Glitter_UltimateSparkling.uasset",
+        "game_path": "/Game/EnvSandbox/Materials/SDF/Instances/MI_Glitter_UltimateSparkling",
+        "parent": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+        "size_bytes": 6107,
+        "has_scalar_overrides": false,
+        "has_vector_overrides": false,
+        "has_texture_overrides": false,
+        "roughness_param_present": false,
+        "tile_param_present": false,
+        "verdict": "BARE STUB \u2014 smallest file (6107 bytes). No overrides. Shares defaults.",
+        "flag_same_roughness": true
+      },
+      {
+        "mi": "MI_Glitter_WorldAligned",
+        "disk": "Content/EnvSandbox/Materials/SDF/Instances/MI_Glitter_WorldAligned.uasset",
+        "game_path": "/Game/EnvSandbox/Materials/SDF/Instances/MI_Glitter_WorldAligned",
+        "parent": "/Game/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned",
+        "size_bytes": 6882,
+        "has_scalar_overrides": false,
+        "has_vector_overrides": false,
+        "has_texture_overrides": false,
+        "roughness_param_present": false,
+        "tile_param_present": false,
+        "verdict": "BARE STUB \u2014 no overrides. Shares master default WorldUVScale + RoughnessAmount.",
+        "flag_same_roughness": true
+      },
+      {
+        "mi": "MI_Glitter_VolumetricInk_Master",
+        "disk": "Content/EnvSandbox/Materials/SDF/Instances/MI_Glitter_VolumetricInk_Master.uasset",
+        "game_path": "/Game/EnvSandbox/Materials/SDF/Instances/MI_Glitter_VolumetricInk_Master",
+        "parent": "/Game/EnvSandbox/Materials/Masters/M_Glitter_VolumetricInk_Master",
+        "size_bytes": 7405,
+        "has_scalar_overrides": false,
+        "has_vector_overrides": false,
+        "has_texture_overrides": false,
+        "roughness_param_present": false,
+        "tile_param_present": false,
+        "verdict": "BARE STUB \u2014 same defect as siblings. Not in polished PLAN.",
+        "flag_same_roughness": true
+      },
+      {
+        "mi": "MI_Melodia_Show_GlitterPile",
+        "disk": "Content/EnvSandbox/Materials/Instances/NikkiHero/MI_Melodia_Show_GlitterPile.uasset",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Melodia_Show_GlitterPile",
+        "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki (NOT a glitter master)",
+        "size_bytes": 12694,
+        "has_scalar_overrides": true,
+        "has_vector_overrides": false,
+        "has_texture_overrides": false,
+        "params": [
+          "GlitterPile_Brightness",
+          "GlitterPile_Density",
+          "GlitterPile_FacetSharpness",
+          "GlitterPile_Gate",
+          "GlitterPile_Iridescence",
+          "GlitterPile_Scale"
+        ],
+        "roughness_param_present": false,
+        "tile_param_present": false,
+        "mpc": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette (BeatPhase/BeatPulse/GlobalReactivity/Mid) \u2014 audio reactive, default OFF (Gate=0)",
+        "verdict": "SHOW MI \u2014 correctly parameterized for pile effect, but NOT using M_Glitter_* masters. Roughness lives in M_Master_Nikki (RoughnessMin/Max), not per-MI glitter spread. Tile via GlitterPile_Scale only.",
+        "flag_same_roughness": "N/A \u2014 different master; roughness not exposed as glitter MI scalar. No cross-MI spread by design (single show instance)."
+      },
+      {
+        "mi": "MI_Nikki_Show_GlitterHalo",
+        "disk": "Content/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_GlitterHalo.uasset",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_GlitterHalo",
+        "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+        "size_bytes": 11756,
+        "has_scalar_overrides": true,
+        "has_vector_overrides": true,
+        "has_texture_overrides": false,
+        "params_scalar": [
+          "NikkiGlitterHalo_Amount",
+          "NikkiGlitterHalo_HaloPower",
+          "NikkiGlitterHalo_HaloStrength",
+          "NikkiGlitterHalo_Intensity",
+          "NikkiGlitterHalo_Scale",
+          "NikkiGlitterHalo_TwinkleSpeed",
+          "bNikkiGlitterHalo_Active"
+        ],
+        "params_vector": [
+          "NikkiGlitterHalo_Color"
+        ],
+        "roughness_param_present": false,
+        "tile_param_present": false,
+        "verdict": "SHOW MI \u2014 halo effect via M_Master_Nikki. Proper vector + scalar overrides, but unrelated to Atlantis PBR glitter lane.",
+        "flag_same_roughness": "N/A \u2014 halo, not tilable glitter."
+      }
+    ],
+    "flag_all_share_same_roughness": true,
+    "flag_detail": "YES \u2014 flagged. The 4 SDF MI_Glitter_* instances are bare stubs with zero scalar/vector/texture overrides (binary scan: no ScalarParameterValues block). They all inherit identical master-default Roughness/UVScale, so 4 materials look identical in-game. This is the 'quartet has no instance children' intake defect (DEEP_INTAKE_MATERIALS_PPV \u00a75.4) re-verified here. The 15 planned Polished MIs are the fix: roughness spread 0.28-0.92 + UVScale 2-8 + Atlantis PBR wiring. The 2 NikkiHero MIs are legitimately single-instance show pieces (different master, not part of same-roughness flag).",
+    "correctness_check": {
+      "roughness_tiling_correct": false,
+      "reason": "No per-MI roughness/tile differentiation exists on disk today. All differentiation lives only in materialize_glitter_polished.py PLAN (not materialized). After running the script, re-scan Polished MIs \u2014 each must expose Roughness (or SparkleIntensity/WorldUVScale) at the planned spread."
+    }
+  },
+  "proposed_5_vehicle_variants": {
+    "design_brief": "Enchanted vehicles (chariot / sail / wagon) \u2014 fabric + metal pairing, same 4 masters, reuse Atlantis tilables (verified on disk), keep soft blue/pink palette, roughness spread to contrast canvas vs forged metal.",
+    "variants": [
+      {
+        "mi": "MI_Glitter_Vehicle_Canopy_FabricSail_Tile6_R086",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Vehicle_Canopy_FabricSail_Tile6_R086",
+        "master": "M_Glitter_Enhanced_Master",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+        "use_case": "Enchanted vehicle canopy / sail cloth \u2014 flowing fabric",
+        "tex_base": "KB3D_ATL_FabricSail",
+        "tex_exists": true,
+        "params": {
+          "Roughness": 0.86,
+          "UVScale": 6.0,
+          "GlitterSize": 0.7,
+          "GlitterColor": "SOFT_BLUE (0.545,0.627,0.843) \u2014 airy shimmer"
+        },
+        "reason": "Fabric needs HIGH roughness (0.86) vs metal; Tile 6 for weave readable at vehicle scale. Enhanced master gives GlitterSize control for subtle canvas sparkle."
+      },
+      {
+        "mi": "MI_Glitter_Vehicle_Hull_MetalForged_Tile4_R038",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Vehicle_Hull_MetalForged_Tile4_R038",
+        "master": "M_Glitter_Enhanced_Master",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+        "use_case": "Vehicle hull / forged iron plating \u2014 primary metal",
+        "tex_base": "KB3D_ATL_MetalForgedA",
+        "tex_exists": true,
+        "params": {
+          "Roughness": 0.38,
+          "UVScale": 4.0,
+          "GlitterSize": 1.2,
+          "GlitterColor": "SOFT_PINK warm highlight"
+        },
+        "reason": "Metal needs LOW roughness (0.38) for sheen; contrast with canopy 0.86 creates fabric/metal read. Tile 4 keeps forged grain tight on hull panels."
+      },
+      {
+        "mi": "MI_Glitter_Vehicle_BronzeTrim_Ultimate_R030",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Vehicle_BronzeTrim_Ultimate_R030",
+        "master": "M_Glitter_UltimateSparkling",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+        "use_case": "Bronze chariot trim / filigree \u2014 high sparkle accent",
+        "tex_base": "KB3D_ATL_MetalPBronze",
+        "tex_exists": true,
+        "params": {
+          "Roughness": 0.3,
+          "SparkleIntensity": 4.0,
+          "SparkleColor1": "SOFT_PINK (0.912,0.627,0.749)",
+          "SparkleColor2": "SOFT_BLUE",
+          "AudioDrive": 0.0
+        },
+        "reason": "Ultimate master for jewel-like trim; dual SparkleColor for enchanted iridescence. Roughness 0.30 = polished bronze."
+      },
+      {
+        "mi": "MI_Glitter_Vehicle_LeatherTrim_WorldAligned_Tile8_R088",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Vehicle_LeatherTrim_WorldAligned_Tile8_R088",
+        "master": "M_Glitter_WorldAligned",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_WorldAligned",
+        "use_case": "Leather straps / harness / seat \u2014 world-aligned to avoid UV seams on curved vehicle mesh",
+        "tex_base": "KB3D_ATL_LeatherBrownOldA",
+        "tex_exists": true,
+        "params": {
+          "RoughnessAmount": 0.88,
+          "WorldUVScale": 8.0,
+          "Tiling": 8.0,
+          "TwinkleIntensity": 0.6,
+          "MidLayerColor": "SOFT_PINK muted"
+        },
+        "reason": "Leather needs very high roughness (0.88) + world-aligned tiling prevents stretching on deformed strap UVs. Low Twinkle keeps leather matte vs metal sparkle."
+      },
+      {
+        "mi": "MI_Glitter_Vehicle_ChariotDeco_Ultimate_Gold_R025",
+        "game_path": "/Game/EnvSandbox/Materials/Instances/Glitter/Polished/MI_Glitter_Vehicle_ChariotDeco_Ultimate_Gold_R025",
+        "master": "M_Glitter_UltimateSparkling",
+        "master_game": "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling",
+        "use_case": "Chariot body deco / gilded panels \u2014 hero sparkle",
+        "tex_base": "KB3D_ATL_PropsChariot",
+        "tex_exists": true,
+        "fallback_tex": "KB3D_ATL_GoldWornA",
+        "params": {
+          "Roughness": 0.25,
+          "SparkleIntensity": 5.0,
+          "SparkleColor1": "SOFT_BLUE",
+          "SparkleColor2": "SOFT_PINK",
+          "SparkleColor3": "gold warm (1.0,0.85,0.4)"
+        },
+        "reason": "Hero gilding: lowest roughness (0.25) + max SparkleIntensity 5.0. PropsChariot tilable is vehicle-native; GoldWornA fallback if Chariot lacks ORM. Ultimate master triple-color for enchanted rainbow."
+      }
+    ],
+    "next_steps": [
+      "Append the 5 entries to PLAN in Content/Python/materialize_glitter_polished.py (or a new materialize_glitter_vehicles.py) and re-run with dry_run=False in-editor.",
+      "After creation, re-scan Polished folder: each vehicle MI must have ScalarParameterValues (Roughness/UVScale/SparkleIntensity) + TextureParameterValues (BaseColor/Normal/Roughness/Metallic) distinct from siblings.",
+      "Staleness note: fabric sail vs metal forged pair validates the 0.28-0.92 roughness narrative \u2014 add to contact sheet as enchanted-vehicle hero pair."
+    ]
+  },
+  "next_polish_steps": [
+    "Run materialize_glitter_polished.py in-editor: unreal -> Python -> materialize_glitter_polished.main(dry_run=False) \u2014 creates Instances/Glitter/Polished/ (15 MIs) + saves Saved/Audit/glitter_polished_2026-08-30.json .",
+    "Verify post-run: re-run binary scan on each Polished MI \u2014 assert Roughness in {0.28,0.32,0.35,0.45,0.65,0.68,0.70,0.72,0.78,0.80,0.82,0.85,0.92} and UVScale/WorldUVScale in {2,4,6,8} with no two MIs identical.",
+    "Delete or re-parent bare SDF stubs (MI_Glitter_Enhanced_Master etc) after Polished lane is live, or leave as legacy stubs with deprecation note \u2014 avoid duplicate short-name collisions (sweep).",
+    "Materialize the 5 vehicle variants (append to PLAN) \u2014 they extend the polished lane without a new master.",
+    "Optional: wire M_Glitter_VolumetricInk_Master instances for ink/veil use (not in current scope) \u2014 same binary signature as Enhanced, so reuse Enhanced PI plan."
+  ],
+  "audit_method": "binary string scan (re.compile rb'[\\x20-\\x7E]{3,}' over .uasset bytes) + EditorAssetLibrary existence check + Atlas tilable inventory (EnvSandbox/Textures/Atlantis/*.uasset). No editor required for this verification; creation requires editor.",
+  "references": [
+    "Content/Python/materialize_glitter_polished.py",
+    "Docs/Reports/DEEP_INTAKE_MATERIALS_PPV_2026-08-26.md \u00a75.4",
+    "Saved/Audit/glitter_pile_2026-08-29.json"
+  ]
+}
