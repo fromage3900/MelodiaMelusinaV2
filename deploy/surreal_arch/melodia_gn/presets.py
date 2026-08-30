@@ -2471,6 +2471,306 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # profiles.py — column
+    "MEL_column": {
+        "label": "Column",
+        "preset_labels": {
+            "DORIC_SOBER": "Doric Sober",
+            "FLUTED_IONIC": "Fluted Ionic",
+            "PILASTER_SLIM": "Pilaster Slim",
+        },
+        "preset_descriptions": {
+            "DORIC_SOBER": "Stately Doric column — no fluting, simple capital, wide base.",
+            "FLUTED_IONIC": "Fluted Ionic column — 24 flutes, volute capital, tall slender profile.",
+            "PILASTER_SLIM": "Wall pilaster — half-column, flat back, minimal projection.",
+        },
+        "presets": {
+            "DORIC_SOBER": {"Height": 3.0, "Radius": 0.25, "Sides": 24, "Fluted": False, "Capital Height": 0.3, "Base Height": 0.2},
+            "FLUTED_IONIC": {"Height": 4.0, "Radius": 0.18, "Sides": 24, "Fluted": True, "Capital Height": 0.45, "Base Height": 0.15},
+            "PILASTER_SLIM": {"Height": 2.8, "Radius": 0.12, "Sides": 16, "Fluted": False, "Capital Height": 0.2, "Base Height": 0.1},
+        },
+    },
+
+    # profiles.py — baluster
+    "MEL_baluster": {
+        "label": "Baluster",
+        "preset_labels": {
+            "CLASSIC_TURNED": "Classic Turned",
+            "SQUARE_CHAMFER": "Square Chamfer",
+            "GARDEN_GEM": "Garden Gem",
+        },
+        "preset_descriptions": {
+            "CLASSIC_TURNED": "Traditional turned baluster — symmetrical bulge, smooth profile.",
+            "SQUARE_CHAMFER": "Modern square baluster — chamfered edges, minimalist.",
+            "GARDEN_GEM": "Short garden baluster — wide bulge, decorative gem top.",
+        },
+        "presets": {
+            "CLASSIC_TURNED": {"Height": 0.9, "Width": 0.08, "Bulge": 0.5, "Segments": 24},
+            "SQUARE_CHAMFER": {"Height": 0.8, "Width": 0.06, "Bulge": 0.1, "Segments": 4},
+            "GARDEN_GEM": {"Height": 0.6, "Width": 0.12, "Bulge": 0.8, "Segments": 32},
+        },
+    },
+
+    # profiles.py — post
+    "MEL_post": {
+        "label": "Post",
+        "preset_labels": {
+            "SQUARE_PLANTER": "Square Planter",
+            "ROUNDED_BOLLARD": "Rounded Bollard",
+            "CAPITAL_CROWN": "Capital Crown",
+        },
+        "preset_descriptions": {
+            "SQUARE_PLANTER": "Square planter post — chamfered top, wide base.",
+            "ROUNDED_BOLLARD": "Rounded bollard post — smooth dome cap, slim profile.",
+            "CAPITAL_CROWN": "Crown post — ornate capital, decorative cap.",
+        },
+        "presets": {
+            "SQUARE_PLANTER": {"Height": 0.7, "Width": 0.2, "Chamfer": 0.03, "Has Cap": False},
+            "ROUNDED_BOLLARD": {"Height": 0.9, "Width": 0.12, "Chamfer": 0.05, "Has Cap": True},
+            "CAPITAL_CROWN": {"Height": 1.2, "Width": 0.15, "Chamfer": 0.02, "Has Cap": True},
+        },
+    },
+
+    # profiles.py — rail
+    "MEL_rail": {
+        "label": "Rail",
+        "preset_labels": {
+            "HANDRAIL_SMOOTH": "Handrail Smooth",
+            "BALUSTRADE_TOP": "Balustrade Top",
+            "WALL_MOUNT": "Wall Mount",
+        },
+        "preset_descriptions": {
+            "HANDRAIL_SMOOTH": "Smooth handrail — ergonomic profile, comfortable grip.",
+            "BALUSTRADE_TOP": "Balustrade top rail — wide flat profile, mounts balusters.",
+            "WALL_MOUNT": "Wall-mounted rail — slim profile, minimal projection.",
+        },
+        "presets": {
+            "HANDRAIL_SMOOTH": {"Profile Width": 0.06, "Profile Height": 0.04},
+            "BALUSTRADE_TOP": {"Profile Width": 0.12, "Profile Height": 0.05},
+            "WALL_MOUNT": {"Profile Width": 0.04, "Profile Height": 0.03},
+        },
+    },
+
+    # profiles.py — star_finial
+    "MEL_star_finial": {
+        "label": "Star Finial",
+        "preset_labels": {
+            "FIVE_POINT": "Five-Point Star",
+            "EIGHT_POINT": "Eight-Point Star",
+            "COMPASS_ROSE": "Compass Rose",
+        },
+        "preset_descriptions": {
+            "FIVE_POINT": "Classic five-point star finial — sharp points, tall profile.",
+            "EIGHT_POINT": "Eight-point star — broader silhouette, shorter height.",
+            "COMPASS_ROSE": "Compass rose finial — wide flat profile, navigational.",
+        },
+        "presets": {
+            "FIVE_POINT": {"Points": 5, "Radius Outer": 0.3, "Radius Inner": 0.12, "Height": 0.4},
+            "EIGHT_POINT": {"Points": 8, "Radius Outer": 0.35, "Radius Inner": 0.18, "Height": 0.25},
+            "COMPASS_ROSE": {"Points": 16, "Radius Outer": 0.4, "Radius Inner": 0.2, "Height": 0.15},
+        },
+    },
+
+    # primitives.py — circular_array
+    "MEL_circular_array": {
+        "label": "Circular Array",
+        "preset_labels": {
+            "COLUMN_RING": "Column Ring",
+            "CHANDELIER": "Chandelier",
+            "TURRET_CROWN": "Turret Crown",
+        },
+        "preset_descriptions": {
+            "COLUMN_RING": "Ring of columns — evenly spaced, uniform scale.",
+            "CHANDELIER": "Chandelier array — radial arms, varied scale.",
+            "TURRET_CROWN": "Turret crown — tight ring, tall items, offset Z.",
+        },
+        "presets": {
+            "COLUMN_RING": {"Count": 12, "Radius": 3.0, "Scale per item": 1.0, "Offset Z": 0.0},
+            "CHANDELIER": {"Count": 8, "Radius": 1.5, "Scale per item": 0.6, "Offset Z": 0.5},
+            "TURRET_CROWN": {"Count": 16, "Radius": 1.2, "Scale per item": 1.3, "Offset Z": 2.0},
+        },
+    },
+
+    # primitives.py — linear_array
+    "MEL_linear_array": {
+        "label": "Linear Array",
+        "preset_labels": {
+            "COLONNADE": "Colonnade",
+            "FENCE_LINE": "Fence Line",
+            "TAPERED_ROW": "Tapered Row",
+        },
+        "preset_descriptions": {
+            "COLONNADE": "Stately colonnade — evenly spaced columns, no taper.",
+            "FENCE_LINE": "Fence line — close spacing, small items, slight taper.",
+            "TAPERED_ROW": "Tapered row — items shrink along the line.",
+        },
+        "presets": {
+            "COLONNADE": {"Count": 8, "Offset": (3.0, 0.0, 0.0), "Scale per item": 1.0, "Taper": 0.0},
+            "FENCE_LINE": {"Count": 20, "Offset": (0.5, 0.0, 0.0), "Scale per item": 0.8, "Taper": 0.1},
+            "TAPERED_ROW": {"Count": 10, "Offset": (2.0, 0.0, 0.0), "Scale per item": 1.0, "Taper": 0.5},
+        },
+    },
+
+    # primitives.py — grid_array
+    "MEL_grid_array": {
+        "label": "Grid Array",
+        "preset_labels": {
+            "CITY_BLOCK": "City Block",
+            "PLAZA_TILES": "Plaza Tiles",
+            "GARDEN_PLOTS": "Garden Plots",
+        },
+        "preset_descriptions": {
+            "CITY_BLOCK": "City block grid — dense, uniform spacing.",
+            "PLAZA_TILES": "Plaza tiles — wide spacing, large items.",
+            "GARDEN_PLOTS": "Garden plots — rectangular grid, varied spacing.",
+        },
+        "presets": {
+            "CITY_BLOCK": {"Count X": 8, "Count Y": 8, "Spacing X": 4.0, "Spacing Y": 4.0},
+            "PLAZA_TILES": {"Count X": 4, "Count Y": 4, "Spacing X": 8.0, "Spacing Y": 8.0},
+            "GARDEN_PLOTS": {"Count X": 6, "Count Y": 3, "Spacing X": 3.0, "Spacing Y": 5.0},
+        },
+    },
+
+    # primitives.py — instance_on_spline
+    "MEL_instance_on_spline": {
+        "label": "Instance on Spline",
+        "preset_labels": {
+            "RAILING_POSTS": "Railing Posts",
+            "STREET_LAMPS": "Street Lamps",
+            "VINE_TENDRILS": "Vine Tendrils",
+        },
+        "preset_descriptions": {
+            "RAILING_POSTS": "Posts along a path — evenly spaced, uniform scale.",
+            "STREET_LAMPS": "Street lamps — wide spacing, tall items, offset.",
+            "VINE_TENDRILS": "Vine tendrils — dense spacing, small items, random offset.",
+        },
+        "presets": {
+            "RAILING_POSTS": {"Count": 20, "Scale": 1.0, "Offset along curve": 0.0},
+            "STREET_LAMPS": {"Count": 8, "Scale": 1.5, "Offset along curve": 0.1},
+            "VINE_TENDRILS": {"Count": 50, "Scale": 0.3, "Offset along curve": 0.05},
+        },
+    },
+
+    # structures.py — arch
+    "MEL_arch": {
+        "label": "Arch",
+        "preset_labels": {
+            "ROMAN_ROUND": "Roman Round",
+            "GOTHIC_POINTED": "Gothic Pointed",
+            "ELLIPTICAL": "Elliptical",
+        },
+        "preset_descriptions": {
+            "ROMAN_ROUND": "Roman round arch — semicircular, thick walls.",
+            "GOTHIC_POINTED": "Gothic pointed arch — tall rise, thin walls.",
+            "ELLIPTICAL": "Elliptical arch — wide span, low rise.",
+        },
+        "presets": {
+            "ROMAN_ROUND": {"Span": 3.0, "Height": 1.5, "Arch Rise": 0.5, "Thickness": 0.3, "Segments": 24},
+            "GOTHIC_POINTED": {"Span": 2.5, "Height": 3.0, "Arch Rise": 0.8, "Thickness": 0.2, "Segments": 32},
+            "ELLIPTICAL": {"Span": 5.0, "Height": 1.0, "Arch Rise": 0.25, "Thickness": 0.35, "Segments": 20},
+        },
+    },
+
+    # structures.py — portico
+    "MEL_portico": {
+        "label": "Portico",
+        "preset_labels": {
+            "TEMPLE_FRONT": "Temple Front",
+            "PORCH_ENTRY": "Porch Entry",
+            "GRAND_STAIRCASE": "Grand Staircase",
+        },
+        "preset_descriptions": {
+            "TEMPLE_FRONT": "Temple portico — wide column grid, tall pediment.",
+            "PORCH_ENTRY": "Porch entry — small column pair, low profile.",
+            "GRAND_STAIRCASE": "Grand staircase — wide portico, tall columns.",
+        },
+        "presets": {
+            "TEMPLE_FRONT": {"Width": 8.0, "Depth": 4.0, "Column Height": 5.0, "Column Count": 6},
+            "PORCH_ENTRY": {"Width": 3.0, "Depth": 2.0, "Column Height": 2.5, "Column Count": 2},
+            "GRAND_STAIRCASE": {"Width": 12.0, "Depth": 6.0, "Column Height": 6.0, "Column Count": 8},
+        },
+    },
+
+    # env_extras.py — lily_pond
+    "MEL_env_lily_pond": {
+        "label": "Lily Pond",
+        "preset_labels": {
+            "GARDEN_POND": "Garden Pond",
+            "TEMPLE_POOL": "Temple Pool",
+            "WILD_MARSH": "Wild Marsh",
+        },
+        "preset_descriptions": {
+            "GARDEN_POND": "Garden lily pond — calm water, scattered pads, few lotus.",
+            "TEMPLE_POOL": "Temple pool — still water, symmetrical pads, blooming lotus.",
+            "WILD_MARSH": "Wild marsh — rippled water, dense pads, no lotus.",
+        },
+        "presets": {
+            "GARDEN_POND": {"Pond Radius": 3.0, "Panel Depth": 0.3, "Water Level": 0.8, "Pad Count": 8, "Pad Size": 0.4, "Lotus Count": 3, "Current Speed": 0.1, "Ripple Carve": 0.2},
+            "TEMPLE_POOL": {"Pond Radius": 5.0, "Panel Depth": 0.2, "Water Level": 0.9, "Pad Count": 12, "Pad Size": 0.5, "Lotus Count": 6, "Current Speed": 0.0, "Ripple Carve": 0.05},
+            "WILD_MARSH": {"Pond Radius": 4.0, "Panel Depth": 0.5, "Water Level": 0.6, "Pad Count": 20, "Pad Size": 0.3, "Lotus Count": 0, "Current Speed": 0.4, "Ripple Carve": 0.6},
+        },
+    },
+
+    # env_extras.py — campfire_ring
+    "MEL_env_campfire_ring": {
+        "label": "Campfire Ring",
+        "preset_labels": {
+            "CAMPFIRE_INTIMATE": "Campfire Intimate",
+            "BONFIRE_PARTY": "Bonfire Party",
+            "FIRE_PIT": "Fire Pit",
+        },
+        "preset_descriptions": {
+            "CAMPFIRE_INTIMATE": "Intimate campfire — small ring, few logs, gentle flames.",
+            "BONFIRE_PARTY": "Party bonfire — large ring, many logs, tall flames.",
+            "FIRE_PIT": "Fire pit — stone ring, no logs, contained flames.",
+        },
+        "presets": {
+            "CAMPFIRE_INTIMATE": {"Ring Radius": 0.8, "Stone Count": 8, "Log Count": 4, "Fire Scale": 0.5},
+            "BONFIRE_PARTY": {"Ring Radius": 1.5, "Stone Count": 12, "Log Count": 8, "Fire Scale": 1.2},
+            "FIRE_PIT": {"Ring Radius": 0.6, "Stone Count": 16, "Log Count": 0, "Fire Scale": 0.3},
+        },
+    },
+
+    # env_extras.py — stepping_stones
+    "MEL_env_stepping_stones": {
+        "label": "Stepping Stones",
+        "preset_labels": {
+            "GARDEN_PATH": "Garden Path",
+            "STREAM_CROSSING": "Stream Crossing",
+            "ZEN_ROJI": "Zen Roji",
+        },
+        "preset_descriptions": {
+            "GARDEN_PATH": "Garden path — evenly spaced, uniform stones.",
+            "STREAM_CROSSING": "Stream crossing — irregular spacing, flat stones.",
+            "ZEN_ROJI": "Zen roji — asymmetric placement, natural stones.",
+        },
+        "presets": {
+            "GARDEN_PATH": {"Stone Count": 10, "Stone Size": 0.4, "Stone Height": 0.1, "Path Width": 1.5, "Path Length": 8.0},
+            "STREAM_CROSSING": {"Stone Count": 6, "Stone Size": 0.5, "Stone Height": 0.15, "Path Width": 2.0, "Path Length": 6.0},
+            "ZEN_ROJI": {"Stone Count": 8, "Stone Size": 0.35, "Stone Height": 0.08, "Path Width": 1.2, "Path Length": 5.0},
+        },
+    },
+
+    # env_extras.py — market_stall
+    "MEL_env_market_stall": {
+        "label": "Market Stall",
+        "preset_labels": {
+            "BAKERY_STALL": "Bakery Stall",
+            "FISH_MARKET": "Fish Market",
+            "FLOWER_CART": "Flower Cart",
+        },
+        "preset_descriptions": {
+            "BAKERY_STALL": "Bakery stall — wide awning, counter, bread shelves.",
+            "FISH_MARKET": "Fish market — deep stall, awning, display counter.",
+            "FLOWER_CART": "Flower cart — small stall, no awning, display shelves.",
+        },
+        "presets": {
+            "BAKERY_STALL": {"Stall Width": 3.0, "Stall Depth": 2.0, "Post Height": 2.5, "Awning Drop": 0.8, "Counter Height": 1.0, "Stall Type": 0, "Has Stock": True},
+            "FISH_MARKET": {"Stall Width": 4.0, "Stall Depth": 2.5, "Post Height": 2.8, "Awning Drop": 1.0, "Counter Height": 0.9, "Stall Type": 1, "Has Stock": True},
+            "FLOWER_CART": {"Stall Width": 1.5, "Stall Depth": 1.0, "Post Height": 2.0, "Awning Drop": 0.0, "Counter Height": 0.8, "Stall Type": 2, "Has Stock": False},
+        },
+    },
+
 }
 
 # -----------------------------------------------------------------------------
