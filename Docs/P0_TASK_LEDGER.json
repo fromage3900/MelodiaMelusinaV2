@@ -1,184 +1,384 @@
 {
-  "schema": "melodia.p0.task_ledger.v2",
-  "as_of": "2026-08-24",
-  "authority": {
-    "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
-    "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
-    "scope": "Close the existing First Dream loop before adding economy, song-family, HUD, dungeon, enemy, or quest breadth.",
-    "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct. Historical passes apply only to their captured baselines and are not current shipping certification."
+ "schema": "melodia.p0.task_ledger.v2",
+ "as_of": "2026-08-30",
+ "authority": {
+  "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
+  "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
+  "scope": "Close the existing First Dream loop before adding economy, song-family, HUD, dungeon, enemy, or quest breadth.",
+  "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct. Historical passes apply only to their captured baselines and are not current shipping certification."
+ },
+ "agent_work_log_2026-08-27": {
+  "commit": "d242f74d",
+  "scope": "Quill dialogue WBPs made trackable (gitignore allowlist), interpreter selection/background viewport guard fixed, live-results bridge wired, 5 narrative presentation assignments committed.",
+  "gitignore": "Allowlist Content/Melodia/UI/Quill/ so WBP_MelodiaQuill{Dialog,Selection,Background,ChoiceEntry} are tracked; Textures/ (~200 Figma exports) remain intentionally ignored.",
+  "dialogue_ui_fix": "QuillscriptInterpreter.cpp ShowSelectionBox/ShowBackgroundBox guard flipped to !IsInViewport() && !GetParent(), matching ShowDialogBox idiom at L1198. Previously inverted guard kept selection/background out of the viewport.",
+  "livecoding": "Live Coding trigger_build reported patch_applied=true, but compile_log ends in 'Live coding failed'. Root cause is AGENTS.md rule 15: the bridge header adds new UFUNCTION/UPROPERTY/forward-declared enums, which cannot be hot-patched. A full closed-editor UBT rebuild is required (user step per Lane-1 constraint). UnrealEditor-BS_GodFile.dll on disk unchanged (2026-08-24).",
+  "static_gates_impact": "Gitignore D1 audit finding resolved; Quill WBPs now in version control. Remaining static gates unchanged; bridge/hud changes are committed source but not yet compiled, so hud_single_writer and static_gates remain open.",
+  "ui_artist_skill": "03e62bb2: added .claude/skills/melodia-ui-artist (token SSOT, Quill WBP chain, ui_style_audit flow, editor apply workflow) + compact AGENTS.md pointer; commit landed; livecoding still blocked on full UBT rebuild (user step).",
+  "p0_closeout_session": {
+   "rebuild": "Closed-editor UBT rebuild of BS_GodFileEditor: 332 actions, 377s, Result: Succeeded. UnrealEditor-BS_GodFile.dll 2026-08-24 23:29 -> 2026-08-27 12:28; UnrealEditor-Quillscript.dll -> 12:27. Every PIE result before this tested 3-day-old binaries.",
+   "gates_closed": [
+    "battle_integration_map (all 4 terminal outcomes)",
+    "hud_single_writer (runtime widget identity proven; pending owner call on vestigial vars)"
+   ],
+   "narrative_atomicity": "P0-NARR-01 atomic quest+reward+flag commit proven LIVE on the victory branch.",
+   "defects_found": [
+    "Player-unit death crashes the editor: 'Assertion failed: false [AnimMontage.h] [Line: 781]' ~10s after SetHP(0) on BP_SirMelodiousPlayerUnit_C. Defeat result landed correctly first. Likely null/invalid death montage, or artifact of forced kill. NOT a P0 gate blocker.",
+    "Melodia UI Bridge: 'cannot load live-results widget class from ' (empty path) - LiveResults widget class path unset; logs twice per session.",
+    "MELODIA_QUANTUM draw success=false - service at 127.0.0.1:8008 down, falls back to classical-baseline.",
+    "BP_MelodiaEnemy_SingleStock and BP_MelodiaEnemy_Base are NOT parented to BP_EnemyUnitBase so they are rejected as enemyList keys. Owner states enemy BPs are universal and need only mesh swapping, so stock BP_WeakEnemy is the correct chassis; no action required."
+   ],
+   "tooling_traps": [
+    "melodia_config_get_allowlist (MCP) returns STALE FIXTURE DATA not matching the live asset. Use blueprint_query get_cdo_properties for config truth.",
+    "Rejections log 'Melodia intent rejected: <intent> (<enum>)', NOT 'MELODIA_INTENT_REJECTED'. MissingRuntime=5 means no live Quill interpreter - battles are script-driven, so an IDLE PIE smoke can NEVER start a battle. All prior 'idle smoke passed' evidence was structurally incapable of proving the battle gates.",
+    "A second editor instance writes Saved/Logs/BS_GodFile_2.log, not BS_GodFile.log."
+   ]
   },
-  "active_p0_gates": [
-    {
-      "id": "rhythm_owner",
-      "status": "open",
-      "contract": "Exactly one rhythm execution path reaches the stock JRPG damage calculation; load-bearing MelodiaCore presentation and reactivity callers may remain."
+  "p0_content_and_quests_authored": {
+   "timestamp": "2026-08-27T21:30:00Z",
+   "scope": "Directly created and wired the 4 required P0 content pillars: P0 Playthrough, Wardrobe Outfit Equip, Choral Sheep Companion Recruitment, and Sea Above Cutscene.",
+   "deliverables": {
+    "p0_playthrough": {
+     "script": "Content/MelodiaIntegration/Narrative/MelodiaQuillP0Playthrough.qsc",
+     "encounter": "melodia_smoke_encounter",
+     "quest_id": "quest.first_dream",
+     "completion_flag": "flag.first_dream.quest.completed",
+     "playthrough_flag": "flag.p0.playthrough.completed",
+     "reward_id": "reward.first_resonance_echo"
     },
-    {
-      "id": "hud_single_writer",
-      "status": "open",
-      "contract": "UMelodiaUIBridgeSubsystem is the sole Melodia writer for battle-time presentation and the instantiated runtime widget identity is proven."
+    "wardrobe_equip": {
+     "script": "Content/MelodiaIntegration/Narrative/MelodiaQuillWardrobeEquip.qsc",
+     "manifest": "specs/wardrobe/wardrobe_equip_p0_manifest.v1.json",
+     "outfit_id": "MelusinaV2_ResonantWeave",
+     "capability_unlocked": "Glide",
+     "flags": [
+      "flag.wardrobe.outfit_equipped",
+      "flags.melusina.sorrow_seam_restored",
+      "flag.wardrobe.equip_completed"
+     ],
+     "reward_id": "reward.wardrobe.first_outfit"
     },
-    {
-      "id": "rhythm_grade_to_result",
-      "status": "open",
-      "contract": "Real-key timing grade changes a stock JRPG result without blocking progression, and Quill resumes exactly once."
+    "choral_sheep_companion": {
+     "script": "Content/MelodiaIntegration/Narrative/MelodiaQuillChoralSheepRecruit.qsc",
+     "manifest": "specs/companions/choral_sheep_recruit_manifest.v1.json",
+     "companion_id": "companion.choral_sheep",
+     "pitch_class": "C",
+     "flags": [
+      "flag.companion.choral_sheep_recruited",
+      "flag.companion.choral_sheep_completed"
+     ],
+     "reward_id": "reward.companion.choral_sheep",
+     "stat": {
+      "melodia_harmony": 2
+     }
     },
-    {
-      "id": "wardrobe_equip_roundtrip",
-      "status": "open",
-      "contract": "Equip through the wardrobe authority, save canonically, restart the process, load, and restore the correct outfit and materials."
-    },
-    {
-      "id": "wardrobe_gameplay_hook",
-      "status": "open",
-      "contract": "One equipped wardrobe item provides one observable inventory/capability hook; Glide is the first-slice capability."
-    },
-    {
-      "id": "music_world_key",
-      "status": "open",
-      "contract": "One existing Piano phrase commits one idempotent typed world result and visibly opens one player-facing route."
-    },
-    {
-      "id": "static_gates",
-      "status": "fail",
-      "contract": "The current frozen baseline passes the graph, live-path, Blueprint sweep, UI, and material-baseline checks without waivers."
-    },
-    {
-      "id": "battle_integration_map",
-      "status": "hold",
-      "contract": "Victory, Defeat, Fled, and unavailable each produce the typed result and resume or abort Quill exactly once on the current integration map."
+    "sea_above_cutscene": {
+     "script": "Content/MelodiaIntegration/Narrative/MelodiaQuillSeaAboveCutscene.qsc",
+     "manifest": "specs/cinematics/sea_above_cutscene_manifest.v1.json",
+     "map_destination": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+     "pulse_cycle_seconds": 16.0,
+     "flags": [
+      "flag.cutscene.sea_above_witnessed",
+      "flag.sea_above.membrane_pulse_active",
+      "flag.cutscene.sea_above_completed"
+     ],
+     "reward_id": "reward.cutscene.sea_above_memory",
+     "stat": {
+      "melodia_resonance": 5
+     }
     }
-  ],
-  "bounded_historical_evidence": [
-    {
-      "id": "runtime",
-      "recorded_status": "pass",
-      "recorded_on": "2026-08-13",
-      "scope": "Real keyboard input on the captured owner session."
-    },
-    {
-      "id": "save_load",
-      "recorded_status": "pass",
-      "recorded_on": "2026-08-14",
-      "scope": "Canonical stock-JRPG save across the captured process restart."
-    },
-    {
-      "id": "repeat_consume",
-      "recorded_status": "pass",
-      "recorded_on": "2026-08-14",
-      "scope": "Captured authored replay remained exactly once."
-    },
-    {
-      "id": "package_launch",
-      "recorded_status": "pass",
-      "recorded_on": "2026-08-14",
-      "scope": "Captured Development package launched outside the editor."
-    }
-  ],
-  "current_source_truth": {
-    "battle_hud": "Source is converged: UMelodiaJRPGBattleOverlaySubsystem is a retired compatibility observer and creates no widgets. Runtime hud_single_writer proof remains open.",
-    "music_world_key": "Piano and UMelodiaPCGNarrativeChallengeBridgeComponent are source-built. Live host attachment, level wiring, visible route payoff, and replay proof remain open.",
-    "rhythm_owner": "The gate measures one execution path into stock JRPG damage, not zero MelodiaCore callers. Load-bearing presentation and reactivity callers are permitted."
+   },
+   "spec_package": "specs/progression/melodia_p0_slice_quests.v1.json",
+   "tests_passed": [
+    "Content/Python/Tests/test_p0_quests_and_content_contract.py (8/8 pass)",
+    "Content/Python/Tests/test_sea_above_t3d_contract.py (4/4 pass)",
+    "Content/Python/Tests/test_melusina_systems_contract.py (4/4 pass)",
+    "Tools/test_melodia_progression_contract.py (6/6 pass)",
+    "Tools/test_echo_contract.py (77/77 pass)",
+    "Source/BS_GodFile/MelodiaIntegration/Tests/MelodiaP0ContentQuestsTests.cpp"
+   ]
   },
-  "deferred_post_p0_expansion": [
-    {
-      "id": "expansion_001",
-      "legacy_id": "p0_001",
-      "name": "Define 4 global economy data structs/variables",
-      "system": "Global Economies",
-      "priority_after_p0": 1,
-      "status": "deferred",
-      "notes": "HealingEconomy, ManaEconomy, UtilityEconomy, and GriefEconomy as shared state."
-    },
-    {
-      "id": "expansion_002",
-      "legacy_id": "p0_002",
-      "name": "Implement grief modifier on rhythm note hits",
-      "system": "Grief Hook",
-      "priority_after_p0": 2,
-      "status": "deferred",
-      "notes": "GriefEconomy biases rhythm-yield math."
-    },
-    {
-      "id": "expansion_003",
-      "legacy_id": "p0_003",
-      "name": "Implement HealingSong (base + 1 scalar tier)",
-      "system": "Healing Song",
-      "priority_after_p0": 3,
-      "status": "deferred",
-      "notes": "Consumes HealingEconomy, heals, and grants small ManaEconomy."
-    },
-    {
-      "id": "expansion_004",
-      "legacy_id": "p0_004",
-      "name": "Implement ManaSong (base + 1 scalar tier)",
-      "system": "Mana Song",
-      "priority_after_p0": 4,
-      "status": "deferred",
-      "notes": "Consumes ManaEconomy, restores mana or resonance, and reduces GriefEconomy."
-    },
-    {
-      "id": "expansion_005",
-      "legacy_id": "p0_005",
-      "name": "Implement UtilitySong_Debuff (mana drain type)",
-      "system": "Utility Song",
-      "priority_after_p0": 5,
-      "status": "deferred",
-      "notes": "Consumes UtilityEconomy and applies a mana-drain debuff."
-    },
-    {
-      "id": "expansion_006",
-      "legacy_id": "p0_006",
-      "name": "Wire HUD/WBP for economy inputs and indicators",
-      "system": "HUD/WBP",
-      "priority_after_p0": 6,
-      "status": "deferred",
-      "notes": "Economy display, cast controls, grief indicator, and scalar-tier display must use the existing UI authority."
-    },
-    {
-      "id": "expansion_007",
-      "legacy_id": "p0_007",
-      "name": "Build the economy-focused dungeon route",
-      "system": "Dungeon Route",
-      "priority_after_p0": 7,
-      "status": "deferred",
-      "notes": "A route for the expanded economy loop, not the current First Dream convergence route."
-    },
-    {
-      "id": "expansion_008",
-      "legacy_id": "p0_008",
-      "name": "Add a debuff/status-pressure enemy",
-      "system": "Enemy",
-      "priority_after_p0": 8,
-      "status": "deferred",
-      "notes": "One enemy aligned with the future UtilitySong_Debuff loop."
-    },
-    {
-      "id": "expansion_009",
-      "legacy_id": "p0_009",
-      "name": "Integrate an economy-skill quest chain",
-      "system": "Quest Integration",
-      "priority_after_p0": 9,
-      "status": "deferred",
-      "notes": "Future quest progression tied to skill usage and encounter resolution."
-    }
+  "p0_build_and_packaging_integration": {
+   "timestamp": "2026-08-27T23:15:00Z",
+   "status": "SOURCE_COMPILED_AND_READY_FOR_PACKAGE",
+   "rebuild_command": "\"C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Build\\BatchFiles\\Build.bat\" BS_GodFileEditor Win64 Development -project=\"C:\\EnvironmentPortfolio\\BS_GodFile\\BS_GodFile.uproject\" -NoUba -MaxParallelActions=6 -WaitMutex",
+   "syntax_fix": "Patched MelodiaP0ContentQuestsTests.cpp to supply EMelodiaWardrobeSlot::Body key to EquippedCosmeticIds.Add map.",
+   "packaging_command": "\"C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Build\\BatchFiles\\RunUAT.bat\" BuildCookRun -project=\"C:\\EnvironmentPortfolio\\BS_GodFile\\BS_GodFile.uproject\" -noP4 -platform=Win64 -clientconfig=Shipping -cook -map=\"L_MelusinaMorning+L_KaleidoNave+LV_SeaAbove_Prototype+MelodiaIntegrationMap\" -build -stage -pak -archive -archivedirectory=\"C:\\EnvironmentPortfolio\\BS_GodFile\\Products\\P0_Itch_Release\" -unattended -utf8output",
+   "itch_release_channel": "windows-first-dream",
+   "deliverables_staged": [
+    "First Dream QSC narrative loop with 4-outcome battle branch",
+    "Melusina V2 wardrobe equip unlocking Glide traversal",
+    "Choral Sheep companion recruitment via Middle C harmony",
+    "Sea Above cutscene & 16.0s biological pulse shader integration",
+    "Win64 standalone packaging archive directory prepared"
+   ]
+  },
+  "ui_quill_dialogue_restored": {
+   "commit": "e1d1b4cd",
+   "defect": "WBP_MelodiaQuillDialog Event Play override shadowed native UMelodiaQuillDialogWidget::Play_Implementation. AddToViewportAtLayer(), SpeakerText/BodyText and AdvanceButton focus never ran; dialog box constructed but never added to viewport. Cause: an unfinished typewriter feature replaced the working override with no parent call (its downstream nodes still have disconnected exec pins).",
+   "fix": "Injected K2Node_CallParentFunction ('Parent: Play') as first link in the Event Play chain via Monolith validate_nodes_t3d + inject_nodes_t3d, then connect_pins_bulk: Event Play.then -> Parent: Play -> SetPortrait -> existing chain; Speaker/Text/Tags fan out to Parent: Play so SetPortrait keeps Speaker. Portrait preserved.",
+   "verification": "dry_run valid=true engine_accepts=true; compile 0 errors 0 warnings; fingerprint d956ebd64953a1e41a2bd874a1aeb5d1a699da8e -> d8eae2b348ea8bd02bf2b8b924095bb36eb1a067 (26->27 nodes, 11->15 connections); OWNER CONFIRMED dialogue visible in PIE.",
+   "not_affected": "WBP_MelodiaQuillSelection / WBP_MelodiaQuillBackground have Event Play DISABLED, so they already fell through to native. Only the Dialog widget had the override.",
+   "open_followup": "Owner reports the background panel is still not rendering. Not investigated (out of scope of this fix).",
+   "tooling": "Used the text injection pipeline as primary path; add_node cannot create K2Node_CallParentFunction."
+  }
+ },
+ "latest_verified_evidence": {
+  "recorded_on": "2026-08-26",
+  "source_commit": "3912f5708076386ac458ac3f36a6d5849b01db41",
+  "report": "Docs/Reports/P0_GAMEPLAY_AND_ECHO_UPDATE_2026-08-26.md",
+  "results": [
+   "P0-NARR-01 atomic Harmony quest completion is committed and the authored source matches its generator.",
+   "First Dream route, progression, and chapter content contracts pass: 4, 6, and 6 checks respectively.",
+   "Echo manifest contract passes 77/77 and editor-backed graph_reachability plus bp_live_path checks pass.",
+   "Closed-editor BS_GodFile Win64 Development build succeeds: 104/104 actions.",
+   "UE automation passes 8/8 Melodia.Integration and 5/5 Melodia.Wiring tests.",
+   "MelodiaIntegrationMap completes an 8.02 second scoped PIE smoke with 0 Blueprint Runtime Error, Accessed None, Ensure, Fatal, or MELODIA_INTENT_REJECTED matches."
   ],
-  "deferred_post_p0_polish": [
-    "Economy idempotency and clamp edge cases",
-    "UtilitySong buff and cleanse variants",
-    "Third scalar tier for song families",
-    "Rhythm-accuracy-to-economy-yield math validation",
-    "Economy threshold UI updates",
-    "Full economy chain integration test",
-    "Grief-scaled enemy mana drain",
-    "Cast-all-families quest-step UX"
+  "boundary": "This is T1 offline/build plus T2 scoped-runtime evidence. It does not prove real-key rhythm input, a visible HUD ownership handoff, all four terminal outcomes, wardrobe save/restart, Glide payoff, music-world-key durability, or the final 20-30 minute golden run."
+ },
+ "resolved_p0_blockers": [
+  {
+   "id": "P0-NARR-01",
+   "status": "closed",
+   "commit": "3912f5708076386ac458ac3f36a6d5849b01db41",
+   "resolution": "Replaced separate quest, reward, and flag notifications in the Harmony completion beat with the existing atomic questcomplete transaction carrying stable quest, flag, reward, intent, and checkpoint IDs. Updated the generator and route contract to prevent regeneration drift."
+  },
+  {
+   "id": "QSC_COMPILATION",
+   "status": "closed",
+   "commit": "694b7250",
+   "resolution": "All 4 P0 scripts have valid compiled .uasset files. Verified via editor Python: unreal.load_asset() returns valid objects with source_code."
+  },
+  {
+   "id": "ALLOWLIST_IDS",
+   "status": "closed",
+   "commit": "694b7250",
+   "resolution": "All 30+ P0 IDs present in DA_MelodiaIntegrationConfig CDO. Verified via blueprint_query get_cdo_properties."
+  },
+  {
+   "id": "SEA_ABOVE_HOUDINI_INGEST",
+   "status": "closed",
+   "commit": "0fe7b877",
+   "resolution": "P0 Houdini backlog ingested into UE: 55 textures (B1 droplet atlas, B2 membrane set, R5 suite v2, clutter/kelp/coral skins) and 23 meshes (coral archetypes, clutter, kelp, islands, rock chunks, leviathan, organ, flora) -> Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/. Import contract verified per-file (sRGB/LOD/compression) by committed harnesses Content/Python/ingest_sea_above_p0.py + verify_tex_contract.py; evidence copy Docs/Echo/campaign_05_ingest_report_2026-08-30.json. Droplet atlas corrected to sRGB=false/TEXTUREGROUP_EFFECTS/TC_MASKS per flipbook plan B1. Editor recovery prerequisite: windowless zombie editor PID 51260 (invisible modal, log-stale 20min) killed; single-editor rule restored; Monolith 9316 re-bound only after clean editor restart (its first bind failed silently behind the zombie). Open follow-ups: MI_Niagara_MelodiaFlipbook_Droplet wiring, Track A PIE evidence."
+  },
+  {
+   "id": "SHOREWAKE_DRESS_BAKE",
+   "status": "closed",
+   "commit": "a72732ab",
+   "resolution": "Shorewake dress AO/normal fixed via full Houdini-led bake chain replacing the broken Substance attempt (owner had not painted; whole bake redone). Chain: shorewake_bake_prep.py (Blender: UV audit 0 overlaps in 0-1, smooth+angle shading, v2 OBJ) -> dress_geometry_attrs.py (Houdini VEX: per-vertex thickness via two-sided raycast, curvature via angle-defect, encoded as OBJ vertex colors) -> shorewake_bake_blender.py (Cycles: tangent normal DirectX pre-flipped from subdivided high, thickness/curvature/position EMIT bakes; Cycles AO discarded - open panels self-shadow to black) -> dress_ao_vex.py (Houdini VEX: 64-ray cosine hemisphere AO with <2mm self-hit exclusion, mean 0.977) -> bake_rasterize_ao.py (numpy barycentric UV rasterizer, 12.5M texels, no render engine). Mantra baketexture verified WATERMARKED on Apprentice (test bake) - documented, avoided. 4096 maps imported as T_MelusinaC_DressShorewake_{Normal,AO,Curvature,Thickness,Position}_HB; MI_Melusina_Dress_Shorewake NormalMap->HB normal, HeightMap->HB AO (master-derived AO seam, no master edits). Verified by re-read via get_instance_parameters. Evidence manifests Docs/Art/DRESS_BAKE_EVIDENCE_2026-08-30/. Open: curvature/thickness/position maps available but master exposes no params - future shimmer pass. Setup review: Docs/Art/DRESS_HOUDINI_SETUP_REVIEW_2026-08-30.md."
+  }
+ ],
+ "active_p0_gates": [
+  {
+   "id": "rhythm_owner",
+   "status": "open",
+   "contract": "Exactly one rhythm execution path reaches the stock JRPG damage calculation; load-bearing MelodiaCore presentation and reactivity callers may remain."
+  },
+  {
+   "id": "hud_single_writer",
+   "status": "pass",
+   "contract": "UMelodiaUIBridgeSubsystem is the sole Melodia writer for battle-time presentation and the instantiated runtime widget identity is proven.",
+   "verified_evidence_2026_08_27": "2026-08-27 live PIE during a started battle, direct property reads: BP_BattleController.battleUI = BP_BattleUI_C_0; that widget's battleController = BP_BattleController_2; MATCH=True (bidirectional link correct). melodiaBattleUI and MelodiaUI are both None BUT the properties exist and are unused - they are VESTIGIAL pre-bridge Blueprint vars in category 'Melodia', NOT a broken binding. The 2026-08-26 note ('both None, HUD not bound to battle controller') measured the wrong properties. EnsureStockBattleUIControllerReference returns true SILENTLY when already linked, so absence of MELODIA_BATTLEUI_LINK is success. UMelodiaUIBridgeSubsystem is sole Melodia writer: it auto-created BP_MelodiaBattleUI and spawned rhythm HUD WBP_Battle_Rhythm_C. OWNER DECISION NEEDED: retire the two vestigial vars."
+  },
+  {
+   "id": "rhythm_grade_to_result",
+   "status": "open",
+   "contract": "Real-key timing grade changes a stock JRPG result without blocking progression, and Quill resumes exactly once."
+  },
+  {
+   "id": "wardrobe_equip_roundtrip",
+   "status": "open",
+   "contract": "Equip through the wardrobe authority, save canonically, restart the process, load, and restore the correct outfit and materials."
+  },
+  {
+   "id": "wardrobe_gameplay_hook",
+   "status": "open",
+   "contract": "One equipped wardrobe item provides one observable inventory/capability hook; Glide is the first-slice capability."
+  },
+  {
+   "id": "music_world_key",
+   "status": "open",
+   "contract": "One existing Piano phrase commits one idempotent typed world result and visibly opens one player-facing route."
+  },
+  {
+   "id": "static_gates",
+   "status": "fail",
+   "contract": "The current frozen baseline passes the graph, live-path, Blueprint sweep, UI, and material-baseline checks without waivers.",
+   "latest_partial_evidence": "2026-08-26 editor-backed graph_reachability and bp_live_path passed; the full Blueprint/UI/material chain was not rerun, so the gate remains fail."
+  },
+  {
+   "id": "battle_integration_map",
+   "status": "pass",
+   "contract": "Victory, Defeat, Fled, and unavailable each produce the typed result and resume or abort Quill exactly once on the current integration map.",
+   "verified_evidence_2026_08_27": "2026-08-27 live PIE on MelodiaIntegrationMap, post closed-editor UBT rebuild (DLL 12:28). ROOT CAUSE of the long hold: BP_InteractionBattle (tag melodia_smoke_encounter) had enemyList=[], so MelodiaExternalJRPGBridgeSubsystem.cpp:130 rejected every battle with 'tagged battle actor has no authored enemy roster'. Fixed: one row, key BP_WeakEnemy_C, spawnChance=1.0 minLevel=1 maxLevel=1; map saved 13:07. ALL FOUR terminal outcomes then driven through the authored MelodiaQuillSmoke golden run: unavailable (abort path); victory result=victory typed=0 (SetHP(0) on BP_WeakEnemy_C); defeat result=defeat typed=1 (SetHP(0) on BP_SirMelodiousPlayerUnit_C); fled result=fled typed=2 (fleeChance=100 + BP_BattleController.Flee). Quill resumed EXACTLY ONCE on every outcome (MELUSINA_LOOP_QUILL_RESTORE then _NEXT, never twice). Atomic commit proven on victory branch in order: melodia:quest:melodia_q_echo_01, melodia:reward:melodia_smoke_reward, melodia:flag:melodia_smoke_complete:true, then Script 'MelodiaQuillSmoke' ended. Fled branch committed ONLY the flag (no quest/reward), proving the commit is branch-conditional."
+  }
+ ],
+ "bounded_historical_evidence": [
+  {
+   "id": "runtime",
+   "recorded_status": "pass",
+   "recorded_on": "2026-08-13",
+   "scope": "Real keyboard input on the captured owner session."
+  },
+  {
+   "id": "save_load",
+   "recorded_status": "pass",
+   "recorded_on": "2026-08-14",
+   "scope": "Canonical stock-JRPG save across the captured process restart."
+  },
+  {
+   "id": "repeat_consume",
+   "recorded_status": "pass",
+   "recorded_on": "2026-08-14",
+   "scope": "Captured authored replay remained exactly once."
+  },
+  {
+   "id": "package_launch",
+   "recorded_status": "pass",
+   "recorded_on": "2026-08-14",
+   "scope": "Captured Development package launched outside the editor."
+  }
+ ],
+ "current_source_truth": {
+  "first_dream_quest_completion": "P0-NARR-01 is closed at 3912f570: Harmony completion uses CommitQuestCompletion through one stable questcomplete notification, and authored/generated sources are contract-locked.",
+  "battle_hud": "Source is converged: UMelodiaJRPGBattleOverlaySubsystem is a retired compatibility observer and creates no widgets. Runtime hud_single_writer proof complete; vestigial vars await owner decision.",
+  "music_world_key": "Piano and UMelodiaPCGNarrativeChallengeBridgeComponent are source-built. Live host attachment, level wiring, visible route payoff, and replay proof remain open.",
+  "rhythm_owner": "The gate measures one execution path into stock JRPG damage, not zero MelodiaCore callers. Load-bearing presentation and reactivity callers are permitted.",
+  "qsc_compilation": "RESOLVED 2026-08-28: All 4 P0 scripts have valid compiled .uasset files. MelodiaQuillP0Playthrough (2025 chars), MelodiaQuillWardrobeEquip (1396 chars), MelodiaQuillChoralSheepRecruit (1510 chars), MelodiaQuillSeaAboveCutscene (1769 chars).",
+  "allowlist_ids": "RESOLVED 2026-08-28: All 30+ P0 IDs present in DA_MelodiaIntegrationConfig CDO. QuestIds (9), NarrativeFlagIds (17), TravelLevelIds (4), DialogueRewardIds (10), SocialStatIds (3), EncounterIds (2).",
+  "editor_modal": "RECURRING: Editor blocked by modal dialog with empty title/text. Detected via MODAL_OPEN in Saved/Logs/BS_GodFile.log. Blocks port 9316, Monolith MCP, all echo runners, PIE testing."
+ },
+ "vendor_compatibility_track": {
+  "status": "HOLD_VENDOR_INPUTS_MISSING",
+  "scope": "Oceanology Expanded and ACFU are optional isolated compatibility investigations. They are not P0 dependencies and may not acquire narrative, battle, rhythm, quest, inventory, save, wardrobe, traversal, or UI authority.",
+  "report": "Docs/Reports/OCEANOLOGY_ACFU_MELUSINA_COMPATIBILITY_2026-08-26.md",
+  "ledger": "Docs/Reports/OCEANOLOGY_ACFU_COMPATIBILITY_LEDGER_2026-08-26.json",
+  "latest_evidence": [
+   "Oceanology purchase provenance exists on G:, but no vendor archive, .uplugin descriptor, or source is currently available; the project-local directory is a disabled descriptor-less binary remnant.",
+   "The located ACFU UE5.8 Melusina lab is correctly isolated, but the ACFU vendor source/plugin is absent. No UCFU descriptor was found.",
+   "F: was mounted but did not answer bounded directory enumeration and remains an unresolved archive location rather than proof of absence.",
+   "Current pre-vendor MelodiaCore baseline passes 14/14 targeted editor automation tests across rhythm, presentation, water gameplay, and wiring.",
+   "Melusina_BP registry, readiness, materialization, topology, skill bridge, native adapter, and HUD single-writer offline checks pass; live viewport and gameplay proof remain open.",
+   "Live headless PIE was not launched against the observed shared-editor baseline because four UI packages were dirty and WBP_MelodiaRhythmHighway was errored. No shared assets were saved or modified.",
+   "A subsequent unattended NullRHI commandlet loaded project modules but stalled before automation discovery because UE-LocalDataCachePath targets unavailable F:/UE_DDC and Zen found no valid data path. The bounded process was terminated without emitting a test result.",
+   "A process-local DDC retry emitted no new log and did not reach automation discovery within the bounded window. It was terminated without changing the machine-level environment; the headless gate remains HOLD rather than pass or fail."
   ],
-  "deferred_post_p0_test_targets": [
-    "Grief modifier calculation at grief 0, 50, and 100",
-    "HealingSong Blueprint fixture",
-    "ManaSong Blueprint fixture",
-    "UtilitySong_Debuff Blueprint fixture",
-    "Economy WBP binding checks",
-    "Economy quest progression check"
-  ]
+  "blockers": [
+   "oceanology_vendor_descriptor_or_archive_missing",
+   "acfu_vendor_source_plugin_missing",
+   "clean_editor_baseline_required_for_live_melusina_pie",
+   "valid_process_local_unreal_ddc_required_for_headless_commandlet"
+  ],
+  "next_gates": [
+   "Fingerprint each restored vendor package and preserve version/provenance metadata.",
+   "Compile each vendor plugin in a separate disposable UE5.8 host before proposing any live-project change.",
+   "Run Oceanology-only water and underwater presentation tests without replacing canonical Melodia water gameplay state.",
+   "Run ACFU-only Melusina spawn, animation, hair, damage-receive, and package tests without enabling ACFU in BS_GodFile.",
+   "Repeat Melusina identity, animation, HUD ownership, and MelodiaCore rhythm tests after each isolated vendor build.",
+   "Require an explicit owner-approved narrow adapter proposal before any live-game integration."
+  ],
+  "live_game_mutation_authorized": false
+ },
+ "deferred_post_p0_expansion": [
+  {
+   "id": "expansion_001",
+   "legacy_id": "p0_001",
+   "name": "Define 4 global economy data structs/variables",
+   "system": "Global Economies",
+   "priority_after_p0": 1,
+   "status": "deferred",
+   "notes": "HealingEconomy, ManaEconomy, UtilityEconomy, and GriefEconomy as shared state."
+  },
+  {
+   "id": "expansion_002",
+   "legacy_id": "p0_002",
+   "name": "Implement grief modifier on rhythm note hits",
+   "system": "Grief Hook",
+   "priority_after_p0": 2,
+   "status": "deferred",
+   "notes": "GriefEconomy biases rhythm-yield math."
+  },
+  {
+   "id": "expansion_003",
+   "legacy_id": "p0_003",
+   "name": "Implement HealingSong (base + 1 scalar tier)",
+   "system": "Healing Song",
+   "priority_after_p0": 3,
+   "status": "deferred",
+   "notes": "Consumes HealingEconomy, heals, and grants small ManaEconomy."
+  },
+  {
+   "id": "expansion_004",
+   "legacy_id": "p0_004",
+   "name": "Implement ManaSong (base + 1 scalar tier)",
+   "system": "Mana Song",
+   "priority_after_p0": 4,
+   "status": "deferred",
+   "notes": "Consumes ManaEconomy, restores mana or resonance, and reduces GriefEconomy."
+  },
+  {
+   "id": "expansion_005",
+   "legacy_id": "p0_005",
+   "name": "Implement UtilitySong_Debuff (mana drain type)",
+   "system": "Utility Song",
+   "priority_after_p0": 5,
+   "status": "deferred",
+   "notes": "Consumes UtilityEconomy and applies a mana-drain debuff."
+  },
+  {
+   "id": "expansion_006",
+   "legacy_id": "p0_006",
+   "name": "Wire HUD/WBP for economy inputs and indicators",
+   "system": "HUD/WBP",
+   "priority_after_p0": 6,
+   "status": "deferred",
+   "notes": "Economy display, cast controls, grief indicator, and scalar-tier display must use the existing UI authority."
+  },
+  {
+   "id": "expansion_007",
+   "legacy_id": "p0_007",
+   "name": "Build the economy-focused dungeon route",
+   "system": "Dungeon Route",
+   "priority_after_p0": 7,
+   "status": "deferred",
+   "notes": "A route for the expanded economy loop, not the current First Dream convergence route."
+  },
+  {
+   "id": "expansion_008",
+   "legacy_id": "p0_008",
+   "name": "Add a debuff/status-pressure enemy",
+   "system": "Enemy",
+   "priority_after_p0": 8,
+   "status": "deferred",
+   "notes": "One enemy aligned with the future UtilitySong_Debuff loop."
+  },
+  {
+   "id": "expansion_009",
+   "legacy_id": "p0_009",
+   "name": "Integrate an economy-skill quest chain",
+   "system": "Quest Integration",
+   "priority_after_p0": 9,
+   "status": "deferred",
+   "notes": "Future quest progression tied to skill usage and encounter resolution."
+  }
+ ],
+ "deferred_post_p0_polish": [
+  "Economy idempotency and clamp edge cases",
+  "UtilitySong buff and cleanse variants",
+  "Third scalar tier for song families",
+  "Rhythm-accuracy-to-economy-yield math validation",
+  "Economy threshold UI updates",
+  "Full economy chain integration test",
+  "Grief-scaled enemy mana drain",
+  "Cast-all-families quest-step UX"
+ ],
+ "deferred_post_p0_test_targets": [
+  "Grief modifier calculation at grief 0, 50, and 100",
+  "HealingSong Blueprint fixture",
+  "ManaSong Blueprint fixture",
+  "UtilitySong_Debuff Blueprint fixture",
+  "Economy WBP binding checks",
+  "Economy quest progression check"
+ ]
 }

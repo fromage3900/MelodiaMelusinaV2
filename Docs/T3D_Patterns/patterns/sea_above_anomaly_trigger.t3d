@@ -1,0 +1,25 @@
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="CheckThreshold"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetMathLibrary"',MemberName="GreaterEqual_DoubleDouble")
+   NodePosX=0
+   NodePosY=0
+   NodeGuid={{GUID:gte}}
+   CustomProperties Pin (PinId={{GUID:val_a}},PinName="A",Direction="EGPD_Input",PinType.PinCategory="real",PinType.PinSubCategory="double",DefaultValue="{{pulse_value}}",)
+   CustomProperties Pin (PinId={{GUID:val_b}},PinName="B",Direction="EGPD_Input",PinType.PinCategory="real",PinType.PinSubCategory="double",DefaultValue="{{threshold}}",)
+   CustomProperties Pin (PinId={{GUID:gte_out}},PinName="ReturnValue",Direction="EGPD_Output",PinType.PinCategory="bool",PinType.PinSubCategoryObject=None,LinkedTo=(Branch_Pulse {{GUID:branch_cond}},),)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_IfThenElse Name="Branch_Pulse"
+   NodePosX=250
+   NodePosY=0
+   NodeGuid={{GUID:branch}}
+   CustomProperties Pin (PinId={{GUID:branch_in}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:branch_cond}},PinName="Condition",Direction="EGPD_Input",PinType.PinCategory="bool",PinType.PinSubCategoryObject=None,LinkedTo=(CheckThreshold {{GUID:gte_out}},),)
+   CustomProperties Pin (PinId={{GUID:branch_then}},PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(TriggerAnomaly {{GUID:anomaly_in}},),)
+   CustomProperties Pin (PinId={{GUID:branch_else}},PinName="else",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="TriggerAnomaly"
+   FunctionReference=(MemberParent=Class'"{{anomaly_handler_class}}"',MemberName="{{anomaly_trigger_function}}")
+   NodePosX=550
+   NodePosY=0
+   NodeGuid={{GUID:anomaly}}
+   CustomProperties Pin (PinId={{GUID:anomaly_in}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(Branch_Pulse {{GUID:branch_then}},),)
+End Object

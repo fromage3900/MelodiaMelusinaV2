@@ -1,0 +1,12 @@
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="SetMPCParam"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetMaterialLibrary"',MemberName="SetScalarParameterValue")
+   NodePosX=0
+   NodePosY=0
+   NodeGuid={{GUID:mpccall}}
+   CustomProperties Pin (PinId={{GUID:mpcexec}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:mpcthen}},PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:mpcctx}},PinName="WorldContextObject",Direction="EGPD_Input",PinType.PinCategory="object",PinType.PinSubCategoryObject=Class'"/Script/CoreUObject.Object"',)
+   CustomProperties Pin (PinId={{GUID:mpccoll}},PinName="Collection",Direction="EGPD_Input",PinType.PinCategory="object",PinType.PinSubCategoryObject=Class'"/Script/Engine.MaterialParameterCollection"',DefaultObject=MaterialParameterCollection'"{{mpc_path}}"',)
+   CustomProperties Pin (PinId={{GUID:mpcname}},PinName="ParameterName",Direction="EGPD_Input",PinType.PinCategory="name",PinType.PinSubCategory="",DefaultValue="{{parameter_name}}",)
+   CustomProperties Pin (PinId={{GUID:mpcval}},PinName="ParameterValue",Direction="EGPD_Input",PinType.PinCategory="real",PinType.PinSubCategory="float",DefaultValue="{{parameter_value}}",)
+End Object
