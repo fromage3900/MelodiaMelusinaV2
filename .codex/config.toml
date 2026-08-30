@@ -43,6 +43,9 @@ approval_mode = "approve"
 [mcp_servers.monolith.tools.blueprint_query]
 approval_mode = "approve"
 
+[mcp_servers.monolith.tools.describe_query]
+approval_mode = "approve"
+
 [mcp_servers.ollama]
 command = "node"
 args = ['C:\Users\froma\AppData\Roaming\npm\node_modules\ollama-mcp\dist\index.js']
