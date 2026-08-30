@@ -41,6 +41,59 @@ PRESET_SOURCE = "melodia_gn.presets"
 # -----------------------------------------------------------------------------
 
 BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
+    "MEL_audio_spectrum_terrain": {
+        "label": "Audio Spectrum Terrain",
+        "preset_labels": {
+            "DREAMING_HIGHLANDS": "Dreaming Highlands",
+            "BASS_CANYON": "Bass Canyon",
+            "FULL_SONG_CONTINENT": "Full Song Continent",
+            "SEA_ABOVE_FALSE_HORIZON": "Sea Above False Horizon",
+        },
+        "preset_descriptions": {
+            "DREAMING_HIGHLANDS": "Balanced melodic landscape for broad walkable composition studies.",
+            "BASS_CANYON": "Low-frequency canyon relief with restrained upper-band detail.",
+            "FULL_SONG_CONTINENT": "Large high-resolution terrain intended for tiled bake/export runs.",
+            "SEA_ABOVE_FALSE_HORIZON": "Kilometre-scale subdued frequency terrain for the false-ocean horizon and Bell silhouette.",
+        },
+        "presets": {
+            "DREAMING_HIGHLANDS": {"Low Hz": 80.0, "High Hz": 9000.0, "Band Width": 0.08, "Audio Gain": 7.0, "Size X M": 120.0, "Size Y M": 72.0, "Resolution X": 256, "Resolution Y": 128, "Height M": 16.0},
+            "BASS_CANYON": {"Low Hz": 25.0, "High Hz": 800.0, "Band Width": 0.16, "Audio Gain": 12.0, "Size X M": 160.0, "Size Y M": 64.0, "Resolution X": 256, "Resolution Y": 96, "Height M": 35.0},
+            "FULL_SONG_CONTINENT": {"Low Hz": 30.0, "High Hz": 16000.0, "Band Width": 0.04, "Audio Gain": 9.0, "Size X M": 1000.0, "Size Y M": 600.0, "Resolution X": 768, "Resolution Y": 384, "Height M": 90.0},
+            "SEA_ABOVE_FALSE_HORIZON": {"Low Hz": 18.0, "High Hz": 1800.0, "Band Width": 0.06, "Audio Gain": 5.0, "Size X M": 1600.0, "Size Y M": 900.0, "Resolution X": 768, "Resolution Y": 384, "Height M": 42.0, "Music Influence": 0.08, "Musical Amplitude": 6.0, "Musical Freq A": 1.0, "Musical Freq B": 2.0},
+        },
+    },
+    "MEL_audio_spectrum_towers": {
+        "label": "Audio Spectrum Towers",
+        "preset_labels": {"CHOIR_CITY": "Choir City", "BASS_FORTRESS": "Bass Fortress", "MEGASPECTRUM_WALL": "Megaspectrum Wall", "SEA_ABOVE_BELL_RIBS": "Sea Above Bell Ribs"},
+        "preset_descriptions": {
+            "CHOIR_CITY": "Mid/high-frequency skyline for choral architectural studies.",
+            "BASS_FORTRESS": "Heavy low-band towers with large readable silhouettes.",
+            "MEGASPECTRUM_WALL": "Dense 512-bin wall for large-scale instancing and export tests.",
+            "SEA_ABOVE_BELL_RIBS": "Low-frequency kilometre-scale rib field for the Bell proxy silhouette.",
+        },
+        "presets": {
+            "CHOIR_CITY": {"Low Hz": 120.0, "High Hz": 12000.0, "Band Width": 0.06, "Audio Gain": 10.0, "Size X M": 180.0, "Frequency Bins": 192, "Tower Width M": 0.7, "Tower Depth M": 4.0, "Height M": 45.0},
+            "BASS_FORTRESS": {"Low Hz": 20.0, "High Hz": 500.0, "Band Width": 0.18, "Audio Gain": 16.0, "Size X M": 240.0, "Frequency Bins": 96, "Tower Width M": 2.0, "Tower Depth M": 12.0, "Height M": 80.0},
+            "MEGASPECTRUM_WALL": {"Low Hz": 20.0, "High Hz": 20000.0, "Band Width": 0.025, "Audio Gain": 8.0, "Size X M": 1000.0, "Frequency Bins": 512, "Tower Width M": 1.4, "Tower Depth M": 8.0, "Height M": 120.0},
+            "SEA_ABOVE_BELL_RIBS": {"Low Hz": 18.0, "High Hz": 900.0, "Band Width": 0.09, "Audio Gain": 7.0, "Size X M": 1400.0, "Frequency Bins": 384, "Tower Width M": 2.5, "Tower Depth M": 18.0, "Height M": 180.0, "Music Influence": 0.12, "Musical Amplitude": 8.0, "Musical Freq A": 1.0, "Musical Freq B": 5.0},
+        },
+    },
+    "MEL_audio_radial_field": {
+        "label": "Audio Radial Field",
+        "preset_labels": {"MONOLITH_RIPPLES": "Monolith Ripples", "CHORAL_CRATER": "Choral Crater", "HORIZON_EATER_FIELD": "Horizon Eater Field", "SEA_ABOVE_MEMBRANE": "Sea Above Membrane"},
+        "preset_descriptions": {
+            "MONOLITH_RIPPLES": "Compact concentric response around a musical world key.",
+            "CHORAL_CRATER": "Wide vocal-band arena membrane.",
+            "HORIZON_EATER_FIELD": "Massive low-frequency environmental pulse field.",
+            "SEA_ABOVE_MEMBRANE": "Regional circular membrane deformation tuned for the 12-20 second Bell pulse concept.",
+        },
+        "presets": {
+            "MONOLITH_RIPPLES": {"Low Hz": 60.0, "High Hz": 6000.0, "Band Width": 0.08, "Audio Gain": 9.0, "Size X M": 100.0, "Radial Segments": 192, "Height M": 12.0, "Radius M": 50.0},
+            "CHORAL_CRATER": {"Low Hz": 120.0, "High Hz": 12000.0, "Band Width": 0.05, "Audio Gain": 14.0, "Size X M": 260.0, "Radial Segments": 384, "Height M": 32.0, "Radius M": 130.0},
+            "HORIZON_EATER_FIELD": {"Low Hz": 18.0, "High Hz": 1200.0, "Band Width": 0.12, "Audio Gain": 18.0, "Size X M": 1200.0, "Radial Segments": 768, "Height M": 140.0, "Radius M": 600.0},
+            "SEA_ABOVE_MEMBRANE": {"Low Hz": 16.0, "High Hz": 700.0, "Band Width": 0.1, "Audio Gain": 6.0, "Size X M": 1800.0, "Radial Segments": 768, "Height M": 55.0, "Radius M": 900.0, "Music Influence": 0.16, "Musical Amplitude": 10.0, "Musical Freq A": 0.75, "Musical Freq B": 6.0},
+        },
+    },
     # water.py - MEL_water_gerstner (effects)
     "MEL_water_gerstner": {
         "label": "Gerstner Waves",
@@ -1286,11 +1339,17 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "SMALL_CELL": "Small Cell",
             "HALL": "Hall",
             "CLOISTER_WALK": "Cloister Walk",
+            "SEA_ABOVE_REVEAL_GALLERY": "Sea Above Reveal Gallery",
+            "BELL_ANATOMY_CHAMBER": "Bell Anatomy Chamber",
+            "FALSE_HORIZON_OBSERVATORY": "False Horizon Observatory",
         },
         "preset_descriptions": {
             "SMALL_CELL": "Tight 4x4 cell with a ceiling.",
             "HALL": "Long assembly hall, high ceiling.",
             "CLOISTER_WALK": "Wide cloister bay with thinner walls.",
+            "SEA_ABOVE_REVEAL_GALLERY": "Cinematic 16:9 approach gallery with a broad false-horizon reveal volume.",
+            "BELL_ANATOMY_CHAMBER": "Monumental chamber sized for membrane ribs and low-frequency anatomy studies.",
+            "FALSE_HORIZON_OBSERVATORY": "Open-ceiling review room for fixed-camera Sea Above composition.",
         },
         "presets": {
             "SMALL_CELL": {
@@ -1305,6 +1364,9 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
                 "Room Length": 10.0, "Room Width": 4.5, "Room Height": 3.6,
                 "Wall Thickness": 0.2, "Ceiling": True,
             },
+            "SEA_ABOVE_REVEAL_GALLERY": {"Room Length": 30.0, "Room Width": 12.0, "Room Height": 9.0, "Wall Thickness": 0.45, "Ceiling": True, "Music Influence": 0.035, "Musical Amplitude": 1.5, "Musical Freq A": 1.0, "Musical Freq B": 3.0},
+            "BELL_ANATOMY_CHAMBER": {"Room Length": 26.0, "Room Width": 26.0, "Room Height": 15.0, "Wall Thickness": 0.65, "Ceiling": True, "Music Influence": 0.06, "Musical Amplitude": 2.2, "Musical Freq A": 0.75, "Musical Freq B": 5.0},
+            "FALSE_HORIZON_OBSERVATORY": {"Room Length": 22.0, "Room Width": 16.0, "Room Height": 11.0, "Wall Thickness": 0.4, "Ceiling": False, "Music Influence": 0.025, "Musical Amplitude": 1.2, "Musical Freq A": 2.0, "Musical Freq B": 4.0},
         },
     },
     "MEL_greybox_openings": {
@@ -2250,11 +2312,13 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "HARPSICHORD_GILDED": "Gilded Harpsichord",
             "HARPSICHORD_EBONY": "Ebony Harpsichord",
             "HARPSICHORD_MINI": "Mini Harpsichord",
+            "HARPSICHORD_SEA_ABOVE_HERO": "Sea Above Hero Harpsichord",
         },
         "preset_descriptions": {
             "HARPSICHORD_GILDED": "Gilded case, 56 strings, lid 42 deg, cabriole legs.",
             "HARPSICHORD_EBONY": "Ebony case, 48 strings, lid 35 deg.",
             "HARPSICHORD_MINI": "Mini 32 strings, compact.",
+            "HARPSICHORD_SEA_ABOVE_HERO": "Room-scale gilded instrument architecture with restrained low-frequency influence.",
         },
         "presets": {
             "HARPSICHORD_GILDED": {
@@ -2266,6 +2330,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "HARPSICHORD_MINI": {
                 "Length": 1.25, "Width": 0.62, "Height": 0.58, "Lid Angle": 28.0, "String Count": 32, "Leg Height": 0.5, "Scale": 1.0,
             },
+            "HARPSICHORD_SEA_ABOVE_HERO": {"Length": 2.7, "Width": 1.35, "Height": 1.15, "Lid Angle": 48.0, "String Count": 72, "Leg Height": 0.95, "Scale": 2.2, "Realize for export": True, "Music Influence": 0.08, "Musical Amplitude": 0.6, "Musical Freq A": 2.0, "Musical Freq B": 5.0},
         },
     },
     "MEL_music_baroque_violin": {
@@ -2274,11 +2339,13 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "VIOLIN_BAROQUE": "Baroque Violin",
             "VIOLIN_GILDED": "Gilded Violin",
             "VIOLIN_MINI": "Mini Violin",
+            "VIOLIN_BELL_RELIQUARY": "Bell Reliquary Violin",
         },
         "preset_descriptions": {
             "VIOLIN_BAROQUE": "Baroque scroll 2.2 turns, tailpiece wreath.",
             "VIOLIN_GILDED": "Gilded scroll 2.8 turns.",
             "VIOLIN_MINI": "Mini violin, 1.5 turns.",
+            "VIOLIN_BELL_RELIQUARY": "Gallery-scale sculptural violin for Bell anatomy composition.",
         },
         "presets": {
             "VIOLIN_BAROQUE": {
@@ -2290,6 +2357,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "VIOLIN_MINI": {
                 "Body Length": 0.42, "Body Width": 0.16, "Body Depth": 0.06, "Scroll Turns": 1.5, "Scale": 1.0,
             },
+            "VIOLIN_BELL_RELIQUARY": {"Body Length": 0.72, "Body Width": 0.27, "Body Depth": 0.11, "Scroll Turns": 3.2, "Scale": 4.0, "Realize for export": True, "Music Influence": 0.1, "Musical Amplitude": 0.45, "Musical Freq A": 3.0, "Musical Freq B": 7.0},
         },
     },
     "MEL_music_baroque_organ": {
@@ -2298,11 +2366,13 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "ORGAN_CATHEDRAL": "Cathedral Organ",
             "ORGAN_CHAPEL": "Chapel Organ",
             "ORGAN_CHAMBER": "Chamber Organ",
+            "ORGAN_ABYSSAL_CATHEDRAL": "Abyssal Cathedral Organ",
         },
         "preset_descriptions": {
             "ORGAN_CATHEDRAL": "Walkable facade 6.5x8.5m 19 pipes ET.",
             "ORGAN_CHAPEL": "Chapel 4.2x6.0m 13 pipes.",
             "ORGAN_CHAMBER": "Chamber 3.0x4.5m 9 pipes.",
+            "ORGAN_ABYSSAL_CATHEDRAL": "Hero-scale walkable organ facade for Sea Above reveal staging.",
         },
         "presets": {
             "ORGAN_CATHEDRAL": {
@@ -2314,6 +2384,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "ORGAN_CHAMBER": {
                 "Facade Width": 3.0, "Facade Height": 4.5, "Depth": 0.7, "Pipe Count": 9, "Longest Pipe (m)": 2.4, "Scale": 1.0,
             },
+            "ORGAN_ABYSSAL_CATHEDRAL": {"Facade Width": 11.0, "Facade Height": 14.0, "Depth": 2.4, "Pipe Count": 31, "Longest Pipe (m)": 7.0, "Scale": 1.5, "Realize for export": True, "Music Influence": 0.07, "Musical Amplitude": 1.4, "Musical Freq A": 1.0, "Musical Freq B": 4.0},
         },
     },
     "MEL_music_baroque_lute": {
@@ -2322,11 +2393,13 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "LUTE_STANDARD": "Standard Lute",
             "LUTE_THEORBO": "Theorbo",
             "LUTE_MANDORA": "Mandora",
+            "LUTE_PELAGIC_VAULT": "Pelagic Vault Lute",
         },
         "preset_descriptions": {
             "LUTE_STANDARD": "Bowl 0.62x0.36 11 staves, neck 0.42.",
             "LUTE_THEORBO": "Long theorbo, 14 staves, neck 0.68.",
             "LUTE_MANDORA": "Mandora, 9 staves, short neck.",
+            "LUTE_PELAGIC_VAULT": "Large vaulted-bowl sculpture with subtle membrane-like musical deformation.",
         },
         "presets": {
             "LUTE_STANDARD": {
@@ -2338,6 +2411,7 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "LUTE_MANDORA": {
                 "Bowl Length": 0.48, "Bowl Width": 0.28, "Bowl Depth": 0.14, "Stave Count": 9, "Neck Length": 0.32, "Scale": 1.0,
             },
+            "LUTE_PELAGIC_VAULT": {"Bowl Length": 0.9, "Bowl Width": 0.54, "Bowl Depth": 0.28, "Stave Count": 18, "Neck Length": 0.82, "Scale": 3.2, "Realize for export": True, "Music Influence": 0.12, "Musical Amplitude": 0.5, "Musical Freq A": 2.0, "Musical Freq B": 6.0},
         },
     },
 

@@ -12,6 +12,7 @@ from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, label_tree, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param, add_vector_param,
     make_group_input, register_builder, mesh_boolean_node, require_node, sock,
+    add_music_influence_params, apply_universal_music_pass,
 )
 
 
@@ -221,6 +222,7 @@ def build_greybox_room_kit(group_name="MEL_greybox_room_kit"):
     add_float_param(tree, "Room Height", 4.0, 2.0, 15.0)
     add_float_param(tree, "Wall Thickness", 0.3, 0.1, 1.5)
     add_bool_param(tree, "Ceiling", True)
+    add_music_influence_params(tree)
 
     length = gin.outputs["Room Length"]
     width = gin.outputs["Room Width"]
@@ -262,7 +264,8 @@ def build_greybox_room_kit(group_name="MEL_greybox_room_kit"):
     except Exception:
         pass
     link_sockets(tree, shell, smooth.inputs["Geometry"])
-    link_sockets(tree, smooth.outputs["Geometry"], gout.inputs["Geometry"])
+    influenced = apply_universal_music_pass(tree, gin, smooth.outputs["Geometry"], (560, 80))
+    link_sockets(tree, influenced, gout.inputs["Geometry"])
     color_node(bool_node, "math")
 
     label_tree(tree, group_name, [
