@@ -82,22 +82,35 @@ def render(objects, out_path, angle_deg, cam_h):
 
 def main():
     bpy.ops.wm.read_factory_settings(use_empty=True)
-    bpy.ops.wm.obj_import(filepath=str(OBJ))
-    meshes = [o for o in bpy.context.scene.objects if o.type == "MESH"]
-    RENDER_DIR.mkdir(parents=True, exist_ok=True)
-    render(meshes, RENDER_DIR / "ClothMountains_v0_North.png", 0.0, 500.0)
-    render(meshes, RENDER_DIR / "ClothMountains_v0_Aerial.png", 40.0, 1600.0)
+    import sys
+    argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+    if argv:
+        objs = [Path(argv[0])]
+        out_dir = Path(argv[1]) if len(argv) > 1 else OBJ.parent / "renders"
+    else:
+        objs = sorted((OBJ.parent / "terrain").glob("SM_FM_*.obj"))
+        out_dir = OBJ.parent / "terrain" / "renders"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    manifests = []
+    for obj_path in objs:
+        bpy.ops.wm.read_factory_settings(use_empty=True)
+        bpy.ops.wm.obj_import(filepath=str(obj_path))
+        meshes = [o for o in bpy.context.scene.objects if o.type == "MESH"]
+        stem = obj_path.stem
+        render(meshes, out_dir / f"{stem}_North.png", 0.0, 500.0)
+        render(meshes, out_dir / f"{stem}_Aerial.png", 40.0, 1600.0)
+        manifests.append({"obj": str(obj_path),
+                          "renders": [str(out_dir / f"{stem}_North.png"),
+                                      str(out_dir / f"{stem}_Aerial.png")]})
     manifest = {
         "schema": "melodia.faraway_mother_terrain.v1",
-        "kind": "cloth-mountain v0 clay QA renders",
-        "renders": [str(RENDER_DIR / "ClothMountains_v0_North.png"),
-                    str(RENDER_DIR / "ClothMountains_v0_Aerial.png")],
-        "source_obj": str(OBJ),
+        "kind": "cloth-terrain clay QA renders",
+        "tiles": manifests,
         "blender": bpy.app.version_string,
     }
-    (RENDER_DIR / "cloth_mountains_v0_render_manifest.json").write_text(
+    (out_dir / "terrain_render_manifest.json").write_text(
         json.dumps(manifest, indent=2), encoding="utf-8")
-    print("[cloth-render] manifest written")
+    print(f"[cloth-render] {len(manifests)} tiles rendered; manifest written")
 
 
 main()
