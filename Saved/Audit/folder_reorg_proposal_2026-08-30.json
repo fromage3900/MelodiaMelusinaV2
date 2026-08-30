@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "generated": "2026-08-30",
+    "mode": "proposal",
+    "note": "Folder reorganization proposal. No actual moves \u2014 propose only."
+  },
+  "current_state": {
+    "textures": {
+      "70_Japanese_Ornament_Alphas": 140,
+      "70_Japanese_Ornament_Alphas_vfxMed": 139,
+      "Bling": 60,
+      "envrnd": 1,
+      "Fabrics": 50,
+      "FarawayMother_Suites": 47,
+      "Grand_Roman_Cathedral_Tiles": 45,
+      "HauteCouture_Iridescent_Fabrics": 32,
+      "Houdini_Vibrant_PBR_Suites": 48,
+      "Lookdev_Suites": 22,
+      "Melodia_Tilework": 22,
+      "Melusina_Feminine_Iridescent_Suites": 50,
+      "sbs_-_gradient_texture_pack_-_512x512": 112,
+      "sbs_-_noise_texture_pack_-_512x512": 262,
+      "sbs_-_seamless_abstract_pack_-_512x512": 51,
+      "sbs_-_seamless_space_backgrounds_-_large_1024x1024": 32,
+      "Stylized_Terrace_Tilework": 28
+    },
+    "materials_instances": {
+      "Atlantis": 83,
+      "BlingVol3": 15,
+      "Character": 5,
+      "Environment": 319,
+      "Foliage": 10,
+      "Grotto": 6,
+      "Kenney": 20,
+      "Landscape": 14,
+      "MelodyTokens": 4,
+      "Melusina": 14,
+      "MelusinaReal": 12,
+      "NikkiHero": 13,
+      "NikkiIntegrated": 8,
+      "Oceanology": 1,
+      "Presentation": 5,
+      "Rhythm": 5,
+      "Sakura": 12,
+      "SDFArchitecture": 11,
+      "Showcase": 20,
+      "Showcase2026_06_27": 11,
+      "Terrain": 4,
+      "Water": 31
+    },
+    "meshes": {
+      "_staging_dedupe_2026-08-15": 0,
+      "Atlantis": 333,
+      "Cathedral": 41,
+      "Celestial": 9,
+      "Environment": 2622,
+      "MathStructures": 4,
+      "Monuments": 1,
+      "Ornament": 15,
+      "OrnamentMusical": 14,
+      "Ornaments": 2,
+      "Orrery": 2,
+      "Sakura": 4,
+      "SM_SM_Melusinas_BedFrame.fbm": 0,
+      "SM_SM_Melusinas_BedFrame_fbm": 2,
+      "SM_SM_melusinas_Mattress.fbm": 0
+    }
+  },
+  "proposed_hierarchy": {
+    "Textures/": {
+      "_description": "Flat texture sources by domain",
+      "Atlantis/": "Atlantis KB3D textures (~424 uassets)",
+      "PackTextures/": "Enchanted Forest & misc packs (~375)",
+      "BlingVol3/": "Bling/rhinestone series (~90)",
+      "PBR_Sets/": {
+        "GildedPea/": "PBR set",
+        "PrettyRock/": "PBR set",
+        "SadRock/": "PBR set",
+        "Sand/": "PBR set"
+      },
+      "Trimsheet/": "Trim atlas textures",
+      "CrystalCrossroads/": "Crystal set",
+      "FarawayMother_Suites/": "Unique hero costume/prop (47 PNGs)",
+      "Kenney/": "PackTextures not Kenney (purge)",
+      "Environment/": "Environment-specific (move envrnd, Japanese_Ornament)"
+    },
+    "Materials/Instances/": {
+      "_description": "Organized by domain with consistent naming",
+      "SeaAbove/Reef/": "Reef ShadowDream MIs (55 proposed)",
+      "Architecture/Cathedral/": "Cathedral toon MIs (55 proposed)",
+      "Architecture/Atlantis/": "Atlantis toon MIs (339 proposed)",
+      "Vehicles/Enchanted/": "Enchanted Vehicles toon MIs (75 proposed)",
+      "Oceanology/": "Water PBR MIs (orphan MI_Oceanology_Melodia_Hero)",
+      "Water/": "Water sharded history (v7/v9/v10)",
+      "FarawayMother/P2/": "Unique hero costume (6 proposed)",
+      "Tilable/": {
+        "_description": "Tiling PBR materials (ZenTrim, Atlantis, etc.)"
+      },
+      "Trimsheet/": {
+        "_description": "Trim atlas materials"
+      },
+      "Unique/": {
+        "_description": "One-off prop materials"
+      },
+      "Character/": "Character MIs (existing, 5)",
+      "Environment/": "Environment-specific (move from flat Environment/*)"
+    },
+    "Meshes/": {
+      "Architecture/Cathedral/": "41 cathedral meshes",
+      "Architecture/Atlantis/": "333 atlantis meshes",
+      "Environment/": "Environment meshes",
+      "Vehicles/Enchanted/": "172 enchanted vehicle meshes",
+      "Character/": "Character meshes"
+    }
+  },
+  "migration_notes": [
+    "775+ untracked files in Content/ (per queue prompt) \u2014 need git status scan",
+    "706 Environment meshes \u2014 confirm at Content/EnvSandbox/Meshes/Environment/",
+    "Kenney purge: confirm all Kenney refs replaced with PackTextures",
+    "Instances flat/* (614 MIs) \u2192 consolidate into domain folders"
+  ],
+  "risks": [
+    "Moving materials breaks references in meshes/blueprints \u2014 batch rename needed",
+    "Naming convention violations (109 found in mi_health) \u2014 fix during reorg",
+    "Kenney purge is irreversible \u2014 verify before delete"
+  ]
+}
