@@ -11,7 +11,7 @@
     - MrRobinOfficial/Unreal-NebulousVehicle: MIT, WIP Chaos Vehicle reference.
 
     Do not copy third-party code into Melodia without preserving required license
-    notices/attribution. Do not commit _ExternalReference.
+    notices/attribution. _ExternalReference is intentionally git-ignored.
 #>
 
 $ErrorActionPreference = "Stop"
@@ -46,5 +46,5 @@ foreach ($reference in $references) {
 
 Write-Host ""
 Write-Host "Reference repositories are in: $ExternalRoot"
-Write-Host "Study them; do not enable them as Melodia plugins tonight."
+Write-Host "Reference-only: do not enable them as Melodia dependencies without an explicit integration decision."
 Write-Host "Epic BP_BuoyancyExample is already inside Engine > Plugins > Water Content > Blueprints."
