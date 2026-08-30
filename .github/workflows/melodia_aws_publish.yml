@@ -12,7 +12,7 @@ on:
         required: true
         type: string
       prefix:
-        description: "Versioned artifact prefix, e.g. melodia/builds/${{ github.sha }}"
+        description: "Versioned artifact prefix, e.g. melodia/builds/<commit-sha>"
         required: true
         type: string
       kms_key_id:
