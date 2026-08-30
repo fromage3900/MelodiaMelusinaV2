@@ -1,6 +1,6 @@
 {
  "schema": "melodia.p0.task_ledger.v2",
- "as_of": "2026-08-27",
+ "as_of": "2026-08-30",
  "authority": {
   "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
   "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
@@ -155,6 +155,12 @@
    "status": "closed",
    "commit": "694b7250",
    "resolution": "All 30+ P0 IDs present in DA_MelodiaIntegrationConfig CDO. Verified via blueprint_query get_cdo_properties."
+  },
+  {
+   "id": "SEA_ABOVE_HOUDINI_INGEST",
+   "status": "closed",
+   "commit": "0fe7b877",
+   "resolution": "P0 Houdini backlog ingested into UE: 55 textures (B1 droplet atlas, B2 membrane set, R5 suite v2, clutter/kelp/coral skins) and 23 meshes (coral archetypes, clutter, kelp, islands, rock chunks, leviathan, organ, flora) -> Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/. Import contract verified per-file (sRGB/LOD/compression) by committed harnesses Content/Python/ingest_sea_above_p0.py + verify_tex_contract.py; evidence copy Docs/Echo/campaign_05_ingest_report_2026-08-30.json. Droplet atlas corrected to sRGB=false/TEXTUREGROUP_EFFECTS/TC_MASKS per flipbook plan B1. Editor recovery prerequisite: windowless zombie editor PID 51260 (invisible modal, log-stale 20min) killed; single-editor rule restored; Monolith 9316 re-bound only after clean editor restart (its first bind failed silently behind the zombie). Open follow-ups: MI_Niagara_MelodiaFlipbook_Droplet wiring, Track A PIE evidence."
   }
  ],
  "active_p0_gates": [
