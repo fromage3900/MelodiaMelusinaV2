@@ -1,0 +1,193 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "spec_only",
+    "source_audit": "wardrobe_p0_audit_2026-08-30.json",
+    "resonant_forms_source": "resonant_forms_2026-08-30.json",
+    "note": "Catalog dress batch materialization spec. No .uasset writes. Editor materialization pending."
+  },
+  "catalog_path": "/MelodiaWardrobe/Catalog/DA_MelodiaCosmeticCatalog",
+  "slot": "dress",
+  "dress_batch": [
+    {
+      "CosmeticId": "Cos_Dress_Melusina_ResonantWeave",
+      "Slot": "dress",
+      "Rarity": "Rare",
+      "ElementMood": "Tide",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 5, "swirl": 2 },
+      "ResonantFormId": "Form_ResonantWeave",
+      "CapabilityGranted": "Glide",
+      "MaterializePriority": 1
+    },
+    {
+      "CosmeticId": "Cos_Dress_Melusina_SwiftCurrent",
+      "Slot": "dress",
+      "Rarity": "Rare",
+      "ElementMood": "Tide",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 5, "swirl": 2 },
+      "ResonantFormId": "Form_SwiftCurrent",
+      "CapabilityGranted": "Swim",
+      "MaterializePriority": 2
+    },
+    {
+      "CosmeticId": "Cos_Dress_Melusina_TideWalker",
+      "Slot": "dress",
+      "Rarity": "Rare",
+      "ElementMood": "Tide",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 5, "swirl": 2 },
+      "ResonantFormId": "Form_TideWalker",
+      "CapabilityGranted": "Dash",
+      "MaterializePriority": 3
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaWhisper",
+      "Slot": "dress",
+      "Rarity": "Common",
+      "ElementMood": "Gale",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 3, "swirl": 2 },
+      "ResonantFormId": null,
+      "MaterializePriority": 4
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaTide",
+      "Slot": "dress",
+      "Rarity": "Common",
+      "ElementMood": "Tide",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 5, "swirl": 2 },
+      "ResonantFormId": null,
+      "MaterializePriority": 5
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaStonesong",
+      "Slot": "dress",
+      "Rarity": "Common",
+      "ElementMood": "Stone",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 5, "swirl": 2 },
+      "ResonantFormId": null,
+      "MaterializePriority": 6
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaRadiant",
+      "Slot": "dress",
+      "Rarity": "Common",
+      "ElementMood": "Radiant",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 5, "swirl": 2 },
+      "ResonantFormId": null,
+      "MaterializePriority": 7
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaRadiance",
+      "Slot": "dress",
+      "Rarity": "Refined",
+      "ElementMood": "Radiant",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 5, "swirl": 2 },
+      "ResonantFormId": null,
+      "MaterializePriority": 8
+    },
+    {
+      "CosmeticId": "Cos_Dress_Melusina",
+      "Slot": "dress",
+      "Rarity": "Refined",
+      "ElementMood": "Tide",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 7, "swirl": 3 },
+      "ResonantFormId": null,
+      "MaterializePriority": 9
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaArcanerobe",
+      "Slot": "dress",
+      "Rarity": "Refined",
+      "ElementMood": "Arcane",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 7, "swirl": 3 },
+      "ResonantFormId": null,
+      "MaterializePriority": 10
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaUmbral",
+      "Slot": "dress",
+      "Rarity": "Refined",
+      "ElementMood": "Umbral",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 8, "swirl": 3 },
+      "ResonantFormId": null,
+      "MaterializePriority": 11
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaStone",
+      "Slot": "dress",
+      "Rarity": "Couture",
+      "ElementMood": "Stone",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 8, "swirl": 3 },
+      "ResonantFormId": null,
+      "MaterializePriority": 12
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaShadowWaltz",
+      "Slot": "dress",
+      "Rarity": "Couture",
+      "ElementMood": "Umbral",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 9, "swirl": 3 },
+      "ResonantFormId": null,
+      "MaterializePriority": 13
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaGuardian",
+      "Slot": "dress",
+      "Rarity": "Grandmaster",
+      "ElementMood": "Stone",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 9, "swirl": 3 },
+      "ResonantFormId": null,
+      "MaterializePriority": 14
+    },
+    {
+      "CosmeticId": "Cos_Dress_MelusinaShade",
+      "Slot": "dress",
+      "Rarity": "Grandmaster",
+      "ElementMood": "Umbral",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 9, "swirl": 3 },
+      "ResonantFormId": null,
+      "MaterializePriority": 15
+    }
+  ],
+  "resonant_bindings": [
+    {
+      "CosmeticId": "Cos_Dress_Melusina_ResonantWeave",
+      "FormId": "Form_ResonantWeave",
+      "Capability": "Glide",
+      "RequiredFlag": "flag.p0.playthrough.completed",
+      "RestrictedContexts": ["context.boss_arena"]
+    },
+    {
+      "CosmeticId": "Cos_Dress_Melusina_SwiftCurrent",
+      "FormId": "Form_SwiftCurrent",
+      "Capability": "Swim",
+      "RequiredFlag": "flag.sea_above.membrane_pulse_active",
+      "RestrictedContexts": []
+    },
+    {
+      "CosmeticId": "Cos_Dress_Melusina_TideWalker",
+      "FormId": "Form_TideWalker",
+      "Capability": "Dash",
+      "RequiredFlag": "flag.wardrobe.outfit_equipped",
+      "RestrictedContexts": ["context.boss_arena", "context.interior"]
+    }
+  ],
+  "p0_gate_impact": {
+    "wardrobe_gameplay_hook": "FORMS_BOUND_PIE_STILL_NEEDED",
+    "note": "3 Resonant Forms now bound to dress cosmetics. PIE test still required to verify equip->capability hook."
+  }
+}

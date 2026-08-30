@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "generated": "2026-08-30",
+    "mode": "disk_scan_only",
+    "dirs": [
+      "Content/Melodia/VFX",
+      "Content/EnvSandbox/VFX"
+    ]
+  },
+  "total_vfx_uassets": 168,
+  "by_dir": {
+    "Content/Melodia/VFX": 18,
+    "Content/EnvSandbox/VFX": 150
+  },
+  "stub_emitters_under_5kb": [
+    {
+      "path": "Content\\EnvSandbox\\VFX\\Curves\\C_Audio_bass_td_curve.uasset",
+      "size": 2279
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\EffectTypes\\ENV_SakuraVFX.uasset",
+      "size": 1069
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\Materials\\Functions\\MF_Niagara_SDF_Sample.uasset",
+      "size": 1987
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\MPC\\MPC_Magical.uasset",
+      "size": 1129
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\MPC\\MPC_SakuraDream.uasset",
+      "size": 1987
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\MPC\\NPC_SakuraDream.uasset",
+      "size": 3986
+    }
+  ],
+  "sample_paths": {
+    "Content/Melodia/VFX": [
+      "Content\\Melodia\\VFX\\BP_MelodiaNiagaraDriver.uasset",
+      "Content\\Melodia\\VFX\\Melusina_WaterFX.uasset",
+      "Content\\Melodia\\VFX\\NS_Melodia_ClickSparkle.uasset",
+      "Content\\Melodia\\VFX\\NS_Melodia_CursorTrail.uasset",
+      "Content\\Melodia\\VFX\\NS_Melusina_Arc.uasset",
+      "Content\\Melodia\\VFX\\NS_Melusina_ChaosDrift.uasset",
+      "Content\\Melodia\\VFX\\NS_Melusina_Dust.uasset",
+      "Content\\Melodia\\VFX\\NS_Melusina_EntropyDust.uasset",
+      "Content\\Melodia\\VFX\\NS_Melusina_EyeSparkle.uasset",
+      "Content\\Melodia\\VFX\\NS_Melusina_Glint.uasset"
+    ],
+    "Content/EnvSandbox/VFX": [
+      "Content\\EnvSandbox\\VFX\\BP_SakuraDreamDriver.uasset",
+      "Content\\EnvSandbox\\VFX\\NS_EscherTorusKnot.uasset",
+      "Content\\EnvSandbox\\VFX\\Candidates\\AdvancedReplacements\\NS_ConstellationDraw_AdvancedCandidate.uasset",
+      "Content\\EnvSandbox\\VFX\\Candidates\\AdvancedReplacements\\NS_ConstellationTwinkle_AdvancedCandidate.uasset",
+      "Content\\EnvSandbox\\VFX\\Candidates\\AdvancedReplacements\\NS_SakuraDreamSparkle_AdvancedCandidate.uasset",
+      "Content\\EnvSandbox\\VFX\\Candidates\\AdvancedReplacements\\NS_SakuraLanternMotes_AdvancedCandidate.uasset",
+      "Content\\EnvSandbox\\VFX\\Candidates\\AdvancedReplacements\\NS_SakuraPondShimmer_AdvancedCandidate.uasset",
+      "Content\\EnvSandbox\\VFX\\Candidates\\Materials\\M_NiagaraPetal_Loop_Candidate.uasset",
+      "Content\\EnvSandbox\\VFX\\Candidates\\Materials\\M_NiagaraPetal_Loop_v2_Candidate.uasset",
+      "Content\\EnvSandbox\\VFX\\Candidates\\Materials\\M_Niagara_MelodiaOrnamentCard_Candidate.uasset"
+    ]
+  }
+}
