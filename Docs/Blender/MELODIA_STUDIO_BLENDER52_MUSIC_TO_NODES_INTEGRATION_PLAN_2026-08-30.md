@@ -1,720 +1,1069 @@
-# Melodia Studio — Blender 5.2 Music to Nodes Integration Plan
+# Melodia Studio — Blender 5.2 Music to Nodes Convergence Plan
 
 **Date:** 2026-08-30  
 **Project:** Melodia Melusina  
-**Target:** `Tools/BlenderAddons/melodia_studio`  
 **Blender target:** 5.2 LTS  
-**Branch:** `rnd/2026-08-30-blender52-music-gn-studio`
+**Status:** **REVISED AFTER RECENT-GIT REVIEW**  
+**Planning branch:** `rnd/2026-08-30-blender52-music-gn-studio`  
+**Reviewed main:** `54c94e0a5abe741316e41d80ca61e38d079fe3af`
+
+This file supersedes the original greenfield version of the Blender 5.2 Music-to-Nodes plan.
 
 ---
 
 # Executive decision
 
-Integrate Blender 5.2's native **Sound socket + Sample Sound Frequencies** Geometry Nodes workflow directly into **Melodia Studio** as a new offline-authoring lane.
+The original plan assumed that Melodia still needed to prove Blender 5.2 Sound sockets / `Sample Sound Frequencies`, build first-generation audio Geometry Nodes, and then wrap them in Melodia Studio.
 
-Do **not** replace the existing MIDI pipeline.
+That assumption is now stale.
 
-Melodia Studio should expose two complementary musical representations:
+Recent commits on `main` have already landed a first production-shaped audio-GN authoring stack:
+
+- `Tools/audio_terrain_pipeline.py`
+  - Blender 5.2 headless batch authoring;
+  - existing `MEL_audio_spectrum_terrain`;
+  - existing `MEL_audio_spectrum_towers`;
+  - existing `MEL_audio_radial_field`;
+  - Sound datablock input;
+  - Low/High Hz inputs;
+  - time sampling;
+  - named `audio_amplitude` / `frequency_hz` data;
+  - `.blend`, FBX and JSON handoff output.
+- `Tools/stage_melodia_aaa_presets.py`
+  - builds a 1920x1080 visual review stage;
+  - already binds real audio to those GN groups;
+  - contains Sea Above-oriented presets such as `SEA_ABOVE_FALSE_HORIZON`, `SEA_ABOVE_BELL_RIBS`, and `SEA_ABOVE_MEMBRANE`.
+- `Tools/BlenderAddons/melodia_studio` is now **v1.5.0**, not the v1.3 shape this plan originally reviewed.
+- `midi_bridge.py` now has AddonPreferences / `$MELODIA_PROJECT_ROOT` path authority, corrected generator wiring, D7 divisor support and expanded musical presets.
+- `studio_panel.py` now has AddonPreferences, extra MIDI dirs, Tandem controls, dressing instancing, seed/budget controls and additional production modules.
+
+Therefore:
+
+> **Do not rebuild Blender audio analysis. Converge, productize and hybridize what already landed.**
+
+The new target is:
 
 ```text
-MIDI
-  = discrete musical intent
-  = pitch / velocity / duration / channel / beat position
-
-AUDIO SPECTRUM
-  = performed sonic energy
-  = bass / mids / highs / timbre / transients / crescendos
+EXISTING MIDI SEMANTICS        EXISTING BLENDER 5.2 AUDIO GN
+pitch / velocity / duration    Sound + Sample Sound Frequencies
+beat / track / phrase          amplitude / frequency fields
+             \                   /
+              \                 /
+               HYBRID ADAPTER
+                     |
+             Melodia-shaped GN
+                     |
+        ordinary authored outputs
+                     |
+          Houdini when beneficial
+                     |
+                  Unreal
+             runtime authority
 ```
 
-The target architecture is therefore:
+And the live-reference lane remains:
 
 ```text
-                    MELODIA STUDIO
-                           │
-          ┌────────────────┴────────────────┐
-          │                                 │
-     MIDI SEMANTICS                    AUDIO ENERGY
-          │                                 │
- existing midi_bridge.py          Blender 5.2 Sound socket
-          │                        Sample Sound Frequencies
-          │                                 │
- note / chord / beat                 spectral bands
- structure attributes              continuous amplitude
-          │                                 │
-          └──────────────┬──────────────────┘
-                         ▼
-                MUSIC REACTIVE GN
-                         │
-              geometry / curves /
-             instances / simulations
-                         │
-                         ▼
-                authored Melodia asset
-                         │
-             ┌───────────┴───────────┐
-             ▼                       ▼
-          Houdini                  Unreal
-      optional refinement       runtime integration
-
-UNREAL RHYTHM SYSTEM = runtime authority
+TouchDesigner -> OSC -> Unreal
+       |
+       +---- semantic calibration / lookdev reference ----> Blender
 ```
 
-> **MIDI tells the world what the composition is. Audio tells the world how the performance feels.**
+TouchDesigner and Blender share **meaning**, not runtime authority.
 
 ---
 
-# Why this should live inside Melodia Studio
+# Recent Git review
 
-The repository already has the correct foundation:
+## `297717cf2b56b215a10e2af5aada967646cc616e`
 
-- `Tools/BlenderAddons/melodia_studio/midi_bridge.py`
-  - discovers project MIDI;
-  - loads the existing `Tools/midi_to_voxel/midi_voxel_v3.py` parser/generator;
-  - already owns musical-to-spatial presets;
-  - already provides a stable place for musical source discovery and path handling.
-- `Tools/BlenderAddons/melodia_studio/studio_panel.py`
-  - already exposes MIDI selection;
-  - presets;
-  - generation;
-  - reports / QOL;
-  - Blender-side asset generation.
-- existing musical Geometry Nodes work already exists around instruments, terrain and procedural worlds.
+`feat(tools): model router, T3D injectors, materialize scripts, surreal GN, melodia studio`
 
-Therefore do **not** create a separate `music_to_nodes` addon.
+### Impact on this plan
 
-Extend Melodia Studio.
+Melodia Studio itself advanced significantly.
 
----
+Current main now has:
 
-# Product goal
+- addon version `1.5.0`;
+- `gaea_panel`;
+- `tandem_bridge`;
+- `melodia_chrome`;
+- AddonPreferences project-root behavior;
+- extra MIDI search directories;
+- broader musical/world-generation presets.
 
-A Melodia artist should be able to open the existing **Melodia** N-panel, select a musical source, and generate a procedural structure that can react to:
-
-- exact notes;
-- chords;
-- velocity;
-- duration;
-- beat / bar position;
-- low-frequency energy;
-- mid-frequency energy;
-- high-frequency energy;
-- overall spectral energy;
-- optional custom bands.
-
-The first version is an **authoring system**, not gameplay middleware.
+**Plan change:** do not fork a second Studio UI architecture or duplicate root/source discovery.
 
 ---
 
-# Phase 0 — safety and compatibility audit
+## `cfb446acc560265998701d23b9006db6ed5ecb63`
 
-Before touching production Studio code:
+`feat(copernicus): AAA dress/terrain/fabric COP scaffold ...`
 
-1. Confirm installed Blender build is 5.2.x.
-2. Confirm the exact Python API identifiers for:
-   - Sound sockets;
-   - Sample Sound Frequencies node;
-   - Sound datablock assignment;
-   - FFT size / frequency-range inputs;
-   - stereo/channel selection.
-3. Run the current Melodia Studio offline/unit tests before modification.
-4. Record baseline pass count.
-5. Verify addon source-of-truth path versus `%APPDATA%` installed copy.
-6. Confirm any older manually mirrored addon files are not silently shadowing repo files.
+### Impact on this plan
 
-**Gate:** no implementation until baseline tests are green.
+This commit explicitly tracks:
+
+- `Tools/audio_terrain_pipeline.py`;
+- `Tools/stage_melodia_aaa_presets.py`;
+- the new Copernicus/Houdini lookdev scaffold.
+
+It confirms that Blender audio terrain is already considered a real authoring lane, while Houdini/Copernicus remain the stronger refinement/material-generation lane.
+
+**Plan change:** Blender music-GN is a musical-form accelerator, not a Houdini replacement.
 
 ---
 
-# Phase 1 — new module: `music_reactivity.py`
+## `b7455431edb7de9ae66e02f8947be434200e4db8`
 
-Create:
+`feat(integration): Melodia core subsystems, Blueprints, narrative, and config`
 
-`Tools/BlenderAddons/melodia_studio/music_reactivity.py`
+### Impact on this plan
 
-This module owns only **audio/spectrum authoring** and the unified music-reactive GN contract.
+Runtime integration continues to move rapidly.
 
-It must remain import-safe where practical and should avoid making existing MIDI tools depend on Blender-only APIs unnecessarily.
+**Plan change:** keep Blender outputs intentionally boring at the UE boundary — meshes, curves, attributes, caches and metadata. Do not hard-bind authoring tooling to transient gameplay implementation details.
 
-## Responsibilities
+---
 
-### Source discovery
+## `f729f3df97432cf39064cc1686cf37cfae12d369`
 
-Discover common project audio assets from known project roots, initially:
+`feat(content): Sea Above reef meshes, QuillScript interpreter, P0 content tests`
+
+### Impact on this plan
+
+Sea Above is becoming a stronger real benchmark rather than a hypothetical demo scene.
+
+**Plan change:** first hybrid test should use an existing Sea Above audio builder rather than inventing a generic music visualizer.
+
+---
+
+## Current authority documents / repo policy
+
+`AGENTS.md` now makes the project rule explicit:
+
+> **The current job is convergence, not construction.**
+
+That rule applies directly here.
+
+Do not create:
+
+- a second MIDI parser;
+- a second audio-spectrum implementation;
+- a second runtime beat clock;
+- a second Unreal material/rhythm bus;
+- a separate `music_to_nodes` Blender addon;
+- a parallel Studio panel.
+
+---
+
+# Branch safety
+
+At review time:
 
 ```text
-Imports/Audio/
-Content/MelodiaIntegration/Audio/
-Content/MelodiaIntegration/Music/
+main: 54c94e0a5abe741316e41d80ca61e38d079fe3af
+PR35 branch merge-base: 4dd5edb9d46c587571743be816303f0c2adb5ed9
+PR35 branch: ahead 4 / behind 7 / diverged
 ```
 
-Do not crawl the entire repository every panel draw.
+This documentation branch is safe to keep for planning, but **implementation code must not begin from the old merge base**.
 
-Use a short-lived cache similar to the current MIDI discovery pattern.
+Before code changes:
 
-### Audio source setup
+1. update local `main`;
+2. start the implementation commit train from current `main` or cleanly sync/rebase the R&D branch;
+3. rerun baseline Melodia Studio tests/tools;
+4. do not overwrite newer v1.5 Studio behavior with v1.3 assumptions.
 
-Provide an operator/helper to:
-
-1. select an audio source;
-2. create/reuse the Blender Sound datablock;
-3. optionally add it to the Video Sequence Editor for audible preview;
-4. set playback sync appropriately when requested;
-5. expose the sound to the generated Geometry Nodes group.
-
-### Band presets
-
-Start with a small, explicit Melodia preset library:
-
-```text
-MELODIA_BALANCED
-  low:      40–120 Hz
-  low_mid:  120–500 Hz
-  mid:      500–2500 Hz
-  high:     2500–10000 Hz
-
-MONOLITH_BREATH
-  body:     25–90 Hz
-  pressure: 90–300 Hz
-  tissue:   300–1800 Hz
-  shimmer:  1800–9000 Hz
-
-WARDROBE
-  body:     60–180 Hz
-  cloth:    180–1200 Hz
-  trim:     1200–4500 Hz
-  sparkle:  4500–12000 Hz
-```
-
-These ranges are artistic defaults, not immutable acoustic truths.
-
-### Custom bands
-
-After the first working version, allow 4 user-editable band ranges.
-
-Do not begin with an arbitrary unlimited band editor.
+No implementation should blindly cherry-pick an old `studio_panel.py` or `__init__.py` from this branch.
 
 ---
 
-# Phase 2 — Geometry Nodes contract
+# Current authoritative Blender-side stack
 
-Create or generate one canonical group:
+## MIDI authority
 
-`MEL_MusicReactiveField_v1`
+`Tools/BlenderAddons/melodia_studio/midi_bridge.py`
 
-The group should **not** be a finished artwork. It is a reusable signal-preparation layer.
+Owns:
 
-## Outputs / named values
+- project-root resolution;
+- MIDI discovery;
+- proven `midi_voxel_v3` bridge;
+- musical-to-spatial presets;
+- beatgrid/generator integration.
 
-Conceptual outputs:
+**Do not create a second MIDI parser.**
+
+---
+
+## Audio-GN authority
+
+Existing audio builders referenced by `Tools/audio_terrain_pipeline.py`:
 
 ```text
-LowEnergy
-LowMidEnergy
-MidEnergy
-HighEnergy
-OverallEnergy
-TransientLikeEnergy
-TimeSeconds
-NormalizedPulse
+MEL_audio_spectrum_terrain
+MEL_audio_spectrum_towers
+MEL_audio_radial_field
 ```
 
-Where Blender's node system does not permit literal named field outputs in the desired way, expose these through a nested node group contract or Store Named Attribute path.
+They come through:
 
-## Processing chain
+```python
+from surreal_arch.melodia_gn.core import GROUP_BUILDERS
+from surreal_arch.melodia_gn.presets import preset_param_sets
+```
 
-Each band follows approximately:
+The batch pipeline already injects:
 
 ```text
 Sound
-  -> Sample Sound Frequencies
-  -> Map Range / Normalize
-  -> optional Power / Contrast
-  -> optional smoothing
-  -> clamp 0..1
-  -> named output
+Time
+Low Hz
+High Hz
+Size X M
+Size Y M
+Radius M
 ```
 
-Avoid embedding artistic geometry directly in this signal group.
+and records useful provenance/attributes.
+
+**Do not reproduce these builders in `music_reactivity.py`.**
 
 ---
 
-# Phase 3 — MIDI + audio hybrid contract
+## Audio batch/export authority
 
-Do **not** re-parse MIDI inside the new audio module.
+`Tools/audio_terrain_pipeline.py`
 
-Use the existing `midi_bridge.py` as the MIDI authority.
+Owns:
 
-Build a thin hybrid adapter layer that can expose:
+- headless Blender launch;
+- preview/region/continent profiles;
+- audio source loading;
+- time samples;
+- builder/preset selection;
+- tile layout;
+- optional FBX;
+- batch and UE-handoff manifests.
+
+Treat this as the first CLI/backend for audio-driven authoring.
+
+---
+
+## Review-stage authority
+
+`Tools/stage_melodia_aaa_presets.py`
+
+Already creates a production-shaped visual review scene and uses real audio-GN groups.
+
+Treat this as **review/evaluation infrastructure**, not duplicate it inside Studio.
+
+---
+
+## Studio UI authority
+
+`Tools/BlenderAddons/melodia_studio/studio_panel.py`
+
+Current v1.5 panel already owns:
+
+- MIDI selection/filtering;
+- preset selection;
+- generation/reporting;
+- project preferences;
+- Tandem controls;
+- dressing controls.
+
+Music-to-Nodes UI must be a small extension of this surface.
+
+---
+
+# Immediate defect found during review
+
+`Tools/audio_terrain_pipeline.py` currently writes this UE handoff metadata:
 
 ```text
-MIDI
-pitch
-velocity
-duration
-channel/track
-beat position
-phrase/chunk position
-
-AUDIO
-low energy
-mid energy
-high energy
-overall energy
+runtime_audio_authority = "MPC_Portfolio_Audio / Melodia presentation subsystem"
 ```
 
-The important architectural rule:
-
-> MIDI semantics and audio spectrum may influence the same geometry, but they remain independently inspectable.
-
-Do not bake them into one opaque `MusicValue` float.
-
----
-
-# Phase 4 — Melodia Studio UI
-
-Extend `studio_panel.py` with a compact **Music Reactive Geometry** section.
-
-Do not redesign the entire Studio UI.
-
-## Proposed controls
+That is stale relative to the current documented UE authority:
 
 ```text
-MUSIC REACTIVE GEOMETRY
-
-Mode:
-  [ MIDI ] [ AUDIO ] [ HYBRID ]
-
-MIDI:
-  existing Studio MIDI source
-
-Audio:
-  [ audio source dropdown ]
-  [ custom file ]
-
-Band Preset:
-  Melodia Balanced
-  Monolith Breath
-  Wardrobe
-
-[ Sync Audio Preview ]
-[ Build Music Signal Rig ]
-
-Template:
-  Rhythm Garden
-  Tide Seam
-  Filter Filaments
-  Cloth Tension
-
-[ Generate Study ]
+UMelodiaRhythmReactivitySubsystem
+        -> MPC_Melodia_Palette
 ```
 
-Advanced foldout:
+The Sea Above integration docs explicitly warn not to use the older `MPC_Portfolio_Audio` assumption.
+
+## Required correction
+
+Before promoting audio-terrain handoff as canonical:
+
+1. search for consumers of `melodia.audio_terrain_ue_handoff.v1`;
+2. if no consumer relies on the old string, correct the field;
+3. if the handoff is already consumed as a contract, bump to `melodia.audio_terrain_ue_handoff.v2`;
+4. add a regression assertion that generated handoffs never name `MPC_Portfolio_Audio` as current authority.
+
+Recommended value:
 
 ```text
-FFT size
-window function
-band ranges
-normalization gain
-smoothing
-seed
+UMelodiaRhythmReactivitySubsystem -> MPC_Melodia_Palette
 ```
 
-Keep advanced DSP-looking controls hidden by default.
+This metadata is descriptive only. Blender still does not control runtime rhythm.
 
 ---
 
-# Phase 5 — first four Melodia templates
-
-The new workflow becomes valuable only when it generates Melodia-shaped results.
-
-## Template A — `MEL_GN_RhythmGarden_v1`
-
-Purpose: first proof.
-
-MIDI mapping:
+# Revised architecture
 
 ```text
-pitch       -> vertical / radial placement
-velocity    -> stem radius
-note length -> filament length
-chord       -> cluster
-channel     -> species / material family
+                              MELODIA MUSIC AUTHORING
+                                       |
+                 +---------------------+---------------------+
+                 |                                           |
+                 v                                           v
+        MIDI / composition                           rendered audio/stems
+                 |                                           |
+          midi_bridge.py                           existing MEL_audio_* GN
+                 |                                  Sample Sound Frequencies
+                 |                                           |
+                 +-------------------+-----------------------+
+                                     |
+                                     v
+                         MUSIC SEMANTIC ADAPTER
+                       melodia_music_signal_v1
+                                     |
+                  +------------------+------------------+
+                  |                  |                  |
+                  v                  v                  v
+             Sea Above          Faraway Mother    Horizon Eater
+              hybrid              hybrid             hybrid
+                  |                  |                  |
+                  +------------------+------------------+
+                                     |
+                             bake / export / cache
+                                     |
+                       +-------------+-------------+
+                       |                           |
+                       v                           v
+                    Houdini                      Unreal
+             refinement / simulation       runtime presentation
+
+LIVE PARALLEL REFERENCE
+TouchDesigner -> OSC -> UMelodiaRhythmReactivitySubsystem -> MPC_Melodia_Palette
+        |
+        +------ use as envelope/response calibration, not Blender authority
 ```
 
-Audio mapping:
+---
+
+# Semantic contract
+
+Keep the concept from the original plan, but make it an **adapter contract**, not a new FFT engine.
+
+Canonical conceptual schema:
+
+`melodia_music_signal_v1`
+
+## Timing
 
 ```text
-low         -> macro breathing
-low-mid     -> stem width modulation
-mid         -> branching density
-high        -> bloom / micro-instance density
+tempo_bpm
+beat_phase
+beat_pulse
+phrase_progress
 ```
 
-Target read:
-
-**music-grown ecology**, not spectrum visualizer.
-
----
-
-## Template B — `MEL_GN_TideSeam_v1`
-
-Use for Sea Above / Shorelistener studies.
-
-MIDI:
-- melody defines seam path / punctuation;
-- sustained notes extend seam segments;
-- chord changes create branching junctions.
-
-Audio:
-- low energy drives broad displacement;
-- mids drive wave/tension variation;
-- highs drive pearl/shimmer detail.
-
-Export target:
-- curve;
-- mesh ribbon;
-- optional masks/attributes for Houdini or UE.
-
----
-
-## Template C — `MEL_GN_FilterFilaments_v1`
-
-Use for Horizon Eater.
-
-MIDI:
-- phrase/chord structure defines large filter plate/filament organization.
-
-Audio:
-- low = inhale / macro flex;
-- mids = filament compression;
-- highs = micro-vibration / particulate attachment density.
-
-This is an **offline authored reference / bake candidate**, not the runtime Horizon Eater controller.
-
----
-
-## Template D — `MEL_GN_ClothTensionStudy_v1`
-
-Use for Faraway Mother.
-
-MIDI:
-- notes create anchors / seam events;
-- duration creates tension-line reach;
-- velocity controls local pull strength.
-
-Audio:
-- low frequencies drive broad fold contraction;
-- mids drive tension migration;
-- highs drive fibers/prayer-strip response.
-
-This can feed Blender 5.2 node-based physics experiments later, but initial v1 should work without depending on experimental simulation nodes.
-
----
-
-# Phase 6 — export / handoff contract
-
-Every generated study must be able to leave Blender as normal authored data.
-
-Priority outputs:
-
-1. mesh;
-2. curves;
-3. point/instance realization where needed;
-4. vertex attributes;
-5. shape keys / animation where appropriate;
-6. Alembic or VAT source only when motion justifies it;
-7. JSON sidecar for source/music metadata.
-
-## Proposed sidecar
-
-`melodia_music_geo_v1`
-
-Example conceptual schema:
-
-```json
-{
-  "schema": "melodia_music_geo_v1",
-  "source_midi": "...",
-  "source_audio": "...",
-  "mode": "hybrid",
-  "tempo_bpm": 128.0,
-  "band_preset": "MONOLITH_BREATH",
-  "bands_hz": {
-    "low": [25, 90],
-    "low_mid": [90, 300],
-    "mid": [300, 1800],
-    "high": [1800, 9000]
-  },
-  "template": "MEL_GN_FilterFilaments_v1",
-  "seed": 17
-}
-```
-
-Do not serialize expensive per-frame FFT arrays unless a later use case proves they are needed.
-
----
-
-# Phase 7 — Unreal integration boundary
-
-Critical rule:
+## MIDI semantics
 
 ```text
-Blender audio analysis = AUTHORING
-Unreal rhythm subsystem = RUNTIME TRUTH
+note_pitch
+note_velocity
+note_duration
+track_id
+normalized_beat
+chord_density
 ```
 
-Blender-generated musical forms may enter UE as:
+## Audio semantics
 
-- Static Meshes;
-- splines/curves converted to UE-friendly data;
-- textures/masks;
-- VAT;
-- Alembic/Geometry Cache for authored cinematic use;
-- JSON metadata for provenance.
+```text
+spectral_low
+spectral_lowmid
+spectral_mid
+spectral_high
+overall_energy
+```
 
-They must **not** create:
-- a second gameplay beat clock;
-- a second BPM authority;
-- runtime audio FFT dependency for core rhythm gameplay;
-- duplicated Combo/Crescendo logic.
+## Preview/world semantics
 
-The existing Unreal rhythm subsystem remains authoritative.
+These are mappings, not new runtime signals:
+
+```text
+world_breath
+structural_pressure
+branch_energy
+shimmer
+```
+
+Example:
+
+```text
+MONOLITH_BREATH
+spectral_low      -> world_breath
+spectral_lowmid   -> structural_pressure
+spectral_mid      -> branch_energy
+spectral_high     -> shimmer
+```
+
+Then an artist/preset may compare those concepts with existing UE signals such as:
+
+```text
+BeatPulse
+CrescendoNormalized
+TensionSustain
+CommandEnergy
+DreamRipple
+```
+
+Do not assume a permanent 1:1 global mapping.
 
 ---
 
-# Phase 8 — Houdini relationship
+# Revised module plan
 
-Do not frame Blender Music to Nodes as competition with Houdini.
+The original plan proposed `music_reactivity.py` as the place to build audio sampling from scratch.
 
-Use this ownership split:
+**Retire that responsibility.**
 
-```text
-Blender 5.2 Music GN
-  -> fast musical sketching
-  -> direct artist experimentation
-  -> spectrum-reactive procedural motion/forms
-
-Houdini
-  -> heavy procedural refinement
-  -> robust geometry processing
-  -> anatomy/ecology consistency
-  -> large variant families
-  -> offline simulation/baking
-
-Unreal
-  -> runtime state
-  -> rhythm authority
-  -> interaction
-  -> streaming
-  -> presentation
-```
-
-A good path is:
+Preferred thin modules are now:
 
 ```text
-music -> Melodia Studio prototype -> approved form
-      -> Houdini refine if necessary
-      -> UE asset/runtime presentation
+Tools/BlenderAddons/melodia_studio/music_signal_contract.py
+Tools/BlenderAddons/melodia_studio/music_hybrid.py
 ```
 
-Do not force every Music GN output through Houdini.
-
----
-
-# Phase 9 — implementation file plan
-
-## New
-
-```text
-Tools/BlenderAddons/melodia_studio/music_reactivity.py
-Tools/BlenderAddons/melodia_studio/music_templates.py
-Tools/BlenderAddons/melodia_studio/tests/test_music_reactivity.py
-Tools/BlenderAddons/melodia_studio/tests/test_music_template_contracts.py
-```
-
-Potentially later:
+Potential later module:
 
 ```text
 Tools/BlenderAddons/melodia_studio/music_export.py
 ```
 
-## Modify
+## `music_signal_contract.py`
+
+Owns only:
+
+- semantic names;
+- band preset definitions;
+- validation;
+- mapping presets;
+- provenance schema helpers;
+- TD/UE alias table;
+- no heavy geometry creation.
+
+It should remain mostly `bpy`-independent.
+
+## `music_hybrid.py`
+
+Owns:
+
+- retrieval of existing MIDI semantic data;
+- binding MIDI semantics onto or beside existing audio-GN builder outputs;
+- creation of hybrid study groups;
+- preserving MIDI and audio values as separately inspectable inputs/attributes;
+- no second audio analyzer.
+
+---
+
+# Source discovery / preferences
+
+Do not create another project-root system.
+
+Reuse current v1.5 precedence:
 
 ```text
-Tools/BlenderAddons/melodia_studio/__init__.py
-Tools/BlenderAddons/melodia_studio/studio_panel.py
+Melodia Studio AddonPreferences project_root
+    -> $MELODIA_PROJECT_ROOT
+    -> repository-relative fallback
 ```
 
-Only modify `midi_bridge.py` if a tiny reusable semantic-event API is genuinely missing.
+Current Studio already has `midi_extra_dirs`.
 
-Do not rewrite it.
+Add, only if useful after testing:
 
----
+```text
+audio_extra_dirs
+```
 
-# Phase 10 — test plan
+Use the same preferences surface and cache discipline.
 
-## Offline / Python tests
-
-Must test:
-
-- audio discovery paths;
-- band preset validation;
-- frequency ranges are ordered and non-negative;
-- sidecar serialization;
-- hybrid source metadata;
-- no-bpy import safety for pure helper sections where practical.
-
-## Blender headless tests
-
-On Blender 5.2:
-
-1. create a GN tree containing Sound input path;
-2. create four Sample Sound Frequencies nodes;
-3. assign a known WAV/FLAC source;
-4. evaluate at multiple frames;
-5. confirm energy changes over time;
-6. build `MEL_MusicReactiveField_v1`;
-7. build Rhythm Garden template;
-8. verify generated geometry has non-zero verts/curves;
-9. save/reload blend and confirm sound link persists;
-10. verify current existing Studio tests still pass.
-
-## Interactive test
-
-Use one real Melodia phrase.
-
-Success means:
-
-- audible playback can be synced;
-- geometry visibly distinguishes low vs high-frequency events;
-- MIDI and audio lanes can be toggled independently;
-- hybrid result is more expressive than either source alone;
-- no manual node surgery is required after using the Studio operator.
+Do not recursively scan the entire repository every panel redraw.
 
 ---
 
-# Day-0 implementation order
+# Revised Studio UI
 
-## 0. Baseline — 15 min
+Do not add a second giant music panel.
 
-- update local branch;
-- run existing Studio tests;
-- record Blender version;
-- identify a short MIDI + rendered audio pair from the same phrase.
+Extend the existing Melodia Studio UI with one compact section:
 
-## 1. API proof — 30–45 min
+```text
+MUSIC HYBRID AUTHORING
 
-Create the smallest possible throwaway script that:
+Mode
+  AUDIO
+  MIDI
+  HYBRID
 
-- loads sound;
-- creates a Geometry Nodes group;
-- adds Sample Sound Frequencies;
-- samples one band;
-- drives one cube/curve parameter.
+MIDI
+  [ reuse existing selector ]
 
-**Do not touch the Studio UI until this works.**
+Audio
+  [ source ]
 
-## 2. Signal group — 30–45 min
+Audio Builder
+  Spectrum Terrain
+  Spectrum Towers
+  Radial Field
 
-Build `MEL_MusicReactiveField_v1` with 4 bands.
+Music Mapping
+  Melodia Balanced
+  Monolith Breath
+  Wardrobe
 
-## 3. Rhythm Garden — 45–60 min
+Hybrid Study
+  Sea Above Membrane
+  Filter Filaments
+  Rhythm Garden
 
-Reuse existing MIDI source + new audio field.
+[ Generate Study ]
+[ Build Review Stage ]
+[ Export / Handoff ]
+```
 
-Produce one compelling geometry proof.
+Advanced controls should expose existing builder/preset parameters rather than creating new hidden duplicates.
 
-## 4. Studio UI — 30–45 min
+---
 
-Add only:
+# Revised implementation phases
 
-- Audio source;
-- Mode;
-- Band preset;
-- Build Music Signal Rig;
-- Generate Rhythm Garden.
+## Phase 0 — sync + baseline
 
-## 5. Tests + decision — 30 min
+**Goal:** prevent v1.3-era planning from overwriting v1.5 work.
 
-Run existing tests plus new music tests.
+- [ ] work from current `main` or cleanly synced implementation branch;
+- [ ] record exact Blender 5.2 build;
+- [ ] record current Melodia Studio version (`1.5.0` at this review);
+- [ ] run available Studio/Blender checks;
+- [ ] dry-run existing audio pipeline;
+- [ ] pick one real Melodia MIDI + rendered-audio pair;
+- [ ] capture the exact TD OSC channels/ranges using `MELODIA_TD_OSC_SIGNAL_MAP_CAPTURE_2026-08-30.md`.
+
+**Gate:** no new audio implementation until existing pipeline baseline is understood.
+
+---
+
+## Phase 1 — validate what already exists
+
+Run the smallest existing path first:
+
+```text
+Tools/audio_terrain_pipeline.py
+    --profile preview
+```
+
+Validate:
+
+- [ ] Blender launches cleanly;
+- [ ] all three `MEL_audio_*` builders resolve;
+- [ ] Sound source persists in `.blend`;
+- [ ] time values produce differing results where expected;
+- [ ] frequency range changes alter output;
+- [ ] `audio_amplitude` is present where promised;
+- [ ] FBX path works when requested;
+- [ ] JSON handoff is valid;
+- [ ] generated output can be reopened.
+
+Then run/stage the existing Sea Above review path.
+
+**Gate:** if existing audio builders are broken, repair them before adding hybrid logic.
+
+---
+
+## Phase 2 — fix handoff authority metadata
+
+Search current repo for consumers of:
+
+```text
+melodia.audio_terrain_ue_handoff.v1
+runtime_audio_authority
+```
+
+Then:
+
+- [ ] correct old `MPC_Portfolio_Audio` metadata;
+- [ ] use current rhythm authority wording;
+- [ ] bump schema if compatibility requires it;
+- [ ] add regression test.
+
+This is a small but important convergence fix.
+
+---
+
+## Phase 3 — create semantic contract, not another analyzer
+
+Create:
+
+`music_signal_contract.py`
+
+V1 includes:
+
+- [ ] canonical names;
+- [ ] frequency mapping presets;
+- [ ] normalization expectations;
+- [ ] MIDI semantic names;
+- [ ] TD aliases;
+- [ ] UE preview aliases;
+- [ ] validation helpers;
+- [ ] provenance serialization.
+
+Do **not** create new `Sample Sound Frequencies` nodes here unless the existing audio builders cannot expose the needed data.
+
+---
+
+## Phase 4 — hybrid adapter
+
+Create:
+
+`music_hybrid.py`
+
+The first adapter should combine:
+
+```text
+MIDI STRUCTURE
++ existing audio amplitude/spectral behavior
+```
+
+without flattening them to a single number.
+
+Desired inspectable data:
+
+```text
+Music.MIDI.Pitch
+Music.MIDI.Velocity
+Music.MIDI.Duration
+Music.MIDI.Beat
+Music.Audio.Low
+Music.Audio.LowMid
+Music.Audio.Mid
+Music.Audio.High
+```
+
+Names may be implemented as sockets, attributes or nested-group outputs depending on the current builder architecture.
+
+---
+
+# First benchmark — Sea Above Membrane Hybrid
+
+This replaces the original generic Rhythm Garden as the first infrastructure test.
+
+Use the already-existing:
+
+```text
+MEL_audio_radial_field
+SEA_ABOVE_MEMBRANE
+```
+
+as the audio half.
+
+## MIDI contribution
+
+Use one actual Sea Above / Melodia phrase.
+
+Map:
+
+```text
+note / chord onset  -> radial seam or ring anchors
+pitch class         -> ring family / angular offset
+velocity            -> seam importance / width
+note duration       -> radial persistence / segment length
+phrase structure    -> macro membrane organization
+```
+
+## Audio contribution
+
+Reuse existing spectrum behavior for:
+
+```text
+low energy      -> membrane inhale / macro swell
+low-mid         -> pressure / ring thickness
+mid             -> tissue rippling
+high            -> pearl shimmer / micro-ridges
+```
+
+## Compare three outputs
+
+```text
+AUDIO ONLY
+MIDI ONLY
+HYBRID
+```
+
+The hybrid passes only if it reads as **composed biological motion**, not merely a better equalizer.
+
+### Success question
+
+> Does the performance animate a structure whose anatomy was authored by the composition?
+
+If yes, the system is doing something distinctive.
+
+---
+
+# Second benchmark — P3 Filter Filaments Hybrid
+
+After Sea Above passes:
+
+```text
+MIDI
+  -> large filter hierarchy / plate spacing / recurring anatomy
+
+AUDIO
+  -> inhale, flex, compression, flutter, particulate micro-response
+```
+
+Output can then feed:
+
+- Houdini curve/anatomy refinement;
+- IlluGen/Niagara flow texture work;
+- UE static/VAT/cache presentation.
+
+No runtime non-Euclidean or monster simulation dependency is created.
+
+---
+
+# Third benchmark — Rhythm Garden
+
+Keep `Rhythm Garden`, but demote it from infrastructure proof to **artist-facing generative template**.
+
+It remains useful for:
+
+- flora;
+- coral;
+- shell growth;
+- musical shrines;
+- decorative ecology;
+- runtime-geometry reference.
+
+The first version should reuse the hybrid contract proven on Sea Above rather than inventing another mapping stack.
+
+---
+
+# TouchDesigner / OSC integration
+
+The existing live TD workflow is an advantage, not a fourth authority.
+
+Use the existing capture worksheet to record:
+
+```text
+TD channel
+OSC address
+raw range
+normalized range
+attack
+release / lag
+Unreal target
+artistic meaning
+```
+
+Then run the same short phrase in:
+
+```text
+TouchDesigner
+Blender
+Unreal
+```
+
+Compare semantic envelopes rather than exact sample values.
+
+Useful parity questions:
+
+- Does “beat pulse” feel equally sharp?
+- Does “crescendo” build on a comparable time scale?
+- Does low-frequency world breathing feel similarly weighted?
+- Does sustained tension decay similarly?
+- Does the Blender authoring preview exaggerate anything that UE later cannot reproduce cheaply?
+
+Do not attempt sample-perfect DSP parity unless a real production need appears.
+
+---
+
+# Optional future live Blender lane
+
+Only after offline hybrid authoring is stable:
+
+```text
+TouchDesigner
+     |
+     +--> OSC --> Unreal
+     |
+     +--> OSC --> Blender preview
+```
+
+This could allow live procedural Monolith lookdev.
+
+It is **not V1** and must not become required for asset generation.
+
+---
+
+# Houdini / Copernicus relationship after recent commits
+
+Recent Copernicus work makes the division clearer:
+
+```text
+Blender Music GN
+    -> fast musical form / response ideation
+
+Houdini SOPs
+    -> anatomy, topology, fields, robust procedural refinement
+
+Copernicus
+    -> matched masks, material evidence, texture families
+
+Unreal
+    -> gameplay state, rhythm truth, streaming, material runtime, Niagara
+```
+
+Example:
+
+```text
+Sea Above hybrid membrane in Blender
+        -> approve musical anatomy
+        -> Houdini clean/refine/variant family if needed
+        -> Copernicus pearl/tissue/tension masks
+        -> UE ordinary assets + rhythm-driven runtime presentation
+```
+
+Do not force every Blender result through Houdini, but use Houdini when the approved study needs production robustness.
+
+---
+
+# Export / handoff contract
+
+Keep conventional outputs:
+
+1. mesh;
+2. curves;
+3. named attributes;
+4. realized instances when needed;
+5. optional FBX;
+6. Alembic / VAT source only when motion requires it;
+7. JSON provenance.
+
+Proposed hybrid provenance schema:
+
+```json
+{
+  "schema": "melodia.music_geo.v1",
+  "source_midi": "...",
+  "source_audio": "...",
+  "mode": "hybrid",
+  "audio_builder": "MEL_audio_radial_field",
+  "audio_preset": "SEA_ABOVE_MEMBRANE",
+  "hybrid_study": "SEA_ABOVE_MEMBRANE_HYBRID_v0",
+  "mapping_preset": "MONOLITH_BREATH",
+  "seed": 20260830,
+  "runtime_authority": "UMelodiaRhythmReactivitySubsystem -> MPC_Melodia_Palette"
+}
+```
+
+Do not serialize huge per-frame FFT arrays unless a later tool actually consumes them.
+
+---
+
+# Tests to add
+
+## Existing-pipeline regression
+
+- audio builders resolve;
+- preview profile generates output;
+- `.blend` save succeeds;
+- handoff JSON parses;
+- output object count > 0;
+- frequency ranges are valid;
+- same seed/config is deterministic where expected.
+
+## Authority regression
+
+Generated current-version manifests must not claim:
+
+```text
+MPC_Portfolio_Audio
+```
+
+as current runtime authority.
+
+## Hybrid contract
+
+- MIDI and audio fields independently inspectable;
+- audio-only path still works;
+- MIDI-only path still works;
+- hybrid path works;
+- existing MIDI generator behavior unchanged;
+- existing audio builder behavior unchanged when hybrid is off.
+
+## Blender headless
+
+Use the **existing pipeline**, not a new throwaway API test, as the primary harness.
+
+At minimum evaluate:
+
+```text
+T0
+T1
+T2
+```
+
+for one audio source and verify the intended output changes.
+
+## Save/reload
+
+A generated hybrid `.blend` must reopen with:
+
+- sound source linked;
+- node groups present;
+- provenance present;
+- no missing relative path surprises.
+
+---
+
+# Today's direct execution order
+
+## 1. Sync / baseline — 15 min
+
+- update current main locally;
+- use current v1.5 Studio;
+- select one MIDI + rendered-audio pair;
+- confirm Blender 5.2 path;
+- capture TD OSC signal names if the patch is open.
+
+## 2. Existing audio pipeline proof — 20–30 min
+
+Run preview mode and open the result.
+
+No new code unless this fails.
+
+## 3. Existing AAA stage — 20 min
+
+Build the existing Sea Above stage and inspect:
+
+- False Horizon;
+- Bell Ribs;
+- Membrane.
+
+Pick the strongest builder/preset as hybrid host.
+
+## 4. Authority metadata correction — 15–30 min
+
+Audit consumer usage and fix/bump handoff schema as appropriate.
+
+## 5. MIDI -> existing audio builder hybrid proof — 45–75 min
+
+Do **Sea Above Membrane Hybrid v0**.
+
+Do not build Studio UI yet.
+
+## 6. Compare Audio / MIDI / Hybrid — 15 min
+
+Record which one communicates:
+
+- composition;
+- performance;
+- anatomy;
+- Monolith character.
+
+## 7. Studio UI hook — 30–45 min
+
+Only if hybrid passes.
+
+Expose the proven backend through existing v1.5 panel.
+
+## 8. TD semantic calibration — 20–30 min
+
+Use the same phrase and compare response curves qualitatively.
+
+## 9. Decision log — 10 min
 
 Record:
 
 ```text
-setup friction
-interactive speed
-MIDI value
-spectrum value
-hybrid value
-export quality
-runtime independence
-ADOPT / PARK / REJECT
+Existing audio stack: KEEP / REPAIR
+Hybrid adapter: ADOPT / PARK / REJECT
+Studio exposure: ADOPT / PARK
+TD parity layer: ADOPT / PARK
+Houdini refinement needed: YES / NO / SOMETIMES
 ```
 
 ---
 
-# Acceptance criteria for v1
+# What is retired from the original plan
 
-The feature is **ADOPTED** only if all are true:
+## RETIRE
 
-- existing Melodia Studio MIDI generation still works;
-- existing tests do not regress;
-- one audio file can drive GN without manual node editing;
-- one MIDI + audio pair can generate a hybrid procedural structure;
-- artist can change source/preset from Melodia Studio UI;
-- the result can be baked/exported without Blender runtime dependency;
-- Unreal remains runtime rhythm authority;
-- the workflow makes a compelling Melodia form in under 10 minutes after setup.
+- “prove `Sample Sound Frequencies` exists” as first task;
+- build a basic one-band cube demo;
+- create duplicate audio source discovery from scratch;
+- create a second set of audio GN builders;
+- make `music_reactivity.py` own FFT construction;
+- treat Rhythm Garden as first infrastructure proof.
 
----
+## KEEP
 
-# Immediate first benchmark
+- MIDI vs audio distinction;
+- hybrid authoring goal;
+- TD semantic bridge;
+- Studio integration;
+- ordinary export boundary;
+- Unreal runtime authority;
+- Melodia-shaped benchmarks.
 
-Use the first integration test to generate:
+## ADD
 
-## `MEL_GN_RhythmGarden_v1`
-
-Visual target:
-
-> A living field of translucent stems / ribbons / coral-like structures whose **architecture comes from MIDI** while their **breathing, bloom and micro-detail come from the actual audio performance**.
-
-The benchmark should answer one question:
-
-> **Does hybrid musical data create environment forms that feel composed rather than merely audio-reactive?**
-
-If yes, promote Music to Nodes into Melodia Studio's normal procedural-authoring toolkit.
-
----
-
-# Follow-up Melodia applications
-
-Once v1 is stable:
-
-- **Sea Above:** Tide Seam / Bell interference authoring;
-- **Faraway Mother:** rhythm-driven cloth tension and fold studies;
-- **God That Molts:** pulse-driven biological layer growth;
-- **Horizon Eater:** filter filament / feeding-field authoring;
-- **wardrobe:** trim, embroidery and silhouette studies from musical phrases;
-- **musical instruments:** structural MIDI + timbral audio response;
-- **SpeedTree/Houdini ecology:** use generated curves/masks as authored seeds, never as runtime authority.
+- branch divergence/sync gate;
+- existing audio-pipeline baseline;
+- current Studio v1.5 compatibility;
+- handoff-authority metadata correction;
+- semantic-contract adapter;
+- Sea Above Membrane Hybrid first benchmark;
+- audio/MIDI/hybrid A-B-C comparison;
+- no-authority-regression tests.
 
 ---
 
-# Explicit non-goals
+# V1 adoption gate
 
-Do not build:
+The integrated Blender music workflow is **ADOPTED** only if all are true:
 
-- a DAW;
-- a new runtime rhythm engine;
-- a general MIDI editor;
-- arbitrary node synthesis UI;
-- a full FFT cache format;
-- automatic finished Monolith generation;
-- direct Blender-to-gameplay state coupling;
-- a replacement for Houdini.
+- current Melodia Studio MIDI generation remains intact;
+- existing audio builders remain intact;
+- no duplicate FFT/audio system is introduced;
+- no duplicate MIDI parser is introduced;
+- one MIDI + audio pair can generate a hybrid study without manual rewiring every time;
+- Audio / MIDI / Hybrid can be compared independently;
+- the hybrid result is visibly more authored than audio-only;
+- output bakes/exports conventionally;
+- manifests name current Unreal authority correctly;
+- Blender is never required at runtime;
+- TouchDesigner remains optional live/calibration tooling;
+- compelling Melodia-shaped output can be reached quickly enough to beat doing the same study manually from scratch.
 
 ---
 
-# Final architecture rule
+# Final ownership rule
 
-> **Melodia Studio turns music into authored form. Houdini turns authored rules into coherent worlds. Unreal decides how those worlds respond to the player.**
+> **MIDI describes the composition. Audio describes the performance. TouchDesigner teaches us how the response should feel live. Blender turns those signals into authored form. Houdini makes approved procedural ideas robust. Unreal owns the actual world.**
+
+And, per current repository policy:
+
+> **Converge onto what already works before constructing anything new.**
