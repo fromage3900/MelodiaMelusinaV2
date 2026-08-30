@@ -37,6 +37,11 @@ namespace
 	}
 }
 
+UMelodiaNarrativeSubsystem::UMelodiaNarrativeSubsystem()
+{
+	UE_LOG(LogTemp, Log, TEXT("MelodiaNarrativeSubsystem::Constructor called"));
+}
+
 UMelodiaNarrativeSubsystem* UMelodiaNarrativeSubsystem::GetMelodiaNarrativeSubsystem(const UObject* WorldContextObject)
 {
 	if (!IsValid(WorldContextObject) || !WorldContextObject->GetWorld())
@@ -51,6 +56,7 @@ UMelodiaNarrativeSubsystem* UMelodiaNarrativeSubsystem::GetMelodiaNarrativeSubsy
 void UMelodiaNarrativeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+	UE_LOG(LogTemp, Log, TEXT("MelodiaNarrativeSubsystem::Initialize called"));
 	if (!Config)
 	{
 		Config = LoadObject<UMelodiaIntegrationConfig>(nullptr, TEXT("/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig.DA_MelodiaIntegrationConfig"));

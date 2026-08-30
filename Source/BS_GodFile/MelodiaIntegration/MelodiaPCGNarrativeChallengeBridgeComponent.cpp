@@ -1,6 +1,7 @@
 #include "MelodiaPCGNarrativeChallengeBridgeComponent.h"
 
 #include "MelodiaNarrativeSubsystem.h"
+#include "Stats/Stats.h"
 
 namespace
 {
@@ -82,6 +83,7 @@ bool UMelodiaPCGNarrativeChallengeBridgeComponent::IsChallengeCompleted() const
 
 void UMelodiaPCGNarrativeChallengeBridgeComponent::HandleNoteJudged(FPCGHeroMusicNoteEvent Event)
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaPCGNarrativeChallengeBridge_HandleNoteJudged);
 	if (!bBound || !bRequireCleanRun)
 	{
 		return;
@@ -94,6 +96,7 @@ void UMelodiaPCGNarrativeChallengeBridgeComponent::HandleNoteJudged(FPCGHeroMusi
 
 void UMelodiaPCGNarrativeChallengeBridgeComponent::HandlePatternCompleted()
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaPCGNarrativeChallengeBridge_HandlePatternCompleted);
 	if (!bBound)
 	{
 		return;

@@ -11,6 +11,7 @@
 #include "HarmonixMidi/MidiFile.h"
 #include "HarmonixMidi/SongMaps.h"
 #include "MelodiaAudioComponent.h"
+#include "Stats/Stats.h"
 #include "UObject/UObjectGlobals.h"
 
 namespace
@@ -121,6 +122,7 @@ void UMelodiaMusicClockSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 
 bool UMelodiaMusicClockSubsystem::EnsureBattleControllerMusicClock()
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaMusicClockSubsystem_EnsureBattleControllerMusicClock);
 	UWorld* World = GetWorld();
 	if (!World || !World->IsGameWorld())
 	{
@@ -349,6 +351,7 @@ EMelodiaMusicClockSource UMelodiaMusicClockSubsystem::GetClockSource() const
 
 FMelodiaMusicTime UMelodiaMusicClockSubsystem::GetMusicTime(ECalibratedMusicTimebase Timebase) const
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaMusicClockSubsystem_GetMusicTime);
 	FMelodiaMusicTime Result;
 	Result.Source = GetClockSource();
 
@@ -498,6 +501,7 @@ void UMelodiaMusicClockSubsystem::SetCalibrationOffsetMs(float InOffsetMs)
 
 bool UMelodiaMusicClockSubsystem::TickClock(float DeltaTime)
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaMusicClockSubsystem_TickClock);
 	const EMelodiaMusicClockSource CurrentSource = GetClockSource();
 	if (CurrentSource != ReportedSource)
 	{

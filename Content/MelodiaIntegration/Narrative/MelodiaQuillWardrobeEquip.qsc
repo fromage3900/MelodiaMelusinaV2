@@ -1,0 +1,42 @@
+@ Start
+
+- Melusina
+  The sanctum mirror reflects a gentle shimmer. Floating within the glass is a woven garment of tidal thread.
+
+- Sir Melodious
+  The Resonant Weave—woven from sorrow-seam silk and dawn mist. Try it on, Melusina.
+
+* Don the Resonant Weave outfit. | -> EquipOutfit
+* Inspect the fabric and stitches.  | -> InspectFabric
+
+<@> InspectFabric
+
+- Melusina
+  The seams pulse softly with the heartbeat of the sea. It carries an uplifting buoyancy.
+
+- Sir Melodious
+  Every stitch is tuned to wind and water. When you wear it, the air itself will catch your fall.
+
+-> EquipOutfit
+
+<@> EquipOutfit
+
+- Melusina
+  The fabric aligns with my rhythm. I feel lighter, as if the breeze answers my steps.
+
+$ Notify melodia:item:give:item.outfit.melusina_v2:1
+$ Notify melodia:stat:intent.wardrobe.elegance:melodia_elegance:3
+$ Notify melodia:flag:flag.wardrobe.outfit_equipped:true
+$ Notify melodia:flag:flag.melusina.sorrow_seam_restored:true
+
+- Sir Melodious
+  Magnificent! The Sorrow Seam is restored, and the currents of the sky recognize your form. You can now Glide effortlessly across the chasm!
+
+$ Notify melodia:questcomplete:quest.wardrobe.equip_outfit:flag.wardrobe.equip_completed:reward.wardrobe.first_outfit:intent.wardrobe.complete:checkpoint.wardrobe.complete
+
+@ Finish
+
+- .
+  Melusina equips the Resonant Weave. Her traversal capabilities expand with the power of Glide.
+
+$ End

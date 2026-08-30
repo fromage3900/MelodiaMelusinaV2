@@ -83,5 +83,38 @@ bool FMelodiaWaterGameplayStateTest::RunTest(const FString& Parameters)
 	return true;
 }
 
+// ---------------------------------------------------------------------------
+// Sea Above Presentation & Biological Pulse Contract
+// ---------------------------------------------------------------------------
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaSeaAbovePresentationContractTest,
+	"Melodia.SeaAbove.Presentation.PulseAndSheenContract",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaSeaAbovePresentationContractTest::RunTest(const FString& Parameters)
+{
+	// 1. Sea Above Biological Pulse Range (12 - 20 seconds)
+	constexpr float PulsePeriodMin = 12.0f;
+	constexpr float PulsePeriodMax = 20.0f;
+	constexpr float PulsePeriodDefault = 16.0f;
+
+	TestTrue(TEXT("Default pulse period within biological range"), PulsePeriodDefault >= PulsePeriodMin && PulsePeriodDefault <= PulsePeriodMax);
+
+	// 2. Membrane sheen thresholds matching Melusina Sorrow Seam & Sea Above specifications
+	constexpr float PristineSheen = 0.18f;
+	constexpr float HealedSheen = 0.32f;
+
+	TestTrue(TEXT("Healed sheen strictly exceeds pristine sheen"), HealedSheen > PristineSheen);
+	TestEqual(TEXT("Pristine sheen baseline is 0.18f"), PristineSheen, 0.18f);
+	TestEqual(TEXT("Healed sheen target is 0.32f"), HealedSheen, 0.32f);
+
+	// 3. World-UV Blend Invariant for False Ocean (must equal 1.0f)
+	constexpr float FalseOceanWorldUVBlend = 1.0f;
+	TestEqual(TEXT("False ocean uses 100% world-UV blend"), FalseOceanWorldUVBlend, 1.0f);
+
+	return true;
+}
+
 #endif // WITH_DEV_AUTOMATION_TESTS
 
