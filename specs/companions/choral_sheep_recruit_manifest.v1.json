@@ -1,0 +1,30 @@
+{
+  "schema": "melodia.companion_recruit.v1",
+  "companion_id": "companion.choral_sheep",
+  "creature_name": "Choral Sheep",
+  "pitch_class": "C",
+  "semitone_offset": 0,
+  "motif_cadence": "C4-E4-G4",
+  "assets": {
+    "definition_asset": "/Game/Melodia/Companions/ChoralSheep/DA_ChoralSheepDefinition",
+    "skeletal_mesh": "/Game/Melodia/Companions/ChoralSheep/SK_ChoralSheep",
+    "material_instance": "/Game/Melodia/Companions/ChoralSheep/Materials/MI_ChoralSheep_Coat_PC00",
+    "anim_blueprint": "/Game/Melodia/Companions/ChoralSheep/ABP_ChoralSheep"
+  },
+  "recruitment_contract": {
+    "quest_id": "quest.companion.choral_sheep",
+    "completion_flag": "flag.companion.choral_sheep_completed",
+    "recruitment_flag": "flag.companion.choral_sheep_recruited",
+    "reward_id": "reward.companion.choral_sheep",
+    "social_stat_granted": {
+      "stat": "melodia_harmony",
+      "delta": 2
+    }
+  },
+  "gameplay_hooks": {
+    "party_follow_enabled": true,
+    "follow_distance": 180.0,
+    "rhythm_assist_ability": "ChoralResonance_Tier1",
+    "chime_sound_cue": "/Game/Melodia/Audio/SFX/A_UI_Bubble"
+  }
+}
