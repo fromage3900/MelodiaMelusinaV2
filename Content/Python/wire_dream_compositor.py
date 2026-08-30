@@ -61,13 +61,18 @@ def _custom_title(expr):
 
 
 def _find_param(material, param_name):
+    # NOTE: this previously gated on `expr.has_editor_property("parameter_name")`, which returns
+    # False for parameter expressions in UE 5.8 — so this function ALWAYS returned None and every
+    # caller silently skipped its wiring. That is what left DreamCompositeGate's four inputs
+    # dangling and made M_Master_Toon_Universal fail to compile for PCD3D_SM6. Read the property
+    # directly and let the try/except handle node types that genuinely lack it.
     for expr in _exprs(material):
         try:
-            if expr.has_editor_property("parameter_name"):
-                if str(expr.get_editor_property("parameter_name")) == param_name:
-                    return expr
+            raw = expr.get_editor_property("parameter_name")
         except Exception:
             continue
+        if raw and str(raw) == param_name:
+            return expr
     return None
 
 
@@ -189,6 +194,14 @@ def main():
     _connect(add16, "", gate, "BaseColor")
     print(f"[WireDream] wired {add16.get_name()} -> DreamCompositeGate.BaseColor")
 
+    # Resolve every source parameter BEFORE connecting anything. A Custom HLSL node with a
+    # declared-but-unconnected input is a HARD compile error in UE:
+    #   (Node Custom) Custom material DreamCompositeGate missing input 3 (DreamWarmth)
+    # This previously warned and `continue`d, which left M_Master_Toon_Universal permanently
+    # non-compiling for PCD3D_SM6 — every instance reaching the gate fell back to the Default
+    # Material. Half-wiring is worse than not wiring, so refuse the whole pass instead.
+    gate_sources = []
+    missing = []
     for pin, param_name in (
         ("DreamWarmth", "DreamWarmth"),
         ("DreamIntensity", "DreamIntensity"),
@@ -197,8 +210,18 @@ def main():
     ):
         param = _find_param(material, param_name)
         if param is None:
-            print(f"[WireDream] WARN missing param {param_name} — DreamCompositeGate.{pin} left unconnected")
-            continue
+            missing.append(param_name)
+        else:
+            gate_sources.append((pin, param_name, param))
+
+    if missing:
+        raise RuntimeError(
+            f"[WireDream] refusing to half-wire DreamCompositeGate: missing parameter(s) "
+            f"{', '.join(sorted(missing))}. Author them first — leaving a Custom node input "
+            f"unconnected is a hard compile error, not a warning."
+        )
+
+    for pin, param_name, param in gate_sources:
         _connect(param, "", gate, pin)
         print(f"[WireDream] wired {param_name} -> DreamCompositeGate.{pin}")
 
@@ -217,24 +240,40 @@ def main():
     if rim_node is not None:
         rim_pins = _input_map(material, rim_node)
         print(f"[WireDream] DreamRimSpectral inputs: { {k: (v.get_name() if v else 'UNCONNECTED') for k, v in rim_pins.items()} }")
+        # Same contract as the gate above: resolve every source first, refuse the pass if any
+        # is missing. A dangling Custom node input is a compile error, so a partial wire here
+        # would break the material exactly the way DreamCompositeGate did.
+        rim_sources = []
+        rim_missing = []
         for pin, source in rim_pins.items():
             if source is not None:
                 continue
-            low = pin.lower()
-            if "rim" in low:
-                src_param = _find_param(material, "DreamRimStrength")
-                if src_param is not None:
-                    _connect(src_param, "", rim_node, pin)
-                    print(f"[WireDream] wired DreamRimStrength -> DreamRimSpectral.{pin} (was unconnected)")
-                else:
-                    print(f"[WireDream] WARN no DreamRimStrength param — DreamRimSpectral.{pin} left unconnected")
+            if "rim" in pin.lower():
+                wanted = ("DreamRimStrength",)
             else:
-                src_param = _find_param(material, "DreamRimCycles") or _find_param(material, "DreamRimPower")
-                if src_param is not None:
-                    _connect(src_param, "", rim_node, pin)
-                    print(f"[WireDream] wired {src_param.get_editor_property('parameter_name')} -> DreamRimSpectral.{pin} (was unconnected)")
-                else:
-                    print(f"[WireDream] WARN no DreamRimCycles/DreamRimPower param — DreamRimSpectral.{pin} left unconnected")
+                wanted = ("DreamRimCycles", "DreamRimPower")
+            src_param = next(
+                (p for p in (_find_param(material, name) for name in wanted) if p is not None),
+                None,
+            )
+            if src_param is None:
+                rim_missing.append(f"{pin} (wanted {' or '.join(wanted)})")
+            else:
+                rim_sources.append((pin, src_param))
+
+        if rim_missing:
+            raise RuntimeError(
+                f"[WireDream] refusing to half-wire DreamRimSpectral: no source parameter for "
+                f"{'; '.join(rim_missing)}. Author them first — leaving a Custom node input "
+                f"unconnected is a hard compile error, not a warning."
+            )
+
+        for pin, src_param in rim_sources:
+            _connect(src_param, "", rim_node, pin)
+            print(
+                f"[WireDream] wired {src_param.get_editor_property('parameter_name')} "
+                f"-> DreamRimSpectral.{pin} (was unconnected)"
+            )
 
     # --- Verify the targeted rewire landed ---
     post_names = list(MEL.get_material_expression_input_names(switch) or [])

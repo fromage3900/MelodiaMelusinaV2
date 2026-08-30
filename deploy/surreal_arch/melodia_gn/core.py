@@ -1153,6 +1153,7 @@ CATEGORY_META: dict[str, dict] = {
     "set_dressing": {"label": "Set Dressing",        "icon": "PLUGIN"},
     "mother":      {"label": "Faraway Mother",       "icon": "MESH_MONKEY"},
     "white_current": {"label": "White Current",      "icon": "MOD_FLUID"},
+    "god_molts":   {"label": "God That Molts",        "icon": "MOD_EXPLODE"},
 }
 
 

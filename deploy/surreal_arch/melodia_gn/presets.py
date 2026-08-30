@@ -3030,6 +3030,152 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # god_molts.py — The God That Molts Monolith
+    "MEL_shell_cephalon": {
+        "label": "Shell Cephalon",
+        "preset_labels": {
+            "FRESH_MOLT": "Fresh Molt",
+            "MINERALIZED": "Mineralized",
+            "ANCIENT_RUIN": "Ancient Ruin",
+        },
+        "preset_descriptions": {
+            "FRESH_MOLT": "Fresh molt — translucent, delicate, recent.",
+            "MINERALIZED": "Mineralized — older shell, calcite deposits, ribbed.",
+            "ANCIENT_RUIN": "Ancient ruin — weathered, cracked, glowing veins.",
+        },
+        "presets": {
+            "FRESH_MOLT": {"Scale": 1.0, "Segment Count": 5, "Lobe Depth": 0.3, "Chitin Opacity": 0.9, "Vein Glow": 2.0, "Breathing Speed": 1.0},
+            "MINERALIZED": {"Scale": 5.0, "Segment Count": 8, "Lobe Depth": 0.6, "Chitin Opacity": 0.6, "Vein Glow": 1.0, "Breathing Speed": 0.5},
+            "ANCIENT_RUIN": {"Scale": 25.0, "Segment Count": 12, "Lobe Depth": 1.0, "Chitin Opacity": 0.3, "Vein Glow": 3.0, "Breathing Speed": 0.2},
+        },
+    },
+    "MEL_shell_thorax": {
+        "label": "Shell Thorax",
+        "preset_labels": {
+            "CATHERDRAL_RIBS": "Cathedral Ribs",
+            "SEGMENTED_BODY": "Segmented Body",
+            "CRUSHED_ARCHES": "Crushed Arches",
+        },
+        "preset_descriptions": {
+            "CATHERDRAL_RIBS": "Cathedral ribs — tall arches, sacred space.",
+            "SEGMENTED_BODY": "Segmented body — repeating arches, rhythmic.",
+            "CRUSHED_ARCHES": "Crushed arches — broken, weathered, ancient.",
+        },
+        "presets": {
+            "CATHERDRAL_RIBS": {"Segment Count": 8, "Arch Height": 3.0, "Rib Spacing": 0.5, "Breathing Speed": 1.0, "Chitin Thickness": 0.2},
+            "SEGMENTED_BODY": {"Segment Count": 16, "Arch Height": 1.5, "Rib Spacing": 0.3, "Breathing Speed": 2.0, "Chitin Thickness": 0.1},
+            "CRUSHED_ARCHES": {"Segment Count": 6, "Arch Height": 0.8, "Rib Spacing": 0.8, "Breathing Speed": 0.3, "Chitin Thickness": 0.4},
+        },
+    },
+    "MEL_shell_pygidium": {
+        "label": "Shell Pygidium",
+        "preset_labels": {
+            "TAIL_FAN": "Tail Fan",
+            "BIOLUM_GLOW": "Biolum Glow",
+            "DECAYING_FAN": "Decaying Fan",
+        },
+        "preset_descriptions": {
+            "TAIL_FAN": "Tail fan — wide angle, glowing veins.",
+            "BIOLUM_GLOW": "Biolum glow — intense bioluminescence, pulsing.",
+            "DECAYING_FAN": "Decaying fan — broken, dim, ancient.",
+        },
+        "presets": {
+            "TAIL_FAN": {"Fan Angle": 120.0, "Vein Count": 12, "Biolum Intensity": 2.0, "Pulse Phase": 0.0, "Scale": 1.0},
+            "BIOLUM_GLOW": {"Fan Angle": 180.0, "Vein Count": 24, "Biolum Intensity": 5.0, "Pulse Phase": 1.5, "Scale": 2.0},
+            "DECAYING_FAN": {"Fan Angle": 60.0, "Vein Count": 6, "Biolum Intensity": 0.5, "Pulse Phase": 3.0, "Scale": 0.5},
+        },
+    },
+    "MEL_shell_interior": {
+        "label": "Shell Interior",
+        "preset_labels": {
+            "SACRED_SPACE": "Sacred Space",
+            "HOLLOW_CATHEDRAL": "Hollow Cathedral",
+            "CRUSHED_INTERIOR": "Crushed Interior",
+        },
+        "preset_descriptions": {
+            "SACRED_SPACE": "Sacred space — walkable hollow, ribbed walls.",
+            "HOLLOW_CATHEDRAL": "Hollow cathedral — tall ceilings, breathing.",
+            "CRUSHED_INTERIOR": "Crushed interior — collapsed, dark, ancient.",
+        },
+        "presets": {
+            "SACRED_SPACE": {"Wall Thickness": 0.3, "Arch Count": 12, "Vein Spacing": 1.0, "Cathedral Height": 8.0, "Breathing Depth": 0.1},
+            "HOLLOW_CATHEDRAL": {"Wall Thickness": 0.5, "Arch Count": 24, "Vein Spacing": 0.5, "Cathedral Height": 20.0, "Breathing Depth": 0.2},
+            "CRUSHED_INTERIOR": {"Wall Thickness": 0.8, "Arch Count": 6, "Vein Spacing": 2.0, "Cathedral Height": 4.0, "Breathing Depth": 0.05},
+        },
+    },
+    "MEL_fracture_seam": {
+        "label": "Fracture Seam",
+        "preset_labels": {
+            "FRESH_CRACK": "Fresh Crack",
+            "GLOWING_FRACTURE": "Glowing Fracture",
+            "ANCIENT_DECAY": "Ancient Decay",
+        },
+        "preset_descriptions": {
+            "FRESH_CRACK": "Fresh crack — recent break, sharp edges.",
+            "GLOWING_FRACTURE": "Glowing fracture — light leaking through.",
+            "ANCIENT_DECAY": "Ancient decay — weathered, overgrown.",
+        },
+        "presets": {
+            "FRESH_CRACK": {"Crack Count": 4, "Crack Depth": 0.5, "Glow Leak": 2.0, "Decay Age": 0.1, "Scale": 1.0},
+            "GLOWING_FRACTURE": {"Crack Count": 12, "Crack Depth": 1.5, "Glow Leak": 3.5, "Decay Age": 0.5, "Scale": 5.0},
+            "ANCIENT_DECAY": {"Crack Count": 24, "Crack Depth": 3.0, "Glow Leak": 0.5, "Decay Age": 0.9, "Scale": 25.0},
+        },
+    },
+    "MEL_biolum_vein": {
+        "label": "Biolum Vein",
+        "preset_labels": {
+            "PULSE_TRAIL": "Pulse Trail",
+            "BREATHING_WEB": "Breathing Web",
+            "DIMMING_FLAME": "Dimming Flame",
+        },
+        "preset_descriptions": {
+            "PULSE_TRAIL": "Pulse trail — bright, fast, rhythmic.",
+            "BREATHING_WEB": "Breathing web — connected veins, slow pulse.",
+            "DIMMING_FLAME": "Dimming flame — fading, ancient, weak.",
+        },
+        "presets": {
+            "PULSE_TRAIL": {"Vein Count": 16, "Pulse Speed": 2.0, "Color Shift": 0.5, "Breathing Depth": 0.3, "Scale": 1.0},
+            "BREATHING_WEB": {"Vein Count": 32, "Pulse Speed": 0.5, "Color Shift": 0.2, "Breathing Depth": 0.6, "Scale": 5.0},
+            "DIMMING_FLAME": {"Vein Count": 8, "Pulse Speed": 0.2, "Color Shift": 0.8, "Breathing Depth": 0.1, "Scale": 25.0},
+        },
+    },
+    "MEL_gravity_well": {
+        "label": "Gravity Well",
+        "preset_labels": {
+            "SUBTLE_WARP": "Subtle Warp",
+            "LENS_DISTORTION": "Lens Distortion",
+            "TOTAL_COLLAPSE": "Total Collapse",
+        },
+        "preset_descriptions": {
+            "SUBTLE_WARP": "Subtle warp — gentle distortion, barely visible.",
+            "LENS_DISTORTION": "Lens distortion — clear warping, chromatic aberration.",
+            "TOTAL_COLLAPSE": "Total collapse — extreme gravity, black hole.",
+        },
+        "presets": {
+            "SUBTLE_WARP": {"Distortion Strength": 0.1, "Lens Radius": 5.0, "Chromatic Aberration": 0.1, "Breathing Pulse": 1.0, "Scale": 1.0},
+            "LENS_DISTORTION": {"Distortion Strength": 1.0, "Lens Radius": 15.0, "Chromatic Aberration": 0.5, "Breathing Pulse": 2.0, "Scale": 5.0},
+            "TOTAL_COLLAPSE": {"Distortion Strength": 4.0, "Lens Radius": 50.0, "Chromatic Aberration": 1.5, "Breathing Pulse": 0.5, "Scale": 25.0},
+        },
+    },
+    "MEL_aftermath_fragment": {
+        "label": "Aftermath Fragment",
+        "preset_labels": {
+            "FRESH_DEBRIS": "Fresh Debris",
+            "SCATTERED_RUINS": "Scattered Ruins",
+            "ANCIENT_DUST": "Ancient Dust",
+        },
+        "preset_descriptions": {
+            "FRESH_DEBRIS": "Fresh debris — recent molt, sharp fragments.",
+            "SCATTERED_RUINS": "Scattered ruins — weathered, overgrown.",
+            "ANCIENT_DUST": "Ancient dust — crumbled, barely visible.",
+        },
+        "presets": {
+            "FRESH_DEBRIS": {"Fragment Count": 24, "Scatter Range": 10.0, "Decay Age": 0.1, "Chitin Remnant": 0.8, "Scale": 1.0},
+            "SCATTERED_RUINS": {"Fragment Count": 48, "Scatter Range": 30.0, "Decay Age": 0.5, "Chitin Remnant": 0.4, "Scale": 5.0},
+            "ANCIENT_DUST": {"Fragment Count": 96, "Scatter Range": 60.0, "Decay Age": 0.9, "Chitin Remnant": 0.1, "Scale": 25.0},
+        },
+    },
+
 }
 
 # -----------------------------------------------------------------------------
