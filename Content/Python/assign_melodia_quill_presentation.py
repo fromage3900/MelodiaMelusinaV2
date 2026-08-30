@@ -12,6 +12,9 @@ SCENES = (
     "/Game/MelodiaIntegration/Narrative/MelodiaQuillSmoke",
     "/Game/MelodiaIntegration/Narrative/MelodiaQuillStarWeaver",
     "/Game/MelodiaIntegration/Narrative/MelodiaQuillTwilightDancer",
+    "/Game/MelodiaIntegration/Narrative/MelodiaQuillDawnVeil",
+    "/Game/MelodiaIntegration/Narrative/MelodiaQuillSolsticeDrum",
+    "/Game/MelodiaIntegration/Narrative/MelodiaQuillHarmonyAwakening",
 )
 DIALOG_CLASS = "/Game/Melodia/UI/Quill/WBP_MelodiaQuillDialog.WBP_MelodiaQuillDialog_C"
 CHOICE_CLASS = "/Game/Melodia/UI/Quill/WBP_MelodiaQuillChoiceEntry.WBP_MelodiaQuillChoiceEntry_C"
