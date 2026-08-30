@@ -205,6 +205,8 @@ Tools/*
 !Tools/Cascadeur/Melusina/README.md
 !Tools/run_cascadeur_import.ps1
 !Tools/validate_cascadeur_manifest.py
+!Tools/audio_terrain_pipeline.py
+!Tools/stage_melodia_aaa_presets.py
 # Verification + injection pipeline core (AGENTS.md "Core Tools") — the gates P0 claims run on
 !Tools/mcp_client.py
 !Tools/t3d_blueprint_injector.py
