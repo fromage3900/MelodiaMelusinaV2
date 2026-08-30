@@ -1,0 +1,9 @@
+{
+ "schema": "melodia.shorewake_ao_raster.v1",
+ "resolution": 4096,
+ "triangles": 206780,
+ "texels_written": 12561868,
+ "source_obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\SM_ShorewakeDress_48MAT_v2_ao.obj",
+ "uv_obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\SM_ShorewakeDress_48MAT_v2.obj",
+ "note": "exact barycentric interpolation of Houdini VEX vertex AO; background=1.0"
+}

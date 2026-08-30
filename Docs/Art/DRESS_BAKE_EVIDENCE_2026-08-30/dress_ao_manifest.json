@@ -1,0 +1,11 @@
+{
+ "schema": "melodia.shorewake_ao_vex.v1",
+ "seed": 20260830,
+ "samples": 64,
+ "self_bias_m": 0.003,
+ "self_min_m": 0.002,
+ "points": 183741,
+ "ao_mean_sample": 0.9773125,
+ "out_obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\SM_ShorewakeDress_48MAT_v2_ao.obj",
+ "encoding": "OBJ vertex color R = AO"
+}
