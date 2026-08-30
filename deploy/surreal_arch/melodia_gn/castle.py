@@ -1,21 +1,21 @@
-"""Gothic castle generator ΓÇö composable GN groups for walls, towers, keeps, gates, windows, buttresses,
+"""Gothic castle generator — composable GN groups for walls, towers, keeps, gates, windows, buttresses,
 curtain walls, machicolations, and spiral stairs.
 
 Each component auto-fits to bounding boxes, uses power/exponent scaling,
 stores attributes for downstream chaining, and is stackable in Melodia GN Stack.
 
 Architecture:
-  MEL_castle_crenellation ΓÇö battlement top for walls
-  MEL_castle_wall_segment ΓÇö wall with optional crenellation + buttress
-  MEL_castle_tower ΓÇö round tower with conical roof
-  MEL_castle_gatehouse ΓÇö gatehouse with arch and portcullis
-  MEL_castle_gothic_window ΓÇö pointed arch window with tracery
-  MEL_castle_buttress ΓÇö flying buttress
-  MEL_castle_keep ΓÇö central stronghold
-  MEL_castle_curtain_wall ΓÇö wall connecting towers with walkway
-  MEL_castle_machicolations ΓÇö projecting parapet with murder holes
-  MEL_castle_spiral_stairs ΓÇö helical stair tower
-  MEL_castle_assembler ΓÇö full castle from parameters
+  MEL_castle_crenellation — battlement top for walls
+  MEL_castle_wall_segment — wall with optional crenellation + buttress
+  MEL_castle_tower — round tower with conical roof
+  MEL_castle_gatehouse — gatehouse with arch and portcullis
+  MEL_castle_gothic_window — pointed arch window with tracery
+  MEL_castle_buttress — flying buttress
+  MEL_castle_keep — central stronghold
+  MEL_castle_curtain_wall — wall connecting towers with walkway
+  MEL_castle_machicolations — projecting parapet with murder holes
+  MEL_castle_spiral_stairs — helical stair tower
+  MEL_castle_assembler — full castle from parameters
 """
 
 from __future__ import annotations
@@ -33,7 +33,7 @@ from .core import (
 
 
 def build_castle_crenellation(group_name="MEL_castle_crenellation"):
-    """Battlement / crenellation ΓÇö alternating merlons and crenels along wall top.
+    """Battlement / crenellation — alternating merlons and crenels along wall top.
 
     Uses: linear_array (merlons), power (end taper), bounding_box (wall-fit),
           store_attribute (crenel type for material)
@@ -590,7 +590,7 @@ def build_castle_buttress(group_name="MEL_castle_buttress"):
 
 
 def build_castle_keep(group_name="MEL_castle_keep"):
-    """Central keep ΓÇö multi-tier stronghold with towers, windows, battlements.
+    """Central keep — multi-tier stronghold with towers, windows, battlements.
 
     Uses: add (tiers + towers), subtract (window voids), power (tier taper),
           bounding_box (dimensions), store_attribute (keep zone)
@@ -760,7 +760,7 @@ def build_castle_machicolations(group_name="MEL_castle_machicolations"):
     link_float_to_vector(tree, gin.outputs["Overhang"], slab, "Size", component=1)
     link_float_to_vector(tree, gin.outputs["Height"], slab, "Size", component=2)
 
-    # Murder holes ΓÇö cylinder voids through slab
+    # Murder holes — cylinder voids through slab
     hole = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 400, by + 100))
     link_sockets(tree, gin.outputs["Hole Radius"], hole.inputs["Radius"])
     link_sockets(tree, gin.outputs["Height"], hole.inputs["Depth"])
@@ -824,7 +824,7 @@ def build_castle_machicolations(group_name="MEL_castle_machicolations"):
 
 
 def build_castle_spiral_stairs(group_name="MEL_castle_spiral_stairs"):
-    """Spiral staircase ΓÇö helical stair tower for keeps and towers.
+    """Spiral staircase — helical stair tower for keeps and towers.
 
     Uses: power (step scaling), exponent_blend (helix curve),
           bounding_box (shaft fit), store_attribute (stair zone)
@@ -1094,7 +1094,7 @@ def build_castle_corner_bastion(group_name="MEL_castle_corner_bastion"):
 
 
 def build_castle_assembler(group_name="MEL_castle_assembler"):
-    """Complete gothic castle generator ΓÇö assembles all components.
+    """Complete gothic castle generator — assembles all components.
 
     Takes modular castle parts (walls, towers, keep, gatehouse) and
     composes them into a full castle layout. Each component is

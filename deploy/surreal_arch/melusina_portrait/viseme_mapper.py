@@ -1,4 +1,4 @@
-﻿"""Viseme mapper ΓÇö phoneme-to-viseme lookup with auto-detection of rig blendshapes.
+﻿"""Viseme mapper — phoneme-to-viseme lookup with auto-detection of rig blendshapes.
 
 Subdivides the standard anime-style 15-viseme set into blendshape weight maps
 for Pixar-style facial rigs. Auto-scans armature shape keys to bind visemes
@@ -14,9 +14,9 @@ from dataclasses import dataclass, field
 from typing import ClassVar
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Standard phoneme ΓåÆ viseme mapping (Preston Blair + anime extended)
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
+# Standard phoneme → viseme mapping (Preston Blair + anime extended)
+# ═══════════════════════════════════════════════════════════════════════
 
 @dataclass
 class VisemeDef:
@@ -49,9 +49,9 @@ VISEMES: ClassVar[list[VisemeDef]] = [
 ]
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Phoneme ΓåÆ viseme lookup
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
+# Phoneme → viseme lookup
+# ═══════════════════════════════════════════════════════════════════════
 
 # Maps phoneme strings (from USTX lyrics) to viseme codes.
 # Extended with common vowel/consonant variants and diphthongs.
@@ -104,20 +104,20 @@ def phoneme_to_viseme_code(phoneme: str) -> str:
 
 
 def get_viseme_weights(phoneme: str) -> dict[str, float]:
-    """Get viseme weight dict for a phoneme (sparse ΓÇö only active viseme is 1.0)."""
+    """Get viseme weight dict for a phoneme (sparse — only active viseme is 1.0)."""
     code = phoneme_to_viseme_code(phoneme)
     weights: dict[str, float] = {v.code: 0.0 for v in VISEMES}
     weights[code] = 1.0
     return weights
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Rig auto-detection ΓÇö find blendshape names on the armature
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
+# Rig auto-detection — find blendshape names on the armature
+# ═══════════════════════════════════════════════════════════════════════
 
 @dataclass
 class VisemeBinding:
-    """Bound viseme: canonical code ΓåÆ actual blendshape key_block on the rig."""
+    """Bound viseme: canonical code → actual blendshape key_block on the rig."""
     viseme_code: str
     viseme_label: str
     shape_key_name: str         # actual name on the mesh data block
@@ -181,7 +181,7 @@ def get_bound_viseme_map(armature_obj) -> dict[str, str]:
 
 
 def get_rig_mesh_targets(armature_obj) -> dict[str, str]:
-    """Return {shape_key_name: mesh_name} for key_blockΓåÆmesh resolution."""
+    """Return {shape_key_name: mesh_name} for key_block→mesh resolution."""
     targets: dict[str, str] = {}
     if armature_obj is None or armature_obj.type != "ARMATURE":
         return targets
@@ -196,9 +196,9 @@ def get_rig_mesh_targets(armature_obj) -> dict[str, str]:
     return targets
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Convenience: produce a summary for the UI
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 def rig_detection_report(armature_obj) -> str:
     """Return a human-readable report of detected viseme bindings."""
@@ -222,7 +222,7 @@ def rig_detection_report(armature_obj) -> str:
 
     lines = [f"Detected {len(bindings)} visemes on '{armature_obj.name}':"]
     for b in bindings:
-        lines.append(f"  {b.viseme_code} ({b.viseme_label}) ΓåÆ {b.shape_key_name} [{b.mesh_name}]")
+        lines.append(f"  {b.viseme_code} ({b.viseme_label}) → {b.shape_key_name} [{b.mesh_name}]")
     missing = [v.code for v in VISEMES if v.code not in {b.viseme_code for b in bindings}]
     if missing:
         lines.append(f"Missing visemes ({len(missing)}): {', '.join(missing)}")

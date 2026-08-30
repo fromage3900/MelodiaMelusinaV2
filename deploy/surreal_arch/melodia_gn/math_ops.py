@@ -1,4 +1,4 @@
-﻿"""Math operation GN group builders ΓÇö add, subtract, power scale, exponent blend, named attributes."""
+﻿"""Math operation GN group builders — add, subtract, power scale, exponent blend, named attributes."""
 
 from __future__ import annotations
 
@@ -95,7 +95,7 @@ def build_power_scale(group_name="MEL_power_scale"):
 
 
 def build_exponent_blend(group_name="MEL_exponent_blend"):
-    """Blend between two positions using an exponent curve ΓÇö smooth transitions."""
+    """Blend between two positions using an exponent curve — smooth transitions."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 
@@ -139,7 +139,7 @@ def build_exponent_blend(group_name="MEL_exponent_blend"):
 
 
 def build_store_named_attr(group_name="MEL_store_named_attr"):
-    """Store a named attribute ΓÇö enables data passing between stacked modifiers."""
+    """Store a named attribute — enables data passing between stacked modifiers."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
 

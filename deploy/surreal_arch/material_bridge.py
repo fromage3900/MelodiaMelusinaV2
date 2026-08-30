@@ -1,16 +1,16 @@
-﻿"""Material Bridge ΓÇö Blender material slot Γåö Unreal material instance crosswalk.
+﻿"""Material Bridge — Blender material slot ↔ Unreal material instance crosswalk.
 
-Solves the #1 friction point in the BlenderΓåÆUnreal pipeline:
+Solves the #1 friction point in the Blender→Unreal pipeline:
   - Browse known UE material instances from Blender
   - Auto-map Blender material names to UE paths via fuzzy matching
   - Persist crosswalk as .material_map.json  
   - Auto-embed correct UE paths during LiveLink export
 
 Integrates with:
-  - Live Bridge dashboard (live_bridge.py) ΓÇö shares the N-panel
-  - surreal_world/export.py ΓÇö ROLE_UE_HINTS + STYLE_ROLE_OVERRIDES
-  - UE Monolith MCP (port 9316) ΓÇö live material catalog queries
-  - LiveLink (port 9876) ΓÇö material paths embedded in scene exports
+  - Live Bridge dashboard (live_bridge.py) — shares the N-panel
+  - surreal_world/export.py — ROLE_UE_HINTS + STYLE_ROLE_OVERRIDES
+  - UE Monolith MCP (port 9316) — live material catalog queries
+  - LiveLink (port 9876) — material paths embedded in scene exports
 """
 
 from __future__ import annotations
@@ -31,9 +31,9 @@ from bpy.types import Panel, Operator, PropertyGroup
 from .branding import N_PANEL_CATEGORY
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Known UE material catalog ΓÇö seed from export.py + common patterns
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
+# Known UE material catalog — seed from export.py + common patterns
+# ═══════════════════════════════════════════════════════════════════════
 
 DEFAULT_UE_CATALOG: list[dict] = [
     # Stylized environment materials
@@ -95,12 +95,12 @@ DEFAULT_UE_CATALOG: list[dict] = [
 ]
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Data model ΓÇö material crosswalk
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
+# Data model — material crosswalk
+# ═══════════════════════════════════════════════════════════════════════
 
 class MATB_CrosswalkEntry(PropertyGroup):
-    """One crosswalk entry: Blender material slot ΓåÆ UE material path."""
+    """One crosswalk entry: Blender material slot → UE material path."""
     blender_slot: StringProperty(name="Blender Slot")
     blender_material: StringProperty(name="Blender Material")
     ue_path: StringProperty(
@@ -131,9 +131,9 @@ class MATB_Settings(PropertyGroup):
     )
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Crosswalk engine ΓÇö fuzzy matching + persistence
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
+# Crosswalk engine — fuzzy matching + persistence
+# ═══════════════════════════════════════════════════════════════════════
 
 def _fuzzy_match(name: str, candidates: list[dict]) -> tuple[dict | None, float]:
     """Fuzzy-match a Blender material name against the UE catalog."""
@@ -252,9 +252,9 @@ def get_ue_path_for_material(mat_name: str) -> str:
     return cw.get(mat_name, "")
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Operators
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 class MATB_OT_scan_slots(Operator):
     """Scan material slots on the active object and populate crosswalk."""
@@ -425,12 +425,12 @@ class MATB_OT_clear_slot(Operator):
         return {"FINISHED"}
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Panel ΓÇö Material Bridge (nested under Live Bridge)
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
+# Panel — Material Bridge (nested under Live Bridge)
+# ═══════════════════════════════════════════════════════════════════════
 
 class MATB_PT_material_bridge(Panel):
-    """Material Bridge ΓÇö Blender Γåö Unreal material crosswalk."""
+    """Material Bridge — Blender ↔ Unreal material crosswalk."""
 
     bl_label = "Material Bridge"
     bl_idname = "MATB_PT_material_bridge"
@@ -450,36 +450,36 @@ class MATB_PT_material_bridge(Panel):
         settings = context.scene.matb_bridge
         obj = context.active_object
 
-        # ΓöÇΓöÇ Object info ΓöÇΓöÇ
+        # ── Object info ──
         row = layout.row(align=True)
         row.label(text=f"Object: {obj.name}", icon="OBJECT_DATA")
         slot_count = len(obj.material_slots) if hasattr(obj, "material_slots") else 0
         row.label(text=f"{slot_count} slots")
 
-        # ΓöÇΓöÇ Scan + Auto buttons ΓöÇΓöÇ
+        # ── Scan + Auto buttons ──
         row = layout.row(align=True)
         row.operator("matb.scan_slots", text="Scan Slots", icon="VIEWZOOM")
         row.operator("matb.auto_crosswalk", text="Auto-Match", icon="AUTOMERGE_ON")
         row.prop(settings, "auto_crosswalk_enabled", text="",
                  icon="SETTINGS" if settings.auto_crosswalk_enabled else "PROP_OFF")
 
-        # ΓöÇΓöÇ Crosswalk entries ΓöÇΓöÇ
+        # ── Crosswalk entries ──
         if settings.entries:
             self._draw_crosswalk(layout, context, settings)
         else:
             layout.label(text="No slots scanned. Click 'Scan Slots' above.", icon="INFO")
 
-        # ΓöÇΓöÇ UE Catalog browser ΓöÇΓöÇ
+        # ── UE Catalog browser ──
         self._draw_catalog(layout, context, settings)
 
-        # ΓöÇΓöÇ Save/Load ΓöÇΓöÇ
+        # ── Save/Load ──
         layout.separator()
         row = layout.row(align=True)
         row.operator("matb.save_crosswalk", text="Save Map", icon="FILE_TICK")
         row.operator("matb.load_crosswalk", text="Load Map", icon="FILE_REFRESH")
 
     def _draw_crosswalk(self, layout, context, settings):
-        """Draw the crosswalk table: slot ΓåÆ UE path."""
+        """Draw the crosswalk table: slot → UE path."""
         box = layout.box()
         row = box.row(align=True)
         row.prop(settings, "expand_crosswalk", text="",
@@ -499,11 +499,11 @@ class MATB_PT_material_bridge(Panel):
             icon = "CHECKBOX_HLT" if entry.ue_path else "CHECKBOX_DEHLT"
             if not is_active:
                 op = row.operator("matb.scan_slots", text="", icon=icon, emboss=False)
-                # Can't set entry index easily ΓÇö use a simple label instead
+                # Can't set entry index easily — use a simple label instead
             row.label(text=f"[{i}] {entry.blender_slot[:24]}", icon=icon)
 
             if entry.blender_material and entry.blender_material != "(none)":
-                row.label(text=f"ΓåÆ {entry.blender_material[:20]}", icon="DOT")
+                row.label(text=f"→ {entry.blender_material[:20]}", icon="DOT")
 
             # Auto-match badge
             if entry.auto_matched:
@@ -559,9 +559,9 @@ class MATB_PT_material_bridge(Panel):
             shown += 1
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Registration
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 CLASSES = [
     MATB_CrosswalkEntry,

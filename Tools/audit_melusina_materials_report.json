@@ -1,5 +1,5 @@
 {
-  "audit_timestamp": "2026-08-06T23:07:19.498571",
+  "audit_timestamp": "2026-08-27T21:24:41.547797",
   "audit_mode": "offline",
   "monolith_reachable": false,
   "mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina",
@@ -13,8 +13,8 @@
     28,
     30
   ],
-  "slots_ok": 29,
-  "slots_with_issues": 3,
+  "slots_ok": 0,
+  "slots_with_issues": 32,
   "water_hair_included": true,
   "per_slot_results": {
     "0": {
@@ -28,24 +28,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Gradient_Radial"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "1": {
       "slot_index_0based": 1,
@@ -58,24 +52,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_M_Melusina"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "2": {
       "slot_index_0based": 2,
@@ -88,24 +76,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_M_Melusina"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "3": {
       "slot_index_0based": 3,
@@ -118,24 +100,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_m_sleeve"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "4": {
       "slot_index_0based": 4,
@@ -148,24 +124,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "5": {
       "slot_index_0based": 5,
@@ -178,24 +149,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Metal_2_Matcap"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "6": {
       "slot_index_0based": 6,
@@ -208,24 +173,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "7": {
       "slot_index_0based": 7,
@@ -238,24 +198,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Material_001"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "8": {
       "slot_index_0based": 8,
@@ -268,24 +222,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "9": {
       "slot_index_0based": 9,
@@ -298,24 +247,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Material_007"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "10": {
       "slot_index_0based": 10,
@@ -328,24 +271,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Halftone_Circles_and_Circles_3_Inputs"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "11": {
       "slot_index_0based": 11,
@@ -358,24 +295,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Material_008"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "12": {
       "slot_index_0based": 12,
@@ -388,24 +319,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Material_010"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "13": {
       "slot_index_0based": 13,
@@ -418,24 +343,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_M_Iris_front"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "14": {
       "slot_index_0based": 14,
@@ -448,24 +367,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "15": {
       "slot_index_0based": 15,
@@ -478,24 +392,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_m_bow"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "16": {
       "slot_index_0based": 16,
@@ -508,24 +416,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "17": {
       "slot_index_0based": 17,
@@ -538,22 +441,16 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
-      ],
-      "matched_texture_prefixes": [
-        "T_MelusinaC_SHIRT_001"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
       "has_full_maps": false,
       "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
         "Known issue: was placeholder textures, fixed 2026-08-03 with T_MelusinaC_SHIRT_001_*"
       ],
       "status": "warn"
@@ -569,24 +466,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_skirtpanel_004"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "19": {
       "slot_index_0based": 19,
@@ -599,24 +490,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "20": {
       "slot_index_0based": 20,
@@ -629,24 +515,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_m_shawl"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "21": {
       "slot_index_0based": 21,
@@ -659,23 +539,16 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
-      ],
-      "matched_texture_prefixes": [
-        "T_Melusina_m_frontpanel"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
       "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
         "Known issue: had Marble_1/Marble_5 placeholder textures (fixed Jul 2026 via Marble copy)",
         "Needs verification: Verify Marble placeholder replacement stuck after editor restart"
       ],
@@ -692,24 +565,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "23": {
       "slot_index_0based": 23,
@@ -722,23 +590,16 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
-      ],
-      "matched_texture_prefixes": [
-        "T_Melusina_m_gloves"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
       "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
         "Known issue: had Marble_1 placeholder texture (fixed Jul 2026 via Marble copy)",
         "Needs verification: Verify Marble placeholder replacement stuck after editor restart"
       ],
@@ -755,24 +616,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "25": {
       "slot_index_0based": 25,
@@ -785,29 +641,23 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Material_020"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "26": {
       "slot_index_0based": 26,
       "slot_index_1based": 27,
-      "slot_name": "Skipped \u2014 Material_019",
+      "slot_name": "Skipped - Material_019",
       "material_instance": "NONE",
       "material_path": null,
       "role": "NO MATERIAL ASSIGNED",
@@ -823,7 +673,7 @@
       "has_full_maps": false,
       "status": "empty_intentional",
       "issues": [
-        "Intentional empty slot \u2014 no source texture match found"
+        "Intentional empty slot - no source texture match found"
       ]
     },
     "27": {
@@ -837,29 +687,24 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "28": {
       "slot_index_0based": 28,
       "slot_index_1based": 29,
-      "slot_name": "Skipped \u2014 Material_018",
+      "slot_name": "Skipped - Material_018",
       "material_instance": "NONE",
       "material_path": null,
       "role": "NO MATERIAL ASSIGNED",
@@ -875,7 +720,7 @@
       "has_full_maps": false,
       "status": "empty_intentional",
       "issues": [
-        "Intentional empty slot \u2014 no source texture match found"
+        "Intentional empty slot - no source texture match found"
       ]
     },
     "29": {
@@ -889,29 +734,24 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "30": {
       "slot_index_0based": 30,
       "slot_index_1based": 31,
-      "slot_name": "Skipped \u2014 Iridescence_002",
+      "slot_name": "Skipped - Iridescence_002",
       "material_instance": "NONE",
       "material_path": null,
       "role": "NO MATERIAL ASSIGNED",
@@ -927,7 +767,7 @@
       "has_full_maps": false,
       "status": "empty_intentional",
       "issues": [
-        "Intentional empty slot \u2014 no source texture match found"
+        "Intentional empty slot - no source texture match found"
       ]
     },
     "31": {
@@ -941,24 +781,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "32": {
       "slot_index_0based": 32,
@@ -971,24 +806,19 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail",
+        "Outline may need BaseColor if using texture-based outlines"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Outline"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "33": {
       "slot_index_0based": 33,
@@ -1001,24 +831,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_m_skirt"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "34": {
       "slot_index_0based": 34,
@@ -1031,24 +855,18 @@
       "has_material_assigned": true,
       "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "substrate_toon_compliant": true,
-      "texture_maps_found": [
-        "Alpha",
-        "BaseColor",
-        "Displacement",
-        "Emission",
-        "Metallic",
-        "Normal",
-        "Roughness"
+      "texture_maps_found": [],
+      "matched_texture_prefixes": [],
+      "has_basecolor": false,
+      "has_normal": false,
+      "has_core_maps": false,
+      "has_full_maps": false,
+      "issues": [
+        "Missing core maps (BaseColor/Normal/Roughness/Metallic): found []",
+        "Missing BaseColor texture - will render flat/default color",
+        "Missing Normal map - will lack surface detail"
       ],
-      "matched_texture_prefixes": [
-        "T_Melusina_Halftone_Circles_and_Circles_3_Inputs"
-      ],
-      "has_basecolor": true,
-      "has_normal": true,
-      "has_core_maps": true,
-      "has_full_maps": true,
-      "issues": [],
-      "status": "pass"
+      "status": "warn"
     },
     "water_hair": {
       "mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair",
@@ -1065,57 +883,232 @@
         "world_depth_fade"
       ],
       "issues": [
-        "Uses water master, not M_Master_Toon_Universal \u2014 verify Substrate Toon path active"
+        "Uses water master, not M_Master_Toon_Universal - verify Substrate Toon path active"
       ],
       "status": "warn"
     }
   },
   "summary": {
     "grade": "WARN",
-    "issues_found": 8,
+    "issues_found": 116,
     "recommendations": [
+      "Fix texture assignments on 32 slots missing core maps: ['MI_Melusina_Gradient__Radial__002', 'MI_Melusina_SBW_MELUSINA_006', 'MI_Melusina_SBW_MELUSINA_007', 'MI_Melusina_sleeve_003', 'MI_Melusina_Outline_Shader_star_024', 'MI_Melusina_Metal_2__Matcap__002', 'MI_Melusina_Outline_005', 'MI_Melusina_Material_021', 'MI_Melusina_Outline_004', 'MI_Melusina_Material_013', 'MI_Melusina_Halftone_Circles___Circles__3_Inputs__001', 'MI_Melusina_Material_022', 'MI_Melusina_Material_023', 'MI_Melusina_IRISFRONT_001', 'MI_Melusina_Outline_Shader_star_034', 'MI_Melusina_bow_002', 'MI_Melusina_Outline_Shader_star_029', 'MI_Melusina_Material_024', 'MI_Melusina_skirtpanel_002', 'MI_Melusina_Outline_Shader_star_025', 'MI_Melusina_SHAWL_001', 'MI_Melusina_frontpanel_001', 'MI_Melusina_Outline_Shader_star_023', 'MI_Melusina_GLOVES_001', 'MI_Melusina_Outline_Shader_star_030', 'MI_Melusina_Material_017', 'MI_Melusina_Outline_Shader_star_028', 'MI_Melusina_Outline_Shader_star_027', 'MI_Melusina_Outline_Shader_star_026', 'MI_Melusina_Outline_Shader_star_032', 'MI_Melusina_SKIRT_003', 'MI_Melusina_Halftone_3_Inputs_-_Lines___Circles_002']",
       "Verify TP_Melusina toon profile is assigned to all clothing/body MIs (not outlines/halftones)",
-      "Run in-editor verification: open each MI \u2192 check Details \u2192 Substrate Toon BSDF \u2192 Toon Profile",
+      "Run in-editor verification: open each MI -> check Details -> Substrate Toon BSDF -> Toon Profile",
       "Verify MI_Melusina_WaterHair has Substrate Toon path active (it uses water master, not Universal)",
       "Run fix_up_redirectors.py and Map Check after any editor session",
       "Check bUseSeparateRoughnessMap and bUseSeparateMetallicMap static switches on all MIs"
     ],
     "priority_order": [
       [
+        0,
+        "MI_Melusina_Gradient__Radial__002",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        1,
+        "MI_Melusina_SBW_MELUSINA_006",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        2,
+        "MI_Melusina_SBW_MELUSINA_007",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        3,
+        "MI_Melusina_sleeve_003",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        4,
+        "MI_Melusina_Outline_Shader_star_024",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        5,
+        "MI_Melusina_Metal_2__Matcap__002",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        6,
+        "MI_Melusina_Outline_005",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        7,
+        "MI_Melusina_Material_021",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        8,
+        "MI_Melusina_Outline_004",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        9,
+        "MI_Melusina_Material_013",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        10,
+        "MI_Melusina_Halftone_Circles___Circles__3_Inputs__001",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        11,
+        "MI_Melusina_Material_022",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        12,
+        "MI_Melusina_Material_023",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        13,
+        "MI_Melusina_IRISFRONT_001",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        14,
+        "MI_Melusina_Outline_Shader_star_034",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        15,
+        "MI_Melusina_bow_002",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        16,
+        "MI_Melusina_Outline_Shader_star_029",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
         17,
         "MI_Melusina_Material_024",
-        "MEDIUM",
-        "Known historical issue"
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        18,
+        "MI_Melusina_skirtpanel_002",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        19,
+        "MI_Melusina_Outline_Shader_star_025",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        20,
+        "MI_Melusina_SHAWL_001",
+        "HIGH",
+        "Missing core texture maps"
       ],
       [
         21,
         "MI_Melusina_frontpanel_001",
-        "MEDIUM",
-        "Known historical issue"
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        22,
+        "MI_Melusina_Outline_Shader_star_023",
+        "HIGH",
+        "Missing core texture maps"
       ],
       [
         23,
         "MI_Melusina_GLOVES_001",
-        "MEDIUM",
-        "Known historical issue"
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        24,
+        "MI_Melusina_Outline_Shader_star_030",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        25,
+        "MI_Melusina_Material_017",
+        "HIGH",
+        "Missing core texture maps"
       ],
       [
         26,
-        "Skipped \u2014 Material_019",
+        "Skipped - Material_019",
         "HIGH",
         "Empty slot"
+      ],
+      [
+        27,
+        "MI_Melusina_Outline_Shader_star_028",
+        "HIGH",
+        "Missing core texture maps"
       ],
       [
         28,
-        "Skipped \u2014 Material_018",
+        "Skipped - Material_018",
         "HIGH",
         "Empty slot"
       ],
       [
+        29,
+        "MI_Melusina_Outline_Shader_star_027",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
         30,
-        "Skipped \u2014 Iridescence_002",
+        "Skipped - Iridescence_002",
         "HIGH",
         "Empty slot"
+      ],
+      [
+        31,
+        "MI_Melusina_Outline_Shader_star_026",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        32,
+        "MI_Melusina_Outline_Shader_star_032",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        33,
+        "MI_Melusina_SKIRT_003",
+        "HIGH",
+        "Missing core texture maps"
+      ],
+      [
+        34,
+        "MI_Melusina_Halftone_3_Inputs_-_Lines___Circles_002",
+        "HIGH",
+        "Missing core texture maps"
       ]
     ]
   }

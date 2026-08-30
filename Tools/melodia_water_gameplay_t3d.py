@@ -45,6 +45,9 @@ TARGETS = (
     WaterT3DTarget("buoyancy_debug_telemetry", "inspect authoritative sample/impact state", "HasAuthoritativeWaterSample", "HasAuthoritativeWaterSample", ("HasAuthoritativeWaterSample",)),
     WaterT3DTarget("save_load_rebind", "restore logical state after load", "RestoreSaveState", "RestoreSaveState", ("RestoreSaveState",)),
     WaterT3DTarget("runtime_diagnostic", "one-shot proof diagnostics", "GetPlatformMotionState", "GetPlatformMotionState", ("GetPlatformMotionState",)),
+    WaterT3DTarget("sea_above_pulse_cycle", "drive 12-20s biological pulse cycle for false ocean and membrane", "SetScalarParameterValue", "SetScalarParameterValue", ("SetScalarParameterValue",)),
+    WaterT3DTarget("sea_above_anomaly_burst", "trigger upward anomaly particle burst on pulse peak", "GreaterEqual_DoubleDouble", "GreaterEqual_DoubleDouble", ("GreaterEqual_DoubleDouble",)),
+    WaterT3DTarget("sea_above_membrane_sheen", "modulate membrane Fresnel and sheen based on pulse intensity", "Lerp", "Lerp", ("Lerp",)),
 )
 
 
