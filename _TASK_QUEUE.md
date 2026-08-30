@@ -36,6 +36,8 @@
 > | Ocean visual pass + `DA_Color_AnimeLightBlue`/`DA_Foam_Stylized` + `Toon_Weight` dial | **Available** — owner eyeball task |
 > | Starskiff MI family (Hull_Regal, Brass, Cushion, LanternGlass, PlankNail, Wake_Emission) on Universal | **Done 2026-08-29 late** — 25 skiff textures now instanced; masks (patina/jewel/edgewear/damask) unwired pending a mask-input pass |
 > | Jellyfish v2 GRAND (Houdini lane) | **Done 2026-08-29 late** — 136 m bell (24 lobes) + 12 × 480 m double-bifurcating 1.5π-twist arms; topology contract verified ×3 poses; FBX + QA renders in `Saved/Audit/sea_above/`; UE import queued |
+> | Jellyfish v3 SERAPH (Houdini lane) | **Done 2026-08-29 late** — 190 m dome, 3 golden-ratio floating tiers (Fibonacci lobes 21/13/8), halo ring, 55-filament cilia crown, 13 × 640 m golden-angle arms; zero topology mismatches; FBX + renders; UE import queued |
+> | Mara Elletra Vell base from Melusina | **Done 2026-08-29 late** — `SK_Mara_Vell_Body` (shared skeleton) + `MI_Mara_Skin_006/007` moonlit retint on Universal, slots 0–2 assigned; gown via Outfit Hub + own outline/eye pass next |
 > | P1 arc draft: Mara Elletra Vell + The Faraway Mother | **Draft for owner canon** — `Docs/Plans/P1_MARA_ELLETRA_VELL_AND_THE_FARAWAY_MOTHER_2026-08-29.md` + `specs/progression/melodia_mara_faraway_mother_quest.v1.json` (allowlist quarantined behind owner gate) |
 > | Banner/Shroud fabric master (Kelp is an explicit placeholder) | **Available** |
 > | Reef/height-blend masters: mirror `M_Master_Toon_Universal`'s Madoka/Itto input wiring | **Available** — owner look decision first |
