@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "naming_harmonization",
+    "sources": [
+      "catalog_dress_batch_2026-08-31.json",
+      "catalog_gloves_batch_2026-08-31.json",
+      "catalog_hat_batch_2026-08-31.json",
+      "catalog_shawl_trail_batch_2026-08-31.json"
+    ]
+  },
+  "convention": "Cos_<Slot>_Melusina<Descriptor> (PascalCase, no underscores within descriptor, no bare Melusina)",
+  "total_ids": 26,
+  "violations": 5,
+  "violation_details": [
+    {
+      "id": "Cos_Dress_Melusina_ResonantWeave",
+      "issue": "missing_variant_suffix",
+      "slot": "dress"
+    },
+    {
+      "id": "Cos_Dress_Melusina_SwiftCurrent",
+      "issue": "missing_variant_suffix",
+      "slot": "dress"
+    },
+    {
+      "id": "Cos_Dress_Melusina_TideWalker",
+      "issue": "missing_variant_suffix",
+      "slot": "dress"
+    },
+    {
+      "id": "Cos_Dress_Melusina",
+      "issue": "missing_variant_suffix",
+      "slot": "dress"
+    },
+    {
+      "id": "Cos_Gloves_Melusina",
+      "issue": "missing_variant_suffix",
+      "slot": "gloves"
+    }
+  ],
+  "canonical_map": {
+    "Cos_Dress_Melusina_ResonantWeave": "Cos_Dress_MelusinaResonantWeave",
+    "Cos_Dress_Melusina_SwiftCurrent": "Cos_Dress_MelusinaSwiftCurrent",
+    "Cos_Dress_Melusina_TideWalker": "Cos_Dress_MelusinaTideWalker",
+    "Cos_Dress_Melusina": "REVIEW \u2014 bare descriptor, needs variant",
+    "Cos_Gloves_Melusina": "REVIEW \u2014 bare descriptor, needs variant"
+  },
+  "action": "Spec only. Owner to confirm canonical names before script execution."
+}
