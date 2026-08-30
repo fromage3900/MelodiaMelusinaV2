@@ -1,0 +1,42 @@
+@ Start
+
+- Melusina
+  The tide in the sky is turning. I can feel the shorewake pulling toward the high balcony.
+
+- Sir Melodious
+  The celestial current is attuned to your song, Melusina. Take the Shorewake Weave and board the Starskiff when you are ready.
+
+* Accept the Shorewake Weave and prepare to depart. | -> AcceptWeave
+* Inquire about the Sea Above currents.             | -> InquireCurrents
+
+<@> InquireCurrents
+
+- Melusina
+  The water above reflects no stars, only resonance.
+
+- Sir Melodious
+  It is a living sea. The Shorewake fabric will stabilize your buoyancy across the sky.
+
+-> AcceptWeave
+
+<@> AcceptWeave
+
+- Melusina
+  The fabric aligns with the skyward tide. The current feels weightless against my hands.
+
+$ Notify melodia:item:give:item.outfit.shorewake:1
+$ Notify melodia:stat:intent.shorewake.resonance:melodia_resonance:5
+$ Notify melodia:flag:flag.quest.shorewake_completed:true
+$ Notify melodia:flag:flag.sea_above.starskiff_ready:true
+
+- Sir Melodious
+  The resonance holds! The Starskiff is anchored at the overlook mooring and ready for your command.
+
+$ Notify melodia:questcomplete:quest.shorewake.initiation:flag.quest.shorewake_completed:reward.shorewake_weave:intent.shorewake.complete:checkpoint.shorewake.complete
+
+@ Finish
+
+- .
+  Melusina attunes to the Shorewake. Traversal aboard the Starskiff is unlocked.
+
+$ End
