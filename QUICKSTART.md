@@ -22,6 +22,17 @@ This downloads only ~2-10GB instead of 300GB! 🎉
 
 **📖 Full guide:** [COLLABORATOR_SETUP.md](COLLABORATOR_SETUP.md)
 
+### Source Control Today
+
+Git/Git LFS remains the required collaborator checkout path. A local Perforce pilot has seeded
+`//melodia/Exports/...` for locking and large-asset validation, but it runs only on the owner's
+workstation and is not yet a shared service. Do not configure it from another machine or edit the
+same export through Git and Perforce.
+
+For text/code/docs work, run `python Tools/source_control_triage.py` before committing. Its scheduled
+12-hour report identifies review-only binary and Perforce paths; it does not stage or commit changes.
+The source-control plan is [Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
+
 ### If plugins such as MeshBlend or PCGEx are missing
 
 The Blender-only sparse checkout does not contain the Unreal project or its

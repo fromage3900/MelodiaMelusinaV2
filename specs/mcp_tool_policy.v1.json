@@ -488,6 +488,34 @@
         "read",
         "verify"
       ]
+    },
+    "gaea_inspect_terrain": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [ "read" ]
+    },
+    "gaea_list_recipes": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [ "read" ]
+    },
+    "gaea_verify_build": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [ "read" ]
+    },
+    "gaea_stage_example_for_export": {
+      "decision": "allow",
+      "required_approval": "owner",
+      "operations": [ "mutate" ],
+      "reason": "Copies a stock Gaea example into the project and writes an export recipe JSON; owner-gated write."
+    },
+
+    "gaea_build_terrain": {
+      "decision": "allow",
+      "required_approval": "owner",
+      "operations": [ "mutate" ],
+      "reason": "Runs headless Gaea Swarm to emit terrain maps; owner-gated exec."
     }
   }
 }

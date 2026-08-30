@@ -18,6 +18,11 @@
 > files, not all 24,128 on the authoring machine. See [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md)
 > and [Docs/LFS_COLD_ARCHIVE.md](Docs/LFS_COLD_ARCHIVE.md).
 
+> **Source control transition.** Git remains authoritative for code, configuration, tools, docs,
+> and automation. A local Helix Core pilot is authoritative for the seeded `//melodia/Exports/...`
+> depot path (change `2`, 50 files). The Git `Exports/` copies remain intentionally until cutover
+> validation and backup sign-off; do not edit the same export in both systems.
+
 ♪ **Production-grade rhythm-JRPG in UE 5.8 + Blender 5.2.** One author, three active workstreams — a shippable vertical slice, a multi-modal content pipeline, and a constrained local-model benchmark. Every claim has a ledger row. No prose passes for evidence. Music is the key: rhythm rides on every JRPG command, and in the world it opens the way.
 
 ♫ **Current phase:** Cozy→psych-horror niche lock + P0 orchestra convergence. Light gacha (wardrobe-only, pity, no stamina). See `research/melodia_niche_cozy-horror_ue_workflows.md` + `research/live_verification_kit.md` for live-editor verification.
@@ -55,7 +60,8 @@ L_MelusinaMorning
 | Harmonix rhythm | ♪ WORKED (owner-locked) | `RHYTHM_GAME_LOCKED_2026-08-12.md` |
 | PIE runtime input | ♪ PASS (ledger 2026-08-13) | `Saved/gate_ledger.json` |
 | Save/Load | ♪ PASS | `repeat_consume` + `package_launch` gates |
-| Stock JRPG battle | ◻ BROKEN | Morning → KaleidoNave path open |
+| Stock JRPG battle | ♪ Root cause fixed, PIE-verified (2026-08-26) | `Docs/Handoffs/P0_CLOSEOUT_HANDOFF_2026-08-26.md` |
+| Rhythm-highway HUD binding | ◻ OPEN — top priority | `BP_BattleController.melodiaBattleUI`/`.MelodiaUI` = None |
 | T3D wiring gate | ♪ EXPANDING | `t3d_safe_wire.py` active |
 
 ### 2. ♪ Melodia MCP + Local Model Tooling (MATH)
@@ -101,7 +107,7 @@ Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote
 | `specs/` | 87 JSON schemas — contracts, fixtures, policies |
 | `Plugins/` | 15 active — Monolith, QuillScript, Wardrobe, UnrealMCP, VRM4U… |
 | `Docs/` | 411 files — handoffs, reviews, specs, career |
-| `Exports/` | FBX, animation sources, Alembic, glTF |
+| `Exports/` | FBX, animation sources, Alembic, glTF — seeded in Perforce change `2`; Git copies retained pending cutover |
 | `Saved/` | Gate ledgers, audit reports, recovery |
 
 ---
@@ -124,7 +130,7 @@ Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote
 | `ProceduralDungeon` | Runtime dungeon assembly | ♪ Active |
 | `ProceduralModelingToolkit` | Runtime mesh generation | ♪ Active |
 | `GaeaUnrealTools` | Terrain/heightfield import | ♪ Active |
-| `MelodiaTokenWallet` | Token | ◻ Scaffolded |
+| `MelodiaTokenWallet` | Token/NFT stub | ◻ Scaffolded |
 
 ---
 
@@ -216,6 +222,21 @@ start BS_GodFile.uproject
 # 5. Run static gates
 python Tools/project_state.py --view integration
 ```
+
+### Perforce Pilot
+
+The local pilot server is `localhost:1667`, with depot `//melodia/...`. The default client user
+is `froma`; authenticate with `p4 login` before working with Perforce. `Exports/` has been seeded
+to `//melodia/Exports/...`; `.blend` and `.fbx` files use server-enforced exclusive checkout.
+
+```powershell
+p4 info -s
+p4 files //melodia/Exports/...
+```
+
+Keep Git and Perforce ownership separate. Do not remove Git-tracked `Exports/` files or add
+`Content/` to Perforce until the migration gates in
+[Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md) are complete.
 
 ```
 ◇─◇──◇──◇─◇
