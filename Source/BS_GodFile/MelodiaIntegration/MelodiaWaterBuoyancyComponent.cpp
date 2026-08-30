@@ -70,7 +70,8 @@ void UMelodiaWaterBuoyancyComponent::TickComponent(float DeltaTime, ELevelTick T
 		const FVector ProbeWorld = ComponentTransform.TransformPosition(LocalProbe);
 		FMelodiaWaterSample Sample;
 		if (!WaterInteraction->QueryWaterAtLocationForActor(Platform, ProbeWorld, Sample) ||
-			!Sample.bValid || !Sample.bSurfaceValid || Sample.QueryProvider != EMelodiaWaterQueryProvider::NativeWaterBody)
+			!Sample.bValid || !Sample.bSurfaceValid ||
+			(Sample.QueryProvider != EMelodiaWaterQueryProvider::NativeWaterBody && Sample.QueryProvider != EMelodiaWaterQueryProvider::Oceanology))
 		{
 			continue;
 		}

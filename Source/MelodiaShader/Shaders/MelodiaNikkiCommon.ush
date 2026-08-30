@@ -57,21 +57,121 @@ float3 MelNikkiPearlSheen(
 // ============================================================================
 // Glitter Halo — world-aligned hash glitter + fresnel halo
 // (from MF_NikkiGlitterHalo)
+//
+// AUDIO CONTRACT (Harmonix, Decisions 009/011): beatPhase is the continuous
+// 0..1 phase within the current beat from UMelodiaMusicClockSubsystem (MPC
+// BeatPhase), NOT wall-clock time. When no clock is running BeatPhase=0 and
+// the twinkle degrades to a static per-flake brightness — graceful, never a
+// fabricated tempo (wall-clock accumulation is banned project-wide).
 // ============================================================================
 
 float3 MelNikkiGlitterHalo(
     float3 baseColor, float3 normal, float3 cameraVector, float3 worldPosition,
     float mask, float scale, float amount, float intensity,
-    float3 glitterColor, float haloStrength, float haloPower, float twinkleSpeed, float time
+    float3 glitterColor, float haloStrength, float haloPower, float twinkleSpeed, float time,
+    float beatPhase  // Harmonix beat phase 0..1 from MPC_Melodia_Palette.BeatPhase
 )
 {
     float2 cell = floor(worldPosition.xy * scale);
     float r = MelHash(cell);
-    float tw = 0.5 + 0.5 * sin(time * twinkleSpeed + r * MEL_TAU);
+    // Musical twinkle: each cell twinkles at its own offset inside the authored
+    // beat (staggered, but tempo-locked). Falls back to the ambient time-driven
+    // twinkle only when no clock is publishing (BeatPhase stays exactly 0).
+    float tw = lerp(
+        0.5 + 0.5 * sin(time * twinkleSpeed + r * MEL_TAU),
+        pow(MelSaturate(1.0 - frac(beatPhase + r)), 3.0) * 1.4,
+        step(0.001, beatPhase));
     float ndv = MelSaturate(dot(normalize(normal), normalize(cameraVector)));
     float halo = pow(1.0 - ndv, haloPower) * haloStrength;
     float glit = step(1.0 - amount, r) * tw * mask;
     return baseColor + glitterColor * (glit + halo) * MelSaturate(intensity);
+}
+
+// ============================================================================
+// Glitter Pile — triple-A discrete-flake glitter (MF_MelodiaGlitterPile body)
+//
+// Techniques (validated 2026-08-29 against Nightshift Glitter Shader / Spivak
+// Borderlands flake study / Quilez smooth-impulse points):
+//   1. World-aligned cells with per-flake sub-cell jitter (no visible grid).
+//   2. Per-flake scattered facet normal ("Emissive Effects: Scattering") —
+//      UE materials cannot read scene lights, so the glint is simulated as
+//      emissive from the facet/view half-angle.
+//   3. Per-flake peak viewing angle (rF bias) — flakes flare at their own
+//      angle to the camera, which is what makes a pile read as real flakes
+//      instead of a bumpy surface.
+//   4. Harmonix musical twinkle: each flake twinkles on its own subdivision
+//      of the authored beat (1, 1/2, 1/4) with a per-flake offset — a
+//      polyrhythm that is still tempo-locked. BeatPulse (cos^2) raises
+//      activation + flashes the strongest flakes on the beat.
+//   5. Impact (MPC Mid, one-shot decay) bursts extra flakes + brightness.
+//   6. Per-flake iridescent tint (Nikki pearl family) + fresnel halo.
+// Graceful degradation: BeatPhase=0, BeatPulse=0 -> static pile at base
+// density; no clock is never faked.
+// ============================================================================
+
+float3 MelGlitterPile(
+    float3 baseColor, float3 normal, float3 cameraVector, float3 worldPosition,
+    float mask, float scale, float density, float facetSharpness, float flakeBrightness,
+    float3 glitterColor, float iridescence, float haloStrength, float haloPower,
+    float beatPhase, float beatPulse, float impact, float reactivity, float time
+)
+{
+    // world-aligned plane cells; z folds into the plane so vertical surfaces vary
+    float3 wp = worldPosition * scale;
+    float2 sp = wp.xy + float2(wp.z * 0.37, -wp.z * 0.59);
+    float2 cellId = floor(sp);
+
+    // six per-flake hashes (existence, tint, facet xy, twinkle offset, peak)
+    float rA = frac(sin(dot(cellId + 0.731,  float2(12.9898, 78.233))) * 43758.5453);
+    float rB = frac(sin(dot(cellId + 3.117,  float2(39.346, 11.135)))  * 43758.5453);
+    float rC = frac(sin(dot(cellId + 7.913,  float2(127.1, 311.7)))    * 43758.5453);
+    float rD = frac(sin(dot(cellId + 11.71,  float2(269.5, 183.3)))    * 43758.5453);
+    float rE = frac(sin(dot(cellId + 17.13,  float2(41.29, 289.91)))   * 43758.5453);
+    float rF = frac(sin(dot(cellId + 23.77,  float2(93.989, 67.345)))  * 43758.5453);
+
+    // 1. existence — audio raises activation (beat lifts, impact bursts)
+    float activation = MelSaturate(density + (beatPulse * 0.20 + impact * 0.45) * reactivity);
+    float exists = step(1.0 - activation, rA);
+
+    // 2. soft round flake with sub-cell jitter (no grid artifact)
+    float2 fpos = frac(sp) - 0.5;
+    float2 joff = (float2(rC, rD) - 0.5) * 0.6;
+    float d = length(fpos - joff);
+    float flakeR = 0.10 + rB * 0.22;
+    float flake = MelSaturate(1.0 - smoothstep(flakeR * 0.6, flakeR, d));
+
+    // 3. scattered facet normal around the surface normal
+    float3 Ns = normalize(normal);
+    float3 V = normalize(cameraVector);
+    float3 T1 = normalize(cross(Ns, float3(0.0, 0.0, 1.0)) + float3(1e-4, 0.0, 0.0));
+    float3 T2 = cross(Ns, T1);
+    float3 F = normalize(Ns + T1 * (rC - 0.5) * 1.6 + T2 * (rD - 0.5) * 1.6);
+
+    // 4. per-flake peak angle glint (simulated reflection as emissive)
+    float facetGlint = pow(MelSaturate(dot(F, V) * (0.6 + 0.8 * rF)), max(facetSharpness, 1.0));
+
+    // 5. Harmonix musical twinkle — per-flake subdivision of the authored beat
+    float period = exp2(-floor(rE * 2.999));            // 1, 1/2, 1/4 beats
+    float p = frac(beatPhase / period + rF * 7.13);
+    float twin = exp(-p * 7.0);                         // instant attack, exp decay
+    float shimmer = pow(MelSaturate(sin(time * (6.0 + rA * 14.0) + rE * MEL_TAU) * 0.5 + 0.5), 10.0);
+
+    // 6. on-beat flash for the strongest flakes, gated by battle reactivity
+    float beatFlash = beatPulse * reactivity * step(0.72, rA) * 0.9;
+
+    // 7. per-flake iridescent tint
+    float fres = pow(1.0 - MelSaturate(dot(Ns, V)), 2.0);
+    float3 irid = 0.5 + 0.5 * cos(MEL_TAU * (fres * iridescence + rB + float3(0.0, 0.33, 0.67)));
+    float3 flakeColor = glitterColor * lerp(float3(1.0, 1.0, 1.0), irid, MelSaturate(iridescence));
+
+    float spark = exists * flake *
+        (facetGlint * (0.45 + 0.55 * twin) + twin * 0.55 + shimmer * 0.30);
+    float3 result = baseColor + flakeColor * (spark * flakeBrightness * MelSaturate(mask) + exists * flake * beatFlash);
+
+    // 8. fresnel halo, audio-lifted
+    float halo = pow(1.0 - MelSaturate(dot(Ns, V)), haloPower)
+               * haloStrength * (1.0 + beatPulse * 0.5 * reactivity);
+    return result + glitterColor * halo * MelSaturate(mask);
 }
 
 // ============================================================================
