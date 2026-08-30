@@ -1,0 +1,125 @@
+{
+  "schema": "melodia.hda_melodia_lookdev.v1",
+  "hda": "hda_melodia_lookdev.hda",
+  "hip": "melodia_dress_cop.hip",
+  "houdini_version": "22.0.368 (also 20.5+ Copernicus)",
+  "engine": "Houdini Engine for UE 5.8 FREE (up to 10 licenses, Indie 3 FREE)",
+  "description": "Async-cook HDA for Melodia lookdev — replaces PIL rasterizer, outputs Nanite mesh + T_* + manifest",
+  "parameters": [
+    {
+      "name": "Seed",
+      "label": "Determinism Seed",
+      "type": "int",
+      "default": 20260828,
+      "help": "Every RNG node (Labs Baker jitter, OIDN) uses this. Changing it invalidates Saved/Audit/melusina_lookdev/houdini_variants/* QA renders."
+    },
+    {
+      "name": "Resolution",
+      "label": "Bake Resolution",
+      "type": "int",
+      "default": 1024,
+      "enum": [512, 1024, 2048, 4096],
+      "help": "File Output COP resolution. 1024 for dress, 2048+ for terrain."
+    },
+    {
+      "name": "BakeSet",
+      "label": "Texture Set",
+      "type": "string",
+      "default": "T_MelusinaC_DressShorewake",
+      "enum": ["T_MelusinaC_DressShorewake", "T_FarawayMother_Gown", "T_FarawayMother_Mantle", "T_Terrain_Heightfield"],
+      "help": "Which UE texture stem to output. Must match melodia_v2_material_map.json convention."
+    },
+    {
+      "name": "Denoise",
+      "label": "OIDN Denoise",
+      "type": "bool",
+      "default": true,
+      "help": "Enable OpenImageDenoise COP (2s). Disable for debugging raw 64-ray AO speckle."
+    },
+    {
+      "name": "ThicknessBias",
+      "label": "Thickness Bias",
+      "type": "float",
+      "default": 0.0,
+      "range": [-1.0, 1.0],
+      "help": "Post-scale on f@thickness VEX (Cd.r). For thin-vs-thick fabric tuning."
+    },
+    {
+      "name": "BackgroundAO",
+      "label": "AO Background",
+      "type": "float",
+      "default": 1.0,
+      "help": "COP Attribute Interpolate background for AO (must stay 1.0 — verified in dress_ao_raster_manifest.json)"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "Posed Mesh",
+      "type": "SOP Import",
+      "path": "/obj/dress_bake/OUT_SOP",
+      "description": "Posed OBJ from Pass A (shorewake_all_meshes.obj) or USDZ 48MAT. Y-up, cm."
+    }
+  ],
+  "cop_network": {
+    "nodes": [
+      "SOP Import (OUT_SOP, res 1024)",
+      "Labs Maps Baker (barycentric, bg 1.0, seed 20260828)",
+      "Attribute Interpolate (Ao, bg 1.0 — exact, same as bake_rasterize_ao.py note)",
+      "Curvature (convex → falloff LUT)",
+      "Denoise OIDN (strength 0.5)",
+      "File Output ×4 (BaseColor BC7 sRGB, Normal BC5 linear, Roughness BC4 linear, Emissive gray)"
+    ],
+    "cache": "COP Cache COP after Denoise — re-cook only on Seed/Resolution change",
+    "replaces": "Tools/Houdini/sea_above_reef/bake_rasterize_ao.py (numpy PIL, O(n²), no denoise)"
+  },
+  "sop_network": {
+    "nodes": [
+      "File SOP (posed OBJ)",
+      "AttribWrangle VEX_geometry_attrs (thickness ray + convex/concave Laplacian → Cd)",
+      "AttribWrangle VEX_AO_64 (64 rays, cosine hemisphere, self-exclusion 0.001, seed)",
+      "Null OUT_SOP"
+    ]
+  },
+  "outputs": [
+    {
+      "path": "Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_BaseColor.png",
+      "ue_path": "/Game/EnvSandbox/Textures/Melusina/T_MelusinaC_DressShorewake_BaseColor",
+      "compression": "BC7",
+      "srgb": true,
+      "lod_group": "TEXTUREGROUP_World"
+    },
+    {
+      "path": "Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_Normal.png",
+      "ue_path": "/Game/EnvSandbox/Textures/Melusina/T_MelusinaC_DressShorewake_Normal",
+      "compression": "BC5",
+      "srgb": false,
+      "lod_group": "TEXTUREGROUP_WorldNormalMap"
+    },
+    {
+      "path": "Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_Roughness.png",
+      "ue_path": "/Game/EnvSandbox/Textures/Melusina/T_MelusinaC_DressShorewake_Roughness",
+      "compression": "BC4",
+      "srgb": false,
+      "lod_group": "TEXTUREGROUP_WorldSpecular"
+    },
+    {
+      "path": "Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_Emission.png",
+      "ue_path": "/Game/EnvSandbox/Textures/Melusina/T_MelusinaC_DressShorewake_Emission",
+      "compression": "BC7",
+      "srgb": true,
+      "lod_group": "TEXTUREGROUP_World"
+    }
+  ],
+  "unreal_contract": {
+    "verify": "Tools/verify_tex_contract.py + Saved/Audit/sea_above/houdini_variants/dress_*_manifest.json",
+    "material": "MI_Melusina_Dress_Shorewake on M_Master_Toon_Universal (Albedo+Normal+Emissive wired 2026-08-29, added bUseEmissiveMap)",
+    "mesh": "SK_ShorewakeDress_Magical.fbx (268281 verts, 48 slots, 5 morphs) — weight lab blocked until hython license verified",
+    "nanite": false,
+    "collision": "auto-convex (dress is skeletal, not static)"
+  },
+  "rollout": {
+    "phase": "SOP VEX proven (already), PIL rasterizer live, Copernicus HIP scaffold landed this commit (dry), HDA cook blocked until hserver -l license verified",
+    "fallback": "Keep PIL rasterizer until COP File Outputs match PIL outputs byte-identical on seed 20260828 (compare via Tools/verify_tex_contract.py)",
+    "owner_action": "Verify hserver license (hserver -l), then hython Tools/Houdini/copernicus/copernicus_dress_bake.py"
+  }
+}
