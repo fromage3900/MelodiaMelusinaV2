@@ -5,6 +5,18 @@
 See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
 
 ---
+## Skills created 2026-08-30
+
+| Skill | Purpose |
+|-------|---------|
+| `melodia-daemon-monitor` | Diagnose and repair failing cron jobs (provider misconfig, HTTP 402, null provider) |
+| `melodia-mesh-catalog` | Catalog static meshes, find duplicates, propose reorganization (read-only) |
+| `melodia-cathedral-builder` | Recursive overnight evolution loop — wool modes, weight lab, cathedral geometry |
+
+## Ollama daemon lane
+
+Qwen3 8B is pulled and available for local daemon work. `Tools/model_router.py` daemon lane is functional with `qwen3:8b` as primary researcher and `qwen3-coder:30b` for code/audit tasks. Daemons using this lane produce reports in `Saved/Daemon/proposals/` for human review.
+
 
 ## Current P0 authority — 2026-08-24
 
@@ -447,6 +459,11 @@ plausible to a folder outside `Content/` first.
     `L_KaleidoNave`" survived a session — it is in `L_Melodia_Dreamstate`, streamed in. The
     distinction is load-bearing: a sublevel that is not set to load at startup is **absent from
     the PIE world**. Read the `sublevel` field, and confirm at runtime with a tag probe.
+
+25. **Cron jobs sharing the same `workdir` lock each other out.** Two daemons with `workdir: C:\EnvironmentPortfolio\BS_GodFile` will deadlock on the TERMINAL_CWD write lock — the second job times out after 660s with `TimeoutError`. Fix: remove `workdir` from the job config (use absolute paths in prompts) or stagger schedules so they never overlap.
+
+26. **`Saved/Audit/*.json` commits are allowed.** Daemon-produced specs and audit reports in `Saved/Audit/` are explicitly allowlisted in `.githooks/pre-commit` (line 68: `grep -Ev '^Saved/Audit/.*\.(json|md)\$'`). They do not need owner sign-off to commit.
+
 
 ## Historical August 10 work queue — superseded
 
