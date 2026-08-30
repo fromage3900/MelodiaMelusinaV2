@@ -1,4 +1,4 @@
-"""Faraway Mother GN builders — 5 builders for the fabric-mountain Monolith.
+"""Faraway Mother GN builders — 8 builders for the fabric-mountain Monolith.
 
 Reuses existing material masters (MI_Master_Nikki_Landscape, MI_Master_Toon_Universal_Alpha).
 No new materials. Pure GN geometry.
@@ -33,7 +33,7 @@ def build_mother_head_silhouette(group_name="MEL_mother_head_silhouette"):
     """Sculpted mountain ridge that reads as a reclining face profile.
 
     Inputs:
-      Width, Height, Depth, Ridge Count, Noise Scale, Noise Detail
+      Width, Height, Depth, Noise Scale, Noise Detail
     """
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
@@ -41,7 +41,6 @@ def build_mother_head_silhouette(group_name="MEL_mother_head_silhouette"):
     width_n = add_float_param(tree, "Width", 20.0, 1.0, 100.0)
     height_n = add_float_param(tree, "Height", 8.0, 1.0, 50.0)
     depth_n = add_float_param(tree, "Depth", 6.0, 1.0, 30.0)
-    ridge_n = add_int_param(tree, "Ridge Count", 5, 1, 16)
     noise_scale_n = add_float_param(tree, "Noise Scale", 3.0, 0.1, 10.0)
     noise_detail_n = add_float_param(tree, "Noise Detail", 4.0, 0.0, 8.0)
 
@@ -90,7 +89,7 @@ def build_mother_hair_cascade(group_name="MEL_mother_hair_cascade"):
     """Ribbon waterfall cascade that reads as flowing maternal hair.
 
     Inputs:
-      Length, Width, Strand Count, Curl, Flow Speed, Twist
+      Length, Width, Strand Count, Curl
     """
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
@@ -99,7 +98,6 @@ def build_mother_hair_cascade(group_name="MEL_mother_hair_cascade"):
     width_n = add_float_param(tree, "Width", 2.0, 0.1, 10.0)
     strand_n = add_int_param(tree, "Strand Count", 12, 1, 48)
     curl_n = add_float_param(tree, "Curl", 0.3, 0.0, 1.0)
-    twist_n = add_float_param(tree, "Twist", 0.5, 0.0, 3.14)
 
     # Strand base: mesh line
     strand_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 400, by))
@@ -121,7 +119,7 @@ def build_mother_hair_cascade(group_name="MEL_mother_hair_cascade"):
     radius_val = safe_node(tree, "ShaderNodeMath", (bx + 100, by - 100))
     radius_val.operation = "DIVIDE"
     link_sockets(tree, width_n, radius_val.inputs[0])
-    radius_val.inputs[1].default_value = strand_n.default_value if hasattr(strand_n, "default_value") else 12.0
+    link_sockets(tree, strand_n, radius_val.inputs[1])
     link_sockets(tree, radius_val.outputs["Value"], set_radius.inputs["Radius"])
 
     # Curve to mesh with ribbon profile
@@ -146,7 +144,7 @@ def build_mother_hair_cascade(group_name="MEL_mother_hair_cascade"):
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx + 600, by))
     link_sockets(tree, to_mesh.outputs["Mesh"], set_pos.inputs["Geometry"])
     curl_vec = safe_node(tree, "ShaderNodeCombineXYZ", (bx + 400, by - 300))
-    curl_vec.inputs["X"].default_value = 1.0
+    curl_vec.inputs["X"].default_value = 0.0
     curl_vec.inputs["Y"].default_value = 0.0
     link_sockets(tree, curl_mul.outputs["Value"], curl_vec.inputs["Z"])
     link_sockets(tree, curl_vec.outputs["Vector"], set_pos.inputs["Offset"])
@@ -220,15 +218,19 @@ def build_mother_valley_depression(group_name="MEL_mother_valley_depression"):
     link_sockets(tree, dist.outputs["Value"], norm.inputs[0])
     link_sockets(tree, radius_n, norm.inputs[1])
 
-    # Depression curve: smooth bowl shape
+    # Depression curve: smooth bowl shape, exponent driven by Steepness (1+s, clamped by input range >= 0)
     one_minus = safe_node(tree, "ShaderNodeMath", (bx + 100, by - 360))
     one_minus.operation = "SUBTRACT"
     one_minus.inputs[0].default_value = 1.0
     link_sockets(tree, norm.outputs["Value"], one_minus.inputs[1])
+    steep_exp = safe_node(tree, "ShaderNodeMath", (bx + 150, by - 440))
+    steep_exp.operation = "ADD"
+    steep_exp.inputs[0].default_value = 1.0
+    link_sockets(tree, steepness_n, steep_exp.inputs[1])
     bowl = safe_node(tree, "ShaderNodeMath", (bx + 200, by - 360))
     bowl.operation = "POWER"
     link_sockets(tree, one_minus.outputs["Value"], bowl.inputs[0])
-    bowl.inputs[1].default_value = 2.0
+    link_sockets(tree, steep_exp.outputs["Value"], bowl.inputs[1])
     depth_mul = safe_node(tree, "ShaderNodeMath", (bx + 300, by - 360))
     depth_mul.operation = "MULTIPLY"
     link_sockets(tree, depth_n, depth_mul.inputs[0])
@@ -312,11 +314,15 @@ def build_mother_fog_volume(group_name="MEL_mother_fog_volume"):
     noise.inputs["Detail"].default_value = 4.0
     noise.inputs["Roughness"].default_value = 0.7
 
-    # Displace vertices for foggy edge
+    # Displace vertices for foggy edge, attenuation shaped by Falloff
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx, by))
     link_sockets(tree, box.outputs["Mesh"], set_pos.inputs["Geometry"])
+    falloff_pow = safe_node(tree, "ShaderNodeMath", (bx - 300, by - 200))
+    falloff_pow.operation = "POWER"
+    link_sockets(tree, noise.outputs["Fac"], falloff_pow.inputs[0])
+    link_sockets(tree, falloff_n, falloff_pow.inputs[1])
     disp_vec = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 200, by - 200))
-    link_float_to_vector(tree, noise.outputs["Fac"], disp_vec, "X", defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, falloff_pow.outputs["Value"], disp_vec, "X", defaults=(0.0, 0.0, 0.0))
     link_sockets(tree, disp_vec.outputs["Vector"], set_pos.inputs["Offset"])
 
     # Store density + tint attributes
@@ -441,37 +447,6 @@ def build_mother_fabric_ridge(group_name="MEL_mother_fabric_ridge"):
         {"title": "Output", "nodes": ("set_pos", "Group Output"), "role": "output"},
     ])
 
-
-# -----------------------------------------------------------------------------
-# Registry
-# -----------------------------------------------------------------------------
-
-from .core import register_builder
-
-register_builder("MEL_mother_head_silhouette", build_mother_head_silhouette,
-    "Mother Head Silhouette",
-    "Sculpted mountain ridge that reads as a reclining face profile",
-    "mother")
-
-register_builder("MEL_mother_hair_cascade", build_mother_hair_cascade,
-    "Mother Hair Cascade",
-    "Ribbon waterfall cascade that reads as flowing maternal hair",
-    "mother")
-
-register_builder("MEL_mother_valley_depression", build_mother_valley_depression,
-    "Mother Valley Depression",
-    "Terrain depression that reads as the torso valley the player walks through",
-    "mother")
-
-register_builder("MEL_mother_fog_volume", build_mother_fog_volume,
-    "Mother Fog Volume",
-    "Volumetric haze that implies distant body mass — no mesh, just suggestion",
-    "mother")
-
-register_builder("MEL_mother_fabric_ridge", build_mother_fabric_ridge,
-    "Mother Fabric Ridge",
-    "Fabric normal-mapped terrain ridge — the skin of the Faraway Mother",
-    "mother")
 
 # -----------------------------------------------------------------------------
 # 6. MEL_mother_shoulder_fold — shoulder/chest fold terrain
@@ -713,10 +688,18 @@ def build_mother_moonlight_rig(group_name="MEL_mother_moonlight_rig"):
     link_sockets(tree, key_light.outputs["Mesh"], key_pos.inputs["Geometry"])
     key_offset = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 400, by - 100))
     key_offset.inputs["X"].default_value = 10.0
+    # Key angle drives key-light elevation: Z = 8 * tan(radians(Key Angle))
+    key_rad = safe_node(tree, "ShaderNodeMath", (bx - 600, by - 120))
+    key_rad.operation = "MULTIPLY"
+    link_sockets(tree, key_angle_n, key_rad.inputs[0])
+    key_rad.inputs[1].default_value = math.pi / 180.0
+    key_tan = safe_node(tree, "ShaderNodeMath", (bx - 550, by - 160))
+    key_tan.operation = "TANGENT"
+    link_sockets(tree, key_rad.outputs["Value"], key_tan.inputs[0])
     key_z = safe_node(tree, "ShaderNodeMath", (bx - 500, by - 160))
     key_z.operation = "MULTIPLY"
     key_z.inputs[0].default_value = 8.0
-    key_z.inputs[1].default_value = math.tan(math.radians(35.0))
+    link_sockets(tree, key_tan.outputs["Value"], key_z.inputs[1])
     link_sockets(tree, key_z.outputs["Value"], key_offset.inputs["Z"])
     link_sockets(tree, key_offset.outputs["Vector"], key_pos.inputs["Translation"])
 
@@ -791,8 +774,6 @@ def build_mother_moonlight_rig(group_name="MEL_mother_moonlight_rig"):
 # -----------------------------------------------------------------------------
 # Registry
 # -----------------------------------------------------------------------------
-
-from .core import register_builder
 
 register_builder("MEL_mother_head_silhouette", build_mother_head_silhouette,
     "Mother Head Silhouette",

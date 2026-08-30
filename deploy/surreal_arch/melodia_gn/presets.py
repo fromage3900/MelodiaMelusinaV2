@@ -2785,9 +2785,9 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "AWASH_GRIEF": "Awash grief — tall silhouette, sharp ridges, dramatic.",
         },
         "presets": {
-            "MOONLIT_FACE": {"Width": 20.0, "Height": 8.0, "Depth": 6.0, "Ridge Count": 5, "Noise Scale": 3.0, "Noise Detail": 4.0},
-            "DISTANT_DREAMER": {"Width": 30.0, "Height": 5.0, "Depth": 8.0, "Ridge Count": 3, "Noise Scale": 1.5, "Noise Detail": 2.0},
-            "AWASH_GRIEF": {"Width": 15.0, "Height": 12.0, "Depth": 4.0, "Ridge Count": 8, "Noise Scale": 5.0, "Noise Detail": 6.0},
+            "MOONLIT_FACE": {"Width": 20.0, "Height": 8.0, "Depth": 6.0, "Noise Scale": 3.0, "Noise Detail": 4.0},
+            "DISTANT_DREAMER": {"Width": 30.0, "Height": 5.0, "Depth": 8.0, "Noise Scale": 1.5, "Noise Detail": 2.0},
+            "AWASH_GRIEF": {"Width": 15.0, "Height": 12.0, "Depth": 4.0, "Noise Scale": 5.0, "Noise Detail": 6.0},
         },
     },
     "MEL_mother_hair_cascade": {
@@ -2803,9 +2803,9 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "WILD_TRESSES": "Wild tresses — long, curled, untamed.",
         },
         "presets": {
-            "MOONLIT_FALLS": {"Length": 12.0, "Width": 2.0, "Strand Count": 12, "Curl": 0.3, "Twist": 0.5},
-            "SILKEN_DRIFT": {"Length": 6.0, "Width": 4.0, "Strand Count": 8, "Curl": 0.1, "Twist": 0.2},
-            "WILD_TRESSES": {"Length": 18.0, "Width": 3.0, "Strand Count": 20, "Curl": 0.7, "Twist": 1.0},
+            "MOONLIT_FALLS": {"Length": 12.0, "Width": 2.0, "Strand Count": 12, "Curl": 0.3},
+            "SILKEN_DRIFT": {"Length": 6.0, "Width": 4.0, "Strand Count": 8, "Curl": 0.1},
+            "WILD_TRESSES": {"Length": 18.0, "Width": 3.0, "Strand Count": 20, "Curl": 0.7},
         },
     },
     "MEL_mother_valley_depression": {
