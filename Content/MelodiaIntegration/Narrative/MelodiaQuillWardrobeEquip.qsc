@@ -27,11 +27,12 @@
 $ Notify melodia:item:give:item.outfit.melusina_v2:1
 $ Notify melodia:stat:intent.wardrobe.elegance:melodia_elegance:3
 $ Notify melodia:flag:flag.wardrobe.outfit_equipped:true
-$ Notify melodia:flag:flag.melusina.sorrow_seam_restored:true
+$ Notify melodia:flag:flags.melusina.sorrow_seam_restored:true
 
 - Sir Melodious
   Magnificent! The Sorrow Seam is restored, and the currents of the sky recognize your form. You can now Glide effortlessly across the chasm!
 
+$ Notify melodia:reward:reward.wardrobe.first_outfit
 $ Notify melodia:questcomplete:quest.wardrobe.equip_outfit:flag.wardrobe.equip_completed:reward.wardrobe.first_outfit:intent.wardrobe.complete:checkpoint.wardrobe.complete
 
 @ Finish
