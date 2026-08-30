@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "generated": "2026-08-30",
+    "mode": "spec_only",
+    "note": "Naming convention fix proposal. No .uasset writes."
+  },
+  "total_mis_scanned": 629,
+  "violations_found": 114,
+  "issue_type_counts": {
+    "no_variant_suffix": 99,
+    "missing_MI_prefix": 15
+  },
+  "proposed_renames": [
+    {
+      "original": "MI_AtlasDecalOrnamets",
+      "proposed": "MI_AtlasDecalOrnamets",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_AtlasFlowersA",
+      "proposed": "MI_AtlasFlowersA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_AtlasIvy",
+      "proposed": "MI_AtlasIvy",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_AtlasLeafA",
+      "proposed": "MI_AtlasLeafA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_AtlasLeafB",
+      "proposed": "MI_AtlasLeafB",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_AtlasOrnaments",
+      "proposed": "MI_AtlasOrnaments",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_AtlasPaintPatternsA",
+      "proposed": "MI_AtlasPaintPatternsA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_AtlasTreeA",
+      "proposed": "MI_AtlasTreeA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanA",
+      "proposed": "MI_BrickStoneCleanA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanB",
+      "proposed": "MI_BrickStoneCleanB",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanBeigeA",
+      "proposed": "MI_BrickStoneCleanBeigeA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanBlueA",
+      "proposed": "MI_BrickStoneCleanBlueA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanBlueB",
+      "proposed": "MI_BrickStoneCleanBlueB",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanBlueC",
+      "proposed": "MI_BrickStoneCleanBlueC",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanRedB",
+      "proposed": "MI_BrickStoneCleanRedB",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanTrimA",
+      "proposed": "MI_BrickStoneCleanTrimA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanTrimB",
+      "proposed": "MI_BrickStoneCleanTrimB",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneCleanWhiteA",
+      "proposed": "MI_BrickStoneCleanWhiteA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneDamagedA",
+      "proposed": "MI_BrickStoneDamagedA",
+      "issue": "no_variant_suffix"
+    },
+    {
+      "original": "MI_BrickStoneDamagedB",
+      "proposed": "MI_BrickStoneDamagedB",
+      "issue": "no_variant_suffix"
+    }
+  ],
+  "naming_convention": "MI_<Stem>_<Rxx_TileY>",
+  "valid_examples": [
+    "MI_BrickStone_Atlantis_R055_Tile4",
+    "MI_ZenTrim_CrackedToHell_R072_Tile4",
+    "MI_Cathedral_Stone"
+  ]
+}
