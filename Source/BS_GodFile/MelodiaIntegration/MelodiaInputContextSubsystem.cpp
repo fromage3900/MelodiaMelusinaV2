@@ -192,13 +192,13 @@ void UMelodiaInputContextSubsystem::ApplyActiveContext(const EMelodiaInputContex
 			break;
 
 		case EMelodiaInputContext::Cinematic:
-		case EMelodiaInputContext::None:
-		default:
 			PC->SetInputMode(FInputModeGameOnly());
 			PC->bShowMouseCursor = false;
 			break;
 
+		case EMelodiaInputContext::None:
 		case EMelodiaInputContext::Exploration:
+		default:
 			{
 				FInputModeGameAndUI Mode;
 				Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
