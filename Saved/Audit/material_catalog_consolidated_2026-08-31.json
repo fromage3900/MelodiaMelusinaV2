@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "offline_consolidated",
+    "sources": [
+      "material_catalog_2026-08-30.json",
+      "mi_proposal_2026-08-30.json"
+    ]
+  },
+  "summary": {
+    "total_mi_files": 629,
+    "complete_pbr_sets": 12,
+    "incomplete_stems": 93,
+    "complete_sets_with_instance": 0
+  },
+  "complete_pbr_sets": [
+    "T_FloralBrickGrayScale",
+    "ZenTrim_Base4K",
+    "ZenTrim_ColourShift",
+    "ZenTrim_CrackedToHell",
+    "ZenTrim_FlowersLIttleBit",
+    "ZenTrim_FlowersLOTS",
+    "ZenTrim_FlowersMid",
+    "ZenTrim_Wet",
+    "basetrim",
+    "concretetrim",
+    "landscape_grass",
+    "landscapegrayscale"
+  ],
+  "texture_families": {
+    "T_Bling_Rhinestone": {
+      "count": 15,
+      "note": "rhinestone family, 0 complete",
+      "status": "incomplete"
+    },
+    "T_Cathedral": {
+      "count": 6,
+      "note": "cathedral marble/gilding",
+      "status": "incomplete"
+    },
+    "T_Fabric": {
+      "count": 14,
+      "note": "fabric/lace/velvet/silk",
+      "status": "incomplete"
+    },
+    "T_FarawayMother": {
+      "count": 6,
+      "note": "Faraway Mother garment set",
+      "status": "incomplete"
+    },
+    "T_Houdini": {
+      "count": 6,
+      "note": "Houdini procedural fabric set",
+      "status": "incomplete"
+    },
+    "T_Melusina": {
+      "count": 11,
+      "note": "Melusina garment/architecture set",
+      "status": "incomplete"
+    },
+    "T_Terrace": {
+      "count": 4,
+      "note": "terrace/plaza tiles",
+      "status": "incomplete"
+    },
+    "T_Lookdev": {
+      "count": 3,
+      "note": "lookdev captures",
+      "status": "incomplete"
+    },
+    "T_Trimsheet": {
+      "count": 2,
+      "note": "trimsheet",
+      "status": "incomplete"
+    },
+    "T_ClothTrim": {
+      "count": 4,
+      "note": "cloth trim",
+      "status": "incomplete",
+      "on_disk": 0,
+      "cached_only": true
+    },
+    "T_ZenTrim": {
+      "count": 7,
+      "note": "Zen trim",
+      "status": "incomplete"
+    },
+    "ZenTrim": {
+      "count": 7,
+      "note": "Zen trim COMPLETE (7)",
+      "status": "complete"
+    },
+    "interiorwalltrim": {
+      "count": 3,
+      "note": "interior wall trim",
+      "status": "incomplete"
+    },
+    "OTHER": {
+      "count": 17,
+      "note": "mixed incl 5 complete (basetrim, concretetrim, landscape_grass, landscapegrayscale, T_FloralBrickGrayScale)"
+    }
+  },
+  "mi_parent_distribution": {
+    "M_Master_Toon_Universal": 475,
+    "M_Master_Toon_Landscape_HeightBlend": 25,
+    "M_Master_Nikki": 13,
+    "M_Master_Toon_Universal_Alpha": 12,
+    "M_Water_Master_Grand_v6": 12,
+    "M_ToonFoliage": 11,
+    "M_Water_Master_Grand_v10_Upgrade": 9,
+    "M_Water_Master_Grand_v7": 8,
+    "M_Master_Toon_Universal_NikkiChain": 8,
+    "M_Master_Toon_Character": 5,
+    "M_Water_Master_Grand_v9": 5,
+    "M_Master_Toon_Unified": 1,
+    "M_Master_Nikki_Landscape": 1,
+    "M_Water_Master_Grand_v10_Substrate": 2,
+    "M_SDF_CathedralVault": 1,
+    "M_SDF_Bioluminescence": 1,
+    "M_SDF_BubbleColumn": 1,
+    "M_SDF_CoralBranching": 1,
+    "M_SDF_FloatingNotes": 1,
+    "M_SDF_CrystallineSpire": 1
+  },
+  "gaps": {
+    "complete_sets_without_instances": "12 complete PBR textures sets have NO material instance consuming them",
+    "incomplete_stems": "93 incomplete stems need texture completion",
+    "orphan_mis": "To be determined from disk scan"
+  }
+}
