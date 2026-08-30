@@ -190,7 +190,7 @@ def build_music_note_head(group_name="MEL_music_note_head"):
 
 
 def build_music_treble_clef(group_name="MEL_music_treble_clef"):
-    """G-clef (≡¥ä₧) — calligraphic curve with ascending body, tight spiral knot at top,
+    """G-clef (𝄞) — calligraphic curve with ascending body, tight spiral knot at top,
     descending stem, and bottom hook. Uses 3 bezier curve segments joined and swept
     with a tube profile so the result is actually recognizable as a treble clef.
 

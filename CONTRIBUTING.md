@@ -18,7 +18,9 @@ All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md
 
 1. Review [README.md](README.md) to choose your onboarding path.
 2. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
-3. **Engineers & Researchers:** Clone the repository and pull Git LFS tracked assets (`git lfs pull`).
+3. **Engineers & Researchers:** Clone the repository and pull only the Git LFS assets needed for the
+  chosen lane. `Exports/` is also seeded in the local Perforce pilot; use Git for the project checkout
+  until the shared Perforce server and cutover are announced.
 4. Execute `deploy/validate_setup.ps1` (or `python Tools/test_melodia_mcp.py`) to verify your local environment health.
 
 ---
@@ -66,6 +68,22 @@ Allowed types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `styl
 3. **Validate:** Run test suites locally (`python Tools/test_melodia_mcp.py` and workspace validators).
 4. **Open PR:** Submit a Pull Request against `main` detailing what was changed and why.
 5. **Review:** Wait for automated CI status checks and maintainer review before merge.
+
+## Source Control Workflow
+
+Git is the authority for `Source/`, `Plugins/`, `Config/`, `Tools/`, `Docs/`, `deploy/`, `specs/`,
+and project metadata. Perforce is the intended authority for large and lock-sensitive art paths.
+The local pilot has seeded `//melodia/Exports/...`, but it is not a shared collaborator server yet.
+
+- Do not modify an asset through both Git and Perforce.
+- Do not add `Content/`, `Exports/`, or `RawArt/` to an automated Git commit batch.
+- Before committing text-only work, run `python Tools/source_control_triage.py` to review its batch.
+- To commit an approved isolated batch, add exact paths to `specs/source_control_batches.json`, mark the
+  batch `ready`, then run `python Tools/source_control_triage.py --commit-ready <batch-name>`.
+
+The scheduled task `Melodia Source Control Triage` produces this report every 12 hours without staging,
+committing, pushing, or deleting files. Perforce setup and cutover conditions are recorded in
+[Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
 
 ---
 

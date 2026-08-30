@@ -42,6 +42,8 @@ MOJIBAKE_MARKERS = (
     "ðŸ", "â€", "Ã", "Â", "â˜", "âœ", "â™", "âš", "â›", "âŠ", "â-", "â­",
     "â¬", "âŒ", "âŸ", "Ï", "â€¢", "â€¦", "â€™", "â€œ", "â€", "â†", "â‰",
     "\u0178", "\u0152", "\u0161", "\u201c", "\u201d", "\u203a",
+    # UTF-8 Japanese/CJK decoded as Latin-1 or cp1252.
+    "ã", "å", "æ", "è", "é", "ç", "ä", "ë", "ì", "í", "î",
 )
 
 # A previous Windows console round-trip used OEM box-drawing glyphs for UTF-8

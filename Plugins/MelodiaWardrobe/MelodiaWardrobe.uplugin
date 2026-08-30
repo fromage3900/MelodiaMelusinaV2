@@ -19,6 +19,10 @@
 		{
 			"Name": "MelodiaCore",
 			"Enabled": true
+		},
+		{
+			"Name": "Harmonix",
+			"Enabled": true
 		}
 	]
 }
