@@ -14,7 +14,10 @@
     "note": "Editor not live -- spec JSON only. Run convert_arch_to_toon.py in editor.",
     "cathedral_mi_entries_deduped": true,
     "cathedral_mi_entries_count_before": 55,
-    "cathedral_mi_entries_count_after": 41
+    "cathedral_mi_entries_count_after": 41,
+    "atlantis_mi_entries_deduped": true,
+    "atlantis_mi_entries_count_before": 339,
+    "atlantis_mi_entries_count_after": 333
   },
   "presets": {
     "stone": {
@@ -1066,15 +1069,6 @@
       "shadowdream_strength": 0.55
     },
     {
-      "atlantis_suffix": "BaseColumnsA",
-      "slot": "Stone_Floor",
-      "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_BaseColumnsA",
-      "roughness": 0.85,
-      "metallic": 0.0,
-      "tint": null,
-      "shadowdream_strength": 0.55
-    },
-    {
       "atlantis_suffix": "BaseColumnsB",
       "slot": "Stone_Column",
       "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_BaseColumnsB",
@@ -1084,26 +1078,8 @@
       "shadowdream_strength": 0.55
     },
     {
-      "atlantis_suffix": "BaseColumnsB",
-      "slot": "Stone_Floor",
-      "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_BaseColumnsB",
-      "roughness": 0.85,
-      "metallic": 0.0,
-      "tint": null,
-      "shadowdream_strength": 0.55
-    },
-    {
       "atlantis_suffix": "BaseColumnsC",
       "slot": "Stone_Column",
-      "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_BaseColumnsC",
-      "roughness": 0.85,
-      "metallic": 0.0,
-      "tint": null,
-      "shadowdream_strength": 0.55
-    },
-    {
-      "atlantis_suffix": "BaseColumnsC",
-      "slot": "Stone_Floor",
       "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_BaseColumnsC",
       "roughness": 0.85,
       "metallic": 0.0,
@@ -2380,15 +2356,6 @@
       "shadowdream_strength": 0.55
     },
     {
-      "atlantis_suffix": "IvyWallA",
-      "slot": "Plant_Ivy",
-      "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_IvyWallA",
-      "roughness": 0.7,
-      "metallic": 0.0,
-      "tint": null,
-      "shadowdream_strength": 0.55
-    },
-    {
       "atlantis_suffix": "IvyWallB",
       "slot": "Stone_Wall",
       "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_IvyWallB",
@@ -2398,28 +2365,10 @@
       "shadowdream_strength": 0.55
     },
     {
-      "atlantis_suffix": "IvyWallB",
-      "slot": "Plant_Ivy",
-      "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_IvyWallB",
-      "roughness": 0.7,
-      "metallic": 0.0,
-      "tint": null,
-      "shadowdream_strength": 0.55
-    },
-    {
       "atlantis_suffix": "IvyWallC",
       "slot": "Stone_Wall",
       "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_IvyWallC",
       "roughness": 0.85,
-      "metallic": 0.0,
-      "tint": null,
-      "shadowdream_strength": 0.55
-    },
-    {
-      "atlantis_suffix": "IvyWallC",
-      "slot": "Plant_Ivy",
-      "mi": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_IvyWallC",
-      "roughness": 0.7,
       "metallic": 0.0,
       "tint": null,
       "shadowdream_strength": 0.55
