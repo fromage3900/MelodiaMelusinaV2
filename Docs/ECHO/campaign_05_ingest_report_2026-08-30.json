@@ -1,0 +1,461 @@
+{
+ "schema": "melodia.sea_above_p0_ingest.v1",
+ "utc": "2026-08-30T05:23:16.250511Z",
+ "textures": [
+  {
+   "name": "T_SeaAbove_BarnacleCrust_Mask",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_BarnacleCrust_Mask",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Caustics",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Caustics",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_Atlas",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_Atlas",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_BarnacleCluster",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_BarnacleCluster",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_BottleShard",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_BottleShard",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_Bubbles",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_Bubbles",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_ClamPair",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_ClamPair",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_CoralTwig",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_CoralTwig",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_Driftwood",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_Driftwood",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_Pebbles",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_Pebbles",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_Scallop",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_Scallop",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_SeaGlass",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_SeaGlass",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_SeaweedSprig",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_SeaweedSprig",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_SpiralShell",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_SpiralShell",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Clutter_Starfish",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Clutter_Starfish",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_ClutterFloor_Mask",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ClutterFloor_Mask",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_CoralSkin_Albedo",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_CoralSkin_Albedo",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_CoralSkin_EmissiveMask",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_CoralSkin_EmissiveMask",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_CoralSkin_Normal",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_CoralSkin_Normal",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Droplet_Atlas",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Droplet_Atlas",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Foam_Mask",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Foam_Mask",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_KelpSway_LUT",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_KelpSway_LUT",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Membrane_Reveal",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Membrane_Reveal",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Membrane_Ripple_N",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Membrane_Ripple_N",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_PulseBand_LUT",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_PulseBand_LUT",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Sand_Albedo",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_Albedo",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Sand_Height",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_Height",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Sand_Normal",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_Normal",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Sand_RippleMask",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_RippleMask",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Sand_WetMask",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sand_WetMask",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_Sediment_Ramp",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_Sediment_Ramp",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_ShellMask_Conch",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ShellMask_Conch",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_ShellMask_Nautilus",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ShellMask_Nautilus",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_ShellMask_SandDollar",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ShellMask_SandDollar",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_ShellMask_Scallop",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_ShellMask_Scallop",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_WetRock_Albedo",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_WetRock_Albedo",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_WetRock_Normal",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_WetRock_Normal",
+   "note": "already present"
+  },
+  {
+   "name": "T_SeaAbove_WetRock_Wetline",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_WetRock_Wetline",
+   "note": "already present"
+  },
+  {
+   "name": "T_Jelly_ArmLogic_LUT",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_ArmLogic_LUT",
+   "note": "already present"
+  },
+  {
+   "name": "T_Jelly_Bell_BaseColor",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_BaseColor",
+   "note": "already present"
+  },
+  {
+   "name": "T_Jelly_Bell_CanalMask",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_CanalMask",
+   "note": "already present"
+  },
+  {
+   "name": "T_Jelly_Bell_Irid_Mottle",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_Irid_Mottle",
+   "note": "already present"
+  },
+  {
+   "name": "T_Jelly_Bell_Normal",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_Normal",
+   "note": "already present"
+  },
+  {
+   "name": "T_Jelly_Bell_Opacity",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Bell_Opacity",
+   "note": "already present"
+  },
+  {
+   "name": "T_Jelly_Biolum_LUT",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Biolum_LUT",
+   "note": "already present"
+  },
+  {
+   "name": "T_Jelly_Iridescence_LUT",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Iridescence_LUT",
+   "note": "already present"
+  },
+  {
+   "name": "T_Jelly_Nematocyst_Glints",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Nematocyst_Glints",
+   "note": "already present"
+  },
+  {
+   "name": "T_Leviathan_Bone_BaseColor",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Leviathan_Bone_BaseColor",
+   "note": "already present"
+  },
+  {
+   "name": "T_Leviathan_Bone_Normal",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Leviathan_Bone_Normal",
+   "note": "already present"
+  },
+  {
+   "name": "T_Leviathan_Bone_Roughness",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Leviathan_Bone_Roughness",
+   "note": "already present"
+  },
+  {
+   "name": "T_Organ_Pipe_BaseColor",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Organ_Pipe_BaseColor",
+   "note": "already present"
+  },
+  {
+   "name": "T_Organ_Pipe_Emissive",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Organ_Pipe_Emissive",
+   "note": "already present"
+  },
+  {
+   "name": "T_Organ_Pipe_Normal",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Organ_Pipe_Normal",
+   "note": "already present"
+  },
+  {
+   "name": "T_DressShorewake_ScaleMask",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_DressShorewake_ScaleMask",
+   "note": "already present"
+  },
+  {
+   "name": "T_DressShorewake_ScaleShimmer",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_DressShorewake_ScaleShimmer",
+   "note": "already present"
+  }
+ ],
+ "meshes": [
+  {
+   "name": "SM_Clutter_PebbleSet",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet",
+   "note": "already present"
+  },
+  {
+   "name": "SM_Clutter_SeaWeed",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed"
+  },
+  {
+   "name": "SM_Clutter_SpiralShell",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell"
+  },
+  {
+   "name": "SM_Clutter_Starfish",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_Starfish"
+  },
+  {
+   "name": "SM_Coral_Brain",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Brain"
+  },
+  {
+   "name": "SM_Coral_Fan",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan"
+  },
+  {
+   "name": "SM_Coral_ReefCluster",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster"
+  },
+  {
+   "name": "SM_Coral_Staghorn",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn"
+  },
+  {
+   "name": "SM_Coral_Table",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Table"
+  },
+  {
+   "name": "SM_Coral_TubeSponges",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges"
+  },
+  {
+   "name": "SM_DrownedOrgan",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan"
+  },
+  {
+   "name": "SM_Flora_Chime",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Chime"
+  },
+  {
+   "name": "SM_Flora_Fern",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Fern"
+  },
+  {
+   "name": "SM_Flora_Reed",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Reed"
+  },
+  {
+   "name": "SM_Island_A",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A"
+  },
+  {
+   "name": "SM_Island_B",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B"
+  },
+  {
+   "name": "SM_Island_C",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C"
+  },
+  {
+   "name": "SM_Kelp_Cluster",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Cluster"
+  },
+  {
+   "name": "SM_Kelp_Mid",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid"
+  },
+  {
+   "name": "SM_Kelp_Tall",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall"
+  },
+  {
+   "name": "SM_Leviathan",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Leviathan"
+  },
+  {
+   "name": "SM_RockChunk_L",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_L"
+  },
+  {
+   "name": "SM_RockChunk_M",
+   "ok": true,
+   "asset": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_M"
+  }
+ ],
+ "summary": {
+  "textures_ok": 55,
+  "textures_total": 55,
+  "meshes_ok": 23,
+  "meshes_total": 23,
+  "dirty_packages_note": "run list_dirty_packages before/after; save via this script only"
+ }
+}
