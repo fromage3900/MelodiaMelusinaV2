@@ -586,6 +586,13 @@ void UMelodiaUIBridgeSubsystem::RemoveBattleUIInternal()
 		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: removed Melodia battle widget."));
 	}
 
+	if (IsValid(LiveResultsWidget))
+	{
+		LiveResultsWidget->RemoveFromParent();
+		LiveResultsWidget = nullptr;
+		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: removed live-results widget."));
+	}
+
 	if (UWorld* World = GetWorld())
 	{
 		if (UMelodiaRhythmCombatSubsystem* Rhythm = World->GetSubsystem<UMelodiaRhythmCombatSubsystem>())
@@ -599,32 +606,31 @@ void UMelodiaUIBridgeSubsystem::RemoveBattleUIInternal()
 	}
 	GBridgeRhythmHUD = nullptr;
 
-	// The live-results surface is persistent: it survives battle teardown, so
-	// (re)push current narrative/session data after the transient battle UI goes.
 	PushLiveGameDataToActiveWidgets();
 }
 
 void UMelodiaUIBridgeSubsystem::HandleNarrativeFlagChanged(FName FlagId, bool bValue)
 {
-	CreateLiveResultsWidgetInternal();
 	PushLiveGameDataToActiveWidgets();
 }
 
 void UMelodiaUIBridgeSubsystem::HandleQuestStateCommitted(FName QuestId, bool bCompleted)
 {
-	CreateLiveResultsWidgetInternal();
 	PushLiveGameDataToActiveWidgets();
 }
 
 void UMelodiaUIBridgeSubsystem::HandleBattleSessionEnded(EMelodiaEncounterResult Result)
 {
-	CreateLiveResultsWidgetInternal();
+	// Results screen should only appear when a battle encounter finishes with a valid outcome.
+	if (Result != EMelodiaEncounterResult::None)
+	{
+		CreateLiveResultsWidgetInternal();
+	}
 	PushLiveGameDataToActiveWidgets();
 }
 
 void UMelodiaUIBridgeSubsystem::HandleBattlePhaseChanged(EMelodiaBattlePhase NewPhase, EMelodiaBattlePhase PreviousPhase)
 {
-	CreateLiveResultsWidgetInternal();
 	PushLiveGameDataToActiveWidgets();
 }
 
@@ -647,10 +653,11 @@ void UMelodiaUIBridgeSubsystem::CreateLiveResultsWidgetInternal()
 	LiveResultsWidget = CreateWidget<UMelodiaBattleResultsWidget>(World, ResultsClass);
 	if (LiveResultsWidget)
 	{
-		LiveResultsWidget->SetIsFocusable(false);
+		LiveResultsWidget->SetIsFocusable(true);
 		LiveResultsWidget->AddToViewport(LiveResultsWidgetZOrder);
+		LiveResultsWidget->SetKeyboardFocus();
 		LiveResultsWidget->RefreshFromBattleSession();
-		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: spawned persistent live-results widget %s."),
+		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: spawned live-results widget %s."),
 			*ResultsClass->GetName());
 	}
 }
@@ -660,31 +667,13 @@ void UMelodiaUIBridgeSubsystem::PushLiveGameDataToActiveWidgets()
 	const FMelodiaNarrativeRecord Record = NarrativeSubsystem ? NarrativeSubsystem->GetNarrativeRecord() : FMelodiaNarrativeRecord();
 	const UMelodiaBattleSession* Session = BattleSession.Get();
 
-	// (a) The persistent results surface is always kept current.
+	// (a) Refresh results surface if currently active.
 	if (IsValid(LiveResultsWidget))
 	{
 		LiveResultsWidget->RefreshFromBattleSession();
 	}
 
-	// (b) Lazy-create the results surface once real narrative data exists, so it
-	// appears without waiting for a battle to start.
-	if (!IsValid(LiveResultsWidget))
-	{
-		const bool bHasNarrativeData = !Record.LastEncounterId.IsNone()
-			|| Record.ActiveQuestIds.Num() > 0
-			|| Record.CompletedQuestIds.Num() > 0
-			|| (Session && Session->LastBattleResults.TotalNotes > 0);
-		if (bHasNarrativeData)
-		{
-			CreateLiveResultsWidgetInternal();
-			if (IsValid(LiveResultsWidget))
-			{
-				LiveResultsWidget->RefreshFromBattleSession();
-			}
-		}
-	}
-
-	// (c) Optionally drive the battle widget's BlueprintImplementable event when
+	// (b) Optionally drive the battle widget's BlueprintImplementable event when
 	// it implements it. Invoked reflectively with the exact same guarded idiom as
 	// ShowRhythmGrade: refuse on any layout mismatch rather than guess.
 	UUserWidget* Widget = MelodiaBattleWidget.Get();
