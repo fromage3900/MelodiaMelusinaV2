@@ -1,0 +1,60 @@
+{
+  "schema": "melodia.material.kenney_referencer_scan.v1",
+  "generated": "2026-08-31T07:00:00Z",
+  "source": "Saved/Audit/kenney_deletion_staged_2026-08-30.json",
+  "scan_scope": "Text-only (grep across .py, .json, .md, .ini, .umap excluded from content search). .uasset references require Monolith editor verification.",
+  "targets": {
+    "textures": [
+      "Content/EnvSandbox/Textures/T_KenneyCastleKit_Albedo.uasset",
+      "Content/EnvSandbox/Textures/T_KenneyMiniForest_Albedo.uasset",
+      "Content/EnvSandbox/Textures/T_KenneyModularCave_Albedo.uasset"
+    ],
+    "mis": "20 files at Content/EnvSandbox/Materials/Instances/Kenney/RetroFantasyKit/",
+    "meshes": "105 files at Content/EnvSandbox/Meshes/Environment/RetroFantasyKit/ (per Docs/Handoffs/MESH_MATERIAL_COMPLETION_PINKBLUE_KENNEY_2026-08-14.md)"
+  },
+  "text_references_found": {
+    "python_scripts": [
+      {
+        "file": "Content/Python/import_new_kenney_packs.py",
+        "refs": "Import script for KenneyRetroFantasyKit (source-side, not runtime)"
+      },
+      {
+        "file": "Content/Python/ingest_aaa_underwater_packs.py",
+        "refs": "texture_root path reference"
+      }
+    ],
+    "docs": [
+      {
+        "file": "Docs/Handoffs/MESH_MATERIAL_COMPLETION_PINKBLUE_KENNEY_2026-08-14.md",
+        "refs": "Handoff documentation (not runtime)"
+      },
+      {
+        "file": "Docs/Plans/MATERIAL_ORCHESTRATION_TRIMSHEET_2026-08-30.md",
+        "refs": "Planning doc, lists Kenney deletion as staged"
+      }
+    ],
+    "audio_routing": [
+      {
+        "file": "Scripts/metasound_ui_routing.json",
+        "refs": "Kenney UI AUDIO pack (/Game/Audio/Kenney/) — SEPARATE from RetroFantasyKit meshes/textures. Do NOT delete audio."
+      }
+    ]
+  },
+  "runtime_references": {
+    "umap_levels": "NO text references found in .umap files (content search excludes binary). Editor verification required.",
+    "blueprints": "NO text references found. Editor verification required.",
+    "data_tables": "NO text references found. Editor verification required."
+  },
+  "verdict": {
+    "text_scan": "SAFE — No runtime references in text files. All matches are import scripts, planning docs, or audio routing (different Kenney product).",
+    "editor_verification_needed": "Monolith get_cdo_referencers on 3 Kenney textures + 20 Kenney MIs + 105 Kenney meshes before actual deletion.",
+    "mesh_note": "105 KenneyRetroFantasyKit meshes are NOT in the staged deletion list (only 20 MIs + 3 textures). Mesh deletion is a separate, larger decision. Recommend: delete only the 20 MIs + 3 textures now (texture-only MIs, no mesh dependency). Meshes are still potentially used in levels.",
+    "audio_note": "/Game/Audio/Kenney/ (UI sounds) is a DIFFERENT Kenney product (Kenney UI Audio pack). DO NOT DELETE — it is wired into MetaSound UI routing."
+  },
+  "safe_to_delete_now": {
+    "textures": 3,
+    "mis": 20,
+    "meshes": 0,
+    "reason": "Textures and MIs are leaf assets (no downstream dependency). Meshes may still be placed in levels — defer."
+  }
+}

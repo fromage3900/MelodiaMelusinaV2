@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "preflight_spec",
+    "source": "Docs/ECHO/campaign_05_ingest_report_2026-08-30.json"
+  },
+  "blocker": "Requires live Monolith MCP (localhost:9316). Last known state: MODAL_OPEN warnings block game thread and silence MCP.",
+  "owner_action_required": [
+    "Dismiss open modal in editor (asset editor has no docked tabs / Saving packages)",
+    "Confirm GET http://localhost:9316/health returns 200 + version",
+    "Run melodia_system_golden_run_preflight"
+  ],
+  "known_blockers_from_log": [
+    "MODAL_OPEN warnings (Saving packages 50%, asset editor no docked tabs)",
+    "Ghost listener PID 51260 (dead)"
+  ],
+  "echo_pipeline_check": {
+    "skill": "melodia-echo-golden-run",
+    "steps": [
+      "Map route maps",
+      "Config check",
+      "Quill script validation",
+      "Battle HUD validation",
+      "Economy HUD validation",
+      "Combat encounter simulation"
+    ]
+  },
+  "readiness": "BLOCKED"
+}
