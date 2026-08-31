@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4ecdc"/>
+      <stop offset="1" stop-color="#e9ddc7"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2d365e"/>
+      <stop offset="0.5" stop-color="#6574a9"/>
+      <stop offset="1" stop-color="#9fc7c8"/>
+    </linearGradient>
+    <linearGradient id="cloth" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6e5a91"/>
+      <stop offset="0.45" stop-color="#a49ac0"/>
+      <stop offset="0.75" stop-color="#8ccbd0"/>
+      <stop offset="1" stop-color="#e8dfe8"/>
+    </linearGradient>
+    <style>
+      .title{font-family:Georgia,serif;font-size:44px;font-weight:700;fill:#26325c;letter-spacing:2px}
+      .sub{font-family:Georgia,serif;font-size:20px;font-style:italic;fill:#655b70}
+      .h{font-family:Georgia,serif;font-size:26px;font-weight:700;fill:#28355d}
+      .b{font-family:Georgia,serif;font-size:18px;fill:#3f4152}
+      .small{font-family:Georgia,serif;font-size:15px;fill:#51505d}
+      .tiny{font-family:Georgia,serif;font-size:13px;fill:#5e5b63}
+      .num{font-family:Georgia,serif;font-size:20px;font-weight:700;fill:#f4ecdc}
+      .box{fill:#f8f2e7;stroke:#74677d;stroke-width:2}
+      .thin{stroke:#74677d;stroke-width:2;fill:none}
+      .arrow{stroke:#56628c;stroke-width:3;fill:none;marker-end:url(#m)}
+    </style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#56628c"/></marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect x="18" y="18" width="1564" height="864" rx="10" fill="none" stroke="#8e785e" stroke-width="3"/>
+  <text x="800" y="70" text-anchor="middle" class="title">SHOREWAKE SHADER FLOW + SEA ABOVE P0 VISUAL TARGET</text>
+  <text x="800" y="104" text-anchor="middle" class="sub">Melodia Melusina — Shorelistener / Shorewake production reference</text>
+
+  <!-- Left: P0 visual ladder -->
+  <g transform="translate(55,145)">
+    <text x="0" y="0" class="h">SEA ABOVE P0 — FIVE IMAGE EXPERIENCE</text>
+    <g transform="translate(0,25)">
+      <rect width="470" height="590" rx="10" class="box"/>
+
+      <g transform="translate(22,25)">
+        <circle cx="18" cy="18" r="18" fill="#28355d"/><text x="18" y="25" text-anchor="middle" class="num">1</text>
+        <text x="50" y="16" class="h" font-size="22">CERULEAN LITTORAL</text>
+        <text x="50" y="42" class="small">Serene shoreline. Beautiful, grounded, readable.</text>
+        <rect x="0" y="60" width="415" height="58" rx="5" fill="url(#sea)" opacity="0.8"/>
+      </g>
+
+      <g transform="translate(22,145)">
+        <circle cx="18" cy="18" r="18" fill="#28355d"/><text x="18" y="25" text-anchor="middle" class="num">2</text>
+        <text x="50" y="16" class="h" font-size="22">SUBTLE WRONGNESS</text>
+        <text x="50" y="42" class="small">Hem drifts wrong; sparse droplets rise; normal motion remains.</text>
+        <rect x="0" y="60" width="415" height="58" rx="5" fill="#5b668f" opacity="0.78"/>
+        <path d="M85 110 C95 92,105 98,110 78 M180 112 C190 96,195 88,198 74 M300 110 C300 93,310 88,312 70" stroke="#b8e6e5" stroke-width="3" fill="none"/>
+      </g>
+
+      <g transform="translate(22,265)">
+        <circle cx="18" cy="18" r="18" fill="#28355d"/><text x="18" y="25" text-anchor="middle" class="num">3</text>
+        <text x="50" y="16" class="h" font-size="22">SECOND HORIZON</text>
+        <text x="50" y="42" class="small">A false upper sea appears beyond a soft fog/depth gap.</text>
+        <rect x="0" y="60" width="415" height="58" rx="5" fill="#62709a"/>
+        <line x1="0" y1="86" x2="415" y2="86" stroke="#f1ebdb" stroke-width="3"/>
+        <line x1="0" y1="101" x2="415" y2="101" stroke="#b7d9df" stroke-width="3" opacity="0.85"/>
+      </g>
+
+      <g transform="translate(22,385)">
+        <circle cx="18" cy="18" r="18" fill="#28355d"/><text x="18" y="25" text-anchor="middle" class="num">4</text>
+        <text x="50" y="16" class="h" font-size="22">BELL BREATH</text>
+        <text x="50" y="42" class="small">One immense translucent pulse implies biological scale.</text>
+        <rect x="0" y="60" width="415" height="58" rx="5" fill="#4c4e83"/>
+        <ellipse cx="210" cy="89" rx="125" ry="38" fill="none" stroke="#d6c5ec" stroke-width="7" opacity="0.75"/>
+        <ellipse cx="210" cy="89" rx="75" ry="22" fill="none" stroke="#9ccfe1" stroke-width="4" opacity="0.7"/>
+      </g>
+
+      <g transform="translate(22,505)">
+        <circle cx="18" cy="18" r="18" fill="#28355d"/><text x="18" y="25" text-anchor="middle" class="num">5</text>
+        <text x="50" y="16" class="h" font-size="22">AFTERMATH</text>
+        <text x="50" y="42" class="small">Quiet lingering proof: one upward droplet; false horizon remains.</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Center: garment target -->
+  <g transform="translate(575,145)">
+    <text x="210" y="0" text-anchor="middle" class="h">SHOREWAKE MATERIAL IDENTITY</text>
+    <rect x="0" y="25" width="420" height="590" rx="10" class="box"/>
+
+    <path d="M165 90 C130 125 130 185 145 240 L110 470 C160 520 260 520 310 470 L275 240 C290 185 290 125 255 90 C230 65 190 65 165 90 Z" fill="url(#cloth)" stroke="#655a84" stroke-width="4"/>
+    <path d="M270 220 C360 310 330 500 275 520 C250 440 245 340 250 235 Z" fill="#a7dbe0" opacity="0.5" stroke="#7da6bb" stroke-width="3"/>
+    <path d="M148 250 C205 235 255 235 276 246" fill="none" stroke="#efe4ce" stroke-width="4"/>
+    <path d="M147 300 C210 285 252 287 282 300" fill="none" stroke="#9bd8df" stroke-width="3" opacity="0.9"/>
+    <circle cx="210" cy="205" r="18" fill="#d9e7e3" stroke="#a78749" stroke-width="4"/>
+    <circle cx="210" cy="205" r="7" fill="#7fcbd3"/>
+
+    <text x="20" y="555" class="small">READ ORDER</text>
+    <text x="20" y="580" class="b">1. Melusina silhouette  2. painterly cloth  3. one impossible hem</text>
+
+    <g transform="translate(20,45)">
+      <text x="0" y="0" class="small">PAINTERLY OPAQUE FABRIC</text>
+      <text x="0" y="22" class="tiny">broad brushed value breakup; soft fiber detail</text>
+    </g>
+    <g transform="translate(230,130)">
+      <text x="0" y="0" class="small">SEA-GLASS CLASP</text>
+      <text x="0" y="22" class="tiny">trapped Second Horizon; gentle active glow</text>
+    </g>
+    <g transform="translate(255,430)">
+      <text x="0" y="0" class="small">LISTENING HEM</text>
+      <text x="0" y="22" class="tiny">wrong-gravity drift; sparse upward droplets</text>
+    </g>
+  </g>
+
+  <!-- Right shader flow -->
+  <g transform="translate(1040,145)">
+    <text x="230" y="0" text-anchor="middle" class="h">SHOREWAKE SHADER FLOW</text>
+    <rect x="0" y="25" width="500" height="590" rx="10" class="box"/>
+
+    <g transform="translate(35,55)">
+      <rect width="430" height="52" rx="7" fill="#ebe1d6" stroke="#766a83" stroke-width="2"/>
+      <text x="215" y="33" text-anchor="middle" class="b">BASE FABRIC MASTER — opaque cloth / soft roughness</text>
+      <line x1="215" y1="52" x2="215" y2="82" class="arrow"/>
+
+      <rect y="82" width="430" height="52" rx="7" fill="#ebe1d6" stroke="#766a83" stroke-width="2"/>
+      <text x="215" y="115" text-anchor="middle" class="b">PAINTERLY BREAKUP — broad brush + restrained fiber</text>
+      <line x1="215" y1="134" x2="215" y2="164" class="arrow"/>
+
+      <rect y="164" width="430" height="52" rx="7" fill="#ebe1d6" stroke="#766a83" stroke-width="2"/>
+      <text x="215" y="197" text-anchor="middle" class="b">SECOND HORIZON GRADIENT — broad tide band</text>
+      <line x1="215" y1="216" x2="215" y2="246" class="arrow"/>
+
+      <rect y="246" width="430" height="52" rx="7" fill="#ebe1d6" stroke="#766a83" stroke-width="2"/>
+      <text x="215" y="279" text-anchor="middle" class="b">TIDE SEAM ATTUNEMENT — staged local proximity response</text>
+      <line x1="215" y1="298" x2="215" y2="328" class="arrow"/>
+
+      <rect y="328" width="430" height="52" rx="7" fill="#dce9e6" stroke="#668495" stroke-width="2"/>
+      <text x="215" y="361" text-anchor="middle" class="b">TRANSLUCENT HEM — wrong-gravity WPO + upward droplets</text>
+      <line x1="215" y1="380" x2="215" y2="410" class="arrow"/>
+
+      <rect y="410" width="430" height="52" rx="7" fill="#e9e1e8" stroke="#766a83" stroke-width="2"/>
+      <text x="215" y="443" text-anchor="middle" class="b">SEA-GLASS CLASP — trapped horizon / restrained emission</text>
+      <line x1="215" y1="462" x2="215" y2="492" class="arrow"/>
+
+      <rect y="492" width="430" height="52" rx="7" fill="#eee6dc" stroke="#766a83" stroke-width="2"/>
+      <text x="215" y="525" text-anchor="middle" class="b">SUBTLE RHYTHM ACCENT — never overpower the Bell</text>
+    </g>
+  </g>
+
+  <!-- Bottom response ladder -->
+  <g transform="translate(55,770)">
+    <text x="0" y="0" class="h">5-STAGE PROXIMITY RESPONSE</text>
+    <g transform="translate(0,25)">
+      <circle cx="50" cy="40" r="28" fill="#28355d"/><text x="50" y="47" text-anchor="middle" class="num">1</text><text x="50" y="82" text-anchor="middle" class="small">FAR — hem drifts</text>
+      <line x1="80" y1="40" x2="195" y2="40" class="arrow"/>
+      <circle cx="225" cy="40" r="28" fill="#40527d"/><text x="225" y="47" text-anchor="middle" class="num">2</text><text x="225" y="82" text-anchor="middle" class="small">NEAR — embroidery aligns</text>
+      <line x1="255" y1="40" x2="370" y2="40" class="arrow"/>
+      <circle cx="400" cy="40" r="28" fill="#5e6f94"/><text x="400" y="47" text-anchor="middle" class="num">3</text><text x="400" y="82" text-anchor="middle" class="small">CLOSE — hair agrees</text>
+      <line x1="430" y1="40" x2="545" y2="40" class="arrow"/>
+      <circle cx="575" cy="40" r="28" fill="#6e78a0"/><text x="575" y="47" text-anchor="middle" class="num">4</text><text x="575" y="82" text-anchor="middle" class="small">SEAM — droplets rise</text>
+      <line x1="605" y1="40" x2="720" y2="40" class="arrow"/>
+      <circle cx="750" cy="40" r="28" fill="#8aa7b4"/><text x="750" y="47" text-anchor="middle" class="num">5</text><text x="750" y="82" text-anchor="middle" class="small">AFTERGLOW — residual shimmer</text>
+    </g>
+
+    <g transform="translate(890,0)">
+      <text x="0" y="0" class="h">P0 GUARDRAILS</text>
+      <text x="0" y="32" class="b">DO: keep P0 simple • Bell &gt; dress • separate hem material • subtle rhythm</text>
+      <text x="0" y="62" class="b">DON'T: clone water master • glow constantly • show Bell perimeter • over-detail first unlock</text>
+    </g>
+  </g>
+
+  <!-- Palette -->
+  <g transform="translate(1040,690)">
+    <text x="0" y="0" class="h">PALETTE</text>
+    <circle cx="40" cy="40" r="25" fill="#665486"/><text x="40" y="82" text-anchor="middle" class="tiny">lavender</text>
+    <circle cx="110" cy="40" r="25" fill="#eee8dd" stroke="#b8aa99"/><text x="110" y="82" text-anchor="middle" class="tiny">pearl</text>
+    <circle cx="180" cy="40" r="25" fill="#73c3d2"/><text x="180" y="82" text-anchor="middle" class="tiny">cyan</text>
+    <circle cx="250" cy="40" r="25" fill="#d6a2b7"/><text x="250" y="82" text-anchor="middle" class="tiny">blush</text>
+    <circle cx="320" cy="40" r="25" fill="#9fcac4"/><text x="320" y="82" text-anchor="middle" class="tiny">sea-glass</text>
+  </g>
+</svg>
