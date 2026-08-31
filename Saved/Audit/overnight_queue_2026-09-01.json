@@ -201,27 +201,27 @@
     "id": "COPERNICUS_GLITTERCRYSTAL_TEXTURE_IMPORT",
     "lane": "audit",
     "priority": 2,
-    "status": "queued",
-    "spec": null,
-    "result": null,
-    "prompt": "Copernicus cymatic GlitterCrystal variant has 16-frame animated texture sets (BaseColor, Normal, Roughness, Metallic, Height, ORM, Emissive, Iridescence, Opacity) in Saved/Audit/copernicus_cymatic/GlitterCrystal/. Import these into UE as a flipbook-animated material. Editor-bound. Steps: (1) create M_Cymatic_GlitterCrystal master with flipbook nodes, (2) create MI_Cymatic_GlitterCrystal, (3) assign to SM_Cathedral_HarmonicOrb or similar hero mesh. Manifest: Saved/Audit/copernicus_cymatic_manifest.json."
+    "status": "blocked",
+    "spec": "Saved/Audit/copernicus_cymatic_manifest.json",
+    "result": "BLOCKED: Editor-bound. Requires flipbook material creation + texture import. 16-frame animated PBR sets ready in Saved/Audit/copernicus_cymatic/GlitterCrystal/.",
+    "prompt": null
   },
   {
     "id": "QUILL_INTERPRETER_GIT_ADD_COMMIT",
     "lane": "audit",
     "priority": 1,
-    "status": "queued",
+    "status": "done",
     "spec": null,
-    "result": null,
-    "prompt": "QuillscriptInterpreter.cpp (2440 lines, untracked) needs git add + commit. Audit spec: Saved/Audit/quill_interpreter_final_check_2026-09-01.json. Widgets already committed in 928e0a62. Run: git add Plugins/Quillscript/Source/Quillscript/Private/Core/QuillscriptInterpreter.cpp && git commit -m 'feat(quill): add QuillScript interpreter (2440 lines)'. No push (owner-only)."
+    "result": "NO-OP: QuillscriptInterpreter.cpp is already tracked and committed (f729f3df). Audit was stale. File exists in git history.",
+    "prompt": null
   },
   {
     "id": "PPV_NIKKI_DREAM_DRIFT_FIX_LIVE",
     "lane": "audit",
     "priority": 1,
-    "status": "queued",
+    "status": "blocked",
     "spec": "Saved/Audit/ppv_nikki_drift_fix_t3d_2026-09-01.json",
-    "result": null,
-    "prompt": "PPV_NikkiDream has 4 drifts: label is PPV_Dreamprint_Candidate (should be PPV_NikkiDream), grade weight 0.18 (should be 0.69), outline weight 0.57 (should be 1.0), MI_StarryNight_VanGogh is MD_SURFACE (should be MI_StarryNight_Hero MD_POST_PROCESS). Spec: Saved/Audit/ppv_nikki_drift_fix_t3d_2026-09-01.json. Requires live Monolith editor. Owner-only gate."
+    "result": "BLOCKED: Editor-bound. Requires live Monolith editor for PPV actor label + blendable weight corrections. 4 drifts documented.",
+    "prompt": null
   }
 ]
