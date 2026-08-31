@@ -139,6 +139,14 @@ Already optimal (left untouched): `NS_Uni_LeafDrift` (GPU/Fixed), `NS_Uni_DustSh
 
 **Required work (queue for the Houdini/author lane):** re-export or re-import `JELLY_Bell.fbx` / `JELLY_Arms.fbx` with correct FBX unit scale (both carry `UnitScaleFactor` metadata in header — binary-parse inconclusive, but the meshes are clearly 10³–10⁴× oversized), wire `MI_Jelly_Bell` to the bell mesh, author an AnimBP for the 2-bone bell (pulse), assemble a `BP_Jelly_SeaAbove` (bell + arms + veil), then place N instances in `LV_SeaAbove_Prototype` near the reef. **Do NOT scale-hack in-editor** — the correct fix is re-import units (AGENTS.md: don't compensate).
 
+### 5.4 Reef material-binding gap — FIXED (2026-08-31 05:00 UTC)
+
+The `0fe7b877` reef ingest (55 textures + 23 meshes) landed **geometry only**: every static reef mesh sampled (`SM_Coral_Brain/Fan`, `SM_Kelp_Tall`, `SM_Clutter_Starfish`, `SM_DrownedOrgan`, `SM_Island_A`, `SM_Coral_ReefCluster`, `SM_Clutter_PebbleSet`, `SM_Leviathan`) had `material_path: /Engine/EngineMaterials/WorldGridMaterial` — all authored MIs (`MI_SeaAbove_CoralSkin/Sand/Kelp/WetRock/Organ_Pipe/Leviathan_Bone/...`) were unreferenced.
+
+**Fix (committed `3dd45f1c`, 27 files):** `org_bind_reef_materials_2026-08-31.py` — 1:1 slot-0 binding across all 23 static meshes by category (corals/clutter/flora → `CoralSkin`, kelp → `Kelp`, islands → `Sand`, rocks → `WetRock`, organ → `Organ_Pipe`, leviathan → `Leviathan_Bone`): `REEF_MAT_BIND ok=23 failed=0`, `REEF_MAT_SAVE saved=23/23`, re-read verified on disk (CoralSkin/Kelp/Leviathan_Bone at slots). Cloth skeletal meshes (`SM_Banner`/`SM_Shroud`) verified **already wired** to `Cloth_Banner`/`Cloth_Shroud` (probe `org_bind_cloth_materials_2026-08-31.py` — SkeletalMesh Python API lacks `set_material`; inspect via `.materials[0].material_interface`).
+
+**JellyVeil correction:** `Reef/Meshes/JellyVeil.uasset` is a **MaterialInstanceConstant, not a mesh** — there is no veil *mesh*; the "veil" is a material (naming mismatch, catalog-worthy). Also `JellyArm_000..007` + `JELLY_Arms.fbx` coexist — the 8 variants appear to be the arms FBX's sub-meshes exported separately.
+
 ---
 
 ## 6. Offline QOL triage (no editor needed)
