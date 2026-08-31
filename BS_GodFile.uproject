@@ -294,7 +294,7 @@
 		},
 		{
 			"Name": "Claireon",
-			"Enabled": false
+			"Enabled": true
 		},
 		{
 			"Name": "GameplayAbilities",
