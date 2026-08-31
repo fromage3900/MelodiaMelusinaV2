@@ -316,5 +316,32 @@
     "status": "done",
     "spec": null,
     "result": "SCRIPT COMPLETE: Created Saved/_tmp_create_cathedral_universal_mis.py — creates 41 MIs (MI_Cathedral_<Stem>) on M_Master_Toon_Universal with ShadowDream blue. 3 categories: stone (30), glass (8), gold (3). Includes parent check."
+  },
+  {
+    "id": "REACTIVE_CURSOR_WIDGET_SYSTEM_COMMIT",
+    "lane": "audit",
+    "priority": 1,
+    "status": "queued",
+    "spec": "Saved/Audit/reactive_cursor_widget_system_spec_2026-09-01.json",
+    "prompt": "Document and commit the uncommitted reactive cursor presentation system: UMelodiaReactiveCursorWidget (abstract base), UMelodiaInputContextSubsystem expansion (FMelodiaCursorVisualState + delegate), DefaultEngine.ini SoftwareCursors tuple, BS_GodFile.Build.cs (ApplicationCore + NiagaraUIRenderer deps), updated test_quill_presentation_and_cursor.py, and BP_Jelly_Cathedral.uasset. Generate commit commands for owner. Requires closed-editor UBT rebuild (new C++ class).",
+    "result": null
+  },
+  {
+    "id": "PCG_SEAABOVE_PLACEMENT_VERIFY",
+    "lane": "audit",
+    "priority": 2,
+    "status": "queued",
+    "spec": "Saved/Audit/pcg_seaabove_placement_evidence_spec_2026-09-01.json",
+    "prompt": "Verify the 4 PCG graphs placed in LV_SeaAbove_Prototype (commit cb4ca4ec): confirm actors exist, Z-coordinates match spec (SpiralAscent Z+2000, MandalaBloom Z+3000), level saved clean. Generate evidence log for owner sign-off.",
+    "result": null
+  },
+  {
+    "id": "JELLYFISH_CATHEDRAL_HYBRID_SPEC",
+    "lane": "audit",
+    "priority": 2,
+    "status": "queued",
+    "spec": null,
+    "prompt": "Document the untracked BP_Jelly_Cathedral.uasset (Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Blueprints/). Cross-reference against Saved/Audit/sea_above/meshes/jellyfish_mesh_v4_cathedral.json and Tools/Houdini/sea_above_reef/build_jellyfish_v4_cathedral.py. Determine if this is a P0 Sea Above placeholder or a P2+ hybrid. Generate a spec for owner review.",
+    "result": null
   }
 ]
