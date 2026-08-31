@@ -1,0 +1,8 @@
+{
+  "tool": "RunP0SmokeTest",
+  "desc": "Wrap the P0 PIE smoke harness (pie_smoke_runner) and record a smoke gate.",
+  "guard": "sandbox map only",
+  "mode": "DRY-RUN",
+  "monolith": "http://127.0.0.1:9316/mcp",
+  "status": "NOT_EXECUTED"
+}
