@@ -34,6 +34,18 @@ command = "C:/EnvironmentPortfolio/BS_GodFile/Plugins/Monolith/Binaries/monolith
 MONOLITH_PROJECT_ROOT = "C:/EnvironmentPortfolio/BS_GodFile"
 MONOLITH_URL = "http://localhost:9316/mcp"
 
+[mcp_servers.monolith.tools.editor_query]
+approval_mode = "approve"
+
+[mcp_servers.monolith.tools.ui_query]
+approval_mode = "approve"
+
+[mcp_servers.monolith.tools.blueprint_query]
+approval_mode = "approve"
+
+[mcp_servers.monolith.tools.describe_query]
+approval_mode = "approve"
+
 [mcp_servers.ollama]
 command = "node"
 args = ['C:\Users\froma\AppData\Roaming\npm\node_modules\ollama-mcp\dist\index.js']

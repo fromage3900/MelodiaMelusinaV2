@@ -76,13 +76,26 @@ FReply UMelodiaQuillDialogWidget::NativeOnKeyDown(
 	const FKeyEvent& InKeyEvent)
 {
 	const FKey Key = InKeyEvent.GetKey();
-	if (Key == EKeys::Enter || Key == EKeys::SpaceBar)
+	if (Key == EKeys::Enter || Key == EKeys::SpaceBar || Key == EKeys::E || Key == EKeys::Gamepad_FaceButton_Bottom)
 	{
 		TryAdvance();
 		return FReply::Handled();
 	}
 
 	return Super::NativeOnKeyDown(InGeometry, InKeyEvent);
+}
+
+FReply UMelodiaQuillDialogWidget::NativeOnMouseButtonDown(
+	const FGeometry& InGeometry,
+	const FPointerEvent& InMouseEvent)
+{
+	if (InMouseEvent.GetEffectingButton() == EKeys::LeftMouseButton)
+	{
+		TryAdvance();
+		return FReply::Handled();
+	}
+
+	return Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 }
 
 void UMelodiaQuillDialogWidget::HandleAdvanceClicked()
@@ -188,6 +201,10 @@ void UMelodiaQuillChoiceEntryWidget::ApplyOptionState()
 	{
 		ChoiceButton->SetIsEnabled(bOptionEnabled);
 	}
+	if (ChoiceText)
+	{
+		ChoiceText->SetText(OptionText);
+	}
 }
 
 void UMelodiaQuillSelectionWidget::NativeConstruct()
@@ -253,13 +270,21 @@ FReply UMelodiaQuillSelectionWidget::NativeOnKeyDown(
 	const FKeyEvent& InKeyEvent)
 {
 	const FKey Key = InKeyEvent.GetKey();
-	if (Key == EKeys::Up || Key == EKeys::W || Key == EKeys::Gamepad_DPad_Up)
+	if (Key == EKeys::Up || Key == EKeys::W || Key == EKeys::Gamepad_DPad_Up || Key == EKeys::Gamepad_LeftStick_Up)
 	{
 		return MoveChoiceFocus(-1) ? FReply::Handled() : FReply::Unhandled();
 	}
-	if (Key == EKeys::Down || Key == EKeys::S || Key == EKeys::Gamepad_DPad_Down)
+	if (Key == EKeys::Down || Key == EKeys::S || Key == EKeys::Gamepad_DPad_Down || Key == EKeys::Gamepad_LeftStick_Down)
 	{
 		return MoveChoiceFocus(1) ? FReply::Handled() : FReply::Unhandled();
+	}
+	if (Key == EKeys::Enter || Key == EKeys::SpaceBar || Key == EKeys::E || Key == EKeys::Gamepad_FaceButton_Bottom)
+	{
+		if (ActiveOptions.IsValidIndex(FocusedOptionIndex) && ActiveOptions[FocusedOptionIndex].bValid)
+		{
+			SelectOption(FocusedOptionIndex);
+			return FReply::Handled();
+		}
 	}
 
 	return Super::NativeOnKeyDown(InGeometry, InKeyEvent);

@@ -24,11 +24,12 @@ HEADLESS = "--headless" in sys.argv
 # Profile names as they appear in the Content Browser after manual creation.
 # When a profile asset is created at /Game/EnvSandbox/Materials/ToonProfiles/TP_Character,
 # its in-engine name is "TP_Character" (the asset's FName).
+# TP_Melusina uses warm-violet ramp (#352D40) for found-family warmth + melancholic depth.
 PROFILE_ASSIGNMENTS = {
     "M_Master_Toon_Universal": {
         "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
         "bsdf_expr": "MaterialExpressionSubstrateToonBSDF_4",
-        "profile": "TP_Default",  # Default profile for universal (safe baseline)
+        "profile": "TP_Melusina",  # Warm-violet surreal ramp for Melusina
     },
     "M_Master_Nikki": {
         "path": "/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki",
@@ -41,6 +42,24 @@ PROFILE_ASSIGNMENTS = {
         "profile": "TP_Foliage",  # Landscape gets foliage shading
     },
 }
+
+# ── Profile Discovery ─────────────────────────────────────────────────
+# Checker validates that each profile asset exists; adds TP_Melusina support.
+def find_profile_asset(profile_name):
+    """Find a toon profile asset by name, checking multiple possible paths."""
+    candidates = [
+        "/Game/EnvSandbox/Materials/ToonProfiles/{profile}.{profile}",
+        "/Game/EnvSandbox/Materials/Masters/ToonProfiles/{profile}.{profile}",
+        "/Game/Melodia/_PROJECT/04_Materials/ToonProfiles/{profile}.{profile}",
+        # TP_Melusina-specific: warm-violet profile created in-editor
+        "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina.TP_Melusina",
+    ]
+    import unreal
+    eal = unreal.EditorAssetLibrary
+    for c in candidates:
+        if eal.does_asset_exist(c.format(profile=profile_name)):
+            return c.format(profile=profile_name)
+    return None
 
 # ── Backend ──────────────────────────────────────────────────────────
 def call_monolith(tool, args):
@@ -107,11 +126,13 @@ def apply_assignments(dry_run: bool = False):
 import unreal
 eal = unreal.EditorAssetLibrary
 # The profile might be at various locations - check common places
-candidates = [
-    "/Game/EnvSandbox/Materials/ToonProfiles/{profile}.{profile}",
-    "/Game/EnvSandbox/Materials/Masters/ToonProfiles/{profile}.{profile}",
-    "/Game/Melodia/_PROJECT/04_Materials/ToonProfiles/{profile}.{profile}",
-]
+    candidates = [
+        "/Game/EnvSandbox/Materials/ToonProfiles/{profile}.{profile}",
+        "/Game/EnvSandbox/Materials/Masters/ToonProfiles/{profile}.{profile}",
+        "/Game/Melodia/_PROJECT/04_Materials/ToonProfiles/{profile}.{profile}",
+        # TP_Melusina-specific: also check the new warm-violet profile
+        "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina.TP_Melusina",
+    ]
 found = None
 for c in candidates:
     if eal.does_asset_exist(c):

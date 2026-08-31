@@ -10,7 +10,7 @@ import bpy
 from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, label_tree, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param,
-    make_group_input, add_music_influence_params, apply_universal_music_pass,
+    make_group_input,
 )
 
 
@@ -38,7 +38,6 @@ def build_gazebo(group_name="MEL_gazebo"):
     add_float_param(tree, "Engawa Depth", 0.45, 0.0, 2.0)
     add_bool_param(tree, "Has Irimoya", False)
     add_bool_param(tree, "Use Default Column", True)
-    add_music_influence_params(tree)
 
     col_profile = gin.outputs["Column Profile"] if "Column Profile" in gin.outputs else None
     roof_profile = gin.outputs["Roof Profile"] if "Roof Profile" in gin.outputs else None

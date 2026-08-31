@@ -1,0 +1,890 @@
+"""Build the Musical Dream biome reusable geometry kit.
+
+Three sub-kits, all generated in-editor via Geometry Script + Python math:
+
+  1. Piano Roll (walkable)
+        - 2m / 4m / 8m straight walkable planks with white-key and black-key
+          variants. UV-aligned, simple-as-complex collision, designed for
+          SplineMeshComponent placement so a path can roll out over water.
+        - Walkable Curved Arc 90 / 180 (spline-meshable, beveled).
+        - Walkable Ramp 15 / 30 (rise/fall variant).
+        - SM_ prefix: PianoRoll_Straight_White_2m / 4m / 8m,
+                      PianoRoll_Straight_Black_2m / 4m / 8m,
+                      PianoRoll_Arc_90_White, PianoRoll_Arc_180_White,
+                      PianoRoll_Ramp_15, PianoRoll_Ramp_30,
+                      PianoRoll_Cap_Start, PianoRoll_Cap_End
+
+  2. Coral Reef (instanced scatter)
+        - Branching Horn Coral (L-system style 3-branching).
+        - Plate Coral (disc with rimmed edge, 3 size variants).
+        - Brain Coral (sphere with sinusoidal grooves).
+        - Bubble Coral (cluster of small spheres).
+        - Sea Whip (curving tube along a noisy curve).
+        - SM_ prefix: Coral_Branching_A/B/C, Coral_Plate_S/M/L,
+                      Coral_Brain_A, Coral_Bubble_A, Coral_SeaWhip_A
+
+  3. Filigree (musical ornament trim, modular)
+        - Straight 2m / 4m with treble-clef + note-head stamped relief.
+        - 90-degree inside / outside corner.
+        - Cap-Start / Cap-End for spline terminations.
+        - Sheet-music corner accent (rotated treble).
+        - SM_ prefix: Filigree_Straight_Treble_2m / 4m,
+                      Filigree_Corner_Inside_90, Filigree_Corner_Outside_90,
+                      Filigree_Cap_Start, Filigree_Cap_End,
+                      Filigree_SheetMusicCorner
+
+All assets:
+  - Parent: M_Master_Toon_Universal (Substrate Toon)
+  - UV0 = standard 0-1 layout, pivot at base-center for walkables,
+    bottom-center for corals, edge-center for filigree.
+  - LOD0 only (1-LOD OK; add via kitbash_prep_meshes if shipped).
+  - Collision: piano rolls = CTF_USE_SIMPLE_AS_COMPLEX, walkable.
+              corals = no collision (scatter-only).
+              filigree = no collision (decorative trim).
+
+Run inside the live editor via Monolith run_python:
+    import build_musical_dream_kit as b; b.main()
+    # or staged:
+    b.build_piano_rolls()
+    b.build_coral_reef()
+    b.build_filigree()
+
+Manifest: Saved/Audit/musical_dream_kit.json
+"""
+from __future__ import annotations
+
+import json
+import math
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Callable
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DEST_FOLDER = "/Game/EnvSandbox/Meshes/MusicalDream"
+MANIFEST_PATH = PROJECT_ROOT / "Saved" / "Audit" / "musical_dream_kit.json"
+
+PHI = (1.0 + math.sqrt(5.0)) / 2.0
+TAU = 2.0 * math.pi
+PI = math.pi
+
+
+# ---------------------------------------------------------------------------
+# Geometry helpers (Python-side vertex generation, then bake to StaticMesh)
+# ---------------------------------------------------------------------------
+
+def _v_sub(a, b):
+    return (a[0] - b[0], a[1] - b[1], a[2] - b[2])
+
+
+def _v_len(a):
+    return math.sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2])
+
+
+def _v_norm(a):
+    n = _v_len(a)
+    if n < 1e-9:
+        return (0.0, 0.0, 1.0)
+    return (a[0] / n, a[1] / n, a[2] / n)
+
+
+def _v_cross(a, b):
+    return (
+        a[1] * b[2] - a[2] * b[1],
+        a[2] * b[0] - a[0] * b[2],
+        a[0] * b[1] - a[1] * b[0],
+    )
+
+
+def _sweep_profile(curve, profile_pts, scale=1.0):
+    """Sweep a 2D profile (list of (u, v) points) along a 3D curve.
+
+    Returns (verts, tris). Profile is on local (u, v) plane, swept along tangent
+    producing a tube-like ribbon. Useful for piano key bodies and filigree trim.
+    """
+    verts = []
+    tris = []
+    n = len(curve)
+    if n < 2:
+        return verts, tris
+    for i in range(n):
+        p = curve[i]
+        p_next = curve[min(i + 1, n - 1)]
+        tang = _v_norm(_v_sub(p_next, p))
+        up = (0.0, 0.0, 1.0) if abs(tang[2]) < 0.9 else (1.0, 0.0, 0.0)
+        nrm = _v_norm(_v_cross(up, tang))
+        binorm = _v_cross(tang, nrm)
+        for (u, v) in profile_pts:
+            verts.append((
+                p[0] + (u * nrm[0] + v * tang[0]) * scale,
+                p[1] + (u * nrm[1] + v * tang[1]) * scale,
+                p[2] + (u * nrm[2] + v * tang[2]) * scale,
+            ))
+    prof_n = len(profile_pts)
+    for i in range(n - 1):
+        for j in range(prof_n - 1):
+            a = i * prof_n + j
+            b = i * prof_n + (j + 1)
+            c = (i + 1) * prof_n + (j + 1)
+            d = (i + 1) * prof_n + j
+            tris.append((a, b, c))
+            tris.append((a, c, d))
+    # End rings are left open here; the StaticMesh bake will produce
+    # a closed body, and the physics hull is generated by UE at collision
+    # build time. Adding naive caps here produces degenerate triangles
+    # (vertex 0 == self) that fail GeometryScript's validation.
+    return verts, tris
+
+
+def _bevel_profile(width: float, depth: float, bevel: float = 0.5):
+    """Top-face profile of a piano key: slight bevel on the leading edge.
+
+    Returns list of (u, v) where v is along length, u is across width.
+    Coordinate frame: profile is mapped to (u, v, 0), then swept along Z up
+    by caller.
+    """
+    half = width * 0.5
+    return [
+        (-half, 0.0),
+        (-half + bevel, depth - bevel),
+        (half - bevel, depth - bevel),
+        (half, 0.0),
+    ]
+
+
+# ---------------------------------------------------------------------------
+# Piano Roll kit
+# ---------------------------------------------------------------------------
+
+def piano_roll_straight(length_cm: float, key_type: str = "white"):
+    """Walkable piano key plank, length along +X, top face at Z=+depth.
+
+    key_type: "white" -> ivory (lighter), "black" -> ebony (darker profile).
+    Returns verts, tris. UV0: u across width, v along length.
+    """
+    if key_type == "white":
+        width = 23.5
+        depth = 6.0
+        bevel = 0.6
+    else:
+        width = 13.5
+        depth = 8.0
+        bevel = 0.4
+    profile = _bevel_profile(width, depth, bevel)
+    steps = max(int(length_cm / 4.0), 8)
+    curve = [(i * length_cm / steps, 0.0, 0.0) for i in range(steps + 1)]
+    return _sweep_profile(curve, profile, scale=1.0)
+
+
+def piano_roll_arc(arc_deg: float, key_type: str = "white", radius_cm: float = 400.0):
+    """Curved piano key. Arc spans arc_deg, radius sets the bow.
+
+    The mesh is laid out along the arc length so SplineMeshComponent can
+    place it without distortion. Width is the piano key width.
+    """
+    if key_type == "white":
+        width = 23.5
+        depth = 6.0
+        bevel = 0.6
+    else:
+        width = 13.5
+        depth = 8.0
+        bevel = 0.4
+    profile = _bevel_profile(width, depth, bevel)
+    arc_len = (arc_deg / 360.0) * TAU * radius_cm
+    steps = max(int(arc_len / 4.0), 24)
+    curve = []
+    for i in range(steps + 1):
+        t = i / steps
+        ang = (t * arc_deg) * PI / 180.0
+        # arc on XY plane, Z stays 0
+        x = radius_cm * math.sin(ang)
+        y = radius_cm * (1.0 - math.cos(ang))
+        curve.append((x, y, 0.0))
+    return _sweep_profile(curve, profile, scale=1.0)
+
+
+def piano_roll_ramp(slope_deg: float, length_cm: float = 200.0, key_type: str = "white"):
+    """Walkable piano key ramp. Goes up from Z=0 to Z=tan(slope)*length.
+
+    Useful for stepping between two piano-key paths at different heights.
+    """
+    if key_type == "white":
+        width = 23.5
+        depth = 6.0
+        bevel = 0.6
+    else:
+        width = 13.5
+        depth = 8.0
+        bevel = 0.4
+    profile = _bevel_profile(width, depth, bevel)
+    rise = length_cm * math.tan(slope_deg * PI / 180.0)
+    steps = max(int(length_cm / 4.0), 8)
+    curve = []
+    for i in range(steps + 1):
+        t = i / steps
+        curve.append((t * length_cm, 0.0, t * rise))
+    return _sweep_profile(curve, profile, scale=1.0)
+
+
+def piano_roll_cap(side: str = "start"):
+    """Cap end-piece for the piano path. Flat-bottomed, low-profile.
+
+    side: "start" or "end" (same geometry; side is naming convention).
+    """
+    width = 28.0
+    depth = 4.0
+    bevel = 0.5
+    profile = _bevel_profile(width, depth, bevel)
+    length_cm = 12.0
+    steps = 4
+    curve = [(i * length_cm / steps, 0.0, 0.0) for i in range(steps + 1)]
+    return _sweep_profile(curve, profile, scale=1.0)
+
+
+# ---------------------------------------------------------------------------
+# Coral Reef kit
+# ---------------------------------------------------------------------------
+
+def coral_branching(seed: int = 0, branching: int = 3, levels: int = 4,
+                    length: float = 220.0, thickness: float = 18.0):
+    """L-system style branching horn coral.
+
+    Recursive branching, each level 0.65x length, 0.6x thickness.
+    Returns verts, tris. Pivot at base (0, 0, 0).
+    """
+    import random
+    rng = random.Random(seed)
+    verts = []
+    tris = []
+    base_v = 0
+
+    def _add_branch(start, direction, length_, thickness_, depth_):
+        if depth_ <= 0 or length_ < 8.0:
+            return
+        end = (start[0] + direction[0] * length_,
+               start[1] + direction[1] * length_,
+               start[2] + direction[2] * length_)
+        segs = 6
+        ring = 8
+        for s in range(segs + 1):
+            t = s / segs
+            p = (start[0] + (end[0] - start[0]) * t,
+                 start[1] + (end[1] - start[1]) * t,
+                 start[2] + (end[2] - start[2]) * t)
+            taper = 1.0 - 0.4 * t
+            r = thickness_ * taper
+            up = (0, 0, 1) if abs(direction[2]) < 0.9 else (1, 0, 0)
+            nrm = _v_norm(_v_cross(up, direction))
+            binorm = _v_cross(direction, nrm)
+            for j in range(ring):
+                a = TAU * j / ring
+                ca, sa = math.cos(a), math.sin(a)
+                verts.append((
+                    p[0] + r * (ca * nrm[0] + sa * binorm[0]),
+                    p[1] + r * (ca * nrm[1] + sa * binorm[1]),
+                    p[2] + r * (ca * nrm[2] + sa * binorm[2]),
+                ))
+        # quads along the segment
+        nonlocal base_v
+        for s in range(segs):
+            for j in range(ring):
+                a = base_v + s * ring + j
+                b = base_v + s * ring + (j + 1) % ring
+                c = base_v + (s + 1) * ring + (j + 1) % ring
+                d = base_v + (s + 1) * ring + j
+                tris.append((a, b, c))
+                tris.append((a, c, d))
+        base_v += (segs + 1) * ring
+        # recurse: split into branching children
+        n_children = branching if depth_ >= levels else max(1, branching - 1)
+        for k in range(n_children):
+            spread = 0.55 + rng.random() * 0.4
+            angle = (k / max(n_children, 1)) * TAU + rng.random() * 0.4
+            # build a new direction by tilting + rotating around the parent's dir
+            nrm = _v_norm(_v_cross((0, 0, 1) if abs(direction[2]) < 0.9 else (1, 0, 0), direction))
+            binorm = _v_cross(direction, nrm)
+            ca, sa = math.cos(angle), math.sin(angle)
+            sideways = (nrm[0] * ca + binorm[0] * sa,
+                        nrm[1] * ca + binorm[1] * sa,
+                        nrm[2] * ca + binorm[2] * sa)
+            new_dir = _v_norm((direction[0] * (1 - spread) + sideways[0] * spread,
+                               direction[1] * (1 - spread) + sideways[1] * spread,
+                               direction[2] * (1 - spread) + sideways[2] * spread))
+            _add_branch(end, new_dir, length_ * 0.65, thickness_ * 0.6, depth_ - 1)
+
+    _add_branch((0, 0, 0), (0, 0, 1), length, thickness, levels)
+    return verts, tris
+
+
+def coral_plate(scale: float = 1.0, rim: float = 0.15):
+    """Disc coral with a slightly raised rim, like a plate.
+
+    scale: 0.5 = small, 1.0 = medium, 1.6 = large.  Returns verts, tris.
+    """
+    base_r = 60.0 * scale
+    top_r = 56.0 * scale
+    rim_h = 4.0 * scale
+    inner_h = 1.5 * scale
+    segs = 28
+    rings = 4
+    verts = []
+    tris = []
+    # rings from base outward
+    for r_idx in range(rings + 1):
+        t = r_idx / rings
+        rad = base_r * (1.0 - t) + top_r * t
+        h = inner_h * t + (rim_h if t == 1 else 0.0)
+        for j in range(segs):
+            a = TAU * j / segs
+            verts.append((math.cos(a) * rad, math.sin(a) * rad, h))
+    # quads
+    for r in range(rings):
+        for j in range(segs):
+            a = r * segs + j
+            b = r * segs + (j + 1) % segs
+            c = (r + 1) * segs + (j + 1) % segs
+            d = (r + 1) * segs + j
+            tris.append((a, b, c))
+            tris.append((a, c, d))
+    # bottom cap
+    base_n = len(verts)
+    verts.append((0, 0, 0))
+    for j in range(segs):
+        a = j
+        b = (j + 1) % segs
+        tris.append((base_n, b, a))
+    return verts, tris
+
+
+def coral_brain(radius: float = 80.0, grooves: int = 6):
+    """Brain coral: sphere with sinusoidal grooves.
+
+    Sphere is a lat/lon grid; grooves are added by displacing radii with
+    sin(latitude * grooves).
+    """
+    rings = 24
+    segs = 36
+    verts = []
+    tris = []
+    for r in range(rings + 1):
+        theta = PI * r / rings
+        for s in range(segs):
+            phi = TAU * s / segs
+            groove = 0.12 * math.sin(theta * grooves * 2) * math.sin(phi * grooves)
+            rad = radius * (1.0 + groove)
+            verts.append((
+                rad * math.sin(theta) * math.cos(phi),
+                rad * math.sin(theta) * math.sin(phi),
+                rad * math.cos(theta),
+            ))
+    for r in range(rings):
+        for s in range(segs):
+            a = r * segs + s
+            b = r * segs + (s + 1) % segs
+            c = (r + 1) * segs + (s + 1) % segs
+            d = (r + 1) * segs + s
+            tris.append((a, b, c))
+            tris.append((a, c, d))
+    return verts, tris
+
+
+def coral_bubble(scale: float = 1.0):
+    """Cluster of small spheres (bubble coral).
+
+    Returns verts, tris. Pivot at bottom-center of cluster.
+    """
+    import random
+    rng = random.Random(7)
+    n = 9
+    base_r = 30.0 * scale
+    bubbles = []
+    for i in range(n):
+        cx = (rng.random() - 0.5) * base_r * 1.2
+        cy = (rng.random() - 0.5) * base_r * 1.2
+        cz = rng.random() * base_r * 0.6
+        cr = base_r * (0.35 + rng.random() * 0.45)
+        bubbles.append((cx, cy, cz, cr))
+    # merge into one mesh
+    verts = []
+    tris = []
+    rings = 12
+    segs = 16
+    for (cx, cy, cz, cr) in bubbles:
+        base_v = len(verts)
+        for r in range(rings + 1):
+            theta = PI * r / rings
+            for s in range(segs):
+                phi = TAU * s / segs
+                verts.append((
+                    cx + cr * math.sin(theta) * math.cos(phi),
+                    cy + cr * math.sin(theta) * math.sin(phi),
+                    cz + cr * math.cos(theta),
+                ))
+        for r in range(rings):
+            for s in range(segs):
+                a = base_v + r * segs + s
+                b = base_v + r * segs + (s + 1) % segs
+                c = base_v + (r + 1) * segs + (s + 1) % segs
+                d = base_v + (r + 1) * segs + s
+                tris.append((a, b, c))
+                tris.append((a, c, d))
+    return verts, tris
+
+
+def coral_sea_whip(length: float = 320.0, sway: float = 80.0, thickness: float = 6.0):
+    """Long curving tube coral (sea whip).
+
+    Curve is a noisy sinusoid that arcs over to one side. Tube is circular
+    with 8 sides.
+    """
+    steps = 64
+    ring = 8
+    curve = []
+    for i in range(steps + 1):
+        t = i / steps
+        x = t * length
+        y = sway * math.sin(t * PI * 1.2)
+        z = 60.0 * math.sin(t * PI) * 0.7 + 30.0
+        curve.append((x, y, z))
+    verts = []
+    tris = []
+    base_v = 0
+    for (px, py, pz) in curve:
+        # local tangent: differentiate numerically
+        idx = curve.index((px, py, pz))
+        nxt = curve[min(idx + 1, len(curve) - 1)]
+        prv = curve[max(idx - 1, 0)]
+        tang = _v_norm(_v_sub(nxt, prv))
+        up = (0, 0, 1) if abs(tang[2]) < 0.9 else (1, 0, 0)
+        nrm = _v_norm(_v_cross(up, tang))
+        binorm = _v_cross(tang, nrm)
+        taper = 1.0 - 0.55 * (idx / steps)  # taper toward tip
+        r = thickness * taper
+        for j in range(ring):
+            a = TAU * j / ring
+            ca, sa = math.cos(a), math.sin(a)
+            verts.append((
+                px + r * (ca * nrm[0] + sa * binorm[0]),
+                py + r * (ca * nrm[1] + sa * binorm[1]),
+                pz + r * (ca * nrm[2] + sa * binorm[2]),
+            ))
+    for s in range(steps):
+        for j in range(ring):
+            a = base_v + s * ring + j
+            b = base_v + s * ring + (j + 1) % ring
+            c = base_v + (s + 1) * ring + (j + 1) % ring
+            d = base_v + (s + 1) * ring + j
+            tris.append((a, b, c))
+            tris.append((a, c, d))
+    return verts, tris
+
+
+# ---------------------------------------------------------------------------
+# Filigree kit
+# ---------------------------------------------------------------------------
+
+def filigree_profile(width: float = 6.0, height: float = 14.0):
+    """Cross-section profile for filigree trim (an I-beam-like ribbon).
+
+    Returns list of (u, v) profile points. u = across width, v = vertical
+    height. Caller sweeps along curve in the XY plane.
+    """
+    h = height
+    w = width
+    return [
+        (-w * 0.5, 0.0),
+        (-w * 0.5, h * 0.3),
+        (-w * 0.3, h * 0.6),
+        (-w * 0.2, h),
+        (w * 0.2, h),
+        (w * 0.3, h * 0.6),
+        (w * 0.5, h * 0.3),
+        (w * 0.5, 0.0),
+    ]
+
+
+def _treble_glyph_path(face_w: float, face_h: float):
+    """Decorative treble clef + note-head bumps along a flat ribbon.
+
+    The ribbon is along X. The bumps are outward Z+1.5cm of varying widths.
+    Returns a list of (x_offset, height_bump) for stamping.
+
+    The actual mesh is built by inserting profile heigh bumps every ~10cm
+    along the curve. Caller adds 4-5 bumps for 2m, 8-10 for 4m.
+    """
+    bump_count_per_m = 5  # a bump every 20cm
+    n = max(int(face_w * 0.01 * bump_count_per_m), 4)
+    out = []
+    for i in range(n):
+        t = (i + 0.5) / n
+        x = t * face_w
+        # alternating heights: note-head (small disc) and treble-curl (taller)
+        h = 3.0 if i % 2 == 0 else 5.5
+        out.append((x, h))
+    return out
+
+
+def filigree_straight(length_cm: float = 200.0):
+    """Filigree straight trim, 200cm or 400cm long.
+
+    Built as a base ribbon (cross-section profile) with periodic height
+    bumps (treble + note-head) along its top edge. Returns verts, tris.
+    """
+    prof = filigree_profile(width=6.0, height=14.0)
+    steps = max(int(length_cm / 5.0), 24)
+    curve = [(i * length_cm / steps, 0.0, 0.0) for i in range(steps + 1)]
+    ribbon_v, ribbon_t = _sweep_profile(curve, prof, scale=1.0)
+    # add bumps: small stamped ridges along the top edge
+    bumps = _treble_glyph_path(length_cm, 0)
+    # 4-point profile: bottom-left, top-left, top-right, bottom-right.
+    # Forms a 1-quad rectangle per bump (clean ribbon, no degenerate tris).
+    bump_prof = [
+        (-2.0, 0.0),   # 0: bottom-left
+        (-2.0, 1.5),   # 1: top-left
+        (2.0, 1.5),    # 2: top-right
+        (2.0, 0.0),    # 3: bottom-right
+    ]
+    bump_verts = []
+    bump_tris = []
+    for (bx, _bh) in bumps:
+        ci = int(round(bx / length_cm * steps))
+        if ci < 0 or ci >= len(curve):
+            continue
+        p = curve[ci]
+        bump_base = len(bump_verts) + len(ribbon_v)
+        for (u, v) in bump_prof:
+            bump_verts.append((p[0] + u, p[1], p[2] + 14.0 + v))
+        # 4 verts: 0=BL, 1=TL, 2=TR, 3=BR
+        bl = bump_base + 0
+        tl = bump_base + 1
+        tr = bump_base + 2
+        br = bump_base + 3
+        # two-sided quads: front (BL,TL,TR) + (BL,TR,BR), back (BR,TR,TL) + (BR,TL,BL)
+        bump_tris.append((bl, tl, tr))
+        bump_tris.append((bl, tr, br))
+        bump_tris.append((br, tr, tl))
+        bump_tris.append((br, tl, bl))
+    return ribbon_v + bump_verts, ribbon_t + bump_tris
+
+
+def filigree_corner(inside: bool = True, length: float = 60.0):
+    """90-degree corner filigree.
+
+    Curves from (0, 0, 0) along +X then turns to +Y (or -Y for inside).
+    """
+    prof = filigree_profile(width=6.0, height=14.0)
+    steps = 16
+    curve = []
+    for i in range(steps + 1):
+        t = i / steps
+        ang = t * PI * 0.5
+        if inside:
+            # quarter circle on +X to +Y, center at (length, 0)
+            x = length * (1.0 - math.cos(ang))
+            y = length * math.sin(ang)
+        else:
+            # quarter circle on -X to +Y, center at (0, 0), going outward
+            x = length * math.cos(ang)
+            y = length * math.sin(ang)
+        curve.append((x, y, 0.0))
+    return _sweep_profile(curve, prof, scale=1.0)
+
+
+def filigree_cap(side: str = "start", length: float = 8.0):
+    """Cap end-piece for filigree spline terminations."""
+    prof = filigree_profile(width=6.0, height=14.0)
+    steps = 4
+    curve = [(i * length / steps, 0.0, 0.0) for i in range(steps + 1)]
+    return _sweep_profile(curve, prof, scale=1.0)
+
+
+def filigree_sheet_music_corner():
+    """Decorative accent: a treble clef at 45 degrees with a sheet-music ribbon.
+
+    Returns verts, tris. Sits in a 60x60cm footprint, Z up to 30cm.
+    """
+    # Simple: a curved staff line + a vertical treble stub
+    verts = []
+    tris = []
+    ring = 8
+    # staff line: a flat 4-line musical staff in XY
+    for line_idx in range(4):
+        y_off = (line_idx - 1.5) * 6.0
+        steps = 32
+        base_v = len(verts)
+        for i in range(steps + 1):
+            t = i / steps
+            x = -20.0 + t * 40.0
+            y = y_off
+            z = 0.5
+            for j in range(ring):
+                a = TAU * j / ring
+                verts.append((x + 0.3 * math.cos(a), y + 0.3 * math.sin(a), z))
+        for s in range(steps):
+            for j in range(ring):
+                a = base_v + s * ring + j
+                b = base_v + s * ring + (j + 1) % ring
+                c = base_v + (s + 1) * ring + (j + 1) % ring
+                d = base_v + (s + 1) * ring + j
+                tris.append((a, b, c))
+                tris.append((a, c, d))
+    # treble clef stub: a curving tube spiraling upward from (15, 0, 0)
+    base_v = len(verts)
+    treble_steps = 32
+    for i in range(treble_steps + 1):
+        t = i / treble_steps
+        ang = t * TAU * 1.5
+        r = 4.0 + t * 4.0
+        x = 15.0 + r * math.cos(ang)
+        y = r * math.sin(ang)
+        z = t * 28.0
+        for j in range(ring):
+            a = TAU * j / ring
+            verts.append((x + 0.6 * math.cos(a), y + 0.6 * math.sin(a), z))
+    for s in range(treble_steps):
+        for j in range(ring):
+            a = base_v + s * ring + j
+            b = base_v + s * ring + (j + 1) % ring
+            c = base_v + (s + 1) * ring + (j + 1) % ring
+            d = base_v + (s + 1) * ring + j
+            tris.append((a, b, c))
+            tris.append((a, c, d))
+    return verts, tris
+
+
+# ---------------------------------------------------------------------------
+# Builder: bake generated verts/tris into StaticMesh assets
+# ---------------------------------------------------------------------------
+
+def _bake_static_mesh(unreal, asset_name: str, verts, tris, collision_mode: str = "simple"):
+    """Bake (verts, tris) to /Game/EnvSandbox/Meshes/MusicalDream/<asset_name>.
+
+    Uses GeometryScript to construct a DynamicMesh, then bake to StaticMesh.
+    collision_mode: "simple" (CTF_USE_SIMPLE_AS_COMPLEX), "none" (no collision).
+    """
+    asset_path = f"{DEST_FOLDER}/{asset_name}"
+    if unreal.EditorAssetLibrary.does_asset_exist(asset_path):
+        unreal.log(f"[MusicalDream] {asset_path} exists, skipping")
+        return unreal.load_asset(asset_path)
+
+    if not unreal.EditorAssetLibrary.does_directory_exist(DEST_FOLDER):
+        unreal.EditorAssetLibrary.make_directory(DEST_FOLDER)
+
+    dm = unreal.new_object(unreal.DynamicMesh)
+    # Build vertex array
+    vertex_ids = []
+    for v in verts:
+        vid = dm.append_vertex(unreal.Vector(v[0], v[1], v[2]))
+        vertex_ids.append(vid)
+    # Build triangle array (StaticMesh TriangleIndices are 0-indexed)
+    for t in tris:
+        try:
+            dm.append_triangle(vertex_ids[t[0]], vertex_ids[t[1]], vertex_ids[t[2]])
+        except Exception as exc:
+            unreal.log_warning(f"[MusicalDream] tri failed: {exc}")
+
+    # Recompute normals
+    try:
+        unreal.GeometryScript_Normals.recompute_normals(dm, unreal.GeometryScriptCalculateNormalsOptions())
+    except Exception:
+        pass
+
+    # Bake to StaticMesh
+    try:
+        output_opts = unreal.GeometryScriptCreateNewStaticMeshAssetOptions()
+        result = unreal.GeometryScript_NewAssetUtils.create_new_static_mesh_asset_from_mesh(
+            dm, asset_path, output_opts
+        )
+    except Exception as exc:
+        unreal.log_error(f"[MusicalDream] bake failed for {asset_path}: {exc}")
+        return None
+
+    if not unreal.EditorAssetLibrary.does_asset_exist(asset_path):
+        unreal.log_error(f"[MusicalDream] asset not created: {asset_path}")
+        return None
+
+    mesh = unreal.load_asset(asset_path)
+
+    # Collision setup
+    if collision_mode != "none":
+        try:
+            body = mesh.get_editor_property("body_setup")
+            if not body:
+                body = unreal.BodySetup()
+                mesh.set_editor_property("body_setup", body)
+            if collision_mode == "simple":
+                body.collision_trace_flag = unreal.CollisionTraceFlag.CTF_USE_SIMPLE_AS_COMPLEX
+            elif collision_mode == "complex":
+                body.collision_trace_flag = unreal.CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE
+            body.build_physics_meshes()
+        except Exception as exc:
+            unreal.log_warning(f"[MusicalDream] collision failed: {exc}")
+    else:
+        try:
+            body = mesh.get_editor_property("body_setup")
+            if body:
+                body.collision_trace_flag = unreal.CollisionTraceFlag.CTF_USE_NO_COLLISION
+        except Exception:
+            pass
+
+    # Assign master toon material
+    try:
+        mat = unreal.load_asset("/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal")
+        if mat:
+            slot = unreal.StaticMaterial()
+            slot.material_interface = mat
+            slot.material_slot_name = "Surface"
+            slot.uv_channel_data = unreal.MeshUVChannelInfo()
+            mesh.set_editor_property("static_materials", [slot])
+    except Exception as exc:
+        unreal.log_warning(f"[MusicalDream] material slot failed: {exc}")
+
+    unreal.EditorAssetLibrary.save_asset(asset_path, only_if_is_dirty=False)
+    return mesh
+
+
+# ---------------------------------------------------------------------------
+# Public entry points
+# ---------------------------------------------------------------------------
+
+def build_piano_rolls(unreal=None):
+    """Build the walkable piano roll kit."""
+    if unreal is None:
+        try:
+            import unreal
+        except ImportError:
+            raise RuntimeError("Must run inside the UE editor (unreal module)")
+
+    items = []
+    # Straights
+    for length in (200.0, 400.0, 800.0):
+        for ktype in ("white", "black"):
+            name = f"SM_PianoRoll_Straight_{'White' if ktype == 'white' else 'Black'}_{int(length/100)}m"
+            v, t = piano_roll_straight(length, ktype)
+            m = _bake_static_mesh(unreal, name, v, t, collision_mode="simple")
+            items.append((name, len(v), len(t)))
+
+    # Arcs (90 and 180)
+    for arc in (90, 180):
+        v, t = piano_roll_arc(arc, "white")
+        name = f"SM_PianoRoll_Arc_{arc}_White"
+        _bake_static_mesh(unreal, name, v, t, collision_mode="simple")
+        items.append((name, len(v), len(t)))
+
+    # Ramps
+    for slope in (15, 30):
+        v, t = piano_roll_ramp(slope, key_type="white")
+        name = f"SM_PianoRoll_Ramp_{slope}"
+        _bake_static_mesh(unreal, name, v, t, collision_mode="simple")
+        items.append((name, len(v), len(t)))
+
+    # Caps
+    for side in ("Start", "End"):
+        v, t = piano_roll_cap(side.lower())
+        name = f"SM_PianoRoll_Cap_{side}"
+        _bake_static_mesh(unreal, name, v, t, collision_mode="simple")
+        items.append((name, len(v), len(t)))
+
+    return items
+
+
+def build_coral_reef(unreal=None):
+    """Build the coral reef scatter kit."""
+    if unreal is None:
+        try:
+            import unreal
+        except ImportError:
+            raise RuntimeError("Must run inside the UE editor (unreal module)")
+
+    items = []
+    # Branching: 3 seed variants
+    for i, seed in enumerate((0, 13, 27)):
+        v, t = coral_branching(seed=seed, branching=3, levels=4)
+        name = f"SM_Coral_Branching_{chr(65 + i)}"
+        _bake_static_mesh(unreal, name, v, t, collision_mode="none")
+        items.append((name, len(v), len(t)))
+
+    # Plates: small, medium, large
+    for tag, scale in (("S", 0.6), ("M", 1.0), ("L", 1.6)):
+        v, t = coral_plate(scale=scale)
+        name = f"SM_Coral_Plate_{tag}"
+        _bake_static_mesh(unreal, name, v, t, collision_mode="none")
+        items.append((name, len(v), len(t)))
+
+    # Brain
+    v, t = coral_brain()
+    name = "SM_Coral_Brain_A"
+    _bake_static_mesh(unreal, name, v, t, collision_mode="none")
+    items.append((name, len(v), len(t)))
+
+    # Bubble
+    v, t = coral_bubble()
+    name = "SM_Coral_Bubble_A"
+    _bake_static_mesh(unreal, name, v, t, collision_mode="none")
+    items.append((name, len(v), len(t)))
+
+    # Sea whip
+    v, t = coral_sea_whip()
+    name = "SM_Coral_SeaWhip_A"
+    _bake_static_mesh(unreal, name, v, t, collision_mode="none")
+    items.append((name, len(v), len(t)))
+
+    return items
+
+
+def build_filigree(unreal=None):
+    """Build the filigree trim kit."""
+    if unreal is None:
+        try:
+            import unreal
+        except ImportError:
+            raise RuntimeError("Must run inside the UE editor (unreal module)")
+
+    items = []
+    for length_cm, name in ((200.0, "SM_Filigree_Straight_Treble_2m"),
+                            (400.0, "SM_Filigree_Straight_Treble_4m")):
+        v, t = filigree_straight(length_cm=length_cm)
+        _bake_static_mesh(unreal, name, v, t, collision_mode="none")
+        items.append((name, len(v), len(t)))
+
+    for side in ("Inside", "Outside"):
+        v, t = filigree_corner(inside=(side == "Inside"))
+        name = f"SM_Filigree_Corner_{side}_90"
+        _bake_static_mesh(unreal, name, v, t, collision_mode="none")
+        items.append((name, len(v), len(t)))
+
+    for side in ("Start", "End"):
+        v, t = filigree_cap(side=side)
+        name = f"SM_Filigree_Cap_{side}"
+        _bake_static_mesh(unreal, name, v, t, collision_mode="none")
+        items.append((name, len(v), len(t)))
+
+    v, t = filigree_sheet_music_corner()
+    name = "SM_Filigree_SheetMusicCorner"
+    _bake_static_mesh(unreal, name, v, t, collision_mode="none")
+    items.append((name, len(v), len(t)))
+
+    return items
+
+
+def main():
+    """Build all three kits and write the manifest."""
+    import unreal
+
+    unreal.log("[MusicalDream] starting full kit build")
+    manifest = {
+        "started": datetime.now(timezone.utc).isoformat(),
+        "destination": DEST_FOLDER,
+        "piano_rolls": build_piano_rolls(unreal),
+        "coral_reef": build_coral_reef(unreal),
+        "filigree": build_filigree(unreal),
+        "finished": datetime.now(timezone.utc).isoformat(),
+    }
+    MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
+    MANIFEST_PATH.write_text(json.dumps(manifest, indent=2))
+    unreal.log(f"[MusicalDream] manifest -> {MANIFEST_PATH}")
+    return manifest
+
+
+if __name__ == "__main__":
+    main()

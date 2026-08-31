@@ -1,0 +1,205 @@
+// Copyright 2026 BS_GodFile. All Rights Reserved.
+//
+// MelodiaInkSdfNotation.ush — SDF music-notation ink patterns.
+//
+// This is the ink expansion that makes M_PP_MelodiaInk unique vs the outline:
+// instead of fixed-grid Ben-Day dots, it renders distance-field patterns that
+// read as musical notation — staff lines that pulse with bass, note-heads that
+// bloom on beats, crescendo swells that push ink outward radially.
+//
+// The outline shader is edge-based (CustomDepth silhouettes); it cannot do
+// field-based patterns. This shader is field-based (screen-space SDF), so it
+// occupies a completely different aesthetic space.
+//
+// Audio reactivity drives the PATTERN, not just the intensity:
+//   - Bass → staff line thickness and vertical drift
+//   - BeatPulse → note-head bloom (dots grow and glow on beats)
+//   - Treble → fine ornamentation (ledger lines, grace notes)
+//   - ComboNormalized → crescendo radial swell
+//   - EnemyTension → jagged notation (dissonant crosshatch)
+//   - VictoryPulse → blooming radiance (expanding rings)
+//
+// Authoring: Rider validates this as HLSL. Consumed by the Custom node in
+// M_PP_MelodiaInk (inlined or #included by the build script).
+
+#pragma once
+#include "MelodiaInkCommon.ush"
+
+// ============================================================================
+// Staff lines — horizontal lines that drift with bass, thicken on beats
+// ============================================================================
+
+float MelSdfStaffLines(float2 uv, FMelodiaInkAudio audio, float density, float thickness)
+{
+    // 5 staff lines, evenly spaced, drifting vertically with bass
+    float bassDrift = audio.Bass * 0.02 * sin(View.GameTime * 0.7);
+    float2 staffUV = uv + float2(0.0, bassDrift);
+
+    float lineSpacing = 1.0 / max(density, 1e-4);
+    float yFrac = frac(staffUV.y / lineSpacing) - 0.5;
+    float lineDist = abs(yFrac) - thickness;
+
+    // Beat pulses thicken lines slightly
+    float beatThicken = audio.BeatPulse * 0.001;
+    lineDist -= beatThicken;
+
+    return lineDist;
+}
+
+// ============================================================================
+// Note-heads — SDF circles placed on staff positions, blooming on beats
+// ============================================================================
+
+float MelSdfNoteHeads(float2 uv, FMelodiaInkAudio audio, float2 cellSize, float baseRadius)
+{
+    // Quantize UV to a grid of note positions
+    float2 cell = floor(uv / cellSize) * cellSize;
+    float2 local = uv - cell - cellSize * 0.5;
+
+    // Deterministic per-cell offset so notes aren't a perfect grid
+    float2 jitter = (MelHash2(cell) - 0.5) * cellSize * 0.3;
+    float2 center = cell + cellSize * 0.5 + jitter;
+
+    // Snap to staff line positions (5 lines, so quantize Y to 5 positions)
+    float staffStep = cellSize.y / 5.0;
+    center.y = floor(center.y / staffStep) * staffStep + staffStep * 0.5;
+
+    float d = MelSdfCircle(uv, center, baseRadius);
+
+    // Beat bloom — each note-head grows and glows on its nearest beat
+    float cellPhase = MelHash(cell) * MEL_TAU;
+    float beatPhase = frac(View.GameTime * 2.0 + cellPhase);
+    float beatEnvelope = pow(max(0.0, 1.0 - beatPhase * 2.0), 2.0);
+    float bloom = audio.BeatPulse * 0.3 * beatEnvelope;
+    d -= bloom;
+
+    return d;
+}
+
+// ============================================================================
+// Crescendo swell — radial ink that expands outward from a center point
+// ============================================================================
+
+float MelSdfCrescendo(float2 uv, FMelodiaInkAudio audio, float2 center, float baseRadius, float speed)
+{
+    float dist = length(uv - center);
+    float combo = MelSaturate(audio.ComboNormalized);
+
+    // Expanding ring — radius grows with combo and time
+    float ringRadius = baseRadius + combo * 0.3 + frac(View.GameTime * speed) * 0.15;
+    float ringDist = abs(dist - ringRadius);
+
+    // Soft falloff
+    float w = max(fwidth(dist) * 3.0, 0.002);
+    return smoothstep(0.0, w, ringDist);
+}
+
+// ============================================================================
+// Grace-note ornaments — tiny dots and ledger lines driven by treble
+// ============================================================================
+
+float MelSdfGraceNotes(float2 uv, FMelodiaInkAudio audio, float scale, float2 cellSize)
+{
+    float treble = MelSaturate(audio.Treble);
+    if (treble < 0.1) return 1.0; // gate off
+
+    float2 cell = floor(uv * scale) / scale;
+    float2 local = frac(uv * scale) - 0.5;
+
+    float h = MelHash(cell);
+    if (h > 0.3 * treble + 0.1) return 1.0; // sparse
+
+    float r = 0.02 + treble * 0.03;
+    return MelSdfCircle(local, float2(0.0, 0.0), r);
+}
+
+// ============================================================================
+// Dissonant crosshatch — jagged notation when tension is high
+// ============================================================================
+
+float3 MelDissonantCrosshatch(float3 src, float2 uv, FMelodiaInkAudio audio, float3 inkCol, float strength)
+{
+    float tension = MelSaturate(audio.EnemyTension);
+    if (tension < 0.1) return src;
+
+    // Two layers of jagged lines at different angles
+    float j1 = frac(uv.x * 15.0 + sin(uv.y * 3.0) * tension);
+    float j2 = frac(uv.y * 12.0 + sin(uv.x * 2.5) * tension);
+
+    float jag1 = MelSoftStep(0.5 - tension * 0.3, j1);
+    float jag2 = MelSoftStep(0.5 - tension * 0.3, j2);
+
+    float mask = (1.0 - jag1) * (1.0 - jag2) * tension * strength;
+    return lerp(src, lerp(src, inkCol * 0.6, 1.0), mask);
+}
+
+// ============================================================================
+// Victory radiance — expanding blooming rings on victory pulse
+// ============================================================================
+
+float3 MelVictoryRadiance(float3 src, float2 uv, FMelodiaInkAudio audio, float3 accentTint)
+{
+    float victory = MelSaturate(audio.VictoryPulse);
+    if (victory < 0.01) return src;
+
+    float2 center = float2(0.5, 0.5);
+    float dist = length(uv - center);
+
+    // Multiple expanding rings
+    float ring1 = 1.0 - MelSoftStep(0.05, abs(dist - frac(View.GameTime * 0.3) * 0.4));
+    float ring2 = 1.0 - MelSoftStep(0.03, abs(dist - frac(View.GameTime * 0.3 + 0.33) * 0.4));
+    float ring3 = 1.0 - MelSoftStep(0.02, abs(dist - frac(View.GameTime * 0.3 + 0.66) * 0.4));
+
+    float rings = (ring1 + ring2 * 0.7 + ring3 * 0.5) * victory;
+    return lerp(src, lerp(src, accentTint, 0.8), rings * 0.5);
+}
+
+// ============================================================================
+// Main SDF notation pattern — composes all the above
+// Returns modified color; caller blends with master weight.
+// ============================================================================
+
+float3 MelInkSdfNotation(
+    float3 src,          // SceneColor (PostProcessInput0)
+    float2 uv,           // Screen UV (0..1)
+    FMelodiaInkAudio audio,
+    FMelodiaInkParams params,
+    float3 inkCol        // pre-computed ink color (InkColor lerp HueTint)
+)
+{
+    float3 col = src;
+    float luma = MelLuminance(src);
+
+    // Staff lines — bass-driven, in shadow areas
+    float staffDist = MelSdfStaffLines(uv, audio, 8.0, 0.003);
+    float staffMask = 1.0 - MelSoftStep(0.0, staffDist);
+    float shadowInk = MelSaturate((1.0 - luma) * 0.7 + params.PaperShadow * 0.3);
+    col = lerp(col, lerp(col, inkCol * 0.5 + col * 0.5, 1.0),
+               staffMask * shadowInk * params.Strength * MelSaturate(audio.Bass * 0.6));
+
+    // Note-heads — beat-bloomed dots
+    float noteDist = MelSdfNoteHeads(uv, audio, float2(0.08, 0.12), 0.015);
+    float noteMask = 1.0 - MelSoftStep(0.0, noteDist);
+    float beatGlow = audio.BeatPulse * 0.5;
+    col = lerp(col, lerp(col, inkCol * (0.7 + beatGlow), 1.0),
+               noteMask * params.Strength * (0.5 + beatGlow * 0.5));
+
+    // Crescendo radial swell
+    float crescendo = 1.0 - MelSdfCrescendo(uv, audio, float2(0.5, 0.5), 0.1, 0.5);
+    col = lerp(col, lerp(col, inkCol + col * 0.3, 0.6),
+               crescendo * params.Strength * audio.ComboNormalized * 0.3);
+
+    // Grace notes — treble ornamentation
+    float graceDist = MelSdfGraceNotes(uv, audio, 20.0, float2(0.05, 0.05));
+    float graceMask = 1.0 - MelSoftStep(0.0, graceDist);
+    col = lerp(col, lerp(col, inkCol * 0.8 + col * 0.2, 1.0),
+               graceMask * params.Strength * audio.Treble * 0.25);
+
+    // Dissonant crosshatch — tension
+    col = MelDissonantCrosshatch(col, uv, audio, inkCol, params.Strength * 0.4);
+
+    // Victory radiance
+    col = MelVictoryRadiance(col, uv, audio, params.AccentTint);
+
+    return col;
+}

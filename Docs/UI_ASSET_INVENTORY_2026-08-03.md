@@ -1,7 +1,51 @@
-# Melodia UI Asset Inventory — 2026-08-13 (UPDATED)
+# Melodia UI Asset Inventory — 2026-08-28 (UNIVERSAL WBP LUXURY SYSTEM)
 
-**Last Revised:** 2026-08-13 (this session)  
-**Source:** `BP_WidgetComponent_Base_Design.md`, `WidgetStyleSheet.json`, `BP_CommandPhaseWBP`
+**Last Revised:** 2026-08-28
+**Source:** `melodia-design-system/DESIGN-SYSTEM.md`, `tokens.json`, `build_melodia_luxury_wbp_system.py`, `scaffold_melodia_wbp_atoms.py`
+
+## 0. Universal 4-Layer Luxury Depth Stack
+
+All 30 `/Game/Melodia/UI/WBP_*` widgets follow the luxury density doctrine (§A1):
+
+1. **Layer 1 (Void Plate)**: Midnight Plum `#241B2E` (92% opacity) + subtle constellation star-chart backplate (`T_Melodia_Constellation_Overlay`).
+2. **Layer 2 (Iridescent Sheen)**: Material-driven dynamic gradient reacting to `MPC_Melodia_Palette.BeatPulse` and `RhythmPulse`.
+3. **Layer 3 (Ornate Filigree Chrome)**: 1px Champagne Gold `#C9A86A` corner brackets (`T_Melodia_FiligreeCorner_Ornate`), staff dividers (`T_Melodia_FiligreeDivider_Wave`), and per-lane iridescent rails (`T_Melodia_FiligreeLaneRail`).
+4. **Layer 4 (Active Content & Grade Burst)**: High-contrast Syne / Instrument Serif typography, health/energy meters, and `GradePopLuxury` burst rings.
+
+## 1. Complete 30-Atom Universal Inventory
+
+| WBP Asset | Figma Atom | Category | Parent Class | T3D Spec | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `WBP_MainMenu` | `Game/MainMenu` | Navigation | `UserWidget` | `specs/ui/WBP_MainMenu.t3d` | Scaffolded / In-Use |
+| `WBP_SaveLoad` | `Game/SaveLoad` | System | `UserWidget` | `specs/ui/WBP_SaveLoad.t3d` | Scaffolded / In-Use |
+| `WBP_Settings` | `Game/Settings` | System | `UserWidget` | `specs/ui/WBP_Settings.t3d` | Scaffolded / In-Use |
+| `WBP_ComicOrrery` | `Game/ComicOrrery` | Narrative | `UserWidget` | `specs/ui/WBP_ComicOrrery.t3d` | Scaffolded / In-Use |
+| `WBP_QuestJournal` | `Game/QuestJournal` | Progression | `UserWidget` | `specs/ui/WBP_QuestJournal.t3d` | Scaffolded / In-Use |
+| `WBP_NPCInfo` | `Game/NPCInfo` | Social | `UserWidget` | `specs/ui/WBP_NPCInfo.t3d` | Scaffolded |
+| `WBP_Inventory` | `Game/Inventory` | Wardrobe | `UserWidget` | `specs/ui/WBP_Inventory.t3d` | Scaffolded |
+| `WBP_Title` | `Game/Title` | Navigation | `UserWidget` | `specs/ui/WBP_Title.t3d` | Scaffolded |
+| `WBP_PartyLoadout` | `Game/PartyLoadout` | Combat | `UserWidget` | `specs/ui/WBP_PartyLoadout.t3d` | Scaffolded |
+| `WBP_FieldHUD` | `Game/FieldHUD` | Exploration | `UserWidget` | `specs/ui/WBP_FieldHUD.t3d` | Scaffolded |
+| `WBP_Battle_Command` | `Game/BattleCommand` | Combat | `UserWidget` | `specs/ui/WBP_Battle_Command.t3d` | Scaffolded |
+| `WBP_Battle_Rhythm` | `Game/BattleRhythm` | Combat | `MelodiaRhythmHUDWidget` | `specs/ui/WBP_Battle_Rhythm.t3d` | Compiled / Active Host |
+| `WBP_Battle_Enemy` | `Game/BattleEnemy` | Combat | `UserWidget` | `specs/ui/WBP_Battle_Enemy.t3d` | Scaffolded |
+| `WBP_Battle_Results` | `Game/BattleResults` | Combat | `UserWidget` | `specs/ui/WBP_Battle_Results.t3d` | Scaffolded / In-Use |
+| `WBP_SkillCodex` | `Game/SkillCodex` | Progression | `UserWidget` | `specs/ui/WBP_SkillCodex.t3d` | Scaffolded / In-Use |
+| `WBP_Battle_Mobile` | `Game/BattleMobile` | Combat | `MelodiaMobileHUD` | `specs/ui/WBP_Battle_Mobile.t3d` | Scaffolded / Shell |
+| `WBP_GradePop` | `Game/GradePop` | RhythmFX | `UserWidget` | `specs/ui/WBP_GradePop.t3d` | Scaffolded / Luxury Burst |
+| `WBP_SheetMusicRoll` | `Game/SheetMusicRoll` | RhythmScore | `UserWidget` | `specs/ui/WBP_SheetMusicRoll.t3d` | Scaffolded |
+| `WBP_NoteGlyph` | `Game/NoteGlyph` | RhythmScore | `UserWidget` | `specs/ui/WBP_NoteGlyph.t3d` | Scaffolded |
+| `WBP_MeasureMarker` | `Game/MeasureMarker` | RhythmScore | `UserWidget` | `specs/ui/WBP_MeasureMarker.t3d` | Scaffolded |
+| `WBP_PlaybackHead` | `Game/PlaybackHead` | RhythmScore | `UserWidget` | `specs/ui/WBP_PlaybackHead.t3d` | Scaffolded |
+| `WBP_ElementWheel` | `Game/ElementWheel` | Combat | `UserWidget` | `specs/ui/WBP_ElementWheel.t3d` | Scaffolded |
+| `WBP_SPBar` | `Game/SPMeter` | Gauges | `UserWidget` | `specs/ui/WBP_SPBar.t3d` | Scaffolded |
+| `WBP_ULTCharge` | `Game/ULTMeter` | Gauges | `UserWidget` | `specs/ui/WBP_ULTCharge.t3d` | Scaffolded |
+| `WBP_DialogueBubble` | `Game/DialogueOverlay` | Narrative | `UserWidget` | `specs/ui/WBP_DialogueBubble.t3d` | Scaffolded |
+| `WBP_MenuButton` | `Ctrl/MenuButton` | Controls | `UserWidget` | `specs/ui/WBP_MenuButton.t3d` | Scaffolded |
+| `WBP_BlessingBurden` | `Game/BlessingBurden` | Roguelike | `UserWidget` | `specs/ui/WBP_BlessingBurden.t3d` | Scaffolded |
+| `WBP_IntensityWarning` | `Game/IntensityWarning` | Combat | `UserWidget` | `specs/ui/WBP_IntensityWarning.t3d` | Scaffolded |
+| `WBP_DissonanceBanner` | `Game/DissonanceBanner` | Combat | `UserWidget` | `specs/ui/WBP_DissonanceBanner.t3d` | Scaffolded |
+| `WBP_ResonanceBond` | `Game/ResonanceBond` | Social | `UserWidget` | `specs/ui/WBP_ResonanceBond.t3d` | Scaffolded |
 
 ## 1. Available — Figma SSOT (authored)
 

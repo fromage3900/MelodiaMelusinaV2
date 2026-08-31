@@ -1,0 +1,108 @@
+{
+  "format": "gmm_brass_preset_v1",
+  "instrument_type": "trombone",
+  "key": "Bb",
+  "ensemble": "modern",
+  "description": "Modern trombone in Bb with open-wrap F-attachment — .578\" slide taper, .495\" bore, .562\" bell",
+  "modifier_stacks": [
+    {
+      "id": "slide_outer_tube",
+      "type": "brass_tube",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "radius": 12.6,
+        "thickness": 0.8,
+        "length": 650.0,
+        "resolution": 32
+      }
+    },
+    {
+      "id": "slide_inner_tube",
+      "type": "brass_slide_taper",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "major_diameter": 12.6,
+        "minor_diameter": 12.0,
+        "length": 600.0,
+        "resolution": 32
+      }
+    },
+    {
+      "id": "bell_main",
+      "type": "brass_bell_profile",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "base_radius": 12.6,
+        "tip_radius": 14.3,
+        "height": 45.0,
+        "resolution": 64
+      }
+    },
+    {
+      "id": "mp_cup_trombone",
+      "type": "brass_mouthpiece_cup",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "cup_depth": 28.0,
+        "cup_radius": 12.0,
+        "rim_thickness": 3.5,
+        "back_bore_diameter": 6.5
+      }
+    },
+    {
+      "id": "mp_shank_trombone",
+      "type": "brass_mouthpiece_shank",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "shank_length": 50.0,
+        "major_diameter": 20.0,
+        "minor_diameter": 14.0,
+        "taper_type": "linear"
+      }
+    },
+    {
+      "id": "wrap_coil",
+      "type": "brass_wrap_formation",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "coil_diameter": 45.0,
+        "wire_diameter": 12.6,
+        "wrap_count": 4,
+        "start_angle": 0.0,
+        "pitch": 15.0
+      }
+    },
+    {
+      "id": "trombone_bracing",
+      "type": "brass_bracing_hoop",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "tube_radius": 12.6,
+        "hoop_diameter": 2.5,
+        "count": 4,
+        "angle_offset": 0.0
+      }
+    },
+    {
+      "id": "slide_lock_ring",
+      "type": "brass_filigree_chevron",
+      "enabled": true,
+      "scope": "editor",
+      "parameters": {
+        "tube_radius": 12.6,
+        "v_angle": 60.0,
+        "period": 20.0,
+        "stripe_width": 3.0
+      }
+    }
+  ],
+  "ue_binding": "/Game/Brass/Presets/Trombone/GeometryModifiers",
+  "next_action": "hython Tools/Houdini/build_brass_preset.py"
+}

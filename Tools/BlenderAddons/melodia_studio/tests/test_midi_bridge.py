@@ -159,14 +159,9 @@ class TestGeneration(unittest.TestCase):
             self.assertTrue(r["ok"], pid)
             self.assertGreater(r["verts"], 0, pid)
 
-    @unittest.expectedFailure
     def test_height_divisors_are_honoured(self):
-        """KNOWN DEFECT (2026-08-24): midi_voxel_v3.generate() hardcodes
-        `vel // 32` (surface) and `vel // 40` (cave), so the preset fields
-        surface_height_divisor / cave_height_divisor are ignored. That makes
-        abyss_caves byte-identical to resonant_default. Fixing requires
-        threading the divisors into generate(), which touches the shared
-        voxel tool -- deliberately not done under the current change freeze.
+        """D7 FIX VERIFIED (2026-08-28): divisors are now threaded into
+        generate_world via surface_div/cave_div kwargs.
         """
         default = self._gen("resonant_default")
         abyss = self._gen("abyss_caves")

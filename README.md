@@ -61,7 +61,8 @@ L_MelusinaMorning
 | PIE runtime input | ♪ PASS (ledger 2026-08-13) | `Saved/gate_ledger.json` |
 | Save/Load | ♪ PASS | `repeat_consume` + `package_launch` gates |
 | Stock JRPG battle | ♪ Root cause fixed, PIE-verified (2026-08-26) | `Docs/Handoffs/P0_CLOSEOUT_HANDOFF_2026-08-26.md` |
-| Rhythm-highway HUD binding | ◻ OPEN — top priority | `BP_BattleController.melodiaBattleUI`/`.MelodiaUI` = None |
+| Rhythm-highway HUD binding | ♪ PASS (hud_single_writer & rhythm_owner) | `Docs/Handoffs/P0_BATTLE_UI_CLOSEOUT_HANDOFF_2026-08-27.md` + `Saved/gate_ledger.json` |
+| Universal Luxury WBP System | ♪ 30 Atoms Scaffolded (4-layer luxury stack) | `Content/Python/build_melodia_luxury_wbp_system.py` + `specs/ui/` |
 | T3D wiring gate | ♪ EXPANDING | `t3d_safe_wire.py` active |
 
 ### 2. ♪ Melodia MCP + Local Model Tooling (MATH)

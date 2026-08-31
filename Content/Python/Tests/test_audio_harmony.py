@@ -19,7 +19,14 @@ import unittest
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-import numpy as np
+try:
+    import numpy as np
+    HAS_DEPS = True
+except ImportError:
+    HAS_DEPS = False
+
+if not HAS_DEPS:
+    raise unittest.SkipTest("numpy not available in this Python environment")
 
 # Ensure parent directory is in sys.path
 TEST_DIR = Path(__file__).resolve().parent
