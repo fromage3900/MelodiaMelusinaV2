@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "GameplayTagContainer.h"
 #include "MelodiaWaterBuoyancyComponent.generated.h"
 
 UCLASS(ClassGroup = (Melodia), BlueprintType, Blueprintable, meta = (BlueprintSpawnableComponent))
@@ -22,10 +23,10 @@ public:
 	bool HasAuthoritativeWaterSample() const { return bHasAuthoritativeSample; }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Buoyancy")
-	FName WaterBodyId = NAME_None;
+	FGameplayTag WaterBodyId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Buoyancy")
-	FName WaterNetworkId = NAME_None;
+	FGameplayTag WaterNetworkId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Buoyancy")
 	TArray<FVector> ProbeOffsets;

@@ -31,7 +31,6 @@ $ Notify melodia:travel:/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbov
 $ Notify melodia:stat:intent.sea_above.witness:melodia_resonance:5
 $ Notify melodia:flag:flag.cutscene.sea_above_witnessed:true
 $ Notify melodia:flag:flag.sea_above.membrane_pulse_active:true
-$ Notify melodia:reward:reward.cutscene.sea_above_memory
 
 - Melusina
   It is breathtaking. The entire ocean breathes in rhythm above us.

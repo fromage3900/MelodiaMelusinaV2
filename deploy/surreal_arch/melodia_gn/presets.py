@@ -2545,6 +2545,711 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # profiles.py — column
+    "MEL_column": {
+        "label": "Column",
+        "preset_labels": {
+            "DORIC_SOBER": "Doric Sober",
+            "FLUTED_IONIC": "Fluted Ionic",
+            "PILASTER_SLIM": "Pilaster Slim",
+        },
+        "preset_descriptions": {
+            "DORIC_SOBER": "Stately Doric column — no fluting, simple capital, wide base.",
+            "FLUTED_IONIC": "Fluted Ionic column — 24 flutes, volute capital, tall slender profile.",
+            "PILASTER_SLIM": "Wall pilaster — half-column, flat back, minimal projection.",
+        },
+        "presets": {
+            "DORIC_SOBER": {"Height": 3.0, "Radius": 0.25, "Sides": 24, "Fluted": False, "Capital Height": 0.3, "Base Height": 0.2},
+            "FLUTED_IONIC": {"Height": 4.0, "Radius": 0.18, "Sides": 24, "Fluted": True, "Capital Height": 0.45, "Base Height": 0.15},
+            "PILASTER_SLIM": {"Height": 2.8, "Radius": 0.12, "Sides": 16, "Fluted": False, "Capital Height": 0.2, "Base Height": 0.1},
+        },
+    },
+
+    # profiles.py — baluster
+    "MEL_baluster": {
+        "label": "Baluster",
+        "preset_labels": {
+            "CLASSIC_TURNED": "Classic Turned",
+            "SQUARE_CHAMFER": "Square Chamfer",
+            "GARDEN_GEM": "Garden Gem",
+        },
+        "preset_descriptions": {
+            "CLASSIC_TURNED": "Traditional turned baluster — symmetrical bulge, smooth profile.",
+            "SQUARE_CHAMFER": "Modern square baluster — chamfered edges, minimalist.",
+            "GARDEN_GEM": "Short garden baluster — wide bulge, decorative gem top.",
+        },
+        "presets": {
+            "CLASSIC_TURNED": {"Height": 0.9, "Width": 0.08, "Bulge": 0.5, "Segments": 24},
+            "SQUARE_CHAMFER": {"Height": 0.8, "Width": 0.06, "Bulge": 0.1, "Segments": 4},
+            "GARDEN_GEM": {"Height": 0.6, "Width": 0.12, "Bulge": 0.8, "Segments": 32},
+        },
+    },
+
+    # profiles.py — post
+    "MEL_post": {
+        "label": "Post",
+        "preset_labels": {
+            "SQUARE_PLANTER": "Square Planter",
+            "ROUNDED_BOLLARD": "Rounded Bollard",
+            "CAPITAL_CROWN": "Capital Crown",
+        },
+        "preset_descriptions": {
+            "SQUARE_PLANTER": "Square planter post — chamfered top, wide base.",
+            "ROUNDED_BOLLARD": "Rounded bollard post — smooth dome cap, slim profile.",
+            "CAPITAL_CROWN": "Crown post — ornate capital, decorative cap.",
+        },
+        "presets": {
+            "SQUARE_PLANTER": {"Height": 0.7, "Width": 0.2, "Chamfer": 0.03, "Has Cap": False},
+            "ROUNDED_BOLLARD": {"Height": 0.9, "Width": 0.12, "Chamfer": 0.05, "Has Cap": True},
+            "CAPITAL_CROWN": {"Height": 1.2, "Width": 0.15, "Chamfer": 0.02, "Has Cap": True},
+        },
+    },
+
+    # profiles.py — rail
+    "MEL_rail": {
+        "label": "Rail",
+        "preset_labels": {
+            "HANDRAIL_SMOOTH": "Handrail Smooth",
+            "BALUSTRADE_TOP": "Balustrade Top",
+            "WALL_MOUNT": "Wall Mount",
+        },
+        "preset_descriptions": {
+            "HANDRAIL_SMOOTH": "Smooth handrail — ergonomic profile, comfortable grip.",
+            "BALUSTRADE_TOP": "Balustrade top rail — wide flat profile, mounts balusters.",
+            "WALL_MOUNT": "Wall-mounted rail — slim profile, minimal projection.",
+        },
+        "presets": {
+            "HANDRAIL_SMOOTH": {"Profile Width": 0.06, "Profile Height": 0.04},
+            "BALUSTRADE_TOP": {"Profile Width": 0.12, "Profile Height": 0.05},
+            "WALL_MOUNT": {"Profile Width": 0.04, "Profile Height": 0.03},
+        },
+    },
+
+    # profiles.py — star_finial
+    "MEL_star_finial": {
+        "label": "Star Finial",
+        "preset_labels": {
+            "FIVE_POINT": "Five-Point Star",
+            "EIGHT_POINT": "Eight-Point Star",
+            "COMPASS_ROSE": "Compass Rose",
+        },
+        "preset_descriptions": {
+            "FIVE_POINT": "Classic five-point star finial — sharp points, tall profile.",
+            "EIGHT_POINT": "Eight-point star — broader silhouette, shorter height.",
+            "COMPASS_ROSE": "Compass rose finial — wide flat profile, navigational.",
+        },
+        "presets": {
+            "FIVE_POINT": {"Points": 5, "Radius Outer": 0.3, "Radius Inner": 0.12, "Height": 0.4},
+            "EIGHT_POINT": {"Points": 8, "Radius Outer": 0.35, "Radius Inner": 0.18, "Height": 0.25},
+            "COMPASS_ROSE": {"Points": 16, "Radius Outer": 0.4, "Radius Inner": 0.2, "Height": 0.15},
+        },
+    },
+
+    # primitives.py — circular_array
+    "MEL_circular_array": {
+        "label": "Circular Array",
+        "preset_labels": {
+            "COLUMN_RING": "Column Ring",
+            "CHANDELIER": "Chandelier",
+            "TURRET_CROWN": "Turret Crown",
+        },
+        "preset_descriptions": {
+            "COLUMN_RING": "Ring of columns — evenly spaced, uniform scale.",
+            "CHANDELIER": "Chandelier array — radial arms, varied scale.",
+            "TURRET_CROWN": "Turret crown — tight ring, tall items, offset Z.",
+        },
+        "presets": {
+            "COLUMN_RING": {"Count": 12, "Radius": 3.0, "Scale per item": 1.0, "Offset Z": 0.0},
+            "CHANDELIER": {"Count": 8, "Radius": 1.5, "Scale per item": 0.6, "Offset Z": 0.5},
+            "TURRET_CROWN": {"Count": 16, "Radius": 1.2, "Scale per item": 1.3, "Offset Z": 2.0},
+        },
+    },
+
+    # primitives.py — linear_array
+    "MEL_linear_array": {
+        "label": "Linear Array",
+        "preset_labels": {
+            "COLONNADE": "Colonnade",
+            "FENCE_LINE": "Fence Line",
+            "TAPERED_ROW": "Tapered Row",
+        },
+        "preset_descriptions": {
+            "COLONNADE": "Stately colonnade — evenly spaced columns, no taper.",
+            "FENCE_LINE": "Fence line — close spacing, small items, slight taper.",
+            "TAPERED_ROW": "Tapered row — items shrink along the line.",
+        },
+        "presets": {
+            "COLONNADE": {"Count": 8, "Offset": (3.0, 0.0, 0.0), "Scale per item": 1.0, "Taper": 0.0},
+            "FENCE_LINE": {"Count": 20, "Offset": (0.5, 0.0, 0.0), "Scale per item": 0.8, "Taper": 0.1},
+            "TAPERED_ROW": {"Count": 10, "Offset": (2.0, 0.0, 0.0), "Scale per item": 1.0, "Taper": 0.5},
+        },
+    },
+
+    # primitives.py — grid_array
+    "MEL_grid_array": {
+        "label": "Grid Array",
+        "preset_labels": {
+            "CITY_BLOCK": "City Block",
+            "PLAZA_TILES": "Plaza Tiles",
+            "GARDEN_PLOTS": "Garden Plots",
+        },
+        "preset_descriptions": {
+            "CITY_BLOCK": "City block grid — dense, uniform spacing.",
+            "PLAZA_TILES": "Plaza tiles — wide spacing, large items.",
+            "GARDEN_PLOTS": "Garden plots — rectangular grid, varied spacing.",
+        },
+        "presets": {
+            "CITY_BLOCK": {"Count X": 8, "Count Y": 8, "Spacing X": 4.0, "Spacing Y": 4.0},
+            "PLAZA_TILES": {"Count X": 4, "Count Y": 4, "Spacing X": 8.0, "Spacing Y": 8.0},
+            "GARDEN_PLOTS": {"Count X": 6, "Count Y": 3, "Spacing X": 3.0, "Spacing Y": 5.0},
+        },
+    },
+
+    # primitives.py — instance_on_spline
+    "MEL_instance_on_spline": {
+        "label": "Instance on Spline",
+        "preset_labels": {
+            "RAILING_POSTS": "Railing Posts",
+            "STREET_LAMPS": "Street Lamps",
+            "VINE_TENDRILS": "Vine Tendrils",
+        },
+        "preset_descriptions": {
+            "RAILING_POSTS": "Posts along a path — evenly spaced, uniform scale.",
+            "STREET_LAMPS": "Street lamps — wide spacing, tall items, offset.",
+            "VINE_TENDRILS": "Vine tendrils — dense spacing, small items, random offset.",
+        },
+        "presets": {
+            "RAILING_POSTS": {"Count": 20, "Scale": 1.0, "Offset along curve": 0.0},
+            "STREET_LAMPS": {"Count": 8, "Scale": 1.5, "Offset along curve": 0.1},
+            "VINE_TENDRILS": {"Count": 50, "Scale": 0.3, "Offset along curve": 0.05},
+        },
+    },
+
+    # structures.py — arch
+    "MEL_arch": {
+        "label": "Arch",
+        "preset_labels": {
+            "ROMAN_ROUND": "Roman Round",
+            "GOTHIC_POINTED": "Gothic Pointed",
+            "ELLIPTICAL": "Elliptical",
+        },
+        "preset_descriptions": {
+            "ROMAN_ROUND": "Roman round arch — semicircular, thick walls.",
+            "GOTHIC_POINTED": "Gothic pointed arch — tall rise, thin walls.",
+            "ELLIPTICAL": "Elliptical arch — wide span, low rise.",
+        },
+        "presets": {
+            "ROMAN_ROUND": {"Span": 3.0, "Height": 1.5, "Arch Rise": 0.5, "Thickness": 0.3, "Segments": 24},
+            "GOTHIC_POINTED": {"Span": 2.5, "Height": 3.0, "Arch Rise": 0.8, "Thickness": 0.2, "Segments": 32},
+            "ELLIPTICAL": {"Span": 5.0, "Height": 1.0, "Arch Rise": 0.25, "Thickness": 0.35, "Segments": 20},
+        },
+    },
+
+    # structures.py — portico
+    "MEL_portico": {
+        "label": "Portico",
+        "preset_labels": {
+            "TEMPLE_FRONT": "Temple Front",
+            "PORCH_ENTRY": "Porch Entry",
+            "GRAND_STAIRCASE": "Grand Staircase",
+        },
+        "preset_descriptions": {
+            "TEMPLE_FRONT": "Temple portico — wide column grid, tall pediment.",
+            "PORCH_ENTRY": "Porch entry — small column pair, low profile.",
+            "GRAND_STAIRCASE": "Grand staircase — wide portico, tall columns.",
+        },
+        "presets": {
+            "TEMPLE_FRONT": {"Width": 8.0, "Depth": 4.0, "Column Height": 5.0, "Column Count": 6},
+            "PORCH_ENTRY": {"Width": 3.0, "Depth": 2.0, "Column Height": 2.5, "Column Count": 2},
+            "GRAND_STAIRCASE": {"Width": 12.0, "Depth": 6.0, "Column Height": 6.0, "Column Count": 8},
+        },
+    },
+
+    # env_extras.py — lily_pond
+    "MEL_env_lily_pond": {
+        "label": "Lily Pond",
+        "preset_labels": {
+            "GARDEN_POND": "Garden Pond",
+            "TEMPLE_POOL": "Temple Pool",
+            "WILD_MARSH": "Wild Marsh",
+        },
+        "preset_descriptions": {
+            "GARDEN_POND": "Garden lily pond — calm water, scattered pads, few lotus.",
+            "TEMPLE_POOL": "Temple pool — still water, symmetrical pads, blooming lotus.",
+            "WILD_MARSH": "Wild marsh — rippled water, dense pads, no lotus.",
+        },
+        "presets": {
+            "GARDEN_POND": {"Pond Radius": 3.0, "Panel Depth": 0.3, "Water Level": 0.8, "Pad Count": 8, "Pad Size": 0.4, "Lotus Count": 3, "Current Speed": 0.1, "Ripple Carve": 0.2},
+            "TEMPLE_POOL": {"Pond Radius": 5.0, "Panel Depth": 0.2, "Water Level": 0.9, "Pad Count": 12, "Pad Size": 0.5, "Lotus Count": 6, "Current Speed": 0.0, "Ripple Carve": 0.05},
+            "WILD_MARSH": {"Pond Radius": 4.0, "Panel Depth": 0.5, "Water Level": 0.6, "Pad Count": 20, "Pad Size": 0.3, "Lotus Count": 0, "Current Speed": 0.4, "Ripple Carve": 0.6},
+        },
+    },
+
+    # env_extras.py — campfire_ring
+    "MEL_env_campfire_ring": {
+        "label": "Campfire Ring",
+        "preset_labels": {
+            "CAMPFIRE_INTIMATE": "Campfire Intimate",
+            "BONFIRE_PARTY": "Bonfire Party",
+            "FIRE_PIT": "Fire Pit",
+        },
+        "preset_descriptions": {
+            "CAMPFIRE_INTIMATE": "Intimate campfire — small ring, few logs, gentle flames.",
+            "BONFIRE_PARTY": "Party bonfire — large ring, many logs, tall flames.",
+            "FIRE_PIT": "Fire pit — stone ring, no logs, contained flames.",
+        },
+        "presets": {
+            "CAMPFIRE_INTIMATE": {"Ring Radius": 0.8, "Stone Count": 8, "Log Count": 4, "Fire Scale": 0.5},
+            "BONFIRE_PARTY": {"Ring Radius": 1.5, "Stone Count": 12, "Log Count": 8, "Fire Scale": 1.2},
+            "FIRE_PIT": {"Ring Radius": 0.6, "Stone Count": 16, "Log Count": 0, "Fire Scale": 0.3},
+        },
+    },
+
+    # env_extras.py — stepping_stones
+    "MEL_env_stepping_stones": {
+        "label": "Stepping Stones",
+        "preset_labels": {
+            "GARDEN_PATH": "Garden Path",
+            "STREAM_CROSSING": "Stream Crossing",
+            "ZEN_ROJI": "Zen Roji",
+        },
+        "preset_descriptions": {
+            "GARDEN_PATH": "Garden path — evenly spaced, uniform stones.",
+            "STREAM_CROSSING": "Stream crossing — irregular spacing, flat stones.",
+            "ZEN_ROJI": "Zen roji — asymmetric placement, natural stones.",
+        },
+        "presets": {
+            "GARDEN_PATH": {"Stone Count": 10, "Stone Size": 0.4, "Stone Height": 0.1, "Path Width": 1.5, "Path Length": 8.0},
+            "STREAM_CROSSING": {"Stone Count": 6, "Stone Size": 0.5, "Stone Height": 0.15, "Path Width": 2.0, "Path Length": 6.0},
+            "ZEN_ROJI": {"Stone Count": 8, "Stone Size": 0.35, "Stone Height": 0.08, "Path Width": 1.2, "Path Length": 5.0},
+        },
+    },
+
+    # env_extras.py — market_stall
+    "MEL_env_market_stall": {
+        "label": "Market Stall",
+        "preset_labels": {
+            "BAKERY_STALL": "Bakery Stall",
+            "FISH_MARKET": "Fish Market",
+            "FLOWER_CART": "Flower Cart",
+        },
+        "preset_descriptions": {
+            "BAKERY_STALL": "Bakery stall — wide awning, counter, bread shelves.",
+            "FISH_MARKET": "Fish market — deep stall, awning, display counter.",
+            "FLOWER_CART": "Flower cart — small stall, no awning, display shelves.",
+        },
+        "presets": {
+            "BAKERY_STALL": {"Stall Width": 3.0, "Stall Depth": 2.0, "Post Height": 2.5, "Awning Drop": 0.8, "Counter Height": 1.0, "Stall Type": 0, "Has Stock": True},
+            "FISH_MARKET": {"Stall Width": 4.0, "Stall Depth": 2.5, "Post Height": 2.8, "Awning Drop": 1.0, "Counter Height": 0.9, "Stall Type": 1, "Has Stock": True},
+            "FLOWER_CART": {"Stall Width": 1.5, "Stall Depth": 1.0, "Post Height": 2.0, "Awning Drop": 0.0, "Counter Height": 0.8, "Stall Type": 2, "Has Stock": False},
+        },
+    },
+
+    # mother.py — Faraway Mother Monolith
+    "MEL_mother_head_silhouette": {
+        "label": "Mother Head Silhouette",
+        "preset_labels": {
+            "MOONLIT_FACE": "Moonlit Face",
+            "DISTANT_DREAMER": "Distant Dreamer",
+            "AWASH_GRIEF": "Awash Grief",
+        },
+        "preset_descriptions": {
+            "MOONLIT_FACE": "Default moonlit face profile — readable silhouette, soft ridges.",
+            "DISTANT_DREAMER": "Distant dreamer — small silhouette, low noise, hazy.",
+            "AWASH_GRIEF": "Awash grief — tall silhouette, sharp ridges, dramatic.",
+        },
+        "presets": {
+            "MOONLIT_FACE": {"Width": 20.0, "Height": 8.0, "Depth": 6.0, "Noise Scale": 3.0, "Noise Detail": 4.0},
+            "DISTANT_DREAMER": {"Width": 30.0, "Height": 5.0, "Depth": 8.0, "Noise Scale": 1.5, "Noise Detail": 2.0},
+            "AWASH_GRIEF": {"Width": 15.0, "Height": 12.0, "Depth": 4.0, "Noise Scale": 5.0, "Noise Detail": 6.0},
+        },
+    },
+    "MEL_mother_hair_cascade": {
+        "label": "Mother Hair Cascade",
+        "preset_labels": {
+            "MOONLIT_FALLS": "Moonlit Falls",
+            "SILKEN_DRIFT": "Silken Drift",
+            "WILD_TRESSES": "Wild Tresses",
+        },
+        "preset_descriptions": {
+            "MOONLIT_FALLS": "Moonlit waterfall cascade — long, slow, silver-blue.",
+            "SILKEN_DRIFT": "Silken drift — short, wide, gentle flow.",
+            "WILD_TRESSES": "Wild tresses — long, curled, untamed.",
+        },
+        "presets": {
+            "MOONLIT_FALLS": {"Length": 12.0, "Width": 2.0, "Strand Count": 12, "Curl": 0.3},
+            "SILKEN_DRIFT": {"Length": 6.0, "Width": 4.0, "Strand Count": 8, "Curl": 0.1},
+            "WILD_TRESSES": {"Length": 18.0, "Width": 3.0, "Strand Count": 20, "Curl": 0.7},
+        },
+    },
+    "MEL_mother_valley_depression": {
+        "label": "Mother Valley Depression",
+        "preset_labels": {
+            "TORSO_WALK": "Torso Walk",
+            "HEART_CHAMBER": "Heart Chamber",
+            "DEEP_ABYSS": "Deep Abyss",
+        },
+        "preset_descriptions": {
+            "TORSO_WALK": "Default torso valley — walkable depression, moderate fog.",
+            "HEART_CHAMBER": "Heart chamber — small, deep, dense fog, intimate.",
+            "DEEP_ABYSS": "Deep abyss — vast, deep, maximum fog.",
+        },
+        "presets": {
+            "TORSO_WALK": {"Radius": 15.0, "Depth": 6.0, "Floor Noise": 1.0, "Fog Level": 0.6, "Steepness": 0.5},
+            "HEART_CHAMBER": {"Radius": 8.0, "Depth": 10.0, "Floor Noise": 0.5, "Fog Level": 0.85, "Steepness": 0.8},
+            "DEEP_ABYSS": {"Radius": 30.0, "Depth": 20.0, "Floor Noise": 2.0, "Fog Level": 0.95, "Steepness": 0.3},
+        },
+    },
+    "MEL_mother_fog_volume": {
+        "label": "Mother Fog Volume",
+        "preset_labels": {
+            "DISTANT_HINT": "Distant Hint",
+            "CLOSING_IN": "Closing In",
+            "TOTAL_OBSCURANCE": "Total Obscurance",
+        },
+        "preset_descriptions": {
+            "DISTANT_HINT": "Distant hint — sparse fog, implied mass, silver-blue.",
+            "CLOSING_IN": "Closing in — dense fog, looming presence.",
+            "TOTAL_OBSCURANCE": "Total obscurance — thick fog, no visibility.",
+        },
+        "presets": {
+            "DISTANT_HINT": {"Width": 40.0, "Height": 20.0, "Depth": 10.0, "Density": 0.02, "Tint Strength": 0.8, "Noise Scale": 1.5, "Falloff": 2.0},
+            "CLOSING_IN": {"Width": 25.0, "Height": 15.0, "Depth": 8.0, "Density": 0.06, "Tint Strength": 0.9, "Noise Scale": 2.5, "Falloff": 1.5},
+            "TOTAL_OBSCURANCE": {"Width": 15.0, "Height": 10.0, "Depth": 5.0, "Density": 0.12, "Tint Strength": 1.0, "Noise Scale": 4.0, "Falloff": 0.8},
+        },
+    },
+    "MEL_mother_fabric_ridge": {
+        "label": "Mother Fabric Ridge",
+        "preset_labels": {
+            "SKIN_FOLDS": "Skin Folds",
+            "DRAPED_VEIL": "Draped Veil",
+            "TENSE_MEMBRANE": "Tense Membrane",
+        },
+        "preset_descriptions": {
+            "SKIN_FOLDS": "Default skin folds — regular ridges, medium depth, organic.",
+            "DRAPED_VEIL": "Draped veil — long, flowing folds, gentle sharpness.",
+            "TENSE_MEMBRANE": "Tense membrane — sharp, shallow folds, drum-like.",
+        },
+        "presets": {
+            "SKIN_FOLDS": {"Width": 30.0, "Height": 6.0, "Fold Depth": 1.5, "Fold Count": 6, "Fold Sharpness": 2.0, "Noise Detail": 3.0},
+            "DRAPED_VEIL": {"Width": 40.0, "Height": 4.0, "Fold Depth": 0.8, "Fold Count": 4, "Fold Sharpness": 1.0, "Noise Detail": 2.0},
+            "TENSE_MEMBRANE": {"Width": 20.0, "Height": 8.0, "Fold Depth": 0.5, "Fold Count": 12, "Fold Sharpness": 4.0, "Noise Detail": 5.0},
+        },
+    },
+
+    "MEL_mother_shoulder_fold": {
+        "label": "Mother Shoulder Fold",
+        "preset_labels": {
+            "GENTLE_SLOPE": "Gentle Slope",
+            "DRAMATIC_FOLD": "Dramatic Fold",
+            "UNILATERAL_TORSO": "Unilateral Torso",
+        },
+        "preset_descriptions": {
+            "GENTLE_SLOPE": "Gentle shoulder slope — low folds, subtle asymmetry.",
+            "DRAMATIC_FOLD": "Dramatic fold — deep folds, strong asymmetry.",
+            "UNILATERAL_TORSO": "Unilateral torso — one-sided fold, organic.",
+        },
+        "presets": {
+            "GENTLE_SLOPE": {"Width": 25.0, "Length": 40.0, "Fold Count": 4, "Fold Depth": 1.2, "Asymmetry": 0.3, "Noise Detail": 3.0},
+            "DRAMATIC_FOLD": {"Width": 30.0, "Length": 50.0, "Fold Count": 8, "Fold Depth": 3.0, "Asymmetry": 0.7, "Noise Detail": 5.0},
+            "UNILATERAL_TORSO": {"Width": 20.0, "Length": 35.0, "Fold Count": 5, "Fold Depth": 2.0, "Asymmetry": 1.0, "Noise Detail": 2.0},
+        },
+    },
+
+    "MEL_mother_heart_gate": {
+        "label": "Mother Heart Gate",
+        "preset_labels": {
+            "INTIMATE_GATE": "Intimate Gate",
+            "GRAND_ARCH": "Grand Arch",
+            "PILLAR_HALL": "Pillar Hall",
+        },
+        "preset_descriptions": {
+            "INTIMATE_GATE": "Intimate gate — small arch, subtle glow, personal scale.",
+            "GRAND_ARCH": "Grand arch — tall pointed arch, strong glow, monumental.",
+            "PILLAR_HALL": "Pillar hall — wide gate, many pillars, ceremonial.",
+        },
+        "presets": {
+            "INTIMATE_GATE": {"Width": 3.0, "Height": 4.5, "Arch Point": 0.5, "Frame Thickness": 0.2, "Pillar Count": 2, "Glow Intensity": 1.0},
+            "GRAND_ARCH": {"Width": 4.0, "Height": 7.0, "Arch Point": 0.7, "Frame Thickness": 0.35, "Pillar Count": 4, "Glow Intensity": 2.5},
+            "PILLAR_HALL": {"Width": 8.0, "Height": 5.0, "Arch Point": 0.2, "Frame Thickness": 0.25, "Pillar Count": 8, "Glow Intensity": 1.5},
+        },
+    },
+
+    "MEL_mother_moonlight_rig": {
+        "label": "Mother Moonlight Rig",
+        "preset_labels": {
+            "SILVER_DREAM": "Silver Dream",
+            "MOONLIT_KEY": "Moonlit Key",
+            "DRAMATIC_SHADOW": "Dramatic Shadow",
+        },
+        "preset_descriptions": {
+            "SILVER_DREAM": "Silver dream — soft key, gentle fill, ethereal.",
+            "MOONLIT_KEY": "Moonlit key — standard three-point, silver-blue.",
+            "DRAMATIC_SHADOW": "Dramatic shadow — strong key, deep shadows, high contrast.",
+        },
+        "presets": {
+            "SILVER_DREAM": {"Key Intensity": 2.0, "Key Angle": 25.0, "Fill Intensity": 1.0, "Rim Intensity": 1.5, "Moon Tint": 0.9},
+            "MOONLIT_KEY": {"Key Intensity": 3.0, "Key Angle": 35.0, "Fill Intensity": 0.5, "Rim Intensity": 1.5, "Moon Tint": 0.8},
+            "DRAMATIC_SHADOW": {"Key Intensity": 5.0, "Key Angle": 45.0, "Fill Intensity": 0.2, "Rim Intensity": 2.0, "Moon Tint": 0.7},
+        },
+    },
+
+    # white_current.py — The White Current Monolith
+    "MEL_white_seam_spline": {
+        "label": "White Seam Spline",
+        "preset_labels": {
+            "RIVER_TRACE": "River Trace",
+            "LAKE_EDGE": "Lake Edge",
+            "DEEP_CURRENT": "Deep Current",
+        },
+        "preset_descriptions": {
+            "RIVER_TRACE": "Default river trace — moderate width, gentle flow.",
+            "LAKE_EDGE": "Lake edge — wide seam, still water, high intensity.",
+            "DEEP_CURRENT": "Deep current — narrow seam, fast flow, turbulent.",
+        },
+        "presets": {
+            "RIVER_TRACE": {"Width": 0.15, "Flow Speed": 1.0, "Seam Intensity": 1.5, "Turbulence": 0.3, "Spline Resolution": 64},
+            "LAKE_EDGE": {"Width": 0.4, "Flow Speed": 0.2, "Seam Intensity": 2.5, "Turbulence": 0.05, "Spline Resolution": 48},
+            "DEEP_CURRENT": {"Width": 0.08, "Flow Speed": 3.0, "Seam Intensity": 1.0, "Turbulence": 0.8, "Spline Resolution": 96},
+        },
+    },
+    "MEL_eel_silhouette": {
+        "label": "Eel Silhouette",
+        "preset_labels": {
+            "PALE_GHOST": "Pale Ghost",
+            "DEEP_DIVER": "Deep Diver",
+            "SURFACE_SKIMMER": "Surface Skimmer",
+        },
+        "preset_descriptions": {
+            "PALE_GHOST": "Pale ghost — translucent, glowing, slow movement.",
+            "DEEP_DIVER": "Deep diver — long body, many fins, deep glow.",
+            "SURFACE_SKIMMER": "Surface skimmer — short body, fast wave, bright glow.",
+        },
+        "presets": {
+            "PALE_GHOST": {"Length": 15.0, "Body Width": 0.8, "Fin Count": 8, "Glow Intensity": 2.0, "Translucency": 0.7, "Wave Phase": 0.0},
+            "DEEP_DIVER": {"Length": 25.0, "Body Width": 1.2, "Fin Count": 16, "Glow Intensity": 3.5, "Translucency": 0.5, "Wave Phase": 1.5},
+            "SURFACE_SKIMMER": {"Length": 8.0, "Body Width": 0.5, "Fin Count": 4, "Glow Intensity": 4.0, "Translucency": 0.9, "Wave Phase": 3.0},
+        },
+    },
+    "MEL_water_network": {
+        "label": "Water Network",
+        "preset_labels": {
+            "RIVER_SYSTEM": "River System",
+            "LAKE_CHAIN": "Lake Chain",
+            "DELTAS": "Deltas",
+        },
+        "preset_descriptions": {
+            "RIVER_SYSTEM": "River system — many nodes, high density, strong flow.",
+            "LAKE_CHAIN": "Lake chain — few nodes, low density, still water.",
+            "DELTAS": "Deltas — medium nodes, branching, moderate flow.",
+        },
+        "presets": {
+            "RIVER_SYSTEM": {"Node Count": 24, "Connection Density": 0.7, "Flow Direction": 0.0, "White Level": 0.8, "Network Scale": 30.0},
+            "LAKE_CHAIN": {"Node Count": 8, "Connection Density": 0.3, "Flow Direction": 0.5, "White Level": 0.95, "Network Scale": 20.0},
+            "DELTAS": {"Node Count": 16, "Connection Density": 0.5, "Flow Direction": 1.0, "White Level": 0.7, "Network Scale": 25.0},
+        },
+    },
+    "MEL_moonlit_surf": {
+        "label": "Moonlit Surf",
+        "preset_labels": {
+            "CALM_MOON": "Calm Moon",
+            "WAVES": "Waves",
+            "STORM": "Storm",
+        },
+        "preset_descriptions": {
+            "CALM_MOON": "Calm moon — still water, high reflection, visible seam.",
+            "WAVES": "Waves — moderate waves, medium reflection.",
+            "STORM": "Storm — high waves, low reflection, turbulent.",
+        },
+        "presets": {
+            "CALM_MOON": {"Surface Size": 30.0, "Wave Height": 0.1, "Moon Reflection": 0.9, "Seam Visibility": 0.9, "Wave Scale": 1.0},
+            "WAVES": {"Surface Size": 30.0, "Wave Height": 0.5, "Moon Reflection": 0.6, "Seam Visibility": 0.6, "Wave Scale": 2.0},
+            "STORM": {"Surface Size": 30.0, "Wave Height": 1.5, "Moon Reflection": 0.3, "Seam Visibility": 0.3, "Wave Scale": 4.0},
+        },
+    },
+    "MEL_white_haze_volume": {
+        "label": "White Haze Volume",
+        "preset_labels": {
+            "DISTANT_MASS": "Distant Mass",
+            "CLOSING_IN": "Closing In",
+            "TOTAL_WHITE": "Total White",
+        },
+        "preset_descriptions": {
+            "DISTANT_MASS": "Distant mass — sparse haze, white-blue, implies vast body.",
+            "CLOSING_IN": "Closing in — dense haze, white tint, looming presence.",
+            "TOTAL_WHITE": "Total white — thick haze, pure white, zero visibility.",
+        },
+        "presets": {
+            "DISTANT_MASS": {"Width": 50.0, "Height": 15.0, "Depth": 8.0, "Density": 0.02, "Tint Strength": 0.85, "Noise Scale": 1.2, "Falloff": 2.5},
+            "CLOSING_IN": {"Width": 30.0, "Height": 10.0, "Depth": 5.0, "Density": 0.05, "Tint Strength": 0.9, "Noise Scale": 2.0, "Falloff": 1.5},
+            "TOTAL_WHITE": {"Width": 15.0, "Height": 8.0, "Depth": 3.0, "Density": 0.1, "Tint Strength": 1.0, "Noise Scale": 3.0, "Falloff": 0.8},
+        },
+    },
+    "MEL_current_marker": {
+        "label": "Current Marker",
+        "preset_labels": {
+            "FLOW_ARROWS": "Flow Arrows",
+            "GLOW_TRAIL": "Glow Trail",
+            "DENSE_PATH": "Dense Path",
+        },
+        "preset_descriptions": {
+            "FLOW_ARROWS": "Flow arrows — moderate count, standard spacing, glow.",
+            "GLOW_TRAIL": "Glow trail — many arrows, tight spacing, bright glow.",
+            "DENSE_PATH": "Dense path — many arrows, wide spacing, fast flow.",
+        },
+        "presets": {
+            "FLOW_ARROWS": {"Count": 16, "Spacing": 2.0, "Arrow Size": 0.3, "Glow Intensity": 1.5, "Flow Speed": 1.0},
+            "GLOW_TRAIL": {"Count": 32, "Spacing": 1.0, "Arrow Size": 0.2, "Glow Intensity": 3.0, "Flow Speed": 2.0},
+            "DENSE_PATH": {"Count": 24, "Spacing": 3.0, "Arrow Size": 0.4, "Glow Intensity": 1.0, "Flow Speed": 3.0},
+        },
+    },
+
+    # god_molts.py — The God That Molts Monolith
+    "MEL_shell_cephalon": {
+        "label": "Shell Cephalon",
+        "preset_labels": {
+            "FRESH_MOLT": "Fresh Molt",
+            "MINERALIZED": "Mineralized",
+            "ANCIENT_RUIN": "Ancient Ruin",
+        },
+        "preset_descriptions": {
+            "FRESH_MOLT": "Fresh molt — translucent, delicate, recent.",
+            "MINERALIZED": "Mineralized — older shell, calcite deposits, ribbed.",
+            "ANCIENT_RUIN": "Ancient ruin — weathered, cracked, glowing veins.",
+        },
+        "presets": {
+            "FRESH_MOLT": {"Scale": 1.0, "Segment Count": 5, "Lobe Depth": 0.3, "Chitin Opacity": 0.9, "Vein Glow": 2.0, "Breathing Speed": 1.0},
+            "MINERALIZED": {"Scale": 5.0, "Segment Count": 8, "Lobe Depth": 0.6, "Chitin Opacity": 0.6, "Vein Glow": 1.0, "Breathing Speed": 0.5},
+            "ANCIENT_RUIN": {"Scale": 25.0, "Segment Count": 12, "Lobe Depth": 1.0, "Chitin Opacity": 0.3, "Vein Glow": 3.0, "Breathing Speed": 0.2},
+        },
+    },
+    "MEL_shell_thorax": {
+        "label": "Shell Thorax",
+        "preset_labels": {
+            "CATHERDRAL_RIBS": "Cathedral Ribs",
+            "SEGMENTED_BODY": "Segmented Body",
+            "CRUSHED_ARCHES": "Crushed Arches",
+        },
+        "preset_descriptions": {
+            "CATHERDRAL_RIBS": "Cathedral ribs — tall arches, sacred space.",
+            "SEGMENTED_BODY": "Segmented body — repeating arches, rhythmic.",
+            "CRUSHED_ARCHES": "Crushed arches — broken, weathered, ancient.",
+        },
+        "presets": {
+            "CATHERDRAL_RIBS": {"Segment Count": 8, "Arch Height": 3.0, "Rib Spacing": 0.5, "Breathing Speed": 1.0, "Chitin Thickness": 0.2},
+            "SEGMENTED_BODY": {"Segment Count": 16, "Arch Height": 1.5, "Rib Spacing": 0.3, "Breathing Speed": 2.0, "Chitin Thickness": 0.1},
+            "CRUSHED_ARCHES": {"Segment Count": 6, "Arch Height": 0.8, "Rib Spacing": 0.8, "Breathing Speed": 0.3, "Chitin Thickness": 0.4},
+        },
+    },
+    "MEL_shell_pygidium": {
+        "label": "Shell Pygidium",
+        "preset_labels": {
+            "TAIL_FAN": "Tail Fan",
+            "BIOLUM_GLOW": "Biolum Glow",
+            "DECAYING_FAN": "Decaying Fan",
+        },
+        "preset_descriptions": {
+            "TAIL_FAN": "Tail fan — wide angle, glowing veins.",
+            "BIOLUM_GLOW": "Biolum glow — intense bioluminescence, pulsing.",
+            "DECAYING_FAN": "Decaying fan — broken, dim, ancient.",
+        },
+        "presets": {
+            "TAIL_FAN": {"Fan Angle": 120.0, "Vein Count": 12, "Biolum Intensity": 2.0, "Pulse Phase": 0.0, "Scale": 1.0},
+            "BIOLUM_GLOW": {"Fan Angle": 180.0, "Vein Count": 24, "Biolum Intensity": 5.0, "Pulse Phase": 1.5, "Scale": 2.0},
+            "DECAYING_FAN": {"Fan Angle": 60.0, "Vein Count": 6, "Biolum Intensity": 0.5, "Pulse Phase": 3.0, "Scale": 0.5},
+        },
+    },
+    "MEL_shell_interior": {
+        "label": "Shell Interior",
+        "preset_labels": {
+            "SACRED_SPACE": "Sacred Space",
+            "HOLLOW_CATHEDRAL": "Hollow Cathedral",
+            "CRUSHED_INTERIOR": "Crushed Interior",
+        },
+        "preset_descriptions": {
+            "SACRED_SPACE": "Sacred space — walkable hollow, ribbed walls.",
+            "HOLLOW_CATHEDRAL": "Hollow cathedral — tall ceilings, breathing.",
+            "CRUSHED_INTERIOR": "Crushed interior — collapsed, dark, ancient.",
+        },
+        "presets": {
+            "SACRED_SPACE": {"Wall Thickness": 0.3, "Arch Count": 12, "Vein Spacing": 1.0, "Cathedral Height": 8.0, "Breathing Depth": 0.1},
+            "HOLLOW_CATHEDRAL": {"Wall Thickness": 0.5, "Arch Count": 24, "Vein Spacing": 0.5, "Cathedral Height": 20.0, "Breathing Depth": 0.2},
+            "CRUSHED_INTERIOR": {"Wall Thickness": 0.8, "Arch Count": 6, "Vein Spacing": 2.0, "Cathedral Height": 4.0, "Breathing Depth": 0.05},
+        },
+    },
+    "MEL_fracture_seam": {
+        "label": "Fracture Seam",
+        "preset_labels": {
+            "FRESH_CRACK": "Fresh Crack",
+            "GLOWING_FRACTURE": "Glowing Fracture",
+            "ANCIENT_DECAY": "Ancient Decay",
+        },
+        "preset_descriptions": {
+            "FRESH_CRACK": "Fresh crack — recent break, sharp edges.",
+            "GLOWING_FRACTURE": "Glowing fracture — light leaking through.",
+            "ANCIENT_DECAY": "Ancient decay — weathered, overgrown.",
+        },
+        "presets": {
+            "FRESH_CRACK": {"Crack Count": 4, "Crack Depth": 0.5, "Glow Leak": 2.0, "Decay Age": 0.1, "Scale": 1.0},
+            "GLOWING_FRACTURE": {"Crack Count": 12, "Crack Depth": 1.5, "Glow Leak": 3.5, "Decay Age": 0.5, "Scale": 5.0},
+            "ANCIENT_DECAY": {"Crack Count": 24, "Crack Depth": 3.0, "Glow Leak": 0.5, "Decay Age": 0.9, "Scale": 25.0},
+        },
+    },
+    "MEL_biolum_vein": {
+        "label": "Biolum Vein",
+        "preset_labels": {
+            "PULSE_TRAIL": "Pulse Trail",
+            "BREATHING_WEB": "Breathing Web",
+            "DIMMING_FLAME": "Dimming Flame",
+        },
+        "preset_descriptions": {
+            "PULSE_TRAIL": "Pulse trail — bright, fast, rhythmic.",
+            "BREATHING_WEB": "Breathing web — connected veins, slow pulse.",
+            "DIMMING_FLAME": "Dimming flame — fading, ancient, weak.",
+        },
+        "presets": {
+            "PULSE_TRAIL": {"Vein Count": 16, "Pulse Speed": 2.0, "Color Shift": 0.5, "Breathing Depth": 0.3, "Scale": 1.0},
+            "BREATHING_WEB": {"Vein Count": 32, "Pulse Speed": 0.5, "Color Shift": 0.2, "Breathing Depth": 0.6, "Scale": 5.0},
+            "DIMMING_FLAME": {"Vein Count": 8, "Pulse Speed": 0.2, "Color Shift": 0.8, "Breathing Depth": 0.1, "Scale": 25.0},
+        },
+    },
+    "MEL_gravity_well": {
+        "label": "Gravity Well",
+        "preset_labels": {
+            "SUBTLE_WARP": "Subtle Warp",
+            "LENS_DISTORTION": "Lens Distortion",
+            "TOTAL_COLLAPSE": "Total Collapse",
+        },
+        "preset_descriptions": {
+            "SUBTLE_WARP": "Subtle warp — gentle distortion, barely visible.",
+            "LENS_DISTORTION": "Lens distortion — clear warping, chromatic aberration.",
+            "TOTAL_COLLAPSE": "Total collapse — extreme gravity, black hole.",
+        },
+        "presets": {
+            "SUBTLE_WARP": {"Distortion Strength": 0.1, "Lens Radius": 5.0, "Chromatic Aberration": 0.1, "Breathing Pulse": 1.0, "Scale": 1.0},
+            "LENS_DISTORTION": {"Distortion Strength": 1.0, "Lens Radius": 15.0, "Chromatic Aberration": 0.5, "Breathing Pulse": 2.0, "Scale": 5.0},
+            "TOTAL_COLLAPSE": {"Distortion Strength": 4.0, "Lens Radius": 50.0, "Chromatic Aberration": 1.5, "Breathing Pulse": 0.5, "Scale": 25.0},
+        },
+    },
+    "MEL_aftermath_fragment": {
+        "label": "Aftermath Fragment",
+        "preset_labels": {
+            "FRESH_DEBRIS": "Fresh Debris",
+            "SCATTERED_RUINS": "Scattered Ruins",
+            "ANCIENT_DUST": "Ancient Dust",
+        },
+        "preset_descriptions": {
+            "FRESH_DEBRIS": "Fresh debris — recent molt, sharp fragments.",
+            "SCATTERED_RUINS": "Scattered ruins — weathered, overgrown.",
+            "ANCIENT_DUST": "Ancient dust — crumbled, barely visible.",
+        },
+        "presets": {
+            "FRESH_DEBRIS": {"Fragment Count": 24, "Scatter Range": 10.0, "Decay Age": 0.1, "Chitin Remnant": 0.8, "Scale": 1.0},
+            "SCATTERED_RUINS": {"Fragment Count": 48, "Scatter Range": 30.0, "Decay Age": 0.5, "Chitin Remnant": 0.4, "Scale": 5.0},
+            "ANCIENT_DUST": {"Fragment Count": 96, "Scatter Range": 60.0, "Decay Age": 0.9, "Chitin Remnant": 0.1, "Scale": 25.0},
+        },
+    },
+
 }
 
 # Melodia Studio v3 planetary families.  Mode is a continuous shared shape

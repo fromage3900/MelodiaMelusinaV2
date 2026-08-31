@@ -20,6 +20,8 @@
       "challenge.first_resonance_echo.completed",
       "first_dream.progress_anchor_applied",
       "first_resonance_solved",
+      "flag.quest.shorewake_completed",
+      "flag.sea_above.starskiff_ready",
       "quest.harmony_awakening.completed",
       "quest.echoes_of_resonance.completed",
       "quest.twilight_overture.completed"
@@ -28,13 +30,15 @@
       "reward.first_resonance_echo",
       "reward.harmony_awakening",
       "reward.echoes_of_resonance",
-      "reward.twilight_overture"
+      "reward.twilight_overture",
+      "reward.shorewake_weave"
     ],
     "QuestIds": [
       "quest.first_dream",
       "quest.harmony_awakening",
       "quest.echoes_of_resonance",
-      "quest.twilight_overture"
+      "quest.twilight_overture",
+      "quest.shorewake.initiation"
     ]
   },
   "source_fixtures": [

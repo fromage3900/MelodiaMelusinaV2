@@ -42,15 +42,15 @@ void AMelodiaWaterGameplayDeviceAnchor::InitializeFromPCGPoint(FPCGPoint Point, 
 		}
 		else if (Value.StartsWith(TEXT("WaterNetwork_")))
 		{
-			WaterNetworkId = FName(*Value.RightChop(13));
+			WaterNetworkId = FGameplayTag::RequestGameplayTag(FName(*Value.RightChop(13)), false);
 		}
 		else if (Value.StartsWith(TEXT("WaterNode_")))
 		{
-			WaterNodeId = FName(*Value.RightChop(10));
+			WaterNodeId = FGameplayTag::RequestGameplayTag(FName(*Value.RightChop(10)), false);
 		}
 		else if (Value.StartsWith(TEXT("WaterRoute_")))
 		{
-			RouteId = FName(*Value.RightChop(11));
+			RouteId = FGameplayTag::RequestGameplayTag(FName(*Value.RightChop(11)), false);
 		}
 	}
 	if (ControllerComponent)

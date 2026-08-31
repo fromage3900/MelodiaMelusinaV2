@@ -725,6 +725,7 @@ def new_geometry_tree(name):
         )
     color_node(group_in, "input")
     color_node(group_out, "output")
+    add_music_influence_params(tree)
     return tree, group_in, group_out
 
 
@@ -1150,6 +1151,9 @@ CATEGORY_META: dict[str, dict] = {
     "operations":  {"label": "Operations",           "icon": "AUTOMERGE_ON"},
     "mesh_tools":  {"label": "Mesh Tools",           "icon": "EDITMODE_HLT"},
     "set_dressing": {"label": "Set Dressing",        "icon": "PLUGIN"},
+    "mother":      {"label": "Faraway Mother",       "icon": "MESH_MONKEY"},
+    "white_current": {"label": "White Current",      "icon": "MOD_FLUID"},
+    "god_molts":   {"label": "God That Molts",        "icon": "MOD_EXPLODE"},
 }
 
 
@@ -1159,10 +1163,18 @@ def register_builder(tree_name, builder_fn, label, description="", category="",
 
     hidden=True keeps the live id (RQ / blends) but omits it from GN Stack.
     role is sku | modifier | tool | factory | pcg_alias | pcg_keep.
+
+    Universal Musical Influence is auto-applied to every builder's output.
     """
     def _labeled_builder(*args, **kwargs):
         result = builder_fn(*args, **kwargs)
         tree = result[0] if isinstance(result, (tuple, list)) else result
+        gin = result[1] if isinstance(result, (tuple, list)) and len(result) > 1 else None
+        gout = result[2] if isinstance(result, (tuple, list)) and len(result) > 2 else None
+        if gin is not None and gout is not None:
+            geom = gout.inputs.get("Geometry")
+            if geom is not None:
+                apply_universal_music_pass(tree, gin, geom)
         return ensure_labeled_tree(tree, tree_name, category)
 
     GROUP_BUILDERS[tree_name] = _labeled_builder

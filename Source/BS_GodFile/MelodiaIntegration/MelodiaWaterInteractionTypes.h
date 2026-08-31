@@ -22,7 +22,8 @@ enum class EMelodiaWaterQueryProvider : uint8
 {
 	Fallback UMETA(DisplayName = "Gameplay Fallback"),
 	NativeWaterBody UMETA(DisplayName = "Native Water Body"),
-	BakedShallowWater UMETA(DisplayName = "Baked Shallow Water")
+	BakedShallowWater UMETA(DisplayName = "Baked Shallow Water"),
+	Oceanology UMETA(DisplayName = "Oceanology")
 };
 
 /** Force semantics used when routing an event into native Water or Niagara. */

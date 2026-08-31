@@ -1,4 +1,4 @@
-﻿"""Bake all melodia_gn node groups to a .blend library file.
+"""Bake all melodia_gn node groups to a .blend library file.
 
 Run once to persist generated GN trees so they can be linked from any .blend.
 Importing melodia_gn triggers all module-level register_builder() calls, so

@@ -21,6 +21,7 @@
 | **DeepSeek** | PCG analysis, material audits, large-scale search/replace | File access, script execution |
 | **Ollama (local models)** | Blessing evolution, content generation, creative text | Local inference, file I/O |
 | **Hermes** | Health checks, validation, light verification | MCP tool calls |
+| **Rider / C++ IDE Agent** | Subsystem C++, automation tests, shader authoring, static analysis | Direct source access, RiderLink, Qodana, Insights profiling |
 | **Future agents** | Any scoped task | Follow the same queue + scaffolding pattern |
 
 ---

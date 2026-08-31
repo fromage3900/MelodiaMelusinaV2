@@ -1,0 +1,136 @@
+{
+  "format": "gmm_brass_preset_v1",
+  "instrument_type": "tuba",
+  "key": "C",
+  "modifier_stacks": [
+    {
+      "id": "main_tube",
+      "type": "brass_tube",
+      "enabled": true,
+      "order": 0,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 16.0,
+        "thickness": 2.0,
+        "length": 500.0,
+        "resolution": 48
+      }
+    },
+    {
+      "id": "bell_mouth",
+      "type": "brass_bell_profile",
+      "enabled": true,
+      "order": 1,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "base_radius": 16.0,
+        "tip_radius": 40.0,
+        "height": 50.0,
+        "resolution": 64
+      }
+    },
+    {
+      "id": "valve_1_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 2,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 18.0,
+        "piston_diameter": 15.0,
+        "port_width": 4.0,
+        "stroke": 60.0
+      }
+    },
+    {
+      "id": "valve_2_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 3,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 18.0,
+        "piston_diameter": 15.0,
+        "port_width": 4.0,
+        "stroke": 60.0
+      }
+    },
+    {
+      "id": "valve_3_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 4,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 18.0,
+        "piston_diameter": 15.0,
+        "port_width": 4.0,
+        "stroke": 60.0
+      }
+    },
+    {
+      "id": "valve_4_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 5,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 18.0,
+        "piston_diameter": 15.0,
+        "port_width": 4.0,
+        "stroke": 60.0
+      }
+    },
+    {
+      "id": "wrap_formation",
+      "type": "brass_wrap_formation",
+      "enabled": true,
+      "order": 6,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "coil_diameter": 30.0,
+        "wire_diameter": 8.0,
+        "wrap_count": 6,
+        "start_angle": 0.0,
+        "pitch": 25.0
+      }
+    },
+    {
+      "id": "bracing_hoop_1",
+      "type": "brass_bracing_hoop",
+      "enabled": true,
+      "order": 7,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "tube_radius": 16.0,
+        "hoop_diameter": 20.0,
+        "count": 8,
+        "angle_offset": 0.0
+      }
+    },
+    {
+      "id": "mouthpiece_cup",
+      "type": "brass_mouthpiece_cup",
+      "enabled": true,
+      "order": 8,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "cup_depth": 30.0,
+        "cup_radius": 16.0,
+        "rim_thickness": 7.0,
+        "back_bore_diameter": 6.5
+      }
+    }
+  ],
+  "ue_binding": "MelodiaBrass.Tuba",
+  "next_action": "hython_or_edit"
+}

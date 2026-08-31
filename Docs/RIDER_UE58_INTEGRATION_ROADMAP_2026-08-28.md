@@ -1,7 +1,7 @@
 # BS_GodFile — Rider & UE5.8 Integration Roadmap
 
 **Date:** 2026-08-28  
-**Status:** Quick wins implemented; medium/long-term queued for owner decision
+**Status:** Shipping C++ baseline green; Rider workflow focused on the remaining Sea Above P0 gates
 
 ---
 
@@ -25,10 +25,11 @@ All critical subsystem paths now have `TRACE_CPUPROFILER_EVENT_SCOPE` instrument
 **File:** `qodana.yaml` (updated from unconfigured `ide: QDNET` stub)
 
 - IDE mode: `QDJB` (JetBrains, runs locally without container)
-- Profile: `qodana.starter`
+- Profile: `qodana.recommended`
 - Enabled inspections: `CppMemberFunctionMayBeConst`, `CppParameterMayBeConst`, `CppLocalVariableMayBeConst`, `CppUseNullptr`, `CppUseAuto`, `CppUseEnumClass`, `CppUseOverride`, `CppUseDefault`, `CppUseDelete`, `CppUseNoexcept`, `CppUseNodiscard`, `CppUseMaybeUnused`, `CppRedundantInclude`
-- Excluded paths: All `Content/`, `Saved/`, `ThirdParty/`, `Plugins/*`, `Tools/`, `deploy/`, `Docs/`
-- Quality gate: max 50 any / 10 critical
+- Excluded paths: generated/content paths and third-party/vendor plugins. Shipping-owned
+  `Plugins/MelodiaCore/` and `Plugins/MelodiaWardrobe/` are deliberately included.
+- Quality gate: 0 critical, max 5 high, max 30 findings of any severity
 
 **Run locally:**
 ```bash
@@ -109,22 +110,20 @@ bool ApplyResonance(FGameplayTag NetworkId, FGameplayTag TargetWaterNodeId,
 5. Create `UDataLayerAsset` assets for each variant
 6. Add runtime toggle via `UDataLayerManager::SetDataLayerRuntimeState()`
 
-### 3. RiderLink Plugin Installation
+### 3. RiderLink Integration
 
-**Current state:** No RiderLink plugin in project. Automation relies on standalone HTTP/JSON-RPC servers.
+**Current state:** RiderLink is installed engine-side at
+`Engine/Plugins/Marketplace/Developer/RiderLink` and loads with the editor. Do not install a
+second project copy; duplicate RiderLink modules would conflict.
 
-**Target state:** RiderLink compiled into `Plugins/Developer/RiderLink` for:
+**Available state:** use the installed engine-side RiderLink for:
 - In-editor test execution (IMPLEMENT_SIMPLE_AUTOMATION_TEST suites)
 - Interactive Unreal Editor Log in Rider (color-coded, clickable stack traces)
 - PIE toolbar controls (pause, step frame, inspect gameplay state)
 
-**Installation:**
-1. Clone RiderLink into `Plugins/Developer/RiderLink/` from Epic's UE source
-2. Add to `BS_GodFile.uproject` plugins list
-3. Rebuild
-4. Enable in Rider: Settings → Plugins → Unreal Engine → RiderLink
-
-**Note:** RiderLink is bundled with UE source on GitHub. For binary-only installs, it may need to be built from source.
+**Usage:** Build `Development Editor | Win64` with Unreal closed, then use Rider's test gutter or
+Unit Tests window to run `Melodia.Wardrobe.*` against the editor. Live Coding is not valid for new
+modules, reflected API changes, or the current cross-module `FGameplayTag` migration.
 
 ---
 
@@ -220,4 +219,7 @@ BS_GodFile/
 
 ## Next Action
 
-**Phase 1, step 5 from P0 Closeout Plan** remains the critical path: extend `DA_MelodiaIntegrationConfig` with the full missing-ID list, fix the two authoring defects, and compile the five `.qsc` files to `.uasset`. Nothing in Phase 2 can start until the allowlist and compiled assets exist.
+**Current critical path:** the migration, shader mapping, closed-editor build and focused wardrobe
+switch test are complete. Start one editor and prove Sea Above travel, pulse/droplets and the
+music-world-key route; then complete wardrobe persistence/Glide, rhythm, static gates and the
+current Development package. See `Docs/Research/RIDER_SEA_ABOVE_P0_WORKFLOWS_2026-08-28.md`.

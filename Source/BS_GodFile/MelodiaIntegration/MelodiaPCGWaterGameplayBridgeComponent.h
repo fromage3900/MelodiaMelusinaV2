@@ -21,13 +21,13 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG Bridge")
-	FName WaterNetworkId = NAME_None;
+	FGameplayTag WaterNetworkId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG Bridge")
-	FName TargetWaterNodeId = NAME_None;
+	FGameplayTag TargetWaterNodeId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG Bridge")
-	FName ResonanceChannel = TEXT("CrystalHarp");
+	FGameplayTag ResonanceChannel;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG Bridge")
 	TMap<EMelodiaRhythmGrade, float> GradeStrength;
@@ -36,10 +36,10 @@ public:
 	EMelodiaRhythmGrade MinimumAcceptedGrade = EMelodiaRhythmGrade::Good;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG Bridge")
-	FName CompletionPuzzleId = NAME_None;
+	FGameplayTag CompletionPuzzleId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|PCG Bridge")
-	FName PlatformRouteId = NAME_None;
+	FGameplayTag PlatformRouteId;
 
 	UPROPERTY(BlueprintAssignable, Category = "Melodia|Water|PCG Bridge")
 	FMelodiaWaterResonanceRequested OnResonanceRequested;
@@ -61,7 +61,7 @@ private:
 	void HandlePatternCompleted();
 
 	float GetStrengthForGrade(EMelodiaRhythmGrade Grade) const;
-	void SubmitResonance(float Strength, FName PuzzleId, FName RouteId, AActor* SourceActor);
+	void SubmitResonance(float Strength, FGameplayTag PuzzleId, FGameplayTag RouteId, AActor* SourceActor);
 
 	UPROPERTY(Transient)
 	TWeakObjectPtr<APCGHeroMusicGraphHost> BoundHost;

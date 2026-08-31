@@ -127,14 +127,26 @@ is a binary gate with a ledger row. Full detail:
 [`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) and
 [`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md).
 
-- [ ] `rhythm_owner` — exactly one rhythm execution path reaches the JRPG damage calculation. Load-bearing MelodiaCore presentation/reactivity callers are permitted; zero MelodiaCore callers is not the contract.
-- [ ] `hud_single_writer` — one writer owns the battle HUD; no widget written by both stock `BP_BattleUI` and a Melodia overlay in the same frame.
-- [ ] `wardrobe_equip_roundtrip` — equip → save → process restart → load → correct outfit and correct materials, through the `MelodiaWardrobeSubsystem` API only.
-- [ ] `rhythm_grade_to_result` — a real-key rhythm grade demonstrably changes a JRPG battle result, and Quill resumes exactly once.
-- [ ] `music_world_key` — one world object responds to one played phrase.
-- [ ] `wardrobe_gameplay_hook` — one outfit produces one gameplay difference the player can observe.
-- [ ] `static_gates` — the current frozen baseline passes the static chain; the latest ledger standing is FAIL.
-- [ ] `battle_integration_map` — Victory, Defeat, Fled, and unavailable each produce a typed result and resume or abort Quill exactly once on the current integration map.
+**Status lives in the ledger, not in these checkboxes.** They were hand-maintained and drifted
+out of agreement with `Saved/gate_ledger.json`. Run `python -B Tools/echo_run.py status`.
+
+What each gate *means* — the contract, which the ledger does not carry:
+
+- `rhythm_owner` — exactly one rhythm execution path reaches the JRPG damage calculation. Load-bearing MelodiaCore presentation/reactivity callers are permitted; zero MelodiaCore callers is not the contract.
+- `hud_single_writer` — one writer owns the battle HUD; no widget written by both stock `BP_BattleUI` and a Melodia overlay in the same frame.
+- `wardrobe_equip_roundtrip` — equip → save → process restart → load → correct outfit and correct materials, through the `MelodiaWardrobeSubsystem` API only.
+- `rhythm_grade_to_result` — a **real-key** rhythm grade demonstrably changes a JRPG battle result, and Quill resumes exactly once.
+- `music_world_key` — one world object responds to one played phrase.
+- `wardrobe_gameplay_hook` — one outfit produces one gameplay difference the player can observe.
+- `static_gates` — the current frozen baseline passes the static chain.
+- `battle_integration_map` — Victory, Defeat, Fled, and unavailable each produce a typed result and resume or abort Quill exactly once on the current integration map.
+
+> **Evidence-quality note (2026-08-29).** `rhythm_owner` and `rhythm_grade_to_result` carry PASS
+> rows whose notes cite only offline C++ automation tests. Under this project's own standard
+> (`.claude/skills/melodia-p0-closeout/SKILL.md` §6.2, *"probe-injected calls are not play
+> evidence"*) neither meets the **real-key** clause above. This is the same under-evidencing that
+> voided the 2026-08-12 `runtime` row. Re-record both with live PIE evidence, or amend their notes
+> to say plainly that they are unit-test-scoped.
 
 ## Co-op skill gates (2026-07-29)
 
