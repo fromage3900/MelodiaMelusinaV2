@@ -31,12 +31,10 @@ def find_texture_stems():
         if not unreal.EditorAssetLibrary.does_directory_exist(root):
             continue
         for asset_path in unreal.EditorAssetLibrary.list_assets(root, recursive=True):
-            if not asset_path.endswith(".uasset"):
-                continue
-            asset_name = asset_path.split("/")[-1]
-            # Remove file extension suffix
+            # list_assets returns /Game/Package.Asset — strip suffix for matching
+            asset_name = asset_path.split("/")[-1].split(".")[-1]
             for stem in stems:
-                if stem in asset_name:
+                if stem.lower() in asset_name.lower():
                     if stem not in results:
                         results[stem] = []
                     results[stem].append(asset_path)
@@ -84,8 +82,12 @@ def create_mi_for_stem(stem, texture_map, parent_params, mi_dir):
         print(f"  {mi_name}: creation FAILED")
         return "create_failed"
     
-    # Set parent
-    mi.set_editor_property("parent", parent)
+    # Set parent — load fresh
+    parent_obj = unreal.load_asset(PARENT)
+    if not parent_obj:
+        print(f"  {mi_name}: parent not found {PARENT}")
+        return "parent_missing"
+    mi.set_editor_property("parent", parent_obj)
     
     # Set texture parameters
     for param_name, tex_path in texture_map.items():
@@ -161,7 +163,8 @@ def main():
         # Heuristic: match by name suffix (BaseColor, Normal, Roughness, Metallic, Height)
         param_map = {}
         for tex_path in textures:
-            tex_name = tex_path.split("/")[-1].lower()
+            # /Game/.../Package.Object -> Object
+            tex_name = tex_path.split("/")[-1].split(".")[-1].lower()
             
             # Determine param name from texture file name
             assigned = False

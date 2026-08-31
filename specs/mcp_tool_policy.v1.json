@@ -489,6 +489,37 @@
         "verify"
       ]
     },
+    "melodia_studio_analyze_song": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
+    "melodia_studio_list_presets": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_studio_get_health": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
+    "melodia_studio_export_fbx": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
     "gaea_inspect_terrain": {
       "decision": "allow",
       "required_approval": "none",
