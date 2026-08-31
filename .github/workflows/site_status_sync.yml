@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout game repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: game
 
@@ -45,7 +45,7 @@ jobs:
 
       - name: Checkout site repo
         if: ${{ secrets.SITE_SYNC_TOKEN != '' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: fromage3900/my-site
           path: site
