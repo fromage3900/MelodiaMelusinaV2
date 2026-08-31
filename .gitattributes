@@ -54,6 +54,8 @@
 *.abc    filter=lfs diff=lfs merge=lfs -text lockable
 *.mc     filter=lfs diff=lfs merge=lfs -text lockable
 *.mcc    filter=lfs diff=lfs merge=lfs -text lockable
+*.assbin filter=lfs diff=lfs merge=lfs -text lockable
+*.assbin.gz filter=lfs diff=lfs merge=lfs -text lockable
 # Fonts & Compiled Binary Modules
 *.ttf    filter=lfs diff=lfs merge=lfs -text lockable
 *.otf    filter=lfs diff=lfs merge=lfs -text lockable
