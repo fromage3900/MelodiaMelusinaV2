@@ -7,87 +7,6 @@
   "scope": "Close the existing First Dream loop before adding economy, song-family, HUD, dungeon, enemy, or quest breadth.",
   "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct. Historical passes apply only to their captured baselines and are not current shipping certification."
  },
- "agent_work_log_2026-08-27": {
-  "commit": "d242f74d",
-  "scope": "Quill dialogue WBPs made trackable (gitignore allowlist), interpreter selection/background viewport guard fixed, live-results bridge wired, 5 narrative presentation assignments committed.",
-  "gitignore": "Allowlist Content/Melodia/UI/Quill/ so WBP_MelodiaQuill{Dialog,Selection,Background,ChoiceEntry} are tracked; Textures/ (~200 Figma exports) remain intentionally ignored.",
-  "dialogue_ui_fix": "QuillscriptInterpreter.cpp ShowSelectionBox/ShowBackgroundBox guard flipped to !IsInViewport() && !GetParent(), matching ShowDialogBox idiom at L1198. Previously inverted guard kept selection/background out of the viewport.",
-  "livecoding": "Live Coding trigger_build reported patch_applied=true, but compile_log ends in 'Live coding failed'. Root cause is AGENTS.md rule 15: the bridge header adds new UFUNCTION/UPROPERTY/forward-declared enums, which cannot be hot-patched. A full closed-editor UBT rebuild is required (user step per Lane-1 constraint). UnrealEditor-BS_GodFile.dll on disk unchanged (2026-08-24).",
-  "static_gates_impact": "Gitignore D1 audit finding resolved; Quill WBPs now in version control. Remaining static gates unchanged; bridge/hud changes are committed source but not yet compiled, so hud_single_writer and static_gates remain open.",
-  "ui_artist_skill": "03e62bb2: added .claude/skills/melodia-ui-artist (token SSOT, Quill WBP chain, ui_style_audit flow, editor apply workflow) + compact AGENTS.md pointer; commit landed; livecoding still blocked on full UBT rebuild (user step).",
-  "p0_closeout_session": {
-   "rebuild": "Closed-editor UBT rebuild of BS_GodFileEditor: 332 actions, 377s, Result: Succeeded. UnrealEditor-BS_GodFile.dll 2026-08-24 23:29 -> 2026-08-27 12:28; UnrealEditor-Quillscript.dll -> 12:27. Every PIE result before this tested 3-day-old binaries.",
-   "gates_closed": [
-    "battle_integration_map (all 4 terminal outcomes)",
-    "hud_single_writer (runtime widget identity proven; pending owner call on vestigial vars)"
-   ],
-   "narrative_atomicity": "P0-NARR-01 atomic quest+reward+flag commit proven LIVE on the victory branch.",
-   "defects_found": [
-    "Player-unit death crashes the editor: 'Assertion failed: false [AnimMontage.h] [Line: 781]' ~10s after SetHP(0) on BP_SirMelodiousPlayerUnit_C. Defeat result landed correctly first. Likely null/invalid death montage, or artifact of forced kill. NOT a P0 gate blocker.",
-    "Melodia UI Bridge: 'cannot load live-results widget class from ' (empty path) - LiveResults widget class path unset; logs twice per session.",
-    "MELODIA_QUANTUM draw success=false - service at 127.0.0.1:8008 down, falls back to classical-baseline.",
-    "BP_MelodiaEnemy_SingleStock and BP_MelodiaEnemy_Base are NOT parented to BP_EnemyUnitBase so they are rejected as enemyList keys. Owner states enemy BPs are universal and need only mesh swapping, so stock BP_WeakEnemy is the correct chassis; no action required."
-   ],
-   "tooling_traps": [
-    "melodia_config_get_allowlist (MCP) returns STALE FIXTURE DATA not matching the live asset. Use blueprint_query get_cdo_properties for config truth.",
-    "Rejections log 'Melodia intent rejected: <intent> (<enum>)', NOT 'MELODIA_INTENT_REJECTED'. MissingRuntime=5 means no live Quill interpreter - battles are script-driven, so an IDLE PIE smoke can NEVER start a battle. All prior 'idle smoke passed' evidence was structurally incapable of proving the battle gates.",
-    "A second editor instance writes Saved/Logs/BS_GodFile_2.log, not BS_GodFile.log."
-   ]
-  },
-  "p0_content_and_quests_authored": {
-   "timestamp": "2026-08-27T21:30:00Z",
-   "scope": "Directly created and wired the 4 required P0 content pillars: P0 Playthrough, Wardrobe Outfit Equip, Choral Sheep Companion Recruitment, and Sea Above Cutscene.",
-   "deliverables": {
-    "p0_playthrough": {
-     "script": "Content/MelodiaIntegration/Narrative/MelodiaQuillP0Playthrough.qsc",
-     "encounter": "melodia_smoke_encounter",
-     "quest_id": "quest.first_dream",
-     "completion_flag": "flag.first_dream.quest.completed",
-     "playthrough_flag": "flag.p0.playthrough.completed",
-     "reward_id": "reward.first_resonance_echo"
-    },
-    "wardrobe_equip": {
-     "script": "Content/MelodiaIntegration/Narrative/MelodiaQuillWardrobeEquip.qsc",
-     "manifest": "specs/wardrobe/wardrobe_equip_p0_manifest.v1.json",
-     "outfit_id": "MelusinaV2_ResonantWeave",
-     "capability_unlocked": "Glide",
-     "flags": [
-      "flag.wardrobe.outfit_equipped",
-      "flags.melusina.sorrow_seam_restored",
-      "flag.wardrobe.equip_completed"
-     ],
-     "reward_id": "reward.wardrobe.first_outfit"
-    },
-    "choral_sheep_companion": {
-     "script": "Content/MelodiaIntegration/Narrative/MelodiaQuillChoralSheepRecruit.qsc",
-     "manifest": "specs/companions/choral_sheep_recruit_manifest.v1.json",
-     "companion_id": "companion.choral_sheep",
-     "pitch_class": "C",
-     "flags": [
-      "flag.companion.choral_sheep_recruited",
-      "flag.companion.choral_sheep_completed"
-     ],
-     "reward_id": "reward.companion.choral_sheep",
-     "stat": {
-      "melodia_harmony": 2
-     }
-    },
-    "sea_above_cutscene": {
-     "script": "Content/MelodiaIntegration/Narrative/MelodiaQuillSeaAboveCutscene.qsc",
-     "manifest": "specs/cinematics/sea_above_cutscene_manifest.v1.json",
-     "map_destination": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
-     "pulse_cycle_seconds": 16.0,
-     "flags": [
-      "flag.cutscene.sea_above_witnessed",
-      "flag.sea_above.membrane_pulse_active",
-      "flag.cutscene.sea_above_completed"
-     ],
-     "reward_id": "reward.cutscene.sea_above_memory",
-     "stat": {
-      "melodia_resonance": 5
-     }
-    }
-  },
   "agent_work_log_2026-08-27": {
     "commit": "d242f74d",
     "scope": "Quill dialogue WBPs made trackable (gitignore allowlist), interpreter selection/background viewport guard fixed, live-results bridge wired, 5 narrative presentation assignments committed.",
@@ -361,28 +280,6 @@
     ],
     "boundary": "This is T1 offline/build plus T2 scoped-runtime evidence. It does not prove real-key rhythm input, a visible HUD ownership handoff, all four terminal outcomes, wardrobe save/restart, Glide payoff, music-world-key durability, or the final 20-30 minute golden run."
   },
-  "resolved_p0_blockers": [
-    {
-      "id": "P0-NARR-01",
-      "status": "closed",
-      "commit": "3912f5708076386ac458ac3f36a6d5849b01db41",
-      "resolution": "Replaced separate quest, reward, and flag notifications in the Harmony completion beat with the existing atomic questcomplete transaction carrying stable quest, flag, reward, intent, and checkpoint IDs. Updated the generator and route contract to prevent regeneration drift."
-    },
-    {
-      "id": "QSC_COMPILATION",
-      "status": "closed",
-      "commit": "694b7250",
-      "resolution": "All 4 P0 scripts have valid compiled .uasset files. Verified via editor Python: unreal.load_asset() returns valid objects with source_code."
-    },
-    {
-      "id": "ALLOWLIST_IDS",
-      "status": "closed",
-      "commit": "694b7250",
-      "resolution": "All 30+ P0 IDs present in DA_MelodiaIntegrationConfig CDO. Verified via blueprint_query get_cdo_properties."
-    }
-  ],
-  "boundary": "This is T1 offline/build plus T2 scoped-runtime evidence. It does not prove real-key rhythm input, a visible HUD ownership handoff, all four terminal outcomes, wardrobe save/restart, Glide payoff, music-world-key durability, or the final 20-30 minute golden run."
- },
  "resolved_p0_blockers": [
   {
    "id": "P0-NARR-01",
@@ -495,21 +392,6 @@
   "allowlist_ids": "RESOLVED 2026-08-28: All 30+ P0 IDs present in DA_MelodiaIntegrationConfig CDO. QuestIds (9), NarrativeFlagIds (17), TravelLevelIds (4), DialogueRewardIds (10), SocialStatIds (3), EncounterIds (2).",
   "editor_modal": "RECURRING: Editor blocked by modal dialog with empty title/text. Detected via MODAL_OPEN in Saved/Logs/BS_GodFile.log. Blocks port 9316, Monolith MCP, all echo runners, PIE testing."
  },
- "vendor_compatibility_track": {
-  "status": "HOLD_VENDOR_INPUTS_MISSING",
-  "scope": "Oceanology Expanded and ACFU are optional isolated compatibility investigations. They are not P0 dependencies and may not acquire narrative, battle, rhythm, quest, inventory, save, wardrobe, traversal, or UI authority.",
-  "report": "Docs/Reports/OCEANOLOGY_ACFU_MELUSINA_COMPATIBILITY_2026-08-26.md",
-  "ledger": "Docs/Reports/OCEANOLOGY_ACFU_COMPATIBILITY_LEDGER_2026-08-26.json",
-  "latest_evidence": [
-   "Oceanology purchase provenance exists on G:, but no vendor archive, .uplugin descriptor, or source is currently available; the project-local directory is a disabled descriptor-less binary remnant.",
-   "The located ACFU UE5.8 Melusina lab is correctly isolated, but the ACFU vendor source/plugin is absent. No UCFU descriptor was found.",
-   "F: was mounted but did not answer bounded directory enumeration and remains an unresolved archive location rather than proof of absence.",
-   "Current pre-vendor MelodiaCore baseline passes 14/14 targeted editor automation tests across rhythm, presentation, water gameplay, and wiring.",
-   "Melusina_BP registry, readiness, materialization, topology, skill bridge, native adapter, and HUD single-writer offline checks pass; live viewport and gameplay proof remain open.",
-   "Live headless PIE was not launched against the observed shared-editor baseline because four UI packages were dirty and WBP_MelodiaRhythmHighway was errored. No shared assets were saved or modified.",
-   "A subsequent unattended NullRHI commandlet loaded project modules but stalled before automation discovery because UE-LocalDataCachePath targets unavailable F:/UE_DDC and Zen found no valid data path. The bounded process was terminated without emitting a test result.",
-   "A process-local DDC retry emitted no new log and did not reach automation discovery within the bounded window. It was terminated without changing the machine-level environment; the headless gate remains HOLD rather than pass or fail."
-  ],
   "bounded_historical_evidence": [
     {
       "id": "runtime",
