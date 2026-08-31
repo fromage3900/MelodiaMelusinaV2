@@ -1,0 +1,24 @@
+{
+  "finding": "PPV drift spec divergence — 2026-08-31 05:20 UTC live read (L_KaleidoNave loaded, PPV_NikkiDream)",
+  "target": "/Game/EnvSandbox/Environments/L_KaleidoNave :: PostProcessVolume_1 (label PPV_NikkiDream)",
+  "spec_source": "Docs/Plans/PPV_DRIFT_T3D_FIX_SPEC_2026-08-31.md + Saved/Audit/ppv_canonical_state_2026-08-31.json",
+  "live_blendable_stack": [
+    {"index": 0, "material": "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_Outline_PremiumV3_Hero", "weight": 1.0},
+    {"index": 1, "material": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_PortfolioHero", "weight": 1.0},
+    {"index": 2, "material": "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StarryNight_Hero", "weight": 1.0}
+  ],
+  "spec_canonical_stack": [
+    {"material": "MI_MelodiaInk_PortfolioHero", "weight": 1.0},
+    {"material": "MI_MeluColorGrade_PortfolioHero", "weight": 0.69},
+    {"material": "MI_StarryNight_Hero", "weight": 1.0}
+  ],
+  "comparison": [
+    {"item": "actor label", "spec_claim": "PPV_Dreamprint_Candidate", "live": "PPV_NikkiDream", "verdict": "ALREADY CORRECT — no action"},
+    {"item": "grade weight", "spec_claim": 0.69, "live": 1.0, "verdict": "DIFFERS — but spec written against old stack; lookdev may have intentionally moved to 1.0"},
+    {"item": "outline MI", "spec_claim": "MI_MelodiaInk_PortfolioHero", "live": "MI_Outline_PremiumV3_Hero", "verdict": "DIFFERENT MI — spec's outline MI not in live stack; lookdev superseded spec"},
+    {"item": "starry night", "spec_claim": "MI_StarryNight_VanGogh -> replace", "live": "MI_StarryNight_Hero w=1.0", "verdict": "ALREADY REPLACED — no action"}
+  ],
+  "decision": "NO MUTATION APPLIED. Spec is stale vs authored lookdev (outline MI changed Ink->Outline_PremiumV3). Forcing grade 0.69 could break an intentional current look. Needs owner sign-off on: (a) keep grade 1.0, or (b) restore 0.69, and (c) confirm Outline_PremiumV3_Hero is the intended outline. Staged mutation script removed.",
+  "evidence": "monolith run_python live read 2026-08-31 05:15-05:20 UTC, editor PID 130096, level loaded via editor_query load_level",
+  "recorded_by": "build lane, org/FX/QOL session 2026-08-31"
+}
