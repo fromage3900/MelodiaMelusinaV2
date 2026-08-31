@@ -105,6 +105,11 @@ jobs:
           # folder without a row fails. Stdlib-only, no editor needed.
           python Tools/credits_gate.py
           if ($LASTEXITCODE -ne 0) { $failed++ }
+          # Credits coverage gate (added 2026-08-13). Docs/SOURCES_MATRIX.md must
+          # map every Content/ top-level directory to a credit row; a new Content
+          # folder without a row fails. Stdlib-only, no editor needed.
+          python Tools/credits_gate.py
+          if ($LASTEXITCODE -ne 0) { $failed++ }
           if ($failed -gt 0) {
             Write-Host "##[error]Static gates failed: $failed checks"
             exit 1

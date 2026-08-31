@@ -1,7 +1,7 @@
 ﻿# ♪ Melodia — BS_GodFile ✧ A single-author rhythm-JRPG in UE 5.8
 
 ```
-✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧  ┊ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
+âœ§ â”Š â‹† â”Š . â”Š â”Šâ”Š â”Šâ‹† â”Š .â”Š â”Š â‹†Ëš  âœ§  â”Š â”Š â‹† â”Š . â”Š â”Šâ”Š â”Šâ‹† â”Š .â”Š â”Š â‹†Ëš  âœ§
 ```
 
 ![Melodia banner](Docs/melodia-banner.svg)
@@ -248,7 +248,7 @@ Keep Git and Perforce ownership separate. Do not remove Git-tracked `Exports/` f
 ♪ **STOP flags:** `MELUSINA_SHADER_AGENT_STOP` + `sheet_hud_loop_STOP` — active.
 
 ```
-✧ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧  ┊ ┊ ⋆ ┊ . ┊ ┊┊ ┊⋆ ┊ .┊ ┊ ⋆˚  ✧
+âœ§ â”Š â‹† â”Š . â”Š â”Šâ”Š â”Šâ‹† â”Š .â”Š â”Š â‹†Ëš  âœ§  â”Š â”Š â‹† â”Š . â”Š â”Šâ”Š â”Šâ‹† â”Š .â”Š â”Š â‹†Ëš  âœ§
 ```
 
 ---
