@@ -1,0 +1,54 @@
+{
+  "generated": "2026-08-30T20:46:17.976475",
+  "spec": "Docs\\DASH_RENDER_SYSTEM_SPEC_2026-08-30.md",
+  "checks": {
+    "spec_exists": {
+      "exists": true,
+      "bytes": 7588
+    },
+    "header_exists": {
+      "exists": true,
+      "bytes": 2148
+    },
+    "cpp_exists": {
+      "exists": true,
+      "bytes": 2175
+    },
+    "no_new_master": {
+      "pass": true,
+      "reason": "Dash drives M_Master_Toon_Universal; no M_Master_Dash_* created"
+    },
+    "no_project_writes": {
+      "pass": true,
+      "reason": "Saved/DashCaptures/ only; no Content/_PROJECT/"
+    },
+    "header_contract": {
+      "has_ConfigureSurface": true,
+      "has_CaptureToRenderTarget": true,
+      "has_IsPPVStackCanonical": true,
+      "has_no_Tick": true
+    }
+  },
+  "ppv_canonical": {
+    "actor": "PPV_NikkiDream",
+    "blendables": [
+      {
+        "mi": "MI_MelodiaInk",
+        "weight": 1.0,
+        "domain": "MD_POST_PROCESS"
+      },
+      {
+        "mi": "MI_MeluColorGrade",
+        "weight": 0.69,
+        "domain": "MD_POST_PROCESS"
+      },
+      {
+        "mi": "MI_StarryNight_Hero",
+        "weight": 1.0,
+        "domain": "MD_POST_PROCESS"
+      }
+    ],
+    "note": "Live enumeration deferred to editor session with Monolith 9316"
+  },
+  "verdict": "SCAFFOLD \u2014 offline contract only; live PIE cycle still required"
+}
