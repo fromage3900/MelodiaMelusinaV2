@@ -344,7 +344,8 @@
   {
    "id": "music_world_key",
    "status": "open",
-   "contract": "One existing Piano phrase commits one idempotent typed world result and visibly opens one player-facing route."
+   "contract": "One existing Piano phrase commits one idempotent typed world result and visibly opens one player-facing route.",
+   "latest_evidence_2026_08_31": "2026-08-31 live PIE (Docs/Evidence/music_world_key_real_input_2026-08-31.json): real-input path PROVEN - player pawn physically stepped the note pad, music-clock graded the step PERFECT, host bCompleted=True, narrative bridge committed (LastCommitResult=Applied, IsChallengeCompleted()=true, exactly 1 commit log line), replay returned AlreadyApplied (idempotent). Supersedes the 08-28 broadcast-only method for the commit half. REMAINING: no visible player-facing route consumer of the completion flag exists (form.first_resonance_echo consumerless, SorrowSeam MID unbound by default, water bridge absent from the integration map, traversal portal keys on glide). Needs owner decision on the canonical visible payoff before wiring."
   },
   {
    "id": "static_gates",

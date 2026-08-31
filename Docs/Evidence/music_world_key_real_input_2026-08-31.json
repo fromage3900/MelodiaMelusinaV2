@@ -1,0 +1,44 @@
+{
+  "schema": "melodia.gate_evidence.v1",
+  "gate": "music_world_key",
+  "date": "2026-08-31",
+  "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "method": "Live PIE: player pawn physically stepped the hero-music note pad (real swept movement -> StepTrigger begin-overlap -> BeginNodePress -> music-clock grading -> host completion -> narrative bridge commit). No OnPatternCompleted broadcast was injected for the first commit.",
+  "input_path": {
+    "pawn": "BP_MelusinaJRPGCharacter_C_1 (possessed by BP_MelodiaJRPGPlayerController_C_0, isExplore=true, isInputBlocked=false)",
+    "approach": "AddMovementInput +X drives to the pad face; NodeBlocker (55x55x8 BlockAllDynamic, pad top Z=120) stops ground approach 0.8u short of the raised StepTrigger (Z 120-140); LaunchCharacter(+X 250, +Z 420) arcs the pawn onto the pad (physics depenetration resolved capsule to Z=210.15 = blocker top 120 + capsule half-height 90). Overlap events fired during real component motion - no teleport-into-trigger shortcut.",
+    "note_actor": "PCGHeroMusicNode_0 'Melodia Integration - Music Key Note 01' at (-112, 300, 112)",
+    "host_actor": "PCGHeroMusicGraphHost_0 'Melodia Integration - Hero Music Host' at (268, 300, 112), Profile TotalNotes=1, RegisteredNodes=1"
+  },
+  "result": {
+    "score_state": "(TotalNotes=1, HitCount=1, PerfectCount=1, MissCount=1, Score=100, bCompleted=True)",
+    "grade": "Perfect - judged by UMelodiaMusicClockSubsystem::GetTimingErrorMsToNearestBeat against profile RhythmWindows (music clock ACTIVE in this map; a step landing mid-beat earlier in the approach scored Miss, proving the clock grades live)",
+    "bridge_last_commit_result": "Applied",
+    "bridge_last_commit_failure": "None",
+    "is_challenge_completed_canonical": true,
+    "log_commit_lines": [
+      "MELODIA_REWARD 'reward.first_resonance_echo' granted with no equipment mapping (content=1)",
+      "Melodia world challenge committed: challenge=challenge.first_resonance_echo flag=challenge.first_resonance_echo.completed reward=reward.first_resonance_echo intent=challenge.first_resonance_echo.attempt_id",
+      "MelodiaPCGNarrativeChallengeBridge: music key committed challenge 'challenge.first_resonance_echo'"
+    ],
+    "screenshot": "Saved/Screenshots/WindowsEditor/HighresScreenshot00030.png (PIE, Melusina standing on the note pad post-commit)"
+  },
+  "idempotency": {
+    "replay_method": "Direct HandlePatternCompleted call on the bridge (record-level check; the real-input path one-shots via ScoreState.bCompleted so a second physical step cannot rebroadcast - by design)",
+    "replay_result": "AlreadyApplied",
+    "commit_lines_after_replay": 1,
+    "note": "Exactly one 'music key committed' log line despite the replay; the ConsumedIntentIds burn (challenge.first_resonance_echo.attempt_id) prevents double-grant."
+  },
+  "verdict": "FAIL (commit half proven live; visible-route half unimplemented)",
+  "what_changed_since_2026_08_28": "The 08-28 evidence drove OnPatternCompleted by broadcast only. This run proves the full real-input path: physical step -> overlap -> music-clock grading (Perfect) -> host completion -> canonical narrative commit.",
+  "remaining_gap": [
+    "CONTRACT: 'visibly opens one player-facing route'. No consumer of flag challenge.first_resonance_echo.completed produces a visible player-facing response: form.first_resonance_echo has no consumer (referenced only in a PCGHeroMusic.cpp comment); MelusinaSorrowSeamComponent lerps sheen 0.18->0.32 on completion but MI_Fabric_Melusina_SorrowSeam is not bound to any material slot in this map (component comment: 'which is the current default'); UMelodiaPCGWaterGameplayBridgeComponent is not present on this map's host (wired only in L_PCG_Hero_WaterGameplayProof); BP_MelodiaPortal_LockedTraversal requires capability.melodia.glide (wardrobe hook), not the music flag.",
+    "Needs an owner decision on WHICH visible payoff is canonical for First Dream (SorrowSeam binding vs portal flag-consumer vs form unlock) before wiring.",
+    "Narrative record does not persist across PIE sessions (cross-session burn needs the canonical save path - wardrobe_equip_roundtrip territory)."
+  ],
+  "sessions": {
+    "editor": "PID 130096, Monolith 9316, single listener verified",
+    "pie_started": "2026-08-31 17:17:17 local",
+    "commit_at": "2026-08-31 17:29:32 local (frame 841)"
+  }
+}
