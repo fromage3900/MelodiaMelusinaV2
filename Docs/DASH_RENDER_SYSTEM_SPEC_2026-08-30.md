@@ -1,5 +1,11 @@
 # Dash 3D Render System — Scaffold Spec 2026-08-30
 
+> **Naming resolution (2026-08-30 late):** the subsystem was renamed
+> `MelodiaDashRenderSubsystem` → `MelodiaCaptureRenderSubsystem` to avoid colliding with the
+> Polygonflow "Dash" environment-dressing tool reserved in the toolchain SSOT
+> (`Docs/Research/AGENT_TOOLCHAIN_DISCOVERY_INDEX_2026-08-30.md`). This doc keeps its name for
+> history; all code/class references use `CaptureRender`.
+
 **Status:** SCAFFOLD — no `.uasset` writes, no master duplication. Editor is closed for the 8ca43d14 build window; this spec is offline only.
 **Owner request:** "new 3d render system so id dash bro" — Dash is the name for the new 3D render path. Magpie remains undefined in-repo; this doc does not assume it.
 **Authority:** `AGENTS.md` convergence rule — no parallel material masters, no `Content/_PROJECT/` writes. Dash orchestrates the *existing* toon spine (`M_Master_Toon_Universal`, Substrate Toon) and PPV stack; it does not replace them.

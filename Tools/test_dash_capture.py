@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""Dash capture probe — offline contract check for UMelodiaDashRenderSubsystem.
+﻿#!/usr/bin/env python3
+"""Dash capture probe â€” offline contract check for UMelodiaCaptureRenderSubsystem.
 
 No editor, no .uasset writes. Validates:
   - Dash subsystem header/cpp exist and compile-surface is present
@@ -18,8 +18,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT = ROOT / "Saved" / "Audit"
 SPEC = ROOT / "Docs" / "DASH_RENDER_SYSTEM_SPEC_2026-08-30.md"
-HEADER = ROOT / "Source" / "BS_GodFile" / "MelodiaIntegration" / "MelodiaDashRenderSubsystem.h"
-CPP = ROOT / "Source" / "BS_GodFile" / "MelodiaIntegration" / "MelodiaDashRenderSubsystem.cpp"
+HEADER = ROOT / "Source" / "BS_GodFile" / "MelodiaIntegration" / "MelodiaCaptureRenderSubsystem.h"
+CPP = ROOT / "Source" / "BS_GodFile" / "MelodiaIntegration" / "MelodiaCaptureRenderSubsystem.cpp"
 
 def check_file(p: Path) -> dict:
     return {"exists": p.exists(), "bytes": p.stat().st_size if p.exists() else 0}
@@ -45,7 +45,7 @@ def main() -> int:
             ],
             "note": "Live enumeration deferred to editor session with Monolith 9316",
         },
-        "verdict": "SCAFFOLD — offline contract only; live PIE cycle still required",
+        "verdict": "SCAFFOLD â€” offline contract only; live PIE cycle still required",
     }
 
     # simple header contract check
@@ -63,7 +63,7 @@ def main() -> int:
     mpath = AUDIT / f"dash_probe_{ts}.md"
     jpath.write_text(json.dumps(probe, indent=2), encoding="utf-8")
     mpath.write_text(
-        f"# Dash probe — {ts}\n\n"
+        f"# Dash probe â€” {ts}\n\n"
         f"Spec: `{probe['spec']}`\n\n"
         f"- Header: {probe['checks']['header_exists']}\n"
         f"- CPP: {probe['checks']['cpp_exists']}\n"
