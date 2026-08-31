@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "melodia.progression_package.v1",
+  "schema_version": "1.0",
+  "kind": "melodia_progression_package",
+  "contract_id": "melodia_p2_fabric_mountains_progression",
+  "package": {
+    "package_id": "package.p2_fabric_mountains.progression",
+    "definition_version": "1.0",
+    "display_name": "P2: Faraway Mother — Audio-Reactive Fabric Mountains",
+    "content_kind": "chapter_progression",
+    "status": "ready_for_integration"
+  },
+  "content_refs": {
+    "player_route": [
+      "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+      "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Hemlands"
+    ],
+    "integration_proof_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "dialogue_source_refs": [
+      "Content/MelodiaIntegration/Narrative/Mara/MelodiaQuillMaraVeilReading.qsc"
+    ],
+    "material_functions": [
+      "/Game/MelodiaShader/Shaders/MF_FabricMountainWPO",
+      "/Game/MelodiaShader/Shaders/MF_CymaticSampler"
+    ]
+  },
+  "authority": {
+    "runtime_subsystem": "UMelodiaNarrativeSubsystem",
+    "narrative_record": "FMelodiaNarrativeRecord",
+    "save_field": "melodiaNarrativeRecord",
+    "objective_state_source": {
+      "active_quest_ids": "FMelodiaNarrativeRecord.ActiveQuestIds",
+      "flags": "FMelodiaNarrativeRecord.Flags",
+      "consumed_intent_ids": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "consumed_reward_ids": "FMelodiaNarrativeRecord.ConsumedRewardIds",
+      "script_checkpoint": "FMelodiaNarrativeRecord.ScriptCheckpoint"
+    }
+  },
+  "required_allowlist": {
+    "quest_ids": [
+      "quest.p2.fabric_mountains.attunement",
+      "quest.p2.hemlands.crossing"
+    ],
+    "narrative_flag_ids": [
+      "flag.p2.fabric_mountains.attuned",
+      "flag.p2.hemlands.traversed",
+      "flag.p2.cymatics.wpo_active"
+    ],
+    "dialogue_reward_ids": [
+      "reward.p2.chladni_tuning_fork",
+      "reward.p2.faraway_mother_veil_fragment"
+    ]
+  },
+  "chapter": {
+    "chapter_id": "chapter.p2_fabric_mountains",
+    "order": 4,
+    "title": "Chapter 4: The Living Anatomy of the Faraway Mother",
+    "prerequisites": [
+      "quest.mara.veil_reading",
+      "flag.faraway_mother.seam_path_open"
+    ],
+    "beat_ids": [
+      "beat.p2.arrival_at_hemlands",
+      "beat.p2.cymatic_resonance",
+      "beat.p2.fabric_ridge_ascent",
+      "beat.p2.perspective_revelation"
+    ],
+    "quest_ids": [
+      "quest.p2.fabric_mountains.attunement",
+      "quest.p2.hemlands.crossing"
+    ],
+    "exit_objective_ids": [
+      "objective.p2.ascend_shoulder_fold"
+    ],
+    "checkpoint_id": "checkpoint.p2.complete"
+  },
+  "quests": [
+    {
+      "quest_id": "quest.p2.fabric_mountains.attunement",
+      "title": "Resonance in the Folds",
+      "description": "Attune to the Chladni standing-wave harmonics across the kilometer-scale fabric folds using UMelodiaCymaticsSubsystem.",
+      "completion_flag": "flag.p2.fabric_mountains.attuned",
+      "reward_id": "reward.p2.chladni_tuning_fork",
+      "intent_id": "intent.p2.attunement.complete",
+      "checkpoint_id": "checkpoint.p2.attunement"
+    },
+    {
+      "quest_id": "quest.p2.hemlands.crossing",
+      "title": "Crossing the Hemlands",
+      "description": "Traverse the undulating fabric valleys and reach the shoulder folds of the Faraway Mother.",
+      "completion_flag": "flag.p2.hemlands.traversed",
+      "reward_id": "reward.p2.faraway_mother_veil_fragment",
+      "intent_id": "intent.p2.crossing.complete",
+      "checkpoint_id": "checkpoint.p2.complete"
+    }
+  ]
+}

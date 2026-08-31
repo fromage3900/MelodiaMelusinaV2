@@ -16,6 +16,7 @@ class FMelodiaCursorInputPreprocessor final : public IInputProcessor
 {
 public:
 	explicit FMelodiaCursorInputPreprocessor(UMelodiaInputContextSubsystem& InOwner) : Owner(&InOwner) {}
+	virtual void Tick(const float, FSlateApplication&, TSharedRef<ICursor>) override {}
 
 	virtual bool HandleMouseButtonDownEvent(FSlateApplication&, const FPointerEvent& Event) override
 	{
@@ -62,7 +63,13 @@ void UMelodiaInputContextSubsystem::Initialize(FSubsystemCollectionBase& Collect
 	Super::Initialize(Collection);
 	ContextStack.Reset();
 	NextHandleId = 1;
-	CursorVisualState = ResolveCursorVisualState(GetActiveContext(), RequestedCursorRole, false, ActiveCursorDevice, FPlatformMisc::SupportsTouchInput());
+	CursorVisualState = ResolveCursorVisualState(GetActiveContext(), RequestedCursorRole, false, ActiveCursorDevice,
+#if PLATFORM_ANDROID || PLATFORM_IOS
+		true
+#else
+		false
+#endif
+	);
 	if (FSlateApplication::IsInitialized())
 	{
 		CursorInputPreprocessor = MakeShared<FMelodiaCursorInputPreprocessor>(*this);
@@ -349,11 +356,24 @@ void UMelodiaInputContextSubsystem::SetCursorRole(const EMelodiaCursorRole Role)
 void UMelodiaInputContextSubsystem::UpdateCursorVisualState()
 {
 	const FMelodiaCursorVisualState NewState = ResolveCursorVisualState(GetActiveContext(), RequestedCursorRole,
-		bPointerPressed, ActiveCursorDevice, FPlatformMisc::SupportsTouchInput());
+		bPointerPressed, ActiveCursorDevice,
+#if PLATFORM_ANDROID || PLATFORM_IOS
+		true
+#else
+		false
+#endif
+	);
 	if (APlayerController* PC = GetPlayerController())
 	{
 		PC->bShowMouseCursor = NewState.bVisible;
-		PC->CurrentMouseCursor = static_cast<EMouseCursor::Type>(NewState.EffectiveRole);
+		switch (NewState.EffectiveRole)
+		{
+		case EMelodiaCursorRole::Hand: PC->CurrentMouseCursor = EMouseCursor::Hand; break;
+		case EMelodiaCursorRole::Crosshairs: PC->CurrentMouseCursor = EMouseCursor::Crosshairs; break;
+		case EMelodiaCursorRole::SlashedCircle: PC->CurrentMouseCursor = EMouseCursor::SlashedCircle; break;
+		case EMelodiaCursorRole::Default:
+		default: PC->CurrentMouseCursor = EMouseCursor::Default; break;
+		}
 	}
 	if (NewState != CursorVisualState)
 	{

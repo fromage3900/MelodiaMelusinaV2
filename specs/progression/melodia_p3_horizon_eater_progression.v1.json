@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "melodia.progression_package.v1",
+  "schema_version": "1.0",
+  "kind": "melodia_progression_package",
+  "contract_id": "melodia_p3_horizon_eater_progression",
+  "package": {
+    "package_id": "package.p3_horizon_eater.progression",
+    "definition_version": "1.0",
+    "display_name": "P3: Horizon Eater — Celestial Needle & Seam Strata",
+    "content_kind": "chapter_progression",
+    "status": "draft_for_owner_review"
+  },
+  "content_refs": {
+    "player_route": [
+      "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Hemlands",
+      "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/LV_HorizonEater_Apex"
+    ],
+    "integration_proof_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "dialogue_source_refs": [
+      "Content/MelodiaIntegration/Narrative/HorizonEater/MelodiaQuillHorizonApex.qsc"
+    ]
+  },
+  "authority": {
+    "runtime_subsystem": "UMelodiaNarrativeSubsystem",
+    "narrative_record": "FMelodiaNarrativeRecord",
+    "save_field": "melodiaNarrativeRecord",
+    "objective_state_source": {
+      "active_quest_ids": "FMelodiaNarrativeRecord.ActiveQuestIds",
+      "flags": "FMelodiaNarrativeRecord.Flags",
+      "consumed_intent_ids": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "consumed_reward_ids": "FMelodiaNarrativeRecord.ConsumedRewardIds",
+      "script_checkpoint": "FMelodiaNarrativeRecord.ScriptCheckpoint"
+    }
+  },
+  "required_allowlist": {
+    "quest_ids": [
+      "quest.p3.horizon_eater.apex_ascent",
+      "quest.p3.celestial_needle.threading"
+    ],
+    "narrative_flag_ids": [
+      "flag.p3.horizon_eater.apex_reached",
+      "flag.p3.celestial_needle.threaded",
+      "flag.p3.seam_strata_unlocked"
+    ],
+    "dialogue_reward_ids": [
+      "reward.p3.celestial_thread_spool",
+      "reward.p3.horizon_eater_resonance_crest"
+    ]
+  },
+  "chapter": {
+    "chapter_id": "chapter.p3_horizon_eater",
+    "order": 5,
+    "title": "Chapter 5: The Needle and the Horizon",
+    "prerequisites": [
+      "quest.p2.hemlands.crossing",
+      "flag.p2.hemlands.traversed"
+    ],
+    "beat_ids": [
+      "beat.p3.ascent_to_apex",
+      "beat.p3.celestial_needle_encounter",
+      "beat.p3.seam_strata_harmonization",
+      "beat.p3.horizon_revelation"
+    ],
+    "quest_ids": [
+      "quest.p3.horizon_eater.apex_ascent",
+      "quest.p3.celestial_needle.threading"
+    ],
+    "exit_objective_ids": [
+      "objective.p3.thread_the_celestial_needle"
+    ],
+    "checkpoint_id": "checkpoint.p3.complete"
+  },
+  "quests": [
+    {
+      "quest_id": "quest.p3.horizon_eater.apex_ascent",
+      "title": "Ascent to the Horizon Apex",
+      "description": "Climb the monumental vertical seam structures at the boundary where the world fabric meets the sky.",
+      "completion_flag": "flag.p3.horizon_eater.apex_reached",
+      "reward_id": "reward.p3.horizon_eater_resonance_crest",
+      "intent_id": "intent.p3.ascent.complete",
+      "checkpoint_id": "checkpoint.p3.apex"
+    },
+    {
+      "quest_id": "quest.p3.celestial_needle.threading",
+      "title": "Threading the Celestial Needle",
+      "description": "Align the acoustic frequencies to thread the monumental Celestial Needle and seal the rift.",
+      "completion_flag": "flag.p3.celestial_needle.threaded",
+      "reward_id": "reward.p3.celestial_thread_spool",
+      "intent_id": "intent.p3.threading.complete",
+      "checkpoint_id": "checkpoint.p3.complete"
+    }
+  ]
+}
