@@ -136,7 +136,7 @@
     "priority": 2,
     "status": "done",
     "spec": null,
-    "result": "COMMITTED as 47b01bc9: 57 audit JSONs from 2026-09-01 + 4 untracked Python scripts (convert_enchanted_vehicle_materials.py, convert_paradise_room_materials.py, import_surreal_cobble.py, org_inspect_ppv_2026-08-31.py). Found .gitignore issue: `Saved/` on line 5 shadows `!Saved/Audit/` negation — used `git add -f`. No push (owner-only)."
+    "result": "COMMITTED as 47b01bc9: 57 audit JSONs from 2026-09-01 + 4 untracked Python scripts. Used `git add -f` due to .gitignore `Saved/` shadowing `!Saved/Audit/`. No push (owner-only)."
   },
   {
     "id": "P0_WARDROBE_EQUIP_ROUNDTRIP_EVIDENCE_SPEC",
@@ -152,7 +152,7 @@
     "priority": 2,
     "status": "done",
     "spec": "Saved/Audit/mi_cathedral_stonea_batch_shadowdream_blue_2026-09-01.json",
-    "result": "INVESTIGATED: Spec references MIs that DO NOT EXIST on disk. MI_M_Master_Toon_Universal_StoneA, MI_M_Master_Toon_Universal_WoodOldA, MI_M_Master_Toon_Universal_Metal — all NOT FOUND. Only MI_M_Master_Toon_Universal_Crystal and MI_SDF_Parallax_Window exist. The 37 cathedral meshes DO exist (41 total in folder). Spec is STALE — needs MI creation or spec update to use existing MIs. Recommend: create missing MIs under MelusinaReal/M_Master_Toon_Universal/ following existing naming convention (Crystal, Cello, Weave, etc.)."
+    "result": "INVESTIGATED: Spec references MIs that DO NOT EXIST. Only MI_M_Master_Toon_Universal_Crystal and MI_SDF_Parallax_Window exist. Spec is STALE — needs MI creation."
   },
   {
     "id": "PPV_NikkiDream_Drift_Fix_T3D",
@@ -160,7 +160,7 @@
     "priority": 2,
     "status": "done",
     "spec": "Saved/Audit/ppv_nikki_drift_fix_t3d_2026-09-01.json",
-    "result": "INVESTIGATED: PPV_NikkiDream.uasset DOES NOT EXIST anywhere in Content/. The drift fix spec references a Blueprint that was never created or was deleted. The canonical blendables DO exist: MI_MeluColorGrade_PortfolioHero, MI_MelodiaInk_PortfolioHero, MI_StarryNight_Hero. Spec is STALE — needs PPV_NikkiDream BP recreation or spec retirement. Recommend: retire this spec and recreate PPV_NikkiDream from scratch using the canonical stack documented in the spec."
+    "result": "INVESTIGATED: PPV_NikkiDream.uasset DOES NOT EXIST. Spec is STALE — needs BP recreation or spec retirement."
   },
   {
     "id": "BP_Dead_Node_Cleanup_NiagaraQuill",
@@ -168,7 +168,7 @@
     "priority": 3,
     "status": "done",
     "spec": "Saved/Audit/bp_dead_node_cleanup_niagaraquill_2026-09-01.json",
-    "result": "VERIFIED: All 3 target BPs exist on disk — BP_MelusinaJRPGCharacter.uasset, WBP_MelodiaQuillDialog.uasset, BP_JRPGPlayerController.uasset (2 copies: TurnBasedJRPGTemplate + _ThirdParty). Spec is VALID. Execution requires live Monolith editor: remove 15 Niagara dead nodes from BP_MelusinaJRPGCharacter, 1 dead node from BP_JRPGPlayerController, 5 dead nodes from WBP_MelodiaQuillDialog. Risk: low for character/controller, medium for Quill dialog (verify new widget system first)."
+    "result": "VERIFIED: All 3 target BPs exist. Execution requires live Monolith editor: remove 15 Niagara dead nodes from BP_MelusinaJRPGCharacter, 1 from BP_JRPGPlayerController, 5 from WBP_MelodiaQuillDialog."
   },
   {
     "id": "CATEDRAL_MI_STALE_SPEC_RESOLUTION",
@@ -176,7 +176,7 @@
     "priority": 1,
     "status": "done",
     "spec": "Saved/Audit/mi_cathedral_stonea_batch_shadowdream_blue_2026-09-01.json",
-    "result": "RESOLVED: Created Saved/_tmp_create_cathedral_mis.py — editor Python script that creates 3 missing MIs (StoneA: rough=0.85/metal=0.0, WoodOldA: rough=0.7/metal=0.0, Metal: rough=0.35/metal=0.85) as children of M_Master_Toon_Universal. Spec already references correct MI names — no spec update needed. Editor-bound.",
+    "result": "RESOLVED: Created Saved/_tmp_create_cathedral_mis.py — editor Python script that creates 3 missing MIs as children of M_Master_Toon_Universal. Editor-bound.",
     "prompt": null
   },
   {
@@ -185,7 +185,7 @@
     "priority": 2,
     "status": "done",
     "spec": "Saved/Audit/mi_arch_atl_t3d_refreshed_full_gapspec_2026-09-01.json",
-    "result": "REFRESHED: All 333 Atlantis Palace meshes consolidated into single 10-batch spec. Existing 54 KB3D MIs are for non-Palace assets (Atlas, not Palace). 6 material categories defined. Created Saved/_tmp_create_atlantis_mis.py with slot-based MI generation. Editor-bound.",
+    "result": "REFRESHED: All 333 Atlantis Palace meshes consolidated into single 10-batch spec. Created Saved/_tmp_create_atlantis_mis.py. Editor-bound.",
     "prompt": null
   },
   {
@@ -194,7 +194,7 @@
     "priority": 2,
     "status": "blocked",
     "spec": "Saved/Audit/magician_purge_final_spec_2026-09-01.json",
-    "result": "BLOCKED: Owner-only gate. Requires live editor referencer check (listdependencies /Game/Library/Migrated/MagiciansLibrary) before deletion. Daemon cannot execute. Queued for next live session.",
+    "result": "BLOCKED: Owner-only gate. Requires live editor referencer check before deletion. Daemon cannot execute.",
     "prompt": null
   },
   {
@@ -203,7 +203,7 @@
     "priority": 2,
     "status": "blocked",
     "spec": "Saved/Audit/copernicus_cymatic_manifest.json",
-    "result": "BLOCKED: Editor-bound. Requires flipbook material creation + texture import. 16-frame animated PBR sets ready in Saved/Audit/copernicus_cymatic/GlitterCrystal/.",
+    "result": "BLOCKED: Editor-bound. Requires flipbook material creation + texture import. 16-frame animated PBR sets ready.",
     "prompt": null
   },
   {
@@ -212,7 +212,7 @@
     "priority": 1,
     "status": "done",
     "spec": null,
-    "result": "NO-OP: QuillscriptInterpreter.cpp is already tracked and committed (f729f3df). Audit was stale. File exists in git history.",
+    "result": "NO-OP: QuillscriptInterpreter.cpp is already tracked and committed (f729f3df). Audit was stale.",
     "prompt": null
   },
   {
@@ -221,7 +221,69 @@
     "priority": 1,
     "status": "blocked",
     "spec": "Saved/Audit/ppv_nikki_drift_fix_t3d_2026-09-01.json",
-    "result": "BLOCKED: Editor-bound. Requires live Monolith editor for PPV actor label + blendable weight corrections. 4 drifts documented.",
+    "result": "BLOCKED: Editor-bound. Requires live Monolith editor for PPV actor label + blendable weight corrections.",
     "prompt": null
+  },
+  {
+    "id": "read_review_loop_2026-09-01T00:00:00Z",
+    "lane": "summary",
+    "priority": 0,
+    "status": "done",
+    "result": "COMPACTED: All prior 2026-09-01 done+blocked entries summarized."
+  },
+  {
+    "id": "CORAL_SKIN_MI_WIRING_VERIFY_SPEC",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/coral_skin_wiring_verify_2026-09-01.json",
+    "result": "SPEC COMPLETE: 6 coral meshes documented. Fan uses MI_SeaAbove_CoralSkin_2S (two-sided), others use MI_SeaAbove_CoralSkin. Both MIs exist. Editor-bound."
+  },
+  {
+    "id": "RETROTEXTURES_MI_COMMIT_SPEC",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": "Saved/Audit/retrotextures_mi_commit_spec_2026-09-01.json",
+    "result": "AUDIT COMPLETE NO-OP: All 5 RetroTextures MIs tracked and committed in d957b049. Working tree clean."
+  },
+  {
+    "id": "JELLYFISH_ABP_T3D_SCRIPT",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/jellyfish_abp_t3d_audit_2026-09-01.json",
+    "result": "PARTIAL: Created Saved/_tmp_create_abp_jellybell.py with prerequisite check. SK_Jelly_Bell skeleton does NOT exist. Spec is STALE."
+  },
+  {
+    "id": "read_review_loop_2026-09-01T12:58:00Z",
+    "lane": "summary",
+    "priority": 0,
+    "status": "done",
+    "result": "COMPACTED: All prior 2026-09-01 done+blocked entries summarized."
+  },
+  {
+    "id": "PARADISE_ROOM_PARENT_DISK_AUDIT",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": null,
+    "result": "NO-OP: AvatarGarden/Materials/ path does not exist. Paradise Room repatriation spec was based on a path that was never created or was removed. No MIs to audit."
+  },
+  {
+    "id": "KENNEY_DELETE_GIT_RM_SPEC",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": "Saved/Audit/kenney_git_rm_spec_2026-09-01.json",
+    "result": "SPEC COMPLETE: 20 Kenney MIs tracked, 3 expected textures already absent. Generated git rm -r command. Owner must execute."
+  },
+  {
+    "id": "P0_OPEN_GATES_EVIDENCE_CHECKLIST",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": "Saved/Audit/p0_open_gates_evidence_checklist_2026-09-01.json",
+    "result": "CHECKLIST COMPLETE: 3 open P0 gates documented (wardrobe_equip_roundtrip, wardrobe_gameplay_hook, music_world_key) with PIE steps, console fallbacks, pass/fail criteria. Owner-only exec."
   }
 ]
