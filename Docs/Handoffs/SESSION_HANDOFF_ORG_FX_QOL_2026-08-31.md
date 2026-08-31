@@ -21,15 +21,16 @@
 
 ## 2. What is still open
 
-1. **Vendor `T_` renames (~170 textures)** — RetroTexturesFantasy ~100, KB3D Atlantis ~30, MelodyToken ~15, Brick/Marble/Voronoi/SDF ~20. Chunked `batch_rename_assets` + unattended save. Queued, not run.
-2. **Greybox_Kit / Library consolidation** (root 670/364 vs EnvSandbox 80/60) — proposal in `Saved/Audit/mesh_catalog_2026-08-30.json`, owner sign-off required (1000+ moves, redirector churn).
-3. **PPV drift T3D fix** (4 fixes, `PPV_NikkiDream` canonical) — ready, needs quiet window + `unattended` save. `Docs/Plans/PPV_DRIFT_T3D_FIX_SPEC_2026-08-31.md`.
-4. **259 read-only uassets** — clear before any save on those trees (see §1 crash root cause).
-5. **Gate5 DeathEvent wiring** — BLOCKED by engine bug (`RWWriteDataSetBool1` on GPU event bool writes; reference `NS_SakuraPetalGust` fails identically). Needs engine-side fix or bool-free event payload; do NOT retry via workaround.
-6. **`T_SeaAbove_Droplet_Atlas` dead weight** — `referenced_by: []`; either wire it (replace `_PROJECT` flipbook) or archive. Owner decision.
-7. **Feature branch merge** (103 commits) — unchanged.
-8. **Zentrim Sakura swap** — not executed (Sakura red line; spec owns it).
-9. `AGENTS.md` shows a working-tree modification from another lane — untouched, uncommitted.
+1. **Vendor `T_` renames — DONE (950 textures)** — `/Game/EnvSandbox/Textures` 1643/1643 clean; SDF textures 29/31 (2 holds: `Marble_1` ref'd by 9 Melusina MIs, `Voronoi_2` API-refusal); Kenney dedup 10 dupes archived + tracked deletions committed (`f1474db3`).
+2. **PPV drift — DIVERGENCE, no mutation** — live read of `L_KaleidoNave::PPV_NikkiDream` shows the spec is stale (outline MI is `MI_Outline_PremiumV3_Hero`, grade w=1.0, not the spec's Ink/0.69). Owner sign-off needed: keep grade 1.0 or restore 0.69. Evidence `Saved/Audit/ppv_live_read_2026-08-31.json` (`55c3e381`).
+3. **Greybox_Kit / Library consolidation** (root 670/364 vs EnvSandbox 80/60) — proposal in `Saved/Audit/mesh_catalog_2026-08-30.json`, owner sign-off required (1000+ moves, redirector churn).
+4. **`M_*_Inst` master-MI naming** (M_Glitter/SDF/Toon/Water Inst) — HOLD: material-master territory + baseline drift, other lane owns.
+5. **Gate5 DeathEvent wiring** — BLOCKED by engine bug (`RWWriteDataSetBool1` on GPU event bool writes; reference `NS_SakuraPetalGust` fails identically). Needs engine-side fix; do NOT retry via workaround.
+6. **Jellyfish P0 Sea Above** — scale defect (10³–10⁴×), bell MI unwired, no AnimBP, no assembly BP, zero placement. Re-import with correct FBX units (Houdini lane) + wire + author + place.
+7. **`T_SeaAbove_Droplet_Atlas` dead weight** — `referenced_by: []`; wire or archive (owner decision).
+8. **Feature branch merge** (103 commits) — unchanged.
+9. **Zentrim Sakura swap** — spec-owned, not executed.
+10. In-memory ghost packages (Marble_7/9 old names) — clear on editor restart; real files at `T_` paths verified on disk.
 
 ## 3. Next-session queue (single editor holder)
 
