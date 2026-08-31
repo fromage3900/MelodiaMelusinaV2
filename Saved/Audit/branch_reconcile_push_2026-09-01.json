@@ -1,0 +1,29 @@
+{
+  "schema": "melodia.audit.branch_reconcile.v1",
+  "generated": "2026-09-01T04:30:00Z",
+  "mode": "git_status_only",
+  "findings": {
+    "git_status_report": "On branch main. Your branch is ahead of 'origin/main' by 231 commits. nothing to commit, working tree clean.",
+    "ahead_behind": {
+      "ahead": 231,
+      "behind": 0,
+      "note": "DISCREPANCY with staged_assets_commit_readiness_2026-08-31.json which reported 61 ahead / 22 behind. Branch state has changed significantly — local is now 231 commits ahead."
+    },
+    "current_head": "6333ce25 feat(glitter): add 5 high-res glitter material families + import script",
+    "recent_commits": [
+      "6333ce25 feat(glitter): add 5 high-res glitter material families + import script",
+      "d957b049 fix(animation): boost drift for CherryBlossomWood, SingingConstellations, StarlitAbyss",
+      "e71c7e53 docs(ledger): reconcile active_p0_gates with Saved/gate_ledger.json rows",
+      "814fbda0 docs(skills): add melodia-p0-sea-above-material, melodia-faraway-cops-import, melodia-parallax-propagation",
+      "e1717de8 fix(ledger): repair P0_TASK_LEDGER.json JSON corruption from 928e0a62 merge"
+    ],
+    "uncommitted_changes": "None — working tree clean"
+  },
+  "recommendation": "231 commits ahead of origin/main is significant. All local commits need to be pushed to remote for backup. Recommend: git push origin main (or git push origin main --force-with-lease if rebases occurred). Owner should verify no sensitive data in commit history before push.",
+  "guardrails": [
+    "No git push executed by daemon",
+    "No rebase executed",
+    "Status check only"
+  ],
+  "status": "AUDIT_COMPLETE"
+}

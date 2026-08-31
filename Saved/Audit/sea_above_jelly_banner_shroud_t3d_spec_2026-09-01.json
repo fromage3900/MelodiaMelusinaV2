@@ -1,0 +1,114 @@
+{
+  "schema": "melodia.t3d.sea_above.extras.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/ (disk scan)",
+  "mode": "spec_only",
+  "note": "These are skinned meshes with skeletons \u2014 they need skeletal mesh MI assignments, not typical static MIs. Or they may need ABP-driven material swapping. Editor-bound for parent confirmation.",
+  "assets": {
+    "skinned_meshes": [
+      {
+        "name": "JELLY_Bell",
+        "type": "SkeletalMesh",
+        "has_skeleton": true,
+        "skeleton": "JELLY_Bell_Skeleton",
+        "has_physics": true,
+        "physics_asset": "JELLY_Bell_PhysicsAsset",
+        "suggested_mi": "MI_Jelly_Bell",
+        "parent": "M_Master_Toon_Universal_Alpha (has opacity)"
+      },
+      {
+        "name": "JELLY_Arms",
+        "type": "SkeletalMesh",
+        "has_skeleton": false,
+        "suggested_mi": "MI_Jelly_Arms",
+        "parent": "M_Master_Toon_Universal_Alpha (has opacity)"
+      },
+      {
+        "name": "JellyArm_001-007",
+        "type": "StaticMesh (LOD variants)",
+        "count": 7,
+        "suggested_mi": "MI_Jelly_Arms",
+        "parent": "M_Master_Toon_Universal_Alpha"
+      },
+      {
+        "name": "JellyVeil",
+        "type": "StaticMesh",
+        "suggested_mi": "MI_Jelly_Arms",
+        "parent": "M_Master_Toon_Universal_Alpha"
+      },
+      {
+        "name": "SK_ShorewakeDress",
+        "type": "SkeletalMesh",
+        "has_skeleton": true,
+        "skeleton": "SK_ShorewakeDress_Skeleton",
+        "has_physics": true,
+        "physics_asset": "SK_ShorewakeDress_PhysicsAsset",
+        "suggested_mi": "MI_ShorewakeDress (existing?)",
+        "parent": "M_Master_Toon_Universal_Alpha"
+      },
+      {
+        "name": "SM_Shroud",
+        "type": "StaticMesh",
+        "has_skeleton": true,
+        "skeleton": "SM_Shroud_Skeleton",
+        "has_physics": true,
+        "physics_asset": "SM_Shroud_PhysicsAsset",
+        "suggested_mi": "MI_Shroud",
+        "parent": "M_Master_Toon_Universal_Alpha"
+      },
+      {
+        "name": "SM_Banner",
+        "type": "StaticMesh",
+        "has_skeleton": true,
+        "skeleton": "SM_Banner_Skeleton",
+        "has_physics": true,
+        "physics_asset": "SM_Banner_PhysicsAsset",
+        "suggested_mi": "MI_Banner",
+        "parent": "M_Master_Toon_Universal_Alpha"
+      }
+    ],
+    "volumes": [
+      {
+        "name": "VOL_GhostFog",
+        "type": "PostProcessVolume"
+      },
+      {
+        "name": "VOL_GodRays",
+        "type": "LightComponent or BP"
+      },
+      {
+        "name": "VOL_NebulaVeil",
+        "type": "PostProcessVolume"
+      }
+    ],
+    "materials": [
+      {
+        "name": "MI_Jelly_Arms",
+        "parent": "Alpha",
+        "exists": true
+      },
+      {
+        "name": "MI_Jelly_Bell",
+        "parent": "Alpha",
+        "exists": true
+      },
+      {
+        "name": "MI_SeaAbove_Cloth_Banner",
+        "parent": "Universal",
+        "exists": true
+      },
+      {
+        "name": "MI_SeaAbove_Leviathan_Bone",
+        "parent": "Universal",
+        "exists": true
+      },
+      {
+        "name": "MI_SeaAbove_Organ_Pipe",
+        "parent": "Universal",
+        "exists": true
+      }
+    ]
+  },
+  "recommendation": "These assets are NOT typical static-mesh MI candidates. They are skinned/ skeletal meshes and post-process volumes. They need editor-bound MI assignment via skeletal mesh component slots, not T3D MI specs.",
+  "status": "SPEC_ONLY_EDITOR_BOUND"
+}

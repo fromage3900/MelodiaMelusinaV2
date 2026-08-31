@@ -1,0 +1,34 @@
+{
+  "schema": "melodia.ecv.alpha.confirmation.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "disk scan + mi_enchanted_vehicle_t3d_spec_2026-09-01.json",
+  "mode": "disk_scan",
+  "findings": {
+    "alpha_master_exists": true,
+    "alpha_master_size": 709467,
+    "alpha_master_size_matches_spec": true,
+    "alpha_stems_count": 17,
+    "note": "Cannot confirm texture parameter routing (OpacityMap/RefractionMap) from disk. Editor-bound verification required."
+  },
+  "alpha_stems": [
+    "KB3D_ECV_AtlasFlowersA",
+    "KB3D_ECV_AtlasFruitsB",
+    "KB3D_ECV_AtlasGraphicsA",
+    "KB3D_ECV_AtlasGraphicsB",
+    "KB3D_ECV_AtlasLeafA",
+    "KB3D_ECV_AtlasLeafB",
+    "KB3D_ECV_AtlasLeafC",
+    "KB3D_ECV_BoxwoodBranch",
+    "KB3D_ECV_FabricB",
+    "KB3D_ECV_FabricOldBright",
+    "KB3D_ECV_FabricTentPink",
+    "KB3D_ECV_FabricTentRed",
+    "KB3D_ECV_FabricWhiteWorn",
+    "KB3D_ECV_GlassClean",
+    "KB3D_ECV_GlassDirty",
+    "KB3D_ECV_Ivy",
+    "KB3D_ECV_PlasticCable"
+  ],
+  "verdict": "Alpha master confirmed on disk at expected size. 17 stems routed to it. Editor-bound for param verification.",
+  "status": "DISK_SCAN_COMPLETE"
+}

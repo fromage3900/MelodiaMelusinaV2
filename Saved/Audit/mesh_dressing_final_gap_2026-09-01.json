@@ -1,0 +1,48 @@
+{
+  "schema": "melodia.audit.mesh_dressing_final_gap.v1",
+  "generated": "2026-09-01T05:30:00Z",
+  "mode": "disk_scan_plus_plan_crossref",
+  "findings": {
+    "plan_total": 609,
+    "done_total": 480,
+    "remaining_total": 129,
+    "done_not_in_plan": 0,
+    "remaining_by_slot_type": {
+      "colormap": 106,
+      "WorldGridMaterial": 23
+    },
+    "interpretation": "All 129 remaining slots are colormap or WorldGridMaterial — both are single-material Atlantis/SeaAbove meshes that use one MI across the entire mesh. These are straightforward offline assignments via _tmp_mesh_applier_v2.py. No editor-required complexity (no multi-slot routing needed).",
+    "done_coverage_by_slot": {
+      "colormap": 374,
+      "planks": 38,
+      "bricks": 33,
+      "stones": 18,
+      "stonesPainted": 9,
+      "roof": 7,
+      "details": 6,
+      "fence": 3,
+      "barrel": 3,
+      "tree": 2,
+      "Metal_2__Matcap_": 1,
+      "Outline": 1,
+      "SKIRT_002": 1,
+      "SHAWL": 1,
+      "Material_001": 1,
+      "Material_004": 1,
+      "Material_006": 1,
+      "Material_007": 1,
+      "Material_008": 1,
+      "Material_018": 1,
+      "Material_019": 1,
+      "Material_020": 1,
+      "Material_024": 1
+    }
+  },
+  "recommendation": "129 remaining colormap/WorldGridMaterial slots can be batched in 3 runs of _tmp_mesh_applier_v2.py (60/batch). All are simple single-MI assignments. Expected completion: ~5 minutes of editor time.",
+  "next_steps": [
+    "Restart editor if not running",
+    "Run: python Saved/_tmp_mesh_applier_v2.py (60 slots/batch, 3 batches)",
+    "Re-run mesh_material_census to verify bare count drops from 484 to ~16"
+  ],
+  "status": "AUDIT_COMPLETE"
+}

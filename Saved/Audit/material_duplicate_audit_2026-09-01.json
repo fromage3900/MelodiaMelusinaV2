@@ -1,0 +1,21 @@
+{
+  "schema": "melodia.material.duplicate.audit.v1",
+  "generated": "2026-08-31T07:31:56Z",
+  "source": "disk scan of C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Instances",
+  "mode": "disk_scan_only",
+  "note": "Heuristic variant-grouping by filename stem. NOT a content-duplication check \u2014 variants may differ in texture params. Group size > 1 means shared stem.",
+  "findings": {
+    "total_mi_files_scanned": 832,
+    "unique_stems": 832,
+    "variant_groups_found": 0,
+    "total_files_in_groups": 0
+  },
+  "top_variant_groups": [],
+  "safety": {
+    "not_content_diff": true,
+    "requires_live_editor_for_param_compare": true,
+    "never_delete_without_owner_signoff": true,
+    "gate_acceptance": "echo_run.py record material_dup_audit pass (owner-only)"
+  },
+  "status": "AUDIT_COMPLETE"
+}
