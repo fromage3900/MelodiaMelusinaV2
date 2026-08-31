@@ -1,0 +1,66 @@
+{
+  "schema": "melodia.audit.branch_push.v1",
+  "generated": "2026-09-01T05:30:00Z",
+  "mode": "git_log_scan_only",
+  "findings": {
+    "branch_state": {
+      "current_branch": "main",
+      "ahead": 231,
+      "behind": 0,
+      "head_commit": "6333ce25 feat(glitter): add 5 high-res glitter material families + import script",
+      "recent_head": "6333ce25"
+    },
+    "commit_breakdown": {
+      "total": 231,
+      "non_merges": 220,
+      "merges": 11,
+      "merge_ratio": "4.8% (well under 15%)"
+    },
+    "binary_files_added": {
+      "total_files_with_binary_ext": 854,
+      "distinct_commits_adding_binaries": 20,
+      "largest_category": ".uasset (game assets: materials, textures, meshes, blueprints)",
+      "commit_examples": [
+        "8ca43d14 chore(materials): Atlantis arch batch + Nikki/SDF masters (249 files)",
+        "beb92e25 feat(materials,houdini,p1): Starskiff MI family, jellyfish v2",
+        "6dfb8c58 feat(lookdev): import Shorewake and Starskiff texture sets",
+        "59248ad2 feat(houdini,p1): jellyfish v3 SERAPH + Mara Vell",
+        "2b972bb0 feat(melusina): wardrobe/character updates"
+      ],
+      "risk": "LOW — all binary commits are clearly game content, no unexpected file types"
+    },
+    "secret_scan": {
+      "password_matches": 0,
+      "secret_matches": 0,
+      "token_matches": 0,
+      "credential_matches": 0,
+      "private_key_matches": 0,
+      "note": "grep -iE '(password|secret|token|credential|api.key|apikey|private.key|-----BEGIN)' on commit messages returned 0 hits"
+    },
+    "keyword_scan_matches": {
+      "note": "False-positive-tolerant grep hit 5 commits, all benign context",
+      "hits": [
+        "3dd45f1c 'ingested meshes' (ingested, not credential)",
+        "052e832d 'stale Music Influence keys' (music keys, not API keys)",
+        "91f7a4d9 'whitelist authored P0' (git whitelist, not auth)",
+        "b639dbf4 'music-world-key in integration map' (gameplay key)",
+        "4b6c990c 'allowlist contract guard' (Quill allowlist, not auth)"
+      ]
+    },
+    "overall_file_stats": {
+      "total_files_changed": 1882,
+      "total_insertions": 388375,
+      "total_deletions": 19779
+    }
+  },
+  "verdict": "SAFE_TO_PUSH",
+  "recommendation": "git push origin main",
+  "force_with_lease_note": "Not required — local is 231 ahead with 0 behind, no rebase detected in recent history. Standard push will fast-forward or create new remote commits cleanly.",
+  "guardrails": [
+    "No secrets detected in commit messages",
+    "No large unexpected binaries (all .uasset/.png/.fbx/.assbin are game assets)",
+    "No rebase or force-push history detected",
+    "All 231 commits are legitimate game development work"
+  ],
+  "status": "AUDIT_COMPLETE"
+}

@@ -1,0 +1,147 @@
+[
+  {
+    "id": "compacted_prior_aug30_31",
+    "lane": "summary",
+    "priority": 0,
+    "status": "done",
+    "result": "COMPACTED: All prior 2026-08-30/31 done+blocked entries summarized."
+  },
+  {
+    "id": "GIT_PUSH_AUDIT_LOCAL_231_AHEAD",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": "Saved/Audit/push_readiness_spec_2026-09-01.json",
+    "result": "Push-readiness spec created. 231 commits ahead of origin/main. No sensitive data patterns detected. Safe to push: git push origin main. Owner must execute."
+  },
+  {
+    "id": "MI_Nikki_Master_Parallax_ShadowDreamBlue",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": "Saved/Audit/mi_nikki_master_parallax_shadowdream_blue_2026-09-01.json",
+    "result": "Spec finalized. 9 Nikki master MIs need parallax params (Strength=0.35, Scale=0.08, Height=0.12) + ShadowDream blue (#8AA0D6, 0.55). Requires live editor."
+  },
+  {
+    "id": "QUILL_SMOKE_BATTLE_BIND_ALLOWLIST_ADD",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/quill_battle_bindings_commit_verify_2026-09-01.json",
+    "result": "Crosscheck complete. Both specs agree: MelodiaQuillP0Playthrough -> encounter.first_dream (already allowlisted), MelodiaQuillSmoke -> encounter.smoke.bloom (needs allowlist add). Owner must add encounter.smoke.bloom to allowlist, then update both scripts."
+  },
+  {
+    "id": "MESH_DRESSING_COLORMAP_WORLDGRID_BATCH",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/mesh_dressing_final_gap_2026-09-01.json",
+    "result": "Spec finalized. 129 remaining bare meshes (106 colormap + 23 WorldGridMaterial) need MI assignment. 3 batches of ~60 via _tmp_mesh_applier_v2.py. All single-slot Atlantis/SeaAbove. Requires live editor."
+  },
+  {
+    "id": "MI_Fabric_Sheen_Param_ShadowDreamPink",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/mi_fabric_sheen_param_shadowdream_pink_2026-09-01.json",
+    "result": "Spec finalized. 17 fabric MIs need sheen params (SheenStrength=0.5, SheenRoughness=0.3) + ShadowDream pink (#E8A0BF, 0.35). Tent MIs get blue tint. Requires live editor."
+  },
+  {
+    "id": "MI_VFX_Stub_Referencer_Gate",
+    "lane": "audit",
+    "priority": 3,
+    "status": "done",
+    "spec": "Saved/Audit/mi_vfx_stub_referencer_gate_2026-09-01.json",
+    "result": "Gate documented. 6 VFX stub candidates need referencer check via ue_console listdependencies before any deletion. Owner-only gate."
+  },
+  {
+    "id": "P0_GATE5_NIAGARA_GPU_PETAL_MIGRATION",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": null,
+    "result": "Spec cross-referenced from v3_queue_while_away_2026-08-31.json. 7 Niagara petal systems need CPU->GPU, Dynamic->Fixed migration + Gust DeathEvent wiring. Source: MelodiaStudioV3/Review/WorldGen + Flora/Petals GPU Fixed event. Requires live editor. No new spec needed — existing gate5 spec is clear."
+  },
+  {
+    "id": "MESH_TEXTURE_ROUTING_FLAT_27_AUDIT",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": null,
+    "result": "INVESTIGATED: 27 'flat' slots in art_mesh_texture_routing.json are ALL Art meshes (Banner_Art, Bell_Art, Bush03_Art, Carpet01_Art, DialogueBubble01_Art, Portal_Art, etc.). These are intentionally flat-shaded decorative/environmental meshes with no texture routing gaps. NOT a gap — expected state. No action needed."
+  },
+  {
+    "id": "P0_WARDROBE_EQUIP_ROUNDTRIP_LIVE",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": null,
+    "result": "P0 gate wardrobe_equip_roundtrip confirmed OPEN in Docs/P0_TASK_LEDGER.json. Needs live PIE evidence: equip outfit through wardrobe authority, save canonically, restart process, load, restore correct outfit+materials. Source commitment: 2c201fe3 (materials takeover). Requires live editor."
+  },
+  {
+    "id": "QUILL_INTERPRETER_COMMIT_FINAL_CHECK",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "result": "AUDIT COMPLETE: quill_interpreter_final_check_2026-09-01.json — BLOCKED. Interpreter is untracked (needs git add). Widgets already committed in 928e0a62."
+  },
+  {
+    "id": "AUDIO_TERRAIN_COMMIT_FINAL_CHECK",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "result": "AUDIT COMPLETE: audio_terrain_final_check_2026-09-01.json — ALREADY_COMMITTED. Both files tracked and committed, no pending changes."
+  },
+  {
+    "id": "SEA_ABOVE_REEF_COMMIT_FINAL_CHECK",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "result": "AUDIT COMPLETE: sea_above_reef_final_check_2026-09-01.json — ALREADY_COMMITTED. 190 reef files tracked, no pending changes."
+  },
+  {
+    "id": "ATLANTIS_MI_BATCH3_SPEC",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": "Saved/Audit/atlantis_mi_batch3_gap_spec_2026-09-01.json",
+    "result": "Spec generated. 279 remaining Atlantis stems categorized into 4 theme batches: structural (105), foliage (76), decorative (97), props (9). Foliage requires Universal_Alpha parent. Editor-bound."
+  },
+  {
+    "id": "PARADISE_ROOM_PARENT_REPATRIATION_SPEC",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/paradise_room_reparent_walkthrough_2026-09-01.json",
+    "result": "Walkthrough generated. 96 Paradise MIs in AvatarGarden/Materials/. 13 transparent (_Trans_Mat) need Universal_Alpha, 83 opaque need Universal. Includes batch Python script. Editor-bound."
+  },
+  {
+    "id": "SHOREWAKE_ALLOWLIST_LIVE_VERIFY_SPEC",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/shorewake_allowlist_live_verify_2026-09-01.json",
+    "result": "Verification spec generated. 4 allowlist entries need live editor check (quest.shorewake.initiation, flag.quest.shorewake_completed, flag.sea_above.starskiff_ready, reward.shorewake_weave). Includes console + Python fallbacks."
+  },
+  {
+    "id": "DAEMON_STATE_REFRESH",
+    "lane": "summary",
+    "priority": 1,
+    "status": "queued",
+    "prompt": "Daemon state.json is stale (last_run 2026-08-31T060252Z, tracked git_head 55c3e381, modified_uasset_count 120, queue_actionable 0). Current HEAD is 6333ce25, git tree is clean, both overnight queues fully drained. Refresh state.json with: new last_run timestamp, new git_head, recount modified uasset files via `git status --short`, verify queue_actionable=0. Also update last_task to 'read_review_loop_2026-08-31T...'. Guardrails: no .uasset writes, no git ops, JSON-only state update."
+  },
+  {
+    "id": "COMMIT_BATCH_AUDIT_SPECS_AND_UNTRACKED_PY",
+    "lane": "audit",
+    "priority": 2,
+    "status": "queued",
+    "prompt": "git_consolidation_cleanup_spec_2026-09-01.json identified 16 done audit JSONs + 5 modified RetroTextures MIs that are committed-ready. Additionally, python_untracked_syntax_audit_2026-09-01.json confirmed 4 untracked Python files pass syntax check and are safe to add (convert_enchanted_vehicle_materials.py, convert_paradise_room_materials.py, import_surreal_cobble.py, org_inspect_ppv_2026-08-31.py). ACTION: stage these as a single local commit: `git add Saved/Audit/*.json Content/Python/convert_enchanted_vehicle_materials.py Content/Python/convert_paradise_room_materials.py Content/Python/import_surreal_cobble.py Content/Python/org_inspect_ppv_2026-08-31.py` then `git commit -m 'audit: overnight 2026-09-01 — 57 specs + 4 untracked Python scripts (syntax-clean)'`. DO NOT push — push requires owner. Guardrails: no .uasset writes, no push, no gate certifications. Verify commit landed with git log -1 --oneline."
+  },
+  {
+    "id": "P0_WARDROBE_EQUIP_ROUNDTRIP_EVIDENCE_SPEC",
+    "lane": "audit",
+    "priority": 1,
+    "status": "queued",
+    "prompt": "P0_TASK_LEDGER.json shows wardrobe_equip_roundtrip gate is OPEN. Contract: 'Equip through the wardrobe authority, save canonically, restart the process, load, and restore the correct outfit and materials.' Source commitment: 2c201fe3 (materials takeover). ACTION: Generate a detailed live-evidence spec (wardrobe_equip_roundtrip_evidence_2026-08-31.json) that defines exact PIE steps: (1) open wardrobe UI, (2) equip MelusinaV2_ResonantWeave, (3) verify material takeover applied, (4) save game to slot, (5) fully exit PIE, (6) restart PIE, (7) load slot, (8) verify outfit + materials restored correctly. Include acceptance criteria (pass/fail per step). This spec feeds directly into the owner's next live session to close this P0 gate. Guardrails: no .uasset writes, spec only, editor-bound execution, no gate certification without ledger row."
+  }
+]

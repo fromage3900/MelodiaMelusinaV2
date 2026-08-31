@@ -1,0 +1,31 @@
+{
+  "schema": "melodia.material.dedup_spec.v1",
+  "id": "MI_BlingVol3_PBR_Auto_Dedup_ShadowDreamPink",
+  "generated": "2026-09-01T06:00:00Z",
+  "source": "Disk scan: Content/EnvSandbox/Materials/Instances/Environment/PBR_Auto/ + Content/EnvSandbox/Materials/Instances/BlingVol3/",
+  "mode": "dedup_spec",
+  "findings": {
+    "canonical_blingvol3_count": 15,
+    "canonical_path": "Content/EnvSandbox/Materials/Instances/BlingVol3/",
+    "canonical_pattern": "MI_BlingVol3_01..15 (PascalCase)",
+    "duplicate_pbr_auto_count": 15,
+    "duplicate_path": "Content/EnvSandbox/Materials/Instances/Environment/PBR_Auto/",
+    "duplicate_pattern": "MI_bling_surface_vol3_01..15 (snake_case)",
+    "verdict": "DUPLICATE_SET",
+    "rationale": "PBR_Auto variants use snake_case naming (violates PascalCase convention) and are auto-generated duplicates of the hand-authored BlingVol3 set. PBR_Auto folder is empty (0 items total) — these are orphaned duplicates."
+  },
+  "action_plan": {
+    "1_verify_canonical_refs": "Confirm MI_BlingVol3_01..15 are referenced by BP/Gameplay actors",
+    "2_check_duplicate_refs": "Verify MI_bling_surface_vol3_01..15 have ZERO gameplay references",
+    "3_quarantine_duplicates": "Move 15 snake_case duplicates to _Scratch/_Quarantine/BlingVol3_Dedup/",
+    "4_rename_if_needed": "If any duplicate has unique refs, rename with PascalCase + ShadowDream pink tint suffix",
+    "5_final_blessing": "Run project_state.py staleness check after deletion"
+  },
+  "shadowdream_tint_for_survivors": {
+    "note": "If any snake_case MI has gameplay refs preventing deletion, rename to PascalCase + apply ShadowDream pink tint to distinguish from canonical",
+    "pink_hex": "#E8A0BF",
+    "pink_linear": [0.91, 0.627, 0.749],
+    "survivor_naming_pattern": "MI_BlingVol3_<N>_ShadowDreamPink"
+  },
+  "priority": 2
+}

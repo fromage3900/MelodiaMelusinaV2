@@ -1,0 +1,478 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/arch_toon_conversion.json (cathedral_mi_entries[10:41])",
+  "target": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral",
+  "mode": "spec_only",
+  "note": "No .uasset writes. Editor-bound MI creation deferred to owner session.",
+  "batch": 2,
+  "total_meshes": 31,
+  "shadowdream_variants": {
+    "blue": {
+      "hex": "#8AA0D6",
+      "linear": [
+        0.541,
+        0.627,
+        0.839
+      ],
+      "slots": [
+        "marble",
+        "glass"
+      ]
+    },
+    "pink": {
+      "hex": "#E8A0BF",
+      "linear": [
+        0.91,
+        0.627,
+        0.749
+      ],
+      "slots": [
+        "rose"
+      ]
+    }
+  },
+  "priority_order": "rose/glass/marble first (ShadowDream), then stone/brick/gold",
+  "entries": [
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_EscherPenrose.uasset",
+      "mesh_stem": "EscherPenrose",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_EscherPenrose",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_EscherPenrose",
+      "slot": "Glass_Stained",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_EscherPenrose\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Garland.uasset",
+      "mesh_stem": "Garland",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Garland",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Garland",
+      "slot": "Rose_Garland",
+      "preset": {
+        "roughness": 0.55,
+        "metallic": 0.0,
+        "tint": "pink",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Garland\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.55),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_HarmonicOrb.uasset",
+      "mesh_stem": "HarmonicOrb",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_HarmonicOrb",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_HarmonicOrb",
+      "slot": "Glass_Orb",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_HarmonicOrb\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_LancetWindow.uasset",
+      "mesh_stem": "LancetWindow",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_LancetWindow",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_LancetWindow",
+      "slot": "Glass_Window",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_LancetWindow\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_MusicOrb.uasset",
+      "mesh_stem": "MusicOrb",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_MusicOrb",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_MusicOrb",
+      "slot": "Glass_Orb",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_MusicOrb\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Observatory.uasset",
+      "mesh_stem": "Observatory",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Observatory",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Observatory",
+      "slot": "Glass_Observatory",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Observatory\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_RoseWindow.uasset",
+      "mesh_stem": "RoseWindow",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_RoseWindow",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_RoseWindow",
+      "slot": "Glass_Stained",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_RoseWindow\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_RosetteMedallion.uasset",
+      "mesh_stem": "RosetteMedallion",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_RosetteMedallion",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_RosetteMedallion",
+      "slot": "Glass_Stained",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_RosetteMedallion\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_SaintStatue.uasset",
+      "mesh_stem": "SaintStatue",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_SaintStatue",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_SaintStatue",
+      "slot": "Marble_Statue",
+      "preset": {
+        "roughness": 0.25,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_SaintStatue\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.25),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_StainedGlassPanel.uasset",
+      "mesh_stem": "StainedGlassPanel",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_StainedGlassPanel",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_StainedGlassPanel",
+      "slot": "Glass_Stained",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_StainedGlassPanel\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_StainedRose.uasset",
+      "mesh_stem": "StainedRose",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_StainedRose",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_StainedRose",
+      "slot": "Glass_Stained",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_StainedRose\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_TraceryPanel.uasset",
+      "mesh_stem": "TraceryPanel",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_TraceryPanel",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_TraceryPanel",
+      "slot": "Glass_Tracery",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_TraceryPanel\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Urn.uasset",
+      "mesh_stem": "Urn",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Urn",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Urn",
+      "slot": "Marble_Urn",
+      "preset": {
+        "roughness": 0.25,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Urn\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.25),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_CryptVault.uasset",
+      "mesh_stem": "CryptVault",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_CryptVault",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_CryptVault",
+      "slot": "Stone_Heavy",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_CryptVault\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_EscherBelvedere.uasset",
+      "mesh_stem": "EscherBelvedere",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_EscherBelvedere",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_EscherBelvedere",
+      "slot": "Stone_Escher",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_EscherBelvedere\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_EscherBridge.uasset",
+      "mesh_stem": "EscherBridge",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_EscherBridge",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_EscherBridge",
+      "slot": "Rainbow_Bridge",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_EscherBridge\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.7),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_EscherWaterfall.uasset",
+      "mesh_stem": "EscherWaterfall",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_EscherWaterfall",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_EscherWaterfall",
+      "slot": "Stone_Escher",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_EscherWaterfall\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Pavilion.uasset",
+      "mesh_stem": "Pavilion",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Pavilion",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Pavilion",
+      "slot": "Stone_Pavilion",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Pavilion\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Perch.uasset",
+      "mesh_stem": "Perch",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Perch",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Perch",
+      "slot": "Wood_Porch",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Perch\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.7),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Pier.uasset",
+      "mesh_stem": "Pier",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Pier",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Pier",
+      "slot": "Stone_Pier",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Pier\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Portal.uasset",
+      "mesh_stem": "Portal",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Portal",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Portal",
+      "slot": "Gold_Portal",
+      "preset": {
+        "roughness": 0.35,
+        "metallic": 0.85,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Portal\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_ResonantDoor.uasset",
+      "mesh_stem": "ResonantDoor",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_ResonantDoor",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_ResonantDoor",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_ResonantDoor\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.7),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_SpiralStairs.uasset",
+      "mesh_stem": "SpiralStairs",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_SpiralStairs",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_SpiralStairs",
+      "slot": "Stone_Steps",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_SpiralStairs\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Spire.uasset",
+      "mesh_stem": "Spire",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Spire",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Spire",
+      "slot": "Stone_Tower",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Spire\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_StaffBalustrade.uasset",
+      "mesh_stem": "StaffBalustrade",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_StaffBalustrade",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_StaffBalustrade",
+      "slot": "Metal_Balustrade",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_StaffBalustrade\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.7),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Stall.uasset",
+      "mesh_stem": "Stall",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Stall",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Stall",
+      "slot": "Wood_Stall",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Stall\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.7),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Tower.uasset",
+      "mesh_stem": "Tower",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Tower",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Tower",
+      "slot": "Stone_Tower",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Tower\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_TrebleRelief.uasset",
+      "mesh_stem": "TrebleRelief",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_TrebleRelief",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_TrebleRelief",
+      "slot": "Stone_Relief",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_TrebleRelief\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_VaultBay.uasset",
+      "mesh_stem": "VaultBay",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_VaultBay",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_VaultBay",
+      "slot": "Stone_Vault",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_VaultBay\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_Wall.uasset",
+      "mesh_stem": "Wall",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_Wall",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_Wall",
+      "slot": "Stone_Wall",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_Wall\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    },
+    {
+      "mesh": "Content\\EnvSandbox\\Meshes\\Cathedral\\SM_Cathedral_WallParapet.uasset",
+      "mesh_stem": "WallParapet",
+      "mi_name": "MI_Arch_Cath_SM_Cathedral_WallParapet",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/MI_Arch_Cath_SM_Cathedral_WallParapet",
+      "slot": "Stone_Wall",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Cath_SM_Cathedral_WallParapet\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55)\n   )\n   VectorParameterValues=(\n   )\nEnd Object"
+    }
+  ],
+  "safety": {
+    "requires_live_editor": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record cath_t3d_batch2 pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

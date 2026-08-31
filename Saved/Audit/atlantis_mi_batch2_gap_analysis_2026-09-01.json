@@ -1,0 +1,17 @@
+{
+  "schema": "melodia.atlantis.mi.gap.analysis.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/arch_toon_conversion.json + disk scan",
+  "mode": "audit",
+  "findings": {
+    "total_atlantis_stems": 333,
+    "existing_atlantis_mis": 54,
+    "kb3d_atl_mis": 54,
+    "other_arch_mis": 0,
+    "remaining_stems_needing_mi": 279,
+    "batch2_spec_path": "Saved/Audit/atlantis_mi_batch2_spec_2026-08-31.json",
+    "batch2_entries": 0
+  },
+  "recommendation": "279 Atlantis stems still need MI assignment. Batch2 spec covers 0 of these.",
+  "status": "ANALYSIS_COMPLETE"
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "melodia.audit.nikki_master_mi_param.v1",
+  "generated": "2026-09-01T04:00:00Z",
+  "source": "disk scan of Content/EnvSandbox/Materials/Instances/MelusinaReal/ + Content/EnvSandbox/Materials/Instances/Environment/",
+  "mode": "disk_scan_only",
+  "note": "Cannot read .uasset param values from disk scan. Filename-based inference only. Requires live editor for authoritative param read.",
+  "findings": {
+    "nikki_master_mis": {
+      "path": "Content/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Universal/",
+      "total_files": 9,
+      "files": [
+        "MI_M_Master_Toon_Universal_Weave.uasset",
+        "MI_M_Master_Toon_Universal_Treble.uasset",
+        "MI_M_Master_Toon_Universal_Stembell.uasset",
+        "MI_M_Master_Toon_Universal_Stem1.uasset",
+        "MI_M_Master_Toon_Universal_Note.uasset",
+        "MI_M_Master_Toon_Universal_Leafcool.uasset",
+        "MI_M_Master_Toon_Universal_FloralBrickGrayScale.uasset",
+        "MI_M_Master_Toon_Universal_Crystal.uasset",
+        "MI_M_Master_Toon_Universal_Cello.uasset"
+      ],
+      "inferred_parallax_enabled": "UNKNOWN — requires editor",
+      "inferred_inline_vs_mf": "UNKNOWN — requires editor",
+      "inferred_b_nikki_hero": "UNKNOWN — requires editor",
+      "inferred_base_tint": "UNKNOWN — requires editor"
+    },
+    "fabric_mis_environment": {
+      "path": "Content/EnvSandbox/Materials/Instances/Environment/PBR_Auto/",
+      "total_files": 18,
+      "categories": {
+        "fabric_weave": ["MI_T_Fabric_GoldThreadedEmbroidery", "MI_T_Fabric_GoldEmbroidery", "MI_T_Fabric_CelestialWeave", "MI_T_Fabric_IridescentCelestialWeave"],
+        "fabric_jacquard_brocade": ["MI_T_Fabric_GildedJacquard", "MI_T_Fabric_GildedBrocade", "MI_T_Fabric_ChromaticJacquard_AcanthusBrocade"],
+        "fabric_lace": ["MI_T_Fabric_BaroqueLace", "MI_T_Fabric_BaroqueFiligreeLace"],
+        "fabric_velvet_satin": ["MI_T_Fabric_AquaticVelvet_CrushedFuzz", "MI_T_Fabric_RoyalVelvet", "MI_T_Fabric_IridescentDuchessSatin_ChampagneRose"],
+        "fabric_silk_chiffon": ["MI_T_Fabric_SheerSilk", "MI_T_Fabric_OpalescentChiffon_Plisse"],
+        "fabric_tent": ["MI_KB3D_ATL_FabricTentBlueA", "MI_KB3D_ATL_FabricSail"],
+        "other": ["MI_Universal_HoloFabric"]
+      }
+    },
+    "next_session_plan_reference": "Docs/Plans/NEXT_SESSION_PLAN_2026-08-31.md item 3 — Nikki masters: parallax, inline vs MF split, bNikkiHero switch, BaseTint"
+  },
+  "recommendation": "Open M_Master_Toon_Universal in editor Material Instance Editor. For each of the 9 Nikki MIs, read: ParallaxStrength param presence, ScalarParameterValues for Roughness/Metallic (inline) vs MF references, bNikkiHero switch param, BaseTint param. Cross-reference with M_Master_Nikki fabric master if it exists.",
+  "guardrails": [
+    "No .uasset writes",
+    "No param edits made",
+    "Spec only — requires live editor for authoritative read"
+  ],
+  "status": "AUDIT_COMPLETE"
+}

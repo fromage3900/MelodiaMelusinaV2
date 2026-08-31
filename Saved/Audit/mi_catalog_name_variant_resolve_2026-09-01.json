@@ -1,0 +1,67 @@
+{
+  "schema": "melodia.catalog.naming.variant_resolve.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/catalog_naming_harmonization_2026-08-31.json",
+  "mode": "spec_only",
+  "note": "No renames executed. Owner to confirm proposed canonical names.",
+  "convention": "Cos_<Slot>_Melusina<Descriptor> (PascalCase, no underscores within descriptor, no bare Melusina)",
+  "total_violations": 5,
+  "resolutions": {
+    "Cos_Dress_Melusina_ResonantWeave": {
+      "current": "Cos_Dress_Melusina_ResonantWeave",
+      "proposed": "Cos_Dress_MelusinaResonantWeave",
+      "variant_suffix": null,
+      "rationale": "PascalCase descriptor merge. No variant needed \u2014 descriptor is unique."
+    },
+    "Cos_Dress_Melusina_SwiftCurrent": {
+      "current": "Cos_Dress_Melusina_SwiftCurrent",
+      "proposed": "Cos_Dress_MelusinaSwiftCurrent",
+      "variant_suffix": null,
+      "rationale": "PascalCase descriptor merge. No variant needed \u2014 descriptor is unique."
+    },
+    "Cos_Dress_Melusina_TideWalker": {
+      "current": "Cos_Dress_Melusina_TideWalker",
+      "proposed": "Cos_Dress_MelusinaTideWalker",
+      "variant_suffix": null,
+      "rationale": "PascalCase descriptor merge. No variant needed \u2014 descriptor is unique."
+    },
+    "Cos_Dress_Melusina": {
+      "current": "Cos_Dress_Melusina",
+      "proposed": "Cos_Dress_MelusinaClassic",
+      "variant_suffix": "Classic",
+      "rationale": "Bare descriptor \u2014 propose Classic as the original/legacy variant. Owner to confirm."
+    },
+    "Cos_Gloves_Melusina": {
+      "current": "Cos_Gloves_Melusina",
+      "proposed": "Cos_Gloves_MelusinaClassic",
+      "variant_suffix": "Classic",
+      "rationale": "Bare descriptor \u2014 propose Classic as the original/legacy variant. Owner to confirm."
+    }
+  },
+  "owner_decision": {
+    "status": "PENDING",
+    "confirm": [
+      "Cos_Dress_MelusinaClassic (bare dress variant)",
+      "Cos_Gloves_MelusinaClassic (bare gloves variant)"
+    ],
+    "alternatives": {
+      "Cos_Dress_Melusina": [
+        "Classic",
+        "Default",
+        "Legacy",
+        "Original"
+      ],
+      "Cos_Gloves_Melusina": [
+        "Classic",
+        "Default",
+        "Legacy",
+        "Original"
+      ]
+    }
+  },
+  "safety": {
+    "no_renames_executed": true,
+    "gate_acceptance": "echo_run.py record catalog_naming_resolve pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}
