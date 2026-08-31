@@ -99,6 +99,46 @@ When 5a–5e are green, update this doc with the evidence paths and commit. Then
 
 Gate5 ledger: **not recorded via `record_gate.py`** — gate5 was a queued event, not a formal Echo gate; evidence lives in this doc + `b66e6f6c` + `5697e2aa` (gate4).
 
+### 5.2 Remaining Niagara conversions (batch 2, 2026-08-31 04:45–04:55 UTC) — DONE
+
+Second pass over the full production Systems tree (34 systems) after the 7 gate5 petal systems:
+
+| System | Emitter | Conversion | Compile |
+|---|---|---|---|
+| `NS_Uni_Fireflies` | Firefly | CPU→**GPU** | clean |
+| `NS_Uni_WaterMist` | EmberMotes | Dynamic→**Fixed** | clean |
+| `NS_Uni_GroundWisps` | EmberMotes | Dynamic→**Fixed** | clean |
+| `NS_Uni_MistSheet` | EmberMotes | Dynamic→**Fixed** | clean |
+| `NS_Uni_RainRipples` | RibbonTrailFollower/OmniBurst/RibbonLeader | Dynamic→**Fixed** (kept CPU — LocationEvent wiring would hit the GPU event-bool engine bug) | clean |
+| `NS_ConstellationTwinkle` | Twinkle | CPU+Dynamic→**GPU+Fixed** | clean |
+| `NS_EmberMotes` | EmberMotes | Dynamic→**Fixed** | clean |
+| `NS_FairyDust` | FairyDust | Dynamic→**Fixed** | clean |
+| `NS_MagicalHenshinBurst` | 3 emitters | Dynamic→**Fixed** (kept CPU — LocationEvent wiring) | clean |
+| `NS_SakuraLanternMotes` | LanternMotes | CPU→**GPU** | clean |
+| `NS_SakuraDreamSparkle` | DreamMotes | CPU→**GPU** | clean |
+| `NS_SakuraPondShimmer` | Ripples | CPU+Dynamic→**GPU+Fixed** | clean |
+| `NS_ConstellationDraw` | Stars | CPU+Dynamic→**GPU+Fixed** | clean |
+| `NS_SakuraCosmicAurora` | AuroraRibbon/AuroraLeader | Dynamic→**Fixed** (kept CPU — LocationEvent wiring) | clean |
+
+Already optimal (left untouched): `NS_Uni_LeafDrift` (GPU/Fixed), `NS_Uni_DustShafts` (GPU/Fixed), `NS_Uni_PollenSparkle` (GPU/Fixed), `NS_MagicTrail` (GPU/Fixed), `NS_Melodia_PetalEndlessLoop` (GPU/Fixed). **13 systems converted in batch 2, all compiled clean (0 `LogNiagara: Error`).** Production tree now: 100% of event-free systems GPU+Fixed; event-wired systems Fixed-bounds CPU (engine bug holds: `RWWriteDataSetBool1` on GPU event bool writes — reference `NS_SakuraPetalGust` remains broken pre-existing).
+
+### 5.3 Jellyfish P0 Sea Above scan (2026-08-31 04:55 UTC) — INSTANCES NEEDED, BLOCKED ON SCALE
+
+**Kit authored (complete):** `Reef/Meshes/` — `JELLY_Bell` (SkeletalMesh 8448 tris / 4598 verts, 2 bones, Skeleton + PhysicsAsset), `JELLY_Arms` (StaticMesh, **8 material slots all wired → `MI_Jelly_Arms`**), `JellyVeil`, `JellyArm_000..007` (8 variants), `Reef/Textures/` 9× `T_Jelly_*` (Biolum/Iridescence/Nematocyst/ArmLogic LUTs + Bell BaseColor/Opacity/CanalMask/Normal/Irid_Mottle), `Reef/Materials/MI_Jelly_Bell` + `MI_Jelly_Arms`.
+
+**Scan findings (missing / blocking placement):**
+
+| # | Item | Evidence | Blocker? |
+|---|---|---|---|
+| 1 | **Scale defect** — `JELLY_Bell` AABB extent ≈ **930,000 units** (~930 m), `JELLY_Arms` ≈ **4,350,000 units** (~4.3 km); control meshes sane (`SM_Coral_Brain` 73 u, `SM_Kelp_Tall` 202 u) | `mesh_query get_mesh_bounds` ×4 | **YES — unplaceable as-is** |
+| 2 | **Bell material slot unwired** — `MI_Jelly_Bell` `referenced_by: []` (arms wired, bell not) | `project_query find_references` | YES |
+| 3 | **No AnimBP** for `JELLY_Bell_Skeleton` (2 bones — bell pulse needs an AnimBP or the skeletal mesh renders in bind pose) | `project_query search "ABP"` under SeaAbove = none | YES |
+| 4 | **No assembly Blueprint** (bell + arms + veil are separate meshes; no `BP_Jelly*` anywhere) | `project_query search` | YES |
+| 5 | **Zero jelly instances in `LV_SeaAbove_Prototype`** — level has only PlayerStart, Oceanology water/ocean/manager, CineCamera, Sky/Clouds/Fog, PCGWorldActor, Landscape | `project_query search "UAID"` + level actor census | YES |
+| 6 | `T_SeaAbove_Droplet_Atlas` dead weight (separate finding, §5.1) | `referenced_by: []` | no |
+
+**Required work (queue for the Houdini/author lane):** re-export or re-import `JELLY_Bell.fbx` / `JELLY_Arms.fbx` with correct FBX unit scale (both carry `UnitScaleFactor` metadata in header — binary-parse inconclusive, but the meshes are clearly 10³–10⁴× oversized), wire `MI_Jelly_Bell` to the bell mesh, author an AnimBP for the 2-bone bell (pulse), assemble a `BP_Jelly_SeaAbove` (bell + arms + veil), then place N instances in `LV_SeaAbove_Prototype` near the reef. **Do NOT scale-hack in-editor** — the correct fix is re-import units (AGENTS.md: don't compensate).
+
 ---
 
 ## 6. Offline QOL triage (no editor needed)
