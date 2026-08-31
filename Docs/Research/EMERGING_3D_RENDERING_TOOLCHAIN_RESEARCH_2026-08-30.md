@@ -1,4 +1,7 @@
 # Emerging 3D / Realtime Rendering / Worldbuilding Toolchain Research
+**CANONICAL:** This is the canonical toolchain research document. Index + companion docs: [`README.md`](README.md) in this folder.  
+
+
 
 **Date:** 2026-08-30  
 **Status:** R&D catalog; production adoption requires a measured integration spike  
