@@ -6,7 +6,7 @@
 bool UMelodiaDashRenderSubsystem::ConfigureSurface(const EMelodiaDashSurface Surface, const FIntPoint Resolution)
 {
 	ActiveSurface = Surface;
-	ActiveResolution = Resolution.IsZero() ? FIntPoint(1920, 1080) : Resolution;
+	ActiveResolution = (Resolution.X == 0 && Resolution.Y == 0) ? FIntPoint(1920, 1080) : Resolution;
 
 	// Transient presentation tuning — never mutates a level's PPV.
 	if (GEngine)
