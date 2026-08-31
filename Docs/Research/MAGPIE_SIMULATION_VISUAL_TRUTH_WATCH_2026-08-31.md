@@ -1,20 +1,38 @@
 # Magpie / Simulation-vs-Visual-Truth WATCH Page — 2026-08-31
 
 **Project:** Melodia Melusina / UE5.8  
-**Status:** standalone WATCH / RESEARCH page extracted from buried emerging-toolchain research  
-**Production status:** not an approved runtime dependency, renderer migration, or integration task
+**Status:** WATCH for runtime rendering; **ARCHITECTURE R&D now justified by a verified primary paper**  
+**Production status:** not an approved shipping renderer or runtime dependency  
+**Deep dive:** `Docs/Research/MAGPIE_REALTIME_WORLD_RENDERER_DEEP_DIVE_2026-08-30.md`
 
 ---
 
-## 1. One-sentence decision
+## 1. Updated decision
 
-Magpie-like generative real-time rendering is valuable to Melodia as an **architecture warning and future research signal**, not as a current shipping renderer.
+Earlier notes treated Magpie as a frontier concept because a primary implementation source had not been verified.
+
+That changed with the Aug 27, 2026 paper:
+
+**Magpie: Real-Time World Renderer for Interactive Games**  
+arXiv:2608.27168  
+https://arxiv.org/abs/2608.27168  
+https://zhanxy.xyz/Magpie-website
+
+The paper describes a real system that keeps gameplay execution in a conventional Game Engine and moves generative visual synthesis to an independent Render Server.
+
+Therefore the status is now:
+
+```text
+MAGPIE RUNTIME RENDERER = WATCH
+MAGPIE ARCHITECTURE     = ACTIVE R&D PATTERN
+MAGPIE-LITE CAPTURE     = APPROVED FOR ISOLATED SPIKE
+```
 
 ---
 
 ## 2. The idea worth preserving
 
-The useful concept is the separation of:
+The useful concept is the explicit separation of:
 
 ```text
 simulation truth
@@ -22,112 +40,174 @@ simulation truth
 visual truth
 ```
 
-In a conventional Unreal game, simulation, collision, animation state, materials, camera and final rendered pixels are all tied to the engine's deterministic representation.
-
-A Magpie-like architecture suggests a future where:
+In Magpie:
 
 ```text
-UE / game engine
-    -> authoritative gameplay state, collision, camera, inputs, AI, world rules
+Game Engine
+    = player input consequences
+    = rules
+    = collision
+    = state
+    = camera
+    = events
+    = reproducible world truth
 
-generative renderer
-    -> final visual image or image enhancement conditioned on that state
+Render Server
+    = generated visual presentation
 ```
 
-This is aesthetically aligned with Melodia because the project already distinguishes world reality, perception, music, Monolith influence and visual presentation. But alignment does not equal production readiness.
+The renderer is initialized by text + a first-frame image. During interaction it receives white-box observations and camera pose, while raw gameplay state and event signals remain in the engine.
+
+This maps unusually well to Melodia's existing doctrine that gameplay authority should remain boring and inspectable even when presentation becomes surreal.
 
 ---
 
-## 3. Current Melodia position
+## 3. Why this is still not a shipping renderer
 
-### Do not do now
+The paper's own reported benchmark is currently incompatible with timing-sensitive Melodia gameplay:
 
-- Do not create a Magpie integration branch.
-- Do not replace Unreal's renderer.
-- Do not plan gameplay, collision, combat, traversal, puzzle logic or material authority around generated frames.
-- Do not let agents spend implementation time here unless explicitly promoted by a new task.
+- NVIDIA H100;
+- 1280x768;
+- ~32.2 FPS compute-side throughput;
+- ~34 GB peak GPU memory;
+- ~620 ms generation/decode for a regular 20-frame chunk;
+- ~1.55 s first action-to-matching-visual response.
 
-### Keep as research signal
-
-Track it for ideas about:
-
-- perception layers;
-- dream/Monolith rendering modes;
-- cinematic enhancement;
-- non-authoritative visual hallucination systems;
-- future editor review / lookdev tools;
-- separating gameplay truth from subjective player presentation.
+That is a useful research prototype, not acceptable latency for:
+- rhythm judgement;
+- combat tells;
+- traversal edges;
+- precision interaction;
+- state-critical visual feedback.
 
 ---
 
-## 4. Why this remains WATCH
+## 4. Why Melodia should still build a proxy boundary
 
-| Risk | Why it matters for Melodia |
-| --- | --- |
-| Determinism | Gameplay and QA require repeatable state, animation, material and visibility behavior. |
-| Temporal stability | Serene magical environments need controlled motion and material continuity; frame hallucination can shimmer or drift. |
-| Art direction | AAA environment quality depends on inspectable authored assets, not opaque frame outputs. |
-| Latency | Rhythm/gameplay response cannot tolerate unpredictable generation latency. |
-| Debugging | Bugs must be traceable to assets, materials, Blueprints, PCG graphs, Houdini outputs or code. |
-| Platform support | Shipping dependency may require hardware/service assumptions outside the project scope. |
-| Source control | Generated frames do not replace versioned geometry/materials/scripts. |
-| Gameplay mismatch | Visual features with no collision or gameplay backing create trust problems for the player. |
+Magpie's most reusable invention is not its exact 5B model.
 
----
+It is the **engine-to-renderer contract**.
 
-## 5. Acceptable future research benchmark
-
-Only run this if a future explicit task promotes Magpie from WATCH to R&D.
-
-### Benchmark: non-authoritative dream overlay study
-
-**Goal:** test whether a generative visual layer can alter presentation without changing gameplay truth.
-
-**Map:** isolated cinematic-only `LV_RND_Magpie_DreamOverlay` or external prototype, not production map.
-
-**Inputs:**
-
-- fixed camera path;
-- conventional UE render sequence;
-- clear semantic guide images/masks if available;
-- non-gameplay visual target, such as Monolith perception distortion.
-
-**Pass only if:**
-
-- conventional UE frames remain the authoritative source;
-- generated output is used as reference or cinematic-only experiment;
-- no runtime gameplay depends on generated details;
-- artifacting/temporal drift can be evaluated honestly.
-
-**Default outcome:** WATCH.
-
----
-
-## 6. What to commit if researched later
-
-Commit:
-
-- source links and notes;
-- before/after comparison stills if lightweight;
-- benchmark writeup;
-- a clear statement that Unreal remains authoritative.
-
-Do not commit:
-
-- generated-frame dumps;
-- model weights;
-- service keys;
-- runtime integration stubs;
-- claims that Magpie is production-approved.
-
----
-
-## 7. Agent rule
-
-If an agent finds this file, it should stop searching for a standalone Magpie production plan. The current state is:
+Melodia can build a deterministic capture bundle now:
 
 ```text
-MAGPIE = WATCH / RESEARCH ONLY
+melodia.visual-truth.v1
+
+frame_id
+world_time
+camera_transform
+camera_fov
+whitebox_rgb
+linear_depth          optional
+world_normal          optional
+semantic/object_id    optional
+motion_vectors        optional
+full_fidelity_ref     evaluation only
 ```
 
-Promotion requires a new explicit owner decision and a benchmark that does not threaten Unreal runtime authority.
+This can feed any future generative renderer without giving that renderer gameplay authority.
+
+---
+
+## 5. Current recommended benchmark
+
+### `LV_RND_MagpieLite_WhiteboxCapture`
+
+Create a small deterministic scene with:
+- thin filigree;
+- coral;
+- water;
+- one moving Niagara cue;
+- one character proxy;
+- one P3/filter-flow visual structure;
+- a fixed camera loop.
+
+Capture:
+
+```text
+A. normal UE render
+B. white-box RGB
+C. white-box + depth
+D. white-box + depth + normals / IDs
+```
+
+Then test an external/offline controlled video renderer against the same sequence.
+
+Potential proxy technologies:
+- Coarse-to-Real;
+- Generative World Renderer / AlayaRenderer;
+- Helios-based experimentation;
+- a future Magpie release if accessible.
+
+The objective is **structural adherence and art-direction utility**, not impressive standalone video.
+
+---
+
+## 6. Best Melodia use cases
+
+### Good fits
+
+- white-box-to-style previsualization;
+- Monolith/dream perception studies;
+- cinematic/reference rendering;
+- art-direction target generation;
+- visual target -> Copernicus/Houdini/Niagara/Dash native-asset reconstruction.
+
+### Bad fits
+
+- authoritative combat rendering;
+- rhythm feedback;
+- traversal readability;
+- collision-critical presentation;
+- any UI/gameplay feedback where model latency can lie to the player.
+
+---
+
+## 7. Stronger long-term idea: generative reference compiler
+
+Rather than shipping generated frames, use them to accelerate authored production:
+
+```text
+UE white-box / semantic capture
+        ↓
+generative visual target
+        ↓
+artist approval
+        ↓
+Copernicus / Substance / Houdini / Niagara / Dash
+        ↓
+native UE assets and materials
+```
+
+This preserves source control, inspectability, deterministic gameplay, and conventional shipping rendering while still exploiting the generative renderer for art-direction search.
+
+---
+
+## 8. Hard rules
+
+- Unreal remains gameplay/runtime authority.
+- Generated details never define collision or interaction truth.
+- Raw game-state variables are not handed to the visual model by default; Unreal first produces an authored visible/control representation.
+- Magpie experiments live in isolated R&D maps/workflows.
+- No production-map migration.
+- No runtime dependency until latency, consistency, reproducibility, hardware, and packaging are independently proven.
+- Generated frame dumps and model weights do not belong in Git.
+
+---
+
+## 9. Agent rule
+
+Agents should no longer report “Magpie has no verified source.”
+
+The verified source now exists.
+
+Agents should instead report:
+
+```text
+Magpie paper: VERIFIED
+Runtime adoption: WATCH
+Architecture: ACTIVE R&D
+Near-term action: build Magpie-Lite capture/interface, not a renderer fork
+```
+
+See the deep dive for the full technical analysis, performance numbers, related open projects, and phased Melodia test plan.
