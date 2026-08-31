@@ -52,9 +52,9 @@ TOOLS = {
         "guard": "dry-run by default; owner confirmation for live creation",
     },
     "PlaceSpeedTreeBiomeTest": {
-        "desc": "PCG-driven procedural vegetation growth experiment (NOT SpeedTree replacement).",
-        "surface": "PCG spawn on a biome test region",
-        "guard": "sandbox map only",
+        "desc": "PCG-driven biome test using the PRESENT SpeedTree assets (M_SpeedTreeMaster + reset_speedtree_wind_instances.py). PCG owns runtime scatter; SpeedTree owns plants.",
+        "surface": "PCG spawn of SpeedTree assets on a sandbox region + wind-instance reset",
+        "guard": "sandbox map only; SpeedTree is the production plant authority (present)",
     },
     "ValidateWaterAuthority": {
         "desc": "Assert the water gameplay subsystem is the single authority (no parallel water sim).",
@@ -62,14 +62,14 @@ TOOLS = {
         "guard": "read-only",
     },
     "ValidateMaraSkeleton": {
-        "desc": "Assert the Mara skeleton/retarget is intact (no missing bones).",
+        "desc": "Assert the Mara skeleton/retarget is intact (reuse Melusina skeleton conventions per Houdini plan).",
         "surface": "mesh_query skeleton read",
         "guard": "read-only",
     },
     "BakeHoudiniRegion": {
-        "desc": "Trigger a HoudiniEngine region bake (geometry evidence into UE).",
-        "surface": "HoudiniEngine asset bake",
-        "guard": "dry-run by default; requires HoudiniEngine + editor",
+        "desc": "Bake a Houdini HDA region into UE (HDA_ENV_TerrainStamp / PathCorridor / ScatterMaskBuilder / HeroRockFamily / LOD_Collision_Batch) per MARA_P0_P3_HOUDINI_EXECUTION_PLAN. Bake-not-live-cook: production-critical results are baked, never left dependent on live HDA cooking.",
+        "surface": "HoudiniEngine asset bake -> /Game/Melodia/Environment/<Chapter>/Houdini/",
+        "guard": "dry-run by default; requires HoudiniEngine + editor + sandbox",
     },
     "BuildHLODForRegion": {
         "desc": "Build HLOD for a sandbox region (Data Layers / HLOD config).",

@@ -7,19 +7,20 @@
 class AActor;
 
 /**
- * UE Procedural Vegetation / PCG growth R&D — NOT a SpeedTree replacement.
+ * UE Procedural Vegetation / PCG growth R&D — supplements the PRESENT SpeedTree system.
  *
  * Implements the C-R&D row of the emerging-toolchain research
  * (Docs/Research/EMERGING_3D_RENDERING_TOOLCHAIN_RESEARCH_2026-08-30.md):
- * experimental Unreal-side procedural growth — secondary bizarre growth,
- * local grafting/mutation, growth around geometry — using PCG.
+ * experimental Unreal-side procedural growth using PCG.
  *
- * SpeedTree remains the production plant authoring system. This subsystem only
- * tests whether PVE-style mutation can supplement a SpeedTree-driven biome
- * cheaper than building secondary growth in Houdini/SpeedTree. If not, discard.
+ * SpeedTree is PRESENT and the production plant authority (M_SpeedTreeMaster.uasset,
+ * reset_speedtree_wind_instances.py). This subsystem tests whether PVE-style PCG
+ * growth can supplement a SpeedTree-driven biome cheaper than building secondary
+ * growth in Houdini/SpeedTree. If not, discard.
  *
- * Guardrails: sandbox-only (PlaceSpeedTreeBiomeTest), no new material master,
- * no Content/_PROJECT/ writes. Convergence: PCG is the distribution authority.
+ * Guardrails: sandbox-only (PlaceSpeedTreeBiomeTest), uses SpeedTree assets, no new
+ * material master, no Content/_PROJECT/ writes. PCG is the runtime scatter authority;
+ * Houdini plan: bake, do not leave live HDA cooking.
  */
 UCLASS()
 class BS_GODFILE_API UMelodiaVegetationGrowthSubsystem final : public UGameInstanceSubsystem
