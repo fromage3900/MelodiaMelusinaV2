@@ -285,5 +285,36 @@
     "status": "done",
     "spec": "Saved/Audit/p0_open_gates_evidence_checklist_2026-09-01.json",
     "result": "CHECKLIST COMPLETE: 3 open P0 gates documented (wardrobe_equip_roundtrip, wardrobe_gameplay_hook, music_world_key) with PIE steps, console fallbacks, pass/fail criteria. Owner-only exec."
+  },
+  {
+    "id": "read_review_loop_2026-09-01T13:05:00Z",
+    "lane": "summary",
+    "priority": 0,
+    "status": "done",
+    "result": "COMPACTED: All prior 2026-09-01 done+blocked entries summarized."
+  },
+  {
+    "id": "MATERIAL_MASTERS_COMMIT_SPEC",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": "Saved/Audit/material_masters_commit_spec_2026-09-01.json",
+    "result": "SPEC COMPLETE: 7 modified material masters/instances + 1 untracked Python script documented. Commit commands generated. Owner must execute."
+  },
+  {
+    "id": "JELLY_BANNER_SHROUD_MI_BATCH",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": null,
+    "result": "SCRIPT COMPLETE: Created Saved/_tmp_create_jelly_banner_mis.py — creates 5 MIs (MI_Jelly_Bell, MI_Jelly_Arms, MI_JellyArm_LOD, MI_Shroud, MI_Banner) on M_Master_Toon_Universal_Alpha with ShadowDream pink. Includes parent check."
+  },
+  {
+    "id": "CATHERDAL_UNIVERSAL_BATCH_SPEC",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": null,
+    "result": "SCRIPT COMPLETE: Created Saved/_tmp_create_cathedral_universal_mis.py — creates 41 MIs (MI_Cathedral_<Stem>) on M_Master_Toon_Universal with ShadowDream blue. 3 categories: stone (30), glass (8), gold (3). Includes parent check."
   }
 ]
