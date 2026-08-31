@@ -1,9 +1,9 @@
-#include "MelodiaDashRenderSubsystem.h"
+#include "MelodiaCaptureRenderSubsystem.h"
 
 #include "Engine/Engine.h"
 #include "Engine/TextureRenderTarget2D.h"
 
-bool UMelodiaDashRenderSubsystem::ConfigureSurface(const EMelodiaDashSurface Surface, const FIntPoint Resolution)
+bool UMelodiaCaptureRenderSubsystem::ConfigureSurface(const EMelodiaRenderSurface Surface, const FIntPoint Resolution)
 {
 	ActiveSurface = Surface;
 	ActiveResolution = (Resolution.X == 0 && Resolution.Y == 0) ? FIntPoint(1920, 1080) : Resolution;
@@ -20,19 +20,19 @@ bool UMelodiaDashRenderSubsystem::ConfigureSurface(const EMelodiaDashSurface Sur
 	return true;
 }
 
-bool UMelodiaDashRenderSubsystem::CaptureToRenderTarget(UTextureRenderTarget2D* Target)
+bool UMelodiaCaptureRenderSubsystem::CaptureToRenderTarget(UTextureRenderTarget2D* Target)
 {
 	if (!Target)
 	{
 		return false;
 	}
 	// Scaffold: target validation only. Live capture (SceneCaptureComponent2D,
-	// HDR RTF_RGBA16f, show flags per EMelodiaDashSurface) is implemented when
+	// HDR RTF_RGBA16f, show flags per EMelodiaRenderSurface) is implemented when
 	// the editor is live and the PPV stack is canonical (IsPPVStackCanonical).
 	return true;
 }
 
-bool UMelodiaDashRenderSubsystem::CaptureToFile(const FString& LevelName, const EMelodiaDashSurface Surface)
+bool UMelodiaCaptureRenderSubsystem::CaptureToFile(const FString& LevelName, const EMelodiaRenderSurface Surface)
 {
 	if (LevelName.IsEmpty())
 	{
@@ -42,7 +42,7 @@ bool UMelodiaDashRenderSubsystem::CaptureToFile(const FString& LevelName, const 
 	FString Reason;
 	if (!IsPPVStackCanonical(Reason))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("[Dash] PPV stack not canonical: %s"), *Reason);
+		UE_LOG(LogTemp, Warning, TEXT("[Capture] PPV stack not canonical: %s"), *Reason);
 		// Evidence standard: log, do not auto-fix.
 	}
 	// Scaffold: 4-view cycle (beauty/wireframe/material/PCG) is implemented live.
@@ -50,7 +50,7 @@ bool UMelodiaDashRenderSubsystem::CaptureToFile(const FString& LevelName, const 
 	return true;
 }
 
-bool UMelodiaDashRenderSubsystem::IsPPVStackCanonical(FString& OutReason) const
+bool UMelodiaCaptureRenderSubsystem::IsPPVStackCanonical(FString& OutReason) const
 {
 	// Canonical stack per PPV_DRIFT_T3D_FIX_SPEC:
 	//   PPV_NikkiDream: MI_MelodiaInk 1.0, MI_MeluColorGrade 0.69, MI_StarryNight_Hero 1.0
