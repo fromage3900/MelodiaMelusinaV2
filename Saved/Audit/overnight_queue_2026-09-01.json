@@ -155,6 +155,33 @@
   "spec": "Saved/Audit/push_readiness_final_check_20260901.json",
   "status": "done",
   "prompt": "Final push-readiness check: 247 commits ahead, 0 behind. 112 untracked files. Output: commit batch sequence + push command.",
-  "result": "PUSH READINESS: 247 ahead / 0 behind. NOT READY \u2014 3 modified + 112 untracked files must commit first. 4 batches: arms(13), body(94), source(2), text(5). Then: git push origin main."
+  "result": "PUSH READINESS: 247 ahead / 0 behind. NOT READY — 3 modified + 112 untracked files must commit first. 4 batches: arms(13), body(94), source(2), text(5). Then: git push origin main."
+ },
+ {
+  "id": "CLEANUP_OUTPUT_TXT_JUNK",
+  "lane": "audit",
+  "priority": 3,
+  "status": "queued",
+  "spec": null,
+  "prompt": "Remove or gitignore the untracked junk file .output.txt at repo root. It is a scratch artifact that should not be committed. Check if it contains anything useful first (head -20), then either git add .output.txt to stage for commit or add a .gitignore entry. Output: one-line git command for owner.",
+  "result": null
+ },
+ {
+  "id": "PUSH_250_COMMITS_FINAL_CHECK",
+  "lane": "audit",
+  "priority": 1,
+  "status": "queued",
+  "spec": "Saved/Audit/push_readiness_final_check_20260901.json",
+  "prompt": "Re-verify push readiness: 250 commits ahead of origin/main, 0 behind. Confirm no new untracked files since last check (only .output.txt should remain). Output: final push command for owner.",
+  "result": null
+ },
+ {
+  "id": "WARDROBE_EQUIP_ROUNDTRIP_GATE_PIE_PLAN",
+  "lane": "audit",
+  "priority": 1,
+  "status": "queued",
+  "spec": null,
+  "prompt": "P0 gate wardrobe_equip_roundtrip is OPEN. Plan the minimal PIE test: (1) equip Melusina v2 outfit through wardrobe authority, (2) save canonically via USaveGame, (3) restart process, (4) load and verify outfit+materials restored. Document exact editor console commands. Output: Saved/Audit/wardrobe_equip_roundtrip_pie_plan_2026-09-01.md",
+  "result": null
  }
 ]
