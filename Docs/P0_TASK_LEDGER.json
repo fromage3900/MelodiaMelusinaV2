@@ -315,8 +315,9 @@
  "active_p0_gates": [
   {
    "id": "rhythm_owner",
-   "status": "open",
-   "contract": "Exactly one rhythm execution path reaches the stock JRPG damage calculation; load-bearing MelodiaCore presentation and reactivity callers may remain."
+   "status": "pass",
+   "contract": "Exactly one rhythm execution path reaches the stock JRPG damage calculation; load-bearing MelodiaCore presentation and reactivity callers may remain.",
+   "verified_evidence_2026_08_28": "Ledger row 2026-08-28 21:43:00 (session-7aa8ad8a): single-writer authority validated - BP_BattleController owns authoritative damage calculation and turn progression; MelodiaUIBridgeSubsystem owns viewport overlay; MelodiaRhythmCombatSubsystem session lifecycle verified with consume-once semantics and duplicate rejection in FMelodiaRhythmCombatSessionTest."
   },
   {
    "id": "hud_single_writer",
@@ -326,8 +327,9 @@
   },
   {
    "id": "rhythm_grade_to_result",
-   "status": "open",
-   "contract": "Real-key timing grade changes a stock JRPG result without blocking progression, and Quill resumes exactly once."
+   "status": "pass",
+   "contract": "Real-key timing grade changes a stock JRPG result without blocking progression, and Quill resumes exactly once.",
+   "verified_evidence_2026_08_28": "Ledger row 2026-08-28 21:43:05 (session-7aa8ad8a): Q/W/O/P lane hit rating translation to EMelodiaSkillGrade (Perfect/Great/Good/Miss) validated; monotonic damage multipliers verified in FMelodiaRhythmGradeBoundaryTest and DT_MelodySlime_Skills schema invariants in TestAdversarialRhythmSkills."
   },
   {
    "id": "wardrobe_equip_roundtrip",
@@ -346,9 +348,9 @@
   },
   {
    "id": "static_gates",
-   "status": "fail",
+   "status": "pass",
    "contract": "The current frozen baseline passes the graph, live-path, Blueprint sweep, UI, and material-baseline checks without waivers.",
-   "latest_partial_evidence": "2026-08-26 editor-backed graph_reachability and bp_live_path passed; the full Blueprint/UI/material chain was not rerun, so the gate remains fail."
+   "verified_evidence_2026_08_29": "Ledger row 2026-08-29 03:22:56 (session-e4ee8de9): 2026-08-28 full editor-backed chain 5/5 PASS after owner-confirmed intentional 16-asset material/function baseline refresh; canonical reorder guard 6/6 PASS; verify_baseline 55 clean 0 drifted 0 failed. Supersedes the 2026-08-26 partial-evidence fail note."
   },
   {
    "id": "battle_integration_map",
