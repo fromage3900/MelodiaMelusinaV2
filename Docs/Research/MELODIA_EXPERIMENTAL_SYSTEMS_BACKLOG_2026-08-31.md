@@ -7,7 +7,7 @@
 
 ## 0. Purpose
 
-This document turns the remaining niche-system ideas into an ordered execution backlog. It builds on the existing Houdini/PCG compiler contract, Cymatic Ecology plan, Dash role, NVIDIA renderer tests, and Magpie visual-truth research already present on PR #37.
+This document turns the remaining niche-system ideas into an ordered execution backlog. It builds on the existing Houdini/PCG compiler contract, Cymatic Ecology plan, Dash role, NVIDIA renderer tests, Magpie visual-truth research, and the now-complete set of standalone niche-system implementation specs on PR #37.
 
 The goal is not to collect tools. Each lane must either:
 
@@ -17,20 +17,20 @@ The goal is not to collect tools. Each lane must either:
 
 ## 1. Priority backlog
 
-| Priority | Lane | Status | Primary outcome |
+| Priority | Lane | Documentation state | Execution state |
 | --- | --- | --- | --- |
-| P0 | PCG Artist Tool Shelf / World Brush Language | BUILDABLE | Artist-facing semantic authoring inside UE5.8 |
-| P0 | SpeedTree → Nanite Representation Compiler | HIGH-VALUE CANARY | Alternate shipping representation without replacing botanical source |
-| P0 | Biome Core Ecosystem Compiler | BUILDABLE | UE-side ecological priority, blending and asset resolution |
-| P0 | Cymatic Ecological Memory | BUILDABLE | Rhythm coherence becomes temporary spatial/environmental memory |
-| P1 | Vector Field Laboratory | BUILDABLE | One canonical cross-tool vector/space contract |
-| P1 | Impossible Geology Compiler | BUILDABLE | Natural geology → Houdini anatomical violation → UE |
-| P1 | Runtime VFX Ownership Stack | NEEDS STANDALONE SPEC | Native Niagara vs FluidNinja/LiquiGen/EmberGen ownership |
-| P1 | Stylized OpenPBR/MaterialX/Substrate Interchange | NEEDS STANDALONE SPEC | Portable authoring subset without replacing runtime toon authority |
-| P1 | World Streaming + Perceptual HLOD QA | NEEDS STANDALONE SPEC | Performance evidence plus visible-pop scoring |
-| P2 | Toolbag 5.03 Hero Feedback Loop | NEEDS STANDALONE SPEC | Shorter bake/lookdev/correction loop |
-| P2 | Cascadeur Physical-Impossibility Animation Lab | NEEDS STANDALONE SPEC | Faster believable/impossible body mechanics |
-| P2 | PVE Anomalous Secondary Growth | WATCH / PACKAGE-CANARY-FIRST | Impossible growth only; never SpeedTree replacement |
+| P0 | PCG Artist Tool Shelf / World Brush Language | STANDALONE SPEC | BUILDABLE |
+| P0 | SpeedTree -> Nanite Representation Compiler | STANDALONE SPEC | HIGH-VALUE CANARY |
+| P0 | Biome Core Ecosystem Compiler | STANDALONE SPEC | BUILDABLE |
+| P0 | Cymatic Ecological Memory | STANDALONE SPEC | BUILD AFTER CYMATIC MVP |
+| P1 | Vector Field Laboratory | STANDALONE SPEC | BUILDABLE |
+| P1 | Impossible Geology Compiler | STANDALONE SPEC | BUILDABLE |
+| P1 | Environmental VFX Ownership Stack | STANDALONE SPEC | COMPARATIVE TEST |
+| P1 | Stylized OpenPBR/MaterialX/Substrate Interchange | STANDALONE SPEC | CONSTRAINED CANARY |
+| P1 | World Streaming + Perceptual QA | STANDALONE SPEC | BUILD ONCE / REUSE |
+| P2 | Toolbag 5.03 Hero Feedback Loop | STANDALONE SPEC | SPECIALIST TEST |
+| P2 | Cascadeur Physical-Impossibility Animation Lab | STANDALONE SPEC | SPECIALIST TEST |
+| P2 | PVE Anomalous Secondary Growth | STANDALONE SPEC | WATCH / PACKAGE-CANARY-FIRST |
 
 ## 2. Architecture
 
@@ -48,11 +48,14 @@ flowchart LR
     Fields --> Niagara[Niagara / runtime field response]
     Rhythm[Rhythm judgement] --> Cymatic[Cymatic ecological memory]
     Cymatic --> Niagara
-    Cymatic --> Fields
     Dash[Dash hero dressing] --> HeroLayer[Hero composition / exceptions]
     RuntimeAssets --> HeroLayer
     HeroLayer --> WP[World Partition / streaming]
     WP --> QA[Streaming + perceptual QA]
+    VFX[VFX source tools] --> Niagara
+    Materials[OpenPBR / MaterialX interchange] --> UEArt[UE material authority]
+    Toolbag[Toolbag hero loop] --> UEArt
+    Cascadeur[Cascadeur specialist animation] --> UEAnim[UE animation authority]
 ```
 
 ## 3. Ownership doctrine
@@ -60,71 +63,58 @@ flowchart LR
 - **Unreal** remains gameplay/runtime/shipping authority.
 - **Houdini** owns deep procedural transforms, semantic-field derivation, and offline compiler work.
 - **PCG Editor Mode / Manual Editing** owns native semantic authoring and durable procedural exceptions.
-- **Dash** is already in active use and is treated as a fast last-mile human composition layer. The unresolved test is regeneration/source-control survivability, not generic adoption.
+- **Dash** remains a fast last-mile human composition layer; the unresolved production question is regeneration/source-control survivability, not generic adoption.
 - **PCG Biome Core** is a candidate UE-side ecosystem compiler and `AssetID` resolution layer.
 - **SpeedTree** remains botanical authoring truth.
 - **Nanite Foliage/Assemblies** may become an alternate UE representation, never the botanical source.
 - **Niagara** is the runtime local-response baseline.
-- **LiquiGen / EmberGen / FluidNinja / VectorayGen** must beat native UE/Houdini comparators on a narrow task.
+- **LiquiGen / EmberGen / FluidNinja / VectorayGen / IlluGen** must beat native UE/Houdini comparators on narrow roles.
 - **OpenPBR / MaterialX / USD** are interchange boundaries, not permission to replace project-owned Unreal runtime masters.
+- **Toolbag** is tested as a hero feedback-loop compressor, not as a new material authority.
+- **Cascadeur** is tested as a specialist physical-motion accelerator; Unreal Animation Sequences remain shipping assets.
 - **PVE** is anomalous-growth R&D only and must pass package canaries before wider use.
 
-## 4. Deep-research corrections and cautions
+## 4. Execution order
 
-### PCG Artist Tools
-UE5.8 PCG Editor Mode supports artist-facing spline, paint, surface and volume tools. Tool presets and Data Instances/layers make a project-specific world-authoring language plausible. Every tool must write canonical fields rather than local one-off attributes.
+### Session A — world language + visible payoff
 
-Primary source:
-- https://dev.epicgames.com/documentation/unreal-engine/pcg-editor-mode-in-unreal-engine
-
-### SpeedTree → Nanite
-UE5.8 Nanite Foliage is built around Nanite Assemblies, Nanite Voxels and Nanite Skinning. Normal SpeedTree imports do **not** imply automatic Nanite Assembly conversion; Epic developer discussion explicitly notes the baked geometry structure of current SpeedTree exports is not directly suitable for assembly construction. Therefore this is a custom conversion R&D lane.
-
-Primary/background sources:
-- https://dev.epicgames.com/documentation/unreal-engine/nanite-foliage
-- https://dev.epicgames.com/documentation/unreal-engine/nanite-assemblies
-- https://dev.epicgames.com/documentation/unreal-engine/using-speedtree-in-unreal-engine
-
-### Biome Core
-PCG Biome Core is Experimental but unusually aligned with Melodia: local/global biomes, priority, blending, customizable filter graphs, runtime hierarchical generation, GPU scattering and asset mapping.
-
-Primary source:
-- https://dev.epicgames.com/documentation/unreal-engine/procedural-content-generation-pcg-biome-core-and-sample-plugins-overview-guide-in-unreal-engine
-
-### Cymatic memory
-Niagara Data Channels are an appropriate presentation/runtime communication seam because they support communication between game code and Niagara systems and between Niagara systems without creating another gameplay authority.
-
-Primary source:
-- https://dev.epicgames.com/documentation/unreal-engine/niagara-data-channels-overview
-
-## 5. Execution order
-
-### Night / Session A
-1. PCG Artist Tool Shelf first usable brush: `P3_FilterFlow_Brush`.
+1. `P3_FilterFlow_Brush`.
 2. Cymatic Ecological Memory persistence prototype.
-3. Dash regeneration-survivability check on the same P3 test region.
+3. Dash regeneration-survivability check on the same P3 region.
 
-### Session B
+### Session B — ecosystem compiler
+
 1. Biome Core two-biome overlap test.
-2. Houdini-PCG semantic field feeds Biome Core density/priority.
-3. SpeedTree `AssetID` resolution.
+2. Houdini-PCG semantic fields feed Biome Core density/priority.
+3. SpeedTree logical asset resolution.
 
-### Session C
-1. Vector Field Laboratory axis/scale canary.
-2. Houdini vs VectorayGen vs native Niagara field authoring comparison.
-3. Connect winning field representation to P3/Cymatic particles.
+### Session C — field contract
 
-### Session D
-1. SpeedTree → Nanite representation canary.
-2. If conversion becomes a research project by itself, stop and document the blockage.
-3. Benchmark authoring iteration as heavily as runtime savings.
+1. ±XYZ axis/space canary.
+2. Houdini vs VectorayGen vs native UE field authoring.
+3. Connect winning representation to P3/Cymatic particles.
 
-### Session E
+### Session D — representation compiler
+
+1. SpeedTree baseline vs standard Nanite geometry.
+2. Attempt Nanite Assembly/skeletal representation.
+3. Mandatory re-authoring test after a source botanical edit.
+
+### Session E — terrain compiler
+
 1. Gaea/World Creator natural macroform.
 2. Houdini impossible/anatomical transform.
-3. UE mesh/terrain/streaming representation canary.
+3. Unreal representation and streaming canary.
 
-## 6. Evidence standard
+### Session F — production accelerators
+
+1. Environmental VFX ownership shootout.
+2. OpenPBR/MaterialX/Substrate material interchange canary.
+3. Toolbag hero feedback-loop benchmark.
+4. Cascadeur physical-impossibility lab.
+5. PVE package canary before any anomalous-growth art test.
+
+## 5. Evidence standard
 
 Every lane records:
 
@@ -147,7 +137,7 @@ fallback path
 ADOPT / PARK / REJECT / WATCH
 ```
 
-Store lightweight evidence under:
+Store heavyweight local evidence under:
 
 ```text
 Saved/Audit/RND/<Lane>/<timestamp>/
@@ -155,7 +145,9 @@ Saved/Audit/RND/<Lane>/<timestamp>/
 
 Commit manifests, concise screenshots/contact sheets, settings, source graphs/scripts and result notes. Do not commit giant captures, SDK binaries, engine builds, DDC or caches.
 
-## 7. Standalone specs now paired with this backlog
+## 6. Standalone implementation specs
+
+The documentation backlog is now closed for the twelve niche lanes:
 
 - `PCG_ARTIST_TOOL_SHELF_WORLD_BRUSH_LANGUAGE_2026-08-31.md`
 - `SPEEDTREE_NANITE_REPRESENTATION_COMPILER_2026-08-31.md`
@@ -163,5 +155,21 @@ Commit manifests, concise screenshots/contact sheets, settings, source graphs/sc
 - `CYMATIC_ECOLOGICAL_MEMORY_SPEC_2026-08-31.md`
 - `VECTOR_FIELD_LABORATORY_SPEC_2026-08-31.md`
 - `IMPOSSIBLE_GEOLOGY_COMPILER_SPEC_2026-08-31.md`
+- `ENVIRONMENTAL_VFX_OWNERSHIP_STACK_2026-08-31.md`
+- `STYLIZED_OPENPBR_MATERIALX_SUBSTRATE_INTEROP_2026-08-31.md`
+- `WORLD_STREAMING_PERCEPTUAL_QA_HARNESS_2026-08-31.md`
+- `TOOLBAG_HERO_ASSET_FEEDBACK_LOOP_2026-08-31.md`
+- `CASCADEUR_PHYSICAL_IMPOSSIBILITY_ANIMATION_LAB_2026-08-31.md`
+- `PVE_ANOMALOUS_GROWTH_CANARY_2026-08-31.md`
 
-The remaining six P1/P2 lanes stay explicitly listed above so they cannot disappear into trench-sweep prose. They should receive standalone executable specs after the P0/P1 compiler/ecology work is proven.
+## 7. Visual-board source
+
+A Git-trackable 16:9 SVG architecture board should live at:
+
+`Docs/Research/Images/Toolchain/melodia_experimental_systems_backlog_16x9_2026-08-31.svg`
+
+The SVG is the repository-native architecture source. Generated raster concept art may be added later, but the vector board is enough for agents and humans to recover the current architecture without depending on chat history.
+
+## 8. Promotion rule
+
+A lane only becomes workflow infrastructure when it wins on a real Melodia benchmark and leaves the project more understandable, not merely more technologically impressive.
