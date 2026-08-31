@@ -127,21 +127,74 @@
     "id": "DAEMON_STATE_REFRESH",
     "lane": "summary",
     "priority": 1,
-    "status": "queued",
-    "prompt": "Daemon state.json is stale (last_run 2026-08-31T060252Z, tracked git_head 55c3e381, modified_uasset_count 120, queue_actionable 0). Current HEAD is 6333ce25, git tree is clean, both overnight queues fully drained. Refresh state.json with: new last_run timestamp, new git_head, recount modified uasset files via `git status --short`, verify queue_actionable=0. Also update last_task to 'read_review_loop_2026-08-31T...'. Guardrails: no .uasset writes, no git ops, JSON-only state update."
+    "status": "done",
+    "result": "state.json refreshed: git_head=6333ce25, modified_uasset_count=0, untracked_python=4, queue_actionable=3, last_task=read_review_loop_2026-08-31T14:20:00Z"
   },
   {
     "id": "COMMIT_BATCH_AUDIT_SPECS_AND_UNTRACKED_PY",
     "lane": "audit",
     "priority": 2,
-    "status": "queued",
-    "prompt": "git_consolidation_cleanup_spec_2026-09-01.json identified 16 done audit JSONs + 5 modified RetroTextures MIs that are committed-ready. Additionally, python_untracked_syntax_audit_2026-09-01.json confirmed 4 untracked Python files pass syntax check and are safe to add (convert_enchanted_vehicle_materials.py, convert_paradise_room_materials.py, import_surreal_cobble.py, org_inspect_ppv_2026-08-31.py). ACTION: stage these as a single local commit: `git add Saved/Audit/*.json Content/Python/convert_enchanted_vehicle_materials.py Content/Python/convert_paradise_room_materials.py Content/Python/import_surreal_cobble.py Content/Python/org_inspect_ppv_2026-08-31.py` then `git commit -m 'audit: overnight 2026-09-01 — 57 specs + 4 untracked Python scripts (syntax-clean)'`. DO NOT push — push requires owner. Guardrails: no .uasset writes, no push, no gate certifications. Verify commit landed with git log -1 --oneline."
+    "status": "done",
+    "spec": null,
+    "result": "COMMITTED as 47b01bc9: 57 audit JSONs from 2026-09-01 + 4 untracked Python scripts (convert_enchanted_vehicle_materials.py, convert_paradise_room_materials.py, import_surreal_cobble.py, org_inspect_ppv_2026-08-31.py). Found .gitignore issue: `Saved/` on line 5 shadows `!Saved/Audit/` negation — used `git add -f`. No push (owner-only)."
   },
   {
     "id": "P0_WARDROBE_EQUIP_ROUNDTRIP_EVIDENCE_SPEC",
     "lane": "audit",
     "priority": 1,
-    "status": "queued",
-    "prompt": "P0_TASK_LEDGER.json shows wardrobe_equip_roundtrip gate is OPEN. Contract: 'Equip through the wardrobe authority, save canonically, restart the process, load, and restore the correct outfit and materials.' Source commitment: 2c201fe3 (materials takeover). ACTION: Generate a detailed live-evidence spec (wardrobe_equip_roundtrip_evidence_2026-08-31.json) that defines exact PIE steps: (1) open wardrobe UI, (2) equip MelusinaV2_ResonantWeave, (3) verify material takeover applied, (4) save game to slot, (5) fully exit PIE, (6) restart PIE, (7) load slot, (8) verify outfit + materials restored correctly. Include acceptance criteria (pass/fail per step). This spec feeds directly into the owner's next live session to close this P0 gate. Guardrails: no .uasset writes, spec only, editor-bound execution, no gate certification without ledger row."
+    "status": "done",
+    "spec": "Saved/Audit/wardrobe_equip_roundtrip_evidence_2026-08-31.json",
+    "result": "11-step PIE evidence spec generated. Pass/fail criteria defined. Includes console alternative. Owner must execute in PIE to close the wardrobe_equip_roundtrip P0 gate."
+  },
+  {
+    "id": "MI_Cathedral_StoneA_Batch_ShadowDreamBlue",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/mi_cathedral_stonea_batch_shadowdream_blue_2026-09-01.json",
+    "result": "INVESTIGATED: Spec references MIs that DO NOT EXIST on disk. MI_M_Master_Toon_Universal_StoneA, MI_M_Master_Toon_Universal_WoodOldA, MI_M_Master_Toon_Universal_Metal — all NOT FOUND. Only MI_M_Master_Toon_Universal_Crystal and MI_SDF_Parallax_Window exist. The 37 cathedral meshes DO exist (41 total in folder). Spec is STALE — needs MI creation or spec update to use existing MIs. Recommend: create missing MIs under MelusinaReal/M_Master_Toon_Universal/ following existing naming convention (Crystal, Cello, Weave, etc.)."
+  },
+  {
+    "id": "PPV_NikkiDream_Drift_Fix_T3D",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/ppv_nikki_drift_fix_t3d_2026-09-01.json",
+    "result": "INVESTIGATED: PPV_NikkiDream.uasset DOES NOT EXIST anywhere in Content/. The drift fix spec references a Blueprint that was never created or was deleted. The canonical blendables DO exist: MI_MeluColorGrade_PortfolioHero, MI_MelodiaInk_PortfolioHero, MI_StarryNight_Hero. Spec is STALE — needs PPV_NikkiDream BP recreation or spec retirement. Recommend: retire this spec and recreate PPV_NikkiDream from scratch using the canonical stack documented in the spec."
+  },
+  {
+    "id": "BP_Dead_Node_Cleanup_NiagaraQuill",
+    "lane": "audit",
+    "priority": 3,
+    "status": "done",
+    "spec": "Saved/Audit/bp_dead_node_cleanup_niagaraquill_2026-09-01.json",
+    "result": "VERIFIED: All 3 target BPs exist on disk — BP_MelusinaJRPGCharacter.uasset, WBP_MelodiaQuillDialog.uasset, BP_JRPGPlayerController.uasset (2 copies: TurnBasedJRPGTemplate + _ThirdParty). Spec is VALID. Execution requires live Monolith editor: remove 15 Niagara dead nodes from BP_MelusinaJRPGCharacter, 1 dead node from BP_JRPGPlayerController, 5 dead nodes from WBP_MelodiaQuillDialog. Risk: low for character/controller, medium for Quill dialog (verify new widget system first)."
+  },
+  {
+    "id": "CATEDRAL_MI_STALE_SPEC_RESOLUTION",
+    "lane": "audit",
+    "priority": 1,
+    "status": "done",
+    "spec": "Saved/Audit/mi_cathedral_stonea_batch_shadowdream_blue_2026-09-01.json",
+    "result": "RESOLVED: Created Saved/_tmp_create_cathedral_mis.py — editor Python script that creates 3 missing MIs (StoneA: rough=0.85/metal=0.0, WoodOldA: rough=0.7/metal=0.0, Metal: rough=0.35/metal=0.85) as children of M_Master_Toon_Universal. Spec already references correct MI names — no spec update needed. Editor-bound.",
+    "prompt": null
+  },
+  {
+    "id": "ATLANTIS_MI_BATCH567_SPEC_REFRESH",
+    "lane": "audit",
+    "priority": 2,
+    "status": "done",
+    "spec": "Saved/Audit/mi_arch_atl_t3d_refreshed_full_gapspec_2026-09-01.json",
+    "result": "REFRESHED: All 333 Atlantis Palace meshes consolidated into single 10-batch spec. Existing 54 KB3D MIs are for non-Palace assets (Atlas, not Palace). 6 material categories defined. Created Saved/_tmp_create_atlantis_mis.py with slot-based MI generation. Editor-bound.",
+    "prompt": null
+  },
+  {
+    "id": "MAGICIAN_PURGE_REFERENCER_PRECHECK",
+    "lane": "audit",
+    "priority": 2,
+    "status": "blocked",
+    "spec": "Saved/Audit/magician_purge_final_spec_2026-09-01.json",
+    "result": "BLOCKED: Owner-only gate. Requires live editor referencer check (listdependencies /Game/Library/Migrated/MagiciansLibrary) before deletion. Daemon cannot execute. Queued for next live session.",
+    "prompt": null
   }
 ]
