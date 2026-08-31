@@ -28,7 +28,8 @@ bool FMelodiaWardrobeEquipRoundtripTest::RunTest(const FString& Parameters)
     GI->InitializeStandalone(TEXT("MelodiaWardrobeEquipRoundtripWorld"));
     UWorld* World = GI->GetWorld();
     UMelodiaWardrobeSubsystem* Wardrobe = GI->GetSubsystem<UMelodiaWardrobeSubsystem>();
-    if (!Wardrobe)
+    UMelodiaNarrativeSubsystem* Narrative = GI->GetSubsystem<UMelodiaNarrativeSubsystem>();
+    if (!Wardrobe || !Narrative)
     {
         TestFalse(TEXT("Wardrobe subsystem not available"), true);
         return false;
@@ -93,7 +94,8 @@ bool FMelodiaWardrobeGameplayHookTest::RunTest(const FString& Parameters)
     GI->InitializeStandalone(TEXT("MelodiaWardrobeGameplayHookWorld"));
     UWorld* World = GI->GetWorld();
     UMelodiaWardrobeSubsystem* Wardrobe = GI->GetSubsystem<UMelodiaWardrobeSubsystem>();
-    if (!Wardrobe)
+    UMelodiaNarrativeSubsystem* Narrative = GI->GetSubsystem<UMelodiaNarrativeSubsystem>();
+    if (!Wardrobe || !Narrative)
     {
         TestFalse(TEXT("Wardrobe subsystem not available"), true);
         GI->Shutdown();
@@ -105,6 +107,12 @@ bool FMelodiaWardrobeGameplayHookTest::RunTest(const FString& Parameters)
     // Test 1: Resonant Weave outfit should unlock Glide capability
     const FName OutfitId = FName(TEXT("Cos_Accessories_MelusinaV2"));
     const FName GrantId = FName(TEXT("GlideTestGrant_001"));
+
+    // Exploration/music owns this prerequisite. The outfit contributes Glide only
+    // after the canonical world-challenge result has been restored.
+    FMelodiaNarrativeRecord Record = Narrative->GetNarrativeRecord();
+    Record.Flags.Add(TEXT("challenge.first_resonance_echo.completed"), true);
+    Narrative->RestoreNarrativeRecord(Record);
 
     Wardrobe->GrantCosmetic(OutfitId, GrantId);
     Wardrobe->EquipCosmetic(OutfitId);
@@ -213,7 +221,8 @@ bool FMelodiaWardrobeTraversalIntegrationTest::RunTest(const FString& Parameters
     GI->InitializeStandalone(TEXT("MelodiaWardrobeTraversalWorld"));
     UWorld* World = GI->GetWorld();
     UMelodiaWardrobeSubsystem* Wardrobe = GI->GetSubsystem<UMelodiaWardrobeSubsystem>();
-    if (!Wardrobe)
+    UMelodiaNarrativeSubsystem* Narrative = GI->GetSubsystem<UMelodiaNarrativeSubsystem>();
+    if (!Wardrobe || !Narrative)
     {
         TestFalse(TEXT("Wardrobe subsystem not available"), true);
         GI->Shutdown();
@@ -235,6 +244,9 @@ bool FMelodiaWardrobeTraversalIntegrationTest::RunTest(const FString& Parameters
     // Equip the outfit
     const FName OutfitId = FName(TEXT("Cos_Accessories_MelusinaV2"));
     const FName GrantId = FName(TEXT("TraversalTestGrant_001"));
+    FMelodiaNarrativeRecord Record = Narrative->GetNarrativeRecord();
+    Record.Flags.Add(TEXT("challenge.first_resonance_echo.completed"), true);
+    Narrative->RestoreNarrativeRecord(Record);
     Wardrobe->GrantCosmetic(OutfitId, GrantId);
     Wardrobe->EquipCosmetic(OutfitId);
 
