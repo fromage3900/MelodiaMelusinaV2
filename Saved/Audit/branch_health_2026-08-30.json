@@ -1,0 +1,399 @@
+{
+  "generated": "2026-08-30 17:44:56",
+  "total_refs": 35,
+  "unique_work_branches": 24,
+  "local_only_with_unique_work": [
+    "backup/pre-consolidation-2026-08-30",
+    "cursor/model-lanes-agents-slim-f425",
+    "feature/credits-20260813",
+    "feature/echo-topo-chapter2",
+    "feature/p0-phase1-allowlist-quill-trigger"
+  ],
+  "merged_fully": [
+    "claireon-test",
+    "claude/magical-williamson-a3534a",
+    "feature/claireon-test-20260819",
+    "origin",
+    "origin/copilot/git-status-check",
+    "origin/copilot/validate-source-control-claims",
+    "origin/cursor/docs-safe-batches-ca02",
+    "origin/docs/p1-monolith-character-concepts-2026-08-28",
+    "origin/docs/sea-above-system-shader-breakdowns-2026-08-26",
+    "origin/triage/nemotron-research-p3",
+    "safety/pre-g-sync-20260821"
+  ],
+  "branches": [
+    {
+      "branch": "backup/pre-consolidation-2026-08-30",
+      "ahead": 75,
+      "behind": 51,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": true,
+      "merge_base": "a3808534ff8f23488c154dc4d156867e93fe419d",
+      "merge_base_date": "2026-08-26 22:00:49 +0000",
+      "conflict_files_both_sides": 395,
+      "conflict_binary": 131
+    },
+    {
+      "branch": "claireon-test",
+      "ahead": 0,
+      "behind": 156,
+      "status": "merged",
+      "upstream": null,
+      "local_only": true
+    },
+    {
+      "branch": "claude/magical-williamson-a3534a",
+      "ahead": 0,
+      "behind": 183,
+      "status": "merged",
+      "upstream": null,
+      "local_only": true
+    },
+    {
+      "branch": "cursor/model-lanes-agents-slim-f425",
+      "ahead": 2,
+      "behind": 196,
+      "status": "divergent",
+      "upstream": "origin/cursor/model-lanes-agents-slim-f425",
+      "local_only": true,
+      "merge_base": "62c7920d6b9308faf684df2f98c74dfc47e6c841",
+      "merge_base_date": "2026-08-12 00:35:32 -0400",
+      "conflict_files_both_sides": 10,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "feature/claireon-test-20260819",
+      "ahead": 0,
+      "behind": 179,
+      "status": "merged",
+      "upstream": null,
+      "local_only": true
+    },
+    {
+      "branch": "feature/credits-20260813",
+      "ahead": 2,
+      "behind": 183,
+      "status": "divergent",
+      "upstream": "origin/feature/credits-20260813",
+      "local_only": true,
+      "merge_base": "343d091cf9c728595ce8bc29cab50977bebcf518",
+      "merge_base_date": "2026-08-13 02:51:48 -0400",
+      "conflict_files_both_sides": 8,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "feature/echo-topo-chapter2",
+      "ahead": 1,
+      "behind": 185,
+      "status": "divergent",
+      "upstream": "origin/feature/echo-topo-chapter2",
+      "local_only": true,
+      "merge_base": "4aa9d6132b34fd76014ec4a0e736c8cdf40bb5c4",
+      "merge_base_date": "2026-08-13 01:45:36 -0400",
+      "conflict_files_both_sides": 9,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "feature/p0-phase1-allowlist-quill-trigger",
+      "ahead": 103,
+      "behind": 46,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": true,
+      "merge_base": "37b40e7f1145c123d9b337f1d0c62ca3ad418d0f",
+      "merge_base_date": "2026-08-27 23:41:18 -0400",
+      "conflict_files_both_sides": 337,
+      "conflict_binary": 116
+    },
+    {
+      "branch": "feature/sea-above-choralsheep-20260826",
+      "ahead": 1,
+      "behind": 51,
+      "status": "divergent",
+      "upstream": "origin/cursor/docs-safe-batches-ca02",
+      "local_only": false,
+      "merge_base": "a3808534ff8f23488c154dc4d156867e93fe419d",
+      "merge_base_date": "2026-08-26 22:00:49 +0000",
+      "conflict_files_both_sides": 77,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "feature/zenforest-glam-headless",
+      "ahead": 17,
+      "behind": 68,
+      "status": "divergent",
+      "upstream": "origin/feature/zenforest-glam-headless",
+      "local_only": false,
+      "merge_base": "37fb2f89e2a60d226b0e2fa70fc27bd1c2d596f1",
+      "merge_base_date": "2026-08-24 16:02:28 -0400",
+      "conflict_files_both_sides": 530,
+      "conflict_binary": 71
+    },
+    {
+      "branch": "pr/melusina-v22-sync",
+      "ahead": 1,
+      "behind": 68,
+      "status": "divergent",
+      "upstream": "origin/pr/melusina-v22-sync",
+      "local_only": false,
+      "merge_base": "37fb2f89e2a60d226b0e2fa70fc27bd1c2d596f1",
+      "merge_base_date": "2026-08-24 16:02:28 -0400",
+      "conflict_files_both_sides": 0,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "recovery/melodia-main-sync-20260811",
+      "ahead": 369,
+      "behind": 221,
+      "status": "divergent",
+      "upstream": "legacy-melodia/main",
+      "local_only": false
+    },
+    {
+      "branch": "safety/pre-g-sync-20260821",
+      "ahead": 0,
+      "behind": 139,
+      "status": "merged",
+      "upstream": null,
+      "local_only": true
+    },
+    {
+      "branch": "origin",
+      "ahead": 0,
+      "behind": 17,
+      "status": "merged",
+      "upstream": null,
+      "local_only": true
+    },
+    {
+      "branch": "origin/codex/perforce-migration-handoff-2026-08-26",
+      "ahead": 2,
+      "behind": 55,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400",
+      "conflict_files_both_sides": 0,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/copilot/git-status-check",
+      "ahead": 0,
+      "behind": 25,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/copilot/new-feature-implementation",
+      "ahead": 1,
+      "behind": 55,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400",
+      "conflict_files_both_sides": 0,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/copilot/validate-source-control-claims",
+      "ahead": 0,
+      "behind": 54,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/cursor/branch-cleanup-executed-ca02",
+      "ahead": 1,
+      "behind": 55,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400",
+      "conflict_files_both_sides": 1,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/cursor/docs-safe-batches-ca02",
+      "ahead": 0,
+      "behind": 51,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/cursor/fix-ci-workflows-529c",
+      "ahead": 1,
+      "behind": 25,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "329ffc2f2ebf4d90248d9ba126b2e2ed49965bb1",
+      "merge_base_date": "2026-08-30 02:09:23 -0400",
+      "conflict_files_both_sides": 0,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/cursor/nemotron-docs-batch-ca02",
+      "ahead": 1,
+      "behind": 55,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400",
+      "conflict_files_both_sides": 5,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/cursor/nemotron-research-docs-2d2d",
+      "ahead": 3,
+      "behind": 183,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "343d091cf9c728595ce8bc29cab50977bebcf518",
+      "merge_base_date": "2026-08-13 02:51:48 -0400",
+      "conflict_files_both_sides": 9,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/cursor/perforce-docs-batch-ca02",
+      "ahead": 2,
+      "behind": 51,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "a3808534ff8f23488c154dc4d156867e93fe419d",
+      "merge_base_date": "2026-08-26 22:00:49 +0000",
+      "conflict_files_both_sides": 1,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/cursor/recruiter-sendoffs-no-nvidia-ca02",
+      "ahead": 1,
+      "behind": 68,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "37fb2f89e2a60d226b0e2fa70fc27bd1c2d596f1",
+      "merge_base_date": "2026-08-24 16:02:28 -0400",
+      "conflict_files_both_sides": 10,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/cursor/zenforest-docs-batch-ca02",
+      "ahead": 1,
+      "behind": 55,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400",
+      "conflict_files_both_sides": 10,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/docs/2026-08-29-character-p1-p2-canon-audit",
+      "ahead": 25,
+      "behind": 30,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "7f05451cc36fda5a8e97848ebd6c6215894ba1c0",
+      "merge_base_date": "2026-08-28 19:18:16 -0400",
+      "conflict_files_both_sides": 2,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/docs/monolith-concept-art-backlog-2026-08-26",
+      "ahead": 3,
+      "behind": 55,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400",
+      "conflict_files_both_sides": 3,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/docs/p1-monolith-character-concepts-2026-08-28",
+      "ahead": 0,
+      "behind": 36,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/docs/sea-above-system-shader-breakdowns-2026-08-26",
+      "ahead": 0,
+      "behind": 45,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/feature/repo-lockin-20260813",
+      "ahead": 9,
+      "behind": 184,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "549a5572ea2c1b0676811864910a4555a5b204f4",
+      "merge_base_date": "2026-08-13 02:14:37 -0400",
+      "conflict_files_both_sides": 2727,
+      "conflict_binary": 1419
+    },
+    {
+      "branch": "origin/feature/zenforest-glam-headless",
+      "ahead": 17,
+      "behind": 68,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "37fb2f89e2a60d226b0e2fa70fc27bd1c2d596f1",
+      "merge_base_date": "2026-08-24 16:02:28 -0400",
+      "conflict_files_both_sides": 530,
+      "conflict_binary": 71
+    },
+    {
+      "branch": "origin/pr/melusina-v22-sync",
+      "ahead": 1,
+      "behind": 68,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "37fb2f89e2a60d226b0e2fa70fc27bd1c2d596f1",
+      "merge_base_date": "2026-08-24 16:02:28 -0400",
+      "conflict_files_both_sides": 0,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/rnd/2026-08-30-blender52-music-gn-studio",
+      "ahead": 5,
+      "behind": 24,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "4dd5edb9d46c587571743be816303f0c2adb5ed9",
+      "merge_base_date": "2026-08-30 14:04:49 -0400",
+      "conflict_files_both_sides": 0,
+      "conflict_binary": 0
+    },
+    {
+      "branch": "origin/triage/nemotron-research-p3",
+      "ahead": 0,
+      "behind": 55,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    }
+  ]
+}

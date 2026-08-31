@@ -354,9 +354,7 @@ $ End
   I hear the cadence. I will harmonize with the morning.
 
 $ Notify melodia:stat:intent.quest.harmony_awakening:melodia_harmony:2
-$ Notify melodia:quest:quest.harmony_awakening
-$ Notify melodia:reward:reward.harmony_awakening
-$ Notify melodia:flag:quest.harmony_awakening.completed
+$ Notify melodia:questcomplete:quest.harmony_awakening:quest.harmony_awakening.completed:reward.harmony_awakening:intent.quest.harmony_awakening.complete:checkpoint.quest.harmony_awakening.complete
 $ End
 
 <@> Listen

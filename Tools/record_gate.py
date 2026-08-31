@@ -64,7 +64,13 @@ KNOWN_GATES = [
     "save_system",
     "reward_restore",
     "package_launch",
-    "static_gates",
+    # P0 gates (August 24 plan)
+    "rhythm_owner",
+    "hud_single_writer",
+    "wardrobe_equip_roundtrip",
+    "rhythm_grade_to_result",
+    "music_world_key",
+    "wardrobe_gameplay_hook",
 ]
 
 

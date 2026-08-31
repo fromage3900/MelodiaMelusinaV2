@@ -51,7 +51,7 @@ Presets SMALL_CELL / HALL / CLOISTER_WALK on room, openings, corridor, junction.
 - Selecting a MEL_* NODES modifier focuses the stack row; **Open GN editor**.
 - Stage **Isolate Editable GN** — soft `LayerCollection.hide_viewport` on OrnamentGN_Editable / MusicalGN_Editable / Review_Queue.
 - `SURREAL_ARCH_OT_spawn_polyhedron` double-register guarded (`_register_class_once`). Factory-startup overhaul now loads (no “Overhaul package not loaded”).
-- User-facing `register_builder` tooltip mojibake (`ΓÇö`) fixed. Comments left alone.
+- User-facing `register_builder` tooltip mojibake (`—`) fixed. Comments left alone.
 
 AppData sync skipped this pass: `blender.exe` was running. Run `deploy/sync_surreal_to_live.ps1` after GUIs quit, then one 5.2 restart.
 

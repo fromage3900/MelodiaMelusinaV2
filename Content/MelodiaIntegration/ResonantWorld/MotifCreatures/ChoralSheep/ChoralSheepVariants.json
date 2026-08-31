@@ -1,0 +1,36 @@
+{
+  "schema": "melodia.motif_creature.v1",
+  "creature": "ChoralSheep",
+  "display_name": "Choral Sheep",
+  "variant_axis": {
+    "type": "pitch_class",
+    "count": 12,
+    "labels": ["C", "Cs", "D", "Ds", "E", "F", "Fs", "G", "Gs", "A", "As", "B"],
+    "semitone_offset_rule": "variant_index == pitch_class, C=0",
+    "blender_material_names": "ChoralWool_PC_{label} (see sheep_shine.build_chromatic_materials)"
+  },
+  "ue_material_slot_map": {
+    "naming": "MI_ChoralSheep_Coat_PC{label:02d}",
+    "directory": "/Game/Melodia/Companions/ChoralSheep/Materials/",
+    "parent_master_tbd": "/Game/EnvSandbox/Materials/Masters/ (fur master pending; do NOT reuse water or landscape masters)",
+    "scalar_overrides": ["CoatHueShift", "CoatSaturation", "TrimEmissive", "BellToneScale"],
+    "reimport_policy": "master_edit_only_no_instance_deletion"
+  },
+  "behavior_binding": {
+    "motif_cell_source": "pitch_class",
+    "graze_pulse_bpm": "tempo_of_region",
+    "call_response_route": true,
+    "resonant_world_clause": "RESONANT_WORLD_SYSTEM.md line 48: 'Motif creature: behavior follows a repeating rhythmic or melodic cell'"
+  },
+  "definition_linkage": {
+    "companion_definition": "/Game/Melodia/Companions/ChoralSheep/DA_ChoralSheepDefinition",
+    "drop_in_contract": "Content/Melodia/Companions/ChoralSheep/ChoralSheepDefinition.json (melodia.companion.v1)",
+    "skeletal_mesh_path": "/Game/Melodia/Companions/ChoralSheep/SK_ChoralSheep",
+    "note": "One SK mesh serves all 12 variants; variation is material-slot + data-table row only."
+  },
+  "source_of_truth_notes": [
+    "Docs/Art/TONIGHT_ASSEMBLY_PLAN_2026-08-26.md",
+    "Docs/CHORAL_SHEEP_UE_RETARGET_PREP_2026-08-25.md"
+  ],
+  "status": "coat_pipeline_ready_weight_paint_blocked_pending_blend_transfer"
+}

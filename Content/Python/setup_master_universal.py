@@ -173,12 +173,16 @@ def apply_nikki_mf_chain(
     nk_col = base_color
     dream_mf = mf_call(m, MF_NIKKI_DREAM, 11800, 400)
     if dream_mf:
-        wire(f"{tag}_dream_base", base_color, dream_mf, "BaseColor")
-        wire(f"{tag}_dream_pastel", pastel, dream_mf, "PastelLift")
-        wire(f"{tag}_dream_tint", dream_tint, dream_mf, "DreamTint")
-        wire(f"{tag}_dream_sat", dream_sat, dream_mf, "DreamSaturation")
-        wire(f"{tag}_dream_con", dream_contrast, dream_mf, "DreamContrast")
-        wire(f"{tag}_dream_sh", dream_shadow_lift, dream_mf, "DreamShadowLift")
+        # MF_NikkiDreamGrade uses "BaseColorIn" as its input pin (not "BaseColor").
+        # The remaining dream params use the parameter-style names below, but we
+        # also supply common short-form alternatives so stale pin names from
+        # older function revisions still resolve.
+        wire(f"{tag}_dream_base", base_color, dream_mf, "BaseColorIn", "BaseColor")
+        wire(f"{tag}_dream_pastel", pastel, dream_mf, "PastelLift", "Pastel", "pastel")
+        wire(f"{tag}_dream_tint", dream_tint, dream_mf, "DreamTint", "Tint", "tint")
+        wire(f"{tag}_dream_sat", dream_sat, dream_mf, "DreamSaturation", "Saturation", "sat")
+        wire(f"{tag}_dream_con", dream_contrast, dream_mf, "DreamContrast", "Contrast", "contrast")
+        wire(f"{tag}_dream_sh", dream_shadow_lift, dream_mf, "DreamShadowLift", "ShadowLift", "shadow_lift")
         nk_col = dream_mf
     rim_mf = mf_call(m, MF_NIKKI_RIM, 12000, 400)
     if rim_mf:

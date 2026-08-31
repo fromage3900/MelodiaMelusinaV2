@@ -42,7 +42,20 @@ MOJIBAKE_MARKERS = (
     "ðŸ", "â€", "Ã", "Â", "â˜", "âœ", "â™", "âš", "â›", "âŠ", "â-", "â­",
     "â¬", "âŒ", "âŸ", "Ï", "â€¢", "â€¦", "â€™", "â€œ", "â€", "â†", "â‰",
     "\u0178", "\u0152", "\u0161", "\u201c", "\u201d", "\u203a",
+    # UTF-8 Japanese/CJK decoded as Latin-1 or cp1252.
+    "ã", "å", "æ", "è", "é", "ç", "ä", "ë", "ì", "í", "î",
 )
+
+# A previous Windows console round-trip used OEM box-drawing glyphs for UTF-8
+# punctuation.  These sequences cannot be recovered through cp1252, so keep the
+# mapping explicit and deterministic.
+OEM_REPLACEMENTS = {
+    "ΓÇö": "—",
+    "ΓåÆ": "→",
+    "Γåö": "↔",
+    "ΓöÇ": "─",
+    "ΓòÉ": "═",
+}
 
 
 def looks_mojibake(s: str) -> bool:
@@ -147,8 +160,14 @@ def fix_comment_suffix(line: str) -> tuple[str, int]:
 
 def process_file(path: Path, dry_run: bool = False) -> int:
     text = path.read_text(encoding="utf-8", errors="surrogateescape")
+    oem_total = 0
+    for broken, fixed in OEM_REPLACEMENTS.items():
+        count = text.count(broken)
+        if count:
+            text = text.replace(broken, fixed)
+            oem_total += count
     text, triple_n = fix_triple_quoted(text)
-    total = triple_n
+    total = triple_n + oem_total
     new_lines = []
     for line in text.splitlines(keepends=True):
         fixed, n = fix_line(line)
@@ -174,13 +193,19 @@ def main():
         if not path.exists():
             print(f"skip missing: {path}")
             continue
-        print(f"scan {path}")
-        for pass_n in range(1, args.max_passes + 1):
-            n = process_file(path, dry_run=args.dry_run)
-            print(f"  pass {pass_n}: {n} strings fixed")
-            grand += n
-            if n == 0:
-                break
+        targets = [path]
+        if path.is_dir():
+            targets = sorted(item for item in path.rglob("*") if item.is_file() and item.suffix.lower() in {".py", ".md", ".json", ".toml"})
+        for target in targets:
+            changed = 0
+            for pass_n in range(1, args.max_passes + 1):
+                n = process_file(target, dry_run=args.dry_run)
+                changed += n
+                if n == 0 or args.dry_run:
+                    break
+            if changed:
+                print(f"  {target}: {changed} strings fixed")
+            grand += changed
     print(f"total strings fixed: {grand}")
     return 0
 

@@ -39,9 +39,9 @@ def _get_material_crosswalk_status() -> str:
         return "bridge not loaded"
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-# Property group ΓÇö bridge state
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
+# Property group — bridge state
+# ═══════════════════════════════════════════════════════════════════════
 
 class BRIB_SceneSettings(PropertyGroup):
     """Bridge dashboard state persisted on the scene."""
@@ -65,9 +65,9 @@ class BRIB_SceneSettings(PropertyGroup):
     expand_actions: BoolProperty(name="Expand Actions", default=True)
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Port pinger helper
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 def _ping_port(host: str, port: int, timeout: float = 2.0) -> tuple[bool, str]:
     """Check if a TCP port is accepting connections."""
@@ -147,9 +147,9 @@ def _get_bridge_summary() -> dict:
     }
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Operators
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 class BRIB_OT_refresh_status(Operator):
     """Ping all bridge ports and refresh status."""
@@ -292,7 +292,7 @@ class BRIB_OT_send_outfit(Operator):
 
 
 class BRIB_OT_toggle_live_sync(Operator):
-    """Toggle live sync mode ΓÇö continuously streams changes to Unreal."""
+    """Toggle live sync mode — continuously streams changes to Unreal."""
 
     bl_idname = "brib.toggle_live_sync"
     bl_label = "Toggle Live Sync"
@@ -370,12 +370,12 @@ class BRIB_OT_send_with_materials(Operator):
         return {"FINISHED"}
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Panel UI
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 class BRIB_PT_bridge_dashboard(Panel):
-    """Live Bridge ΓÇö Blender Γåö Unreal communication dashboard."""
+    """Live Bridge — Blender ↔ Unreal communication dashboard."""
 
     bl_label = "Live Bridge"
     bl_idname = "BRIB_PT_bridge_dashboard"
@@ -390,31 +390,31 @@ class BRIB_PT_bridge_dashboard(Panel):
         layout = self.layout
         settings = context.scene.brib_bridge
 
-        # ΓöÇΓöÇ Status Bar ΓöÇΓöÇ
+        # ── Status Bar ──
         self._draw_status_bar(layout, context)
 
-        # ΓöÇΓöÇ LiveLink Section ΓöÇΓöÇ
+        # ── LiveLink Section ──
         self._draw_livelink_section(layout, context, settings)
 
-        # ΓöÇΓöÇ MCP Section ΓöÇΓöÇ
+        # ── MCP Section ──
         self._draw_mcp_section(layout, context, settings)
 
-        # ΓöÇΓöÇ Quick Actions ΓöÇΓöÇ
+        # ── Quick Actions ──
         self._draw_actions(layout, context, settings)
 
-        # ΓöÇΓöÇ Material Bridge quick link ΓöÇΓöÇ
+        # ── Material Bridge quick link ──
         layout.separator()
         row = layout.row(align=True)
         row.label(text="Material mapping:", icon="MATERIAL")
         cw = _get_material_crosswalk_status()
         row.label(text=cw, icon="INFO")
 
-        # ΓöÇΓöÇ Timestamp ΓöÇΓöÇ
+        # ── Timestamp ──
         if settings.last_status_check and settings.last_status_check != "Never":
             layout.separator()
             layout.label(text=f"Last check: {settings.last_status_check}", icon="TIME")
 
-    # ΓöÇΓöÇ Sub-drawing ΓöÇΓöÇ
+    # ── Sub-drawing ──
 
     def _draw_status_bar(self, layout, context):
         """Compact status row showing all 3 bridge ports."""
@@ -558,9 +558,9 @@ class BRIB_PT_bridge_dashboard(Panel):
                         icon="FILE_REFRESH")
 
 
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 # Registration
-# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# ═══════════════════════════════════════════════════════════════════════
 
 CLASSES = [
     BRIB_SceneSettings,

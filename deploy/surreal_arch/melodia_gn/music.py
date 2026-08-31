@@ -1,4 +1,4 @@
-"""Musical GN group builders ΓÇö note head, treble clef, staff, harmonic driver, phrase.
+"""Musical GN group builders — note head, treble clef, staff, harmonic driver, phrase.
 
 Uses: exponent_blend (spiral), power_scale (iteration falloff), add (sine stacking),
       store_attribute (pitch/duration/velocity), bounding_box (auto-fit).
@@ -190,7 +190,7 @@ def build_music_note_head(group_name="MEL_music_note_head"):
 
 
 def build_music_treble_clef(group_name="MEL_music_treble_clef"):
-    """G-clef (≡¥ä₧) ΓÇö calligraphic curve with ascending body, tight spiral knot at top,
+    """G-clef (𝄞) — calligraphic curve with ascending body, tight spiral knot at top,
     descending stem, and bottom hook. Uses 3 bezier curve segments joined and swept
     with a tube profile so the result is actually recognizable as a treble clef.
 
@@ -205,7 +205,7 @@ def build_music_treble_clef(group_name="MEL_music_treble_clef"):
     add_float_param(tree, "Spiral Tightness", 0.5, 0.2, 1.0)
     add_float_param(tree, "Body Curve", 0.5, 0.0, 1.0)
 
-    # ΓöÇΓöÇΓöÇ Top spiral knot (1.5 turns, tight) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    # ─── Top spiral knot (1.5 turns, tight) ────────────────────
     spiral = safe_node(tree, "GeometryNodeCurveSpiral", (bx - 600, by + 300))
     spiral.inputs["Height"].default_value = 0.0
     spiral_tight = safe_node(tree, "ShaderNodeMath", (bx - 750, by + 350))
@@ -231,8 +231,8 @@ def build_music_treble_clef(group_name="MEL_music_treble_clef"):
     link_sockets(tree, rot_spiral.outputs["Geometry"], pos_spiral.inputs["Geometry"])
     pos_spiral.inputs["Translation"].default_value = (0.0, 0.42, 0.0)
 
-    # ΓöÇΓöÇΓöÇ Ascending body (S-curve from bottom to spiral entry) ΓöÇΓöÇ
-    # Using QuadraticBezier: start point ΓåÆ control ΓåÆ end point
+    # ─── Ascending body (S-curve from bottom to spiral entry) ──
+    # Using QuadraticBezier: start point → control → end point
     body_bezier = safe_node(tree, "GeometryNodeCurvePrimitiveBezierSegment", (bx - 600, by))
     # Start: bottom hook transition point
     body_bezier.inputs["Start"].default_value = (0.15, -0.48, 0.0)
@@ -252,7 +252,7 @@ def build_music_treble_clef(group_name="MEL_music_treble_clef"):
     body_bezier.inputs["End"].default_value = (0.0, 0.35, 0.0)
     body_bezier.inputs["End Handle"].default_value = (0.08, 0.30, 0.0)
 
-    # ΓöÇΓöÇΓöÇ Descending stem (from spiral center down) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    # ─── Descending stem (from spiral center down) ─────────────
     stem_bezier = safe_node(tree, "GeometryNodeCurvePrimitiveBezierSegment", (bx - 600, by - 150))
     # The stem must pass through the spiral center and continue down
     # It should start just inside the spiral (slightly below center)
@@ -263,7 +263,7 @@ def build_music_treble_clef(group_name="MEL_music_treble_clef"):
     stem_bezier.inputs["End Handle"].default_value = (0.01, -0.30, 0.0)
     stem_bezier.inputs["Resolution"].default_value = 8
 
-    # ΓöÇΓöÇΓöÇ Bottom hook (curves left and up) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    # ─── Bottom hook (curves left and up) ──────────────────────
     hook_bezier = safe_node(tree, "GeometryNodeCurvePrimitiveBezierSegment", (bx - 600, by - 300))
     hook_bezier.inputs["Start"].default_value = (0.01, -0.55, 0.0)
     hook_bezier.inputs["Start Handle"].default_value = (-0.05, -0.55, 0.0)
@@ -271,7 +271,7 @@ def build_music_treble_clef(group_name="MEL_music_treble_clef"):
     hook_bezier.inputs["End Handle"].default_value = (-0.18, -0.52, 0.0)
     hook_bezier.inputs["Resolution"].default_value = 8
 
-    # ΓöÇΓöÇΓöÇ Join all curves into one ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    # ─── Join all curves into one ──────────────────────────────
     join_curves = safe_node(tree, "GeometryNodeJoinGeometry", (bx - 100, by + 100))
     link_sockets(tree, pos_spiral.outputs["Geometry"], join_curves.inputs["Geometry"])
     link_sockets(tree, body_bezier.outputs["Curve"], join_curves.inputs["Geometry"])
@@ -299,7 +299,7 @@ def build_music_treble_clef(group_name="MEL_music_treble_clef"):
     link_sockets(tree, join_curves.outputs["Geometry"], merge.inputs["Geometry"])
     merge.inputs["Distance"].default_value = 0.001
 
-    # ΓöÇΓöÇΓöÇ Sweep with tube profile ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    # ─── Sweep with tube profile ───────────────────────────────
     circle = safe_node(tree, "GeometryNodeMeshCircle", (bx - 100, by - 50))
     link_sockets(tree, gin.outputs["Thickness"], circle.inputs["Radius"])
     circle.inputs["Vertices"].default_value = 8
@@ -310,7 +310,7 @@ def build_music_treble_clef(group_name="MEL_music_treble_clef"):
     profile_sock = clef_mesh.inputs.get("Profile Curve") or clef_mesh.inputs.get("Profile")
     link_sockets(tree, circle.outputs["Mesh"], profile_sock)
 
-    # ΓöÇΓöÇΓöÇ Finial dot at stem top ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    # ─── Finial dot at stem top ────────────────────────────────
     dot = safe_node(tree, "GeometryNodeMeshUVSphere", (bx, by - 150))
     dot.inputs["Segments"].default_value = 12
     dot.inputs["Rings"].default_value = 8
@@ -330,7 +330,7 @@ def build_music_treble_clef(group_name="MEL_music_treble_clef"):
     link_sockets(tree, dot_diam.outputs[0], dot_scale_vec.inputs["Z"])
     link_sockets(tree, dot_scale_vec.outputs["Vector"], dot_scale.inputs["Scale"])
 
-    # ΓöÇΓöÇΓöÇ Join clef body + dot ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    # ─── Join clef body + dot ──────────────────────────────────
     join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 300, by + 100))
     link_sockets(tree, clef_mesh.outputs["Mesh"], join.inputs["Geometry"])
     link_sockets(tree, dot_scale.outputs["Geometry"], join.inputs["Geometry"])
@@ -486,7 +486,7 @@ def build_music_staff(group_name="MEL_music_staff"):
 
 
 def build_music_harmonic(group_name="MEL_music_harmonic"):
-    """Harmonic pitch driver ΓÇö additive sine layers for note placement.
+    """Harmonic pitch driver — additive sine layers for note placement.
 
     Formula: pitch = ╬ú sin(index * freq * harmonic_i) for i in 1..5
     Uses: add (sine stacking), power_scale (harmonic amplitude falloff),
@@ -683,7 +683,7 @@ def build_music_harmonic(group_name="MEL_music_harmonic"):
 
 
 def build_music_phrase(group_name="MEL_music_phrase"):
-    """Composite musical phrase ΓÇö staff + note heads + harmonic pitch + treble clef.
+    """Composite musical phrase — staff + note heads + harmonic pitch + treble clef.
 
     Chains stored attributes: pitch from harmonic drives note head Z position.
     Uses: add (combine staff + notes), store_attribute (phrase metadata),
@@ -773,7 +773,7 @@ def build_music_phrase(group_name="MEL_music_phrase"):
             note_head_grp.inputs["Velocity"].default_value = 0.8
         except Exception:
             pass
-        # Connect Note Size ΓåÆ Scale
+        # Connect Note Size → Scale
         for sock_name in ("Scale", "size", "scale"):
             scale_in = note_head_grp.inputs.get(sock_name)
             if scale_in:

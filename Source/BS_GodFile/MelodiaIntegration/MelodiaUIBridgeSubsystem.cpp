@@ -13,6 +13,8 @@
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 #include "MelodiaRhythmCombatSubsystem.h"
 #include "MelodiaRhythmHUDWidget.h"
+#include "MelodiaBattleResultsWidget.h"
+#include "MelodiaBattleSession.h"
 
 namespace
 {
@@ -26,9 +28,18 @@ namespace
 	// the bridge -- which already owns battle UI lifetime -- spawns and binds it.
 	// Tracked here (not as a UPROPERTY) so this stays a .cpp-only, Live-Coding-safe change.
 	constexpr TCHAR DefaultMelodiaRhythmHUDPath[] = TEXT("/Game/Melodia/UI/WBP_Battle_Rhythm.WBP_Battle_Rhythm_C");
+
+	// LiveResultsWidgetPath is EditDefaultsOnly on a native GameInstanceSubsystem: there is no
+	// Blueprint asset to set it on, and UCLASS() carries no config specifier, so an ini entry
+	// cannot reach it either. Initialize() backfilled MelodiaBattleWidgetPath but never this one,
+	// so CreateLiveResultsWidgetInternal always failed its TryLoadClass and logged
+	// "cannot load live-results widget class from " with an empty path. WBP_Battle_Results is
+	// verified to derive from MelodiaBattleResultsWidget.
+	constexpr TCHAR DefaultLiveResultsWidgetPath[] = TEXT("/Game/Melodia/UI/WBP_Battle_Results.WBP_Battle_Results_C");
 	constexpr TCHAR RhythmPromptClassPath[] = TEXT("/Game/MelodiaIntegration/UI/BP_MelodiaRhythmPrompt.BP_MelodiaRhythmPrompt_C");
 	constexpr int32 RhythmPromptZOrder = 100;
 	constexpr int32 KeyboardLegendZOrder = 110;
+	constexpr int32 LiveResultsWidgetZOrder = 80;
 	TWeakObjectPtr<UMelodiaRhythmHUDWidget> GBridgeRhythmHUD;
 }
 
@@ -43,6 +54,19 @@ static FAutoConsoleCommandWithWorld GMelodiaLinkBattleUIController(
 		if (UMelodiaUIBridgeSubsystem* Bridge = GameInstance ? GameInstance->GetSubsystem<UMelodiaUIBridgeSubsystem>() : nullptr)
 		{
 			Bridge->EnsureStockBattleUIControllerReference();
+		}
+	}));
+
+// Link Melodia UI widgets (melodiaBattleUI and MelodiaUI) to BP_BattleController
+static FAutoConsoleCommandWithWorld GMelodiaLinkMelodiaWidgets(
+	TEXT("melodia.BattleUI.LinkMelodiaWidgets"),
+	TEXT("Link the Melodia battle widget and rhythm HUD to BP_BattleController's melodiaBattleUI and MelodiaUI variables."),
+	FConsoleCommandWithWorldDelegate::CreateLambda([](UWorld* World)
+	{
+		UGameInstance* GameInstance = World ? World->GetGameInstance() : nullptr;
+		if (UMelodiaUIBridgeSubsystem* Bridge = GameInstance ? GameInstance->GetSubsystem<UMelodiaUIBridgeSubsystem>() : nullptr)
+		{
+			Bridge->LinkWidgetsToBattleControllerPublic();
 		}
 	}));
 
@@ -61,9 +85,15 @@ UMelodiaUIBridgeSubsystem* UMelodiaUIBridgeSubsystem::Get(const UObject* WorldCo
 	return nullptr;
 }
 
+UMelodiaUIBridgeSubsystem::UMelodiaUIBridgeSubsystem()
+{
+	UE_LOG(LogTemp, Log, TEXT("MelodiaUIBridgeSubsystem::Constructor called"));
+}
+
 void UMelodiaUIBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+	UE_LOG(LogTemp, Log, TEXT("MelodiaUIBridgeSubsystem::Initialize called"));
 
 	if (UGameInstance* GI = GetGameInstance())
 	{
@@ -75,6 +105,8 @@ void UMelodiaUIBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 			NarrativeSubsystem->OnBattleRequested.AddUniqueDynamic(this, &ThisClass::HandleBattleRequested);
 			NarrativeSubsystem->OnBattleCompleted.AddUniqueDynamic(this, &ThisClass::HandleBattleCompleted);
 			NarrativeSubsystem->OnBattleAborted.AddUniqueDynamic(this, &ThisClass::HandleBattleAborted);
+			NarrativeSubsystem->OnFlagChanged.AddUniqueDynamic(this, &ThisClass::HandleNarrativeFlagChanged);
+			NarrativeSubsystem->OnQuestStateCommitted.AddUniqueDynamic(this, &ThisClass::HandleQuestStateCommitted);
 		}
 
 		if (ExternalBridge)
@@ -82,11 +114,23 @@ void UMelodiaUIBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 			ExternalBridge->OnJRPGBattleStarted.AddUniqueDynamic(this, &ThisClass::HandleExternalBattleStarted);
 			ExternalBridge->OnJRPGBattleEnded.AddUniqueDynamic(this, &ThisClass::HandleExternalBattleEnded);
 		}
+
+		BattleSession = GI->GetSubsystem<UMelodiaBattleSession>();
+		if (BattleSession)
+		{
+			BattleSession->OnEncounterEnded.AddUniqueDynamic(this, &ThisClass::HandleBattleSessionEnded);
+			BattleSession->OnBattlePhaseChanged.AddUniqueDynamic(this, &ThisClass::HandleBattlePhaseChanged);
+		}
 	}
 
 	if (MelodiaBattleWidgetPath.IsNull())
 	{
 		MelodiaBattleWidgetPath = FSoftClassPath(DefaultMelodiaBattleWidgetPath);
+	}
+
+	if (LiveResultsWidgetPath.IsNull())
+	{
+		LiveResultsWidgetPath = FSoftClassPath(DefaultLiveResultsWidgetPath);
 	}
 }
 
@@ -99,6 +143,8 @@ void UMelodiaUIBridgeSubsystem::Deinitialize()
 		NarrativeSubsystem->OnBattleRequested.RemoveDynamic(this, &ThisClass::HandleBattleRequested);
 		NarrativeSubsystem->OnBattleCompleted.RemoveDynamic(this, &ThisClass::HandleBattleCompleted);
 		NarrativeSubsystem->OnBattleAborted.RemoveDynamic(this, &ThisClass::HandleBattleAborted);
+		NarrativeSubsystem->OnFlagChanged.RemoveDynamic(this, &ThisClass::HandleNarrativeFlagChanged);
+		NarrativeSubsystem->OnQuestStateCommitted.RemoveDynamic(this, &ThisClass::HandleQuestStateCommitted);
 	}
 
 	if (ExternalBridge)
@@ -107,8 +153,15 @@ void UMelodiaUIBridgeSubsystem::Deinitialize()
 		ExternalBridge->OnJRPGBattleEnded.RemoveDynamic(this, &ThisClass::HandleExternalBattleEnded);
 	}
 
+	if (BattleSession)
+	{
+		BattleSession->OnEncounterEnded.RemoveDynamic(this, &ThisClass::HandleBattleSessionEnded);
+		BattleSession->OnBattlePhaseChanged.RemoveDynamic(this, &ThisClass::HandleBattlePhaseChanged);
+	}
+
 	NarrativeSubsystem = nullptr;
 	ExternalBridge = nullptr;
+	BattleSession = nullptr;
 
 	Super::Deinitialize();
 }
@@ -391,6 +444,74 @@ void UMelodiaUIBridgeSubsystem::CreateBattleUIInternal()
 	{
 		Rhythm->BindRhythmHUD(GBridgeRhythmHUD.Get());
 	}
+
+	// Link Melodia UI widgets to BP_BattleController so the owner systems can access them.
+	LinkMelodiaWidgetsToBattleController();
+}
+
+void UMelodiaUIBridgeSubsystem::LinkMelodiaWidgetsToBattleController()
+{
+	UGameInstance* GameInstance = GetGameInstance();
+	UWorld* World = GameInstance ? GameInstance->GetWorld() : nullptr;
+	if (!World)
+	{
+		return;
+	}
+
+	AActor* BattleController = nullptr;
+	for (TActorIterator<AActor> It(World); It; ++It)
+	{
+		if (It->GetClass()->GetName().StartsWith(TEXT("BP_BattleController")))
+		{
+			BattleController = *It;
+			break;
+		}
+	}
+	if (!BattleController)
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("MELODIA_UI_LINK no BP_BattleController actor in the world; nothing to link."));
+		return;
+	}
+
+	// Set melodiaBattleUI (BP_MelodiaBattleUI_C)
+	const FObjectPropertyBase* MelodiaBattleUIProperty = FindFProperty<FObjectPropertyBase>(BattleController->GetClass(), TEXT("melodiaBattleUI"));
+	if (MelodiaBattleUIProperty && IsValid(MelodiaBattleWidget.Get()))
+	{
+		if (!MelodiaBattleUIProperty->PropertyClass || MelodiaBattleWidget->IsA(MelodiaBattleUIProperty->PropertyClass))
+		{
+			MelodiaBattleUIProperty->SetObjectPropertyValue_InContainer(BattleController, MelodiaBattleWidget.Get());
+			UE_LOG(LogTemp, Log, TEXT("MELODIA_UI_LINK set melodiaBattleUI on %s"), *BattleController->GetName());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_UI_LINK refusing to write melodiaBattleUI: type mismatch (widget=%s, property=%s)"),
+				*MelodiaBattleWidget->GetClass()->GetName(), *MelodiaBattleUIProperty->PropertyClass->GetName());
+		}
+	}
+	else if (!MelodiaBattleUIProperty)
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("MELODIA_UI_LINK BP_BattleController has no melodiaBattleUI property."));
+	}
+
+	// Set MelodiaUI (UserWidget) - use the rhythm HUD
+	const FObjectPropertyBase* MelodiaUIProperty = FindFProperty<FObjectPropertyBase>(BattleController->GetClass(), TEXT("MelodiaUI"));
+	if (MelodiaUIProperty && GBridgeRhythmHUD.IsValid())
+	{
+		if (!MelodiaUIProperty->PropertyClass || GBridgeRhythmHUD->IsA(MelodiaUIProperty->PropertyClass))
+		{
+			MelodiaUIProperty->SetObjectPropertyValue_InContainer(BattleController, GBridgeRhythmHUD.Get());
+			UE_LOG(LogTemp, Log, TEXT("MELODIA_UI_LINK set MelodiaUI on %s"), *BattleController->GetName());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_UI_LINK refusing to write MelodiaUI: type mismatch (hud=%s, property=%s)"),
+				*GBridgeRhythmHUD->GetClass()->GetName(), *MelodiaUIProperty->PropertyClass->GetName());
+		}
+	}
+	else if (!MelodiaUIProperty)
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("MELODIA_UI_LINK BP_BattleController has no MelodiaUI property."));
+	}
 }
 
 void UMelodiaUIBridgeSubsystem::CreateBattlePresentationOverlaysInternal()
@@ -465,6 +586,13 @@ void UMelodiaUIBridgeSubsystem::RemoveBattleUIInternal()
 		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: removed Melodia battle widget."));
 	}
 
+	if (IsValid(LiveResultsWidget))
+	{
+		LiveResultsWidget->RemoveFromParent();
+		LiveResultsWidget = nullptr;
+		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: removed live-results widget."));
+	}
+
 	if (UWorld* World = GetWorld())
 	{
 		if (UMelodiaRhythmCombatSubsystem* Rhythm = World->GetSubsystem<UMelodiaRhythmCombatSubsystem>())
@@ -477,4 +605,118 @@ void UMelodiaUIBridgeSubsystem::RemoveBattleUIInternal()
 		GBridgeRhythmHUD->RemoveFromParent();
 	}
 	GBridgeRhythmHUD = nullptr;
+
+	PushLiveGameDataToActiveWidgets();
+}
+
+void UMelodiaUIBridgeSubsystem::HandleNarrativeFlagChanged(FName FlagId, bool bValue)
+{
+	PushLiveGameDataToActiveWidgets();
+}
+
+void UMelodiaUIBridgeSubsystem::HandleQuestStateCommitted(FName QuestId, bool bCompleted)
+{
+	PushLiveGameDataToActiveWidgets();
+}
+
+void UMelodiaUIBridgeSubsystem::HandleBattleSessionEnded(EMelodiaEncounterResult Result)
+{
+	// Results screen should only appear when a battle encounter finishes with a valid outcome.
+	if (Result != EMelodiaEncounterResult::None)
+	{
+		CreateLiveResultsWidgetInternal();
+	}
+	PushLiveGameDataToActiveWidgets();
+}
+
+void UMelodiaUIBridgeSubsystem::HandleBattlePhaseChanged(EMelodiaBattlePhase NewPhase, EMelodiaBattlePhase PreviousPhase)
+{
+	PushLiveGameDataToActiveWidgets();
+}
+
+void UMelodiaUIBridgeSubsystem::CreateLiveResultsWidgetInternal()
+{
+	if (IsValid(LiveResultsWidget) || !GetWorld())
+	{
+		return;
+	}
+
+	UClass* ResultsClass = LiveResultsWidgetPath.TryLoadClass<UMelodiaBattleResultsWidget>();
+	if (!ResultsClass)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Melodia UI Bridge: cannot load live-results widget class from %s"),
+			*LiveResultsWidgetPath.ToString());
+		return;
+	}
+
+	UWorld* World = GetWorld();
+	LiveResultsWidget = CreateWidget<UMelodiaBattleResultsWidget>(World, ResultsClass);
+	if (LiveResultsWidget)
+	{
+		LiveResultsWidget->SetIsFocusable(true);
+		LiveResultsWidget->AddToViewport(LiveResultsWidgetZOrder);
+		LiveResultsWidget->SetKeyboardFocus();
+		LiveResultsWidget->RefreshFromBattleSession();
+		UE_LOG(LogTemp, Log, TEXT("Melodia UI Bridge: spawned live-results widget %s."),
+			*ResultsClass->GetName());
+	}
+}
+
+void UMelodiaUIBridgeSubsystem::PushLiveGameDataToActiveWidgets()
+{
+	const FMelodiaNarrativeRecord Record = NarrativeSubsystem ? NarrativeSubsystem->GetNarrativeRecord() : FMelodiaNarrativeRecord();
+	const UMelodiaBattleSession* Session = BattleSession.Get();
+
+	// (a) Refresh results surface if currently active.
+	if (IsValid(LiveResultsWidget))
+	{
+		LiveResultsWidget->RefreshFromBattleSession();
+	}
+
+	// (b) Optionally drive the battle widget's BlueprintImplementable event when
+	// it implements it. Invoked reflectively with the exact same guarded idiom as
+	// ShowRhythmGrade: refuse on any layout mismatch rather than guess.
+	UUserWidget* Widget = MelodiaBattleWidget.Get();
+	if (!Widget)
+	{
+		return;
+	}
+	UFunction* UpdateLive = Widget->FindFunction(TEXT("UpdateLiveGameData"));
+	if (!UpdateLive)
+	{
+		return;
+	}
+
+	struct FLiveParams
+	{
+		FName LastEncounterId;
+		EMelodiaBattleResult LastOutcome = EMelodiaBattleResult::Unavailable;
+		int32 ActiveQuestCount = 0;
+		int32 CompletedQuestCount = 0;
+		float SessionScore = 0.0f;
+		int32 SessionMaxCombo = 0;
+	};
+
+	if (UpdateLive->ParmsSize != sizeof(FLiveParams) || UpdateLive->NumParms != 6)
+	{
+		UE_LOG(LogTemp, Warning,
+			TEXT("MELODIA_UI UpdateLiveGameData on %s has an unexpected signature (NumParms=%d). "
+				 "Expected exactly: LastEncounterId:Name, LastOutcome:Enum, ActiveQuestCount:Int, "
+				 "CompletedQuestCount:Int, SessionScore:Float, SessionMaxCombo:Int."),
+			*GetNameSafe(Widget->GetClass()), UpdateLive->NumParms);
+		return;
+	}
+
+	FLiveParams Params;
+	Params.LastEncounterId = Record.LastEncounterId;
+	Params.LastOutcome = Record.LastEncounterOutcome;
+	Params.ActiveQuestCount = Record.ActiveQuestIds.Num();
+	Params.CompletedQuestCount = Record.CompletedQuestIds.Num();
+	Params.SessionScore = Session ? Session->SessionScore : 0.0f;
+	Params.SessionMaxCombo = Session ? Session->SessionMaxCombo : 0;
+	Widget->ProcessEvent(UpdateLive, &Params);
+
+	UE_LOG(LogTemp, Verbose, TEXT("MELODIA_UI UpdateLiveGameData encounter=%s active=%d complete=%d score=%.1f maxcombo=%d"),
+		*Record.LastEncounterId.ToString(), Params.ActiveQuestCount, Params.CompletedQuestCount,
+		Params.SessionScore, Params.SessionMaxCombo);
 }

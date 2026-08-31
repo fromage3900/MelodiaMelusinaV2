@@ -1,0 +1,7 @@
+{
+  "_meta": {
+    "purpose": "Explicit, review-approved Git commit batches for Tools/source_control_triage.py.",
+    "policy": "Use exact text-only Git-owned paths. Never include Content, Exports, RawArt, or binary assets."
+  },
+  "batches": []
+}

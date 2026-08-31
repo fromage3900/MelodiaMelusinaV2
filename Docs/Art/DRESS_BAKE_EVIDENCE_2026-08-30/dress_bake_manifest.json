@@ -1,0 +1,39 @@
+{
+ "schema": "melodia.shorewake_full_bake.v1",
+ "seed": 20260830,
+ "resolution": 4096,
+ "margin_px": 16,
+ "ao_samples": 64,
+ "subdiv_levels": 2,
+ "high_poly_est": 3107344,
+ "blender": "5.2.1 LTS",
+ "engine": "CYCLES CPU",
+ "normal": {
+  "file": "T_DressShorewake_Normal.png",
+  "space": "tangent",
+  "y_convention": "directx (pre-flipped for UE)"
+ },
+ "maps": [
+  "Normal",
+  "Thickness",
+  "Curvature",
+  "Position"
+ ],
+ "ao": "baked in Houdini (dress_ao_vex.py, 64 rays, self-exclusion) + rasterized (bake_rasterize_ao.py) \u2014 NOT from Cycles",
+ "id_map": "skipped \u2014 OBJ carries no material slots; derive panel IDs at Substance paint setup",
+ "bbox_min": [
+  -0.8021309971809387,
+  -1.5009410381317139,
+  -0.5619869828224182
+ ],
+ "bbox_size": [
+  1.6300439834594727,
+  1.6643210649490356,
+  0.8884420990943909
+ ],
+ "source": {
+  "low": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\SM_ShorewakeDress_48MAT_v2.obj",
+  "attrs": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\SM_ShorewakeDress_48MAT_v2_attrs.obj"
+ },
+ "note": "thickness/curvature computed in Houdini (dress_geometry_attrs.py), encoded in OBJ vertex colors"
+}

@@ -18,7 +18,7 @@
 		},
 		{
 			"Name": "GaeaUnrealTools",
-			"Enabled": false
+			"Enabled": true
 		},
 		{
 			"Name": "MovieRenderPipeline",
@@ -264,7 +264,8 @@
 		},
 		{
 			"Name": "Oceanology_Plugin",
-			"Enabled": false
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/Fab/product/4e59bf12-d0c8-46f4-b5f9-37d48d0b6e63"
 		},
 		{
 			"Name": "Metasound",

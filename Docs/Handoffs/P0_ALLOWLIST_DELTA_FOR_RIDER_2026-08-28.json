@@ -1,0 +1,67 @@
+{
+  "$schema": "melodia.allowlist_delta.v1",
+  "generated": "2026-08-28T04:45:00Z",
+  "source": "Content/Python/Tests/test_qsc_allowlist_contract.py — test_every_gated_id_is_allowlisted (27 missing IDs, 2026-08-28 run)",
+  "target_asset": "/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig",
+  "asset_path": "Content/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig.uasset",
+  "editor_instruction": "Extend via Rider/UE Editor. Read current truth with blueprint_query get_cdo_properties (melodia_config_get_allowlist returns stale fixture). Add each ID to its matching array, save, verify with test_qsc_allowlist_contract.py",
+  "sets": {
+    "QuestIds": [
+      "quest.first_dream",
+      "quest.wardrobe.equip_outfit",
+      "quest.companion.choral_sheep",
+      "quest.cutscene.sea_above",
+      "quest.harmony_awakening"
+    ],
+    "NarrativeFlagIds": [
+      "flag.first_dream.quest.completed",
+      "flag.p0.playthrough.completed",
+      "flag.p0.playthrough.attempted",
+      "flag.p0.playthrough.fled",
+      "flag.wardrobe.outfit_equipped",
+      "flag.wardrobe.equip_completed",
+      "flag.melusina.sorrow_seam_restored",
+      "flag.companion.choral_sheep_recruited",
+      "flag.companion.choral_sheep_completed",
+      "flag.cutscene.sea_above_witnessed",
+      "flag.sea_above.membrane_pulse_active",
+      "flag.cutscene.sea_above_completed",
+      "quest.harmony_awakening.completed"
+    ],
+    "DialogueRewardIds": [
+      "reward.first_resonance_echo",
+      "reward.wardrobe.first_outfit",
+      "reward.companion.choral_sheep",
+      "reward.cutscene.sea_above_memory",
+      "reward.harmony_awakening"
+    ],
+    "SocialStatIds": [
+      "melodia_elegance",
+      "melodia_resonance"
+    ],
+    "TravelLevelIds": [
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype"
+    ],
+    "EncounterIds": []
+  },
+  "notes": {
+    "harmony_awakening": "Pre-existing script MelodiaQuillHarmonyAwakening.qsc emits quest/reward/flag IDs not in P0 slice but required for its contract test to pass. Included so the gate is green end-to-end; remove if that script is intentionally inert.",
+    "flag_prefix": "All new flag IDs already use singular 'flag.' prefix. The prior 'flags.melusina...' typo was fixed in working tree (MelodiaQuillWardrobeEquip.qsc diff 2026-08-28). No action needed.",
+    "duplicate_reward": "All three duplicate standalone reward grants (wardrobe, choral_sheep, sea_above) were removed in working tree, leaving only the questcomplete reward leg. No action needed.",
+    "existing_allowlist_snapshot_2026_08_28_plan": {
+      "QuestIds": ["melodia_q_echo_01/02/03", "melodia_smoke_quest"],
+      "NarrativeFlagIds": ["melodia_q_echo_0N_complete", "melodia_smoke_complete", "melodia_battle_won"],
+      "DialogueRewardIds": ["melodia_reward_dawn_veil/dreamweave_shawl/solstice_drum/star_charm/tuning_fork", "melodia_smoke_reward"],
+      "SocialStatIds": ["melodia_harmony"],
+      "EncounterIds": ["melodia_smoke_encounter", "Encounter_CrystalShard"],
+      "TravelLevelIds": ["L_KaleidoNave", "L_MelusinaMorning", "melodia_integration_map"]
+    },
+    "qsc_sources": [
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillP0Playthrough.qsc",
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillWardrobeEquip.qsc",
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillChoralSheepRecruit.qsc",
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillSeaAboveCutscene.qsc",
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillHarmonyAwakening.qsc"
+    ]
+  }
+}

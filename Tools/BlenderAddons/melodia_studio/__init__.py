@@ -4,10 +4,10 @@
 bl_info = {
     "name": "Melodia Studio",
     "author": "fromage3900",
-    "version": (1, 3, 0),
+    "version": (1, 5, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Melodia Studio",
-    "description": "MIDI-driven Resonant World generation - walkable default, Gaea surfaced, musical GN presets, bespoke Melodia chrome (C: authority)",
+    "description": "MIDI-driven Resonant World generation - walkable default + instanced dressing + Tandem City (field-wins snap to Surreal GN, no monolith edits) (C: authority) — D7 divisor threaded + AddonPreferences",
     "category": "Melodia Studio",
 }
 
@@ -33,6 +33,21 @@ try:
 except Exception:
     terrain_dressing = None  # type: ignore
 
+try:
+    from . import gaea_panel  # type: ignore
+except Exception:
+    gaea_panel = None  # type: ignore
+
+try:
+    from . import tandem_bridge  # type: ignore
+except Exception:
+    tandem_bridge = None  # type: ignore
+
+try:
+    from . import melodia_chrome  # type: ignore
+except Exception:
+    melodia_chrome = None  # type: ignore
+
 # Reload on addon refresh so edits land without restarting Blender.
 importlib.reload(midi_bridge)
 importlib.reload(studio_panel)
@@ -51,14 +66,59 @@ if terrain_dressing is not None:
         importlib.reload(terrain_dressing)
     except Exception:
         pass
+if gaea_panel is not None:
+    try:
+        importlib.reload(gaea_panel)
+    except Exception:
+        pass
+if tandem_bridge is not None:
+    try:
+        importlib.reload(tandem_bridge)
+    except Exception:
+        pass
+if melodia_chrome is not None:
+    try:
+        importlib.reload(melodia_chrome)
+    except Exception:
+        pass
 
 
 def register():
+    if melodia_chrome is not None:
+        try:
+            melodia_chrome.register()
+        except Exception:
+            pass
     studio_panel.register()
+    if gaea_panel is not None:
+        try:
+            gaea_panel.register()
+        except Exception:
+            pass
+    if tandem_bridge is not None:
+        try:
+            tandem_bridge.register()
+        except Exception:
+            pass
 
 
 def unregister():
+    if tandem_bridge is not None:
+        try:
+            tandem_bridge.unregister()
+        except Exception:
+            pass
+    if gaea_panel is not None:
+        try:
+            gaea_panel.unregister()
+        except Exception:
+            pass
     studio_panel.unregister()
+    if melodia_chrome is not None:
+        try:
+            melodia_chrome.unregister()
+        except Exception:
+            pass
     if addon_utils is not None:
         try:
             addon_utils.unload_icons()

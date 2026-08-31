@@ -207,6 +207,23 @@ every row.
 
 ## 🔄 Working Together
 
+### Source Control Ownership
+
+Use Git for code, configuration, plugins, tools, documentation, and automation. Perforce is being
+introduced for large and lock-sensitive creative assets. The current `//melodia/Exports/...` seed is
+on a workstation-local pilot server (`localhost:1667`), so it is not a collaborator download path yet.
+
+Until a shared Perforce server, backup, and clean-machine acceptance test are complete:
+
+- Continue to clone and hydrate the project through Git/Git LFS and the documented S3 art drop.
+- Do not configure a collaborator against the local Perforce pilot.
+- Do not edit an `Exports/` asset through both Git and Perforce.
+- Keep `Content/` Git-owned; its Perforce migration has not begun.
+
+See [Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md)
+for cutover gates and [Docs/Handoffs/SESSION_CLOSEOUT_SOURCE_CONTROL_2026-08-27.md](Docs/Handoffs/SESSION_CLOSEOUT_SOURCE_CONTROL_2026-08-27.md)
+for the current verified pilot state.
+
 ### Sharing Changes
 ```bash
 # When you save changes, commit and push:
@@ -214,6 +231,15 @@ git add <your-changed-files>
 git commit -m "feat: describe your change"
 git push origin <your-branch>
 ```
+
+Before creating a text-only commit, run:
+
+```powershell
+python Tools/source_control_triage.py
+```
+
+It runs every 12 hours locally in report-only mode and classifies binaries and future Perforce-owned
+paths as review-only. It never stages or commits work automatically.
 
 ### Branch Naming
 Use the `collab/[role]/[feature]` convention:
