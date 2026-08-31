@@ -17,6 +17,14 @@ See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do
 
 Qwen3 8B is pulled and available for local daemon work. `Tools/model_router.py` daemon lane is functional with `qwen3:8b` as primary researcher and `qwen3-coder:30b` for code/audit tasks. Daemons using this lane produce reports in `Saved/Daemon/proposals/` for human review.
 
+## Toolchain discovery — read first before any emerging-toolchain / render / audio work
+
+> **Read [`Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`](Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md)
+> BEFORE building in any of these systems.** It is the verified SSOT: what is PRESENT (SpeedTree, Houdini/Copernicus,
+> audio-reactive writer, onnx), what is SCAFFOLDED, what is research-only, what is external-tool. Its §9 anti-duplication
+> checklist (extend PRESENT, finish SCAFFOLDED, WATCH needs owner task, external = say-so-don't-fake, reuse field
+> contracts, one-editor/unattended/no `_PROJECT`, evidence standard) prevents parallel-authority defects.
+
 
 ## Current P0 authority — 2026-08-28
 
@@ -131,34 +139,6 @@ Maximize productivity and eliminate silent defects by using JetBrains Rider and 
 - **Single Editor Lock:** All editor-mutating tools (Monolith, T3D injectors, PIE runners) must serialize through a single holder. Never run competing MCP instances on the same graph or level.
 - **Discover Before Declaring Impossible:** Query Monolith's 1330+ actions (`monolith_discover`) before claiming an editor capability cannot be automated.
 - **Safe Reflection over Python Wrapping:** Never inspect user-defined enums (like `D_DamageType`) via raw Python `load_blueprint_class()`; use Monolith's C++ reflection queries (`get_cdo_properties`, `get_graph_data`) to prevent fatal Python glue crashes.
-
----
-
-## Core vision (stick to this)
-
-Ship a small Persona-lite First Dream loop — not a systems demo:
-
-```text
-Quill dialogue → allowlisted encounter → JRPG battle (Melusina)
-  → typed result → Quill resumes once → exploration / checkpoint
-```
-
-JRPG template owns party/turns/skills/damage/saves. `UMelodiaNarrativeSubsystem` is only the
-narrow Quill bridge. MelodiaCore is presentation-only this phase. Do not invent parallel combat
-authority. Full product scope: `_VERTICAL_SLICE_SCOPE.md`.
-
-**Model lanes:** pick a task class before writing (`triage|audit|code|cpp|mcp|playtest|author|
-deep|review|orchestrator|vision|daemon|docs`). Router: `python Tools/model_router.py pick <class>
---detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
-Gameplay queue ≠ `NEXT_ACTIONS.md` (that is platform); use vertical-slice / core-systems handoffs.
-
-| Class | Use for | Must not |
-|---|---|---|
-| `cpp` | MelodiaIntegration C++ | Rebuild JRPG in MelodiaCore |
-| `mcp` | Monolith multi-step (one editor) | Second MCP surface on same graph |
-| `playtest` | Real-input `runtime` gate | Probe-only ledger `pass` |
-| `daemon` | Overnight local loops (Ollama) | `.uasset` writes / gate certification |
-| `audit` | bp_sweep / static gates | Compensating flags for real defects |
 
 ---
 
