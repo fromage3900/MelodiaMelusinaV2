@@ -134,6 +134,34 @@ Maximize productivity and eliminate silent defects by using JetBrains Rider and 
 
 ---
 
+## Core vision (stick to this)
+
+Ship a small Persona-lite First Dream loop — not a systems demo:
+
+```text
+Quill dialogue → allowlisted encounter → JRPG battle (Melusina)
+  → typed result → Quill resumes once → exploration / checkpoint
+```
+
+JRPG template owns party/turns/skills/damage/saves. `UMelodiaNarrativeSubsystem` is only the
+narrow Quill bridge. MelodiaCore is presentation-only this phase. Do not invent parallel combat
+authority. Full product scope: `_VERTICAL_SLICE_SCOPE.md`.
+
+**Model lanes:** pick a task class before writing (`triage|audit|code|cpp|mcp|playtest|author|
+deep|review|orchestrator|vision|daemon|docs`). Router: `python Tools/model_router.py pick <class>
+--detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
+Gameplay queue ≠ `NEXT_ACTIONS.md` (that is platform); use vertical-slice / core-systems handoffs.
+
+| Class | Use for | Must not |
+|---|---|---|
+| `cpp` | MelodiaIntegration C++ | Rebuild JRPG in MelodiaCore |
+| `mcp` | Monolith multi-step (one editor) | Second MCP surface on same graph |
+| `playtest` | Real-input `runtime` gate | Probe-only ledger `pass` |
+| `daemon` | Overnight local loops (Ollama) | `.uasset` writes / gate certification |
+| `audit` | bp_sweep / static gates | Compensating flags for real defects |
+
+---
+
 ## T3D Wiring Pipeline (Automation Pipeline)
 
 ### Pipeline Overview
