@@ -1,0 +1,22 @@
+﻿{
+    "monolith":  "http://127.0.0.1:9316/mcp",
+    "actions":  [
+                    {
+                        "result":  "1426 actions, 24 namespaces, UE 5.8, project BS_GodFile",
+                        "tool":  "monolith_status"
+                    },
+                    {
+                        "result":  "54 tags (engine defaults only; no Melodia.* tags registered - FLAG)",
+                        "tool":  "project.list_gameplay_tags"
+                    },
+                    {
+                        "result":  "25 actors in L_MelodiaMainMenu (current level), incl BP_MelodiaPuzzleRelay_FirstResonance + BP_MelodiaInteraction_DreamAnchor",
+                        "tool":  "mesh.get_level_actors"
+                    }
+                ],
+    "verdict":  "PASS - Unreal-MCP safe read surface verified live",
+    "generated":  "2026-08-31T00:08:20.5122037-04:00",
+    "test":  "Test04_UnrealMCP_SafeActions",
+    "status":  "LIVE",
+    "guard":  "read-only; no mutation"
+}
