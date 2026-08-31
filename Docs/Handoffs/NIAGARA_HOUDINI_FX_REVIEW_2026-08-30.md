@@ -74,13 +74,38 @@ Each row must have a Monolith read or a committed verifier — no prose-only cer
 
 When 5a–5e are green, update this doc with the evidence paths and commit. Then the QOL queue (`PPV_DRIFT_T3D_FIX_SPEC`, `GRAPH_DEAD_NODE_CLEANUP_SPEC`, MI naming) can run in that same quiet window.
 
+### 5.1 LIVE RESULTS (filled 2026-08-31 04:00–04:30 UTC, Monolith 0.20.3, editor PID 92072→80768→130096)
+
+**5a — Droplet system: LIVE, SubUV wired.** `get_system_summary` on `NS_SeaAbove_UpwardDroplets_Prototype`: 1 emitter `UpwardDropletsEmitter`, CPU, Fixed bounds, warmup 5.994s, EffectType `ENV_StorybookAmbientVFX`. Renderer (`list_renderers`): `NiagaraSpriteRendererProperties` → `MI_SeaAbove_UpwardDroplet`. MI parent `M_Niagara_MelodiaFlipbook` with `FlipbookTexture = /Game/_PROJECT/VFX/Textures/T_Alpha_water_globule_flipbook` — **flipbook SubUV chain is LIVE** (handoff item #4 proof half closed). **Correction:** the ingested `T_SeaAbove_Droplet_Atlas` (Reef/Textures) is `referenced_by: []` — dead weight; the live chain uses the `_PROJECT` flipbook texture instead.
+
+**5b — Gate5 7-system audit (before/after):**
+
+| System | Emitters | Before | After | Compile |
+|---|---|---|---|---|
+| `NS_SakuraPetals` | CanopyDrift | CPU/Dynamic | **GPU/Fixed** | clean |
+| `NS_SakuraPetals_v2` | Petals+EM_PondRipple+EM_PetalPile | CPU/Dynamic mix | **GPU/Fixed ×3** (DeathEvent links kept) | clean |
+| `NS_SakuraGroundPetals` | GroundPetals | CPU/Dynamic | **GPU/Fixed** | clean |
+| `NS_SakuraWaterPetals` | WaterPetals | GPU/Dynamic | **GPU/Fixed** | clean |
+| `NS_CosmicPetalOrbit` | CosmicPetalOrbit | GPU/Dynamic | **GPU/Fixed** | clean |
+| `NS_Melodia_PetalEndlessLoop` | PetalLoop | GPU/Fixed | (already done) | clean |
+| `NS_WindRibbonGust` | Gust+Gust_Leader+E_OmniBurst | CPU/Dynamic | **CPU/Fixed** (reverted GPU) | clean |
+| `NS_SakuraPetalGust` (reference) | 3 | GPU/Fixed | untouched | **pre-existing compile error** |
+
+**5c — Gust DeathEvent wiring: BLOCKED by engine bug (evidence).** Wired `DeathEvent` handler on `NS_WindRibbonGust::Gust` (source `E_OmnidirectionalPetalBurst`, spawned_particles) + added `GenerateDeathEvent` module (persistent IDs auto-enabled). GPU compile failed: `error: use of undeclared identifier 'RWWriteDataSetBool1'` in `/Engine/Generated/NiagaraEmitterInstance.ush` — event payload writes a `NiagaraBool LocalSpace` flag unsupported on GPU. **The reference `NS_SakuraPetalGust` fails identically** (re-compiled live to confirm — pre-existing, not a regression). Reverted handler+module; WindRibbonGust kept CPU+Fixed (a broken compile is worse than CPU). Engine fix needed upstream; documented, not worked around.
+
+**5d — Orphaned Niagara nodes: confirmed + REMOVED (18 total, 3 BPs).** `search_nodes` re-derived exactly 15 `SetNiagaraVariableFloat` (`K2Node_CallFunction_43..57`); `get_node_details` on 43 showed `execute connected_to: []` → chain orphaned. Removed all 15 + 2 in `WBP_MelodiaQuillDialog` (SetText_19, SetTypewriterIndex_3 — truly orphaned; **spec correction:** VariableSet_2 kept — live event-fed chain) + 1 in `BP_JRPGPlayerController` (`CallFunction_0` fully disconnected; **spec correction:** spec's claimed node was wrong, the real orphan was _0). All 3 compile clean, 0 errors. Committed `b66e6f6c`.
+
+**5e — Save health + crash root cause (QOL finding):** Batch save of the 3 dirty BPs crashed the editor TWICE with `Error saving ... Cannot remove ... as it is read only!` (assert in `FMonolithEditorActions::HandleSavePackages`). Root cause: **3302 `.uasset`s project-wide had the ReadOnly attribute** (git-checkout artifact) — every tracked Content save was a crash. `attrib -R` cleared on project-owned trees (`EnvSandbox`, `Melodia`, `MelodiaIntegration`, `Characters`, `TurnBasedJRPGTemplate`); 259 remain under `Art/`, `Blueprints/`, `Experiments/`, `_PROJECT/`, `Sakura/`, `Stylization/`, `Surfaces_CC0/` (out of tonight's save path; `_PROJECT` red-line). Saves now succeed (`saved:1` each). **Any future save on those 259 will crash — clear before next write.**
+
+Gate5 ledger: **not recorded via `record_gate.py`** — gate5 was a queued event, not a formal Echo gate; evidence lives in this doc + `b66e6f6c` + `5697e2aa` (gate4).
+
 ---
 
 ## 6. Offline QOL triage (no editor needed)
 
 - **PPV drift** (`Docs/Plans/PPV_DRIFT_T3D_FIX_SPEC_2026-08-31.md`, source `Saved/Audit/ppv_canonical_state_2026-08-31.json`): 4 fixes — label `PPV_Dreamprint_Candidate` → `PPV_NikkiDream`, weights `MI_MeluColorGrade 0.18→0.69`, `MI_MelodiaInk 0.57→1.0`, plus a surface-domain drop. T3D inject spec, no direct `.uasset` writes. Ready for the quiet editor window after gate5.
-- **Graph dead-node cleanup:** 21 nodes, 3 BPs — the 15 Niagara nodes above plus 5 in `WBP_MelodiaQuillDialog` and 1 in `BP_JRPGPlayerController`. T3D cleanup spec, ready.
-- **MI naming + trimsheet:** vendor `T_` renames (~170 textures) and the staged Atlantis `SM_` bulk (333) are the same execution pattern — chunk, `unattended:true`, verify via `validate_naming_conventions`.
+- **Graph dead-node cleanup:** 21 nodes, 3 BPs — **DONE 2026-08-31** (18 removed: 15 Niagara + 2 Quill + 1 PC; spec corrected live for Quill VariableSet_2 and PC node identity). Commit `b66e6f6c`.
+- **MI naming + trimsheet:** vendor `T_` renames (~170 textures) and the staged Atlantis `SM_` bulk (333) — **Atlantis DONE 2026-08-31** (`333/333 SM_ATL_Palace_*`, `validate_naming_conventions` 333/333 pass 0 violations; plus `violin`→`SM_violin`, 10 Kenney `MI_`). Redirector cleanup via `FixupRedirectors` + `delete_asset` on the one leftover (BuildingF). Vendor `T_` renames remain queued.
 - **Zentrim Sakura swap:** owns Sakura renames — not executed tonight.
 
 All three are T3D/spec-mode and safe to queue behind gate5; none require a second MCP surface.
