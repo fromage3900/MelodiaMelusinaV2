@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "dry_run_spec",
+    "script": "Content/Python/expand_cosmo_master.py",
+    "source": "Docs/Plans/COSMO_MASTER_EXPANSION_2026-08-30.md"
+  },
+  "target": {
+    "path": "/Game/EnvSandbox/Materials/Masters/M_Cosmo_Master",
+    "current_size": 22826,
+    "target_size_approx": 572484,
+    "current_mfs": 1,
+    "target_mfs": 11
+  },
+  "source_masters": {
+    "M_Master_Toon_Cosmic": {
+      "size": 572484
+    },
+    "M_Master_Nikki": {
+      "size": 182083
+    }
+  },
+  "mfs_to_graft": {
+    "MF_SpaceParallax": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_SpaceParallax",
+      "size": 20886
+    },
+    "MF_ParallaxCore": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_ParallaxCore",
+      "size": 63445
+    },
+    "MF_NikkiDreamGrade": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade",
+      "size": 35969
+    },
+    "MF_NikkiPearlSheen": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiPearlSheen",
+      "size": 12876
+    },
+    "MF_NikkiPastelGrade": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiPastelGrade",
+      "size": 14550
+    },
+    "MF_NikkiPetalShadow": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiPetalShadow",
+      "size": 14050
+    },
+    "MF_NikkiGlitterHalo": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiGlitterHalo",
+      "size": 16037
+    },
+    "MF_ColorRamp3": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3",
+      "size": 16470
+    },
+    "MF_DF_ContactBlend": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_DF_ContactBlend",
+      "size": 30760
+    },
+    "MF_NormalAdjust": {
+      "path": "/Game/EnvSandbox/Materials/Functions/MF_NormalAdjust",
+      "size": 129971
+    }
+  },
+  "params_to_add": {
+    "celestial": [
+      "CelestialGalaxyScale/Strength",
+      "CelestialNebulaScale/Strength",
+      "CelestialStarIntensity",
+      "ConstellationScale/Strength",
+      "GalaxyStrength/Tint",
+      "NebulaStrength/Tint",
+      "FairyDustIntensity/Scale"
+    ],
+    "parallax": [
+      "ParallaxStrength",
+      "ParallaxScale",
+      "ParallaxHeight",
+      "ParallaxSteps",
+      "ParallaxShadowStrength",
+      "LayerA/B/C_ParallaxScale",
+      "LayerA/B/C_NormalStrength"
+    ],
+    "nikki": [
+      "NikkiDreamGrade_Active",
+      "NikkiPastelGrade_Active",
+      "NikkiPearlSheen_Active",
+      "NikkiGlitterHalo_Active",
+      "NikkiDreamWatercolor",
+      "NikkiPastelGrade",
+      "NikkiPastelStrength",
+      "NikkiPastelLift/PosMid/Ramp*",
+      "NikkiPearlSheen",
+      "NikkiPetalShadow",
+      "NikkiGlitterHalo_Scale/Intensity/TwinkleSpeed",
+      "NikkiGlitterHalo_Color",
+      "NikkiIrisTint",
+      "NikkiPastelBloom"
+    ],
+    "shadowdream": [
+      "ShadowDreamStrength",
+      "ShadowDreamTint",
+      "ShadowFlowerColor",
+      "ShadowFlowerStrength/Scale"
+    ]
+  },
+  "defaults": {
+    "ParallaxStrength": 0.45,
+    "ParallaxScale": 1.2,
+    "ParallaxSteps": 16.0,
+    "NikkiDreamGrade_Active": true,
+    "NikkiPastelGrade_Active": true,
+    "NikkiGlitterHalo_Active": false,
+    "ShadowDreamTint": "#8AA0D6",
+    "ShadowFlowerColor": "#E8A0BF"
+  },
+  "wiring_order": "BaseColor \u2192 MF_NikkiDreamGrade (DreamTint) \u2192 MF_NikkiPastelGrade \u2192 MF_SpaceParallax (celestial overlay) \u2192 MF_NikkiPearlSheen \u2192 Final",
+  "blocker": "Script requires `import unreal` (editor Python environment). Cannot run dry-run from cron. Owner must execute in-editor.",
+  "readiness": "READY_FOR_OWNER"
+}
