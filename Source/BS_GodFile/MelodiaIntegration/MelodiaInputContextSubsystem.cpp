@@ -6,12 +6,73 @@
 #include "GameFramework/PlayerController.h"
 #include "Kismet/GameplayStatics.h"
 #include "MelodiaAuthorityLocator.h"
+#include "Framework/Application/IInputProcessor.h"
+#include "Framework/Application/SlateApplication.h"
+#include "GenericPlatform/GenericApplication.h"
+#include "Input/Events.h"
+#include "InputCoreTypes.h"
+
+class FMelodiaCursorInputPreprocessor final : public IInputProcessor
+{
+public:
+	explicit FMelodiaCursorInputPreprocessor(UMelodiaInputContextSubsystem& InOwner) : Owner(&InOwner) {}
+
+	virtual bool HandleMouseButtonDownEvent(FSlateApplication&, const FPointerEvent& Event) override
+	{
+		if (Owner.IsValid()) Owner->HandlePointerEvent(Event.GetEffectingButton(), Event.GetScreenSpacePosition(), Event.GetPointerIndex(), Event.IsTouchEvent(), true);
+		return false;
+	}
+
+	virtual bool HandleMouseButtonUpEvent(FSlateApplication&, const FPointerEvent& Event) override
+	{
+		if (Owner.IsValid()) Owner->HandlePointerEvent(Event.GetEffectingButton(), Event.GetScreenSpacePosition(), Event.GetPointerIndex(), Event.IsTouchEvent(), false);
+		return false;
+	}
+
+	virtual bool HandleMouseMoveEvent(FSlateApplication&, const FPointerEvent& Event) override
+	{
+		if (Owner.IsValid() && !Event.IsTouchEvent()) Owner->HandleInputDevice(EMelodiaCursorDevice::MouseAndKeyboard);
+		return false;
+	}
+
+	virtual bool HandleKeyDownEvent(FSlateApplication&, const FKeyEvent& Event) override
+	{
+		if (Owner.IsValid()) Owner->HandleInputDevice(Event.GetKey().IsGamepadKey() ? EMelodiaCursorDevice::Gamepad : EMelodiaCursorDevice::MouseAndKeyboard);
+		return false;
+	}
+
+	virtual bool HandleAnalogInputEvent(FSlateApplication&, const FAnalogInputEvent& Event) override
+	{
+		if (Owner.IsValid() && Event.GetKey().IsGamepadKey()) Owner->HandleInputDevice(EMelodiaCursorDevice::Gamepad);
+		return false;
+	}
+
+private:
+	TWeakObjectPtr<UMelodiaInputContextSubsystem> Owner;
+};
+
+bool FMelodiaCursorVisualState::operator==(const FMelodiaCursorVisualState& Other) const
+{
+	return ContextTheme == Other.ContextTheme && BaseRole == Other.BaseRole && EffectiveRole == Other.EffectiveRole
+		&& ActiveDevice == Other.ActiveDevice && bPressed == Other.bPressed && bVisible == Other.bVisible;
+}
 
 void UMelodiaInputContextSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 	ContextStack.Reset();
 	NextHandleId = 1;
+	CursorVisualState = ResolveCursorVisualState(GetActiveContext(), RequestedCursorRole, false, ActiveCursorDevice, FPlatformMisc::SupportsTouchInput());
+	if (FSlateApplication::IsInitialized())
+	{
+		CursorInputPreprocessor = MakeShared<FMelodiaCursorInputPreprocessor>(*this);
+		FSlateApplication::Get().RegisterInputPreProcessor(CursorInputPreprocessor, 0);
+	}
+	RefreshTickerHandle = FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateWeakLambda(this, [this](float)
+	{
+		RefreshControllerAndWorld();
+		return true;
+	}));
 
 	if (UMelodiaAuthorityLocator* Locator = UMelodiaAuthorityLocator::Get(this))
 	{
@@ -22,6 +83,16 @@ void UMelodiaInputContextSubsystem::Initialize(FSubsystemCollectionBase& Collect
 
 void UMelodiaInputContextSubsystem::Deinitialize()
 {
+	if (RefreshTickerHandle.IsValid())
+	{
+		FTSTicker::GetCoreTicker().RemoveTicker(RefreshTickerHandle);
+		RefreshTickerHandle.Reset();
+	}
+	if (CursorInputPreprocessor.IsValid() && FSlateApplication::IsInitialized())
+	{
+		FSlateApplication::Get().UnregisterInputPreProcessor(CursorInputPreprocessor);
+	}
+	CursorInputPreprocessor.Reset();
 	ContextStack.Reset();
 	Super::Deinitialize();
 }
@@ -158,10 +229,6 @@ bool UMelodiaInputContextSubsystem::IsSavingAllowed() const
 void UMelodiaInputContextSubsystem::ApplyActiveContext(const EMelodiaInputContext PreviousContext)
 {
 	const EMelodiaInputContext Context = GetActiveContext();
-	if (Context == PreviousContext)
-	{
-		return;
-	}
 
 	if (APlayerController* PC = GetPlayerController())
 	{
@@ -179,7 +246,6 @@ void UMelodiaInputContextSubsystem::ApplyActiveContext(const EMelodiaInputContex
 				Mode.SetHideCursorDuringCapture(false);
 				PC->SetInputMode(Mode);
 			}
-			PC->bShowMouseCursor = true;
 			break;
 
 		case EMelodiaInputContext::Dialogue:
@@ -188,12 +254,10 @@ void UMelodiaInputContextSubsystem::ApplyActiveContext(const EMelodiaInputContex
 				Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 				PC->SetInputMode(Mode);
 			}
-			PC->bShowMouseCursor = true;
 			break;
 
 		case EMelodiaInputContext::Cinematic:
 			PC->SetInputMode(FInputModeGameOnly());
-			PC->bShowMouseCursor = false;
 			break;
 
 		case EMelodiaInputContext::None:
@@ -205,14 +269,95 @@ void UMelodiaInputContextSubsystem::ApplyActiveContext(const EMelodiaInputContex
 				Mode.SetHideCursorDuringCapture(false);
 				PC->SetInputMode(Mode);
 			}
-			PC->bShowMouseCursor = true;
 			break;
 		}
 	}
+	UpdateCursorVisualState();
 
 	UE_LOG(LogTemp, Log, TEXT("MELODIA_INPUT_CONTEXT %s -> %s (movement=%d interact=%d save=%d)"),
 		*UEnum::GetValueAsString(PreviousContext), *UEnum::GetValueAsString(Context),
 		IsMovementAllowed() ? 1 : 0, IsInteractionAllowed() ? 1 : 0, IsSavingAllowed() ? 1 : 0);
 
-	OnInputContextChanged.Broadcast(Context, PreviousContext);
+	if (Context != PreviousContext)
+	{
+		OnInputContextChanged.Broadcast(Context, PreviousContext);
+	}
+}
+
+FMelodiaCursorVisualState UMelodiaInputContextSubsystem::ResolveCursorVisualState(const EMelodiaInputContext Context,
+	const EMelodiaCursorRole BaseRole, const bool bPressed, const EMelodiaCursorDevice Device, const bool bTouchOnlyPlatform)
+{
+	FMelodiaCursorVisualState State;
+	State.ContextTheme = Context == EMelodiaInputContext::None ? EMelodiaInputContext::Exploration : Context;
+	State.BaseRole = BaseRole;
+	State.ActiveDevice = Device;
+	State.bPressed = bPressed;
+	State.bVisible = Context != EMelodiaInputContext::Cinematic && !bTouchOnlyPlatform && Device == EMelodiaCursorDevice::MouseAndKeyboard;
+	State.EffectiveRole = BaseRole == EMelodiaCursorRole::SlashedCircle
+		? EMelodiaCursorRole::SlashedCircle
+		: (bPressed ? EMelodiaCursorRole::Crosshairs : BaseRole);
+	return State;
+}
+
+void UMelodiaInputContextSubsystem::RefreshControllerAndWorld()
+{
+	APlayerController* CurrentController = GetPlayerController();
+	UWorld* CurrentWorld = GetGameInstance() ? GetGameInstance()->GetWorld() : nullptr;
+	if (AppliedPlayerController.Get() != CurrentController || AppliedWorld.Get() != CurrentWorld)
+	{
+		AppliedPlayerController = CurrentController;
+		AppliedWorld = CurrentWorld;
+		ApplyActiveContext(GetActiveContext());
+	}
+}
+
+void UMelodiaInputContextSubsystem::HandlePointerEvent(const FKey& Button, const FVector2D& ScreenPosition,
+	const int32 PointerIndex, const bool bIsTouch, const bool bPressed)
+{
+	HandleInputDevice(bIsTouch ? EMelodiaCursorDevice::Touch : EMelodiaCursorDevice::MouseAndKeyboard);
+	bPointerPressed = bPressed;
+	UpdateCursorVisualState();
+
+	FMelodiaCursorPointerData Data;
+	Data.Button = Button;
+	Data.ScreenPosition = ScreenPosition;
+	Data.PointerIndex = PointerIndex;
+	Data.bIsTouch = bIsTouch;
+	Data.ActiveContext = GetActiveContext();
+	if (bPressed) OnCursorPointerDown.Broadcast(Data);
+	else OnCursorPointerUp.Broadcast(Data);
+}
+
+void UMelodiaInputContextSubsystem::HandleInputDevice(const EMelodiaCursorDevice Device)
+{
+	if (ActiveCursorDevice != Device)
+	{
+		ActiveCursorDevice = Device;
+		UpdateCursorVisualState();
+	}
+}
+
+void UMelodiaInputContextSubsystem::SetCursorRole(const EMelodiaCursorRole Role)
+{
+	if (RequestedCursorRole != Role)
+	{
+		RequestedCursorRole = Role;
+		UpdateCursorVisualState();
+	}
+}
+
+void UMelodiaInputContextSubsystem::UpdateCursorVisualState()
+{
+	const FMelodiaCursorVisualState NewState = ResolveCursorVisualState(GetActiveContext(), RequestedCursorRole,
+		bPointerPressed, ActiveCursorDevice, FPlatformMisc::SupportsTouchInput());
+	if (APlayerController* PC = GetPlayerController())
+	{
+		PC->bShowMouseCursor = NewState.bVisible;
+		PC->CurrentMouseCursor = static_cast<EMouseCursor::Type>(NewState.EffectiveRole);
+	}
+	if (NewState != CursorVisualState)
+	{
+		CursorVisualState = NewState;
+		OnCursorVisualStateChanged.Broadcast(CursorVisualState);
+	}
 }

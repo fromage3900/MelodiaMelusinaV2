@@ -34,7 +34,7 @@ public class BS_GodFile : ModuleRules
 			"HarmonixMetasound"  // UMusicClockComponent
 		});
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "UMG", "Slate", "SlateCore", "HTTP", "Json" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "UMG", "Slate", "SlateCore", "ApplicationCore", "HTTP", "Json", "NiagaraUIRenderer" });
 
 		if (Target.bBuildEditor)
 		{

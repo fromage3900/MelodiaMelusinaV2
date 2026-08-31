@@ -27,9 +27,13 @@ class TestQuillPresentationAndCursor(unittest.TestCase):
             content = f.read()
 
         self.assertIn("[/Script/Engine.UserInterfaceSettings]", content)
-        self.assertIn("SoftwareCursors=", content)
-        self.assertIn("WBP_MelodiaCursor", content)
-        self.assertIn("WBP_MelodiaCursorInteract", content)
+        expected = (
+            'SoftwareCursors=((Default,"/Game/Melodia/UI/Cursor/WBP_MelodiaCursor.WBP_MelodiaCursor_C"),'
+            '(Hand,"/Game/Melodia/UI/Cursor/WBP_MelodiaCursorInteract.WBP_MelodiaCursorInteract_C"),'
+            '(Crosshairs,"/Game/Melodia/UI/Cursor/WBP_MelodiaCursor.WBP_MelodiaCursor_C"),'
+            '(SlashedCircle,"/Game/Melodia/UI/Cursor/WBP_MelodiaCursorForbidden.WBP_MelodiaCursorForbidden_C"))'
+        )
+        self.assertIn(expected, content)
 
     def test_melodia_quill_wbp_assets_exist(self):
         """Verifies that all 4 Melodia Quill UI WBP assets exist in the Content directory."""
@@ -40,6 +44,7 @@ class TestQuillPresentationAndCursor(unittest.TestCase):
             "Content/Melodia/UI/Quill/WBP_MelodiaQuillBackground.uasset",
             "Content/Melodia/UI/Cursor/WBP_MelodiaCursor.uasset",
             "Content/Melodia/UI/Cursor/WBP_MelodiaCursorInteract.uasset",
+            "Content/Melodia/UI/Cursor/WBP_MelodiaCursorForbidden.uasset",
         ]
         for rel_path in wbp_files:
             full_path = os.path.join(self.project_root, rel_path)
