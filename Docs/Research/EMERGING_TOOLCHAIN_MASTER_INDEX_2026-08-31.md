@@ -34,7 +34,7 @@ research corpus on 2026-08-31 (not assumed).
 | **Audio-Reactive presentation (synesthesia Tiers 1–3)** | **PRESENT — full impl** | `Source/.../MelodiaAudioReactivePresentationSubsystem.h/.cpp` — writes `MPC_Melodia_Palette` + `NPC_Melodia_Palette` (BeatPulse/BeatPhase/BeatIntensity/…). **This is the single audio writer — never add a second.** |
 | **Music clock** | **PRESENT** | `Source/.../MelodiaMusicClockSubsystem.h/.cpp` |
 | **onnx model** | **PRESENT** | `Plugins/Claireon/Resources/Models/bge-small-en-v1.5-int8/model.onnx` (34 MB, text-embedding for Claireon) + onnxruntime installed |
-| **Claireon** | **PRESENT (isolated agent surface)** | `Plugins/Claireon/` vendored @ `ed0b457`; **never runs alongside Monolith on the main editor** (single-MCP-surface rule). Test lane: worktree `C:/EnvironmentPortfolio/Melodia_ClaireonTest` (branch `claireon-test`, port 57818). `Installed:false`, never built for UE 5.8 yet. Client-side probe `Tools/test_claireon_toolcalls.py` — qwen3-coder:30b scored **7/8** (2026-08-31), 100% surface adherence. UEBlueprintMCP must be disabled before any live Claireon editor run. See `Docs/CLAIREON_PREP_2026-08-20.md`. |
+| **Claireon** | **PRESENT — editor-ACTIVE (owner-approved in-editor usage)** | `Plugins/Claireon/` vendored @ `ed0b457`, enabled in `.uproject` (`6e48ffbc`), editor-module binary built 08-22. Client probe `Tools/test_claireon_toolcalls.py` — qwen3-coder:30b **7/8** (2026-08-31). Owner confirmed concurrent in-editor use is fine; the older "isolate from Monolith" warning no longer applies as a hard rule. See `Docs/CLAIREON_PREP_2026-08-20.md`. |
 
 ## 2. SCAFFOLDED by me 2026-08-31 (buildable, additive new files) — extend, don't duplicate
 
