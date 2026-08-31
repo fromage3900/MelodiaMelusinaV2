@@ -877,6 +877,111 @@
         "schema": "melodia.resonant_world.validate.v1",
         "fields": ["ok", "checks", "materialization"]
       }
+    },
+    "melodia_studio_analyze_song": {
+      "category": "studio",
+      "description": "Analyze musical structure: detect sections (intro/verse/chorus/bridge/outro), estimate tempo, compute dynamics, map to biomes.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "midi_path": {
+            "type": "string",
+            "description": "Absolute path to a .mid file"
+          }
+        },
+        "required": [
+          "midi_path"
+        ]
+      },
+      "output": {
+        "schema": "melodia.studio.analyze_song.v1",
+        "fields": [
+          "tempo_bpm",
+          "time_signature",
+          "total_duration_sec",
+          "total_bars",
+          "sections",
+          "dynamics_curve",
+          "suggested_biomes"
+        ]
+      }
+    },
+    "melodia_studio_list_presets": {
+      "category": "studio",
+      "description": "List available walkable terrain presets and dressing styles.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.studio.presets.v1",
+        "fields": [
+          "ok",
+          "walkable_presets",
+          "dressing_styles",
+          "magic_systems",
+          "prop_kinds"
+        ]
+      }
+    },
+    "melodia_studio_get_health": {
+      "category": "studio",
+      "description": "Run a read-only health check: MIDI directory, voxel tool, Blender addon paths, generated scenes, and Gaea integration status.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.studio.health.v1",
+        "fields": [
+          "ok",
+          "paths",
+          "midi_count",
+          "scenes_count"
+        ]
+      }
+    },
+    "melodia_studio_export_fbx": {
+      "category": "studio",
+      "description": "Generate smooth terrain from MIDI and export as UE5-compatible FBX.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "midi_path": {
+            "type": "string",
+            "description": "Absolute path to a .mid file"
+          },
+          "preset_id": {
+            "type": "string",
+            "description": "Terrain preset (default: walkable_valley)"
+          },
+          "output_path": {
+            "type": "string",
+            "description": "Optional: override output FBX path"
+          }
+        },
+        "required": [
+          "midi_path"
+        ]
+      },
+      "output": {
+        "schema": "melodia.studio.export_fbx.v1",
+        "fields": [
+          "ok",
+          "fbx_path",
+          "size_bytes"
+        ]
+      }
     }
   },
   "categories": {
@@ -894,7 +999,8 @@
     "economy": "P0 global economy: healing, mana, utility, grief; rhythm skill chains",
     "encounter": "Dungeon encounter lifecycle: start, enemy actions, resolution",
     "quest": "Quest progression tracking and completion gates",
-    "resonant_world": "Deterministic musical voxel worlds, magical passages, quantum selection, and integration handoffs"
+    "resonant_world": "Deterministic musical voxel worlds, magical passages, quantum selection, and integration handoffs",
+    "studio": "Melodia Studio Blender addon: MIDI structure analysis, terrain presets, health checks, FBX export"
   },
   "integration_notes": {
     "monolith_delegation": "Read-only tools fall back to offline spec files when Monolith is unreachable. No tool blocks on a dead editor.",
