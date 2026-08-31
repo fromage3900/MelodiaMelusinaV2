@@ -5,22 +5,23 @@
 
 ---
 
-## 1. The honest split: implementable vs external
+## 1. The honest split: implementable vs external (CORRECTED 2026-08-31 late — verified on disk)
 
 | Row | Can we build it natively? | Why |
 |---|---|---|
+| **SpeedTree** | ✅ **CORE — PRESENT, ESTABLISHED** | `M_SpeedTreeMaster.uasset` + `reset_speedtree_wind_instances.py` exist in Content. Production plant authority, present. |
 | **Unreal MCP** | ✅ **YES — VERY HIGH PRIORITY** | We already have `Plugins/UnrealMCP` + `Monolith`; the research names the exact safe-tool surface to implement |
-| **UE Procedural Vegetation / PCG** | ✅ **YES** | `PCGExtendedToolkit` present; UE-native PCG growth (`PlaceSpeedTreeBiomeTest`) |
-| **UE Mesh Terrain** | ✅ **YES** | UE 5.8-native mesh terrain; isolated test-map experiment |
-| **Neural shaders/materials** | ✅ **YES (scaffold)** | `NNERuntimeORT` already a plugin; material-side neural inference needs an `.onnx` model — interface implementable, model TBD |
-| Houdini / Copernicus / Gaea | ✅ already present | HoudiniEngine, Copernicus tools, GaeaUnrealTools already integrated |
+| **UE Procedural Vegetation / PCG** | ✅ **YES** | `PCGExtendedToolkit` present; UE-native PCG growth — but must use the PRESENT SpeedTree assets, not "supplement a missing system" |
+| **Neural shaders/materials** | ✅ **YES — an .onnx model EXISTS on disk** | `Plugins/Claireon/Resources/Models/bge-small-en-v1.5-int8/model.onnx` (34 MB) + onnxruntime installed. **Correction:** I previously claimed no model exists — wrong. (The present model is a text-embedding model for Claireon retrieval, not a material-shading network, so a *material* onnx is still a gap — but the claim "no onnx exists" was false.) |
+| **Houdini 22 / Houdini Engine** | ✅ **YES — FULLY REVIEWED NOW** | `MARA_P0_P3_HOUDINI_EXECUTION_PLAN_2026-08-29.md` is executable: HDA families (`HDA_ENV_TerrainStamp`, `HDA_ENV_PathCorridor`, `HDA_ENV_ScatterMaskBuilder`, `HDA_ENV_HeroRockFamily`, `HDA_ENV_LOD_Collision_Batch`, `HDA_CH_CurlCluster`), Session Sync/Node Sync, bake-not-live-cook rule. **Correction:** I previously did not review the Houdini plans — now reviewed. |
+| Copernicus / Gaea | ✅ present | Tools present |
 | IlluGen / LiquiGen / EmberGen | ❌ external | JangaFX commercial tools, not vendorable |
-| Cascadeur / Toolbag / World Creator / SpeedTree-modeler | ❌ external | Commercial authoring tools |
+| Cascadeur / Toolbag / World Creator | ❌ external | Commercial authoring tools |
 | RTX Kit | ❌ external | NVIDIA NvRTX commercial |
 | Procedura | ❌ external | Commercial agentic modeling |
 | Magpie | ⚠️ seam only | research-only; integrated as read-only seam (see DASH_MAGPIE_NATIVE_INTEGRATION) |
 
-**Of the ~14 R&D rows, the genuinely buildable ones in UE 5.8 are: Unreal MCP (VHP), UE Procedural Vegetation/PCG (C-R&D), UE Mesh Terrain (A-R&D), Neural materials (Watch, scaffold).** The rest are commercial/external and cannot be natively implemented without purchase/license.
+**Corrections made:** SpeedTree is NOT external — it is present and Core. An .onnx model IS on disk (embedding model). The Houdini plans ARE executable and are now reviewed. My earlier matrix misclassified all three.
 
 ---
 

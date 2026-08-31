@@ -10,9 +10,11 @@ bool UMelodiaVegetationGrowthSubsystem::PlaceSpeedTreeBiomeTest(AActor* RegionAn
 		return false;
 	}
 	// Scaffold: validates the research-named tool and logs intent. Live: a PCG
-	// graph spawns SpeedTree-family plants in the sandbox region around RegionAnchor,
-	// asserting it supplements (never replaces) the SpeedTree biome. Requires a
-	// live editor + Monolith :9316 + sandbox map only.
+	// graph spawns the PRESENT SpeedTree plants (M_SpeedTreeMaster) in the sandbox
+	// region around RegionAnchor, then runs reset_speedtree_wind_instances to bind
+	// wind. PCG owns runtime scatter; SpeedTree owns plants (Houdini plan rule:
+	// bake, don't leave live HDA cooking). Requires a live editor + Monolith :9316
+	// + sandbox map only.
 	UE_LOG(LogTemp, Log, TEXT("[VegRND] PlaceSpeedTreeBiomeTest family=%s anchor=%s"),
 		*BiomeFamily.ToString(), *RegionAnchor->GetName());
 	return true;
