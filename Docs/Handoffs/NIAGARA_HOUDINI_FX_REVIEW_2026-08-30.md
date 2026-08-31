@@ -147,6 +147,21 @@ The `0fe7b877` reef ingest (55 textures + 23 meshes) landed **geometry only**: e
 
 **JellyVeil correction:** `Reef/Meshes/JellyVeil.uasset` is a **MaterialInstanceConstant, not a mesh** — there is no veil *mesh*; the "veil" is a material (naming mismatch, catalog-worthy). Also `JellyArm_000..007` + `JELLY_Arms.fbx` coexist — the 8 variants appear to be the arms FBX's sub-meshes exported separately.
 
+### 5.5 Jelly assembly + P0 Sea Above placement — DONE (2026-08-31 05:50 UTC)
+
+**Correction to §5.3:** `JELLY_Bell` was **already wired to `MI_Jelly_Bell`** — `project_query find_references` is blind to SkeletalMesh `.materials[]` struct bindings (same false-negative as the cloth meshes). Verified via `.materials[0].material_interface` live read. That removes blocker #2 from §5.3.
+
+**Scale proven uniform:** `get_vertex_data` on `JELLY_Arms` shows positions ±2.2M units; bell extent ~930k. **Ratio bell:arms ≈ 4.7× — matches real jelly proportions** (1 m bell → 4.3 m arms). Both authored at 1:10000×; a **uniform 0.0001 scale** is the correct fix (not a hack). FBX `UnitScaleFactor=1.0` confirms the magnitude is baked into geometry.
+
+**Work delivered (commit `41c20871`):**
+- `BP_Jelly_SeaAbove` (Reef/Blueprints): Actor BP, `JellyBell` SkeletalMeshComponent (root, JELLY_Bell) + `JellyArms` StaticMeshComponent (child, JELLY_Arms). Compiled 0 errors; saved via `save_packages` (asset API refused the save — editor save path succeeded; noted for future BP creation).
+- `Jelly_SeaAbove_01` placed in `LV_SeaAbove_Prototype` at [0,0,0] **scale 0.0001** (→ 93 u bell / 435 u arms), tags `Melodia/SeaAbove/Jellyfish/P0`.
+- **Reef bed:** 10 actors (Coral_Brain/Fan/Staghorn/Table/TubeSponges, Kelp_Tall/Cluster, Starfish, RockChunk_L, Flora_Fern) at 3–5× scale around the jelly.
+- Level saved; verified 47 actors via `get_level_actors` (was ~37 with zero reef content).
+- Confirmed `SeaAbove_UpwardDroplets_Prototype` NiagaraActor already placed in level (tagged `SeaAbove_Prototype`).
+
+**Remaining jelly items:** (a) AnimBP for the 2-bone bell (pulse) — authoring, not wiring; (b) Houdini lane should re-export at correct units so future imports don't need the 0.0001 actor-scale; (c) jelly at [0,0,0] overlaps `SeaAbove_CentralCore_Proxy` — position TBD by level design; (d) `T_SeaAbove_Droplet_Atlas` archive blocked (rename refusal family — documented, harmless, unreferenced).
+
 ---
 
 ## 6. Offline QOL triage (no editor needed)
