@@ -20,9 +20,6 @@ try:
 except ImportError:
     HAS_DEPS = False
 
-if not HAS_DEPS:
-    raise unittest.SkipTest("numpy not available in this Python environment")
-
 
 # ---------------------------------------------------------------------------
 # Character Wardrobe & Mesh Data Models
@@ -313,6 +310,7 @@ class TestRealWorldWorkloadsTier4(unittest.TestCase):
             self.assertGreaterEqual(ft, 0.0)
             self.assertLessEqual(ft, 7.0)
 
+    @unittest.skipUnless(HAS_DEPS, "numpy not available in this Python environment")
     def test_workload_stage_light_reflection_and_toon_shadow_floor(self):
         """End-to-End Workflow 2: Multi-light studio evaluation, micro-PBR specularity & shadow floor check."""
         sim = ShadingSimulator()

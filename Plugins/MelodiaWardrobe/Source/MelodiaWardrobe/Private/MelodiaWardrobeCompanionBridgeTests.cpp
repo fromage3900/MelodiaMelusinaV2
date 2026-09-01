@@ -2,6 +2,7 @@
 
 #include "MelodiaCompanionWardrobeBridge.h"
 #include "MelodiaWardrobeComponent.h"
+#include "Components/SceneComponent.h"
 #include "Misc/AutomationTest.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(
@@ -44,7 +45,7 @@ bool FMelodiaCompanionWardrobeBridgeFailClosedTest::RunTest(const FString& Param
 
 	TestFalse(
 		TEXT("Bridge does not accept an arbitrary provider"),
-		Bridge->SetWardrobeProvider(NewObject<UActorComponent>()));
+		Bridge->SetWardrobeProvider(NewObject<USceneComponent>()));
 	TestEqual(
 		TEXT("Request without a wardrobe provider is rejected"),
 		Bridge->RequestPresentationWithProfile(Profile),
