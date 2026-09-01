@@ -32,6 +32,14 @@ Monolith reachable). The only package on disk is the historical 2026-08-14 build
 certification. See [today's closeout record](Docs/Handoffs/P0_CLOSEOUT_TODAY_2026-09-01.md) and the
 [golden-run contract](specs/p0/core_p0_dream_golden_run.v1.json).
 
+**Sea Above level pass (2026-09-01):** the canonical landscape/cathedral layout is preserved and
+the live map is organized with zero actors at the Outliner root. Recast paths now pass for
+entry → Quill and Quill → music-key; gameplay anchors carry PCG exclusion/falloff metadata.
+The Starskiff dock now passes boarding, possession, movement, and disembark runtime checks; the
+remaining HOLD is the uninterrupted real-input traversal/cymatics capture. See the
+[level organization and route handoff](Docs/Handoffs/SEA_ABOVE_GAMEPLAY_PATHS_AND_LEVEL_ORGANIZATION_2026-09-01.md)
+and [updated-landscape integration evidence](Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json).
+
 See the [system architecture](Docs/melodia-architecture.svg) — four pillars converging onto two authority layers, with local model tooling clearly secondary.
 
 ```

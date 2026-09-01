@@ -1,0 +1,162 @@
+{
+  "recorded_at": "2026-09-01",
+  "map": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "scope": "updated canonical landscape gameplay alignment, PCG falloff anchors, navigation, and Outliner organization",
+  "canonical_policy": {
+    "landscape_and_cathedral_are_owner_canonical": true,
+    "canonical_geometry_moved": false,
+    "canonical_transform_guard_passed": true,
+    "canonical_transform_sha256": "d58043c7d483e711b9a9b522a84363321c874218be0a908f75c11fa6a8d84008",
+    "landscape_deduplication": {
+      "remaining_landscape_actor": "CanonicalLandscape",
+      "remaining_material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Terrain/MI_SeaAbove_CanonicalLandscape_Substrate",
+      "loaded_streaming_proxy_count": 64,
+      "noncanonical_loaded_proxy_count": 0,
+      "removed_level_actors": [
+        {
+          "name": "Landscape_UAID_7C5758FA1CACA4FC02_1199959547",
+          "former_location": [-1534500, -1534500, 10525],
+          "former_material": "/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_CliffGrass"
+        },
+        {
+          "name": "Landscape_UAID_7C5758FA1CAC91FD02_2004298250",
+          "former_location": [-249752.2258, -249752.2258, 62580],
+          "former_material": "/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_CoastalCliff"
+        },
+        {
+          "name": "Gaea_LiquidCathedral_Terrain",
+          "class": "StaticMeshActor",
+          "former_location": [0, 0, 13258]
+        }
+      ],
+      "source_assets_deleted": false
+    }
+  },
+  "gameplay_anchors": {
+    "SeaAbove_PlayerStart": [0, 133, 14305],
+    "SeaAbove_QuillTrigger_Cutscene": [-910, 500, 14269.45],
+    "SeaAbove_Starskiff_MK2": [-800, 1200, 10535],
+    "music_key_formation": {
+      "node_count": 12,
+      "x_range": [-880, 880],
+      "y_range": [-980, -927.74],
+      "z_range": [14227.43, 14285.82],
+      "placement_method": "Per-node downward collision sampling against the cathedral surface plus 128 cm actor clearance; XY order and 160 cm spacing preserved."
+    }
+  },
+  "pcg_falloff_contract": {
+    "anchor_tags": [
+      "PCG_Exclude",
+      "WP_NoScatter"
+    ],
+    "tagged_anchor_count": 15,
+    "falloff_splines": {
+      "PCG_PathFalloff_EntryToQuill": {
+        "length_cm": 982.6958,
+        "tags": ["PCG_Spline", "WP_NoScatter", "SeaAbove.Falloff.Arrival"]
+      },
+      "PCG_PathFalloff_QuillToMusicKey": {
+        "length_cm": 1671.0691,
+        "tags": ["PCG_Spline", "WP_NoScatter", "SeaAbove.Falloff.MainTraversal"]
+      }
+    },
+    "density_bands_cm": {
+      "hard_exclusion": [0, 300],
+      "transition": [300, 900],
+      "full_density": [900, null]
+    },
+    "world_fields_reused": [
+      "WorldField.Resonance",
+      "WorldField.Tension",
+      "WorldField.Moisture",
+      "WorldField.FilterFlow"
+    ],
+    "existing_graph_authorities": {
+      "cathedral_resonance": "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_ResonanceCathedral",
+      "baroque_perimeter": "/Game/EnvSandbox/PCG/Styles/Baroque/PCG_Baroque_Scatter",
+      "water_edge": "/Game/EnvSandbox/PCG/Universal/PCG_WaterEdgeScatter",
+      "nave_vault": "/Game/EnvSandbox/PCG/Styles/Baroque/PCG_BaroqueNaveVaultEx",
+      "colonnade": "/Game/EnvSandbox/PCG/Styles/Baroque/PCG_BaroqueColonnade",
+      "pilasters": "/Game/EnvSandbox/PCG/Styles/Baroque/PCG_BaroquePilasterEx"
+    },
+    "new_parallel_pcg_graph_created": false,
+    "vertical_illusion_exclusion": "No scatter may bridge the real-ocean/false-ocean empty band."
+  },
+  "navigation": {
+    "bounds_location": [-450, 100, 14000],
+    "build_complete": true,
+    "entry_to_quill": {
+      "status": "pass",
+      "shortest_distance_cm": 982.6958,
+      "estimated_time_seconds": 2.4567
+    },
+    "quill_to_music_key": {
+      "status": "pass",
+      "shortest_distance_cm": 1671.0692,
+      "estimated_time_seconds": 4.1777
+    },
+    "music_key_to_starskiff_boarding": {
+      "status": "placement_and_runtime_seam_pass",
+      "route_type": "Glide transition, not navmesh",
+      "dock_actor": "SM_Starskiff_Dock_Blockout_P0",
+      "dock_location": [-800, 900, 10510],
+      "dock_dimensions_cm": [600, 400, 50],
+      "dock_collision_surface_z": 10535,
+      "boarding_anchor": {
+        "actor": "SeaAbove_StarskiffDock_BoardingAnchor",
+        "location": [-800, 900, 10585],
+        "distance_to_starskiff_cm_in_pie": 313.2523,
+        "native_boarding_radius_cm": 400
+      },
+      "falloff_spline": {
+        "actor": "PCG_PathFalloff_MusicKeyToStarskiffDock",
+        "length_cm": 4468.3188,
+        "tags": ["PCG_Spline", "WP_NoScatter", "SeaAbove.Falloff.GlideToStarskiffDock"]
+      }
+    }
+  },
+  "organization": {
+    "loaded_actor_count_note": "World Partition changed the live loaded census during the pass; 302 was the maximum observed before streaming settled to 240 after spline creation.",
+    "maximum_loaded_actor_count_observed": 302,
+    "final_loaded_actor_count_observed": 240,
+    "newly_loaded_root_actors_organized": 52,
+    "root_actor_count_after_pass": 0,
+    "pcg_folders": [
+      "40_PCG/Cathedral_Resonance",
+      "40_PCG/Cathedral_Structure",
+      "40_PCG/Falloff_Controls",
+      "40_PCG/Scatter_Perimeter",
+      "40_PCG/Scatter_WaterEdge",
+      "40_PCG/World"
+    ],
+    "full_loaded_actor_transform_sha256": "b0f57e31323a114682c9f6975a9c62fb3586425f5709d917dca709551de779eb"
+  },
+  "verification": {
+    "map_saved": true,
+    "dirty_packages_after_integration_save": 0,
+    "post_dedup_world_partition_tombstones": [
+      "/Game/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/JP/TEB2WQ48AXRTRNRW7E9GAX"
+    ],
+    "post_dedup_tombstone_note": "The removed external actor package no longer exists on disk; Unreal keeps its deleted package dirty until the editor unloads the tombstone.",
+    "errored_blueprints": 0,
+    "offline_tests": {
+      "command": "python -m unittest Content.Python.Tests.test_sea_above_level_loop_contract Content.Python.Tests.test_sea_above_t3d_contract Content.Python.Tests.test_qsc_allowlist_contract",
+      "tests_run": 12,
+      "status": "pass"
+    },
+    "starskiff_pie_probe": {
+      "locked_boarding_before_ready_flag": false,
+      "readiness_flag": "flag.sea_above.starskiff_ready",
+      "boarding_after_ready_flag": true,
+      "is_boarded_after_boarding": true,
+      "player_controller_possessed_starskiff": true,
+      "movement_input_accepted": true,
+      "movement_delta_cm": 200,
+      "disembark_restored_melusina_control": true,
+      "is_boarded_after_disembark": false,
+      "certification_boundary": "The player was placed at the dock and readiness was set through runtime calls. This proves placement and gameplay seams, not real-input traversal certification."
+    }
+  },
+  "status": "PLACEMENT_RUNTIME_PASS",
+  "remaining_blocker": "Run one uninterrupted focused-player-input Sea Above traversal through Quill, music-key completion, Glide landing, Starskiff boarding/movement/disembark, with assertion JSON and visible cymatics frames."
+}
