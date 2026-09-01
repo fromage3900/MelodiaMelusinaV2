@@ -19,16 +19,7 @@ on:
 
 env:
   UE_ROOT: C:\Program Files\Epic Games\UE_5.8
-  # NOTE: hardcoded to this exact machine/path. This only works because
-  # the self-hosted runner IS this checkout at this exact location; it is
-  # not derived from ${{ github.workspace }}. Switching to
-  # "${{ github.workspace }}\BS_GodFile.uproject" would be more portable
-  # and should be safe (self-hosted runners check out into their own
-  # workspace dir, and BS_GodFile.uproject lives at repo root) -- left
-  # as-is here since changing the physical runner path is out of scope
-  # for this pass, but do this if/when a second self-hosted runner or a
-  # different checkout path is ever introduced.
-  PROJECT_PATH: C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject
+  PROJECT_PATH: ${{ github.workspace }}\BS_GodFile.uproject
 
 jobs:
   build:
