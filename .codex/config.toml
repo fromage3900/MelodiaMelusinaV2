@@ -2,6 +2,9 @@
 command = "python"
 args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\agent_bridge_mcp.py']
 
+[mcp_servers.agent-bridge.tools.delegate_to_agent]
+approval_mode = "approve"
+
 [mcp_servers.blender-mcp]
 command = "python"
 args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\blender_mcp_adapter.py']
@@ -44,6 +47,9 @@ approval_mode = "approve"
 approval_mode = "approve"
 
 [mcp_servers.monolith.tools.describe_query]
+approval_mode = "approve"
+
+[mcp_servers.monolith.tools.ai_query]
 approval_mode = "approve"
 
 [mcp_servers.ollama]

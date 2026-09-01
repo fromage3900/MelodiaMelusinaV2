@@ -6,15 +6,15 @@
 
 | Metric | Value |
 |---|---:|
-| .md files scanned | 910 |
-| Technical claims extracted | 2658 |
+| .md files scanned | 911 |
+| Technical claims extracted | 2689 |
 | Source headers indexed | 167 |
 | C++ classes indexed | 79 |
 | C++ functions indexed | 359 |
-| Source mismatches (MISSING/STALE) | 998 |
+| Source mismatches (MISSING/STALE) | 1029 |
 | Monolith mismatches | 0 |
 | Cross-doc contradictions | 52 |
-| Stale drive paths | 149 |
+| Stale drive paths | 179 |
 | Stale docs (>14d without update) | 439 |
 
 ## Source Cross-Reference Findings
@@ -22,7 +22,7 @@
 Claims from docs that reference C++ names not found in scanned source trees.
 Scanned: `Source/` + MelodiaCore, QuillScript, Monolith, UEBlueprintMCP plugin dirs.
 
-### * MISSING - `cpp_file` (298 occurrences)
+### * MISSING - `cpp_file` (312 occurrences)
 
 - `_ROADBLOCKS_2026-07-31.md:84` - `MelodiaMinimalHUD.cpp`
   - File `MelodiaMinimalHUD.cpp` not found under scanned Source/ or Plugins/ trees
@@ -84,9 +84,9 @@ Scanned: `Source/` + MelodiaCore, QuillScript, Monolith, UEBlueprintMCP plugin d
 - `Docs\Backend\MELODIA_BACKEND_INTEGRATION_PLAN_2026-08-28.md:403` - `MelodiaEditorValidatorSubsystem.h`
   - File `MelodiaEditorValidatorSubsystem.h` not found under scanned Source/ or Plugins/ trees
   - _// Source/BS_GodFile/MelodiaIntegration/MelodiaEditorValidatorSubsystem.h_
-- *... and 278 more*
+- *... and 292 more*
 
-### * MISSING - `system_ref` (700 occurrences)
+### * MISSING - `system_ref` (717 occurrences)
 
 - `_AGENT_WORKING_AGREEMENT.md:58` - `UMelodiaHairComponent`
   - Class `UMelodiaHairComponent` not indexed in any scanned Source/ or Plugins/ header
@@ -148,7 +148,7 @@ Scanned: `Source/` + MelodiaCore, QuillScript, Monolith, UEBlueprintMCP plugin d
 - `Docs\_Superseded\MELODIA_ROGUELIKE_GAMELOOP_COMPLETION_PLAN_2026-07-14.md:58` - `AMelodiaDungeonRunCoordinator`
   - Class `AMelodiaDungeonRunCoordinator` not indexed in any scanned Source/ or Plugins/ header
   - _`AMelodiaDungeonRunCoordinator`_
-- *... and 680 more*
+- *... and 697 more*
 
 ## Cross-Doc Contradictions
 
@@ -160,20 +160,20 @@ Scanned: `Source/` + MelodiaCore, QuillScript, Monolith, UEBlueprintMCP plugin d
 
 ### `UMelodiaHairComponent`
 
-- Claimed present in 12 doc(s) and absent/broken in 4 doc(s)
-- **Present-claiming docs:** Docs\BLUEPRINT_WIRING_CHECKLIST_2026-07-30.md, Docs\Handoffs\CORE_LOOP_STATUS_AND_AGENT_PROMPTS_2026-08-07.md, Docs\Handoffs\GEMINI_UI_POLISH_2026-07-31.md, Docs\Handoffs\KAWAII_HAIR_SKIRT_INTEGRATION_FIX_2026-08-29.md, Docs\Handoffs\TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md, Docs\MELUSINA_ANIMATION_PIPELINE_REVIEW_2026-08-20.md, Docs\MELUSINA_HAIR_REEXPORT_CHECKLIST_2026-07-30.md, Docs\MELUSINA_IDLE_GEO_FIX_2026-08-20.md, Docs\MELUSINA_SIR_SKILL_UI_AUTHORING_2026-07-29.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, _AGENT_WORKING_AGREEMENT.md, _VERTICAL_SLICE_SCOPE.md
+- Claimed present in 13 doc(s) and absent/broken in 4 doc(s)
+- **Present-claiming docs:** Docs\BLUEPRINT_WIRING_CHECKLIST_2026-07-30.md, Docs\Handoffs\CORE_LOOP_STATUS_AND_AGENT_PROMPTS_2026-08-07.md, Docs\Handoffs\GEMINI_UI_POLISH_2026-07-31.md, Docs\Handoffs\KAWAII_HAIR_SKIRT_INTEGRATION_FIX_2026-08-29.md, Docs\Handoffs\TONIGHT_PORTFOLIO_STUDIO_PREP_2026-08-12.md, Docs\MELUSINA_ANIMATION_PIPELINE_REVIEW_2026-08-20.md, Docs\MELUSINA_HAIR_REEXPORT_CHECKLIST_2026-07-30.md, Docs\MELUSINA_IDLE_GEO_FIX_2026-08-20.md, Docs\MELUSINA_SIR_SKILL_UI_AUTHORING_2026-07-29.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md, _AGENT_WORKING_AGREEMENT.md, _VERTICAL_SLICE_SCOPE.md
 - **Absent-claiming docs:** Docs\Handoffs\CLINE_BLUEPRINT_WIRING_2026-07-31.md, Docs\Handoffs\CLINE_MONOLITH_COMMANDS_2026-07-31.md, Docs\Handoffs\QWEN_DEEPSEEK_PERSONA_LITE_2026-07-31.md, Docs\MELUSINA_NEXT_SESSION_PREP_2026-08-24.md
 
 ### `UMelodiaBattleAdapterSubsystem`
 
-- Claimed present in 5 doc(s) and absent/broken in 1 doc(s)
-- **Present-claiming docs:** Docs\Handoffs\CLINE_WIRING_EXECUTION_2026-08-06.md, Docs\MELODIA_AUTHORITATIVE_RHYTHM_COMBAT_WIRING_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\SESSION_REVIEW_2026-08-06.md, _AUDIT_2026-08-05.md
+- Claimed present in 6 doc(s) and absent/broken in 1 doc(s)
+- **Present-claiming docs:** Docs\Handoffs\CLINE_WIRING_EXECUTION_2026-08-06.md, Docs\MELODIA_AUTHORITATIVE_RHYTHM_COMBAT_WIRING_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md, Docs\Reviews\SESSION_REVIEW_2026-08-06.md, _AUDIT_2026-08-05.md
 - **Absent-claiming docs:** Docs\Handoffs\QWEN_RHYTHM_SKILLS_SCOPE_2026-08-03.md
 
 ### `UMelodiaRhythmHUDWidget`
 
-- Claimed present in 17 doc(s) and absent/broken in 2 doc(s)
-- **Present-claiming docs:** AGENTS.md, Docs\Backend\UI_LONG_TERM_CLEANUP_INVENTORY_2026-08-28.md, Docs\ECHO\campaign_02_battle_integration_map.md, Docs\HANDOFF_P0_LOOKDEV_PHASE_2026-08-24.md, Docs\Handoffs\CLINE_WIRING_EXECUTION_2026-08-06.md, Docs\Handoffs\CLOSEOUT_SOURCE_VERDICTS_2026-08-11.md, Docs\Handoffs\CORE_SYSTEMS_HANDOFF_2026-08-09.md, Docs\Handoffs\GAMEMODE_029A_RETIREMENT_INVENTORY_2026-08-14.md, Docs\Handoffs\QWEN_HARMONIX_QUARTZ_BATTLE_INTEGRATION_2026-08-03.md, Docs\Handoffs\RHYTHM_SKILL_SYSTEM_EXPANSION_2026-08-03.md, Docs\Handoffs\RUNTIME_CONSOLIDATION_V3_2026-08-18.md, Docs\MELODIA_BATTLE_UI_INTEGRATION_2026-07-11.md, Docs\MELODIA_CUTE_UI_ELEMENTS_SPEC_2026-07-31.md, Docs\MELODIA_FIGMA_UI_WIRING_PLAN_2026-07-16.md, Docs\MELODIA_WIDGET_GAMEPLAY_INTEGRATION_2026-07-31.md, Docs\Production\MODEL_LANES_2026-08-12.md, Docs\Reports\Overnight\GAMEPLAY_AUTHORITY_ATLAS_2026-08-24.md
+- Claimed present in 18 doc(s) and absent/broken in 2 doc(s)
+- **Present-claiming docs:** AGENTS.md, Docs\Backend\UI_LONG_TERM_CLEANUP_INVENTORY_2026-08-28.md, Docs\ECHO\campaign_02_battle_integration_map.md, Docs\HANDOFF_P0_LOOKDEV_PHASE_2026-08-24.md, Docs\Handoffs\CLINE_WIRING_EXECUTION_2026-08-06.md, Docs\Handoffs\CLOSEOUT_SOURCE_VERDICTS_2026-08-11.md, Docs\Handoffs\CORE_SYSTEMS_HANDOFF_2026-08-09.md, Docs\Handoffs\GAMEMODE_029A_RETIREMENT_INVENTORY_2026-08-14.md, Docs\Handoffs\QWEN_HARMONIX_QUARTZ_BATTLE_INTEGRATION_2026-08-03.md, Docs\Handoffs\RHYTHM_SKILL_SYSTEM_EXPANSION_2026-08-03.md, Docs\Handoffs\RUNTIME_CONSOLIDATION_V3_2026-08-18.md, Docs\MELODIA_BATTLE_UI_INTEGRATION_2026-07-11.md, Docs\MELODIA_CUTE_UI_ELEMENTS_SPEC_2026-07-31.md, Docs\MELODIA_FIGMA_UI_WIRING_PLAN_2026-07-16.md, Docs\MELODIA_WIDGET_GAMEPLAY_INTEGRATION_2026-07-31.md, Docs\Production\MODEL_LANES_2026-08-12.md, Docs\Reports\Overnight\GAMEPLAY_AUTHORITY_ATLAS_2026-08-24.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md
 - **Absent-claiming docs:** Docs\Handoffs\MELODIA_HUB_SESSION_HANDOFF_2026-08-26.md, Docs\Handoffs\NEXT_AGENTS_PARALLEL_2026-08-13.md
 
 ### `UMelodiaBattleSession`
@@ -184,56 +184,56 @@ Scanned: `Source/` + MelodiaCore, QuillScript, Monolith, UEBlueprintMCP plugin d
 
 ### `UMelodiaRhythmCombatSubsystem`
 
-- Claimed present in 28 doc(s) and absent/broken in 3 doc(s)
-- **Present-claiming docs:** AGENTS.md, Docs\BLUEPRINT_WIRING_CONTRACT_2026-08-07.md, Docs\BLUEPRINT_WIRING_SKILL_2026-08-07.md, Docs\Backend\UI_LONG_TERM_CLEANUP_INVENTORY_2026-08-28.md, Docs\ECHO\campaign_01_rhythm_damage_delta.md, Docs\ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md, Docs\HANDOFF_P0_LOOKDEV_PHASE_2026-08-24.md, Docs\Handoffs\BP_NATIVE_SURFACE_AUDIT_2026-08-14.md, Docs\Handoffs\CLINE_WIRING_EXECUTION_2026-08-06.md, Docs\Handoffs\CORE_LOOP_STATUS_AND_AGENT_PROMPTS_2026-08-07.md, Docs\Handoffs\CURRENT_P0_STATUS_2026-08-25.md, Docs\Handoffs\DEEPSEEK_BLUEPRINT_WIRING_HANDOFF_2026-08-03.md, Docs\Handoffs\ENEMY_BATTLE_REPEAT_TEST_PLAN_2026-08-28.md, Docs\Handoffs\INTEGRATION_POLISH_HANDOFFS_2026-08-06.md, Docs\Handoffs\KIMI_UI_WIRING_NOTES_2026-08-03.md, Docs\Handoffs\MUSICAL_DREAM_BIOME_HANDOFF_2026-08-26.md, Docs\Handoffs\PARALLEL_LANES_2026-08-08.md, Docs\Handoffs\RHYTHM_SKILL_SYSTEM_EXPANSION_2026-08-03.md, Docs\Handoffs\RUNTIME_CONSOLIDATION_V3_2026-08-18.md, Docs\Handoffs\UI_BRIDGE_SUBSYSTEM_AUTHORITY_2026-08-18.md, Docs\MULTI_AGENT_DELEGATION_PROMPTS_2026-08-03.md, Docs\OLLAMA_UE5_INTEGRATION_REPORT.md, Docs\ORCHESTRA_CONTRACT_2026-08-20.md, Docs\Portfolio\GAMEPLAY_SYSTEMS_CASE_STUDY_SOURCE_2026-08-24.md, Docs\Portfolio\PITCH_OPENCODE.md, Docs\Reports\Overnight\GAMEPLAY_AUTHORITY_ATLAS_2026-08-24.md, Docs\Reviews\CORE_4_EDITABLE_BP_SYSTEMS_2026-08-09.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md
+- Claimed present in 29 doc(s) and absent/broken in 3 doc(s)
+- **Present-claiming docs:** AGENTS.md, Docs\BLUEPRINT_WIRING_CONTRACT_2026-08-07.md, Docs\BLUEPRINT_WIRING_SKILL_2026-08-07.md, Docs\Backend\UI_LONG_TERM_CLEANUP_INVENTORY_2026-08-28.md, Docs\ECHO\campaign_01_rhythm_damage_delta.md, Docs\ENVIRONMENT_SOURCE_OF_TRUTH_2026-08-11.md, Docs\HANDOFF_P0_LOOKDEV_PHASE_2026-08-24.md, Docs\Handoffs\BP_NATIVE_SURFACE_AUDIT_2026-08-14.md, Docs\Handoffs\CLINE_WIRING_EXECUTION_2026-08-06.md, Docs\Handoffs\CORE_LOOP_STATUS_AND_AGENT_PROMPTS_2026-08-07.md, Docs\Handoffs\CURRENT_P0_STATUS_2026-08-25.md, Docs\Handoffs\DEEPSEEK_BLUEPRINT_WIRING_HANDOFF_2026-08-03.md, Docs\Handoffs\ENEMY_BATTLE_REPEAT_TEST_PLAN_2026-08-28.md, Docs\Handoffs\INTEGRATION_POLISH_HANDOFFS_2026-08-06.md, Docs\Handoffs\KIMI_UI_WIRING_NOTES_2026-08-03.md, Docs\Handoffs\MUSICAL_DREAM_BIOME_HANDOFF_2026-08-26.md, Docs\Handoffs\PARALLEL_LANES_2026-08-08.md, Docs\Handoffs\RHYTHM_SKILL_SYSTEM_EXPANSION_2026-08-03.md, Docs\Handoffs\RUNTIME_CONSOLIDATION_V3_2026-08-18.md, Docs\Handoffs\UI_BRIDGE_SUBSYSTEM_AUTHORITY_2026-08-18.md, Docs\MULTI_AGENT_DELEGATION_PROMPTS_2026-08-03.md, Docs\OLLAMA_UE5_INTEGRATION_REPORT.md, Docs\ORCHESTRA_CONTRACT_2026-08-20.md, Docs\Portfolio\GAMEPLAY_SYSTEMS_CASE_STUDY_SOURCE_2026-08-24.md, Docs\Portfolio\PITCH_OPENCODE.md, Docs\Reports\Overnight\GAMEPLAY_AUTHORITY_ATLAS_2026-08-24.md, Docs\Reviews\CORE_4_EDITABLE_BP_SYSTEMS_2026-08-09.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md
 - **Absent-claiming docs:** Docs\Handoffs\QWEN_HARMONIX_QUARTZ_BATTLE_INTEGRATION_2026-08-03.md, Docs\Research\DASH_MAGPIE_NATIVE_INTEGRATION_2026-08-31.md, Docs\Reviews\RHYTHM_WALLET_REVIEW_2026-08-03.md
 
 ### `FMelodiaNarrativeRecord`
 
-- Claimed present in 20 doc(s) and absent/broken in 5 doc(s)
-- **Present-claiming docs:** AGENTS.md, Docs\AGENT_MCP_CHEAT_SHEET.md, Docs\Backend\MELODIA_BACKEND_INTEGRATION_PLAN_2026-08-28.md, Docs\FIRST_DREAM_VERTICAL_SLICE_CHECKLIST_2026-07-28.md, Docs\Handoffs\BEDROCK_LEDGER_LANES_2026-08-14.md, Docs\Handoffs\GPT_HANDOFF_2026-08-14_EVENING.md, Docs\Handoffs\KIRO_CLAUDE_CLINE_EVENING_CORE_LOOP_2026-08-01.md, Docs\Handoffs\MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md, Docs\Handoffs\PROCEDURAL_DUNGEON_REACTIVATION_2026-08-14.md, Docs\Handoffs\QWEN_DEEPSEEK_PERSONA_LITE_2026-07-31.md, Docs\MELODIA_SYSTEMS_COMPOSITION_CONTRACT_2026-07-30.md, Docs\MELODIA_WARDROBE_ARCHITECTURE_2026-08-14.md, Docs\MELODIA_WARDROBE_HANDOFF_2026-08-07.md, Docs\MELODIA_WARDROBE_PLUGIN_PLAN_2026-08-07.md, Docs\P0_CLOSEOUT_PLAN_2026-08-28.md, Docs\Plans\P2_P3_SYSTEM_PREPARATION_AND_ROADMAP_2026-08-31.md, Docs\Research\MELODIA_PSYCH_MUSIC_INDIE_REFERENCE_2026-07-31.md, Docs\Reviews\TRAVERSAL_SAVE_REVIEW_2026-08-03.md, Docs\WEBSITE_OVERHAUL_LEVEL_MAPPING_2026-07-31.md, Docs\WorldGen\WARDROBE_ORBITAL_GATE_SPEC_2026-08-27.md
+- Claimed present in 21 doc(s) and absent/broken in 5 doc(s)
+- **Present-claiming docs:** AGENTS.md, Docs\AGENT_MCP_CHEAT_SHEET.md, Docs\Backend\MELODIA_BACKEND_INTEGRATION_PLAN_2026-08-28.md, Docs\FIRST_DREAM_VERTICAL_SLICE_CHECKLIST_2026-07-28.md, Docs\Handoffs\BEDROCK_LEDGER_LANES_2026-08-14.md, Docs\Handoffs\GPT_HANDOFF_2026-08-14_EVENING.md, Docs\Handoffs\KIRO_CLAUDE_CLINE_EVENING_CORE_LOOP_2026-08-01.md, Docs\Handoffs\MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md, Docs\Handoffs\PROCEDURAL_DUNGEON_REACTIVATION_2026-08-14.md, Docs\Handoffs\QWEN_DEEPSEEK_PERSONA_LITE_2026-07-31.md, Docs\MELODIA_SYSTEMS_COMPOSITION_CONTRACT_2026-07-30.md, Docs\MELODIA_WARDROBE_ARCHITECTURE_2026-08-14.md, Docs\MELODIA_WARDROBE_HANDOFF_2026-08-07.md, Docs\MELODIA_WARDROBE_PLUGIN_PLAN_2026-08-07.md, Docs\P0_CLOSEOUT_PLAN_2026-08-28.md, Docs\Plans\P2_P3_SYSTEM_PREPARATION_AND_ROADMAP_2026-08-31.md, Docs\Research\MELODIA_PSYCH_MUSIC_INDIE_REFERENCE_2026-07-31.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md, Docs\Reviews\TRAVERSAL_SAVE_REVIEW_2026-08-03.md, Docs\WEBSITE_OVERHAUL_LEVEL_MAPPING_2026-07-31.md, Docs\WorldGen\WARDROBE_ORBITAL_GATE_SPEC_2026-08-27.md
 - **Absent-claiming docs:** Docs\Handoffs\CODEX_WARDROBE_CORE_CPP_INTEGRATION_REVIEW_2026-08-15.md, Docs\JRPG_SAVE_RUNTIME_CHAIN_AUDIT_2026-07-28.md, Docs\MCP_MELODIA_SYSTEM.md, Docs\Plans\MELODIA_PROGRESSION_GATING_DESIGN_2026-08-14.md, Docs\Reviews\JRPG_BLUEPRINT_CHAIN_REVIEW_2026-08-03.md
 
 ### `UMelodiaRhythmReactivitySubsystem`
 
-- Claimed present in 23 doc(s) and absent/broken in 2 doc(s)
-- **Present-claiming docs:** Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md, Docs\HANDOFF_P0_LOOKDEV_PHASE_2026-08-24.md, Docs\Handoffs\CLAUDE_KIRO_TANDEM_PREP_2026-08-01.md, Docs\Handoffs\CLAUDE_REBUILD_VALIDATION_HANDOFF_2026-08-01.md, Docs\Handoffs\DREAMPRINT_AUDIO_REACTIVITY_PREP_2026-08-18.md, Docs\Handoffs\FX_PPV_UI_INTEGRATION_HANDOFF_2026-08-01.md, Docs\Handoffs\HOUDINI_WORLDGEN_DEEP_INTAKE_2026-08-28.md, Docs\Handoffs\PPV_FINALIZE_PLAN_2026-08-26.md, Docs\Handoffs\QWEN_HARMONIX_QUARTZ_BATTLE_INTEGRATION_2026-08-03.md, Docs\Handoffs\TENSION_AUDIO_REACTIVITY_2026-08-15.md, Docs\Monoliths\P1_FARAWAY_MOTHER_PLAN_2026-08-29.md, Docs\Monoliths\P2_GOD_THAT_MOLTS_MECHANICS_RESEARCH_2026-08-29.md, Docs\NIAGARA_ECOSYSTEM_2026-08-09.md, Docs\OCEANOLOGY_STYLIZATION_AND_TRAVERSAL_INTEGRATION_RESEARCH_2026-08-29.md, Docs\ORCHESTRA_CONTRACT_2026-08-20.md, Docs\Production\PCG\SCALE_FIRST_MUSICAL_PCG_PLAN_2026-08-10.md, Docs\Production\PCG\SCALE_FIRST_MUSICAL_PCG_PLAN_REVIEW_2026-08-10.md, Docs\Research\UE58_EXPLORATION_WORLD_BUILDING_RESEARCH_2026-08-29.md, Docs\Reviews\MUSIC_RHYTHM_REVIEW_2026-08-03.md, Docs\Reviews\RHYTHM_WALLET_REVIEW_2026-08-03.md, Docs\SCAFFOLDING_DEEP_REVIEW_LIVE_INTEGRATION_2026-07-24.md, Docs\UNIVERSAL_MUSICAL_INFLUENCE_SCAFFOLD_2026-07-18.md, Docs\phase_14_wiring_spec.md
+- Claimed present in 24 doc(s) and absent/broken in 2 doc(s)
+- **Present-claiming docs:** Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md, Docs\HANDOFF_P0_LOOKDEV_PHASE_2026-08-24.md, Docs\Handoffs\CLAUDE_KIRO_TANDEM_PREP_2026-08-01.md, Docs\Handoffs\CLAUDE_REBUILD_VALIDATION_HANDOFF_2026-08-01.md, Docs\Handoffs\DREAMPRINT_AUDIO_REACTIVITY_PREP_2026-08-18.md, Docs\Handoffs\FX_PPV_UI_INTEGRATION_HANDOFF_2026-08-01.md, Docs\Handoffs\HOUDINI_WORLDGEN_DEEP_INTAKE_2026-08-28.md, Docs\Handoffs\PPV_FINALIZE_PLAN_2026-08-26.md, Docs\Handoffs\QWEN_HARMONIX_QUARTZ_BATTLE_INTEGRATION_2026-08-03.md, Docs\Handoffs\TENSION_AUDIO_REACTIVITY_2026-08-15.md, Docs\Monoliths\P1_FARAWAY_MOTHER_PLAN_2026-08-29.md, Docs\Monoliths\P2_GOD_THAT_MOLTS_MECHANICS_RESEARCH_2026-08-29.md, Docs\NIAGARA_ECOSYSTEM_2026-08-09.md, Docs\OCEANOLOGY_STYLIZATION_AND_TRAVERSAL_INTEGRATION_RESEARCH_2026-08-29.md, Docs\ORCHESTRA_CONTRACT_2026-08-20.md, Docs\Production\PCG\SCALE_FIRST_MUSICAL_PCG_PLAN_2026-08-10.md, Docs\Production\PCG\SCALE_FIRST_MUSICAL_PCG_PLAN_REVIEW_2026-08-10.md, Docs\Research\UE58_EXPLORATION_WORLD_BUILDING_RESEARCH_2026-08-29.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md, Docs\Reviews\MUSIC_RHYTHM_REVIEW_2026-08-03.md, Docs\Reviews\RHYTHM_WALLET_REVIEW_2026-08-03.md, Docs\SCAFFOLDING_DEEP_REVIEW_LIVE_INTEGRATION_2026-07-24.md, Docs\UNIVERSAL_MUSICAL_INFLUENCE_SCAFFOLD_2026-07-18.md, Docs\phase_14_wiring_spec.md
 - **Absent-claiming docs:** CURRENT_STATE.md, Docs\QUEUE.md
 
 ### `AMelodiaGameMode`
 
-- Claimed present in 9 doc(s) and absent/broken in 3 doc(s)
-- **Present-claiming docs:** CURRENT_STATE.md, Docs\BLUEPRINT_WIRING_CONTRACT_2026-08-07.md, Docs\Handoffs\BP_AUTHORITY_READINESS_AUDIT_2026-08-14.md, Docs\Handoffs\RUNTIME_CONSOLIDATION_V3_2026-08-18.md, Docs\MELODIA_FIGMA_UI_WIRING_PLAN_2026-07-16.md, Docs\Plans\MELODIA_INFINITY_NIKKI_PIPELINE_UPDATE_2026-08-14.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\WEBSITE_OVERHAUL_LEVEL_MAPPING_2026-07-31.md, Docs\_Superseded\MELODIA_ROGUELIKE_GAMELOOP_COMPLETION_PLAN_2026-07-14.md
+- Claimed present in 10 doc(s) and absent/broken in 3 doc(s)
+- **Present-claiming docs:** CURRENT_STATE.md, Docs\BLUEPRINT_WIRING_CONTRACT_2026-08-07.md, Docs\Handoffs\BP_AUTHORITY_READINESS_AUDIT_2026-08-14.md, Docs\Handoffs\RUNTIME_CONSOLIDATION_V3_2026-08-18.md, Docs\MELODIA_FIGMA_UI_WIRING_PLAN_2026-07-16.md, Docs\Plans\MELODIA_INFINITY_NIKKI_PIPELINE_UPDATE_2026-08-14.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md, Docs\WEBSITE_OVERHAUL_LEVEL_MAPPING_2026-07-31.md, Docs\_Superseded\MELODIA_ROGUELIKE_GAMELOOP_COMPLETION_PLAN_2026-07-14.md
 - **Absent-claiming docs:** Docs\Handoffs\GAMEMODE_029A_RETIREMENT_INVENTORY_2026-08-14.md, Docs\Handoffs\P0_INTEGRATION_HANDOFF_2026-08-20.md, Docs\ORCHESTRA_CONTRACT_2026-08-20.md
 
 ### `UMelodiaJRPGBattleOverlaySubsystem`
 
-- Claimed present in 8 doc(s) and absent/broken in 2 doc(s)
-- **Present-claiming docs:** Docs\Backend\UI_LONG_TERM_CLEANUP_INVENTORY_2026-08-28.md, Docs\Evidence\2026-08-23_hud_single_writer.md, Docs\Handoffs\INTEGRATION_POLISH_HANDOFFS_2026-08-06.md, Docs\Handoffs\UI_BRIDGE_SUBSYSTEM_AUTHORITY_2026-08-18.md, Docs\MELODIA_AUTHORITATIVE_RHYTHM_COMBAT_WIRING_2026-08-03.md, Docs\Portfolio\GAMEPLAY_SYSTEMS_CASE_STUDY_SOURCE_2026-08-24.md, Docs\Reports\Overnight\GAMEPLAY_AUTHORITY_ATLAS_2026-08-24.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md
+- Claimed present in 9 doc(s) and absent/broken in 2 doc(s)
+- **Present-claiming docs:** Docs\Backend\UI_LONG_TERM_CLEANUP_INVENTORY_2026-08-28.md, Docs\Evidence\2026-08-23_hud_single_writer.md, Docs\Handoffs\INTEGRATION_POLISH_HANDOFFS_2026-08-06.md, Docs\Handoffs\UI_BRIDGE_SUBSYSTEM_AUTHORITY_2026-08-18.md, Docs\MELODIA_AUTHORITATIVE_RHYTHM_COMBAT_WIRING_2026-08-03.md, Docs\Portfolio\GAMEPLAY_SYSTEMS_CASE_STUDY_SOURCE_2026-08-24.md, Docs\Reports\Overnight\GAMEPLAY_AUTHORITY_ATLAS_2026-08-24.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md
 - **Absent-claiming docs:** Docs\2026-07-29_PROJECT_HANDOFF.md, Docs\JRPG_SAVE_RUNTIME_CHAIN_AUDIT_2026-07-28.md
 
 ### `IMelodiaEnemyPresentationInterface`
 
-- Claimed present in 2 doc(s) and absent/broken in 1 doc(s)
-- **Present-claiming docs:** Docs\PRESENTATION_INTERFACE_INTEGRATION_PROPOSAL_2026-07-18.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md
+- Claimed present in 3 doc(s) and absent/broken in 1 doc(s)
+- **Present-claiming docs:** Docs\PRESENTATION_INTERFACE_INTEGRATION_PROPOSAL_2026-07-18.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md
 - **Absent-claiming docs:** Docs\_Reference\BP_INTEGRATION_REVIEW_2026-07-18.md
 
 ### `IMelodiaCombatPresentationInterface`
 
-- Claimed present in 3 doc(s) and absent/broken in 1 doc(s)
-- **Present-claiming docs:** Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md, Docs\PRESENTATION_INTERFACE_INTEGRATION_PROPOSAL_2026-07-18.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md
+- Claimed present in 4 doc(s) and absent/broken in 1 doc(s)
+- **Present-claiming docs:** Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md, Docs\PRESENTATION_INTERFACE_INTEGRATION_PROPOSAL_2026-07-18.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md
 - **Absent-claiming docs:** Docs\_Reference\BP_INTEGRATION_REVIEW_2026-07-18.md
 
 ### `UMelodiaCombatStateComponent`
 
-- Claimed present in 2 doc(s) and absent/broken in 1 doc(s)
-- **Present-claiming docs:** Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\_Reference\MELODIA_GAME_SYSTEMS_DEEP_REVIEW_2026-07-14.md
+- Claimed present in 3 doc(s) and absent/broken in 1 doc(s)
+- **Present-claiming docs:** Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md, Docs\_Reference\MELODIA_GAME_SYSTEMS_DEEP_REVIEW_2026-07-14.md
 - **Absent-claiming docs:** Docs\_Superseded\NEXT_HIGHEST_LEVERAGE_TASK.md
 
 ### `AMelodiaDungeonRunCoordinator`
 
-- Claimed present in 6 doc(s) and absent/broken in 2 doc(s)
-- **Present-claiming docs:** Docs\Handoffs\CORE_LOOP_STATUS_AND_AGENT_PROMPTS_2026-08-07.md, Docs\Handoffs\CORE_SYSTEMS_HANDOFF_2026-08-09.md, Docs\Handoffs\PARALLEL_LANES_2026-08-08.md, Docs\Handoffs\PROCEDURAL_DUNGEON_REACTIVATION_2026-08-14.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\_Superseded\MELODIA_ROGUELIKE_GAMELOOP_COMPLETION_PLAN_2026-07-14.md
+- Claimed present in 7 doc(s) and absent/broken in 2 doc(s)
+- **Present-claiming docs:** Docs\Handoffs\CORE_LOOP_STATUS_AND_AGENT_PROMPTS_2026-08-07.md, Docs\Handoffs\CORE_SYSTEMS_HANDOFF_2026-08-09.md, Docs\Handoffs\PARALLEL_LANES_2026-08-08.md, Docs\Handoffs\PROCEDURAL_DUNGEON_REACTIVATION_2026-08-14.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md, Docs\_Superseded\MELODIA_ROGUELIKE_GAMELOOP_COMPLETION_PLAN_2026-07-14.md
 - **Absent-claiming docs:** Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md, Docs\_Reference\MELODIA_GAME_SYSTEMS_DEEP_REVIEW_2026-07-14.md
 
 ### `UMelodiaTokenWalletSubsystem`
@@ -244,8 +244,8 @@ Scanned: `Source/` + MelodiaCore, QuillScript, Monolith, UEBlueprintMCP plugin d
 
 ### `UMelodiaRoguelikeRunSubsystem`
 
-- Claimed present in 10 doc(s) and absent/broken in 3 doc(s)
-- **Present-claiming docs:** Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md, Docs\Handoffs\BLACKBOX_AUDIT_COMPLETE_2026-08-01.md, Docs\Handoffs\BLACKBOX_HANDOFF_2026-08-01.md, Docs\Handoffs\CLAUDE_TO_KIRO_STATE_2026-08-01.md, Docs\Handoffs\CLINE_TOKEN_BRANCH_VERIFICATION_2026-08-01.md, Docs\Handoffs\KIRO_MELODY_TOKEN_INTEGRATION_2026-08-01.md, Docs\Handoffs\PARALLEL_LANES_2026-08-08.md, Docs\Reports\WBP_BINDING_MATRIX_2026-08-14.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\_Superseded\MELODIA_ROGUELIKE_GAMELOOP_COMPLETION_PLAN_2026-07-14.md
+- Claimed present in 11 doc(s) and absent/broken in 3 doc(s)
+- **Present-claiming docs:** Docs\AI_ORCHESTRATION_HANDOFFS_2026-07-17.md, Docs\Handoffs\BLACKBOX_AUDIT_COMPLETE_2026-08-01.md, Docs\Handoffs\BLACKBOX_HANDOFF_2026-08-01.md, Docs\Handoffs\CLAUDE_TO_KIRO_STATE_2026-08-01.md, Docs\Handoffs\CLINE_TOKEN_BRANCH_VERIFICATION_2026-08-01.md, Docs\Handoffs\KIRO_MELODY_TOKEN_INTEGRATION_2026-08-01.md, Docs\Handoffs\PARALLEL_LANES_2026-08-08.md, Docs\Reports\WBP_BINDING_MATRIX_2026-08-14.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md, Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md, Docs\_Superseded\MELODIA_ROGUELIKE_GAMELOOP_COMPLETION_PLAN_2026-07-14.md
 - **Absent-claiming docs:** Docs\Handoffs\QWEN_RHYTHM_SKILLS_SCOPE_2026-08-03.md, Docs\MELODIA_TRANSITION_SYSTEM_CONTRACT.md, Docs\Reviews\RHYTHM_WALLET_REVIEW_2026-08-03.md
 
 ### `UMelodiaSaveGameSubsystem`
@@ -496,7 +496,7 @@ Scanned: `Source/` + MelodiaCore, QuillScript, Monolith, UEBlueprintMCP plugin d
 - `Docs\Handoffs\BLENDER_VERSION_GRAPH_AND_V25_ROKOKO_PLAN_2026-08-28.md:421` - Stale drive path: `G:\portfoliowebsite\`
 - `Docs\Handoffs\BLENDER_VERSION_GRAPH_AND_V25_ROKOKO_PLAN_2026-08-28.md:422` - Stale drive path: `G:\Stylized`
 - `Docs\Handoffs\BLENDER_VERSION_GRAPH_AND_V25_ROKOKO_PLAN_2026-08-28.md:423` - Stale drive path: `G:\stylizedcrossprop\`
-- *... and 119 more*
+- *... and 149 more*
 
 ## Stale Docs (>14 Days)
 
@@ -1002,11 +1002,12 @@ Scanned: `Source/` + MelodiaCore, QuillScript, Monolith, UEBlueprintMCP plugin d
 - `Docs\Research\UE58_TOON_MATERIAL_INTAKE_INFINITY_NIKKI_2026-08-08.md` - 1 unresolved: hack
 - `Docs\Research\UE58_TOON_SHADER_EXTERNAL_PRACTICES_2026-08-14.md` - 1 unresolved: hack
 - `Docs\Reviews\DOC_HEALTH_REPORT_2026-08-03.md` - 18 unresolved: FIXME, HACK, TODO, Workaround, XXX, hack, workaround
+- `Docs\Reviews\DOC_HEALTH_REPORT_2026-09-01.md` - 52 unresolved: FIXME, HACK, Hack, TODO, Workaround, XXX, hack, todo, workaround, xxx
 - `Docs\SCAFFOLDING_DEEP_REVIEW_2026-07-24.md` - 1 unresolved: hack
 - `Docs\TD_GRANDMASTER_MELODIA_PLAN.md` - 1 unresolved: TODO
 - `Docs\WorldGen\WARDROBE_ORBITAL_GATE_SPEC_2026-08-27.md` - 1 unresolved: workaround
 
 ## File Inventory
 
-Scanned 910 markdown files.
+Scanned 911 markdown files.
 
