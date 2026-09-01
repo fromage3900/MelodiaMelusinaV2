@@ -1,0 +1,212 @@
+{
+  "session_date": "2026-09-01",
+  "phase": "grand_review_integration_and_expansion",
+  "current_state": {
+    "p0_status": "all 8 gates pass \u2705",
+    "hython_assets": {
+      "cymatic_variants": 21,
+      "cymatic_total_pngs": 1665,
+      "height_pngs": 185,
+      "variants_with_height": 21,
+      "flipbook_frames": 80,
+      "flipbook_total_mb": 199.8
+    },
+    "faraway_mother_assets": {
+      "gn_builders": 16,
+      "hero_meshes": 3,
+      "fabric_textures": 3,
+      "cloth_mountains": "8.8MB .obj + manifest"
+    },
+    "monolith_status": "running v0.20.3 on port 9316 (transient connectivity issue)",
+    "eight_p0_gates": "all pass with verified evidence"
+  },
+  "phase_1_cymatics_present": {
+    "goal": "Promote cymatics to PRESENT per Master Index \u00a71",
+    "strategy": "Formalize cymatics as first-class system, not scaffolded ad-hoc pipeline",
+    "specifics": [
+      "Add MelodiaCymaticsSubsystem to Master Index \u00a71 PRESENT list",
+      "Verify PostConfigInit module loading and uplugin dependencies",
+      "Make cymatic PBR generation a first-class pipeline step (not ad-hoc)",
+      "Add cymatic patterns to \u00a75 World Field Bus cross-system contract",
+      "Add cymatics present status to P0_TASK_LEDGER.json"
+    ],
+    "deliverables": [
+      "cymatics_present_status.json",
+      "cymatics_in_master_index.md"
+    ],
+    "dependencies": [],
+    "deadline": "2026-10-01"
+  },
+  "phase_2_faraway_p1": {
+    "goal": "Elevate Faraway Mother to P1 first-class with documentation and integration",
+    "strategy": "Formalize FarawayMother as first-class P1 subsystem",
+    "specifics": [
+      "Add FarawayMother to P1_TASK_LEDGER.json with pass status and evidence",
+      "Create FarawayMother onboarding documentation (new team member guide)",
+      "Integrate FarawayMother GN builders into main GN taxonomy (\u00a72 Master Taxonomy)",
+      "Add FarawayMother pipeline to main hython execution plan (parallel with cymatics)",
+      "Add FarawayMother texture pipeline to main material pipeline (material orchestration flow)",
+      "Add FarawayMother to P1_TASK_LEDGER.json with verified evidence"
+    ],
+    "deliverables": [
+      "faraway_p1_status.json",
+      "faraway_onboarding_guide.md",
+      "faraway_in_taxonomy.md"
+    ],
+    "dependencies": [
+      "cymatics_present_phase_1_complete"
+    ],
+    "deadline": "2026-10-15"
+  },
+  "phase_3_hython_monolith_bridge": {
+    "goal": "Bridge hython + Monolith pipelines for dual-path generation",
+    "strategy": "Create dual-path generation system with cross-path validation",
+    "specifics": [
+      "Fix Monolith port 9316 connectivity (check .monolith_running, firewall, restart)",
+      "Create Monolith execution plan parallel to hython plan (Phase A: material ops, Phase B: hair/WP captures, Phase C: docs)",
+      "Create cross-path validation script (compare hython vs Monolith outputs: height maps, meshes, texture sets)",
+      "Make Monologue a first-class generation path alongside hython (not alternative)",
+      "Add Monolith execution to main hython execution plan as parallel path"
+    ],
+    "deliverables": [
+      "hythm_monolith_bridge_report.json",
+      "cross_path_validation.py",
+      "monolith_execution_plan_parallel.py"
+    ],
+    "dependencies": [
+      "cymatics_present_phase_1_complete",
+      "faraway_p1_phase_2_complete"
+    ],
+    "deadline": "2026-11-01"
+  },
+  "phase_4_p1p3_ecosystem_integration": {
+    "goal": "Extend to P1-P3 scope with ecosystem integration",
+    "strategy": "Integrate cymatics + FarawayMother into broader Melodia ecosystem",
+    "specifics": [
+      "Map cymatic patterns \u2192 rhythm combat patterns (cymatic interference \u2192 rhythm grade patterns)",
+      "Map Faraway Mother textures \u2192 wardrobe fabric system (fabric textures \u2192 wardrobe authority texturing)",
+      "Integrate Faraway Mother meshes \u2192 PCG population system (populate levels with generated meshes)",
+      "Map cymatic patterns \u2192 water ripple animation (cymatic standing waves \u2192 water ripple animation)",
+      "Create cross-system material mappings (cymatic PBR \u2192 water PBR \u2192 wardrobe PBR pipeline)",
+      "Add P1 closeout items to P0_TASK_LEDGER.json",
+      "Add P2/FarawayMother to P1 closeout roadmap",
+      "Add P3 horizon items (cymatics V3, V4, etc.)"
+    ],
+    "deliverables": [
+      "ecosystem_integration_report.json",
+      "p1p3_roadmap.json",
+      "cross_system_mappings.json"
+    ],
+    "dependencies": [
+      "hythm_monolith_bridge_phase_3_complete",
+      "faraway_p1_phase_2_complete"
+    ],
+    "deadline": "2026-12-01"
+  },
+  "subagent_queue": [
+    {
+      "goal": "Promote Cymatics to PRESENT per Master Index \u00a71",
+      "context": "Cymatics is currently SCAFFOLDED (\u00a72). Need to extend to PRESENT (\u00a71) with proper module loading, uplugin wiring, and first-class pipeline step. All 1665 cymatic PNGs and 21 variants already generated via hython.",
+      "id": "rec_1_cymatics_present",
+      "depends_on": [],
+      "deliverables": [
+        "cymatics_present_status.json",
+        "cymatics_in_master_index.md"
+      ],
+      "phase": "phase_1_cymatics_present"
+    },
+    {
+      "goal": "Elevate FarawayMother to P1 first-class with documentation and integration",
+      "context": "FarawayMother has 16 verified GN builders and all assets generated via hython. Need to add to P1_TASK_LEDGER.json with pass status, create onboarding docs, integrate into main GN taxonomy and material pipeline.",
+      "id": "rec_2_faraway_p1",
+      "depends_on": [
+        "rec_1_cymatics_present"
+      ],
+      "deliverables": [
+        "faraway_p1_status.json",
+        "faraway_onboarding_guide.md",
+        "faraway_in_taxonomy.md"
+      ],
+      "phase": "phase_2_faraway_p1"
+    },
+    {
+      "goal": "Bridge hython + Monolith pipelines for dual-path generation",
+      "context": "Hython pipeline is confirmed working (\u00a71 PRESENT). Monolith is running v0.20.3 on port 9316 but has transient connectivity issues. Need to fix connectivity, create cross-path validation, and make Monolith a first-class generation path alongside hython.",
+      "id": "rec_3_hythm_monolith_bridge",
+      "depends_on": [
+        "rec_1_cymatics_present",
+        "rec_2_faraway_p1"
+      ],
+      "deliverables": [
+        "hythm_monolith_bridge_report.json",
+        "cross_path_validation.py",
+        "monolith_execution_plan_parallel.py"
+      ],
+      "phase": "phase_3_hython_monolith_bridge"
+    },
+    {
+      "goal": "Extend to P1-P3 scope with proper roadmap integration",
+      "context": "P0 closeout complete, all 8 gates pass. Need to extend to P1-P3 scope with proper roadmap, adding P1 closeout items, P2/FarawayMother roadmap, and P3 horizon items (cymatics V3, V4, etc.).",
+      "id": "rec_4_p1p3_scope",
+      "depends_on": [
+        "rec_1_cymatics_present",
+        "rec_2_faraway_p1",
+        "rec_3_hythm_monolith_bridge"
+      ],
+      "deliverables": [
+        "p1p3_roadmap.json",
+        "cross_system_mappings.json"
+      ],
+      "phase": "phase_4_p1p3_ecosystem_integration"
+    },
+    {
+      "goal": "Integrate cymatics + FarawayMother with broader Melodia ecosystem",
+      "context": "Need to map cymatic patterns \u2192 rhythm combat patterns, FarawayMother textures \u2192 wardrobe fabric system, FarawayMother meshes \u2192 PCG population system, cymatic patterns \u2192 water ripple animation, and create cross-system material mappings.",
+      "id": "rec_5_ecosystem_integration",
+      "depends_on": [
+        "rec_1_cymatics_present",
+        "rec_2_faraway_p1",
+        "rec_3_hythm_monolith_bridge"
+      ],
+      "deliverables": [
+        "ecosystem_integration_report.json",
+        "p1p3_roadmap.json",
+        "cross_system_mappings.json"
+      ],
+      "phase": "phase_4_p1p3_ecosystem_integration"
+    },
+    {
+      "goal": "Create grand review document + onboarding guide + integration map",
+      "context": "Need to move coinsheet to Docs/ structure, create grand review document with cross-references, create onboarding guide for new team members, create cross-system integration map, add to Master Index documentation system.",
+      "id": "rec_6_grand_documentation",
+      "depends_on": [
+        "rec_1_cymatics_present",
+        "rec_2_faraway_p1",
+        "rec_3_hythm_monolith_bridge",
+        "rec_4_p1p3_scope"
+      ],
+      "deliverables": [
+        "grand_review_document.md",
+        "onboarding_guide.md",
+        "cross_system_integration_map.md"
+      ],
+      "phase": "phase_6_grand_documentation"
+    },
+    {
+      "goal": "Create user-adjustable cymatic params + FarawayMother wardrobe selection",
+      "context": "Need to create user-adjustable cymatic parameters in UI, Faraway Mother outfit selection in wardrobe, cymatic pattern browser, Faraway Mother pattern selection, integration with user-facing rhythm patterns.",
+      "id": "rec_7_user_facing",
+      "depends_on": [
+        "rec_1_cymatics_present",
+        "rec_2_faraway_p1",
+        "rec_3_hythm_monolith_bridge",
+        "rec_4_p1p3_scope",
+        "rec_5_ecosystem_integration"
+      ],
+      "deliverables": [
+        "user_facing_features_spec.json"
+      ],
+      "phase": "phase_user_facing"
+    }
+  ]
+}

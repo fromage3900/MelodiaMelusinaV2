@@ -1,0 +1,94 @@
+{
+  "generated": "2026-09-01T00:00:00Z",
+  "purpose": "PROMOTE_CYMATICS_TO_PRESENT — verify MelodiaCymaticsSubsystem + 21 variants x 1665 PNGs on disk per grand_review_expansion_plan_2026-09-01.json phase_1 and ue_level_building_coinsheet_2026-09-01.json",
+  "subsystem": {
+    "header": "Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.h",
+    "cpp": "Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.cpp",
+    "header_bytes": 2593,
+    "cpp_bytes": 2696,
+    "class": "UMelodiaCymaticsSubsystem final : public UGameInstanceSubsystem",
+    "module": "BS_GodFile (Runtime, LoadingPhase: Default — correct for GameInstanceSubsystem; MelodiaShader is the PostConfigInit module for shader registration, not this subsystem)",
+    "ticker": {
+      "include": "Containers/Ticker.h — present in both .h and .cpp",
+      "handle": "FTSTicker::FDelegateHandle TickerHandle",
+      "register": "FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateUObject(this, &UMelodiaCymaticsSubsystem::TickCymatics))",
+      "unregister": "FTSTicker::GetCoreTicker().RemoveTicker(TickerHandle) in Deinitialize()",
+      "health": "PASS"
+    },
+    "mpc_read_only_claim": {
+      "mpc_path": "/Game/Melodia/Presentation/MPC_Melodia_Palette",
+      "load": "StaticLoadObject(UMaterialParameterCollection::StaticClass(), nullptr, TEXT(\"/Game/Melodia/Presentation/MPC_Melodia_Palette\"))",
+      "read": "World->GetParameterCollectionInstance(AudioParameterCollection) + GetScalarParameterValue(BeatPulse), GetScalarParameterValue(BassIntensity)",
+      "writes": "NONE — no SetScalarParameterValue / SetVectorParameterValue anywhere in .cpp — VERIFIED read-only",
+      "guard": "IsReadOnlyByContract() returns true; header comment states READ-ONLY consumer, never writes MPC, no second audio writer",
+      "chladni": "cos(n·pi·u)*cos(m·pi·v) - cos(m·pi·u)*cos(n·pi·v) in SampleCymaticAmplitude(); modes driven by BassIntensity/BeatPulse clamped to [1..8]",
+      "health": "PASS — read-only contract intact"
+    },
+    "api_surface": {
+      "SampleCymaticAmplitude": true,
+      "GetCymaticMode": true,
+      "GetBeatPulse": true,
+      "GetBassIntensity": true,
+      "IsReadOnlyByContract": true
+    },
+    "postconfiginit_note": "Task asked to confirm PostConfigInit. BS_GodFile module is LoadingPhase Default (verified in BS_GodFile.uproject). This is correct: UMelodiaCymaticsSubsystem is a GameInstanceSubsystem initialized at runtime via Initialize()/FTSTicker, not a shader-registration module. PostConfigInit applies to Source/MelodiaShader (virtual shader directory registration) per AGENTS.md §Rider & UE 5.8 protocols. No change needed; subsystem does not require PostConfigInit.",
+    "probe": "Saved/Audit/cymatics_probe_2026-08-31.json — all 5 API checks PASS, read_only_not_writer PASS, chladni_implemented PASS",
+    "overall": "PASS — ready to promote to PRESENT"
+  },
+  "on_disk_assets": {
+    "root": "Saved/Audit/copernicus_cymatic/",
+    "tool": "Tools/Houdini/copernicus_cymatic_parallax.py (51149 bytes, pure numpy: cymatic trig interference + tileable fBm + domain warping)",
+    "manifest": "Saved/Audit/copernicus_cymatic_manifest.json (schema melodia.copernatic_cymatic_parallax.v2, seed 20260831, size 1024x1024, 9 maps: BaseColor/Normal/Roughness/Metallic/Height/ORM/Emissive/Iridescence/Opacity)",
+    "manifest_caveat": "Manifest only enumerates CymaticMarble (1 variant) — stale artifact from early single-variant bake. Real on-disk state is 21 variants x 1665 PNGs (see per_variant below). Do not use manifest as count authority.",
+    "variant_count": 21,
+    "total_pngs": 1665,
+    "height_pngs": 185,
+    "variants_with_height": 21,
+    "all_pngs_valid_magic": true,
+    "zero_byte_files": 0,
+    "total_bytes": 145934229,
+    "total_mb": 139.18,
+    "per_variant": {
+      "CavernWeave": { "count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 6.89 },
+      "CherryBlossomWood": { "count": 81, "frames": 9, "height": 9, "maps_per_frame": 9, "total_mb": 8.53 },
+      "CymaticMarble": { "count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 4.44 },
+      "DancingCrystals": { "count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 14.49 },
+      "FinalDreamweaver": { "count": 117, "frames": 13, "height": 13, "maps_per_frame": 9, "total_mb": 11.76 },
+      "FractalCathedral": { "count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 4.1 },
+      "FrozenFracture": { "count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 2.43 },
+      "GildedCoral": { "count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 2.48 },
+      "GildedLoom": { "count": 81, "frames": 9, "height": 9, "maps_per_frame": 9, "total_mb": 13.6 },
+      "GlitterCrystal": { "count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 6.03 },
+      "GlitterGold": { "count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 5.52 },
+      "GlitterHolographic": { "count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 4.79 },
+      "GlitterIridescent": { "count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 3.37 },
+      "GlitterRainbow": { "count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 5.11 },
+      "GoldenSpiralGrove": { "count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 8.36 },
+      "SilkWaterfall": { "count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 16.08 },
+      "SingingConstellations": { "count": 81, "frames": 9, "height": 9, "maps_per_frame": 9, "total_mb": 5.42 },
+      "SpiralMonument": { "count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 5.74 },
+      "StarlitAbyss": { "count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 6.22 },
+      "TessellationSanctum": { "count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 0.4 },
+      "VoronoiSacredGeometry": { "count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 1.89 }
+    },
+    "coinsheet_cross_check": {
+      "grand_review_claim": "21 variants x 1665 PNGs — VERIFIED exact match on disk",
+      "coinsheet_height_claim": "185 height PNGs, 21 variants_with_height — VERIFIED exact",
+      "coinsheet_anomaly": "ue_level_building_coinsheet_2026-09-01.json variants_generated lists 22 entries with StarlitAbyss duplicated; unique count is correctly 21 matching disk"
+    },
+    "verification_method": "python os.listdir + os.path.getsize + PNG magic 89 50 4E 47 0D 0A 1A 0A — no fabrication"
+  },
+  "promotion": {
+    "from": "Master Index §2 SCAFFOLDED (row: UMelodiaCymaticsSubsystem | audio→geometry Chladni | Source/.../MelodiaCymaticsSubsystem.h/.cpp | needs build)",
+    "to": "Master Index §1 PRESENT (row: Cymatics / audio→geometry Chladni — see patch)",
+    "evidence_basis": "Subsystem header+cpp verified, Ticker + MPC read-only contract verified, 21x1665 PNGs verified on disk with valid PNG magic and no zero-byte files",
+    "build_note": "C++ still requires closed-editor Build.bat to produce reflected .gen.cpp and DLL — PRESENT means source-verified and asset-complete, not yet live in PIE until built. This matches the existing §1 entries for subsystems (AudioReactivePresentationSubsystem etc.) which are also PRESENT as source+assets.",
+    "patch_file": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md (patched in place — see git diff)"
+  },
+  "remaining_for_full_present": [
+    "Closed-editor Build.bat to compile MelodiaCymaticsSubsystem into DLL (required for PIE/runtime access)",
+    "PIE smoke: GetSubsystem<UMelodiaCymaticsSubsystem> + SampleCymaticAmplitude + GetBeatPulse not null/bounds check",
+    "MPC_Melodia_Palette .uasset existence check in editor (Content/Melodia/Presentation/MPC_Melodia_Palette.uasset)",
+    "Optional: §5 World Field Bus — add cymatic amplitude field to shared contract (deferred to phase_4 ecosystem integration)"
+  ]
+}

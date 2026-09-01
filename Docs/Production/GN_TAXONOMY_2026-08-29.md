@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-29  
 **Scope:** `deploy/surreal_arch/melodia_gn/`  
-**Status:** 199 builders, 268 curated presets, 12 categories
+**Status:** 232 builders (291 registrations, 1 duplicate `MEL_music_sheet_rail`), 268 curated presets across 89 builders, 15 categories — audited 2026-09-01
 
 ---
 
@@ -10,11 +10,11 @@
 
 | Metric | Count |
 |--------|-------|
-| Builder files | 38 |
-| Registered builders | 199 |
+| Builder files | 51 |
+| Registered builders | 232 (unique; 291 `register_builder` calls, 1 duplicate) |
 | Builders with presets | 89 |
 | Total curated presets | 268 |
-| Categories | 12 |
+| Categories | 15 |
 
 ---
 
@@ -34,6 +34,9 @@
 | 10 | `operations` | Operations | 3 | 9 |
 | 11 | `mesh_tools` | Mesh Tools | 14 | 9 |
 | 12 | `set_dressing` | Set Dressing | 15 | 3 |
+| 13 | `mother` | Faraway Mother | 16 | 0 |
+| 14 | `white_current` | White Current | 6 | 0 |
+| 15 | `god_molts` | God That Molts | 8 | 0 |
 
 ---
 
@@ -370,6 +373,57 @@ The largest category. All builders produce musical geometry — instruments, not
 
 ---
 
+### 13. Faraway Mother (16 builders)
+
+| Builder | Label | Description | Presets |
+|---------|-------|-------------|---------|
+| `MEL_mother_head_silhouette` | Head Silhouette | Faraway Mother head/veil silhouette — cliff-scale face as terrain | 0 |
+| `MEL_mother_hair_cascade` | Hair Cascade | Veil-hair waterfall — fabric-textured hair as drapery | 0 |
+| `MEL_mother_valley_depression` | Valley Depression | Lap-valley basin — body impression as explorable valley | 0 |
+| `MEL_mother_fog_volume` | Fog Volume | Breath-fog volumetrics above valley | 0 |
+| `MEL_mother_fabric_ridge` | Fabric Ridge | Dress-fold ridge — seam-driven strata | 0 |
+| `MEL_mother_shoulder_fold` | Shoulder Fold | Shoulder drape overhang | 0 |
+| `MEL_mother_heart_gate` | Heart Gate | Chest heart-gate arch — passage through torso | 0 |
+| `MEL_mother_moonlight_rig` | Moonlight Rig | Moonlight projection rig for silhouette | 0 |
+| `MEL_mother_walkway_straight` | Walkway Straight | Flat walkway with fold displacement | 0 |
+| `MEL_mother_walkway_curved` | Walkway Curved | Curved path walkway with banking | 0 |
+| `MEL_mother_frill_rock` | Frill Rock | Frilled rock/lace-edge boulders | 0 |
+| `MEL_mother_frill_arch` | Frill Arch | Frill-lace archway | 0 |
+| `MEL_mother_lace_tree` | Lace Tree | Filigree lace tree — delicate branch lattice | 0 |
+| `MEL_mother_pearl_bush` | Pearl Bush | Pearl-cluster bush scatter | 0 |
+| `MEL_mother_silk_vine` | Silk Vine | Silk vine drape along surfaces | 0 |
+| `MEL_mother_brocade_flower` | Brocade Flower | Embroidered brocade flower scatter | 0 |
+
+---
+
+### 14. White Current (6 builders)
+
+| Builder | Label | Description | Presets |
+|---------|-------|-------------|---------|
+| `MEL_white_seam_spline` | Seam Spline | White Current seam spline | 0 |
+| `MEL_eel_silhouette` | Eel Silhouette | Eel silhouette curve | 0 |
+| `MEL_water_network` | Water Network | Water network graph | 0 |
+| `MEL_moonlit_surf` | Moonlit Surf | Moonlit surf line | 0 |
+| `MEL_white_haze_volume` | White Haze Volume | Volumetric haze | 0 |
+| `MEL_white_current_field` | White Current Field | Flow field driver | 0 |
+
+---
+
+### 15. God That Molts (8 builders)
+
+| Builder | Label | Description | Presets |
+|---------|-------|-------------|---------|
+| `MEL_shell_cephalon` | Shell Cephalon | Trilobite cephalon shell plate | 0 |
+| `MEL_shell_thorax` | Shell Thorax | Segmented thorax plates | 0 |
+| `MEL_shell_pygidium` | Shell Pygidium | Tail shell plate | 0 |
+| `MEL_shell_interior` | Shell Interior | Interior carapace volume | 0 |
+| `MEL_fracture_seam` | Fracture Seam | Molt fracture-line seam | 0 |
+| `MEL_shell_growth_rings` | Growth Rings | Concentric growth-ring displacement | 0 |
+| `MEL_shell_iridescence` | Shell Iridescence | Pearlescent shell surface | 0 |
+| `MEL_molt_volume` | Molt Volume | Full molt volume proxy | 0 |
+
+---
+
 ## Uncategorized (8 builders)
 
 These have no category assignment in `register_builder()`:
@@ -470,6 +524,6 @@ from deploy.surreal_arch.melodia_gn.presets import (
 
 ## Git History
 
-- `deploy/surreal_arch/melodia_gn/` — 38 Python files, 199 builders
+- `deploy/surreal_arch/melodia_gn/` — 51 Python files, 232 builders (15 categories)
 - `deploy/surreal_arch/melodia_gn/presets.py` — 268 curated presets across 89 builders
-- `deploy/surreal_arch/melodia_gn/core.py` — registry + 12 categories
+- `deploy/surreal_arch/melodia_gn/core.py` — registry + 15 categories (added `mother`, `white_current`, `god_molts` 2026-09-01)

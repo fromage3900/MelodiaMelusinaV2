@@ -1,0 +1,160 @@
+{
+  "schema": "melodia.cross_path_validation.v1",
+  "check": "both",
+  "variant": "CymaticMarble",
+  "counts": {
+    "PASS": 15,
+    "FAIL": 1,
+    "SKIP": 2,
+    "ERROR": 0
+  },
+  "results": [
+    {
+      "name": "hython/cymatic/CymaticMarble/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\CymaticMarble",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_BaseColor.png 935297 bytes hash=0e247183d35a 1024x1024 RGB",
+      "expected": "T_Cymatic_CymaticMarble_BaseColor.png",
+      "actual": "T_Cymatic_CymaticMarble_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Normal.png 1046242 bytes hash=53455866320b 1024x1024 RGB",
+      "expected": "T_Cymatic_CymaticMarble_Normal.png",
+      "actual": "T_Cymatic_CymaticMarble_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Roughness.png 291387 bytes hash=57238f41ce18 1024x1024 L",
+      "expected": "T_Cymatic_CymaticMarble_Roughness.png",
+      "actual": "T_Cymatic_CymaticMarble_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Metallic.png 1097 bytes hash=0f4b1668d119 1024x1024 L",
+      "expected": "T_Cymatic_CymaticMarble_Metallic.png",
+      "actual": "T_Cymatic_CymaticMarble_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Height.png 603320 bytes hash=501ac86814e3 1024x1024 RGB",
+      "expected": "T_Cymatic_CymaticMarble_Height.png",
+      "actual": "T_Cymatic_CymaticMarble_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_ORM.png 596794 bytes hash=3f57202da249 1024x1024 RGB",
+      "expected": "T_Cymatic_CymaticMarble_ORM.png",
+      "actual": "T_Cymatic_CymaticMarble_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Emissive.png 686219 bytes hash=bd78640822f5 1024x1024 RGB",
+      "expected": "T_Cymatic_CymaticMarble_Emissive.png",
+      "actual": "T_Cymatic_CymaticMarble_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Iridescence.png 491738 bytes hash=54ee170b3781 1024x1024 RGB",
+      "expected": "T_Cymatic_CymaticMarble_Iridescence.png",
+      "actual": "T_Cymatic_CymaticMarble_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Opacity.png 3157 bytes hash=92d103ae3b35 1024x1024 L",
+      "expected": "T_Cymatic_CymaticMarble_Opacity.png",
+      "actual": "T_Cymatic_CymaticMarble_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/flipbook/count",
+      "status": "PASS",
+      "detail": "80 files (16 frames x 5 maps)",
+      "expected": "40",
+      "actual": "80",
+      "metric": null
+    },
+    {
+      "name": "hython/manifest",
+      "status": "PASS",
+      "detail": "schema=melodia.copernatic_cymatic_parallax.v2 variants=1 size=1024x1024",
+      "expected": "valid json",
+      "actual": "1 variants",
+      "metric": null
+    },
+    {
+      "name": "monolith/status",
+      "status": "PASS",
+      "detail": "v0.20.3 1426 actions port=9316",
+      "expected": "running",
+      "actual": "v0.20.3",
+      "metric": null
+    },
+    {
+      "name": "monolith/project_search",
+      "status": "SKIP",
+      "detail": "project asset search requires Phase A; run monolith_execution_plan_parallel.py Phase A first",
+      "expected": "/Game/Melodia/Cymatics",
+      "actual": "not yet executed",
+      "metric": null
+    },
+    {
+      "name": "monolith/sentinel",
+      "status": "PASS",
+      "detail": "pid=9356 port=9316 v0.20.3 started=2026-09-01T03:49:46.035Z",
+      "expected": "present",
+      "actual": "pid 9356",
+      "metric": null
+    },
+    {
+      "name": "cross/tiling/CymaticMarble/Height",
+      "status": "FAIL",
+      "detail": "edge delta h=51.77 v=44.26 (threshold 8.0)",
+      "expected": "<8.0",
+      "actual": "h=51.8 v=44.3",
+      "metric": {
+        "h_err": 51.765625,
+        "v_err": 44.2646484375
+      }
+    },
+    {
+      "name": "cross/histogram/CymaticMarble/BaseColor",
+      "status": "PASS",
+      "detail": "std=61.1 (expect >10)",
+      "expected": ">10",
+      "actual": "61.1",
+      "metric": null
+    },
+    {
+      "name": "cross/monolith_pixel",
+      "status": "SKIP",
+      "detail": "Monolith import not yet executed -- PSNR/SSIM activates after Phase A. Run monolith_execution_plan_parallel.py then re-check with --check both.",
+      "expected": "",
+      "actual": "",
+      "metric": null
+    }
+  ]
+}
