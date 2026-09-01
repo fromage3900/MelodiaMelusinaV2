@@ -100,7 +100,10 @@ for p in pts:
     p.setAttribValue("silhouetteU", u)
 
 # ---- move 3: petal overskirt ring (procedural, cupped, drooping) -----------
-def petal_surface(a_center):
+if geo.findVertexAttrib("uv") is None:
+    geo.addAttrib(hou.attribType.Vertex, "uv", hou.Vector3(0.0, 0.0, 0.0))
+
+def petal_surface(a_center, petal_index, n_petals):
     """Cupped petal panel: u along length (waist->hem), v across width."""
     L = P["pet_len"]; W = P["pet_len"] * 0.62
     NU, NV = 10, 7
@@ -129,16 +132,24 @@ def petal_surface(a_center):
             p.setAttribValue("layer", 2.0)
             p.setAttribValue("silhouetteU", u)
             grid[iu][iv] = p
+    # uv island per petal: u = petal slot, v = petal param space
+    u0 = petal_index / float(n_petals)
+    u1 = (petal_index + 1) / float(n_petals)
     for iu in range(NU):
         for iv in range(NV):
             f = geo.createPolygon(); f.setIsClosed(True)
-            for pt in (grid[iu][iv], grid[iu][iv+1], grid[iu+1][iv+1], grid[iu+1][iv]):
-                f.addVertex(pt)
+            uu0 = u0 + (u1 - u0) * (iu / NU)
+            uu1 = u0 + (u1 - u0) * ((iu + 1) / NU)
+            vv0, vv1 = iu / NV, (iv + 1) / NV
+            for pt, uvv in ((grid[iu][iv], (uu0, vv0)), (grid[iu][iv+1], (uu1, vv0)),
+                            (grid[iu+1][iv+1], (uu1, vv1)), (grid[iu+1][iv], (uu0, vv1))):
+                vtx = f.addVertex(pt)
+                vtx.setAttribValue("uv", hou.Vector3(uvv[0], uvv[1], 0.0))
 
 N_PET = int(P["petals"])
 for k in range(N_PET):
     a = 2 * math.pi * (k + 0.5) / N_PET + 0.13   # half-step offset vs panel seams
-    petal_surface(a)
+    petal_surface(a, k, N_PET)
 '''
 
 def build_and_export(preset: str) -> dict:
@@ -155,7 +166,12 @@ def build_and_export(preset: str) -> dict:
     gen.setDisplayFlag(True)
     gen.setRenderFlag(True)
 
-    gen.cook(force=True)
+    try:
+        gen.cook(force=True)
+    except Exception as exc:
+        print(f"[{preset}] cook raised: {exc}")
+        print(f"[{preset}] SOP errors: {gen.errors()}")
+        raise
     errs = gen.errors()
     if errs:
         print(f"[{preset}] GEN errors: {errs}")

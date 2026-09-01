@@ -194,10 +194,15 @@ for preset in ("cascade", "tulip", "bloom"):
     render(QA / f"FS_SilhouetteContact_{preset}.png", (-0.2, -1.0), res=(760, 1100))
     contact.append(f"FS_SilhouetteContact_{preset}.png")
 
-# restore cascade for export
+# restore cascade for export: explicit re-import (loop deleted it, bloom is loaded)
 for m in list(skirt):
     bpy.data.objects.remove(m, do_unlink=True)
-skirt = [o for o in bpy.data.objects if o.name.startswith("FS_SkirtDraped_cascade")]
+skirt = import_obj(OUT / "FS_SkirtDraped_cascade.obj")
+for m in skirt:
+    m.data.materials.clear(); m.data.materials.append(mats["skirt"])
+
+export_names = [o.name for o in list(shirt) + list(skirt) + list(crown) + list(wings)]
+print("EXPORT_SET " + json.dumps(export_names))
 
 # ---- Substance staging FBX export -------------------------------------------
 def export_fbx(objs, path):
