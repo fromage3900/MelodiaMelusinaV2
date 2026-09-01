@@ -1,0 +1,31 @@
+{
+  "schema": "melodia.cathedral_fractal.v1",
+  "seed": 20260901,
+  "params": {
+    "recursion_depth": 4,
+    "arch_span": 10.0,
+    "vault_height": 20.0,
+    "tracery_density": 0.85,
+    "bays": 8
+  },
+  "meshes": [
+    {
+      "name": "SM_P4_Cathedral_Fractal",
+      "path": "Saved/Audit/cathedral/SM_P4_Cathedral_Fractal.obj",
+      "verts": 1364,
+      "faces": 657,
+      "bytes": 97665
+    },
+    {
+      "name": "SM_P4_Cathedral_RoseWindow",
+      "path": "Saved/Audit/cathedral/SM_P4_Cathedral_RoseWindow.obj",
+      "verts": 782,
+      "faces": 50,
+      "bytes": 43010
+    }
+  ],
+  "gn_builder": "MEL_p4_fractal_cathedral",
+  "copernicus_variant": "FractalCathedral",
+  "scale": "meters (UE cm = *100)",
+  "nanite": true
+}

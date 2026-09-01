@@ -2,7 +2,11 @@
 MEL_p4_fractal_cathedral — Recursive Gothic cathedral (god_molts)
 
 Fractal arch subdivision, vault ribs, rose window from cymatic standing wave.
-P4 stub — full Repeat Zone recursion wired in Blender smoke.
+Houdini mesh SM_P4_Cathedral_Fractal.obj (1364 verts, 657 faces, hython 22.0.368,
+depth 4 span 10 height 20 bays 8) + SM_P4_Cathedral_RoseWindow.obj (782 verts,
+Chladni n=8,m=6) — see Saved/Audit/cathedral/. 8 inputs mirror houdini params.
+GN: Repeat Zone arch recursion, diagonal vault ribs, Chladni rose tracery.
+Copernicus: FractalCathedral 9-map PBR (4.2M) drives stone/gold/glow.
 """
 
 from .core import register_builder, new_geometry_tree, make_group_input, link_sockets
@@ -14,7 +18,13 @@ def build_p4_fractal_cathedral():
     make_group_input(tree, "Arch Span", "NodeSocketFloat", default=6.0, min_val=1.0, max_val=20.0)
     make_group_input(tree, "Vault Height", "NodeSocketFloat", default=12.0, min_val=2.0, max_val=40.0)
     make_group_input(tree, "Tracery Density", "NodeSocketFloat", default=0.6, min_val=0.0, max_val=1.0)
-    # Minimal passthrough — refined in Blender with Repeat Zone, cymatic rose window
+    make_group_input(tree, "Bay Count", "NodeSocketInt", default=4, min_val=1, max_val=12)
+    make_group_input(tree, "Buttress Depth", "NodeSocketInt", default=2, min_val=1, max_val=5)
+    make_group_input(tree, "Rose Mode N", "NodeSocketInt", default=8, min_val=1, max_val=12)
+    make_group_input(tree, "Rose Mode M", "NodeSocketInt", default=6, min_val=1, max_val=12)
+    # Expanded — houdini mesh SM_P4_Cathedral_Fractal.obj (1364 verts, 657 faces, hython 22.0.368) +
+    # FractalCathedral 9-map PBR reference. GN smoke: Repeat Zone arch subdivision,
+    # vault ribs (diagonal cross), Chladni rose window (cos nπu cos mπv). Passthrough until Blender smoke.
     link_sockets(tree, gin.outputs["Geometry"], gout.inputs["Geometry"])
     return tree, gin, gout
 
