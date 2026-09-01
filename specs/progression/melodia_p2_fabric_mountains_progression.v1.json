@@ -21,9 +21,9 @@
       "Content/MelodiaIntegration/Narrative/Mara/MelodiaQuillMaraVeilReading.qsc"
     ],
     "material_functions": [
-      "/Game/MelodiaShader/Shaders/MF_FabricMountainWPO",
-      "/Game/MelodiaShader/Shaders/MF_CymaticSampler"
-    ]
+          "/Game/EnvSandbox/Materials/Functions/MF_FabricMountainWPO",
+          "/Game/EnvSandbox/Materials/Functions/MF_CymaticSampler"
+        ]
   },
   "authority": {
     "runtime_subsystem": "UMelodiaNarrativeSubsystem",
