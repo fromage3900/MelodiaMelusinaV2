@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-29  
 **Scope:** `deploy/surreal_arch/melodia_gn/`  
-**Status:** 232 builders (291 registrations, 1 duplicate `MEL_music_sheet_rail`), 268 curated presets across 89 builders, 15 categories — audited 2026-09-01
+**Status:** 239 builders (305 registrations, 1 duplicate `MEL_music_sheet_rail`), 268 curated presets across 89 builders, 15 categories — audited 2026-09-01 (+6 P4 stubs, +1 tapestry_wall)
 
 ---
 
@@ -10,8 +10,8 @@
 
 | Metric | Count |
 |--------|-------|
-| Builder files | 51 |
-| Registered builders | 232 (unique; 291 `register_builder` calls, 1 duplicate) |
+| Builder files | 58 |
+| Registered builders | 239 (unique; 305 `register_builder` calls, 1 duplicate) |
 | Builders with presets | 89 |
 | Total curated presets | 268 |
 | Categories | 15 |
@@ -524,6 +524,6 @@ from deploy.surreal_arch.melodia_gn.presets import (
 
 ## Git History
 
-- `deploy/surreal_arch/melodia_gn/` — 51 Python files, 232 builders (15 categories)
+- `deploy/surreal_arch/melodia_gn/` — 58 Python files, 239 builders (15 categories)
 - `deploy/surreal_arch/melodia_gn/presets.py` — 268 curated presets across 89 builders
 - `deploy/surreal_arch/melodia_gn/core.py` — registry + 15 categories (added `mother`, `white_current`, `god_molts` 2026-09-01)
