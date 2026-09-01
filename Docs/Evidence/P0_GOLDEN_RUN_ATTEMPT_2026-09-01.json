@@ -1,0 +1,41 @@
+{
+  "schema": "melodia.evidence_envelope.v1",
+  "run_id": "p0-golden-preflight-20260901-145707-edt",
+  "date": "2026-09-01",
+  "contract": "specs/p0/core_p0_dream_golden_run.v1.json",
+  "requested_action": "Test the golden run",
+  "verdict": "HOLD",
+  "preflight": {
+    "offline_checks": {"passed": 12, "total": 12},
+    "route_maps_present": true,
+    "config_assets_present": true,
+    "completion_gates_pass": true,
+    "echo_pipeline_present": true,
+    "monolith_reachable": true,
+    "next_step": "golden_run"
+  },
+  "focused_editor_tests": {
+    "Melodia.Wardrobe": "6/6 PASS",
+    "Melodia.P0": "4/4 PASS",
+    "Melodia.Quest.Shorewake": "1/1 PASS",
+    "Melodia.Melusina.Traversal.CapabilityContract": "1/1 PASS",
+    "qsc_allowlist_contract": "4/4 PASS"
+  },
+  "execution": {
+    "fresh_player_route_completed": false,
+    "fresh_package_built": false,
+    "packaged_route_completed": false,
+    "reason": "The contract requires an owner-played fresh-slot Morning-to-KaleidoNave route and forbids substituting integration-map probes. The only package on disk is dated 2026-08-14. Eight unrelated Cathedral Houdini packages became dirty in the live editor, so the editor was not closed or saved for packaging."
+  },
+  "package_inventory": {
+    "latest_executable_date": "2026-08-14",
+    "current_baseline": false
+  },
+  "safety": {
+    "unrelated_dirty_packages_preserved": 8,
+    "editor_closed": false,
+    "assets_saved_by_this_attempt": false,
+    "shipping_pass_claimed": false
+  },
+  "next_action": "Owner completes the fresh-slot player route after unrelated dirty packages are resolved, then close editor cleanly, build a current package, repeat the route from the package, and record package_build/package_launch only on PASS."
+}
