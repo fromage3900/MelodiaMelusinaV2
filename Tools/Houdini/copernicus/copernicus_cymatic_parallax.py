@@ -208,6 +208,12 @@ VARIANTS = {
         resonance=(180, 200, 255), glow=(255, 240, 200),
         rough_stone=0.50, rough_vein=0.20, glow_intensity=0.6, choir_count=12,
     ),
+    "CrystalCathedral": dict(
+        stone=(28, 30, 38), stone_hi=(55, 58, 70), crystal=(220, 240, 255),
+        crystal_facet=(180, 205, 255), irid=(200, 180, 255), glow=(180, 210, 255),
+        void=(10, 12, 18), gold_trim=(255, 220, 140),
+        rough_stone=0.45, rough_crystal=0.12, rough_facet=0.08, glow_intensity=0.85, crystal_count=16,
+    ),
 }
 
 # === Math helpers ===
@@ -267,26 +273,28 @@ def fbm_noise(h, w, base_period, octaves, seed=0):
     return result / total
 
 def warped_fbm(h, w, base_period, octaves, warp_amount, seed=0):
-    """fBm with domain warping for more organic flow."""
+    """fBm with domain warping for more organic flow. Tileable-safe: wraps edges."""
     base = fbm_noise(h, w, base_period, octaves, seed)
     warp_x = fbm_noise(h, w, base_period * 2, octaves - 1, seed + 100) * warp_amount
     warp_y = fbm_noise(h, w, base_period * 2, octaves - 1, seed + 200) * warp_amount
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
-    warped_xx = np.clip((xx + warp_x * w * 0.1).astype(int), 0, w - 1)
-    warped_yy = np.clip((yy + warp_y * h * 0.1).astype(int), 0, h - 1)
+    # Tileable: wrap with modulo instead of clip (clipping creates seams)
+    warped_xx = (xx.astype(int) + (warp_x * w * 0.1).astype(int)) % w
+    warped_yy = (yy.astype(int) + (warp_y * h * 0.1).astype(int)) % h
     return base[warped_yy, warped_xx]
 
 # === Pattern generators ===
 
 def cymatic_chladni(h, w, freqs, phases, weights):
-    """Authentic Chladni rectangular-plate formula."""
+    """Authentic Chladni rectangular-plate formula. Tileable: uses 2*pi periodicity."""
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    # Tileable: use 2*pi*m*xx/w so sin(0) = sin(2*pi*m) = 0 at edges
     nx = xx / w
     ny = yy / h
     pattern = np.zeros((h, w), np.float32)
     for (m, n), phase, weight in zip(freqs, phases, weights):
-        term1 = np.sin(m * np.pi * nx + phase) * np.sin(n * np.pi * ny + phase * 0.3)
-        term2 = np.sin(n * np.pi * nx + phase * 0.7) * np.sin(m * np.pi * ny + phase)
+        term1 = np.sin(2 * np.pi * m * nx + phase) * np.sin(2 * np.pi * n * ny + phase * 0.3)
+        term2 = np.sin(2 * np.pi * n * nx + phase * 0.7) * np.sin(2 * np.pi * m * ny + phase)
         pattern += (term1 - term2) * weight
     pmin, pmax = pattern.min(), pattern.max()
     return (pattern - pmin) / (pmax - pmin + 1e-9)
@@ -1102,7 +1110,7 @@ def _build_new_variant(h, w, frame, total_frames, variant_name):
         emissive = mask_color(pearls * smoothstep(0.5, 1.0, cym), col(p["glow"]) * p["glow_intensity"] * 0.5)
         iri = pearls * 0.8 + cym * 0.2
     elif variant_name == "StarlitLoom":
-        loom = (np.sin(nx * p["loom_count"] * np.pi) > 0).astype(float) * 0.3
+        loom = (np.sin(nx * p["loom_count"] * 2 * np.pi) > 0).astype(float) * 0.3
         stars = smoothstep(0.92, 0.98, tileable_value_noise(h, w, 32, SEED+20))
         height = loom * 0.4 + stars * 0.6 + cym * 0.1 + warp * 0.05
         base = mix(col(p["void"]), col(p["loom_wood"]), loom)
@@ -1121,6 +1129,21 @@ def _build_new_variant(h, w, frame, total_frames, variant_name):
         metallic = bloom * 0.05
         emissive = mask_color(bloom, col(p["glow"]) * p["glow_intensity"] * 0.4)
         iri = bloom * 0.6 + frost * 0.2
+    elif variant_name == "CrystalCathedral":
+        # Gothic stone + crystal facets — Chladni drives crystal growth on ribs
+        crystal_mask = smoothstep(0.55, 0.85, cym) * (0.6 + warp*0.4)
+        facet = smoothstep(0.7, 0.92, np.abs(cym - 0.5)*2) * crystal_mask
+        arch = smoothstep(0.3, 0.7, 1 - np.abs(nx*2-1))  # nave arch silhouette
+        height = crystal_mask * 0.55 + facet * 0.35 + warp * 0.08 + arch * 0.05
+        base = mix(col(p["stone"]), col(p["stone_hi"]), warp*0.35)
+        base = mix(base, col(p["crystal"]), crystal_mask*0.85)
+        base = mix(base, col(p["crystal_facet"]), facet*0.7)
+        base = mix(base, col(p["gold_trim"]), smoothstep(0.8, 0.95, cym)*facet*0.4)
+        rough = mix(p["rough_stone"], p["rough_crystal"], crystal_mask)
+        rough = mix(rough, p["rough_facet"], facet*0.8)
+        metallic = facet * 0.15 + crystal_mask * 0.05
+        emissive = mask_color(facet * smoothstep(0.5, 1.0, cym), col(p["glow"]) * p["glow_intensity"] * 0.7)
+        iri = facet * 0.85 + crystal_mask * 0.4 + cym * 0.15
     else:  # ChoirStone
         veins = smoothstep(0.65, 0.85, np.abs(cym - 0.5) * 2)
         height = veins * 0.6 + warp * 0.15 + cym * 0.1
@@ -1141,6 +1164,7 @@ def build_pearl_weave(h, w, frame, total_frames): return _build_new_variant(h, w
 def build_starlit_loom(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "StarlitLoom")
 def build_frost_bloom(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "FrostBloom")
 def build_choir_stone(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "ChoirStone")
+def build_crystal_cathedral(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "CrystalCathedral")
 
 
 # === Main ===
@@ -1175,6 +1199,7 @@ BUILDERS = {
     "StarlitLoom": build_starlit_loom,
     "FrostBloom": build_frost_bloom,
     "ChoirStone": build_choir_stone,
+    "CrystalCathedral": build_crystal_cathedral,
 }
 
 def main():

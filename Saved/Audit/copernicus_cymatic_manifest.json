@@ -4,17 +4,17 @@
   "size": "2048x2048",
   "frames": 1,
   "variants": {
-    "MoltenCore": {
+    "CrystalCathedral": {
       "outputs": [
-        "Saved/Audit/copernicus_cymatic/MoltenCore/T_Cymatic_MoltenCore_BaseColor.png",
-        "Saved/Audit/copernicus_cymatic/MoltenCore/T_Cymatic_MoltenCore_Normal.png",
-        "Saved/Audit/copernicus_cymatic/MoltenCore/T_Cymatic_MoltenCore_Roughness.png",
-        "Saved/Audit/copernicus_cymatic/MoltenCore/T_Cymatic_MoltenCore_Metallic.png",
-        "Saved/Audit/copernicus_cymatic/MoltenCore/T_Cymatic_MoltenCore_Height.png",
-        "Saved/Audit/copernicus_cymatic/MoltenCore/T_Cymatic_MoltenCore_ORM.png",
-        "Saved/Audit/copernicus_cymatic/MoltenCore/T_Cymatic_MoltenCore_Emissive.png",
-        "Saved/Audit/copernicus_cymatic/MoltenCore/T_Cymatic_MoltenCore_Iridescence.png",
-        "Saved/Audit/copernicus_cymatic/MoltenCore/T_Cymatic_MoltenCore_Opacity.png"
+        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Normal.png",
+        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Height.png",
+        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_ORM.png",
+        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Opacity.png"
       ]
     }
   },
