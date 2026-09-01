@@ -1,0 +1,497 @@
+{
+ "schema": "melodia.shorewake48_painter_build.v1",
+ "mesh": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\night_pkg_2026-08-31\\SM_ShorewakeDress_48MAT_v2_slotted.fbx",
+ "projects": [
+  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\substance_staging\\Shorewake48\\spp\\Shorewake48.spp"
+ ],
+ "results": [
+  {
+   "variant": "Shorewake48",
+   "saved": true,
+   "stacks": [
+    {
+     "stack": "SW_Dress_P01",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P02",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P03",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P04",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P05",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P06",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P07",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P08",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P09",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P10",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P11",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P12",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P13",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P14",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P15",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P16",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P17",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P18",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P19",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P20",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P21",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P22",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P23",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P24",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P25",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P26",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P27",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P28",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P29",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P30",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P31",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P32",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P33",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P34",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P35",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P36",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P37",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P38",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P39",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P40",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P41",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P42",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P43",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P44",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P45",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P46",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P47",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    },
+    {
+     "stack": "SW_Dress_P48",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness"
+     ],
+     "skipped": []
+    }
+   ]
+  }
+ ],
+ "all_saved": true,
+ "open_projects": []
+}

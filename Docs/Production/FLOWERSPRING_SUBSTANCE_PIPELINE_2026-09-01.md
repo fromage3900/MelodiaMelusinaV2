@@ -4,10 +4,17 @@ Full authoring chain: Houdini geometry → baked variant maps → Blender assemb
 **automated Substance Painter .spp generation**. Every stage below has been run
 end-to-end; the .spp files exist and open with fills pre-wired.
 
-> Status: 5/5 variants saved (`all_saved=true` in `painter_build_done.json`).
-> Wired per dress set: BaseColor / Normal / Height / Roughness / Metallic +
-> uniform gold (crown) / uniform blush (wings). Open TODO: add Emissive + AO
-> channels to the dress texture sets (see §7).
+> Status: 5/5 FlowerSpring variants saved (`all_saved=true` in
+> `painter_build_done.json`). Wired per dress set: BaseColor / Normal / Height /
+> Roughness / Metallic + uniform gold (crown) / uniform blush (wings).
+> Open TODO: add Emissive + AO channels to the dress texture sets (see §7).
+>
+> **2026-09-01 addition:** the same pipeline (adapted in
+> `Tools/Houdini/sea_above_reef/shorewake_painter_startup.py`) also built the
+> original Shorewake dress as a 48-texture-set project —
+> `substance_staging/Shorewake48/spp/Shorewake48.spp`, wired with the
+> 2026-08-31 bake-of-record maps. Succeeded first run using this doc's
+> gotchas table. See `substance_staging/Shorewake48/README_Shorewake48.md`.
 
 ## 1. Stage map (run order)
 
