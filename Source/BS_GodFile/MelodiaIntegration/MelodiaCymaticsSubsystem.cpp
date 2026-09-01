@@ -12,7 +12,7 @@ void UMelodiaCymaticsSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	// Load the shared palette published by UMelodiaAudioReactivePresentationSubsystem.
 	// We READ it only — never write it (IsReadOnlyByContract).
 	if (UObject* Obj = StaticLoadObject(UMaterialParameterCollection::StaticClass(), nullptr,
-		TEXT("/Game/Melodia/Presentation/MPC_Melodia_Palette")))
+		TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette")))
 	{
 		AudioParameterCollection = Cast<UMaterialParameterCollection>(Obj);
 	}
