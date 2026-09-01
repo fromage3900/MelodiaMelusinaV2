@@ -1,0 +1,185 @@
+{
+  "schema": "melodia.overnight_next_monolith_copernicus_plan.v1",
+  "as_of": "2026-09-01T04:35Z",
+  "sleep_mode": "start_sleep \u2014 editor stays open, hython + audits only, Build.bat deferred to next closed-editor window",
+  "editor_state": "OPEN PID 9356 \u2014 hython/docs lane active, DLL lane blocked (preflight 14KB already recorded)",
+  "existing_state": {
+    "cymatics_variants": 21,
+    "cymatics_pngs": 1665,
+    "gn_builders": 232,
+    "gn_categories": 15,
+    "p1_ledger": "Docs/P1_TASK_LEDGER.json (6 gates draft_open)"
+  },
+  "overnight_plan": {
+    "phase_A_hython_copernicus": {
+      "goal": "8 new tileable cymatic variants (21 -> 29) + validate tiling + contact sheet",
+      "tool": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py --cook --size 1024 --variants TwinklingGears,EnchantedTome,SingingSilk,MoltenCore,PearlWeave,StarlitLoom,FrostBloom,ChoirStone",
+      "expected": "8 x 9 = 72 PNGs at 1024, + tiling audit via Tools/cross_path_validation.py --check hython --variant <each>",
+      "variants": [
+        {
+          "id": "TwinklingGears",
+          "family": "Sacred Geometry",
+          "maps": 9,
+          "frames": 9,
+          "notes": "gear interference + Chladni, brass gear teeth as nodal lines, for music comb integration"
+        },
+        {
+          "id": "EnchantedTome",
+          "family": "Organic",
+          "maps": 9,
+          "frames": 9,
+          "notes": "parchment + ink-wash Chladni, for Faraway veil/ornament bridge"
+        },
+        {
+          "id": "SingingSilk",
+          "family": "Fabric",
+          "maps": 9,
+          "frames": 9,
+          "notes": "silk weave warp/weft + Chladni harmonic, for Faraway gown/mantle fabric chain"
+        },
+        {
+          "id": "MoltenCore",
+          "family": "Glitter",
+          "maps": 9,
+          "frames": 9,
+          "notes": "lava crack Chladni + emissive pulse, for god_molts shell iridescence"
+        },
+        {
+          "id": "PearlWeave",
+          "family": "Fabric",
+          "maps": 9,
+          "frames": 1,
+          "notes": "pearl nacre + Chladni, flipbook variant already has pearl flipbook; this is tileable hero"
+        },
+        {
+          "id": "StarlitLoom",
+          "family": "Sacred Geometry",
+          "maps": 9,
+          "frames": 9,
+          "notes": "loom warp + starfield Chladni, GildedLoom sibling"
+        },
+        {
+          "id": "FrostBloom",
+          "family": "Organic",
+          "maps": 9,
+          "frames": 9,
+          "notes": "frost fractal + Chladni bloom, FrozenFracture sibling for winter Faraway"
+        },
+        {
+          "id": "ChoirStone",
+          "family": "Glitter",
+          "maps": 9,
+          "frames": 9,
+          "notes": "choir-stone resonance Chladni, for cathedral/ruin material chain"
+        }
+      ],
+      "follow_on": "4K hero renders for top 2 (CherryBlossomWood + TwinklingGears) via --size 2048"
+    },
+    "phase_B_monolith_builder": {
+      "goal": "One new mother builder that closes the loop: GN + cymatics + fabric",
+      "builder": {
+        "id": "MEL_mother_tapestry_wall",
+        "label": "Tapestry Wall",
+        "category": "mother",
+        "icon": "MESH_MONKEY",
+        "description": "Faraway Mother tapestry wall \u2014 vertical cloth plane with pleat/seam displacement driven by Copernicus Chladni height (sampled via WorldField.Resonance), embroidery atlas from T_FM_Embroidery, and cymatic iridescence; walkable backdrop for heart-gate approach",
+        "inputs": [
+          {
+            "name": "Width",
+            "type": "Float",
+            "default": 12.0,
+            "min": 2.0,
+            "max": 40.0
+          },
+          {
+            "name": "Height",
+            "type": "Float",
+            "default": 8.0,
+            "min": 2.0,
+            "max": 20.0
+          },
+          {
+            "name": "Pleat Amplitude",
+            "type": "Float",
+            "default": 0.6,
+            "min": 0.0,
+            "max": 2.0
+          },
+          {
+            "name": "Pleat Period",
+            "type": "Float",
+            "default": 88.0,
+            "min": 20.0,
+            "max": 200.0
+          },
+          {
+            "name": "Seam Depth",
+            "type": "Float",
+            "default": 0.9,
+            "min": 0.0,
+            "max": 3.0
+          },
+          {
+            "name": "Embroidery Atlas",
+            "type": "Enum",
+            "default": "A",
+            "options": [
+              "A",
+              "B"
+            ]
+          },
+          {
+            "name": "Cymatic Variant",
+            "type": "String",
+            "default": "CherryBlossomWood",
+            "notes": "sample Height/Normal from Saved/Audit/copernicus_cymatic/<Variant>/ for tapestry displacement"
+          }
+        ],
+        "material_contract": "M_Master_Toon_Universal (pleat N non-sRGB, embroidery BC sRGB, seam mask AO, cymatic Height -> displacement, Iridescence -> rim)",
+        "world_field": "WorldField.Resonance + Tension -> pleat frequency, Moisture -> embroidery density",
+        "file": "deploy/surreal_arch/melodia_gn/mother_tapestry_wall.py",
+        "presets": [
+          "Cherry Veil",
+          "Gilded Seam",
+          "Starlit Weave"
+        ],
+        "why": "Bridges the three PRESENT systems: mother GN + copernicus cymatics + fabric kit \u2014 one builder that consumes all three, proving the cross-material PBR chain end-to-end. Also gives the next hython job a single-file, single-builder verification target (no full taxonomy rebuild)."
+      },
+      "steps": [
+        "Create deploy/surreal_arch/melodia_gn/mother_tapestry_wall.py with register_builder('MEL_mother_tapestry_wall', ..., 'mother')",
+        "Import in deploy/surreal_arch/melodia_gn/__init__.py if needed",
+        "Verify: python -c \"from deploy.surreal_arch.melodia_gn.core import GROUP_METADATA; print(len(GROUP_METADATA))\" -> 233",
+        "No presets yet; add after first Blender smoke"
+      ]
+    },
+    "phase_C_validation": {
+      "goal": "Offline verification only (no editor writes until morning)",
+      "checks": [
+        "PIL check: new PNGs 1024x1024, non-zero, magic 89 50 4E 47",
+        "tiling: edge delta < 8.0 for tileable variants",
+        "GN: mother_tapestry_wall appears in GN_TAXONOMY next sync",
+        "update Saved/Audit/cymatics_audit_2026-09-01.json -> 29 variants"
+      ]
+    }
+  },
+  "handoff": {
+    "next_closed_editor": [
+      "Build.bat BS_GodFileEditor Win64 Development BS_GodFile.uproject -WaitMutex -FromMsBuild",
+      "Monolith live: import_texture 72 PNGs -> create_pbr_material 8 variants -> 4K heroes -> Tools/cross_path_validation --check both",
+      "PIE: SampleCymaticAmplitude on new variants + tapestry wall displacement smoke",
+      "GN_TAXONOMY resync 232->233"
+    ]
+  },
+  "files_to_create_overnight": [
+    "Saved/Audit/copernicus_cymatic/TwinklingGears/*.png (9)",
+    "Saved/Audit/copernicus_cymatic/EnchantedTome/*.png (9)",
+    "Saved/Audit/copernicus_cymatic/SingingSilk/*.png (9)",
+    "Saved/Audit/copernicus_cymatic/MoltenCore/*.png (9)",
+    "Saved/Audit/copernicus_cymatic/PearlWeave/*.png (9)",
+    "Saved/Audit/copernicus_cymatic/StarlitLoom/*.png (9)",
+    "Saved/Audit/copernicus_cymatic/FrostBloom/*.png (9)",
+    "Saved/Audit/copernicus_cymatic/ChoirStone/*.png (9)",
+    "deploy/surreal_arch/melodia_gn/mother_tapestry_wall.py",
+    "Saved/Audit/cymatics_audit_2026-09-01.json (updated 29 variants)"
+  ]
+}
