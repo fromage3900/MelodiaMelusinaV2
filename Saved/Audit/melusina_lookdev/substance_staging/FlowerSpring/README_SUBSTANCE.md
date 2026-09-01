@@ -47,7 +47,23 @@ Variants (colour families reused from Saved/Audit/copernicus_cymatic/):
    - `Motif_N` -> detail normal layer (low strength, tile ~4x)
 3. **Export** painted sets as PNG per channel (or ORM-packed) for re-import to UE.
 
-## Honest note on .spp
+## Status update 2026-09-01 — .spp files now exist
+
+Substance **Painter 11.1.1 IS installed** and the five `.spp` projects were
+generated automatically (startup-module Python builder). They live in `spp/`:
+`FlowerSpring_<Variant>.spp` ×5, each with the four texture sets
+(`M_FS_Crown / M_FS_Shirt / M_FS_Skirt / M_FS_Wings`) and starter fills already
+wired — dress sets carry the baked `T_<V>` maps on BaseColor / Normal / Height /
+Roughness / Metallic; crown/wings carry uniform gold/blush starter fills.
+Open `spp/FlowerSpring_FlowerSpring.spp` and paint on top.
+
+Full pipeline + Painter API gotchas:
+`Docs/Production/FLOWERSPRING_SUBSTANCE_PIPELINE_2026-09-01.md`
+
+(The note below predates the automation — channel setup guidance still applies,
+but you no longer need to build the project or load maps by hand.)
+
+## Honest note on .spp (historical, 2026-08-31)
 
 Substance **Painter/Designer are not installed** on this workstation (only the
 *Substance 3D for Maya* plugin, which cannot author .spp). A `.spp` is a

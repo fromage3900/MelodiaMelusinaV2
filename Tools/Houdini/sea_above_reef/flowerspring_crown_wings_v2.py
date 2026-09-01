@@ -38,14 +38,17 @@ geo = hou.pwd().geometry()
 geo.addAttrib(hou.attribType.Point, "Cd", (0.0, 0.0, 0.0))
 geo.addAttrib(hou.attribType.Point, "rotPhase", 0.0)
 geo.addAttrib(hou.attribType.Point, "petalU", 0.0)
-geo.addAttrib(hou.attribType.Point, "uv", (0.0, 0.0))
+geo.addAttrib(hou.attribType.Vertex, "uv", hou.Vector3(0.0, 0.0, 0.0))
 geo.addAttrib(hou.attribType.Point, "piece", 0.0)   # 0 band, 1 petal, 2 gem
 
 GOLD=(0.91,0.72,0.29); PEACH=(1.0,0.70,0.48); PEARL=(1.0,0.96,0.90); BLUSH=(0.95,0.63,0.66)
 def mixc(c1,c2,t): return tuple(c1[i]+(c2[i]-c1[i])*t for i in range(3))
-def poly(pts, closed=True):
+def poly(pts, closed=True, uvs=None):
     f = geo.createPolygon(); f.setIsClosed(closed)
-    for p in pts: f.addVertex(p)
+    for i, p in enumerate(pts):
+        vtx = f.addVertex(p)
+        if uvs is not None:
+            vtx.setAttribValue("uv", hou.Vector3(uvs[i][0], uvs[i][1], 0.0))
     return f
 
 # ---- frame: head-top in dress space ----------------------------------------
@@ -72,31 +75,38 @@ def lathed_band():
             p.setPosition(HEAD_C + hou.Vector3(rr*math.cos(a), rr*math.sin(a), zz))
             p.setAttribValue("Cd", mixc(GOLD, PEACH, 0.25+0.25*math.sin(b)))
             p.setAttribValue("piece", 0.0)
-            p.setAttribValue("uv", (i/SEGS, j/RSEG))
             ring.append(p)
         rings.append(ring)
     for i in range(SEGS):
         i2 = (i+1) % SEGS
-        for j in range(RSEG):
-            j2 = (j+1) % RSEG
-            if j == RSEG-1 and True:  # seam row duplicates wrap
-                continue
-            poly([rings[i][j], rings[i][j2], rings[i2][j2], rings[i2][j]])
+        for j in range(RSEG-1):
+            j2 = j+1
+            u0, u1 = i/SEGS, (i+1)/SEGS
+            v0, v1 = j/RSEG, (j+1)/RSEG
+            poly([rings[i][j], rings[i][j2], rings[i2][j2], rings[i2][j]],
+                 uvs=[(u0,v0),(u0,v1),(u1,v1),(u1,v0)])
 
-def shell(front, back):
+def shell(front, back, front_uv):
     """Closed shell from a front grid + mirrored back grid (same topology)."""
-    n = len(front)
-    for r in range(len(front)-1):
-        for c in range(len(front[0])-1):
-            poly([front[r][c], front[r][c+1], front[r+1][c+1], front[r+1][c]])
-            poly([back[r][c], back[r+1][c], back[r+1][c+1], back[r][c+1]])
-    # rim stitching
-    for c in range(len(front[0])-1):
-        poly([front[0][c], back[0][c], back[0][c+1], front[0][c+1]])
-        poly([front[-1][c], front[-1][c+1], back[-1][c+1], back[-1][c]])
-    for r in range(len(front)-1):
-        poly([front[r][0], front[r+1][0], back[r+1][0], back[r][0]])
-        poly([front[r][-1], back[r][-1], back[r+1][-1], front[r+1][-1]])
+    nr, nc = len(front), len(front[0])
+    for r in range(nr-1):
+        for c in range(nc-1):
+            u0, u1 = front_uv[r][c], front_uv[r][c+1]
+            v0, v1 = front_uv[r][c], front_uv[r+1][c]
+            poly([front[r][c], front[r][c+1], front[r+1][c+1], front[r+1][c]],
+                 uvs=[u0, u1, front_uv[r+1][c+1], front_uv[r+1][c]])
+            poly([back[r][c], back[r+1][c], back[r+1][c+1], back[r][c+1]],
+                 uvs=[v0, front_uv[r+1][c], front_uv[r+1][c+1], u1])
+    for c in range(nc-1):
+        poly([front[0][c], back[0][c], back[0][c+1], front[0][c+1]],
+             uvs=[front_uv[0][c], front_uv[0][c], front_uv[0][c+1], front_uv[0][c+1]])
+        poly([front[-1][c], front[-1][c+1], back[-1][c+1], back[-1][c]],
+             uvs=[front_uv[-1][c], front_uv[-1][c+1], front_uv[-1][c+1], front_uv[-1][c]])
+    for r in range(nr-1):
+        poly([front[r][0], front[r+1][0], back[r+1][0], back[r][0]],
+             uvs=[front_uv[r][0], front_uv[r+1][0], front_uv[r+1][0], front_uv[r][0]])
+        poly([front[r][-1], back[r][-1], back[r+1][-1], front[r+1][-1]],
+             uvs=[front_uv[r][-1], front_uv[r][-1], front_uv[r+1][-1], front_uv[r+1][-1]])
 
 def petal(a_center, k):
     """Cupped, curled, twisted petal as a closed parametric shell."""
@@ -104,6 +114,7 @@ def petal(a_center, k):
     W = PET_L*0.72
     front = [[None]*(NV+1) for _ in range(NU+1)]
     back  = [[None]*(NV+1) for _ in range(NU+1)]
+    fuv   = [[None]*(NV+1) for _ in range(NU+1)]
     col = mixc(GOLD, PEACH, (k % 3)/2.0)
     for iu in range(NU+1):
         u = iu/NU
@@ -126,16 +137,21 @@ def petal(a_center, k):
                 p.setAttribValue("Cd", cuv)
                 p.setAttribValue("rotPhase", k/N_PET)
                 p.setAttribValue("petalU", u)
-                p.setAttribValue("uv", (u, v))
                 p.setAttribValue("piece", 1.0)
             front[iu][iv] = fp; back[iu][iv] = bp
-    shell(front, back)
+            # per-petal uv island
+            u0 = k/N_PET; u1 = (k+1)/N_PET
+            fuv[iu][iv] = (u0 + (u1-u0)*u, v)
+    shell(front, back, fuv)
 
-def gem(a_center):
+def gem(k):
     """Faceted gem in a gold bezel cup, sitting on the band."""
+    a_center = 2*math.pi*k/7 + 0.22
     s = 0.009
     cx, cy = HEAD_C[0]+R_BAND*math.cos(a_center), HEAD_C[1]+R_BAND*math.sin(a_center)
     cz = HEAD_C[2] + 0.004
+    # gem island in uv: small box reserved at u ~ k/7 band bottom
+    gu, gv = k/7.0, 0.0
     bez = []
     for i in range(10):
         b = 2*math.pi*i/10
@@ -147,7 +163,8 @@ def gem(a_center):
     base.setPosition(hou.Vector3(cx, cy, cz-0.004))
     base.setAttribValue("Cd", mixc(GOLD, PEACH, 0.5)); base.setAttribValue("piece", 0.0)
     for i in range(10):
-        poly([base, bez[i], bez[(i+1) % 10]])
+        poly([base, bez[i], bez[(i+1) % 10]],
+             uvs=[(gu+0.05,gv+0.05),(gu+0.1*i/10,gv),(gu+0.1*(i+1)/10,gv)])
     # gem: low-profile brilliant (octahedral top + pavilion)
     top = geo.createPoint(); top.setPosition(hou.Vector3(cx, cy, cz+s*0.9))
     top.setAttribValue("Cd", PEARL); top.setAttribValue("piece", 2.0)
@@ -161,14 +178,16 @@ def gem(a_center):
     tip = geo.createPoint(); tip.setPosition(hou.Vector3(cx, cy, cz-s*0.7))
     tip.setAttribValue("Cd", PEARL); tip.setAttribValue("piece", 2.0)
     for i in range(8):
-        poly([top, girdle[i], girdle[(i+1) % 8]])
-        poly([tip, girdle[(i+1) % 8], girdle[i]])
+        poly([top, girdle[i], girdle[(i+1) % 8]],
+             uvs=[(gu+0.05,gv+0.1),(gu+0.08*i/8,gv+0.15),(gu+0.08*(i+1)/8,gv+0.15)])
+        poly([tip, girdle[(i+1) % 8], girdle[i]],
+             uvs=[(gu+0.05,gv),(gu+0.08*(i+1)/8,gv+0.15),(gu+0.08*i/8,gv+0.15)])
 
 lathed_band()
 for k in range(N_PET):
     petal(2*math.pi*(k+0.5)/N_PET, k)
 for k in range(7):
-    gem(2*math.pi*k/7 + 0.22)
+    gem(k)
 '''
 
 WING_SCRIPT = r'''
@@ -178,14 +197,17 @@ geo = hou.pwd().geometry()
 geo.addAttrib(hou.attribType.Point, "Cd", (0.0, 0.0, 0.0))
 geo.addAttrib(hou.attribType.Point, "wingPhase", 0.0)
 geo.addAttrib(hou.attribType.Point, "edgeU", 0.0)
-geo.addAttrib(hou.attribType.Point, "uv", (0.0, 0.0))
+geo.addAttrib(hou.attribType.Vertex, "uv", hou.Vector3(0.0, 0.0, 0.0))
 geo.addAttrib(hou.attribType.Point, "piece", 0.0)   # 0 membrane, 1 vein, 2 rim cup
 
 BLUSH=(0.95,0.63,0.66); PEARL=(1.0,0.96,0.90); GOLD=(0.91,0.72,0.29); SPRING=(0.66,0.85,0.42)
 def mixc(c1,c2,t): return tuple(c1[i]+(c2[i]-c1[i])*t for i in range(3))
-def poly(pts, closed=True):
+def poly(pts, closed=True, uvs=None):
     f = geo.createPolygon(); f.setIsClosed(closed)
-    for p in pts: f.addVertex(p)
+    for i, p in enumerate(pts):
+        vtx = f.addVertex(p)
+        if uvs is not None:
+            vtx.setAttribValue("uv", hou.Vector3(uvs[i][0], uvs[i][1], 0.0))
     return f
 
 # anchors: behind the shoulder blades (dress space, meters)
@@ -242,30 +264,31 @@ def membrane(name, side, kind):
             p.setAttribValue("Cd", col)
             p.setAttribValue("wingPhase", phase)
             p.setAttribValue("edgeU", u)
-            p.setAttribValue("uv", (u, v))
             p.setAttribValue("piece", 0.0)
-            grid[iu][iv] = p
+            grid[iu][iv] = (p, u, v)
     # double-sided membrane with slight thickness at the root
     for iu in range(NU):
         for iv in range(NV):
-            a, b, c, d = grid[iu][iv], grid[iu][iv+1], grid[iu+1][iv+1], grid[iu+1][iv]
-            f1 = poly([a, b, c, d])
-            f2 = poly([a, d, c, b])   # reversed winding -> visible both sides
+            a, ua, va = grid[iu][iv]
+            b, ub, vb = grid[iu][iv+1]
+            c, uc, vc = grid[iu+1][iv+1]
+            d, ud, vd = grid[iu+1][iv]
+            poly([a, b, c, d], uvs=[(ua,va),(ub,vb),(uc,vc),(ud,vd)])
+            poly([a, d, c, b], uvs=[(ua,va),(ud,vd),(uc,vc),(ub,vb)])   # reversed winding
     # veins: tapered strips along radial lines (piece 1)
     N_VEINS = 6
     for k in range(N_VEINS):
         vline = k/(N_VEINS-1)
-        STRIP = 2
         for iu in range(NU):
             u0, u1 = iu/NU, (iu+1)/NU
             w0 = 0.0035*(1.0-u0) + 0.0006
             w1 = 0.0035*(1.0-u1) + 0.0006
-            def at(uu, off):
+            def grid_at(uu, off):
                 vv = min(1.0, max(0.0, vline + off))
-                p0 = grid[int(round(uu*NU))][int(round(vv*NV))]
+                p0, _, _ = grid[int(round(uu*NU))][int(round(vv*NV))]
                 return p0.position()
-            pa, pb = at(u0, -w0), at(u0, w0)
-            pc, pd = at(u1, -w1), at(u1, w1)
+            pa = grid_at(u0, -w0); pb = grid_at(u0, w0)
+            pc = grid_at(u1, -w1); pd = grid_at(u1, w1)
             A = geo.createPoint(); A.setPosition(pa)
             B = geo.createPoint(); B.setPosition(pb)
             C = geo.createPoint(); C.setPosition(pc)
@@ -275,12 +298,16 @@ def membrane(name, side, kind):
                 p.setAttribValue("Cd", col)
                 p.setAttribValue("wingPhase", phase)
                 p.setAttribValue("piece", 1.0)
-            poly([A, B, D, C])
+            # vein uv island: reserved strip at v < 0 (below membrane island)
+            poly([A, B, D, C], uvs=[(0.5+vline*0.15, -0.05-u0*0.4),
+                                     (0.5+vline*0.15+0.02, -0.05-u0*0.4),
+                                     (0.5+vline*0.15+0.02, -0.05-u1*0.4),
+                                     (0.5+vline*0.15, -0.05-u1*0.4)])
     # rim cups: small smooth cups along the outer 45% of the edge (piece 2)
     N_CUPS = 9
     for k in range(N_CUPS):
         v = 0.55 + 0.45*k/(N_CUPS-1)
-        anchor_pt = grid[NU][int(round(v*NV))]
+        anchor_pt = grid[NU][int(round(v*NV))][0]
         pos = anchor_pt.position()
         s = 0.012 if kind == "fore" else 0.009
         ring = []
@@ -295,7 +322,9 @@ def membrane(name, side, kind):
             p.setAttribValue("piece", 2.0)
             ring.append(p)
         for i in range(8):
-            poly([ring[i], ring[(i+1) % 8], anchor_pt])
+            poly([ring[i], ring[(i+1) % 8], anchor_pt],
+                 uvs=[(1.05+k*0.03+i/8*0.02, -0.05),(1.05+k*0.03+(i+1)/8*0.02, -0.05),
+                       (1.05+k*0.03+0.01, -0.02)])
 
 for side in ("R", "L"):
     for kind in ("fore", "hind"):
@@ -310,7 +339,12 @@ def build_and_export(name: str, script: str) -> dict:
     gen.parm("python").set(script.strip())
     gen.setDisplayFlag(True)
     gen.setRenderFlag(True)
-    gen.cook(force=True)
+    try:
+        gen.cook(force=True)
+    except Exception as exc:
+        print(f"[{name}] cook raised: {exc}")
+        print(f"[{name}] SOP errors: {gen.errors()}")
+        raise
     errs = gen.errors()
     if errs:
         print(f"[{name}] GEN errors: {errs}")
