@@ -11,9 +11,6 @@ try:
 except ImportError:
     HAS_DEPS = False
 
-if not HAS_DEPS:
-    raise unittest.SkipTest("numpy and/or PIL not available in this Python environment")
-
 TEST_DIR = Path(__file__).resolve().parent
 PYTHON_DIR = TEST_DIR.parent
 if str(PYTHON_DIR) not in sys.path:
@@ -28,6 +25,7 @@ import wire_audio_water_modulation as water_mod
 import wire_audio_material_pulsation as mat_pulse
 import wire_water_bioluminescence_harmony as bio_harm
 
+@unittest.skipUnless(HAS_DEPS, "numpy and/or PIL not available in this Python environment")
 class TestEmpiricalViewAnglesAndToonShadow(unittest.TestCase):
     def test_extreme_fresnel_sheen_curve(self):
         presets = mod_fabric.CORE_FABRIC_PRESETS
