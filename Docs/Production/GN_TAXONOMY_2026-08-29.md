@@ -34,7 +34,7 @@
 | 10 | `operations` | Operations | 3 | 9 |
 | 11 | `mesh_tools` | Mesh Tools | 14 | 9 |
 | 12 | `set_dressing` | Set Dressing | 15 | 3 |
-| 13 | `mother` | Faraway Mother | 16 | 0 |
+| 13 | `mother` | Faraway Mother | 17 | 0 |
 | 14 | `white_current` | White Current | 6 | 0 |
 | 15 | `god_molts` | God That Molts | 8 | 0 |
 
@@ -373,7 +373,13 @@ The largest category. All builders produce musical geometry — instruments, not
 
 ---
 
-### 13. Faraway Mother (16 builders)
+### 13. Faraway Mother (17 builders)
+
+Fabric-mountain biome. A reclining maternal figure whose body is the terrain.
+
+#### 13.1 horizon_body
+
+8 builders from `deploy/surreal_arch/melodia_gn/mother.py`:
 
 | Builder | Label | Description | Presets |
 |---------|-------|-------------|---------|
@@ -385,6 +391,13 @@ The largest category. All builders produce musical geometry — instruments, not
 | `MEL_mother_shoulder_fold` | Shoulder Fold | Shoulder drape overhang | 0 |
 | `MEL_mother_heart_gate` | Heart Gate | Chest heart-gate arch — passage through torso | 0 |
 | `MEL_mother_moonlight_rig` | Moonlight Rig | Moonlight projection rig for silhouette | 0 |
+
+#### 13.2 dressing_foliage
+
+8 builders from `deploy/surreal_arch/melodia_gn/mother_v3.py`:
+
+| Builder | Label | Description | Presets |
+|---------|-------|-------------|---------|
 | `MEL_mother_walkway_straight` | Walkway Straight | Flat walkway with fold displacement | 0 |
 | `MEL_mother_walkway_curved` | Walkway Curved | Curved path walkway with banking | 0 |
 | `MEL_mother_frill_rock` | Frill Rock | Frilled rock/lace-edge boulders | 0 |
@@ -393,6 +406,14 @@ The largest category. All builders produce musical geometry — instruments, not
 | `MEL_mother_pearl_bush` | Pearl Bush | Pearl-cluster bush scatter | 0 |
 | `MEL_mother_silk_vine` | Silk Vine | Silk vine drape along surfaces | 0 |
 | `MEL_mother_brocade_flower` | Brocade Flower | Embroidered brocade flower scatter | 0 |
+
+#### 13.3 bridge
+
+1 builder from `deploy/surreal_arch/melodia_gn/mother_tapestry_wall.py`:
+
+| Builder | Label | Description | Presets |
+|---------|-------|-------------|---------|
+| `MEL_mother_tapestry_wall` | Tapestry Wall | Vertical cloth plane with pleat/seam displacement; walkable heart-gate backdrop | 0 |
 
 ---
 
