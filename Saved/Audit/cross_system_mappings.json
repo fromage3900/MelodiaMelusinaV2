@@ -1,0 +1,45 @@
+{
+  "schema": "melodia.cross_system_mappings.v1",
+  "as_of": "2026-09-01",
+  "derived_from": "Saved/Audit/ecosystem_integration_report.json mapping_05",
+  "note": "Spec-only MI assignment table — consume via t3d_material_curve_injector when 9316 recovers. No .uasset write.",
+  "mi_assignments": [
+    {
+      "variant": "CymaticMarble",
+      "mi": "MI_Cymatic_CymaticMarble_R045_Tile1_Unique",
+      "parent": "M_Master_Toon_Universal",
+      "maps": {
+        "BaseColor": "T_Cymatic_CymaticMarble_BaseColor.png",
+        "Normal": "T_Cymatic_CymaticMarble_Normal.png",
+        "Height": "T_Cymatic_CymaticMarble_Height.png",
+        "ORM": "T_Cymatic_CymaticMarble_ORM.png"
+      },
+      "bus_taste": "WorldField.Resonance (BeatPulse)"
+    },
+    {
+      "suite": "GildedAcanthusBrocade",
+      "mi": "MI_FarawayMother_Corset_GildedAcanthusBrocade_R045_Tile1_Unique",
+      "parent": "M_Master_Toon_Universal",
+      "slot": "Body/Shirt",
+      "maps": "BC/N/ORM/H/R/AO/M complete (7)"
+    },
+    {
+      "suite": "CelestialSilkJacquard",
+      "mi": "MI_FarawayMother_Gown_CelestialSilkJacquard_R045_Tile1_Unique",
+      "parent": "M_Master_Nikki",
+      "slot": "Body/Skirt/Shawl",
+      "maps": "BC/N/ORM/H/R/AO/M/Sheen (8) — sheen path"
+    },
+    {
+      "suite": "AquaticLullabyLace",
+      "mi": "MI_FarawayMother_Veil_AquaticLullabyLace_R045_Tile1_Unique",
+      "parent": "M_Master_Toon_Universal_Alpha",
+      "slot": "Trail/Accessories",
+      "maps": "BC/N/ORM/H/R/AO/M/Alpha/Mask (8) — alpha path"
+    },
+    {
+      "water_example": "M_Water_Master_Grand_v9 instance for cloth-mountain shoreline",
+      "profile": "MelodiaWaterProfile (ToonLightBands/RimStrength/SurfaceRoughness) + cymatic Height→FluidPeak + Faraway Emissive→WaterBioluminescenceImpulse"
+    }
+  ]
+}

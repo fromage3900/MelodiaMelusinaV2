@@ -1,0 +1,377 @@
+{
+  "spec_version": "1.0",
+  "created": "2026-09-01",
+  "rec_id": "rec_7_user_facing",
+  "phase": "phase_user_facing",
+  "description": "User-facing specs for cymatic params UI, Faraway wardrobe selection, cymatic pattern browser, and rhythm integration. Spec only — no widget writes.",
+  "source_assets": {
+    "cymatic_variants": 21,
+    "cymatic_variant_names": [
+      "CavernWeave",
+      "CherryBlossomWood",
+      "CymaticMarble",
+      "DancingCrystals",
+      "FinalDreamweaver",
+      "FractalCathedral",
+      "FrozenFracture",
+      "GildedCoral",
+      "GildedLoom",
+      "GlitterCrystal",
+      "GlitterGold",
+      "GlitterHolographic",
+      "GlitterIridescent",
+      "GlitterRainbow",
+      "GoldenSpiralGrove",
+      "SilkWaterfall",
+      "SingingConstellations",
+      "SpiralMonument",
+      "StarlitAbyss",
+      "TessellationSanctum",
+      "VoronoiSacredGeometry"
+    ],
+    "cymatic_total_pngs": 1665,
+    "cymatic_height_pngs": 185,
+    "cymatic_flipbook_variants": [
+      "CherryBlossomWood",
+      "DancingCrystals",
+      "FinalDreamweaver",
+      "GildedLoom",
+      "GlitterCrystal",
+      "GlitterGold",
+      "GlitterHolographic",
+      "GlitterIridescent",
+      "GlitterRainbow",
+      "SilkWaterfall",
+      "SingingConstellations",
+      "StarlitAbyss"
+    ],
+    "cymatic_single_frame_variants": [
+      "CavernWeave",
+      "CymaticMarble",
+      "FractalCathedral",
+      "FrozenFracture",
+      "GildedCoral",
+      "GoldenSpiralGrove",
+      "SpiralMonument",
+      "TessellationSanctum",
+      "VoronoiSacredGeometry"
+    ],
+    "cymatic_pbr_maps_per_variant": ["BaseColor", "Normal", "ORM", "Height", "Roughness", "Metallic", "Emissive", "Opacity", "Iridescence"],
+    "cymatic_source_root": "Saved/Audit/copernicus_cymatic/",
+    "faraway_suites": [
+      "Corset_GildedAcanthusBrocade",
+      "Cradle_CarvedAlabasterWood",
+      "Gown_CelestialSilkJacquard",
+      "Mantle_NightSkyVelvet",
+      "Ornament_NacreMusicBoxJewel",
+      "Veil_AquaticLullabyLace"
+    ],
+    "faraway_pbr_maps_per_suite": ["BC", "N", "ORM", "AO", "H", "M", "R", "Sheen", "Alpha", "Mask"],
+    "faraway_source_root": "Content/Textures/FarawayMother_Suites/",
+    "faraway_png_count": 47,
+    "faraway_uasset_count": 47,
+    "contact_sheets": [
+      "ContactSheet_Cosmic___Gilded",
+      "ContactSheet_Flipbook",
+      "ContactSheet_Painterly_Pearl_Satin",
+      "ContactSheet_Pearl_Lace",
+      "ContactSheet_Pearl_Lace_Detail",
+      "ContactSheet_Serene",
+      "ContactSheet_Silk_Iridescent"
+    ],
+    "contact_sheet_root": "Content/EnvSandbox/Textures/_ContactSheets/",
+    "wardrobe_slots": ["Body", "Hat", "Gloves", "Shawl", "Trail", "HairCharm", "Shirt", "Skirt", "Boots", "Accessories"],
+    "wardrobe_authority": "UMelodiaWardrobeSubsystem (Plugins/MelodiaWardrobe/Source/MelodiaWardrobe/Public/MelodiaWardrobeSubsystem.h)",
+    "wardrobe_component": "UMelodiaWardrobeComponent (Plugins/MelodiaWardrobe/Source/MelodiaWardrobe/Public/MelodiaWardrobeComponent.h)",
+    "wardrobe_definition": "UMelodiaCosmeticDefinition (Plugins/MelodiaWardrobe/Source/MelodiaWardrobe/Public/MelodiaCosmeticDefinition.h)",
+    "rhythm_highway_widget": "Content/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway.uasset",
+    "rhythm_subsystem": "UMelodiaRhythmCombatSubsystem (Source/BS_GodFile/MelodiaIntegration/MelodiaRhythmCombatSubsystem.h)"
+  },
+  "features": {
+    "cymatic_params_ui": {
+      "goal": "User-adjustable cymatic parameters panel that drives cymatic PBR preview without regenerating textures.",
+      "widget_spec": {
+        "proposed_widget": "WBP_CymaticParamsPanel (CommonActivatableWidget)",
+        "location": "Content/Melodia/UI/Cymatics/WBP_CymaticParamsPanel.uasset (proposed, not yet authored)",
+        "host": "Hosted in wardrobe / lookdev details panel or standalone Cymatics Lab panel; not on battle HUD (single-writer rule per AGENTS.md)."
+      },
+      "parameters": [
+        {
+          "id": "cymatic_variant",
+          "label": "Pattern",
+          "type": "enum_dropdown",
+          "options": "21 variant names from source_assets.cymatic_variants",
+          "default": "VoronoiSacredGeometry",
+          "binding": "Selects which T_Cymatic_<Variant>_* texture set is previewed. Swaps all 9 PBR slots atomically.",
+          "persistence": "Editor preview only; not saved to narrative record. Future: save as cosmetic preference via wardrobe subsystem."
+        },
+        {
+          "id": "cymatic_frame",
+          "label": "Frame",
+          "type": "slider_int",
+          "range": [0, 16],
+          "visible_when": "selected variant is in cymatic_flipbook_variants",
+          "binding": "Selects numbered frame suffix .N on PNGs (e.g., T_Cymatic_GlitterIridescent_BaseColor.7.png). Single-frame variants lock to 0.",
+          "note": "Variants with 81 PNGs = 9 maps x 9 frames; 153 PNGs = 9 maps x 17 frames; 9 PNGs = single frame."
+        },
+        {
+          "id": "cymatic_tiling",
+          "label": "Tiling",
+          "type": "slider_float",
+          "range": [0.25, 4.0],
+          "default": 1.0,
+          "step": 0.25,
+          "binding": "Scalar parameter on preview MI (TexCoord tiling). No texture reimport.",
+          "preview_effect": "Controls repetition density of cymatic standing-wave pattern."
+        },
+        {
+          "id": "cymatic_intensity",
+          "label": "Intensity",
+          "type": "slider_float",
+          "range": [0.0, 1.0],
+          "default": 1.0,
+          "binding": "Lerps Height/Emissive contribution in preview MI. 0 = flat, 1 = full displacement/emission.",
+          "preview_effect": "Height map strength + emissive boost."
+        },
+        {
+          "id": "cymatic_iridescence",
+          "label": "Iridescence",
+          "type": "slider_float",
+          "range": [0.0, 1.0],
+          "default": 0.5,
+          "binding": "Scales Iridescence map contribution in preview MI.",
+          "note": "Iridescence is a cymatic-specific map not present in FarawayMother suites."
+        },
+        {
+          "id": "cymatic_roughness_bias",
+          "label": "Polish",
+          "type": "slider_float",
+          "range": [-0.5, 0.5],
+          "default": 0.0,
+          "binding": "Additive bias on Roughness map sample before MI roughness input.",
+          "display": "Label 'Polish' inversely maps: higher polish = lower roughness."
+        }
+      ],
+      "preview_surface": {
+        "description": "Preview MI on a flat plane or sphere primitive in the panel; swaps textures per variant selection.",
+        "material": "Reuse existing cymatic master MI (proposed: MI_Cymatic_Preview under Content/Melodia/Materials/Cymatics/ — to be authored). Must support BaseColor/N/ORM/Height/Roughness/Metallic/Emissive/Opacity/Iridescence slots.",
+        "fallback": "If master MI not yet authored, preview falls back to BaseColor-only quad using T_ContactSheet_* as thumbnail grid."
+      },
+      "constraints": [
+        "Spec only — no WBP writes in this deliverable.",
+        "Must not create a second HUD writer; preview panel is separate from WBP_MelodiaRhythmHighway.",
+        "All params are preview scalars; no hython/COPs regeneration from UI in v1.",
+        "Variant list is data-driven from Saved/Audit/copernicus_cymatic/ folder scan, not hardcoded enum."
+      ]
+    },
+    "faraway_wardrobe_selection": {
+      "goal": "Faraway Mother outfit selection integrated with existing wardrobe authority (MelodiaWardrobeSubsystem).",
+      "widget_spec": {
+        "proposed_widget": "WBP_FarawayWardrobePanel (CommonActivatableWidget)",
+        "location": "Content/Melodia/UI/Wardrobe/WBP_FarawayWardrobePanel.uasset (proposed, not yet authored)",
+        "integration": "Calls UMelodiaWardrobeSubsystem::EquipCosmetic / UnequipSlot; never writes save record directly. Mirrors MelodiaNarrativeTypes.h EMelodiaWardrobeSlot."
+      },
+      "outfit_mapping": [
+        {
+          "suite": "Gown_CelestialSilkJacquard",
+          "proposed_cosmetic_id": "Cos_Faraway_Gown_CelestialSilk",
+          "slot": "Body",
+          "rarity": "Legendary",
+          "maps": ["BC", "N", "ORM", "AO", "H", "M", "R", "Sheen"],
+          "notes": "Hero gown. Body slot. Sheen map drives fabric sheen param on wardrobe MI."
+        },
+        {
+          "suite": "Corset_GildedAcanthusBrocade",
+          "proposed_cosmetic_id": "Cos_Faraway_Corset_GildedAcanthus",
+          "slot": "Shirt",
+          "rarity": "Epic",
+          "maps": ["BC", "N", "ORM", "AO", "H", "M", "R"],
+          "notes": "Shirt slot (V2 split-garment). Brocade detail via ORM + Height."
+        },
+        {
+          "suite": "Mantle_NightSkyVelvet",
+          "proposed_cosmetic_id": "Cos_Faraway_Mantle_NightSky",
+          "slot": "Shawl",
+          "rarity": "Epic",
+          "maps": ["BC", "N", "ORM", "AO", "H", "M", "R", "Sheen"],
+          "notes": "Shawl slot. Velvet pile via Sheen + Roughness."
+        },
+        {
+          "suite": "Veil_AquaticLullabyLace",
+          "proposed_cosmetic_id": "Cos_Faraway_Veil_AquaticLullaby",
+          "slot": "HairCharm",
+          "rarity": "Rare",
+          "maps": ["BC", "N", "ORM", "AO", "H", "M", "R", "Mask", "Alpha"],
+          "notes": "HairCharm slot. Alpha/Mask for lace cutout. Requires opacity-masked MI."
+        },
+        {
+          "suite": "Ornament_NacreMusicBoxJewel",
+          "proposed_cosmetic_id": "Cos_Faraway_Ornament_NacreJewel",
+          "slot": "Accessories",
+          "rarity": "Rare",
+          "maps": ["BC", "N", "ORM", "AO", "H", "M", "R", "Sheen"],
+          "notes": "Accessories slot. Nacre iridescence via Sheen."
+        },
+        {
+          "suite": "Cradle_CarvedAlabasterWood",
+          "proposed_cosmetic_id": "Cos_Faraway_Cradle_AlabasterWood",
+          "slot": "Trail",
+          "rarity": "Uncommon",
+          "maps": ["BC", "N", "ORM", "AO", "H", "M", "R"],
+          "notes": "Trail slot repurposed for wood/cradle accent, or future Boots/Trail prop. Wood grain via Height + Roughness. Alternative: map to world prop, not wardrobe, if Trail semantics mismatch — decision deferred to wardrobe catalog review."
+        }
+      ],
+      "selection_flow": {
+        "browse": "Grid of 6 Faraway suite cards with BC thumbnail + rarity badge. Data source: Content/Textures/FarawayMother_Suites/ T_FarawayMother_*_BC.png.",
+        "preview": "3D mannequin (Melusina skeletal mesh) with UMelodiaWardrobeComponent; equip is live preview, not committed until Confirm.",
+        "equip": "Confirm calls WardrobeSubsystem.TryEquip(CosmeticId) — respects ownership (Gacha subsystem) and slot exclusivity. Emits FMelodiaWardrobeChanged delegate.",
+        "ownership_gate": "If cosmetic not owned, card shows Locked + Gacha pull CTA (delegates to MelodiaWardrobeGachaSubsystem). No direct grant.",
+        "save": "Equipped map persists via FMelodiaNarrativeRecord additive v3 fields (wardrobe subsystem already handles save/load). No new save schema."
+      },
+      "constraints": [
+        "Must not invent slots — only 10 values in EMelodiaWardrobeSlot are valid.",
+        "Must not bypass MelodiaWardrobeSubsystem (Decision 043 authority).",
+        "CosmeticDefinitions to be authored as DataAssets wrapping these texture sets; this spec proposes IDs only.",
+        "ContactSheet FarawayMother_ContactSheet.png in Saved/Audit/ can serve as overview thumbnail until per-suite cards are ready."
+      ]
+    },
+    "cymatic_pattern_browser": {
+      "goal": "Browse 21 cymatic patterns as a visual pattern library for selection, comparison, and assignment.",
+      "widget_spec": {
+        "proposed_widget": "WBP_CymaticBrowser (CommonActivatableWidget)",
+        "location": "Content/Melodia/UI/Cymatics/WBP_CymaticBrowser.uasset (proposed, not yet authored)",
+        "relation_to_params_ui": "Browser and Params Panel share selected variant state; browser is grid navigation, panel is detail tuning."
+      },
+      "data_source": {
+        "primary": "Saved/Audit/copernicus_cymatic/<Variant>/T_Cymatic_<Variant>_BaseColor.png (+ 8 companion maps)",
+        "thumbnails": "BaseColor PNGs as grid tiles; Height as hover overlay option",
+        "contact_sheet_fallback": "Content/EnvSandbox/Textures/_ContactSheets/T_ContactSheet_Flipbook.uasset and 6 other contact sheets for composite overview when per-variant textures not yet imported as UE assets.",
+        "import_status": "Cymatic PNGs currently live under Saved/Audit/copernicus_cymatic/ (not yet under Content/). Browser spec assumes future import to Content/Textures/Cymatics/<Variant>/ or streaming via contact sheets until import."
+      },
+      "layout": {
+        "grid": "21 cards, 3-4 columns, scrollable. Each card: BaseColor thumbnail, variant name, badge (Single / Flipbook 9f / Flipbook 17f), map-count indicator (9 maps).",
+        "categories": [
+          { "name": "Sacred Geometry", "variants": ["VoronoiSacredGeometry", "TessellationSanctum", "FractalCathedral", "SpiralMonument", "GoldenSpiralGrove", "CavernWeave"] },
+          { "name": "Glitter / Holographic", "variants": ["GlitterCrystal", "GlitterGold", "GlitterHolographic", "GlitterIridescent", "GlitterRainbow", "SilkWaterfall", "StarlitAbyss"] },
+          { "name": "Organic / Mineral", "variants": ["CymaticMarble", "GildedCoral", "GildedLoom", "CherryBlossomWood", "FrozenFracture", "DancingCrystals", "SingingConstellations", "FinalDreamweaver"] }
+        ],
+        "filter_sort": ["All", "Single-frame", "Flipbook", "Sacred Geometry", "Glitter", "Organic"],
+        "search": "Text filter on variant name (client-side)."
+      },
+      "interactions": [
+        { "action": "Click card", "result": "Selects variant; updates WBP_CymaticParamsPanel and preview surface." },
+        { "action": "Double-click / Apply", "result": "Assigns selected cymatic pattern to target binding (see rhythm_integration.target_bindings)." },
+        { "action": "Hover", "result": "Shows tooltip: variant name, frame count, map list (9), source path." },
+        { "action": "Compare", "result": "Optional 2-up comparison mode (two selected cards side-by-side on preview plane)." }
+      ],
+      "empty_states": {
+        "no_import": "If Content/Textures/Cymatics/ not yet populated, browser renders from Saved/Audit PNGs via contact sheets with banner: 'Preview from audit assets — import pending'.",
+        "single_vs_flipbook": "Flipbook variants show frame scrubber; single-frame variants show static badge."
+      }
+    },
+    "faraway_pattern_browser": {
+      "goal": "Browse Faraway Mother fabric patterns (6 suites) for wardrobe selection and material reference.",
+      "widget_spec": {
+        "proposed_widget": "WBP_FarawayPatternBrowser (CommonActivatableWidget) or integrated tab within WBP_FarawayWardrobePanel",
+        "location": "Content/Melodia/UI/Wardrobe/WBP_FarawayPatternBrowser.uasset (proposed, alternative: tab inside FarawayWardrobePanel)",
+        "recommendation": "Implement as tab/filter within FarawayWardrobePanel to avoid duplicate wardrobe entry points. Separate widget only if material-reference use case (lookdev) needs standalone access."
+      },
+      "data_source": {
+        "primary": "Content/Textures/FarawayMother_Suites/T_FarawayMother_*_BC.png (already imported as .uasset)",
+        "detail_maps": "Per-suite: BC, N, ORM, AO, H, M, R, Sheen, (Alpha, Mask where present)",
+        "contact_sheet": "Saved/Audit/FarawayMother_ContactSheet.png for composite overview."
+      },
+      "layout": {
+        "grid": "6 cards (one per suite), 2-3 columns. Each card: BC swatch, suite display name, slot badge (Body/Shirt/Shawl/etc), rarity, map chips (BC N ORM AO H M R Sheen).",
+        "detail_view": "On select: large BC preview, map toggles (cycle through N/ORM/H/Sheen overlays), slot + cosmetic ID, Equip button (delegates to wardrobe subsystem)."
+      },
+      "interactions": [
+        { "action": "Click card", "result": "Selects suite; shows detail + map toggles." },
+        { "action": "Equip", "result": "Same as faraway_wardrobe_selection.equip flow (WardrobeSubsystem.TryEquip)." },
+        { "action": "View Maps", "result": "Cycles detail preview through BC → N → ORM → H → Sheen for material inspection." }
+      ]
+    },
+    "rhythm_integration": {
+      "goal": "Connect cymatic + Faraway pattern selection to the existing rhythm combat loop without creating a second combat authority.",
+      "authority_note": "Rhythm rides on top of JRPG command input (AGENTS.md Core Vision). UMelodiaRhythmCombatSubsystem is the rhythm authority; MelodiaWardrobeSubsystem is the wardrobe authority. New UI does not own combat timing.",
+      "rhythm_system": {
+        "subsystem": "UMelodiaRhythmCombatSubsystem",
+        "highway_widget": "WBP_MelodiaRhythmHighway",
+        "beat_tracker": "RhythmBeatTracker (Source/BS_GodFile/MelodiaIntegration/RhythmBeatTracker.h)",
+        "existing_evidence": "owner PIE 2026-08-13: Melusina unique → highway (clunky) → damage → next turn on skill finish (AGENTS.md P0 authority)."
+      },
+      "integration_points": [
+        {
+          "id": "cymatic_to_rhythm_grade_mapping",
+          "description": "Cymatic interference pattern drives rhythm grade thresholds or highway skin.",
+          "spec": "Selected cymatic variant maps to a highway visual theme (e.g., VoronoiSacredGeometry → tessellated note trail, GlitterIridescent → holographic trail). No gameplay stat change in v1; purely presentation. Future: cymatic intensity → timing window modifier behind feature flag.",
+          "target_bindings": ["WBP_MelodiaRhythmHighway material params", "Note trail Niagara/Material"],
+          "data": "21 cymatic variants → 21 highway skins (1:1) or grouped by 3 categories → 3 skins (MVP). Spec recommends 3-category MVP (Sacred Geometry / Glitter / Organic) to limit art scope.",
+          "guardrail": "Damage scalar sequencing must be verified before any timing-window tuning (AGENTS.md item 4: damage notify may fire ~2.5s before scalar latches). No A/B balance numbers from UI until that sequencing is proven."
+        },
+        {
+          "id": "cymatic_pattern_to_beatmap_style",
+          "description": "Cymatic standing-wave density hints at beatmap density (authoring-time, not runtime).",
+          "spec": "At beatmap authoring (beatmap_author lane), cymatic pattern's spatial frequency suggests note density / hand assignment. Runtime: beatmap remains authored data; cymatic selection does not procedurally generate beatmaps in v1.",
+          "status": "Authoring assist only; no runtime procedural beatmap generation."
+        },
+        {
+          "id": "faraway_outfit_to_rhythm_presentation",
+          "description": "Equipped Faraway outfit influences rhythm highway avatar / VFX tint (presentation only).",
+          "spec": "Equipped Faraway cosmetic (e.g., Gown_CelestialSilkJacquard) tints highway avatar or note hit VFX via wardrobe MI params forwarded to rhythm HUD. No combat stat change in v1 (wardrobe gameplay hook is a separate P0 gate: wardrobe_gameplay_hook).",
+          "reading": "WBP_MelodiaRhythmHighway reads equipped cosmetics via MelodiaWardrobeSubsystem on battle entry; updates material instance params.",
+          "guardrail": "Wardrobe gameplay hook (P0 gate) is the only path for outfit → stat effects. UI spec does not grant stats."
+        },
+        {
+          "id": "pattern_browser_assign_flow",
+          "description": "Unified assign flow from either browser to rhythm target.",
+          "steps": [
+            "User browses cymatic or Faraway pattern in respective browser.",
+            "Clicks Assign → picker: 'Highway Skin' | 'Wardrobe Equip' | 'Preview Only'.",
+            "Highway Skin: stores preference (local config, not save record) and applies on next battle entry.",
+            "Wardrobe Equip: goes through WardrobeSubsystem.TryEquip (ownership-gated).",
+            "Preview Only: updates params panel preview, no persistence."
+          ],
+          "persistence": {
+            "cymatic_highway_skin": "Local user preference (GameUserSettings or per-profile config). Not narrative save.",
+            "wardrobe_equip": "FMelodiaNarrativeRecord via WardrobeSubsystem (canonical save)."
+          }
+        }
+      ],
+      "ui_wiring_summary": {
+        "battle_hud_single_writer": "WBP_MelodiaRhythmHighway remains the sole battle HUD writer (P0 gate hud_single_writer). Cymatic/Faraway panels are out-of-battle (wardrobe / lab) and never write to battle HUD surfaces.",
+        "common_ui": "All new panels extend CommonActivatableWidget with CommonUI input routing (back stack, focus).",
+        "input": "Gamepad/keyboard legends via CommonUI; no custom input routing."
+      },
+      "non_goals_v1": [
+        "Procedural beatmap generation from cymatic audio analysis.",
+        "Cymatic params driving live COPs/hython regeneration.",
+        "Wardrobe outfit granting rhythm timing buffs (requires wardrobe_gameplay_hook gate).",
+        "Second rhythm combat authority or duplicate damage path."
+      ]
+    }
+  },
+  "deliverables_checklist": {
+    "this_file": "Saved/Audit/user_facing_features_spec.json (this spec)",
+    "next_steps": [
+      "Author WBP_CymaticParamsPanel + WBP_CymaticBrowser (one-editor Monolith pass, after cymatics_present_phase_1).",
+      "Author WBP_FarawayWardrobePanel (+ optional WBP_FarawayPatternBrowser tab) via wardrobe_catalog lane.",
+      "Import Saved/Audit/copernicus_cymatic/ PNGs to Content/Textures/Cymatics/<Variant>/ and wire preview MI.",
+      "Create 6 UMelodiaCosmeticDefinition DataAssets for Faraway suites (Content/Melodia/Wardrobe/Faraway/).",
+      "Wire highway skin preference: cymatic category → WBP_MelodiaRhythmHighway material params."
+    ]
+  },
+  "open_questions": [
+    "Should Cradle_CarvedAlabasterWood map to Trail slot or be a world prop only? Needs catalog review.",
+    "Import path for 1665 cymatic PNGs: bulk import to Content/ vs. on-demand streaming from Saved/Audit/ — decide with P0_TASK_LEDGER owner.",
+    "Faraway suite rarity values (Legendary/Epic/etc) are proposals; confirm with economy/gacha design.",
+    "Highway skin: 21-variant 1:1 vs 3-category MVP — spec recommends 3-category MVP for scope."
+  ],
+  "references": {
+    "grand_review_expansion_plan": "Saved/Audit/grand_review_expansion_plan_2026-09-01.json (rec_7_user_facing depends_on rec_1..rec_5)",
+    "master_index_sections": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md §1 PRESENT, §2 SCAFFOLDED, §5 World Field Bus",
+    "wardrobe_docs": "Docs/MELODIA_WARDROBE_HANDOFF_2026-08-07.md, Plugins/MelodiaWardrobe/",
+    "p0_gates": "Saved/gate_ledger.json, Docs/P0_TASK_LEDGER.json (hud_single_writer, wardrobe_equip_roundtrip, wardrobe_gameplay_hook)",
+    "contact_sheets": "Content/EnvSandbox/Textures/_ContactSheets/ (7 PNGs + 7 uassets), Saved/Audit/FarawayMother_ContactSheet.png"
+  }
+}

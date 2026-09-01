@@ -35,6 +35,7 @@ research corpus on 2026-08-31 (not assumed).
 | **Music clock** | **PRESENT** | `Source/.../MelodiaMusicClockSubsystem.h/.cpp` |
 | **onnx model** | **PRESENT** | `Plugins/Claireon/Resources/Models/bge-small-en-v1.5-int8/model.onnx` (34 MB, text-embedding for Claireon) + onnxruntime installed |
 | **Claireon** | **PRESENT — editor-ACTIVE (owner-approved in-editor usage)** | `Plugins/Claireon/` vendored @ `ed0b457`, enabled in `.uproject` (`6e48ffbc`), editor-module binary built 08-22. Client probe `Tools/test_claireon_toolcalls.py` — qwen3-coder:30b **7/8** (2026-08-31). Owner confirmed concurrent in-editor use is fine; the older "isolate from Monolith" warning no longer applies as a hard rule. See `Docs/CLAIREON_PREP_2026-08-20.md`. |
+| **Cymatics / audio→geometry Chladni** | **PRESENT — source-verified, read-only MPC consumer** | `Source/.../MelodiaCymaticsSubsystem.h/.cpp` (`UGameInstanceSubsystem`, `FTSTicker`, reads `MPC_Melodia_Palette` `BeatPulse`/`BassIntensity` read-only via `GetParameterCollectionInstance` — no writes, `IsReadOnlyByContract()=true`, Chladni `cos(n·π·u)cos(m·π·v)−cos(m·π·u)cos(n·π·v)`) · `Tools/Houdini/copernicus_cymatic_parallax.py` · `Saved/Audit/copernicus_cymatic/` **21 variants × 1665 PNGs (185 Height, 9 maps: BaseColor/Normal/Roughness/Metallic/Height/ORM/Emissive/Iridescence/Opacity, 139 MB, all PNG magic valid)** · probe `Saved/Audit/cymatics_probe_2026-08-31.json` 5/5 PASS · audit `Saved/Audit/cymatics_audit_2026-09-01.json`. Build: closed-editor `Build.bat` required for PIE. Single-writer guard: `UMelodiaAudioReactivePresentationSubsystem` remains the sole MPC writer — this subsystem is READ-ONLY. Promoted from §2 SCAFFOLDED 2026-09-01 (grand_review phase_1). |
 
 ## 2. SCAFFOLDED by me 2026-08-31 (buildable, additive new files) — extend, don't duplicate
 
@@ -44,7 +45,7 @@ research corpus on 2026-08-31 (not assumed).
 | `UMelodiaDressingSubsystem` | Dash-capability native dressing/art-pass (hero props, debris, composition) | `Source/.../MelodiaDressingSubsystem.h/.cpp` | needs build |
 | `UMelodiaVisualRepresentationSubsystem` | Magpie simulation↔visual seam (read-only) | `Source/.../MelodiaVisualRepresentationSubsystem.h/.cpp` | needs build |
 | `UMelodiaVegetationGrowthSubsystem` | PCG growth supplementing PRESENT SpeedTree | `Source/.../MelodiaVegetationGrowthSubsystem.h/.cpp` | needs build |
-| `UMelodiaCymaticsSubsystem` | audio→geometry Chladni pattern (READ-ONLY consumer of the existing MPC writer) | `Source/.../MelodiaCymaticsSubsystem.h/.cpp` | needs build |
+| ~~`UMelodiaCymaticsSubsystem`~~ | ~~audio→geometry Chladni pattern (READ-ONLY consumer of the existing MPC writer)~~ | ~~`Source/.../MelodiaCymaticsSubsystem.h/.cpp`~~ | **PROMOTED to §1 PRESENT 2026-09-01 — see Cymatics row above; audit `Saved/Audit/cymatics_audit_2026-09-01.json`** |
 
 Tools (runnable, committed): `Tools/mcp_tool_surface.py` (Unreal-MCP safe tool surface, dry-run default),
 `Tools/test_dressing.py`, `Tools/test_visual_seam.py`, `Tools/test_cymatics.py`, `Tools/test_dash_capture.py`,
@@ -92,8 +93,8 @@ scenes dependent on live HDA cooking.** Companion: `Docs/Houdini/MELUSINA_HOUDIN
 ## 7. Cymatics / audio-visual synesthesia (implemented thread)
 
 `Docs/MELODIA_AUDIO_VISUAL_SYNESTHESIA_LAYER_2026-08-28.md` — 5-tier (Music Clock → MPC → MetaSounds/PPV/Niagara).
-Tiers 1–3 implemented (`MelodiaAudioReactivePresentationSubsystem`); audio→geometry (Test E) scaffolded as
-`UMelodiaCymaticsSubsystem` (Chladni pattern, read-only). The only "Sakura" here is `NS_Melodia_PetalLoop`
+Tiers 1–3 implemented (`MelodiaAudioReactivePresentationSubsystem`); audio→geometry (Test E) **PRESENT** as
+`UMelodiaCymaticsSubsystem` (Chladni pattern, read-only — promoted §2→§1 2026-09-01, audit `Saved/Audit/cymatics_audit_2026-09-01.json`). The only "Sakura" here is `NS_Melodia_PetalLoop`
 (audible-reactive petals) — a **legitimate** melodic use, distinct from the banned art direction.
 
 ## 8. Integration spike plan — 16 tests, tiered
