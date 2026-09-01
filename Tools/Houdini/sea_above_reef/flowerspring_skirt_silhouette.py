@@ -188,20 +188,21 @@ def build_and_export(preset: str) -> dict:
     return {"preset": preset, "points": len(g.points()) if g else 0,
             "obj": f"FS_SkirtDraped_{preset}.obj", "written": ok, "errors": errs}
 
-results = {}
-for preset in PRESETS:
-    results[preset] = build_and_export(preset)
+if __name__ == "__main__":
+    results = {}
+    for preset in PRESETS:
+        results[preset] = build_and_export(preset)
 
-hou.hipFile.clear(suppress_save_prompt=True)
-(OUT / "flowerspring_skirt_silhouette_manifest.json").write_text(json.dumps({
-    "schema": "melodia.flowerspring_skirt_silhouette.v2",
-    "seed": SEED,
-    "source": "passA2_skirt_panels.obj",
-    "units": "meters (dress-native, no unit correction)",
-    "silhouette_moves": ["hem_flare_cubic", "hilo_train", "petal_overskirt_ring",
-                          "radial_fold_ridges", "fbm_wobble"],
-    "presets": PRESETS,
-    "results": results,
-    "houdini": hou.applicationVersionString(),
-}, indent=1), encoding="utf-8")
-print("SKIRT_SILHOUETTE_DONE " + json.dumps({k: v["written"] for k, v in results.items()}))
+    hou.hipFile.clear(suppress_save_prompt=True)
+    (OUT / "flowerspring_skirt_silhouette_manifest.json").write_text(json.dumps({
+        "schema": "melodia.flowerspring_skirt_silhouette.v2",
+        "seed": SEED,
+        "source": "passA2_skirt_panels.obj",
+        "units": "meters (dress-native, no unit correction)",
+        "silhouette_moves": ["hem_flare_cubic", "hilo_train", "petal_overskirt_ring",
+                              "radial_fold_ridges", "fbm_wobble"],
+        "presets": PRESETS,
+        "results": results,
+        "houdini": hou.applicationVersionString(),
+    }, indent=1), encoding="utf-8")
+    print("SKIRT_SILHOUETTE_DONE " + json.dumps({k: v["written"] for k, v in results.items()}))
