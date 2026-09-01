@@ -1,0 +1,406 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "id": "MI_Arch_Cath_Batch_Full_ShadowDreamBlue",
+  "generated": "2026-09-05T04:15:00Z",
+  "source": "_arch_toon_missing_mi.json (41 truly missing Cathedral MIs)",
+  "target": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral/",
+  "lane": "code",
+  "mode": "spec_only",
+  "note": "Full Cathedral batch: all 41 missing MIs. Parent: M_Master_Toon_Universal.",
+  "batch": "arch_cath_full_sd_blue",
+  "shadowdream_blue": {
+    "hex": "#8AA0D6",
+    "linear": [
+      0.541,
+      0.627,
+      0.839
+    ],
+    "strength": 0.55
+  },
+  "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+  "naming_pattern": "MI_Arch_Cath_<Stem>",
+  "priority": 1,
+  "gap_analysis": {
+    "total_cathedral_meshes": 41,
+    "total_mis_to_create": 41,
+    "categories": {}
+  },
+  "entries": [
+    {
+      "stem": "SM_Cathedral_Altar",
+      "mi_name": "MI_Arch_Cath_Altar",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "marble/glass",
+      "roughness": 0.25,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_BeatMedallion",
+      "mi_name": "MI_Arch_Cath_BeatMedallion",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "gold",
+      "roughness": 0.35,
+      "metallic": 0.85
+    },
+    {
+      "stem": "SM_Cathedral_Bed",
+      "mi_name": "MI_Arch_Cath_Bed",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_BifrostBridge",
+      "mi_name": "MI_Arch_Cath_BifrostBridge",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "default",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Buttress",
+      "mi_name": "MI_Arch_Cath_Buttress",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Chandelier",
+      "mi_name": "MI_Arch_Cath_Chandelier",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "marble/glass",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Chapel",
+      "mi_name": "MI_Arch_Cath_Chapel",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_ChapterHouse",
+      "mi_name": "MI_Arch_Cath_ChapterHouse",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_CombatFloor",
+      "mi_name": "MI_Arch_Cath_CombatFloor",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Crypt",
+      "mi_name": "MI_Arch_Cath_Crypt",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_CryptVault",
+      "mi_name": "MI_Arch_Cath_CryptVault",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_EscherBelvedere",
+      "mi_name": "MI_Arch_Cath_EscherBelvedere",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_EscherBridge",
+      "mi_name": "MI_Arch_Cath_EscherBridge",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "default",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_EscherPenrose",
+      "mi_name": "MI_Arch_Cath_EscherPenrose",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "glass/stained",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_EscherWaterfall",
+      "mi_name": "MI_Arch_Cath_EscherWaterfall",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Garland",
+      "mi_name": "MI_Arch_Cath_Garland",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "pink",
+      "preset": "glass/stained",
+      "roughness": 0.55,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_HarmonicOrb",
+      "mi_name": "MI_Arch_Cath_HarmonicOrb",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_LancetWindow",
+      "mi_name": "MI_Arch_Cath_LancetWindow",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "glass/stained",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_MusicOrb",
+      "mi_name": "MI_Arch_Cath_MusicOrb",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Observatory",
+      "mi_name": "MI_Arch_Cath_Observatory",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Pavilion",
+      "mi_name": "MI_Arch_Cath_Pavilion",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Perch",
+      "mi_name": "MI_Arch_Cath_Perch",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Pier",
+      "mi_name": "MI_Arch_Cath_Pier",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Portal",
+      "mi_name": "MI_Arch_Cath_Portal",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.35,
+      "metallic": 0.85
+    },
+    {
+      "stem": "SM_Cathedral_ResonantDoor",
+      "mi_name": "MI_Arch_Cath_ResonantDoor",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_RoseWindow",
+      "mi_name": "MI_Arch_Cath_RoseWindow",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "glass/stained",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_RosetteMedallion",
+      "mi_name": "MI_Arch_Cath_RosetteMedallion",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "glass/stained",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_SaintStatue",
+      "mi_name": "MI_Arch_Cath_SaintStatue",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.25,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_SpiralStairs",
+      "mi_name": "MI_Arch_Cath_SpiralStairs",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Spire",
+      "mi_name": "MI_Arch_Cath_Spire",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_StaffBalustrade",
+      "mi_name": "MI_Arch_Cath_StaffBalustrade",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_StainedGlassPanel",
+      "mi_name": "MI_Arch_Cath_StainedGlassPanel",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "glass/stained",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_StainedRose",
+      "mi_name": "MI_Arch_Cath_StainedRose",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "glass/stained",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Stall",
+      "mi_name": "MI_Arch_Cath_Stall",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Tower",
+      "mi_name": "MI_Arch_Cath_Tower",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_TraceryPanel",
+      "mi_name": "MI_Arch_Cath_TraceryPanel",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.08,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_TrebleRelief",
+      "mi_name": "MI_Arch_Cath_TrebleRelief",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Urn",
+      "mi_name": "MI_Arch_Cath_Urn",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.25,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_VaultBay",
+      "mi_name": "MI_Arch_Cath_VaultBay",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_Wall",
+      "mi_name": "MI_Arch_Cath_Wall",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_Cathedral_WallParapet",
+      "mi_name": "MI_Arch_Cath_WallParapet",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    }
+  ],
+  "safety": {
+    "requires_live_editor": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record arch_cath_full_sd_blue pass (owner-only)",
+    "note": "Target dir Content/EnvSandbox/Materials/Instances/Architecture/Cathedral/ does not exist. Must be created via Editor first."
+  },
+  "status": "QUEUED"
+}
