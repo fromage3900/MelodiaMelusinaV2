@@ -25,7 +25,12 @@
 
 ♪ **Production-grade rhythm-JRPG in UE 5.8 + Blender 5.2.** One author, three active workstreams — a shippable vertical slice, a multi-modal content pipeline, and a constrained local-model benchmark. Every claim has a ledger row. No prose passes for evidence. Music is the key: rhythm rides on every JRPG command, and in the world it opens the way.
 
-♫ **Current phase:** Cozy→psych-horror niche lock + P0 orchestra convergence. Light gacha (wardrobe-only, pity, no stamina). See `research/melodia_niche_cozy-horror_ue_workflows.md` + `research/live_verification_kit.md` for live-editor verification.
+♫ **Current phase (2026-09-01):** P0 gameplay gates are reconciled and green; current shipping
+certification remains **HOLD** pending a fresh package and one owner-played Morning → KaleidoNave
+golden run. The golden-run preflight is READY (12/12 offline checks, route/config checks green,
+Monolith reachable). The only package on disk is the historical 2026-08-14 build and is not current
+certification. See [today's closeout record](Docs/Handoffs/P0_CLOSEOUT_TODAY_2026-09-01.md) and the
+[golden-run contract](specs/p0/core_p0_dream_golden_run.v1.json).
 
 See the [system architecture](Docs/melodia-architecture.svg) — four pillars converging onto two authority layers, with local model tooling clearly secondary.
 
@@ -59,9 +64,12 @@ L_MelusinaMorning
 | QuillScript dialogue | ♪ WORKED (owner-locked) | `QUILLSCRIPT_LOCKED_2026-08-12.md` |
 | Harmonix rhythm | ♪ WORKED (owner-locked) | `RHYTHM_GAME_LOCKED_2026-08-12.md` |
 | PIE runtime input | ♪ PASS (ledger 2026-08-13) | `Saved/gate_ledger.json` |
-| Save/Load | ♪ PASS | `repeat_consume` + `package_launch` gates |
-| Stock JRPG battle | ♪ Root cause fixed, PIE-verified (2026-08-26) | `Docs/Handoffs/P0_CLOSEOUT_HANDOFF_2026-08-26.md` |
-| Rhythm-highway HUD binding | ♪ PASS (hud_single_writer & rhythm_owner) | `Docs/Handoffs/P0_BATTLE_UI_CLOSEOUT_HANDOFF_2026-08-27.md` + `Saved/gate_ledger.json` |
+| Save/Load + repeat consume | ♪ PASS | `save_load` + `repeat_consume` ledger rows |
+| Stock JRPG battle | ♪ PASS — four typed outcomes, exactly-once Quill resume | `Docs/Handoffs/P0_BATTLE_UI_CLOSEOUT_HANDOFF_2026-08-27.md` |
+| Rhythm-highway HUD binding | ♪ PASS (`hud_single_writer`, `rhythm_owner`, `rhythm_grade_to_result`) | `Saved/gate_ledger.json` |
+| Wardrobe persistence + Glide | ♪ PASS (2026-09-01 evidence) | `Docs/Evidence/P0_EXPLORATION_WARDROBE_GLIDE_PORTAL_PROBE_2026-08-31.md` |
+| Music-as-key visible route | ♪ PASS — Perfect → reward/equip → Glide → portal | `Saved/Audit/p0_real_input_run/` |
+| Current packaged golden run | ◻ HOLD — fresh package/owner route not run | `specs/p0/core_p0_dream_golden_run.v1.json` |
 | Universal Luxury WBP System | ♪ 30 Atoms Scaffolded (4-layer luxury stack) | `Content/Python/build_melodia_luxury_wbp_system.py` + `specs/ui/` |
 | T3D wiring gate | ♪ EXPANDING | `t3d_safe_wire.py` active |
 
@@ -92,7 +100,8 @@ Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote
 | `Tools/project_state.py --view integration` | 4-gate ledger status |
 | `Saved/gate_ledger.json` | 37 rows, no row = not done |
 
-**Completion gates (2026-08-18):** `runtime` PASS · `save_load` PASS · `repeat_consume` PASS · `package_launch` PASS.
+**Completion gates (2026-09-01):** all ten ledger-backed gameplay gates PASS. `package_launch`
+remains an August 14 historical baseline; it must be refreshed before shipping certification.
 
 ---
 
