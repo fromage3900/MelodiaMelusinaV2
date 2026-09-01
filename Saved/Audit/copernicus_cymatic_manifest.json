@@ -1,7 +1,7 @@
 {
   "schema": "melodia.copernatic_cymatic_parallax.v2",
   "seed": 20260831,
-  "size": "2048x2048",
+  "size": "4096x4096",
   "frames": 1,
   "variants": {
     "CrystalCathedral": {
