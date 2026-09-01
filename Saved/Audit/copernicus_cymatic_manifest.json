@@ -1,20 +1,20 @@
 {
   "schema": "melodia.copernatic_cymatic_parallax.v2",
   "seed": 20260831,
-  "size": "4096x4096",
+  "size": "64x64",
   "frames": 1,
   "variants": {
-    "CrystalCathedral": {
+    "PearlWeave": {
       "outputs": [
-        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_BaseColor.png",
-        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Normal.png",
-        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Roughness.png",
-        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Metallic.png",
-        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Height.png",
-        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_ORM.png",
-        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Emissive.png",
-        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Iridescence.png",
-        "Saved/Audit/copernicus_cymatic/CrystalCathedral/T_Cymatic_CrystalCathedral_Opacity.png"
+        "Saved/Audit/copernicus_cymatic/PearlWeave/T_Cymatic_PearlWeave_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/PearlWeave/T_Cymatic_PearlWeave_Normal.png",
+        "Saved/Audit/copernicus_cymatic/PearlWeave/T_Cymatic_PearlWeave_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/PearlWeave/T_Cymatic_PearlWeave_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/PearlWeave/T_Cymatic_PearlWeave_Height.png",
+        "Saved/Audit/copernicus_cymatic/PearlWeave/T_Cymatic_PearlWeave_ORM.png",
+        "Saved/Audit/copernicus_cymatic/PearlWeave/T_Cymatic_PearlWeave_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/PearlWeave/T_Cymatic_PearlWeave_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/PearlWeave/T_Cymatic_PearlWeave_Opacity.png"
       ]
     }
   },
