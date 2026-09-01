@@ -6,7 +6,7 @@
     "arch_span": 10,
     "vault_height": 20,
     "tracery_density": 0.85,
-    "bays": 8,
+    "bays": 6,
     "crystal_density": 0.85,
     "facet_count": 12
   },
@@ -14,9 +14,9 @@
     {
       "name": "SM_P4_Cathedral_Crystal",
       "path": "Saved/Audit/cathedral/SM_P4_Cathedral_Crystal.obj",
-      "verts": 3598,
-      "faces": 2793,
-      "bytes": 300189
+      "verts": 2706,
+      "faces": 2101,
+      "bytes": 224598
     },
     {
       "name": "SM_P4_Cathedral_Crystal_Rose",
