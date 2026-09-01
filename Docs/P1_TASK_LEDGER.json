@@ -81,14 +81,14 @@
   "p1_gates": [
     {
       "id": "p1_cymatics_present",
-      "title": "Cymatics PRESENT — Master Index §1 promotion",
+      "title": "Cymatics PRESENT \u2014 Master Index \u00a71 promotion",
       "maps_to": "grand_review phase_1_cymatics_present / p1p3_roadmap P1_closeout p1_cymatics_present / rec_1",
       "status": "draft_open",
       "deadline": "2026-10-01",
-      "contract": "UMelodiaCymaticsSubsystem listed as PRESENT in Master Index §1; PostConfigInit load and uplugin deps verified; pipeline is a first-class step (copernicus_cymatic_parallax.py --cook), not ad-hoc; pattern IDs on World Field Bus. Single-writer guard: UMelodiaAudioReactivePresentationSubsystem remains sole MPC writer.",
+      "contract": "UMelodiaCymaticsSubsystem listed as PRESENT in Master Index \u00a71; PostConfigInit load and uplugin deps verified; pipeline is a first-class step (copernicus_cymatic_parallax.py --cook), not ad-hoc; pattern IDs on World Field Bus. Single-writer guard: UMelodiaAudioReactivePresentationSubsystem remains sole MPC writer.",
       "deliverables": [
-        "Saved/Audit/cymatics_present_status.json (target — queued; spec at Saved/Audit/cymatics_present_status_2026-09-01.json)",
-        "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md §1 row for MelodiaCymaticsSubsystem (already PRESENT per 2026-08-31 audit)"
+        "Saved/Audit/cymatics_present_status.json (target \u2014 queued; spec at Saved/Audit/cymatics_present_status_2026-09-01.json)",
+        "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md \u00a71 row for MelodiaCymaticsSubsystem (already PRESENT per 2026-08-31 audit)"
       ],
       "evidence": {
         "source": [
@@ -101,27 +101,29 @@
           "Saved/Audit/cymatics_probe_2026-08-31.json (5/5 PASS)",
           "Saved/Audit/cymatics_audit_2026-09-01.json"
         ],
-        "gap": "Current manifest records only CymaticMarble; full 21-variant cook pending. Deliverable cymatics_present_status.json not yet materialized — spec exists at Saved/Audit/cymatics_present_status_2026-09-01.json with status queued.",
+        "gap": "Current manifest records only CymaticMarble; full 21-variant cook pending. Deliverable cymatics_present_status.json not yet materialized \u2014 spec exists at Saved/Audit/cymatics_present_status_2026-09-01.json with status queued.",
         "owner_lanes": [
           "cpp",
           "audit"
         ],
-        "depends_on": []
+        "depends_on": [],
+        "build_verified": "2026-09-01T04:40Z Build.bat Succeeded (0 actions, up to date)",
+        "dll": "UnrealEditor-BS_GodFile.dll 3,068,416 2026-08-31 22:49 BuildId 55116800"
       },
       "verified_on_disk": true
     },
     {
       "id": "p1_faraway_p1_status",
-      "title": "Faraway Mother P1 — 16 builders + hero assets + textures",
+      "title": "Faraway Mother P1 \u2014 16 builders + hero assets + textures",
       "maps_to": "grand_review phase_2_faraway_p1 / p1p3_roadmap P1_closeout p1_faraway_p1_status / rec_2",
       "status": "pass_assets_verified_doc_stale",
       "deadline": "2026-10-15",
       "contract": "Faraway Mother has a P1_TASK_LEDGER.json entry with pass+evidence; 16 GN builders in main taxonomy; material pipeline parallel to cymatics; onboarding doc for new member. Assets verified on disk; taxonomy doc is stale.",
       "deliverables": [
-        "Saved/Audit/faraway_p1_status.json (PASS — assets verified on disk)",
-        "Saved/Audit/faraway_in_taxonomy.md (SPEC — code PRESENT, taxonomy doc STALE)",
-        "Docs/Guides/FARAWAY_MOTHER_ONBOARDING.md (pending — Docs/Guides dir not yet present)",
-        "Docs/Production/GN_TAXONOMY_2026-08-29.md §13 Faraway Mother update (pending)"
+        "Saved/Audit/faraway_p1_status.json (PASS \u2014 assets verified on disk)",
+        "Saved/Audit/faraway_in_taxonomy.md (SPEC \u2014 code PRESENT, taxonomy doc STALE)",
+        "Docs/Guides/FARAWAY_MOTHER_ONBOARDING.md (pending \u2014 Docs/Guides dir not yet present)",
+        "Docs/Production/GN_TAXONOMY_2026-08-29.md \u00a713 Faraway Mother update (pending)"
       ],
       "evidence": {
         "seven_track_outputs": {
@@ -163,7 +165,7 @@
               "category_arg": "mother"
             },
             "category_meta": "deploy/surreal_arch/melodia_gn/core.py CATEGORY_META key mother label Faraway Mother icon MESH_MONKEY",
-            "taxonomy_doc": "Docs/Production/GN_TAXONOMY_2026-08-29.md (0 hits for MEL_mother_* — STALE; claims 199 vs 238 actual)"
+            "taxonomy_doc": "Docs/Production/GN_TAXONOMY_2026-08-29.md (0 hits for MEL_mother_* \u2014 STALE; claims 199 vs 238 actual)"
           },
           "track_2_hero_meshes": {
             "status": "verified 3/3",
@@ -332,7 +334,7 @@
             ]
           },
           "track_6_ue_suites": {
-            "status": "spec_only — PNG+uasset pairs present, MI instances not yet materialized",
+            "status": "spec_only \u2014 PNG+uasset pairs present, MI instances not yet materialized",
             "dir": "Content/Textures/FarawayMother_Suites/",
             "pngs": 47,
             "uassets": 47,
@@ -420,7 +422,7 @@
             }
           },
           "track_7_v3_gap": {
-            "status": "queued — GN PRESENT, textures gap",
+            "status": "queued \u2014 GN PRESENT, textures gap",
             "spec": "Saved/Audit/faraway_mother_v3_asset_import_gap_spec_2026-09-01.json",
             "gn_builders_present": 8,
             "textures_present": 0,
@@ -451,21 +453,21 @@
     },
     {
       "id": "p1_hython_monolith_bridge",
-      "title": "Hython ↔ Monolith dual-path bridge + cross-path validation",
+      "title": "Hython \u2194 Monolith dual-path bridge + cross-path validation",
       "maps_to": "grand_review phase_3_hython_monolith_bridge / p1p3_roadmap P1_closeout p1_hython_monolith_bridge / rec_3",
       "status": "draft_open",
       "deadline": "2026-11-01",
       "contract": "Monolith 9316 reachable (no MODAL_OPEN); parallel execution plan exists; cross-path validator compares hython vs Monolith outputs (height maps, meshes, texture sets) within tolerance. Hython and Monolith are parallel generation paths, not alternatives.",
       "deliverables": [
-        "Saved/Audit/hython_monolith_bridge_report.json (HEALTHY — hython 22.0.368 + Monolith 0.20.3 on 9316, 1426 tools)",
+        "Saved/Audit/hython_monolith_bridge_report.json (HEALTHY \u2014 hython 22.0.368 + Monolith 0.20.3 on 9316, 1426 tools)",
         "Tools/validation/cross_path_validation.py (pending)",
         "Tools/Houdini/monolith_execution_plan_parallel.py (pending)"
       ],
       "evidence": {
-        "hython": "C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe 22.0.368 (4359472 bytes) — hou available; copernicus_cymatic_parallax.py and flipbook_aaa.py are pure numpy+PIL",
+        "hython": "C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe 22.0.368 (4359472 bytes) \u2014 hou available; copernicus_cymatic_parallax.py and flipbook_aaa.py are pure numpy+PIL",
         "monolith": "Plugins/Monolith/Monolith.uplugin 0.20.3, Config ServerPort=9316, 1426 tools / 24 namespaces; TCP OPEN 127.0.0.1:9316 LISTENING; POST /mcp tools/list OK; sentinel Plugins/Monolith/Saved/.monolith_running pid 9356 port 9316",
         "report": "Saved/Audit/hython_monolith_bridge_report.json schema melodia.hython_monolith_bridge.v1 HEALTHY",
-        "coinsheet_note": "Saved/Audit/ue_level_building_coinsheet_2026-09-01.json recorded transient MODAL_OPEN — RESOLVED per hython_monolith_bridge_report.json",
+        "coinsheet_note": "Saved/Audit/ue_level_building_coinsheet_2026-09-01.json recorded transient MODAL_OPEN \u2014 RESOLVED per hython_monolith_bridge_report.json",
         "owner_lanes": [
           "mcp",
           "audit"
@@ -479,7 +481,7 @@
     },
     {
       "id": "p1_hygiene_package_relaunch",
-      "title": "Hygiene — package relaunch (08-14 baseline 150+ commits stale)",
+      "title": "Hygiene \u2014 package relaunch (08-14 baseline 150+ commits stale)",
       "maps_to": "P0 polish / p1p3_roadmap P1_closeout p1_hygiene_package_relaunch",
       "status": "draft_open",
       "deadline": "2026-10-15",
@@ -489,7 +491,7 @@
         "Saved/Audit/package_launch_evidence_2026-10.json (pending)"
       ],
       "evidence": {
-        "stale_baseline": "Docs/P0_TASK_LEDGER.json bounded_historical_evidence package_launch pass 2026-08-14 — now 150+ commits stale per p1p3_roadmap",
+        "stale_baseline": "Docs/P0_TASK_LEDGER.json bounded_historical_evidence package_launch pass 2026-08-14 \u2014 now 150+ commits stale per p1p3_roadmap",
         "cook_maps": [
           "L_MelusinaMorning",
           "L_KaleidoNave",
@@ -508,7 +510,7 @@
     },
     {
       "id": "p1_hygiene_vestigial_retire",
-      "title": "Hygiene — retire or document vestigial BP_BattleController vars",
+      "title": "Hygiene \u2014 retire or document vestigial BP_BattleController vars",
       "maps_to": "hud_single_writer owner decision / p1p3_roadmap P1_closeout p1_hygiene_vestigial_retire",
       "status": "draft_open",
       "deadline": "2026-10-15",
@@ -517,7 +519,7 @@
         "BP_BattleController diff or retention note in P1_TASK_LEDGER"
       ],
       "evidence": {
-        "p0_evidence": "Docs/P0_TASK_LEDGER.json active_p0_gates hud_single_writer — 2026-08-27 live PIE: battleUI=BP_BattleUI_C_0 MATCH=True; melodiaBattleUI and MelodiaUI are vestigial None pre-bridge vars in category Melodia, not broken bindings",
+        "p0_evidence": "Docs/P0_TASK_LEDGER.json active_p0_gates hud_single_writer \u2014 2026-08-27 live PIE: battleUI=BP_BattleUI_C_0 MATCH=True; melodiaBattleUI and MelodiaUI are vestigial None pre-bridge vars in category Melodia, not broken bindings",
         "owner_lanes": [
           "audit"
         ],
@@ -527,18 +529,18 @@
     },
     {
       "id": "p1_economy_slice_minimal",
-      "title": "Economy slice minimal — deferred_post_p0_expansion 001..006",
+      "title": "Economy slice minimal \u2014 deferred_post_p0_expansion 001..006",
       "maps_to": "deferred_post_p0_expansion expansion_001..006 as minimal viable loop / p1p3_roadmap p1_economy_slice_minimal",
       "status": "draft_open",
       "deadline": "2026-11-15",
-      "contract": "Global economy structs (Healing/Mana/Utility/Grief) + grief modifier on hits + HealingSong/ManaSong base+1 tier + economy HUD on existing UI authority — no dungeon/enemy breadth yet. Expansion_007..009 stay P2-gated.",
+      "contract": "Global economy structs (Healing/Mana/Utility/Grief) + grief modifier on hits + HealingSong/ManaSong base+1 tier + economy HUD on existing UI authority \u2014 no dungeon/enemy breadth yet. Expansion_007..009 stay P2-gated.",
       "deliverables": [
         "Source/.../MelodiaEconomy*.h (HealingEconomy, ManaEconomy, UtilityEconomy, GriefEconomy)",
         "DataTables for 2 song families (HealingSong, ManaSong base+1 tier)",
         "WBP economy indicators on UMelodiaUIBridgeSubsystem authority (no second HUD writer)"
       ],
       "evidence": {
-        "deferred_source": "Docs/P0_TASK_LEDGER.json deferred_post_p0_expansion priority 1-6: 001 global structs, 002 grief modifier, 003 HealingSong, 004 ManaSong, 005 UtilitySong_Debuff (mana drain), 006 HUD/WBP — all status deferred",
+        "deferred_source": "Docs/P0_TASK_LEDGER.json deferred_post_p0_expansion priority 1-6: 001 global structs, 002 grief modifier, 003 HealingSong, 004 ManaSong, 005 UtilitySong_Debuff (mana drain), 006 HUD/WBP \u2014 all status deferred",
         "owner_lanes": [
           "cpp",
           "beatmap_author"
@@ -559,7 +561,7 @@
     "items": [
       {
         "id": "p2_gn_taxonomy_integration",
-        "spec": "Register all 16 builders (MEL_mother_head_silhouette .. MEL_mother_brocade_flower) in main GN taxonomy §2; Houdini manufactures geometry/masks/LODs, UE composes",
+        "spec": "Register all 16 builders (MEL_mother_head_silhouette .. MEL_mother_brocade_flower) in main GN taxonomy \u00a72; Houdini manufactures geometry/masks/LODs, UE composes",
         "inputs": [
           "Saved/Audit/faraway_mother/SM_ClothMountains_v0.obj",
           "Tools/Houdini/copernicus/*.py"
@@ -568,7 +570,7 @@
           "Content/PCG/FarawayMother/*",
           "Docs/Houdini/MARA_P0_P3_HOUDINI_EXECUTION_PLAN_2026-08-29.md updates"
         ],
-        "contract": "Houdini bakes reusable geometry/masks; no live HDA cook dependency in packaged build (Master Index §6 rule)",
+        "contract": "Houdini bakes reusable geometry/masks; no live HDA cook dependency in packaged build (Master Index \u00a76 rule)",
         "maps_to_cross_system": "meshes_to_pcg",
         "status": "draft_open"
       },
@@ -606,7 +608,7 @@
       {
         "id": "p2_pcg_population",
         "spec": "PCG populates levels with Faraway meshes via PCGExtendedToolkit + WorldField filters (moisture/slope/wind_exposure/monolith_proximity); SpeedTree bridge fields reused, not duplicated",
-        "contract": "World Field Bus FilterFlow/Tension/Moisture/Contact/Residue/Reaction/AnchorStability/Resonance (Master Index §5b)",
+        "contract": "World Field Bus FilterFlow/Tension/Moisture/Contact/Residue/Reaction/AnchorStability/Resonance (Master Index \u00a75b)",
         "maps_to_cross_system": "meshes_to_pcg",
         "status": "draft_open"
       },
@@ -622,26 +624,26 @@
     ],
     "evidence_pointers": [
       "Saved/Audit/faraway_p2_2026-08-30.json (47 PNG + 47 uasset, 6 MI proposals spec_only)",
-      "Saved/Audit/faraway_mother_v3_asset_import_gap_spec_2026-09-01.json (V3 GN PRESENT, textures gap — editor import pending)"
+      "Saved/Audit/faraway_mother_v3_asset_import_gap_spec_2026-09-01.json (V3 GN PRESENT, textures gap \u2014 editor import pending)"
     ]
   },
   "p3_horizons": {
-    "goal": "Speculative breadth — WATCH per Master Index §3/§4; no code until owner tasks them",
+    "goal": "Speculative breadth \u2014 WATCH per Master Index \u00a73/\u00a74; no code until owner tasks them",
     "status": "research_only",
     "source": "Saved/Audit/p1p3_roadmap.json P3_horizons",
-    "promotion_rule": "P3 items move to P2 only via explicit owner task per Master Index §3/§9 checklist; a new parallel implementation is a defect",
+    "promotion_rule": "P3 items move to P2 only via explicit owner task per Master Index \u00a73/\u00a79 checklist; a new parallel implementation is a defect",
     "items": [
       {
         "id": "p3_cymatics_v3",
-        "spec": "Cymatics V3: map 21→35+ PBR variants, animated flipbook params (80 frames x 5 maps proven) to GN builder params; cymatic choice drives builder amplitude/period",
+        "spec": "Cymatics V3: map 21\u219235+ PBR variants, animated flipbook params (80 frames x 5 maps proven) to GN builder params; cymatic choice drives builder amplitude/period",
         "source": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py (pure numpy trig interference + tileable fBm + domain warping)",
-        "additive_evidence": "Saved/Audit/copernicus_cymatic/ 1665 PNGs + 185 height maps (21 variants, 9 maps) — CymaticMarble manifest recorded",
+        "additive_evidence": "Saved/Audit/copernicus_cymatic/ 1665 PNGs + 185 height maps (21 variants, 9 maps) \u2014 CymaticMarble manifest recorded",
         "status": "research_only"
       },
       {
         "id": "p3_cymatics_v4_neural",
-        "spec": "Cymatics V4 / neural shaders: requires a MATERIAL onnx (present onnx is text-embedding only bge-small-en-v1.5-int8); WATCH — do not build until onnx acquisition task",
-        "guardrail": "Master Index §3: Neural shaders gated on material onnx, not embedding onnx",
+        "spec": "Cymatics V4 / neural shaders: requires a MATERIAL onnx (present onnx is text-embedding only bge-small-en-v1.5-int8); WATCH \u2014 do not build until onnx acquisition task",
+        "guardrail": "Master Index \u00a73: Neural shaders gated on material onnx, not embedding onnx",
         "source": "Plugins/Claireon/Resources/Models/bge-small-en-v1.5-int8/model.onnx (34 MB, text-embedding)",
         "status": "research_only"
       },
@@ -653,20 +655,20 @@
       },
       {
         "id": "p3_magpie_full",
-        "spec": "Magpie generative renderer — seam scaffolded via UMelodiaVisualRepresentationSubsystem (read-only); full renderer stays WATCH until owner promotes",
-        "guardrail": "Master Index §3: seam scaffolded only, NO renderer",
+        "spec": "Magpie generative renderer \u2014 seam scaffolded via UMelodiaVisualRepresentationSubsystem (read-only); full renderer stays WATCH until owner promotes",
+        "guardrail": "Master Index \u00a73: seam scaffolded only, NO renderer",
         "source": "Source/BS_GodFile/MelodiaVisualRepresentationSubsystem.h",
         "status": "research_only"
       },
       {
         "id": "p3_world_field_bus_formalization",
         "spec": "Formalize World Field Bus (FilterFlow/Tension/Moisture/Contact/Residue/Reaction/AnchorStability/Resonance) and SpeedTree bridge (9 fields: melodia_moisture .. melodia_ecological_density) via R&D discovery, not a giant framework",
-        "guardrail": "Master Index §5: discover the minimum contract via R&D",
+        "guardrail": "Master Index \u00a75: discover the minimum contract via R&D",
         "status": "research_only"
       },
       {
         "id": "p3_procedural_fabrics_infinity_nikki_bar",
-        "spec": "Procedural fabric families (brocade/lace/silk/pearl) beyond embroidery maps; wardrobe bar Infinity Nikki — requires owner art direction",
+        "spec": "Procedural fabric families (brocade/lace/silk/pearl) beyond embroidery maps; wardrobe bar Infinity Nikki \u2014 requires owner art direction",
         "maps_to_cross_system": "fabric_to_wardrobe",
         "status": "research_only"
       }
@@ -687,8 +689,8 @@
       "Saved/Audit/faraway_in_taxonomy.md"
     ],
     "gate_naming": "p1_* gates are distinct from p0_*; P0 8/8 stays frozen truth",
-    "evidence_per_gate": "offline probe + live PIE + ledger row (Master Index §9.7)",
-    "verification": "on-disk, no fabrication — every file pointer above was listed via os.listdir / os.path.exists on 2026-09-01"
+    "evidence_per_gate": "offline probe + live PIE + ledger row (Master Index \u00a79.7)",
+    "verification": "on-disk, no fabrication \u2014 every file pointer above was listed via os.listdir / os.path.exists on 2026-09-01"
   },
   "cross_system_mappings_ref": "Saved/Audit/cross_system_mappings.json (meshes_to_pcg, fabric_to_wardrobe, cymatics_to_water)",
   "subagent_queue_after_this": [
