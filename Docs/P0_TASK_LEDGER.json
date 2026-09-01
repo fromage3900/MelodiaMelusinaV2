@@ -1,6 +1,6 @@
 {
   "schema": "melodia.p0.task_ledger.v2",
-  "as_of": "2026-09-01",
+  "as_of": "2026-09-06",
   "authority": {
     "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
     "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
@@ -545,5 +545,28 @@
     "UtilitySong_Debuff Blueprint fixture",
     "Economy WBP binding checks",
     "Economy quest progression check"
+  ],
+  "P1_closeout": [
+    {
+      "id": "p1_cymatics_present",
+      "name": "Cymatics PRESENT promotion",
+      "status": "draft_open",
+      "contract": "Promote MelodiaCymaticsSubsystem from SCAFFOLDED to PRESENT per Master Index \u00a71. Remaining: PostConfigInit module loading verification, cymatic PBR generation CLI, World Field Bus contract, ledger gate.",
+      "deadline": "2026-10-01",
+      "priority": 1,
+      "evidence": "Saved/Audit/cymatics_present_status.json",
+      "evidence_chain": [
+        "Saved/Audit/cymatics_present_status.json",
+        "Saved/Audit/cymatics_audit_2026-09-01.json",
+        "Saved/Audit/cymatics_probe_2026-08-31.json",
+        "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md"
+      ],
+      "remaining_steps": [
+        "Verify PostConfigInit module loading and uplugin dependencies",
+        "Add cymatic PBR generation as first-class pipeline step (copernicus_cymatic_parallax.py --cook flag)",
+        "Add cymatic patterns to World Field Bus cross-system contract",
+        "Cymatics P1 promotion gate (owner review)"
+      ]
+    }
   ]
 }
