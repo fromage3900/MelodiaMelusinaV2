@@ -1,0 +1,699 @@
+{
+  "schema": "melodia.p1.task_ledger.v1",
+  "as_of": "2026-09-01",
+  "authority": {
+    "status": "P1_TASK_LEDGER_MATERIALIZED",
+    "p0_ledger": "Docs/P0_TASK_LEDGER.json",
+    "faraway_p1_status": "Saved/Audit/faraway_p1_status.json",
+    "faraway_in_taxonomy": "Saved/Audit/faraway_in_taxonomy.md",
+    "p1p3_roadmap": "Saved/Audit/p1p3_roadmap.json",
+    "gn_taxonomy": "Docs/Production/GN_TAXONOMY_2026-08-29.md",
+    "grand_review": "Saved/Audit/grand_review_expansion_plan_2026-09-01.json",
+    "coinsheet": "Saved/Audit/ue_level_building_coinsheet_2026-09-01.json",
+    "master_index": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md",
+    "policy": "Additive only. Does not overwrite Docs/P0_TASK_LEDGER.json. P0 8/8 remains frozen truth. P1 gates are p1_* prefixed and draft_open until owner-promoted with editor-backed evidence."
+  },
+  "p0_baseline": {
+    "status": "8/8 PASS",
+    "as_of": "2026-09-01",
+    "source_ledger": "Docs/P0_TASK_LEDGER.json",
+    "gates_pass": [
+      "rhythm_owner",
+      "hud_single_writer",
+      "rhythm_grade_to_result",
+      "wardrobe_equip_roundtrip",
+      "wardrobe_gameplay_hook",
+      "music_world_key",
+      "static_gates",
+      "battle_integration_map"
+    ],
+    "gates_detail": {
+      "rhythm_owner": "Exactly one rhythm execution path reaches the stock JRPG damage calculation; load-bearing MelodiaCore presentation and reactivity callers may remain.",
+      "hud_single_writer": "UMelodiaUIBridgeSubsystem is the sole Melodia writer for battle-time presentation and the instantiated runtime widget identity is proven.",
+      "rhythm_grade_to_result": "Real-key timing grade changes a stock JRPG result without blocking progression, and Quill resumes exactly once.",
+      "wardrobe_equip_roundtrip": "Equip through the wardrobe authority, save canonically, restart the process, load, and restore the correct outfit and materials.",
+      "wardrobe_gameplay_hook": "One equipped wardrobe item provides one observable inventory/capability hook; Glide is the first-slice capability.",
+      "music_world_key": "One existing Piano phrase commits one idempotent typed world result and visibly opens one player-facing route.",
+      "static_gates": "The current frozen baseline passes the graph, live-path, Blueprint sweep, UI, and material-baseline checks without waivers.",
+      "battle_integration_map": "Victory, Defeat, Fled, and unavailable each produce the typed result and resume or abort Quill exactly once on the current integration map."
+    },
+    "hython_evidence": {
+      "cymatic_variants": 21,
+      "cymatic_total_pngs": 1665,
+      "height_pngs": 185,
+      "variants_with_height": 21,
+      "flipbook_frames": 80,
+      "faraway_gn_builders": 16,
+      "faraway_hero_meshes": 3,
+      "fabric_textures": 6,
+      "cloth_mountain_obj": "Saved/Audit/faraway_mother/SM_ClothMountains_v0.obj (8.8MB, 384 grid, 2000m tile)",
+      "hython_version": "22.0.368"
+    },
+    "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct per P0 ledger authority.evidence_policy.",
+    "frozen": true,
+    "bounded_historical_evidence": [
+      {
+        "id": "runtime",
+        "recorded_status": "pass",
+        "recorded_on": "2026-08-13",
+        "scope": "Real keyboard input on the captured owner session."
+      },
+      {
+        "id": "save_load",
+        "recorded_status": "pass",
+        "recorded_on": "2026-08-14",
+        "scope": "Canonical stock-JRPG save across the captured process restart."
+      },
+      {
+        "id": "repeat_consume",
+        "recorded_status": "pass",
+        "recorded_on": "2026-08-14",
+        "scope": "Captured authored replay remained exactly once."
+      },
+      {
+        "id": "package_launch",
+        "recorded_status": "pass",
+        "recorded_on": "2026-08-14",
+        "scope": "Captured Development package launched outside the editor."
+      }
+    ]
+  },
+  "p1_gates": [
+    {
+      "id": "p1_cymatics_present",
+      "title": "Cymatics PRESENT — Master Index §1 promotion",
+      "maps_to": "grand_review phase_1_cymatics_present / p1p3_roadmap P1_closeout p1_cymatics_present / rec_1",
+      "status": "draft_open",
+      "deadline": "2026-10-01",
+      "contract": "UMelodiaCymaticsSubsystem listed as PRESENT in Master Index §1; PostConfigInit load and uplugin deps verified; pipeline is a first-class step (copernicus_cymatic_parallax.py --cook), not ad-hoc; pattern IDs on World Field Bus. Single-writer guard: UMelodiaAudioReactivePresentationSubsystem remains sole MPC writer.",
+      "deliverables": [
+        "Saved/Audit/cymatics_present_status.json (target — queued; spec at Saved/Audit/cymatics_present_status_2026-09-01.json)",
+        "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md §1 row for MelodiaCymaticsSubsystem (already PRESENT per 2026-08-31 audit)"
+      ],
+      "evidence": {
+        "source": [
+          "Source/BS_GodFile/MelodiaCymaticsSubsystem.h (IsReadOnlyByContract=true, FTSTicker, MPC read-only)",
+          "Saved/Audit/copernicus_cymatic_manifest.json (schema melodia.copernatic_cymatic_parallax.v2, seed 20260831, 1 variant recorded; pipeline 21 variants declared)"
+        ],
+        "hython": [
+          "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py (51149 bytes, 1087 lines, pure numpy)",
+          "Saved/Audit/copernicus_cymatic/ (21 variants on disk; 1665 PNGs / 185 Height claimed; 1 variant in current manifest)",
+          "Saved/Audit/cymatics_probe_2026-08-31.json (5/5 PASS)",
+          "Saved/Audit/cymatics_audit_2026-09-01.json"
+        ],
+        "gap": "Current manifest records only CymaticMarble; full 21-variant cook pending. Deliverable cymatics_present_status.json not yet materialized — spec exists at Saved/Audit/cymatics_present_status_2026-09-01.json with status queued.",
+        "owner_lanes": [
+          "cpp",
+          "audit"
+        ],
+        "depends_on": []
+      },
+      "verified_on_disk": true
+    },
+    {
+      "id": "p1_faraway_p1_status",
+      "title": "Faraway Mother P1 — 16 builders + hero assets + textures",
+      "maps_to": "grand_review phase_2_faraway_p1 / p1p3_roadmap P1_closeout p1_faraway_p1_status / rec_2",
+      "status": "pass_assets_verified_doc_stale",
+      "deadline": "2026-10-15",
+      "contract": "Faraway Mother has a P1_TASK_LEDGER.json entry with pass+evidence; 16 GN builders in main taxonomy; material pipeline parallel to cymatics; onboarding doc for new member. Assets verified on disk; taxonomy doc is stale.",
+      "deliverables": [
+        "Saved/Audit/faraway_p1_status.json (PASS — assets verified on disk)",
+        "Saved/Audit/faraway_in_taxonomy.md (SPEC — code PRESENT, taxonomy doc STALE)",
+        "Docs/Guides/FARAWAY_MOTHER_ONBOARDING.md (pending — Docs/Guides dir not yet present)",
+        "Docs/Production/GN_TAXONOMY_2026-08-29.md §13 Faraway Mother update (pending)"
+      ],
+      "evidence": {
+        "seven_track_outputs": {
+          "track_1_gn_builders": {
+            "status": "verified",
+            "registry_total": 238,
+            "files_with_builders": 48,
+            "mother_builders": 16,
+            "existing_8": {
+              "file": "deploy/surreal_arch/melodia_gn/mother.py",
+              "bytes": 39723,
+              "lines": 816,
+              "builders": [
+                "MEL_mother_head_silhouette",
+                "MEL_mother_hair_cascade",
+                "MEL_mother_valley_depression",
+                "MEL_mother_fog_volume",
+                "MEL_mother_fabric_ridge",
+                "MEL_mother_shoulder_fold",
+                "MEL_mother_heart_gate",
+                "MEL_mother_moonlight_rig"
+              ],
+              "category_arg": "mother"
+            },
+            "v3_new_8": {
+              "file": "deploy/surreal_arch/melodia_gn/mother_v3.py",
+              "bytes": 29873,
+              "lines": 647,
+              "builders": [
+                "MEL_mother_walkway_straight",
+                "MEL_mother_walkway_curved",
+                "MEL_mother_frill_rock",
+                "MEL_mother_frill_arch",
+                "MEL_mother_lace_tree",
+                "MEL_mother_pearl_bush",
+                "MEL_mother_silk_vine",
+                "MEL_mother_brocade_flower"
+              ],
+              "category_arg": "mother"
+            },
+            "category_meta": "deploy/surreal_arch/melodia_gn/core.py CATEGORY_META key mother label Faraway Mother icon MESH_MONKEY",
+            "taxonomy_doc": "Docs/Production/GN_TAXONOMY_2026-08-29.md (0 hits for MEL_mother_* — STALE; claims 199 vs 238 actual)"
+          },
+          "track_2_hero_meshes": {
+            "status": "verified 3/3",
+            "manifest": "Saved/Audit/faraway_mother/heroes/faraway_mother_heroes_manifest.json",
+            "assets": [
+              {
+                "asset": "SM_FM_MotherSilhouette",
+                "obj": "Saved/Audit/faraway_mother/heroes/SM_FM_MotherSilhouette.obj",
+                "bytes": 3356751,
+                "points": 66177,
+                "faces": 65536
+              },
+              {
+                "asset": "SM_FM_EyeLandmark",
+                "obj": "Saved/Audit/faraway_mother/heroes/SM_FM_EyeLandmark.obj",
+                "bytes": 1923635,
+                "points": 35628,
+                "faces": 34352
+              },
+              {
+                "asset": "SM_FM_Lantern",
+                "obj": "Saved/Audit/faraway_mother/heroes/SM_FM_Lantern.obj",
+                "bytes": 6209,
+                "points": 132,
+                "faces": 264
+              }
+            ],
+            "renders_verified": 6,
+            "renders_dir": "Saved/Audit/faraway_mother/heroes/renders/",
+            "renders": [
+              "SM_FM_MotherSilhouette_Aerial.png",
+              "SM_FM_MotherSilhouette_North.png",
+              "SM_FM_EyeLandmark_Aerial.png",
+              "SM_FM_EyeLandmark_North.png",
+              "SM_FM_Lantern_Aerial.png",
+              "SM_FM_Lantern_North.png"
+            ],
+            "ue_import": "100x m->cm, Nanite true"
+          },
+          "track_3_cloth_mountains": {
+            "status": "verified",
+            "obj": "Saved/Audit/faraway_mother/SM_ClothMountains_v0.obj",
+            "bytes": 8795114,
+            "manifest": "Saved/Audit/faraway_mother/cloth_mountains_v0_manifest.json",
+            "seed": 20260829,
+            "tile_m": 2000.0,
+            "grid": 384,
+            "constants": {
+              "BASE_H": 140.0,
+              "PLEAT_AMP": 60.0,
+              "PLEAT_PERIOD": 88.0,
+              "SEAM_DEPTH": 90.0,
+              "SEAM_WIDTH": 26.0,
+              "MOTIF_PERIOD": 46.0,
+              "MOTIF_H": 9.0
+            },
+            "renders": [
+              "Saved/Audit/faraway_mother/renders/ClothMountains_v0_Aerial.png",
+              "Saved/Audit/faraway_mother/renders/ClothMountains_v0_North.png"
+            ],
+            "hython": "22.0.368"
+          },
+          "track_4_terrain_tiles": {
+            "status": "verified 5 tiles",
+            "manifest": "Saved/Audit/faraway_mother/terrain/terrain_suite_v01_manifest.json",
+            "tiles": [
+              {
+                "tile": "Hemlands",
+                "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_Hemlands.obj",
+                "bytes": 8796197,
+                "points": 148225,
+                "faces": 147456,
+                "heightmap": "HM_FM_Hemlands.r16 385x385"
+              },
+              {
+                "tile": "PleatedRange",
+                "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_PleatedRange.obj",
+                "bytes": 15790361,
+                "points": 263169,
+                "faces": 262144,
+                "heightmap": "HM_FM_PleatedRange.r16 513x513"
+              },
+              {
+                "tile": "EmbroideredBasin",
+                "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_EmbroideredBasin.obj",
+                "bytes": 15781975,
+                "points": 263169,
+                "faces": 262144,
+                "heightmap": "HM_FM_EmbroideredBasin.r16 513x513"
+              },
+              {
+                "tile": "VeiledMountains",
+                "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_VeiledMountains.obj",
+                "bytes": 15781990,
+                "points": 263169,
+                "faces": 262144,
+                "heightmap": "HM_FM_VeiledMountains.r16 513x513"
+              },
+              {
+                "tile": "SeamRoad",
+                "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_SeamRoad.obj",
+                "bytes": 15782209,
+                "points": 263169,
+                "faces": 262144,
+                "heightmap": "HM_FM_SeamRoad.r16 513x513"
+              }
+            ],
+            "renders_verified": 10,
+            "blender": "4.5.4 LTS"
+          },
+          "track_5_fabric_textures": {
+            "status": "verified 6 textures",
+            "manifest": "Saved/Audit/faraway_mother/textures/textures_manifest.json",
+            "dir": "Saved/Audit/faraway_mother/textures/",
+            "required_1024": 3,
+            "verified_1024": 3,
+            "entries": [
+              {
+                "file": "T_FM_PleatDetail_N.png",
+                "size": "1024x1024",
+                "mode": "RGB",
+                "bytes": 5361,
+                "srgb": false,
+                "tile_check": "pass"
+              },
+              {
+                "file": "T_FM_PleatDetail_2_N.png",
+                "size": "1024x1024",
+                "mode": "RGB",
+                "bytes": 5352,
+                "srgb": false,
+                "tile_check": "pass"
+              },
+              {
+                "file": "T_FM_SeamMask.png",
+                "size": "1024x1024",
+                "mode": "RGB",
+                "bytes": 55679,
+                "srgb": false,
+                "tile_check": "pass"
+              },
+              {
+                "file": "T_FM_Embroidery_A.png",
+                "size": "1024x1024",
+                "mode": "RGBA",
+                "bytes": 5215,
+                "srgb": true,
+                "tile_check": "pass"
+              },
+              {
+                "file": "T_FM_Embroidery_B.png",
+                "size": "1024x1024",
+                "mode": "RGBA",
+                "bytes": 5189,
+                "srgb": true,
+                "tile_check": "pass"
+              },
+              {
+                "file": "T_FM_FabricWeave_N.png",
+                "size": "512x512",
+                "mode": "RGB",
+                "bytes": 4387,
+                "srgb": false,
+                "tile_check": "pass"
+              }
+            ]
+          },
+          "track_6_ue_suites": {
+            "status": "spec_only — PNG+uasset pairs present, MI instances not yet materialized",
+            "dir": "Content/Textures/FarawayMother_Suites/",
+            "pngs": 47,
+            "uassets": 47,
+            "manifest": "Saved/Audit/faraway_p2_2026-08-30.json",
+            "mi_target": "Content/EnvSandbox/Materials/Instances/FarawayMother/P2/",
+            "mi_proposals": 6,
+            "suites": {
+              "Corset_GildedAcanthusBrocade": {
+                "maps": [
+                  "AO",
+                  "BC",
+                  "H",
+                  "M",
+                  "N",
+                  "ORM",
+                  "R"
+                ],
+                "count": 7
+              },
+              "Cradle_CarvedAlabasterWood": {
+                "maps": [
+                  "AO",
+                  "BC",
+                  "H",
+                  "M",
+                  "N",
+                  "ORM",
+                  "R"
+                ],
+                "count": 7
+              },
+              "Gown_CelestialSilkJacquard": {
+                "maps": [
+                  "AO",
+                  "BC",
+                  "H",
+                  "M",
+                  "N",
+                  "ORM",
+                  "R",
+                  "Sheen"
+                ],
+                "count": 8
+              },
+              "Mantle_NightSkyVelvet": {
+                "maps": [
+                  "AO",
+                  "BC",
+                  "H",
+                  "M",
+                  "N",
+                  "ORM",
+                  "R",
+                  "Sheen"
+                ],
+                "count": 8
+              },
+              "Ornament_NacreMusicBoxJewel": {
+                "maps": [
+                  "AO",
+                  "BC",
+                  "H",
+                  "M",
+                  "N",
+                  "ORM",
+                  "R",
+                  "Sheen"
+                ],
+                "count": 8
+              },
+              "Veil_AquaticLullabyLace": {
+                "maps": [
+                  "Alpha",
+                  "AO",
+                  "BC",
+                  "H",
+                  "M",
+                  "Mask",
+                  "N",
+                  "ORM",
+                  "R"
+                ],
+                "count": 9
+              }
+            }
+          },
+          "track_7_v3_gap": {
+            "status": "queued — GN PRESENT, textures gap",
+            "spec": "Saved/Audit/faraway_mother_v3_asset_import_gap_spec_2026-09-01.json",
+            "gn_builders_present": 8,
+            "textures_present": 0,
+            "v3_assets_expected": [
+              "walkways (straight+curved)",
+              "frill rocks (rock+arch)",
+              "lace trees",
+              "pearl bushes",
+              "silk vines",
+              "brocade flowers"
+            ]
+          }
+        },
+        "blockers": [
+          "taxonomy doc stale (199->238)",
+          "V3 PBR sets not yet on disk as distinct Content/Textures assets (GN geometry PRESENT)",
+          "Docs/Guides/FARAWAY_MOTHER_ONBOARDING.md pending"
+        ],
+        "owner_lanes": [
+          "audit",
+          "docs"
+        ],
+        "depends_on": [
+          "p1_cymatics_present"
+        ],
+        "verified_on_disk": true
+      }
+    },
+    {
+      "id": "p1_hython_monolith_bridge",
+      "title": "Hython ↔ Monolith dual-path bridge + cross-path validation",
+      "maps_to": "grand_review phase_3_hython_monolith_bridge / p1p3_roadmap P1_closeout p1_hython_monolith_bridge / rec_3",
+      "status": "draft_open",
+      "deadline": "2026-11-01",
+      "contract": "Monolith 9316 reachable (no MODAL_OPEN); parallel execution plan exists; cross-path validator compares hython vs Monolith outputs (height maps, meshes, texture sets) within tolerance. Hython and Monolith are parallel generation paths, not alternatives.",
+      "deliverables": [
+        "Saved/Audit/hython_monolith_bridge_report.json (HEALTHY — hython 22.0.368 + Monolith 0.20.3 on 9316, 1426 tools)",
+        "Tools/validation/cross_path_validation.py (pending)",
+        "Tools/Houdini/monolith_execution_plan_parallel.py (pending)"
+      ],
+      "evidence": {
+        "hython": "C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe 22.0.368 (4359472 bytes) — hou available; copernicus_cymatic_parallax.py and flipbook_aaa.py are pure numpy+PIL",
+        "monolith": "Plugins/Monolith/Monolith.uplugin 0.20.3, Config ServerPort=9316, 1426 tools / 24 namespaces; TCP OPEN 127.0.0.1:9316 LISTENING; POST /mcp tools/list OK; sentinel Plugins/Monolith/Saved/.monolith_running pid 9356 port 9316",
+        "report": "Saved/Audit/hython_monolith_bridge_report.json schema melodia.hython_monolith_bridge.v1 HEALTHY",
+        "coinsheet_note": "Saved/Audit/ue_level_building_coinsheet_2026-09-01.json recorded transient MODAL_OPEN — RESOLVED per hython_monolith_bridge_report.json",
+        "owner_lanes": [
+          "mcp",
+          "audit"
+        ],
+        "depends_on": [
+          "p1_cymatics_present",
+          "p1_faraway_p1_status"
+        ]
+      },
+      "verified_on_disk": true
+    },
+    {
+      "id": "p1_hygiene_package_relaunch",
+      "title": "Hygiene — package relaunch (08-14 baseline 150+ commits stale)",
+      "maps_to": "P0 polish / p1p3_roadmap P1_closeout p1_hygiene_package_relaunch",
+      "status": "draft_open",
+      "deadline": "2026-10-15",
+      "contract": "Closed-editor BuildCookRun Win64 Shipping cooks L_MelusinaMorning+L_KaleidoNave+LV_SeaAbove_Prototype+MelodiaIntegrationMap and launches outside editor with 0 Blueprint Runtime/Accessed None/Ensure/Fatal.",
+      "deliverables": [
+        "Products/P0_Itch_Release archive (pending fresh cook)",
+        "Saved/Audit/package_launch_evidence_2026-10.json (pending)"
+      ],
+      "evidence": {
+        "stale_baseline": "Docs/P0_TASK_LEDGER.json bounded_historical_evidence package_launch pass 2026-08-14 — now 150+ commits stale per p1p3_roadmap",
+        "cook_maps": [
+          "L_MelusinaMorning",
+          "L_KaleidoNave",
+          "LV_SeaAbove_Prototype",
+          "MelodiaIntegrationMap"
+        ],
+        "owner_lanes": [
+          "cpp"
+        ],
+        "depends_on": [
+          "p1_cymatics_present"
+        ],
+        "editor_gate": "Requires MODAL_OPEN-free editor + Monolith 9316 reachable; recovery precedes UE-import verification per coinsheet"
+      },
+      "verified_on_disk": false
+    },
+    {
+      "id": "p1_hygiene_vestigial_retire",
+      "title": "Hygiene — retire or document vestigial BP_BattleController vars",
+      "maps_to": "hud_single_writer owner decision / p1p3_roadmap P1_closeout p1_hygiene_vestigial_retire",
+      "status": "draft_open",
+      "deadline": "2026-10-15",
+      "contract": "BP_BattleController vestigial vars melodiaBattleUI/MelodiaUI retired or documented as intentionally retained with comment; hud_single_writer re-proven by direct property read (battleUI = BP_BattleUI_C_0 bidirectional link).",
+      "deliverables": [
+        "BP_BattleController diff or retention note in P1_TASK_LEDGER"
+      ],
+      "evidence": {
+        "p0_evidence": "Docs/P0_TASK_LEDGER.json active_p0_gates hud_single_writer — 2026-08-27 live PIE: battleUI=BP_BattleUI_C_0 MATCH=True; melodiaBattleUI and MelodiaUI are vestigial None pre-bridge vars in category Melodia, not broken bindings",
+        "owner_lanes": [
+          "audit"
+        ],
+        "depends_on": []
+      },
+      "verified_on_disk": true
+    },
+    {
+      "id": "p1_economy_slice_minimal",
+      "title": "Economy slice minimal — deferred_post_p0_expansion 001..006",
+      "maps_to": "deferred_post_p0_expansion expansion_001..006 as minimal viable loop / p1p3_roadmap p1_economy_slice_minimal",
+      "status": "draft_open",
+      "deadline": "2026-11-15",
+      "contract": "Global economy structs (Healing/Mana/Utility/Grief) + grief modifier on hits + HealingSong/ManaSong base+1 tier + economy HUD on existing UI authority — no dungeon/enemy breadth yet. Expansion_007..009 stay P2-gated.",
+      "deliverables": [
+        "Source/.../MelodiaEconomy*.h (HealingEconomy, ManaEconomy, UtilityEconomy, GriefEconomy)",
+        "DataTables for 2 song families (HealingSong, ManaSong base+1 tier)",
+        "WBP economy indicators on UMelodiaUIBridgeSubsystem authority (no second HUD writer)"
+      ],
+      "evidence": {
+        "deferred_source": "Docs/P0_TASK_LEDGER.json deferred_post_p0_expansion priority 1-6: 001 global structs, 002 grief modifier, 003 HealingSong, 004 ManaSong, 005 UtilitySong_Debuff (mana drain), 006 HUD/WBP — all status deferred",
+        "owner_lanes": [
+          "cpp",
+          "beatmap_author"
+        ],
+        "depends_on": [
+          "p1_cymatics_present"
+        ],
+        "notes": "UtilitySong_Debuff is included in minimal slice per roadmap; dungeon/enemy/quest breadth (007..009) is P2-gated behind p2_dungeon_enemy_quest_slice"
+      },
+      "verified_on_disk": false
+    }
+  ],
+  "p2_bridge": {
+    "goal": "Faraway Mother goes from hython asset pile to live UE citizen: GN, material, PCG, wardrobe, water",
+    "deadline": "2026-12-01",
+    "status": "draft_open",
+    "source": "Saved/Audit/p1p3_roadmap.json P2_faraway_mother_bridge + Saved/Audit/faraway_p2_2026-08-30.json",
+    "items": [
+      {
+        "id": "p2_gn_taxonomy_integration",
+        "spec": "Register all 16 builders (MEL_mother_head_silhouette .. MEL_mother_brocade_flower) in main GN taxonomy §2; Houdini manufactures geometry/masks/LODs, UE composes",
+        "inputs": [
+          "Saved/Audit/faraway_mother/SM_ClothMountains_v0.obj",
+          "Tools/Houdini/copernicus/*.py"
+        ],
+        "outputs": [
+          "Content/PCG/FarawayMother/*",
+          "Docs/Houdini/MARA_P0_P3_HOUDINI_EXECUTION_PLAN_2026-08-29.md updates"
+        ],
+        "contract": "Houdini bakes reusable geometry/masks; no live HDA cook dependency in packaged build (Master Index §6 rule)",
+        "maps_to_cross_system": "meshes_to_pcg",
+        "status": "draft_open"
+      },
+      {
+        "id": "p2_cloth_mountain_import",
+        "spec": "Import SM_ClothMountains_v0 (384 grid, BASE_H 140, PLEAT_AMP 60, PLEAT_PERIOD 88, SEAM_DEPTH 90) at 100x cm, Nanite enabled, as landscape-sculpture hero; validate LOD/collision batch",
+        "inputs": [
+          "Saved/Audit/faraway_mother/cloth_mountains_v0_manifest.json"
+        ],
+        "depends_on": [
+          "p2_gn_taxonomy_integration"
+        ],
+        "maps_to_cross_system": "meshes_to_pcg",
+        "status": "draft_open"
+      },
+      {
+        "id": "p2_fabric_material_pipeline",
+        "spec": "Fabric kit (T_FM_PleatDetail_N, T_FM_PleatDetail_2_N, T_FM_SeamMask, T_FM_Embroidery_A/B, T_FM_FabricWeave_N) through Copernicus fabric_sheen + M_Master_Toon_Universal instances; sRGB discipline verified (embroidery true, normals/mask false)",
+        "inputs": [
+          "Saved/Audit/faraway_mother/textures/textures_manifest.json"
+        ],
+        "outputs": [
+          "Content/Textures/FarawayMother_Suites/*",
+          "MI_FM_* instances under Content/EnvSandbox/Materials/Instances/FarawayMother/P2/"
+        ],
+        "maps_to_cross_system": "fabric_to_wardrobe",
+        "status": "draft_open"
+      },
+      {
+        "id": "p2_structural_columns_and_dress_tie_in",
+        "spec": "5 column families (Doric/Ionic/Corinthian/Fluted/Twisted, 9 PBR maps each from copernicus_structural_assets.py) + Shorewake dress 48-slot tie-in (SM_ShorewakeDress) share the same universal master; verify MI bindings",
+        "maps_to_cross_system": "fabric_to_wardrobe",
+        "status": "draft_open"
+      },
+      {
+        "id": "p2_pcg_population",
+        "spec": "PCG populates levels with Faraway meshes via PCGExtendedToolkit + WorldField filters (moisture/slope/wind_exposure/monolith_proximity); SpeedTree bridge fields reused, not duplicated",
+        "contract": "World Field Bus FilterFlow/Tension/Moisture/Contact/Residue/Reaction/AnchorStability/Resonance (Master Index §5b)",
+        "maps_to_cross_system": "meshes_to_pcg",
+        "status": "draft_open"
+      },
+      {
+        "id": "p2_dungeon_enemy_quest_slice",
+        "spec": "Gated remainder of deferred_post_p0_expansion: expansion_007 dungeon route + expansion_008 debuff enemy + expansion_009 economy-skill quest chain; require p1_economy_slice_minimal pass first",
+        "depends_on": [
+          "p1_economy_slice_minimal",
+          "p2_pcg_population"
+        ],
+        "status": "draft_open"
+      }
+    ],
+    "evidence_pointers": [
+      "Saved/Audit/faraway_p2_2026-08-30.json (47 PNG + 47 uasset, 6 MI proposals spec_only)",
+      "Saved/Audit/faraway_mother_v3_asset_import_gap_spec_2026-09-01.json (V3 GN PRESENT, textures gap — editor import pending)"
+    ]
+  },
+  "p3_horizons": {
+    "goal": "Speculative breadth — WATCH per Master Index §3/§4; no code until owner tasks them",
+    "status": "research_only",
+    "source": "Saved/Audit/p1p3_roadmap.json P3_horizons",
+    "promotion_rule": "P3 items move to P2 only via explicit owner task per Master Index §3/§9 checklist; a new parallel implementation is a defect",
+    "items": [
+      {
+        "id": "p3_cymatics_v3",
+        "spec": "Cymatics V3: map 21→35+ PBR variants, animated flipbook params (80 frames x 5 maps proven) to GN builder params; cymatic choice drives builder amplitude/period",
+        "source": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py (pure numpy trig interference + tileable fBm + domain warping)",
+        "additive_evidence": "Saved/Audit/copernicus_cymatic/ 1665 PNGs + 185 height maps (21 variants, 9 maps) — CymaticMarble manifest recorded",
+        "status": "research_only"
+      },
+      {
+        "id": "p3_cymatics_v4_neural",
+        "spec": "Cymatics V4 / neural shaders: requires a MATERIAL onnx (present onnx is text-embedding only bge-small-en-v1.5-int8); WATCH — do not build until onnx acquisition task",
+        "guardrail": "Master Index §3: Neural shaders gated on material onnx, not embedding onnx",
+        "source": "Plugins/Claireon/Resources/Models/bge-small-en-v1.5-int8/model.onnx (34 MB, text-embedding)",
+        "status": "research_only"
+      },
+      {
+        "id": "p3_cymatics_4k_heroes",
+        "spec": "4K hero sets for top 2-3 cymatic variants + flipbook --frames 16 expansion; UE RVT/MPC path, not second audio writer",
+        "maps_to_cross_system": "cymatics_to_water",
+        "status": "research_only"
+      },
+      {
+        "id": "p3_magpie_full",
+        "spec": "Magpie generative renderer — seam scaffolded via UMelodiaVisualRepresentationSubsystem (read-only); full renderer stays WATCH until owner promotes",
+        "guardrail": "Master Index §3: seam scaffolded only, NO renderer",
+        "source": "Source/BS_GodFile/MelodiaVisualRepresentationSubsystem.h",
+        "status": "research_only"
+      },
+      {
+        "id": "p3_world_field_bus_formalization",
+        "spec": "Formalize World Field Bus (FilterFlow/Tension/Moisture/Contact/Residue/Reaction/AnchorStability/Resonance) and SpeedTree bridge (9 fields: melodia_moisture .. melodia_ecological_density) via R&D discovery, not a giant framework",
+        "guardrail": "Master Index §5: discover the minimum contract via R&D",
+        "status": "research_only"
+      },
+      {
+        "id": "p3_procedural_fabrics_infinity_nikki_bar",
+        "spec": "Procedural fabric families (brocade/lace/silk/pearl) beyond embroidery maps; wardrobe bar Infinity Nikki — requires owner art direction",
+        "maps_to_cross_system": "fabric_to_wardrobe",
+        "status": "research_only"
+      }
+    ]
+  },
+  "ledger_discipline": {
+    "additive_only": true,
+    "do_not_overwrite": [
+      "Docs/P0_TASK_LEDGER.json",
+      "Saved/Audit/grand_review_expansion_plan_2026-09-01.json",
+      "Saved/Audit/ue_level_building_coinsheet_2026-09-01.json"
+    ],
+    "new_ledgers": [
+      "Saved/Audit/p1p3_roadmap.json",
+      "Saved/Audit/cross_system_mappings.json",
+      "Docs/P1_TASK_LEDGER.json (this file)",
+      "Saved/Audit/faraway_p1_status.json",
+      "Saved/Audit/faraway_in_taxonomy.md"
+    ],
+    "gate_naming": "p1_* gates are distinct from p0_*; P0 8/8 stays frozen truth",
+    "evidence_per_gate": "offline probe + live PIE + ledger row (Master Index §9.7)",
+    "verification": "on-disk, no fabrication — every file pointer above was listed via os.listdir / os.path.exists on 2026-09-01"
+  },
+  "cross_system_mappings_ref": "Saved/Audit/cross_system_mappings.json (meshes_to_pcg, fabric_to_wardrobe, cymatics_to_water)",
+  "subagent_queue_after_this": [
+    "rec_5_ecosystem_integration (ecosystem_integration_report.json)",
+    "rec_6_grand_documentation",
+    "rec_7_user_facing"
+  ]
+}
