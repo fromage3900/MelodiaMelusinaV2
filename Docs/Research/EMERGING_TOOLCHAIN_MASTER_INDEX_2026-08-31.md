@@ -82,6 +82,14 @@ AnchorStability / Resonance`. Representations by scale (MPC / RVTs / Niagara gri
 metadata). **Do not build a generalized field framework tomorrow** — discover the minimum contract via R&D.
 Source: `EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_02_2026-08-30.md` §A.
 
+**5b-i. Cymatic pattern publishers** (added 2026-09-06 per `cymatics_present_remaining_steps_2026-09-03.json` step 3):
+`UMelodiaCymaticsSubsystem` publishes to the World Field Bus via its Chladni interference output — cymatic
+`ModeN / ModeM` integer pair maps to `WorldField.Resonance` (the standing-wave harmonic signature at a point),
+and `SampleCymaticAmplitude` (0..1 spread) maps to `WorldField.Tension` (how strongly the pattern is "pulling"
+at that location). Downstream consumers (water ripple displacement, PCG scatter density, material emissive
+pulse) read these fields — they do not call the cymatic subsystem directly. Cross-reference:
+`Saved/Audit/ecosystem_integration_report.json` mapping_01_cymatic_to_rhythm + mapping_04_cymatic_to_water.
+
 ## 6. Houdini execution plan (executable, reviewed)
 
 `Docs/Houdini/MARA_P0_P3_HOUDINI_EXECUTION_PLAN_2026-08-29.md` — Mara + P0–P3. HDA families:
