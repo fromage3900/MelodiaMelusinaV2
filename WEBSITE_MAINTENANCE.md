@@ -159,6 +159,21 @@ $e=$null; [void][System.Management.Automation.Language.Parser]::ParseFile((Resol
 
 ---
 
+## Three.js (WebGL) FX
+
+As of 2026-09-02 the site carries a shared Three.js layer under `wix/`:
+
+| File | Role |
+|------|------|
+| `melodia-three-core.js` | Shared r128 loader |
+| `melodia-three-starfield.js` | WebGL sky when `data-effects` includes `three` |
+| `melodia-three-orrery.js` | `[data-three-orrery]` mounts |
+| `melodia-three-constellation.js` | `#three-constellation-mount` world map |
+| `melodia-three.css` | Canvas / HUD chrome |
+
+Enable with `data-effects="starfield,three,…"`. Full write-up: `Docs/THREE_JS_INTEGRATION_2026-09-02.md`.
+Live publish still goes through `fromage3900/my-site` (see Quick Reference). This tree’s `wix/` holds the Three.js modules + the pages wired to them.
+
 ## Known gaps
 
 - **`add-environment.ps1` cannot run.** It reads `wix/environment-template.html`, which does not

@@ -1,0 +1,1543 @@
+/* Vite homepage hardening: readable lookbook type, bounded mobile chrome, and
+   recruiter-safe fallback states when a render is still loading. */
+
+html[data-page="index"] {
+  /* F_Melodia_UI has no web font file; Syne is the documented web mapping. */
+  --font-home-ui: "Syne", "Avenir Next", "Segoe UI", sans-serif;
+  --font-display: var(--font-home-ui);
+
+  /* Magical-girl sparkle cursor (inline SVG — no cursor PNG in game-ui pack). */
+  --melodia-mg-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2366D9FF'/%3E%3Cstop offset='40%25' stop-color='%23FFE666'/%3E%3Cstop offset='72%25' stop-color='%23FF6EB4'/%3E%3Cstop offset='100%25' stop-color='%23FFF8EE'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M16 1.5L18.8 13.2L30.5 16L18.8 18.8L16 30.5L13.2 18.8L1.5 16L13.2 13.2Z'/%3E%3Ccircle cx='16' cy='16' r='1.7' fill='%23FFF8EE'/%3E%3C/svg%3E") 16 16, pointer;
+
+  /* Force astral-night semantics on index (beats OS light + ivory lookbook). */
+  color-scheme: dark;
+  --color-surface-base: var(--primitive-astral-900);
+  --color-surface-raised: var(--primitive-astral-700);
+  --color-surface-sunken: var(--primitive-plum-900);
+  --color-surface-inverse: var(--primitive-ivory-100);
+  --color-text-primary: var(--primitive-ivory-50);
+  --color-text-secondary: var(--primitive-slate-300);
+  --color-text-tertiary: var(--primitive-slate-400);
+  --color-text-inverse: var(--primitive-astral-900);
+  --color-text-accent: var(--primitive-gold-300);
+  --color-border-subtle: var(--primitive-astral-700);
+  --color-border-default: var(--primitive-astral-500);
+  --color-border-strong: var(--primitive-iris-500);
+  --color-accent-primary: var(--primitive-gold-500);
+  --color-accent-secondary: var(--primitive-lavender-300);
+  --color-accent-tertiary: var(--primitive-sakura-300);
+  --color-accent-astral: var(--primitive-astral-300);
+  --color-accent-iris: var(--primitive-iris-300);
+  --color-rule-gold: var(--primitive-gold-500);
+  --ink: var(--night-lavender, var(--color-text-primary));
+  --muted: var(--night-muted, var(--color-text-secondary));
+  /* Critical: editorial `.astral { background: linear-gradient(astral, plum) }` —
+     --plum must stay dark. Mapping it to surface-inverse (ivory) creates cream wash. */
+  --void: var(--primitive-astral-900);
+  --astral: var(--primitive-astral-900);
+  --plum: var(--primitive-plum-900);
+  --ivory: var(--primitive-astral-900);
+  --paper: color-mix(in srgb, var(--primitive-astral-900) 72%, transparent);
+  --lavender: var(--primitive-ivory-50);
+  --editorial-cream: var(--primitive-astral-900);
+  --celestial-shift: linear-gradient(
+    135deg,
+    var(--primitive-astral-900) 0%,
+    var(--primitive-plum-900) 55%,
+    var(--primitive-astral-700) 100%
+  );
+}
+
+html[data-page="index"] .brand,
+html[data-page="index"] .shell-nav .nav-links a,
+html[data-page="index"] .shell-nav .nav-cta,
+html[data-page="index"] .shell-nav .nav-toggle,
+html[data-page="index"] .button,
+html[data-page="index"] .btn,
+html[data-page="index"] .photobooth-label,
+html[data-page="index"] .photobooth-chip,
+html[data-page="index"] .photobooth-shutter-btn,
+html[data-page="index"] .zbrush-asset-item,
+html[data-page="index"] .zbrush-pass-btn {
+  font-family: var(--font-home-ui);
+}
+
+html[data-page="index"],
+html[data-page="index"] body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+html[data-page="index"] .shell-nav {
+  box-sizing: border-box;
+  max-width: calc(100vw - var(--space-16));
+}
+
+html[data-page="index"] .shell-nav > *,
+html[data-page="index"] .shell-nav .brand,
+html[data-page="index"] .shell-nav .nav-links,
+html[data-page="index"] .shell-nav .nav-cta {
+  min-width: 0;
+}
+
+html[data-page="index"] .shell-nav .brand {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html[data-page="index"] .shell-nav .nav-cta {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Aquatic Melody iridescence — limited stops (gold/cyan/magenta/pearl), not ROYGBIV.
+   Light mid stops for dark void hero — avoid deep purple/gold that vanish on trees. */
+html[data-page="index"] {
+  --melodia-iri-text: linear-gradient(
+    105deg,
+    var(--primitive-gold-100) 0%,
+    var(--iri-cyan, var(--primitive-astral-300)) 28%,
+    var(--iri-magenta, var(--primitive-sakura-300)) 52%,
+    var(--iri-pearl, var(--primitive-ivory-50)) 78%,
+    var(--primitive-gold-300) 100%
+  );
+}
+
+html[data-page="index"] .hero .lede {
+  background: none !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
+  color: var(--color-text-primary) !important;
+  filter: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  text-shadow: var(--shadow-md);
+}
+
+html[data-page="index"] .hero h1 {
+  background: var(--melodia-iri-text) !important;
+  background-size: 220% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: none !important;
+  text-shadow: none;
+  animation: melodia-iri-text-drift 9s ease-in-out infinite alternate;
+}
+
+@keyframes melodia-iri-text-drift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+/* Light hero CTA row — no heavy inverse frame. */
+html[data-page="index"] .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+  padding: 0;
+  margin-top: var(--space-24);
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+html[data-page="index"] .hero-actions.game-ui-frame {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+html[data-page="index"] .hero-actions.game-ui-frame::before,
+html[data-page="index"] .hero-actions.game-ui-frame::after {
+  content: none;
+}
+
+html[data-page="index"] .hero-actions .button:not(.primary) {
+  color: var(--color-text-primary);
+  border-color: color-mix(
+    in srgb,
+    var(--iri-cyan, var(--primitive-astral-300)) 42%,
+    var(--iri-magenta, var(--primitive-sakura-300))
+  );
+  background-color: color-mix(in srgb, var(--primitive-astral-900) 72%, transparent);
+  background-image: none;
+  text-shadow: none;
+  backdrop-filter: blur(8px);
+}
+
+/* Hide floating HUD chrome that reads as toy dashboard on recruiter first paint. */
+html[data-page="index"] .cosmic-instruments,
+html[data-page="index"] .hero-orrery-detail,
+html[data-page="index"] .mg-henshin-trigger,
+html[data-page="index"] [aria-label="Trigger henshin flourish burst"],
+html[data-page="index"] [aria-label="Toggle cosmic clock speed"],
+html[data-page="index"] [aria-label="Jump via cosmic compass"],
+html[data-page="index"] [aria-label="Toggle wish-mode UI accents"] {
+  display: none !important;
+}
+
+/* Subtle parchment texture plus gothic corner atoms give the world cards a
+   tactile frame without turning the recruiter-facing grid into a HUD. */
+html[data-page="index"] .env-card {
+  isolation: isolate;
+}
+
+html[data-page="index"] .env-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: url("../generated/assets/melodia-game-ui/T_Melodia_SheetParchment.png") center / cover no-repeat;
+  mix-blend-mode: soft-light;
+  opacity: 0.16;
+}
+
+html[data-page="index"] .env-card .overlay {
+  z-index: 2;
+}
+
+html[data-page="index"] .env-card .game-ui-gothic-corner {
+  width: 3.5rem;
+  height: 3.5rem;
+  opacity: 0.68;
+}
+
+/* Homepage section titles use the F_Melodia_UI web mapping, not the
+   editorial serif display face. */
+html[data-page="index"] .band .section-head h2 {
+  font-family: var(--font-home-ui);
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+/* Figma UI display treatment: Syne replaces the retired editorial serif
+   without letting the wider UI face collide with the macro render. */
+html[data-page="index"] .hero .hero-inner h1 {
+  font-family: var(--font-home-ui);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 833px) {
+  html[data-page="index"] .hero .hero-inner h1 {
+    max-width: 15ch;
+    font-size: 3rem;
+    line-height: 1.08;
+  }
+}
+
+@media (min-width: 834px) and (max-width: 1439px) {
+  html[data-page="index"] .hero .hero-inner h1 {
+    max-width: 15.5ch;
+    font-size: 3rem;
+    line-height: 1.12;
+  }
+}
+
+@media (min-width: 1440px) {
+  html[data-page="index"] .hero .hero-inner h1 {
+    max-width: 60rem;
+    font-size: 6rem;
+    line-height: 1.08;
+  }
+}
+
+/* Hero proof plate: the recruiter-facing macro render belongs beside the copy,
+   not below the fold with the studio breakdowns. */
+html[data-page="index"] .hero {
+  isolation: isolate;
+  /* Fallback while plates load — dark void, not cream wash */
+  background: var(--primitive-astral-900, var(--color-surface-inverse));
+  overflow: hidden;
+}
+
+/* Full-bleed environment stack (primary still + soft secondary + webm + scrim).
+   NVIDIA drop-in: swap imgs/videos on [data-hero-bg-slot]; keep these layers. */
+html[data-page="index"] .hero-bg-primary,
+html[data-page="index"] .hero-bg-secondary {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+html[data-page="index"] .hero-bg-secondary {
+  z-index: 1;
+}
+
+html[data-page="index"] .hero-bg-primary {
+  z-index: 2;
+}
+
+html[data-page="index"] .hero-bg-plate {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Primary: shrine-route cinematic — bias left so Melusina plate owns the right. */
+html[data-page="index"] .hero-bg-plate--primary {
+  z-index: 1;
+  object-position: 28% 40%;
+  filter: saturate(1.14) contrast(1.08) brightness(1.05);
+  transform: scale(1.08);
+  transform-origin: 30% 42%;
+}
+
+/* Secondary: soft lavender establishing — tasteful depth, not collage. */
+html[data-page="index"] .hero-bg-plate--secondary {
+  z-index: 0;
+  object-position: 50% 60%;
+  opacity: 0.3;
+  filter: saturate(1.14) contrast(0.98) brightness(0.96);
+  mix-blend-mode: soft-light;
+  transform: scale(1.12);
+  transform-origin: 70% 55%;
+  animation: hero-bg-secondary-drift 28s ease-in-out infinite alternate;
+}
+
+html[data-page="index"] .hero-bg-video {
+  z-index: 2;
+  object-position: 40% 45%;
+  opacity: 0.18;
+  mix-blend-mode: soft-light;
+  filter: saturate(1.05) brightness(0.92);
+}
+
+/* Copy-side scrim — tokens only; keeps iri headline + lede readable without muddying the plate. */
+html[data-page="index"] .hero-bg-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--primitive-astral-900) 58%, transparent) 0%,
+      color-mix(in srgb, var(--primitive-astral-900) 26%, transparent) 30%,
+      color-mix(in srgb, var(--primitive-astral-900) 8%, transparent) 52%,
+      transparent 72%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--primitive-astral-900) 38%, transparent) 0%,
+      transparent 24%,
+      transparent 62%,
+      color-mix(in srgb, var(--primitive-astral-900) 52%, transparent) 100%
+    );
+}
+
+@keyframes hero-bg-secondary-drift {
+  from {
+    transform: scale(1.12) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.16) translate3d(-1.2%, 1%, 0);
+  }
+}
+
+html[data-page="index"] .hero-macro-plate {
+  position: absolute;
+  top: clamp(112px, 14vh, 176px);
+  right: clamp(var(--space-16), 5vw, var(--space-64));
+  z-index: 8;
+  width: min(36vw, 456px);
+  height: min(72vh, 660px);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border-subtle);
+  background: var(--primitive-astral-900);
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+  transform: rotate(1.2deg);
+}
+
+html[data-page="index"] .hero-macro-plate::before {
+  content: "";
+  position: absolute;
+  inset: var(--space-8);
+  z-index: 2;
+  border: 1px solid var(--color-border-subtle);
+  pointer-events: none;
+}
+
+html[data-page="index"] .hero-macro-plate img,
+html[data-page="index"] .hero-macro-plate video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  filter: saturate(1.04) contrast(1.02);
+}
+
+html[data-page="index"] .hero-macro-plate video {
+  z-index: 1;
+}
+
+html[data-page="index"] .hero-copy-layer {
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 833px) {
+  html[data-page="index"] .hero-macro-plate {
+    top: 16%;
+    right: -8%;
+    z-index: 2;
+    width: 49vw;
+    height: 50vh;
+    opacity: 0.28;
+    box-shadow: none;
+    transform: rotate(2deg);
+  }
+}
+
+@media (prefers-contrast: high) {
+  html[data-page="index"] .hero-macro-plate {
+    border: 2px solid var(--color-border-strong);
+    box-shadow: none;
+  }
+
+  html[data-page="index"] .hero-actions.game-ui-frame {
+    border-width: 2px;
+    box-shadow: none;
+  }
+
+  html[data-page="index"] .hero-actions.game-ui-frame::before,
+  html[data-page="index"] .env-card::before {
+    opacity: 0;
+  }
+
+  html[data-page="index"] .env-card {
+    border-width: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-page="index"] .hero-macro-plate video {
+    display: none;
+  }
+
+  html[data-page="index"] .hero-bg-video {
+    display: none !important;
+  }
+
+  html[data-page="index"] .hero-bg-plate--primary {
+    opacity: 1;
+    filter: saturate(1.12) contrast(1.08) brightness(1.02);
+  }
+
+  html[data-page="index"] .hero-bg-plate--secondary {
+    animation: none;
+    opacity: 0.24;
+    transform: scale(1.08);
+  }
+}
+
+/* Mobile: keep env atmosphere without crushing copy or causing overflow. */
+@media (max-width: 833px) {
+  html[data-page="index"] .hero-bg-plate--primary {
+    object-position: 28% 38%;
+    transform: scale(1.1);
+  }
+
+  html[data-page="index"] .hero-bg-plate--secondary {
+    opacity: 0.28;
+    animation: none;
+  }
+
+  html[data-page="index"] .hero-bg-video {
+    opacity: 0.22;
+  }
+
+  html[data-page="index"] .hero-bg-scrim {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--primitive-astral-900) 62%, transparent) 0%,
+        color-mix(in srgb, var(--primitive-astral-900) 38%, transparent) 36%,
+        color-mix(in srgb, var(--primitive-astral-900) 58%, transparent) 72%,
+        color-mix(in srgb, var(--primitive-astral-900) 82%, transparent) 100%
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--primitive-astral-900) 70%, transparent) 0%,
+        color-mix(in srgb, var(--primitive-astral-900) 28%, transparent) 55%,
+        transparent 100%
+      );
+  }
+
+  html[data-page="index"] .hero-copy-layer .hero-inner {
+    max-width: min(100%, 36rem);
+  }
+}
+
+html[data-page="index"] .hero .kicker,
+html[data-page="index"] .hero .magazine-kicker,
+html[data-page="index"] .band .section-head .eyebrow,
+html[data-page="index"] .band .section-head .magazine-kicker {
+  background: var(--melodia-iri-text);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: none;
+  animation: melodia-iri-text-drift 7s ease-in-out infinite alternate;
+}
+
+@media (min-width: 834px) and (max-width: 1439px) {
+  html[data-page="index"] .hero-macro-plate {
+    top: clamp(128px, 15vh, 176px);
+    right: clamp(var(--space-16), 4vw, var(--space-32));
+    width: min(30vw, 360px);
+    height: min(62vh, 580px);
+  }
+}
+
+html[data-page="index"] .band .section-head h2 {
+  background: var(--melodia-iri-text) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: none !important;
+  text-shadow: none !important;
+  animation: melodia-iri-text-drift 11s ease-in-out infinite alternate;
+}
+
+/* Body ledes stay solid ink — rainbow body copy reads amateur. */
+html[data-page="index"] .band .section-head > p {
+  background: none;
+  color: var(--color-text-secondary);
+  filter: none;
+  -webkit-text-fill-color: currentColor;
+  animation: none;
+  text-shadow: none;
+}
+
+@media (max-width: 680px) {
+  html[data-page="index"] .shell-nav {
+    left: var(--space-8);
+    right: var(--space-8);
+    width: auto;
+    max-width: calc(100vw - var(--space-16));
+  }
+
+  html[data-page="index"] .shell-nav .nav-cta {
+    padding-inline: var(--space-8);
+    letter-spacing: 0.08em;
+    color: var(--color-text-inverse) !important;
+    text-overflow: clip;
+  }
+
+  html[data-page="index"] .shell-nav .nav-toggle {
+    flex: 0 0 auto;
+  }
+
+  html[data-page="index"] .shell-nav .nav-cta {
+    max-width: 42vw;
+  }
+
+  html[data-page="index"] .hero-macro-plate {
+    top: 16%;
+    right: -8%;
+    z-index: 2;
+    width: 49vw;
+    height: 50vh;
+    opacity: 0.28;
+    border-color: var(--color-border-default);
+    box-shadow: none;
+    transform: rotate(2deg);
+  }
+
+  html[data-page="index"] .hero-macro-plate::before {
+    inset: var(--space-8);
+  }
+}
+
+/* Keep Figma DividerScroll (T_Melodia_128_16464) from melodia-game-ui.css — do not null it. */
+
+html[data-page="index"] .editorial-rule,
+html[data-page="index"] .lookbook-section-rule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16, 14px);
+  margin: 0.35rem auto 1.1rem;
+  max-width: 42rem;
+  color: var(--color-accent-primary);
+}
+
+html[data-page="index"] .editorial-rule::before,
+html[data-page="index"] .editorial-rule::after,
+html[data-page="index"] .lookbook-section-rule::before,
+html[data-page="index"] .lookbook-section-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-accent-primary) 55%, transparent),
+    transparent
+  );
+}
+
+html[data-page="index"] .editorial-rule .diamond,
+html[data-page="index"] .lookbook-section-rule .diamond {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  transform: rotate(45deg);
+  background: linear-gradient(
+    118deg,
+    var(--primitive-gold-300) 0%,
+    var(--color-accent-primary) 38%,
+    var(--primitive-gold-100) 62%,
+    var(--primitive-gold-700) 100%
+  );
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+}
+
+/* Text flank glyph (✩) must not keep the CSS-diamond ring */
+html[data-page="index"] .editorial-rule .diamond.glyph-flank,
+html[data-page="index"] .lookbook-section-rule .diamond.glyph-flank,
+html[data-page="index"] .editorial-rule[data-divider] .diamond.glyph-flank,
+html[data-page="index"] .lookbook-section-rule[data-divider] .diamond.glyph-flank {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  transform: none;
+  animation: none;
+  filter: none;
+  color: color-mix(in srgb, var(--primitive-gold-300, var(--color-accent-primary)) 85%, transparent);
+  line-height: 1;
+}
+
+html[data-page="index"] .lookbook-section-rule {
+  margin: 0.15rem auto;
+  max-width: min(52rem, 86vw);
+  padding: 0.85rem 0;
+}
+
+html[data-page="index"] .lookbook-section-rule::before,
+html[data-page="index"] .lookbook-section-rule::after {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-accent-primary) 72%, transparent),
+    transparent
+  );
+}
+
+html[data-page="index"] .lookbook-section-rule .diamond:not(.glyph-flank) {
+  width: 8px;
+  height: 8px;
+}
+
+/* Brand-first: MELODIA must read as a mark, not fine print (esp. compact nav). */
+html[data-page="index"] .shell-nav .brand {
+  font-family: var(--font-home-ui, var(--font-brand));
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-page="index"] .hero h1,
+  html[data-page="index"] .hero .kicker,
+  html[data-page="index"] .hero .magazine-kicker,
+  html[data-page="index"] .band .section-head h2,
+  html[data-page="index"] .band .section-head .eyebrow,
+  html[data-page="index"] .band .section-head .magazine-kicker {
+    animation: none;
+    background-position: 40% 50%;
+  }
+}
+
+@media (prefers-contrast: more) {
+  html[data-page="index"] .hero h1,
+  html[data-page="index"] .hero .kicker,
+  html[data-page="index"] .hero .magazine-kicker,
+  html[data-page="index"] .band .section-head h2,
+  html[data-page="index"] .band .section-head .eyebrow,
+  html[data-page="index"] .band .section-head .magazine-kicker {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: currentColor !important;
+    animation: none !important;
+  }
+
+  html[data-page="index"] .hero .kicker,
+  html[data-page="index"] .hero .magazine-kicker,
+  html[data-page="index"] .band .section-head .eyebrow,
+  html[data-page="index"] .band .section-head .magazine-kicker {
+    color: var(--color-text-accent) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Hero star / diamond accents (index only) + soft void FX peek
+   Global starfield / dream layers stay under opaque hero media.
+   Translucent astral/void bands + band-local star dots let the field peek
+   mid-page. Hero sparkles remain `.hero-star-accents` (not instruments HUD).
+   -------------------------------------------------------------------------- */
+html[data-page="index"] .melodia-shell > .dream-sparkle-layer,
+html[data-page="index"] .melodia-shell > .figma-bubble-layer,
+html[data-page="index"] .melodia-shell > .dream-planet-layer {
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: none;
+  z-index: 1;
+}
+
+html[data-page="index"] .melodia-shell > .dream-sparkle-layer {
+  opacity: 0.48 !important;
+  mix-blend-mode: screen;
+  /* Keep twinkle without collapsing to near-invisible base opacity */
+  animation: home-sparkle-twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes home-sparkle-twinkle {
+  0%, 100% { opacity: 0.38; }
+  50% { opacity: 0.55; }
+}
+
+html[data-page="index"] .melodia-shell > .figma-bubble-layer {
+  opacity: 0.38 !important;
+  mix-blend-mode: screen;
+}
+
+/* Soft Figma planet wash — tasteful mid-page depth; stays under hero media */
+html[data-page="index"] .melodia-shell > .dream-planet-layer {
+  opacity: 0.3 !important;
+  mix-blend-mode: screen;
+}
+
+/* Three.js starfield canvas sits with the 2D sky; bump visibility in void bands */
+html[data-page="index"] .melodia-three-starfield {
+  opacity: 0.82;
+}
+
+/* Slight cosmic canvas bump so transparent void bands can peek stars (not hero) */
+html[data-page="index"] .melodia-shell[data-starfield-intensity="cosmic"] > .melodia-starfield-canvas {
+  opacity: 0.78;
+}
+
+html[data-page="index"] .melodia-shell.starfield-reduced > .melodia-starfield-canvas {
+  opacity: 0.4;
+}
+
+html[data-page="index"] .hero > .hero-star-accents {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Soft twinkle field — pink / cyan / gold Melodia accents (dream-sparkle idiom) */
+html[data-page="index"] .hero > .hero-star-accents::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle, var(--iri-pearl, var(--primitive-sakura-100)) 0 1.1px, transparent 1.8px),
+    radial-gradient(circle, var(--iri-gold, var(--primitive-gold-300)) 0 1px, transparent 1.7px),
+    radial-gradient(circle, var(--iri-cyan, var(--primitive-astral-300)) 0 1.2px, transparent 1.9px),
+    radial-gradient(circle, var(--melodia-sakura-300, var(--primitive-sakura-300)) 0 1px, transparent 1.7px);
+  background-size: 92px 92px, 148px 148px, 118px 118px, 176px 176px;
+  background-position: 12% 18%, 68% 22%, 42% 64%, 78% 72%;
+  animation: hero-star-twinkle 7s ease-in-out infinite alternate;
+}
+
+/* Secondary offset sparkle pass + faint bubble rings (figma-bubble idiom) */
+html[data-page="index"] .hero > .hero-star-accents::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.42;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle at 18% 28%, transparent 0 7px, color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 70%, transparent) 8px 9px, transparent 10px),
+    radial-gradient(circle at 82% 36%, transparent 0 5px, color-mix(in srgb, var(--iri-gold, var(--primitive-gold-300)) 75%, transparent) 6px 7px, transparent 8px),
+    radial-gradient(circle at 64% 78%, transparent 0 10px, color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 65%, transparent) 11px 12px, transparent 13px),
+    radial-gradient(circle at 28% 72%, var(--iri-pearl, var(--primitive-sakura-100)) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 74% 18%, var(--iri-cyan, var(--primitive-astral-300)) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 48% 14%, var(--iri-gold, var(--primitive-gold-100)) 0 1px, transparent 1.8px);
+  background-size: 100% 100%;
+  animation: hero-star-twinkle 5.2s ease-in-out infinite alternate-reverse;
+}
+
+html[data-page="index"] .hero-star-diamond {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  pointer-events: none;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  opacity: 0.88;
+  animation: hero-diamond-tick 6.5s ease-in-out infinite;
+  box-shadow:
+    0 0 14px color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 55%, transparent),
+    0 0 5px color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 40%, transparent);
+}
+
+html[data-page="index"] .hero-star-diamond.d1 {
+  top: 16%;
+  left: 6%;
+  background: linear-gradient(
+    135deg,
+    var(--iri-cyan, var(--primitive-astral-300)),
+    var(--iri-magenta, var(--primitive-sakura-300))
+  );
+  animation-delay: 0s;
+}
+
+html[data-page="index"] .hero-star-diamond.d2 {
+  top: 22%;
+  right: 8%;
+  width: 9px;
+  height: 9px;
+  background: linear-gradient(
+    135deg,
+    var(--iri-gold, var(--primitive-gold-100)),
+    var(--iri-cyan, var(--primitive-astral-300))
+  );
+  animation-delay: 1.2s;
+}
+
+html[data-page="index"] .hero-star-diamond.d3 {
+  top: 58%;
+  left: 4%;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(
+    135deg,
+    var(--iri-magenta, var(--primitive-sakura-300)),
+    var(--iri-gold, var(--primitive-gold-300))
+  );
+  animation-delay: 2.4s;
+}
+
+html[data-page="index"] .hero-star-diamond.d4 {
+  bottom: 22%;
+  right: 12%;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(
+    135deg,
+    var(--iri-cyan, var(--primitive-astral-300)),
+    var(--iri-gold, var(--primitive-gold-100))
+  );
+  animation-delay: 3.6s;
+}
+
+html[data-page="index"] .hero-star-diamond.d5 {
+  top: 38%;
+  left: 42%;
+  width: 7px;
+  height: 7px;
+  opacity: 0.48;
+  background: linear-gradient(
+    135deg,
+    var(--iri-gold, var(--primitive-gold-300)),
+    var(--iri-magenta, var(--primitive-sakura-300))
+  );
+  animation-delay: 1.8s;
+}
+
+html[data-page="index"] .hero-star-diamond.d6 {
+  bottom: 28%;
+  left: 18%;
+  width: 9px;
+  height: 9px;
+  background: linear-gradient(
+    135deg,
+    var(--iri-magenta, var(--primitive-sakura-500, var(--primitive-sakura-300))),
+    var(--iri-cyan, var(--primitive-astral-300))
+  );
+  animation-delay: 4.8s;
+}
+
+@keyframes hero-star-twinkle {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 0.62;
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+@keyframes hero-diamond-tick {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.88;
+    transform: scale(1.12) rotate(8deg);
+  }
+}
+
+@media (max-width: 833px) {
+  html[data-page="index"] .hero > .hero-star-accents::before {
+    opacity: 0.4;
+    background-size: 72px 72px, 112px 112px, 96px 96px, 140px 140px;
+  }
+
+  html[data-page="index"] .hero > .hero-star-accents::after {
+    opacity: 0.32;
+  }
+
+  html[data-page="index"] .hero-star-diamond.d5,
+  html[data-page="index"] .hero-star-diamond.d6 {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-page="index"] .hero > .hero-star-accents::before,
+  html[data-page="index"] .hero > .hero-star-accents::after,
+  html[data-page="index"] .hero-star-diamond,
+  html[data-page="index"] .melodia-shell > .dream-sparkle-layer {
+    animation: none !important;
+  }
+
+  html[data-page="index"] .melodia-shell > .dream-sparkle-layer {
+    opacity: 0.36 !important;
+  }
+
+  html[data-page="index"] .hero > .hero-star-accents::before {
+    opacity: 0.4;
+    transform: none;
+  }
+
+  html[data-page="index"] .hero > .hero-star-accents::after {
+    opacity: 0.3;
+    transform: none;
+  }
+
+  html[data-page="index"] .hero-star-diamond {
+    opacity: 0.58;
+    transform: none;
+  }
+}
+
+@media (prefers-contrast: more), (prefers-contrast: high) {
+  html[data-page="index"] .hero > .hero-star-accents::before,
+  html[data-page="index"] .hero > .hero-star-accents::after {
+    opacity: 0.18;
+    mix-blend-mode: normal;
+  }
+
+  html[data-page="index"] .hero-star-diamond {
+    box-shadow: none;
+    opacity: 0.45;
+  }
+}
+
+/* ── Homepage footer: soft sakura → cyan/gold aquatic iridescence ──
+   Overrides flat --void / night-theme navy. Scoped to index only.
+   Footer stays intentionally dark, so text uses ivory/pearl (not theme text-primary). */
+html[data-page="index"] .footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 1px solid color-mix(
+    in srgb,
+    var(--iri-magenta, var(--primitive-sakura-300)) 58%,
+    color-mix(in srgb, var(--iri-cyan) 22%, transparent)
+  );
+  background:
+    radial-gradient(
+      ellipse 78% 140% at 8% -10%,
+      color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 42%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 50% 110% at 42% 0%,
+      color-mix(in srgb, var(--primitive-sakura-500) 28%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 55% 100% at 92% 100%,
+      color-mix(in srgb, var(--iri-cyan) 22%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 45% 80% at 62% 120%,
+      color-mix(in srgb, var(--iri-gold) 14%, transparent),
+      transparent 50%
+    ),
+    linear-gradient(
+      118deg,
+      color-mix(in srgb, var(--primitive-sakura-300) 48%, var(--primitive-plum-900)) 0%,
+      color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-500)) 36%, var(--primitive-astral-900)) 28%,
+      color-mix(in srgb, var(--iri-cyan) 20%, var(--primitive-plum-900)) 58%,
+      color-mix(in srgb, var(--iri-gold) 16%, var(--primitive-astral-900)) 80%,
+      color-mix(in srgb, var(--iri-pearl, var(--primitive-sakura-100)) 12%, var(--primitive-plum-900)) 100%
+    ),
+    var(--color-surface-sunken, var(--primitive-astral-900)) !important;
+  color: color-mix(
+    in srgb,
+    var(--primitive-ivory-50) 82%,
+    var(--iri-pearl, var(--primitive-sakura-100))
+  ) !important;
+}
+
+/* Pink hairline + soft top sheen */
+html[data-page="index"] .footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 72%, transparent) 16%,
+    color-mix(in srgb, var(--iri-pearl, var(--primitive-sakura-100)) 70%, transparent) 46%,
+    color-mix(in srgb, var(--iri-cyan) 48%, transparent) 70%,
+    color-mix(in srgb, var(--iri-gold) 32%, transparent) 88%,
+    transparent 100%
+  );
+  box-shadow: 0 0 22px color-mix(
+    in srgb,
+    var(--iri-magenta, var(--primitive-sakura-300)) 34%,
+    transparent
+  );
+}
+
+/* Light scrim — keeps mono footer text legible without killing pink wash */
+html[data-page="index"] .footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primitive-astral-900) 18%, transparent) 0%,
+    color-mix(in srgb, var(--primitive-plum-900) 32%, transparent) 100%
+  );
+}
+
+html[data-page="index"] .footer .inner {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  gap: var(--space-16, 16px);
+}
+
+html[data-page="index"] .footer .inner span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: inherit;
+}
+
+@media (max-width: 833px) {
+  html[data-page="index"] .footer {
+    padding-left: var(--space-16, 16px);
+    padding-right: var(--space-16, 16px);
+  }
+
+  html[data-page="index"] .footer .inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-8, 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-page="index"] .footer::before {
+    box-shadow: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  html[data-page="index"] .footer {
+    background: var(--color-surface-sunken, var(--primitive-astral-900)) !important;
+    color: var(--primitive-ivory-50) !important;
+    border-top-color: var(--color-border-default);
+  }
+
+  html[data-page="index"] .footer::before,
+  html[data-page="index"] .footer::after {
+    content: none;
+  }
+}
+
+/* ==========================================================================
+   HARD VISUAL RESET — void / astral / sakura game-UI shell (index only)
+   Kills residual cream lookbook chrome. Owns shell; merge carefully with peers.
+   ========================================================================== */
+
+html[data-page="index"] body {
+  background:
+    radial-gradient(
+      ellipse 55% 45% at 18% 8%,
+      color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 16%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 86% 14%,
+      color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 14%, transparent),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 50% 88%,
+      color-mix(in srgb, var(--iri-gold, var(--primitive-gold-300)) 8%, transparent),
+      transparent 58%
+    ),
+    linear-gradient(
+      180deg,
+      var(--primitive-plum-900) 0%,
+      var(--primitive-astral-900) 42%,
+      var(--primitive-plum-900) 100%
+    ) !important;
+  color: var(--color-text-primary) !important;
+}
+
+html[data-page="index"] .melodia-shell,
+html[data-page="index"] .melodia-shell.astral-mode,
+html[data-page="index"] .melodia-shell.fashion-mode {
+  background:
+    radial-gradient(
+      circle at 10% 12%,
+      color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 12%, transparent),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 10%, transparent),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 48% 78%,
+      color-mix(in srgb, var(--iri-gold, var(--primitive-gold-300)) 6%, transparent),
+      transparent 38%
+    ),
+    var(--melodia-void-gradient, linear-gradient(180deg, var(--primitive-plum-900), var(--primitive-astral-900))) !important;
+}
+
+/* Neutralize editorial `.astral` cream wash (astral→plum where plum was ivory). */
+html[data-page="index"] .astral,
+html[data-page="index"] .band.astral {
+  background: transparent;
+}
+
+html[data-page="index"] .shell-nav {
+  background: color-mix(in srgb, var(--primitive-astral-900) 78%, transparent) !important;
+  border: 1px solid color-mix(
+    in srgb,
+    var(--iri-magenta, var(--primitive-sakura-300)) 28%,
+    color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 22%, transparent)
+  ) !important;
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--primitive-astral-700) 40%, transparent),
+    0 12px 40px color-mix(in srgb, var(--primitive-plum-900) 55%, transparent);
+}
+
+html[data-page="index"] .shell-nav .brand {
+  color: color-mix(
+    in srgb,
+    var(--iri-gold, var(--primitive-gold-100)) 78%,
+    var(--iri-pearl, var(--primitive-sakura-100))
+  );
+}
+
+html[data-page="index"] .shell-nav .nav-links a {
+  color: color-mix(in srgb, var(--color-text-primary) 86%, transparent);
+}
+
+html[data-page="index"] .shell-nav .nav-links a:hover,
+html[data-page="index"] .shell-nav .nav-links a:focus-visible {
+  color: var(--iri-cyan, var(--primitive-astral-300));
+}
+
+html[data-page="index"] .shell-nav .nav-cta {
+  border-color: color-mix(
+    in srgb,
+    var(--iri-magenta, var(--primitive-sakura-300)) 45%,
+    var(--iri-cyan, var(--primitive-astral-300))
+  ) !important;
+  background: color-mix(in srgb, var(--primitive-plum-900) 70%, transparent) !important;
+  color: var(--color-text-primary) !important;
+}
+
+html[data-page="index"] .fashion-band::before,
+html[data-page="index"] .band.ivory::before,
+html[data-page="index"] .band.paper[data-surface="ivory"]::before,
+html[data-page="index"] .band.cloud[data-surface="ivory"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Ivory / paper bands stay denser for type contrast */
+html[data-page="index"] .melodia-shell .band.ivory,
+html[data-page="index"] .melodia-shell .band.paper[data-surface="ivory"],
+html[data-page="index"] .melodia-shell .band.cloud[data-surface="ivory"],
+html[data-page="index"] .melodia-shell .band.paper,
+html[data-page="index"] .melodia-shell .band.cloud,
+html[data-page="index"] .melodia-shell .band[data-surface="ivory"] {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--primitive-astral-700) 38%, transparent) 0%,
+      color-mix(in srgb, var(--primitive-astral-900) 88%, transparent) 48%,
+      color-mix(in srgb, var(--primitive-plum-900) 92%, transparent) 100%
+    ),
+    radial-gradient(
+      ellipse 70% 55% at 12% 0%,
+      color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 14%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 55% 50% at 92% 8%,
+      color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 12%, transparent),
+      transparent 55%
+    ) !important;
+  color: var(--color-text-primary) !important;
+  border-block: 1px solid color-mix(
+    in srgb,
+    var(--iri-magenta, var(--primitive-sakura-300)) 22%,
+    color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 18%, transparent)
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--iri-pearl, var(--primitive-sakura-100)) 8%, transparent),
+    inset 0 0 80px color-mix(in srgb, var(--primitive-plum-900) 35%, transparent) !important;
+}
+
+/* Soft starfield peek — translucent astral/void scrims (hero stays opaque) */
+html[data-page="index"] .melodia-shell .band.astral,
+html[data-page="index"] .melodia-shell .band.void-panel,
+html[data-page="index"] .melodia-shell .band[data-surface="void"] {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--primitive-astral-700) 18%, transparent) 0%,
+      color-mix(in srgb, var(--primitive-astral-900) 36%, transparent) 48%,
+      color-mix(in srgb, var(--primitive-plum-900) 44%, transparent) 100%
+    ),
+    radial-gradient(
+      ellipse 70% 55% at 12% 0%,
+      color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 10%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 55% 50% at 92% 8%,
+      color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 9%, transparent),
+      transparent 55%
+    ) !important;
+  color: var(--color-text-primary) !important;
+  border-block: 1px solid color-mix(
+    in srgb,
+    var(--iri-magenta, var(--primitive-sakura-300)) 22%,
+    color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 18%, transparent)
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--iri-pearl, var(--primitive-sakura-100)) 8%, transparent),
+    inset 0 0 80px color-mix(in srgb, var(--primitive-plum-900) 18%, transparent) !important;
+  overflow: hidden;
+}
+
+/* Band-local soft star layer — densifies mid-page peek without raising canvas over hero */
+html[data-page="index"] .melodia-shell .band.astral::before,
+html[data-page="index"] .melodia-shell .band.void-panel::before,
+html[data-page="index"] .melodia-shell .band[data-surface="void"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle at 12% 22%, var(--iri-pearl, var(--primitive-sakura-100)) 0 1.1px, transparent 1.6px),
+    radial-gradient(circle at 28% 58%, var(--iri-cyan, var(--primitive-astral-300)) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 46% 18%, var(--iri-magenta, var(--primitive-sakura-300)) 0 1.2px, transparent 1.7px),
+    radial-gradient(circle at 63% 72%, var(--iri-gold, var(--primitive-gold-100)) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 34%, var(--iri-pearl, var(--primitive-sakura-100)) 0 1.1px, transparent 1.6px),
+    radial-gradient(circle at 88% 64%, var(--iri-cyan, var(--primitive-astral-300)) 0 0.9px, transparent 1.4px),
+    radial-gradient(circle at 18% 84%, var(--iri-magenta, var(--primitive-sakura-300)) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 54% 44%, var(--iri-pearl, var(--primitive-sakura-100)) 0 0.8px, transparent 1.3px);
+  background-size:
+    140px 140px,
+    180px 180px,
+    160px 160px,
+    200px 200px,
+    150px 150px,
+    190px 190px,
+    170px 170px,
+    210px 210px;
+}
+
+html[data-page="index"] .melodia-shell .band.astral > .inner,
+html[data-page="index"] .melodia-shell .band.void-panel > .inner,
+html[data-page="index"] .melodia-shell .band[data-surface="void"] > .inner {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-page="index"] .melodia-shell .band.void-panel h2,
+html[data-page="index"] .melodia-shell .band.void-panel h3,
+html[data-page="index"] .melodia-shell .band.void-panel strong,
+html[data-page="index"] .melodia-shell .band[data-surface="void"] h2,
+html[data-page="index"] .melodia-shell .band[data-surface="void"] h3,
+html[data-page="index"] .melodia-shell .band.ivory h2,
+html[data-page="index"] .melodia-shell .band.ivory h3,
+html[data-page="index"] .melodia-shell .band.paper[data-surface="ivory"] h2,
+html[data-page="index"] .melodia-shell .band.paper[data-surface="ivory"] h3 {
+  color: var(--color-text-primary) !important;
+}
+
+html[data-page="index"] .melodia-shell .band.void-panel p,
+html[data-page="index"] .melodia-shell .band[data-surface="void"] p,
+html[data-page="index"] .melodia-shell .band.ivory p,
+html[data-page="index"] .band .section-head > p {
+  color: color-mix(in srgb, var(--color-text-secondary) 92%, var(--iri-pearl, var(--primitive-sakura-100))) !important;
+}
+
+html[data-page="index"] .env-card {
+  border: 1px solid color-mix(
+    in srgb,
+    var(--iri-cyan, var(--primitive-astral-300)) 32%,
+    var(--iri-magenta, var(--primitive-sakura-300))
+  );
+  background: color-mix(in srgb, var(--primitive-astral-900) 88%, transparent);
+  box-shadow:
+    0 10px 32px color-mix(in srgb, var(--primitive-plum-900) 55%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--iri-pearl, var(--primitive-sakura-100)) 6%, transparent);
+}
+
+html[data-page="index"] .env-card:hover,
+html[data-page="index"] .env-card:focus-visible {
+  border-color: color-mix(
+    in srgb,
+    var(--iri-magenta, var(--primitive-sakura-300)) 55%,
+    var(--iri-cyan, var(--primitive-astral-300))
+  );
+}
+
+html[data-page="index"] .env-card::before {
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 10%, transparent),
+      transparent 42%,
+      color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 8%, transparent)
+    );
+  mix-blend-mode: screen;
+  opacity: 0.22;
+}
+
+html[data-page="index"] .env-card .overlay {
+  background: linear-gradient(
+    transparent,
+    color-mix(in srgb, var(--primitive-astral-900) 92%, transparent)
+  );
+}
+
+html[data-page="index"] .env-card .env-name {
+  color: var(--color-text-primary);
+}
+
+html[data-page="index"] .env-card .env-tag {
+  color: var(--iri-cyan, var(--primitive-astral-300));
+}
+
+html[data-page="index"] .table-list,
+html[data-page="index"] .table-row {
+  border-color: color-mix(
+    in srgb,
+    var(--iri-magenta, var(--primitive-sakura-300)) 26%,
+    var(--iri-cyan, var(--primitive-astral-300))
+  ) !important;
+}
+
+html[data-page="index"] .table-row {
+  background: color-mix(in srgb, var(--primitive-astral-900) 55%, transparent);
+  border-radius: var(--melodia-radius-md, 8px);
+}
+
+html[data-page="index"] .table-row:hover,
+html[data-page="index"] a.table-row:focus-visible {
+  background: color-mix(
+    in srgb,
+    var(--primitive-astral-700) 42%,
+    color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 8%, transparent)
+  );
+}
+
+html[data-page="index"] .table-row h3,
+html[data-page="index"] .table-row b {
+  color: var(--color-text-primary) !important;
+}
+
+html[data-page="index"] .table-row p {
+  color: var(--color-text-secondary) !important;
+}
+
+html[data-page="index"] .table-row > span:first-child {
+  color: var(--iri-magenta, var(--primitive-sakura-300)) !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+html[data-page="index"] #melusina-photobooth-mount,
+html[data-page="index"] #zbrush-studio-mount {
+  position: relative;
+  border: 1px solid color-mix(
+    in srgb,
+    var(--iri-cyan, var(--primitive-astral-300)) 28%,
+    var(--iri-magenta, var(--primitive-sakura-300))
+  );
+  border-radius: var(--melodia-radius-md, 8px);
+  background: color-mix(in srgb, var(--primitive-plum-900) 55%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--iri-pearl, var(--primitive-sakura-100)) 5%, transparent),
+    0 16px 48px color-mix(in srgb, var(--primitive-plum-900) 45%, transparent);
+  overflow: hidden;
+}
+
+html[data-page="index"] .hero .lede {
+  color: color-mix(
+    in srgb,
+    var(--color-text-primary) 90%,
+    var(--iri-pearl, var(--primitive-sakura-100))
+  ) !important;
+  text-shadow:
+    0 1px 2px color-mix(in srgb, var(--primitive-astral-900) 80%, transparent),
+    0 0 24px color-mix(in srgb, var(--primitive-astral-900) 55%, transparent);
+}
+
+html[data-page="index"] .hero-macro-plate {
+  border: 1px solid color-mix(
+    in srgb,
+    var(--iri-magenta, var(--primitive-sakura-300)) 40%,
+    var(--iri-cyan, var(--primitive-astral-300))
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--primitive-astral-700) 50%, transparent),
+    0 18px 48px color-mix(in srgb, var(--primitive-plum-900) 60%, transparent),
+    0 0 32px color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 12%, transparent);
+}
+
+html[data-page="index"] .editorial-rule,
+html[data-page="index"] .lookbook-section-rule {
+  color: var(--iri-magenta, var(--primitive-sakura-300));
+}
+
+html[data-page="index"] .editorial-rule::before,
+html[data-page="index"] .editorial-rule::after,
+html[data-page="index"] .lookbook-section-rule::before,
+html[data-page="index"] .lookbook-section-rule::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--iri-magenta, var(--primitive-sakura-300)) 55%, transparent),
+    color-mix(in srgb, var(--iri-cyan, var(--primitive-astral-300)) 50%, transparent),
+    transparent
+  );
+}
+
+html[data-page="index"] .editorial-rule .diamond:not(.glyph-flank),
+html[data-page="index"] .lookbook-section-rule .diamond:not(.glyph-flank) {
+  background: linear-gradient(
+    118deg,
+    var(--iri-cyan, var(--primitive-astral-300)) 0%,
+    var(--iri-magenta, var(--primitive-sakura-300)) 48%,
+    var(--iri-gold, var(--primitive-gold-100)) 100%
+  );
+}
+
+@media (prefers-contrast: more), (prefers-contrast: high) {
+  html[data-page="index"] .melodia-shell .band.astral,
+  html[data-page="index"] .melodia-shell .band.void-panel,
+  html[data-page="index"] .melodia-shell .band.paper,
+  html[data-page="index"] .melodia-shell .band.cloud,
+  html[data-page="index"] .melodia-shell .band.ivory,
+  html[data-page="index"] .melodia-shell .band[data-surface="void"],
+  html[data-page="index"] .melodia-shell .band[data-surface="ivory"] {
+    background: var(--primitive-astral-900) !important;
+    border-block-color: var(--color-border-strong);
+    box-shadow: none !important;
+  }
+
+  html[data-page="index"] .melodia-shell .band.astral::before,
+  html[data-page="index"] .melodia-shell .band.void-panel::before,
+  html[data-page="index"] .melodia-shell .band[data-surface="void"]::before,
+  html[data-page="index"] .melodia-shell > .dream-planet-layer,
+  html[data-page="index"] .melodia-shell > .melodia-starfield-canvas {
+    display: none !important;
+  }
+
+  html[data-page="index"] .env-card,
+  html[data-page="index"] #melusina-photobooth-mount,
+  html[data-page="index"] #zbrush-studio-mount {
+    border-width: 2px;
+    box-shadow: none;
+  }
+
+  html[data-page="index"] .shell-nav {
+    backdrop-filter: none;
+    background: var(--primitive-astral-900) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-page="index"] .hero-actions .button:not(.primary) {
+    backdrop-filter: none;
+  }
+
+  html[data-page="index"] .melodia-shell > .dream-planet-layer {
+    opacity: 0.12 !important;
+    animation: none !important;
+  }
+
+  html[data-page="index"] .melodia-shell .band.astral::before,
+  html[data-page="index"] .melodia-shell .band.void-panel::before,
+  html[data-page="index"] .melodia-shell .band[data-surface="void"]::before {
+    opacity: 0.32;
+  }
+}

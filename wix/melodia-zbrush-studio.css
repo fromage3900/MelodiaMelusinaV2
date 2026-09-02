@@ -1,0 +1,129 @@
+/* Melodia ZBrush Sculpt Studio — Interactive High-Poly & Retopology Inspector
+   Clay renders, normal passes, wireframe meshes, and asset passports.
+*/
+
+.zbrush-studio-container {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 900px) {
+  .zbrush-studio-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.zbrush-viewport {
+  position: relative;
+  min-height: 420px;
+  background: var(--primitive-astral-900);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zbrush-viewport img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.zbrush-studio-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.zbrush-asset-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.zbrush-asset-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  transition: all 0.2s ease;
+}
+.zbrush-asset-item:hover {
+  background: rgba(201, 168, 106, 0.12);
+  border-color: var(--color-accent-primary);
+}
+.zbrush-asset-item.active {
+  background: rgba(201, 168, 106, 0.22);
+  border-color: var(--color-accent-primary);
+  font-weight: 600;
+}
+
+.zbrush-pass-toggle {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.zbrush-pass-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.4rem;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+}
+.zbrush-pass-btn.active {
+  background: var(--color-accent-primary);
+  color: var(--primitive-plum-900);
+  font-weight: 600;
+}
+
+.zbrush-passport-sheet {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 4px;
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+.zbrush-passport-sheet h4 {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-accent);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+.zbrush-passport-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.zbrush-passport-row span { color: var(--color-text-secondary); }
+.zbrush-passport-row strong { color: var(--color-text-primary); }
+
+@media (prefers-reduced-motion: reduce) {
+  .zbrush-viewport img,
+  .zbrush-asset-item,
+  .zbrush-pass-btn {
+    transition: none !important;
+  }
+}

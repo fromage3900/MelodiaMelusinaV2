@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-page="realtime-3d-viewer">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https: http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:;" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<title>Real-Time 3D Asset Studio | Brennan Shepherd</title>
+<meta name="description" content="Hardware-accelerated WebGL 3D asset viewer and PBR fabric lookbook for Unreal Engine 5.8 Substrate Toon assets by Brennan Shepherd." />
+<link rel="stylesheet" href="melodia-tokens.css">
+<link rel="stylesheet" href="melodia-luxury-type.css">
+<link rel="stylesheet" href="melodia-editorial.css">
+<link rel="stylesheet" href="melodia-game-ui.css">
+<link rel="stylesheet" href="melodia-magical-girl.css">
+<link rel="stylesheet" href="melodia-three.css">
+<style>
+  .viewer-3d-app { display: grid; grid-template-columns: 280px 1fr 320px; gap: 16px; height: calc(100vh - 120px); margin: 16px 24px 24px; }
+  @media (max-width: 1100px) { .viewer-3d-app { grid-template-columns: 1fr; height: auto; } }
+  .viewer-panel { background: rgba(16, 20, 42, 0.85); border: 1px solid rgba(201, 168, 106, 0.25); border-radius: 12px; padding: 20px; backdrop-filter: blur(16px); display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+  .viewer-viewport-box { position: relative; background: radial-gradient(circle at 50% 40%, #1e172e 0%, #080c1d 100%); border: 1px solid rgba(201, 168, 106, 0.35); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 12px 40px rgba(0,0,0,0.6); }
+  .viewer-3d-canvas-container { flex: 1; width: 100%; height: 100%; position: relative; cursor: grab; }
+  .viewer-3d-canvas-container:active { cursor: grabbing; }
+  .viewer-hud-overlay { position: absolute; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; pointer-events: none; z-index: 10; }
+  .viewer-hud-pill { background: rgba(8, 12, 29, 0.75); border: 1px solid rgba(201, 168, 106, 0.3); padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-family: monospace; color: #e8a9a1; backdrop-filter: blur(8px); }
+  .viewer-telemetry-bar { background: rgba(12, 16, 36, 0.9); border-top: 1px solid rgba(201, 168, 106, 0.2); padding: 12px 20px; display: flex; justify-content: space-around; align-items: center; font-size: 0.85rem; color: #cfd6ec; }
+  .telemetry-item { display: flex; flex-direction: column; gap: 2px; }
+  .telemetry-item span:first-child { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #a4adc9; }
+  .telemetry-item span:last-child { font-weight: 600; color: #c9a86a; font-family: monospace; }
+  .group-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: #c9a86a; border-bottom: 1px solid rgba(201, 168, 106, 0.2); padding-bottom: 6px; margin-top: 8px; }
+  .asset-btn, .fabric-btn, .mode-btn { background: rgba(26, 32, 64, 0.6); border: 1px solid rgba(130, 150, 200, 0.25); color: #e2e8f8; padding: 10px 14px; border-radius: 8px; text-align: left; font-size: 0.88rem; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center; }
+  .asset-btn:hover, .fabric-btn:hover, .mode-btn:hover { background: rgba(40, 50, 95, 0.8); border-color: rgba(201, 168, 106, 0.6); transform: translateX(2px); }
+  .asset-btn.active, .fabric-btn.active, .mode-btn.active { background: linear-gradient(135deg, rgba(201, 168, 106, 0.25), rgba(232, 169, 161, 0.25)); border-color: #c9a86a; color: #fff; font-weight: 600; box-shadow: 0 0 12px rgba(201, 168, 106, 0.2); }
+  .tag-badge { font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; background: rgba(0, 0, 0, 0.35); color: #a4adc9; }
+  .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#viewer-viewport">Skip to 3D Viewport</a>
+<div class="melodia-shell fashion-mode" data-mg="full" data-hero="cosmic" data-visual="lookbook">
+  <header class="shell-nav constellation-nav" aria-label="Melodia navigation">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>MELODIA</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="index.html">Atelier</a>
+      <a href="realtime-3d-viewer.html" class="active">Realtime 3D Studio</a>
+      <a href="melodia-atelier-lab.html">Shader Lab</a>
+      <a href="application-hub.html">4 Worlds</a>
+      <a href="shader-breakdowns.html">Shaders</a>
+      <a href="recruiter-one-sheet.html">Dossier</a>
+      <a href="resume.html">Resume</a>
+    </nav>
+    <a class="nav-cta button-premium" href="recruiter-one-sheet.html">Recruiter One-Sheet</a>
+  </header>
+  <main id="main" style="padding-top: 10px;">
+    <div style="padding: 0 24px;">
+      <h1 class="atelier-lab-title" style="font-size: 1.8rem; margin: 0;">Real-Time 3D WebGL Asset &amp; Fabric Studio</h1>
+      <p style="color: #a4adc9; font-size: 0.95rem; margin: 4px 0 12px;">Hardware-accelerated 3D WebGL viewport running real polygonal meshes, Infinity Nikki-grade PBR fabric materials, and Substrate Toon shaders with full orbit controls and channel isolation.</p>
+    </div>
+    <div class="viewer-3d-app">
+      <aside class="viewer-panel" aria-label="3D Asset Catalog">
+        <h2 style="font-size: 1rem; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;"><span>◈</span> 3D Asset Library</h2>
+        <div class="group-title">Fabrics &amp; Lookdev</div>
+        <button type="button" class="asset-btn active" data-asset="fabric-sphere"><span>Lookdev Sphere</span><span class="tag-badge">4.6k Tris</span></button>
+        <button type="button" class="asset-btn" data-asset="fabric-drape"><span>Draped Swatch</span><span class="tag-badge">3.2k Tris</span></button>
+        <div class="group-title">Characters &amp; Garments</div>
+        <button type="button" class="asset-btn" data-asset="melusina-shirt"><span>Melusina (Updated Shirt)</span><span class="tag-badge">Hero Garment</span></button>
+        <button type="button" class="asset-btn" data-asset="melusina-hero"><span>Melusina (Full Rig)</span><span class="tag-badge">Hero Model</span></button>
+        <button type="button" class="asset-btn" data-asset="sir-melodious"><span>Sir Melodious</span><span class="tag-badge">Companion</span></button>
+        <button type="button" class="asset-btn" data-asset="zundamon"><span>Zundamon</span><span class="tag-badge">Companion</span></button>
+
+        <div class="group-title">Sacred Ornaments &amp; Tokens</div>
+        <button type="button" class="asset-btn" data-asset="melody-token-water"><span>Water Melody Token</span><span class="tag-badge">High-Poly</span></button>
+        <button type="button" class="asset-btn" data-asset="melody-token-star"><span>Star Melody Token</span><span class="tag-badge">High-Poly</span></button>
+
+        <div class="group-title">Instruments &amp; Atlantis Props</div>
+        <button type="button" class="asset-btn" data-asset="prop-harp"><span>Cathedral Harp</span><span class="tag-badge">Instrument</span></button>
+        <button type="button" class="asset-btn" data-asset="grand-piano"><span>Grand Piano</span><span class="tag-badge">Instrument</span></button>
+        <button type="button" class="asset-btn" data-asset="prop-fountain"><span>Atlantis Fountain</span><span class="tag-badge">Architecture</span></button>
+        <button type="button" class="asset-btn" data-asset="prop-trident"><span>Triton Trident</span><span class="tag-badge">Prop</span></button>
+      </aside>
+      <section id="viewer-viewport" class="viewer-viewport-box" aria-label="3D WebGL Viewport">
+        <div class="viewer-hud-overlay">
+          <div class="viewer-hud-pill">✦ Real-Time WebGL · Substrate PBR Engine</div>
+          <div class="viewer-hud-pill" id="viewer-rot-status">Auto-Rotate: ON</div>
+        </div>
+        <div id="webgl-viewport-container" class="viewer-3d-canvas-container"></div>
+        <div class="viewer-telemetry-bar">
+          <div class="telemetry-item"><span>Active Asset</span><span id="viewer-asset-name">PBR Fabric Lookdev Sphere</span></div>
+          <div class="telemetry-item"><span>Active Fabric / Material</span><span id="viewer-fabric-name">Royal Velvet</span></div>
+          <div class="telemetry-item"><span>Geometry Budget</span><span id="viewer-triangles">4.6k Tris</span></div>
+          <div class="telemetry-item"><span>Shading Pass</span><span id="viewer-shading-pass">Physical PBR (ORM)</span></div>
+        </div>
+      </section>
+      <aside class="viewer-panel" aria-label="Shading &amp; Material Controls">
+        <h2 style="font-size: 1rem; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;"><span>✧</span> Shading &amp; Channels</h2>
+        <div class="group-title">Render Inspection Mode</div>
+        <div class="mode-grid">
+          <button type="button" class="mode-btn active" data-mode="pbr">PBR Beauty</button>
+          <button type="button" class="mode-btn" data-mode="toon">Substrate Toon</button>
+          <button type="button" class="mode-btn" data-mode="normal">Normals (RGB)</button>
+          <button type="button" class="mode-btn" data-mode="roughness">Roughness (G)</button>
+          <button type="button" class="mode-btn" data-mode="metallic">Metallic (B)</button>
+          <button type="button" class="mode-btn" data-mode="ao">Occlusion (R)</button>
+          <button type="button" class="mode-btn" data-mode="wireframe">Wireframe</button>
+          <button type="button" class="mode-btn" data-mode="clay">Clay MatCap</button>
+        </div>
+        <div class="group-title">Fantasy Fabric PBR Set</div>
+        <button type="button" class="fabric-btn active" data-fabric="RoyalVelvet"><span>Royal Velvet</span><span class="tag-badge">Dual-Sheen</span></button>
+        <button type="button" class="fabric-btn" data-fabric="GildedBrocade"><span>Gilded Brocade</span><span class="tag-badge">Gold Jacquard</span></button>
+        <button type="button" class="fabric-btn" data-fabric="SheerSilk"><span>Sheer Silk</span><span class="tag-badge">Anisotropic</span></button>
+        <button type="button" class="fabric-btn" data-fabric="BaroqueLace"><span>Baroque Lace</span><span class="tag-badge">Tracery</span></button>
+        <button type="button" class="fabric-btn" data-fabric="GoldEmbroidery"><span>Gold Embroidery</span><span class="tag-badge">Bullion Thread</span></button>
+        <button type="button" class="fabric-btn" data-fabric="CelestialWeave"><span>Celestial Weave</span><span class="tag-badge">Iridescent</span></button>
+        <button type="button" class="fabric-btn" data-fabric="MelusinaShirt"><span>Melusina Shirt Silk</span><span class="tag-badge">Hero Wardrobe</span></button>
+        <div class="group-title">Studio Controls</div>
+        <button type="button" id="btn-toggle-rotate" class="asset-btn" style="justify-content: center; text-align: center;">Toggle Turntable Rotation</button>
+      </aside>
+    </div>
+  </main>
+</div>
+<script src="melodia-three-core.js"></script>
+<script src="melodia-site-nav.js"></script>
+<script src="melodia-3d-viewport.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var urlParams = new URLSearchParams(window.location.search);
+  var initAsset = urlParams.get('asset') || 'fabric-sphere';
+  var initFabric = urlParams.get('fabric') || 'RoyalVelvet';
+  var initMode = urlParams.get('mode') || 'pbr';
+
+  var viewer = new Melodia3DViewer('webgl-viewport-container', {
+    initialAsset: initAsset,
+    initialFabric: initFabric,
+    initialMode: initMode,
+    autoRotate: true
+  });
+
+  var assetBtns = document.querySelectorAll('.asset-btn[data-asset]');
+  assetBtns.forEach(function (btn) {
+    var aKey = btn.getAttribute('data-asset');
+    btn.classList.toggle('active', aKey === initAsset);
+    btn.addEventListener('click', function () {
+      viewer.loadAsset(aKey);
+      assetBtns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+    });
+  });
+
+  var modeBtns = document.querySelectorAll('.mode-btn[data-mode]');
+  modeBtns.forEach(function (btn) {
+    var mKey = btn.getAttribute('data-mode');
+    btn.classList.toggle('active', mKey === initMode);
+    btn.addEventListener('click', function () {
+      viewer.setRenderMode(mKey);
+      modeBtns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+      var elPass = document.getElementById('viewer-shading-pass');
+      if (elPass) elPass.textContent = btn.textContent;
+    });
+  });
+
+  var fabricBtns = document.querySelectorAll('.fabric-btn[data-fabric]');
+  fabricBtns.forEach(function (btn) {
+    var fKey = btn.getAttribute('data-fabric');
+    btn.classList.toggle('active', fKey === initFabric);
+    btn.addEventListener('click', function () {
+      viewer.setFabric(fKey);
+      fabricBtns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+    });
+  });
+
+  var btnRot = document.getElementById('btn-toggle-rotate');
+  var rotStatus = document.getElementById('viewer-rot-status');
+  if (btnRot) {
+    btnRot.addEventListener('click', function () {
+      viewer.isAutoRotate = !viewer.isAutoRotate;
+      if (rotStatus) rotStatus.textContent = 'Auto-Rotate: ' + (viewer.isAutoRotate ? 'ON' : 'OFF');
+    });
+  }
+});
+</script>
+</body>
+</html>
