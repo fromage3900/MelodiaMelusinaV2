@@ -1,11 +1,16 @@
 {
   "schema": "melodia.p0.task_ledger.v2",
-  "as_of": "2026-09-06",
+  "as_of": "2026-09-02",
   "authority": {
     "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
     "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
     "scope": "Close the existing First Dream loop before adding economy, song-family, HUD, dungeon, enemy, or quest breadth.",
     "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct. Historical passes apply only to their captured baselines and are not current shipping certification."
+  },
+  "current_gate_state": {
+    "verified_2026-09-02": "27/31 gates PASS, 2 FAIL (package_build, package_launch), 2 PENDING_CAPTURE (world_field_bus_pie, gaeA_live_pie)",
+    "test_results": "108/116 tests PASS (1 fail, 3 errors under repair)",
+    "cross_machine_setup": "Docs/Production/CROSS_MACHINE_WORKFLOW_2026-09-02.md"
   },
   "agent_work_log_2026-08-27": {
     "commit": "d242f74d",
