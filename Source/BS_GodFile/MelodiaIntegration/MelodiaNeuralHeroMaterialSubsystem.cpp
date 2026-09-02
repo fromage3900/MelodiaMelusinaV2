@@ -63,12 +63,16 @@ void UMelodiaNeuralHeroMaterialSubsystem::RefreshFromMPC()
 
 void UMelodiaNeuralHeroMaterialSubsystem::RunInference()
 {
-	// TODO(closed-editor build): NNERuntimeORT inference of
-	//   Tools/Audio/models/hero_material_controller.onnx over the packed features.
-	// Project carries NNERuntimeORT enabled in .uproject; onnxruntime verified in
-	// .venv-guardrails. Until the C++ binary is rebuilt, forward a documented
-	// fallback so hero materials still pulse from the live audio (deterministic,
-	// audio-responsive — matches the onnx default controller intent):
+	// Verified 5.8 NNE path (Docs/Research/INFINITY_NIKKI_PIPELINE_RESEARCH_2026-09-02.md,
+	// 2026-09-02): add module `NNE` + `NNERuntimeORTCpu` to MelodiaIntegration.Build.cs.
+	//   LoadObject<UNNEModelData>(nullptr, onnx_path)
+	//   GetRuntime<INNERuntimeCPU>() -> CreateModelCPU(model_data) -> CreateModelInstanceCPU()
+	//   instance->SetInputTensorShapes(...) ; instance->RunSync(FTensorBindingCPU ...)
+	// Use NNERuntimeORTCpu (CPU) — CUDA was removed in NNERuntimeORT 5.4 and the DirectML
+	// GPU runtime is `NNERuntimeORTDml`; a 5->16->12->5 MLP is cheap enough for one
+	// sync call per frame. Input tensor = packed [Bass, BeatI, BeatP, BeatPulse, BeatTracker].
+	// Until the closed-editor build lands, forward a documented fallback so hero materials
+	// still pulse from the live audio (deterministic, contact matches the onnx default):
 	//   EmissiveStrength grows with BeatIntensity; Subsurface grows with Bass.
 	EmissiveStrength = FMath::Clamp(BeatIntensity * 0.85f + BeatPulse * 0.15f, 0.f, 1.f);
 	EmissiveTint     = FMath::Frac(BeatPhase + FMath::Max(0.f, BeatIntensity) * 0.5f);

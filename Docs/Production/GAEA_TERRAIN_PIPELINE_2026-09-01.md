@@ -128,3 +128,8 @@ the PNG round-trip exactly. Weightmap masks span full 0–1.
 - **D3 (Hills vs Mountains):** Mountains has the full contract (definition.json +
   heightmap PNG + 3 Mixer masks). Hills has textures only (no definition.json/heightmap
   PNG) — usable as MI albedo sources only.
+
+## 8. Canonical recipe
+
+The full working loop (source contract, conversion, editor lane, verification standard, landmine register)
+is now canonical at [GAEA_LANDSCAPE_IMPORT_RECIPE_2026-09-02.md](GAEA_LANDSCAPE_IMPORT_RECIPE_2026-09-02.md).
