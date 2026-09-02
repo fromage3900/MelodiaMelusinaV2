@@ -1,119 +1,243 @@
-# Technical Data Flow Specification — Melodia Rhythm-JRPG
+# Technical Data Flow — Melodia Melusina
 
-**Canonical Data Flow & State Lifecycle**
-**Last Updated:** 2026-09-01 (Evening P0 Closeout & Chapter Loop Checkpoint)
-**Target Engine:** Unreal Engine 5.8.0 | C++20 | Python 3.11
+**Last Updated:** 2026-09-02  
+**Scope:** stable runtime/state lifecycle for an evergreen single-player game
 
 ---
 
-## 1. End-to-End Chapter Gameplay Data Lifecycle
+## 1. Core lifecycle
 
-The diagram below traces the end-to-end data lifecycle across the 6-phase universal chapter gameplay loop:
+Melodia no longer defines every Chapter by one identical six-phase sequence. The reusable data contract is instead:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│ Phase 1: NARRATIVE INITIATION                                                          │
-│   QuillScript Node ──► UMelodiaNarrativeSubsystem::ProcessNotification()               │
-│                        └── Dispatches "melodia:quest:quest.first_dream.started"        │
-│                        └── Triggers BP_SanctuaryDepartureGate (bIsOpen = true)         │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│ Phase 2: OVERWORLD TRAVERSAL & MUSIC-AS-KEY PUZZLE                                     │
-│   BP_Melusina_Character ──► Steps on Resonant Piano Node                               │
-│                             └── APCGHeroMusicGraphHost::RegisterNote(EHeroMusicNote)   │
-│                             └── Matches Harmonic Phrase -> Dispatches "melodia:inspect"│
-│                             └── Route barrier deactivates collision                    │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│ Phase 3: JRPG COMBAT WITH RHYTHM HIGHWAY TIMING                                        │
-│   BP_TurnBasedBattleManager ──► UMelodiaUIBridgeSubsystem (Render Battle HUD)          │
-│                                 ├── Player selects Attack / Resonance Skill            │
-│                                 ├── WBP_MelodiaRhythmHighway spawns notes              │
-│                                 ├── Player hits key (Q/W/O/P) -> Computes Timing Delta │
-│                                 ├── Grade Multiplier: Poor(0.35) .. Perfect(1.50)      │
-│                                 ├── MPC_Melodia_Palette receives PulseImpact scalar    │
-│                                 └── JRPG Combat Engine applies FinalDamage = Base * Grd│
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│ Phase 4: BATTLE RESOLUTION & IDEMPOTENT REWARD DELIVERY                                │
-│   Boss HP <= 0 ──► Combat Subsystem emits TerminalResult(EVictory)                     │
-│                    ├── Exactly-once QuillScript Resume                                 │
-│                    └── Reward Intent-ID: "reward.wardrobe.dress_shorewake"             │
-│                    └── UMelodiaWardrobeSubsystem registers unlocked outfit piece       │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│ Phase 5: WARDROBE TRAVERSAL UPGRADE                                                    │
-│   Player Equips Outfit ──► UMelodiaWardrobeSubsystem updates SkeletalMesh parts        │
-│                            └── Activates IMelodiaTraversalCapabilityProvider (Glide)   │
-│                            └── BP_Melusina_Character enables airborne glide physics    │
-│                            └── Player glides across chasm to reach chapter gateway     │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│ Phase 6: CANONICAL CHECKPOINT & SAVE GAME PERSISTENCE                                  │
-│   BP_CheckpointAnchor ──► BP_JRPGSaveGame::SaveToSlot("CanonicalSaveSlot_0")           │
-│                           ├── Serializes Character Stats & Party HP/MP                 │
-│                           ├── Serializes Active & Unlocked Wardrobe Outfits            │
-│                           ├── Serializes Quest Flags & Narrative Record Version        │
-│                           └── Serializes Inventory Contents & Key Items                │
-└────────────────────────────────────────────────────────────────────────────────────────┘
+```text
+AUTHORED INTENT / WORLD ACTION
+        ↓
+appropriate runtime owner
+        ↓
+optional rhythm execution
+        ↓
+Wardrobe / Convergence interpretation
+        ↓
+world / combat / narrative consequence
+        ↓
+canonical durable fact
+        ↓
+save / restart / restore
 ```
 
----
-
-## 2. Phase-by-Phase Technical Data Schemas
-
-### 2.1 Narrative Notification Schema
-- **Payload Structure (`FMelodiaNotification`):**
-  ```json
-  {
-    "verb": "quest",
-    "target_id": "first_dream",
-    "action": "started",
-    "intent_id": "intent.quest.first_dream.001",
-    "timestamp": 1725219900
-  }
-  ```
-- **Idempotency Rule:** `UMelodiaNarrativeSubsystem` records consumed `intent_id` strings in `FMelodiaNarrativeRecord`. Replaying the same dialogue or notification will never duplicate rewards or quest state.
-
-### 2.2 Rhythm Combat Input & Grade Schema
-- **Input Channels:** Key mappings `Q`, `W`, `O`, `P` corresponding to 4 highway lanes.
-- **Grading Windows & Multipliers:**
-  - `Perfect`: $\pm 45\text{ ms} \implies 1.50\times \text{ Damage Multiplier}$
-  - `Great`: $\pm 90\text{ ms} \implies 1.20\times \text{ Damage Multiplier}$
-  - `Good`: $\pm 140\text{ ms} \implies 1.00\times \text{ Damage Multiplier}$
-  - `Poor`: $> 140\text{ ms} \implies 0.35\times \text{ Damage Multiplier}$
-- **Material Pulse:** Writes scalar `RhythmPulse = 1.0` and `Mid = 0.8` to `MPC_Melodia_Palette` via game thread Slate post-tick flush.
-
-### 2.3 Wardrobe Traversal Capability Interface
-- **Interface:** `IMelodiaTraversalCapabilityProvider`
-- **Properties:**
-  - `bCanGlide`: Boolean enabling low-gravity horizontal air velocity.
-  - `bCanSwim`: Boolean enabling aquatic volume navigation.
-  - `bCanDash`: Boolean enabling ground speed boost burst.
-- **Round-Trip Serialization:** Outfit ID and active slot indices serialize into `FMelodiaWardrobeSaveRecord` within `BP_JRPGSaveGame`.
-
-### 2.4 Canonical Checkpoint Save Structure (`BP_JRPGSaveGame`)
-- **Serialized Structs:**
-  1. `FPartySaveData`: Member IDs, current HP/MP, base stats, equipped gear.
-  2. `FInventorySaveData`: Item IDs, quantities, unique key items.
-  3. `FWardrobeSaveData`: Unlocked outfit IDs, currently equipped wardrobe parts.
-  4. `FNarrativeSaveData`: Narrative record version, quest flags dictionary, consumed reward intent IDs.
-  5. `FWorldPositionSaveData`: Active level path, checkpoint transform `(X, Y, Z, Roll, Pitch, Yaw)`.
+Different content tiers can enter and leave this flow at different points.
 
 ---
 
-## 3. Data Integrity & Invariants
+## 2. Major data owners
 
-1. **Zero Dual-Writer Collisions:** UI surfaces and HUD elements receive state strictly from `UMelodiaUIBridgeSubsystem`.
-2. **Deterministic Replay:** Given the same initial save slot and input stream, the battle resolution and narrative progression yield identical state.
-3. **Save Forward Compatibility:** All serialized records declare explicit `Version` fields (e.g., `FMelodiaNarrativeRecord::CurrentVersion`). Deserialization checks version compatibility before parsing.
+### Narrative / progression
+`UMelodiaNarrativeSubsystem` + QuillScript own durable narrative facts:
+
+- quest/objective state;
+- flags;
+- stable intent consumption;
+- reward consumption;
+- checkpoints;
+- authored consequences.
+
+Repeated processing of the same stable intent must remain idempotent.
+
+### TurnBased JRPG / Phoenix
+Owns combat/gameplay facts it already controls:
+
+- turn order;
+- target selection;
+- action resolution;
+- party HP/MP/stats;
+- inventory;
+- terminal battle results;
+- stock gameplay save state.
+
+### Rhythm
+Melodia rhythm receives an authored/selected action context and returns execution quality/performance data. It may influence result interpretation but does not directly create an independent combat transaction.
+
+### Wardrobe
+Wardrobe owns owned/equipped outfit state. Equipped identity can expose traversal capability and feed Convergence interpretation.
+
+### Starskiff
+Starskiff owns vehicle/traversal runtime state. Only stable long-term facts should enter canonical persistence; transient transforms/velocities should normally be rebuilt from checkpoints/authoring state.
+
+### Convergence
+Convergence reads durable/authoritative inputs and derives relationship state or authored response. Derived values should be recomputable unless there is a specific reason they must become durable facts.
+
+---
+
+## 3. Example: combat Chapter
+
+```text
+Quill/world encounter intent
+        ↓
+Phoenix command selection
+        ↓
+Melodia rhythm session
+        ↓
+grade / phrase quality
+        ↓
+Outfit + Convergence interpret execution
+        ↓
+Phoenix resolves authoritative action/result
+        ↓
+Quill receives terminal consequence once
+        ↓
+reward/checkpoint fact persisted
+```
+
+The current simple grade multipliers remain a baseline implementation. Future outfit/Convergence mechanics can change interpretation without bypassing the selected Phoenix action.
+
+---
+
+## 4. Example: non-combat Reverie
+
+```text
+Quill start
+  ↓
+exploration / interaction
+  ↓
+optional music phrase
+  ↓
+world-state consequence
+  ↓
+chapter/reverie checkpoint
+  ↓
+canonical save
+```
+
+No battle subsystem is required simply because the content is called a Chapter.
+
+---
+
+## 5. Example: Monolith Event
+
+```text
+durable chapter prerequisites
+        ↓
+authored world-state director
+        ↓
+traversal / party / rhythm / outfit signals
+        ↓
+Convergence interprets existing systems
+        ↓
+large-scale environmental transition
+        ↓
+permanent aftermath fact
+        ↓
+checkpoint / save
+```
+
+A Monolith Event does not require conventional enemy HP. Its state owner must still be explicit.
+
+---
+
+## 6. Save/restore contract
+
+The long-term product depends on save records surviving years of new Chapters.
+
+Preferred restore sequence:
+
+```text
+read bytes / slot
+   ↓
+identify version
+   ↓
+migrate candidate in memory
+   ↓
+validate intrinsic invariants
+   ↓
+validate subsystem-owned semantics
+   ↓
+commit authoritative restore
+   ↓
+rebuild derived runtime state
+   ↓
+verify no duplicate side effects
+```
+
+Hard rules:
+
+- empty state is valid state;
+- an existing save must not be treated as fresh merely because an inventory/outfit slot is empty;
+- failed/corrupt candidate loads must not seed defaults over valid history;
+- equipped persisted wardrobe IDs must be consistent with ownership before load mutation;
+- repeat load must not duplicate rewards, modifiers, quest completion, or derived registrations;
+- new schema fields require explicit version/migration behavior.
+
+---
+
+## 7. Durable vs derived state
+
+Persist **facts**, not every runtime detail.
+
+Good durable candidates:
+
+- completed Chapter/Volume IDs;
+- quest/checkpoint flags;
+- claimed reward/Gift IDs;
+- owned/equipped wardrobe IDs;
+- major Convergence decisions;
+- companion recruitment;
+- permanent world-state consequences;
+- stable Starskiff upgrades/decorations.
+
+Usually derived/transient:
+
+- active rhythm note instances;
+- current timing windows;
+- transient UI state;
+- temporary VFX/MPC pulses;
+- raw Starskiff rigid-body velocity;
+- recomputable Convergence presentation values.
+
+---
+
+## 8. Future optional content manifest
+
+Evergreen Gifts/Voyages may later use an optional online manifest, but online availability is not gameplay authority:
+
+```text
+optional manifest
+   ↓
+validate version/policy
+   ↓
+compare offered content IDs to local canonical history
+   ↓
+claim/download through existing content/reward paths
+   ↓
+record durable local fact
+```
+
+Network failure must not invalidate owned content or core gameplay.
+
+---
+
+## 9. Chapter package data flow
+
+```text
+progression spec
++ optional pillar manifests
++ Quill source
++ assets/maps
+       ↓
+offline validation
+       ↓
+runtime integration
+       ↓
+restart/idempotency proof
+       ↓
+packaged proof
+       ↓
+promote into Volume/Voyage
+```
+
+This is the scalable unit the project should optimize for.
+
+---
+
+## 10. Governing principle
+
+> **New content extends the vocabulary of durable facts and authored relationships; it does not multiply state authorities.**

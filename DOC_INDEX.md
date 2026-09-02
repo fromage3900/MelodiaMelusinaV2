@@ -1,69 +1,114 @@
 # Melodia — Documentation Index & Authority Map
 
-**Front Door for Project Documentation**
-**Last Updated:** 2026-09-01 (Evening P0 Closeout & Chapter Loop Checkpoint)
-**Single Source of Truth Rule:** Prefer updating this index over creating unanchored status notes.
+**Front door for project documentation**  
+**Last Updated:** 2026-09-02
 
 ---
 
-## 1. The Core Authority Hierarchy
+## 1. Read in this order
 
-When working on Melodia, consult these documents in order. They define the architecture, state authority, and execution priorities of the project.
-
-| Priority | Document | Authority & Scope |
+| Priority | Document | Authority |
 |:---:|---|---|
-| **1** | [**`PROJECT.md`**](../PROJECT.md) / [**`README.md`**](README.md) | **What this project is.** Melodia is a single-author Rhythm-JRPG in Unreal Engine 5.8. QuillScript and TurnBased JRPG are absolute authorities. AI/MCP tooling is supporting infrastructure. |
-| **2** | [**`Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md`**](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md) | **Active Evening Execution Plan.** The authoritative execution plan for closing out and shipping P0, validating the 6-phase reusable chapter gameplay loop, and freezing immutable evidence. |
-| **3** | [**`CURRENT_STATE.md`**](CURRENT_STATE.md) | **Canonical State Document.** 10/10 P0 gameplay gates passing, 524/524 automated tests passing, preflight status, and level/subsystem health. |
-| **4** | [**`TODO.md`**](TODO.md) | **Master Task Ledger.** Verified P0 milestones, tonight's active execution sequence, and Chapter 2 roadmap. |
-| **5** | [**`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`**](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) & [**`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`**](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) | **Architectural Blueprint.** The Two Authorities (QuillScript narrative, TurnBased JRPG state) and Four Converged Pillars (Rhythm Combat, Wardrobe Traversal, Music-as-Key, Single-Writer UI Bridge). |
-| **6** | [**`QUICKSTART.md`**](QUICKSTART.md) | **Developer Quickstart.** Setup instructions, automated test runner execution (`run_tests.ps1`), PIE gameplay walk, and Win64 packaging commands. |
-| **7** | [**`_VERTICAL_SLICE_SCOPE.md`**](_VERTICAL_SLICE_SCOPE.md) & [**`_PORTFOLIO_SHIP_CHECKLIST.md`**](_PORTFOLIO_SHIP_CHECKLIST.md) | **Scope & Shipping Criteria.** P0 vertical slice boundaries, gate verification checklist, and shipping acceptance standards. |
-| **8** | [**`SYSTEM_MAP.md`**](SYSTEM_MAP.md) & [**`DATA_FLOW.md`**](DATA_FLOW.md) | **System Architecture & Data Flow.** Complete lifecycle trace from QuillScript dialogue to traversal, rhythm combat, reward distribution, and save game persistence. |
-| **9** | [**`TEST_READY.md`**](TEST_READY.md) | **Test Verification Record.** Test suite structure, validation tiers, and benchmark verification details. |
+| **1** | [`README.md`](README.md) | Public/product front door: what Melodia is now. |
+| **2** | [`Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`](Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md) | **Canonical product vision:** evergreen single-player RPG, Volumes/Voyages, permanent vs renewable game, long-term persistence philosophy. |
+| **3** | [`Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`](Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md) | **Canonical content structure:** Reveries/Episodes/Chapters/Movements/Monolith Events/Volumes; working 50+ Chapter Volume-I grid. |
+| **4** | [`Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`](Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md) | **Canonical long-term update model:** Gifts, Reveries, Voyages, no-FOMO default, optional online manifest later. |
+| **5** | [`CURRENT_STATE.md`](CURRENT_STATE.md) | **Implementation truth now:** runtime ownership, proven baseline, active closure work. |
+| **6** | [`TODO.md`](TODO.md) | **Production queue:** current closure work, reusable Chapter lane, Volume-I content roadmap. |
+| **7** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Stable runtime architecture and state lifecycle. |
+| **8** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor/package workflow. |
+| **9** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) + [`TEST_READY.md`](TEST_READY.md) | P0 proof scope and bounded test evidence. |
 
 ---
 
-## 2. Universal Reusable Chapter Gameplay Loop Documentation
+## 2. Important paradigm distinction
 
-Every chapter in Melodia adheres to the 6-phase universal loop. Key contracts and specifications:
+The project has two different truths that must not be conflated:
 
-- **Loop Architecture & Invariants:** [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md)
-- **P0 Golden Run Contract:** `specs/p0/core_p0_dream_golden_run.v1.json`
-- **Narrative Subsystem & 7-Verb Grammar:** `Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeSubsystem.h`
-- **Wardrobe Traversal Provider Contract:** `Source/BS_GodFile/MelodiaIntegration/MelodiaTraversalCapabilityProvider.h`
-- **UI Bridge Single-Writer Contract:** `Source/BS_GodFile/MelodiaIntegration/MelodiaUIBridgeSubsystem.h`
-- **Battle & Rhythm Presentation Seam:** `Docs/Handoffs/P0_BATTLE_UI_CLOSEOUT_HANDOFF_2026-08-27.md`
+### Product truth
+Melodia is an **evergreen single-player journey** that may grow for years through complete Volumes, smaller Reveries, optional Gifts, and larger Voyages.
 
----
-
-## 3. Automation, Testing & Tooling Documentation
-
-- **Core Automated Test Runner:** `run_tests.ps1` (Executes GMM simulations, P0 integration tests, and ECHO contracts)
-- **Offline P0 Preflight Gate:** `Tools/verify_p0_offline.py`
-- **Melodia MCP Regression Suite:** `Tools/test_melodia_mcp.py`
-- **End-to-End Release & Hygiene Suite:** `Tools/test_e2e_melusina_release.py`
-- **MATH Evaluation Benchmark:** `Docs/MELUSINA_AGENT_TEST_HARNESS.md`
-- **Gate Ledger & Immutable Evidence:** `Saved/gate_ledger.json`
+### Production truth
+The immediate job is still **runtime closure**. The existing P0 / First Dream + Sea Above route is the current integration proof. Future scale is not permission to bypass persistence, packaged proof, stable authority, or chapter validation.
 
 ---
 
-## 4. Environment Art, Levels & Shaders
+## 3. Historical docs vs current authority
 
-- **Sanctuary Level (`L_MelusinaMorning`):** Narrative start, departure gate, lighting lookdev.
-- **Overworld Journey Level (`LV_SeaAbove_Prototype`):** Recast navmesh, Starskiff docking, `APCGHeroMusicGraphHost` phrase stepping.
-- **Battle Arena (`L_KaleidoNave`):** Turn-based combat, Rhythm Highway integration, kaleidoscope shaders.
-- **Substrate Toon Shader Spine:** `Docs/T3D_Baseline/` and `MATERIAL_LOOKDEV_PIPELINE.md`.
+Older documents remain valuable evidence and design history, but several old statements are no longer product-authoritative:
+
+- the finite **~12h / four-movement** estimate in `Docs/FULL_GAME_LOOSE_SCOPE_2026-07-31.md` is a historical north-star snapshot;
+- the **“every Chapter executes the exact same six-phase loop”** claim is superseded as content design;
+- the six-phase loop remains a useful **P0 full-stack golden test**;
+- P0 gate/test counts remain evidence for their captured baseline, not universal shipping certification for future Chapters.
+
+Do not delete historical handoffs simply because the product framing evolved. Mark/interpret them through the current strategy docs.
+
+---
+
+## 4. Runtime architecture authorities
+
+- TurnBased JRPG / Phoenix: combat skeleton, party/turn/target/damage/result/inventory stock ownership.
+- `UMelodiaNarrativeSubsystem` + QuillScript: narrative progression, intents, flags, consequences, checkpoints.
+- Melodia rhythm (`MelodiaCore`, rhythm integration): execution/performance layer over selected actions.
+- `UMelodiaWardrobeSubsystem`: wardrobe/equipped ownership and gameplay relationship/capability state.
+- Convergence: interpretation/glue; must not duplicate owner truth.
+- `UMelodiaUIBridgeSubsystem`: single-writer UI ownership.
+- Canonical save/narrative record: forward-compatible durable history.
+
+Relevant architectural records include `Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`, `Docs/ORCHESTRA_CONTRACT_2026-08-20.md`, and the current runtime-persistence closure plan.
 
 ---
 
-## 5. Credits, Provenance & Legal
+## 5. Chapter and progression docs
 
-- **Asset Credits Ledger:** [Docs/CREDITS.md](Docs/CREDITS.md)
-- **Source Matrix:** [Docs/SOURCES_MATRIX.md](Docs/SOURCES_MATRIX.md)
-- **License Terms:** [LICENSE](LICENSE) (MIT License)
-- **Code of Conduct:** [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- **Security Policy:** [SECURITY.md](SECURITY.md)
+### Current/reusable contracts
+- `specs/progression/`
+- `Docs/Plans/REUSABLE_CHAPTER_VALIDATION_SYSTEM_2026-08-31.md`
+
+### Current major content lanes
+- First Dream / Sea Above P0 package
+- Shorewake transition
+- Mara / Faraway Mother
+- God That Molts planning (needs formal progression package)
+- Horizon Eater planning/spec (needs sequence reconciliation after God That Molts)
+- Movement-IV frontier: House of Measures / Seam Oracle / Last Dress
+
+The working 50+ Chapter grid is an **authoring scaffold**, not a requirement that every title or number survive production unchanged.
 
 ---
-*Melodia Documentation Index — Maintained under strict single-source-of-truth discipline.*
+
+## 6. Testing and evidence
+
+- `run_tests.ps1`
+- `Tools/run_contract_tests.py`
+- `Tools/verify_p0_offline.py`
+- `Tools/test_melodia_mcp.py`
+- `Tools/test_e2e_melusina_release.py`
+- `Saved/gate_ledger.json` where available in the authoring/runtime evidence environment
+
+A source file or asset existing is not proof of runtime completion. Preserve the distinction between source presence, offline contract proof, live proof, restart proof, and packaged proof.
+
+---
+
+## 7. Toolchain and research
+
+Before proposing another emerging tool, read the existing toolchain discovery/master indexes. The production rule remains:
+
+> **Adopt only when it produces visibly better Melodia per hour without creating a more expensive maintenance system.**
+
+The Musical World Compiler is an offline-authoring lane; Unreal/MelodiaCore remains runtime gameplay authority.
+
+---
+
+## 8. Legal / provenance
+
+- [`LICENSE`](LICENSE)
+- [`Docs/CREDITS.md`](Docs/CREDITS.md)
+- [`Docs/SOURCES_MATRIX.md`](Docs/SOURCES_MATRIX.md)
+- [`SECURITY.md`](SECURITY.md)
+- [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
+
+---
+
+**Documentation rule:** front-facing docs describe current product/production truth; dated handoffs preserve evidence and history.

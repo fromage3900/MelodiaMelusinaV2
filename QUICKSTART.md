@@ -1,112 +1,180 @@
-# 🚀 Melodia — Quick Start & Developer Guide
+# Melodia — Quick Start & Developer Guide
 
-**Get up and running with the Melodia Rhythm-JRPG in 5 minutes!**
-**Engine Target:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
-**Status (2026-09-01):** 10/10 P0 Gameplay Completion Gates PASS | 524/524 Automated Tests Passing
+**Engine:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20 | Python 3.11  
+**Product lens:** evergreen single-player Rhythm-JRPG; current engineering focus is runtime closure.
 
 ---
 
-## 🛠️ 1. Prerequisites & Environment Setup
+## 1. Read first
 
-### Required Software
-- **Unreal Engine 5.8.0**: Installed at `C:\Program Files\Epic Games\UE_5.8\`
-- **Visual Studio 2022**: Desktop development with C++ (v143 toolset)
-- **Blender 5.2 LTS**: Installed at `C:\Program Files\Blender Foundation\Blender 5.2\`
-- **Git & Git LFS**: Installed and enabled
+Before changing architecture, read:
 
-### Initial Setup Commands (PowerShell)
+1. `README.md`
+2. `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
+3. `CURRENT_STATE.md`
+4. `TODO.md`
+5. `SYSTEM_MAP.md`
+
+The old six-phase P0 loop remains a useful integration test, but future Chapters may be combat-light, traversal-only, creature-focused, Starskiff-focused, or Monolith Events.
+
+---
+
+## 2. Setup
+
+Required:
+
+- Unreal Engine 5.8
+- Visual Studio 2022 / Rider-compatible C++ toolchain
+- Blender 5.2 LTS
+- Git + Git LFS
+
 ```powershell
-# 1. Clone the repository
 git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
 cd MelodiaMelusinaV2
-
-# 2. Hydrate Git LFS assets
 git lfs pull
-
-# 3. Validate local environment and background services
 .\deploy\validate_setup.ps1
 ```
 
+Bulk art/LFS/Perforce policy is documented separately; do not assume a fresh clone mirrors the author's entire local binary workspace.
+
 ---
 
-## 🧪 2. Running Automated Tests
-
-Melodia provides a fully automated test harness across Python simulations, C++ automation tests, MCP tool policies, and asset contract validators:
+## 3. Run tests
 
 ```powershell
-# Run the core automated test suite (GMM Simulations + P0 Integration + ECHO Contracts)
+# Core Python / contract suite
 .\run_tests.ps1
 
-# Run offline P0 preflight gate verification (12 static checks)
+# Offline P0/static preflight
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/verify_p0_offline.py
 
-# Run Melodia MCP regression test suite (38 tests)
+# Melodia MCP regression
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_melodia_mcp.py
 
-# Run end-to-end release & hygiene verification suite (17 tests across 4 tiers)
+# End-to-end release/hygiene checks
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_e2e_melusina_release.py
 ```
 
+Historical pass counts are evidence for their captured baseline. Re-run relevant suites after changing the code/specs they cover.
+
 ---
 
-## 🎮 3. Playing the Vertical Slice & Chapter Loop in Editor (PIE)
+## 4. Play the current proof slice
 
-The P0 vertical slice implements the standardized **6-Phase Reusable Chapter Gameplay Loop**:
+Open:
 
-### Step 1: Open the Project in Unreal Editor
 ```powershell
 start BS_GodFile.uproject
 ```
 
-### Step 2: Open the Chapter 1 Sanctuary Map
-- Open `/Game/Melodia/Levels/Opening/L_MelusinaMorning`
-- Press **Play in Editor (PIE)** (Alt + P)
+The current integration proof revolves around First Dream / Sea Above content and demonstrates the stable core:
 
-### Step 3: Experience the 6-Phase Gameplay Flow
-1. **Phase 1 (Sanctuary Dialogue):** Approach the NPC anchor; engage in QuillScript branching dialogue. Unlocks departure gate upon completion.
-2. **Phase 2 (Overworld & Music Key):** Proceed through departure portal to the Sea Above journey map (`LV_SeaAbove_Prototype`). Step on harmonic resonance nodes (`APCGHeroMusicGraphHost`) to unlock the forward route.
-3. **Phase 3 (Turn-Based Combat & Rhythm Highway):** Enter the battle arena (`L_KaleidoNave`). In the single-writer HUD (`UMelodiaUIBridgeSubsystem`), select an attack or skill. Hit incoming notes on the Rhythm Highway (keys: `Q`, `W`, `O`, `P`) to scale damage by your accuracy grade (`Poor: 0.35` to `Perfect: 1.5`).
-4. **Phase 4 (Battle Resolution & Rewards):** Defeat the boss. The narrative subsystem handles resolution and idempotently grants the chapter reward outfit.
-5. **Phase 5 (Wardrobe Traversal Upgrade):** Equip the new outfit to activate the `Glide` traversal capability (`IMelodiaTraversalCapabilityProvider`), allowing you to traverse over the portal chasm.
-6. **Phase 6 (Canonical Checkpoint):** Reach the checkpoint anchor. Player stats, quest flags, wardrobe, and inventory serialize cleanly to `BP_JRPGSaveGame`.
+- Quill/narrative initiation;
+- exploration/world interaction;
+- Phoenix turn-based battle;
+- Melodia rhythm execution;
+- Wardrobe gameplay/traversal consequence;
+- checkpoint/save/restore.
+
+Use `_VERTICAL_SLICE_SCOPE.md` and the current P0 golden-run spec for the exact proof route.
+
+Do **not** infer from this route that every future Chapter must contain the same phases.
 
 ---
 
-## 📦 4. Packaging the Standalone Win64 Shipping Build
+## 5. Current engineering target
 
-To build and cook a fresh standalone Win64 package containing all canonical gameplay maps:
+When working on core runtime, prefer proving this chain:
+
+```text
+outfit / world state
+        ↓
+exploration / Starskiff
+        ↓
+Phoenix action
+        ↓
+rhythm execution
+        ↓
+Convergence / consequence
+        ↓
+reward / checkpoint
+        ↓
+save
+        ↓
+quit + relaunch
+        ↓
+restore
+        ↓
+repeat load with no duplication
+```
+
+A change that adds breadth but makes this less reliable is not progress.
+
+---
+
+## 6. Authoring future Chapters
+
+A durable Chapter should be package-shaped:
+
+- `specs/progression/<chapter>.v1.json`;
+- optional pillar manifests;
+- Quill source if needed;
+- stable IDs and idempotent intents/rewards;
+- assets/maps/content refs;
+- offline validation;
+- runtime proof where applicable;
+- restart/idempotency proof for durable state;
+- packaged proof before release promotion.
+
+See `Docs/Plans/REUSABLE_CHAPTER_VALIDATION_SYSTEM_2026-08-31.md` and the canonical chapter-tier strategy.
+
+---
+
+## 7. Packaging
+
+Use the existing BuildCookRun workflow for the specific maps/content being certified. P0 packaging examples remain useful, but future Voyages/Volumes will have their own explicit content manifests rather than one permanent global map list.
+
+Example P0 baseline:
 
 ```powershell
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun `
   -project="C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject" `
   -noP4 -platform=Win64 -clientconfig=Development `
-  -cook -build -stage -pak -archive `
-  -archivedirectory="C:\EnvironmentPortfolio\BS_GodFile\Saved\Packages\P0_Closeout_20260901" `
-  -map="/Game/Melodia/Levels/Opening/L_MelusinaMorning+/Game/EnvSandbox/Environments/L_KaleidoNave+/Game/Melodia/Maps/LV_SeaAbove_Prototype+/Game/Melodia/Maps/MelodiaMainMenu"
+  -cook -build -stage -pak -archive
 ```
 
-To run the packaged game:
-```powershell
-& "Saved\Packages\P0_Closeout_20260901\Windows\BS_GodFile.exe" -log
-```
+Record exact packaged content, build hash, and validation evidence for each promoted release.
 
 ---
 
-## 🤖 5. Model Context Protocol (MCP) Automation
+## 8. MCP / automation
 
-The repository includes local MCP servers for automated inspection, testing, and Unreal Editor control:
+Automation supports the game; it does not become gameplay authority.
 
-- **Melodia MCP (`deploy/melodia_mcp_server.py`):** Schema tools for QuillScript, narrative state, quest registries, and Blueprint fixtures.
-- **Agent Bridge MCP (`deploy/agent_bridge_mcp.py`):** Policy-enforced routing bridge preventing unsafe mutations while exposing typed inspection commands.
-- **Monolith MCP (Port `9316`):** Live Unreal Editor JSON-RPC bridge for Blueprint inspection and reflection.
+- Melodia MCP: schema/test/inspection tooling.
+- Agent Bridge MCP: policy-enforced routing.
+- Monolith MCP: live Unreal inspection/editor automation.
+- ECHO/contract pipeline: spec → validation → runtime evidence → promote.
+
+Use one editor mutation authority at a time.
 
 ---
 
-## 📚 6. Key Documentation Links
+## 9. Strategy boundary
 
-- **Authoritative Evening Plan:** [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md)
-- **Current Architectural State:** [CURRENT_STATE.md](CURRENT_STATE.md)
-- **Master Task Ledger:** [TODO.md](TODO.md)
-- **Gate Ledger:** `Saved/gate_ledger.json`
-- **P0 Golden Run Specification:** `specs/p0/core_p0_dream_golden_run.v1.json`
-- **Documentation Index:** [DOC_INDEX.md](DOC_INDEX.md)
+Do not build the future optional Gift/remote-manifest backend yet. The evergreen model currently changes **ID discipline, save compatibility, chapter packaging, and product language**. Networking comes after local persistence closure.
+
+---
+
+## 10. Key links
+
+- `README.md`
+- `CURRENT_STATE.md`
+- `TODO.md`
+- `DOC_INDEX.md`
+- `SYSTEM_MAP.md`
+- `DATA_FLOW.md`
+- `_VERTICAL_SLICE_SCOPE.md`
+- `TEST_READY.md`
+
+**Goal:** make adding journeys routine and reopening the engine exceptional.

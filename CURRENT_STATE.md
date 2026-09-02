@@ -1,147 +1,190 @@
-# Current State — Melodia (BS_GodFile)
+# Current State — Melodia Melusina
 
-**Canonical State Document**
-**Last Updated:** 2026-09-01 19:45 EDT (Evening P0 Closeout & Universal Chapter Loop Status)
-**Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
-**Overall Status:** **10/10 P0 Gameplay Gates PASS | 524/524 Tests PASS | Preflight Ready for Packaged Golden Run**
+**Canonical implementation/status document**  
+**Last Updated:** 2026-09-02  
+**Target Engine:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20 | Python 3.11
 
----
-
-## 1. Executive Summary & Paradigm Shift
-
-Melodia has converged from disparate exploratory prototypes into a unified, production-grade **Rhythm-JRPG**. The codebase and content pipeline operate under a strict separation of concerns governed by **Two Absolute Authorities** and **Four Converged Pillars**, with a standardized **6-Phase Reusable Gameplay Loop** that serves as the canonical blueprint for every single chapter.
-
-### Two Absolute Authorities
-1. **QuillScript Narrative Authority (`UMelodiaNarrativeSubsystem`)**: Sole authority for narrative flow, branching dialogue, cutscene triggering, quest flag evaluation, and 7-verb structured notifications (`melodia:quest`, `melodia:battle`, `melodia:stat`, `melodia:wardrobe`, `melodia:item`, `melodia:inspect`, `melodia:checkpoint`).
-2. **Turn-Based JRPG State Authority (`BP_JRPGSaveGame` & Combat Subsystem)**: Sole authority for turn queue resolution, combat calculations, party stats, inventory, and canonical game state persistence.
-
-### Four Converged Pillars
-1. **Rhythm Combat Layer**: Rhythm timing highway executes directly over JRPG command selections (Attack / Skill / Item / Flee). Note accuracy (`Poor: 0.35`, `Good: 1.0`, `Great: 1.2`, `Perfect: 1.5`) scales base damage and pulses material parameter collections (`MPC_Melodia_Palette`) without bypassing JRPG turn logic.
-2. **Wardrobe Traversal System**: Outfits provide visual mesh customization and implement `IMelodiaTraversalCapabilityProvider` to grant physical world traversal capabilities (Glide, Swim, Dash), fully persisted across save/reload cycles via `UMelodiaWardrobeSubsystem`.
-3. **Music-as-Key World Puzzles**: Environmental barriers and harmonic puzzles respond to played musical phrases (`APCGHeroMusicGraphHost` / Piano node stepping), dispatching 7-verb narrative notifications to unlock physical routes and portal boundaries without combat code.
-4. **Single-Writer UI Architecture**: Strict UI hierarchy where every surface has exactly one designated writer (`UMelodiaUIBridgeSubsystem`), eliminating race conditions, duplicate overlays, and widget memory leaks.
-5. **Canonical Procedural & 3D Pipelines**: Deep cross-system pipeline architecture established in `Docs/Pipelines/MELODIA_CYMATICS_MONOLITH_HOUDINI_EMERGING3D_PIPELINE.md` governing Cymatics math & runtime subsystems, Monolith MCP automation, Houdini procedural authoring, and emerging 3D toolchains.
-6. **Faraway Mother PCG Ecosystem**: Procedural fabric mountain architecture established in `Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md` and `specs/pcg/faraway_mother_pcg_manifest.v1.json`, with 4 biomes (WeaveRidge, LaceCanopy, FrillValley, ResonantSeamWay), multi-frequency WPO deformation, World Field Bus tension integration, and Heart Gate hero music puzzles.
-7. **Perceptual LOD LookDev Architecture**: Advanced optical deception framework established in `Docs/LookDev/MELODIA_PERCEPTUAL_LOD_LOOKDEV_ARCHITECTURE.md`, `Tools/LookDev/build_optical_lod_matrix.py`, `Content/Python/melodia_optical_lod_pipeline.py`, and `specs/lookdev/optical_lod_manifest.v1.json`, delivering 4-tier perceptual LOD continuity, Toksvig specular anti-aliasing compensation, adaptive Parallax Occlusion step scaling, 8x8 Bayer/64x64 blue-noise dithered crossfading, and grazing-angle silhouette compensation.
+> Product vision is now defined separately in `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`. This file answers **what is implemented/proven now**, not what the full game may eventually contain.
 
 ---
 
-## 2. Universal Reusable Chapter Gameplay Loop
+## 1. Current production phase
 
-Every chapter in Melodia (from Chapter 1 "First Dream" through all subsequent chapters) executes the exact same standardized 6-phase loop:
+Melodia is no longer a blank-slate prototype. It is in **runtime closure + reusable content architecture**:
 
+- turn-based JRPG combat scaffold is working and remains the combat/state skeleton;
+- Melodia's C++ rhythm note highway is tied into battle execution;
+- narrative intent/checkpoint/reward state is integrated through the canonical narrative record;
+- wardrobe ownership/equipped state and traversal hooks exist;
+- Starskiff traversal/integration work exists;
+- music-as-key/world challenge infrastructure exists;
+- P0 / First Dream + Sea Above provides the current end-to-end proof surface;
+- current engineering priority is making persistence/restore, repeat-load idempotency, world-state ownership, and packaged closure boringly reliable.
+
+The next phase is **not another combat rewrite**. It is proving that existing systems survive complete journeys, restarts, new Chapters, and future schema growth.
+
+---
+
+## 2. Product paradigm now in force
+
+Melodia is planned as an **evergreen single-player RPG / game-as-a-place**, not a finite ~12h commitment and not a compulsory live-service treadmill.
+
+The long-term content hierarchy is:
+
+`Volume → Movement → Chapter → Episode / Reverie`, with rare **Monolith Events** and optional later **Gifts / Reveries / Voyages**.
+
+A Volume must have a real ending. Future content can extend the journey after that ending.
+
+Canonical strategy:
+
+- `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
+- `Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`
+- `Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`
+
+---
+
+## 3. Stable authority model
+
+### Combat / gameplay state
+The existing TurnBased JRPG / Phoenix scaffold owns turn order, targeting, action resolution, party stats, inventory, combat results, and stock gameplay state.
+
+### Narrative progression
+`UMelodiaNarrativeSubsystem` + QuillScript own narrative progression, stable intents, quest/flag/checkpoint state, and exactly-once consumption.
+
+### Rhythm
+`MelodiaCore` / `MelodiaRhythmCombatSubsystem` executes timing/performance on top of selected JRPG actions. Rhythm may change action quality/interpretation; it must not become a parallel combat authority.
+
+### Wardrobe
+`UMelodiaWardrobeSubsystem` owns wardrobe/equipped state and exposes concrete gameplay relationships/capabilities. The long-term design target is outfit-as-build-identity, not cosmetic stat dressing.
+
+### Convergence
+Convergence is the glue between outfit × rhythm/music × battle × exploration × world response. It should interpret existing owner state rather than store duplicate truth.
+
+### Starskiff
+Starskiff is an exploration/traversal system under active integration and a long-term candidate for the physical archive of a player's accumulated journey.
+
+### UI
+Every surface retains one writer. UI duplication is a defect, not an alternate presentation path.
+
+---
+
+## 4. P0 evidence baseline
+
+The 2026-09-01 closeout documentation records a green P0 automated/gate baseline, including the First Dream / Sea Above integration surface and existing test harnesses. Treat that as **bounded evidence for the captured baseline**, not as a claim that all future content is production-complete.
+
+The important P0 proofs are architectural:
+
+- full real-input gameplay chain exists;
+- rhythm can ride on JRPG action execution;
+- wardrobe can alter gameplay/traversal;
+- narrative/rewards can be consumed idempotently;
+- save/load infrastructure exists;
+- music can unlock world routes;
+- UI ownership can remain single-writer.
+
+The P0 six-phase sequence remains a useful **golden integration test**, but it is no longer mandatory pacing for every future Chapter.
+
+---
+
+## 5. Current runtime-closure priority
+
+The present closure target is:
+
+```text
+Outfit / Wardrobe
+      ↓
+Starskiff / exploration
+      ↓
+Phoenix command
+      ↓
+Melodia rhythm execution
+      ↓
+Convergence / world consequence
+      ↓
+reward / checkpoint
+      ↓
+SAVE
+      ↓
+quit process
+      ↓
+reload
+      ↓
+same durable state
+      ↓
+load again
+      ↓
+NO DUPLICATION
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                        UNIVERSAL CHAPTER GAMEPLAY LOOP TEMPLATE                         │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
-   │
-   ▼
-[ Phase 1: Narrative Initiation & Sanctuary Departure ]
-   ├── QuillScript dialogue node with chapter key NPC
-   ├── Authoring of active quest flag (`quest.<chapter_id>.start`)
-   └── Authoring of Sanctuary departure gate unlock
-   │
-   ▼
-[ Phase 2: Overworld Traversal & Music-as-Key Route Unlock ]
-   ├── Traversal across overworld using active Wardrobe traversal capabilities
-   ├── Discovery of environmental musical puzzle / route barrier
-   ├── Player steps on musical nodes / plays resonant melody
-   └── Route / portal barrier unlocks via 7-verb narrative notification
-   │
-   ▼
-[ Phase 3: Turn-Based JRPG Combat with Rhythm Command Timing ]
-   ├── Seamless encounter transition to battle arena
-   ├── Single HUD writer (`UMelodiaUIBridgeSubsystem`) displays command menu
-   ├── Player selects action (Attack / Resonance Skill / Item / Flee)
-   ├── Harmonix Rhythm Highway engages for real-key timed inputs
-   └── Grade multiplier scales stock JRPG damage calculation
-   │
-   ▼
-[ Phase 4: Battle Resolution & Idempotent Reward Distribution ]
-   ├── Terminal combat outcome reached (Victory / Defeat / Flee / Timeout)
-   ├── QuillScript narrative resumes once
-   └── Idempotent reward distribution via Intent-ID (Wardrobe unlock, Stat increase, Item)
-   │
-   ▼
-[ Phase 5: Traversal Upgrade & World Progression ]
-   ├── Player equips newly acquired wardrobe piece
-   ├── `UMelodiaWardrobeSubsystem` grants new traversal capability (e.g., Glide / Dash)
-   └── Player accesses previously unreachable chapter climax portal / landmark
-   │
-   ▼
-[ Phase 6: Canonical Checkpoint & Seamless Chapter Transition ]
-   ├── State serialized to `BP_JRPGSaveGame` slot
-   ├── Verified round-trip persistence (Party, Stats, Flags, Wardrobe, Inventory)
-   └── Level streaming / transition to next Chapter map
-```
+
+Key work:
+
+1. validate complete save candidates before mutation where possible;
+2. preserve intentional empty state;
+3. reject inconsistent persisted wardrobe state before load mutation;
+4. audit restore paths for partial mutation / duplicate rebuild side effects;
+5. classify Starskiff and Convergence data into durable facts vs derived/transient state;
+6. add schema fields only after ownership is stable;
+7. prove full restart and repeat-load behavior;
+8. prove packaged-build behavior.
+
+Do not persist live rhythm sessions or raw transient vehicle physics unless a concrete design case requires it.
 
 ---
 
-## 3. P0 Completion Gate Matrix (`Saved/gate_ledger.json`)
+## 6. Content progression state
 
-All 10 P0 gameplay completion gates are verified and pass in `Saved/gate_ledger.json`:
+### Concrete / integration-ready direction
+- First Dream / Sea Above P0 convergence content;
+- Shorewake transition and Starskiff departure framing;
+- Faraway Mother / fabric geography system preparation;
+- reusable Chapter progression/spec validation infrastructure.
 
-| Gate ID | Target System | Verification Criteria | Status | Evidence Source |
-|---|---|---|:---:|---|
-| `runtime` | Core Gameplay Loop | Full PIE session execution across sanctuary, traversal, and battle | **PASS** | `Saved/gate_ledger.json` |
-| `save_load` | State Persistence | `BP_JRPGSaveGame` slot serialization & roundtrip deserialization | **PASS** | `Saved/gate_ledger.json` |
-| `repeat_consume` | Narrative Queue | Exactly-once consumption of narrative notifications | **PASS** | `Saved/gate_ledger.json` |
-| `package_launch` | Standalone Shipping | Executable boots cleanly and initializes all core subsystems | **PASS** | `Saved/gate_ledger.json` |
-| `rhythm_owner` | Rhythm Subsystem | Rhythm highway modifies JRPG action inputs without owning combat state | **PASS** | `Saved/gate_ledger.json` |
-| `hud_single_writer` | UI Hierarchy | `UMelodiaUIBridgeSubsystem` is the sole writer for HUD/Battle UI | **PASS** | `Saved/gate_ledger.json` |
-| `wardrobe_equip_roundtrip` | Wardrobe Subsystem | Mesh swapping and outfit persistence verified across save/load | **PASS** | `Saved/gate_ledger.json` |
-| `rhythm_grade_to_result` | Combat Multiplier | Note accuracy (`Poor`/`Good`/`Great`/`Perfect`) scales damage calculation | **PASS** | `Saved/gate_ledger.json` |
-| `music_world_key` | Resonant World | Musical phrase stepping unlocks route barriers via narrative subsystem | **PASS** | `Saved/gate_ledger.json` |
-| `wardrobe_gameplay_hook` | Traversal Provider | Equipping outfit grants physical world traversal capabilities (`Glide`) | **PASS** | `Saved/gate_ledger.json` |
+### Strong planned direction, still requiring canon/production passes
+- Mara Elletra Vell / seam-reading;
+- Iris Fen / material-state `Catalyze` lane;
+- God That Molts;
+- Horizon Eater / Wayfold;
+- House of Measures / Seam Oracle;
+- Last Dress of the Sea;
+- working 50+ Chapter Volume-I grid.
 
----
-
-## 4. Current Test Suite Status
-
-The project enforces automated test coverage across Python simulations, C++ automation tests, schema validation contracts, and MCP regression suites:
-
-```powershell
-# Automated Test Execution Summary (2026-09-01):
-# 1. GMM Python Simulations & Math Contracts:  307 / 307 PASS
-# 2. P0 Content & Integration Test Suite:        48 /  48 PASS
-# 3. ECHO Pipeline Asset & Audio Contracts:     77 /  77 PASS
-# 4. Melodia MCP Regression Suite:              38 /  38 PASS
-# 5. Ollama Token & Daemon Stress Suite:        25 /  25 PASS
-# 6. Melusina Release End-to-End Suite:         17 /  17 PASS
-# 7. Offline Preflight Gate Checks:             12 /  12 PASS
-# ─────────────────────────────────────────────────────────────
-# TOTAL VERIFIED AUTOMATED TESTS:              524 / 524 PASS (100%)
-```
+Names and exact chapter placements beyond already owner-canonized material remain editable. The **tiered content architecture** is the important paradigm shift.
 
 ---
 
-## 5. Level & Environment Verification Status
+## 7. Long-term extensibility policy
 
-1. **`L_MelusinaMorning` (Sanctuary / Chapter Opening)**
-   - **Role:** Narrative initialization, NPC dialogue, departure gate.
-   - **Status:** Verified. QuillScript NPC anchor dispatches `melodia:quest:first_dream.started`; departure gate opens seamlessly.
-2. **`LV_SeaAbove_Prototype` (Overworld Traversal & Music-as-Key)**
-   - **Role:** Traversal, Starskiff navigation, musical puzzle, route unlock.
-   - **Status:** Verified. Clean Outliner hierarchy (0 root actors); Recast navmesh paths active; Starskiff boarding, driving, and docking confirmed; `APCGHeroMusicGraphHost` unlocks portal path upon harmonic match.
-3. **`L_KaleidoNave` (Battle Arena / Boss Encounter)**
-   - **Role:** Turn-based combat, Rhythm Highway interaction, victory resolution.
-   - **Status:** Verified. Single HUD writer (`UMelodiaUIBridgeSubsystem`); Harmonix rhythm note highway scales `BP_MelodySlime_Boss` combat damage; victory triggers idempotent reward flow.
-4. **`MelodiaMainMenu` (Title & Frontend)**
-   - **Role:** Title screen, new game / load game entry point.
-   - **Status:** Verified. Clean bootstrap into sanctuary level.
+New content should primarily add:
 
----
+- authored places;
+- chapter packages;
+- outfits / interpretations;
+- creatures / relationships;
+- encounters;
+- Quill narrative;
+- world-state consequences;
+- Monolith Events;
+- optional gifts/reveries/voyages.
 
-## 6. Evening Closeout & Shipping Certification Plan
+New content should **not** casually add:
 
-To achieve final shipping sign-off tonight (2026-09-01), the project is executing the sequence defined in [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md):
+- another combat framework;
+- another save authority;
+- another wardrobe subsystem;
+- another global UI writer;
+- another rhythm runtime authority;
+- mandatory online dependency.
 
-1. **Stage 1 — Clean Environment Preflight:** Execute full test suites (`run_tests.ps1`, `verify_p0_offline.py`, `test_melodia_mcp.py`). (Status: **COMPLETED / GREEN**)
-2. **Stage 2 — Clean Win64 Packaging:** Execute Unreal Automation Tool `BuildCookRun` with canonical map roster (`L_MelusinaMorning`, `L_KaleidoNave`, `LV_SeaAbove_Prototype`, `MelodiaMainMenu`).
-3. **Stage 3 — Package Launch Verification:** Confirm packaged binary `Saved/Packages/P0_Closeout_20260901/Windows/BS_GodFile.exe` launches without errors.
-4. **Stage 4 — Official Golden Run Execution:** Execute the end-to-end P0 Golden Run contract (`specs/p0/core_p0_dream_golden_run.v1.json`) through the 6-phase reusable chapter loop on the packaged build.
-5. **Stage 5 — Evidence Ledger Freezing:** Record immutable execution logs to `Saved/Audit/` and update `Saved/gate_ledger.json`.
-6. **Stage 6 — Final Sign-Off:** Publish final shipping report and hand off to Chapter 2 production.
+The goal is to make the permanent game stable enough that content production becomes the dominant work.
 
 ---
-*Melodia © 2026. Authoritative State Ledger.*
+
+## 8. Current definition of “next level”
+
+The project advances when it becomes easier to add a new Chapter without touching the core.
+
+A meaningful milestone is not “another system exists.” It is:
+
+> **A new authored Chapter can be packaged, played, saved, quit, restored, and revisited using stable owners and reusable contracts.**
+
+That is the bridge from an impressive technical project into the long-lived Melodia journey.
