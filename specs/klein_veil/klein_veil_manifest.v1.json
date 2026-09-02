@@ -160,14 +160,14 @@
         "biome": "FrillValley",
         "tension": 0.32,
         "note": "Primary veil \u2014 Klein seam faces Heart Gate, height-aware raycast",
-        "landscape_z_synthetic": 12225.0,
-        "final_z": 12260.0,
+        "landscape_z_synthetic": 12261.0,
+        "final_z": 12296.0,
         "height_aware": {
           "ray_start_z": 25000,
           "ray_end_z": -10000,
           "channel": "Visibility",
           "complex": true,
-          "synthetic_fallback": 12225.0,
+          "synthetic_fallback": 12261.0,
           "offset_above_surface": 35
         }
       },
@@ -188,14 +188,14 @@
         "biome": "ResonantSeamWay",
         "tension": 0.12,
         "note": "Echo instance on cymatic nodal corridor |Chladni|<0.12",
-        "landscape_z_synthetic": 12462.0,
-        "final_z": 12497.0,
+        "landscape_z_synthetic": 12627.0,
+        "final_z": 12662.0,
         "height_aware": {
           "ray_start_z": 25000,
           "ray_end_z": -10000,
           "channel": "Visibility",
           "complex": true,
-          "synthetic_fallback": 12462.0,
+          "synthetic_fallback": 12627.0,
           "offset_above_surface": 35
         }
       }

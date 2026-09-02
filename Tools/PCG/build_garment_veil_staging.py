@@ -163,14 +163,43 @@ def landscape_floor_cm(cv: np.ndarray) -> np.ndarray:
     return 13405.0 + 45.0 * chladni_grid(cv.shape[0], 2, 4)
 
 
-def classify_zone(cv: float, tension: float) -> str:
-    if abs(cv) < 0.10:
-        return "Veil"          # nodal lines = the singing veil edge
-    if tension > 0.60:
-        return "Collar"        # high-tension seams = collar/trim
-    if tension < 0.50:
-        return "Skirt"         # broad low-tension fabric = full skirt
-    return "Bodice"            # mid-slope = bodice layers
+def zone_field_grid(grid: int, mode: tuple[int, int], seed: int = 42) -> np.ndarray:
+    """Per-zone Chladni field, normalized to [0,1] (numpy, deterministic)."""
+    n, m = mode
+    u = (np.arange(grid) + 0.5) / grid
+    v = (np.arange(grid) + 0.5) / grid
+    U, V = np.meshgrid(u, v, indexing="ij")
+    f = np.abs(np.cos(n * np.pi * U) * np.cos(m * np.pi * V)
+               - np.cos(m * np.pi * U) * np.cos(n * np.pi * V))
+    return f / (f.max() + 1e-9)
+
+
+def assign_zones(grid: int, seed: int = 42) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Vectorized zone assignment: each cell picks the garment layer whose own
+    Chladni harmonic is strongest; the master (3,5) nodal lines force the Veil.
+
+    Bonds every layer to its harmonic (Skirt 2,4 / Bodice 3,5 / Collar 1,3 /
+    Veil 4,4) and yields balanced 4-way coverage — no zone is starved.
+    """
+    zone_list = list(GARMENT_ZONE_MAP.keys())
+    fields = np.stack([zone_field_grid(grid, ZONE_MODE[z], seed) for z in zone_list], axis=-1)
+    assign = np.array(zone_list)[np.argmax(fields, axis=-1)]
+    # Nodal lines of the master driving field = the singing veil edge.
+    cvf = chladni_grid(grid, 3, 5, seed)
+    assign[np.abs(cvf) < 0.15] = "Veil"
+    return assign, cvf, fields
+
+
+def zone_tension(fields: np.ndarray, assign: np.ndarray) -> np.ndarray:
+    """Per-cell tension = normalized Chladni strength of its assigned zone's own
+    harmonic (Skirt 2,4 / Bodice 3,5 / Collar 1,3 / Veil 4,4)."""
+    zone_list = list(GARMENT_ZONE_MAP.keys())
+    idx = {z: i for i, z in enumerate(zone_list)}
+    out = np.empty(assign.shape, dtype=float)
+    for i in range(assign.shape[0]):
+        for j in range(assign.shape[1]):
+            out[i, j] = fields[i, j, idx[assign[i, j]]]
+    return np.clip(out, 0.0, 1.0)
 
 
 def generate(points_per_zone: int = 30, seed: int = 20260902) -> GarmentVeilStagingManifest:
@@ -178,8 +207,8 @@ def generate(points_per_zone: int = 30, seed: int = 20260902) -> GarmentVeilStag
     zone_pts: Dict[str, List[GarmentPoint]] = {z: [] for z in GARMENT_ZONE_MAP}
 
     grid = max(24, int(math.sqrt(points_per_zone * 12)))
-    cvf = chladni_grid(grid, 3, 5, seed)
-    tns = tension_grid(cvf)
+    assign, cvf, fields = assign_zones(grid, seed)
+    tns = zone_tension(fields, assign)
     floor = landscape_floor_cm(np.zeros((grid, grid)))
 
     fy, fx = np.indices((grid, grid))
@@ -188,13 +217,12 @@ def generate(points_per_zone: int = 30, seed: int = 20260902) -> GarmentVeilStag
     x_cm = (U - 0.5) * BOUNDS_EXTENT_CM
     y_cm = (V - 0.5) * BOUNDS_EXTENT_CM
 
-    order = sorted(range(grid * grid),
-                   key=lambda k: (abs(cvf.flat[k]), -tns.flat[k]))
+    order = sorted(range(grid * grid), key=lambda k: (np.abs(cvf.flat[k]), seed))
     for k in order:
         i, j = divmod(k, grid)
+        zone = str(assign[i, j])
         cval = float(cvf[i, j])
         tension = float(tns[i, j])
-        zone = classify_zone(cval, tension)
         if len(zone_pts[zone]) >= points_per_zone:
             continue
         cfg = ZONE_MATERIAL[zone]
