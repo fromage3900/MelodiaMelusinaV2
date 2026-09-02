@@ -1,0 +1,8 @@
+{
+  "schema": "melodia.universal_garment_vocab_check.v1",
+  "seed": 20260902,
+  "article_count": 14,
+  "unique_modes": 14,
+  "collisions": {},
+  "pass": true
+}
