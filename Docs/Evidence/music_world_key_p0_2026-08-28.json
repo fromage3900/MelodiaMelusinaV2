@@ -1,0 +1,40 @@
+{
+  "schema": "melodia.gate_evidence.v1",
+  "gate": "music_world_key",
+  "date": "2026-08-28",
+  "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "method": "OnPatternCompleted broadcast x3 per run; bridge state read via IsChallengeCompleted() (canonical record read) and GetLastCommitResult()",
+  "wiring": {
+    "host_actor": "Melodia Integration - Hero Music Host (APCGHeroMusicGraphHost)",
+    "component": "MelodiaPCGNarrativeChallengeBridgeComponent",
+    "challenge_id": "challenge.first_resonance_echo",
+    "flag_id": "challenge.first_resonance_echo.completed",
+    "reward_id": "reward.first_resonance_echo",
+    "intent_id": "challenge.first_resonance_echo.attempt_id",
+    "allowlist_changes": [
+      "WorldChallengeIds += challenge.first_resonance_echo (set was EMPTY)",
+      "NarrativeFlagIds += challenge.first_resonance_echo.completed"
+    ]
+  },
+  "runs": [
+    {"n":1,"world":"MelodiaIntegrationMap","pie_actors":188,"battle_controller":1,"hosts":1,"bridge":1,"bound":true,"pre_completed":false,"pre":"REJECTED","fire1":"APPLIED","fire1_completed":true,"fire2":"ALREADY_APPLIED","fire3":"ALREADY_APPLIED","final_completed":true},
+    {"n":2,"world":"MelodiaIntegrationMap","pie_actors":188,"hosts":1,"bridge":1,"bound":true,"pre_completed":false,"pre":"REJECTED","fire1":"APPLIED","fire1_completed":true,"fire2":"ALREADY_APPLIED","fire3":"ALREADY_APPLIED","final_completed":true},
+    {"n":3,"world":"MelodiaIntegrationMap","pie_actors":188,"hosts":1,"bridge":1,"bound":true,"pre_completed":false,"pre":"REJECTED","fire1":"APPLIED","fire1_completed":true,"fire2":"ALREADY_APPLIED","fire3":"ALREADY_APPLIED","final_completed":true},
+    {"n":4,"world":"MelodiaIntegrationMap","pie_actors":188,"hosts":1,"bridge":1,"bound":true,"pre_completed":false,"pre":"REJECTED","fire1":"APPLIED","fire1_completed":true,"fire2":"ALREADY_APPLIED","fire3":"ALREADY_APPLIED","final_completed":true},
+    {"n":5,"world":"MelodiaIntegrationMap","pie_actors":188,"hosts":1,"bridge":1,"bound":true,"pre_completed":false,"pre":"REJECTED","fire1":"APPLIED","fire1_completed":true,"fire2":"ALREADY_APPLIED","fire3":"ALREADY_APPLIED","final_completed":true}
+  ],
+  "independent_evidence": {
+    "log_commit_lines_in_integration_map": 5,
+    "commits_per_run": 1,
+    "broadcasts_per_run": 3,
+    "note": "Only one 'music key committed' log line per run despite 3 broadcasts - replays returned ALREADY_APPLIED and produced no second commit.",
+    "critical_errors": 0,
+    "ensure_failures": 0
+  },
+  "verdict": "PASS (5/5 deterministic)",
+  "caveats": [
+    "Completion was driven by broadcasting OnPatternCompleted directly. This exercises delegate -> HandlePatternCompleted -> CommitWorldChallenge -> narrative record. It does NOT prove a player stepping the PCG note nodes produces that broadcast.",
+    "Narrative record does NOT persist across PIE sessions: every run began pre_completed=false. Idempotency is within-session; cross-session burn requires a save, which is the separate wardrobe_equip_roundtrip gate.",
+    "Reward commits with no equipment mapping: MELODIA_REWARD 'reward.first_resonance_echo' granted with no equipment mapping (content=1)."
+  ]
+}

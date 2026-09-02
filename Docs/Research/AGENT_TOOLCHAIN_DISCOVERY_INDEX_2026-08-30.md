@@ -7,6 +7,11 @@
 
 # Read this first
 
+> **SUPERSEDED AS SSOT (2026-08-31):** read
+> [`EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`](EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md) FIRST.
+> It adds on-disk verification (SpeedTree PRESENT, onnx exists, subsystems scaffolded 2026-08-31) and the
+> anti-duplication checklist. This file remains as the historical discovery record.
+
 There are currently **two different realities** in the repository:
 
 1. **Current `main`** contains active Copernicus/Houdini implementation work and live integration evidence.
