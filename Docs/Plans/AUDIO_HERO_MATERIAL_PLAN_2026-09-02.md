@@ -125,3 +125,35 @@ Closed-form simply-supported rectangular-plate eigenmodes power the *resonant*
 - Master-index SSOT: promote the neural scaffold + hero gem to §2 when build lands.
 - Free-model note: daemon crons back on free deepseek-v4-flash (git-health pair was 404-
   transient; revert to free honoured the standing directive).
+
+## 8. MPC namespace reconciliation (2026-09-02, daemon run 5)
+
+Resolves the single data-integrity gap that blocked the World Field Bus PIE param-match
+gate from ever passing (surfaced in run 4's audit).
+
+- **Problem.** The single audio writer (`MelodiaAudioReactivePresentationSubsystem::Publish`)
+  wrote these MPC_Melodia_Palette lanes: `GlobalReactivity`, `Bass`, `Mid`, `Treble`,
+  `BeatPhase`, `BeatPulse`, `BeatIntensity`. But every CONSUMER read different names that
+  the writer never published:
+  - `UMelodiaCymaticsSubsystem` reads `BassIntensity` (+ `BeatPulse`).
+  - `MelodiaCymaticsWriterSubsystem` reads `BassIntensity`, `MidIntensity`.
+  - The neural hero-material controller packs `BassIntensity`, `BeatTracker` (+`BeatPhase`,
+    `BeatPulse`, `BeatIntensity`).
+  Net effect: consumers silently got realtime defaults (~0) — the WFB PIE param-match gate
+  honestly expected FAIL on 3 lanes.
+- **Fix (single-writer preserved).** This one writer now additionally publishes the
+  consumer-facing lanes as value-aligned ALIASES of its canonical bands:
+  - `BassIntensity` = alias of `Bass` (battle intensity),
+  - `MidIntensity` = alias of `Mid` (impact pulse),
+  - `BeatTracker` = alias of `BeatPulseValue` (latch = current cos² beat pulse).
+  No second MPC writer was added; `SetScalarParameterValue` on an unnamed palette param is
+  a no-op, so this is safe before the MPC asset declares the names.
+- **Result.** Every consumer's FEATURES list now maps to a real, freshly-written lane.
+  The neural controller's verified 5-input vector aligns 1:1. The WFB PIE gate can now
+  PASS on the param-match check for BassIntensity/MidIntensity/BeatTracker.
+- **Note:** `Tools/Audio/hero_neural_material_controller.py` and its `.onnx` are under the
+  gitignored `Tools/` tree — the trackable artifact is the C++ writer change + this doc.
+  Retrain/rebuild the onnx (input shape unchanged) at build time; the 5 FEATURES are
+  unchanged and now all live.
+- **Gate re-check (editor, when 9316 frees):** rerun the World Field Bus PIE param-match
+  assertion and the golden-run preflight — expected PASS on the 3 reconciled lanes.

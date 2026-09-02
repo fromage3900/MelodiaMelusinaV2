@@ -312,6 +312,19 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatPulse"), BeatPulseValue);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatIntensity"), BeatPulseValue);
 
+	// ── Consumer-facing alias lanes (reconciliation 2026-09-02) ───────────────────
+	// Consumers (UMelodiaCymaticsSubsystem, MelodiaCymaticsWriterSubsystem, and the
+	// neural hero-material controller) read BassIntensity/MidIntensity/BeatTracker,
+	// names the audio writer never published. This single writer — the ONLY MPC
+	// writer (single-writer ownership preserved) — now also publishes those lanes
+	// as value-aligned aliases of its canonical bands, so consumers read real data
+	// instead of silently defaulting to 0. SetScalarParameterValue on an unnamed
+	// palette parameter is a no-op, so this is safe before the MPC asset declares them.
+	const float BassAlias = bBattleActive ? BattleIntensity : 0.0f;
+	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BassIntensity"), BassAlias); // alias of "Bass"
+	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("MidIntensity"), ImpactPulse);  // alias of "Mid"
+	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BeatTracker"), BeatPulseValue); // latch = current beat pulse
+
 	// --- Oceanology surface drive ------------------------------------------------
 	// Same values as the MPC publish above, written as MI parameters because the
 	// plugin master cannot sample the collection (see DriveOceanBeatValues header).
