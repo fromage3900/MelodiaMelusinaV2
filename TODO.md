@@ -73,6 +73,12 @@
   - [x] Generate deterministic manifest `specs/pcg/faraway_mother_pcg_manifest.v1.json` (120 points across 4 biomes)
   - [x] Implement level assembly automation and World Field Bus bridge `Content/Python/faraway_mother_pcg_assembly.py`
   - [x] Verify complete contract test suite `Tools/test_faraway_mother_pcg.py` (24/24 contract suites PASS)
+- [x] **P1/P2-01: Perceptual LOD LookDev & Optical Deception Suite**
+  - [x] Author canonical specification `Docs/LookDev/MELODIA_PERCEPTUAL_LOD_LOOKDEV_ARCHITECTURE.md`
+  - [x] Implement multi-tier LOD texture generator with Toksvig anti-aliasing `Tools/LookDev/build_optical_lod_matrix.py`
+  - [x] Generate 51 PBR textures across 4 LOD perception tiers in `Saved/Audit/lookdev/optical_lods/` and manifest `specs/lookdev/optical_lod_manifest.v1.json`
+  - [x] Implement Material Instance parameter synthesizer `Content/Python/melodia_optical_lod_pipeline.py` producing 12 `MI_*` configs in `specs/lookdev/optical_material_instances.v1.json`
+  - [x] Author and verify contract test suite `Tools/test_optical_lod_lookdev.py` and register in `Tools/run_contract_tests.py` (25/25 contract suites PASS)
 - [ ] **C2-01: Coral Shore Sanctuary Authoring** (`L_CoralShoreSanctuary`)
   - [ ] Instantiate Phase 1 sanctuary template with Chapter 2 QuillScript narrative asset
   - [ ] Configure departure gate and dialogue state transitions
