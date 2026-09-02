@@ -1,0 +1,1290 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/enchanted_vehicles_2026-08-30.json",
+  "target": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted",
+  "mode": "spec_only",
+  "note": "No .uasset writes. Editor-bound MI creation deferred to owner session.",
+  "batch": "enchanted_vehicles_full",
+  "total_effective_stems": 72,
+  "alpha_stems": 17,
+  "opaque_stems": 55,
+  "skipped_auxiliary_refraction_stems": 3,
+  "shadowdream": {
+    "strength": 0.7,
+    "tint": "#8AA0D6",
+    "flower_color": "#E8A0BF",
+    "flower_strength": 0.45,
+    "flower_scale": 1.0
+  },
+  "texture_weight_convention": "TextureWeight=1.0 + LayerA_TextureWeight=1.0 on every instance",
+  "tile_convention": "Tile4=standard, Tile2=trim/small, Tile6=atlas",
+  "roughness_by_family": {
+    "wood": 0.8,
+    "metal": 0.35,
+    "fabric": 0.9,
+    "glass": 0.08,
+    "stone": 0.82,
+    "gold": 0.28,
+    "leather": 0.75,
+    "plastic": 0.45,
+    "wax": 0.6,
+    "rope": 0.85,
+    "paper": 0.7,
+    "food": 0.65,
+    "flower": 0.7,
+    "leaf": 0.65,
+    "ivory": 0.5,
+    "crystal": 0.1,
+    "default": 0.7
+  },
+  "entries": [
+    {
+      "stem": "KB3D_ECV_AtlasFlowersA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_AtlasFlowersA_Tile6",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_AtlasFlowersA_Tile6",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile6",
+      "roughness": 0.65,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_AtlasFlowersA_Tile6\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.65),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_AtlasFruitsB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_AtlasFruitsB_Tile6",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_AtlasFruitsB_Tile6",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile6",
+      "roughness": 0.65,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "emissive",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_AtlasFruitsB_Tile6\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.65),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_AtlasGraphicsA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_AtlasGraphicsA_Tile6",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_AtlasGraphicsA_Tile6",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile6",
+      "roughness": 0.65,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "emissive",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_AtlasGraphicsA_Tile6\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.65),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_AtlasGraphicsB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_AtlasGraphicsB_Tile6",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_AtlasGraphicsB_Tile6",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile6",
+      "roughness": 0.65,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_AtlasGraphicsB_Tile6\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.65),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_AtlasLeafA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_AtlasLeafA_Tile6",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_AtlasLeafA_Tile6",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile6",
+      "roughness": 0.65,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_AtlasLeafA_Tile6\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.65),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_AtlasLeafB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_AtlasLeafB_Tile6",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_AtlasLeafB_Tile6",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile6",
+      "roughness": 0.65,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_AtlasLeafB_Tile6\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.65),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_AtlasLeafC",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_AtlasLeafC_Tile6",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_AtlasLeafC_Tile6",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile6",
+      "roughness": 0.65,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_AtlasLeafC_Tile6\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.65),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_BoxwoodBranch",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_BoxwoodBranch_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_BoxwoodBranch_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_BoxwoodBranch_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricB_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricB_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricB_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricOldBright",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricOldBright_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricOldBright_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricOldBright_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricTentPink",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricTentPink_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricTentPink_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricTentPink_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricTentRed",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricTentRed_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricTentRed_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricTentRed_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricWhiteWorn",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricWhiteWorn_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricWhiteWorn_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricWhiteWorn_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_GlassClean",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_GlassClean_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_GlassClean_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.08,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "refraction",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_GlassClean_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_GlassDirty",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_GlassDirty_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_GlassDirty_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.08,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "refraction",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_GlassDirty_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.08),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_Ivy",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_Ivy_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_Ivy_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.65,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "normal",
+        "opacity",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_Ivy_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.65),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_PlasticCable",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_PlasticCable_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_PlasticCable_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+      "tile": "Tile4",
+      "roughness": 0.45,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "refraction",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_PlasticCable_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.45),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_AtlasFoodA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_AtlasFoodA_Tile6",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_AtlasFoodA_Tile6",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile6",
+      "roughness": 0.65,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_AtlasFoodA_Tile6\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.65),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_BrickStoneGray",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_BrickStoneGray_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_BrickStoneGray_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_BrickStoneGray_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_BrickStoneWarmBTop",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_BrickStoneWarmBTop_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_BrickStoneWarmBTop_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_BrickStoneWarmBTop_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_CandleWax",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_CandleWax_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_CandleWax_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.6,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_CandleWax_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.6),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_ClayPotsTrimA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_ClayPotsTrimA_Tile2",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_ClayPotsTrimA_Tile2",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile2",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_ClayPotsTrimA_Tile2\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_CobblestoneFloorB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_CobblestoneFloorB_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_CobblestoneFloorB_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_CobblestoneFloorB_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_Copper",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_Copper_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_Copper_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_Copper_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_EmissiveTrim",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_EmissiveTrim_Tile2",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_EmissiveTrim_Tile2",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile2",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "emissive",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_EmissiveTrim_Tile2\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricPatternA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricPatternA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricPatternA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricPatternA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricPatternBlue",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricPatternBlue_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricPatternBlue_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricPatternBlue_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricPatternRed",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricPatternRed_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricPatternRed_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricPatternRed_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricVelvetBlueA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricVelvetBlueA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricVelvetBlueA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricVelvetBlueA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricVelvetPurpleA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricVelvetPurpleA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricVelvetPurpleA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricVelvetPurpleA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FabricVelvetWhite",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FabricVelvetWhite_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FabricVelvetWhite_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FabricVelvetWhite_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.9),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_FirewoodA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_FirewoodA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_FirewoodA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_FirewoodA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_GoldCleanA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_GoldCleanA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_GoldCleanA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_GoldCleanA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_GoldCleanDark",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_GoldCleanDark_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_GoldCleanDark_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_GoldCleanDark_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_GoldDirtyA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_GoldDirtyA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_GoldDirtyA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_GoldDirtyA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_GoldTrimB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_GoldTrimB_Tile2",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_GoldTrimB_Tile2",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile2",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_GoldTrimB_Tile2\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_LeatherWornA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_LeatherWornA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_LeatherWornA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.75,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_LeatherWornA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.75),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_LeatherWornTA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_LeatherWornTA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_LeatherWornTA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.75,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_LeatherWornTA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.75),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_LetterPaperA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_LetterPaperA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_LetterPaperA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_LetterPaperA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.7),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_MetalCleaner",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_MetalCleaner_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_MetalCleaner_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_MetalCleaner_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_MetalForgedBlackRustedA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_MetalForgedBlackRustedA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_MetalForgedBlackRustedA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_MetalForgedBlackRustedA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_MetalForgedGrayA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_MetalForgedGrayA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_MetalForgedGrayA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_MetalForgedGrayA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_MetalForgedGrayB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_MetalForgedGrayB_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_MetalForgedGrayB_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_MetalForgedGrayB_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_MetalPBlueWorn",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_MetalPBlueWorn_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_MetalPBlueWorn_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_MetalPBlueWorn_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_MetalPWhite",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_MetalPWhite_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_MetalPWhite_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_MetalPWhite_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.35),\n      (ParameterName=\"Metallic\",ParameterValue=0.85),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_PlasterYellow",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_PlasterYellow_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_PlasterYellow_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_PlasterYellow_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_RopesTrimA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_RopesTrimA_Tile2",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_RopesTrimA_Tile2",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile2",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_RopesTrimA_Tile2\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.85),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_SandStoneWorn",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_SandStoneWorn_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_SandStoneWorn_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_SandStoneWorn_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_SlateDB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_SlateDB_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_SlateDB_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_SlateDB_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_SoilGroundD",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_SoilGroundD_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_SoilGroundD_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_SoilGroundD_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_StoneGray",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_StoneGray_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_StoneGray_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_StoneGray_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_StoneGrayLight",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_StoneGrayLight_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_StoneGrayLight_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.82,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_StoneGrayLight_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.82),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_TrimLeatherWorn",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_TrimLeatherWorn_Tile2",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_TrimLeatherWorn_Tile2",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile2",
+      "roughness": 0.75,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_TrimLeatherWorn_Tile2\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.75),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WallWeaveB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WallWeaveB_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WallWeaveB_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WallWeaveB_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.7),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodBarkMoss",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodBarkMoss_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodBarkMoss_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodBarkMoss_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodBarkPineWorn",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodBarkPineWorn_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodBarkPineWorn_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodBarkPineWorn_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodChipped",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodChipped_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodChipped_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodChipped_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodHeartwoodAtlas",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodHeartwoodAtlas_Tile6",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodHeartwoodAtlas_Tile6",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile6",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodHeartwoodAtlas_Tile6\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodOldWornBrightA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrightA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrightA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrightA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodOldWornBrownA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrownA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrownA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrownA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodOldWornBrownB",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrownB_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrownB_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrownB_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodOldWornBrownBDamaged",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrownBDamaged_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrownBDamaged_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodOldWornBrownBDamaged_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodOldWornGrayA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodOldWornGrayA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodOldWornGrayA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodOldWornGrayA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodOrangePolished",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodOrangePolished_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodOrangePolished_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodOrangePolished_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodPBeigeWorn",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodPBeigeWorn_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodPBeigeWorn_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodPBeigeWorn_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodPBlueWorn",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodPBlueWorn_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodPBlueWorn_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodPBlueWorn_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodPGreenWorn",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodPGreenWorn_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodPGreenWorn_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodPGreenWorn_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodPRedWorn",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodPRedWorn_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodPRedWorn_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodPRedWorn_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodPaintTrim",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodPaintTrim_Tile2",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodPaintTrim_Tile2",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile2",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodPaintTrim_Tile2\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodPaintedGoldMetallic",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodPaintedGoldMetallic_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodPaintedGoldMetallic_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodPaintedGoldMetallic_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodPlankA",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodPlankA_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodPlankA_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodPlankA_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "KB3D_ECV_WoodWhiteCarriage",
+      "mi_name": "MI_EnchantedVehicle_KB3D_ECV_WoodWhiteCarriage_Tile4",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Vehicles/Enchanted/MI_EnchantedVehicle_KB3D_ECV_WoodWhiteCarriage_Tile4",
+      "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "tile": "Tile4",
+      "roughness": 0.8,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "BlenderUniverse",
+        "height",
+        "metallic",
+        "normal",
+        "roughness"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_EnchantedVehicle_KB3D_ECV_WoodWhiteCarriage_Tile4\"\n   Parent=Material\"Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.8),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    }
+  ],
+  "safety": {
+    "requires_live_editor": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record enchanted_vehicle_t3d pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

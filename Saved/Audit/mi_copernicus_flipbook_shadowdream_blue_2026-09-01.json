@@ -1,0 +1,68 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "id": "MI_Copernicus_Flipbook_ShadowDreamBlue",
+  "generated": "2026-09-01T02:00:00Z",
+  "source": "Saved/Audit/copernicus_flipbook_status_2026-09-01.json",
+  "target": "/Game/EnvSandbox/Materials/Instances/Copernicus/Cymatic",
+  "lane": "audit",
+  "mode": "spec_only",
+  "note": "Editor-bound flipbook MI creation with ShadowDream blue tint. 4 candidates from Copernicus cymatic bake.",
+  "batch": "copernicus_flipbook_remaining4",
+  "flipbook_candidates": [
+    {
+      "stem": "DancingCrystals",
+      "mi_name": "MI_Copernicus_DancingCrystals_Flipbook",
+      "parent": "M_Master_Toon_Universal",
+      "animation": "twinkle",
+      "frames": 9,
+      "roughness": 0.1,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SilkWaterfall",
+      "mi_name": "MI_Copernicus_SilkWaterfall_Flipbook",
+      "parent": "M_Master_Toon_Universal",
+      "animation": "flow",
+      "frames": 9,
+      "roughness": 0.25,
+      "metallic": 0.0
+    },
+    {
+      "stem": "GildedLoom",
+      "mi_name": "MI_Copernicus_GildedLoom_Flipbook",
+      "parent": "M_Master_Toon_Universal",
+      "animation": "gear_rotate",
+      "frames": 9,
+      "roughness": 0.35,
+      "metallic": 0.85
+    },
+    {
+      "stem": "FinalDreamweaver",
+      "mi_name": "MI_Copernicus_FinalDreamweaver_Flipbook",
+      "parent": "M_Master_Toon_Universal",
+      "animation": "dream_shimmer",
+      "frames": 9,
+      "roughness": 0.2,
+      "metallic": 0.0
+    }
+  ],
+  "shadowdream": {
+    "strength": 0.55,
+    "tint": "#8AA0D6",
+    "flower_color": "#E8A0BF",
+    "flower_strength": 0.35,
+    "flower_scale": 0.8
+  },
+  "import_requirements": [
+    "Ghost .uasset cleanup (existing 11 variant MIs)",
+    "sRGB flags on BaseColor + Emissive + Opacity",
+    "Non-sRGB on Normal + Metallic + Roughness + ORM + Height",
+    "Flipbook nodes: TextureSample → Flipbook → FinalColor"
+  ],
+  "safety": {
+    "requires_live_editor": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record copernicus_flipbook_mi pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "melodia.shorewake_pearl_weave_kit.v1",
+  "seed": 20260831,
+  "params": {
+    "tiling_size": 2048,
+    "drape_res": 4096,
+    "chladni_mode": [
+      5,
+      7
+    ],
+    "thread_pitch_px": 64,
+    "nikki_sheen_params": {
+      "NikkiPearlSheen": 0.4,
+      "NikkiPastelStrength": 0.65
+    },
+    "palette": {
+      "seafoam": [
+        0.72,
+        0.93,
+        0.86
+      ],
+      "mid": [
+        0.23,
+        0.62,
+        0.66
+      ],
+      "deep": [
+        0.06,
+        0.22,
+        0.38
+      ]
+    },
+    "audio_contract": "texture-only; no audio reader \u2014 single audio writer (MelodiaAudioReactivePresentationSubsystem) untouched",
+    "foam_crest_source": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\sbs\\SM_ShorewakeDress_48MAT_v2_low_curvature.png"
+  },
+  "files": [
+    "T_Shorewake_PearlWeave_Height.png",
+    "T_Shorewake_PearlWeave_Normal.png",
+    "T_Shorewake_ChladniWeave_N.png",
+    "T_Shorewake_PearlWeave_AO.png",
+    "T_Shorewake_PearlWeave_Roughness.png",
+    "T_Shorewake_PearlSheen_Iridescence.png",
+    "T_Shorewake_PearlSheen_Strength.png",
+    "T_Shorewake_Painterly_BaseColor.png",
+    "T_Shorewake_Painterly_Height.png",
+    "T_DressShorewake_Painterly_Drape_4K.png",
+    "T_DressShorewake_FoamCrest_Mask_4K.png"
+  ]
+}

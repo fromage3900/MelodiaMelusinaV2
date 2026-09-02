@@ -1,0 +1,135 @@
+{
+  "schema": "melodia.paradise.room.reparent.v1",
+  "generated": "2026-08-31T07:39:25Z",
+  "source": "disk scan of C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials",
+  "mode": "disk_scan_only",
+  "note": "Cannot read MI parent from disk scan \u2014 inferred from filename pack suffix. Editor access required for authoritative parent read.",
+  "findings": {
+    "total_paradise_mis": 96,
+    "inferred_needs_reparent": 49,
+    "inferred_already_universal": 47,
+    "editor_bound": true,
+    "pack_distribution": {
+      "M_Master_Toon_Universal (likely already reparented)": 47,
+      "Atlas_01_Mat (pack master)": 21,
+      "Atlas_01_Trans_Mat (pack master)": 13,
+      "Seam_Sand_Mat (pack master)": 7,
+      "Outliner_Mat (pack master)": 3,
+      "Shadows_Mat (pack master)": 3,
+      "Seam_Floor_Mat (pack master)": 2
+    }
+  },
+  "reparent_candidates_sample": [
+    {
+      "file": "MI_Rooms_Paradise_08_A_Ray_Art_Atlas_01_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_08_A_Ray_Art_Atlas_01_Mat.uasset",
+      "size_bytes": 32331,
+      "inferred_parent": "Atlas_01_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_08_A_Ray_Art_Atlas_01_Trans_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_08_A_Ray_Art_Atlas_01_Trans_Mat.uasset",
+      "size_bytes": 32365,
+      "inferred_parent": "Atlas_01_Trans_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "file": "MI_Rooms_Paradise_LargeFlowerPot_01_Art_Atlas_01_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_LargeFlowerPot_01_Art_Atlas_01_Mat.uasset",
+      "size_bytes": 32385,
+      "inferred_parent": "Atlas_01_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_LargeFlowerPot_01_Art_Seam_Sand_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_LargeFlowerPot_01_Art_Seam_Sand_Mat.uasset",
+      "size_bytes": 32393,
+      "inferred_parent": "Seam_Sand_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_LargeFlowerPot_02_Art_Atlas_01_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_LargeFlowerPot_02_Art_Atlas_01_Mat.uasset",
+      "size_bytes": 32385,
+      "inferred_parent": "Atlas_01_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_LargeFlowerPot_02_Art_Seam_Sand_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_LargeFlowerPot_02_Art_Seam_Sand_Mat.uasset",
+      "size_bytes": 32393,
+      "inferred_parent": "Seam_Sand_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_LargeFlowerPot_03_Art_Atlas_01_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_LargeFlowerPot_03_Art_Atlas_01_Mat.uasset",
+      "size_bytes": 32385,
+      "inferred_parent": "Atlas_01_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_LargeFlowerPot_03_Art_Seam_Sand_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_LargeFlowerPot_03_Art_Seam_Sand_Mat.uasset",
+      "size_bytes": 32393,
+      "inferred_parent": "Seam_Sand_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_NarrowFlowerPot_01_Art_Atlas_01_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_NarrowFlowerPot_01_Art_Atlas_01_Mat.uasset",
+      "size_bytes": 32391,
+      "inferred_parent": "Atlas_01_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_NarrowFlowerPot_01_Art_Seam_Sand_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_NarrowFlowerPot_01_Art_Seam_Sand_Mat.uasset",
+      "size_bytes": 32399,
+      "inferred_parent": "Seam_Sand_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_NFT_Frame01_Art_Atlas_01_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_NFT_Frame01_Art_Atlas_01_Mat.uasset",
+      "size_bytes": 32349,
+      "inferred_parent": "Atlas_01_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_NFT_Frame01_Art_Outliner_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_NFT_Frame01_Art_Outliner_Mat.uasset",
+      "size_bytes": 32349,
+      "inferred_parent": "Outliner_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_NFT_Frame01_Art_Shadows_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_NFT_Frame01_Art_Shadows_Mat.uasset",
+      "size_bytes": 32343,
+      "inferred_parent": "Shadows_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_NFT_Frame_Regular_Art_Atlas_01_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_NFT_Frame_Regular_Art_Atlas_01_Mat.uasset",
+      "size_bytes": 32385,
+      "inferred_parent": "Atlas_01_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    },
+    {
+      "file": "MI_Rooms_Paradise_NFT_Frame_Regular_Art_Outliner_Mat.uasset",
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Rooms_Paradise_NFT_Frame_Regular_Art_Outliner_Mat.uasset",
+      "size_bytes": 32385,
+      "inferred_parent": "Outliner_Mat (pack master)",
+      "reparent_to": "M_Master_Toon_Universal"
+    }
+  ],
+  "safety": {
+    "requires_live_editor": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record paradise_reparent pass (owner-only)"
+  },
+  "status": "DISK_SCAN_PENDING_EDITOR"
+}

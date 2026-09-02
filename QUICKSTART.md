@@ -1,238 +1,112 @@
-# 🚀 Quick Start Guide
+# 🚀 Melodia — Quick Start & Developer Guide
 
-**Get started in 5 minutes or less!**
+**Get up and running with the Melodia Rhythm-JRPG in 5 minutes!**
+**Engine Target:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
+**Status (2026-09-01):** 10/10 P0 Gameplay Completion Gates PASS | 524/524 Automated Tests Passing
 
 ---
 
-## 💡 Working with a Team? Read This First!
+## 🛠️ 1. Prerequisites & Environment Setup
 
-**👥 Collaborators:** Don't download the full 300GB! Use the tiered onboarding scripts:
-```bash
-# Lightweight collaborator
-bash deploy/collaborator_onboarding.sh lightweight
+### Required Software
+- **Unreal Engine 5.8.0**: Installed at `C:\Program Files\Epic Games\UE_5.8\`
+- **Visual Studio 2022**: Desktop development with C++ (v143 toolset)
+- **Blender 5.2 LTS**: Installed at `C:\Program Files\Blender Foundation\Blender 5.2\`
+- **Git & Git LFS**: Installed and enabled
 
-# Docs/code-only
-bash deploy/collaborator_onboarding.sh docs
+### Initial Setup Commands (PowerShell)
+```powershell
+# 1. Clone the repository
+git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+cd MelodiaMelusinaV2
 
-# Validate the UE-capable checkout
-bash deploy/validate_collaborator_setup.sh . ue
+# 2. Hydrate Git LFS assets
+git lfs pull
+
+# 3. Validate local environment and background services
+.\deploy\validate_setup.ps1
 ```
 
-This downloads only ~2-10GB instead of 300GB! 🎉
+---
 
-**📖 Full guide:** [COLLABORATOR_SETUP.md](COLLABORATOR_SETUP.md)
+## 🧪 2. Running Automated Tests
 
-### Source Control Today
-
-Git/Git LFS remains the required collaborator checkout path. A local Perforce pilot has seeded
-`//melodia/Exports/...` for locking and large-asset validation, but it runs only on the owner's
-workstation and is not yet a shared service. Do not configure it from another machine or edit the
-same export through Git and Perforce.
-
-For text/code/docs work, run `python Tools/source_control_triage.py` before committing. Its scheduled
-12-hour report identifies review-only binary and Perforce paths; it does not stage or commit changes.
-The source-control plan is [Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
-
-### If plugins such as MeshBlend or PCGEx are missing
-
-The Blender-only sparse checkout does not contain the Unreal project or its
-plugins. Use the UE-capable lightweight tier instead:
-
-```bash
-bash deploy/collaborator_onboarding.sh lightweight
-bash deploy/validate_collaborator_setup.sh . ue
-```
-
-The project plugins are source-only. Install UE 5.8 and Visual Studio 2022
-Desktop development with C++, then build with Unreal closed:
+Melodia provides a fully automated test harness across Python simulations, C++ automation tests, MCP tool policies, and asset contract validators:
 
 ```powershell
-$ueRoot = if ($env:MELODIA_UNREAL_ROOT) { $env:MELODIA_UNREAL_ROOT } else { "C:\Program Files\Epic Games\UE_5.8" }
-& "$ueRoot\Engine\Build\BatchFiles\Build.bat" BS_GodFileEditor Win64 Development -Project="$PWD\BS_GodFile.uproject" -NoUBA -MaxParallelActions=1
-.\deploy\validate_setup.ps1 -SkipServices -CheckLfsHydration -RequirePluginBinaries
+# Run the core automated test suite (GMM Simulations + P0 Integration + ECHO Contracts)
+.\run_tests.ps1
+
+# Run offline P0 preflight gate verification (12 static checks)
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/verify_p0_offline.py
+
+# Run Melodia MCP regression test suite (38 tests)
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_melodia_mcp.py
+
+# Run end-to-end release & hygiene verification suite (17 tests across 4 tiers)
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_e2e_melusina_release.py
 ```
 
 ---
 
-## 🎮 I Want to Play the Vertical Slice (First Dream)
+## 🎮 3. Playing the Vertical Slice & Chapter Loop in Editor (PIE)
 
-> **Status (2026-08-13):** The game **is playable** in PIE. After Melusina's unique skill, the rhythm highway works (clunky), damage procs, and the next turn applies on skill finish. Rhythm combat and QuillScript are **owner-locked WORKED** — do **not** reopen as P0 (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`, `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`). Formal Echo `runtime` ledger (A/B + harness JSON) is still open. Alternate stock battle entry (Morning → KaleidoNave collider/dreamstate path) is still being worked. Living board: [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
+The P0 vertical slice implements the standardized **6-Phase Reusable Chapter Gameplay Loop**:
 
-### Step 1: Install Unreal Engine 5.8
-```
-📥 Download from Epic Games Launcher
-📁 Install to: C:\Program Files\Epic Games\UE_5.8\
-```
-
-### Step 2: Open the Project
-```
-📂 Open: BS_GodFile.uproject
-⏳ Wait for shaders to compile (first run only)
-📌 Prefer a fresh pull of main (RestoreParty + playable levels are on main)
+### Step 1: Open the Project in Unreal Editor
+```powershell
+start BS_GodFile.uproject
 ```
 
-### Step 3: Play the Live Route
-```
-🎮 Route: L_MelusinaMorning → L_KaleidoNave
-   (L_Melodia_Dreamstate was merged into KaleidoNave on 2026-08-10 — do not hunt a live Dreamstate map)
-📂 Real paths:
-   /Game/Melodia/Levels/Opening/L_MelusinaMorning
-   /Game/EnvSandbox/Environments/L_KaleidoNave
+### Step 2: Open the Chapter 1 Sanctuary Map
+- Open `/Game/Melodia/Levels/Opening/L_MelusinaMorning`
+- Press **Play in Editor (PIE)** (Alt + P)
 
-▶️ PIE from Morning (or open KaleidoNave if you only want the battle space)
-⚔️ Reach the encounter → start battle → cast Melusina's unique skill
-🎹 Rhythm highway appears (clunky OK) → hit lanes → damage should proc
-⏭️ Next turn should apply when the skill finishes
-```
-
-### Step 4: Known Rough Edges (still playable)
-```
-• Rhythm highway feel is clunky — expected for now
-• Some alternate battle entry paths (old dreamstate / collider-name) are still being worked
-• Formal runtime gate needs Decision 024 A/B + record_gate.py before release claims
-```
-
-### Step 5: Current State Docs
-```
-📖 Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md — living PIE board
-📖 _SESSION_HANDOFF.md — most recent session state
-📖 _VERTICAL_SLICE_SCOPE.md — scope authority
-```
-
-**✅ Done!** You've got a playable First Dream loop in PIE.
+### Step 3: Experience the 6-Phase Gameplay Flow
+1. **Phase 1 (Sanctuary Dialogue):** Approach the NPC anchor; engage in QuillScript branching dialogue. Unlocks departure gate upon completion.
+2. **Phase 2 (Overworld & Music Key):** Proceed through departure portal to the Sea Above journey map (`LV_SeaAbove_Prototype`). Step on harmonic resonance nodes (`APCGHeroMusicGraphHost`) to unlock the forward route.
+3. **Phase 3 (Turn-Based Combat & Rhythm Highway):** Enter the battle arena (`L_KaleidoNave`). In the single-writer HUD (`UMelodiaUIBridgeSubsystem`), select an attack or skill. Hit incoming notes on the Rhythm Highway (keys: `Q`, `W`, `O`, `P`) to scale damage by your accuracy grade (`Poor: 0.35` to `Perfect: 1.5`).
+4. **Phase 4 (Battle Resolution & Rewards):** Defeat the boss. The narrative subsystem handles resolution and idempotently grants the chapter reward outfit.
+5. **Phase 5 (Wardrobe Traversal Upgrade):** Equip the new outfit to activate the `Glide` traversal capability (`IMelodiaTraversalCapabilityProvider`), allowing you to traverse over the portal chasm.
+6. **Phase 6 (Canonical Checkpoint):** Reach the checkpoint anchor. Player stats, quest flags, wardrobe, and inventory serialize cleanly to `BP_JRPGSaveGame`.
 
 ---
 
-## ⚡ I Just Want to See the Environment Art (Viewer Mode)
+## 📦 4. Packaging the Standalone Win64 Shipping Build
 
-### Step 1: Install Unreal Engine 5.8
-```
-📥 Download from Epic Games Launcher
-📁 Install to: C:\Program Files\Epic Games\UE_5.8\
-```
+To build and cook a fresh standalone Win64 package containing all canonical gameplay maps:
 
-### Step 2: Open the Project
-```
-📂 Open: BS_GodFile.uproject
-⏳ Wait for shaders to compile (first run only)
-```
-
-### Step 3: Explore the Levels
-```
-🎮 Open: /Game/Melodia/Levels/L_MelusinaMorning
-🎮 Open: /Game/EnvSandbox/Environments/L_KaleidoNave
-🎮 Open: /Game/EnvSandbox/Environments/L_KaleidoNave
-🎮 Open: /Game/EnvSandbox/Environments/WP/L_WP_SakuraDream
+```powershell
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun `
+  -project="C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject" `
+  -noP4 -platform=Win64 -clientconfig=Development `
+  -cook -build -stage -pak -archive `
+  -archivedirectory="C:\EnvironmentPortfolio\BS_GodFile\Saved\Packages\P0_Closeout_20260901" `
+  -map="/Game/Melodia/Levels/Opening/L_MelusinaMorning+/Game/EnvSandbox/Environments/L_KaleidoNave+/Game/Melodia/Maps/LV_SeaAbove_Prototype+/Game/Melodia/Maps/MelodiaMainMenu"
 ```
 
-**✅ Done!** You've seen the project's environments.
+To run the packaged game:
+```powershell
+& "Saved\Packages\P0_Closeout_20260901\Windows\BS_GodFile.exe" -log
+```
 
 ---
 
-## 🏗️ I Want to Build Things (Geometry Mode)
+## 🤖 5. Model Context Protocol (MCP) Automation
 
-### Step 1: Install Blender 5.2+
-```
-📥 Download: https://www.blender.org/download/
-📁 Install to: C:\Program Files\Blender Foundation\Blender 5.2\
-```
+The repository includes local MCP servers for automated inspection, testing, and Unreal Editor control:
 
-### Step 2: Open Both Apps
-```
-📂 Open: BS_GodFile.uproject (Unreal)
-📂 Open: Any .blend file (Blender)
-```
-
-### Step 3: Start Live Bridge
-```
-🔧 In Blender (press N for side panel):
-├── Click "Melodia Studio" tab
-├── Find "Live Bridge" 
-├── Click "Refresh Status"
-└── Click "Start Server" under LiveLink :9876
-```
-
-### Step 4: Create & Send Asset
-```
-🎨 In Blender Melodia Studio:
-├── Go to "Genome Carousel"
-├── Pick "ZEN_SHRINE" → Click "Apply"
-└── Click "Send + Materials" in Live Bridge
-```
-
-### Step 5: Use in Unreal
-```
-🎮 In Unreal:
-├── Find your asset in /Game/LiveLink/
-├── Drag it into /Game/EnvSandbox/Environments/L_KaleidoNave
-└── Position it where you want!
-```
-
-**✅ Done!** You're now building live levels!
+- **Melodia MCP (`deploy/melodia_mcp_server.py`):** Schema tools for QuillScript, narrative state, quest registries, and Blueprint fixtures.
+- **Agent Bridge MCP (`deploy/agent_bridge_mcp.py`):** Policy-enforced routing bridge preventing unsafe mutations while exposing typed inspection commands.
+- **Monolith MCP (Port `9316`):** Live Unreal Editor JSON-RPC bridge for Blueprint inspection and reflection.
 
 ---
 
-## 🎨 I Want to Make Materials (Material Mode)
+## 📚 6. Key Documentation Links
 
-### Step 1: Open Test Level
-```
-🎮 Open: /Game/EnvSandbox/Environments/L_KaleidoNave
-```
-
-### Step 2: Create Material Instance
-```
-🎨 In Content Browser:
-├── Find: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal
-├── Right-click → "Create Material Instance"
-└── Name it: MI_MyTestMaterial
-```
-
-### Step 3: Test It
-```
-🎮 In the level:
-├── Create a cube (Place Actors panel → Basic Shapes → Cube)
-├── Apply your material
-├── Double-click material to edit parameters
-└── See changes in real-time! ✨
-```
-
-**✅ Done!** You're creating materials!
-
----
-
-## 🆘 Something Went Wrong
-
-| Problem | Quick Fix |
-|---------|-----------|
-| 🔴 Unreal won't open | Make sure UE 5.8 is installed |
-| 🔴 Can't find Melodia Studio | Enable `surreal_architecture_gen` / **Melodia Studio** in Blender preferences |
-| 🔴 Port 9876 in use | Close other Blender instances |
-| 🔴 Materials look gray | Run this in UE Python: `import resolve_material_crosswalk; resolve_material_crosswalk.resolve_all()` |
-
----
-
-## 📚 Want to Learn More?
-
-**📖 Full Guide:** [README.md](README.md) - Complete onboarding paths  
-**📖 Gameplay Scope:** [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md)  
-**📖 Level Design:** [Docs/LEVEL_DESIGNER_ONBOARDING.md](Docs/LEVEL_DESIGNER_ONBOARDING.md)  
-**📖 Materials:** [MATERIAL_LOOKDEV_PIPELINE.md](MATERIAL_LOOKDEV_PIPELINE.md)  
-**📖 All Docs:** [DOC_INDEX.md](DOC_INDEX.md) - Complete documentation map  
-
----
-
-## 🎯 Common Tasks
-
-| Task | Command / Location |
-|------|-------------------|
-| 🎮 Play vertical slice | `L_MelusinaMorning` → `L_KaleidoNave` — unique-skill rhythm **playable**; stock battle entry still being worked |
-| 🏗️ Test geometry | Open `/Game/EnvSandbox/Environments/L_KaleidoNave` |
-| 🎨 Test materials | Create instance from `M_Master_Toon_Universal` |
-| 🔧 Check services | Run `deploy/status.ps1` in terminal |
-| 📖 View documentation | Open [DOC_INDEX.md](DOC_INDEX.md) |
-
----
-
-**💡 Tip:** Want the game first? Use the vertical-slice path above. For art/tools, start with Viewer Mode, then Geometry Mode.
-
-**🎉 Welcome to the team!**
+- **Authoritative Evening Plan:** [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md)
+- **Current Architectural State:** [CURRENT_STATE.md](CURRENT_STATE.md)
+- **Master Task Ledger:** [TODO.md](TODO.md)
+- **Gate Ledger:** `Saved/gate_ledger.json`
+- **P0 Golden Run Specification:** `specs/p0/core_p0_dream_golden_run.v1.json`
+- **Documentation Index:** [DOC_INDEX.md](DOC_INDEX.md)

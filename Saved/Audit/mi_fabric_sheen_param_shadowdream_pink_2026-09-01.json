@@ -1,0 +1,133 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "id": "MI_Fabric_Sheen_Param_ShadowDreamPink",
+  "generated": "2026-09-01T09:00:00Z",
+  "source": "Saved/Audit/nikki_master_mi_param_review_2026-09-01.json (fabric_mis_environment section)",
+  "target": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto",
+  "lane": "audit",
+  "mode": "spec_only",
+  "note": "Audit sheen params on 18 fabric MIs. ShadowDream pink for survivors. All steps require live editor.",
+  "batch": "fabric_sheen_param_18",
+  "sheen_params": {
+    "SheenStrength": 0.5,
+    "SheenRoughness": 0.3,
+    "SheenTint": "(R=0.91,G=0.627,B=0.749,A=1.0)"
+  },
+  "shadowdream": {
+    "strength": 0.55,
+    "tint": "#8AA0D6",
+    "flower_color": "#E8A0BF",
+    "flower_strength": 0.35,
+    "flower_scale": 0.8
+  },
+  "entries": [
+    {
+      "stem": "MI_T_Fabric_GoldThreadedEmbroidery",
+      "category": "fabric_weave",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_GoldEmbroidery",
+      "category": "fabric_weave",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_CelestialWeave",
+      "category": "fabric_weave",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_IridescentCelestialWeave",
+      "category": "fabric_weave",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_GildedJacquard",
+      "category": "fabric_jacquard_brocade",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_GildedBrocade",
+      "category": "fabric_jacquard_brocade",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_ChromaticJacquard_AcanthusBrocade",
+      "category": "fabric_jacquard_brocade",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_BaroqueLace",
+      "category": "fabric_lace",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_BaroqueFiligreeLace",
+      "category": "fabric_lace",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_AquaticVelvet_CrushedFuzz",
+      "category": "fabric_velvet_satin",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_RoyalVelvet",
+      "category": "fabric_velvet_satin",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_IridescentDuchessSatin_ChampagneRose",
+      "category": "fabric_velvet_satin",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_SheerSilk",
+      "category": "fabric_silk_chiffon",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_T_Fabric_OpalescentChiffon_Plisse",
+      "category": "fabric_silk_chiffon",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    },
+    {
+      "stem": "MI_KB3D_ATL_FabricTentBlueA",
+      "category": "fabric_tent",
+      "sheen": false,
+      "shadowdream_tint": "blue"
+    },
+    {
+      "stem": "MI_KB3D_ATL_FabricSail",
+      "category": "fabric_tent",
+      "sheen": false,
+      "shadowdream_tint": "blue"
+    },
+    {
+      "stem": "MI_Universal_HoloFabric",
+      "category": "other",
+      "sheen": true,
+      "shadowdream_tint": "pink"
+    }
+  ],
+  "safety": {
+    "requires_live_editor": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record fabric_sheen_param pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

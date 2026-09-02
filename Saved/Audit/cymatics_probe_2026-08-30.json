@@ -1,0 +1,21 @@
+{
+  "generated": "2026-08-30T23:49:31.195679",
+  "header": {
+    "exists": true,
+    "bytes": 2561
+  },
+  "cpp": {
+    "exists": true,
+    "bytes": 2696
+  },
+  "cymatics_api": {
+    "SampleCymaticAmplitude": true,
+    "GetCymaticMode": true,
+    "GetBeatPulse": true,
+    "GetBassIntensity": true,
+    "IsReadOnlyByContract": true
+  },
+  "read_only_not_writer": true,
+  "chladni_implemented": true,
+  "verdict": "SCAFFOLD - cymatics audio-to-geometry driver; read-only (consumes existing MPC writer), no second writer. Build + PIE validation next window."
+}

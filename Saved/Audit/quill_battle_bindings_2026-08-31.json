@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "research_only",
+    "source_audit": "quill_beatmap_research_2026-08-30.json",
+    "note": "Quill battle ID bindings. Two scripts (P0Playthrough, Smoke) have empty battle_ids. Cross-referenced with allowlist + classical beatmap patterns. No writes."
+  },
+  "encounter_allowlist": [
+    "encounter.first_dream",
+    "encounter.harmony_awakening",
+    "encounter.sea_above.membrane_pulse",
+    "encounter.wardrobe.equip_outfit",
+    "encounter.companion.choral_sheep"
+  ],
+  "battle_scripts": [
+    {
+      "script": "MelodiaQuillP0Playthrough.qsc",
+      "current_battle_id": "",
+      "proposed_battle_id": "encounter.first_dream",
+      "rationale": "P0 playthrough culminates in the First Dream encounter. Flags set: flag.p0.playthrough.attempted/completed/fled",
+      "quest_complete": "quest.first_dream",
+      "flags_set": [
+        "flag.p0.playthrough.attempted",
+        "flag.p0.playthrough.completed",
+        "flag.p0.playthrough.fled"
+      ],
+      "beatmap_pattern": "4-Beat Basic Quarter",
+      "bpm_range": [80, 100],
+      "difficulty": 1
+    },
+    {
+      "script": "MelodiaQuillSmoke.qsc",
+      "current_battle_id": "",
+      "proposed_battle_id": "encounter.smoke.bloom",
+      "rationale": "Smoke script rewards on melodia_smoke_complete flag. Proposed new allowlist entry.",
+      "flags_set": ["melodia_smoke_complete"],
+      "beatmap_pattern": "Walking 8th Note",
+      "bpm_range": [70, 90],
+      "difficulty": 2
+    }
+  ],
+  "non_battle_scripts": [
+    {
+      "script": "MelodiaQuillChoralSheepRecruit.qsc",
+      "type": "companion_recruit",
+      "notes": "No battle. Grants quest.companion.choral_sheep + flag.companion.choral_sheep_recruited"
+    },
+    {
+      "script": "MelodiaQuillDawnVeil.qsc",
+      "type": "narrative",
+      "notes": "No battle. Sets reunion_dawn stat"
+    },
+    {
+      "script": "MelodiaQuillHarmonyAwakening.qsc",
+      "type": "quest_complete",
+      "notes": "quest.harmony_awakening complete → may gate encounter.harmony_awakening in future"
+    },
+    {
+      "script": "MelodiaQuillPetalPriestess.qsc",
+      "type": "narrative",
+      "notes": "Sets priestess_first_echo stat"
+    },
+    {
+      "script": "MelodiaQuillSeaAboveCutscene.qsc",
+      "type": "cutscene",
+      "notes": "No battle. Sets flag.sea_above.membrane_pulse_active + flag.cutscene.sea_above_witnessed"
+    },
+    {
+      "script": "MelodiaQuillSolsticeDrum.qsc",
+      "type": "narrative",
+      "notes": "Sets reunion_solstice stat"
+    },
+    {
+      "script": "MelodiaQuillStarWeaver.qsc",
+      "type": "narrative",
+      "notes": "Quest stub only"
+    },
+    {
+      "script": "MelodiaQuillTwilightDancer.qsc",
+      "type": "narrative",
+      "notes": "Quest stub only"
+    },
+    {
+      "script": "MelodiaQuillWardrobeEquip.qsc",
+      "type": "wardrobe",
+      "notes": "No battle. Equip outfit quest. Sets flag.wardrobe.outfit_equipped"
+    },
+    {
+      "script": "MelodiaMorningIntro.qsc",
+      "type": "intro",
+      "notes": "Empty script, no IDs"
+    },
+    {
+      "script": "Morning_Sir_GriefHook.qsc",
+      "type": "intro",
+      "notes": "Empty script, no IDs"
+    }
+  ],
+  "action_items": [
+    "Add encounter.smoke.bloom to allowlist config",
+    "Bind MelodiaQuillP0Playthrough battle_id to encounter.first_dream",
+    "Bind MelodiaQuillSmoke battle_id to encounter.smoke.bloom",
+    "Author beatmap uassets after pattern review (deferred)"
+  ]
+}

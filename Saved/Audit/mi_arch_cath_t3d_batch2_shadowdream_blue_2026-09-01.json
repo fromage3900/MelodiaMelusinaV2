@@ -1,0 +1,65 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "id": "MI_Arch_Cath_T3D_Batch2_Remaining31_ShadowDreamBlue",
+  "generated": "2026-09-01T06:00:00Z",
+  "source": "Saved/Audit/arch_toon_conversion.json (cathedral_mi_entries[10:41])",
+  "target": "/Game/EnvSandbox/Materials/Instances/Architecture/Cathedral",
+  "mode": "spec_only",
+  "note": "Batch 2 of Cathedral MI spec. 31 remaining meshes (CryptVault through WallParapet). No .uasset writes. Editor Monolith pass required.",
+  "batch": 2,
+  "batch_size": 31,
+  "shadowdream_variants": {
+    "blue": {
+      "hex": "#8AA0D6",
+      "linear": [0.541, 0.627, 0.839],
+      "slots": ["Glass_Stained", "Glass_Orb", "Glass_Tracery", "Glass_Observatory", "Glass_Window", "Marble_Statue", "Marble_Urn"]
+    },
+    "pink": {
+      "hex": "#E8A0BF",
+      "linear": [0.91, 0.627, 0.749],
+      "slots": ["Rose_Garland"]
+    }
+  },
+  "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+  "naming_pattern": "MI_Arch_Cath_<MeshStem>",
+  "entries": [
+    {"mesh_stem": "SM_Cathedral_CryptVault", "slot": "Stone_Heavy", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_EscherBelvedere", "slot": "Stone_Escher", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_EscherBridge", "slot": "Rainbow_Bridge", "roughness": 0.7, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_EscherPenrose", "slot": "Glass_Stained", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_EscherWaterfall", "slot": "Stone_Escher", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Garland", "slot": "Rose_Garland", "roughness": 0.55, "metallic": 0.0, "tint": "pink", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_HarmonicOrb", "slot": "Glass_Orb", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_LancetWindow", "slot": "Glass_Window", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_MusicOrb", "slot": "Glass_Orb", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Observatory", "slot": "Glass_Observatory", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Pavilion", "slot": "Stone_Pavilion", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Perch", "slot": "Wood_Porch", "roughness": 0.7, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Pier", "slot": "Stone_Pier", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Portal", "slot": "Gold_Portal", "roughness": 0.35, "metallic": 0.85, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_ResonantDoor", "slot": "Wood_Door", "roughness": 0.7, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_RoseWindow", "slot": "Glass_Stained", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_RosetteMedallion", "slot": "Glass_Stained", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_SaintStatue", "slot": "Marble_Statue", "roughness": 0.25, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_SpiralStairs", "slot": "Stone_Steps", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Spire", "slot": "Stone_Tower", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_StaffBalustrade", "slot": "Metal_Balustrade", "roughness": 0.7, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_StainedGlassPanel", "slot": "Glass_Stained", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_StainedRose", "slot": "Glass_Stained", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Stall", "slot": "Wood_Stall", "roughness": 0.7, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Tower", "slot": "Stone_Tower", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_TraceryPanel", "slot": "Glass_Tracery", "roughness": 0.08, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_TrebleRelief", "slot": "Stone_Relief", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Urn", "slot": "Marble_Urn", "roughness": 0.25, "metallic": 0.0, "tint": "blue", "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_VaultBay", "slot": "Stone_Vault", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_Wall", "slot": "Stone_Wall", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55},
+    {"mesh_stem": "SM_Cathedral_WallParapet", "slot": "Stone_Wall", "roughness": 0.85, "metallic": 0.0, "tint": null, "shadowdream_strength": 0.55}
+  ],
+  "summary": {
+    "total_entries": 31,
+    "blue_tinted": 14,
+    "pink_tinted": 1,
+    "no_tint": 16,
+    "parent_material": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal"
+  }
+}

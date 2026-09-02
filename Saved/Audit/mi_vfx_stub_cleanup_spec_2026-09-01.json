@@ -1,0 +1,85 @@
+{
+  "schema": "melodia.vfx.stub.cleanup.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/vfx_stub_audit_2026-08-30.json",
+  "mode": "spec_only",
+  "note": "No .uasset writes. Daemon lane has no referencer map access. Owner must run reference checks before any deletion.",
+  "total_stubs_audited": 6,
+  "summary": {
+    "not_actually_stub_emitters": 5,
+    "conditional_deletion": 1,
+    "confirmed_safe_to_delete": 0,
+    "recommendation": "0 confirmed safe to delete. All 6 candidates require referencer map cross-check."
+  },
+  "classifications": [
+    {
+      "path": "Content\\EnvSandbox\\VFX\\Curves\\C_Audio_bass_td_curve.uasset",
+      "size_bytes": 2279,
+      "asset_type": "CurveBase",
+      "deletion_risk": "HIGH",
+      "safe_to_delete": false,
+      "reason": "Curve assets may drive audio/animation. NOT a stub emitter. Check references before any action.",
+      "referencer_check_required": true
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\EffectTypes\\ENV_SakuraVFX.uasset",
+      "size_bytes": 1069,
+      "asset_type": "EffectType",
+      "deletion_risk": "MEDIUM",
+      "safe_to_delete": "CONDITIONAL",
+      "reason": "EffectType may be referenced by Niagara systems. Requires referencer check.",
+      "referencer_check_required": true
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\Materials\\Functions\\MF_Niagara_SDF_Sample.uasset",
+      "size_bytes": 1987,
+      "asset_type": "MaterialFunction",
+      "deletion_risk": "HIGH",
+      "safe_to_delete": false,
+      "reason": "Material functions are building blocks. NOT a stub emitter. Do not delete without full reference scan.",
+      "referencer_check_required": true
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\MPC\\MPC_Magical.uasset",
+      "size_bytes": 1129,
+      "asset_type": "MaterialParameterCollection",
+      "deletion_risk": "HIGH",
+      "safe_to_delete": false,
+      "reason": "MPCs drive runtime parameters across many systems. NOT a stub emitter. Do not delete without full reference scan.",
+      "referencer_check_required": true
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\MPC\\MPC_SakuraDream.uasset",
+      "size_bytes": 1987,
+      "asset_type": "MaterialParameterCollection",
+      "deletion_risk": "HIGH",
+      "safe_to_delete": false,
+      "reason": "MPCs drive runtime parameters across many systems. NOT a stub emitter. Do not delete without full reference scan.",
+      "referencer_check_required": true
+    },
+    {
+      "path": "Content\\EnvSandbox\\VFX\\MPC\\NPC_SakuraDream.uasset",
+      "size_bytes": 3986,
+      "asset_type": "MaterialParameterCollection",
+      "deletion_risk": "HIGH",
+      "safe_to_delete": false,
+      "reason": "MPCs drive runtime parameters across many systems. NOT a stub emitter. Do not delete without full reference scan.",
+      "referencer_check_required": true
+    }
+  ],
+  "referencer_check_commands": [
+    "ue_console: listdependencies /Game/EnvSandbox/VFX/Curves/C_Audio_bass_td_curve",
+    "ue_console: listdependencies /Game/EnvSandbox/VFX/EffectTypes/ENV_SakuraVFX",
+    "ue_console: listdependencies /Game/EnvSandbox/VFX/Materials/Functions/MF_Niagara_SDF_Sample",
+    "ue_console: listdependencies /Game/EnvSandbox/VFX/MPC/MPC_Magical",
+    "ue_console: listdependencies /Game/EnvSandbox/VFX/MPC/MPC_SakuraDream",
+    "ue_console: listdependencies /Game/EnvSandbox/VFX/MPC/NPC_SakuraDream",
+    "alternative: Editor > Right-Click Asset > Reference Viewer > Size Map"
+  ],
+  "safety": {
+    "no_deletions_executed": true,
+    "daemon_cannot_verify_references": true,
+    "gate_acceptance": "echo_run.py record vfx_stub_cleanup pass (owner-only, after referencer check)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

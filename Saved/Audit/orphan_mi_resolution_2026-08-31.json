@@ -1,0 +1,280 @@
+{
+  "schema": "melodia.material.orphan_mi_resolution.v1",
+  "generated": "2026-08-31T06:00:00Z",
+  "source_audit": "Saved/Audit/mi_proposal_2026-08-30.json",
+  "note": "Offline proposal only. No .uasset writes. Editor Monolith pass required to apply reparenting.",
+  "summary": {
+    "total_orphans": 21,
+    "reparent_proposed": 17,
+    "archive_proposed": 0,
+    "review_in_editor": 4,
+    "potentially_broken_sdf_parents": 4,
+    "sdf_parents_redirected": 4
+  },
+  "masters_on_disk_verified": {
+    "M_Master_Toon_Universal": true,
+    "M_Master_Toon_Character": true,
+    "M_Master_Nikki": true,
+    "M_ToonFoliage": true,
+    "M_Water_Master_Grand_v10_Upgrade": true,
+    "M_SDF_ParallaxPulse": true,
+    "M_SDF_TrueParallax_Inst": true,
+    "M_HybridStone_SDF": true,
+    "M_RhythmSurface_Pulse": "ASSUMED (referenced by 4 Rhythm MIs; verify in editor)",
+    "M_PP_Grotto": "UNKNOWN (PostProcess master; verify in editor)"
+  },
+  "orphans": [
+    {
+      "index": 1,
+      "path": "Content/EnvSandbox/Materials/Instances/Foliage/MI_Niagara_Foliage_Grass.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_ToonFoliage",
+      "rationale": "Niagara foliage card. M_ToonFoliage already parents 11 MIs. Foliage cards belong under foliage master, not Toon Universal.",
+      "confidence": "HIGH"
+    },
+    {
+      "index": 2,
+      "path": "Content/EnvSandbox/Materials/Instances/Foliage/MI_Niagara_Foliage_Leaf1.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_ToonFoliage",
+      "rationale": "Same as #1. Leaf card batch.",
+      "confidence": "HIGH"
+    },
+    {
+      "index": 3,
+      "path": "Content/EnvSandbox/Materials/Instances/Foliage/MI_Niagara_Foliage_Leaf2.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_ToonFoliage",
+      "rationale": "Same as #1.",
+      "confidence": "HIGH"
+    },
+    {
+      "index": 4,
+      "path": "Content/EnvSandbox/Materials/Instances/Foliage/MI_Niagara_Foliage_Leaf3.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_ToonFoliage",
+      "rationale": "Same as #1.",
+      "confidence": "HIGH"
+    },
+    {
+      "index": 5,
+      "path": "Content/EnvSandbox/Materials/Instances/Foliage/MI_Niagara_Foliage_Vine.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_ToonFoliage",
+      "rationale": "Same as #1. Vine card.",
+      "confidence": "HIGH"
+    },
+    {
+      "index": 6,
+      "path": "Content/EnvSandbox/Materials/Instances/Grotto/MI_Grotto_UnderwaterPP.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REVIEW_IN_EDITOR",
+      "proposed_master": "M_PP_Grotto (ASSUMED — verify existence)",
+      "rationale": "'PP' suffix strongly indicates PostProcess material. PostProcess materials require a specific post-process master (M_PP_*), not M_Master_*. Editor must verify what post-process master exists for Grotto. Do NOT reparent to a standard surface master — will break rendering.",
+      "confidence": "LOW"
+    },
+    {
+      "index": 7,
+      "path": "Content/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_SorrowSeam.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_Master_Toon_Character",
+      "rationale": "Melusina character material. M_Master_Toon_Character already parents 5 character-specific MIs (Cloth, Eyes, Hair, Skin, Accessory). SorrowSeam belongs under character master.",
+      "confidence": "HIGH"
+    },
+    {
+      "index": 8,
+      "path": "Content/EnvSandbox/Materials/Instances/Oceanology/MI_Oceanology_Melodia_Hero.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_Water_Master_Grand_v10_Upgrade",
+      "rationale": "Oceanology water domain. M_Water_Master_Grand_v10_Upgrade parents 9 water MIs. Oceanology_Melodia_Hero is likely a hero water surface or underwater blend for the Oceanology zone.",
+      "confidence": "HIGH"
+    },
+    {
+      "index": 9,
+      "path": "Content/EnvSandbox/Materials/Instances/Rhythm/MI_Rhythm_Arena_Neon.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_RhythmSurface_Pulse",
+      "rationale": "Audit shows 4 Rhythm MIs with parent string 'M_RhythmSurface_Pulse'. This master is not in the standard masters_on_disk scan because it's likely a niche/gameplay master not under Content/EnvSandbox/Materials/Masters/. Editor must verify M_RhythmSurface_Pulse exists (possibly under Content/Melodia/ or a gameplay plugin).",
+      "confidence": "MEDIUM"
+    },
+    {
+      "index": 10,
+      "path": "Content/EnvSandbox/Materials/Instances/Rhythm/MI_Rhythm_Floor_Dream.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_RhythmSurface_Pulse",
+      "rationale": "Same as #9. Floor dream surface.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "index": 11,
+      "path": "Content/EnvSandbox/Materials/Instances/Rhythm/MI_Rhythm_Floor_Stone.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_RhythmSurface_Pulse",
+      "rationale": "Same as #9. Floor stone surface.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "index": 12,
+      "path": "Content/EnvSandbox/Materials/Instances/Rhythm/MI_Rhythm_Note_Highlight.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_RhythmSurface_Pulse",
+      "rationale": "Same as #9. Note highlight surface.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "index": 13,
+      "path": "Content/EnvSandbox/Materials/Instances/Rhythm/MI_Rhythm_Podium_Hero.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_RhythmSurface_Pulse",
+      "rationale": "Same as #9. Podium hero surface.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "index": 14,
+      "path": "Content/EnvSandbox/Materials/Instances/Showcase/MI_Show_MelodiaVoid_Baroque.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REVIEW_IN_EDITOR",
+      "proposed_master": "M_Master_Toon_Universal (tentative)",
+      "rationale": "Showcase Melusina void material. These 5 MelodiaVoid_* MIs are Melusina-specific showcase variants. They may intentionally use a non-standard master (e.g. a character-specific or unlit showcase master). Verify in editor whether they should parent to Toon_Universal, Toon_Character, or a dedicated showcase master. Also verify referencers — showcase materials may only be used in presentation maps.",
+      "confidence": "LOW"
+    },
+    {
+      "index": 15,
+      "path": "Content/EnvSandbox/Materials/Instances/Showcase/MI_Show_MelodiaVoid_Cosmic.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REVIEW_IN_EDITOR",
+      "proposed_master": "M_Master_Toon_Universal (tentative)",
+      "rationale": "Same as #14. Cosmic variant.",
+      "confidence": "LOW"
+    },
+    {
+      "index": 16,
+      "path": "Content/EnvSandbox/Materials/Instances/Showcase/MI_Show_MelodiaVoid_Neutral.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REVIEW_IN_EDITOR",
+      "proposed_master": "M_Master_Toon_Universal (tentative)",
+      "rationale": "Same as #14. Neutral variant.",
+      "confidence": "LOW"
+    },
+    {
+      "index": 17,
+      "path": "Content/EnvSandbox/Materials/Instances/Showcase/MI_Show_MelodiaVoid_Sakura.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REVIEW_IN_EDITOR",
+      "proposed_master": "M_Master_Toon_Universal (tentative)",
+      "rationale": "Same as #14. Sakura variant.",
+      "confidence": "LOW"
+    },
+    {
+      "index": 18,
+      "path": "Content/EnvSandbox/Materials/Instances/Showcase/MI_Show_MelodiaVoidGradient.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REVIEW_IN_EDITOR",
+      "proposed_master": "M_Master_Toon_Universal (tentative)",
+      "rationale": "Same as #14. Gradient variant.",
+      "confidence": "LOW"
+    },
+    {
+      "index": 19,
+      "path": "Content/EnvSandbox/Materials/Instances/Water/v10/MI_WaterV10_NativeDefault.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_Water_Master_Grand_v10_Upgrade",
+      "rationale": "Water v10 native default. Audit flagged 2 Water MIs with 'UNKNOWN_M_SingleLayerWater' parent string. SingleLayerWater is a UE built-in material type, not a Melodia master. M_Water_Master_Grand_v10_Upgrade is the correct Melodia water master (parents 9 water MIs). Reparent.",
+      "confidence": "HIGH"
+    },
+    {
+      "index": 20,
+      "path": "Content/EnvSandbox/Materials/Instances/Environment/Magical/MI_StarryNight_Impressionist_Swirl.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_Master_Nikki",
+      "rationale": "StarryNight Impressionist. M_Master_Nikki parents 26 MIs including MI_ProcFoliage_NikkiDream, MI_Show_NikkiDream, MI_Show_NikkiHero — iridescent/dreamy showcase materials belong under Nikki master. StarryNight fits this aesthetic.",
+      "confidence": "HIGH"
+    },
+    {
+      "index": 21,
+      "path": "Content/EnvSandbox/Materials/Instances/Environment/Magical/MI_StarryNight_VanGogh.uasset",
+      "current_parent": null,
+      "current_parent_string": "NULL/empty",
+      "proposed_action": "REPARENT",
+      "proposed_master": "M_Master_Nikki",
+      "rationale": "Same as #20. Van Gogh variant.",
+      "confidence": "HIGH"
+    }
+  ],
+  "potentially_broken_sdf_parents": {
+    "note": "These 4 strings appear in parent_distribution but do NOT resolve to any master on disk. Closest verified masters are M_SDF_ParallaxPulse, M_SDF_TrueParallax_Inst, M_HybridStone_SDF.",
+    "broken_parents": [
+      {
+        "stale_parent_string": "M_SDF_Bioluminescence",
+        "count_in_distribution": 1,
+        "proposed_redirect": "M_HybridStone_SDF",
+        "rationale": "Bioluminescence is organic/underwater SDF. M_HybridStone_SDF is the closest generic SDF master on disk (also used for organic stone/moss). Verify in editor — if biolum is meant to be emissive underwater, M_SDF_ParallaxPulse may be closer."
+      },
+      {
+        "stale_parent_string": "M_SDF_BubbleColumn",
+        "count_in_distribution": 1,
+        "proposed_redirect": "M_SDF_ParallaxPulse",
+        "rationale": "Bubble column is animated/flowing SDF. M_SDF_ParallaxPulse has parallax/pulse animation support. Closest match for animated SDF."
+      },
+      {
+        "stale_parent_string": "M_SDF_CoralBranching",
+        "count_in_distribution": 1,
+        "proposed_redirect": "M_HybridStone_SDF",
+        "rationale": "Coral branching is organic SDF. M_HybridStone_SDF covers organic/stone hybrids including coral-like forms."
+      },
+      {
+        "stale_parent_string": "M_SDF_FloatingNotes",
+        "count_in_distribution": 1,
+        "proposed_redirect": "M_SDF_TrueParallax_Inst",
+        "rationale": "Floating notes are musical/magical SDF. M_SDF_TrueParallax_Inst (instance) supports parallax ornament. TrueParallax_Inst is the closest magical-SDF master."
+      }
+    ],
+    "action": "REDIRECT_STALE_PARENT_STRINGS in editor Monolith pass. These are likely cached names in Grotto MIs from renamed/removed SDF masters."
+  },
+  "execution_order_for_editor": [
+    "1. Verify M_RhythmSurface_Pulse exists (search Content/Melodia/, Content/MelodiaIntegration/, Plugins/). If missing, mark Rhythm orphans as REVIEW.",
+    "2. Verify M_PP_Grotto exists for MI_Grotto_UnderwaterPP. If missing, mark as REVIEW.",
+    "3. Verify MelodiaVoid_* referencers — these 5 showcase MIs may only be used in presentation maps. Check with get_cdo_referencers.",
+    "4. Reparent HIGH confidence orphans (#1-5, #7, #8, #19-21) — these are safe.",
+    "5. Reparent MEDIUM confidence Rhythm orphans (#9-13) after M_RhythmSurface_Pulse verified.",
+    "6. Redirect stale SDF parent strings (M_SDF_Bioluminescence -> M_HybridStone_SDF, etc.).",
+    "7. Run project_state.py + bp_sweep.py to confirm no broken refs after reparenting."
+  ],
+  "no_action_required": {
+    "note": "5 M_Master_* files in Instances/ and 10 non-MI-prefix files in Kenney/ are naming debt, not compile breakage. Separate cleanup task."
+  }
+}

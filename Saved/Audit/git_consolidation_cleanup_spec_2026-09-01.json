@@ -1,0 +1,102 @@
+{
+  "schema": "melodia.git.consolidation.cleanup.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "git status + overnight_queue_2026-08-30.json done items",
+  "mode": "audit",
+  "git_status": {
+    "untracked": 0,
+    "modified_tracked": 5,
+    "modified_files": [
+      "Content/EnvSandbox/Materials/Instances/Environment/RetroTextures/MI_timber_square_planks_cross.uasset",
+      "Content/EnvSandbox/Materials/Instances/Environment/RetroTextures/MI_timber_square_planks_diagonal.uasset",
+      "Content/EnvSandbox/Materials/Instances/Environment/RetroTextures/MI_wall_brick_sand_both.uasset",
+      "Content/EnvSandbox/Materials/Instances/Environment/RetroTextures/MI_wall_brick_sand_center.uasset",
+      "Content/EnvSandbox/Materials/Instances/Environment/RetroTextures/MI_wall_brick_sand_center_banner.uasset"
+    ],
+    "atlantis_mis_modified": "43 Atlantis MIs show as M but are tracked (batch2 spec was applied to existing files)"
+  },
+  "done_items_for_consolidation": [
+    {
+      "id": "MI_Arch_Cath_T3D_Batch2",
+      "output": "mi_arch_cath_t3d_batch2_spec_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "MI_Catalog_NameVariantResolve",
+      "output": "mi_catalog_name_variant_resolve_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "MI_VFX_Stub_CleanupSpec",
+      "output": "mi_vfx_stub_cleanup_spec_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Quill_Interpreter_Verify",
+      "output": "quill_commit_readiness_spec_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Sea_Above_Reef_Verify",
+      "output": "sea_above_reef_commit_verify_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Enchanted_Vehicle_T3D",
+      "output": "mi_enchanted_vehicle_t3d_spec_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Bling_V3_T3D",
+      "output": "mi_bling_v3_t3d_spec_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Audio_Terrain_Verify",
+      "output": "audio_terrain_commit_verify_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "DreamAnchor_Crosscheck",
+      "output": "dreamanchor_wiring_crosscheck_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Paradise_Room_Audit",
+      "output": "paradise_room_parent_audit_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Atlantis_Gap_Analysis",
+      "output": "atlantis_mi_batch2_gap_analysis_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Jelly_Banner_Shroud",
+      "output": "sea_above_jelly_banner_shroud_t3d_spec_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "PPV_Fix",
+      "output": "ppv_nikkidream_t3d_fix_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "ECV_Alpha_Confirm",
+      "output": "ecv_alpha_parent_confirmation_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Quill_Battle_Bindings",
+      "output": "quill_battle_bindings_empty_id_resolution_2026-09-01.json",
+      "commit_ready": true
+    },
+    {
+      "id": "Copernicus_Status",
+      "output": "copernicus_flipbook_status_2026-09-01.json",
+      "commit_ready": true
+    }
+  ],
+  "recommendation": "All 16 done items are audit/spec JSONs in Saved/Audit/. They can be committed as a single batch: git add Saved/Audit/*.json && git commit -m \"audit: overnight 2026-09-01 \u2014 16 specs (cath T3D, ECV T3D, bling T3D, quill, sea above, etc.)\". The 5 modified RetroTextures MIs should be committed separately or investigated.",
+  "status": "AUDIT_COMPLETE"
+}

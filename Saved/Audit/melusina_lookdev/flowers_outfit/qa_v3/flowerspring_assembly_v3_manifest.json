@@ -1,0 +1,40 @@
+{
+ "schema": "melodia.flowerspring_assembly.v3",
+ "seed": 20260831,
+ "units": "meters end-to-end (no unit correction)",
+ "assembly": {
+  "shirt": "passA2_shirt_panels.obj",
+  "skirt": "FS_SkirtDraped_cascade.obj (v2 silhouette: flare+train+petal overskirt+ridges)",
+  "crown": "FS_Crown_v2.obj (closed-shell petals, head-sized, in place)",
+  "wings": "FS_Wings_v2.obj (smooth-scallop membranes, back-mounted, in place)"
+ },
+ "anchor_checks": {
+  "crown_center_z_m": 1.5297,
+  "crown_radius_m": 0.1598,
+  "wing_back_y_m": -0.1389,
+  "wing_span_m": 0.8802,
+  "dress_top_z_m": 1.5009
+ },
+ "renders": [
+  "FS_QA_v3_front.png",
+  "FS_QA_v3_back.png",
+  "FS_QA_v3_three_quarter.png",
+  "FS_QA_v3_crown_closeup.png",
+  "FS_QA_v3_wings_closeup.png"
+ ],
+ "silhouette_contact_sheet": [
+  "FS_SilhouetteContact_cascade.png",
+  "FS_SilhouetteContact_tulip.png",
+  "FS_SilhouetteContact_bloom.png"
+ ],
+ "substance_staging": {
+  "meshes": [
+   "FS_Dress_Draped_cascade.fbx",
+   "FS_Crown_v2.fbx",
+   "FS_Wings_v2.fbx",
+   "FS_FullAssembly_cascade.fbx"
+  ],
+  "textures": "textures/<Variant>/ (5 variants x 8 maps, ORM=R=AO G=Rough B=Metal)"
+ },
+ "note": "materials read baked FlowerSpring maps; owner paints over them in Substance Painter"
+}

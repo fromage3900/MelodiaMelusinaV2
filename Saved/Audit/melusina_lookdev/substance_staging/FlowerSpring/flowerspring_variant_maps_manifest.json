@@ -1,0 +1,63 @@
+{
+  "schema": "melodia.flowerspring_variant_maps.v1",
+  "seed": 20260831,
+  "params": {
+    "tiling_size": 2048,
+    "orm_packing": "R=AO G=Roughness B=Metallic (UE)",
+    "variants": {
+      "FlowerSpring": {
+        "chladni": [
+          3,
+          4
+        ],
+        "thread_pitch_px": 44,
+        "metallic": 0.1,
+        "emissive_scale": 0.06
+      },
+      "GildedLoom": {
+        "chladni": [
+          5,
+          2
+        ],
+        "thread_pitch_px": 36,
+        "metallic": 0.45,
+        "emissive_scale": 0.05
+      },
+      "SilkWaterfall": {
+        "chladni": [
+          2,
+          6
+        ],
+        "thread_pitch_px": 52,
+        "metallic": 0.15,
+        "emissive_scale": 0.04
+      },
+      "CherryBlossomWood": {
+        "chladni": [
+          3,
+          3
+        ],
+        "thread_pitch_px": 40,
+        "metallic": 0.05,
+        "emissive_scale": 0.05
+      },
+      "StarlitAbyss": {
+        "chladni": [
+          6,
+          4
+        ],
+        "thread_pitch_px": 48,
+        "metallic": 0.3,
+        "emissive_scale": 0.55
+      }
+    },
+    "notes": "colour families reuse the cymatic variant palettes; owner paints over these in Substance"
+  },
+  "files": {
+    "FlowerSpring": 8,
+    "GildedLoom": 8,
+    "SilkWaterfall": 8,
+    "CherryBlossomWood": 8,
+    "StarlitAbyss": 8
+  }
+}
