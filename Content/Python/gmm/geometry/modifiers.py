@@ -4,6 +4,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import ClassVar
 
+from .brass_modifiers import BRASS_DEFAULTS, BRASS_SUPPORTED_TYPES, validate_brass_parameters
 from .schemas import BEVEL_DEFAULTS, validate_bevel_parameters, validate_boolean_parameters
 
 # Extended mesh tool parameter defaults
@@ -44,7 +45,7 @@ class GeometryModifier:
         "array", "spiral_array", "radial_array", "weighted_array", "curve_array",
         "displace", "smooth", "material_override", "collision",
         "boolean_difference", "boolean_union", "boolean_intersect",
-    })
+    }) | BRASS_SUPPORTED_TYPES
 
     def validate(self) -> list[str]:
         errors: list[str] = []
@@ -58,6 +59,16 @@ class GeometryModifier:
             errors.extend(validate_bevel_parameters(self.parameters))
         if self.modifier_type.startswith("boolean_"):
             errors.extend(validate_boolean_parameters(self.modifier_type, self.parameters))
+        if self.modifier_type.startswith("brass_"):
+            # Brass: validate + auto-fill defaults
+            brass_defaults = BRASS_DEFAULTS.get(self.modifier_type, {})
+            if not self.parameters:
+                self.parameters.update(dict(brass_defaults))
+            else:
+                # Fill missing keys without overwriting explicit values
+                for k, v in brass_defaults.items():
+                    self.parameters.setdefault(k, v)
+            errors.extend(validate_brass_parameters(self.modifier_type, self.parameters))
         if self.modifier_type == "inset" and not self.parameters:
             self.parameters.update(INSET_DEFAULTS)
         if self.modifier_type == "poke" and not self.parameters:
@@ -110,6 +121,10 @@ class ModifierStack:
             raise ValueError(f"duplicate modifier_id: {modifier.modifier_id}")
         if modifier.modifier_type == "bevel" and not modifier.parameters:
             modifier.parameters.update(BEVEL_DEFAULTS)
+        # Brass defaults already filled in validate(); ensure present for empty brass
+        if modifier.modifier_type.startswith("brass_") and not modifier.parameters:
+            brass_defaults = BRASS_DEFAULTS.get(modifier.modifier_type, {})
+            modifier.parameters.update(dict(brass_defaults))
         if modifier.modifier_type == "boolean_difference" and not modifier.parameters:
             modifier.parameters.update(BOOLEAN_DIFFERENCE_DEFAULTS)
         if modifier.modifier_type == "boolean_union" and not modifier.parameters:
@@ -141,6 +156,8 @@ class ModifierStack:
             errors = validate_bevel_parameters(candidate)
         elif item.modifier_type.startswith("boolean_"):
             errors = validate_boolean_parameters(item.modifier_type, candidate)
+        elif item.modifier_type.startswith("brass_"):
+            errors = validate_brass_parameters(item.modifier_type, candidate)
         else:
             errors = []
         if errors:

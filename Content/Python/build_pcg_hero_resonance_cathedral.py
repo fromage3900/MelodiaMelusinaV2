@@ -1,4 +1,4 @@
-"""Build the additive four-station Resonance Cathedral proof graph."""
+"""Build the additive six-station Resonance Cathedral proof graph — 18 pads, 6 chords."""
 from __future__ import annotations
 
 from dataclasses import asdict
@@ -15,6 +15,8 @@ CHORD_PROGRESS = (
     (62, 65, 69),  # D minor
     (65, 69, 72),  # F major
     (67, 71, 74),  # G major
+    (57, 60, 64),  # A minor (Am — relative, shares C/E)
+    (64, 68, 71),  # E major (E — G# lift)
 )
 
 
@@ -25,7 +27,7 @@ def chord_for_station(station: int) -> tuple[int, int, int]:
 
 
 def build_piano_roll_positions(
-    station_count: int = 4,
+    station_count: int = 6,
     station_spacing: float = 480.0,
     walk_width: float = 220.0,
 ) -> tuple[tuple[float, float, float], ...]:
@@ -47,7 +49,7 @@ def build_piano_roll_positions(
 
 
 def build_cathedral_layout(
-    station_count: int = 4,
+    station_count: int = 6,
     station_spacing: float = 480.0,
     walk_width: float = 220.0,
     vault_height: float = 1800.0,
@@ -95,10 +97,11 @@ def build_piano_roll_detail_points(
     station_spacing: float,
     walk_width: float,
 ) -> tuple[tuple[float, float, float, int], tuple[tuple[float, float, float, int], ...]]:
-    """Return one long keybed plus correctly offset ebony keys between ivory keys."""
+    """Return one long keybed plus correctly offset ebony keys between ivory keys — 6 stations → 18 ivory, 12 ebony."""
     positions = build_piano_roll_positions(station_count, station_spacing, walk_width)
     key_pitch = max(1.0, float(station_spacing) / 3.0)
-    black_after_white = {0, 1, 3, 4, 5, 7, 8, 10}
+    # Piano: black after white where white_index % 7 in {0,1,3,4,5} — generates correct C# D# F# G# A# pattern for any length
+    black_after_white = {w for w in range(len(positions) - 1) if w % 7 in (0, 1, 3, 4, 5)}
     black_points = []
     for white_index in sorted(black_after_white):
         if white_index + 1 >= len(positions):
@@ -119,7 +122,7 @@ def build_piano_roll_detail_points(
 
 
 def build_cathedral_vault_curve_points(
-    station_count: int = 4,
+    station_count: int = 6,
     station_spacing: float = 480.0,
     vault_height: float = 1800.0,
     sample_count: int = 9,
@@ -411,10 +414,10 @@ def build_resonance_cathedral_graph(control_overrides: Mapping[str, object] | No
     result.update({
         "stations": snapshot.ArrayCount,
         "pads_per_station": 3,
-        "interactive_points": 12 if snapshot.ArrayCount == 4 else len(points),
+        "interactive_points": snapshot.ArrayCount * 3,
         "seed_identity": "(station, chord-degree, MIDI) packed into PCGPoint.Seed",
         "piano_surfaces": "SM_PianoKey_White_Bevel/SM_PianoKey_Black_Bevel with MI_Piano_Ivory/MI_Piano_Ebony",
-        "layout": "continuous measured piano roll with 12 ivory interactives, 8 ebony accents, one scaled keybed",
+        "layout": f"continuous measured piano roll with {snapshot.ArrayCount*3} ivory interactives, one scaled keybed",
         "curve_system": "PCGEx tagged measured vault spline -> nearest-spline PathDist -> low classic half-wall spine, plus measured classic SM_arch_06 columns/arches",
         "vault_curve_points": build_cathedral_vault_curve_points(snapshot.ArrayCount, snapshot.ArraySpacing, snapshot.Depth),
     })

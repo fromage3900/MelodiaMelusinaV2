@@ -110,10 +110,43 @@ def on_battle_end(result: str):
         _send("/niagara/burst", 1)  # Victory finale VFX
 
 
+def on_audio_bands(bass: float, mid: float, treble: float):
+    """CHOP-equivalent sender for headless/CI validation (no TD running).
+
+    In production these three are sent by TD's /project1/melodia_audio/osc_out
+    CHOP chain (spectrum → 3 bands → math → lag → OSC). This helper lets
+    Python drive the same addresses for loopback tests and for UE PIE without TD.
+    """
+    _send("/melodia/audio/bass", float(bass))
+    _send("/melodia/audio/mid", float(mid))
+    _send("/melodia/audio/treble", float(treble))
+
+
+def on_audio_beat_alias(beat_pulse: float, beat_phase: float):
+    """Alias sender for /melodia/audio/beat/* (mirrors on_beat_pulse).
+
+    TD's sel_beat_pulse / sel_beat_phase listen on both namespaces.
+    Kept separate so callers can use the sprint-documented /melodia/audio/beat/* prefix.
+    """
+    _send("/melodia/audio/beat/pulse", float(beat_pulse))
+    _send("/melodia/audio/beat/phase", float(beat_phase))
+
+
 def status():
     """Return bridge status for external inspection."""
     return {
         "enabled": ENABLED,
         "target": f"{TD_OSC_HOST}:{TD_OSC_PORT}",
         "timestamp": datetime.now().isoformat(),
+        "audio_reactive_routes": [
+            "/melodia/audio/bass",
+            "/melodia/audio/mid",
+            "/melodia/audio/treble",
+            "/melodia/audio/beat/pulse",
+            "/melodia/audio/beat/phase",
+        ],
+        "rhythm_routes": [
+            "/rhythm/beat_pulse",
+            "/rhythm/beat_phase",
+        ],
     }

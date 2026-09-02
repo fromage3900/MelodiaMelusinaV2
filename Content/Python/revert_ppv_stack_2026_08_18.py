@@ -18,10 +18,6 @@ import unreal
 REPORT = Path(__file__).resolve().parents[2] / "Saved" / "Audit" / "ppv_stack_revert_2026_08_18.json"
 
 LEVELS = (
-    "/Game/_PROJECT/Levels/RenderTests/L_Render_SakuraDream",
-    "/Game/_PROJECT/Levels/RenderTests/L_Render_SpaceCathedral",
-    "/Game/_PROJECT/Levels/RenderTests/L_Render_BaroqueCastle",
-    "/Game/_PROJECT/Levels/RenderTests/L_Render_BioGrotto",
     "/Game/EnvSandbox/Environments/L_KaleidoNave",
     "/Game/EnvSandbox/Environments/L_FallenMoon",
     "/Game/Melodia/Levels/Opening/L_MelusinaMorning",

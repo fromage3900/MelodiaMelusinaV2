@@ -76,10 +76,13 @@ class TestP0QuestsAndContentContract(unittest.TestCase):
         self._verify_qsc_grammar(self.wardrobe_equip_path)
         text = self.wardrobe_equip_path.read_text(encoding="utf-8")
         self.assertIn("melodia:item:give:item.outfit.melusina_v2:1", text)
-        self.assertIn("melodia:reward:reward.wardrobe.first_outfit", text)
         self.assertIn("melodia:flag:flag.wardrobe.outfit_equipped:true", text)
-        self.assertIn("melodia:flag:flags.melusina.sorrow_seam_restored:true", text)
-        self.assertIn("melodia:questcomplete:quest.wardrobe.equip_outfit:", text)
+        self.assertIn("melodia:flag:flag.melusina.sorrow_seam_restored:true", text)
+        self.assertIn(
+            "melodia:questcomplete:quest.wardrobe.equip_outfit:"
+            "flag.wardrobe.equip_completed:reward.wardrobe.first_outfit:",
+            text,
+        )
 
     def test_companion_recruit_qsc(self):
         """Companion recruit script performs call-and-response and recruits Choral Sheep."""
@@ -87,8 +90,11 @@ class TestP0QuestsAndContentContract(unittest.TestCase):
         text = self.companion_recruit_path.read_text(encoding="utf-8")
         self.assertIn("melodia:stat:intent.choral_sheep.call_response:melodia_harmony:2", text)
         self.assertIn("melodia:flag:flag.companion.choral_sheep_recruited:true", text)
-        self.assertIn("melodia:reward:reward.companion.choral_sheep", text)
-        self.assertIn("melodia:questcomplete:quest.companion.choral_sheep:", text)
+        self.assertIn(
+            "melodia:questcomplete:quest.companion.choral_sheep:"
+            "flag.companion.choral_sheep_completed:reward.companion.choral_sheep:",
+            text,
+        )
 
     def test_sea_above_cutscene_qsc(self):
         """Sea Above cutscene script transitions level and activates membrane pulse."""
@@ -98,7 +104,11 @@ class TestP0QuestsAndContentContract(unittest.TestCase):
         self.assertIn("melodia:stat:intent.sea_above.witness:melodia_resonance:5", text)
         self.assertIn("melodia:flag:flag.cutscene.sea_above_witnessed:true", text)
         self.assertIn("melodia:flag:flag.sea_above.membrane_pulse_active:true", text)
-        self.assertIn("melodia:questcomplete:quest.cutscene.sea_above:", text)
+        self.assertIn(
+            "melodia:questcomplete:quest.cutscene.sea_above:"
+            "flag.cutscene.sea_above_completed:reward.cutscene.sea_above_memory:",
+            text,
+        )
 
     def test_progression_package_spec(self):
         """Progression package spec aligns with all 4 authored quests."""
