@@ -108,25 +108,57 @@ def _git(*args: str) -> list[str]:
     return [ln for ln in out.stdout.splitlines() if ln.strip()]
 
 
-def _tracked_uassets() -> list[str]:
-    """Return Git-tracked assets, or workspace assets after a Perforce cutover.
+def _p4_workspace_uassets() -> list[str]:
+    """Return synced Perforce uassets, mapped back to project-relative paths.
 
-    Git remains authoritative while it tracks Content. Once Content moves to
-    Perforce, Git reports no assets; falling back to the workspace prevents the
-    gate from silently validating an empty set.
+    ``p4 fstat`` is intentional: ``p4 files`` returns depot paths, which are not
+    safe inputs to the disk-based gates below.  A missing server/client is a
+    hard empty result; callers must never silently certify another authority.
     """
-    tracked = [p for p in _git("ls-files", "Content") if p.endswith(".uasset")]
-    if tracked:
-        return tracked
-
-    content_root = ROOT / "Content"
-    if not content_root.exists():
+    command = ["p4", "-ztag", "fstat", "-T", "clientFile", "//.../Content/....uasset"]
+    try:
+        proc = subprocess.run(
+            command, cwd=ROOT, capture_output=True, text=True, timeout=120
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        print(f"  ! p4 asset enumeration failed: {exc}", file=sys.stderr)
         return []
-    return sorted(
-        path.relative_to(ROOT).as_posix()
-        for path in content_root.rglob("*.uasset")
-        if path.is_file()
-    )
+    if proc.returncode != 0:
+        detail = proc.stderr.strip() or proc.stdout.strip() or "unknown p4 error"
+        print(f"  ! p4 asset enumeration failed: {detail}", file=sys.stderr)
+        return []
+
+    assets: set[str] = set()
+    root_resolved = ROOT.resolve()
+    for line in proc.stdout.splitlines():
+        if not line.startswith("... clientFile "):
+            continue
+        candidate = Path(line.removeprefix("... clientFile ").strip())
+        try:
+            relative = candidate.resolve().relative_to(root_resolved).as_posix()
+        except (OSError, ValueError):
+            continue
+        if relative.startswith("Content/") and relative.endswith(".uasset"):
+            assets.add(relative)
+    return sorted(assets)
+
+
+def _tracked_uassets(authority: str = "auto") -> tuple[list[str], str]:
+    """Enumerate assets from exactly one declared source-control authority."""
+    if authority not in {"auto", "git", "perforce"}:
+        raise ValueError(f"unsupported asset authority: {authority}")
+
+    if authority in {"auto", "git"}:
+        tracked = [p for p in _git("ls-files", "Content") if p.endswith(".uasset")]
+        if tracked:
+            return tracked, "git"
+        if authority == "git":
+            return [], "git"
+
+    perforce = _p4_workspace_uassets()
+    if perforce:
+        return perforce, "perforce"
+    return [], "perforce" if authority == "perforce" else "auto"
 
 
 # --------------------------------------------------------------------------
@@ -365,12 +397,22 @@ def main() -> int:
                     help="ignore the baseline; fail on every violation (the true state)")
     ap.add_argument("--write-baseline", action="store_true",
                     help="record current violations as accepted debt and exit 0")
+    ap.add_argument(
+        "--asset-authority",
+        choices=("auto", "git", "perforce"),
+        default=os.environ.get("MELODIA_ASSET_AUTHORITY", "auto").lower(),
+        help="asset enumeration authority (default: Git until Content cuts over)",
+    )
     args = ap.parse_args()
 
     budgets, notes = load_budgets()
-    assets = _tracked_uassets()
+    assets, asset_authority = _tracked_uassets(args.asset_authority)
     if not assets:
-        print("art_gates: no tracked .uasset found - is this a git checkout?", file=sys.stderr)
+        print(
+            f"art_gates: no .uasset found from authority={asset_authority}; "
+            "refusing to certify an empty asset set",
+            file=sys.stderr,
+        )
         return 2
 
     gates = [
@@ -410,7 +452,10 @@ def main() -> int:
     failed = [g for g in gates if not g["passed"]]
 
     mode = "strict" if (args.strict or not baseline) else f"baselined ({len(baseline)} accepted)"
-    print(f"art_gates - {len(assets)} tracked .uasset, {len(gates)} gates, {mode}")
+    print(
+        f"art_gates - {len(assets)} {asset_authority}-owned .uasset, "
+        f"{len(gates)} gates, {mode}"
+    )
     for g in gates:
         mark = "[ok]" if g["passed"] else "[FAIL]"
         extra = ""
@@ -441,7 +486,8 @@ def main() -> int:
     if args.json:
         out = Path(args.json)
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps({"gates": gates, "asset_count": len(assets)},
+        out.write_text(json.dumps({"gates": gates, "asset_count": len(assets),
+                                   "asset_authority": asset_authority},
                                   indent=2, default=str), encoding="utf-8")
         print(f"  written: {out}")
 

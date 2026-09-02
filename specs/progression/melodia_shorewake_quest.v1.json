@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "melodia.progression_package.v1",
+  "schema_version": "1.0",
+  "kind": "melodia_progression_package",
+  "contract_id": "melodia_shorewake_quest",
+  "package": {
+    "package_id": "package.shorewake_quest.progression",
+    "definition_version": "1.0",
+    "display_name": "Shorewake Chapter: Attuning to the Sea Above",
+    "content_kind": "chapter_progression",
+    "status": "ready_for_integration"
+  },
+  "content_refs": {
+    "player_route": [
+      "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype"
+    ],
+    "integration_proof_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "dialogue_source_refs": [
+      "Content/MelodiaIntegration/Narrative/Shorewake/MelodiaQuillShorewake.qsc"
+    ]
+  },
+  "authority": {
+    "runtime_subsystem": "UMelodiaNarrativeSubsystem",
+    "narrative_record": "FMelodiaNarrativeRecord",
+    "save_field": "melodiaNarrativeRecord",
+    "objective_state_source": {
+      "active_quest_ids": "FMelodiaNarrativeRecord.ActiveQuestIds",
+      "flags": "FMelodiaNarrativeRecord.Flags",
+      "consumed_intent_ids": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "consumed_reward_ids": "FMelodiaNarrativeRecord.ConsumedRewardIds",
+      "script_checkpoint": "FMelodiaNarrativeRecord.ScriptCheckpoint"
+    }
+  },
+  "required_allowlist": {
+    "quest_ids": [
+      "quest.shorewake.initiation"
+    ],
+    "narrative_flag_ids": [
+      "flag.quest.shorewake_completed",
+      "flag.sea_above.starskiff_ready"
+    ],
+    "dialogue_reward_ids": [
+      "reward.shorewake_weave"
+    ]
+  },
+  "chapter": {
+    "chapter_id": "chapter.shorewake_transition",
+    "order": 2,
+    "title": "Chapter 2: The Shorewake Calling",
+    "prerequisites": [
+      "quest.cutscene.sea_above"
+    ],
+    "beat_ids": [
+      "beat.shorewake.dialogue",
+      "beat.shorewake.attunement",
+      "beat.shorewake.starskiff_departure"
+    ],
+    "quest_ids": [
+      "quest.shorewake.initiation"
+    ],
+    "exit_objective_ids": [
+      "objective.shorewake.board_starskiff"
+    ],
+    "checkpoint_id": "checkpoint.shorewake.complete"
+  },
+  "quests": [
+    {
+      "quest_id": "quest.shorewake.initiation",
+      "title": "Shorewake: The Celestial Tide",
+      "description": "Receive the Shorewake Weave, attune to the celestial tides above the cathedral, and prepare the Starskiff.",
+      "script_path": "Content/MelodiaIntegration/Narrative/Shorewake/MelodiaQuillShorewake.qsc",
+      "completion_flag": "flag.quest.shorewake_completed",
+      "reward_id": "reward.shorewake_weave",
+      "intent_id": "intent.shorewake.complete",
+      "checkpoint_id": "checkpoint.shorewake.complete"
+    }
+  ]
+}

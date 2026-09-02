@@ -489,6 +489,37 @@
         "verify"
       ]
     },
+    "melodia_studio_analyze_song": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
+    "melodia_studio_list_presets": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "melodia_studio_get_health": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
+    "melodia_studio_export_fbx": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
+    },
     "gaea_inspect_terrain": {
       "decision": "allow",
       "required_approval": "none",
@@ -516,6 +547,51 @@
       "required_approval": "owner",
       "operations": [ "mutate" ],
       "reason": "Runs headless Gaea Swarm to emit terrain maps; owner-gated exec."
+    },
+    "houdini_inspect_hip": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [ "read" ]
+    },
+    "houdini_list_hips": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [ "read" ]
+    },
+    "houdini_verify_build": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [ "read" ]
+    },
+    "houdini_stage_choral_variants": {
+      "decision": "allow",
+      "required_approval": "owner",
+      "operations": [ "mutate" ],
+      "reason": "Stages Houdini choral variant recipe + COP params; owner-gated write."
+    },
+    "houdini_generate_variants": {
+      "decision": "allow",
+      "required_approval": "owner",
+      "operations": [ "mutate" ],
+      "reason": "Generates 12 chromatic coat PNGs via hython or PIL fallback; owner-gated write."
+    },
+    "houdini_build_hip": {
+      "decision": "allow",
+      "required_approval": "owner",
+      "operations": [ "mutate" ],
+      "reason": "Runs hython to cook HIP ROPs; owner-gated exec."
+    },
+    "houdini_stage_groom_variants": {
+      "decision": "allow",
+      "required_approval": "owner",
+      "operations": [ "mutate" ],
+      "reason": "Stages Houdini groom variant recipe from spec; owner-gated write."
+    },
+    "houdini_generate_grooms": {
+      "decision": "allow",
+      "required_approval": "owner",
+      "operations": [ "mutate" ],
+      "reason": "Generates 12 groom ABC placeholders or real grooms via hython wedge; owner-gated write."
     }
   }
 }
