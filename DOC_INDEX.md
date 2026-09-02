@@ -17,6 +17,7 @@
 | **6** | [`TODO.md`](TODO.md) | **Production queue:** current closure work, reusable Chapter lane, Volume-I content roadmap. |
 | **7** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Stable runtime architecture and state lifecycle. |
 | **8** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor/package workflow. |
+| **8a** | [Laptop workstation setup and offload plan](Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md) | Second-machine onboarding, RAM profile, offload lanes, and handoff gates. |
 | **9** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) + [`TEST_READY.md`](TEST_READY.md) | P0 proof scope and bounded test evidence. |
 
 ---

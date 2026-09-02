@@ -1,11 +1,20 @@
 @echo off
+setlocal
 REM Canonical launcher for BS_GodFile -- always forces an in-memory DDC.
-REM Added 2026-08-26 after the local Zen/DDC cache on F:\UE_DDC became
-REM unreachable and crashed editor startup ("Unable to use cache graph
-REM 'Installed' because it has no writable nodes available").
-REM -DDC-ForceMemoryCache is command-line-only (FParse::Param in
-REM DerivedDataBackends.cpp) -- there is no .ini equivalent, so this
-REM script is the only way to make the bypass automatic. Trade-off:
-REM no persistent shader/asset cache between sessions -- slower cold
-REM starts, but immune to the F: drive/ZenServer failure mode.
-"C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe" "%~dp0BS_GodFile.uproject" -DDC-ForceMemoryCache
+REM The in-memory DDC preserves the known-safe startup path after the former
+REM F: drive/Zen cache became unreachable. Set MELODIA_UNREAL_ROOT per machine
+REM when UE 5.8 is installed outside the documented default path.
+
+set "UE_ROOT=%MELODIA_UNREAL_ROOT%"
+if "%UE_ROOT%"=="" set "UE_ROOT=C:\Program Files\Epic Games\UE_5.8"
+
+set "UE_EXE=%UE_ROOT%\Engine\Binaries\Win64\UnrealEditor.exe"
+if not exist "%UE_EXE%" (
+    echo Unreal Engine 5.8 was not found at:
+    echo %UE_EXE%
+    echo Set MELODIA_UNREAL_ROOT to the correct UE_5.8 installation path.
+    exit /b 1
+)
+
+"%UE_EXE%" "%~dp0BS_GodFile.uproject" -DDC-ForceMemoryCache
+endlocal

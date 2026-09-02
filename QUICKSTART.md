@@ -39,6 +39,18 @@ Bulk art/LFS/Perforce policy is documented separately; do not assume a fresh clo
 
 ---
 
+## Second workstation / laptop
+
+If this checkout is on a second machine, read [the laptop workstation setup and offload plan](Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md) before hydrating broad LFS content or opening long editor sessions. Run the local hardware/toolchain inspector first:
+
+~~~powershell
+powershell -ExecutionPolicy Bypass -File .\deploy\inspect_workstation.ps1
+~~~
+
+The plan assigns 16 GB machines to worker-first duties and confirmed 32 GB machines to a controlled hybrid role.
+
+---
+
 ## 3. Run tests
 
 ```powershell
