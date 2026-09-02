@@ -37,9 +37,9 @@
           "name": "M_Master_Nikki",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
           "file": "materials/M_Master_Nikki.t3d",
-          "payload_bytes": 333918,
+          "payload_bytes": 333934,
           "nodes": 251,
-          "sha256": "e5c474e38e2d281197bd83bfb03b6d6a0b8f2d7b6887604857bac4e4f7c9e23b",
+          "sha256": "d36c99eea5b8009725d2f38978ee0bbab2bd5a647bfb57d4c6205dc863969411",
           "tags": [
             "nikki"
           ],
@@ -49,9 +49,9 @@
           "name": "M_Master_Nikki_Landscape",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
           "file": "materials/M_Master_Nikki_Landscape.t3d",
-          "payload_bytes": 382522,
+          "payload_bytes": 382538,
           "nodes": 269,
-          "sha256": "0526f479f55ef231cc20d71ffd84376e7323b8ea4c182bd12e720a9e185f6995",
+          "sha256": "8a20f7c89a6cfd20f8b2ec01094d5f57bd5ed327ce614545cff39e743701e652",
           "tags": [
             "landscape",
             "nikki"
@@ -94,13 +94,13 @@
           "name": "M_Master_Toon_Landscape_HeightBlend",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend",
           "file": "materials/M_Master_Toon_Landscape_HeightBlend.t3d",
-          "payload_bytes": 480555,
-          "nodes": 326,
-          "sha256": "525b643af50bdc553de435ab90cc39b1205db4f1eb83b9753f57be564969fe23",
+          "payload_bytes": 506092,
+          "nodes": 345,
+          "sha256": "a3f511ec05ecbf9b303e02f3e94d7f7d1c07996b8aff9b0134d5e98a2b3fe0eb",
           "tags": [
             "landscape"
           ],
-          "lines": 3824
+          "lines": 4016
         },
         {
           "name": "M_Master_Toon_Unified",
@@ -116,16 +116,16 @@
           "name": "M_Master_Toon_Universal",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
           "file": "materials/M_Master_Toon_Universal.t3d",
-          "payload_bytes": 1647965,
+          "payload_bytes": 1647985,
           "nodes": 1257,
-          "sha256": "55781ff5c49fa89f0d106a0c68a99f1353f4ea934bc0299fc99dfb456862222d",
+          "sha256": "7755bd9c348328633ec801da094503e6696915a2def9daf9fa9606d9696a0ab4",
           "tags": [],
           "lines": 14131
         }
       ],
       "count": 10,
-      "payload_bytes": 4602840,
-      "nodes": 3477
+      "payload_bytes": 4628429,
+      "nodes": 3496
     },
     "Material Functions": {
       "display": "Material Functions",
@@ -663,7 +663,7 @@
       "nodes": 17
     }
   },
-  "total_payload_bytes": 6878231,
-  "total_nodes": 5422,
+  "total_payload_bytes": 6903820,
+  "total_nodes": 5441,
   "format": "raw T3D payload text (LF). Metadata lives in this catalog, not in the files."
 }
