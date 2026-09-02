@@ -1,5 +1,14 @@
 """GMM geometry modifier contracts and stack model."""
 
+from .brass_modifiers import (
+    BRASS_DEFAULTS,
+    BRASS_SUPPORTED_TYPES,
+    validate_brass_parameters,
+    compute_brass_volume,
+    compute_brass_surface_area,
+    bell_radius_at,
+    lead_pipe_radius_at,
+)
 from .modifiers import (
     GeometryModifier, ModifierStack,
     INSET_DEFAULTS, POKE_DEFAULTS, SUBDIVISION_DEFAULTS,
@@ -25,6 +34,13 @@ __all__ = [
     "PreviewSessionRegistry",
     "SESSIONS",
     "validate_bevel_parameters",
+    "validate_brass_parameters",
+    "BRASS_DEFAULTS",
+    "BRASS_SUPPORTED_TYPES",
+    "compute_brass_volume",
+    "compute_brass_surface_area",
+    "bell_radius_at",
+    "lead_pipe_radius_at",
     "INSET_DEFAULTS",
     "POKE_DEFAULTS",
     "SUBDIVISION_DEFAULTS",
