@@ -20,6 +20,7 @@ Melodia has converged from disparate exploratory prototypes into a unified, prod
 2. **Wardrobe Traversal System**: Outfits provide visual mesh customization and implement `IMelodiaTraversalCapabilityProvider` to grant physical world traversal capabilities (Glide, Swim, Dash), fully persisted across save/reload cycles via `UMelodiaWardrobeSubsystem`.
 3. **Music-as-Key World Puzzles**: Environmental barriers and harmonic puzzles respond to played musical phrases (`APCGHeroMusicGraphHost` / Piano node stepping), dispatching 7-verb narrative notifications to unlock physical routes and portal boundaries without combat code.
 4. **Single-Writer UI Architecture**: Strict UI hierarchy where every surface has exactly one designated writer (`UMelodiaUIBridgeSubsystem`), eliminating race conditions, duplicate overlays, and widget memory leaks.
+5. **Canonical Procedural & 3D Pipelines**: Deep cross-system pipeline architecture established in `Docs/Pipelines/MELODIA_CYMATICS_MONOLITH_HOUDINI_EMERGING3D_PIPELINE.md` governing Cymatics math & runtime subsystems, Monolith MCP automation, Houdini procedural authoring, and emerging 3D toolchains.
 
 ---
 
