@@ -52,6 +52,7 @@ SUITES = (
     Suite("Tools/test_validate_source_control_ownership.py", re.compile(r"source-control ownership validator contract \(4 assertions\)")),
     Suite("Tools/test_art_gates_authority.py", re.compile(r"Ran\s+4 tests.*\bOK\b", re.S)),
     Suite("Tools/test_artdrop_archive.py", re.compile(r"Ran\s+3 tests.*\bOK\b", re.S)),
+    Suite("Tools/test_faraway_mother_pcg.py", re.compile(r"Ran\s+5 tests.*\bOK\b", re.S)),
     Suite("Tools/test_melodia_package_launch_contract.py", re.compile(r"validated Melusina package-launch montage contract")),
     Suite("Tools/test_mcp_policy.py", re.compile(r"mcp-policy-tests:\s+\d+/\d+ passed")),
     Suite("Tools/test_mcp_registration.py", re.compile(r"validated checked-in MCP registration policy")),
@@ -64,7 +65,7 @@ SUITES = (
 
 # This is intentionally independent of len(SUITES): removing a suite must make
 # the gate fail instead of lowering its own coverage floor.
-MINIMUM_SUITE_COUNT = 23
+MINIMUM_SUITE_COUNT = 24
 
 
 def run_suite(suite: Suite) -> dict[str, object]:
