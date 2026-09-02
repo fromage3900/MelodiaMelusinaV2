@@ -40,6 +40,16 @@ struct BS_GODFILE_API FWorldFieldSample
     UPROPERTY(BlueprintReadOnly) FVector WorldPosition = FVector::ZeroVector;
 };
 
+/** Height-aware water vs fog decision. */
+UENUM(BlueprintType)
+enum class EWorldFieldWaterDecision : uint8
+{
+    Water       UMETA(DisplayName="Water"),
+    Fog         UMETA(DisplayName="Valley Fog"),
+    BasinPool   UMETA(DisplayName="Basin Pool"),
+    Dry         UMETA(DisplayName="Dry Ridge")
+};
+
 UCLASS(BlueprintType)
 class BS_GODFILE_API UWorldFieldBus : public UObject
 {
@@ -49,8 +59,27 @@ public:
     UFUNCTION(BlueprintCallable, Category="Melodia|WorldField")
     static FWorldFieldSample SampleResonanceTension(FVector WorldPos);
 
-    /** Publish from cymatics — called by UMelodiaCymaticsSubsystem Tick. */
+    /** Cymatic ripple displacement (0..1) at normalized plate coords — for water shading. */
+    UFUNCTION(BlueprintPure, Category="Melodia|WorldField")
+    static float SampleCymaticRipple(FVector WorldPos);
+
+    /** Height-aware: water vs valley-fog vs dry ridge at world position. */
+    UFUNCTION(BlueprintPure, Category="Melodia|WorldField")
+    static EWorldFieldWaterDecision GetWaterDecision(FVector WorldPos);
+
+    /** True if position should show a water surface (vs fog/dry). */
+    UFUNCTION(BlueprintPure, Category="Melodia|WorldField")
+    static bool IsWaterHeight(FVector WorldPos);
+
+    /** LOD dissolve -> water reveal (0 intact, 1 fully dissolved into water). */
+    UFUNCTION(BlueprintPure, Category="Melodia|WorldField")
+    static float GetLODDissolveWaterReveal(int32 CurrentLOD, int32 MaxLOD);
+
+    /** Publish from cymatics — called by UMelodiaCymaticsSubsystem/Writer Tick. */
     static void PublishResonance(int32 N, int32 M, float Tension, float BeatPulse);
+
+    /** Last published sample (offline probe fallback). */
+    static FWorldFieldSample GetLastPublished() { return LastPublished; }
 
 private:
     static FWorldFieldSample LastPublished;
