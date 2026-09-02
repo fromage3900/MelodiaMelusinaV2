@@ -28,7 +28,9 @@
         "base_radius": 8.0,
         "tip_radius": 18.0,
         "height": 45.0,
-        "resolution": 64
+        "resolution": 64,
+        "flare_exponent": 1.5,
+        "flare_angle_deg": 10.0
       }
     },
     {
@@ -42,7 +44,9 @@
         "radius": 10.0,
         "piston_diameter": 8.5,
         "port_width": 2.5,
-        "stroke": 50.0
+        "stroke": 50.0,
+        "port_count": 3,
+        "fillet_radius": 0.4
       }
     },
     {
@@ -56,7 +60,9 @@
         "radius": 10.0,
         "piston_diameter": 8.5,
         "port_width": 2.5,
-        "stroke": 50.0
+        "stroke": 50.0,
+        "port_count": 3,
+        "fillet_radius": 0.4
       }
     },
     {
@@ -70,7 +76,9 @@
         "radius": 10.0,
         "piston_diameter": 8.5,
         "port_width": 2.5,
-        "stroke": 50.0
+        "stroke": 50.0,
+        "port_count": 3,
+        "fillet_radius": 0.4
       }
     },
     {
@@ -112,7 +120,8 @@
         "tube_radius": 8.0,
         "hoop_diameter": 12.0,
         "count": 8,
-        "angle_offset": 22.5
+        "angle_offset": 22.5,
+        "weld_bead_radius": 0.8
       }
     },
     {

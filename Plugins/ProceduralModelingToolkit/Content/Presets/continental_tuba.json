@@ -2,144 +2,146 @@
   "format": "gmm_brass_preset_v1",
   "instrument_type": "tuba",
   "key": "C",
-  "ensemble": "continental",
-  "description": "Continental system tuba in C (4-valve configuration) — .662\" bore, .595\" bell, 4th valve",
   "modifier_stacks": [
     {
-      "id": "tuba_body_tube",
+      "id": "main_tube",
       "type": "brass_tube",
       "enabled": true,
+      "order": 0,
       "scope": "editor",
+      "backend": "auto",
       "parameters": {
-        "radius": 16.8,
-        "thickness": 3.8,
-        "length": 450.0,
-        "resolution": 32
+        "radius": 16.0,
+        "thickness": 2.0,
+        "length": 500.0,
+        "resolution": 48
       }
     },
     {
-      "id": "tuba_bell",
+      "id": "bell_mouth",
       "type": "brass_bell_profile",
       "enabled": true,
+      "order": 1,
       "scope": "editor",
+      "backend": "auto",
       "parameters": {
-        "base_radius": 16.8,
-        "tip_radius": 15.1,
-        "height": 40.0,
-        "resolution": 64
+        "base_radius": 16.0,
+        "tip_radius": 40.0,
+        "height": 50.0,
+        "resolution": 64,
+        "flare_exponent": 1.5,
+        "flare_angle_deg": 10.0
       }
     },
     {
-      "id": "tuba_valve_1",
+      "id": "valve_1_cylinder",
       "type": "brass_valve_cylinder",
       "enabled": true,
+      "order": 2,
       "scope": "editor",
+      "backend": "auto",
       "parameters": {
-        "radius": 22.0,
-        "piston_diameter": 19.0,
-        "port_width": 8.0,
-        "stroke": 45.0
+        "radius": 18.0,
+        "piston_diameter": 15.0,
+        "port_width": 4.0,
+        "stroke": 60.0,
+        "port_count": 3,
+        "fillet_radius": 0.6
       }
     },
     {
-      "id": "tuba_valve_2",
+      "id": "valve_2_cylinder",
       "type": "brass_valve_cylinder",
       "enabled": true,
+      "order": 3,
       "scope": "editor",
+      "backend": "auto",
       "parameters": {
-        "radius": 22.0,
-        "piston_diameter": 19.0,
-        "port_width": 8.0,
-        "stroke": 45.0
+        "radius": 18.0,
+        "piston_diameter": 15.0,
+        "port_width": 4.0,
+        "stroke": 60.0,
+        "port_count": 3,
+        "fillet_radius": 0.6
       }
     },
     {
-      "id": "tuba_valve_3",
+      "id": "valve_3_cylinder",
       "type": "brass_valve_cylinder",
       "enabled": true,
+      "order": 4,
       "scope": "editor",
+      "backend": "auto",
       "parameters": {
-        "radius": 22.0,
-        "piston_diameter": 19.0,
-        "port_width": 8.0,
-        "stroke": 45.0
+        "radius": 18.0,
+        "piston_diameter": 15.0,
+        "port_width": 4.0,
+        "stroke": 60.0,
+        "port_count": 3,
+        "fillet_radius": 0.6
       }
     },
     {
-      "id": "tuba_valve_4",
+      "id": "valve_4_cylinder",
       "type": "brass_valve_cylinder",
       "enabled": true,
+      "order": 5,
       "scope": "editor",
+      "backend": "auto",
       "parameters": {
-        "radius": 22.0,
-        "piston_diameter": 19.0,
-        "port_width": 8.0,
-        "stroke": 45.0
+        "radius": 18.0,
+        "piston_diameter": 15.0,
+        "port_width": 4.0,
+        "stroke": 60.0,
+        "port_count": 3,
+        "fillet_radius": 0.6
       }
     },
     {
-      "id": "mp_cup_tuba",
-      "type": "brass_mouthpiece_cup",
-      "enabled": true,
-      "scope": "editor",
-      "parameters": {
-        "cup_depth": 25.0,
-        "cup_radius": 15.0,
-        "rim_thickness": 4.0,
-        "back_bore_diameter": 6.5
-      }
-    },
-    {
-      "id": "mp_shank_tuba",
-      "type": "brass_mouthpiece_shank",
-      "enabled": true,
-      "scope": "editor",
-      "parameters": {
-        "shank_length": 50.0,
-        "major_diameter": 22.0,
-        "minor_diameter": 15.0,
-        "taper_type": "conical_exponential"
-      }
-    },
-    {
-      "id": "tuba_wrap_4th",
+      "id": "wrap_formation",
       "type": "brass_wrap_formation",
       "enabled": true,
+      "order": 6,
       "scope": "editor",
+      "backend": "auto",
       "parameters": {
-        "coil_diameter": 55.0,
-        "wire_diameter": 16.8,
-        "wrap_count": 3,
+        "coil_diameter": 30.0,
+        "wire_diameter": 8.0,
+        "wrap_count": 6,
         "start_angle": 0.0,
-        "pitch": 20.0
+        "pitch": 25.0
       }
     },
     {
-      "id": "tuba_bracing",
+      "id": "bracing_hoop_1",
       "type": "brass_bracing_hoop",
       "enabled": true,
+      "order": 7,
       "scope": "editor",
+      "backend": "auto",
       "parameters": {
-        "tube_radius": 16.8,
-        "hoop_diameter": 3.5,
-        "count": 4,
-        "angle_offset": 0.0
+        "tube_radius": 16.0,
+        "hoop_diameter": 20.0,
+        "count": 8,
+        "angle_offset": 0.0,
+        "weld_bead_radius": 1.5
       }
     },
     {
-      "id": "tuba_rib_formation",
-      "type": "brass_rib_formation",
+      "id": "mouthpiece_cup",
+      "type": "brass_mouthpiece_cup",
       "enabled": true,
+      "order": 8,
       "scope": "editor",
+      "backend": "auto",
       "parameters": {
-        "tube_radius": 16.8,
-        "rib_height": 2.0,
-        "rib_width": 4.0,
-        "count": 6,
-        "spacing": 1.0
+        "cup_depth": 30.0,
+        "cup_radius": 16.0,
+        "rim_thickness": 7.0,
+        "back_bore_diameter": 6.5
       }
     }
   ],
-  "ue_binding": "/Game/Brass/Presets/Tuba/GeometryModifiers",
-  "next_action": "hython Tools/Houdini/build_brass_preset.py"
+  "ue_binding": "MelodiaBrass.Tuba",
+  "next_action": "hython_or_edit"
 }

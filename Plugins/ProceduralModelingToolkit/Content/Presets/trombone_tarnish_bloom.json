@@ -2,6 +2,8 @@
   "format": "gmm_brass_preset_v1",
   "instrument_type": "trombone",
   "key": "Bb",
+  "variant": "tarnish_bloom",
+  "description": "Jazz trombone — lacquer crackle, sulfur tarnish bloom near bell, fingerprint bloom on slide grip. Stored in a smoky club case for decades.",
   "modifier_stacks": [
     {
       "id": "main_tube",
@@ -45,37 +47,39 @@
         "minor_diameter": 25.0,
         "length": 250.0,
         "resolution": 32,
-        "grease_groove_width": 1.0
+        "grease_groove_width": 1.2
       }
     },
     {
-      "id": "slide_2_taper",
-      "type": "brass_slide_taper",
+      "id": "tarnish_slide",
+      "type": "brass_tarnish_bloom",
       "enabled": true,
       "order": 3,
       "scope": "editor",
       "backend": "auto",
       "parameters": {
-        "major_diameter": 28.0,
-        "minor_diameter": 25.0,
-        "length": 250.0,
-        "resolution": 32,
-        "grease_groove_width": 1.0
+        "tube_radius": 13.0,
+        "tarnish_level": 0.52,
+        "bloom_radius": 24.0,
+        "lacquer_crack_density": 0.22,
+        "fingerprint_intensity": 0.38,
+        "sulfur_tint": 0.68
       }
     },
     {
-      "id": "slide_3_taper",
-      "type": "brass_slide_taper",
+      "id": "tarnish_bell",
+      "type": "brass_tarnish_bloom",
       "enabled": true,
       "order": 4,
       "scope": "editor",
       "backend": "auto",
       "parameters": {
-        "major_diameter": 28.0,
-        "minor_diameter": 25.0,
-        "length": 250.0,
-        "resolution": 32,
-        "grease_groove_width": 1.0
+        "tube_radius": 22.0,
+        "tarnish_level": 0.38,
+        "bloom_radius": 30.0,
+        "lacquer_crack_density": 0.18,
+        "fingerprint_intensity": 0.12,
+        "sulfur_tint": 0.55
       }
     },
     {
@@ -90,29 +94,14 @@
         "hoop_diameter": 15.0,
         "count": 6,
         "angle_offset": 0.0,
-        "weld_bead_radius": 1.0
-      }
-    },
-    {
-      "id": "bracing_hoop_2",
-      "type": "brass_bracing_hoop",
-      "enabled": true,
-      "order": 6,
-      "scope": "editor",
-      "backend": "auto",
-      "parameters": {
-        "tube_radius": 13.0,
-        "hoop_diameter": 15.0,
-        "count": 6,
-        "angle_offset": 90.0,
-        "weld_bead_radius": 1.0
+        "weld_bead_radius": 1.2
       }
     },
     {
       "id": "mouthpiece_cup",
       "type": "brass_mouthpiece_cup",
       "enabled": true,
-      "order": 7,
+      "order": 6,
       "scope": "editor",
       "backend": "auto",
       "parameters": {
@@ -126,7 +115,7 @@
       "id": "mouthpiece_shank",
       "type": "brass_mouthpiece_shank",
       "enabled": true,
-      "order": 8,
+      "order": 7,
       "scope": "editor",
       "backend": "auto",
       "parameters": {
@@ -137,6 +126,11 @@
       }
     }
   ],
-  "ue_binding": "MelodiaBrass.Trombone",
+  "ue_binding": "MelodiaBrass.Trombone_TarnishBloom",
+  "material_hints": {
+    "base": "MI_Starskiff_Brass",
+    "tarnish_lerp": "sulfur_tint drives yellow→brown shift",
+    "crack_normal_strength": 1.5
+  },
   "next_action": "hython_or_edit"
 }

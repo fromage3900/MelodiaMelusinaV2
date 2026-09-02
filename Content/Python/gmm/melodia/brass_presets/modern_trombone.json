@@ -28,7 +28,9 @@
         "base_radius": 13.0,
         "tip_radius": 32.0,
         "height": 40.0,
-        "resolution": 64
+        "resolution": 64,
+        "flare_exponent": 1.5,
+        "flare_angle_deg": 10.0
       }
     },
     {
@@ -42,7 +44,8 @@
         "major_diameter": 28.0,
         "minor_diameter": 25.0,
         "length": 250.0,
-        "resolution": 32
+        "resolution": 32,
+        "grease_groove_width": 1.0
       }
     },
     {
@@ -56,7 +59,8 @@
         "major_diameter": 28.0,
         "minor_diameter": 25.0,
         "length": 250.0,
-        "resolution": 32
+        "resolution": 32,
+        "grease_groove_width": 1.0
       }
     },
     {
@@ -70,7 +74,8 @@
         "major_diameter": 28.0,
         "minor_diameter": 25.0,
         "length": 250.0,
-        "resolution": 32
+        "resolution": 32,
+        "grease_groove_width": 1.0
       }
     },
     {
@@ -84,7 +89,8 @@
         "tube_radius": 13.0,
         "hoop_diameter": 15.0,
         "count": 6,
-        "angle_offset": 0.0
+        "angle_offset": 0.0,
+        "weld_bead_radius": 1.0
       }
     },
     {
@@ -98,7 +104,8 @@
         "tube_radius": 13.0,
         "hoop_diameter": 15.0,
         "count": 6,
-        "angle_offset": 90.0
+        "angle_offset": 90.0,
+        "weld_bead_radius": 1.0
       }
     },
     {

@@ -28,7 +28,9 @@
         "base_radius": 12.5,
         "tip_radius": 28.0,
         "height": 35.0,
-        "resolution": 64
+        "resolution": 64,
+        "flare_exponent": 1.5,
+        "flare_angle_deg": 10.0
       }
     },
     {
@@ -42,7 +44,9 @@
         "radius": 14.0,
         "piston_diameter": 12.0,
         "port_width": 3.0,
-        "stroke": 40.0
+        "stroke": 40.0,
+        "port_count": 3,
+        "fillet_radius": 0.5
       }
     },
     {
@@ -56,7 +60,9 @@
         "radius": 14.0,
         "piston_diameter": 12.0,
         "port_width": 3.0,
-        "stroke": 40.0
+        "stroke": 40.0,
+        "port_count": 3,
+        "fillet_radius": 0.5
       }
     },
     {
@@ -70,7 +76,9 @@
         "radius": 14.0,
         "piston_diameter": 12.0,
         "port_width": 3.0,
-        "stroke": 40.0
+        "stroke": 40.0,
+        "port_count": 3,
+        "fillet_radius": 0.5
       }
     },
     {
