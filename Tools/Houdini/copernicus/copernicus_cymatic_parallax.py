@@ -12,6 +12,7 @@ Pure numpy pipeline. Produces parallax-ready height + 9 PBR maps per variant:
   GildedCoral     — coral branches with mother-of-pearl nacre + gold
   StarlitAbyss    — deep ocean bioluminescent abyss
   FrozenFracture  — cracked ice with frost crystals + air bubbles
+  WeepingWillow   — aged willow wood with resin channels + leaf fossils
   SingingConstellations — living star-map with singing nodes + nebula veins
   FinalDreamweaver — IMPOSSIBLE: fabric woven from frozen moonlight + living shadows
 """
@@ -222,6 +223,18 @@ VARIANTS = {
         glow=(255, 214, 160),
         rough_velvet=0.82, rough_gold=0.22, rough_jewel=0.05,
         glow_intensity=0.6, brocade_freq=6, jewel_rows=3,
+    ),
+    # === WeepingWILLOW — aged willow wood with sap/resin channels + leaf fossils (2026-09-02) ===
+    # Organic tree-section: pale heartwood grain, glossy amber resin channels tracing the
+    # Chladni rings, and imprinted leaf fossils. Resin stays low-rough + subtly glossy.
+    "WeepingWillow": dict(
+        wood_hi=(212, 184, 150), wood_mid=(168, 138, 104), wood_dark=(112, 86, 62),
+        bark=(72, 54, 40), resin=(207, 170, 96), resin_deep=(150, 112, 66),
+        leaf_fossil=(136, 100, 68), leaf_dark=(92, 64, 44),
+        glow=(255, 230, 160),
+        rough_wood=0.55, rough_resin=0.12, rough_leaf=0.48,
+        grain_freq=7, resin_density=0.5, leaf_count=16,
+        chladni_modes=[(6, 8), (11, 7), (16, 13)],
     ),
     # === Faraway Mother fabric mountains — 8 terrain-scale fabric variants (2026-09-02) ===
     # Body-landscape: reclining maternal silhouette, fabric ridges = skin/folds,
@@ -1571,6 +1584,83 @@ def build_royal_velvet_brocade(h, w, frame, total_frames):
     return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
 
 
+def build_weeping_willow(h, w, frame, total_frames):
+    """WeepingWillow — aged willow wood: pale heartwood grain, glossy amber resin
+    channels tracing Chladni rings, and imprinted leaf fossils. Tileable."""
+    p = VARIANTS["WeepingWillow"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+
+    # Heartwood grain — tight warped growth rings
+    grain_noise = warped_fbm(h, w, 48, 4, 0.20, SEED + 810)
+    rings = np.sin((ny * p["grain_freq"] * 2 * np.pi - grain_noise * 2.5) * 0.5 + grain_noise) * 0.5 + 0.5
+    wood = np.clip(grain_noise * 0.4 + rings * 0.6, 0, 1)
+
+    # Chladni — drives both resin channels and fossil placement so nothing floats
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.3 + i * 0.2) + i * 0.9 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.4][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    resin = smoothstep(0.80, 0.95, nodal)      # thin glossy resin carved into rings
+    resin_core = smoothstep(0.90, 0.985, nodal)  # brightest channel centre
+    bark_crack = smoothstep(0.68, 0.9, 1.0 - wood) * (0.4 + cym * 0.6)
+
+    # Leaf fossils — ellipse-ish imprints (6-sides reads as a lyre leaf) at Chladni nodes
+    rng = np.random.RandomState(SEED + 820)
+    leaf_mask = np.zeros((h, w), np.float32)
+    leaf_stem = np.zeros((h, w), np.float32)   # subtle down-stroke per leaf
+    for _ in range(p["leaf_count"]):
+        cx = rng.randint(0, w)
+        cy = rng.randint(0, h)
+        size = rng.randint(min(h, w) // 28, min(h, w) // 14)
+        rot = rng.rand() * 2 * np.pi + phase * 0.03
+        leaf_shape = crystal_shape(h, w, cx, cy, size, 6, rot)
+        # elongate: sample the polygon only within an ellipse window
+        dx = xx - cx
+        dy = yy - cy
+        ang = np.arctan2(dy, dx) + rot
+        rr = np.sqrt(dx * dx + dy * dy)
+        ellipse = smoothstep(1.6 * size, 0.9 * size, rr * (1.0 + 0.55 * np.abs(np.cos(2 * ang))))
+        fossil = leaf_shape * ellipse
+        leaf_mask = np.clip(leaf_mask + fossil * (0.5 + cym * 0.5), 0, 1)
+        # stem stroke aligned with leaf rotation major axis
+        for s in range(int(size * 1.2)):
+            sx = int(cx + np.cos(rot) * s) % w
+            sy = int(cy + np.sin(rot) * s) % h
+            leaf_stem[sy, sx] = max(leaf_stem[sy, sx], 1.0)
+
+    leaf_mask = np.clip(leaf_mask, 0, 1)
+    leaf_stem = np.clip(leaf_stem * 0.8, 0, 1)
+    fossil_ink = np.clip(leaf_mask * 0.6 + leaf_stem * 0.5, 0, 1)
+
+    # Height: recessed fossils, raised resin, rippled grain
+    height = np.clip(wood * 0.22 + resin * 0.4 + bark_crack * 0.28 + fossil_ink * 0.5, 0, 1)
+
+    base = mix(col(p["wood_mid"]), col(p["wood_hi"]), wood)
+    base = mix(base, col(p["wood_dark"]), (1 - wood) * 0.35)
+    base = mix(base, col(p["bark"]), bark_crack * 0.7)
+    base = mix(base, col(p["resin"]), resin * 0.9)
+    base = mix(base, col(p["resin_deep"]), resin * cym * 0.35)
+    base = mix(base, col(p["leaf_fossil"]), leaf_mask * 0.55)
+    base = mix(base, col(p["leaf_dark"]), leaf_stem * 0.7)
+
+    rough = mix(p["rough_wood"], p["rough_resin"], resin)
+    rough = mix(rough, p["rough_leaf"], leaf_mask * 0.4)
+
+    metallic = resin_core * 0.45                     # resin channels catch light
+
+    resin_glow = resin * smoothstep(0.35, 0.9, cym * 1.1)   # broader: whole resin channel, not just core
+    emissive = mask_color(resin_glow * 0.75, col(p["glow"]))
+    emissive = np.clip(emissive, 0, 1)
+
+    iri = np.clip(resin * 0.35 + leaf_mask * 0.18 + nodal * 0.1, 0, 1)
+
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri,
+                     np.ones((h, w), np.float32))
+
+
 def build_melodia_hero_gem(h, w, frame, total_frames):
     """Reusable audio-reactive HERO GEM — Infinity Nikki jewellery recipe over Chladni.
 
@@ -1892,6 +1982,7 @@ BUILDERS = {
     "ChoirStone": build_choir_stone,
     "CrystalCathedral": build_crystal_cathedral,
     "RoyalVelvetBrocade": build_royal_velvet_brocade,
+    "WeepingWillow": build_weeping_willow,
     "FarawayCelestialSilk": build_faraway_celestial_silk,
     "MelodiaHeroGem": build_melodia_hero_gem,
     "MelodiaGoldSilk": build_melodia_gold_silk,

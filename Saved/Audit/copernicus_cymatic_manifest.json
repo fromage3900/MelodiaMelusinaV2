@@ -4,17 +4,17 @@
   "size": "1024x1024",
   "frames": 1,
   "variants": {
-    "MelodiaAuroraGlass": {
+    "WeepingWillow": {
       "outputs": [
-        "Saved/Audit/copernicus_cymatic/MelodiaAuroraGlass/T_Cymatic_MelodiaAuroraGlass_BaseColor.png",
-        "Saved/Audit/copernicus_cymatic/MelodiaAuroraGlass/T_Cymatic_MelodiaAuroraGlass_Normal.png",
-        "Saved/Audit/copernicus_cymatic/MelodiaAuroraGlass/T_Cymatic_MelodiaAuroraGlass_Roughness.png",
-        "Saved/Audit/copernicus_cymatic/MelodiaAuroraGlass/T_Cymatic_MelodiaAuroraGlass_Metallic.png",
-        "Saved/Audit/copernicus_cymatic/MelodiaAuroraGlass/T_Cymatic_MelodiaAuroraGlass_Height.png",
-        "Saved/Audit/copernicus_cymatic/MelodiaAuroraGlass/T_Cymatic_MelodiaAuroraGlass_ORM.png",
-        "Saved/Audit/copernicus_cymatic/MelodiaAuroraGlass/T_Cymatic_MelodiaAuroraGlass_Emissive.png",
-        "Saved/Audit/copernicus_cymatic/MelodiaAuroraGlass/T_Cymatic_MelodiaAuroraGlass_Iridescence.png",
-        "Saved/Audit/copernicus_cymatic/MelodiaAuroraGlass/T_Cymatic_MelodiaAuroraGlass_Opacity.png"
+        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Normal.png",
+        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Height.png",
+        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_ORM.png",
+        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Opacity.png"
       ]
     }
   },
