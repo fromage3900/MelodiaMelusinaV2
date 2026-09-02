@@ -157,6 +157,9 @@ public:
 		FName& OutBlockReason) const override;
 
 private:
+	UFUNCTION()
+	void HandleNarrativeReward(FName RewardId);
+
 	/**
 	 * The catalog, resolved once and held.
 	 *

@@ -49,7 +49,7 @@ void AMelodiaWaterPlatform::BeginPlay()
 		State.PlatformId = PlatformId;
 		State.NetworkId = WaterNetworkId;
 		State.MotionMode = MotionMode;
-		State.RouteId = MotionComponent ? MotionComponent->RouteId : NAME_None;
+		State.RouteId = MotionComponent ? MotionComponent->RouteId : FGameplayTag::EmptyTag;
 		State.bActive = MotionMode == EMelodiaWaterPlatformMotionMode::PhysicsBuoyant;
 		WaterGameplay->RegisterPlatform(State);
 	}
@@ -87,11 +87,11 @@ void AMelodiaWaterPlatform::InitializeFromPCGPoint(FPCGPoint Point, const UPCGMe
 		}
 		else if (Value.StartsWith(TEXT("WaterNetwork_")))
 		{
-			WaterNetworkId = FName(*Value.RightChop(13));
+			WaterNetworkId = FGameplayTag::RequestGameplayTag(FName(*Value.RightChop(13)), false);
 		}
 		else if (Value.StartsWith(TEXT("WaterRoute_")) && MotionComponent)
 		{
-			MotionComponent->RouteId = FName(*Value.RightChop(11));
+			MotionComponent->RouteId = FGameplayTag::RequestGameplayTag(FName(*Value.RightChop(11)), false);
 		}
 		else if (Value == TEXT("WaterMotion_KinematicRoute"))
 		{

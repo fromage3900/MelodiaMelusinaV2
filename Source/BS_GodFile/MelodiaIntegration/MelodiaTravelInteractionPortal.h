@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/EngineTypes.h"
 #include "GameFramework/Actor.h"
 #include "MelodiaTravelInteractionPortal.generated.h"
 
@@ -37,6 +38,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Travel Interaction")
 	FText InteractionPrompt = NSLOCTEXT("Melodia", "ContinueExplorationPrompt", "Continue exploring  [F]");
 
+	/** Optional capability required before this portal accepts interaction. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Travel Interaction|Capability")
+	FName RequiredTraversalCapability = TEXT("capability.melodia.glide");
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Travel Interaction|Capability")
+	FName TraversalCapabilityContext = TEXT("active_traversal_context");
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Travel Interaction|Capability")
+	FText LockedInteractionPrompt = NSLOCTEXT("Melodia", "TraversalLockedPrompt", "A Resonant Form is required");
+
+	UFUNCTION(BlueprintPure, Category="Melodia|Travel Interaction|Capability")
+	bool IsTraversalUnlocked(FName& OutBlockReason) const;
+
 	/** Called by Melusina's nearest-overlap interaction route. */
 	UFUNCTION(BlueprintCallable, Category="Melodia|Travel Interaction")
 	bool TryInteract(AActor* InteractingActor);
@@ -45,5 +59,8 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
+	void RefreshCapabilityPrompt();
+
 	bool bTravelRequested = false;
+	FTimerHandle CapabilityRefreshTimerHandle;
 };

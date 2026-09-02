@@ -128,7 +128,7 @@ void UMelodiaWaterPlatformMotionComponent::ApplyRouteTransform()
 
 bool UMelodiaWaterPlatformMotionComponent::IsGateOpen() const
 {
-	if (GateActivationRequirement.IsNone())
+	if (!GateActivationRequirement.IsValid())
 	{
 		return true;
 	}

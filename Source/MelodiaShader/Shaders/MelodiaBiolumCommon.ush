@@ -1,0 +1,126 @@
+// Copyright 2026 BS_GodFile. All Rights Reserved.
+//
+// MelodiaBiolumCommon.ush — shared bioluminescence helpers for water + ocean shaders.
+//
+// This header provides the bioluminescence impulse model and contact-event helpers
+// that are shared between:
+//   - The existing water bioluminescence system (MF_WaterBioluminescence_v9)
+//   - The new Oceanology MI emissive channel (MI_Oceanology_NikkiHero)
+//   - The ink bioluminescent bridge (MelodiaInkBioluminescent.ush)
+//
+// The decay model I(t) = I₀ · exp(-λ · dt) is the SINGLE shared model across all
+// bioluminescent surfaces. If any system changes λ or I₀, all must change.
+// The defaults match wire_water_bioluminescence_harmony.py:
+//   WATER_BIOLUMINESCENCE_IMPULSE = 2.0
+//   BIOLUMINESCENCE_DECAY_LAMBDA = 2.5
+
+#pragma once
+#include "MelodiaInkCommon.ush"
+
+// ============================================================================
+// Contact impulse — a single bioluminescent contact event
+// ============================================================================
+
+struct FMelodiaBiolumContact
+{
+    float2 WorldPos;      // world position of the contact
+    float  Time;          // time of contact (GameTime)
+    float  Intensity;     // impulse intensity (0..1)
+    float  Radius;        // contact radius in cm
+};
+
+// ============================================================================
+// Evaluate the bioluminescent impulse at a point, given a contact event
+// I(t) = I₀ · exp(-λ · (t_now - t_contact))
+// ============================================================================
+
+float MelBiolumEvaluateImpulse(
+    float2 worldPos,
+    FMelodiaBiolumContact contact,
+    float currentTime,
+    float peakIntensity,
+    float decayRate
+)
+{
+    float dt = currentTime - contact.Time;
+    if (dt < 0.0) return 0.0;
+
+    // Distance falloff from contact center
+    float dist = length(worldPos - contact.WorldPos);
+    float falloff = 1.0 / (1.0 + dist * dist / max(contact.Radius * contact.Radius, 1e-4));
+
+    return peakIntensity * exp(-decayRate * dt) * falloff * contact.Intensity;
+}
+
+// ============================================================================
+// Sum multiple contact impulses (up to 4, the Niagara bridge limit is 60/sec
+// but we batch for the shader)
+// ============================================================================
+
+float MelBiolumSumImpulses(
+    float2 worldPos,
+    FMelodiaBiolumContact contacts[4],
+    int contactCount,
+    float currentTime,
+    float peakIntensity,
+    float decayRate
+)
+{
+    float sum = 0.0;
+    for (int i = 0; i < 4; i++)
+    {
+        if (i >= contactCount) break;
+        sum += MelBiolumEvaluateImpulse(worldPos, contacts[i], currentTime, peakIntensity, decayRate);
+    }
+    return MelSaturate(sum);
+}
+
+// ============================================================================
+// Bioluminescent color shift — the glow color shifts with depth + audio
+// ============================================================================
+
+float3 MelBiolumColor(
+    float3 baseColor,     // surface base color
+    float  impulse,       // 0..1 impulse amount
+    float  depth,         // water depth (0=surface, 1=deep)
+    float3 shallowColor,  // glow color at surface
+    float3 deepColor,     // glow color at depth
+    float3 audioTint       // audio-reactive tint (from MPC)
+)
+{
+    // Depth gradient: shallow → deep
+    float3 glowColor = lerp(shallowColor, deepColor, MelSaturate(depth));
+
+    // Audio tint adds reactive color variation
+    glowColor = lerp(glowColor, glowColor * audioTint, 0.3);
+
+    // Additive blend
+    return baseColor + glowColor * impulse;
+}
+
+// ============================================================================
+// Foam-to-bioluminescence — map foam intensity to bioluminescent glow
+// For the Oceanology integration: wave crest foam glows on contact
+// ============================================================================
+
+float3 MelBiolumFoamGlow(
+    float3 baseColor,
+    float  foamAmount,    // 0..1 foam density
+    float  impulse,       // 0..1 bioluminescent impulse
+    float3 foamGlowColor,
+    float  glowStrength
+)
+{
+    float glow = foamAmount * impulse * glowStrength;
+    return baseColor + foamGlowColor * glow;
+}
+
+// ============================================================================
+// Shared defaults — MUST match wire_water_bioluminescence_harmony.py
+// ============================================================================
+
+#define MEL_BIOLUM_PEAK 2.0
+#define MEL_BIOLUM_DECAY 2.5
+#define MEL_BIOLUM_MAX_CONTACTS_PER_SEC 60
+#define MEL_BIOLUM_PROXIMITY_RADIUS_CM 500.0
+#define MEL_BIOLUM_PROXIMITY_FALLOFF 2.0

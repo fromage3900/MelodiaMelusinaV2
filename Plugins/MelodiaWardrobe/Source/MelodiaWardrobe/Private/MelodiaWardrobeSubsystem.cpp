@@ -8,7 +8,10 @@
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaTokenWalletSubsystem.h"
 #include "MelodiaCosmeticDefinition.h"
+#include "MelodiaWardrobeComponent.h"
 #include "MelodiaTraversalCapabilityProvider.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PlayerController.h"
 #include "Engine/SkeletalMesh.h"
 #include "Engine/GameInstance.h"
 #include "Engine/Engine.h"
@@ -37,6 +40,10 @@ void UMelodiaWardrobeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	if (UGameInstance* GI = GetGameInstance())
 	{
 		Narrative = GI->GetSubsystem<UMelodiaNarrativeSubsystem>();
+		if (Narrative)
+		{
+			Narrative->OnRewardRequested.AddUniqueDynamic(this, &UMelodiaWardrobeSubsystem::HandleNarrativeReward);
+		}
 		Wallet = GI->GetSubsystem<UMelodiaTokenWalletSubsystem>();
 		CapabilityRegistry = GI->GetSubsystem<UMelodiaTraversalCapabilityRegistry>();
 		if (CapabilityRegistry.IsValid())
@@ -48,6 +55,10 @@ void UMelodiaWardrobeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 void UMelodiaWardrobeSubsystem::Deinitialize()
 {
+	if (Narrative)
+	{
+		Narrative->OnRewardRequested.RemoveDynamic(this, &UMelodiaWardrobeSubsystem::HandleNarrativeReward);
+	}
 	if (CapabilityRegistry.IsValid())
 	{
 		CapabilityRegistry->UnregisterProvider(this);
@@ -55,6 +66,34 @@ void UMelodiaWardrobeSubsystem::Deinitialize()
 	}
 
 	Super::Deinitialize();
+}
+
+void UMelodiaWardrobeSubsystem::HandleNarrativeReward(const FName RewardId)
+{
+	const UMelodiaCosmeticCatalog* Catalog = GetCatalog();
+	if (!Catalog || RewardId.IsNone())
+	{
+		return;
+	}
+
+	for (const FMelodiaCosmeticRecord& Cosmetic : Catalog->Cosmetics)
+	{
+		if (Cosmetic.UnlockRewardId != RewardId
+			|| !GrantCosmetic(Cosmetic.CosmeticId, RewardId)
+			|| !Cosmetic.bAutoEquipOnUnlock)
+		{
+			continue;
+		}
+
+		APlayerController* PlayerController = GetWorld() ? GetWorld()->GetFirstPlayerController() : nullptr;
+		APawn* Pawn = PlayerController ? PlayerController->GetPawn() : nullptr;
+		UMelodiaWardrobeComponent* Component = Pawn ? Pawn->FindComponentByClass<UMelodiaWardrobeComponent>() : nullptr;
+		if (!Component || !Component->EquipCosmetic(Cosmetic.CosmeticId))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_WARDROBE reward %s granted %s but auto-equip failed."),
+				*RewardId.ToString(), *Cosmetic.CosmeticId.ToString());
+		}
+	}
 }
 
 FMelodiaWardrobeState UMelodiaWardrobeSubsystem::GetState() const

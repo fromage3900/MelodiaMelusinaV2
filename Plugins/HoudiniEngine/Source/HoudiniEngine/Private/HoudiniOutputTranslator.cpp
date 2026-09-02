@@ -1,0 +1,3031 @@
+/*
+* Copyright (c) <2021> Side Effects Software Inc.
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*
+* 1. Redistributions of source code must retain the above copyright notice,
+*    this list of conditions and the following disclaimer.
+*
+* 2. The name of Side Effects Software may not be used to endorse or
+*    promote products derived from this software without specific prior
+*    written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY SIDE EFFECTS SOFTWARE "AS IS" AND ANY EXPRESS
+* OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+* OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
+* NO EVENT SHALL SIDE EFFECTS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT,
+* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+* LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+* OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+* LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#include "HoudiniOutputTranslator.h"
+
+#include "HAPI/HAPI.h"
+
+#include "HoudiniAnimationTranslator.h"
+#include "HoudiniApi.h"
+#include "HoudiniAsset.h"
+#include "HoudiniAssetActor.h"
+#include "HoudiniAssetComponent.h"
+#include "HoudiniCookable.h"
+#include "HoudiniDataLayerUtils.h"
+#include "HoudiniDataTableTranslator.h"
+#include "HoudiniEngine.h"
+#include "HoudiniEnginePrivatePCH.h"
+#include "HoudiniEngineRuntime.h"
+#include "HoudiniEngineString.h"
+#include "HoudiniEngineUtils.h"
+#include "HoudiniFoliageTools.h"
+#include "HoudiniFoliageUtils.h"
+#include "HoudiniGeometryCollectionTranslator.h"
+#include "HoudiniGeoPartObject.h"
+#include "HoudiniHLODLayerUtils.h"
+#include "HoudiniInput.h"
+#include "HoudiniInstanceTranslator.h"
+#include "HoudiniLandscapeTranslator.h"
+#include "HoudiniLandscapeSplineTranslator.h"
+#include "HoudiniLevelInstanceUtils.h"
+#include "HoudiniMeshTranslator.h"
+#include "HoudiniNodeSyncComponent.h"
+#include "HoudiniOutput.h"
+#include "HoudiniSkeletalMeshTranslator.h"
+#include "HoudiniSplineComponent.h"
+#include "HoudiniSplineTranslator.h"
+#include "HoudiniStaticMesh.h"
+#include "HoudiniTextureTranslator.h"
+#if defined(HOUDINI_USE_PCG)
+#include "HoudiniPCGTranslator.h"
+#endif
+#include "Components/HierarchicalInstancedStaticMeshComponent.h"
+#include "Editor.h"
+#include "EditorSupportDelegates.h"
+#if (ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION > 7)
+#include "StructUtils/UserDefinedStruct.h"
+#else
+#include "Engine/UserDefinedStruct.h"
+#endif
+#include "Engine/WorldComposition.h"
+#include "FileHelpers.h"
+#include "HAL/PlatformFileManager.h"
+#include "HAL/FileManager.h"
+#include "InstancedFoliageActor.h"
+#include "LandscapeInfo.h"
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION > 1
+#include "MaterialShared.h"
+#endif
+#include "Materials/MaterialInstanceConstant.h"
+#include "Modules/ModuleManager.h"
+#include "WorldBrowserModule.h"
+
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 3
+	#include "GeometryCollection/GeometryCollectionActor.h"
+	#include "GeometryCollection/GeometryCollectionObject.h"
+#else
+	#include "GeometryCollectionEngine/Public/GeometryCollection/GeometryCollectionActor.h"
+	#include "GeometryCollectionEngine/Public/GeometryCollection/GeometryCollectionObject.h"
+#endif
+
+#define LOCTEXT_NAMESPACE HOUDINI_LOCTEXT_NAMESPACE
+
+
+//
+bool
+FHoudiniOutputTranslator::UpdateOutputs(
+	UHoudiniCookable* HC)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::UpdateOutputs-Cookable);
+
+	if (!IsValid(HC))
+		return false;
+
+	if (!HC->IsOutputSupported() || !HC->OutputData)
+		return false;
+
+	UObject* Outer = Cast<UObject>(HC);
+
+	// 1. Update the output objects
+	UpdateOutputObjects(
+		HC->NodeId,
+		HC->OutputData->Outputs,
+		HC->NodeIdsToCook,
+		HC->NodesToCookCookCounts,
+		Outer,
+		HC->OutputData->bOutputless,
+		HC->OutputData->bOutputTemplateGeos,
+		HC->OutputData->bUseOutputNodes,
+		HC->GetEnableCurveEditing(),
+		HC->OutputData->bCreateSceneComponents,
+		HC->bForcePCGOutputs);
+
+	// 2. Update tags and generic attributes on the Cookable and its component (if any)
+	UpdateOutputAttributesAndTags(HC);
+
+	return true;
+}
+
+
+//
+bool
+FHoudiniOutputTranslator::ProcessOutputs(
+	UHoudiniCookable* HC,
+	bool& bOutHasHoudiniStaticMeshOutput)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::ProcessOutputs-Cookable);
+
+	if (!IsValid(HC))
+		return false;
+
+	if (!HC->IsOutputSupported() || !HC->OutputData)
+		return false;
+
+	// 1. Create all the outputs and their components
+	FHoudiniPackageParams PackageParams;
+	PackageParams.PackageMode = FHoudiniPackageParams::GetDefaultStaticMeshesCookMode();
+	PackageParams.ReplaceMode = FHoudiniPackageParams::GetDefaultReplaceMode();
+
+	PackageParams.BakeFolder = HC->GetBakeFolderOrDefault();
+	PackageParams.TempCookFolder = HC->GetTemporaryCookFolderOrDefault();
+
+	PackageParams.OuterPackage = HC->GetLevel();
+	if (!PackageParams.OuterPackage)
+		PackageParams.OuterPackage = HC->GetPackage();
+
+	PackageParams.HoudiniAssetName = HC->GetHoudiniAssetName();
+	PackageParams.HoudiniAssetActorName = HC->GetDisplayName();
+	PackageParams.ComponentGUID = HC->CookableGUID;
+	PackageParams.ObjectName = FString();
+
+	TArray<UPackage*> CreatedPackages;
+	if (!CreateAllOutputs(
+		HC->GetOutputs(),
+		HC->GetInputs(),
+		PackageParams,
+		HC->GetComponent(), // TODO COOKABLE: Use Cookable / Component here ? - need to split
+		HC->GetWorld(),
+		HC->IsProxyStaticMeshEnabled(),
+		HC->HasNoProxyMeshNextCookBeenRequested(),
+		HC->IsBakeAfterNextCookEnabled(),
+		HC->GetSplitMeshSupport(),
+		HC->GetApplyPCGTransform(),
+		HC->GetStaticMeshGenerationProperties(),
+		HC->GetStaticMeshBuildSettings(),
+		bOutHasHoudiniStaticMeshOutput,
+		CreatedPackages))
+		return false;
+
+	// 2. Output cleanup
+	CleanOutputsPostCreate(HC->OutputData->Outputs, HC->GetWorld(), HC->HasBeenLoaded());
+
+	// 3. 
+	UpdateDataLayersAndLevelInstanceOnOutput(HC->OutputData->Outputs);
+
+	// 4. Save all created packages	
+	if (CreatedPackages.Num() > 0)
+	{
+		// Save created packages. For example, we don't want landscape layers deleted 
+		// along with the HDA.
+		FEditorFileUtils::PromptForCheckoutAndSave(CreatedPackages, true, false);
+	}
+
+	return true;
+}
+
+//
+void
+FHoudiniOutputTranslator::UpdateOutputObjects(
+	HAPI_NodeId InNodeId,
+	TArray<TObjectPtr<UHoudiniOutput>>& Outputs,
+	const TArray<int32>& InNodeIdsToCook,
+	const TMap<int32, int32>& InOutputNodeCookCounts,
+	UObject* InOuter,
+	bool bOutputless,
+	bool bOutputTemplateGeos,
+	bool bUseOutputNodes,
+	bool bEnableCurveEditing,
+	bool bCreateSceneComponents,
+	bool bForcePCG)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::UpdateOutputObjects);
+
+	// Check if the HDA has been marked as not producing outputs
+	if (bOutputless)
+	{
+		ClearAndRemoveOutputs(Outputs, EHoudiniClearFlags::EHoudiniClear_Assets);
+		return;
+	}
+
+	//
+	// 1. Update the output objects
+	//
+	ClearAndRemoveOutputs(Outputs, EHoudiniClearFlags::EHoudiniClear_Actors);
+
+	TArray<TObjectPtr<UHoudiniOutput>> NewOutputs;
+	if (FHoudiniOutputTranslator::BuildAllOutputs(
+		InNodeId, InOuter, InNodeIdsToCook, InOutputNodeCookCounts,
+		Outputs, NewOutputs, bOutputTemplateGeos, bUseOutputNodes, bEnableCurveEditing, bCreateSceneComponents, bForcePCG))
+	{
+		ClearAndRemoveOutputs(Outputs, EHoudiniClearFlags::EHoudiniClear_Assets);
+
+		// Replace with the new parameters
+		Outputs = NewOutputs;
+	}
+}
+
+bool
+FHoudiniOutputTranslator::UpdateOutputAttributesAndTags(UHoudiniCookable* InHC)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::UpdateOutputAttributesAndTags);
+
+	//
+	// Update tags and generic attributes on HAC
+	//
+	if (!InHC)
+		return false;
+
+	// At the moment we don't support controlling KeepTags separately for components and actors, so if we find any
+	// HGPOs with KeepTags set to true, we'll keep the tags on both actors and components. In the future we may
+	// want to control these separately.
+	bool bKeepTags = false;
+	
+	// Look for detail generic property attributes on the outputs
+	// and see if any of them apply to the Cookable or its component/HAC
+	int32 NumOutputs = InHC->GetNumOutputs();
+	TArray<FHoudiniGenericAttribute> GenericAttributes;
+	for (int32 OutputIdx = 0; OutputIdx < NumOutputs; OutputIdx++)
+	{
+		UHoudiniOutput* CurrentOutput = InHC->GetOutputAt(OutputIdx);
+		if (!IsValid(CurrentOutput))
+			continue;
+
+		const TArray<FHoudiniGeoPartObject>& CurrentOutputHGPO = CurrentOutput->GetHoudiniGeoPartObjects();
+		for (auto& CurrentHGPO : CurrentOutputHGPO)
+		{
+			// We can't get generic attributes on cops - as they dont have geos
+			if (CurrentHGPO.Type == EHoudiniPartType::Cop)
+				continue;
+
+			FHoudiniEngineUtils::GetGenericAttributeList(
+				CurrentHGPO.GeoId,
+				CurrentHGPO.PartId,
+				HAPI_UNREAL_ATTRIB_GENERIC_UPROP_PREFIX,
+				GenericAttributes,
+				HAPI_ATTROWNER_DETAIL);
+
+			bKeepTags = bKeepTags || CurrentHGPO.bKeepTags;			
+		}
+	}
+
+	AActor* ActorOwner = InHC->GetOwner();
+	USceneComponent* CookableComponent = InHC->GetComponent();
+	if (bKeepTags == false)
+	{
+		if (ActorOwner)
+			ActorOwner->Tags.Empty();
+
+		if(CookableComponent)
+			CookableComponent->ComponentTags.Empty();
+	}
+
+	// Use the actor name for the log messages if possible
+	FString DisplayName = ActorOwner ? ActorOwner->GetActorLabel() : InHC->GetName();
+
+	// Attempt to apply the generic attributes to the Cookable or its component
+	for (const auto& CurrentPropAttribute : GenericAttributes)
+	{
+		// Get the current Property Attribute
+		const FString& CurrentPropertyName = CurrentPropAttribute.AttributeName;
+		if (CurrentPropertyName.IsEmpty())
+			continue;
+
+		// Try applying the property on the cookable first..
+		if (FHoudiniGenericAttribute::UpdatePropertyAttributeOnObject(InHC, CurrentPropAttribute))
+		{
+			// Success!
+			HOUDINI_LOG_MESSAGE(TEXT("Modified UProperty %s on Houdini Cookable named %s"), *CurrentPropertyName, *DisplayName);
+		}
+
+		// .. then on its component if we have one
+		if (CookableComponent)
+		{
+			if (FHoudiniGenericAttribute::UpdatePropertyAttributeOnObject(CookableComponent, CurrentPropAttribute))
+			{
+				// Success!
+				HOUDINI_LOG_MESSAGE(TEXT("Modified UProperty %s on Houdini Component named %s"), *CurrentPropertyName, *DisplayName);
+			}
+		}
+	}
+
+	// TODO: Needed?
+	// Apply Custom prim data on the Cookable component if we have one
+	// This is mostly so they can be visible when selecting the HAC
+	UPrimitiveComponent* CookablePrimComponent = Cast<UPrimitiveComponent>(CookableComponent);
+	if (CookablePrimComponent)
+	{
+		TArray<float> DetailCustomPrimData;
+		for (int32 OutputIdx = 0; OutputIdx < NumOutputs; OutputIdx++)
+		{
+			UHoudiniOutput* CurrentOutput = InHC->GetOutputAt(OutputIdx);
+			if (!IsValid(CurrentOutput))
+				continue;
+
+			const TArray<FHoudiniGeoPartObject>& CurrentOutputHGPO = CurrentOutput->GetHoudiniGeoPartObjects();
+			for (auto& CurrentHGPO : CurrentOutputHGPO)
+			{
+				// Look for detail custom prim data attributes
+				TArray<float> CurrentCustomPrimData;
+				FHoudiniMeshTranslator::GetCustomPrimitiveData(
+					CurrentHGPO.GeoId,
+					CurrentHGPO.PartId,
+					0,
+					CurrentCustomPrimData,
+					HAPI_ATTROWNER_DETAIL);
+
+				if (!CurrentCustomPrimData.IsEmpty())
+				{
+					if (DetailCustomPrimData.Num() < CurrentCustomPrimData.Num())
+						DetailCustomPrimData.SetNum(CurrentCustomPrimData.Num());
+
+					for (int Idx = 0; Idx < CurrentCustomPrimData.Num(); Idx++)
+						DetailCustomPrimData[Idx] = CurrentCustomPrimData[Idx];
+				}
+			}
+		}
+
+		// Apply the details custom prim data found on the cookable component
+		if (!DetailCustomPrimData.IsEmpty())
+			FHoudiniMeshTranslator::SetCustomPrimitiveData(
+				DetailCustomPrimData, CookablePrimComponent);
+	}
+
+	return true;
+}
+
+bool
+FHoudiniOutputTranslator::CreateAllOutputs(
+	TArray<TObjectPtr<UHoudiniOutput>>& Outputs,
+	const TArray<TObjectPtr<UHoudiniInput>>& Inputs,
+	const FHoudiniPackageParams& PackageParams,
+	UObject* InOuter,
+	UWorld* InWorld,
+	bool bIsProxyStaticMeshEnabled,
+	bool bHasNoProxyMeshNextCookBeenRequested,
+	bool bIsBakeAfterNextCookEnabled,
+	bool bSplitMeshSupport,
+	bool bApplyPCGTransform,
+	const FHoudiniStaticMeshGenerationProperties& InStaticMeshGenerationProperties,
+	const FMeshBuildSettings& InStaticMeshBuildSettings,
+	bool& bOutHasHoudiniStaticMeshOutput,
+	TArray<UPackage*>& OutCreatedPackages)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::CreateAllOutputs);
+
+	//
+	// 3. Create the actual outputs assets/components
+	//
+
+	// TODO COOKABLE: Handle the case where the Out is NOT a component
+	// we need to split output asset creation from component creation!
+	UHoudiniCookable* OuterHC = Cast<UHoudiniCookable>(InOuter);
+	USceneComponent* InOuterComponent = Cast<USceneComponent>(InOuter);
+	if (!InOuterComponent)
+	{
+		InOuterComponent = OuterHC ? OuterHC->GetComponent() : nullptr;
+	}
+	else if (!OuterHC)
+	{
+		OuterHC = Cast<UHoudiniCookable>(InOuterComponent->GetOuter());
+	}
+
+	// NOTE: The world can be NULL when, for example, when working with
+	// HoudiniAssetComponents in Blueprints.
+	if (InWorld && IsValid(InWorld->WorldComposition))
+	{
+		// We don't want the origin to shift as we're potentially updating levels.
+		InWorld->WorldComposition->bTemporarilyDisableOriginTracking = true;
+	}
+
+	// "Process" the mesh.
+	// TODO: Move this to the actual processing stage,
+	// And see if some of this could be threaded
+
+	// ----------------------------------------------------
+	// 3.1 Outputs prepass
+	// ----------------------------------------------------
+
+	// Collect all the landscape layers' global min/max values.
+	TMap<FString, float> LandscapeLayerGlobalMinimums;
+	TMap<FString, float> LandscapeLayerGlobalMaximums;
+
+	// Store the instancer outputs separately so we can process them later, after all mesh output are processed.
+	// Determine the total number of instances, if we have more than 1 then mesh parts with instanced geo we will not create proxy meshes
+	// Also if we have object instancer (or oldschool attribute instancers), we won't be creating any proxy at all
+	TArray<UHoudiniOutput*> InstancerOutputs;
+	int32 NumInstances = 0;
+	bool bHasObjectInstancer = false;
+	for (auto& CurOutput : Outputs)
+	{
+		if (CurOutput->GetType() == EHoudiniOutputType::Instancer)
+		{
+			// InstancerOutputs.Add(CurOutput);
+			for (const FHoudiniGeoPartObject& HGPO : CurOutput->GetHoudiniGeoPartObjects())
+			{
+				if (HGPO.Type == EHoudiniPartType::Instancer)
+				{
+					if (HGPO.InstancerType == EHoudiniInstancerType::PackedPrimitive || HGPO.InstancerType == EHoudiniInstancerType::GeometryCollection)
+					{
+						NumInstances += HGPO.PartInfo.InstanceCount;
+					}
+					else
+					{
+						NumInstances += HGPO.PartInfo.PointCount;
+					}
+
+					if ((HGPO.InstancerType == EHoudiniInstancerType::ObjectInstancer)
+						|| (HGPO.InstancerType == EHoudiniInstancerType::OldSchoolAttributeInstancer))
+					{
+						bHasObjectInstancer = true;
+					}
+				}
+			}
+		}
+		else if (CurOutput->GetType() == EHoudiniOutputType::Landscape)
+		{
+			FHoudiniLandscapeTranslator::CalcHeightFieldsArrayGlobalZMinZMax(CurOutput->GetHoudiniGeoPartObjects(), LandscapeLayerGlobalMinimums, LandscapeLayerGlobalMaximums, false);
+		}
+	}
+
+	bOutHasHoudiniStaticMeshOutput = false;
+
+	// Get all our landscape inputs
+	TArray<ALandscapeProxy*> AllInputLandscapes;
+	FHoudiniEngineUtils::GatherLandscapeInputs(Inputs, AllInputLandscapes);
+
+	// ----------------------------------------------------
+	// 3.2 Process outputs
+	// ----------------------------------------------------
+	// Landscape creation will cache the first tile as a reference location
+	// in this struct to be used by during construction of subsequent tiles.
+	// Landscape Size info will be cached by the first tile, similar to LandscapeReferenceLocation
+	FHoudiniClearedEditLayers ClearedLandscapeLayers;
+	TMap<FString, ALandscape*> LandscapeMap;
+
+	// Landscape splines track edit layers that were cleared per-landscape
+	TMap<ALandscape*, TSet<FName>> ClearedLandscapeEditLayersForSplines;
+
+	// The houdini materials that have been generated by this HDA.
+	// We track them to prevent recreate the same houdini material over and over if it is assigned to multiple parts.
+	// (this can easily happen when using packed prims)
+	TMap<FHoudiniMaterialIdentifier, TObjectPtr<UMaterialInterface>> AllOutputMaterials;
+
+	// For COP HDAs, handle generating materials if asked
+	bool bShouldGenerateCOPMaterial = false;
+	UMaterialInterface* COPMaterialSource = nullptr;
+	UMaterialInstanceConstant* GeneratedCOPMaterial = nullptr;
+	FMaterialUpdateContext MaterialUpdateContext;
+	FHoudiniOutputObjectIdentifier GeneratedMaterialOutputID(0, 0, 0, TEXT("material"));
+	if (OuterHC && OuterHC->GetImageData())
+	{
+		bShouldGenerateCOPMaterial = OuterHC->GetImageData()->bGenerateMaterial;
+		COPMaterialSource = bShouldGenerateCOPMaterial ? OuterHC->GetImageData()->MaterialToInstance : nullptr;
+	}
+
+	UTexture2D* VisibleTexture = nullptr;
+	UMaterialInterface* VisibleMat = nullptr;
+	int32 NumVisibleOutputs = 0;
+	int32 NumTextureOutputs = 0;
+	int32 NumOutputs = Outputs.Num();
+	bool bHasLandscape = false;
+	for (int32 OutputIdx = 0; OutputIdx < NumOutputs; OutputIdx++)
+	{
+		UHoudiniOutput* CurOutput = Outputs[OutputIdx];
+		if (!IsValid(CurOutput))
+			continue;
+
+		FString Notification = FString::Format(TEXT("Processing output {0} / {1}..."), { FString::FromInt(OutputIdx + 1), FString::FromInt(NumOutputs) });
+		FHoudiniEngine::Get().UpdateTaskSlateNotification(FText::FromString(Notification));
+
+		/*
+		// TODO: Cookable ? Handle this case
+		if (!HAC->IsOutputTypeSupported(CurOutput->GetType()))
+		{
+			continue;
+		}
+		*/
+
+		switch (CurOutput->GetType())
+		{
+			case EHoudiniOutputType::Mesh:
+			{
+				bool bEnableProxy = 
+					bIsProxyStaticMeshEnabled && !bHasNoProxyMeshNextCookBeenRequested && !bIsBakeAfterNextCookEnabled;
+
+				if (bEnableProxy && NumInstances > 1)
+				{
+					if (bHasObjectInstancer)
+					{
+						// Completely disable proxies if we have object instancers/old school attribute instancers
+						// as they rely on having a static mesh created (and the instanced mesh HGPO is not marked as instanced...)
+						bEnableProxy = false;
+					}
+					else
+					{
+						// If we dont have proxy instancer, enable proxy only for non-instanced mesh
+						for (const FHoudiniGeoPartObject& HGPO : CurOutput->GetHoudiniGeoPartObjects())
+						{
+							if (HGPO.bIsInstanced && HGPO.Type == EHoudiniPartType::Mesh)
+							{
+								bEnableProxy = false;
+								break;
+							}
+						}
+					}
+				}
+
+				EHoudiniStaticMeshMethod MeshMethod = EHoudiniStaticMeshMethod::FMeshDescription;
+				if (bEnableProxy)
+					MeshMethod = EHoudiniStaticMeshMethod::UHoudiniStaticMesh;
+
+				FHoudiniMeshTranslator::CreateAllMeshesAndComponentsFromHoudiniOutput(
+					CurOutput,
+					PackageParams,
+					MeshMethod,
+					bSplitMeshSupport,
+					InStaticMeshGenerationProperties,
+					InStaticMeshBuildSettings,
+					AllOutputMaterials,
+					InOuterComponent);
+
+				NumVisibleOutputs++;
+
+				// Look for UHoudiniStaticMesh in the output, and set bOutHasHoudiniStaticMeshOutput accordingly
+				if (bEnableProxy && !bOutHasHoudiniStaticMeshOutput)
+				{
+					bOutHasHoudiniStaticMeshOutput = bOutHasHoudiniStaticMeshOutput || CurOutput->HasAnyCurrentProxy();
+				}
+
+				// Make sure to mark the mesh output as a geometry collection mesh if it is one
+				if (FHoudiniGeometryCollectionTranslator::IsGeometryCollectionMesh(CurOutput))
+				{
+					for (auto& Pair : CurOutput->OutputObjects)
+						Pair.Value.bIsGeometryCollectionPiece = true;
+				}
+
+				break;
+			}
+
+
+			case EHoudiniOutputType::Curve:
+			{
+				const TArray<FHoudiniGeoPartObject>& GeoPartObjects = CurOutput->GetHoudiniGeoPartObjects();
+				if (GeoPartObjects.Num() <= 0)
+					continue;
+
+				const FHoudiniGeoPartObject& CurHGPO = GeoPartObjects[0];
+				if (CurOutput->IsEditableNode())
+				{
+					if (!CurOutput->HasEditableNodeBuilt())
+					{
+						// Editable curve, only need to be built once. 
+						UHoudiniSplineComponent* HoudiniSplineComponent = FHoudiniSplineTranslator::CreateHoudiniSplineComponentFromHoudiniEditableNode(
+							CurHGPO.GeoId,
+							CurHGPO.PartName,
+							InOuterComponent);
+
+						HoudiniSplineComponent->SetIsEditableOutputCurve(true);
+
+						FHoudiniOutputObjectIdentifier EditableSplineComponentIdentifier;
+						EditableSplineComponentIdentifier.ObjectId = CurHGPO.ObjectId;
+						EditableSplineComponentIdentifier.GeoId = CurHGPO.GeoId;
+						EditableSplineComponentIdentifier.PartId = CurHGPO.PartId;
+						EditableSplineComponentIdentifier.PartName = CurHGPO.PartName;
+
+						TMap<FHoudiniOutputObjectIdentifier, FHoudiniOutputObject>& OutputObjects = CurOutput->GetOutputObjects();
+						FHoudiniOutputObject& FoundOutputObject = OutputObjects.FindOrAdd(EditableSplineComponentIdentifier);
+						check(FoundOutputObject.OutputComponents.Num() < 2); // Multiple components not supported yet.
+						FoundOutputObject.OutputComponents.Empty();
+						FoundOutputObject.OutputComponents.Add(HoudiniSplineComponent);
+						CurOutput->SetHasEditableNodeBuilt(true);
+					}
+				}
+				else
+				{
+					// Output curve
+					FHoudiniSplineTranslator::CreateAllSplinesFromHoudiniOutput(CurOutput, InOuterComponent);
+					NumVisibleOutputs += CurOutput->GetOutputObjects().Num();
+					break;
+				}
+			}
+			break;
+
+			case EHoudiniOutputType::Instancer:
+				InstancerOutputs.Add(CurOutput);
+				break;
+
+			case EHoudiniOutputType::Landscape:
+			{
+				NumVisibleOutputs++;
+
+				// No Cooked prefixed needed when cooking an HDA, the name is derived internally.
+				FString CookedPrefix;
+
+				FHoudiniLandscapeTranslator::ProcessLandscapeOutput(
+					CurOutput,
+					AllInputLandscapes,
+					CookedPrefix,
+					InWorld,
+					PackageParams,
+					LandscapeMap,
+					ClearedLandscapeLayers,
+					OutCreatedPackages);
+
+				bHasLandscape = true;
+
+				for (auto& Pair : CurOutput->GetOutputObjects())
+				{
+					UHoudiniLandscapeTargetLayerOutput* LayerOutput = Cast<UHoudiniLandscapeTargetLayerOutput>(Pair.Value.OutputObject);
+					if (IsValid(LayerOutput))
+					{
+						ALandscapeProxy* OutputLandscape = LayerOutput->Landscape;
+						if (OutputLandscape && !LayerOutput->PropertyAttributes.IsEmpty())
+						{
+							FHoudiniEngineUtils::UpdateGenericPropertiesAttributes(OutputLandscape, LayerOutput->PropertyAttributes);
+							OutputLandscape->GetLandscapeInfo()->FixupProxiesTransform();
+							OutputLandscape->GetLandscapeInfo()->RecreateLandscapeInfo(InWorld, true);
+							OutputLandscape->RecreateCollisionComponents();
+							FEditorDelegates::PostLandscapeLayerUpdated.Broadcast();
+						}
+					}
+					break;
+				}
+				break;
+			}
+
+			case EHoudiniOutputType::DataTable:
+			{
+				for (auto&& HGPO : CurOutput->HoudiniGeoPartObjects)
+				{
+					FHoudiniDataTableTranslator::BuildDataTable(HGPO, CurOutput, PackageParams);
+				}
+				break;
+			}
+
+			case EHoudiniOutputType::LandscapeSpline:
+			{
+				if (!FHoudiniLandscapeSplineTranslator::ProcessLandscapeSplineOutput(
+					CurOutput,
+					AllInputLandscapes,
+					InWorld,
+					PackageParams,
+					ClearedLandscapeEditLayersForSplines))
+				{
+					break;
+				}
+
+				// Translation successful
+				NumVisibleOutputs += CurOutput->GetOutputObjects().Num();
+				break;
+			}
+
+			case EHoudiniOutputType::AnimSequence:
+			{
+				FHoudiniAnimationTranslator::CreateAnimSequenceFromOutput(CurOutput, PackageParams, InOuterComponent);
+				break;
+			}
+
+			case EHoudiniOutputType::PCG:
+			{
+#if defined(HOUDINI_USE_PCG)
+
+				const FTransform& Transform = bApplyPCGTransform ? InOuterComponent->GetComponentToWorld() : FTransform::Identity;
+				FHoudiniPCGTranslator::CreatePCGFromOutput(CurOutput, Transform);
+#endif
+				break;
+			}
+
+			case EHoudiniOutputType::Skeletal:
+			{
+				FHoudiniSkeletalMeshTranslator::ProcessSkeletalMeshOutputs(
+					CurOutput, PackageParams, AllOutputMaterials, InOuterComponent);
+
+				NumVisibleOutputs += CurOutput->GetOutputObjects().Num();
+				break;
+			}
+
+			case EHoudiniOutputType::Cop:
+			{
+				EHoudiniEngineImageDataFormat ImageDataFormat = OuterHC ? OuterHC->GetImageData()->ImageDataFormat : EHoudiniEngineImageDataFormat::Int8;
+
+				FHoudiniTextureTranslator::ProcessCopOutput(CurOutput, PackageParams, ImageDataFormat);
+
+				NumTextureOutputs += CurOutput->GetOutputObjects().Num();
+
+				// Update generated material if we have any
+				if (bShouldGenerateCOPMaterial && NumTextureOutputs > 0)
+				{
+					bool bUpdateOutID = false;
+					if (GeneratedCOPMaterial == nullptr)
+					{
+						// Create the COP output material if we haven't already
+						GeneratedCOPMaterial = FHoudiniTextureTranslator::CreateCopOutputMaterialInstance(COPMaterialSource, PackageParams);
+						MaterialUpdateContext.AddMaterialInstance(GeneratedCOPMaterial);
+
+						bUpdateOutID = true;
+					}
+
+					for (auto& CurOutputObject : CurOutput->GetOutputObjects())
+					{
+						UTexture2D* CurTexture = Cast<UTexture2D>(CurOutputObject.Value.OutputObject);
+						if(CurTexture == nullptr)
+							continue;
+
+						if (bUpdateOutID)
+						{
+							GeneratedMaterialOutputID.ObjectId = CurOutputObject.Key.ObjectId;
+							GeneratedMaterialOutputID.GeoId = CurOutputObject.Key.GeoId;
+							GeneratedMaterialOutputID.PartId = CurOutputObject.Key.PartId;
+						}
+
+						FString ParamName = CurOutputObject.Key.SplitIdentifier;
+						if (COPMaterialSource == nullptr)
+						{
+							// For the default material - handle some name replacement
+							if(ParamName.Equals(TEXT("basecolor")))
+								ParamName = TEXT("diffuse");
+							else if (ParamName.Equals(TEXT("height")))
+								ParamName = TEXT("displacement");
+							else if (ParamName.Equals(TEXT("alpha")))
+								ParamName = TEXT("opacity");
+							else if (ParamName.Equals(TEXT("ao")))
+								ParamName = TEXT("occlusion");
+							else if (ParamName.Equals(TEXT("compact")))
+								ParamName = TEXT("rma");
+
+							// For the default cop output material - we also need to modify the matching "has"boolean parameter first
+							FString HasParamName = TEXT("has") + ParamName;
+							FHoudiniTextureTranslator::UpdateBooleanParamOnCopOutputMaterialInstance(GeneratedCOPMaterial, true, HasParamName);
+						}
+
+						FHoudiniTextureTranslator::UpdateTexureParamOnCopOutputMaterialInstance(GeneratedCOPMaterial, CurTexture, ParamName);
+					}
+				}
+
+				for (auto& It : CurOutput->GetOutputObjects())
+				{
+					// If we haven;t already selected a texture to display..
+					if (IsValid(VisibleTexture))
+						break;
+
+					// ... Get the first valid texture for display purpose
+					VisibleTexture = Cast<UTexture2D>(It.Value.OutputObject);
+					if (IsValid(VisibleTexture))
+						break;
+				}
+				break;
+			}
+
+			default:
+				// Do Nothing for now
+				break;
+		}
+
+		for (auto& CurMat : CurOutput->AssignmentMaterialsById)
+		{
+			// Add the newly generated materials if any
+			if (!AllOutputMaterials.Contains(CurMat.Key))
+				AllOutputMaterials.Add(CurMat);
+		}
+	}
+
+	bool HasGeometryCollection = false;
+
+	// Now that all meshes have been created, process the instancers
+	int InstanceCount = FHoudiniInstanceTranslator::CreateAllInstancersFromHoudiniOutputs(Outputs, InOuterComponent, PackageParams);
+	NumVisibleOutputs += InstanceCount;
+
+	for (auto& CurOutput : InstancerOutputs)
+	{
+		if (!HasGeometryCollection && FHoudiniGeometryCollectionTranslator::IsGeometryCollectionInstancer(CurOutput))
+		{
+			HasGeometryCollection = true;
+			break;
+		}
+	}
+
+	if (HasGeometryCollection)
+	{
+		UObject* OutputOwner = OuterHC ? Cast<UObject>(OuterHC) : Cast<UObject>(InOuterComponent);
+
+		FHoudiniGeometryCollectionTranslator::SetupGeometryCollectionComponentFromOutputs(Outputs, OutputOwner, InOuterComponent, PackageParams, InWorld);
+	}
+
+	if (NumVisibleOutputs > 0)
+	{
+		// If we have valid outputs, we don't need to display the houdini logo anymore...
+		FHoudiniEngineUtils::RemoveHoudiniLogoFromComponent(InOuterComponent);
+		// .. or the default COP mesh
+		FHoudiniEngineUtils::RemoveTextureMeshFromComponent(InOuterComponent);
+	}
+	else if (NumTextureOutputs > 0)
+	{
+		// If we generated a material for COP HDAs - add it to the outputs
+		if (bShouldGenerateCOPMaterial && GeneratedCOPMaterial != nullptr)
+		{
+			// We need to add a new Output
+			TObjectPtr<UHoudiniOutput> Output =
+				NewObject<UHoudiniOutput>(
+					OuterHC,
+					UHoudiniOutput::StaticClass(),
+					FName(TEXT("Generated COP Material Instance")),
+					RF_NoFlags);
+
+			Output->Type = EHoudiniOutputType::Cop;
+			Output->bCreateSceneComponents = false;
+
+			FHoudiniOutputObject OutputObject;
+			OutputObject.OutputObject = GeneratedCOPMaterial;
+			Output->OutputObjects.Add(GeneratedMaterialOutputID, OutputObject);
+
+			Outputs.Add(Output);
+
+			// Dirty the material
+			GeneratedCOPMaterial->MarkPackageDirty();
+
+			// Update the material instance
+			GeneratedCOPMaterial->InitStaticPermutation();
+			GeneratedCOPMaterial->PreEditChange(nullptr);
+			GeneratedCOPMaterial->PostEditChange();
+		}
+
+		if(VisibleTexture)
+		{
+			// Fully stream in the texture before drawing it.
+			// Not doing this would cause the texture to appear blurry in the 2D viewport
+			VisibleTexture->SetForceMipLevelsToBeResident(30.0f);
+			VisibleTexture->WaitForStreaming();
+		}
+
+		bool bIsInAssetEditor = OuterHC ? !OuterHC->AssetEditorId.IsNone() : false;
+
+		// If we're in the asset editor - or if we haven't generated any material
+		// we need to create a temporary material to display the textures
+		bool bCreateDefaultMaterial = bIsInAssetEditor || GeneratedCOPMaterial == nullptr;
+		if (bCreateDefaultMaterial)
+		{
+			VisibleMat = FHoudiniTextureTranslator::CreateDefaultCopMaterialForTexture(VisibleTexture, PackageParams);
+		}
+		else
+		{
+			// Not in the HDA editor and we have a generated material - just use it
+			VisibleMat = GeneratedCOPMaterial;
+		}
+
+		// ... if we only have texture outputs, use a texture quad
+		FHoudiniEngineUtils::AddTextureMeshToComponent(InOuterComponent, VisibleTexture, VisibleMat);
+
+		// .. and update its aspect ratio to match the texture
+		FHoudiniEngineUtils::UpdateTextureMeshRatio(InOuterComponent, VisibleTexture);
+	}
+	else
+	{
+		// ... if we don't have any valid outputs however, display the Houdini logo
+		FHoudiniEngineUtils::AddHoudiniLogoToComponent(InOuterComponent);
+	}
+
+	return true;
+}
+
+
+void
+FHoudiniOutputTranslator::CleanOutputsPostCreate(
+	TArray<TObjectPtr<UHoudiniOutput>>& Outputs,
+	UWorld* InWorld,
+	bool bHasBeenLoaded)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::CleanOutputsPostCreate);
+
+	//
+	// 4. Output cleanup
+	//
+
+	// We need to recreate component states for landscapes if a tile was created, moved, or resized
+	// otherwise the landscape will exhibit render artifacts (such as only rendering every other
+	// component.)
+	bool bHasLandscapeOutput = false;
+	for (UHoudiniOutput* CurrentOutput : Outputs)
+	{
+		if (CurrentOutput->GetType() != EHoudiniOutputType::Landscape)
+			continue;
+
+		for (auto& Elem : CurrentOutput->GetOutputObjects())
+		{
+			UHoudiniLandscapePtr* LandscapePtr = Cast<UHoudiniLandscapePtr>(Elem.Value.OutputObject);
+			if (!IsValid(LandscapePtr))
+				continue;
+				
+			ALandscapeProxy* LandscapeProxy = LandscapePtr->GetRawPtr();
+			if (IsValid(LandscapeProxy))
+			{
+				bHasLandscapeOutput = true;
+				LandscapeProxy->RecreateComponentsState();
+			}
+		}
+	}
+
+	if (bHasLandscapeOutput)
+	{
+		// Recreate Landscape Info calls WorldChange, so no need to do it manually.
+		if(InWorld)
+			ULandscapeInfo::RecreateLandscapeInfo(InWorld, true);
+
+#if WITH_EDITOR
+		if (GEditor)
+		{
+			// We force a viewport refresh since some actions, such as updating landscape
+			// edit layers will not reflect until the user moves the viewport camera.
+			GEditor->RedrawLevelEditingViewports(true);
+		}
+#endif
+	}
+
+	
+	// Disable the flag that we set before starting the import process.
+	if (InWorld && IsValid(InWorld->WorldComposition))
+	{
+		InWorld->WorldComposition->bTemporarilyDisableOriginTracking = false;
+	}
+
+	// If the owner component was marked as loaded, unmark all outputs
+	if (bHasBeenLoaded)
+	{
+		for (auto& CurrentOutput : Outputs)
+		{
+			CurrentOutput->MarkAsLoaded(false);
+		}
+	}
+}
+
+void
+FHoudiniOutputTranslator::UpdateDataLayersAndLevelInstanceOnOutput(
+	TArray<TObjectPtr<UHoudiniOutput>>& InOutputs)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::UpdateDataLayersAndLevelInstanceOnOutput);
+
+	// Update Data Layers
+	for (auto& CurrentOutput : InOutputs)
+	{
+		for (auto& It : CurrentOutput->OutputObjects)
+		{
+			FHoudiniOutputObjectIdentifier& Id = It.Key;
+			FHoudiniOutputObject& Obj = It.Value;
+
+			if (Obj.DataLayers.IsEmpty())
+				Obj.DataLayers = FHoudiniDataLayerUtils::GetDataLayers(Id.GeoId, Id.PartId);
+
+			if (Obj.HLODLayers.IsEmpty())
+				Obj.HLODLayers = FHoudiniHLODLayerUtils::GetHLODLayers(Id.GeoId, Id.PartId);
+		}
+	}
+
+	// Update Level instances
+	FHoudiniLevelInstanceUtils::FetchLevelInstanceParameters(InOutputs);
+}
+
+
+
+bool
+FHoudiniOutputTranslator::BuildStaticMeshesOnHoudiniProxyMeshOutputs(
+	UHoudiniCookable* HC,
+	bool bInDestroyProxies)
+{
+	if (!IsValid(HC))
+		return false;
+
+	UObject* OuterComponent = HC->GetComponent();
+	if(!OuterComponent)
+		OuterComponent = HC;
+
+	FHoudiniPackageParams PackageParams;
+	PackageParams.PackageMode = FHoudiniPackageParams::GetDefaultStaticMeshesCookMode();
+	PackageParams.ReplaceMode = FHoudiniPackageParams::GetDefaultReplaceMode();
+
+	PackageParams.BakeFolder = HC->GetBakeFolderOrDefault();
+	PackageParams.TempCookFolder = HC->GetTemporaryCookFolderOrDefault();
+
+	PackageParams.OuterPackage = HC->GetPackage();
+	PackageParams.HoudiniAssetName = HC->GetHoudiniAssetName();
+	PackageParams.HoudiniAssetActorName = HC->GetOwner()->GetActorNameOrLabel();
+	PackageParams.ComponentGUID = HC->GetCookableGUID();
+	PackageParams.ObjectName = FString();
+
+	// Keep track of all generated houdini materials to avoid recreating them over and over
+	TMap<FHoudiniMaterialIdentifier, TObjectPtr<UMaterialInterface>> AllOutputMaterials;
+
+	bool bFoundProxies = false;
+	TArray<UHoudiniOutput*> InstancerOutputs;
+	for(int Idx = 0; Idx < HC->GetNumOutputs(); Idx++)
+	{
+		UHoudiniOutput* CurOutput = HC->GetOutputAt(Idx);
+		if (!CurOutput)
+			continue;
+
+		const EHoudiniOutputType OutputType = CurOutput->GetType();
+		if (OutputType == EHoudiniOutputType::Mesh)
+		{
+			if (CurOutput->HasAnyCurrentProxy())
+			{
+				bFoundProxies = true;
+				FHoudiniMeshTranslator::CreateAllMeshesAndComponentsFromHoudiniOutput(
+					CurOutput,
+					PackageParams,
+					EHoudiniStaticMeshMethod::FMeshDescription,
+					HC->GetSplitMeshSupport(),
+					HC->GetStaticMeshGenerationProperties(),
+					HC->GetStaticMeshBuildSettings(),
+					AllOutputMaterials,
+					OuterComponent,
+					true, // bInTreatExistingMaterialsAsUpToDate
+					bInDestroyProxies
+				);  
+			}
+		}
+		else if (OutputType == EHoudiniOutputType::Instancer)
+		{
+			for (auto& CurOutputObject : CurOutput->OutputObjects)
+			{
+				if (CurOutputObject.Value.ProxyComponent != nullptr
+					|| CurOutputObject.Value.ProxyObject != nullptr)
+				{
+					// This is a single instance instancer (a mesh) 
+					// that will need to be rebuilt
+					InstancerOutputs.Add(CurOutput);
+					bFoundProxies = true;
+				}
+			}
+		}
+
+		for (auto& CurMat : CurOutput->AssignmentMaterialsById)
+		{
+			//Adds the generated materials if any
+			if (!AllOutputMaterials.Contains(CurMat.Key))
+				AllOutputMaterials.Add(CurMat);
+		}
+	}
+
+	// Return if no proxies or instancers were found
+	if (!bFoundProxies || InstancerOutputs.Num() <= 0)
+		return true;
+
+	// We might need to also rebuild some instancer outputs (single instance instancer)
+	// And we might need to destroy the proxies for the instancer outputs before rebuilding the instancer
+	if (bInDestroyProxies)
+	{
+		for (auto& CurOutput : InstancerOutputs)
+		{
+			for (auto& CurOutputObject : CurOutput->OutputObjects)
+			{
+				if (CurOutputObject.Value.ProxyComponent)
+					FHoudiniMeshTranslator::RemoveAndDestroyComponent(CurOutputObject.Value.ProxyComponent);
+
+				if (IsValid(CurOutputObject.Value.ProxyObject))
+				{
+					CurOutputObject.Value.ProxyObject->MarkAsGarbage();
+				}
+			}
+		}
+	}
+
+	// Rebuild the instancers
+	FHoudiniInstanceTranslator::CreateAllInstancersFromHoudiniOutputs(InstancerOutputs, HC->GetOutputs(), OuterComponent, PackageParams);
+
+	return true;
+}
+
+//
+bool
+FHoudiniOutputTranslator::UpdateLoadedOutputs(
+	HAPI_NodeId InNodeId,
+	TArray<TObjectPtr<UHoudiniOutput>>& InOutputs,
+	USceneComponent* InComponent,
+	const bool bEnableCurveEditing)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::UpdateLoadedOutputs);
+
+	// Retrieve information about each object contained within our asset.
+	TArray<HAPI_ObjectInfo> ObjectInfos;
+	TArray<HAPI_Transform> ObjectTransforms;
+	if (!FHoudiniEngineUtils::HapiGetObjectInfos(InNodeId, ObjectInfos, ObjectTransforms))
+		return false;
+
+	TArray<HAPI_NodeId> EditableCurveObjIds;
+	TArray<HAPI_NodeId> EditableCurveGeoIds;
+	TArray<HAPI_NodeId> EditableCurvePartIds;
+	TArray<FString> EditableCurvePartNames;
+
+	//
+	// LEGACY WORKFLOW - Editable Curves
+	// 
+	// Look for editable curve nodes in the asset if the EnableEditableCurve option is enabled
+	if (bEnableCurveEditing)
+	{
+		// Iterate through all objects to get all editable curve's object geo and part Ids.
+		for (int32 ObjectId = 0; ObjectId < ObjectInfos.Num(); ++ObjectId)
+		{
+			// Retrieve the object info
+			const HAPI_ObjectInfo& CurrentHapiObjectInfo = ObjectInfos[ObjectId];
+
+			// Cache/convert them
+			FHoudiniObjectInfo CurrentObjectInfo;
+			CacheObjectInfo(CurrentHapiObjectInfo, CurrentObjectInfo);
+
+			// Start by getting the number of editable nodes
+			int32 EditableNodeCount = 0;
+			{
+				TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::UpdateLoadedOutputs - ComposeChildNodeList - EditableNodes);
+				HOUDINI_CHECK_ERROR(FHoudiniApi::ComposeChildNodeList(
+					FHoudiniEngine::Get().GetSession(),
+					CurrentHapiObjectInfo.nodeId,
+					HAPI_NODETYPE_SOP,
+					HAPI_NODEFLAGS_EDITABLE | HAPI_NODEFLAGS_NON_BYPASS,
+					true,
+					&EditableNodeCount));
+			}
+
+			if (EditableNodeCount > 0)
+			{
+				TArray<HAPI_NodeId> EditableNodeIds;
+				EditableNodeIds.SetNumUninitialized(EditableNodeCount);
+				HOUDINI_CHECK_ERROR(FHoudiniApi::GetComposedChildNodeList(
+					FHoudiniEngine::Get().GetSession(),
+					InNodeId, EditableNodeIds.GetData(), EditableNodeCount));
+
+				for (int32 nEditable = 0; nEditable < EditableNodeCount; nEditable++)
+				{
+					HAPI_GeoInfo CurrentEditableGeoInfo;
+					FHoudiniApi::GeoInfo_Init(&CurrentEditableGeoInfo);
+					HOUDINI_CHECK_ERROR(FHoudiniApi::GetGeoInfo(
+						FHoudiniEngine::Get().GetSession(),
+						EditableNodeIds[nEditable], &CurrentEditableGeoInfo));
+
+					// Do not process the main display geo twice!
+					if (CurrentEditableGeoInfo.isDisplayGeo)
+						continue;
+
+					// We only handle editable curves for now
+					if (CurrentEditableGeoInfo.type != HAPI_GeoType::HAPI_GEOTYPE_CURVE)
+						continue;
+
+					// Check if the curve is closed (-1 unknown, could not find parameter on node). A closed curve will
+					// be returned as a mesh by HAPI instead of a curve
+					int32 CurveClosed = -1;
+					if (!FHoudiniEngineUtils::HapiGetParameterDataAsInteger(
+						EditableNodeIds[nEditable], HAPI_UNREAL_PARAM_CURVE_CLOSED, 0, CurveClosed))
+					{
+						CurveClosed = -1;
+					}
+					else
+					{
+						if (CurveClosed)
+							CurveClosed = 1;
+						else
+							CurveClosed = 0;
+					}
+
+					// Cook the editable node to get its parts
+					if (CurrentEditableGeoInfo.partCount <= 0)
+					{
+						//HAPI_CookOptions CookOptions = FHoudiniEngine::GetDefaultCookOptions();
+						//FHoudiniApi::CookNode(FHoudiniEngine::Get().GetSession(), CurrentEditableGeoInfo.nodeId, &CookOptions);
+						FHoudiniEngineUtils::HapiCookNode(CurrentEditableGeoInfo.nodeId, nullptr, true);
+
+						HOUDINI_CHECK_ERROR(FHoudiniApi::GetGeoInfo(
+							FHoudiniEngine::Get().GetSession(),
+							CurrentEditableGeoInfo.nodeId,
+							&CurrentEditableGeoInfo));
+					}
+
+					// Iterate on this geo's parts
+					for (int32 PartId = 0; PartId < CurrentEditableGeoInfo.partCount; ++PartId)
+					{
+						// Get part information.
+						HAPI_PartInfo CurrentHapiPartInfo;
+						FHoudiniApi::PartInfo_Init(&CurrentHapiPartInfo);
+
+						if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetPartInfo(
+							FHoudiniEngine::Get().GetSession(), CurrentEditableGeoInfo.nodeId, PartId, &CurrentHapiPartInfo))
+							continue;
+
+						// A closed curve will be returned as a mesh in HAPI
+						if (CurrentHapiPartInfo.type != HAPI_PartType::HAPI_PARTTYPE_CURVE &&
+							(CurveClosed <= 0 || CurrentHapiPartInfo.type != HAPI_PartType::HAPI_PARTTYPE_MESH))
+							continue;
+
+						// Get the editable curve's part name
+						FHoudiniEngineString hapiSTR(CurrentHapiPartInfo.nameSH);
+						FString PartName;
+						hapiSTR.ToFString(PartName);
+
+						EditableCurveObjIds.Add(CurrentHapiObjectInfo.nodeId);
+						EditableCurveGeoIds.Add(CurrentEditableGeoInfo.nodeId);
+						EditableCurvePartIds.Add(CurrentHapiPartInfo.id);
+						EditableCurvePartNames.Add(PartName);
+					}
+				}
+			}
+		}
+	}	
+
+	int32 Idx = 0;
+	for (auto& CurrentOutput : InOutputs)
+	{
+		if (!CurrentOutput->IsEditableNode())
+		{
+			// Output curve
+			FHoudiniSplineTranslator::CreateAllSplinesFromHoudiniOutput(CurrentOutput, InComponent);
+		}
+		else if (bEnableCurveEditing)
+		{
+			//
+			// LEGACY WORKFLOW - Editable Curves
+			// 
+			// The HAC is Loaded, re-assign node id to its editable curves
+			if (CurrentOutput->HasEditableNodeBuilt())
+			{
+				TMap<FHoudiniOutputObjectIdentifier, FHoudiniOutputObject>& OutputObjects = CurrentOutput->GetOutputObjects();
+				for (auto& Pair : OutputObjects)
+				{
+					if (Idx >= EditableCurvePartIds.Num())
+						break;
+
+					for(auto Component : Pair.Value.OutputComponents)
+					{
+					    UHoudiniSplineComponent * HoudiniSplineComponent = Cast<UHoudiniSplineComponent>(Component);
+					    if (IsValid(HoudiniSplineComponent))
+					    {
+						    HoudiniSplineComponent->SetNodeId(EditableCurveGeoIds[Idx]);
+
+						    Pair.Key.ObjectId = EditableCurveObjIds[Idx];
+						    Pair.Key.GeoId = EditableCurveGeoIds[Idx];
+						    Pair.Key.PartId = EditableCurvePartIds[Idx];
+						    Pair.Key.PartName = EditableCurvePartNames[Idx];
+
+						    Idx += 1;
+					    }
+					}
+				}
+			}
+			else 
+			{
+				// The HAC is a Duplication, re-construct output objects with attached duplicated editable curves, matching by part name
+				const TArray<USceneComponent*>& Children = IsValid(InComponent) ? InComponent->GetAttachChildren() : TArray<USceneComponent*>();
+				for (auto & CurAttachedComp : Children) 
+				{
+					if (!IsValid(CurAttachedComp))
+						continue;
+
+					if (!CurAttachedComp->IsA<UHoudiniSplineComponent>())
+						continue;
+
+					UHoudiniSplineComponent * CurAttachedSplineComp = Cast<UHoudiniSplineComponent>(CurAttachedComp);
+					if (!CurAttachedSplineComp)
+						continue;
+
+					if (!CurAttachedSplineComp->IsEditableOutputCurve())
+						continue;
+
+					if (Idx >= EditableCurvePartIds.Num())
+						break;
+
+					// Found a match
+					if (CurAttachedSplineComp->GetGeoPartName().Equals(EditableCurvePartNames[Idx])) 
+					{
+						FHoudiniOutputObjectIdentifier EditableSplineComponentIdentifier;
+						EditableSplineComponentIdentifier.ObjectId = EditableCurveObjIds[Idx];
+						EditableSplineComponentIdentifier.GeoId = EditableCurveGeoIds[Idx];
+						EditableSplineComponentIdentifier.PartId = EditableCurvePartIds[Idx];
+						EditableSplineComponentIdentifier.PartName = EditableCurvePartNames[Idx];
+
+						CurAttachedSplineComp->SetNodeId(EditableSplineComponentIdentifier.GeoId);
+
+						TMap<FHoudiniOutputObjectIdentifier, FHoudiniOutputObject>& OutputObjects = CurrentOutput->GetOutputObjects();
+						FHoudiniOutputObject& NewOutputObject = OutputObjects.FindOrAdd(EditableSplineComponentIdentifier);
+						check(NewOutputObject.OutputComponents.Num() < 2); // Multiple components not supported yet.
+						NewOutputObject.OutputComponents.Empty();
+						NewOutputObject.OutputComponents.Add(CurAttachedSplineComp);
+						CurrentOutput->SetHasEditableNodeBuilt(true);
+
+						// Never add additional rot/scale attributes on editable curves as this crashes HAPI
+						FHoudiniSplineTranslator::HapiUpdateNodeForHoudiniSplineComponent(
+							CurAttachedSplineComp, false);
+						
+						Idx += 1;
+						break;
+					}
+				}
+			}
+		}
+		
+		// Mark our outputs as loaded so they can be matched for potential reuse
+		// This indicates that the HGPO's ids are invalid and that HGPO should be matched using partnames instead
+		CurrentOutput->MarkAsLoaded(true);
+	}
+
+	return true;
+}
+
+//
+bool 
+FHoudiniOutputTranslator::UploadChangedEditableOutput(
+	TArray<TObjectPtr<UHoudiniOutput>>& InOutputs) 
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::UploadChangedEditableOutput);
+
+	// Iterate through the outputs array.
+	for (auto& CurrentOutput : InOutputs)
+	{
+		if (!CurrentOutput)
+			continue;
+
+		// Only update the editable nodes that have been built before.
+		if (!CurrentOutput->IsEditableNode() || !CurrentOutput->HasEditableNodeBuilt())
+			continue;
+
+		for (auto& CurrentOutputObj : CurrentOutput->GetOutputObjects())
+		{
+			for(auto Component : CurrentOutputObj.Value.OutputComponents)
+			{
+			    UHoudiniSplineComponent* HoudiniSplineComponent = Cast<UHoudiniSplineComponent>(Component);
+			    if (!IsValid(HoudiniSplineComponent))
+				    continue;
+
+			    if (!HoudiniSplineComponent->HasChanged())
+				    continue;
+
+			    // Dont add rot/scale on editable curves as this crashes HAPI
+			    if (FHoudiniSplineTranslator::HapiUpdateNodeForHoudiniSplineComponent(
+					    HoudiniSplineComponent, false))
+				    HoudiniSplineComponent->MarkChanged(false);
+			    else
+				    HoudiniSplineComponent->SetNeedsToTriggerUpdate(false);
+			}
+		}
+	}
+
+	return true;
+}
+
+
+bool
+FHoudiniOutputTranslator::BuildAllOutputs(
+	HAPI_NodeId AssetId,
+	UObject* InOuterObject,	
+	const TArray<HAPI_NodeId>& OutputNodes,
+	const TMap<HAPI_NodeId, int32>& OutputNodeCookCounts,
+	TArray<TObjectPtr<UHoudiniOutput>>& InOldOutputs,
+	TArray<TObjectPtr<UHoudiniOutput>>& OutNewOutputs,
+	bool InOutputTemplatedGeos,
+	bool InUseOutputNodes, 
+	bool bGatherEditableCurves,
+	bool bCreateSceneComponents,
+	bool bForcePCGOutput)
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::BuildAllOutputs);
+
+	// NOTE: This function still gathers output nodes from the asset id. This is old behaviour.
+	//       Output nodes are now being gathered before cooking starts and is passed in through
+	//       the OutputNodes array. Clean up this function by only using output nodes from the
+	//       aforementioned array.
+	
+	// Ensure the asset has a valid node ID
+	if (AssetId < 0)
+	{
+		return false;
+	}
+
+	// See if we are a NodeSync component
+	bool bIsNodeSyncComponent = InOuterObject ? InOuterObject->IsA<UHoudiniNodeSyncComponent>() : false;
+	UHoudiniCookable* OuterHC = Cast<UHoudiniCookable>(InOuterObject);
+	if (IsValid(OuterHC))
+	{
+		UHoudiniNodeSyncComponent* OuterHNSC = Cast<UHoudiniNodeSyncComponent>(OuterHC->GetComponent());
+		bIsNodeSyncComponent = IsValid(OuterHNSC);
+	}
+
+	// Get the AssetInfo
+	HAPI_AssetInfo AssetInfo;
+	FHoudiniApi::AssetInfo_Init(&AssetInfo);
+	bool bAssetInfoSuccess = (HAPI_RESULT_SUCCESS == FHoudiniApi::GetAssetInfo(
+		FHoudiniEngine::Get().GetSession(), AssetId, &AssetInfo));
+
+	// Get the Asset NodeInfo
+	HAPI_NodeInfo AssetNodeInfo;
+	FHoudiniApi::NodeInfo_Init(&AssetNodeInfo);
+	HOUDINI_CHECK_ERROR_RETURN(FHoudiniApi::GetNodeInfo(
+		FHoudiniEngine::Get().GetSession(), AssetId, &AssetNodeInfo), false);
+
+	// If the node is a COP node, add a Cop HoudiniOutput which only stores the node id; no geo info
+	if (AssetNodeInfo.type == HAPI_NODETYPE_COP || AssetNodeInfo.type == HAPI_NODETYPE_COP2)
+	{
+		// Add multiple COP outputs if needed
+		for (int32 OutputIdx = 0; OutputIdx < AssetNodeInfo.outputCount; OutputIdx++)
+		{
+			FHoudiniGeoPartObject currentHGPO;
+			currentHGPO.GeoId = AssetNodeInfo.id;
+			currentHGPO.PartId = OutputIdx;// 0;
+			currentHGPO.Type = EHoudiniPartType::Cop;
+
+			HAPI_StringHandle NameSH;
+			FHoudiniApi::GetNodeOutputName(
+				FHoudiniEngine::Get().GetSession(),
+				AssetNodeInfo.id,
+				OutputIdx,
+				&NameSH);
+
+			FString OutputName;
+			FHoudiniEngineString::ToFString(NameSH, OutputName);
+
+			// Use the default name "outputX" to extract the image if we have multiple outputs
+			// and were unable to get the output name
+			if (AssetNodeInfo.outputCount > 1 && OutputName.IsEmpty())
+				OutputName = TEXT("output") + FString::FromInt(OutputIdx + 1);
+
+			// Store the output name in the HGPO
+			currentHGPO.PartName = OutputName;
+
+			TObjectPtr<UHoudiniOutput> Output =
+				NewObject<UHoudiniOutput>(
+					InOuterObject,
+					UHoudiniOutput::StaticClass(),
+					FName(OutputName),//NAME_None,
+					RF_NoFlags);
+
+			Output->AddNewHGPO(currentHGPO);
+			Output->UpdateOutputType();
+			Output->bCreateSceneComponents = bCreateSceneComponents;
+			OutNewOutputs.Add(Output);
+		}
+
+		return true;
+	}
+
+	if (!bAssetInfoSuccess)
+	{
+		// IF we try to pull outputs from a non asset node, fix a few things
+		AssetInfo.nameSH = AssetNodeInfo.nameSH;
+		AssetInfo.nodeId = AssetNodeInfo.id;
+
+		// TODO: improve this?
+		AssetInfo.objectNodeId = (AssetNodeInfo.type == HAPI_NODETYPE_OBJ) ? AssetNodeInfo.id : AssetNodeInfo.parentId;
+	}
+
+	FString CurrentAssetName;
+	{
+		FHoudiniEngineString hapiSTR(AssetInfo.nameSH);
+		hapiSTR.ToFString(CurrentAssetName);
+	}
+
+	// In certain cases, such as PDG output processing we might end up with a SOP node instead of a
+	// container. In that case, don't try to run child queries on this node. They will fail.
+	const bool bAssetHasChildren = !(AssetNodeInfo.type == HAPI_NODETYPE_SOP && AssetNodeInfo.childNodeCount == 0);
+
+	// Retrieve information about each object contained within our asset.
+	TArray<HAPI_ObjectInfo> ObjectInfos;
+	TArray<HAPI_Transform> ObjectTransforms;
+	if (!FHoudiniEngineUtils::HapiGetObjectInfos(AssetId, ObjectInfos, ObjectTransforms))
+		return false;
+
+	// Mark all the previous HGPOs on the outputs as stale
+	// This indicates that they were from a previous cook and should then be deleted
+	for (auto& CurOutput : InOldOutputs)
+	{
+		if (CurOutput)
+			CurOutput->MarkAllHGPOsAsStale(true);
+	}
+
+	// For HF / Volumes, we only create new Outputs for height volume
+	// Store all the other volumes (masks etc)  on the side and we will
+	// match them with theit corresponding height volume after
+	TArray<FHoudiniGeoPartObject> UnassignedVolumeParts;
+	
+	// When receiving landscape edit layers, we are no longer to split
+	// outputs based on 'height' volumes 
+	TSet<int32> TileIds;
+	
+	//
+	// LEGACY WORKFLOW - Editable Curves
+	// 
+	// Start by getting the number of editable nodes if the EnableEditableCurve option is enabled
+	TArray<HAPI_GeoInfo> EditableGeoInfos;
+	if (bGatherEditableCurves)
+	{
+		int32 EditableNodeCount = 0;
+		if (bAssetHasChildren)
+		{
+			TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::BuildAllOutputs - ComposeChildNodeList - EditableNodes);
+			HOUDINI_CHECK_ERROR(FHoudiniApi::ComposeChildNodeList(
+				FHoudiniEngine::Get().GetSession(),
+				AssetId, HAPI_NODETYPE_SOP, HAPI_NODEFLAGS_EDITABLE | HAPI_NODEFLAGS_NON_BYPASS,
+				true, &EditableNodeCount));
+		}
+
+		// All editable nodes will be output, regardless
+		// of whether the subnet is considered visible or not.
+		if (EditableNodeCount > 0)
+		{
+			TArray<HAPI_NodeId> EditableNodeIds;
+			EditableNodeIds.SetNumUninitialized(EditableNodeCount);
+			HOUDINI_CHECK_ERROR(FHoudiniApi::GetComposedChildNodeList(
+				FHoudiniEngine::Get().GetSession(),
+				AssetId, EditableNodeIds.GetData(), EditableNodeCount));
+
+			for (int32 nEditable = 0; nEditable < EditableNodeCount; nEditable++)
+			{
+				HAPI_GeoInfo CurrentEditableGeoInfo;
+				FHoudiniApi::GeoInfo_Init(&CurrentEditableGeoInfo);
+				HOUDINI_CHECK_ERROR(FHoudiniApi::GetGeoInfo(
+					FHoudiniEngine::Get().GetSession(),
+					EditableNodeIds[nEditable], &CurrentEditableGeoInfo));
+
+				// TODO: Check whether this display geo is actually being output
+				//       Just because this is a display node doesn't mean that it will be output (it
+				//       might be in a hidden subnet)
+
+				// Do not process the main display geo twice!
+				if (CurrentEditableGeoInfo.isDisplayGeo)
+					continue;
+
+				// We only handle editable curves for now
+				if (CurrentEditableGeoInfo.type != HAPI_GEOTYPE_CURVE || !bGatherEditableCurves)
+					continue;
+
+				// Add this geo to the geo info array
+				EditableGeoInfos.Add(CurrentEditableGeoInfo);
+			}
+		}
+	}
+	
+	const bool bIsSopAsset = AssetInfo.nodeId != AssetInfo.objectNodeId;
+	bool bUseOutputFromSubnets = true;
+	if (bAssetHasChildren)
+	{
+		if (FHoudiniEngineUtils::ContainsSopNodes(AssetInfo.nodeId))
+		{
+			// This HDA contains immediate SOP nodes. Don't look for subnets to output.
+			bUseOutputFromSubnets = false;
+		}
+		else
+		{
+			// Assume we're using a subnet-based HDA
+			bUseOutputFromSubnets = true;
+		}
+	}
+	else
+	{
+		// This asset doesn't have any children. Don't try to find subnets.
+		bUseOutputFromSubnets = false;
+	}
+
+	// Before we can perform visibility checks on the Object nodes, we have
+	// to build a set of all the Object node ids. The 'AllObjectIds' act
+	// as a visibility filter. If an Object node is not present in this
+	// list, the content of that node will not be displayed (display / output / templated nodes).
+	// NOTE that if the HDA contains immediate SOP nodes we will ignore
+	// all subnets and only use the data outputs directly from the HDA. 
+
+	TSet<HAPI_NodeId> AllObjectIds;
+	if (bUseOutputFromSubnets)
+	{
+		TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::BuildAllOutputs-ComposeChildNodeList-AllSubnets);
+
+		int NumObjSubnets;
+		TArray<HAPI_NodeId> ObjectIds;
+		HOUDINI_CHECK_ERROR_RETURN(
+			FHoudiniApi::ComposeChildNodeList(
+				FHoudiniEngine::Get().GetSession(),
+				AssetId,
+				HAPI_NODETYPE_OBJ,
+				HAPI_NODEFLAGS_OBJ_SUBNET | HAPI_NODEFLAGS_NON_BYPASS,
+				true,
+				&NumObjSubnets),
+			false);
+
+		ObjectIds.SetNumUninitialized(NumObjSubnets);
+		HOUDINI_CHECK_ERROR_RETURN(
+			FHoudiniApi::GetComposedChildNodeList(
+				FHoudiniEngine::Get().GetSession(),
+				AssetId,
+				ObjectIds.GetData(),
+				NumObjSubnets),
+			false);
+		AllObjectIds.Append(ObjectIds);
+	}
+	else
+	{
+		AllObjectIds.Add(AssetInfo.objectNodeId);
+	}
+
+	TMap<HAPI_NodeId, int32> CurrentCookCounts;
+	
+	// Iterate through all objects.
+	int32 OutputIdx = 1;
+	for (int32 ObjectIdx = 0; ObjectIdx < ObjectInfos.Num(); ObjectIdx++)
+	{
+		// Retrieve the object info
+		const HAPI_ObjectInfo& CurrentHapiObjectInfo = ObjectInfos[ObjectIdx];
+
+		// Determine whether this object node is fully visible.
+		bool bObjectIsVisible = false;
+		HAPI_NodeId GatherOutputsNodeId = -1; // Outputs will be gathered from this node.
+		if (!bAssetHasChildren)
+		{
+			// If the asset doesn't have children, we have to gather outputs from the asset's parent in order to output
+			// this asset node
+			bObjectIsVisible = true;
+			GatherOutputsNodeId = AssetNodeInfo.parentId;
+		}
+		else if (bIsSopAsset && CurrentHapiObjectInfo.nodeId == AssetInfo.objectNodeId)
+		{
+			// When dealing with a SOP asset, be sure to gather outputs from the SOP node, not the
+			// outer object node.
+			bObjectIsVisible = true;
+			GatherOutputsNodeId = AssetInfo.nodeId;
+		}
+		else
+		{
+			bObjectIsVisible = FHoudiniEngineUtils::IsObjNodeFullyVisible(AllObjectIds, AssetId, CurrentHapiObjectInfo.nodeId);
+			GatherOutputsNodeId = CurrentHapiObjectInfo.nodeId;
+		}
+
+		// Cache/convert them
+		FHoudiniObjectInfo CurrentObjectInfo;
+		CacheObjectInfo(CurrentHapiObjectInfo, CurrentObjectInfo);
+
+		// Retrieve object name.
+		FString CurrentObjectName = CurrentObjectInfo.Name;
+
+		// Get transformation for this object.
+		FTransform TransformMatrix = FTransform::Identity;
+		if (ObjectTransforms.IsValidIndex(ObjectIdx))
+		{
+			const HAPI_Transform & ObjectTransform = ObjectTransforms[ObjectIdx];
+			FHoudiniEngineUtils::TranslateHapiTransform(ObjectTransform, TransformMatrix);
+		}
+		else
+		{
+			HOUDINI_LOG_WARNING(
+				TEXT("Creating Static Meshes: No HAPI transform for Object [%d %s] - using identity."),
+				CurrentHapiObjectInfo.nodeId, *CurrentObjectName);
+		}
+
+		// Build an array of the geos we'll need to process
+		// In most case, it will only be the display geo, 
+		// but we may also want to process editable geos as well
+		TArray<HAPI_GeoInfo> GeoInfos;
+
+		// These node ids may need to be cooked in order to extract part counts.
+		TSet<HAPI_NodeId> ForceNodesToCook;
+
+		// Track (heightfield) tile ids in order to determine
+		// when to create new tiles (used when outputting landscape edit layers).
+		TSet<uint32> FoundTileIndices;
+		
+		// Append the initial set of editable geo infos here
+		// then clear the editable geo infos array since we
+		// only want to process them once.
+		GeoInfos.Append(EditableGeoInfos);
+		EditableGeoInfos.Empty();
+
+		if (bObjectIsVisible || bIsNodeSyncComponent)
+		{
+			// NOTE: The HAPI_GetDisplayGeoInfo will not always return the expected Geometry subnet's
+			//     Display flag geometry. If the Geometry subnet contains an Object subnet somewhere, the
+			//     GetDisplayGeoInfo will sometimes fetch the display SOP from within the subnet which is
+			//     not what we want.
+
+			// Resolve and gather outputs (display / output / template nodes) from the GatherOutputsNodeId.
+			FHoudiniEngineUtils::GatherImmediateOutputGeoInfos(GatherOutputsNodeId,
+				InUseOutputNodes,
+				InOutputTemplatedGeos,
+				GeoInfos,
+				ForceNodesToCook);
+			
+		}
+
+		// Iterates through the geos we want to process
+		for (int32 GeoIdx = 0; GeoIdx < GeoInfos.Num(); GeoIdx++)
+		{
+			// Cache the geo nodes ids for this asset
+			const HAPI_GeoInfo& CurrentHapiGeoInfo = GeoInfos[GeoIdx];
+			// We shouldn't add display nodes for cooking since the
+			// if (!CurrentHapiGeoInfo.isDisplayGeo)
+			// {
+			// 	OutNodeIdsToCook.Add(CurrentHapiGeoInfo.nodeId);
+			// }
+			
+			// We cannot rely on the bGeoHasChanged flag when dealing with session sync. Since the
+			// property will be set to false for any node that has cooked twice. Instead, we compare
+			// current cook counts against the last cached count that we have in order to determine
+			// whether geo has changed.
+			bool bHasChanged = false;
+
+			if (!CurrentCookCounts.Contains(CurrentHapiGeoInfo.nodeId))
+			{
+				CurrentCookCounts.Add(CurrentHapiGeoInfo.nodeId, FHoudiniEngineUtils::HapiGetCookCount(CurrentHapiGeoInfo.nodeId));
+			}
+			
+			if (OutputNodeCookCounts.Contains(CurrentHapiGeoInfo.nodeId))
+			{
+				// If the cook counts changed, we assume the geo has changed.
+				bHasChanged =  OutputNodeCookCounts[CurrentHapiGeoInfo.nodeId] != CurrentCookCounts[CurrentHapiGeoInfo.nodeId]; 
+			}
+			else
+			{
+				// Something is new! We don't have a cook count for this node.
+				bHasChanged = true;
+			}
+
+			// Left in here for debugging convenience.
+			// if (bHasChanged)
+			// {
+			// 	FString NodePath;
+			// 	FHoudiniEngineUtils::HapiGetAbsNodePath(CurrentHapiGeoInfo.nodeId, NodePath);
+			// 	HOUDINI_LOG_MESSAGE(TEXT("[TaskCookAsset] We say Geo Has Changed!: %d, %s"), CurrentHapiGeoInfo.nodeId, *NodePath);
+			// }
+
+			// HERE BE FUDGING!
+			// Change the hasGeoChanged flag on the GeoInfo to match our expectation
+			// of whether geo has changed.
+			GeoInfos[GeoIdx].hasGeoChanged = CurrentHapiGeoInfo.hasGeoChanged || bHasChanged; 
+
+			// Cook editable/templated nodes to get their parts.
+			if ((ForceNodesToCook.Contains(CurrentHapiGeoInfo.nodeId) && CurrentHapiGeoInfo.partCount <= 0)
+				|| (CurrentHapiGeoInfo.isEditable && CurrentHapiGeoInfo.partCount <= 0)
+				|| (CurrentHapiGeoInfo.isTemplated && CurrentHapiGeoInfo.partCount <= 0)
+				|| (!CurrentHapiGeoInfo.isDisplayGeo && CurrentHapiGeoInfo.partCount <= 0))
+			{
+				FHoudiniEngineUtils::HapiCookNode(CurrentHapiGeoInfo.nodeId, nullptr, true);
+
+				HOUDINI_CHECK_ERROR(FHoudiniApi::GetGeoInfo(
+					FHoudiniEngine::Get().GetSession(),
+					CurrentHapiGeoInfo.nodeId,
+					&GeoInfos[GeoIdx]));
+			}
+
+			// Cache/convert the display geo's info
+			FHoudiniGeoInfo CurrentGeoInfo;
+			CacheGeoInfo(CurrentHapiGeoInfo, CurrentGeoInfo);
+
+			// Simply create an empty array for this geo's group names
+			// We might need it later for splitting
+			TArray<FString> GeoGroupNames;
+
+			// Store all the sockets found for this geo's part
+			TArray<FHoudiniMeshSocket> GeoMeshSockets;
+
+			// Flags to track whether we think this Geo respresents either a
+			// motion clip or a skeletal mesh
+			bool bIsMotionClip = false;
+
+			// ------------------
+			// Parts PrePass
+			// ------------------
+			
+			// Do a pre-pass to determine whether we're dealing a motion clip of a skeletal mesh
+			// MotionClip: requires motion clip attrs on the packed primitive and requires bones to be present inside that same packed prim.
+			// Skeletal Mesh: requires a packed prim containing a mesh with capture weights. Requires a packed prim with bones.
+			bool bHasMotionClipTopologyFrame = false;
+			bool bHasMotionClipAnimFrame = false;
+
+			//---------------------------------------------------------------------------------------------------------------------------------------
+			// Fetch all part infos. In addition, cook templated geos if needed
+			//---------------------------------------------------------------------------------------------------------------------------------------
+
+			TArray<HAPI_PartInfo> HapiPartInfos;
+			TArray<FHoudiniPartInfo> PartInfos;
+			HapiPartInfos.SetNum(CurrentGeoInfo.PartCount);
+			PartInfos.SetNum(HapiPartInfos.Num());
+
+			for (int32 PartId = 0; PartId < CurrentGeoInfo.PartCount; ++PartId)
+			{
+				// Get part information.
+				HAPI_PartInfo& CurrentHapiPartInfo = HapiPartInfos[PartId];
+				FHoudiniApi::PartInfo_Init(&CurrentHapiPartInfo);
+
+				// If the geo is templated, cook it manually
+				if (CurrentHapiGeoInfo.isTemplated && InOutputTemplatedGeos)
+					FHoudiniEngineUtils::HapiCookNode(CurrentHapiGeoInfo.nodeId, nullptr, true);
+
+				bool bPartInfoFailed = false;
+				if (HAPI_RESULT_SUCCESS != FHoudiniApi::GetPartInfo(FHoudiniEngine::Get().GetSession(), CurrentHapiGeoInfo.nodeId, PartId, &CurrentHapiPartInfo))
+				{
+					bPartInfoFailed = true;
+
+					// If the geo is templated, attempt to cook it manually.
+					if (CurrentHapiGeoInfo.isTemplated && InOutputTemplatedGeos)
+					{
+						FHoudiniEngineUtils::HapiCookNode(CurrentHapiGeoInfo.nodeId, nullptr, true);
+
+						HOUDINI_CHECK_ERROR(FHoudiniApi::GetGeoInfo(FHoudiniEngine::Get().GetSession(), CurrentHapiGeoInfo.nodeId, &GeoInfos[GeoIdx]));
+
+						if (HAPI_RESULT_SUCCESS == FHoudiniApi::GetPartInfo(FHoudiniEngine::Get().GetSession(), CurrentHapiGeoInfo.nodeId, PartId, &CurrentHapiPartInfo))
+						{
+							bPartInfoFailed = false;
+						}
+					}
+				}
+
+				if (bPartInfoFailed)
+				{
+					// Error retrieving part info.
+					HOUDINI_LOG_MESSAGE(TEXT("Creating Static Meshes: Object [%d %s], Geo [%d], Part [%d] unable to retrieve PartInfo - skipping."),
+						CurrentHapiObjectInfo.nodeId, *CurrentObjectName, CurrentHapiGeoInfo.nodeId, PartId);
+					CurrentHapiPartInfo.type = HAPI_PartType::HAPI_PARTTYPE_INVALID;
+				}
+
+				// Convert/cache the part info
+				FHoudiniPartInfo& CurrentPartInfo = PartInfos[PartId];
+				CachePartInfo(CurrentHapiPartInfo, CurrentPartInfo);
+			}
+
+			//---------------------------------------------------------------------------------------------------------------------------------------
+			// Motion Clip checks. Note this currently assumes one part/motion clip per geo.
+			//---------------------------------------------------------------------------------------------------------------------------------------
+
+			if (CurrentGeoInfo.PartCount >= 3)
+			{
+				HAPI_PartInfo* CurrentHapiPartInfo = &HapiPartInfos[0];
+
+				// Check to for motion clip topology frame
+				if (CurrentHapiPartInfo->type == HAPI_PARTTYPE_INSTANCER)
+				{
+					bHasMotionClipTopologyFrame = FHoudiniAnimationTranslator::IsMotionClipFrame(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo->id, false);
+				}
+
+				// Check for the first motion clip anim frame
+				CurrentHapiPartInfo = &HapiPartInfos[2];
+				if (CurrentHapiPartInfo->type == HAPI_PARTTYPE_INSTANCER)
+				{
+					bHasMotionClipAnimFrame = FHoudiniAnimationTranslator::IsMotionClipFrame(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo->id, false);
+				}
+
+				if (bHasMotionClipTopologyFrame && bHasMotionClipAnimFrame)
+				{
+					// We have identified that this Geo data is likely a motion clip.
+					bIsMotionClip = true;
+				}
+			}
+
+
+			//---------------------------------------------------------------------------------------------------------------------------------------
+			// Skeletal Mesh checks. Try to collect all the parts needed for a skeletal mesh.
+			//---------------------------------------------------------------------------------------------------------------------------------------
+
+			struct FHoudiniSkeletalMeshParts
+			{
+				int32 ShapeInstancerPartId = INDEX_NONE;
+				int32 ShapeMeshPartId = INDEX_NONE;
+				int32 PoseInstancerPartId = INDEX_NONE;
+				int32 PoseMeshPartId = INDEX_NONE;
+				int32 PhysAssetInstancerPartId = INDEX_NONE;
+				int32 PhysAssetMeshPartId = INDEX_NONE;
+			};
+
+			// Track shapes / skeleton parts so that we can pair them when building skeletal mesh outputs.
+			TMap<FString, FHoudiniSkeletalMeshParts> SkelMeshParts;
+
+			// Names of valid / complete skeletal meshes (both Rest Geometry and Packed Primitives are present). 
+			TSet<FString> ValidSkelMeshNames;
+			// Track the base name for the given PartId
+			TMap<HAPI_PartId, FString> PartIdBaseNameMap;
+			// Track the output associate with each skeletal mesh base name
+			TMap<FString, UHoudiniOutput*> SkeletalMeshOutputs;
+
+
+			TArray<EHoudiniPartType> SkeletalMeshPartIds;
+			SkeletalMeshPartIds.Init(EHoudiniPartType::Invalid, CurrentGeoInfo.PartCount);
+
+			for (int32 PartId = 0; PartId < CurrentGeoInfo.PartCount; ++PartId)
+			{
+				HAPI_PartInfo& CurrentHapiPartInfo = HapiPartInfos[PartId];
+
+				if (CurrentHapiPartInfo.type == HAPI_PARTTYPE_INSTANCER)
+				{
+					// Check for skeletal mesh Rest Geometry (Shape, in Houdini terms))
+					FString BaseName;
+
+					int32 ShapeMeshPartId = INDEX_NONE;
+					int32 PhysAssetId = INDEX_NONE;
+					int32 PoseCurveId = INDEX_NONE;
+
+					if (FHoudiniSkeletalMeshTranslator::IsRestShapeInstancer(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, BaseName, ShapeMeshPartId))
+					{
+						PartIdBaseNameMap.Add(PartId, BaseName);
+						FHoudiniSkeletalMeshParts& SkelParts = SkelMeshParts.FindOrAdd(BaseName);
+						if (SkelParts.ShapeInstancerPartId == INDEX_NONE)
+						{
+							// Set the shape parts
+							SkelParts.ShapeInstancerPartId = PartId;
+							SkelParts.ShapeMeshPartId = ShapeMeshPartId;
+							PartIdBaseNameMap.Add(PartId, BaseName);
+							PartIdBaseNameMap.Add(ShapeMeshPartId, BaseName);
+							SkeletalMeshPartIds[PartId] = EHoudiniPartType::SkeletalMeshShape;
+							SkeletalMeshPartIds[ShapeMeshPartId] = EHoudiniPartType::SkeletalMeshShape;
+							ValidSkelMeshNames.Add(BaseName);
+
+						}
+					}
+					else if (FHoudiniSkeletalMeshTranslator::IsCapturePoseInstancer(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, BaseName, PoseCurveId))
+					{
+						PartIdBaseNameMap.Add(PartId, BaseName);
+						FHoudiniSkeletalMeshParts& SkelParts = SkelMeshParts.FindOrAdd(BaseName);
+						if (SkelParts.PoseInstancerPartId == INDEX_NONE)
+						{
+							// Set the Pose parts
+							SkelParts.PoseInstancerPartId = PartId;
+							SkelParts.PoseMeshPartId = PoseCurveId;
+							PartIdBaseNameMap.Add(PartId, BaseName);
+							PartIdBaseNameMap.Add(PoseCurveId, BaseName);
+							SkeletalMeshPartIds[PartId] = EHoudiniPartType::SkeletalMeshPose;
+							SkeletalMeshPartIds[PoseCurveId] = EHoudiniPartType::SkeletalMeshPose;
+							ValidSkelMeshNames.Add(BaseName);
+						}
+					}
+					else if (FHoudiniSkeletalMeshTranslator::IsPhysAssetInstancer(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, BaseName, PhysAssetId))
+					{
+						PartIdBaseNameMap.Add(PartId, BaseName);
+						FHoudiniSkeletalMeshParts& SkelParts = SkelMeshParts.FindOrAdd(BaseName);
+						if (SkelParts.PhysAssetInstancerPartId == INDEX_NONE)
+						{
+							// Set the Phys Assets parts
+							SkelParts.PhysAssetInstancerPartId = PartId;
+							SkelParts.PhysAssetMeshPartId = PhysAssetId;
+							PartIdBaseNameMap.Add(PartId, BaseName);
+							PartIdBaseNameMap.Add(PhysAssetId, BaseName);
+							SkeletalMeshPartIds[PartId] = EHoudiniPartType::SkeletalMeshPhysAsset;
+							SkeletalMeshPartIds[PhysAssetId] = EHoudiniPartType::SkeletalMeshPhysAsset;
+							ValidSkelMeshNames.Add(BaseName);
+						}
+					}
+				}
+			} 
+
+
+			//---------------------------------------------------------------------------------------------------------------------------------------
+			// Parts Processing
+			//---------------------------------------------------------------------------------------------------------------------------------------
+
+			// Iterate on this geo's parts
+			for (int32 PartId = 0; PartId < CurrentGeoInfo.PartCount; ++PartId)
+			{
+				// Get part information.
+				HAPI_PartInfo CurrentHapiPartInfo = HapiPartInfos[PartId];
+				FHoudiniPartInfo CurrentPartInfo = PartInfos[PartId];
+
+				// Unsupported/Invalid part
+				if (CurrentPartInfo.Type == EHoudiniPartType::Invalid)
+					continue;
+
+
+				// Retrieve part name.
+				FString CurrentPartName = CurrentPartInfo.Name;
+
+
+				// Update part/instancer type from the part infos
+				EHoudiniPartType CurrentPartType = EHoudiniPartType::Invalid;
+				EHoudiniInstancerType CurrentInstancerType = EHoudiniInstancerType::Invalid;
+
+				bool bInstancerTypeFound = bIsMotionClip || (SkeletalMeshPartIds[PartId] != EHoudiniPartType::Invalid);
+				bool bIsGeometryCollection = false;
+
+				if (CurrentHapiPartInfo.type == HAPI_PARTTYPE_INSTANCER && !bInstancerTypeFound)
+				{
+					bIsGeometryCollection = FHoudiniGeometryCollectionTranslator::IsGeometryCollectionInstancerPart(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id);
+					bInstancerTypeFound = true;
+				}
+
+				switch (CurrentHapiPartInfo.type)
+				{
+					case HAPI_PARTTYPE_BOX:
+					case HAPI_PARTTYPE_SPHERE:
+					case HAPI_PARTTYPE_MESH:
+					{
+						if (CurrentHapiGeoInfo.type == HAPI_GEOTYPE_CURVE)
+						{
+							// Closed curve will be seen as mesh
+							if (FHoudiniEngineUtils::IsLandscapeSpline(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id))
+							{
+								// This could be a landscape spline...
+								CurrentPartType = EHoudiniPartType::LandscapeSpline;
+							}
+							else
+							{
+								// This is actually a curve
+								CurrentPartType = EHoudiniPartType::Curve;
+							}
+						}
+						else
+						{
+							CurrentPartType = SkeletalMeshPartIds[PartId];
+
+							if (CurrentPartType == EHoudiniPartType::Invalid)
+							{
+								CurrentPartType = EHoudiniPartType::Mesh;
+
+								if (bIsMotionClip)
+								{
+									// We don't care about tracking Mesh objects for motion clips.
+									// We just want to track the packed primitives, and extract the mesh data in the translator.
+									continue;
+								}
+								else if (CurrentHapiObjectInfo.isInstancer)
+								{
+									if (FHoudiniEngineUtils::IsAttributeInstancer(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, CurrentInstancerType))
+									{
+										// That part is actually an attribute instancer
+										CurrentPartType = EHoudiniPartType::Instancer;
+										// Instancer type is set by IsAttributeInstancer
+									}
+									else
+									{
+										// That part is actually an instancer
+										CurrentPartType = EHoudiniPartType::Instancer;
+										CurrentInstancerType = EHoudiniInstancerType::ObjectInstancer;
+									}
+									
+								}
+#if defined(HOUDINI_USE_PCG)
+								else if (FHoudiniPCGTranslator::IsPCGOutput(bForcePCGOutput, CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id))
+								{
+									CurrentPartType = EHoudiniPartType::PCG;
+								}
+#endif
+								else if (CurrentHapiPartInfo.vertexCount <= 0 && CurrentHapiPartInfo.pointCount <= 0)
+								{
+									// No points, no vertices, we're likely invalid
+									CurrentPartType = EHoudiniPartType::Invalid;
+									HOUDINI_LOG_MESSAGE(
+										TEXT("Creating Static Meshes: Object [%d %s], Geo [%d], Part [%d %s] is a mesh with no points or vertices - skipping."),
+										CurrentHapiObjectInfo.nodeId, *CurrentObjectName, CurrentHapiGeoInfo.nodeId, PartId, *CurrentPartName);
+								}
+								else if (CurrentHapiPartInfo.vertexCount <= 0)
+								{
+									// This is not an instancer, we do not have vertices, but we have points
+									// Maybe this is a point cloud with attribute override instancing
+									if(FHoudiniEngineUtils::IsAttributeInstancer(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, CurrentInstancerType))
+									{
+										// Mark it as an instancer
+										CurrentPartType = EHoudiniPartType::Instancer;
+										// Instancer type is set by IsAttributeInstancer
+										//CurrentInstancerType = EHoudiniInstancerType::OldSchoolAttributeInstancer;
+									}
+									else
+									{
+										// No vertices, not an instancer, just a point cloud
+										if (FHoudiniEngineUtils::IsValidDataTable(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id))
+										{
+											CurrentPartType = EHoudiniPartType::DataTable;
+										}
+										else
+										{
+											CurrentPartType = EHoudiniPartType::Invalid;
+										}
+									}
+								}
+							}
+						}
+					}
+					break;
+
+					case HAPI_PARTTYPE_CURVE:
+					{
+						if (SkeletalMeshPartIds[PartId] == EHoudiniPartType::SkeletalMeshPose)
+						{
+							// The Capture Pose mesh is reported by HAPI to be a Curve part type, so be sure to intercept
+							// it here
+							CurrentPartType = EHoudiniPartType::SkeletalMeshPose;
+						}
+						// Make sure that this curve is not an an attribute instancer!
+						else if (FHoudiniEngineUtils::IsAttributeInstancer(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, CurrentInstancerType))
+						{
+							// Mark the part as an instancer it as an instancer
+							CurrentPartType = EHoudiniPartType::Instancer;
+						}
+						else if (FHoudiniEngineUtils::IsValidDataTable(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id))
+						{
+							// the curve is actually a data table!
+							CurrentPartType = EHoudiniPartType::DataTable;
+						}
+						else if (FHoudiniEngineUtils::IsLandscapeSpline(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id))
+						{
+							// the curve is actually a landscape spline!
+							CurrentPartType = EHoudiniPartType::LandscapeSpline;
+						}
+#if defined(HOUDINI_USE_PCG)
+						else if(FHoudiniPCGTranslator::IsPCGOutput(bForcePCGOutput, CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id))
+						{
+							CurrentPartType = EHoudiniPartType::PCG;
+						}
+#endif
+						else
+						{
+							// The curve is a curve!
+							CurrentPartType = EHoudiniPartType::Curve;
+						}
+					}
+					break;
+
+					case HAPI_PARTTYPE_INSTANCER:
+					{
+						// This is a packed primitive instancer
+						CurrentPartType = EHoudiniPartType::Instancer;
+						if (bIsMotionClip)
+						{
+							CurrentPartType = EHoudiniPartType::MotionClip;
+							CurrentInstancerType = EHoudiniInstancerType::MotionClip;
+						}
+						else if (SkeletalMeshPartIds[PartId] != EHoudiniPartType::Invalid)
+						{
+							CurrentPartType = SkeletalMeshPartIds[PartId];
+							CurrentInstancerType = EHoudiniInstancerType::SkeletalMesh;
+						}
+						else if (bIsGeometryCollection)
+						{
+							CurrentPartType = EHoudiniPartType::Instancer;
+							CurrentInstancerType = EHoudiniInstancerType::GeometryCollection;
+						}
+						else
+						{
+							CurrentPartType = EHoudiniPartType::Instancer;
+							CurrentInstancerType = EHoudiniInstancerType::PackedPrimitive;
+						}
+					}
+					break;
+
+					case HAPI_PARTTYPE_VOLUME:
+					{
+						if (FHoudiniEngineUtils::IsValidHeightfield(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id))
+						{
+							// Volume data, likely a Heightfield height / mask
+							CurrentPartType = EHoudiniPartType::Volume;
+						}
+						else
+						{
+							CurrentPartType = EHoudiniPartType::Invalid;
+						}
+					}
+					break;
+
+					default:
+						// Unsupported Part Type
+						break;
+				}
+
+				// There are no vertices AND no points and this part is not a packed prim instancer
+				if ((CurrentPartInfo.VertexCount <= 0 && CurrentPartInfo.PointCount <= 0) &&
+					(CurrentPartType != EHoudiniPartType::Instancer || (CurrentInstancerType != EHoudiniInstancerType::PackedPrimitive && CurrentInstancerType != EHoudiniInstancerType::GeometryCollection)) &&
+					(CurrentPartType != EHoudiniPartType::MotionClip) &&
+					(CurrentPartType != EHoudiniPartType::SkeletalMeshPose) &&
+					(CurrentPartType != EHoudiniPartType::SkeletalMeshShape) &&
+					(CurrentPartType != EHoudiniPartType::SkeletalMeshPhysAsset)
+					)
+				{
+					HOUDINI_LOG_MESSAGE(
+						TEXT("Creating Static Meshes: Object [%d %s], Geo [%d], Part [%d %s] no points or vertices found - skipping."),
+						CurrentHapiObjectInfo.nodeId, *CurrentObjectName, CurrentHapiGeoInfo.nodeId, PartId, *CurrentPartName);
+					continue;
+				}
+
+				// This is an instancer with no points.
+				if (CurrentHapiObjectInfo.isInstancer && CurrentHapiPartInfo.pointCount <= 0)
+				{
+					HOUDINI_LOG_MESSAGE(
+						TEXT("Creating Static Meshes: Object [%d %s], Geo [%d], Part [%d %s] is instancer but has 0 points - skipping."),
+						CurrentHapiObjectInfo.nodeId, *CurrentObjectName, CurrentHapiGeoInfo.nodeId, PartId, *CurrentPartName);
+					continue;
+				}
+				
+				// Extract Mesh sockets
+				// Do this before ignoring invalid parts, as socket groups/attributes could be set on parts
+				// that don't have any mesh, just points! Those would be be considered "invalid" parts but
+				// could still have valid sockets!
+				TArray<FHoudiniMeshSocket> PartMeshSockets;
+				FHoudiniEngineUtils::AddMeshSocketsToArray_DetailAttribute(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, PartMeshSockets, CurrentHapiPartInfo.isInstanced);
+				FHoudiniEngineUtils::AddMeshSocketsToArray_Group(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, PartMeshSockets, CurrentHapiPartInfo.isInstanced);
+
+				// Ignore invalid parts
+				if (CurrentPartType == EHoudiniPartType::Invalid)
+				{
+					if(PartMeshSockets.Num() > 0)
+					{
+						// Store these Part sockets for the Geo
+						// We'll copy them to the outputs produced by this Geo later
+						GeoMeshSockets.Append(PartMeshSockets);
+					}
+
+					continue;
+				}
+
+				// Build the HGPO corresponding to this part
+				FHoudiniGeoPartObject currentHGPO;
+				currentHGPO.AssetId = AssetId;
+				currentHGPO.AssetName = CurrentAssetName;
+
+				currentHGPO.ObjectId = CurrentHapiObjectInfo.nodeId;
+				currentHGPO.ObjectName = CurrentObjectName;
+
+				currentHGPO.GeoId = CurrentHapiGeoInfo.nodeId;
+
+				currentHGPO.PartId = CurrentHapiPartInfo.id;
+
+				currentHGPO.Type = CurrentPartType;
+				currentHGPO.InstancerType = CurrentInstancerType;
+
+				currentHGPO.TransformMatrix = TransformMatrix;
+
+				currentHGPO.NodePath = TEXT("");
+
+				currentHGPO.bIsVisible = CurrentHapiObjectInfo.isVisible && !CurrentHapiPartInfo.isInstanced;
+				if (bIsNodeSyncComponent)
+					currentHGPO.bIsVisible = true;
+
+				currentHGPO.bIsEditable = CurrentHapiGeoInfo.isEditable;
+				currentHGPO.bIsInstanced = CurrentHapiPartInfo.isInstanced;
+				// Never consider a display geo as templated!
+				currentHGPO.bIsTemplated = CurrentHapiGeoInfo.isDisplayGeo ? false : CurrentHapiGeoInfo.isTemplated;
+
+				currentHGPO.bHasGeoChanged = CurrentHapiGeoInfo.hasGeoChanged;
+				currentHGPO.bHasPartChanged = CurrentHapiPartInfo.hasChanged;
+				currentHGPO.bHasMaterialsChanged = CurrentHapiGeoInfo.hasMaterialChanged;
+				currentHGPO.bHasTransformChanged = CurrentHapiObjectInfo.hasTransformChanged;
+				
+				// Copy the HAPI info caches 
+				currentHGPO.ObjectInfo = CurrentObjectInfo;
+				currentHGPO.GeoInfo = CurrentGeoInfo;
+				currentHGPO.PartInfo = CurrentPartInfo;
+
+				currentHGPO.AllMeshSockets = PartMeshSockets;
+				
+				// If the mesh is NOT visible and is NOT instanced, skip it.
+				if (!currentHGPO.bIsVisible && !currentHGPO.bIsInstanced)
+				{
+					continue;
+				}
+
+				// We only support meshes for templated geos
+				if (currentHGPO.bIsTemplated && (CurrentPartType != EHoudiniPartType::Mesh))
+					continue;
+
+				// Update the HGPO's node path
+				FHoudiniEngineUtils::HapiGetNodePath(currentHGPO, currentHGPO.NodePath);
+
+				// Try to get the custom part name from attribute
+				FString CustomPartName;
+				if (FHoudiniOutputTranslator::GetCustomPartNameFromAttribute(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, CustomPartName))
+					currentHGPO.SetCustomPartName(CustomPartName);
+				else
+					currentHGPO.PartName = CurrentPartName;
+
+				FHoudiniEngineUtils::GetGenericPropertiesAttributes(
+					currentHGPO.GeoId, currentHGPO.PartId,
+					true, 0, 0, 0,
+					currentHGPO.GenericPropertyAttributes);
+
+				{
+					currentHGPO.bKeepTags = false;
+
+					TArray<int> KeepTagData;
+					FHoudiniHapiAccessor Accessor(currentHGPO.GeoId, currentHGPO.PartId, HAPI_UNREAL_ATTRIB_TAG_KEEP);
+					bool bSuccess = Accessor.GetAttributeData(HAPI_ATTROWNER_INVALID, 1, KeepTagData);
+
+					if (bSuccess)
+					{
+						if (KeepTagData.Num() > 0)
+						{
+							currentHGPO.bKeepTags = KeepTagData[0] == 0 ? false : true; 
+						}
+					}
+				}
+
+				//
+				// Mesh Only - Extract split groups
+				// 
+				// Extract the group names used by this part to see if it will require splitting
+				// Only meshes can be split, via their primitive groups
+				TArray<FString> SplitGroupNames;
+				if (CurrentPartType == EHoudiniPartType::Mesh)
+				{
+					if (!CurrentHapiPartInfo.isInstanced && GeoGroupNames.Num() > 0)
+					{
+						// We are not instanced and already have extracted the geo's group names
+						// We can simply reuse the Geo group names / socket groups
+						currentHGPO.SplitGroups = GeoGroupNames;
+					}
+					else
+					{
+						// We need to get the primitive group names from HAPI
+						TArray<FString> GroupNames;
+						if (!FHoudiniEngineUtils::HapiGetGroupNames(
+							CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id,
+							HAPI_GROUPTYPE_PRIM, CurrentHapiPartInfo.isInstanced,
+							GroupNames))
+						{
+							GroupNames.Empty();
+						}
+
+						// Convert the string handles to FStrings
+						for (const FString& GroupName : GroupNames)
+						{
+							FString LodGroup = HAPI_UNREAL_GROUP_LOD_PREFIX;
+							FString CollisionGroup = HAPI_UNREAL_GROUP_INVISIBLE_COLLISION_PREFIX;
+							FString RenderedCollisionGroup = HAPI_UNREAL_GROUP_RENDERED_COLLISION_PREFIX;
+							if (GroupName.StartsWith(LodGroup, ESearchCase::IgnoreCase)
+								|| GroupName.StartsWith(CollisionGroup, ESearchCase::IgnoreCase)
+								|| GroupName.StartsWith(RenderedCollisionGroup, ESearchCase::IgnoreCase))
+								//|| GroupName.StartsWith(HAPI_UNREAL_GROUP_USER_SPLIT_PREFIX, ESearchCase::IgnoreCase))
+							{
+								// Split by collisions / lods
+								currentHGPO.SplitGroups.Add(GroupName);
+							}
+						}
+
+						// Sort the Group name array by name, 
+						// this will order the LODs and other incremental group names
+						currentHGPO.SplitGroups.Sort();
+
+						// If this part is not instanced, we can copy the geo
+						// group names so we can reuse them for another part
+						if (!CurrentHapiPartInfo.isInstanced)
+						{
+							GeoGroupNames = currentHGPO.SplitGroups;
+						}
+					}
+				}
+
+				//
+				// Volume Only - Extract volume name/tile index
+				// 
+				// Extract the volume's name, and see if a tile attribute is present
+				FHoudiniVolumeInfo CurrentVolumeInfo;
+				if (CurrentPartType == EHoudiniPartType::Volume)
+				{
+					// Get this volume's info
+					HAPI_VolumeInfo CurrentHapiVolumeInfo;
+					FHoudiniApi::VolumeInfo_Init(&CurrentHapiVolumeInfo);
+
+					bool bVolumeValid = true;
+
+					HAPI_Result Result = FHoudiniApi::GetVolumeInfo(
+						FHoudiniEngine::Get().GetSession(),
+						CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id,
+						&CurrentHapiVolumeInfo);
+
+					if (HAPI_RESULT_SUCCESS != Result)
+					{
+						HOUDINI_LOG_ERROR(TEXT("Failed to get VolumeInfo: %s"), *FHoudiniEngineUtils::GetErrorDescription(Result));
+						bVolumeValid = false;
+					}
+					else if (CurrentHapiVolumeInfo.tupleSize != 1)
+					{
+						HOUDINI_LOG_ERROR(TEXT("Invalid tuple size (%d)"), CurrentHapiVolumeInfo.tupleSize);
+						bVolumeValid = false;
+					}
+					else if (CurrentHapiVolumeInfo.zLength != 1)
+					{
+						HOUDINI_LOG_ERROR(TEXT("Invalid zlength (%d)"), CurrentHapiVolumeInfo.zLength);
+						bVolumeValid = false;
+					}
+					else if (CurrentHapiVolumeInfo.storage != HAPI_STORAGETYPE_FLOAT)
+					{
+						HOUDINI_LOG_ERROR(TEXT("Invalid storage (%d)"), CurrentHapiVolumeInfo.storage);
+						bVolumeValid = false;
+					}
+
+					// Only cache valid volumes
+					if (bVolumeValid)
+					{
+						// Convert/Cache the volume info
+						CacheVolumeInfo(CurrentHapiVolumeInfo, CurrentVolumeInfo);
+
+						// Get the volume's name
+						currentHGPO.VolumeName = CurrentVolumeInfo.Name;
+
+						// Now see if this volume has a tile attribute
+						TArray<int32> TileValues;
+						if (FHoudiniEngineUtils::GetTileAttribute(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, TileValues, HAPI_ATTROWNER_PRIM, 0, 1))
+						{
+							if (TileValues.Num() > 0 && TileValues[0] >= 0)
+								currentHGPO.VolumeTileIndex = TileValues[0];
+							else
+								currentHGPO.VolumeTileIndex = -1;
+						}
+
+						currentHGPO.bHasEditLayers = FHoudiniEngineUtils::GetEditLayerName(CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id, currentHGPO.VolumeLayerName, HAPI_ATTROWNER_PRIM);
+					}
+				}
+				currentHGPO.VolumeInfo = CurrentVolumeInfo;
+
+				// Cache the curve info as well, and also for landscape splines
+				// !!! Only call GetCurveInfo if the PartType is Curve
+				// !!! Closed curves are actually Meshes, and calling GetCurveInfo on a Mesh will crash HAPI!
+				FHoudiniCurveInfo CurrentCurveInfo;
+				if ((CurrentPartType == EHoudiniPartType::Curve || CurrentPartType == EHoudiniPartType::LandscapeSpline) && CurrentPartInfo.Type == EHoudiniPartType::Curve)
+				{
+					HAPI_CurveInfo CurrentHapiCurveInfo;
+					FHoudiniApi::CurveInfo_Init(&CurrentHapiCurveInfo);
+					if (HAPI_RESULT_SUCCESS == FHoudiniApi::GetCurveInfo(
+						FHoudiniEngine::Get().GetSession(),
+						CurrentHapiGeoInfo.nodeId, CurrentHapiPartInfo.id,
+						&CurrentHapiCurveInfo))
+					{
+						// Cache/Convert this part's curve info
+						CacheCurveInfo(CurrentHapiCurveInfo, CurrentCurveInfo);
+					}
+				}
+				currentHGPO.CurveInfo = CurrentCurveInfo;
+
+				if (CurrentPartType == EHoudiniPartType::SkeletalMeshPose || 
+					CurrentPartType == EHoudiniPartType::SkeletalMeshShape || 
+					CurrentPartType == EHoudiniPartType::SkeletalMeshPhysAsset)
+				{
+					FString SkeletalMeshBaseName = PartIdBaseNameMap.FindChecked(PartId);
+					currentHGPO.InstancerName = SkeletalMeshBaseName;
+				}
+
+
+				// TODO:
+				// DONE? bake folders are handled out of this loop?
+				// See if a custom bake folder override for the mesh was assigned via the "unreal_bake_folder" attribute
+				//TArray<FString> BakeFolderOverrides;
+
+				// See if we have an existing output that matches this HGPO or if we need to create a new one
+				// We handle volumes, motion clips and skeletal meshes differently than other outputs types.
+				// These are treated as a single output that has multiple HGPOs
+				bool IsFoundOutputValid = false;
+				TObjectPtr<UHoudiniOutput> * FoundHoudiniOutput = nullptr;	
+				if (currentHGPO.Type != EHoudiniPartType::Volume &&
+					currentHGPO.Type != EHoudiniPartType::SkeletalMeshPose &&
+					currentHGPO.Type != EHoudiniPartType::SkeletalMeshShape &&
+					currentHGPO.Type != EHoudiniPartType::SkeletalMeshPhysAsset &&
+					!bIsMotionClip)
+				{
+					// Create single output per HGPO. never reuse old outputs, as its deprecated anyway
+					FoundHoudiniOutput = nullptr;
+				}
+				else if (currentHGPO.Type == EHoudiniPartType::SkeletalMeshPose || 
+						currentHGPO.Type == EHoudiniPartType::SkeletalMeshShape || 
+					currentHGPO.Type == EHoudiniPartType::SkeletalMeshPhysAsset)
+				{
+					// Each "complete" skeletal mesh (2 packed prims) will result in a single output.
+					// Collect HGPOs that match the skeletal mesh BaseName into a single output.
+					TFunction<bool(UHoudiniOutput*)> MatchFn = [currentHGPO](UHoudiniOutput* Output) -> bool { return Output ? Output->InstancerNameMatch(currentHGPO) : false; };
+
+					// Look in the previous outputs if we have a match
+					FoundHoudiniOutput = InOldOutputs.FindByPredicate(MatchFn);
+
+					if (FoundHoudiniOutput && IsValid(*FoundHoudiniOutput))
+						IsFoundOutputValid = true;
+
+					// If we dont have a match in the old maps, also look in the newly created outputs
+					if (!IsFoundOutputValid)
+					{
+						FoundHoudiniOutput = OutNewOutputs.FindByPredicate(MatchFn);
+
+						if (FoundHoudiniOutput && IsValid(*FoundHoudiniOutput))
+							IsFoundOutputValid = true;
+					}
+				}
+				else
+				{
+					// Collect HGPOs into a single output.
+					TFunction<bool(UHoudiniOutput*)> MatchFn = [currentHGPO](UHoudiniOutput* Output) -> bool { return Output ? Output->GeoMatch(currentHGPO) : false; };
+
+					if (currentHGPO.Type == EHoudiniPartType::Volume)
+					{
+						// Heightfields use a special match function
+						MatchFn = [currentHGPO](UHoudiniOutput* Output) { return Output ? Output->HeightfieldMatch(currentHGPO, true) : false; };
+					}
+					
+					// Look in the previous outputs if we have a match
+					FoundHoudiniOutput = InOldOutputs.FindByPredicate(MatchFn);
+					
+					if (FoundHoudiniOutput && IsValid(*FoundHoudiniOutput))
+						IsFoundOutputValid = true;
+
+					// If we dont have a match in the old maps, also look in the newly created outputs
+					if (!IsFoundOutputValid)
+					{
+						if (currentHGPO.Type == EHoudiniPartType::Volume)
+						{
+							// Heightfields use a special match function
+							MatchFn = [currentHGPO](UHoudiniOutput* Output) { return Output ? Output->HeightfieldMatch(currentHGPO, false) : false; };
+						}
+						
+						FoundHoudiniOutput = OutNewOutputs.FindByPredicate(MatchFn);
+
+						if (FoundHoudiniOutput && IsValid(*FoundHoudiniOutput))
+							IsFoundOutputValid = true;
+					}
+				}
+
+				UHoudiniOutput * HoudiniOutput = nullptr;
+				if (IsFoundOutputValid)
+				{
+					// We can reuse the existing output
+					HoudiniOutput = *FoundHoudiniOutput;
+					HoudiniOutput->SetIsUpdating(true);
+					// Transfer this output from the old array to the new one
+					InOldOutputs.Remove(HoudiniOutput);
+				}
+				else
+				{
+					// We couldn't find a valid output object, so create a new one
+					if (currentHGPO.Type == EHoudiniPartType::Volume)
+					{
+						bool bBatchHGPO = false;
+						if(!currentHGPO.VolumeName.Equals(HAPI_UNREAL_LANDSCAPE_HEIGHT_VOLUME_NAME, ESearchCase::IgnoreCase))
+						{
+							// This volume is not a height volume, so it will be batched into a single HGPO.
+							bBatchHGPO = true;
+						}
+						else if (currentHGPO.bHasEditLayers)
+						{
+							if (FoundTileIndices.Contains(currentHGPO.VolumeTileIndex))
+							{
+								// If this volume name is height, AND we have edit layers enabled, check to see whether
+								// this is a new tile. If this is NOT a new tile, we assume that this is simply content
+								// for a new edit layer on the current tile. Batch it!
+								bBatchHGPO = true;
+							}
+						}
+						// Ensure this tile is tracked
+						FoundTileIndices.Add(currentHGPO.VolumeTileIndex);
+
+					}
+
+					// Create a new output object
+					//FString OutputName = TEXT("Output") + FString::FromInt(OutputIdx++);
+					HoudiniOutput = NewObject<UHoudiniOutput>(
+						InOuterObject,
+						UHoudiniOutput::StaticClass(),
+						NAME_None,//FName(*OutputName),
+						RF_NoFlags);
+
+					// Make sure the created object is valid 
+					if (!IsValid(HoudiniOutput))
+					{
+						//HOUDINI_LOG_WARNING("Failed to create asset output");
+						continue;
+					}
+
+				}
+				// Ensure that we always update the 'Editable' state of the output since this
+				// may very well change between cooks (for example, the User is editina the HDA is session sync).
+				HoudiniOutput->SetIsEditableNode(currentHGPO.bIsEditable && bGatherEditableCurves);
+
+				HoudiniOutput->bCreateSceneComponents = bCreateSceneComponents;
+
+				// Add the HGPO to the output
+				HoudiniOutput->AddNewHGPO(currentHGPO);
+				// Add this output object to the new ouput array
+				OutNewOutputs.AddUnique(HoudiniOutput);
+			} 
+			// END: for Part
+
+			if (GeoMeshSockets.Num() > 0)
+			{
+				// If we have any mesh socket, assign them to the HGPO for this geo
+				for (auto& CurNewOutput : OutNewOutputs)
+				{
+					if (!IsValid(CurNewOutput))
+						continue;
+
+					int32 FirstValidIdx = CurNewOutput->StaleCount;
+					if (!CurNewOutput->HoudiniGeoPartObjects.IsValidIndex(FirstValidIdx))
+						FirstValidIdx = 0;
+
+					for (int32 Idx = FirstValidIdx; Idx < CurNewOutput->HoudiniGeoPartObjects.Num(); Idx++)
+					{
+						// Only add sockets to valid/non stale HGPOs
+						FHoudiniGeoPartObject& CurHGPO = CurNewOutput->HoudiniGeoPartObjects[Idx];
+						if (CurHGPO.ObjectId != CurrentHapiObjectInfo.nodeId)
+							continue;
+
+						if (CurHGPO.GeoId != CurrentHapiGeoInfo.nodeId)
+							continue;
+
+						CurHGPO.AllMeshSockets.Append(GeoMeshSockets);
+					}
+				}
+			}
+		}
+		// END: for GEO
+	}
+	// END: for OBJ
+
+	// Update the output/HGPO associations from the map
+	// Clear the old HGPO since we don't need them anymore
+	for (auto& CurrentOuput : OutNewOutputs)
+	{
+		if (!IsValid(CurrentOuput))
+			continue;
+
+		CurrentOuput->DeleteAllStaleHGPOs();
+	}
+
+	// If we have unassigned volumes,
+	// try to find their corresponding output
+	if (UnassignedVolumeParts.Num() > 0)
+	{
+		for (auto& currentVolumeHGPO : UnassignedVolumeParts)
+		{
+			TObjectPtr<UHoudiniOutput> * FoundHoudiniOutput = OutNewOutputs.FindByPredicate(
+				[currentVolumeHGPO](UHoudiniOutput* Output) 
+				{
+					return Output ? Output->HeightfieldMatch(currentVolumeHGPO, false) : false;
+				});
+
+			if (!FoundHoudiniOutput || !IsValid(*FoundHoudiniOutput))
+			{
+				// Skip - consider this volume as invalid
+				continue;
+			}
+
+			// Add this HGPO to the output
+			(*FoundHoudiniOutput)->AddNewHGPO(currentVolumeHGPO);
+		} 
+	}
+
+	// Reuse geometry collection outputs.
+	TSet<FString> GCNames;
+	FHoudiniGeometryCollectionTranslator::GetGeometryCollectionNames(OutNewOutputs, GCNames);
+	for (int i = InOldOutputs.Num() - 1; i >= 0; i--)
+	{
+		UHoudiniOutput * OldOutput = InOldOutputs[i];
+		if (OldOutput->Type == EHoudiniOutputType::GeometryCollection)
+		{
+			bool ReuseOutput = false;
+			// If a suitable output is not found in the new outputs, do not reuse the output.
+			for (auto & Pair : OldOutput->GetOutputObjects())
+			{
+				if (IsValid(Pair.Value.OutputObject))
+				{
+					if (!GCNames.Contains(Pair.Value.OutputObject->GetName()))
+					{
+						ReuseOutput = false;
+						AGeometryCollectionActor * Actor = Cast<AGeometryCollectionActor>(Pair.Value.OutputObject);
+						if (IsValid(Actor))
+						{
+							Actor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+							Actor->MarkAsGarbage();
+						}
+					}
+					else
+					{
+						ReuseOutput = true;
+					}
+				}
+			}
+
+			if (ReuseOutput)
+			{
+				InOldOutputs.RemoveAt(i);
+				OutNewOutputs.Add(OldOutput);
+			}
+		}
+	}
+
+	// All our output objects now have their HGPO assigned
+	// We can now parse them to update the output type
+	for (auto& Output : OutNewOutputs)
+	{
+		Output->UpdateOutputType();
+	}
+
+	return true;
+}
+
+
+void
+FHoudiniOutputTranslator::CacheObjectInfo(const HAPI_ObjectInfo& InObjInfo, FHoudiniObjectInfo& OutObjInfoCache)
+{
+	FHoudiniEngineString hapiSTR(InObjInfo.nameSH);
+	hapiSTR.ToFString(OutObjInfoCache.Name);
+	//OutObjInfoCache.Name = InObjInfo.nameSH;
+
+	OutObjInfoCache.NodeId = InObjInfo.nodeId;
+	OutObjInfoCache.ObjectToInstanceID = InObjInfo.objectToInstanceId;
+
+	OutObjInfoCache.bHasTransformChanged = InObjInfo.hasTransformChanged;
+	OutObjInfoCache.bHaveGeosChanged = InObjInfo.haveGeosChanged;
+
+	OutObjInfoCache.bIsVisible = InObjInfo.isVisible;
+	OutObjInfoCache.bIsInstancer = InObjInfo.isInstancer;
+	OutObjInfoCache.bIsInstanced = InObjInfo.isInstanced;
+
+	OutObjInfoCache.GeoCount = InObjInfo.geoCount;
+};
+
+EHoudiniGeoType
+FHoudiniOutputTranslator::ConvertHapiGeoType(const HAPI_GeoType& InType)
+{
+	EHoudiniGeoType OutType = EHoudiniGeoType::Invalid;
+	switch (InType)
+	{
+	case HAPI_GEOTYPE_DEFAULT:
+		OutType = EHoudiniGeoType::Default;
+		break;
+
+	case HAPI_GEOTYPE_INTERMEDIATE:
+		OutType = EHoudiniGeoType::Intermediate;
+		break;
+
+	case HAPI_GEOTYPE_INPUT:
+		OutType = EHoudiniGeoType::Input;
+		break;
+
+	case HAPI_GEOTYPE_CURVE:
+		OutType = EHoudiniGeoType::Curve;
+		break;
+
+	default:
+		OutType = EHoudiniGeoType::Invalid;
+		break;
+	}
+
+	return OutType;
+}
+
+void
+FHoudiniOutputTranslator::CacheGeoInfo(const HAPI_GeoInfo& InGeoInfo, FHoudiniGeoInfo& OutGeoInfoCache)
+{
+	OutGeoInfoCache.Type = ConvertHapiGeoType(InGeoInfo.type);
+
+	FHoudiniEngineString hapiSTR(InGeoInfo.nameSH);
+	hapiSTR.ToFString(OutGeoInfoCache.Name);
+
+	OutGeoInfoCache.NodeId = InGeoInfo.nodeId;
+
+	OutGeoInfoCache.bIsEditable = InGeoInfo.isEditable;
+	OutGeoInfoCache.bIsTemplated = InGeoInfo.isTemplated;
+	OutGeoInfoCache.bIsDisplayGeo = InGeoInfo.isDisplayGeo;
+	OutGeoInfoCache.bHasGeoChanged = InGeoInfo.hasGeoChanged;
+	OutGeoInfoCache.bHasMaterialChanged = InGeoInfo.hasMaterialChanged;
+
+	OutGeoInfoCache.PartCount = InGeoInfo.partCount;
+	OutGeoInfoCache.PointGroupCount = InGeoInfo.pointGroupCount;
+	OutGeoInfoCache.PrimitiveGroupCount = InGeoInfo.primitiveGroupCount;
+};
+
+
+EHoudiniPartType
+FHoudiniOutputTranslator::ConvertHapiPartType(const HAPI_PartType& InType)
+{
+	EHoudiniPartType OutType = EHoudiniPartType::Invalid;
+	switch (InType)
+	{
+		case HAPI_PARTTYPE_BOX:
+		case HAPI_PARTTYPE_SPHERE:
+		case HAPI_PARTTYPE_MESH:
+			OutType = EHoudiniPartType::Mesh;
+			break;
+
+		case HAPI_PARTTYPE_CURVE:
+			OutType = EHoudiniPartType::Curve;
+			break;
+
+		case HAPI_PARTTYPE_INSTANCER:
+			OutType = EHoudiniPartType::Instancer;
+			break;
+
+		case HAPI_PARTTYPE_VOLUME:
+			OutType = EHoudiniPartType::Volume;
+			break;
+
+		default:
+			OutType = EHoudiniPartType::Invalid;
+			break;
+	}
+
+	return OutType;
+}
+
+void
+FHoudiniOutputTranslator::CachePartInfo(const HAPI_PartInfo& InPartInfo, FHoudiniPartInfo& OutPartInfoCache)
+{
+	OutPartInfoCache.PartId = InPartInfo.id;
+	
+	FHoudiniEngineString hapiSTR(InPartInfo.nameSH);
+	hapiSTR.ToFString(OutPartInfoCache.Name);
+
+	OutPartInfoCache.Type = ConvertHapiPartType(InPartInfo.type);
+
+	OutPartInfoCache.FaceCount = InPartInfo.faceCount;
+	OutPartInfoCache.VertexCount = InPartInfo.vertexCount;
+	OutPartInfoCache.PointCount = InPartInfo.pointCount;
+
+	OutPartInfoCache.PointAttributeCounts = InPartInfo.attributeCounts[HAPI_ATTROWNER_POINT];
+	OutPartInfoCache.VertexAttributeCounts = InPartInfo.attributeCounts[HAPI_ATTROWNER_VERTEX];
+	OutPartInfoCache.PrimitiveAttributeCounts = InPartInfo.attributeCounts[HAPI_ATTROWNER_PRIM];
+	OutPartInfoCache.DetailAttributeCounts = InPartInfo.attributeCounts[HAPI_ATTROWNER_DETAIL];
+
+	OutPartInfoCache.bIsInstanced = InPartInfo.isInstanced;
+
+	OutPartInfoCache.InstancedPartCount = InPartInfo.instancedPartCount;
+	OutPartInfoCache.InstanceCount = InPartInfo.instanceCount;
+
+	OutPartInfoCache.bHasChanged = InPartInfo.hasChanged;
+};
+
+void
+FHoudiniOutputTranslator::CacheVolumeInfo(const HAPI_VolumeInfo& InVolumeInfo, FHoudiniVolumeInfo& OutVolumeInfoCache)
+{
+	FHoudiniEngineString hapiSTR(InVolumeInfo.nameSH);
+	hapiSTR.ToFString(OutVolumeInfoCache.Name);
+	
+	OutVolumeInfoCache.bIsVDB = (InVolumeInfo.type == HAPI_VOLUMETYPE_VDB); // replaces VolumeType Type;
+
+	OutVolumeInfoCache.TupleSize = InVolumeInfo.tupleSize;
+	OutVolumeInfoCache.bIsFloat = (InVolumeInfo.storage == HAPI_STORAGETYPE_FLOAT); // replaces StorageType StorageType;
+	OutVolumeInfoCache.TileSize = InVolumeInfo.tileSize;
+
+	FHoudiniEngineUtils::TranslateHapiTransform(InVolumeInfo.transform, OutVolumeInfoCache.Transform);
+	OutVolumeInfoCache.bHasTaper = InVolumeInfo.hasTaper;
+
+	OutVolumeInfoCache.XLength = InVolumeInfo.xLength;
+	OutVolumeInfoCache.YLength = InVolumeInfo.yLength;
+	OutVolumeInfoCache.ZLength = InVolumeInfo.zLength;
+
+	OutVolumeInfoCache.MinX = InVolumeInfo.minX;
+	OutVolumeInfoCache.MinY = InVolumeInfo.minY;
+	OutVolumeInfoCache.MinZ = InVolumeInfo.minZ;
+
+	OutVolumeInfoCache.XTaper = InVolumeInfo.xTaper;
+	OutVolumeInfoCache.YTaper = InVolumeInfo.yTaper;
+};
+
+EHoudiniCurveType
+FHoudiniOutputTranslator::ConvertHapiCurveType(const HAPI_CurveType& InType)
+{
+	EHoudiniCurveType OutType = EHoudiniCurveType::Invalid;
+	switch (InType)
+	{
+	case HAPI_CURVETYPE_LINEAR:
+		OutType = EHoudiniCurveType::Polygon;
+		break;
+
+	case HAPI_CURVETYPE_NURBS:
+		OutType = EHoudiniCurveType::Nurbs;
+		break;
+
+	case HAPI_CURVETYPE_BEZIER:
+		OutType = EHoudiniCurveType::Bezier;
+		break;
+
+	case HAPI_CURVETYPE_MAX:
+		OutType = EHoudiniCurveType::Points;
+		break;
+
+	default:
+		OutType = EHoudiniCurveType::Invalid;
+		break;
+	}
+
+	return OutType;
+}
+
+void
+FHoudiniOutputTranslator::CacheCurveInfo(const HAPI_CurveInfo& InCurveInfo, FHoudiniCurveInfo& OutCurveInfoCache)
+{
+	OutCurveInfoCache.Type = ConvertHapiCurveType(InCurveInfo.curveType);
+
+	OutCurveInfoCache.CurveCount = InCurveInfo.curveCount;
+	OutCurveInfoCache.VertexCount = InCurveInfo.vertexCount;
+	OutCurveInfoCache.KnotCount = InCurveInfo.knotCount;
+
+	OutCurveInfoCache.bIsPeriodic = InCurveInfo.isPeriodic;
+	OutCurveInfoCache.bIsRational = InCurveInfo.isRational;
+
+	OutCurveInfoCache.Order = InCurveInfo.order;
+
+	OutCurveInfoCache.bHasKnots = InCurveInfo.hasKnots;
+};
+
+
+void
+FHoudiniOutputTranslator::ClearAndRemoveOutputs(TArray<TObjectPtr<UHoudiniOutput>>& OutputsToClear, EHoudiniClearFlags ClearFlags)
+{
+	// DO NOT MANUALLY DESTROY THE OLD/DANGLING OUTPUTS!
+	// This messes up unreal's Garbage collection and would cause crashes on duplication
+	for (auto& OldOutput : OutputsToClear)
+	{
+		if (!OldOutput)
+			continue;
+
+		OldOutput->DestroyCookedData(ClearFlags);
+	}
+
+	// Simply clearing the array is enough
+	OutputsToClear.Empty();
+}
+
+void 
+FHoudiniOutputTranslator::ClearOutput(UHoudiniOutput* Output) 
+{
+	TRACE_CPUPROFILER_EVENT_SCOPE(FHoudiniOutputTranslator::ClearOutput);
+
+	switch (Output->GetType()) 
+	{
+		case EHoudiniOutputType::Landscape:
+		{
+			for (auto& OutputObject : Output->GetOutputObjects())
+			{
+				// Currently, any Landscape managed by an HDA is always present in the current level.
+				// Only when it gets baked will Landscapes be serialized to other levels so for now
+				// assume that a landscape should be available, unless explicitly deleted the user.
+				UHoudiniLandscapePtr* LandscapePtr = Cast<UHoudiniLandscapePtr>(OutputObject.Value.OutputObject);
+				if (!LandscapePtr)
+					continue;
+
+				ALandscapeProxy* Landscape = LandscapePtr->GetRawPtr();
+
+				if (!IsValid(Landscape) || !Landscape->IsValidLowLevel())
+					continue;
+
+				Landscape->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+				Landscape->ConditionalBeginDestroy();
+				Landscape->UnregisterAllComponents();
+				Landscape->Destroy();
+				LandscapePtr->SetSoftPtr(nullptr);
+			}
+		}
+		break;
+
+		case EHoudiniOutputType::Instancer:
+		{
+			for (auto& OutputObject : Output->GetOutputObjects())
+			{
+				// Note: don't delete the actual components created by Unreal - they are "owned" by Unreal-  instead expcility remove the foliage types.
+
+				if (IsValid(OutputObject.Value.FoliageType))
+        {
+				  if (IsValid(OutputObject.Value.World))
+				  {
+						FHoudiniFoliageUtils::RemoveFoliageTypeFromWorld(OutputObject.Value.World, OutputObject.Value.FoliageType);
+				  }
+					else
+				  {
+						HOUDINI_LOG_ERROR(TEXT("Trying to delete Foliage Type, but no World was set. "
+                            "Most likely this foliage was cooked with a previous vertion of the Houdini Plugin, try deleting the foliage manually."));
+				  }
+        }
+			}
+		}
+		break;
+		// ... Other output types ...//
+
+		default:
+		break;
+	
+	}
+
+	Output->Clear();
+}
+
+
+bool
+FHoudiniOutputTranslator::GetCustomPartNameFromAttribute(
+	HAPI_NodeId NodeId,
+	HAPI_PartId PartId,
+	FString& OutCustomPartName) 
+{
+	TArray<FString> CustomNames;
+
+	FHoudiniHapiAccessor Accessor(NodeId, PartId, HAPI_UNREAL_ATTRIB_CUSTOM_OUTPUT_NAME_V2);
+	bool bHasCustomName = Accessor.GetAttributeData(HAPI_ATTROWNER_INVALID, CustomNames);
+
+	if (!bHasCustomName)
+	{
+		Accessor.Init(NodeId, PartId, HAPI_UNREAL_ATTRIB_CUSTOM_OUTPUT_NAME_V1);
+		bHasCustomName = Accessor.GetAttributeData(HAPI_ATTROWNER_INVALID, CustomNames);
+	}
+	
+	if (!bHasCustomName)
+		return false;
+
+	if (CustomNames.Num() <= 0)
+		return false;
+
+	OutCustomPartName = CustomNames[0];
+
+	if (OutCustomPartName.IsEmpty())
+		return false;
+
+	return true;
+}
+
+#undef LOCTEXT_NAMESPACE

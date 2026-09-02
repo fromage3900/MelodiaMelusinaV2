@@ -147,7 +147,7 @@ struct BS_GODFILE_API FMelodiaWaterOperationRequest
 	FGameplayTag TargetWaterNodeId;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation")
-	FGameplayTag DeviceId;
+        FName DeviceId = NAME_None;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Operation")
 	FGameplayTag ResonanceChannel;
@@ -192,7 +192,7 @@ struct BS_GODFILE_API FMelodiaWaterStateChange
 	EMelodiaWaterGameplayOperation Operation = EMelodiaWaterGameplayOperation::ResonancePulse;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Water|State")
-	FGameplayTag DeviceId;
+        FName DeviceId = NAME_None;
 };
 
 USTRUCT(BlueprintType)
@@ -201,7 +201,7 @@ struct BS_GODFILE_API FMelodiaWaterPlatformState
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Platform")
-	FGameplayTag PlatformId;
+        FName PlatformId = NAME_None;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Water|Platform")
 	FGameplayTag NetworkId;
