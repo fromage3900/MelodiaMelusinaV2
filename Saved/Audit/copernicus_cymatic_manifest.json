@@ -2,7 +2,7 @@
   "schema": "melodia.copernatic_cymatic_parallax.v2",
   "seed": 20260831,
   "size": "1024x1024",
-  "frames": 1,
+  "frames": 8,
   "variants": {
     "MelodiaHeroGem": {
       "outputs": [

@@ -300,6 +300,55 @@ VARIANTS = {
         facet_count=14, gem_sides=6, gold_scale=0.55, glow_intensity=0.9,
         chladni_modes=[(7, 9), (12, 11), (10, 16), (18, 14), (9, 15)],  # bass->treble
     ),
+    # === Hero-material family (2026-09-02) — full Nikki-jewellery/hero-cloth/water-glass kit ===
+    "MelodiaGoldSilk": dict(
+        fabric=(200, 172, 122), fabric_hi=(255, 236, 188), fabric_deep=(138, 108, 58),
+        thread=(255, 226, 162), nacre=(255, 240, 210), glow=(255, 232, 182),
+        rough_fabric=0.30, rough_thread=0.10, rough_nacre=0.18,
+        weave_freq=12, glow_intensity=0.7, chladni_modes=[(4, 6), (8, 10), (14, 12), (20, 16)],
+    ),
+    "MelodiaMotherPearl": dict(
+        nacre=(245, 248, 255), nacre_pink=(255, 226, 236), nacre_blue=(210, 235, 255),
+        nacre_gold=(255, 236, 190), glow=(255, 255, 255),
+        rough_nacre=0.10, rough_gold=0.18,
+        pearl_count=9, glow_intensity=0.78, chladni_modes=[(3, 5), (7, 5), (9, 11), (13, 15)],
+    ),
+    "MelodiaSapphireGlass": dict(
+        glass=(22, 42, 82), glass_hi=(122, 182, 255), glass_deep=(6, 16, 42),
+        foam=(202, 236, 255), glow=(92, 182, 255),
+        rough_glass=0.05, rough_foam=0.20,
+        flow_freq=6, glow_intensity=0.85, chladni_modes=[(6, 4), (10, 8), (8, 14), (16, 12)],
+    ),
+    "MelodiaRoseVelvet": dict(
+        velvet=(92, 18, 40), velvet_hi=(152, 42, 72), velvet_deep=(52, 10, 24),
+        gold=(226, 184, 96), gold_hi=(255, 220, 150), ruby=(200, 42, 62), glow=(255, 200, 182),
+        rough_velvet=0.88, rough_gold=0.20, rough_ruby=0.08,
+        brocade_freq=5, jewel_rows=2, glow_intensity=0.6, chladni_modes=[(4, 8), (9, 11), (14, 12)],
+    ),
+    "MelodiaMoonlace": dict(
+        lace=(236, 240, 255), lace_shadow=(200, 215, 245), moon=(255, 255, 255),
+        pearl=(240, 250, 255), glow=(202, 220, 255),
+        rough_lace=0.30, rough_pearl=0.10,
+        lace_freq=8, glow_intensity=0.5, chladni_modes=[(8, 6), (12, 10), (10, 16)],
+    ),
+    "MelodiaForestEmerald": dict(
+        emerald=(42, 142, 92), emerald_hi=(122, 255, 182), emerald_deep=(12, 62, 36),
+        leaf=(92, 192, 122), gold=(255, 215, 112), glow=(122, 255, 202),
+        rough_emerald=0.08, rough_leaf=0.40,
+        leaf_freq=10, glow_intensity=0.8, chladni_modes=[(6, 6), (11, 10), (8, 15), (17, 13)],
+    ),
+    "MelodiaAmethystVein": dict(
+        amethyst=(142, 92, 202), amethyst_hi=(222, 162, 255), amethyst_deep=(52, 28, 92),
+        quartz=(250, 245, 255), gold=(255, 220, 132), glow=(202, 162, 255),
+        rough_amethyst=0.10, rough_quartz=0.20, rough_gold=0.15,
+        vein_freq=5, glow_intensity=0.85, chladni_modes=[(5, 7), (10, 13), (8, 12), (16, 14)],
+    ),
+    "MelodiaAuroraGlass": dict(
+        glass=(32, 62, 102), aurora_g=(92, 255, 202), aurora_p=(255, 122, 222),
+        aurora_b=(122, 172, 255), nacre=(202, 236, 255), glow=(162, 255, 232),
+        rough_glass=0.05, rough_nacre=0.12,
+        band_freq=6, glow_intensity=0.9, chladni_modes=[(6, 4), (10, 6), (12, 12), (18, 10)],
+    ),
 }
 
 # === Math helpers ===
@@ -1577,6 +1626,238 @@ def build_melodia_hero_gem(h, w, frame, total_frames):
                      np.ones((h, w), np.float32))
 
 
+def build_melodia_gold_silk(h, w, frame, total_frames):
+    """Nikki gold-silk hero cloth: Chladni weave + molten-gold thread lines on nodal lines."""
+    p = VARIANTS["MelodiaGoldSilk"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.3 + i * 0.2) + i * 1.1 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.4, 0.3][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    thread = smoothstep(0.80, 0.95, nodal)
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+    weave = (np.sin(nx * p["weave_freq"] * 2 * np.pi) * np.sin(ny * p["weave_freq"] * 1.3 * 2 * np.pi) * 0.5 + 0.5)
+    weave = smoothstep(0.4, 0.7, weave)
+    warp = warped_fbm(h, w, 20, 4, 0.25, SEED + 700)
+    height = weave * 0.2 + thread * 0.4 + cym * 0.15 + warp * 0.08
+    base = mix(col(p["fabric_deep"]), col(p["fabric"]), warp * 0.5 + 0.25)
+    base = mix(base, col(p["fabric_hi"]), weave * 0.4)
+    base = mix(base, col(p["thread"]), thread * 0.85)
+    base = mix(base, col(p["nacre"]), nodal * 0.2)
+    rough = mix(p["rough_fabric"], p["rough_thread"], thread)
+    rough = mix(rough, p["rough_nacre"], nodal * 0.3)
+    metallic = thread * 0.9 + weave * 0.1
+    emissive = mask_color(thread * smoothstep(0.82, 0.95, nodal), col(p["glow"]) * p["glow_intensity"])
+    emissive = np.clip(emissive, 0, 1)
+    iri = thread * 0.7 + weave * 0.2 + nodal * 0.2
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
+def build_melodia_mother_pearl(h, w, frame, total_frames):
+    """Nacre gown accessory: pearl facets + mother-of-pearl iridescence bands."""
+    p = VARIANTS["MelodiaMotherPearl"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.4 + i * 0.25) + i * 0.9 for i in range(len(modes))],
+                          weights=[1.0, 0.7, 0.5, 0.35][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    warp = warped_fbm(h, w, 12, 4, 0.22, SEED + 710)
+    pearl = np.zeros((h, w), np.float32)
+    pr = min(h, w) // 14
+    spacing = pr * 2.6
+    for gy in range(int(h / spacing) + 1):
+        for gx in range(int(w / spacing) + 1):
+            cx = gx * spacing + (gy % 2) * spacing * 0.5
+            cy = gy * spacing
+            pearl += crystal_shape(h, w, cx, cy, pr, 16, (gx + gy) * 0.4)  # 16-sides ~ round
+    pearl = np.clip(pearl, 0, 1)
+    band = smoothstep(0.30, 0.75, warp + cym * 0.3)  # nacre sheen bands
+    height = pearl * 0.7 + cym * 0.12 + warp * 0.05
+    base = mix(col(p["nacre_blue"]), col(p["nacre"]), pearl * 0.8 + warp * 0.2)
+    base = mix(base, col(p["nacre_pink"]), band * nodal * 0.5)
+    base = mix(base, col(p["nacre_gold"]), smoothstep(0.82, 0.96, nodal) * 0.6)
+    rough = mix(0.30, p["rough_nacre"], pearl)
+    rough = mix(rough, p["rough_gold"], smoothstep(0.82, 0.96, nodal) * 0.5)
+    metallic = pearl * 0.12
+    emissive = mask_color(band * nodal * 0.5, col(p["glow"]) * p["glow_intensity"] * 0.5)
+    emissive = np.clip(emissive, 0, 1)
+    iri = pearl * 0.9 + band * 0.6 + nodal * 0.3
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
+def build_melodia_sapphire_glass(h, w, frame, total_frames):
+    """Sea-Above hero water-glass: frosted champagne ripples + refracting iridescence."""
+    p = VARIANTS["MelodiaSapphireGlass"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.5 + i * 0.3) + i * 0.7 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.5, 0.4][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    water = water_stream(h, w, p["flow_freq"] * 0.1, SEED + 720, phase * 0.8)
+    warp = warped_fbm(h, w, 8, 4, 0.3, SEED + 721)
+    foam = smoothstep(0.55, 0.7, water) * (1 - smoothstep(0.7, 0.85, water))
+    height = cym * 0.2 + (1 - water) * 0.45 + foam * 0.4 + warp * 0.06
+    base = mix(col(p["glass_deep"]), col(p["glass"]), warp * 0.4 + cym * 0.25)
+    base = mix(base, col(p["glass_hi"]), nodal * 0.5)
+    base = mix(base, col(p["foam"]), foam * 0.8)
+    rough = mix(p["rough_glass"], p["rough_foam"], foam)
+    metallic = nodal * 0.08
+    emissive = mask_color(foam * smoothstep(0.6, 0.8, warp), col(p["glow"]) * p["glow_intensity"] * 0.4)
+    emissive = np.clip(emissive, 0, 1)
+    iri = nodal * 0.8 + water * 0.3 + foam * 0.2
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
+def build_melodia_rose_velvet(h, w, frame, total_frames):
+    """Royal rose velvet brocade: high-pile velvet folds + gold brocade + ruby motifs."""
+    p = VARIANTS["MelodiaRoseVelvet"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.3 + i * 0.2) + i * 1.2 for i in range(len(modes))],
+                          weights=[1.0, 0.7, 0.5][:len(modes)])
+    warp = warped_fbm(h, w, 24, 4, 0.25, SEED + 730)
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+    brocade = smoothstep(0.4, 0.7, (np.sin(nx * p["brocade_freq"] * 2 * np.pi) *
+                                   np.sin(ny * p["brocade_freq"] * 2 * np.pi) * 0.5 + 0.5))
+    fold = smoothstep(0.42, 0.68, cym)  # broad Chladni velvet folds
+    dust = smoothstep(0.72, 0.9, tileable_value_noise(h, w, 10, SEED + 731))
+    height = fold * 0.5 + brocade * 0.18 + warp * 0.1
+    base = mix(col(p["velvet_deep"]), col(p["velvet"]), fold * 0.6 + warp * 0.2)
+    base = mix(base, col(p["velvet_hi"]), fold * 0.4)
+    base = mix(base, col(p["gold"]), brocade * 0.9)
+    base = mix(base, col(p["ruby"]), smoothstep(0.7, 0.85, cym) * brocade * 0.5)
+    rough = mix(p["rough_velvet"], p["rough_gold"], brocade * 0.7)
+    rough = mix(rough, p["rough_ruby"], smoothstep(0.7, 0.85, cym) * brocade * 0.4)
+    metallic = brocade * 0.5
+    emissive = mask_color(dust * brocade, col(p["glow"]) * p["glow_intensity"] * 0.4)
+    emissive = np.clip(emissive, 0, 1)
+    iri = brocade * 0.2 + fold * 0.15
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
+def build_melodia_moonlace(h, w, frame, total_frames):
+    """Sheer moonlit lace (OIT-ready): membrane + holes, pearl nodes, Opacity < 1."""
+    p = VARIANTS["MelodiaMoonlace"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.35 + i * 0.2) + i * 1.0 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.45][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+    lace = smoothstep(0.48, 0.72, (np.sin(nx * p["lace_freq"] * 2 * np.pi) *
+                                   np.sin(ny * p["lace_freq"] * 2 * np.pi) * 0.5 + 0.5))
+    holes = smoothstep(0.60, 0.82, 1.0 - lace)
+    pearl = smoothstep(0.82, 0.96, nodal) * (0.6 + holes * 0.4)
+    warp = warped_fbm(h, w, 12, 3, 0.2, SEED + 740)
+    height = lace * 0.3 + holes * 0.2 + pearl * 0.5 + warp * 0.06
+    base = mix(col(p["lace_shadow"]), col(p["lace"]), lace * 0.6 + warp * 0.2)
+    base = mix(base, col(p["moon"]), pearl * 0.85)
+    base = mix(base, col(p["pearl"]), nodal * 0.3)
+    rough = mix(0.40, p["rough_lace"], lace)
+    rough = mix(rough, p["rough_pearl"], pearl)
+    metallic = pearl * 0.1
+    emissive = mask_color(pearl, col(p["glow"]) * p["glow_intensity"] * 0.5)
+    emissive = np.clip(emissive, 0, 1)
+    iri = pearl * 0.8 + nodal * 0.3 + lace * 0.1
+    opacity = 0.55 + (lace + nodal * 0.3 + warp * 0.15) * 0.45  # sheer, OIT-friendly
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.clip(opacity, 0, 1))
+
+
+def build_melodia_forest_emerald(h, w, frame, total_frames):
+    """PCG-scatter hero grove: emerald facets + foliar leaf scatter on Chladni land."""
+    p = VARIANTS["MelodiaForestEmerald"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.3 + i * 0.2) + i * 1.0 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.5, 0.4][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    warp = warped_fbm(h, w, 16, 4, 0.25, SEED + 750)
+    leaf = smoothstep(0.55, 0.8, tileable_value_noise(h, w, 16, SEED + 751)) * (0.5 + nodal * 0.5)
+    emerald = np.zeros((h, w), np.float32)
+    er = min(h, w) // 18
+    spacing = er * 3.0
+    for gy in range(int(h / spacing) + 1):
+        for gx in range(int(w / spacing) + 1):
+            cx = gx * spacing + (gy % 2) * spacing * 0.5
+            cy = gy * spacing
+            emerald += crystal_shape(h, w, cx, cy, er, 6, (gx + gy) * 0.5)
+    emerald = np.clip(emerald, 0, 1)
+    height = emerald * 0.7 + leaf * 0.2 + cym * 0.12 + warp * 0.06
+    base = mix(col(p["emerald_deep"]), col(p["emerald"]), warp * 0.4 + nodal * 0.2)
+    base = mix(base, col(p["emerald_hi"]), emerald * 0.85 + nodal * 0.3)
+    base = mix(base, col(p["leaf"]), leaf * 0.6)
+    base = mix(base, col(p["gold"]), smoothstep(0.86, 0.97, nodal) * 0.6)
+    rough = mix(p["rough_leaf"], p["rough_emerald"], emerald * 0.9)
+    metallic = emerald * 0.1 + smoothstep(0.86, 0.97, nodal) * 0.4
+    emissive = mask_color(emerald * smoothstep(0.8, 0.95, nodal), col(p["glow"]) * p["glow_intensity"])
+    emissive = np.clip(emissive, 0, 1)
+    iri = emerald * 0.7 + nodal * 0.4
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
+def build_melodia_amethyst_vein(h, w, frame, total_frames):
+    """Amethyst geode: rocky matrix with molten crystal veins + quartz faces."""
+    p = VARIANTS["MelodiaAmethystVein"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.35 + i * 0.2) + i * 1.0 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.5, 0.4][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    vein = smoothstep(0.78, 0.95, nodal)
+    warp = warped_fbm(h, w, 18, 4, 0.25, SEED + 760)
+    quartz = smoothstep(0.6, 0.85, tileable_value_noise(h, w, 20, SEED + 761))
+    height = vein * 0.5 + quartz * 0.35 + cym * 0.15 + warp * 0.1
+    base = mix(col(p["amethyst_deep"]), col(p["amethyst"]), warp * 0.5 + cym * 0.25)
+    base = mix(base, col(p["amethyst_hi"]), vein * 0.7)
+    base = mix(base, col(p["quartz"]), quartz * 0.6)
+    base = mix(base, col(p["gold"]), smoothstep(0.88, 0.97, nodal) * 0.5)
+    rough = mix(p["rough_quartz"], p["rough_amethyst"], vein * 0.7)
+    rough = mix(rough, p["rough_gold"], smoothstep(0.88, 0.97, nodal) * 0.4)
+    metallic = vein * 0.15 + smoothstep(0.88, 0.97, nodal) * 0.3
+    emissive = mask_color(vein * smoothstep(0.7, 0.9, nodal), col(p["glow"]) * p["glow_intensity"])
+    emissive = np.clip(emissive, 0, 1)
+    iri = vein * 0.75 + quartz * 0.25
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
+def build_melodia_aurora_glass(h, w, frame, total_frames):
+    """Aurora pearlescent glass: drifting aurora bands through refracting iridescence."""
+    p = VARIANTS["MelodiaAuroraGlass"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.5 + i * 0.3) + i * 0.6 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.5, 0.4][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    warp = warped_fbm(h, w, 8, 4, 0.3, SEED + 770)
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    ny = yy / h
+    band_g = smoothstep(0.3, 0.7, np.sin(ny * p["band_freq"] * 2 * np.pi + phase * 0.6 + warp * 3) * 0.5 + 0.5)
+    band_p = smoothstep(0.3, 0.7, np.sin((ny + 0.35) * p["band_freq"] * 2 * np.pi - phase * 0.5 + warp * 2) * 0.5 + 0.5)
+    height = cym * 0.18 + warp * 0.3 + (band_g + band_p) * 0.12
+    base = mix(col(p["glass"]), col(p["aurora_b"]), warp * 0.4 + cym * 0.2)
+    base = mix(base, col(p["aurora_g"]), band_g * 0.6)
+    base = mix(base, col(p["aurora_p"]), band_p * 0.55)
+    base = mix(base, col(p["nacre"]), nodal * 0.4)
+    rough = mix(p["rough_glass"], p["rough_nacre"], (band_g + band_p) * nodal * 0.4)
+    metallic = nodal * 0.05
+    emissive = mask_color((band_g + band_p) * smoothstep(0.8, 0.95, nodal),
+                          col(p["glow"]) * p["glow_intensity"] * 0.5)
+    emissive = np.clip(emissive, 0, 1)
+    iri = (band_g + band_p) * 0.6 + nodal * 0.6 + warp * 0.3
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
 # === Main ===
 
 BUILDERS = {
@@ -1613,6 +1894,14 @@ BUILDERS = {
     "RoyalVelvetBrocade": build_royal_velvet_brocade,
     "FarawayCelestialSilk": build_faraway_celestial_silk,
     "MelodiaHeroGem": build_melodia_hero_gem,
+    "MelodiaGoldSilk": build_melodia_gold_silk,
+    "MelodiaMotherPearl": build_melodia_mother_pearl,
+    "MelodiaSapphireGlass": build_melodia_sapphire_glass,
+    "MelodiaRoseVelvet": build_melodia_rose_velvet,
+    "MelodiaMoonlace": build_melodia_moonlace,
+    "MelodiaForestEmerald": build_melodia_forest_emerald,
+    "MelodiaAmethystVein": build_melodia_amethyst_vein,
+    "MelodiaAuroraGlass": build_melodia_aurora_glass,
     "FarawayNightVelvet": build_faraway_night_velvet,
     "FarawayAquaLace": build_faraway_aqua_lace,
     "FarawayGildedRidge": build_faraway_gilded_ridge,

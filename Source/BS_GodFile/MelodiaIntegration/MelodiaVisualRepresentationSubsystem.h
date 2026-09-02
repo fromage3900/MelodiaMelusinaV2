@@ -42,6 +42,19 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Melodia|VisualTruth")
 	TArray<FName> GetActiveNarrativeVisualFlags() const;
 
+	// ---- Faraway Mother fabric-mountain seam (added 2026-09-02, Nikki pick) ----
+	/** WorldField.Tension at normalized plate coords (u,v in [0,1]) — derived from Chladni gradient |grad Z|/8, read-only. */
+	UFUNCTION(BlueprintPure, Category = "Melodia|VisualTruth|FarawayMother")
+	float GetWorldFieldTension(float U, float V) const;
+
+	/** Cymatic amplitude at (u,v) for Chladni (3,5) CelestialSilk weave — read-only, fashion-fabric breakup. */
+	UFUNCTION(BlueprintPure, Category = "Melodia|VisualTruth|FarawayMother")
+	float GetCymaticAmplitude(float U, float V) const;
+
+	/** CelestialSilk weave state: returns current Chladni modes (N=3,M=5) + BeatPulse for material sheen. */
+	UFUNCTION(BlueprintPure, Category = "Melodia|VisualTruth|FarawayMother")
+	void GetCelestialSilkWeaveState(int32& OutModeN, int32& OutModeM, float& OutBeatPulse) const;
+
 	/** Determinism assertion: this subsystem performs NO writes to simulation state. */
 	UFUNCTION(BlueprintPure, Category = "Melodia|VisualTruth")
 	bool IsReadOnlyByContract() const { return true; }
@@ -49,5 +62,5 @@ public:
 private:
 	// No mutable simulation state is held here by design — reads are forwarded to
 	// the owning authorities (UMelodiaRhythmCombatSubsystem, UMelodiaNarrativeSubsystem,
-	// MPC_Melodia_Palette) at call time. A future Magpie renderer consumes these reads.
+	// MPC_Melodia_Palette, UMelodiaCymaticsSubsystem) at call time. A future Magpie renderer consumes these reads.
 };
