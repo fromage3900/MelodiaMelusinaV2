@@ -1,81 +1,157 @@
-# Melodia — Test Readiness & Automated Verification Record (TEST_READY)
+# Melodia — Test Readiness & Verification Record
 
-**Document Classification:** Comprehensive Automated Test Certification
-**Author:** Autonomous Lead Engineer & Test Writer Harness
-**Target Repository:** `C:\EnvironmentPortfolio\BS_GodFile`
-**Date:** 2026-09-01 (Evening P0 Closeout & Chapter Loop Checkpoint)
-**Verification Status:** **100% PASS — 524 / 524 TESTS PASSING (0 FAILURES, 0 ERRORS)**
+**Last Updated:** 2026-09-02  
+**Purpose:** distinguish historical P0 evidence from the proof required for future Chapters/Voyages.
 
 ---
 
-## 1. Executive Summary
+## 1. P0 baseline
 
-This document certifies that the **Melodia Automated Test Harness**, the **ECHO Pipeline Gate Suite**, and the **Melusina Release Verification Suite** (`Tools/test_e2e_melusina_release.py`) have been executed and verified. The test suites cover all core systems: QuillScript narrative grammar, turn-based JRPG combat flow, Harmonix rhythm input scaling, wardrobe traversal capabilities, music-as-key world puzzles, single-writer UI architecture, and canonical save/load persistence.
+The 2026-09-01 closeout record reports a green automated baseline across the existing GMM, P0 integration, ECHO/contract, MCP, daemon, and release-hygiene suites, including the recorded **524 / 524** aggregate in the prior certification snapshot.
 
----
+Treat that number as **bounded evidence for the captured revision and suite composition**. It is not a permanent statement that every later branch, Chapter, or Voyage is certified simply because the old count once passed.
 
-## 2. Complete Verification Matrix
-
-| Tier / Suite | Verification Domain | Scope & Targets | Pass Count | Status |
-|---|---|---|:---:|:---:|
-| **GMM Core Simulations** | `Content/Python/gmm/tests/` | Music-as-key math, timing windows, chord progressions, and rhythm contracts | 307 / 307 | **PASS** |
-| **P0 Content & Integration** | `Content/Python/gmm/tests/p0/` | Quill dialogue flow, combat turn queue, save/load slot verification | 48 / 48 | **PASS** |
-| **ECHO Pipeline Contracts** | `Tools/run_contract_tests.py` | Asset schema validity, audio specs, wardrobe contracts, T3D injectors | 77 / 77 | **PASS** |
-| **Melodia MCP Regression** | `Tools/test_melodia_mcp.py` | Tool policy adherence, narrative idempotency audit, Blueprint fixtures | 38 / 38 | **PASS** |
-| **Ollama Token & Stress** | `Tools/test_melodia_ollama_validation.py` + stress | C++ boundaries, token efficiency ratio, daemon fallback stress | 25 / 25 | **PASS** |
-| **Melusina Release E2E** | `Tools/test_e2e_melusina_release.py` | 4-tier open-source hygiene, MATH metrics, and live content specs | 17 / 17 | **PASS** |
-| **Offline Preflight Gates** | `Tools/verify_p0_offline.py` | Static route checks, level references, and config integrity | 12 / 12 | **PASS** |
-| **TOTAL** | **Comprehensive Test Suite** | **All Verification Tiers Combined** | **524 / 524** | **100% PASS** |
+Re-run the relevant suites after changing their subject.
 
 ---
 
-## 3. Four-Tier Release Verification Suite Breakdown (`Tools/test_e2e_melusina_release.py`)
+## 2. What P0 proves
 
-### Tier 1: Repository Open-Source Hygiene Verification (5/5 PASS)
-- `README.md`, `LICENSE` (MIT), `CONTRIBUTING.md`, `.gitignore`, `CODE_OF_CONDUCT.md`, `SECURITY.md` present and populated.
-- Zero UTF-8 decoding errors and zero mojibake corruption artifacts.
-- Validated presence of essential architectural topics (`Melodia`, `Unreal Engine`, `Model Context Protocol`, `Architecture`, `License`) with professional tone.
-- Build ignore rules properly filter `Intermediate/`, `Binaries/`, `DerivedDataCache/`, and `Saved/`.
+P0 testing provides evidence that the project can integrate:
 
-### Tier 2: Documentation & Asset Integrity (4/4 PASS)
-- Verified MATH evaluation framework whitepaper and metrics (`TCA`, `PAR`, `SCR`, `RCF`, `TER`).
-- Model comparison benchmarks documented across Nous Hermes 3, LongCat, Qwen 2.5-Coder, and DeepSeek.
-- Automated asset validator passes with 0 missing hard assets.
+- Quill/narrative progression;
+- turn-based JRPG/Phoenix action flow;
+- Melodia rhythm execution;
+- wardrobe gameplay/traversal;
+- music-as-key world interaction;
+- single-writer UI;
+- idempotent reward/narrative consumption;
+- canonical save/load infrastructure.
 
-### Tier 3: Programmatic MCP & Live Content Verification (5/5 PASS)
-- Programmatic fixture discovery verified (`melodia_bp_list_fixtures`).
-- Quest registry query verified (`melodia_persona_get_quests`).
-- Discovered rhythm skills and canonical grade multipliers verified (`Poor: 0.35`, `Good: 1.0`, `Great: 1.2`, `Perfect: 1.5`).
-- Rhythm skills data table JSON integrity validated (`DT_MelodySlime_Skills.json`).
-- Quill 7-verb grammar and system health scan verified.
-
-### Tier 4: Regression Test Suites (3/3 PASS)
-- Melodia MCP server suite (`Tools/test_melodia_mcp.py`): 38/38 passing.
-- Ollama validation suite (`Tools/test_melodia_ollama_validation.py`): 6/6 passing.
-- Daemon stress suite (`Tools/test_ollama_daemons_stress.py`): 19/19 passing.
+The next quality bar is deeper **restart and repeat-load closure**, especially across Wardrobe, Convergence, Starskiff/world state, and future schema growth.
 
 ---
 
-## 4. Execution Commands
+## 3. Verification tiers for the long-lived game
+
+Every new content unit should be explicit about which tiers it requires.
+
+### Tier A — source/content presence
+Files, assets, specs, IDs, and references exist.
+
+**Not runtime proof.**
+
+### Tier B — offline contract proof
+Schemas, allowlists, progression contracts, static ownership constraints, and deterministic content rules pass without Unreal runtime mutation.
+
+### Tier C — live/PIE proof
+Real runtime behavior executes through the intended owner path with no duplicate UI/authority or stale state.
+
+### Tier D — restart/idempotency proof
+Durable facts survive full process restart; repeated load/consume does not duplicate rewards, modifiers, quest flags, world consequences, or registrations.
+
+### Tier E — packaged proof
+The exact promoted content runs in a packaged build with the claimed route/assets/state.
+
+A major Chapter, Monolith Event, or Voyage is not release-ready until the tiers relevant to its durable behavior pass.
+
+---
+
+## 4. Current commands
 
 ```powershell
-# 1. Run the primary test suite (GMM + P0 Integration + ECHO Contracts)
+# Primary suite
 .\run_tests.ps1
 
-# 2. Run the offline P0 preflight gate checks
+# Offline P0/static preflight
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/verify_p0_offline.py
 
-# 3. Run the Melodia MCP regression suite
+# Melodia MCP regression
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_melodia_mcp.py
 
-# 4. Run the end-to-end release verification suite
+# End-to-end release/hygiene
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_e2e_melusina_release.py
 ```
 
+Use the specific Chapter/content contract suites registered for the files being changed rather than relying only on a global aggregate.
+
 ---
 
-## 5. Certification Verdict
+## 5. Runtime persistence acceptance
 
-- **Test Suite Result:** **ALL 524 AUTOMATED TESTS PASS CLEANLY (0 FAILURES, 0 ERRORS)**
-- **Gate Ledger State:** **10 / 10 P0 GAMEPLAY COMPLETION GATES PASS** (`Saved/gate_ledger.json`)
-- **Final Verdict:** **CERTIFIED TEST READY FOR P0 CLOSEOUT & CHAPTER LOOP PRODUCTION**
+Current high-priority test sequence:
+
+```text
+construct valid durable state
+      ↓
+save
+      ↓
+end process / PIE
+      ↓
+start fresh process / PIE
+      ↓
+load
+      ↓
+validate complete state vector
+      ↓
+load same save again
+      ↓
+validate identical state / zero duplication
+```
+
+Test invalid candidates separately:
+
+- inconsistent equipped-vs-owned wardrobe state;
+- unsupported/migration-failed record;
+- intentionally empty equipment/inventory state;
+- missing/corrupt referenced content where fail-safe behavior is expected.
+
+Validation should occur before destructive mutation whenever ownership/dependency boundaries permit it.
+
+---
+
+## 6. Chapter-package acceptance
+
+For a future Chapter/Reverie/Voyage, retain evidence for:
+
+- exact progression/content spec revision;
+- stable IDs and prerequisites;
+- authoring source refs;
+- offline validation result;
+- live route/result proof if applicable;
+- save/restart proof for any durable fact;
+- packaged content manifest/build hash before release promotion.
+
+A quiet non-combat Reverie does not need a battle test. A combat Chapter does. A Monolith Event may need world-state/traversal proof instead of enemy-HP proof.
+
+**Testing follows the content's actual systems; content no longer has to imitate P0's pacing to be considered valid.**
+
+---
+
+## 7. Evergreen content boundary
+
+Future Gifts/Reveries/Voyages must use the same verification philosophy:
+
+- stable globally unique IDs;
+- idempotent claims;
+- forward-compatible save migration;
+- optional network failure must not break core gameplay;
+- claimed/installed content must remain legible to future saves.
+
+Remote-manifest/backend tests are intentionally future work and are not a P0 requirement.
+
+---
+
+## 8. Verdict language
+
+Prefer precise claims:
+
+- **source present**;
+- **offline contract pass**;
+- **live PIE pass**;
+- **restart/idempotency pass**;
+- **packaged pass**.
+
+Avoid saying “the game is certified” when only one tier was measured.
+
+This evidence discipline is what lets Melodia grow for years without old confidence claims silently becoming false.
