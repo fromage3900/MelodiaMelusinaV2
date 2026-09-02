@@ -1,101 +1,199 @@
-# System Architecture Map — Melodia Rhythm-JRPG
+# System Architecture Map — Melodia Melusina
 
-**Canonical Architecture Blueprint**
-**Last Updated:** 2026-09-01 (Evening P0 Closeout & Chapter Loop Checkpoint)
-**Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20
-**Authority Reference:** `Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`, `Docs/ORCHESTRA_CONTRACT_2026-08-20.md`
+**Last Updated:** 2026-09-02  
+**Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20
 
 ---
 
-## 1. High-Level Architectural Model
+## 1. Architecture principle
 
-Melodia is structured around **Two Absolute Authorities** and **Four Converged Pillars**, enforcing strict separation of concerns between narrative progression, gameplay state, aesthetic presentation, and traversal mechanics.
+Melodia's long-term growth depends on **stable runtime ownership beneath renewable authored content**.
 
+```text
+                         RENEWABLE CONTENT
+   Gifts / Reveries / Episodes / Chapters / Movements / Voyages / Volumes
+                                      │
+                                      ▼
+                           CHAPTER PACKAGE LAYER
+        stable IDs • progression specs • Quill • content manifests • tests
+                                      │
+                                      ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           STABLE GAMEPLAY CORE                               │
+│                                                                              │
+│  Phoenix / TurnBased JRPG        Melodia rhythm execution                    │
+│  turns • targets • results       timing • phrase quality • presentation     │
+│               │                         │                                    │
+│               └────────────┬────────────┘                                    │
+│                            ▼                                                 │
+│                  Wardrobe + Convergence                                      │
+│           build identity • interpretation • world response                   │
+│                            │                                                 │
+│            ┌───────────────┼────────────────┐                                │
+│            ▼               ▼                ▼                                │
+│       Starskiff        World / Music       UI Bridge                         │
+│       traversal        challenges          one writer/surface                │
+│            └───────────────┬────────────────┘                                │
+│                            ▼                                                 │
+│           Narrative / canonical durable state                                │
+│  Quill intents • flags • checkpoints • rewards • forward-compatible save    │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 TWO ABSOLUTE AUTHORITIES                               │
-├────────────────────────────────────────────┬───────────────────────────────────────────┤
-│    QUILLSCRIPT NARRATIVE AUTHORITY         │       TURN-BASED JRPG STATE AUTHORITY     │
-│   (UMelodiaNarrativeSubsystem)             │      (BP_JRPGSaveGame & Combat Core)      │
-│  - Branching Dialogue & Cutscenes          │  - Party Stats, HP/MP Calculations        │
-│  - Quest Flag Progression                  │  - Turn Queue & Action Resolution         │
-│  - 7-Verb Notification Dispatch            │  - Inventory & Key Item Tracking          │
-│  - Exactly-Once Reward Delivery            │  - Canonical Save/Load Persistence        │
-└─────────────────────┬──────────────────────┴─────────────────────┬─────────────────────┘
-                      │                                            │
-                      ▼                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 FOUR CONVERGED PILLARS                                 │
-├──────────────────────┬──────────────────────┬────────────────────┬─────────────────────┤
-│ 1. RHYTHM COMBAT     │ 2. WARDROBE SYSTEM   │ 3. MUSIC AS KEY    │ 4. SINGLE-WRITER UI │
-│ (Harmonix Overlay)   │ (Traversal Provider) │ (Resonant World)   │ (UI Bridge)         │
-│                      │                      │                    │                     │
-│ - Rides on JRPG cmd  │ - Mesh visual swap   │ - Stepping nodes   │ - Sole HUD writer   │
-│ - Note accuracy grade│ - Traversal provider │ - Resonant phrases │ - Zero race conds   │
-│ - Damage multiplier  │ - Glide / Swim / Dash│ - Unlocks routes   │ - Clean transitions │
-│ - MPC Palette pulse  │ - State persistence  │ - Emits 7-verbs    │ - No widget leaks   │
-└──────────────────────┴──────────────────────┴────────────────────┴─────────────────────┘
+
+The core should become more stable as content grows. A new Voyage is normally a **content integration problem**, not an excuse to reopen combat/save/UI ownership.
+
+---
+
+## 2. System ownership
+
+### TurnBased JRPG / Phoenix
+Owns combat skeleton and stock gameplay state:
+
+- turn order;
+- targeting;
+- action resolution;
+- HP/MP/stats;
+- party/inventory;
+- terminal battle result;
+- stock gameplay save state it already owns.
+
+**Do not rebuild this in MelodiaCore.**
+
+### Melodia rhythm
+Owns rhythm/performance execution and presentation around an already selected action.
+
+Current simple grade-to-damage behavior is a proven baseline, not the ceiling. Future Chapters may interpret rhythm through outfit/Convergence differently, but the selected JRPG action remains authoritative.
+
+### Narrative / Quill
+`UMelodiaNarrativeSubsystem` + QuillScript own:
+
+- stable narrative intents;
+- quest/objective flags;
+- consequences;
+- checkpoints;
+- exactly-once reward consumption;
+- content progression history.
+
+### Wardrobe
+`UMelodiaWardrobeSubsystem` owns owned/equipped wardrobe state and exposes mechanical capability/identity.
+
+Outfits can affect:
+
+- traversal;
+- rhythm interpretation;
+- battle affordances;
+- creature/world relationships;
+- Convergence response.
+
+### Convergence
+Convergence is an **interpretation layer**. It reads owner state and produces authored relationships. It must not become a duplicate inventory, quest log, battle manager, or second save authority.
+
+### Starskiff
+Starskiff owns vehicle/traversal behavior. Long-term, it may also be the fiction-facing presentation surface for accumulated journey history (parcels, souvenirs, companion objects), while durable ownership remains in canonical save state.
+
+### UI Bridge
+One writer per surface. New Chapters/Voyages may add screens but not parallel UI ownership.
+
+---
+
+## 3. Chapter package boundary
+
+A future Chapter should arrive as data/content around the stable core:
+
+```text
+specs/progression/<chapter>.v1.json
++ optional wardrobe/world/encounter/audio manifests
++ Quill source if needed
++ stable IDs
++ authored maps/assets
++ offline tests
++ runtime/restart/package evidence
 ```
 
----
+A Chapter may use only the systems it needs.
 
-## 2. Core Subsystems
+Examples:
 
-### 2.1 Narrative Authority (`UMelodiaNarrativeSubsystem`)
-- **Header:** `Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeSubsystem.h`
-- **Role:** Central dispatcher for narrative state, QuillScript dialogue nodes, and 7-verb structured notifications.
-- **7-Verb Grammar:**
-  1. `melodia:quest:<QuestId>.<State>` — Progression and quest objective flags.
-  2. `melodia:battle:<EncounterId>` — Combat encounter trigger and terminal callback.
-  3. `melodia:stat:<StatId>:<Value>` — Idempotent resonance social stat modifications.
-  4. `melodia:wardrobe:<OutfitId>` — Outfits and cosmetic unlocks.
-  5. `melodia:item:<ItemId>:<Count>` — Inventory item grant requests.
-  6. `melodia:inspect:<TargetId>` — Environmental interaction and world discovery.
-  7. `melodia:checkpoint:<SlotId>` — Checkpoint anchoring and save triggers.
+- Reverie: Quill + exploration + save;
+- creature Episode: rhythm + world interaction + consequence;
+- combat Chapter: Phoenix + rhythm + Wardrobe/Convergence;
+- Starskiff Chapter: traversal + party dialogue + world state;
+- Monolith Event: authored world transitions + traversal, no conventional boss HP required.
 
-### 2.2 Turn-Based JRPG State Authority (`BP_JRPGSaveGame` & Combat Core)
-- **Role:** Sole source of truth for combat calculations, actor turn order, party health/mana, and serialization.
-- **Persistence:** Serializes character stats, inventory, active wardrobe capabilities, and completed quest flags into canonical save game slots (`BP_JRPGSaveGame`).
-
-### 2.3 Rhythm Presentation Seam
-- **Component:** `MelodiaJRPGPresentationRhythmComponent` & `WBP_MelodiaRhythmHighway`
-- **Role:** When a player selects an Attack or Resonance Skill in the JRPG command menu, the Rhythm Highway activates. Notes travel along the highway, and player timing grades (`Poor: 0.35`, `Good: 1.0`, `Great: 1.2`, `Perfect: 1.5`) multiply the stock JRPG damage calculation and pulse `MPC_Melodia_Palette`.
-
-### 2.4 Wardrobe Traversal Subsystem (`UMelodiaWardrobeSubsystem`)
-- **Header:** `Source/BS_GodFile/MelodiaIntegration/MelodiaWardrobeSubsystem.h`
-- **Interface:** `IMelodiaTraversalCapabilityProvider`
-- **Role:** Manages character mesh parts (head, body, dress, accessories) and grants concrete physical traversal capabilities (such as `Glide`, `Swim`, `Dash`) to enable reaching new world routes.
-
-### 2.5 Resonant World & Music-as-Key (`APCGHeroMusicGraphHost`)
-- **Role:** Musical stepping stones and environmental chords in overworld maps. When players step on harmonic nodes or play resonant melodies, the graph host validates the musical phrase and emits a narrative notification to remove physical route barriers.
-
-### 2.6 Single-Writer UI Bridge (`UMelodiaUIBridgeSubsystem`)
-- **Header:** `Source/BS_GodFile/MelodiaIntegration/MelodiaUIBridgeSubsystem.h`
-- **Role:** Enforces a single-writer architecture across all viewport widgets (HUD, Dialogue, Battle UI, Main Menu), eliminating dual-widget leaks and input routing conflicts.
+The old six-phase P0 chain is a **full-stack integration pattern**, not a mandatory chapter script.
 
 ---
 
-## 3. Universal Reusable Chapter Gameplay Loop Flow
+## 4. Long-term update boundary
 
-Every chapter follows the standardized 6-phase sequence:
+Optional future online support belongs **outside** the stable gameplay core.
 
-1. **Phase 1: Narrative Initiation & Sanctuary Departure** (`L_MelusinaMorning`)
-   - QuillScript dialogue with NPC anchor -> authored departure gate opens.
-2. **Phase 2: Overworld Traversal & Music-as-Key Route Unlock** (`LV_SeaAbove_Prototype`)
-   - Third-person traversal -> Starskiff navigation -> harmonic phrase stepping unlocks route barrier.
-3. **Phase 3: Turn-Based JRPG Combat with Rhythm Command Timing** (`L_KaleidoNave`)
-   - Encounter start -> JRPG command selection -> Rhythm Highway input timing -> damage scaling.
-4. **Phase 4: Battle Resolution & Idempotent Reward Distribution**
-   - Boss defeat -> narrative resolution callback -> idempotent reward delivery (new outfit piece).
-5. **Phase 5: Traversal Upgrade & World Progression**
-   - Equip outfit -> activate `Glide` traversal capability -> traverse over gateway chasm.
-6. **Phase 6: Canonical Checkpoint & Seamless Chapter Transition**
-   - Canonical save to `BP_JRPGSaveGame` slot -> transition to next chapter map.
+```text
+optional remote manifest
+        ↓
+validated Gift/Voyage availability
+        ↓
+existing idempotent reward/content ownership path
+        ↓
+canonical local save history
+```
+
+If the network is unavailable, core game and owned content continue to work.
+
+Do not put turn resolution, wardrobe ownership, narrative progression, or normal save/load behind a service dependency.
 
 ---
 
-## 4. MCP Automation & Tooling Layer
+## 5. Production hierarchy
 
-- **Melodia MCP Server (`deploy/melodia_mcp_server.py`):** 38 unit/regression tests verifying offline schema inspection, narrative idempotency, and Blueprint fixture validation.
-- **Agent Bridge MCP (`deploy/agent_bridge_mcp.py`):** Policy router ensuring safe read-only operations while denying dangerous mutations.
-- **Monolith MCP (Port `9316`):** Live Unreal Editor JSON-RPC bridge for asset inspection, graph verification, and reflection queries.
+### Permanent systems
+Phoenix, rhythm execution, Narrative, Wardrobe, Convergence seams, Starskiff traversal, UI ownership, persistence, chapter loader/validation.
+
+### Renewable authored content
+Chapters, Reveries, creatures, outfits, regions, Monolith Events, world puzzles, dialogue, Voyages, gifts.
+
+When deciding whether to add code, ask:
+
+> Can this be expressed as content using the stable owners we already have?
+
+If yes, prefer that.
+
+---
+
+## 6. Current closure target
+
+```text
+Wardrobe
+   ↓
+Starskiff / exploration
+   ↓
+Phoenix action
+   ↓
+Rhythm execution
+   ↓
+Convergence / consequence
+   ↓
+checkpoint / reward
+   ↓
+canonical save
+   ↓
+full process restart
+   ↓
+restore exact durable state
+   ↓
+repeat load with no duplication
+```
+
+Closing this loop is more important than adding another global subsystem.
+
+---
+
+## 7. Strategy references
+
+- `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
+- `Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`
+- `Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`
+- `CURRENT_STATE.md`
+- `TODO.md`
+
+**Architecture goal:** years from now, most new Melodia work should look like authoring a journey, not repairing the engine underneath it.
