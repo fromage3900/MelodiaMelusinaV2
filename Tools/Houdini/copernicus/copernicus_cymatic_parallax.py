@@ -376,6 +376,22 @@ VARIANTS = {
         rough_glass=0.05, rough_nacre=0.12,
         band_freq=6, glow_intensity=0.9, chladni_modes=[(6, 4), (10, 6), (12, 12), (18, 10)],
     ),
+    # === PrismaticOBSIDIAN — volcanic glass with internal crystalline structures +
+    # thin-film rainbow sheen (2026-09-02) ===
+    # Conchoidal-fracture obsidian body, faceted internal crystal lattice, and a
+    # spectral thin-film interference sheen (like oil-on-water) whose hue travels
+    # across the surface with the cymatic wave. Iridescence carries the rainbow;
+    # facets read as low-rough glossy glass so the sheen lands on the lattice.
+    "PrismaticObsidian": dict(
+        obsidian_deep=(8, 9, 14), obsidian=(18, 20, 30), obsidian_mid=(30, 34, 48),
+        smoke=(58, 62, 82), crystal=(212, 220, 240), crystal_facet=(186, 196, 224),
+        ruby=(255, 90, 84), amber=(255, 190, 96), emerald=(110, 255, 168),
+        aqua=(96, 224, 255), violet=(196, 128, 255),
+        internal=(120, 160, 255), glow=(148, 168, 255),
+        rough_matrix=0.85, rough_facet=0.06, rough_sheen=0.12,
+        facet_count=14, facet_scale=0.55, sheen_freq=16, glow_intensity=0.5,
+        chladni_modes=[(5, 7), (9, 8), (7, 12), (13, 11), (11, 15)],
+    ),
 }
 
 # === Math helpers ===
@@ -1991,6 +2007,66 @@ def build_melodia_amethyst_vein(h, w, frame, total_frames):
     return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
 
 
+def build_prismatic_obsidian(h, w, frame, total_frames):
+    """Volcanic glass: conchoidal-fracture obsidian, internal faceted crystal
+    lattice, and a thin-film rainbow sheen whose hue sweeps the cymatic surface."""
+    p = VARIANTS["PrismaticObsidian"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase + i * 0.9 for i in range(len(modes))],
+                          weights=[1.0, 0.7, 0.55, 0.4, 0.3][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    warp = warped_fbm(h, w, 16, 4, 0.3, SEED + 800)
+    # Conchoidal fracture strata — sharp obsidian shards
+    fracture = smoothstep(0.55, 0.85, tileable_value_noise(h, w, 24, SEED + 801))
+    shard = smoothstep(0.2, 0.6, fbm_noise(h, w, 48, 3, SEED + 802))
+    # Internal faceted crystal lattice — rows with rotation, sitting on nodal seams
+    crystal = np.zeros((h, w), np.float32)
+    crystal_color = np.zeros((h, w, 3), np.float32)
+    rng = np.random.RandomState(SEED + 810)
+    size = max(2, min(h, w) // 28)
+    spacing = size * int(p["facet_scale"] * 4.5)
+    facet_rot = phase * 0.02
+    for gy in range(int(h / spacing) + 2):
+        for gx in range(int(w / spacing) + 1):
+            cx = gx * spacing + (gy % 2) * spacing * 0.5
+            cy = gy * spacing
+            fm = crystal_shape(h, w, cx, cy, size, rng.choice([4, 5, 6]), facet_rot + (gx + gy) * 0.4)
+            crystal += fm
+            crystal_color = np.clip(crystal_color + mask_color(fm, col(p["crystal_facet"])), 0, 1)
+    crystal = np.clip(crystal, 0, 1)
+    # Thin-film rainbow sheen: hue angle travels with the cymatic modes
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    sheen_angle = (np.sin(phase) * 0.3 + nodal * 1.5 + (xx / w * 1.2) + warp * 2.0) % 6.0
+    # 6-segment spectrum -> soft fringe via smoothstep per band
+    rainbow = np.zeros((h, w, 3), np.float32)
+    bands = [col(p["ruby"]), col(p["amber"]), col(p["emerald"]),
+             col(p["aqua"]), col(p["crystal"]), col(p["violet"])]
+    for b in range(6):
+        below = sheen_angle - b
+        bw = smoothstep(0.4, 1.2, below) * (1 - smoothstep(2.8, 3.6, below))
+        rainbow += bw[:, :, None] * bands[b]
+    rainbow = np.clip(rainbow, 0, 1)
+    # Sheen rides on the polished facets + near-nodal seams
+    sheen = smoothstep(0.55, 0.8, crystal) * (0.4 + nodal * 0.6)
+    height = fracture * 0.35 + shard * 0.2 + crystal * 0.6 + cym * 0.1
+    base = mix(col(p["obsidian_deep"]), col(p["obsidian"]), warped_fbm(h, w, 24, 3, 0.2, SEED + 803))
+    base = mix(base, col(p["obsidian_mid"]), fracture * 0.4)
+    base = mix(base, col(p["smoke"]), shard * 0.45)
+    base = mix(base, col(p["crystal"]), crystal * 0.8)
+    base = np.clip(base + rainbow * sheen[:, :, None] * 0.5, 0, 1)
+    rough = mix(p["rough_matrix"], p["rough_facet"], crystal * 0.85)
+    rough = mix(rough, p["rough_sheen"], sheen * 0.6)
+    metallic = crystal * 0.25 + sheen * 0.3
+    inner_glow = smoothstep(0.8, 0.97, nodal) * shard
+    emissive = mask_color(inner_glow * 0.5 + sheen * 0.3, col(p["internal"]) * p["glow_intensity"])
+    emissive = np.clip(emissive, 0, 1)
+    iri = sheen * 0.95 + crystal * 0.25 + fracture * 0.15
+    opacity = np.clip(0.75 + crystal * 0.2 + sheen * 0.05, 0, 1)
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, opacity)
+
+
 def build_melodia_aurora_glass(h, w, frame, total_frames):
     """Aurora pearlescent glass: drifting aurora bands through refracting iridescence."""
     p = VARIANTS["MelodiaAuroraGlass"]
@@ -2064,6 +2140,7 @@ BUILDERS = {
     "MelodiaMoonlace": build_melodia_moonlace,
     "MelodiaForestEmerald": build_melodia_forest_emerald,
     "MelodiaAmethystVein": build_melodia_amethyst_vein,
+    "PrismaticObsidian": build_prismatic_obsidian,
     "MelodiaAuroraGlass": build_melodia_aurora_glass,
     "FarawayNightVelvet": build_faraway_night_velvet,
     "FarawayAquaLace": build_faraway_aqua_lace,
