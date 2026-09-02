@@ -1,0 +1,109 @@
+{
+  "schema": "melodia.vdm_qa.v1",
+  "date": "2026-09-02",
+  "variants": {
+    "A": {
+      "nonblank": true,
+      "mask_valid": true,
+      "exr_roundtrip": true,
+      "alpha_std": 0.3556,
+      "alpha_min_max": [
+        0.0,
+        1.0
+      ],
+      "r_std": 0.0838,
+      "rgb_std": 0.101,
+      "files": {
+        "npy": {
+          "path": "Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_A.npy",
+          "bytes": 67108992,
+          "sha256": "8e92968ce630acf0820c5fe7ae90e449a9a4e9df6fb305d69936c4265cd724fa"
+        },
+        "png": {
+          "path": "Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_A.png",
+          "bytes": 1985688,
+          "sha256": "3b9740e6cc54bd9e2d37d041efd5ee76e9168ac7873e65dfb73c7c6154a40199"
+        },
+        "exr": {
+          "path": "Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_A.exr",
+          "bytes": 7876637,
+          "sha256": "a2dcaf96638af15801839df3e205749479a347f42971a9bf031badbe00094750"
+        }
+      },
+      "verdict": "PASS",
+      "params": {
+        "foldFreq": 3.0,
+        "depth": 0.3
+      }
+    },
+    "B": {
+      "nonblank": true,
+      "mask_valid": true,
+      "exr_roundtrip": true,
+      "alpha_std": 0.389,
+      "alpha_min_max": [
+        0.0,
+        1.0
+      ],
+      "r_std": 0.0265,
+      "rgb_std": 0.0467,
+      "files": {
+        "npy": {
+          "path": "Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_B.npy",
+          "bytes": 67108992,
+          "sha256": "2cca2a1d82062a1ac0ad79a8cf5ea302b8501d78281c61a91f15b15152780bf3"
+        },
+        "png": {
+          "path": "Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_B.png",
+          "bytes": 1545414,
+          "sha256": "1b3b698265642386290513a1a3455955d89560387ec1c7e36e108d111cf3ee60"
+        },
+        "exr": {
+          "path": "Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_B.exr",
+          "bytes": 6924223,
+          "sha256": "e430cf6523470a2cc703d5812c6472c6e3a072f2dd7004208ec6f16345733153"
+        }
+      },
+      "verdict": "PASS",
+      "params": {
+        "foldFreq": 1.5,
+        "depth": 0.1
+      }
+    },
+    "C": {
+      "nonblank": true,
+      "mask_valid": true,
+      "exr_roundtrip": true,
+      "alpha_std": 0.3923,
+      "alpha_min_max": [
+        0.0,
+        1.0
+      ],
+      "r_std": 0.016,
+      "rgb_std": 0.039,
+      "files": {
+        "npy": {
+          "path": "Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_C.npy",
+          "bytes": 67108992,
+          "sha256": "39df99f6752ac10744b3028ddb149c0abe042008afb8a2d263901ce76e61af25"
+        },
+        "png": {
+          "path": "Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_C.png",
+          "bytes": 1035989,
+          "sha256": "c2c33481b85e918b0de0564a11c5b7c2f34a27043dfa2b7dfea1e416f93d587e"
+        },
+        "exr": {
+          "path": "Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_C.exr",
+          "bytes": 5513443,
+          "sha256": "966540b107681a15502db906e36b4b0e9a5f1dc2156d4bcd35c7e23968e52358"
+        }
+      },
+      "verdict": "PASS",
+      "params": {
+        "foldFreq": 0.8,
+        "depth": 0.06
+      }
+    }
+  },
+  "overall": "ALL_PASS"
+}
