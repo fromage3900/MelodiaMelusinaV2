@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "seed": 20260901,
   "total_assets": 11,
-  "total_textures_generated": 307,
+  "total_textures_generated": 435,
   "lod_tier_specs": {
     "LOD0": {
       "tier": 0,
