@@ -801,6 +801,15 @@ void UGaeaSubsystem::CreateLandscapeActor(UImporterPanelSettings* Settings)
 
 	ELandscapeImportResult ImportResult = FLandscapeImportHelper::GetHeightmapImportDescriptor(Settings->HeightMapFileName, bSingleFile, Settings->FlipYAxis, OutImportDescriptor, OutMessage);
 	int32 DescriptorIndex = OutImportDescriptor.FileResolutions.Num() / 2;
+
+	// Guard: an invalid/missing heightmap leaves ImportResolutions empty; indexing it asserted the editor (crash 2026-09-01 x2).
+	if (ImportResult != ELandscapeImportResult::Success || OutImportDescriptor.ImportResolutions.Num() == 0)
+	{
+		UE_LOG(GaeaSubsystem, Error, TEXT("CreateLandscapeActor aborted: heightmap import failed (%s). Message: %s"), *Settings->HeightMapFileName, *OutMessage.ToString());
+		ImporterWindowValidator.Pin()->RequestDestroyWindow();
+		return;
+	}
+	DescriptorIndex = OutImportDescriptor.ImportResolutions.Num() / 2;
 	
 	ULandscapeEditorObject* DefaultValueObject = ULandscapeEditorObject::StaticClass()->GetDefaultObject<ULandscapeEditorObject>(); // Create Landscape Editor Object instance
 	check(DefaultValueObject);
