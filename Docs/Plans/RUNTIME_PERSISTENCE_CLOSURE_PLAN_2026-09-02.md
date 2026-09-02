@@ -4,51 +4,49 @@
 
 Close the current runtime-integration layer without rewriting the working combat stack.
 
-The governing rule for this lane is:
-
 > **Phoenix remains the turn-based combat scaffold. MelodiaCore / UMelodiaRhythmCombatSubsystem remain the rhythm execution authority. MelodiaWardrobe remains wardrobe authority. FMelodiaNarrativeRecord remains the canonical persistence record. Convergence is the glue. Starskiff/world systems consume restored state; they do not invent a second save authority.**
 
-This plan applies the strongest production lessons from the current Runtime Closure Atlas, especially the failure-mode contracts observed in Akuma's UE5.8 RPG framework and the validate-before-mutate / idempotent-restore discipline observed in Embermere.
+This plan applies the strongest production lessons from the Runtime Closure Atlas, especially Akuma's explicit load-state / stale-write discipline and Embermere's validate-before-mutate / idempotent-restore discipline.
 
 ---
 
-## Current verified project state
+## Verified project state
 
-### Combat / rhythm
+### Combat / rhythm — freeze the authority model
 
 `Source/BS_GodFile/MelodiaIntegration/MelodiaRhythmCombatSubsystem.h`
 
-- single battle-scoped rhythm combat authority;
-- exactly one authoritative session result path;
+- one battle-scoped rhythm combat authority;
+- one authoritative session-result path;
 - duplicate-session rejection;
-- `UseSkillWithRhythm` defers stock skill execution until the rhythm scalar exists;
-- stock Phoenix/JRPG resolver still applies damage/status/turn/victory/defeat;
-- explicit `InvalidateSession()` exists for battle-end/save-recovery/HUD teardown paths;
-- rhythm subsystem does not own save mutations.
+- `UseSkillWithRhythm` defers the stock skill until the rhythm scalar exists;
+- Phoenix/JRPG stock resolver still owns damage/status/turn/victory/defeat;
+- `InvalidateSession()` already exists for battle-end/save-recovery/HUD teardown;
+- rhythm subsystem does not own save mutation.
 
-**Decision:** freeze this ownership boundary. Do not add persistence logic to the rhythm subsystem.
+**Do not move persistence into this subsystem.**
 
-### Wardrobe
+### Wardrobe — already canonical-record-backed
 
 `Plugins/MelodiaWardrobe/Source/MelodiaWardrobe/Public/MelodiaWardrobeSubsystem.h`
 
 - GameInstanceSubsystem is wardrobe state authority;
-- owned/equipped state reads/writes through the canonical narrative record;
-- catalog validation happens before permanent mutation;
-- grants are idempotent by durable ownership and session-local grant receipts;
-- purchases already use preflight validation and rollback semantics;
+- owned/equipped state is stored through the canonical narrative record;
+- grant/equip validates catalog data before permanent mutation;
+- ownership gives durable idempotency;
+- purchases already use preflight + rollback semantics;
 - traversal capabilities are derived read-only from equipped/unlocked forms.
 
-**Decision:** extend restore validation around this authority; do not introduce a second wardrobe save object.
+**Extend restore validation around this authority; do not create a second wardrobe save object.**
 
-### Canonical persistence
+### Canonical persistence — existing v5 authority
 
 `Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeTypes.h`
 
-`FMelodiaNarrativeRecord` is currently version 5 and already owns:
+`FMelodiaNarrativeRecord::CurrentVersion == 5` already persists:
 
 - narrative flags;
-- Quill persistent payload;
+- Quill payload;
 - encounter receipts;
 - consumed intent/reward IDs;
 - quest state;
@@ -59,83 +57,26 @@ This plan applies the strongest production lessons from the current Runtime Clos
 - wardrobe pull timestamp;
 - logical water gameplay state.
 
-`UMelodiaNarrativeSubsystem` already exposes migration, restore, reset, sync-to-save and restore-from-save functions.
+`UMelodiaNarrativeSubsystem` already owns migration, restore, reset, sync-to-save and restore-from-save.
 
-**Decision:** new durable Starskiff / Convergence facts must enter this existing snapshot only after their stable identifiers and runtime owners are verified.
+### Important audit correction — Akuma-style load-state split already exists
 
----
+`Source/BS_GodFile/MelodiaIntegration/MelodiaSaveSlotLibrary.h/.cpp`
 
-## Reference patterns to adapt
+Melodia already distinguishes:
 
-### Akuma pattern A — distinguish load outcomes
+- `Missing` — no slot exists;
+- `Refused` — slot exists but cannot be safely loaded;
+- `LoadedNarrativeRestored`;
+- `LoadedNarrativeDegraded`.
 
-Never collapse these states:
+`LoadCanonicalJRPGSlotDetailed()` also preflights the embedded `melodiaNarrativeRecord` and verifies that it can migrate before invoking the stock load path.
 
-1. **No existing save** — defaults may be seeded.
-2. **Existing save loaded and validated** — exact persisted state is authoritative, including intentionally empty equipment.
-3. **Existing save detected but load/validation failed** — do not seed defaults and do not auto-overwrite the damaged/unsupported save.
-
-Melodia contract:
-
-```text
-SAVE RESOLUTION
-    |
-    +-- NoSave ----------> seed approved new-game defaults
-    |
-    +-- Loaded ----------> restore exact canonical state
-    |
-    +-- Failed ----------> fail closed; preserve runtime/save for recovery
-```
-
-### Akuma pattern B — serialize player-state writes
-
-Do not allow older async snapshots to finish after newer snapshots and become authoritative.
-
-Melodia target:
-
-- one player/canonical-record write queue or generation counter;
-- coalesce mutation bursts (equip -> convergence recalc -> traversal capability refresh) before disk write;
-- world-state persistence may be independently scheduled only if ownership is explicit and it cannot overwrite player state.
-
-### Embermere pattern A — validate complete candidate before mutation
-
-Restore must be two-phase:
-
-```text
-READ -> MIGRATE -> RESOLVE -> VALIDATE EVERYTHING -> COMMIT
-```
-
-Before COMMIT, validate at minimum:
-
-- schema version migrates successfully;
-- every equipped cosmetic ID exists in the catalog;
-- every equipped cosmetic is owned unless an explicit migration exception exists;
-- each cosmetic belongs to the saved slot;
-- referenced assets required for presentation resolve;
-- persistent Convergence identifiers are known;
-- persistent Starskiff identifiers/state enum values are known;
-- logical world/water state validates;
-- no live battle/rhythm session is restored as a runtime object.
-
-If validation fails, the currently running canonical state remains unchanged.
-
-### Embermere pattern B — restore is idempotent
-
-Loading the same canonical record twice must produce the same state vector as loading it once.
-
-Forbidden outcomes include:
-
-- duplicate outfit bonuses;
-- duplicate Convergence contribution;
-- duplicate reward receipts;
-- duplicate traversal capability registration;
-- duplicated delegate bindings;
-- repeated Starskiff grants/unlocks;
-- repeated battle rewards.
+**Therefore do not add another save-resolution enum.** The Akuma lesson is already substantially implemented at the slot boundary. The next gap is deeper candidate validation + deterministic restore proof.
 
 ---
 
-## Target runtime ownership
+## Runtime ownership target
 
 ```text
 Phoenix turn system
@@ -149,179 +90,206 @@ stock battle resolver
     v
 battle outcome / rewards
     |
-    +-----------------------------+
-                                  v
-                     UMelodiaNarrativeSubsystem
-                         canonical record
-                                  |
-        +-------------------------+------------------------+
-        |                         |                        |
-        v                         v                        v
-MelodiaWardrobe            Convergence owner        Starskiff owner
-(read/write through        (stable persistent       (stable persistent
- canonical record)          facts only)              facts only)
-        |                         |                        |
-        +-------------------------+------------------------+
-                                  v
-                       presentation / traversal /
-                       world-response rebuild
+    v
+UMelodiaNarrativeSubsystem
+canonical FMelodiaNarrativeRecord
+    |
+    +-------------------+--------------------+
+    |                   |                    |
+    v                   v                    v
+Wardrobe           Convergence          Starskiff
+state authority    runtime owner        runtime owner
+    |                   |                    |
+    +-------------------+--------------------+
+                        v
+              presentation / traversal /
+              world-response rebuild
 ```
 
-No subsystem may restore another subsystem's live objects directly. Restore stable facts, then let each authority rebuild its runtime representation.
+Persist stable facts. Rebuild runtime objects. Never serialize live rhythm sessions, battle objects, delegate bindings, animation state, transient physics, or duplicated derived capabilities.
 
 ---
 
-## Golden vertical-slice closure gate
+## Reference patterns to adapt
 
-The first closure proof is deliberately small:
+### Akuma — preserve three semantic outcomes
 
-1. Start from a known fresh-save fixture.
+Melodia's existing `Missing` / `Refused` / loaded split must remain the outer contract.
+
+Rules:
+
+- only `Missing` may lead to an explicit new-game creation path;
+- a valid loaded record may intentionally contain an empty wardrobe;
+- `Refused` must never silently become "new game" or overwrite the existing slot;
+- degraded/failed load must remain visible to UI/recovery code.
+
+### Akuma — stale async writes must not win
+
+Before adding any generation counter or write queue, prove whether the current stock JRPG save path actually performs overlapping async writes.
+
+If it does, add the smallest stale-write guard that guarantees:
+
+```text
+snapshot A starts
+snapshot B starts later
+B represents newer state
+A finishes after B
+=> A can never become the final authoritative slot state
+```
+
+Do **not** add complexity if current writes are synchronous and serialized.
+
+### Embermere — validate complete candidate before mutation
+
+Target restore flow:
+
+```text
+READ
+  -> MIGRATE CANDIDATE
+  -> VALIDATE CANDIDATE
+  -> COMMIT CANONICAL RECORD
+  -> REBUILD RUNTIME REPRESENTATIONS
+```
+
+Validation must happen before the first canonical mutation.
+
+### Embermere — repeat load is a first-class test
+
+Loading the same save twice must equal loading it once.
+
+Forbidden second-load effects:
+
+- duplicate outfit bonuses;
+- duplicate Convergence contribution;
+- duplicate traversal capability registration;
+- duplicate delegate binding;
+- repeated rewards;
+- repeated Starskiff unlock/grant;
+- resurrected battle or rhythm state.
+
+---
+
+## Golden runtime-closure gate
+
+1. Start from an explicit new-game fixture.
 2. Equip one approved outfit/form.
-3. Confirm its observable traversal or combat capability.
+3. Confirm one observable outfit-derived capability.
 4. Use Starskiff traversal / encounter entry.
 5. Enter one Phoenix battle.
-6. Execute one `MelodiaCore` rhythm skill through `UseSkillWithRhythm`.
+6. Execute one Melodia rhythm skill through `UseSkillWithRhythm`.
 7. Resolve one Convergence-visible consequence.
 8. Receive one persistent reward/state change.
 9. Save.
 10. **Exit the process completely.**
-11. Launch fresh process.
+11. Launch a fresh process.
 12. Load.
-13. Verify the complete state vector.
-14. Load the same save again.
-15. Verify no state duplicated or drifted.
+13. Verify the full logical state vector.
+14. Load the same slot again.
+15. Verify zero duplication or drift.
 
 ### Required state vector
 
-- equipped cosmetic IDs exactly match;
-- owned cosmetic set exactly matches;
-- outfit visuals rebuild correctly;
-- outfit-derived gameplay capability is exactly-once active;
-- Starskiff durable state matches;
-- Convergence durable facts match;
-- encounter receipt matches;
-- world/water logical state matches;
-- no rhythm session is active after load;
-- no pending rhythm request survives load;
-- no stock battle object is resurrected;
-- second load produces an identical state vector.
+- owned cosmetic set exact;
+- equipped map exact;
+- outfit visuals rebuilt correctly;
+- outfit-derived gameplay capability active exactly once;
+- Starskiff durable state exact;
+- Convergence durable facts exact;
+- encounter receipt exact;
+- logical water/world state exact;
+- no active rhythm session after load;
+- no pending rhythm request after load;
+- no live Phoenix battle object restored;
+- second load produces the same logical vector.
 
 ---
 
 ## Implementation phases
 
-### P0 — Save-resolution contract
+### P0 — candidate-validation seam (START HERE)
 
-Add an explicit load-resolution result at the canonical save bridge:
+The current slot preflight proves only that the save contains the correct struct and that the record can migrate. Extend the restore path with a **pure/pre-commit validator** for the v5 record.
 
-- `NoSave`
-- `Loaded`
-- `Failed`
-- optionally `IncompatibleVersion` if it materially improves diagnostics.
+Intrinsic checks should live with the canonical persistence layer. Subsystem-specific semantic checks should remain with the subsystem that owns those semantics so module dependencies do not invert.
 
-Rules:
+First wardrobe invariants to prove:
 
-- only `NoSave` may seed defaults;
-- `Loaded` may be empty and remains authoritative;
-- `Failed` / incompatible must never cause new-game defaults to overwrite the slot;
-- failure returns a machine-greppable reason.
+- every equipped cosmetic is present in `OwnedCosmeticIds`;
+- duplicate/invalid slot state cannot commit;
+- intentionally empty `EquippedCosmeticIds` is valid;
+- unknown/unresolvable cosmetic IDs fail closed at the wardrobe validation seam;
+- wrong-slot cosmetic mappings fail closed;
+- invalid candidate leaves the currently running canonical record unchanged.
 
-**Do not** change Phoenix, rhythm grading, or damage flow in this phase.
-
-### P1 — Two-phase canonical restore
-
-Introduce a pure/preflight validator for `FMelodiaNarrativeRecord`.
-
-Candidate workflow:
-
-```text
-Candidate = Save.Record
-MigrateRecord(Candidate)
-ValidateCanonicalRecord(Candidate, Reason)
-if valid:
-    RestoreNarrativeRecord(Candidate)
-else:
-    leave current NarrativeRecord untouched
-```
-
-Wardrobe validation must be catalog-first and fail closed, matching existing grant/equip behavior.
-
-### P2 — Deterministic rebuild hooks
+### P1 — deterministic rebuild hooks
 
 After a successful canonical commit:
 
-- Wardrobe refreshes presentation from the equipped map;
-- traversal capability registry rebuilds from Wardrobe, not duplicate persisted capability flags;
-- Convergence recalculates derived runtime values from persistent facts;
-- Starskiff runtime representation rebuilds from its persistent facts;
-- water/PCG runtime rebuilds from logical save data;
-- UI subscribes to post-restore observation events and never mutates the restored candidate.
+- Wardrobe rebuilds visual presentation from the equipped map;
+- traversal capability registry derives from Wardrobe state rather than persisted duplicate flags;
+- Convergence recomputes derived runtime values from persistent facts;
+- Starskiff rebuilds from logical persistent facts;
+- water/PCG rebuilds from existing logical save data;
+- UI observes post-restore events but does not mutate the restore candidate.
 
-### P3 — Save ordering / stale-write protection
+### P2 — idempotency tests
 
-Instrument canonical save writes with a monotonic generation/sequence number or a serialized request queue.
+Add tests for:
 
-Acceptance:
+- empty wardrobe restore;
+- one valid outfit restore;
+- invalid equipped-not-owned candidate;
+- unknown cosmetic candidate;
+- wrong-slot candidate;
+- valid record loaded twice;
+- no duplicate capability / presentation application on second load.
+
+### P3 — Starskiff / Convergence owner audit before schema v6
+
+Before adding any new SaveGame fields:
+
+- locate the actual runtime owner for Starskiff state;
+- locate the actual runtime owner for Convergence state;
+- classify each candidate field as `persistent fact`, `derived runtime`, or `presentation only`;
+- persist only stable facts;
+- add a v5 -> v6 migration only once semantics are locked.
+
+Prefer logical state such as route/spawn/mode/unlock/condition IDs over raw transforms or velocities.
+
+### P4 — save-write ordering proof
+
+Audit the actual stock save transaction for sync vs async behavior.
+
+- if synchronous/serialized: document and do nothing;
+- if overlapping async writes are possible: add sequence/generation protection or serialized queue;
+- test an intentionally reordered completion case.
+
+### P5 — full restart + packaged proof
+
+In-memory serialize/deserialize is insufficient.
+
+Required final proof:
 
 ```text
-snapshot A starts
-snapshot B starts later
-A finishes after B
-=> A MUST NOT become the final authoritative slot state
+Save -> terminate -> fresh launch -> load -> assert -> load again -> assert
 ```
 
-Prefer the smallest mechanism that works with the existing Phoenix/JRPG SaveGame path.
-
-### P4 — Full restart automation / proof
-
-Add or extend an automation proof that performs:
-
-- save fixture creation;
-- process/PIE restart boundary;
-- load;
-- state-vector assertions;
-- repeat load;
-- idempotency assertions.
-
-An in-memory serialize/deserialize test does **not** close this gate.
+Then repeat in a packaged build.
 
 ---
 
-## First implementation slice
+## Rhythm restore boundary
 
-### Slice A — Outfit restore safety
+Do not persist rhythm session state.
 
-Before adding Starskiff fields, close the state that already exists.
+At restore / recovery / battle teardown boundaries, use existing authority seams to guarantee:
 
-Tests / assertions:
+- active rhythm session invalidated;
+- deferred stock skill cannot fire after restoration;
+- pending effect request cannot leak into the restored battle/world;
+- restored save never recreates a live timing session.
 
-- existing save with empty `EquippedCosmeticIds` stays empty;
-- existing save with one valid equipped cosmetic restores exactly once;
-- unknown cosmetic ID rejects candidate before canonical mutation;
-- equipped-but-not-owned ID rejects candidate unless a documented migration path says otherwise;
-- cosmetic in wrong saved slot rejects candidate;
-- loading the same valid record twice does not duplicate capability registration or presentation application.
-
-### Slice B — Rhythm teardown at restore boundary
-
-On save recovery / world teardown / restore initiation:
-
-- invalidate live rhythm session;
-- clear deferred stock skill references through the existing authority path;
-- verify no pending effect request is applied after restore;
-- do not persist rhythm session objects.
-
-Do this by invoking existing lifecycle seams, not by adding a second rhythm state machine.
-
-### Slice C — Starskiff / Convergence schema discovery
-
-Before schema v6:
-
-- locate the actual Starskiff runtime owner and durable state candidates;
-- locate current Convergence runtime owner and durable state candidates;
-- classify each field as `persistent fact`, `derived runtime`, or `presentation only`;
-- persist only stable facts;
-- add a v5 -> v6 migration case only when the field semantics are locked.
+Do not add a second rhythm state machine to accomplish this.
 
 ---
 
@@ -329,88 +297,82 @@ Before schema v6:
 
 Freeze unless a failing closure test proves otherwise:
 
-- Phoenix turn selection and stock resolver;
+- Phoenix turn selection;
+- Phoenix stock resolver;
 - `UMelodiaRhythmCombatSubsystem` authority model;
 - `UseSkillWithRhythm` ordering;
-- MelodiaCore grading windows / note highway authority;
-- Wardrobe's canonical-record ownership model;
-- wallet transaction owner;
+- MelodiaCore grading / note highway authority;
+- `EMelodiaLoadSlotResult` outer load-state contract;
+- Wardrobe canonical-record ownership;
+- wallet authority;
 - Quill persistent-data authority;
-- existing water logical-save approach.
+- existing logical water-save model.
 
-Do not import Akuma or Embermere wholesale. Extract contracts and test methods.
+Do not import Akuma or Embermere wholesale. Extract contracts and failure tests.
 
 ---
 
 ## Acceptance gates
 
-### Gate R0 — authority
-
+**R0 — Single authority**  
 Exactly one owner for every mutation.
 
-### Gate R1 — no destructive defaults
+**R1 — No destructive defaults**  
+`Missing` is not the same thing as `Refused`; intentionally empty loaded state remains authoritative.
 
-Existing-empty and failed-load states cannot be mistaken for a new game.
-
-### Gate R2 — atomic restore
-
+**R2 — Atomic restore**  
 Invalid candidate causes zero canonical mutation.
 
-### Gate R3 — idempotency
+**R3 — Idempotency**  
+Second load equals first load at the logical state-vector level.
 
-Second load equals first load bit-for-bit at the logical state-vector level.
+**R4 — Restart survival**  
+Golden slice survives a full process restart.
 
-### Gate R4 — restart survival
+**R5 — Stale-write immunity**  
+If writes are async, an older snapshot cannot beat a newer one.
 
-A full process restart restores the golden slice.
-
-### Gate R5 — stale-write immunity
-
-Older async snapshot can never win over a newer committed state.
-
-### Gate R6 — package proof
-
-The same closure proof passes in a packaged build, not PIE only.
+**R6 — Package proof**  
+The same closure proof passes outside PIE.
 
 ---
 
-## Remote implementation session task order
+## Active implementation-session order
 
-1. **Audit current save bridge implementation** (`RestoreNarrativeRecord`, `RestoreNarrativeRecordFromSave`, save-slot helpers, BP save-class contract).
-2. **Add save-resolution enum/result contract** without changing existing callers' success path.
-3. **Add candidate validator** for existing v5 record, beginning with wardrobe invariants.
-4. **Add tests for existing-empty vs missing vs failed.**
-5. **Add repeat-load/idempotency tests.**
-6. **Trace Starskiff and Convergence owners** before changing schema.
-7. **Add durable fields + v6 migration only after owner audit.**
-8. **Add save-write generation/serialization guard if the current JRPG path is actually async/racy.**
-9. **Run full restart golden-slice proof.**
-10. **Run packaged proof.**
+1. **DONE — audit current load-state contract.** Existing `EMelodiaLoadSlotResult` is sufficient; do not duplicate it.
+2. Audit `RestoreNarrativeRecord` / `RestoreNarrativeRecordFromSave` for partial mutation and post-restore side effects.
+3. Locate the cleanest candidate-validation seam without introducing a BS_GodFile <-> MelodiaWardrobe circular dependency.
+4. Implement intrinsic v5 candidate validation.
+5. Add Wardrobe-owned semantic validation for equipped/owned/catalog/slot invariants.
+6. Add repeat-load/idempotency tests.
+7. Trace Starskiff and Convergence runtime owners.
+8. Define stable persistent facts; only then consider schema v6.
+9. Audit save-write ordering and add protection only if a real race exists.
+10. Run restart proof, then packaged proof.
 
 ---
 
 ## Session stop conditions
 
-Stop and investigate rather than expanding scope if any of these appear:
+Stop and investigate instead of expanding scope if:
 
-- a second SaveGame authority is required to make the design work;
-- Phoenix must be forked merely to persist Melodia state;
-- rhythm result objects need to survive process restart;
-- outfit gameplay effects cannot be reconstructed from equipped IDs + authoritative progression facts;
+- a second SaveGame authority appears necessary;
+- Phoenix must be forked just to persist Melodia state;
+- rhythm result/session objects appear necessary to save;
+- outfit gameplay cannot be reconstructed from equipped IDs + authoritative progression facts;
 - Convergence cannot distinguish durable facts from derived runtime state;
-- Starskiff state requires raw transient physics transforms rather than a logical respawn/state description;
-- a validation failure partially mutates the canonical record.
+- Starskiff requires transient physics serialization rather than logical respawn/state;
+- candidate validation itself creates a reverse/circular module dependency;
+- validation failure partially mutates canonical state.
 
 ---
 
-## Definition of runtime-closure success
-
-Melodia is considered through this integration gate when a player can:
+## Definition of success
 
 ```text
 Outfit -> Starskiff -> Encounter -> Phoenix command -> Rhythm phrase
 -> Convergence consequence -> Reward -> Save -> Quit
--> Relaunch -> Load -> same world/player state -> Load again -> no duplication
+-> Relaunch -> Load -> same state -> Load again -> no duplication
 ```
 
-At that point the project has moved from interconnected prototypes toward a restart-safe game runtime.
+That is the runtime-closure milestone: not more interconnected prototypes, but a restart-safe game runtime.
