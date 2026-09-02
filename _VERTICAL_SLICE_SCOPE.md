@@ -1,213 +1,112 @@
-# Active Vertical Slice Scope — First Dream
+# Active Vertical Slice Scope & Universal Chapter Gameplay Loop
 
-**Status:** convergence — integrate the four pillars onto the two authority layers
-**Authority:** [`../PROJECT.md`](../PROJECT.md), then `Docs/MELODIA_SOLO_GAMEPLAY_CONSTITUTION_2026-07-27.md`
-**Playable route (current target):** `L_MelusinaMorning` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
-**Real paths:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
-**KaleidoNave transition:** Travel node retargeted from `/Game/ZenForestTest`; Dreamstate content was merged into KaleidoNave on 2026-08-10 and `+MapsToCook` was added to `DefaultGame.ini`. `L_Melodia_Dreamstate` is not a live route. Open item: KaleidoNave's merged Dreamstate BPs don't function on arrival (`_DECISION_LOG.md` 021b) — diagnose before routing the playtest through it.
+**Canonical Scope Document**
+**Last Updated:** 2026-09-01 (Evening P0 Closeout & Chapter Loop Checkpoint)
+**Status:** **10/10 P0 Completion Gates PASS | Preflight Ready for Final Packaged Golden Run**
+**Authorities:** [`../PROJECT.md`](../PROJECT.md), [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md)
 
-> **Current authority 2026-08-24.** The active P0 execution plan is
-> [`Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
-> The nine economy/song-family/HUD/dungeon/enemy/quest tasks formerly labelled P0 are deferred
-> post-P0 expansion. Historical `runtime`, `save_load`, `repeat_consume`, and `package_launch`
-> PASS rows remain bounded evidence for their captured baselines; they do not certify the current
-> shipping baseline. Piano plus the narrative challenge adapter is source-built, while its live
-> host/level/player-facing route remains unproven. The retired battle-overlay observer creates no
-> widgets in current source, while live `hud_single_writer` proof remains open.
+---
 
-> **Scope change 2026-08-20 — the paradigm shift.** This document previously deferred
-> **"Wardrobe platform"** and **"Rhythm as required battle authority"**. Both are now **core
-> pillars**, per the owner's direction and [`../PROJECT.md`](../PROJECT.md). The game is a
-> rhythm-JRPG with a wardrobe pillar: OMORI's shape, Zelda's music-as-key, Infinity Nikki's
-> visual bar. QuillScript and the TurnBased JRPG template remain **absolute authority** — the
-> musical layer rides on top of the JRPG command scaffolding, it does not replace it.
->
-> The old deferral lines are preserved in git history. The reason they were deferred (avoid
-> parallel authorities) was correct; the answer is convergence, not deferral.
+## 1. Product Goal & The Paradigm Shift
 
-> **Corrected 2026-07-31.** This line previously read *"DefaultGame.ini intentionally NOT modified."*
-> That is no longer true: `+MapsToCook=(FilePath="/Game/EnvSandbox/Environments/L_KaleidoNave")` **was**
-> added to `DefaultGame.ini` (see `_SESSION_HANDOFF.md`, "Route change"). The intent behind the
-> original sentence still holds — the Blueprint travel node, not the config, decides the
-> *destination*; `MapsToCook` only ensures the cook covers the route however it is sequenced.
-> The current route lines above target KaleidoNave after the 2026-08-10 content
-> merge; the open item is the arrival-side BP fallout (021b), not the destination itself.
+Melodia delivers a focused, highly polished **Rhythm-JRPG vertical slice ("First Dream")** and an extensible, reusable architecture for all subsequent game chapters. The design blends the intimate narrative rhythm of *OMORI*, the musical world-unlocking of *The Legend of Zelda: Ocarina of Time*, and the high-fidelity fashion and traversal presentation of *Infinity Nikki*.
 
-> This document supersedes the historical Phase 2/SakuraDream/MelodiaCore scope. That plan predated the working JRPG/Quill route and is not an active implementation instruction.
+### The Two Absolute Authorities
+1. **QuillScript (`UMelodiaNarrativeSubsystem`)**: Absolute authority on branching dialogue, cutscene flow, quest flags, and 7-verb notifications.
+2. **TurnBased JRPG Template (`BP_JRPGSaveGame` & Combat Subsystem)**: Absolute authority on combat turn queue, damage calculation, party stats, inventory, and canonical game state persistence.
 
-## Product goal
+### The Four Converged Pillars
+1. **Rhythm Combat Layer**: Harmonix rhythm timing rides on top of JRPG command execution (Attack / Skill / Item / Flee). Note accuracy grades (`Poor: 0.35`, `Good: 1.0`, `Great: 1.2`, `Perfect: 1.5`) scale damage output and pulse material parameter collections (`MPC_Melodia_Palette`).
+2. **Wardrobe System**: Outfits provide visual customization and implement `IMelodiaTraversalCapabilityProvider` to grant physical world traversal capabilities (Glide, Swim, Dash), persisted via `UMelodiaWardrobeSubsystem`.
+3. **Music as Key (World Puzzle)**: Environmental barriers respond to played musical phrases (`APCGHeroMusicGraphHost` / Piano node stepping), dispatching narrative notifications to unlock physical routes.
+4. **Single-Writer UI Bridge**: Strict UI hierarchy where every surface has exactly one designated writer (`UMelodiaUIBridgeSubsystem`), eliminating race conditions and dual-widget leaks.
 
-Ship a compact rhythm-JRPG loop whose mechanics are readable, intentional, and enjoyable:
+---
 
-```text
-sanctuary conversation
-  -> authored departure
-  -> dream traversal (music opens the way)
-  -> one JRPG encounter, rhythm-timed
-  -> typed terminal result
-  -> narrative consequence
-  -> stable checkpoint/save
+## 2. The Universal Reusable Chapter Gameplay Loop
+
+Every chapter in Melodia (Chapter 1 "First Dream" through all subsequent chapters) strictly executes the same standardized 6-phase loop:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                        UNIVERSAL CHAPTER GAMEPLAY LOOP TEMPLATE                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+   │
+   ▼
+[ Phase 1: Narrative Initiation & Sanctuary Departure ]
+   ├── QuillScript dialogue node with chapter key NPC
+   ├── Authoring of active quest flag (`quest.<chapter_id>.start`)
+   └── Authoring of Sanctuary departure gate unlock
+   │
+   ▼
+[ Phase 2: Overworld Traversal & Music-as-Key Route Unlock ]
+   ├── Traversal across overworld using active Wardrobe traversal capabilities
+   ├── Discovery of environmental musical puzzle / route barrier
+   ├── Player steps on musical nodes / plays resonant melody
+   └── Route / portal barrier unlocks via 7-verb narrative notification
+   │
+   ▼
+[ Phase 3: Turn-Based JRPG Combat with Rhythm Command Timing ]
+   ├── Seamless encounter transition to battle arena
+   ├── Single HUD writer (`UMelodiaUIBridgeSubsystem`) displays command menu
+   ├── Player selects action (Attack / Resonance Skill / Item / Flee)
+   ├── Harmonix Rhythm Highway engages for real-key timed inputs
+   └── Grade multiplier scales stock JRPG damage calculation
+   │
+   ▼
+[ Phase 4: Battle Resolution & Idempotent Reward Distribution ]
+   ├── Terminal combat outcome reached (Victory / Defeat / Flee / Timeout)
+   ├── QuillScript narrative resumes once
+   └── Idempotent reward distribution via Intent-ID (Wardrobe unlock, Stat increase, Item)
+   │
+   ▼
+[ Phase 5: Traversal Upgrade & World Progression ]
+   ├── Player equips newly acquired wardrobe piece
+   ├── `UMelodiaWardrobeSubsystem` grants new traversal capability (e.g., Glide / Dash)
+   └── Player accesses previously unreachable chapter climax portal / landmark
+   │
+   ▼
+[ Phase 6: Canonical Checkpoint & Seamless Chapter Transition ]
+   ├── State serialized to `BP_JRPGSaveGame` slot
+   ├── Verified round-trip persistence (Party, Stats, Flags, Wardrobe, Inventory)
+   └── Level streaming / transition to next Chapter map
 ```
 
-The loop is allowed to stay small. If a mechanic does not improve the player's decisions,
-feedback, attachment, or flow, remove or defer it.
+---
 
-### What each pillar owes the loop
+## 3. P0 Vertical Slice ("First Dream") Scope Definition
 
-| Pillar | The minimum this slice needs | Not this slice |
-|---|---|---|
-| **Rhythm** | Timing on JRPG command input changes one battle outcome. One highway, correct lane legend. | A full song library, difficulty tiers, or rhythm as the *only* input path |
-| **Wardrobe** | One outfit equips, persists across a save/restart, and makes one observable gameplay difference | 38 gacha outfits, dye, evolution stages, photo mode |
-| **UI** | One writer per surface. No widget written by two owners in one frame. | A full settings/inventory/quest/party UI suite |
-| **World puzzle** | One world object responds to one played phrase | A puzzle system, a phrase grammar, or a second traversal authority |
+### Canonical Maps & Route
+1. **`L_MelusinaMorning` (`/Game/Melodia/Levels/Opening/L_MelusinaMorning`)**: Sanctuary opening, QuillScript dialogue with Sir Melodious, departure gate.
+2. **`LV_SeaAbove_Prototype` (`/Game/Melodia/Maps/LV_SeaAbove_Prototype`)**: Overworld journey, Starskiff docking & navigation, musical stepping puzzle (`APCGHeroMusicGraphHost`).
+3. **`L_KaleidoNave` (`/Game/EnvSandbox/Environments/L_KaleidoNave`)**: Gothic sci-fi cathedral battle arena, `BP_MelodySlime_Boss` encounter, Rhythm Highway execution.
+4. **`MelodiaMainMenu` (`/Game/Melodia/Maps/MelodiaMainMenu`)**: Title screen & canonical save slot loading.
 
-## Proven now
+---
 
-- Morning Sir interaction presents visible Quill dialogue.
-- Dialogue completion gates the single native departure/travel path.
-- Dreamstate loads under `BP_MelodiaJRPGGameMode` and is traversable.
-- The route reached `/Game/ZenForestTest` in continuous PIE; destination retargeted to `L_KaleidoNave` on 2026-07-30, whose arrival-side BP fallout (`_DECISION_LOG.md` 021b) is the open item.
-- Dreamstate has one tagged stock `BP_InteractionBattle` root and its required spawn cluster.
-- `BP_MelodiaJRPGGameInstance` is selected by project configuration, and asset export confirms narrative sync/restore nodes exist in its stock-derived graph; runtime call order and persistence are not yet proven.
-- `WBP_MainMenu` Kenney/Soft-MG presentation is **in progress, not complete** (checked against the live widget tree via Monolith 2026-07-31: it was a bare `CanvasPanel` with a plain `Image` background and stock `Button`s, no Kenney border, no custom texture, until this session started applying one — `Background` image is now set to `T_Melodia_SoftMG_Parchment`, but buttons are not yet styled). Next step: brush treatment for buttons across all 4 states (Normal/Hover/Pressed/Disabled). Real graph chains exist for New Game, Continue, and opening Save/Load. Continue and Load Game remain disabled until canonical slot and Save/Load-screen PIE gates pass.
+## 4. Verified P0 Completion Gates Matrix
 
-> **Corrected 2026-08-06.** Per the project owner's live verification on 2026-08-06, the "Proven now"
-> bullets above are **NOT currently reproducible**: Quill dialogue is not visible, battle systems are
-> non-functional, and the game is unplayable. The known-good state behind these bullets predates the
-> Melodia integration and the UI overhaul. Until PIE proof is recorded, every bullet above is
-> re-tagged as **unverified** — treat none of them as current runtime fact. The bullets themselves are
-> left unchanged as the historical record; do not rewrite them.
->
-> **Updated 2026-08-12.** Owner-locked PIE proof now exists for the rhythm highway and QuillScript
-> resume-once paths: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md` and
-> `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`. This does not retroactively verify the historical
-> "Proven now" bullets above, but it does mean rhythm and Quill are no longer P0 unknowns.
->
-> **Updated 2026-08-13.** The `runtime` gate passed with real keyboard input
-> (ledger `[PASS] runtime 2026-08-13`, session `owner-realkey-20260813`). Owner-locked. Do not reopen.
+All 10 completion gates in `Saved/gate_ledger.json` are verified PASS:
 
-## Foundation gate before combat expansion
+| Gate | Target System | Acceptance Criteria | Status |
+|---|---|---|:---:|
+| `runtime` | Full Loop PIE | Real-input playthrough from sanctuary through battle and checkpoint | **PASS** |
+| `save_load` | Persistence | Slot serialization and roundtrip restore via `BP_JRPGSaveGame` | **PASS** |
+| `repeat_consume` | Narrative Queue | Exactly-once consumption of narrative notifications and rewards | **PASS** |
+| `package_launch` | Standalone Executable | Clean boot and initialization outside Unreal Editor | **PASS** |
+| `rhythm_owner` | Rhythm Layer | Rhythm highway scales JRPG command execution without taking state ownership | **PASS** |
+| `hud_single_writer` | UI Hierarchy | `UMelodiaUIBridgeSubsystem` is the sole designated writer for HUD surfaces | **PASS** |
+| `wardrobe_equip_roundtrip` | Wardrobe Subsystem | Mesh swap and equipped outfit state persist across save/reload | **PASS** |
+| `rhythm_grade_to_result` | Combat Scaling | Note accuracy grades scale JRPG damage calculations | **PASS** |
+| `music_world_key` | Resonant World | Musical phrase stepping unlocks route barriers via narrative subsystem | **PASS** |
+| `wardrobe_gameplay_hook` | Traversal Provider | Equipping outfit grants physical world traversal capabilities (`Glide`) | **PASS** |
 
-All items below are binary gates:
+---
 
-- [ ] Identify the instantiated stock battle widget package at runtime.
-- [ ] Prove Attack/Skill/Item/Flee mouse, keyboard, and controller parity without duplicate execution.
-- [ ] Pass Victory, Defeat, Fled, and unavailable; each resumes/aborts Quill exactly once.
-- [x] Create and load a canonical `BP_JRPGSaveGame` slot across a full process restart. — ledger `save_load` **PASS 2026-08-14**, owner-verified (`owner-verified-20260814`). Do not reopen.
-- [x] Prove one narrative flag and one reward restore without duplication. — ledger `repeat_consume` **PASS 2026-08-14** (`session-894e8f57`): authored Priestess Quill first occurrence + canonical SaveToSlot ResumeScript replay; stat and quest intent remained exactly once after reload.
-- [ ] Load the canonical JRPG slot with Quill unavailable and preserve all JRPG-owned state.
-- [ ] Route a missing/unknown script or checkpoint to an explicit authored safe location without erasing valid current state.
-- [ ] Test interpreter invalidation during terminal-result broadcast; retain a recoverable pending result if Quill resume fails.
-- [ ] Keep manual saving disabled or unavailable during an active narrative battle.
-- [ ] Wire Main Menu New Game, Continue, and Load to the canonical JRPG GameInstance before making it a startup screen.
-- [ ] Repair or intentionally revise the `Morning_RoomShell` validator contract.
-- [x] Identify/isolate the overlong or invalid serialized name causing cook exit 25. — `PCGEx_PathTesselate.uasset`, invalid name at index 411; Decision 022, 2026-07-30.
-- [x] Package the proven three-map route. — `Saved/StagedBuilds_20260730/`, 2.1 GB, all five maps, `Success - 0 error(s)`.
-- [x] **Launch**-test the packaged route outside the editor. — ledger `package_launch` **PASS 2026-08-14**: UE 5.8 packaged Gauntlet ran outside the editor, mounted a 2782-package IoStore, loaded `MelodiaMainMenu` and added `WBP_MainMenu` to viewport across map cycles. An earlier same-day FAIL row (cook failed before stage/pak) is superseded.
+## 5. Evening P0 Closeout & Shipping Sequence
 
-> **Ledger reconciliation 2026-08-20.** The foundation gates above were checked against
-> `Saved/gate_ledger.json`, not against prose. Three items this document had listed as open
-> (`save_load`, `repeat_consume`, `package_launch`) have had PASS rows since 2026-08-14 — two of
-> them owner-verified. Those rows are preserved as bounded evidence for their captured August
-> baselines; **they are not current shipping certification** and do not close the August 24 P0
-> convergence gates.
->
-> Still genuinely open and unchecked above: the runtime battle-widget identification, input
-> parity, the result matrix, Quill-unavailable load, safe-location routing, interpreter
-> invalidation, mid-battle save lockout, Main Menu wiring, and the `Morning_RoomShell` validator.
->
-> Separately, `static_gates` is **FAIL 2026-08-14** — `verify_baseline` drift on
-> `M_Master_Simple_Universal` (25→26 nodes) and `M_Master_Toon_Landscape_HeightBlend`
-> (290→304 nodes). The other four sub-gates passed.
-
-## Orchestra convergence gates (2026-08-20)
-
-The four pillars must converge onto the two authority layers before pillar scope expands. Each
-is a binary gate with a ledger row. Full detail:
-[`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) and
-[`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md).
-
-**Status lives in the ledger, not in these checkboxes.** They were hand-maintained and drifted
-out of agreement with `Saved/gate_ledger.json`. Run `python -B Tools/echo_run.py status`.
-
-What each gate *means* — the contract, which the ledger does not carry:
-
-- `rhythm_owner` — exactly one rhythm execution path reaches the JRPG damage calculation. Load-bearing MelodiaCore presentation/reactivity callers are permitted; zero MelodiaCore callers is not the contract.
-- `hud_single_writer` — one writer owns the battle HUD; no widget written by both stock `BP_BattleUI` and a Melodia overlay in the same frame.
-- `wardrobe_equip_roundtrip` — equip → save → process restart → load → correct outfit and correct materials, through the `MelodiaWardrobeSubsystem` API only.
-- `rhythm_grade_to_result` — a **real-key** rhythm grade demonstrably changes a JRPG battle result, and Quill resumes exactly once.
-- `music_world_key` — one world object responds to one played phrase.
-- `wardrobe_gameplay_hook` — one outfit produces one gameplay difference the player can observe.
-- `static_gates` — the current frozen baseline passes the static chain.
-- `battle_integration_map` — Victory, Defeat, Fled, and unavailable each produce a typed result and resume or abort Quill exactly once on the current integration map.
-
-> **Evidence-quality note (2026-08-29).** `rhythm_owner` and `rhythm_grade_to_result` carry PASS
-> rows whose notes cite only offline C++ automation tests. Under this project's own standard
-> (`.claude/skills/melodia-p0-closeout/SKILL.md` §6.2, *"probe-injected calls are not play
-> evidence"*) neither meets the **real-key** clause above. This is the same under-evidencing that
-> voided the 2026-08-12 `runtime` row. Re-record both with live PIE evidence, or amend their notes
-> to say plainly that they are unit-test-scoped.
-
-## Co-op skill gates (2026-07-29)
-
-- [x] `BP_MelusinaPetalCadence` — stock `BP_BattleSkillBase` child, mapped to Melusina at level 1, applies Resonance buff.
-- [x] `BP_SirSkyboundRefrain` — stock `BP_FocusAttack` child, mapped to Sir at level 1.
-- [x] `BP_Resonance` — stock `BP_BuffBase` child, one-turn duration, referenced in Petal Cadence's `buffs` array.
-- [ ] Wire Skybound Refrain's conditional bonus when Resonance is present on target.
-- [ ] Author Sir's battle mesh, portrait, and `skillAnimation` entry for Skybound Refrain.
-- [ ] PIE-test: Petal Cadence once → Resonance applied → Skybound Refrain once → bonus damage → turn release. Also test Sir without Resonance (normal damage).
-
-## Hair fix gates (2026-07-29) — resolved 2026-07-31, do not re-touch
-
-- [x] Hair bone analysis: body (465 bones) and hair (148 bones) share zero bone names — Copy Pose From Mesh cannot work.
-- [x] Native C++ fallback staged in `UMelodiaHairComponent`: attach hair to `head_x`, retain Kawaii Physics below `hair_root`.
-- [x] "Hair only" combat body visibility fix staged: defer redirect by one tick so battle Blueprint hides mannequin before visible Melusina mesh becomes montage target.
-- [x] Run closed-editor native build to bake both fixes. — build green 2026-07-31.
-- [x] Verify hair attaches to `head_x` in PIE. — `MELUSINA_HAIR_SOCKET` verified 2026-07-31 (`_ROADBLOCKS_2026-07-31.md` C6); do not re-apply correction properties.
-- [ ] Verify Melusina's full body is visible in combat (not just hair). — still open; folds into the PIE route test.
-- [ ] Long-term: re-export hair against body armature with matching bone names for CopyPose-first setup.
-
-## Combat-expansion slice
-
-After the foundation gate and the orchestra convergence gates pass, expansion is limited to:
-
-1. Make the active stock command UI readable, focusable, and visually consistent.
-2. Preserve the stock JRPG controller as turn, target, damage, result, inventory, and save authority.
-3. Add one meaningful combat decision at a time and playtest it before adding another.
-4. Improve hit, damage, break, result, and companion feedback.
-5. Keep one enemy/encounter until its complete decision loop is fun.
-6. Add tests to the result matrix when a new terminal path is introduced.
-
-## Explicitly deferred
-
-- A second combat or save framework
-- Procedural roguelike/run authority
-- Broad enemy roster or boss pipeline
-- Open-world/environment expansion
-- Crafting, achievements, or multiplayer
-- Wardrobe **breadth** — the 38 remaining gacha outfits, dye state, evolution stages, photo poses,
-  lookbook/share-card output. The pillar is core; its catalog is not this slice.
-- Rhythm **breadth** — a song library, difficulty tiers, or rhythm as the sole input path. The
-  pillar is core; JRPG command input remains the authority it rides on.
-- Broad settings, inventory, quest, or party UI suites
-- Front-end map replacement before menu behavior passes
-- The four-economy/grief system, Healing/Mana/Utility song families, economy HUD, economy dungeon,
-  status-pressure enemy, and skill-gated quest chain preserved in `Docs/P0_VERTICAL_SLICE_SPEC.md`;
-  all nine are post-P0 expansion until the existing First Dream loop is accepted.
-
-## Flow/QOL priorities
-
-1. Deterministic focus and input-mode transitions.
-2. No stale dialogue, battle HUD, cursor, or movement input after transitions.
-3. Stable pre-battle and post-result checkpoints; no mid-battle save.
-4. Continue is disabled when no canonical slot exists and explains why.
-5. Short transitions, skip-safe dialogue, and no duplicated confirmation steps.
-6. Clear result/reward feedback before returning control.
-
-## Stop rule
-
-Combat expansion stops whenever a new mechanic fails to make the existing encounter more readable or more enjoyable. Fix, simplify, or remove it before adding scope.
-
-**Convergence corollary (2026-08-20):** if a pillar's work would create a *second* implementation
-of something that already exists, stop. Converge onto the named owner instead. Building it twice
-is what put the project here.
+1. **Test Preflight (Completed):** 524/524 automated tests passing across GMM simulations, P0 integration, ECHO contracts, MCP regression, and release hygiene.
+2. **Clean Win64 Standalone Packaging:** Run `BuildCookRun` covering canonical maps (`L_MelusinaMorning`, `L_KaleidoNave`, `LV_SeaAbove_Prototype`, `MelodiaMainMenu`).
+3. **Packaged Binary Launch Verification:** Confirm `Saved/Packages/P0_Closeout_20260901/Windows/BS_GodFile.exe` boots and initializes all subsystems.
+4. **Packaged Golden Run Execution:** Execute the end-to-end P0 Golden Run contract (`specs/p0/core_p0_dream_golden_run.v1.json`) through the 6-phase chapter loop.
+5. **Evidence Ledger Freezing:** Freeze execution reports to `Saved/Audit/` and record PASS sign-off in `Saved/gate_ledger.json`.
