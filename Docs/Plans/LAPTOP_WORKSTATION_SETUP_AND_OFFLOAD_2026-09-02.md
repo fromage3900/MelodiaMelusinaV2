@@ -205,6 +205,47 @@ blender.exe -b <file.blend> --python <script.py>
 
 Run the following from PowerShell in the repository root.
 
+### 5.0 Laptop test ladder
+
+The one-command runner keeps the cheap tests separate from the editor/build lanes. It records Git provenance, before/after status, command output, and a JSON evidence report under `Saved\Workstation\`.
+
+~~~powershell
+# Low-memory first pass; safe default for 16 GB
+.\deploy\test_laptop_workstation.ps1 -Suite Smoke
+
+# Existing Python/GMM/P0 tests
+.\deploy\test_laptop_workstation.ps1 -Suite Fast
+
+# ECHO, progression, route, and adversarial contracts
+.\deploy\test_laptop_workstation.ps1 -Suite Contracts
+
+# Closed-editor C++/plugin build; start with one action
+.\deploy\test_laptop_workstation.ps1 -Suite Build -MaxParallelActions 1
+
+# UE command-line automation; requires a successful build and no open editor
+.\deploy\test_laptop_workstation.ps1 -Suite UE
+
+# Full ladder; long and intentionally explicit
+.\deploy\test_laptop_workstation.ps1 -Suite All
+~~~
+
+| Suite | What it proves | Laptop guidance |
+|---|---|---|
+| `Smoke` | Hardware/toolchain inspection, portable setup validation, offline contract floor, MCP/wardrobe/source-control/package contracts | First test on every checkout; appropriate for 16 GB |
+| `Fast` | `run_tests.ps1 -Suite Fast` plus Smoke | Run one suite at a time |
+| `Contracts` | `run_tests.ps1 -Suite Contracts` plus Smoke | Run when changing progression, ECHO, or route contracts |
+| `Build` | Closed-editor UE 5.8 plugin build with `-NoUBA` and selected `-MaxParallelActions`, then required DLL validation | AC power; editor closed; 16 GB defaults to 1 |
+| `UE` | `UnrealEditor-Cmd.exe` with `-unattended -nop4 -NullRHI` for `Automation RunTests Melodia` and focused `Melodia.Integration.WardrobeGlide` | Prefer 32 GB/hybrid or the main PC |
+| `All` | Every lane above | Not a first-night test on 16 GB |
+
+A green NullRHI automation run is not visual proof. The normal-render First Dream/Sea Above PIE route still needs human/editor evidence on the machine assigned to rendering. The test runner is a reproducibility gate, not a substitute for experiential review.
+
+If you intentionally have uncommitted work, omit `-RequireClean`. Use it only when proving a clean checkout:
+
+~~~powershell
+.\deploy\test_laptop_workstation.ps1 -Suite Smoke -RequireClean
+~~~
+
 ### 5.1 Hardware/toolchain report
 
 ~~~powershell
@@ -369,13 +410,14 @@ The current configured service ports are in `Config/paths.json`; their presence 
 3. Import `.vsconfig`.
 4. Install/launch Rider and VS Code.
 5. Install/verify UE 5.8 and set `MELODIA_UNREAL_ROOT` if needed.
-6. Run the workstation inspector.
-7. Run the validator.
-8. Build plugins with `-MaxParallelActions=1`.
-9. Run tests.
-10. Open UE once if the profile permits.
-11. Push a small documentation or script branch and pull it on the main PC.
-12. Only then decide whether this machine deserves broader LFS art hydration or a LAN worker role.
+6. Run the workstation inspector and portable validator.
+7. Run `.\deploy\test_laptop_workstation.ps1 -Suite Smoke`.
+8. If Smoke passes, run `.\deploy\test_laptop_workstation.ps1 -Suite Build -MaxParallelActions 1` with Unreal closed.
+9. Run `Fast` or `Contracts` one at a time, based on the work you plan to offload.
+10. Run `UE` only if the measured profile and build pass justify command-line Unreal; otherwise use the main PC for this lane.
+11. Open UE once if the profile permits.
+12. Push a small documentation or script branch and pull it on the main PC.
+13. Only then decide whether this machine deserves broader LFS art hydration or a LAN worker role.
 
 ## References
 
