@@ -1,39 +1,50 @@
-# Current State — Melodia Melusina
+# ♫ Current State — what is real today
 
-**Canonical implementation/status document**  
-**Last Updated:** 2026-09-02  
-**Target Engine:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20 | Python 3.11
+**Last updated:** 2026-09-02  
+**Target:** Unreal Engine 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 
-> Product vision is now defined separately in `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`. This file answers **what is implemented/proven now**, not what the full game may eventually contain.
-
----
-
-## 1. Current production phase
-
-Melodia is no longer a blank-slate prototype. It is in **runtime closure + reusable content architecture**:
-
-- turn-based JRPG combat scaffold is working and remains the combat/state skeleton;
-- Melodia's C++ rhythm note highway is tied into battle execution;
-- narrative intent/checkpoint/reward state is integrated through the canonical narrative record;
-- wardrobe ownership/equipped state and traversal hooks exist;
-- Starskiff traversal/integration work exists;
-- music-as-key/world challenge infrastructure exists;
-- P0 / First Dream + Sea Above provides the current end-to-end proof surface;
-- current engineering priority is making persistence/restore, repeat-load idempotency, world-state ownership, and packaged closure boringly reliable.
-
-The next phase is **not another combat rewrite**. It is proving that existing systems survive complete journeys, restarts, new Chapters, and future schema growth.
+> This is the boring truth underneath the pretty stuff. Strategy docs describe where Melodia can go; this file describes what the project can honestly claim **now**.
 
 ---
 
-## 2. Product paradigm now in force
+## ♪ Where the project actually is
 
-Melodia is planned as an **evergreen single-player RPG / game-as-a-place**, not a finite ~12h commitment and not a compulsory live-service treadmill.
+Melodia is past the blank-prototype stage. The game has enough real systems that the highest-value work is now **closure, ownership, and reuse**.
 
-The long-term content hierarchy is:
+Already present:
 
-`Volume → Movement → Chapter → Episode / Reverie`, with rare **Monolith Events** and optional later **Gifts / Reveries / Voyages**.
+- Phoenix / TurnBased JRPG combat as the battle skeleton;
+- Melodia's C++ rhythm execution and note-highway integration;
+- Quill / narrative intent, checkpoint, flag, and reward state;
+- Wardrobe ownership/equipped state with gameplay + traversal hooks;
+- Starskiff traversal/integration work;
+- music-as-key / world-challenge infrastructure;
+- save/load infrastructure with a canonical narrative record;
+- P0 / First Dream + Sea Above as the current full-stack proof surface;
+- reusable progression/spec/test infrastructure;
+- browser-side Three.js labs for world interaction, 3D UI, repo-model display, and authoring experiments.
 
-A Volume must have a real ending. Future content can extend the journey after that ending.
+The job is **not** to invent another combat system. The job is to make this one survive a complete journey, a process restart, a second load, a new Chapter, and eventually years of new content without eating itself.
+
+---
+
+## ♬ The product idea now in force
+
+Melodia is an **evergreen single-player journey**: a finished RPG that can later receive more journey.
+
+```text
+Volume
+  ♪
+Movement
+  ↓
+Chapter
+  ↓
+Episode / Reverie
+```
+
+Rare Monolith Events sit across that structure. Later, optional Gifts, letters, Reveries, Voyages, and new Volumes can arrive without turning the game into an always-online obligation.
+
+A Volume needs a real ending. Future content is allowed to happen **after** the ending; it is not allowed to hold the ending hostage.
 
 Canonical strategy:
 
@@ -43,52 +54,49 @@ Canonical strategy:
 
 ---
 
-## 3. Stable authority model
+## 𝄞 One truth per system
 
-### Combat / gameplay state
-The existing TurnBased JRPG / Phoenix scaffold owns turn order, targeting, action resolution, party stats, inventory, combat results, and stock gameplay state.
+| System | Current ownership rule |
+|---|---|
+| **Phoenix / TurnBased JRPG** | turns, targeting, action resolution, party stats, stock inventory/combat state |
+| **Narrative + QuillScript** | stable intents, flags, checkpoints, quest progression, consequences, exactly-once narrative/reward consumption |
+| **Melodia rhythm** | timing / performance execution layered over authored actions |
+| **Wardrobe** | owned + equipped cosmetics and gameplay-facing wardrobe relationships |
+| **Convergence** | interprets relationships between existing owners; should not duplicate their state |
+| **Starskiff** | traversal system under active integration; durable history still needs explicit classification |
+| **UI Bridge** | single-writer player-facing UI ownership |
+| **Canonical save / narrative record** | durable Melodia history and migration boundary |
 
-### Narrative progression
-`UMelodiaNarrativeSubsystem` + QuillScript own narrative progression, stable intents, quest/flag/checkpoint state, and exactly-once consumption.
-
-### Rhythm
-`MelodiaCore` / `MelodiaRhythmCombatSubsystem` executes timing/performance on top of selected JRPG actions. Rhythm may change action quality/interpretation; it must not become a parallel combat authority.
-
-### Wardrobe
-`UMelodiaWardrobeSubsystem` owns wardrobe/equipped state and exposes concrete gameplay relationships/capabilities. The long-term design target is outfit-as-build-identity, not cosmetic stat dressing.
-
-### Convergence
-Convergence is the glue between outfit × rhythm/music × battle × exploration × world response. It should interpret existing owner state rather than store duplicate truth.
-
-### Starskiff
-Starskiff is an exploration/traversal system under active integration and a long-term candidate for the physical archive of a player's accumulated journey.
-
-### UI
-Every surface retains one writer. UI duplication is a defect, not an alternate presentation path.
+If two systems both believe they own the same fact, that is a bug even when the screen looks correct.
 
 ---
 
-## 4. P0 evidence baseline
+## ♪ P0 — what it actually proves
 
-The 2026-09-01 closeout documentation records a green P0 automated/gate baseline, including the First Dream / Sea Above integration surface and existing test harnesses. Treat that as **bounded evidence for the captured baseline**, not as a claim that all future content is production-complete.
+The 2026-09-01 closeout captured a green First Dream / Sea Above baseline across the existing gate/test infrastructure.
 
-The important P0 proofs are architectural:
+Useful architectural proofs from that slice:
 
-- full real-input gameplay chain exists;
+- a real-input gameplay chain exists;
 - rhythm can ride on JRPG action execution;
-- wardrobe can alter gameplay/traversal;
+- Wardrobe can mean more than cosmetics;
 - narrative/rewards can be consumed idempotently;
 - save/load infrastructure exists;
 - music can unlock world routes;
-- UI ownership can remain single-writer.
+- UI can stay single-writer.
 
-The P0 six-phase sequence remains a useful **golden integration test**, but it is no longer mandatory pacing for every future Chapter.
+What P0 **does not** prove:
+
+- that every future Chapter must use the same six phases;
+- that every save edge case is closed;
+- that every future schema migration is safe;
+- that packaged restart/reload behavior is finished forever.
+
+P0 is a golden integration song, not a prison for content design.
 
 ---
 
-## 5. Current runtime-closure priority
-
-The present closure target is:
+## ♫ The closure song we are trying to finish
 
 ```text
 Outfit / Wardrobe
@@ -107,84 +115,85 @@ SAVE
       ↓
 quit process
       ↓
-reload
+relaunch
       ↓
 same durable state
       ↓
 load again
       ↓
-NO DUPLICATION
+NO DUPLICATION / NO DRIFT
 ```
 
-Key work:
+Still important:
 
-1. validate complete save candidates before mutation where possible;
+1. validate save candidates before canonical mutation where possible;
 2. preserve intentional empty state;
-3. reject inconsistent persisted wardrobe state before load mutation;
-4. audit restore paths for partial mutation / duplicate rebuild side effects;
-5. classify Starskiff and Convergence data into durable facts vs derived/transient state;
-6. add schema fields only after ownership is stable;
-7. prove full restart and repeat-load behavior;
-8. prove packaged-build behavior.
+3. audit restore paths for partial mutation and rebuild side effects;
+4. keep Wardrobe semantic validation in Wardrobe ownership;
+5. classify Starskiff state into durable facts vs derived/transient state;
+6. do the same for Convergence;
+7. extend the schema only after those facts are agreed;
+8. prove full process restart;
+9. prove repeat-load equality;
+10. prove the packaged build.
 
-Do not persist live rhythm sessions or raw transient vehicle physics unless a concrete design case requires it.
+Do not persist live rhythm sessions or raw vehicle physics just because serialization exists.
 
 ---
 
-## 6. Content progression state
+## ♬ Git health note — 2026-09-02
 
-### Concrete / integration-ready direction
-- First Dream / Sea Above P0 convergence content;
-- Shorewake transition and Starskiff departure framing;
-- Faraway Mother / fabric geography system preparation;
-- reusable Chapter progression/spec validation infrastructure.
+The repository is dramatically healthier than the earlier merge-train state, but two active surfaces need different treatment:
 
-### Strong planned direction, still requiring canon/production passes
+- **Runtime persistence PR #54** contains a small, valuable code delta, but its branch is heavily behind current `main`. Continue that work by transplanting/reapplying the persistence delta onto a fresh branch from current `main`; do **not** merge the stale branch wholesale.
+- **Three.js / site PR #61** was cut cleanly from current `main` and is mergeable, but its title understates its size: it carries a broad `wix/` presentation snapshot. Review the large site payload and reconcile the older Three.js r128 shared layer with the newer 0.185-era browser prototypes before promotion.
+
+Older giant research PRs are increasingly useful as **extraction archives**, not default merge candidates.
+
+---
+
+## ♪ Content progression
+
+### Closest to production truth
+
+- First Dream / Sea Above P0 convergence;
+- Shorewake transition + Starskiff departure framing;
+- Faraway Mother / fabric-geography preparation;
+- reusable Chapter progression + validation infrastructure.
+
+### Strong direction, still allowed to move
+
 - Mara Elletra Vell / seam-reading;
-- Iris Fen / material-state `Catalyze` lane;
+- Iris Fen / `Catalyze` material-state play;
 - God That Molts;
 - Horizon Eater / Wayfold;
 - House of Measures / Seam Oracle;
 - Last Dress of the Sea;
-- working 50+ Chapter Volume-I grid.
+- the working 50+ Chapter Volume-I scaffold.
 
-Names and exact chapter placements beyond already owner-canonized material remain editable. The **tiered content architecture** is the important paradigm shift.
-
----
-
-## 7. Long-term extensibility policy
-
-New content should primarily add:
-
-- authored places;
-- chapter packages;
-- outfits / interpretations;
-- creatures / relationships;
-- encounters;
-- Quill narrative;
-- world-state consequences;
-- Monolith Events;
-- optional gifts/reveries/voyages.
-
-New content should **not** casually add:
-
-- another combat framework;
-- another save authority;
-- another wardrobe subsystem;
-- another global UI writer;
-- another rhythm runtime authority;
-- mandatory online dependency.
-
-The goal is to make the permanent game stable enough that content production becomes the dominant work.
+Draft titles and exact chapter numbers are not sacred. **Relationships, questions, persistent changes, and system contracts matter more than numbering.**
 
 ---
 
-## 8. Current definition of “next level”
+## ♫ Browser / authoring surface
 
-The project advances when it becomes easier to add a new Chapter without touching the core.
+These are useful and real, but deliberately non-authoritative:
 
-A meaningful milestone is not “another system exists.” It is:
+- `Docs/Tools/puzzle-sandbox/index.html` — **Cymatic Sanctuary**, 12-instrument Music-as-Key sandbox;
+- `Prototypes/Web/MusicKey3D/` — watercolor/toon world-puzzle lab;
+- `Prototypes/Web/MelodiaFolio3D/` — 3D Folio + mailbox + real repo-model viewer;
+- `Prototypes/Web/MelodiaFolio3D/mara.html` — Mara-art-direction variant.
 
-> **A new authored Chapter can be packaged, played, saved, quit, restored, and revisited using stable owners and reusable contracts.**
+They can test schema, interaction, visual language, 3D widgets, and tiny spinoff ideas. They do not own gameplay state.
 
-That is the bridge from an impressive technical project into the long-lived Melodia journey.
+---
+
+## 𝄞 What “next level” means now
+
+Not another global subsystem.
+
+A real next milestone is:
+
+> **I can author a new Chapter, play it, save it, quit the process, come back later, load it twice, and the world remembers exactly what it should — no more and no less.**
+
+Once that is boring, the weird stuff gets much easier. ♪

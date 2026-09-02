@@ -1,20 +1,16 @@
-# Melodia Traveling Folio — Three.js Prototype
+# ♬ The Traveling Folio — a little 3D memory book
 
-Browser-side interaction lab for Melodia's proposed 3D Folio UI and future evergreen-content surfaces.
+This is Melodia's browser-side **3D UI laboratory**: part travel journal, part dressmaker's pattern book, part Starskiff mailbox, part tiny museum of things the player has actually lived through.
 
-This is deliberately a **prototype boundary**, not a new gameplay/UI authority.
+The important rule is cute and boring at the same time:
 
-## What it demonstrates
+> **The Folio may look alive. It is still presentation.** ♪
 
-- a tactile 3D Folio made from book/page/thread/parcel objects;
-- raycast interaction that emits UI intents rather than mutating gameplay state;
-- a local offline mailbox fixture matching the future Gift/Reverie presentation model;
-- a manifest-driven repository model turntable;
-- OBJ, FBX, and future GLTF/GLB loader paths;
-- automatic centering and scale normalization for unrelated source assets;
-- graceful visible failure when an LFS-backed binary is not hydrated/servable.
+It can unfold, glow, spin a model, open a parcel, follow a golden Thread, and make the UI feel like an object from the world. It does not get to own inventory, progression, Wardrobe, rewards, or save state.
 
-## Run it
+---
+
+## ♪ Run it
 
 From the repository root:
 
@@ -22,28 +18,60 @@ From the repository root:
 python -m http.server 8080
 ```
 
-Then open:
+Open the stable route:
 
 ```text
 http://127.0.0.1:8080/Prototypes/Web/MelodiaFolio3D/
 ```
 
-Do **not** open `index.html` directly through `file://`; the browser must be able to fetch `models.json`, `mailbox.json`, and repository assets through HTTP.
+Or the softer Mara-style presentation pass:
 
-## Current verified model seeds
+```text
+http://127.0.0.1:8080/Prototypes/Web/MelodiaFolio3D/mara.html
+```
 
-The viewer manifest currently contains:
+Do **not** double-click `index.html` through `file://`. The viewer needs HTTP so it can fetch `models.json`, `mailbox.json`, and tracked repository geometry.
+
+---
+
+## ♫ What lives in the Folio right now
+
+- a tactile 3D book / page / parcel / Thread scene;
+- raycast interaction that emits **UI intents** instead of changing gameplay truth;
+- a local offline Starskiff mailbox fixture for future Gifts / Reveries;
+- a manifest-driven repository model turntable;
+- OBJ + FBX loading, with GLTF / GLB as the preferred future showcase format;
+- automatic centering and scale normalization so unrelated source models fit the same little stage;
+- visible failure instead of silent nonsense when an LFS binary is not hydrated.
+
+The `mara.html` route pushes the same viewer toward the project's softer illustrative language: lavender paper, cool blue / pink light, toon treatment, outlines, restrained resonance bloom.
+
+---
+
+## ♬ Real models already wired in
+
+The manifest currently points at actual tracked Melodia assets:
 
 - `Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.obj`
 - `Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.obj`
 - `Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.obj`
 - `UpdatedShirt.fbx`
 
-The first three are tracked OBJ exports from the Sea Above prototype reef set. `UpdatedShirt.fbx` is the initial FBX/Wardrobe compatibility test and may require `git lfs pull` before the local HTTP server can provide its binary payload.
+The Sea Above meshes are the reliable browser lane today because OBJ is already tracked and simple to serve.
 
-## Model manifest contract
+`UpdatedShirt.fbx` is the Wardrobe / FBX compatibility canary. It may need:
 
-`models.json` is intentionally tiny and engine-neutral:
+```powershell
+git lfs pull
+```
+
+before the local server has the real binary instead of an LFS pointer.
+
+---
+
+## 𝄞 The tiny model contract
+
+`models.json` stays deliberately boring and engine-neutral:
 
 ```json
 {
@@ -56,38 +84,75 @@ The first three are tracked OBJ exports from the Sea Above prototype reef set. `
 }
 ```
 
-Future web exports should prefer GLB for compactness and predictable browser loading. Do not convert the whole repository just to serve this prototype; add intentional showcase exports as they become useful.
+For future intentional browser exports, prefer **GLB**. Do not convert the entire game repository just because a turntable exists. One lovely Starskiff, outfit mannequin, creature, or chapter diorama at a time is enough.
 
-## UI authority rule
+---
 
-The prototype follows:
+## ♪ A parcel is not an inventory system
+
+The interaction boundary is:
 
 ```text
-canonical state
-    -> UI view model
-    -> 3D presentation object
-    -> pointer/raycast interaction
-    -> UI intent
-    -> canonical subsystem performs/denies action
+canonical Melodia state
+        ↓
+UI view model
+        ↓
+3D page / parcel / charm / thread
+        ↓
+player clicks it
+        ↓
+UI intent
+        ↓
+real owning subsystem performs or refuses the action
 ```
 
-A parcel can emit `ui.post.open_requested`. It cannot grant inventory.
-An outfit model can emit `ui.wardrobe.inspect_requested`. It cannot equip itself.
-A chapter page can emit `ui.chapter.selected`. It cannot author progression.
+So:
 
-In Unreal, the same principle should route player-facing surfaces through `UMelodiaUIBridgeSubsystem` and the existing narrative/wardrobe/reward authorities.
+- a parcel may emit `ui.post.open_requested`; it **cannot grant inventory**;
+- an outfit model may emit `ui.wardrobe.inspect_requested`; it **cannot equip itself**;
+- a Chapter page may emit `ui.chapter.selected`; it **cannot author progression**.
 
-## Files
+The Unreal version should keep routing player-facing surfaces through `UMelodiaUIBridgeSubsystem` and the existing Narrative / Wardrobe / reward authorities.
 
-- `index.html` — self-contained Three.js scene + UI shell
-- `models.json` — repository model manifest
-- `mailbox.json` — dev-only offline Post/Gift/Reverie fixture
+That lets the visual layer get wonderfully strange without becoming another state machine we have to debug at 3 AM.
 
-## Next useful experiments
+---
 
-1. Export one intentional Starskiff GLB and add it to the manifest.
-2. Export one canonical outfit mannequin/garment GLB.
-3. Add a chapter-card projection onto a 3D folio page.
-4. Add deterministic `FMelodiaUIIntent`-shaped JSON fixtures shared with UE tests.
-5. Make the Starskiff parcel shelf and Folio mailbox consume the same Post view-model contract.
-6. Add screenshot/reference capture once the visual language is locked.
+## ♫ The browser family
+
+The Folio has two siblings now:
+
+- `Prototypes/Web/MusicKey3D/` — ♪ the little world-interaction lab;
+- `Docs/Tools/puzzle-sandbox/` — 𝄞 **Cymatic Sanctuary**, the 12-instrument Music-as-Key sandbox.
+
+They should feel like three pages from the same art book:
+
+```text
+MusicKey3D        = does the world interaction feel right?
+Cymatic Sanctuary = how far can the music-key grammar stretch?
+Traveling Folio   = how does the game remember and present the journey?
+```
+
+Unreal still decides what is real.
+
+---
+
+## ♬ Files
+
+- `index.html` — stable Folio + model-viewer route;
+- `mara.html` — stylized art-direction variant;
+- `models.json` — tracked-model manifest;
+- `mailbox.json` — dev-only local Post / Gift / Reverie fixture.
+
+---
+
+## ♪ Next good experiments
+
+1. Export one intentional **Starskiff GLB** and make it the first proper Folio keepsake.
+2. Export one canonical outfit / mannequin GLB.
+3. Let a Chapter page unfold into a tiny 3D diorama using real Melodia geometry.
+4. Add deterministic `FMelodiaUIIntent`-shaped fixtures that can be compared against UE tests.
+5. Make the physical Starskiff parcel shelf and the Folio mailbox consume the same Post view model.
+6. Promote the Mara visual language only after comparing it in the browser on the actual workstation.
+
+> **The Folio should feel like the journey left fingerprints on it.** ♫
