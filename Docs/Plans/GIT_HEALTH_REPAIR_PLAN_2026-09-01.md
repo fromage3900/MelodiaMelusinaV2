@@ -7,10 +7,17 @@ Restore trustworthy GitHub health signals without touching gameplay code, Unreal
 ## Confirmed state
 
 - `main` remains the protected source-of-truth branch.
-- Existing PR #32 contains the CI repair for the invalid AWS workflow input description and the optional `SITE_SYNC_TOKEN` site-sync path.
-- Echo Static Gates and Unreal Build + Tests still require the self-hosted `[Windows, UE58]` runner; this plan does not pretend to solve runner availability.
-- A fresh Linux checkout reports `deploy/quick-deploy.ps1` modified immediately because the index stores CRLF while `.gitattributes` declares text with CRLF checkout output.
-- LFS pointer validation passed for the repository snapshot; binary payload availability must still be checked on the Windows/UE machine before asset work.
+- PR #48 now carries the CI repair (Actions checkout/artifact bumps, site-sync
+  token-free path, `quick-deploy.ps1` CRLF normalize) plus the git health docs.
+- **2026-09-02 fix:** `site_status_sync.yml` must not use
+  `if: ${{ secrets.SITE_SYNC_TOKEN == '' }}` — that pattern produced 0-job
+  workflow failures on push. Gate only the remote push steps with `!= ''`.
+- Echo Static Gates and Unreal Build + Tests still require the self-hosted
+  `[Windows, UE58]` runner; this plan does not pretend to solve runner availability.
+- A fresh Linux checkout may still report `deploy/quick-deploy.ps1` dirty because
+  the index stores CRLF while `.gitattributes` declares `eol=crlf`.
+- LFS pointer validation passed for the repository snapshot; binary payload
+  availability must still be checked on the Windows/UE machine before asset work.
 
 ## Repair sequence
 

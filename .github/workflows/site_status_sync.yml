@@ -12,12 +12,16 @@ name: Sync portfolio status from gate ledger
 #      pushes the blob to my-site using secrets.SITE_SYNC_TOKEN.
 #      Requires a fine-grained PAT with write to fromage3900/my-site, stored as
 #      the SITE_SYNC_TOKEN repo secret on fromage3900/MelodiaMelusinaV2.
+#
+# Do not use `secrets.* == ''` in step `if:` — GitHub treats that as an invalid
+# workflow and fails with a 0-job run on any push that touches this file.
 on:
   push:
     branches: [main]
     paths:
       - 'Saved/gate_ledger.json'
       - 'Tools/sync_site_status.py'
+      - '.github/workflows/site_status_sync.yml'
   schedule:
     - cron: '17 6 * * *'   # daily, off the :00 to avoid the crowd
   workflow_dispatch:
@@ -34,13 +38,11 @@ jobs:
         with:
           path: game
 
-      - name: Generate status blob into the site checkout
-        run: python game/Tools/sync_site_status.py --out game/_site_status.json
-
-      - name: Skip remote site push without SITE_SYNC_TOKEN
-        if: ${{ secrets.SITE_SYNC_TOKEN == '' }}
+      - name: Generate status blob
         run: |
-          echo "SITE_SYNC_TOKEN not configured — status blob generated only."
+          python game/Tools/sync_site_status.py --out game/_site_status.json
+          echo "Status blob written to game/_site_status.json"
+          echo "Without SITE_SYNC_TOKEN, remote site push steps are skipped."
           echo "Use deploy/sync_site_to_github.ps1 locally for token-free site deploy."
 
       - name: Checkout site repo
