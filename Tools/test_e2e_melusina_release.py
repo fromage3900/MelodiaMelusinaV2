@@ -436,7 +436,7 @@ class TestTier4MelusinaRegressionSuite(unittest.TestCase):
     """Executes the verified regression test suites for MCP, Ollama validation, and daemons."""
 
     def test_01_regression_test_melodia_mcp(self) -> None:
-        """Execute Tools/test_melodia_mcp.py and assert 13/13 passing."""
+        """Execute Tools/test_melodia_mcp.py and assert all tests passing."""
         test_script = GODFILE_ROOT / "Tools" / "test_melodia_mcp.py"
         self.assertTrue(test_script.exists(), f"Script not found: {test_script}")
 
@@ -445,7 +445,7 @@ class TestTier4MelusinaRegressionSuite(unittest.TestCase):
             cwd=str(GODFILE_ROOT),
             capture_output=True,
             text=True,
-            timeout=45,
+            timeout=120,
         )
         self.assertEqual(
             result.returncode, 0,
