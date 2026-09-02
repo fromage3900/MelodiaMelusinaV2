@@ -3,7 +3,7 @@
   "asset_choice": "Klein Veil \u2014 3D Chladni Klein bottle-veil (chosen over Gyroid Heart for non-orientable topology + SDF lineage)",
   "why_klein_veil": "Klein bottle is already present as SDF M_SDF_Klein_Bottle (61-material math-art lineage); veil extends it to Faraway Mother nacre fabric + CelestialSilk constellation. Gyroid Heart would duplicate LaceCanopy heart_grace; Klein Veil owns the nodal seam.",
   "seed": 20260829,
-  "resolution": 1024,
+  "resolution": 2048,
   "ue_asset": "/Game/Melodia/ResonantWorld/Hero/SM_KleinVeil_AudioReactive",
   "ue_material_instance": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_KleinVeil_CymaticReactive",
   "ue_textures_root": "/Game/EnvSandbox/Textures/Copernicus/KleinVeil",
@@ -160,14 +160,14 @@
         "biome": "FrillValley",
         "tension": 0.32,
         "note": "Primary veil \u2014 Klein seam faces Heart Gate, height-aware raycast",
-        "landscape_z_synthetic": 12261.0,
-        "final_z": 12296.0,
+        "landscape_z_synthetic": 12088.0,
+        "final_z": 12123.0,
         "height_aware": {
           "ray_start_z": 25000,
           "ray_end_z": -10000,
           "channel": "Visibility",
           "complex": true,
-          "synthetic_fallback": 12261.0,
+          "synthetic_fallback": 12088.0,
           "offset_above_surface": 35
         }
       },
@@ -188,14 +188,14 @@
         "biome": "ResonantSeamWay",
         "tension": 0.12,
         "note": "Echo instance on cymatic nodal corridor |Chladni|<0.12",
-        "landscape_z_synthetic": 12627.0,
-        "final_z": 12662.0,
+        "landscape_z_synthetic": 12490.0,
+        "final_z": 12525.0,
         "height_aware": {
           "ray_start_z": 25000,
           "ray_end_z": -10000,
           "channel": "Visibility",
           "complex": true,
-          "synthetic_fallback": 12627.0,
+          "synthetic_fallback": 12490.0,
           "offset_above_surface": 35
         }
       }
@@ -220,7 +220,7 @@
       "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_KleinVeil.npy"
     ]
   },
-  "hash": "23498d34fae89e2f",
+  "hash": "5ac9d7750c2c1900",
   "offline": true,
   "note": "Offline proof: PBR 9-map + VDM 32f proxy + LOD manifests + placement JSON. In-editor import via Content/Python/klein_veil_import.py (idempotent, creates MI from M_Master_Toon_Universal, wires MPC params, spawns ISM height-aware)."
 }

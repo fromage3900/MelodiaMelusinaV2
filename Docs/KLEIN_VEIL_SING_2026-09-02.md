@@ -63,7 +63,7 @@ exec(open(r"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/klein_veil_import.
   C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\klein_veil\T_KleinVeil_Opacity.png
   C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\vdm_fabric\T_FarawayMother_Fabric_VDM_KleinVeil.png
   C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\vdm_fabric\T_FarawayMother_Fabric_VDM_KleinVeil.npy
-  Manifest: specs/klein_veil/klein_veil_manifest.v1.json hash=23498d34fae89e2f
+  Manifest: specs/klein_veil/klein_veil_manifest.v1.json hash=5ac9d7750c2c1900
   Importer: Content/Python/klein_veil_import.py
   Placement: Saved/Audit/vdm_fabric/klein_veil_placements.json
 ```
@@ -72,7 +72,7 @@ PNGs are tileable (wrapped noise, 2π Chladni), 8-bit proxy for review; real coo
 
 ## Files Created This Run
 
-- `Saved/Audit/klein_veil/T_KleinVeil_*.png` (9 PBR maps, 1024x1024)
+- `Saved/Audit/klein_veil/T_KleinVeil_*.png` (9 PBR maps, 2048x2048)
 - `Saved/Audit/vdm_fabric/T_FarawayMother_Fabric_VDM_KleinVeil.png` + `.npy`
 - `specs/klein_veil/klein_veil_manifest.v1.json`
 - `Saved/Audit/vdm_fabric/klein_veil_placements.json`
