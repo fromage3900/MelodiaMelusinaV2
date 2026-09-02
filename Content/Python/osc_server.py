@@ -366,6 +366,26 @@ def _handle_beat(address: str, values: list):
     _set_mpc_scalar("PortfolioAudio", "BeatPhase", beat)
 
 
+# ── Audio-reactive flower: TD CHOP → OSC 9000 (2026-09-02 sprint) ───────
+_MEL_AUDIO_MAP = {"bass": ("PortfolioAudio","Bass"), "mid": ("PortfolioAudio","Mid"), "treble": ("PortfolioAudio","Treble")}
+def _handle_melodia_audio(address: str, values: list):
+    """Handle /melodia/audio/{bass,mid,treble} [0,1] from TD CHOP."""
+    band = address.rsplit("/", 1)[-1]
+    tgt = _MEL_AUDIO_MAP.get(band)
+    if not tgt: return
+    _set_mpc_scalar(tgt[0], tgt[1], max(0.0, min(1.0, float(values[0]) if values else 0.0)))
+def _handle_melodia_beat_pulse(address: str, values: list):
+    v = float(values[0]) if values else 0.0
+    _set_mpc_scalar("PortfolioAudio","BeatPulse",v); _set_mpc_scalar("PortfolioAudio","BeatIntensity",v)
+def _handle_melodia_beat_phase(address: str, values: list):
+    _set_mpc_scalar("PortfolioAudio","BeatPhase", float(values[0]) if values else 0.0)
+def _handle_rhythm_beat_pulse(address: str, values: list):
+    v = float(values[0]) if values else 0.0
+    _set_mpc_scalar("PortfolioAudio","BeatPulse",v); _set_mpc_scalar("PortfolioAudio","BeatIntensity",v)
+def _handle_rhythm_beat_phase(address: str, values: list):
+    _set_mpc_scalar("PortfolioAudio","BeatPhase", float(values[0]) if values else 0.0)
+
+
 # Route table
 _ROUTES = {
     "/material/preset":         _handle_preset,
@@ -387,6 +407,13 @@ _ROUTES = {
     "/niagara/wind":            _handle_wind,
     "/time/cycle":              _handle_day_night,
     "/time/beat":               _handle_beat,
+    "/melodia/audio/bass":      _handle_melodia_audio,
+    "/melodia/audio/mid":       _handle_melodia_audio,
+    "/melodia/audio/treble":    _handle_melodia_audio,
+    "/melodia/audio/beat/pulse": _handle_melodia_beat_pulse,
+    "/melodia/audio/beat/phase": _handle_melodia_beat_phase,
+    "/rhythm/beat_pulse":       _handle_rhythm_beat_pulse,
+    "/rhythm/beat_phase":       _handle_rhythm_beat_phase,
 }
 
 
