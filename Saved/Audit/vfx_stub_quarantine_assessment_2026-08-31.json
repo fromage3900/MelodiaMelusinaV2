@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "quarantine_assessment",
+    "source": "Saved/Audit/vfx_stub_audit_2026-08-30.json"
+  },
+  "findings": {
+    "MPC_Magical": {
+      "refs": 14,
+      "verdict": "KEEP",
+      "reason": "henshin driver, materials + BP/Sequencer sync"
+    },
+    "MPC_SakuraDream": {
+      "refs": 61,
+      "verdict": "KEEP",
+      "reason": "SakuraSparkle collection, referenced in 6 audit scripts"
+    },
+    "NPC_SakuraDream": {
+      "refs": 22,
+      "verdict": "KEEP",
+      "reason": "Melusina character materials bridge (bridge_melusina_to_mpc.py)"
+    },
+    "MF_Niagara_SDF_Sample": {
+      "refs": 6,
+      "verdict": "KEEP",
+      "reason": "Referenced in instance_policy_apply.json, orphan_assets_scan.json"
+    },
+    "C_Audio_bass_td_curve": {
+      "refs": 5,
+      "verdict": "KEEP",
+      "reason": "Referenced in orphan_assets_scan.json, overnight_queue"
+    }
+  },
+  "action": "NONE \u2014 all 5 remaining stubs have Python references. Do NOT move.",
+  "previous_action": "ENV_SakuraVFX moved to _deprecated/ (no refs found)"
+}

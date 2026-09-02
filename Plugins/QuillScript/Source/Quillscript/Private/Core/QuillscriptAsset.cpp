@@ -534,7 +534,18 @@ bool UQuillscriptAsset::IsLabelName(const FName LabelName) const
 
 bool UQuillscriptAsset::HistoryExists(const UObject* WorldContextObject) const
 {
-	if (UQuillscriptSubsystem* QuillscriptSubsystem{ WorldContextObject->GetWorld()->GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>() })
+	if (!IsValid(WorldContextObject))
+		return false;
+
+	UWorld* World{ WorldContextObject->GetWorld() };
+	if (!IsValid(World))
+		return false;
+
+	UGameInstance* GameInstance{ World->GetGameInstance() };
+	if (!IsValid(GameInstance))
+		return false;
+
+	if (UQuillscriptSubsystem* QuillscriptSubsystem{ GameInstance->GetSubsystem<UQuillscriptSubsystem>() })
 		return QuillscriptSubsystem->GetHistory().Contains(this->GetId());
 
 	return false;
@@ -547,47 +558,59 @@ void UQuillscriptAsset::CreateHistory(const UObject* WorldContextObject) const
 		return;
 
 	// Create history.
-	if (UQuillscriptSubsystem* QuillscriptSubsystem{ WorldContextObject->GetWorld()->GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>() })
+	if (WorldContextObject && WorldContextObject->GetWorld() && WorldContextObject->GetWorld()->GetGameInstance())
 	{
-		FHistory History;
-		History.ScriptId = this->Id;
-		QuillscriptSubsystem->GetHistory().Add(this->GetId(), History);
+		if (UQuillscriptSubsystem* QuillscriptSubsystem{ WorldContextObject->GetWorld()->GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>() })
+		{
+			FHistory History;
+			History.ScriptId = this->Id;
+			QuillscriptSubsystem->GetHistory().Add(this->GetId(), History);
+		}
 	}
 }
 
 FHistory& UQuillscriptAsset::FindHistory(const UObject* WorldContextObject) const
 {
-	if (UQuillscriptSubsystem* QuillscriptSubsystem{ WorldContextObject->GetWorld()->GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>() })
-		if (FHistory* TempHistory{ QuillscriptSubsystem->GetHistory().Find(this->GetId()) })
-			return *TempHistory;
+	if (WorldContextObject && WorldContextObject->GetWorld() && WorldContextObject->GetWorld()->GetGameInstance())
+	{
+		if (UQuillscriptSubsystem* QuillscriptSubsystem{ WorldContextObject->GetWorld()->GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>() })
+			if (FHistory* TempHistory{ QuillscriptSubsystem->GetHistory().Find(this->GetId()) })
+				return *TempHistory;
+	}
 
 	UTools::Warning("FindHistory() -> No scene history found for script of id '" + this->GetId().ToString() + "'.");
 
-	FHistory* EmptyHistory{ nullptr };
-	return *EmptyHistory;
+	static FHistory EmptyHistory;
+	return EmptyHistory;
 }
 
 void UQuillscriptAsset::PushToHistory(const UObject* WorldContextObject, const FSaveState NewEntry) const
 {
-	if (UQuillscriptSubsystem* QuillscriptSubsystem{ WorldContextObject->GetWorld()->GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>() })
+	if (WorldContextObject && WorldContextObject->GetWorld() && WorldContextObject->GetWorld()->GetGameInstance())
 	{
-		if (FHistory* TempHistory{ QuillscriptSubsystem->GetHistory().Find(this->GetId()) })
+		if (UQuillscriptSubsystem* QuillscriptSubsystem{ WorldContextObject->GetWorld()->GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>() })
 		{
-			// Add new entry to history flow.
-			TempHistory->SaveState.Add(NewEntry);
+			if (FHistory* TempHistory{ QuillscriptSubsystem->GetHistory().Find(this->GetId()) })
+			{
+				// Add new entry to history flow.
+				TempHistory->SaveState.Add(NewEntry);
 
-			// Remove older entries flow history flow, if above the allowed limit of entries.
-			if (const int32 TempMaxHistoryEntries{ this->GetMaxHistoryEntries() > 0 ? this->GetMaxHistoryEntries() : UQuillscriptSettings::Get()->GetMaxHistoryEntries() }; TempMaxHistoryEntries > 0)
-				while (TempHistory->SaveState.Num() > TempMaxHistoryEntries)
-					TempHistory->SaveState.RemoveAt(0);
+				// Remove older entries flow history flow, if above the allowed limit of entries.
+				if (const int32 TempMaxHistoryEntries{ this->GetMaxHistoryEntries() > 0 ? this->GetMaxHistoryEntries() : UQuillscriptSettings::Get()->GetMaxHistoryEntries() }; TempMaxHistoryEntries > 0)
+					while (TempHistory->SaveState.Num() > TempMaxHistoryEntries)
+						TempHistory->SaveState.RemoveAt(0);
+			}
 		}
 	}
 }
 
 void UQuillscriptAsset::DeleteHistory(const UObject* WorldContextObject) const
 {
-	if (UQuillscriptSubsystem* QuillscriptSubsystem{ WorldContextObject->GetWorld()->GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>() })
-		QuillscriptSubsystem->GetHistory().Remove(this->GetId());
+	if (WorldContextObject && WorldContextObject->GetWorld() && WorldContextObject->GetWorld()->GetGameInstance())
+	{
+		if (UQuillscriptSubsystem* QuillscriptSubsystem{ WorldContextObject->GetWorld()->GetGameInstance()->GetSubsystem<UQuillscriptSubsystem>() })
+			QuillscriptSubsystem->GetHistory().Remove(this->GetId());
+	}
 }
 
 #pragma endregion History

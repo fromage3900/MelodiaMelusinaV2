@@ -10,8 +10,9 @@
     "cmd": "blender --factory-startup --background --python deploy/surreal_arch/tests_standalone.py (install+build+export)"
   },
   "gate4": {
-    "status": "queued",
-    "cmd": "hython copernicus_petal_variants.py --dry && hython copernicus_dress_bake.py --dry (fix cp1252 arrow first)"
+    "status": "done",
+    "cmd": "hython copernicus_petal_variants.py --dry && hython copernicus_dress_bake.py --dry (fix cp1252 arrow first)",
+    "result": "2026-08-31 02:20 hython 22.0.368 both dry-runs exit 0; petal printed 12x3 map plan, dress printed SOP/COP chain; cp1252 arrow fix holds"
   },
   "gate6": {
     "condition": "all gates pass \u2192 4 commits + tag melodia-studio-v3-baseline (do not push)",

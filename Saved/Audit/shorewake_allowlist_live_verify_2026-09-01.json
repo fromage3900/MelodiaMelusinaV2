@@ -1,0 +1,98 @@
+{
+  "schema": "melodia.quill.shorewake.allowlist.live_verify.v1",
+  "generated": "2026-09-01T12:45:00Z",
+  "source": "Saved/Audit/quill_shorewake_source_status_2026-09-01.json",
+  "mode": "editor_bound_verification",
+  "summary": {
+    "qsc_path": "Content/MelodiaIntegration/Narrative/Shorewake/MelodiaQuillShorewake.qsc",
+    "qsc_exists": true,
+    "allowlist_config_path": "Content/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig.uasset",
+    "allowlist_exists_on_disk": true,
+    "allowlist_unverified": true,
+    "reason": "DA_MelodiaIntegrationConfig is binary .uasset — cannot read entries from disk scan"
+  },
+  "allowlist_entries_to_verify": [
+    {
+      "entry": "quest.shorewake.initiation",
+      "purpose": "Main Shorewake quest initiation flag",
+      "qsc_reference": "MelodiaQuillShorewake.qsc line ~45"
+    },
+    {
+      "entry": "flag.quest.shorewake_completed",
+      "purpose": "Shorewake quest completion flag",
+      "qsc_reference": "MelodiaQuillShorewake.qsc line ~120"
+    },
+    {
+      "entry": "flag.sea_above.starskiff_ready",
+      "purpose": "Starskiff unlock flag (cross-system dependency)",
+      "qsc_reference": "MelodiaQuillShorewake.qsc line ~85"
+    },
+    {
+      "entry": "reward.shorewake_weave",
+      "purpose": "Shorewake reward unlock flag",
+      "qsc_reference": "MelodiaQuillShorewake.qsc line ~155"
+    }
+  ],
+  "verification_steps": [
+    {
+      "step": 1,
+      "action": "Open UE Editor → Content Browser",
+      "detail": "Navigate to Content/MelodiaIntegration/Config/"
+    },
+    {
+      "step": 2,
+      "action": "Open DA_MelodiaIntegrationConfig.uasset",
+      "detail": "Double-click to open the Data Asset"
+    },
+    {
+      "step": 3,
+      "action": "Inspect Allowlist array",
+      "detail": "Details panel → DefaultGroup (or similar) → Allowlist array → expand all entries"
+    },
+    {
+      "step": 4,
+      "action": "Verify each entry exists",
+      "detail": "Check that all 4 entries listed above are present in the allowlist array"
+    },
+    {
+      "step": 5,
+      "action": "If entries missing — add them",
+      "detail": "Click '+ Add Entry' → type exact string → press Enter"
+    },
+    {
+      "step": 6,
+      "action": "Save config",
+      "detail": "Ctrl+S → verify no errors in Output Log"
+    },
+    {
+      "step": 7,
+      "action": "Cross-compile Shorewake QSC",
+      "detail": "Run: python deploy/surreal_arch/melodia_gn/quill_compile.py --script MelodiaQuillShorewake.qsc"
+    },
+    {
+      "step": 8,
+      "action": "Verify no allowlist errors in compile output",
+      "detail": "Check compile log for 'allowlist mismatch' warnings"
+    }
+  ],
+  "console_verification_alternative": {
+    "note": "If GUI is unavailable, use UE console commands:",
+    "commands": [
+      "ue_console listassets /Game/MelodiaIntegration/Config/",
+      "ue_console obj refs class=DA_MelodiaIntegrationConfig",
+      "ue_console DA_MelodiaIntegrationConfig.DefaultGroup.Allowlist"
+    ]
+  },
+  "addition_commands_if_missing": {
+    "note": "If entries are missing, the following console commands can add them (requires editor Python):",
+    "code": "import unreal\nconfig = unreal.EditorAssetLibrary.load_asset('/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig')\nallowlist = config.get_editor_property('default_group').get_editor_property('allowlist')\nmissing = ['quest.shorewake.initiation', 'flag.quest.shorewake_completed', 'flag.sea_above.starskiff_ready', 'reward.shorewake_weave']\nfor entry in missing:\n    if entry not in allowlist:\n        allowlist.append(entry)\nconfig.get_editor_property('default_group').set_editor_property('allowlist', allowlist)\nunreal.EditorAssetLibrary.save_loaded_asset(config)"
+  },
+  "guardrails": [
+    "No .uasset writes by daemon",
+    "Editor-bound execution only",
+    "Allowlist changes affect all QuillScript execution — verify no duplicate entries",
+    "Owner must test Shorewake flow in PIE after changes",
+    "Backup DA_MelodiaIntegrationConfig.uasset before editing"
+  ],
+  "status": "VERIFY_READY_PENDING_OWNER_EXEC"
+}

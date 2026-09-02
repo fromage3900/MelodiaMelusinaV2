@@ -1,0 +1,33 @@
+{
+  "schema": "melodia.copernatic_cymatic_parallax.v2",
+  "seed": 20260831,
+  "size": "1024x1024",
+  "frames": 1,
+  "variants": {
+    "FarawayCelestialSilk": {
+      "outputs": [
+        "Saved/Audit/copernicus_cymatic/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Normal.png",
+        "Saved/Audit/copernicus_cymatic/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Height.png",
+        "Saved/Audit/copernicus_cymatic/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_ORM.png",
+        "Saved/Audit/copernicus_cymatic/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Opacity.png"
+      ]
+    }
+  },
+  "maps": [
+    "BaseColor",
+    "Normal",
+    "Roughness",
+    "Metallic",
+    "Height",
+    "ORM",
+    "Emissive",
+    "Iridescence",
+    "Opacity"
+  ],
+  "pipeline": "pure numpy (cymatic trig interference + tileable fBm + domain warping)"
+}

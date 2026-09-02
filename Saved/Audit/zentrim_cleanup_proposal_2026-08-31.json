@@ -1,0 +1,64 @@
+{
+  "schema": "melodia.material.zentrim_cleanup_proposal.v1",
+  "generated": "2026-08-31T08:00:00Z",
+  "source": "Saved/Audit/zentrim_misuse_2026-08-30.json",
+  "note": "Offline proposal only. No .uasset writes. Editor Monolith pass required to apply texture swaps.",
+  "summary": {
+    "total_zentrim_refs": 86,
+    "legitimate_trim_mis": 12,
+    "misuse_mis": 2,
+    "scratch_quarantine": 2,
+    "action_required": "Texture param swap on 2 MIs + delete/quarantine 2 scratch files"
+  },
+  "findings": {
+    "legit_count": 12,
+    "legit_note": "MI name/path contains Trim/Trimsheet/ZenTrim token. Trimsheet textures on trim UV hosts are correct. No action needed.",
+    "misuse_count": 2,
+    "misuse_targets": [
+      "Content/EnvSandbox/Materials/Instances/NikkiHero/MI_NikkiHero_SakuraDream.uasset",
+      "Content/EnvSandbox/Materials/Instances/NikkiIntegrated/Mapped/MI_NikkiHero_SakuraDream_IntegratedV1.uasset"
+    ]
+  },
+  "cleanup_actions": [
+    {
+      "action": "TEXTURE_SWAP",
+      "target": "Content/EnvSandbox/Materials/Instances/NikkiHero/MI_NikkiHero_SakuraDream.uasset",
+      "current_texture": "/Game/Greybox_Kit/ZenTrim_Base4K_BaseColor",
+      "proposed_replacement": "KB3D_ATL_BrickStoneCleanA_BaseColor (Atlantis tilable)",
+      "rationale": "SakuraDream hero cloth has no trim UVs — trimsheet causes stretching. KB3D_ATL_* textures are proper tilable PBR. Verify KB3D_ATL_BrickStoneCleanA_Normal/Roughness also assigned if needed.",
+      "effort": "Low"
+    },
+    {
+      "action": "TEXTURE_SWAP",
+      "target": "Content/EnvSandbox/Materials/Instances/NikkiIntegrated/Mapped/MI_NikkiHero_SakuraDream_IntegratedV1.uasset",
+      "current_texture": "/Game/Greybox_Kit/ZenTrim_Base4K_BaseColor",
+      "proposed_replacement": "KB3D_ATL_BrickStoneCleanB_BaseColor (Atlantis tilable, different variant)",
+      "rationale": "IntegratedV1 uses tilable NikkiChain master but retains trimsheet. Swap to KB3D tilable for proper chain fabric rendering.",
+      "effort": "Low-Med"
+    },
+    {
+      "action": "QUARANTINE_DELETE",
+      "target": "Content/EnvSandbox/Materials/_Scratch/MI_Nikki_ZenTrimTest.uasset",
+      "rationale": "Scratch test with same misuse pattern. Not shipping.",
+      "effort": "Trivial"
+    },
+    {
+      "action": "QUARANTINE_REVIEW",
+      "target": "Content/EnvSandbox/Materials/_Scratch/M_Master_Toon_Universal_Inst2.uasset",
+      "rationale": "Scratch variant referencing ZenTrim textures via M_Master_Toon_Universal. Either replace with KB3D_ATL tilables or leave quarantined under _Scratch.",
+      "effort": "Low"
+    }
+  ],
+  "tilable_alternatives": {
+    "KB3D_ATL_family": "Content/EnvSandbox/Textures/Atlantis/KB3D_ATL_BrickStoneClean{A,B,BeigeA,BlueA,BlueB,BlueC,RedB,WhiteA}_* (5 maps each: BaseColor/Height/Metallic/Normal/Roughness)",
+    "already_has_mis_reference": "Content/EnvSandbox/Materials/Instances/Atlantis/MI_BrickStoneCleanA.uasset, MI_BrickStoneCleanB.uasset",
+    "nikki_fabric_option": "If Sakura cloth should look fabric-like rather than stone, use dedicated Nikki iridescent fabric tilable instead of KB3D."
+  },
+  "execution_order": [
+    "1. Quarantine scratch files (delete or leave in _Scratch — owner decision)",
+    "2. Open MI_NikkiHero_SakuraDream in editor, swap ZenTrim_Base4K_BaseColor -> KB3D_ATL_BrickStoneCleanA_BaseColor + matching Normal/Roughness",
+    "3. Open MI_NikkiHero_SakuraDream_IntegratedV1 in editor, swap ZenTrim_Base4K_BaseColor -> KB3D_ATL_BrickStoneCleanB_BaseColor + matching Normal/Roughness",
+    "4. Verify DetailTiling/Stack2_Tiling values are appropriate for fabric (not trim-sheet tiling)",
+    "5. Run project_state.py staleness check after editor save"
+  ]
+}

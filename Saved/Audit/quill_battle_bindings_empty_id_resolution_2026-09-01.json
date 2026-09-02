@@ -1,0 +1,62 @@
+{
+  "schema": "melodia.quill.battle_bindings.empty_id.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/quill_battle_bindings_2026-08-31.json",
+  "mode": "spec_only",
+  "allowlist": [
+    "encounter.first_dream",
+    "encounter.harmony_awakening",
+    "encounter.sea_above.membrane_pulse",
+    "encounter.wardrobe.equip_outfit",
+    "encounter.companion.choral_sheep"
+  ],
+  "empty_bindings": [
+    {
+      "script": "MelodiaQuillP0Playthrough.qsc",
+      "current_battle_id": "",
+      "proposed_battle_id": "encounter.first_dream",
+      "rationale": "P0 playthrough culminates in the First Dream encounter. Flags set: flag.p0.playthrough.attempted/completed/fled",
+      "quest_complete": "quest.first_dream",
+      "flags_set": [
+        "flag.p0.playthrough.attempted",
+        "flag.p0.playthrough.completed",
+        "flag.p0.playthrough.fled"
+      ],
+      "beatmap_pattern": "4-Beat Basic Quarter",
+      "bpm_range": [
+        80,
+        100
+      ],
+      "difficulty": 1
+    },
+    {
+      "script": "MelodiaQuillSmoke.qsc",
+      "current_battle_id": "",
+      "proposed_battle_id": "encounter.smoke.bloom",
+      "rationale": "Smoke script rewards on melodia_smoke_complete flag. Proposed new allowlist entry.",
+      "flags_set": [
+        "melodia_smoke_complete"
+      ],
+      "beatmap_pattern": "Walking 8th Note",
+      "bpm_range": [
+        70,
+        90
+      ],
+      "difficulty": 2
+    }
+  ],
+  "resolution": {
+    "MelodiaQuillP0Playthrough.qsc": {
+      "proposed_id": "encounter.first_dream",
+      "on_allowlist": true,
+      "rationale": "P0 playthrough culminates in First Dream encounter."
+    },
+    "MelodiaQuillSmoke.qsc": {
+      "proposed_id": "encounter.smoke.bloom",
+      "on_allowlist": false,
+      "rationale": "New allowlist entry needed. Owner to confirm addition."
+    }
+  },
+  "action_required": "Owner to add encounter.smoke.bloom to allowlist, then update both scripts with proposed battle_ids.",
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

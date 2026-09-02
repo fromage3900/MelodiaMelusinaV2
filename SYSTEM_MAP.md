@@ -1,88 +1,101 @@
-# System Architecture Map — Environment Portfolio Production Platform
+# System Architecture Map — Melodia Rhythm-JRPG
 
-This document describes the high-level system architecture of the **Environment Portfolio Production Platform**, detailing the six core components that enable automated asset layout, shading, composition, and presentation.
-
----
-
-## 1. Core Subsystems
-
-```
- ┌────────────────────────────────────────────────────────────────────────┐
- │                      MCP INTEGRATION LAYER (:55557)                     │
- └───────────────────────────────────┬────────────────────────────────────┘
-                                     │ (RPC Controls)
- ┌───────────────────────────────────▼────────────────────────────────────┐
- │                            IMPORT PIPELINE                             │
- │           Parses manifests, auto-imports FBXs, spawns HISMs            │
- └───────────────────────────────────┬────────────────────────────────────┘
-                                     │ (Placed Actor Hierarchy)
- ┌───────────────────────────────────┼────────────────────────────────────┐
- │  ┌─────────────────────────────┐  │  ┌──────────────────────────────┐  │
- │  │       MATERIAL SYSTEM       │◄─┼─►│          PCG SYSTEM          │  │
- │  │ Masters, instances, functions│  │  │ Universal scatters, falloffs │  │
- │  └─────────────────────────────┘  │  └──────────────────────────────┘  │
- └───────────────────────────────────┼────────────────────────────────────┘
-                                     │ (Configured Scene Data)
- ┌───────────────────────────────────▼────────────────────────────────────┐
- │                              SCENE SYSTEM                              │
- │            Ultra Dynamic Sky, Post-Process, templates, MPC             │
- └───────────────────────────────────┬────────────────────────────────────┘
-                                     │ (Studio Rendering & Audits)
- ┌───────────────────────────────────▼────────────────────────────────────┐
- │                         PORTFOLIO OUTPUT LAYER                         │
- │      Monolith rendering, screenshot overlays, JSON stats metadata     │
- └────────────────────────────────────────────────────────────────────────┘
-```
+**Canonical Architecture Blueprint**
+**Last Updated:** 2026-09-01 (Evening P0 Closeout & Chapter Loop Checkpoint)
+**Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20
+**Authority Reference:** `Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`, `Docs/ORCHESTRA_CONTRACT_2026-08-20.md`
 
 ---
 
-## 2. Subsystem Definitions
+## 1. High-Level Architectural Model
 
-### 2.1 Material System
-*   **Purpose**: Compiles layered Substrate Toon master shaders and automates the creation of material instances.
-*   **Scope**:
-    *   Masters: Opaque surfaces (`M_Master_Toon_Universal`), landscapes (`M_Master_Toon_Landscape_HeightBlend`), water (`M_Water_Master_Grand_v6`), and painterly overlays (`M_Master_Impressionist_Toon`).
-    *   Helper API: [material_lib.py](Content/Python/material_lib.py) constructs graphs programmatically using Unreal's `unreal.MaterialEditingLibrary`.
-    *   Functions: Programmatic subgraphs like `MF_LandscapeHeightCompete` and `MF_WaterShorelineFade`.
-*   **Primary Entry Points**:
-    *   [setup_master_universal.py](Content/Python/setup_master_universal.py)
-    *   [setup_landscape_height_blend.py](Content/Python/setup_landscape_height_blend.py)
-    *   [setup_master_water.py](Content/Python/setup_master_water.py)
+Melodia is structured around **Two Absolute Authorities** and **Four Converged Pillars**, enforcing strict separation of concerns between narrative progression, gameplay state, aesthetic presentation, and traversal mechanics.
 
-### 2.2 PCG System
-*   **Purpose**: Automatically scatters foliage, rocks, and debris onto environment geometry.
-*   **Scope**:
-    *   Scatters: Universal graphs (`PCG_FoliageDensity`, `PCG_RockScatter`) and style-specific wrappers (`PCG_Sakura_GroundCover`).
-    *   Libraries: [pcg_graph_builder.py](Content/Python/pcg_graph_builder.py) programmatically wires density filters, voxel grids, and static mesh spawners.
-    *   Standards: [pcg_portfolio_standards.py](Content/Python/pcg_portfolio_standards.py) sets path parameters, volumes, and exclusion tags (`PCG_Ground`, `PCG_Volume`).
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 TWO ABSOLUTE AUTHORITIES                               │
+├────────────────────────────────────────────┬───────────────────────────────────────────┤
+│    QUILLSCRIPT NARRATIVE AUTHORITY         │       TURN-BASED JRPG STATE AUTHORITY     │
+│   (UMelodiaNarrativeSubsystem)             │      (BP_JRPGSaveGame & Combat Core)      │
+│  - Branching Dialogue & Cutscenes          │  - Party Stats, HP/MP Calculations        │
+│  - Quest Flag Progression                  │  - Turn Queue & Action Resolution         │
+│  - 7-Verb Notification Dispatch            │  - Inventory & Key Item Tracking          │
+│  - Exactly-Once Reward Delivery            │  - Canonical Save/Load Persistence        │
+└─────────────────────┬──────────────────────┴─────────────────────┬─────────────────────┘
+                      │                                            │
+                      ▼                                            ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 FOUR CONVERGED PILLARS                                 │
+├──────────────────────┬──────────────────────┬────────────────────┬─────────────────────┤
+│ 1. RHYTHM COMBAT     │ 2. WARDROBE SYSTEM   │ 3. MUSIC AS KEY    │ 4. SINGLE-WRITER UI │
+│ (Harmonix Overlay)   │ (Traversal Provider) │ (Resonant World)   │ (UI Bridge)         │
+│                      │                      │                    │                     │
+│ - Rides on JRPG cmd  │ - Mesh visual swap   │ - Stepping nodes   │ - Sole HUD writer   │
+│ - Note accuracy grade│ - Traversal provider │ - Resonant phrases │ - Zero race conds   │
+│ - Damage multiplier  │ - Glide / Swim / Dash│ - Unlocks routes   │ - Clean transitions │
+│ - MPC Palette pulse  │ - State persistence  │ - Emits 7-verbs    │ - No widget leaks   │
+└──────────────────────┴──────────────────────┴────────────────────┴─────────────────────┘
+```
 
-### 2.3 Scene System
-*   **Purpose**: Manages global environment setups, lighting setups, post-processing stacks, and showcase layouts.
-*   **Scope**:
-    *   Lighting: Dynamically spawns and configures **Ultra Dynamic Sky** and Dynamic Weather actors.
-    *   Post-Processing: Integrates cell outlines (`M_PP_ToonOutline`) and organic vine filters (`M_PP_StorybookVines`).
-    *   Showcases: Generates showcase scene spheres and preview cards.
-*   **Primary Entry Points**:
-    *   [setup_sakura_scene.py](Content/Python/setup_sakura_scene.py)
-    *   [setup_template_showcase.py](Content/Python/setup_template_showcase.py)
-    *   [portfolio_scene_integration.py](Content/Python/portfolio_scene_integration.py)
+---
 
-### 2.4 Import Pipeline
-*   **Purpose**: Converts layout plans into Unreal Engine outliner actor hierarchies.
-*   **Scope**:
-    *   Importer: [import_world_manifest.py](Content/Python/import_world_manifest.py) reads `{WorldRoot}.world.json` files using the `surreal_arch_world_v1` schema.
-    *   HISM Spawner: Instantiates Hierarchical Instanced Static Mesh components grouped by role and handles coordinate space transformation (Blender Z-up meters to UE Left-handed cm).
-    *   Mesh Resolver: Automatically handles FBX imports and maps roles to material instances using `ROLE_UE_HINTS` mappings.
+## 2. Core Subsystems
 
-### 2.5 MCP Integration Layer
-*   **Purpose**: Exposes engine RPC actions over local sockets, enabling external agents to control the editor.
-*   **Scope**:
-    *   Plugin: The `UnrealMCP` plugin listens on Port `55557` and maps incoming JSON requests to command executors.
-    *   Commands: Programmatic graph manipulation and variable editing (`BPConnector.cpp`, `BPVariables.cpp`).
-    *   Client API: [monolith_mcp_client.py](Content/Python/monolith_mcp_client.py) allows python processes to trigger editor actions.
+### 2.1 Narrative Authority (`UMelodiaNarrativeSubsystem`)
+- **Header:** `Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeSubsystem.h`
+- **Role:** Central dispatcher for narrative state, QuillScript dialogue nodes, and 7-verb structured notifications.
+- **7-Verb Grammar:**
+  1. `melodia:quest:<QuestId>.<State>` — Progression and quest objective flags.
+  2. `melodia:battle:<EncounterId>` — Combat encounter trigger and terminal callback.
+  3. `melodia:stat:<StatId>:<Value>` — Idempotent resonance social stat modifications.
+  4. `melodia:wardrobe:<OutfitId>` — Outfits and cosmetic unlocks.
+  5. `melodia:item:<ItemId>:<Count>` — Inventory item grant requests.
+  6. `melodia:inspect:<TargetId>` — Environmental interaction and world discovery.
+  7. `melodia:checkpoint:<SlotId>` — Checkpoint anchoring and save triggers.
 
-### 2.6 Portfolio Output Layer
-*   **Purpose**: Automatically renders portfolio-ready images and extracts technical metrics from active levels.
-*   **Scope**:
-    *   Rendering: Captures asset previews (`editor.capture_scene_preview`), material grids (`editor.capture_material_grid`), and diagnostic views (`editor.capture_with_overlay` in wireframe/UV modes).
-    *   Metadata: Audits memory usages and asset metrics, compiling them into a central `portfolio_manifest.json` report.
+### 2.2 Turn-Based JRPG State Authority (`BP_JRPGSaveGame` & Combat Core)
+- **Role:** Sole source of truth for combat calculations, actor turn order, party health/mana, and serialization.
+- **Persistence:** Serializes character stats, inventory, active wardrobe capabilities, and completed quest flags into canonical save game slots (`BP_JRPGSaveGame`).
+
+### 2.3 Rhythm Presentation Seam
+- **Component:** `MelodiaJRPGPresentationRhythmComponent` & `WBP_MelodiaRhythmHighway`
+- **Role:** When a player selects an Attack or Resonance Skill in the JRPG command menu, the Rhythm Highway activates. Notes travel along the highway, and player timing grades (`Poor: 0.35`, `Good: 1.0`, `Great: 1.2`, `Perfect: 1.5`) multiply the stock JRPG damage calculation and pulse `MPC_Melodia_Palette`.
+
+### 2.4 Wardrobe Traversal Subsystem (`UMelodiaWardrobeSubsystem`)
+- **Header:** `Source/BS_GodFile/MelodiaIntegration/MelodiaWardrobeSubsystem.h`
+- **Interface:** `IMelodiaTraversalCapabilityProvider`
+- **Role:** Manages character mesh parts (head, body, dress, accessories) and grants concrete physical traversal capabilities (such as `Glide`, `Swim`, `Dash`) to enable reaching new world routes.
+
+### 2.5 Resonant World & Music-as-Key (`APCGHeroMusicGraphHost`)
+- **Role:** Musical stepping stones and environmental chords in overworld maps. When players step on harmonic nodes or play resonant melodies, the graph host validates the musical phrase and emits a narrative notification to remove physical route barriers.
+
+### 2.6 Single-Writer UI Bridge (`UMelodiaUIBridgeSubsystem`)
+- **Header:** `Source/BS_GodFile/MelodiaIntegration/MelodiaUIBridgeSubsystem.h`
+- **Role:** Enforces a single-writer architecture across all viewport widgets (HUD, Dialogue, Battle UI, Main Menu), eliminating dual-widget leaks and input routing conflicts.
+
+---
+
+## 3. Universal Reusable Chapter Gameplay Loop Flow
+
+Every chapter follows the standardized 6-phase sequence:
+
+1. **Phase 1: Narrative Initiation & Sanctuary Departure** (`L_MelusinaMorning`)
+   - QuillScript dialogue with NPC anchor -> authored departure gate opens.
+2. **Phase 2: Overworld Traversal & Music-as-Key Route Unlock** (`LV_SeaAbove_Prototype`)
+   - Third-person traversal -> Starskiff navigation -> harmonic phrase stepping unlocks route barrier.
+3. **Phase 3: Turn-Based JRPG Combat with Rhythm Command Timing** (`L_KaleidoNave`)
+   - Encounter start -> JRPG command selection -> Rhythm Highway input timing -> damage scaling.
+4. **Phase 4: Battle Resolution & Idempotent Reward Distribution**
+   - Boss defeat -> narrative resolution callback -> idempotent reward delivery (new outfit piece).
+5. **Phase 5: Traversal Upgrade & World Progression**
+   - Equip outfit -> activate `Glide` traversal capability -> traverse over gateway chasm.
+6. **Phase 6: Canonical Checkpoint & Seamless Chapter Transition**
+   - Canonical save to `BP_JRPGSaveGame` slot -> transition to next chapter map.
+
+---
+
+## 4. MCP Automation & Tooling Layer
+
+- **Melodia MCP Server (`deploy/melodia_mcp_server.py`):** 38 unit/regression tests verifying offline schema inspection, narrative idempotency, and Blueprint fixture validation.
+- **Agent Bridge MCP (`deploy/agent_bridge_mcp.py`):** Policy router ensuring safe read-only operations while denying dangerous mutations.
+- **Monolith MCP (Port `9316`):** Live Unreal Editor JSON-RPC bridge for asset inspection, graph verification, and reflection queries.

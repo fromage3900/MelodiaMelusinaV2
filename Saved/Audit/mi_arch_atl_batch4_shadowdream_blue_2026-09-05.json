@@ -1,0 +1,2090 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "id": "MI_Arch_Atl_Batch4_ShadowDreamBlue",
+  "generated": "2026-09-05T04:10:00Z",
+  "source": "_arch_toon_missing_mi.json (207 remaining after batch1+2+3)",
+  "target": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/",
+  "lane": "code",
+  "mode": "spec_only",
+  "note": "Batch4: Furniture, decor, foliage, lighting, misc. 225 MIs total.",
+  "batch": "arch_atl_batch4_sd_blue",
+  "shadowdream_blue": {
+    "hex": "#8AA0D6",
+    "linear": [
+      0.541,
+      0.627,
+      0.839
+    ],
+    "strength": 0.55
+  },
+  "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+  "naming_pattern": "MI_Arch_ATL_<Stem>",
+  "priority": 2,
+  "gap_analysis": {
+      "total_atlantis_meshes": 333,
+      "batch1_mis_created": 16,
+      "batch2_mis_created": 50,
+      "batch3_mis_created": 41,
+      "batch4_mis_to_create": 225,
+      "remaining_after_batch4": 1,
+      "batch4_categories": {
+      "Furniture_Chair": 3,
+      "Furniture_Table": 10,
+      "Furniture_Stool": 15,
+      "Furniture_Bench": 18,
+      "Furniture_Benches": 8,
+      "Decor_Vase": 11,
+      "Decor_Vases": 5,
+      "Decor_Planter": 25,
+      "Decor_DecorativeVase": 4,
+      "Decor_Ornaments": 5,
+      "Foliage_Tree": 19,
+      "Foliage_TreeBottom": 7,
+      "Foliage_TreeTop": 10,
+      "Foliage_Shrubs": 24,
+      "Foliage_IvyHanging": 13,
+      "Foliage_IvyWall": 3,
+      "Lighting_Torch": 5,
+      "BarrelRack": 4,
+      "Barrels": 4,
+      "Basket": 2,
+      "Drain": 5,
+      "Guardrail": 10,
+      "Misc": 15
+    }
+  },
+  "entries": [
+    {
+      "stem": "SM_ATL_Palace_ChairA",
+      "mi_name": "MI_Arch_ATL_ChairA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ChairB",
+      "mi_name": "MI_Arch_ATL_ChairB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ChairC",
+      "mi_name": "MI_Arch_ATL_ChairC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableA",
+      "mi_name": "MI_Arch_ATL_TableA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableB",
+      "mi_name": "MI_Arch_ATL_TableB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableC",
+      "mi_name": "MI_Arch_ATL_TableC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableD",
+      "mi_name": "MI_Arch_ATL_TableD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableE",
+      "mi_name": "MI_Arch_ATL_TableE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableF",
+      "mi_name": "MI_Arch_ATL_TableF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableG",
+      "mi_name": "MI_Arch_ATL_TableG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableH",
+      "mi_name": "MI_Arch_ATL_TableH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableI",
+      "mi_name": "MI_Arch_ATL_TableI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TableJ",
+      "mi_name": "MI_Arch_ATL_TableJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolA",
+      "mi_name": "MI_Arch_ATL_StoolA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolB",
+      "mi_name": "MI_Arch_ATL_StoolB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolC",
+      "mi_name": "MI_Arch_ATL_StoolC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolD",
+      "mi_name": "MI_Arch_ATL_StoolD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolE",
+      "mi_name": "MI_Arch_ATL_StoolE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolF",
+      "mi_name": "MI_Arch_ATL_StoolF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolG",
+      "mi_name": "MI_Arch_ATL_StoolG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolH",
+      "mi_name": "MI_Arch_ATL_StoolH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolI",
+      "mi_name": "MI_Arch_ATL_StoolI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolJ",
+      "mi_name": "MI_Arch_ATL_StoolJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolK",
+      "mi_name": "MI_Arch_ATL_StoolK",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolL",
+      "mi_name": "MI_Arch_ATL_StoolL",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolM",
+      "mi_name": "MI_Arch_ATL_StoolM",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolN",
+      "mi_name": "MI_Arch_ATL_StoolN",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_StoolO",
+      "mi_name": "MI_Arch_ATL_StoolO",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchA",
+      "mi_name": "MI_Arch_ATL_BenchA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchB",
+      "mi_name": "MI_Arch_ATL_BenchB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchC",
+      "mi_name": "MI_Arch_ATL_BenchC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchD",
+      "mi_name": "MI_Arch_ATL_BenchD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchE",
+      "mi_name": "MI_Arch_ATL_BenchE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchF",
+      "mi_name": "MI_Arch_ATL_BenchF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchG",
+      "mi_name": "MI_Arch_ATL_BenchG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchH",
+      "mi_name": "MI_Arch_ATL_BenchH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchI",
+      "mi_name": "MI_Arch_ATL_BenchI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchJ",
+      "mi_name": "MI_Arch_ATL_BenchJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchK",
+      "mi_name": "MI_Arch_ATL_BenchK",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchL",
+      "mi_name": "MI_Arch_ATL_BenchL",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchM",
+      "mi_name": "MI_Arch_ATL_BenchM",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchN",
+      "mi_name": "MI_Arch_ATL_BenchN",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchP",
+      "mi_name": "MI_Arch_ATL_BenchP",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchQ",
+      "mi_name": "MI_Arch_ATL_BenchQ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchR",
+      "mi_name": "MI_Arch_ATL_BenchR",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchS",
+      "mi_name": "MI_Arch_ATL_BenchS",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchesA",
+      "mi_name": "MI_Arch_ATL_BenchesA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchesB",
+      "mi_name": "MI_Arch_ATL_BenchesB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchesC",
+      "mi_name": "MI_Arch_ATL_BenchesC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchesD",
+      "mi_name": "MI_Arch_ATL_BenchesD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchesE",
+      "mi_name": "MI_Arch_ATL_BenchesE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchesF",
+      "mi_name": "MI_Arch_ATL_BenchesF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchesG",
+      "mi_name": "MI_Arch_ATL_BenchesG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchesH",
+      "mi_name": "MI_Arch_ATL_BenchesH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseA",
+      "mi_name": "MI_Arch_ATL_VaseA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseB",
+      "mi_name": "MI_Arch_ATL_VaseB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseC",
+      "mi_name": "MI_Arch_ATL_VaseC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseD",
+      "mi_name": "MI_Arch_ATL_VaseD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseE",
+      "mi_name": "MI_Arch_ATL_VaseE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseF",
+      "mi_name": "MI_Arch_ATL_VaseF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseG",
+      "mi_name": "MI_Arch_ATL_VaseG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseH",
+      "mi_name": "MI_Arch_ATL_VaseH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseI",
+      "mi_name": "MI_Arch_ATL_VaseI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseJ",
+      "mi_name": "MI_Arch_ATL_VaseJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VaseK",
+      "mi_name": "MI_Arch_ATL_VaseK",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VasesA",
+      "mi_name": "MI_Arch_ATL_VasesA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VasesB",
+      "mi_name": "MI_Arch_ATL_VasesB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VasesC",
+      "mi_name": "MI_Arch_ATL_VasesC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VasesD",
+      "mi_name": "MI_Arch_ATL_VasesD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_VasesE",
+      "mi_name": "MI_Arch_ATL_VasesE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterA",
+      "mi_name": "MI_Arch_ATL_PlanterA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterB",
+      "mi_name": "MI_Arch_ATL_PlanterB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterC",
+      "mi_name": "MI_Arch_ATL_PlanterC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterD",
+      "mi_name": "MI_Arch_ATL_PlanterD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterE",
+      "mi_name": "MI_Arch_ATL_PlanterE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterF",
+      "mi_name": "MI_Arch_ATL_PlanterF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterG",
+      "mi_name": "MI_Arch_ATL_PlanterG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterH",
+      "mi_name": "MI_Arch_ATL_PlanterH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterI",
+      "mi_name": "MI_Arch_ATL_PlanterI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterJ",
+      "mi_name": "MI_Arch_ATL_PlanterJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterK",
+      "mi_name": "MI_Arch_ATL_PlanterK",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterL",
+      "mi_name": "MI_Arch_ATL_PlanterL",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterM",
+      "mi_name": "MI_Arch_ATL_PlanterM",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterN",
+      "mi_name": "MI_Arch_ATL_PlanterN",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterO",
+      "mi_name": "MI_Arch_ATL_PlanterO",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterP",
+      "mi_name": "MI_Arch_ATL_PlanterP",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterQ",
+      "mi_name": "MI_Arch_ATL_PlanterQ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterR",
+      "mi_name": "MI_Arch_ATL_PlanterR",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterS",
+      "mi_name": "MI_Arch_ATL_PlanterS",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterT",
+      "mi_name": "MI_Arch_ATL_PlanterT",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterU",
+      "mi_name": "MI_Arch_ATL_PlanterU",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterV",
+      "mi_name": "MI_Arch_ATL_PlanterV",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlanterW",
+      "mi_name": "MI_Arch_ATL_PlanterW",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlantersA",
+      "mi_name": "MI_Arch_ATL_PlantersA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PlantersB",
+      "mi_name": "MI_Arch_ATL_PlantersB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_DecorativeVaseA",
+      "mi_name": "MI_Arch_ATL_DecorativeVaseA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_DecorativeVaseB",
+      "mi_name": "MI_Arch_ATL_DecorativeVaseB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_DecorativeVaseC",
+      "mi_name": "MI_Arch_ATL_DecorativeVaseC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_DecorativeVaseD",
+      "mi_name": "MI_Arch_ATL_DecorativeVaseD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_OrnamentsA",
+      "mi_name": "MI_Arch_ATL_OrnamentsA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "gold",
+      "roughness": 0.35,
+      "metallic": 0.85
+    },
+    {
+      "stem": "SM_ATL_Palace_OrnamentsB",
+      "mi_name": "MI_Arch_ATL_OrnamentsB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "gold",
+      "roughness": 0.35,
+      "metallic": 0.85
+    },
+    {
+      "stem": "SM_ATL_Palace_OrnamentsC",
+      "mi_name": "MI_Arch_ATL_OrnamentsC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "gold",
+      "roughness": 0.35,
+      "metallic": 0.85
+    },
+    {
+      "stem": "SM_ATL_Palace_OrnamentsD",
+      "mi_name": "MI_Arch_ATL_OrnamentsD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "gold",
+      "roughness": 0.35,
+      "metallic": 0.85
+    },
+    {
+      "stem": "SM_ATL_Palace_OrnamentsE",
+      "mi_name": "MI_Arch_ATL_OrnamentsE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "gold",
+      "roughness": 0.35,
+      "metallic": 0.85
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeA",
+      "mi_name": "MI_Arch_ATL_TreeA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeB",
+      "mi_name": "MI_Arch_ATL_TreeB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeC",
+      "mi_name": "MI_Arch_ATL_TreeC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeD",
+      "mi_name": "MI_Arch_ATL_TreeD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeE",
+      "mi_name": "MI_Arch_ATL_TreeE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeF",
+      "mi_name": "MI_Arch_ATL_TreeF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeG",
+      "mi_name": "MI_Arch_ATL_TreeG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeH",
+      "mi_name": "MI_Arch_ATL_TreeH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeI",
+      "mi_name": "MI_Arch_ATL_TreeI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeJ",
+      "mi_name": "MI_Arch_ATL_TreeJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeK",
+      "mi_name": "MI_Arch_ATL_TreeK",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeL",
+      "mi_name": "MI_Arch_ATL_TreeL",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeM",
+      "mi_name": "MI_Arch_ATL_TreeM",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeN",
+      "mi_name": "MI_Arch_ATL_TreeN",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeO",
+      "mi_name": "MI_Arch_ATL_TreeO",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeP",
+      "mi_name": "MI_Arch_ATL_TreeP",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeQ",
+      "mi_name": "MI_Arch_ATL_TreeQ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeR",
+      "mi_name": "MI_Arch_ATL_TreeR",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeS",
+      "mi_name": "MI_Arch_ATL_TreeS",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeBottomA",
+      "mi_name": "MI_Arch_ATL_TreeBottomA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeBottomB",
+      "mi_name": "MI_Arch_ATL_TreeBottomB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeBottomC",
+      "mi_name": "MI_Arch_ATL_TreeBottomC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeBottomD",
+      "mi_name": "MI_Arch_ATL_TreeBottomD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeBottomE",
+      "mi_name": "MI_Arch_ATL_TreeBottomE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeBottomF",
+      "mi_name": "MI_Arch_ATL_TreeBottomF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeBottomG",
+      "mi_name": "MI_Arch_ATL_TreeBottomG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopA",
+      "mi_name": "MI_Arch_ATL_TreeTopA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopB",
+      "mi_name": "MI_Arch_ATL_TreeTopB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopC",
+      "mi_name": "MI_Arch_ATL_TreeTopC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopD",
+      "mi_name": "MI_Arch_ATL_TreeTopD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopE",
+      "mi_name": "MI_Arch_ATL_TreeTopE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopF",
+      "mi_name": "MI_Arch_ATL_TreeTopF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopG",
+      "mi_name": "MI_Arch_ATL_TreeTopG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopH",
+      "mi_name": "MI_Arch_ATL_TreeTopH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopI",
+      "mi_name": "MI_Arch_ATL_TreeTopI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TreeTopJ",
+      "mi_name": "MI_Arch_ATL_TreeTopJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsA",
+      "mi_name": "MI_Arch_ATL_ShrubsA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsB",
+      "mi_name": "MI_Arch_ATL_ShrubsB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsC",
+      "mi_name": "MI_Arch_ATL_ShrubsC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsD",
+      "mi_name": "MI_Arch_ATL_ShrubsD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsE",
+      "mi_name": "MI_Arch_ATL_ShrubsE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsF",
+      "mi_name": "MI_Arch_ATL_ShrubsF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsG",
+      "mi_name": "MI_Arch_ATL_ShrubsG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsH",
+      "mi_name": "MI_Arch_ATL_ShrubsH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsI",
+      "mi_name": "MI_Arch_ATL_ShrubsI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsJ",
+      "mi_name": "MI_Arch_ATL_ShrubsJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsK",
+      "mi_name": "MI_Arch_ATL_ShrubsK",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsL",
+      "mi_name": "MI_Arch_ATL_ShrubsL",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsM",
+      "mi_name": "MI_Arch_ATL_ShrubsM",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsN",
+      "mi_name": "MI_Arch_ATL_ShrubsN",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsO",
+      "mi_name": "MI_Arch_ATL_ShrubsO",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsP",
+      "mi_name": "MI_Arch_ATL_ShrubsP",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsQ",
+      "mi_name": "MI_Arch_ATL_ShrubsQ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsR",
+      "mi_name": "MI_Arch_ATL_ShrubsR",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsS",
+      "mi_name": "MI_Arch_ATL_ShrubsS",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsT",
+      "mi_name": "MI_Arch_ATL_ShrubsT",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsU",
+      "mi_name": "MI_Arch_ATL_ShrubsU",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsV",
+      "mi_name": "MI_Arch_ATL_ShrubsV",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsW",
+      "mi_name": "MI_Arch_ATL_ShrubsW",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ShrubsX",
+      "mi_name": "MI_Arch_ATL_ShrubsX",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingA",
+      "mi_name": "MI_Arch_ATL_IvyHangingA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingB",
+      "mi_name": "MI_Arch_ATL_IvyHangingB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingC",
+      "mi_name": "MI_Arch_ATL_IvyHangingC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingD",
+      "mi_name": "MI_Arch_ATL_IvyHangingD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingE",
+      "mi_name": "MI_Arch_ATL_IvyHangingE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingF",
+      "mi_name": "MI_Arch_ATL_IvyHangingF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingG",
+      "mi_name": "MI_Arch_ATL_IvyHangingG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingH",
+      "mi_name": "MI_Arch_ATL_IvyHangingH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingI",
+      "mi_name": "MI_Arch_ATL_IvyHangingI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingJ",
+      "mi_name": "MI_Arch_ATL_IvyHangingJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingK",
+      "mi_name": "MI_Arch_ATL_IvyHangingK",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingL",
+      "mi_name": "MI_Arch_ATL_IvyHangingL",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyHangingM",
+      "mi_name": "MI_Arch_ATL_IvyHangingM",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyWallA",
+      "mi_name": "MI_Arch_ATL_IvyWallA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyWallB",
+      "mi_name": "MI_Arch_ATL_IvyWallB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_IvyWallC",
+      "mi_name": "MI_Arch_ATL_IvyWallC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "foliage",
+      "roughness": 0.9,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_TorchA",
+      "mi_name": "MI_Arch_ATL_TorchA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.5,
+      "metallic": 0.7
+    },
+    {
+      "stem": "SM_ATL_Palace_TorchB",
+      "mi_name": "MI_Arch_ATL_TorchB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.5,
+      "metallic": 0.7
+    },
+    {
+      "stem": "SM_ATL_Palace_TorchC",
+      "mi_name": "MI_Arch_ATL_TorchC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.5,
+      "metallic": 0.7
+    },
+    {
+      "stem": "SM_ATL_Palace_TorchD",
+      "mi_name": "MI_Arch_ATL_TorchD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.5,
+      "metallic": 0.7
+    },
+    {
+      "stem": "SM_ATL_Palace_TorchE",
+      "mi_name": "MI_Arch_ATL_TorchE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.5,
+      "metallic": 0.7
+    },
+    {
+      "stem": "SM_ATL_Palace_BarrelRackA",
+      "mi_name": "MI_Arch_ATL_BarrelRackA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BarrelRackB",
+      "mi_name": "MI_Arch_ATL_BarrelRackB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BarrelRackC",
+      "mi_name": "MI_Arch_ATL_BarrelRackC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BarrelRackD",
+      "mi_name": "MI_Arch_ATL_BarrelRackD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BarrelsA",
+      "mi_name": "MI_Arch_ATL_BarrelsA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BarrelsB",
+      "mi_name": "MI_Arch_ATL_BarrelsB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BarrelsC",
+      "mi_name": "MI_Arch_ATL_BarrelsC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BarrelsD",
+      "mi_name": "MI_Arch_ATL_BarrelsD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BasketA",
+      "mi_name": "MI_Arch_ATL_BasketA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_BasketB",
+      "mi_name": "MI_Arch_ATL_BasketB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_DrainA",
+      "mi_name": "MI_Arch_ATL_DrainA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_DrainB",
+      "mi_name": "MI_Arch_ATL_DrainB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_DrainC",
+      "mi_name": "MI_Arch_ATL_DrainC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_DrainD",
+      "mi_name": "MI_Arch_ATL_DrainD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_DrainE",
+      "mi_name": "MI_Arch_ATL_DrainE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailA",
+      "mi_name": "MI_Arch_ATL_GuardrailA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailB",
+      "mi_name": "MI_Arch_ATL_GuardrailB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailC",
+      "mi_name": "MI_Arch_ATL_GuardrailC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailD",
+      "mi_name": "MI_Arch_ATL_GuardrailD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailE",
+      "mi_name": "MI_Arch_ATL_GuardrailE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailF",
+      "mi_name": "MI_Arch_ATL_GuardrailF",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailG",
+      "mi_name": "MI_Arch_ATL_GuardrailG",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailH",
+      "mi_name": "MI_Arch_ATL_GuardrailH",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailI",
+      "mi_name": "MI_Arch_ATL_GuardrailI",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_GuardrailJ",
+      "mi_name": "MI_Arch_ATL_GuardrailJ",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "metal/worn",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    {
+      "stem": "SM_ATL_Palace_BenchO",
+      "mi_name": "MI_Arch_ATL_BenchO",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "wood/worn",
+      "roughness": 0.7,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ColumnadeA",
+      "mi_name": "MI_Arch_ATL_ColumnadeA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_ColumnadeB",
+      "mi_name": "MI_Arch_ATL_ColumnadeB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_GrapesStand",
+      "mi_name": "MI_Arch_ATL_GrapesStand",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_Harp",
+      "mi_name": "MI_Arch_ATL_Harp",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_HayStack",
+      "mi_name": "MI_Arch_ATL_HayStack",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_NicheA",
+      "mi_name": "MI_Arch_ATL_NicheA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_NicheB",
+      "mi_name": "MI_Arch_ATL_NicheB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_NicheC",
+      "mi_name": "MI_Arch_ATL_NicheC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_NicheD",
+      "mi_name": "MI_Arch_ATL_NicheD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_NicheE",
+      "mi_name": "MI_Arch_ATL_NicheE",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PergolaA",
+      "mi_name": "MI_Arch_ATL_PergolaA",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PergolaB",
+      "mi_name": "MI_Arch_ATL_PergolaB",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PergolaC",
+      "mi_name": "MI_Arch_ATL_PergolaC",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    },
+    {
+      "stem": "SM_ATL_Palace_PergolaD",
+      "mi_name": "MI_Arch_ATL_PergolaD",
+      "parent": "M_Master_Toon_Universal",
+      "shadowdream_tint": "blue",
+      "preset": "stone/brick/trim",
+      "roughness": 0.85,
+      "metallic": 0.0
+    }
+  ],
+  "safety": {
+    "requires_live_editor": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record arch_atl_batch4_sd_blue pass (owner-only)",
+    "note": "Target dir exists with 54 KB3D placeholders. New MIs use MI_Arch_ATL_<Stem> naming."
+  },
+  "status": "QUEUED"
+}

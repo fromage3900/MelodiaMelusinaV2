@@ -1,0 +1,73 @@
+{
+  "generated": "2026-09-01T06:00:00Z",
+  "purpose": "OVERNIGHT_UPDATE — 3 non-tileable variants re-cooked with tileable domain warp fix (clip->modulo in warped_fbm, pi->2pi in cymatic_chladni + StarlitLoom loom)",
+  "on_disk_assets": {
+    "root": "Saved/Audit/copernicus_cymatic/",
+    "tool": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py",
+    "variant_count": 29,
+    "total_pngs": 1737,
+    "height_pngs": 193,
+    "variants_with_height": 29,
+    "all_pngs_valid_magic": true,
+    "zero_byte_files": 0,
+    "total_bytes": 170137789,
+    "total_mb": 162.26,
+    "per_variant": {
+      "CavernWeave": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 6.89},
+      "CherryBlossomWood": {"count": 81, "frames": 9, "height": 9, "maps_per_frame": 9, "total_mb": 13.26},
+      "ChoirStone": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 0.61},
+      "CymaticMarble": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 10.93},
+      "DancingCrystals": {"count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 14.49},
+      "EnchantedTome": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 1.31},
+      "FinalDreamweaver": {"count": 117, "frames": 13, "height": 13, "maps_per_frame": 9, "total_mb": 11.76},
+      "FractalCathedral": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 4.1},
+      "FrostBloom": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 1.46},
+      "FrozenFracture": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 2.43},
+      "GildedCoral": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 2.48},
+      "GildedLoom": {"count": 81, "frames": 9, "height": 9, "maps_per_frame": 9, "total_mb": 13.6},
+      "GlitterCrystal": {"count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 6.03},
+      "GlitterGold": {"count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 5.52},
+      "GlitterHolographic": {"count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 4.79},
+      "GlitterIridescent": {"count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 3.37},
+      "GlitterRainbow": {"count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 5.11},
+      "GoldenSpiralGrove": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 8.36},
+      "MoltenCore": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 4.84},
+      "PearlWeave": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 0.78},
+      "SilkWaterfall": {"count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 16.08},
+      "SingingConstellations": {"count": 81, "frames": 9, "height": 9, "maps_per_frame": 9, "total_mb": 5.42},
+      "SingingSilk": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 2.1},
+      "SpiralMonument": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 5.74},
+      "StarlitAbyss": {"count": 153, "frames": 17, "height": 17, "maps_per_frame": 9, "total_mb": 6.22},
+      "StarlitLoom": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 0.35},
+      "TessellationSanctum": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 0.4},
+      "TwinklingGears": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 1.94},
+      "VoronoiSacredGeometry": {"count": 9, "frames": 1, "height": 1, "maps_per_frame": 9, "total_mb": 1.89}
+    }
+  },
+  "tiling_validation": {
+    "method": "edge delta (mean abs diff of left/right and top/bottom columns) < 8.0 = tileable",
+    "threshold": 8.0,
+    "results": {
+      "TwinklingGears": {"edge_lr": 5.95, "edge_tb": 5.86, "tileable": true},
+      "EnchantedTome": {"edge_lr": 4.71, "edge_tb": 4.28, "tileable": true},
+      "SingingSilk": {"edge_lr": 6.87, "edge_tb": 6.47, "tileable": true},
+      "MoltenCore": {"edge_lr": 0.69, "edge_tb": 0.48, "tileable": true, "note": "re-cooked with tileable domain warp fix"},
+      "PearlWeave": {"edge_lr": 4.29, "edge_tb": 4.45, "tileable": true},
+      "StarlitLoom": {"edge_lr": 1.22, "edge_tb": 0.36, "tileable": true, "note": "re-cooked with tileable domain warp fix + 2pi loom period"},
+      "FrostBloom": {"edge_lr": 0.53, "edge_tb": 0.19, "tileable": true, "note": "re-cooked with tileable domain warp fix"},
+      "ChoirStone": {"edge_lr": 3.13, "edge_tb": 3.12, "tileable": true}
+    },
+    "summary": "8/8 tileable. All 3 previously non-tileable variants (MoltenCore, StarlitLoom, FrostBloom) now pass after tileable domain warp fix (clip->modulo in warped_fbm, pi->2pi in cymatic_chladni, StarlitLoom loom period)."
+  },
+  "gn_builder": {
+    "file": "deploy/surreal_arch/melodia_gn/mother_tapestry_wall.py",
+    "status": "STUB_CREATED",
+    "register_builder": "MEL_mother_tapestry_wall",
+    "note": "Minimal stub — full node graph deferred to morning Blender smoke. Not imported in __init__.py (bpy dependency)."
+  },
+  "fixes_applied": {
+    "warped_fbm": "clip -> modulo wrapping for tileable domain warping",
+    "cymatic_chladni": "pi -> 2*pi periodicity for tileable Chladni patterns",
+    "StarlitLoom_loom": "pi -> 2*pi period for tileable loom pattern"
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/megascan_bling_conversion_study_2026-09-01.md + disk scan",
+  "target": "/Game/EnvSandbox/Materials/Instances/BlingVol3",
+  "mode": "spec_only",
+  "note": "No .uasset writes. Editor-bound MI creation deferred to owner session.",
+  "batch": "bling_vol3_full",
+  "total_stems": 15,
+  "texture_maps_per_stem": 6,
+  "parent": "M_Master_Toon_Universal",
+  "roughness": 0.1,
+  "metallic": 0.0,
+  "shadowdream": {
+    "strength": 0.7,
+    "tint": "#8AA0D6",
+    "flower_color": "#E8A0BF",
+    "flower_strength": 0.45,
+    "flower_scale": 1.0
+  },
+  "existing_mis": {
+    "MI_BlingVol3_01_to_15": "Content/EnvSandbox/Materials/Instances/BlingVol3/ (15 files, parent confirmed Universal)",
+    "MI_bling_surface_vol3_01_to_15": "Content/EnvSandbox/Materials/Instances/Environment/PBR_Auto/ (15 files, parent UNKNOWN \u2014 possible duplicate set)"
+  },
+  "recommendation": "The 15 MI_BlingVol3_* instances already exist with Universal parent. The PBR_Auto duplicate set needs triage \u2014 keep one, archive the other.",
+  "entries": [
+    {
+      "stem": "T_bling_surface_vol3_01",
+      "mi_name": "MI_BlingVol3_01",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_01",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_01\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_02",
+      "mi_name": "MI_BlingVol3_02",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_02",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_02\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_03",
+      "mi_name": "MI_BlingVol3_03",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_03",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_03\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_04",
+      "mi_name": "MI_BlingVol3_04",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_04",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_04\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_05",
+      "mi_name": "MI_BlingVol3_05",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_05",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_05\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_06",
+      "mi_name": "MI_BlingVol3_06",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_06",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_06\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_07",
+      "mi_name": "MI_BlingVol3_07",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_07",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_07\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_08",
+      "mi_name": "MI_BlingVol3_08",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_08",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_08\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_09",
+      "mi_name": "MI_BlingVol3_09",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_09",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_09\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_10",
+      "mi_name": "MI_BlingVol3_10",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_10",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_10\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_11",
+      "mi_name": "MI_BlingVol3_11",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_11",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_11\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_12",
+      "mi_name": "MI_BlingVol3_12",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_12",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_12\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_13",
+      "mi_name": "MI_BlingVol3_13",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_13",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_13\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_14",
+      "mi_name": "MI_BlingVol3_14",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_14",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_14\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    },
+    {
+      "stem": "T_bling_surface_vol3_15",
+      "mi_name": "MI_BlingVol3_15",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_15",
+      "roughness": 0.1,
+      "metallic": 0.0,
+      "maps": [
+        "basecolor",
+        "normal",
+        "metallic",
+        "roughness",
+        "height",
+        "ambientocclusion"
+      ],
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_BlingVol3_15\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=(\n      (ParameterName=\"Roughness\",ParameterValue=0.1),\n      (ParameterName=\"Metallic\",ParameterValue=0.0),\n      (ParameterName=\"TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"LayerA_TextureWeight\",ParameterValue=1.0),\n      (ParameterName=\"ShadowDreamStrength\",ParameterValue=0.7),\n      (ParameterName=\"ShadowFlowerStrength\",ParameterValue=0.45),\n      (ParameterName=\"ShadowFlowerScale\",ParameterValue=1.0)\n   )\n   VectorParameterValues=(\n      (ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),\n      (ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.910,G=0.627,B=0.749,A=1.0))\n   )\nEnd Object"
+    }
+  ],
+  "safety": {
+    "requires_live_editor": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record bling_v3_t3d pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

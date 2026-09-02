@@ -1,0 +1,52 @@
+{
+  "schema": "melodia.quill.commit.readiness.verify.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Docs/Plans/QUILL_INTERPRETER_COMMIT_SPEC_2026-08-31.md + QUILL_UI_WIDGETS_COMMIT_SPEC_2026-08-31.md",
+  "mode": "verify_only",
+  "findings": {
+    "quillscript_interpreter": {
+      "path": "Plugins/Quillscript/Source/Quillscript/Private/Core/QuillscriptInterpreter.cpp",
+      "exists_on_disk": true,
+      "lines": 2440,
+      "lines_matches_spec": true,
+      "git_tracked": false,
+      "git_status": "UNTRACKED (needs git add as new file)",
+      "note": "Interpreter is untracked. The spec's claim about \"diff empty\" is misleading \u2014 the file is entirely new to git. Once added, it will be a 2440-line commit."
+    },
+    "quill_ui_widgets": {
+      "WBP_MelodiaQuillBackground": {
+        "tracked": true,
+        "exists": true,
+        "size_bytes": 42618
+      },
+      "WBP_MelodiaQuillDialog": {
+        "tracked": true,
+        "exists": true,
+        "size_bytes": 158365
+      },
+      "WBP_MelodiaQuillSelection": {
+        "tracked": true,
+        "exists": true,
+        "size_bytes": 43092
+      },
+      "WBP_MelodiaQuillChoiceEntry": {
+        "tracked": true,
+        "exists": true,
+        "size_bytes": 33293
+      }
+    }
+  },
+  "claude_md_conflicts": "No CLAUDE.md file found. No conflicts possible.",
+  "verdict": {
+    "status": "READY_WITH_CORRECTION",
+    "interpreter_needs_add": true,
+    "widgets_already_committed": true,
+    "correction": "QuillscriptInterpreter.cpp is untracked, not just \"diff empty\". Must git add as new file, not just commit tracked-modified.",
+    "recommendation": "Commit interpreter + widgets together as new files: git add <interpreter> + Content/Melodia/UI/Quill/WBP_MelodiaQuill*.uasset, git commit"
+  },
+  "safety": {
+    "no_git_executed": true,
+    "gate_acceptance": "echo_run.py record quill_interpreter_widgets_commit pass (owner-only)"
+  },
+  "status": "VERIFY_COMPLETE"
+}

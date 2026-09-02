@@ -1,0 +1,738 @@
+{
+ "schema": "melodia.shorewake_panel_id.v1",
+ "seed": 20260831,
+ "resolution": 4096,
+ "slot_count": 48,
+ "slot_names": [
+  "SW_Dress_P01",
+  "SW_Dress_P04",
+  "SW_Dress_P05",
+  "SW_Dress_P06",
+  "SW_Dress_P07",
+  "SW_Dress_P08",
+  "SW_Dress_P09",
+  "SW_Dress_P10",
+  "SW_Dress_P11",
+  "SW_Dress_P12",
+  "SW_Dress_P13",
+  "SW_Dress_P14",
+  "SW_Dress_P15",
+  "SW_Dress_P16",
+  "SW_Dress_P17",
+  "SW_Dress_P18",
+  "SW_Dress_P19",
+  "SW_Dress_P20",
+  "SW_Dress_P21",
+  "SW_Dress_P22",
+  "SW_Dress_P23",
+  "SW_Dress_P24",
+  "SW_Dress_P25",
+  "SW_Dress_P26",
+  "SW_Dress_P27",
+  "SW_Dress_P28",
+  "SW_Dress_P29",
+  "SW_Dress_P30",
+  "SW_Dress_P31",
+  "SW_Dress_P32",
+  "SW_Dress_P33",
+  "SW_Dress_P34",
+  "SW_Dress_P35",
+  "SW_Dress_P36",
+  "SW_Dress_P37",
+  "SW_Dress_P38",
+  "SW_Dress_P39",
+  "SW_Dress_P40",
+  "SW_Dress_P41",
+  "SW_Dress_P42",
+  "SW_Dress_P43",
+  "SW_Dress_P44",
+  "SW_Dress_P45",
+  "SW_Dress_P46",
+  "SW_Dress_P47",
+  "SW_Dress_P48",
+  "SW_Dress_P02",
+  "SW_Dress_P03"
+ ],
+ "colors": {
+  "SW_Dress_P01": [
+   3,
+   1,
+   193
+  ],
+  "SW_Dress_P04": [
+   11,
+   39,
+   146
+  ],
+  "SW_Dress_P05": [
+   132,
+   4,
+   198
+  ],
+  "SW_Dress_P06": [
+   166,
+   3,
+   140
+  ],
+  "SW_Dress_P07": [
+   74,
+   31,
+   180
+  ],
+  "SW_Dress_P08": [
+   99,
+   24,
+   243
+  ],
+  "SW_Dress_P09": [
+   212,
+   14,
+   88
+  ],
+  "SW_Dress_P10": [
+   238,
+   1,
+   211
+  ],
+  "SW_Dress_P11": [
+   181,
+   41,
+   30
+  ],
+  "SW_Dress_P12": [
+   120,
+   48,
+   145
+  ],
+  "SW_Dress_P13": [
+   27,
+   66,
+   246
+  ],
+  "SW_Dress_P14": [
+   204,
+   22,
+   249
+  ],
+  "SW_Dress_P15": [
+   254,
+   19,
+   145
+  ],
+  "SW_Dress_P16": [
+   253,
+   39,
+   2
+  ],
+  "SW_Dress_P17": [
+   156,
+   61,
+   91
+  ],
+  "SW_Dress_P18": [
+   33,
+   102,
+   153
+  ],
+  "SW_Dress_P19": [
+   145,
+   84,
+   12
+  ],
+  "SW_Dress_P20": [
+   207,
+   58,
+   179
+  ],
+  "SW_Dress_P21": [
+   125,
+   85,
+   195
+  ],
+  "SW_Dress_P22": [
+   253,
+   57,
+   234
+  ],
+  "SW_Dress_P23": [
+   186,
+   85,
+   228
+  ],
+  "SW_Dress_P24": [
+   235,
+   98,
+   18
+  ],
+  "SW_Dress_P25": [
+   117,
+   111,
+   254
+  ],
+  "SW_Dress_P26": [
+   143,
+   125,
+   64
+  ],
+  "SW_Dress_P27": [
+   44,
+   142,
+   233
+  ],
+  "SW_Dress_P28": [
+   124,
+   148,
+   2
+  ],
+  "SW_Dress_P29": [
+   76,
+   160,
+   37
+  ],
+  "SW_Dress_P30": [
+   248,
+   104,
+   114
+  ],
+  "SW_Dress_P31": [
+   32,
+   177,
+   99
+  ],
+  "SW_Dress_P32": [
+   11,
+   200,
+   35
+  ],
+  "SW_Dress_P33": [
+   197,
+   142,
+   84
+  ],
+  "SW_Dress_P34": [
+   1,
+   195,
+   195
+  ],
+  "SW_Dress_P35": [
+   80,
+   171,
+   205
+  ],
+  "SW_Dress_P36": [
+   218,
+   171,
+   4
+  ],
+  "SW_Dress_P37": [
+   16,
+   218,
+   138
+  ],
+  "SW_Dress_P38": [
+   251,
+   160,
+   62
+  ],
+  "SW_Dress_P39": [
+   158,
+   193,
+   38
+  ],
+  "SW_Dress_P40": [
+   38,
+   243,
+   74
+  ],
+  "SW_Dress_P41": [
+   72,
+   218,
+   247
+  ],
+  "SW_Dress_P42": [
+   43,
+   238,
+   184
+  ],
+  "SW_Dress_P43": [
+   108,
+   235,
+   27
+  ],
+  "SW_Dress_P44": [
+   132,
+   223,
+   86
+  ],
+  "SW_Dress_P45": [
+   3,
+   249,
+   234
+  ],
+  "SW_Dress_P46": [
+   80,
+   239,
+   128
+  ],
+  "SW_Dress_P47": [
+   216,
+   211,
+   89
+  ],
+  "SW_Dress_P48": [
+   103,
+   255,
+   207
+  ],
+  "SW_Dress_P02": [
+   172,
+   254,
+   66
+  ],
+  "SW_Dress_P03": [
+   244,
+   239,
+   39
+  ]
+ },
+ "coverage": {
+  "SW_Dress_P01": {
+   "color": [
+    3,
+    1,
+    193
+   ],
+   "px": 5120873,
+   "pct": 30.523
+  },
+  "SW_Dress_P04": {
+   "color": [
+    11,
+    39,
+    146
+   ],
+   "px": 54467,
+   "pct": 0.325
+  },
+  "SW_Dress_P05": {
+   "color": [
+    132,
+    4,
+    198
+   ],
+   "px": 55025,
+   "pct": 0.328
+  },
+  "SW_Dress_P06": {
+   "color": [
+    166,
+    3,
+    140
+   ],
+   "px": 54464,
+   "pct": 0.325
+  },
+  "SW_Dress_P07": {
+   "color": [
+    74,
+    31,
+    180
+   ],
+   "px": 54577,
+   "pct": 0.325
+  },
+  "SW_Dress_P08": {
+   "color": [
+    99,
+    24,
+    243
+   ],
+   "px": 55368,
+   "pct": 0.33
+  },
+  "SW_Dress_P09": {
+   "color": [
+    212,
+    14,
+    88
+   ],
+   "px": 54717,
+   "pct": 0.326
+  },
+  "SW_Dress_P10": {
+   "color": [
+    238,
+    1,
+    211
+   ],
+   "px": 54891,
+   "pct": 0.327
+  },
+  "SW_Dress_P11": {
+   "color": [
+    181,
+    41,
+    30
+   ],
+   "px": 532301,
+   "pct": 3.173
+  },
+  "SW_Dress_P12": {
+   "color": [
+    120,
+    48,
+    145
+   ],
+   "px": 351406,
+   "pct": 2.095
+  },
+  "SW_Dress_P13": {
+   "color": [
+    27,
+    66,
+    246
+   ],
+   "px": 180662,
+   "pct": 1.077
+  },
+  "SW_Dress_P14": {
+   "color": [
+    204,
+    22,
+    249
+   ],
+   "px": 180626,
+   "pct": 1.077
+  },
+  "SW_Dress_P15": {
+   "color": [
+    254,
+    19,
+    145
+   ],
+   "px": 12227,
+   "pct": 0.073
+  },
+  "SW_Dress_P16": {
+   "color": [
+    253,
+    39,
+    2
+   ],
+   "px": 12669,
+   "pct": 0.076
+  },
+  "SW_Dress_P17": {
+   "color": [
+    156,
+    61,
+    91
+   ],
+   "px": 10752,
+   "pct": 0.064
+  },
+  "SW_Dress_P18": {
+   "color": [
+    33,
+    102,
+    153
+   ],
+   "px": 10720,
+   "pct": 0.064
+  },
+  "SW_Dress_P19": {
+   "color": [
+    145,
+    84,
+    12
+   ],
+   "px": 10035,
+   "pct": 0.06
+  },
+  "SW_Dress_P20": {
+   "color": [
+    207,
+    58,
+    179
+   ],
+   "px": 10053,
+   "pct": 0.06
+  },
+  "SW_Dress_P21": {
+   "color": [
+    125,
+    85,
+    195
+   ],
+   "px": 9556,
+   "pct": 0.057
+  },
+  "SW_Dress_P22": {
+   "color": [
+    253,
+    57,
+    234
+   ],
+   "px": 9766,
+   "pct": 0.058
+  },
+  "SW_Dress_P23": {
+   "color": [
+    186,
+    85,
+    228
+   ],
+   "px": 9410,
+   "pct": 0.056
+  },
+  "SW_Dress_P24": {
+   "color": [
+    235,
+    98,
+    18
+   ],
+   "px": 9426,
+   "pct": 0.056
+  },
+  "SW_Dress_P25": {
+   "color": [
+    117,
+    111,
+    254
+   ],
+   "px": 9530,
+   "pct": 0.057
+  },
+  "SW_Dress_P26": {
+   "color": [
+    143,
+    125,
+    64
+   ],
+   "px": 9424,
+   "pct": 0.056
+  },
+  "SW_Dress_P27": {
+   "color": [
+    44,
+    142,
+    233
+   ],
+   "px": 9540,
+   "pct": 0.057
+  },
+  "SW_Dress_P28": {
+   "color": [
+    124,
+    148,
+    2
+   ],
+   "px": 9643,
+   "pct": 0.057
+  },
+  "SW_Dress_P29": {
+   "color": [
+    76,
+    160,
+    37
+   ],
+   "px": 479806,
+   "pct": 2.86
+  },
+  "SW_Dress_P30": {
+   "color": [
+    248,
+    104,
+    114
+   ],
+   "px": 121937,
+   "pct": 0.727
+  },
+  "SW_Dress_P31": {
+   "color": [
+    32,
+    177,
+    99
+   ],
+   "px": 121790,
+   "pct": 0.726
+  },
+  "SW_Dress_P32": {
+   "color": [
+    11,
+    200,
+    35
+   ],
+   "px": 1,
+   "pct": 0.0
+  },
+  "SW_Dress_P33": {
+   "color": [
+    197,
+    142,
+    84
+   ],
+   "px": 168374,
+   "pct": 1.004
+  },
+  "SW_Dress_P34": {
+   "color": [
+    1,
+    195,
+    195
+   ],
+   "px": 601258,
+   "pct": 3.584
+  },
+  "SW_Dress_P35": {
+   "color": [
+    80,
+    171,
+    205
+   ],
+   "px": 593031,
+   "pct": 3.535
+  },
+  "SW_Dress_P36": {
+   "color": [
+    218,
+    171,
+    4
+   ],
+   "px": 75762,
+   "pct": 0.452
+  },
+  "SW_Dress_P37": {
+   "color": [
+    16,
+    218,
+    138
+   ],
+   "px": 77188,
+   "pct": 0.46
+  },
+  "SW_Dress_P38": {
+   "color": [
+    251,
+    160,
+    62
+   ],
+   "px": 76755,
+   "pct": 0.457
+  },
+  "SW_Dress_P39": {
+   "color": [
+    158,
+    193,
+    38
+   ],
+   "px": 76452,
+   "pct": 0.456
+  },
+  "SW_Dress_P40": {
+   "color": [
+    38,
+    243,
+    74
+   ],
+   "px": 76326,
+   "pct": 0.455
+  },
+  "SW_Dress_P41": {
+   "color": [
+    72,
+    218,
+    247
+   ],
+   "px": 76483,
+   "pct": 0.456
+  },
+  "SW_Dress_P42": {
+   "color": [
+    43,
+    238,
+    184
+   ],
+   "px": 76251,
+   "pct": 0.454
+  },
+  "SW_Dress_P43": {
+   "color": [
+    108,
+    235,
+    27
+   ],
+   "px": 76267,
+   "pct": 0.455
+  },
+  "SW_Dress_P44": {
+   "color": [
+    132,
+    223,
+    86
+   ],
+   "px": 177270,
+   "pct": 1.057
+  },
+  "SW_Dress_P45": {
+   "color": [
+    3,
+    249,
+    234
+   ],
+   "px": 1,
+   "pct": 0.0
+  },
+  "SW_Dress_P46": {
+   "color": [
+    80,
+    239,
+    128
+   ],
+   "px": 1240436,
+   "pct": 7.394
+  },
+  "SW_Dress_P47": {
+   "color": [
+    216,
+    211,
+    89
+   ],
+   "px": 1,
+   "pct": 0.0
+  },
+  "SW_Dress_P48": {
+   "color": [
+    103,
+    255,
+    207
+   ],
+   "px": 1,
+   "pct": 0.0
+  },
+  "SW_Dress_P02": {
+   "color": [
+    172,
+    254,
+    66
+   ],
+   "px": 1,
+   "pct": 0.0
+  },
+  "SW_Dress_P03": {
+   "color": [
+    244,
+    239,
+    39
+   ],
+   "px": 54605,
+   "pct": 0.325
+  }
+ },
+ "unassigned_black_pct": 34.065,
+ "mapping_source": "face_uv_data.npz (frozen 48-slot blend, slotted export)",
+ "outputs": [
+  "T_DressShorewake_PanelID_4K.png",
+  "T_DressShorewake_PanelID_legend.png"
+ ]
+}

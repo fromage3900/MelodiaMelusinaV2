@@ -1,0 +1,245 @@
+{
+ "schema": "melodia.flowerspring_painter_build.v4",
+ "mesh": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\substance_staging\\FlowerSpring\\meshes\\FS_FullAssembly_cascade.fbx",
+ "projects": [
+  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\substance_staging\\FlowerSpring\\spp\\FlowerSpring_FlowerSpring.spp",
+  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\substance_staging\\FlowerSpring\\spp\\FlowerSpring_GildedLoom.spp",
+  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\substance_staging\\FlowerSpring\\spp\\FlowerSpring_SilkWaterfall.spp",
+  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\substance_staging\\FlowerSpring\\spp\\FlowerSpring_CherryBlossomWood.spp",
+  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\substance_staging\\FlowerSpring\\spp\\FlowerSpring_StarlitAbyss.spp"
+ ],
+ "results": [
+  {
+   "variant": "FlowerSpring",
+   "saved": true,
+   "stacks": [
+    {
+     "stack": "M_FS_Crown",
+     "wired": [
+      "uniform gold"
+     ]
+    },
+    {
+     "stack": "M_FS_Shirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Skirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Wings",
+     "wired": [
+      "uniform blush"
+     ]
+    }
+   ]
+  },
+  {
+   "variant": "GildedLoom",
+   "saved": true,
+   "stacks": [
+    {
+     "stack": "M_FS_Crown",
+     "wired": [
+      "uniform gold"
+     ]
+    },
+    {
+     "stack": "M_FS_Shirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Skirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Wings",
+     "wired": [
+      "uniform blush"
+     ]
+    }
+   ]
+  },
+  {
+   "variant": "SilkWaterfall",
+   "saved": true,
+   "stacks": [
+    {
+     "stack": "M_FS_Crown",
+     "wired": [
+      "uniform gold"
+     ]
+    },
+    {
+     "stack": "M_FS_Shirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Skirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Wings",
+     "wired": [
+      "uniform blush"
+     ]
+    }
+   ]
+  },
+  {
+   "variant": "CherryBlossomWood",
+   "saved": true,
+   "stacks": [
+    {
+     "stack": "M_FS_Crown",
+     "wired": [
+      "uniform gold"
+     ]
+    },
+    {
+     "stack": "M_FS_Shirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Skirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Wings",
+     "wired": [
+      "uniform blush"
+     ]
+    }
+   ]
+  },
+  {
+   "variant": "StarlitAbyss",
+   "saved": true,
+   "stacks": [
+    {
+     "stack": "M_FS_Crown",
+     "wired": [
+      "uniform gold"
+     ]
+    },
+    {
+     "stack": "M_FS_Shirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Skirt",
+     "wired": [
+      "BaseColor",
+      "Normal",
+      "Height",
+      "Roughness",
+      "Metallic"
+     ],
+     "skipped": [
+      "Emissive(set:EditionContextException:Channel 16 isn't valid in this context)",
+      "AO(set:EditionContextException:Channel 8388608 isn't valid in this context)"
+     ]
+    },
+    {
+     "stack": "M_FS_Wings",
+     "wired": [
+      "uniform blush"
+     ]
+    }
+   ]
+  }
+ ],
+ "all_saved": true,
+ "open_projects": []
+}

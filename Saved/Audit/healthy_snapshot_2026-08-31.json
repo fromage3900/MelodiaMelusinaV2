@@ -1,0 +1,35 @@
+{
+  "snapshot": "BS_GodFile healthy-state snapshot — 2026-08-31 04:45 UTC",
+  "editor": {"pid": 130096, "monolith": "0.20.3", "port_9316": "single LISTENING", "dirty_packages": 0},
+  "git": {
+    "branch": "main",
+    "head": "1dcd322b",
+    "commits_this_session": ["5697e2aa gate4", "b66e6f6c dead-node+ReadOnly", "12730d40 fx review live", "1dcd322b handoff"],
+    "working_tree": "AGENTS.md + MI_Env_Wood_Trim modified (other lanes), 3 untracked Python (other lanes) — untouched"
+  },
+  "verified_state": {
+    "atlantis_meshes": {"total": 333, "renamed": 333, "violations": 0, "naming": "SM_ATL_Palace_*"},
+    "small_renames": {"SM_violin": 1, "Kenney_MI_": 10},
+    "vfx_archive_2026_08_30": {"files": 9, "proven_zero_refs": true, "dest": "EnvSandbox/VFX/_Archive_2026-08-30"},
+    "niagara_gate5": {
+      "gpu_fixed_clean": ["NS_SakuraPetals", "NS_SakuraPetals_v2", "NS_SakuraGroundPetals", "NS_SakuraWaterPetals", "NS_CosmicPetalOrbit", "NS_Melodia_PetalEndlessLoop"],
+      "cpu_fixed": ["NS_WindRibbonGust"],
+      "engine_bug": "GPU event bool write RWWriteDataSetBool1 (reference NS_SakuraPetalGust fails identically)",
+      "death_event_wiring": "reverted, blocked by engine bug"
+    },
+    "droplet": {"subuv_flipbook": "LIVE", "texture": "/Game/_PROJECT/VFX/Textures/T_Alpha_water_globule_flipbook", "dead_atlas": "T_SeaAbove_Droplet_Atlas referenced_by []"},
+    "dead_nodes_removed": {"BP_MelusinaJRPGCharacter": 15, "WBP_MelodiaQuillDialog": 2, "BP_JRPGPlayerController": 1, "total": 18, "compile": "0 errors each"},
+    "gate4_hython": "PASS (petal_variants + dress_bake dry-runs exit 0)",
+    "readonly_hazard": {"cleared_trees": ["EnvSandbox", "Melodia", "MelodiaIntegration", "Characters", "TurnBasedJRPGTemplate"], "remaining_readonly": 259, "warning": "clear before any save on Art/Blueprints/Experiments/_PROJECT/Sakura/Stylization/Surfaces_CC0/NPCs/MooaToonSamples/Python"}
+  },
+  "remaining_queue": [
+    "vendor T_ renames ~170 (RetroTexturesFantasy/KB3D/MelodyToken/Brick/Marble/Voronoi/SDF)",
+    "PPV drift T3D fix (4 fixes, PPV_NikkiDream)",
+    "Greybox_Kit/Library consolidation (owner sign-off)",
+    "clear 259 readonly flags on non-_PROJECT trees",
+    "DeathEvent wiring (engine fix required)",
+    "T_SeaAbove_Droplet_Atlas dead weight disposition",
+    "Zentrim Sakura swap (spec-owned)",
+    "feature branch merge 103 commits"
+  ]
+}

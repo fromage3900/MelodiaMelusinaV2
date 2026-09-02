@@ -1,0 +1,50 @@
+{
+  "schema": "melodia.audit.python_untracked_syntax.v1",
+  "generated": "2026-09-01T04:00:00Z",
+  "source": "source_control_triage.json untracked files",
+  "mode": "syntax_scan_only",
+  "findings": [
+    {
+      "file": "Content/Python/convert_enchanted_vehicle_materials.py",
+      "exists": true,
+      "syntax_pass": true,
+      "sys_path_hack": false,
+      "absolute_path_hack": false
+    },
+    {
+      "file": "Content/Python/convert_paradise_room_materials.py",
+      "exists": true,
+      "syntax_pass": true,
+      "sys_path_hack": false,
+      "absolute_path_hack": false
+    },
+    {
+      "file": "Content/Python/import_surreal_cobble.py",
+      "exists": true,
+      "syntax_pass": true,
+      "sys_path_hack": false,
+      "absolute_path_hack": false
+    },
+    {
+      "file": "Content/Python/org_inspect_ppv_2026-08-31.py",
+      "exists": true,
+      "syntax_pass": true,
+      "sys_path_hack": false,
+      "absolute_path_hack": false
+    }
+  ],
+  "summary": {
+    "total_files": 4,
+    "syntax_pass": 4,
+    "syntax_fail": 0,
+    "sys_path_hacks": 0,
+    "absolute_path_hacks": 0,
+    "recommendation": "All 4 untracked Python files pass syntax check and contain no sys.path or absolute path hacks. Safe to add to git."
+  },
+  "guardrails": [
+    "No .py edits made",
+    "No git operations executed",
+    "Static analysis only"
+  ],
+  "status": "AUDIT_COMPLETE"
+}
