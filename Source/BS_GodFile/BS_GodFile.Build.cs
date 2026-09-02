@@ -12,6 +12,7 @@ public class BS_GodFile : ModuleRules
 			"Core",
 			"CoreUObject",
 			"Engine",
+			"GameplayTags",
 			"Water",
 			"Niagara",
 			"MetasoundEngine",
@@ -23,6 +24,7 @@ public class BS_GodFile : ModuleRules
 			"ProceduralMeshComponent",
 			"Quillscript",
 			"MelodiaCore",  // Added for Melodia integration
+			"MelodiaShader", // Custom shader source (ink, Nikki, bioluminescence) — Rider-indexed .usf/.ush
 
 			// Harmonix owns authored musical time for the rhythm presentation
 			// layer (see Docs/HARMONIX_MIDI_RHYTHM_CONTRACT_2026-07-29.md).
@@ -32,7 +34,7 @@ public class BS_GodFile : ModuleRules
 			"HarmonixMetasound"  // UMusicClockComponent
 		});
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "UMG", "Slate", "SlateCore", "HTTP", "Json" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "UMG", "Slate", "SlateCore", "ApplicationCore", "HTTP", "Json", "NiagaraUIRenderer" });
 
 		if (Target.bBuildEditor)
 		{

@@ -1,11 +1,31 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Containers/Ticker.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "MelodiaSharedAuthorityInterfaces.h"
 #include "MelodiaInputContextSubsystem.generated.h"
 
 class APlayerController;
+class FMelodiaCursorInputPreprocessor;
+class UWorld;
+
+UENUM(BlueprintType)
+enum class EMelodiaCursorDevice : uint8
+{
+	MouseAndKeyboard,
+	Gamepad,
+	Touch
+};
+
+UENUM(BlueprintType)
+enum class EMelodiaCursorRole : uint8
+{
+	Default,
+	Hand,
+	Crosshairs,
+	SlashedCircle
+};
 
 /**
  * What currently owns player input. Exactly one is active at a time.
@@ -70,6 +90,37 @@ struct BS_GODFILE_API FMelodiaInputContextHandle
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FMelodiaInputContextChanged,
 	EMelodiaInputContext, NewContext, EMelodiaInputContext, PreviousContext);
+
+USTRUCT(BlueprintType)
+struct BS_GODFILE_API FMelodiaCursorPointerData
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") FKey Button;
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") FVector2D ScreenPosition = FVector2D::ZeroVector;
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") int32 PointerIndex = 0;
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") bool bIsTouch = false;
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") EMelodiaInputContext ActiveContext = EMelodiaInputContext::None;
+};
+
+USTRUCT(BlueprintType)
+struct BS_GODFILE_API FMelodiaCursorVisualState
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") EMelodiaInputContext ContextTheme = EMelodiaInputContext::Exploration;
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") EMelodiaCursorRole BaseRole = EMelodiaCursorRole::Default;
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") EMelodiaCursorRole EffectiveRole = EMelodiaCursorRole::Default;
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") EMelodiaCursorDevice ActiveDevice = EMelodiaCursorDevice::MouseAndKeyboard;
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") bool bPressed = false;
+	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Cursor") bool bVisible = true;
+
+	bool operator==(const FMelodiaCursorVisualState& Other) const;
+	bool operator!=(const FMelodiaCursorVisualState& Other) const { return !(*this == Other); }
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaCursorPointerEvent, const FMelodiaCursorPointerData&, PointerData);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaCursorVisualStateChanged, const FMelodiaCursorVisualState&, VisualState);
 
 /**
  * The project's single input and focus authority.
@@ -159,6 +210,23 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Melodia|Input")
 	FMelodiaInputContextChanged OnInputContextChanged;
 
+	UPROPERTY(BlueprintAssignable, Category = "Melodia|Cursor") FMelodiaCursorPointerEvent OnCursorPointerDown;
+	UPROPERTY(BlueprintAssignable, Category = "Melodia|Cursor") FMelodiaCursorPointerEvent OnCursorPointerUp;
+	UPROPERTY(BlueprintAssignable, Category = "Melodia|Cursor") FMelodiaCursorVisualStateChanged OnCursorVisualStateChanged;
+
+	UFUNCTION(BlueprintPure, Category = "Melodia|Cursor")
+	FMelodiaCursorVisualState GetCursorVisualState() const { return CursorVisualState; }
+
+	UFUNCTION(BlueprintPure, Category = "Melodia|Cursor")
+	bool IsCursorAdaptivelyVisible() const { return CursorVisualState.bVisible; }
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|Cursor")
+	void SetCursorRole(EMelodiaCursorRole Role);
+
+	/** Pure policy helper used by runtime code and automation tests. */
+	static FMelodiaCursorVisualState ResolveCursorVisualState(EMelodiaInputContext Context,
+		EMelodiaCursorRole BaseRole, bool bPressed, EMelodiaCursorDevice Device, bool bTouchOnlyPlatform);
+
 private:
 	struct FContextEntry
 	{
@@ -169,9 +237,23 @@ private:
 
 	/** Pushes the engine input mode and cursor state matching the active context. */
 	void ApplyActiveContext(EMelodiaInputContext PreviousContext);
+	void RefreshControllerAndWorld();
+	void HandlePointerEvent(const FKey& Button, const FVector2D& ScreenPosition, int32 PointerIndex, bool bIsTouch, bool bPressed);
+	void HandleInputDevice(EMelodiaCursorDevice Device);
+	void UpdateCursorVisualState();
 
 	APlayerController* GetPlayerController() const;
 
 	TArray<FContextEntry> ContextStack;
 	int32 NextHandleId = 1;
+	FMelodiaCursorVisualState CursorVisualState;
+	EMelodiaCursorRole RequestedCursorRole = EMelodiaCursorRole::Default;
+	EMelodiaCursorDevice ActiveCursorDevice = EMelodiaCursorDevice::MouseAndKeyboard;
+	bool bPointerPressed = false;
+	TWeakObjectPtr<APlayerController> AppliedPlayerController;
+	TWeakObjectPtr<UWorld> AppliedWorld;
+	FTSTicker::FDelegateHandle RefreshTickerHandle;
+	TSharedPtr<FMelodiaCursorInputPreprocessor> CursorInputPreprocessor;
+
+	friend class FMelodiaCursorInputPreprocessor;
 };

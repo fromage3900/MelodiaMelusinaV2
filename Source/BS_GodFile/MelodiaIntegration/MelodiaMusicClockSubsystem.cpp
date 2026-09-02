@@ -150,19 +150,26 @@ bool UMelodiaMusicClockSubsystem::EnsureBattleControllerMusicClock()
 			break;
 		}
 	}
-	if (!BattleController)
+	// Battle maps already provide the natural clock owner. Exploration maps such
+	// as Sea Above intentionally have no BP_BattleController, but still need the
+	// same authoritative musical time for world-key grading and presentation.
+	// WorldSettings is a world-lifetime actor, so it is the correct host there;
+	// this remains one clock owned by this subsystem, not a fallback time source.
+	AActor* ClockOwner = BattleController ? BattleController : World->GetWorldSettings();
+	if (!ClockOwner)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("MELODIA_MUSICCLOCK no BP_BattleController actor in this world; musical time stays unavailable."));
+		UE_LOG(LogTemp, Error, TEXT("MELODIA_MUSICCLOCK could not resolve a clock owner in '%s'."), *World->GetName());
 		return false;
 	}
 
-	UMusicClockComponent* Clock = BattleController->FindComponentByClass<UMusicClockComponent>();
+	UMusicClockComponent* Clock = ClockOwner->FindComponentByClass<UMusicClockComponent>();
 	if (!Clock)
 	{
-		Clock = NewObject<UMusicClockComponent>(BattleController, TEXT("MelodiaBattleMusicClock"));
+		Clock = NewObject<UMusicClockComponent>(ClockOwner,
+			BattleController ? TEXT("MelodiaBattleMusicClock") : TEXT("MelodiaWorldMusicClock"));
 		if (!Clock)
 		{
-			UE_LOG(LogTemp, Error, TEXT("MELODIA_MUSICCLOCK failed to create a MusicClockComponent on '%s'."), *BattleController->GetName());
+			UE_LOG(LogTemp, Error, TEXT("MELODIA_MUSICCLOCK failed to create a MusicClockComponent on '%s'."), *ClockOwner->GetName());
 			return false;
 		}
 		// The wall-clock driver supplies transport. The imported MIDI below supplies
@@ -208,12 +215,12 @@ bool UMelodiaMusicClockSubsystem::EnsureBattleControllerMusicClock()
 	{
 		UE_LOG(LogTemp, Log,
 			TEXT("MELODIA_MUSICCLOCK wall-clock music clock running on '%s'; validated beat-grid MIDI at %.1f BPM 4/4; musical time is live."),
-			*BattleController->GetName(), CVarMelodiaMusicClockBPM.GetValueOnGameThread());
+			*ClockOwner->GetName(), CVarMelodiaMusicClockBPM.GetValueOnGameThread());
 	}
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("MELODIA_MUSICCLOCK clock on '%s' registered but is not running; musical time stays unavailable."),
-			*BattleController->GetName());
+			*ClockOwner->GetName());
 	}
 	return bRunning;
 }

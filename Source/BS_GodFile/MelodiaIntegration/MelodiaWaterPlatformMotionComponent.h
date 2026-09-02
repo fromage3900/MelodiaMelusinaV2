@@ -23,7 +23,7 @@ public:
 	void ResetDeterministicProgress();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Platform")
-	FName RouteId = NAME_None;
+	FGameplayTag RouteId = FGameplayTag::EmptyTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Platform")
 	TArray<FTransform> RoutePoints;
@@ -41,7 +41,7 @@ public:
 	int32 Direction = 1;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Platform")
-	FName GateActivationRequirement = NAME_None;
+	FGameplayTag GateActivationRequirement = FGameplayTag::EmptyTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Water|Platform")
 	float WaterLevelResponse = 0.0f;

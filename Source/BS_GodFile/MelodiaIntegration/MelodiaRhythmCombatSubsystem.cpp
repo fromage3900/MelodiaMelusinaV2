@@ -5,10 +5,14 @@
 #include "MelodiaSongDataAsset.h"
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaIntegrationConfig.h"
+#include "Engine/Engine.h"
 #include "Engine/GameInstance.h"
 #include "EngineUtils.h"
 #include "AssetRegistry/AssetRegistryModule.h"
+#include "AssetRegistry/AssetData.h"
 #include "Engine/AssetManager.h"
+#include "ProfilingDebugging/CpuProfilerTrace.h"
+#include "Stats/Stats.h"
 
 UMelodiaRhythmCombatSubsystem* UMelodiaRhythmCombatSubsystem::Get(const UObject* WorldContextObject)
 {
@@ -90,6 +94,7 @@ UMelodiaRhythmSkillDefinition* UMelodiaRhythmCombatSubsystem::FindSkill(FName Sk
 
 int32 UMelodiaRhythmCombatSubsystem::StartSession(FName SkillId)
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(UMelodiaRhythmCombatSubsystem_StartSession);
 	// A new session invalidates any previous one and its pending request.
 	InvalidateSession();
 
@@ -278,6 +283,7 @@ bool UMelodiaRhythmCombatSubsystem::LoadChartForSkill(const UMelodiaRhythmSkillD
 
 void UMelodiaRhythmCombatSubsystem::PushHighwayToHUD(const bool bActive)
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(UMelodiaRhythmCombatSubsystem_PushHighwayToHUD);
 	UMelodiaRhythmHUDWidget* HUD = BoundHUD.Get();
 	if (!HUD)
 	{
@@ -317,6 +323,7 @@ void UMelodiaRhythmCombatSubsystem::PushHighwayToHUD(const bool bActive)
 
 void UMelodiaRhythmCombatSubsystem::Tick(const float DeltaTime)
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(UMelodiaRhythmCombatSubsystem_Tick);
 	Super::Tick(DeltaTime);
 
 	if (!bSessionActive)
@@ -367,6 +374,7 @@ void UMelodiaRhythmCombatSubsystem::Tick(const float DeltaTime)
 
 EMelodiaSkillGrade UMelodiaRhythmCombatSubsystem::RegisterLaneHit(const int32 LaneIndex)
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE(UMelodiaRhythmCombatSubsystem_RegisterLaneHit);
 	// A press outside a session must never bank a hit.
 	if (ActiveSessionId == 0 || bResultAccepted)
 	{

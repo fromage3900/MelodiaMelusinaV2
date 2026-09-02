@@ -1,6 +1,7 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "../MelodiaWaterGameplaySubsystem.h"
+#include "GameplayTagsManager.h"
 #include "Misc/AutomationTest.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(
@@ -27,10 +28,14 @@ bool FMelodiaWaterGameplayStateTest::RunTest(const FString& Parameters)
 	}
 
 	Water->ResetWaterGameplayState();
-	FMelodiaWaterNodeConfig Reservoir;
-	Reservoir.NetworkId = TEXT("TestNetwork");
-	Reservoir.NodeId = TEXT("Reservoir");
-	Reservoir.WaterBodyId = TEXT("TestWaterBody");
+		auto TestTag = [](const TCHAR* Name)
+		{
+			return UGameplayTagsManager::Get().AddNativeGameplayTag(FName(Name), TEXT("Water gameplay automation test"));
+		};
+        FMelodiaWaterNodeConfig Reservoir;
+        Reservoir.NetworkId = TestTag(TEXT("Melodia.Test.Water.Network"));
+        Reservoir.NodeId = TestTag(TEXT("Melodia.Test.Water.Node.Reservoir"));
+        Reservoir.WaterBodyId = TestTag(TEXT("Melodia.Test.Water.Body"));
 	Reservoir.InitialLevel = 1.0f;
 	Reservoir.InitialPressure = 0.1f;
 	Reservoir.Capacity = 2.0f;
@@ -38,16 +43,16 @@ bool FMelodiaWaterGameplayStateTest::RunTest(const FString& Parameters)
 	Reservoir.MaxFlowStrength = 100.0f;
 
 	FMelodiaWaterNodeConfig Gate;
-	Gate.NetworkId = TEXT("TestNetwork");
-	Gate.NodeId = TEXT("Gate");
-	Gate.WaterBodyId = TEXT("TestWaterBody");
+        Gate.NetworkId = Reservoir.NetworkId;
+        Gate.NodeId = TestTag(TEXT("Melodia.Test.Water.Node.Gate"));
+        Gate.WaterBodyId = Reservoir.WaterBodyId;
 	Gate.InitialLevel = 0.0f;
 	Gate.Capacity = 2.0f;
 
 	FMelodiaWaterLinkConfig Link;
-	Link.NetworkId = TEXT("TestNetwork");
-	Link.LinkId = TEXT("TestLink");
-	Link.RouteId = TEXT("TestRoute");
+        Link.NetworkId = Reservoir.NetworkId;
+        Link.LinkId = TestTag(TEXT("Melodia.Test.Water.Link"));
+        Link.RouteId = TestTag(TEXT("Melodia.Test.Water.Route"));
 	Link.SourceNodeId = Reservoir.NodeId;
 	Link.DestinationNodeId = Gate.NodeId;
 	Link.TransferCapacity = 1.0f;
@@ -59,9 +64,11 @@ bool FMelodiaWaterGameplayStateTest::RunTest(const FString& Parameters)
 
 	TestTrue(
 		TEXT("Resonance operation is accepted"),
-		Water->ApplyResonance(Reservoir.NetworkId, Reservoir.NodeId, TEXT("TestChannel"), 1.0f, TEXT("TestPuzzle"), Link.RouteId, nullptr));
+                Water->ApplyResonance(Reservoir.NetworkId, Reservoir.NodeId,
+					TestTag(TEXT("Melodia.Test.Water.Channel")), 1.0f,
+					TestTag(TEXT("Melodia.Test.Water.Puzzle")), Link.RouteId, nullptr));
 	TestTrue(TEXT("Resonance opens its configured route"), Water->IsWaterRouteOpen(Reservoir.NetworkId, Link.RouteId));
-	TestTrue(TEXT("Puzzle completion is recorded"), Water->IsPuzzleSolved(TEXT("TestPuzzle")));
+        TestTrue(TEXT("Puzzle completion is recorded"), Water->IsPuzzleSolved(TestTag(TEXT("Melodia.Test.Water.Puzzle"))));
 	TestTrue(TEXT("Pressure changed deterministically"), Water->GetPressureForNode(Reservoir.NetworkId, Reservoir.NodeId) > Reservoir.InitialPressure);
 
 	FMelodiaWaterGameplaySaveData Saved;
@@ -77,7 +84,7 @@ bool FMelodiaWaterGameplayStateTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("State restore re-registers link"), Water->RegisterLink(Link));
 	Water->RestoreSaveState(Saved);
 	TestTrue(TEXT("Route survives save/load"), Water->IsWaterRouteOpen(Reservoir.NetworkId, Link.RouteId));
-	TestTrue(TEXT("Puzzle survives save/load"), Water->IsPuzzleSolved(TEXT("TestPuzzle")));
+        TestTrue(TEXT("Puzzle survives save/load"), Water->IsPuzzleSolved(TestTag(TEXT("Melodia.Test.Water.Puzzle"))));
 
 	Water->ResetWaterGameplayState();
 	return true;

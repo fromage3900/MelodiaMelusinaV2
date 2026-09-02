@@ -2,6 +2,7 @@
 
 #include "Engine/Engine.h"
 #include "Engine/World.h"
+#include "EngineUtils.h"
 #include "GameFramework/Actor.h"
 #include "BakedShallowWaterSimulationComponent.h"
 #include "MelodiaWaterRippleMaterialBridgeComponent.h"
@@ -169,63 +170,102 @@ bool UMelodiaWaterInteractionSubsystem::QueryWaterInternal(AActor* SourceActor, 
 	}
 
 	FWaterBodyManager* WaterBodyManager = RegisteredWaterBodyManager ? RegisteredWaterBodyManager : UWaterSubsystem::GetWaterBodyManager(World);
-	if (!WaterBodyManager)
-	{
-		return false;
-	}
-
 	float BestScore = TNumericLimits<float>::Max();
 	FMelodiaWaterSample BestSample;
 	UWaterBodyComponent* BestWaterBodyComponent = nullptr;
 
-	if (SourceActor)
+	if (WaterBodyManager)
 	{
-		if (const TWeakObjectPtr<UWaterBodyComponent>* Cached = ActorWaterBodies.Find(TWeakObjectPtr<AActor>(SourceActor)))
+		if (SourceActor)
 		{
-			UWaterBodyComponent* CachedComponent = Cached->Get();
-			if (QueryWaterBodyComponent(CachedComponent, WorldLocation, BestScore, BestSample))
+			if (const TWeakObjectPtr<UWaterBodyComponent>* Cached = ActorWaterBodies.Find(TWeakObjectPtr<AActor>(SourceActor)))
 			{
-				BestWaterBodyComponent = CachedComponent;
+				UWaterBodyComponent* CachedComponent = Cached->Get();
+				if (QueryWaterBodyComponent(CachedComponent, WorldLocation, BestScore, BestSample))
+				{
+					BestWaterBodyComponent = CachedComponent;
+				}
+				else
+				{
+					ActorWaterBodies.Remove(TWeakObjectPtr<AActor>(SourceActor));
+				}
 			}
-			else
+		}
+
+		if (!BestWaterBodyComponent)
+		{
+			WaterBodyManager->ForEachWaterBodyComponent([&](UWaterBodyComponent* WaterBodyComponent)
 			{
-				ActorWaterBodies.Remove(TWeakObjectPtr<AActor>(SourceActor));
+				float Score = TNumericLimits<float>::Max();
+				FMelodiaWaterSample Candidate;
+				if (QueryWaterBodyComponent(WaterBodyComponent, WorldLocation, Score, Candidate) && Score < BestScore)
+				{
+					BestScore = Score;
+					BestSample = Candidate;
+					BestWaterBodyComponent = WaterBodyComponent;
+				}
+				return true;
+			});
+		}
+	}
+
+	if (BestWaterBodyComponent)
+	{
+		if (SourceActor)
+		{
+			ActorWaterBodies.Add(TWeakObjectPtr<AActor>(SourceActor), BestWaterBodyComponent);
+		}
+		CacheWaterBody(BestWaterBodyComponent);
+		EnsureSurfaceBridge(BestWaterBodyComponent->GetWaterBodyActor());
+		BestSample.SampleTime = UWaterSubsystem::GetWaterSubsystem(World)
+			? UWaterSubsystem::GetWaterSubsystem(World)->GetWaterTimeSeconds()
+			: World->GetTimeSeconds();
+		OutSample = BestSample;
+		return true;
+	}
+
+	// Oceanology fallback: sample active Oceanology actor in world when native Water Body is absent
+	for (TActorIterator<AActor> It(World); It; ++It)
+	{
+		AActor* OceanActor = *It;
+		if (OceanActor && OceanActor->GetClass()->GetName().Contains(TEXT("Oceanology")))
+		{
+			if (UFunction* WaveInfoFunc = OceanActor->FindFunction(TEXT("GetWaveInfoAtLocation")))
+			{
+				struct FGetWaveInfoParams
+				{
+					FVector Location;
+					FVector WaveOffset;
+					FVector WaterWaveOffset;
+					FVector BreakingWaveOffset;
+					float WaterDepth;
+					float WaterDepthClamped;
+					float SDFShoreline;
+					float SDFOcean;
+				};
+				FGetWaveInfoParams Params;
+				Params.Location = WorldLocation;
+				OceanActor->ProcessEvent(WaveInfoFunc, &Params);
+
+				OutSample = FMelodiaWaterSample();
+				OutSample.bValid = true;
+				OutSample.bSurfaceValid = true;
+				OutSample.SurfaceLocation = Params.WaveOffset;
+				OutSample.SurfaceNormal = FVector::UpVector;
+				OutSample.DistanceToSurface = WorldLocation.Z - Params.WaveOffset.Z;
+				OutSample.bUnderwater = (WorldLocation.Z < Params.WaveOffset.Z);
+				OutSample.ImmersionDepth = OutSample.bUnderwater ? (Params.WaveOffset.Z - WorldLocation.Z) : 0.0f;
+				OutSample.Immersion = FMath::Clamp(OutSample.ImmersionDepth / 150.0f, 0.0f, 1.0f);
+				OutSample.WaterDepth = Params.WaterDepthClamped > 0.0f ? Params.WaterDepthClamped : 1000.0f;
+				OutSample.QueryProvider = EMelodiaWaterQueryProvider::Oceanology;
+				OutSample.WaterBodyId = OceanActor->GetFName();
+				OutSample.SampleTime = World->GetTimeSeconds();
+				return true;
 			}
 		}
 	}
 
-	if (!BestWaterBodyComponent)
-	{
-		WaterBodyManager->ForEachWaterBodyComponent([&](UWaterBodyComponent* WaterBodyComponent)
-		{
-			float Score = TNumericLimits<float>::Max();
-			FMelodiaWaterSample Candidate;
-			if (QueryWaterBodyComponent(WaterBodyComponent, WorldLocation, Score, Candidate) && Score < BestScore)
-			{
-				BestScore = Score;
-				BestSample = Candidate;
-				BestWaterBodyComponent = WaterBodyComponent;
-			}
-			return true;
-		});
-	}
-
-	if (!BestWaterBodyComponent)
-	{
-		return false;
-	}
-
-	if (SourceActor)
-	{
-		ActorWaterBodies.Add(TWeakObjectPtr<AActor>(SourceActor), BestWaterBodyComponent);
-	}
-	CacheWaterBody(BestWaterBodyComponent);
-	EnsureSurfaceBridge(BestWaterBodyComponent->GetWaterBodyActor());
-	BestSample.SampleTime = UWaterSubsystem::GetWaterSubsystem(World)
-		? UWaterSubsystem::GetWaterSubsystem(World)->GetWaterTimeSeconds()
-		: World->GetTimeSeconds();
-	OutSample = BestSample;
-	return true;
+	return false;
 }
 
 bool UMelodiaWaterInteractionSubsystem::QueryWaterBodyComponent(UWaterBodyComponent* WaterBodyComponent, const FVector& WorldLocation, float& OutScore, FMelodiaWaterSample& OutSample) const
