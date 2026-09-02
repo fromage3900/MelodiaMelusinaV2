@@ -53,9 +53,9 @@
       "a concurrent/sibling agent is active in this tree (CymaticOrchid builder + readiness doc appear uncommitted) — stage EXPLICIT paths only, never stage-sweep, to avoid claiming another agent's in-flight work"
     ],
   "push": {
-      "attempted": "2026-09-02 (run 7)",
-      "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
-      "result": "rejected non-fast-forward — after commit ed707a40, HEAD is ahead 387 / behind 359 vs origin/main; new commit NOT on origin",
-      "action": "NO force-push, NO reset; offline-safe work stays committed locally; owner pull/merge/rebase required to reconcile divergence before next ff push"
-    }
+        "attempted": "2026-09-02 (run 8)",
+        "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
+        "result": "BLOCKED by branch protection: 'direct pushes to main are not allowed; use a reviewed branch/PR' — refs rejected; commits 4d1d40a0 + d4c8f2d4 are local-only. ALSO still non-ff (ahead 393 / behind 360).",
+        "action": "NO force-push, NO reset; did not open a PR (autonomous job has no PR/merge authority claimed). Owner must push via a reviewed branch/PR or reconcile the 360-commit divergence (pull/merge/rebase) before main is reachable."
+      }
 }
