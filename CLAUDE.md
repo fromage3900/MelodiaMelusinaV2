@@ -72,6 +72,32 @@ No AI agent may modify these without `SKIP_PROTECTION=1` or explicit human instr
 
 ---
 
+## 🧪 `MelodiaIntegrationMap` — THE test level. Do not break it.
+
+`/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap` is **the** integration/test level: everything
+in one place so Echo-pipeline tests are cheap to run. Battle controller, player/enemy spawn sets,
+NPC/shop/forge/shrine/chest/save-point interactables, encounter + traversal-gate + portal +
+state-anchor fixtures, the PCG hero music host, a parked Oceanology ocean, and the debug cameras all
+live here **on purpose, together**. Its clutter is the feature — that is what makes one PIE run
+exercise the whole pipeline.
+
+Rules:
+
+- **It is usually the level open in the editor.** If you query Monolith / `it-is-unreal` and get
+  `MelodiaIntegrationMap` back, that is expected — it is not a stale or wrong level, and it is not an
+  invitation to load a different map. Do not `load_level` away from it without asking; PIE teardown
+  is async and load-straight-after-stop crashes the editor (`SESSION_CLOSEOUT_WATER_MATERIALS_2026-08-29` §5.4).
+- **Do not "clean it up."** Do not delete the duplicate cubes, the spawn-point spheres, the
+  TextRenderActors, the multiple `BP_Camera*` actors, or the parked
+  `OceanologyInfiniteOcean` at Z −5000 ("Melodia Integration - Oceanology Ocean (parked z-5000)").
+  They are test fixtures, not debris.
+- **Additive only.** Add a fixture if a test needs one; do not reorganise, rename, or re-lay-out what
+  is already there. Other tests reference these actors by name/label.
+- Per-monolith art levels (`LV_SeaAbove_Prototype`, `L_MelusinaMorning`, `L_SakuraPath`, …) are where
+  *look* is authored. `MelodiaIntegrationMap` is where *systems* are proven. Do not mix the two jobs.
+
+---
+
 ## 🏗️ Agent Ownership — RETIRED
 
 **Decision 002 (2026-07-26) retired the 5-agent ownership model.** This is a solo project; the

@@ -1,6 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
+  // Ponytail UE5.8 (installed 2026-08-28 from git: github.com/prielgaier/ponytail-ue58,
+  // vendored read-only at Tools/vendor/ponytail-ue58, MIT). Injects the "lazy Unreal
+  // senior" ruleset (Tools/vendor/ponytail-ue58/AGENTS.md) every turn and adds the
+  // /ponytail, /ponytail-review, /ponytail-audit commands. The .mjs resolves its
+  // hooks/ and skills/ relative to its own file, so the vendor path works as-is.
+  "plugin": ["./Tools/vendor/ponytail-ue58/.opencode/plugins/ponytail.mjs"],
+
   // Default model (set 2026-08-14). Qwen3 Coder Next on bedrock-mantle: coder-tuned,
   // long context, verified working, and ~$0.74/month at this project's measured
   // 745K tokens/month. It is the default because it is the right tool for UE C++ and
