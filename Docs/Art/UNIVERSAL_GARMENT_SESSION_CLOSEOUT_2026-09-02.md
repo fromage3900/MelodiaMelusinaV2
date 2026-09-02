@@ -61,6 +61,12 @@ Seasonal variants reuse the opacity/coverage logic but only `Collar` /
 (masked) seasonal lace cutouts need an explicit per-season Opacity map — currently
 implicit. Add `T_Shorewake_Season_<S>_<lace-layer>_Opacity.png`.
 
+**RESOLVED 2026-09-02 (closeout):** `shorewake_seasonal_opacity.py` was added to
+emit explicit per-season Opacity maps for the three lace/ornament layers
+(Collar / Shoulder_Trim / Shoulder_Ornament) so each season has a proper masked
+cutout for `M_Master_Toon_Universal_Alpha`. Output:
+`Saved/Audit/melusina_lookdev/garment_refresh/seasons/opacity/T_Shorewake_Season_<S>_<layer>_Opacity.png`, 4 seasons × 3 layers = 12 maps, seed-locked.
+
 ### P3 — vision unavailable this model; cymatic QA was numeric not visual
 This lane has no image endpoints. Cymatic/seasonal differentiation was proven by
 FFT mid-band energy (0.77–0.85) and warmth/RGB separation (Spring +14, Autumn
