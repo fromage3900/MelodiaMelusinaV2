@@ -55,8 +55,6 @@ exclude:
       - Plugins/MeshBlend/
       - Plugins/MelodiaNPR/
       - Plugins/MelodiaTokenWallet/
-      - Plugins/MelodiaWardrobe/
-      - Plugins/MelodiaCore/
       - Plugins/QuillScript/
       - .hermes/
       - .jcode/

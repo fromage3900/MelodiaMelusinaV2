@@ -90,36 +90,14 @@ def generate_world_chunks(midi_path, preset_id="walkable_valley",
                           view_distance=2, chunk_size=16):
     """Generate world chunks around a center point.
 
-    Yields WorldChunk objects. NOTE: current impl duplicates the same base
-    field per chunk with offset + LOD decimation (view-distance demo, not
-    seamless tiling). For true 10k+ seamless tiling, partition a single
-    large field before limit_slope/fill_gaps per-chunk. See tandem_bridge
-    for the field-wins snap that handles per-vertex height correctly.
+    Yields WorldChunk objects. Uses shared core.field.build_field() to
+    avoid duplicating the MIDI->field pipeline.
     """
-    # Build once to avoid re-parsing MIDI per chunk (saves N^2 work)
-    try:
-        mv = ww.load_voxel_module()
-        preset = ww.WALKABLE_PRESETS.get(preset_id) or ww.WALKABLE_PRESETS.get("walkable_valley")
-        tracks, tpb = mv.parse_midi(midi_path)
-        base_field = None
-        if tracks:
-            notes = list(tracks[0])
-            stem, ext = os.path.splitext(midi_path)
-            bg = stem + "_beatgrid" + ext
-            if os.path.exists(bg):
-                try:
-                    b_tracks, b_tpb = mv.parse_midi(bg)
-                    if b_tracks and b_tpb:
-                        s = float(tpb) / float(b_tpb)
-                        notes.extend((int(n[0] * s), n[1] + 36, n[2]) for n in b_tracks[0])
-                        notes.sort()
-                except Exception:
-                    pass
-            bf, _ = ww.build_heightfield(notes, preset["cells_per_beat"], preset["height_scale"],
-                                         preset["plateau_radius"], tpb, preset.get("fold", "serpentine"))
-            base_field = ww.limit_slope(ww.fill_gaps(bf), preset["max_slope"], preset["smooth_passes"])
-    except Exception:
-        base_field = None
+    from .core.field import build_field, load_voxel_module
+    import walkable_world as ww
+
+    result = build_field(midi_path, preset_id, source="walkable")
+    base_field = result["field"] if result["ok"] else None
 
     for cx in range(-view_distance, view_distance + 1):
         for cy in range(-view_distance, view_distance + 1):
@@ -127,13 +105,13 @@ def generate_world_chunks(midi_path, preset_id="walkable_valley",
             lod = 0 if dist == 0 else (1 if dist == 1 else 2)
 
             chunk = WorldChunk(cx, cy, chunk_size, lod=lod)
-            # If we have a prebuilt field, reuse it instead of re-parsing
             if base_field is not None:
                 # Reuse prebuilt field with offset + LOD
                 xs = [k[0] for k in base_field]
                 ys = [k[1] for k in base_field]
                 if xs and ys:
-                    x_min = min(xs); y_min = min(ys)
+                    x_min = min(xs)
+                    y_min = min(ys)
                     step = 1 if lod == 0 else (2 if lod == 1 else 4)
                     for (x, y), (h, v) in base_field.items():
                         lx = (x - x_min) + cx * chunk_size
@@ -141,12 +119,10 @@ def generate_world_chunks(midi_path, preset_id="walkable_valley",
                         if (lx % step == 0) and (ly % step == 0):
                             chunk.field[(lx, ly)] = (h, v)
                     chunk.generated = True
-                    if chunk.generated:
-                        yield chunk
+                    yield chunk
                     continue
-            # Fallback: original per-chunk generate (keeps offline tests green)
+            # Fallback: per-chunk generate (keeps offline tests green)
             chunk.generate(midi_path, preset_id)
-
             if chunk.generated:
                 yield chunk
 

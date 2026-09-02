@@ -197,46 +197,15 @@ def pad_and_level(plan_obj, field: dict, radius: int = 1) -> int:
 def field_from_midi(midi_path: str, preset_id: str):
     """Build the same field Melodia Studio's Generate uses, for snapping.
 
+    Delegates to core.field.build_field().
     Returns (field, preset_dict, metrics) or (None, None, None).
     """
-    try:
-        # reuse walkable_world path (the real walkable field)
-        walkable_dir = _HERE
-        if str(walkable_dir) not in sys.path:
-            sys.path.insert(0, str(walkable_dir))
-        import walkable_world as ww  # type: ignore
-        mv = ww.load_voxel_module()
-        preset = ww.WALKABLE_PRESETS.get(preset_id)
-        if preset is None:
-            # fall back to midi_bridge preset families -> walkable_valley
-            preset = ww.WALKABLE_PRESETS.get("walkable_valley")
-            preset_id = "walkable_valley"
-        tracks, tpb = mv.parse_midi(midi_path)
-        if not tracks:
-            return None, None, None
-        notes = list(tracks[0])
-        stem, ext = os.path.splitext(midi_path)
-        bg = stem + "_beatgrid" + ext
-        if os.path.exists(bg):
-            try:
-                b_tracks, b_tpb = mv.parse_midi(bg)
-                if b_tracks and b_tpb:
-                    s = float(tpb) / float(b_tpb)
-                    notes.extend((int(n[0] * s), n[1] + 36, n[2]) for n in b_tracks[0])
-                    notes.sort()
-            except Exception:
-                pass
-        field, _gw = ww.build_heightfield(notes, preset["cells_per_beat"], preset["height_scale"],
-                                          preset["plateau_radius"], tpb, preset.get("fold", "serpentine"))
-        field = ww.fill_gaps(field)
-        field = ww.limit_slope(field, preset["max_slope"], preset["smooth_passes"])
-        metrics = ww.walkability(field, preset["max_slope"])
-        metrics["largest_region"] = ww.largest_connected_region(field, preset["max_slope"])
-        metrics["largest_region_fraction"] = round(metrics["largest_region"] / float(max(1, metrics["cells"])), 3)
-        return field, preset, metrics
-    except Exception as exc:
-        print(f"[Tandem] field_from_midi failed: {exc}")
+    from .core.field import build_field
+
+    result = build_field(midi_path, preset_id, source="walkable")
+    if not result["ok"]:
         return None, None, None
+    return result["field"], result["preset"], result["metrics"]
 
 # ---------------------------------------------------------------- Blender operators / panel (only when bpy present)
 
