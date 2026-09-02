@@ -40,17 +40,27 @@
     "bake physics-accurate eigenmode kit: run Tools/Houdini/copernicus/chladni_eigen.py --plate <brass|glass|crystal> for (2,2),(3,3),(2,3),(3,5) + QA Height/Normal into Saved/Audit/eigenplate/; wire freq_to_resonant_mode into the plan MPC-lane doc",
     "extend Docs/Plans/AUDIO_HERO_MATERIAL_PLAN_2026-09-02.md staging + evidence sections",
     "advance the neural hero controller (Tools/Audio/hero_neural_material_controller.py) or add further Copernicus variants",
-    "then commit in categorized isolated batches and push origin main (verify push; never force-push; local main diverged behind origin ~359 -> needs merge, not force)",
-    "APPLY-READY (blocked on editor): run Content/Python/integrate_hero_material_live.py via Monolith once ONE healthy editor is up (Monolith :9316 down + 2 UnrealEditor processes — do not force, do not kill editor)"
+    "then commit in categorized isolated batches and push origin main (verify push; never force-push; local main diverged behind origin ~359 -> needs merge/rebase, not force)",
+    "APPLY-READY (blocked on editor): run Content/Python/integrate_hero_material_live.py via Monolith once ONE healthy editor is up (Monolith :9316 down + 2 UnrealEditor processes - do not force, do not kill editor)"
   ],
   "learnings": [
     "all 9 Melodia* cymatic PBR variants cooked and QA'd 2026-09-02 (81/81 maps)",
     "all 9 Melodia* variants now have 8-frame animated flipbooks baked + QA 648/648 PASS 2026-09-02 (qa_melodia_flipbooks_2026-09-02.json); each variant dir has 72 framed maps + 9 stills",
-    "Opacity maps are designed-constant 255 (fully opaque solid hero cloth) -> QA must exempt Opacity from the non-blank check, matching the prior family QA convention",
-    "pretry fail causes: prior cron runs died on Monolith MCP connection error before doing work (runtime still safe); need to avoid MCP-only steps until a healthy editor/port 9316 is up",
+    "Opacity maps are designed-constant 255 (fully opaque solid hero cloth) so QA must exempt Opacity from the non-blank check, matching the prior family QA convention",
+    "prior cron runs died on Monolith MCP connection error before doing work (runtime safe); avoid MCP-only steps until a healthy editor/port 9316 is up",
+    "copernicus_cymatic_manifest.json is a generated file the cook tool overwrites each run (drops prior variants) -> do NOT stage it to avoid regressing tracked audit data; the QA json is the authoritative record",
     "commit discipline: explicit-path staging, git add -f for Saved/Audit/*, never bypass pre-commit hook",
     "physics-accurate Chladni eigenmode engine built + 9/9 PASS (chladni_eigen_verify.py)",
     "hero material pipeline offline-safe: all map baking + QA is pure numpy/PIL and does not require the editor"
   ],
-  "last_commit_hashes": []
+  "last_commit_hashes": [
+    "0482375a41b98216c20be73b76a410dffe9bcbd4"
+  ],
+  "push": {
+    "attempted": "2026-09-02",
+    "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
+    "result": "rejected non-fast-forward - local main behind origin/main (~359 commits; local head 0482375a, ahead+behind ~359 each)",
+    "action": "NO force-push, NO reset - left local main intact with commit 0482375a; needs owner-driven merge/rebase to reconcile divergence before next ff push",
+    "verify": "git status -sb shows main...origin/main [ahead 359, behind 359]; not pushed; commit 0482375a locally committed (pre-commit hook PASS)"
+  }
 }
