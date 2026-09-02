@@ -65,8 +65,14 @@
 
 ---
 
-## 3. Chapter 2 Production Roadmap (Post-P0 Horizon)
+## 3. Chapter 2 & Monolith Production Roadmap (Post-P0 Horizon)
 
+- [x] **P1/P2-00: Faraway Mother PCG Ecosystem & Fabric Mountains Architecture**
+  - [x] Author canonical specification `Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md`
+  - [x] Implement multi-biome procedural ecosystem generator `Tools/PCG/build_faraway_mother_pcg_ecosystem.py`
+  - [x] Generate deterministic manifest `specs/pcg/faraway_mother_pcg_manifest.v1.json` (120 points across 4 biomes)
+  - [x] Implement level assembly automation and World Field Bus bridge `Content/Python/faraway_mother_pcg_assembly.py`
+  - [x] Verify complete contract test suite `Tools/test_faraway_mother_pcg.py` (24/24 contract suites PASS)
 - [ ] **C2-01: Coral Shore Sanctuary Authoring** (`L_CoralShoreSanctuary`)
   - [ ] Instantiate Phase 1 sanctuary template with Chapter 2 QuillScript narrative asset
   - [ ] Configure departure gate and dialogue state transitions

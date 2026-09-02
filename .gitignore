@@ -242,6 +242,8 @@ Tools/*
 !Tools/test_validate_source_control_ownership.py
 !Tools/PCG/
 !Tools/PCG/**
+Tools/PCG/**/__pycache__/
+Tools/PCG/**/*.pyc
 !Tools/test_faraway_mother_pcg.py
 !Tools/bp_live_path.py
 !Tools/bp_sweep.py
