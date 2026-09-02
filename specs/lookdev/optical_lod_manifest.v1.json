@@ -2,8 +2,8 @@
   "schema": "melodia.optical_lod_manifest.v1",
   "version": "1.0.0",
   "seed": 20260901,
-  "total_assets": 3,
-  "total_textures_generated": 51,
+  "total_assets": 11,
+  "total_textures_generated": 307,
   "lod_tier_specs": {
     "LOD0": {
       "tier": 0,
@@ -348,6 +348,1062 @@
             "orm_packed_sha256": "e94043b824adbed480414d0970079cac94bb23116a7a637a6404b0a4680705e6",
             "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_Height.png",
             "height_sha256": "b9c75c58a47651b85dd6ca8aa50e304d1210dcb2e47d22c75b6bbebd3d780b2e"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Surreal_CelestialSilk": {
+      "asset_name": "Surreal_CelestialSilk",
+      "family": "SurrealFabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "description": "Moonlit jacquard \u2014 Chladni 3,5 harmonic weave, ethereal silk with thin-film rainbow",
+      "base_color_rgb": [
+        0.82,
+        0.88,
+        0.94
+      ],
+      "roughness_base": 0.32,
+      "metallic_base": 0.08,
+      "sheen_weight": 0.65,
+      "translucency_base": 0.55,
+      "iridescence_base": 0.85,
+      "wpo_base": 1.0,
+      "chladni": [
+        3,
+        5
+      ],
+      "rim_tint": [
+        0.9,
+        0.92,
+        1.0,
+        1.0
+      ],
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 1.0,
+          "iridescence_strength": 0.85,
+          "translucency_amount": 0.55,
+          "fabric_sheen_weight": 0.65,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_BaseColor.png",
+            "base_color_sha256": "0f8596877bf4eef11be565b262099d1c43e527d6cee7cd05828addf7a501a944",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_Normal.png",
+            "normal_sha256": "ed5028470dc79970add13bd4780c2f7e064236e5e34e3c9d6151edbc65f7fa62",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_ORM.png",
+            "orm_packed_sha256": "380a01c1191b848657189687d4e77743a245a4e6976f2ef2116ae0d1b7840812",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_Height.png",
+            "height_sha256": "e60c9151a549ecdcb3e1a4f301a044381ec0c8ffef0fa328cbc7093a270e9e20"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.75,
+          "iridescence_strength": 0.7225,
+          "translucency_amount": 0.495,
+          "fabric_sheen_weight": 0.65,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_BaseColor.png",
+            "base_color_sha256": "2212f9f6810b9cfb9e9ade0ffade1735e135fbead9f2d4b8cbe00f7d816b8e3d",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_Normal.png",
+            "normal_sha256": "c61da64f3b7f98881dea6dacad2a49626948b0d67add4aecbd8003570353c2f3",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_ORM.png",
+            "orm_packed_sha256": "daa4aac2de66a9bbfb111701dd994318fa1bf20a60bd99c58b36de06e45735a5",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_Height.png",
+            "height_sha256": "bf88f1596127645667987db411482d463fc213d20cabfbc45ce417792f566453"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.3,
+          "iridescence_strength": 0.51,
+          "translucency_amount": 0.33,
+          "fabric_sheen_weight": 0.585,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_BaseColor.png",
+            "base_color_sha256": "f349222cad444159cb501ef42f6fefae40085ee16cfca05f45f82f6e8200f3fc",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_Normal.png",
+            "normal_sha256": "58209180915031aaa8a891d5a23b23a74a00102872bb113305e21e2d33eea38b",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_ORM.png",
+            "orm_packed_sha256": "1d53cf60f5187b4c53d7d84db33293a3766e89c548c959c24ced485e9110a5a3",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_Height.png",
+            "height_sha256": "bbf9bcb6c87280677a6817b7f6232b2d3ad7685dc27ba02104e4836dc8b92349"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "iridescence_strength": 0.255,
+          "translucency_amount": 0.165,
+          "fabric_sheen_weight": 0.585,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_BaseColor.png",
+            "base_color_sha256": "248f011b73ffbce5ce5bce29a008fe92bc26b52771736e4caf1582c3b7bc567d",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_Normal.png",
+            "normal_sha256": "0c69e19ca791880e34eadc450ab50c288a9df665e7b8df2ccd4a78ef5b022c08",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_ORM.png",
+            "orm_packed_sha256": "a0800327cdb7f85dbbd20666997be9523dae2eca0491c5d30d6b49f50e5e09d5",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_Height.png",
+            "height_sha256": "9d22cd3f3ef2aec524c4fa3ece4bc36264a63fc6452d6e57f955f6c7b45b47e2"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Surreal_GildedLoom": {
+      "asset_name": "Surreal_GildedLoom",
+      "family": "SurrealFabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "description": "Gilded loom \u2014 interlocking gear-weave brocade, metallic thread, warm gold rim",
+      "base_color_rgb": [
+        0.78,
+        0.68,
+        0.42
+      ],
+      "roughness_base": 0.38,
+      "metallic_base": 0.65,
+      "sheen_weight": 0.35,
+      "translucency_base": 0.15,
+      "iridescence_base": 0.4,
+      "wpo_base": 0.6,
+      "chladni": [
+        4,
+        6
+      ],
+      "rim_tint": [
+        1.0,
+        0.88,
+        0.55,
+        1.0
+      ],
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 0.6,
+          "iridescence_strength": 0.4,
+          "translucency_amount": 0.15,
+          "fabric_sheen_weight": 0.35,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_BaseColor.png",
+            "base_color_sha256": "75da45578c54f837e62d96f1b475b2c32ae6d8272b89e782c6ed91809fd92958",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_Normal.png",
+            "normal_sha256": "f669c111da4c92f11f8eeba8e9938d0baafc62ee62dbaefb4a5fb69b8b17b185",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_ORM.png",
+            "orm_packed_sha256": "f7e6f1cb9bcc5de53de506ad1190345abd75cb0b3c4e5235028f21b9b902a7b0",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_Height.png",
+            "height_sha256": "fd3bb3005266f57f8fd02ababddebbee25a4e68362cccdf9423be08f68fa789f"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.44999999999999996,
+          "iridescence_strength": 0.34,
+          "translucency_amount": 0.135,
+          "fabric_sheen_weight": 0.35,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_BaseColor.png",
+            "base_color_sha256": "75608eeba90b37a4daca7746f80d052dbc8de063e09c292e4030b10115165089",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_Normal.png",
+            "normal_sha256": "10c968ec1cb38ab460c01effe1d05f1e26f1fc5c9ac24cc9ec4ba0e5c6e591a3",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_ORM.png",
+            "orm_packed_sha256": "22016a03a9ba87b2b9b3b89f1dc0dd56ac562546d94e3e17b26ca032ee47a869",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_Height.png",
+            "height_sha256": "fef7566d009167499d79d345098cf4af07a74c18b41771a03c98356d30615106"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.18,
+          "iridescence_strength": 0.24,
+          "translucency_amount": 0.09,
+          "fabric_sheen_weight": 0.315,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_BaseColor.png",
+            "base_color_sha256": "ba759d323b884af663e37a1ba93df1eddf436da9541e71510ebe137cbfec3217",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_Normal.png",
+            "normal_sha256": "5dddb17d423e56822b11c73ade112828d8c2ad881ede170dd8acfcc936e9fd44",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_ORM.png",
+            "orm_packed_sha256": "026007926aa5a4d8a2ff86244f7a9afe9d698cb167be58e8418f08e5ab3f5826",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_Height.png",
+            "height_sha256": "6e78261dddd5752cc9de5f1a8dd1637ca598bc5502b2dd11e34cd770cf19472a"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "iridescence_strength": 0.12,
+          "translucency_amount": 0.045,
+          "fabric_sheen_weight": 0.315,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_BaseColor.png",
+            "base_color_sha256": "04290ecd82ed0dd8ce490f6b9132ef8708c463b60b50097ce8e2bbbdb72e8b20",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_Normal.png",
+            "normal_sha256": "f6dd146d4d06023a8f8c892b2e382ad750107be16cb67d667fb45d2260bc776e",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_ORM.png",
+            "orm_packed_sha256": "1f2159fece469b1ae4855a0ddab943e6f9999533b0143955229f80fffef502d5",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_Height.png",
+            "height_sha256": "cc556ae43c50795be2dafbbe782ed2162e7ec3d8c4edc71ac37e62828f06b0fe"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Surreal_PearlWeave": {
+      "asset_name": "Surreal_PearlWeave",
+      "family": "SurrealFabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "description": "Pearl weave \u2014 nacre mother-of-pearl, maximum thin-film iridescence, pearlescent sheen",
+      "base_color_rgb": [
+        0.92,
+        0.9,
+        0.94
+      ],
+      "roughness_base": 0.22,
+      "metallic_base": 0.12,
+      "sheen_weight": 0.72,
+      "translucency_base": 0.45,
+      "iridescence_base": 0.95,
+      "wpo_base": 0.85,
+      "chladni": [
+        5,
+        3
+      ],
+      "rim_tint": [
+        0.96,
+        0.94,
+        1.0,
+        1.0
+      ],
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 0.85,
+          "iridescence_strength": 0.95,
+          "translucency_amount": 0.45,
+          "fabric_sheen_weight": 0.72,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_BaseColor.png",
+            "base_color_sha256": "3eb58306dd77bde9af131fbc26c1de64a86634275e95426924b6d20970b171b6",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_Normal.png",
+            "normal_sha256": "edcf823da9b7f2186f3f9364272f947e4b78e31cec949f789c8a8ba35bcb8af1",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_ORM.png",
+            "orm_packed_sha256": "a79b782ce29009590a1646901f720b4904b3fa0a6b900cd559b3fb191f94383e",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_Height.png",
+            "height_sha256": "eb5e9246ddb63cb48b83736ddf51fa4b57f13388f762a350b6e0b26de9e1f71e"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.6375,
+          "iridescence_strength": 0.8075,
+          "translucency_amount": 0.405,
+          "fabric_sheen_weight": 0.72,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_BaseColor.png",
+            "base_color_sha256": "b1b83b82b4e3a66c81587f0e58b9a33019c814f1dd725ef60a742239e70d103d",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_Normal.png",
+            "normal_sha256": "636572f3aba29f7e8448440ef90ae249cc6d10d6e59aa862fb519308324cdb70",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_ORM.png",
+            "orm_packed_sha256": "757437327de88fe14fbde5711b42869fd52c5ff3f51404450e865cdd73025c51",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_Height.png",
+            "height_sha256": "216499918c143be973d6fe628c58975d69604464de9b047b0c456d547f9fd3aa"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.255,
+          "iridescence_strength": 0.57,
+          "translucency_amount": 0.27,
+          "fabric_sheen_weight": 0.648,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_BaseColor.png",
+            "base_color_sha256": "45f6243c83fac1e2227affd44ac2fdbb8f4c6d8a483ecda8941905d082804453",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_Normal.png",
+            "normal_sha256": "bf86d618853801b0560e04156ad284d7dc89fabffb5836bd3d6133f038d000ea",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_ORM.png",
+            "orm_packed_sha256": "92139eccfe137fcf2a5c60f44af5aa1ee2305d760587562f013ba7596e305f6f",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_Height.png",
+            "height_sha256": "7e82594dc6326193db481ca83b0f0fa857d8548f0dab6967eae8c5d405547cf9"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "iridescence_strength": 0.285,
+          "translucency_amount": 0.135,
+          "fabric_sheen_weight": 0.648,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_BaseColor.png",
+            "base_color_sha256": "92a53e26f25972770fdea83da36b782957227fe6767fb32e6722fbee275a4a03",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_Normal.png",
+            "normal_sha256": "a070be9c2e5f6a612e16093e39234d58b557c6b498ac67a80262796410006723",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_ORM.png",
+            "orm_packed_sha256": "9e9382120d5bd1bb90bf057db18bcd0f5b38374bc066ca83e1a63b160cb83a5b",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_Height.png",
+            "height_sha256": "4f594965eeb002e3cc67174284733a89936adb3badb13e35971b9ae6cc96349b"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Surreal_SingingSilk": {
+      "asset_name": "Surreal_SingingSilk",
+      "family": "SurrealFabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "description": "Singing silk \u2014 cymatic standing-wave silk, audio-reactive WPO 1.0, flowing drape",
+      "base_color_rgb": [
+        0.88,
+        0.92,
+        0.96
+      ],
+      "roughness_base": 0.25,
+      "metallic_base": 0.06,
+      "sheen_weight": 0.68,
+      "translucency_base": 0.65,
+      "iridescence_base": 0.75,
+      "wpo_base": 1.0,
+      "chladni": [
+        3,
+        7
+      ],
+      "rim_tint": [
+        0.88,
+        0.95,
+        1.0,
+        1.0
+      ],
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 1.0,
+          "iridescence_strength": 0.75,
+          "translucency_amount": 0.65,
+          "fabric_sheen_weight": 0.68,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_BaseColor.png",
+            "base_color_sha256": "a1182bf38348679b8b90ba19aaee700dc1365a6a9d8df6e62d89499e73fe8832",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_Normal.png",
+            "normal_sha256": "16fbaf3f955f5f577c8b79795d3fe5346131a2c7011135b511d489e20d723bbf",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_ORM.png",
+            "orm_packed_sha256": "de89080407cb50443a6ad2c10d29841a3a1e77d45fecb80f902e6f3c76a29ab8",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_Height.png",
+            "height_sha256": "a506f52677ce4e26ff44935ef0d6ba1079fa3284453b8d01b14e1257725aacf6"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.75,
+          "iridescence_strength": 0.6375,
+          "translucency_amount": 0.585,
+          "fabric_sheen_weight": 0.68,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_BaseColor.png",
+            "base_color_sha256": "403bb9d17a7b55e2085cc13e6f089a3452c2ff74469fc93f2521406de6e94d82",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_Normal.png",
+            "normal_sha256": "e352d5d08e306a5ca38970ddf66de79f3dbc04325a19c410d5adddad9737a364",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_ORM.png",
+            "orm_packed_sha256": "c5dced96bc45b1b7276cfdfbd1abe419581422dba3173e8fa11686418282ba23",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_Height.png",
+            "height_sha256": "6b96e490611cf5cea783514ee1d04d0949539304ecaa051a932b96b465960630"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.3,
+          "iridescence_strength": 0.45,
+          "translucency_amount": 0.39,
+          "fabric_sheen_weight": 0.612,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_BaseColor.png",
+            "base_color_sha256": "3ebacfbde7344776dc0c9e04db46949ae4d2f304de02499d8865a50f225f56a2",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_Normal.png",
+            "normal_sha256": "2e66cccbfea2d1f6d7b1c0202bab86cd29a6be093ffb0d0a36b840b34cf50185",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_ORM.png",
+            "orm_packed_sha256": "bbccca21bcc725ace59b3abae869964ae53ef551709698399f7ee6cd688faacc",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_Height.png",
+            "height_sha256": "f670d3c18744fafeacca870bdf48ced75663a0fbf2d6f3f6ee71d34bc0b356e9"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "iridescence_strength": 0.225,
+          "translucency_amount": 0.195,
+          "fabric_sheen_weight": 0.612,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_BaseColor.png",
+            "base_color_sha256": "6166f46e62630d219907ca7b1872f7aab15fe27a3dbee489e82f8eb98fb1a0cc",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_Normal.png",
+            "normal_sha256": "c53ed12f2284b1ae2f94d2a14345a29f0a4d0067e100b5c54be121140e139b3c",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_ORM.png",
+            "orm_packed_sha256": "66b4702d78c2b64f1814627bf467dc8349e6c86d32fb728885e9f380bb7a4fdc",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_Height.png",
+            "height_sha256": "f35d98a63f8eb75a89e0a8e19f771eba8d2832a23e20572ba7a62b46de9f7b50"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Surreal_StarlitLoom": {
+      "asset_name": "Surreal_StarlitLoom",
+      "family": "SurrealFabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "description": "Starlit loom \u2014 abyssal indigo with bioluminescent constellation nodes, emissive bloom",
+      "base_color_rgb": [
+        0.12,
+        0.18,
+        0.38
+      ],
+      "roughness_base": 0.42,
+      "metallic_base": 0.25,
+      "sheen_weight": 0.42,
+      "translucency_base": 0.25,
+      "iridescence_base": 0.9,
+      "wpo_base": 0.5,
+      "chladni": [
+        2,
+        8
+      ],
+      "rim_tint": [
+        0.55,
+        0.7,
+        1.0,
+        1.0
+      ],
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 0.5,
+          "iridescence_strength": 0.9,
+          "translucency_amount": 0.25,
+          "fabric_sheen_weight": 0.42,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_BaseColor.png",
+            "base_color_sha256": "cf7182cce5e3e4a2388652a38b122c002b3e7b378f2284059da32b9280044055",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_Normal.png",
+            "normal_sha256": "e6ddb85a6ed90f8b98d10c54d660631de5b5d8cac0579705d07b897dc141f9aa",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_ORM.png",
+            "orm_packed_sha256": "b7bc267fd747f29d399831535eeb1f107a8c41862ea895e211e6bf91b23d9e91",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_Height.png",
+            "height_sha256": "473f53d679830c91d5ff7cbd84ab0f644db28bed1953ba7a5049ad7858475a51"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.375,
+          "iridescence_strength": 0.765,
+          "translucency_amount": 0.225,
+          "fabric_sheen_weight": 0.42,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_BaseColor.png",
+            "base_color_sha256": "253a9fab2aba92585295a587b65de1c4193ab378d9c2a8c52e08abce1e5287d2",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_Normal.png",
+            "normal_sha256": "21799d4b7d2be6e4f8e533d6722af8605d9d03796fb78e4d3d1efd892709b4d7",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_ORM.png",
+            "orm_packed_sha256": "d18d5f47175415e3518efd8caf7a0385e9a128a2af754ba9c554e34c8647fda6",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_Height.png",
+            "height_sha256": "724c98ab8bd48c3d3f29ec611acd0fc03cca4f4f1876f61d42027504397c1926"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.15,
+          "iridescence_strength": 0.54,
+          "translucency_amount": 0.15,
+          "fabric_sheen_weight": 0.378,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_BaseColor.png",
+            "base_color_sha256": "3fda78cd2f6c1d1a9c3ad3ea8ab193656451fc1cb512fa6d19fa3f5e202fda4a",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_Normal.png",
+            "normal_sha256": "587d32236eb060672f489d519949bf04faecf6c6cde2aab87728839ff58c83f0",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_ORM.png",
+            "orm_packed_sha256": "da606016c86ef9a0eed2f81280507ac8556c63ff283b92b77a9acbd3a5e5adb4",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_Height.png",
+            "height_sha256": "cdabc7375c986ae388ce1a7cc701fd89e5b40efb5d376837ac481ed4b9fffdf3"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "iridescence_strength": 0.27,
+          "translucency_amount": 0.075,
+          "fabric_sheen_weight": 0.378,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_BaseColor.png",
+            "base_color_sha256": "03175f3195d70b5f556fe106518447be4cb06e6605436d1435106a587dcea7ff",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_Normal.png",
+            "normal_sha256": "234a9afa3160c683956a02c85578c4784794fc0c789a4ca7b53ccc8a5732bd33",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_ORM.png",
+            "orm_packed_sha256": "bccdffec83733266a31414c59506672df71049069296abe77c63414a4510ab55",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_Height.png",
+            "height_sha256": "bf84376e301a07f43ed125370dd53450c638322317da34d5cd44ca5a55ab94e8"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Surreal_NightVelvet": {
+      "asset_name": "Surreal_NightVelvet",
+      "family": "SurrealFabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "description": "Night velvet \u2014 deep pile velvet, grazing-angle velvet sheen, low translucency",
+      "base_color_rgb": [
+        0.18,
+        0.12,
+        0.32
+      ],
+      "roughness_base": 0.82,
+      "metallic_base": 0.02,
+      "sheen_weight": 0.88,
+      "translucency_base": 0.08,
+      "iridescence_base": 0.35,
+      "wpo_base": 0.4,
+      "chladni": [
+        4,
+        4
+      ],
+      "rim_tint": [
+        0.75,
+        0.55,
+        1.0,
+        1.0
+      ],
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 0.4,
+          "iridescence_strength": 0.35,
+          "translucency_amount": 0.08,
+          "fabric_sheen_weight": 0.88,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_BaseColor.png",
+            "base_color_sha256": "72a84fb534ffe5ccee2c4f8ac986977d8bc82e55ce33603fae7d2e615150e850",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_Normal.png",
+            "normal_sha256": "b278aceb928437d9a8f7253e3d85883c6e405ed348400f7f9bd7a326181264d0",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_ORM.png",
+            "orm_packed_sha256": "f6b251c0d517f6ef6f7e8d89e1ee9691e93b9d0d184834247f70676ea9e5d5da",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_Height.png",
+            "height_sha256": "a456230ec6e506b76feb025b07cab11d04dcd6cfdde14b0b50d03bed78e3d67e"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.30000000000000004,
+          "iridescence_strength": 0.2975,
+          "translucency_amount": 0.072,
+          "fabric_sheen_weight": 0.88,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_BaseColor.png",
+            "base_color_sha256": "1de116adca0b75172f54a4b9d667c07e9a6297ba3bb8be8b296c09dee83ab21b",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_Normal.png",
+            "normal_sha256": "bc9287c8c7ea1424ea1262a39990938d2c5ac54b477d69d9852cf2d4794ae0b2",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_ORM.png",
+            "orm_packed_sha256": "5f0f0e322e6664b9041004742b047f4777bab6db7d9f569b2d8187dad8bfe723",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_Height.png",
+            "height_sha256": "05c2d71d9e7735828050661f15e8c1c9c65dac3cfa7912013084cbe5cbf810ca"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.12,
+          "iridescence_strength": 0.21,
+          "translucency_amount": 0.048,
+          "fabric_sheen_weight": 0.792,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_BaseColor.png",
+            "base_color_sha256": "1a0c49f904781862a211ff4a77c4f61506c0aa7f67317f6926fc4984dac7c572",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_Normal.png",
+            "normal_sha256": "6011465bd682dcf23448f0fef1d5ca31d1288ad6a47d5492ade742e0bb17aa4c",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_ORM.png",
+            "orm_packed_sha256": "31c82f66b36d9e4efff4a33e840891e40e0ffcb3d2e7e272393ef6d797922e5d",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_Height.png",
+            "height_sha256": "1497e32d9379862c56dd0af8360df5b5c128092eb2aed1de7a06c8ef068d17b9"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "iridescence_strength": 0.105,
+          "translucency_amount": 0.024,
+          "fabric_sheen_weight": 0.792,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_BaseColor.png",
+            "base_color_sha256": "15de4c7ed094c2a47940c23a519b8625168396ac9862deff6cddd5a4519e293b",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_Normal.png",
+            "normal_sha256": "dc46282874d24bc427a658c50178821bd876e25a92b8d90bcbda8a7c1dfdd101",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_ORM.png",
+            "orm_packed_sha256": "7d8ab9cc468f37832d2242c58a30754ba117ee7e25d8ac73e94ebc13088ab5d4",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_Height.png",
+            "height_sha256": "ad9d9dd59407f7a00b501125a84c84b9cf51885ca75f14ee69262c58873e8373"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Surreal_AquaLace": {
+      "asset_name": "Surreal_AquaLace",
+      "family": "SurrealFabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "description": "Aqua lace \u2014 sheer aquatic lace, high translucency 0.72, openwork negative space",
+      "base_color_rgb": [
+        0.65,
+        0.88,
+        0.92
+      ],
+      "roughness_base": 0.38,
+      "metallic_base": 0.07,
+      "sheen_weight": 0.55,
+      "translucency_base": 0.72,
+      "iridescence_base": 0.8,
+      "wpo_base": 0.95,
+      "chladni": [
+        6,
+        2
+      ],
+      "rim_tint": [
+        0.8,
+        0.95,
+        1.0,
+        1.0
+      ],
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 0.95,
+          "iridescence_strength": 0.8,
+          "translucency_amount": 0.72,
+          "fabric_sheen_weight": 0.55,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_BaseColor.png",
+            "base_color_sha256": "d9ceae67e3807a2bb7db521cdcde0c3b99202c0e3d80cf264dc473354de8b620",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_Normal.png",
+            "normal_sha256": "3cc0c765cdc5482058d4310fa17de0f7482befa90289c1ed1207bf625b16f566",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_ORM.png",
+            "orm_packed_sha256": "9421b62d33d1a34a9839a162015bdd73c24597b441b0dc22fc35eaa7986d2ae9",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_Height.png",
+            "height_sha256": "292e59ce1ab76ac3f8968ef671c7cc0ee4bc0a76655675e8eb50a1bd7647e22e"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.7124999999999999,
+          "iridescence_strength": 0.68,
+          "translucency_amount": 0.648,
+          "fabric_sheen_weight": 0.55,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_BaseColor.png",
+            "base_color_sha256": "2938ce8092a148d2470641ae7f5b273c8a0783d7029968bcc0a8e8c92289b93a",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_Normal.png",
+            "normal_sha256": "c5e6b6c599a73ce5f62637555d5e7c6e88afac905e9a1f03195f39da51244a57",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_ORM.png",
+            "orm_packed_sha256": "8a0009739544fa8962e668e7f326bc6fe6c429859c92bd2b9f7dd237452fb438",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_Height.png",
+            "height_sha256": "d1e98f3c5221fdc4712c2b114aa67ffd6d13207bb32ed0de1b24b469f07f80d8"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.285,
+          "iridescence_strength": 0.48,
+          "translucency_amount": 0.432,
+          "fabric_sheen_weight": 0.495,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_BaseColor.png",
+            "base_color_sha256": "f13bf0dc4ed53146f81700c4269045afb369dff9ae4771c9aec14da39f810847",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_Normal.png",
+            "normal_sha256": "ff9d28054de28adbbf10e79d4b83c6de7cd3e299813b54b56c2018668eac7e89",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_ORM.png",
+            "orm_packed_sha256": "5972be7d137dc0bc1ae9bb46426cda017e999e197525f8db36d63d65297c9d3a",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_Height.png",
+            "height_sha256": "7604c96f758a6a73c722f0441947b8a97e8787748833ccc57bfe12f130ed0cfd"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "iridescence_strength": 0.24,
+          "translucency_amount": 0.216,
+          "fabric_sheen_weight": 0.495,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_BaseColor.png",
+            "base_color_sha256": "dca7ff4919800cd736842222cc35be7b02f90b17030556ee4925a1fe988177f2",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_Normal.png",
+            "normal_sha256": "b93cbd24dc4640bd2a3400d0136413155e6709d8a5ad341a968dac36e278816c",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_ORM.png",
+            "orm_packed_sha256": "e8f38dcfbb1714eb176d0a586223b1d3291a3b9cffcb8d91b090960e44a0ac06",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_Height.png",
+            "height_sha256": "1ab96a3806ee9d9ce14fcb54d03014c9c57d05ef6a0ade1e57ef7d07159ed724"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Surreal_MoonChiffon": {
+      "asset_name": "Surreal_MoonChiffon",
+      "family": "SurrealFabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "description": "Moon chiffon \u2014 ultra-sheer vapor chiffon, translucency 0.78, WPO bellows 1.0",
+      "base_color_rgb": [
+        0.95,
+        0.96,
+        0.98
+      ],
+      "roughness_base": 0.28,
+      "metallic_base": 0.05,
+      "sheen_weight": 0.6,
+      "translucency_base": 0.78,
+      "iridescence_base": 0.88,
+      "wpo_base": 1.0,
+      "chladni": [
+        3,
+        4
+      ],
+      "rim_tint": [
+        0.96,
+        0.98,
+        1.0,
+        1.0
+      ],
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 1.0,
+          "iridescence_strength": 0.88,
+          "translucency_amount": 0.78,
+          "fabric_sheen_weight": 0.6,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_BaseColor.png",
+            "base_color_sha256": "b6c0bb4f5cf8087945551d907016c4f2759b74202b8b32ed25bf3db09bbd26c6",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_Normal.png",
+            "normal_sha256": "c5fd30a5a41397e8aecb537037e4837a061cd434b027ba16826be6d5c6cace95",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_ORM.png",
+            "orm_packed_sha256": "48e2d7fb37bd44837dca444ed3c4fdc935e016662fcbb5db1a86836d0c5d5775",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_Height.png",
+            "height_sha256": "d72e8a541beb6cbc872ec625450131958110c944ea1e294e6d8b219dee99582f"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.75,
+          "iridescence_strength": 0.748,
+          "translucency_amount": 0.702,
+          "fabric_sheen_weight": 0.6,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_BaseColor.png",
+            "base_color_sha256": "17a5061060a0170bd155f3f5f25ebb58f6c617f812eb01e14822ae75875f596b",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_Normal.png",
+            "normal_sha256": "97b3b914cdf5d879e4917b8e5e4cd65c22ea79a3bf736f353257bfe51fbef521",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_ORM.png",
+            "orm_packed_sha256": "02001341de73d8652b0ed748b622a61149c572e9a361d482e0d8b4fb73fdc76b",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_Height.png",
+            "height_sha256": "ac48b1267137694b2e30af09532086af28778b8f7cc3616468dfcb315509d019"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.3,
+          "iridescence_strength": 0.528,
+          "translucency_amount": 0.468,
+          "fabric_sheen_weight": 0.54,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_BaseColor.png",
+            "base_color_sha256": "5ad726db3ea31f55339981380374ef8fecad9dc4ff08eaa4ca545acec19aa9a1",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_Normal.png",
+            "normal_sha256": "547d9b8e30d436c44a2fc8d30d96d1d68deb9733ef41f4a0dde7f667172b4631",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_ORM.png",
+            "orm_packed_sha256": "42630c6b8a717f6fd2109651683578988668712f81f1409313ade81f773b41ea",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_Height.png",
+            "height_sha256": "45196cc0565217d062a6fba1f6c6a6af852a16311e444596ec6d0d0a1a0847d6"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "iridescence_strength": 0.264,
+          "translucency_amount": 0.234,
+          "fabric_sheen_weight": 0.54,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_BaseColor.png",
+            "base_color_sha256": "a1464d28767fcd09b0d2eb1623f7a1e6181d721e2a05fbe244e149d667f43a8b",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_Normal.png",
+            "normal_sha256": "4e2c6e70fd5a3ea15fd2918585ffffc0398eaf89ce8234f7ee3191f5708be6f2",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_ORM.png",
+            "orm_packed_sha256": "5b937c03db20d2c0ea47b27f37eaac3f4c349fb1f958b0f32ffe9245276493a0",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_Height.png",
+            "height_sha256": "3deddd966eb2574466547012bcd62a500d401b286ff47de074d24f2f1b9bd42c"
           }
         }
       },
