@@ -1,4 +1,5 @@
 #include "MelodiaCymaticsWriterSubsystem.h"
+#include "MelodiaWorldFieldBus.h"
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -96,4 +97,9 @@ void UMelodiaCymaticsWriterSubsystem::RefreshAndPublish()
 	// Also mirror legacy names expected by some Copernicus MIs if they sample BeatPulse/BassIntensity directly from driver
 	DstInst->SetScalarParameterValue(FName(TEXT("BeatPulse")), BeatPulse);
 	DstInst->SetScalarParameterValue(FName(TEXT("BassIntensity")), BassIntensity);
+
+	// Publish to WorldField.Resonance/Tension — single bus for water + PCG + VFX.
+	// Writer owns Cymatics, so its Tension is authoritative where CymaticsSubsystem has no world yet.
+	const float TensionApprox = FMath::Clamp(BassIntensity * 0.85f + BeatPulse * 0.15f, 0.f, 1.f);
+	UWorldFieldBus::PublishResonance(ModeN, ModeM, TensionApprox, BeatPulse);
 }
