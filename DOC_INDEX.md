@@ -18,7 +18,8 @@
 | **♫ 6** | [`TODO.md`](TODO.md) | The current production score. |
 | **♬ 7** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Who owns what and how state moves. |
 | **𝄞 8** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, browser labs, package flow. |
-| **♪ 9** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) + [`TEST_READY.md`](TEST_READY.md) | P0 scope + bounded evidence. |
+| **♪ 8a** | [`Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md`](Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md) | Second-machine onboarding, measured hardware profile, offload lanes, and handoff gates. |
+| **♫ 9** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) + [`TEST_READY.md`](TEST_READY.md) | P0 scope + bounded evidence. |
 
 If you are an agent: **do not start by searching every old handoff.** Read the current front door first, then follow links into the system you are actually touching.
 
