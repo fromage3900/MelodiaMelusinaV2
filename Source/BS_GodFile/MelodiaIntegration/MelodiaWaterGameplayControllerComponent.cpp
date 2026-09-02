@@ -67,7 +67,7 @@ bool UMelodiaWaterGameplayControllerComponent::InteractWithDevice(AActor* Instig
 	return WaterGameplay->ApplyOperation(Request);
 }
 
-bool UMelodiaWaterGameplayControllerComponent::SetRouteOpen(bool bOpen, FName InRouteId)
+bool UMelodiaWaterGameplayControllerComponent::SetRouteOpen(bool bOpen, FGameplayTag InRouteId)
 {
 	UMelodiaWaterGameplaySubsystem* WaterGameplay = RegisteredSubsystem.Get();
 	if (!WaterGameplay)
@@ -99,7 +99,7 @@ void UMelodiaWaterGameplayControllerComponent::HandleWaterStateChanged(FMelodiaW
 	if (UMelodiaWaterInteractionSubsystem* WaterInteraction = UMelodiaWaterInteractionSubsystem::Get(this))
 	{
 		FMelodiaWaterFluidImpulse Impulse;
-		Impulse.WaterBodyId = NodeConfig.WaterBodyId;
+		Impulse.WaterBodyId = NodeConfig.WaterBodyId.GetTagName();
 		Impulse.Location = GetOwner() ? GetOwner()->GetActorLocation() : FVector::ZeroVector;
 		Impulse.Impulse = Change.CurrentState.FlowVelocity.GetClampedToMaxSize(NodeConfig.MaxFlowStrength);
 		Impulse.Strength = FMath::Clamp(Change.CurrentState.Pressure, 0.0f, 1.0f);

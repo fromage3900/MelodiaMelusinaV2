@@ -16,12 +16,20 @@
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FMelodiaRhythmCombatSessionTest, "Melodia.RhythmCombat.SessionLifecycle", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FMelodiaRhythmCombatSessionTest::RunTest(const FString& Parameters)
 {
+	UGameInstance* GI = nullptr;
 	UWorld* World = GEngine ? GEngine->GetCurrentPlayWorld() : nullptr;
+	bool bCreatedStandaloneWorld = false;
+
+	if (!World && GEngine)
+	{
+		GI = NewObject<UGameInstance>(GEngine);
+		GI->InitializeStandalone(TEXT("MelodiaRhythmCombatTestWorld"));
+		World = GI->GetWorld();
+		bCreatedStandaloneWorld = true;
+	}
+
 	if (!World)
 	{
-		// Automation tests that need a world subsystem require a running world.
-		// Skip rather than fail: the subsystem is a UWorldSubsystem and cannot
-		// be exercised without a world.
 		return true;
 	}
 
@@ -29,6 +37,12 @@ bool FMelodiaRhythmCombatSessionTest::RunTest(const FString& Parameters)
 	if (!Subsystem)
 	{
 		AddError(TEXT("RhythmCombatSubsystem not present in the world."));
+		if (bCreatedStandaloneWorld && GI && World)
+		{
+			GI->Shutdown();
+			GEngine->DestroyWorldContext(World);
+			World->DestroyWorld(false);
+		}
 		return false;
 	}
 
@@ -73,6 +87,13 @@ bool FMelodiaRhythmCombatSessionTest::RunTest(const FString& Parameters)
 	Subsystem->InvalidateSession();
 	TestEqual(TEXT("Active session cleared on invalidate"), Subsystem->GetActiveSessionId(), 0);
 	TestFalse(TEXT("No pending request after invalidate"), Subsystem->HasPendingRequest());
+
+	if (bCreatedStandaloneWorld && GI && World)
+	{
+		GI->Shutdown();
+		GEngine->DestroyWorldContext(World);
+		World->DestroyWorld(false);
+	}
 
 	return true;
 }
