@@ -1,0 +1,130 @@
+{
+  "schema": "melodia.faraway_lod_destruction_spec.v1",
+  "version": "1.0.0",
+  "date": "2026-09-02",
+  "title": "Faraway LOD Destruction \u2014 Fabric Mountains Destroy/Dissolve via LOD",
+  "role": "P1 Faraway Mother dissolution: mounts crumble/dither as Tension rises, LOD3 impostor is destroyed state. Tension-driven, shares HorizonEat scalar at horizon.",
+  "parent": "FarawayMother_CelestialSilk et al in specs/lookdev/optical_lod_manifest.v1.json (11 assets, 4 tiers)",
+  "thesis": "Destruction is NOT a Chaos sim at runtime for vista. It is LOD state + dither dissolve + WPO fade + opacity clip. LOD0 is intact close, LOD3 is crumbled impostor nothing. Dither hides transition. Tension picks how much has crumbled.",
+  "lod_tiers": {
+    "LOD0_MicroRelief_CloseRange": {
+      "distance_m": [
+        0,
+        15
+      ],
+      "pom": 32,
+      "toksvig": 0.0,
+      "rim": 1.0,
+      "wpo": 1.0,
+      "res": 1024,
+      "destruction": "0% \u2014 full parallax, micro folds via POM32, WPO macro+micro 100%, no dither, mask 1.0"
+    },
+    "LOD1_MidFrequency_AdaptivePOM": {
+      "distance_m": [
+        15,
+        50
+      ],
+      "pom": 16,
+      "toksvig": 0.35,
+      "rim": 1.15,
+      "wpo": 0.75,
+      "res": 512,
+      "destruction": "25% \u2014 half parallax, wpo softened, stipple begins at edges via Bayer 0.1"
+    },
+    "LOD2_MacroSilhouette_ToksvigStable": {
+      "distance_m": [
+        50,
+        200
+      ],
+      "pom": 0,
+      "toksvig": 0.75,
+      "rim": 1.4,
+      "wpo": 0.3,
+      "res": 256,
+      "destruction": "60% \u2014 no POM, Toksvig kills shimmer, WPO only macro swell 30%, Bayer dither 0.35, rim blooms to hold silhouette"
+    },
+    "LOD3_VistaImpostor_ZeroShimmer": {
+      "distance_m": [
+        200,
+        5000
+      ],
+      "pom": 0,
+      "toksvig": 1.0,
+      "rim": 1.8,
+      "wpo": 0.0,
+      "res": 128,
+      "destruction": "100% \u2014 impostor crumble, dither clip destroys, WPO 0, height displaces none, only macro normal + rim, then alpha->0 with HorizonEat"
+    }
+  },
+  "destruction_operators": [
+    {
+      "id": "OP_DITHERED_OPACITY_KILL",
+      "name": "Dithered destruction via Bayer + BlueNoise + TemporalAA jitter",
+      "nodes": "MF_LODDitheredDestruction (material function): Sample T_Bayer8x8 (screen-aligned), T_BlueNoise64x64 (world), TemporalAAJitter (frame), DitherValue = Bayer*0.5+Blue*0.5 + jitter*0.08. Clip: OpacityMask = DitherValue > (Tension * DestructionMask * HorizonEatLerp). Forces dithered stipple before hard pop.",
+      "mask": "DestructionMask: vertex color R (ridge=0.9, valley=0.2) * VDM.A (pleat crests) * HeightMask (altitude>threshold). So ridges crumble first, valley floor lasts.",
+      "shared": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BayerDither_8x8, /Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BlueNoise_64x64, /Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_Iridescence_ThinFilm_LUT"
+    },
+    {
+      "id": "OP_WPO_FADE",
+      "name": "WPO resonance scale fade (MF_FabricMountainWPO contract)",
+      "formula": "WPO_Total = Macro*wp0 + Medium*wp0.75 + Micro*wp0*HCym + Wind. wp0 = WPO_Resonance_Scale per LOD (1.0->0.75->0.3->0.0). At LOD3, no vertex moves \u2014 flat impostor.",
+      "tension_mod": "WPO_Resonance_Scale *= (1 + BeatPulse*0.6) at LOD0, but *= (1 - Tension*0.8) at LOD2+ (tension stills distant cloth \u2014 dread calms wind).",
+      "vdm": "VDM xyz offset = VDM.r*Scale.x*T+ VDM.g*Scale.y*B+ VDM.b*Scale.z*N; masked * LOD fade (0 at LOD3) \u2014 see klein_veil_manifest vdm_encoding."
+    },
+    {
+      "id": "OP_POM_TOKSVIG_RIM",
+      "name": "Parallax occlusion + Toksvig + rim preservation",
+      "lod0": "POM32 with 1024 height reads \u2014 crevices deep.",
+      "lod1": "POM16 \u2014 adaptive step halves, still reads at 30m.",
+      "lod2": "POM0 \u2014 flat, Toksvig 0.75 smooths mip-banded normals, rim 1.4 restores edge read without parallax.",
+      "lod3": "POM0, Toksvig 1.0, rim 1.8 \u2014 impostor with only macro normal + grazing Fresnel. Iridescence LUT still ticks via BeatPulse for Moon-haze shimmer before erase."
+    },
+    {
+      "id": "OP_NIAGARA_DUST_ON_CRUMBLE",
+      "name": "Niagara dust/fiber emission at destroy",
+      "system": "NS_FarawayMother_DustDrift (Tier C): spawn where Dither clip just passed, velocity = Tension vector field + wind, rate = Tension * HorizonEat * BeatPulse. Single-writer safe: reads NPC_BeatPulse only.",
+      "budget": "Spawn only on dither transition band (0.4<HorizonEat<0.8), kill after LOD3 alpha 0 \u2014 prevents overdraw."
+    }
+  ],
+  "tension_driven": {
+    "bus": "WorldField.Tension 0..1 (same as HorizonEatAmount at horizon). UMelodiaAudioReactivePresentationSubsystem sole writer. MPC_Melodia_Palette.BeatPulse/BassIntensity/Mid read-only via UMelodiaCymaticsSubsystem.",
+    "mapping": {
+      "0.0-0.3": "Pristine \u2014 only LOD1 stipple, no real loss. FrillValley (T<0.40) still intact.",
+      "0.3-0.6": "Unease \u2014 LOD2 WPO half, ridges crumble, high WeaveRidge (T>0.60) first to go. Player still can Wayfold across.",
+      "0.6-0.9": "Collapse \u2014 LOD3 impostor dither 50-90%, macro only, filter corridors visible. Mother silhouette implied by haze only (per production sheet Body Map: distant limbs = fog).",
+      "0.9-1.0": "Eaten \u2014 LOD3 alpha 0, horizon gone. Only heart gate (MEL_mother_heart_gate) persists as anchor (Mara Anchor radius: 1m stays 1m)."
+    },
+    "per_biome": {
+      "WeaveRidge": "T>0.60, avg 0.96 \u2014 crushes FIRST. Tension threshold 0.35. Material MI_T_FarawayMother_Gown_CelestialSilkJacquard crumble mask boosted.",
+      "LaceCanopy": "T 0.40-0.60, avg 0.87 \u2014 mid. Threshold 0.50, translucent lace hangs longer (Opacity map erodes).",
+      "FrillValley": "T<0.40, avg ~0.32-0.89 (mixed) \u2014 LAST. Floor MI_T_FarawayMother_Corset_GildedAcanthusBrocade persists until HorizonEat 0.85.",
+      "ResonantSeamWay": "|Chladni|<0.12 corridor \u2014 NEVER fully crumbles, becomes the Wayfold path to horizon mouth. Heart gate threshold 0.95 (quest-locked)."
+    },
+    "mpc_scalars_to_add": [
+      "HorizonEatAmount 0..1 (shared with horizon eater)",
+      "Tension (alias, already via DreadPresence if present)",
+      "DestructionAmount 0..1 (Faraway-specific, drives dither threshold \u2014 can be HorizonEat*0.9 for coupling)"
+    ],
+    "add_script": "Content/Python/add_horizon_eater_mpc_params.py (creates all three if missing, safe no-op otherwise)"
+  },
+  "pcg_ex": {
+    "graph": "PCG_FarawayLOD_DestructionFilter (PCGEx): Input points from faraway_mother_pcg_manifest (120 pts, 4 biomes). Ops: TensionCull (density *= 1 - Tension*BiomeFactor), DitherSpawn (keep/discard via BlueNoise), AdvectTowardSeamWay (points near destruction slide to nearest |Chladni|<0.12), HeightAware raycast.",
+    "offline_generator": "Tools/PCG/build_faraway_lod_destruction_ecosystem.py \u2014 deterministic SEED=20260829, outputs faraway_lod_destruction_manifest + placements JSON with destruction_t per point.",
+    "impostor": "HLOD candidates: Nanite terrain stays, but kitbash ISMs at LOD3 swap to impostor billboard + crumble mask. PCG keeps entry/exit Wayfold pair inside SeamWay."
+  },
+  "houdini": {
+    "vdm": "VDM_FabricMountain_Save: VDM fade 1.0->0.0 LOD0->LOD3 (POM32->0, Toksvig 0->1, dither). Cymatic Chladni (3,5) freq fed to VDM fold via foldFreq = baseFreq + BassIntensity*2.0.",
+    "hda": "Tools/Houdini/vdm_fabric_mountains/vdm_fabric_baker.py already bakes VDM; destruction extension adds DestructionMask bake (vertex color R) in same pass. No new HDA needed for core \u2014 add HDM_LodDestructionMask subnetwork if chaining."
+  },
+  "material_contract": {
+    "no_new_masters": "Reuse M_Master_FarawayMother_Fabric / M_Universal_Enhanced_Fabric / M_Master_Nikki_Landscape / M_Master_Toon_Universal. Destruction is MF_LODDitheredDestruction + MF_FabricMountainWPO + MF_ToksvigAntiAlias + iridescence LUT \u2014 all functions, not masters.",
+    "instances_affected": "6 P2 MIs (MI_Mother_Gown/Mantle/Veil/Corset/Cradle/Ornament) + 39 Copernicus PBR MIs \u2014 all get DestructionAmount scalar exposed (default 0).",
+    "shared_textures": "T_Bayer8x8, T_BlueNoise64, T_Iridescence_LUT (already in Saved/Audit/lookdev/optical_lods/shared/ \u2014 promote to /Game/EnvSandbox/Textures/Copernicus/Shared/)."
+  },
+  "evidence": {
+    "offline": "Saved/Audit/faraway_lod_destruction/manifest + placements (deterministic, hashed).",
+    "in_engine": "4 captures via UMelodiaCaptureRenderSubsystem: LOD0 crevices vs LOD3 flat vs dither band (zoom), plus Tension 0/0.5/1.0 Wayfold stills.",
+    "ledger": "gate_ledger row faraway_lod_destruction"
+  },
+  "weave_with_horizon_eater": "HorizonEatAmount is the Faraway destruction envelope at horizon distance. Close mountains destroy via Tension first (local dread). Horizon mountains destroy via HorizonEat (eater eating the Mother). At full eater (1.0), only SeamWay Heart Gate remains as the Seam \u2014 the veil seam that outlives the mountain."
+}

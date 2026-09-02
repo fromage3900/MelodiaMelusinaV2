@@ -1,0 +1,90 @@
+{
+  "schema": "melodia.horizon_eater_spec.v1",
+  "version": "1.0.0",
+  "date": "2026-09-02",
+  "title": "Horizon Eater \u2014 Sea Above Horizon Line Eater",
+  "role": "P3 terminal monolith: distance itself is feeding anatomy. The horizon IS the mouth. Horizon disappearance = horizon eaten.",
+  "thesis": "Do not build a giant mouth mesh. Build three simultaneous horizon kills that together make the horizon unreadable, then reveal the kills were filter-feeding anatomy. Beauty first, anatomy second.",
+  "bible_ref": "Docs/Art/MONOLITH_LEVEL_DESIGN_BIBLE_2026-08-26.md #13 Horizon Eater \u2014 The Smaller World",
+  "plan_ref": "Docs/Monoliths/P3_HORIZON_EATER_PLAN_2026-08-29.md",
+  "hda_ref": "Docs/Houdini/MARA_P0_P3_HOUDINI_EXECUTION_PLAN_2026-08-29.md #9 P3",
+  "how_horizon_disappears": {
+    "summary": "Horizon is killed by 3 overlapping mechanisms, ordered by authority. All three must be tunable via one scalar: HorizonEatAmount (0..1) on MPC_Melodia_Palette + WorldField.Tension.",
+    "kills": [
+      {
+        "id": "KILL_A_SLW_ABSORPTION",
+        "name": "Oceanology Single Layer Water absorption kill (primary)",
+        "authority": "PRIMARY \u2014 the scale trick from SEA_ABOVE_SECOND_OCEAN_LAYOUT_AND_CAMERA_PLAN_2026-08-29.md section 3",
+        "mechanism": "False ocean plane at Z -50m is seen THROUGH real Oceanology SLW. Real ocean MI (M_Water_Oceanology_Melodia_Inst) absorption+scattering attenuates the false ocean. Tuning absorption to extinguish FASTER than 50m of water justifies makes the brain read kilometres of attenuation over metres of geometry.",
+        "params": {
+          "real_ocean_mi": "/Game/EnvSandbox/Materials/Instances/Water/v10/Integrated/MI_Water_Oceanology_Melodia_Inst",
+          "false_ocean_plane": "SeaAbove_FalseOceanPlane_Prototype (Z -5000 cm, MI_SeaAbove_FalseOcean_Clean)",
+          "false_ocean_alternate": "MI_SeaAbove_FalseOcean_Oceanology (Beaufort 2, Biolum_Weight 0.35)",
+          "volume": "AOceanologyWaterVolume (currently 2m cube \u2014 must scale to enclose false plane)",
+          "extinction_depth_target": "Measure first: pull SLW Absorption RGB * Depth param, compute extinction = -ln(0.01)/absorption. Place plane at 70-80% of extinction. If extinction < 50m, horizon already eaten at rest.",
+          "kill_scalar": "MPC_Melodia_Palette.HorizonEatAmount 0..1 drives: Absorption * (1 + HorizonEat*3.0), DeepScatteringColor lerp toward horizon fog color, Biolum_Weight 0.35 * (1 - HorizonEat*0.9)",
+          "tension_binding": "WorldField.Tension = HorizonEatAmount (single bus). UMelodiaAudioReactivePresentationSubsystem is sole writer.",
+          "verification": "From hero overlook (LV_SeaAbove_Prototype CineCameraActor), capture mid-ground Fresnel band: at HorizonEat 0.0 band visible, at 0.6 band fades, at 1.0 horizon gone + false ocean reads as membrane pulse."
+        },
+        "why_not_height_fog": "ExponentialHeightFog governs above-water horizon only. Sub-surface horizon kill is SLW path. Height fog is secondary (kill B companion)."
+      },
+      {
+        "id": "KILL_B_VOLUMETRIC_HAZE",
+        "name": "ExponentialHeightFog + VolumetricCloud + moon-haze volume kill (companion)",
+        "authority": "SECONDARY \u2014 above-water and interstitial",
+        "mechanism": "Height fog density + volumetric extinction swallows the above-water horizon line. VolumetricCloud under-sky mirror collapses. FM_MoonHaze_VolumeBox (FrostBloom) density 0.04->0.18 with tint shift.",
+        "params": {
+          "fog_actor": "ExponentialHeightFog FM_MoonHaze_Fog (density 0.04, heightFalloff 0.15, tint 0.70,0.75,0.90)",
+          "ppv": "FM_MoonHaze_PPV (bloom 0.15, exposure bias +0.5 \u2014 restrained)",
+          "volume_box": "FM_MoonHaze_VolumeBox 40x26x9 at (0,0,450) extent (4000,2600,900) MI_FrostBloom",
+          "kill_scalar": "Density = 0.04 + HorizonEat*0.14, MaxOpacity 0.85 + HorizonEat*0.15, Volumetric Fog Extinction 1.5 + HorizonEat*2.0",
+          "color_lerp": "Fog tint lerp toward (0.55,0.60,0.72) desaturated as eaten (kills blue horizon read)",
+          "cloud": "VolumetricCloud layer: extinction + HorizonEat* 0.8, horizon cloud horizon line softens"
+        }
+      },
+      {
+        "id": "KILL_C_LOD_IMPOSTOR_CRUMBLE",
+        "name": "LOD3 HLOD impostor crumble + PCG density cull (terrain horizon kill)",
+        "authority": "TERTIARY \u2014 geometry horizon",
+        "mechanism": "Distant terrain/kitbash at horizon uses HLOD impostor LOD3 (VistaImpostor_ZeroShimmer: res 128, POM0, Toksvig 1.0, rim 1.8, WPO 0). Bayer 8x8 + BlueNoise 64x64 dithered opacity destroys impostor as HorizonEat rises. PCG points near horizon have density *= (1 - HorizonEat) via PCGEx cull, plus advection toward feeding corridor.",
+        "params": {
+          "lod_tiers_ref": "specs/lookdev/optical_lod_manifest.v1.json LOD3 200-5000m",
+          "dither": "T_LOD_BayerDither_8x8 + T_LOD_BlueNoise_64x64 + TemporalAA jitter, DitherTemporalAA node, OpacityMaskClipValue = DitherValue < (HorizonEat * TensionMask)",
+          "hlod": "HLOD_FarawayMother_Instanced (instanced) + HLOD_FarawayMother_Merged (merged) \u2014 eaten variants keep same bounds but impostor alpha -> 0",
+          "pcg": "PCG_HorizonEater_FilterFlow graph: density remap, filter-flow vector advects distant points toward horizon mouth corridor (see Tools/PCG/build_horizon_eater_ecosystem.py)",
+          "tension_gate": "Only crumble where Tension > 0.6 OR distance > 1500m (WeaveRidge high tension + Residue Seam Way). Valley (FrillValley T<0.4) persists longer \u2014 eaten last.",
+          "shared_lookup": "DitherPattern /Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BayerDither_8x8, BlueNoise /Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BlueNoise_64x64, IridescenceLUT /Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_Iridescence_ThinFilm_LUT"
+        }
+      }
+    ],
+    "single_scalar_contract": {
+      "writer": "UMelodiaAudioReactivePresentationSubsystem (sole writer of MPC_Melodia_Palette) \u2014 never add second writer",
+      "consumer_readonly": "UMelodiaCymaticsSubsystem (IsReadOnlyByContract=true) + all MIs read MPC only via scalar param collections",
+      "scalar": "MPC_Melodia_Palette.HorizonEatAmount 0..1 (new, additive \u2014 safe no-op if missing)",
+      "aliases": "WorldField.Tension = HorizonEatAmount, WorldField.HorizonEat mirrors it, BeatPulse still drives pulse on same bus (see klein_veil_manifest mpc_wiring)",
+      "driven_by": "Rhythm accuracy + SeaAbove Bell pulse + Faraway Mother Tension meeting at horizon. 0 = pristine horizon, 1 = horizon gone/membrane revealed. DissonanceAmount (tension MPC) can mirror for audio.",
+      "guardrail": "No new MPC asset. Add scalar to existing MPC_Melodia_Palette via Content/Python/add_horizon_eater_mpc_params.py (pattern: add_tension_mpc_params.py). Reads on missing param are no-ops."
+    },
+    "bell_as_horizon": {
+      "layout_rule": "Bell crown tangent to false ocean plane along hero sightline. Current blockout has plane at -50m + sphere at -180m (diagnostic, not hero). Final: Bell R ~3km, sag = R - sqrt(R^2 - d^2). At d=1.2km (attenuation horizon) sag ~251m. Crown just beneath plane, bulk falls by curvature.",
+      "reveal": "At HorizonEat 1.0, radial anatomy travels across false ocean via emissive pulse (Biolum pulse), recontextualizing plane as membrane. Two gates: 'Bell perimeter hidden' + 'pulse creates biological realization' must both pass from hero overlook."
+    },
+    "levels": {
+      "sea_above": "LV_SeaAbove_Prototype \u2014 primary horizon eater stage (ocean + false ocean + fog + droplets). Horizon kill A+B+C all present.",
+      "faraway_mother": "LV_FarawayMother_Prototype \u2014 secondary: fabric mountain horizon eaten by same scalar (LOD destruction). Wayfold destination beyond eaten horizon."
+    },
+    "pcgex": {
+      "graph": "PCG_HorizonEater_FilterFlow (PCGEx-bridged): Input: WorldField.Tension + distance + Chladni nodal. Ops: DensityRemap (1 - HorizonEat * HorizonMask), VectorAdvect (filter-flow corridor toward horizon mouth), DitherCull (Bayer+BlueNoise clip), HeightAware raycast (Visibility 50000->-50000).",
+      "datasets": "FilterFlowField curves + DistanceEvidenceScatter points + HorizonMouthCorridor splines (from HDA_P3_HorizonMouthComposer exports)."
+    },
+    "houdini": {
+      "hda": "HDA_P3_HorizonMouthComposer (upper/lower horizon proxies, filter plates, mouth depth cards, silhouette mask, HLOD variants). Lives in Tools/Houdini/horizon_eater/hda_horizon_mouth_composer.py scaffold.",
+      "exports": "UpperHorizonProxy, LowerHorizonProxy, FilterPlateFarMeshes, MouthDepthCardsOrMeshes, SilhouetteMask, RevealAlignmentData, HLOD/FarLOD variants + CSV curves for PCGEx."
+    },
+    "evidence": {
+      "captures": "4-view HDR via UMelodiaCaptureRenderSubsystem (present, needs Build.bat): Shot A horizon pristine (HorizonEat 0.0), Shot B half-eaten (0.6), Shot C eaten+membrane reveal (1.0), Shot D top-down filter corridor.",
+      "ledger": "gate_ledger row horizon_eater_prototype (requires editor PIE + captures + hashes)"
+    }
+  },
+  "faraway_lod_destruction_link": "Same scalar eats Faraway Mother fabric mountains via LOD3 impostor crumble (see faraway_lod_destruction_spec). Faraway horizon eaten LAST \u2014 Horizon Eater is capstone that consumes even the Mother's silhouette."
+}
