@@ -236,6 +236,20 @@ VARIANTS = {
         grain_freq=7, resin_density=0.5, leaf_count=16,
         chladni_modes=[(6, 8), (11, 7), (16, 13)],
     ),
+    # === MoonlitMOSS — forest floor: dark loam, plush moss tufts, bioluminescent
+    # moss tracing the Chladni nodal glow, and a dusting of tiny bright spores (2026-09-02) ===
+    # Body-landscape: soil relief + raised moss tufts; the Chladni rings read as glowing
+    # mycological tendrils; spores sit at high-frequency noise nodes so nothing floats.
+    "MoonlitMoss": dict(
+        soil_hi=(64, 54, 40), soil_mid=(46, 40, 34), soil_deep=(26, 26, 30),
+        moss=(58, 150, 92), moss_dark=(34, 96, 66), moss_hi=(120, 220, 150),
+        biolum=(140, 255, 172), biolum_alt=(180, 244, 255),
+        spore=(205, 255, 210), spore_glow=(170, 255, 190),
+        glow=(160, 255, 190),
+        rough_soil=0.88, rough_moss=0.55, rough_biolum=0.15, rough_spore=0.30,
+        glow_intensity=0.7, spore_density=0.55,
+        chladni_modes=[(7, 5), (12, 9), (9, 15), (16, 12)],
+    ),
     # === Faraway Mother fabric mountains — 8 terrain-scale fabric variants (2026-09-02) ===
     # Body-landscape: reclining maternal silhouette, fabric ridges = skin/folds,
     # MOON = silver-blue key, rhythm stabilizes local moon phase, fashion opens membranes.
@@ -1661,6 +1675,63 @@ def build_weeping_willow(h, w, frame, total_frames):
                      np.ones((h, w), np.float32))
 
 
+def build_moonlit_moss(h, w, frame, total_frames):
+    """MoonlitMoss — forest floor: dark loam, plush moss tufts, bioluminescent
+    moss riding the Chladni nodal glow, and a dusting of tiny bright spores.
+    Spores land only on high-frequency noise nodes (nothing floats). Tileable."""
+    p = VARIANTS["MoonlitMoss"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+
+    # Organic forest-floor relief (soil + coarse clumpy moss)
+    soil = warped_fbm(h, w, 22, 5, 0.38, SEED + 900)
+    moss_gra = warped_fbm(h, w, 40, 4, 0.25, SEED + 901)      # moss clump shape
+    moss_patch = smoothstep(0.44, 0.66, moss_gra)             # soft tuft bases
+    moss_hair = fbm_noise(h, w, 14, 3, SEED + 902)            # fine fibers in tufts
+    moss_fine = smoothstep(0.55, 0.86, moss_hair) * moss_patch
+
+    # Chladni — drives bioluminescent tendril glow (mycological nodal rings)
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.25 + i * 0.20) + i * 1.1 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.4][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    glow_band = smoothstep(0.72, 0.95, nodal)                 # thin glowing filaments
+    glow_pulse = 0.62 + 0.38 * np.sin(phase * 2.0 + nodal * 3.0)   # breathing biolum
+
+    # Spores — tiny bright dots at high-frequency noise nodes, twinkling over time
+    spore_noise = fbm_noise(h, w, 4, 2, SEED + 903)
+    spore_mask = smoothstep(0.90 - p["spore_density"] * 0.06, 0.995, spore_noise)
+    spore_twinkle = 0.58 + 0.42 * np.sin(phase * 1.4 + spore_noise * 40)
+
+    height = np.clip(soil * 0.30 + moss_patch * 0.45 + moss_fine * 0.20 +
+                     glow_band * 0.15 + spore_mask * 0.04, 0, 1)
+
+    base = mix(col(p["soil_deep"]), col(p["soil_mid"]), soil)
+    base = mix(base, col(p["soil_hi"]), np.clip((soil - 0.55) * 3.0, 0, 1))
+    base = mix(base, col(p["moss"]), moss_patch * 0.85)
+    base = mix(base, col(p["moss_dark"]), (1.0 - moss_gra) * moss_patch * 0.35)
+    base = mix(base, col(p["moss_hi"]), moss_fine * 0.6)
+    base = mix(base, col(p["biolum"]), glow_band * glow_pulse * p["glow_intensity"])
+    base = mix(base, col(p["biolum_alt"]), glow_band * cym * p["glow_intensity"] * 0.35)
+    base = mix(base, col(p["spore"]), spore_mask * spore_twinkle * 0.8)
+
+    rough = mix(p["rough_soil"], p["rough_moss"], moss_patch * 0.7)
+    rough = mix(rough, p["rough_biolum"], glow_band * 0.5)
+    rough = mix(rough, p["rough_spore"], spore_mask * 0.35)
+
+    metallic = np.clip(glow_band * 0.12 + spore_mask * 0.08, 0, 1)  # faint moist sheen
+
+    emissive = mask_color(glow_band * glow_pulse, col(p["glow"]))
+    emissive = emissive + mask_color(spore_mask * spore_twinkle, col(p["spore_glow"]))
+    emissive = np.clip(emissive, 0, 1)
+
+    iri = np.clip(moss_fine * 0.20 + glow_band * 0.16 + spore_mask * 0.10, 0, 1)
+
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri,
+                     np.ones((h, w), np.float32))
+
+
 def build_melodia_hero_gem(h, w, frame, total_frames):
     """Reusable audio-reactive HERO GEM — Infinity Nikki jewellery recipe over Chladni.
 
@@ -1983,6 +2054,7 @@ BUILDERS = {
     "CrystalCathedral": build_crystal_cathedral,
     "RoyalVelvetBrocade": build_royal_velvet_brocade,
     "WeepingWillow": build_weeping_willow,
+    "MoonlitMoss": build_moonlit_moss,
     "FarawayCelestialSilk": build_faraway_celestial_silk,
     "MelodiaHeroGem": build_melodia_hero_gem,
     "MelodiaGoldSilk": build_melodia_gold_silk,
