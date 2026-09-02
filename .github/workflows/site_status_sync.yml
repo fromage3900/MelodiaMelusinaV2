@@ -30,26 +30,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout game repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: game
 
       - name: Generate status blob into the site checkout
         run: python game/Tools/sync_site_status.py --out game/_site_status.json
 
+      - name: Skip remote site push without SITE_SYNC_TOKEN
+        if: ${{ secrets.SITE_SYNC_TOKEN == '' }}
+        run: |
+          echo "SITE_SYNC_TOKEN not configured — status blob generated only."
+          echo "Use deploy/sync_site_to_github.ps1 locally for token-free site deploy."
+
       - name: Checkout site repo
-        uses: actions/checkout@v4
+        if: ${{ secrets.SITE_SYNC_TOKEN != '' }}
+        uses: actions/checkout@v7
         with:
           repository: fromage3900/my-site
           path: site
           token: ${{ secrets.SITE_SYNC_TOKEN }}
 
       - name: Stage generated status
+        if: ${{ secrets.SITE_SYNC_TOKEN != '' }}
         run: |
           mkdir -p site/public/melodia/status
           cp game/_site_status.json site/public/melodia/status/sync_status.json
 
       - name: Commit & push if changed
+        if: ${{ secrets.SITE_SYNC_TOKEN != '' }}
         working-directory: site
         run: |
           git add -A

@@ -26,7 +26,7 @@ jobs:
     timeout-minutes: 20
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           lfs: false
           fetch-depth: 0
@@ -144,7 +144,7 @@ jobs:
       # without needing a committed file or a second write path into git.
       - name: Upload gate ledger artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: gate-ledger
           path: Saved/gate_ledger.json
@@ -153,7 +153,7 @@ jobs:
 
       - name: Upload project health artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: project-health
           path: |
