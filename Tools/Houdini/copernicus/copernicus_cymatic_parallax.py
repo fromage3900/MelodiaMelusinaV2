@@ -214,6 +214,75 @@ VARIANTS = {
         void=(10, 12, 18), gold_trim=(255, 220, 140),
         rough_stone=0.45, rough_crystal=0.12, rough_facet=0.08, glow_intensity=0.85, crystal_count=16,
     ),
+    # === P4 overnight — velvet + embroidery + jewels ===
+    "RoyalVelvetBrocade": dict(
+        velvet=(128, 24, 46), velvet_hi=(176, 52, 76), velvet_deep=(84, 14, 30),
+        gold=(226, 184, 96), gold_shadow=(158, 118, 56), gold_hi=(255, 220, 150),
+        ruby=(200, 46, 66), emerald=(44, 178, 124), sapphire=(62, 118, 224),
+        glow=(255, 214, 160),
+        rough_velvet=0.82, rough_gold=0.22, rough_jewel=0.05,
+        glow_intensity=0.6, brocade_freq=6, jewel_rows=3,
+    ),
+    # === Faraway Mother fabric mountains — 8 terrain-scale fabric variants (2026-09-02) ===
+    # Body-landscape: reclining maternal silhouette, fabric ridges = skin/folds,
+    # MOON = silver-blue key, rhythm stabilizes local moon phase, fashion opens membranes.
+    "FarawayCelestialSilk": dict(
+        silk=(232, 236, 248), silk_shadow=(198, 206, 232), silk_deep=(165, 178, 218),
+        constellation=(255, 240, 180), constellation_hi=(255, 255, 210),
+        thread_gold=(255, 220, 140), moon_silver=(190, 205, 255),
+        glow=(200, 220, 255),
+        rough_silk=0.18, rough_thread=0.22, rough_constellation=0.08,
+        glow_intensity=0.65, weave_freq=14, chladni_modes=[(14, 18), (22, 16), (32, 28)],
+    ),
+    "FarawayNightVelvet": dict(
+        velvet=(18, 22, 48), velvet_mid=(32, 38, 78), velvet_hi=(58, 64, 118),
+        pile=(42, 48, 88), gold_dust=(255, 220, 140), moon=(190, 205, 255),
+        glow=(160, 180, 255),
+        rough_velvet=0.88, rough_pile=0.92, rough_gold=0.22,
+        glow_intensity=0.35, pile_freq=4, chladni_modes=[(4, 6), (6, 8), (10, 12)],
+    ),
+    "FarawayAquaLace": dict(
+        lace=(245, 250, 255), lace_shadow=(220, 235, 248), lace_deep=(190, 215, 235),
+        aqua=(120, 200, 230), aqua_deep=(80, 160, 210), pearl=(255, 245, 235),
+        glow=(180, 230, 255),
+        rough_lace=0.32, rough_aqua=0.15, rough_pearl=0.12,
+        glow_intensity=0.55, lace_freq=7, chladni_modes=[(7, 11), (11, 7), (18, 14)],
+    ),
+    "FarawayGildedRidge": dict(
+        ridge=(52, 48, 42), ridge_hi=(78, 72, 64), ridge_deep=(32, 30, 28),
+        gold=(226, 184, 96), gold_hi=(255, 220, 150), gold_shadow=(160, 128, 64),
+        ember=(255, 140, 80), glow=(255, 214, 160),
+        rough_ridge=0.62, rough_gold=0.18, rough_ember=0.35,
+        glow_intensity=0.55, fold_freq=9, chladni_modes=[(5, 9), (12, 18), (20, 15)],
+    ),
+    "FarawayAlabasterDrape": dict(
+        alabaster=(238, 232, 224), alabaster_shadow=(212, 204, 192), alabaster_deep=(185, 175, 160),
+        vein=(180, 170, 155), vein_gold=(220, 195, 140), moon=(200, 215, 255),
+        glow=(220, 230, 255),
+        rough_alabaster=0.35, rough_vein=0.45, rough_gold=0.22,
+        glow_intensity=0.3, drape_freq=6, chladni_modes=[(6, 10), (14, 14), (18, 22)],
+    ),
+    "FarawayNacreVeil": dict(
+        nacre=(240, 245, 255), nacre_mid=(220, 230, 248), nacre_deep=(200, 215, 235),
+        nacre_pink=(255, 200, 220), nacre_gold=(255, 220, 180), nacre_blue=(180, 210, 255),
+        glow=(220, 240, 255),
+        rough_nacre=0.10, rough_veil=0.18, rough_gold=0.20,
+        glow_intensity=0.70, veil_freq=8, chladni_modes=[(8, 12), (16, 10), (24, 18)],
+    ),
+    "FarawayMoonChiffon": dict(
+        chiffon=(235, 240, 255), chiffon_shadow=(210, 220, 248), chiffon_deep=(185, 200, 235),
+        moon_hi=(255, 255, 255), moon_mid=(220, 230, 255), haze=(180, 190, 220),
+        glow=(200, 220, 255),
+        rough_chiffon=0.28, rough_haze=0.55, rough_moon=0.12,
+        glow_intensity=0.45, chiffon_freq=3, chladni_modes=[(3, 5), (7, 9), (12, 8)],
+    ),
+    "FarawayLullabyFleece": dict(
+        fleece=(225, 230, 235), fleece_shadow=(200, 210, 220), fleece_deep=(175, 185, 200),
+        lullaby=(255, 200, 210), lullaby_deep=(220, 160, 180), moss=(120, 160, 140),
+        glow=(255, 210, 220),
+        rough_fleece=0.85, rough_lullaby=0.45, rough_moss=0.65,
+        glow_intensity=0.40, fleece_freq=9, chladni_modes=[(9, 13), (15, 17), (21, 19)],
+    ),
 }
 
 # === Math helpers ===
@@ -1166,6 +1235,275 @@ def build_frost_bloom(h, w, frame, total_frames): return _build_new_variant(h, w
 def build_choir_stone(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "ChoirStone")
 def build_crystal_cathedral(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "CrystalCathedral")
 
+# === Faraway Mother fabric mountain builders (8) ===
+def _build_faraway_variant(h, w, frame, total_frames, variant_name):
+    """Terrain-scale fabric mountain builder — Chladni drape + woven pile + moonlit sheen."""
+    p = VARIANTS[variant_name]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.35 + i * 0.22) + i * 1.1 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.4][:len(modes)])
+    warp = warped_fbm(h, w, 16, 4, 0.25, SEED + hash(variant_name) % 1000)
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+
+    if variant_name == "FarawayCelestialSilk":
+        weave = np.sin(nx * p["weave_freq"] * 2 * np.pi) * np.sin(ny * p["weave_freq"] * 1.3 * 2 * np.pi) * 0.5 + 0.5
+        weave = smoothstep(0.35, 0.65, weave)
+        constellation = smoothstep(0.78, 0.96, 1.0 - np.abs(cym - 0.5) * 2)  # Chladni nodal threads
+        star_field = smoothstep(0.88, 0.97, tileable_value_noise(h, w, 24, SEED + 501))
+        star_mask = np.clip(constellation * 0.7 + star_field * 0.5, 0, 1)
+        # Silk drape: weave troughs + Chladni ridge
+        height = weave * 0.22 + cym * 0.18 + star_mask * 0.35 + warp * 0.08
+        base = mix(col(p["silk_deep"]), col(p["silk"]), warp * 0.4 + 0.3)
+        base = mix(base, col(p["silk_shadow"]), weave * 0.25)
+        base = mix(base, col(p["thread_gold"]), constellation * 0.55)
+        base = mix(base, col(p["constellation"]), star_mask * 0.85)
+        base = mix(base, col(p["constellation_hi"]), smoothstep(0.92, 0.98, star_mask) * 0.6)
+        rough = mix(p["rough_silk"], p["rough_thread"], constellation * 0.6)
+        rough = mix(rough, p["rough_constellation"], star_mask * 0.8)
+        metallic = star_mask * 0.12 + constellation * 0.08
+        emissive = mask_color(star_mask * smoothstep(0.4, 0.85, warp), col(p["glow"]) * p["glow_intensity"] * 0.9)
+        emissive += mask_color(constellation * 0.5, col(p["moon_silver"]) * 0.25)
+        emissive = np.clip(emissive, 0, 1)
+        iri = star_mask * 0.55 + constellation * 0.35 + weave * 0.12
+        # Sheen mask for M_Master_Nikki: silk highlight along weave crests
+        sheen = smoothstep(0.55, 0.85, weave) * (0.6 + cym * 0.4)
+
+    elif variant_name == "FarawayNightVelvet":
+        pile = warped_fbm(h, w, 48, 3, 0.18, SEED + 502)
+        pile_dir = np.sin(nx * p["pile_freq"] * np.pi + cym * 2) * 0.5 + 0.5
+        # Broad velvet folds driven by low-frequency Chladni
+        fold = smoothstep(0.42, 0.68, cym)
+        fold_edge = smoothstep(0.58, 0.72, cym) * (1 - smoothstep(0.72, 0.86, cym))
+        dust = smoothstep(0.75, 0.92, tileable_value_noise(h, w, 12, SEED + 503))
+        height = fold * 0.45 + pile * 0.12 + pile_dir * 0.08 + warp * 0.06
+        base = mix(col(p["velvet"]), col(p["velvet_mid"]), pile * 0.5)
+        base = mix(base, col(p["velvet_hi"]), fold * 0.45)
+        base = mix(base, col(p["pile"]), pile_dir * fold * 0.3)
+        base = mix(base, col(p["gold_dust"]), dust * fold_edge * 0.7)
+        rough = mix(p["rough_velvet"], p["rough_pile"], pile * 0.3)
+        rough = mix(rough, p["rough_gold"], dust * fold_edge * 0.5)
+        metallic = dust * fold_edge * 0.35
+        emissive = mask_color(dust * fold_edge, col(p["glow"]) * p["glow_intensity"] * 0.6)
+        emissive += mask_color(smoothstep(0.65, 0.85, cym) * pile_dir * 0.3, col(p["moon"]) * 0.18)
+        emissive = np.clip(emissive, 0, 1)
+        iri = fold_edge * 0.25 + dust * 0.15
+        sheen = fold * 0.85  # velvet sheen = broad grazing highlight on folds
+
+    elif variant_name == "FarawayAquaLace":
+        lace_weave = (np.sin(nx * p["lace_freq"] * 2 * np.pi) * np.sin(ny * p["lace_freq"] * 2 * np.pi) * 0.5 + 0.5)
+        lace_weave = smoothstep(0.48, 0.72, lace_weave)
+        lace_holes = smoothstep(0.62, 0.82, 1.0 - lace_weave)  # negative = holes
+        aqua_flow = smoothstep(0.38, 0.62, cym) * (0.6 + warp * 0.4)
+        pearl_nodes = smoothstep(0.82, 0.96, 1.0 - np.abs(cym - 0.5) * 2) * aqua_flow
+        # Lace membrane: raised lace, recessed holes, aqua in channels
+        height = lace_weave * 0.38 + (1 - lace_holes) * 0.12 + aqua_flow * 0.22 + pearl_nodes * 0.42
+        base = mix(col(p["lace_deep"]), col(p["lace"]), lace_weave * 0.6 + warp * 0.2)
+        base = mix(base, col(p["aqua"]), aqua_flow * 0.65)
+        base = mix(base, col(p["aqua_deep"]), aqua_flow * aqua_flow * 0.35)
+        base = mix(base, col(p["pearl"]), pearl_nodes * 0.88)
+        rough = mix(p["rough_lace"], p["rough_aqua"], aqua_flow)
+        rough = mix(rough, p["rough_pearl"], pearl_nodes)
+        metallic = pearl_nodes * 0.10
+        emissive = mask_color(pearl_nodes * smoothstep(0.4, 0.8, warp), col(p["glow"]) * p["glow_intensity"] * 0.7)
+        emissive = np.clip(emissive, 0, 1)
+        iri = pearl_nodes * 0.75 + aqua_flow * 0.35
+        sheen = lace_weave * 0.55
+        # Opacity: lace holes are semi-transparent
+        opacity = np.clip(1.0 - lace_holes * 0.65, 0.35, 1.0)
+
+    elif variant_name == "FarawayGildedRidge":
+        # Mountain ridge folds: Chladni drives ridge orientation
+        fold = smoothstep(0.44, 0.70, cym)
+        ridge_crest = smoothstep(0.72, 0.90, cym)
+        ridge_shadow = smoothstep(0.18, 0.38, 1.0 - cym)
+        gold_vein = smoothstep(0.76, 0.94, 1.0 - np.abs(cym - 0.5) * 2) * fold
+        ember_glow = smoothstep(0.82, 0.96, tileable_value_noise(h, w, 20, SEED + 504)) * ridge_crest
+        height = fold * 0.52 + ridge_crest * 0.42 + gold_vein * 0.28 + warp * 0.08
+        base = mix(col(p["ridge_deep"]), col(p["ridge"]), warp * 0.35 + 0.25)
+        base = mix(base, col(p["ridge_hi"]), fold * 0.55)
+        base = mix(base, col(p["ridge_deep"]), ridge_shadow * 0.35)
+        base = mix(base, col(p["gold"]), gold_vein * 0.90)
+        base = mix(base, col(p["gold_hi"]), smoothstep(0.85, 0.97, gold_vein) * 0.5)
+        base = mix(base, col(p["ember"]), ember_glow * 0.65)
+        rough = mix(p["rough_ridge"], p["rough_gold"], gold_vein)
+        rough = mix(rough, p["rough_ember"], ember_glow * 0.5)
+        metallic = np.clip(gold_vein * 0.88 + ember_glow * 0.25, 0, 1)
+        emissive = mask_color(gold_vein * 0.6, col(p["glow"]) * p["glow_intensity"] * 0.5)
+        emissive += mask_color(ember_glow, col(p["ember"]) * 0.9)
+        emissive = np.clip(emissive, 0, 1)
+        iri = gold_vein * 0.30 + ridge_crest * 0.12
+        sheen = ridge_crest * 0.35
+
+    elif variant_name == "FarawayAlabasterDrape":
+        drape_sag = smoothstep(0.32, 0.62, cym)  # heavy sag
+        drape_fold = smoothstep(0.68, 0.88, 1.0 - np.abs(cym - 0.5) * 2)
+        vein_lines = smoothstep(0.74, 0.92, warped_fbm(h, w, 24, 4, 0.35, SEED + 505))
+        # Carved alabaster: broad drape + fine carved veins
+        height = drape_sag * 0.42 + drape_fold * 0.32 + vein_lines * 0.18 + warp * 0.06
+        base = mix(col(p["alabaster_deep"]), col(p["alabaster"]), drape_sag * 0.5 + warp * 0.3)
+        base = mix(base, col(p["alabaster_shadow"]), drape_fold * 0.25)
+        base = mix(base, col(p["vein"]), vein_lines * drape_sag * 0.45)
+        base = mix(base, col(p["vein_gold"]), vein_lines * drape_fold * 0.45)
+        rough = mix(p["rough_alabaster"], p["rough_vein"], vein_lines)
+        rough = mix(rough, p["rough_gold"], vein_lines * drape_fold * 0.4)
+        metallic = vein_lines * drape_fold * 0.55
+        emissive = mask_color(vein_lines * drape_fold * smoothstep(0.5, 0.9, warp), col(p["glow"]) * p["glow_intensity"] * 0.4)
+        emissive = np.clip(emissive, 0, 1)
+        iri = vein_lines * 0.20 + drape_fold * 0.08
+        sheen = drape_sag * 0.45
+
+    elif variant_name == "FarawayNacreVeil":
+        veil_weave = np.sin(nx * p["veil_freq"] * 2 * np.pi) * np.sin(ny * p["veil_freq"] * 1.6 * 2 * np.pi) * 0.5 + 0.5
+        veil_weave = smoothstep(0.40, 0.68, veil_weave)
+        nacre_sheen = smoothstep(0.45, 0.72, cym)  # broad nacre field
+        nacre_edge = smoothstep(0.70, 0.88, 1.0 - np.abs(cym - 0.5) * 2) * nacre_sheen
+        # Iridescence: hue shift across cym gradient
+        hue_shift = (cym * 3.0) % 1.0  # 0..1 cycle
+        height = veil_weave * 0.18 + nacre_sheen * 0.22 + nacre_edge * 0.42 + warp * 0.06
+        # Nacre base: blend pink/blue/gold by hue_shift
+        base = mix(col(p["nacre_deep"]), col(p["nacre_mid"]), nacre_sheen * 0.5 + warp * 0.25)
+        base = mix(base, col(p["nacre"]), veil_weave * 0.3)
+        base = mix(base, col(p["nacre_pink"]), smoothstep(0.0, 0.33, hue_shift) * nacre_edge * 0.7)
+        base = mix(base, col(p["nacre_gold"]), smoothstep(0.33, 0.66, hue_shift) * nacre_edge * 0.6)
+        base = mix(base, col(p["nacre_blue"]), smoothstep(0.66, 1.0, hue_shift) * nacre_edge * 0.6)
+        rough = mix(p["rough_nacre"], p["rough_veil"], veil_weave * 0.4)
+        rough = mix(rough, p["rough_gold"], nacre_edge * 0.3)
+        metallic = nacre_edge * 0.18
+        emissive = mask_color(nacre_edge * smoothstep(0.4, 0.85, warp), col(p["glow"]) * p["glow_intensity"] * 0.55)
+        emissive = np.clip(emissive, 0, 1)
+        iri = nacre_edge * 0.92 + nacre_sheen * 0.45 + veil_weave * 0.18
+        sheen = nacre_sheen * 0.72
+
+    elif variant_name == "FarawayMoonChiffon":
+        chiffon_billow = smoothstep(0.38, 0.62, cym)  # large soft billow
+        chiffon_fold = smoothstep(0.72, 0.88, 1.0 - np.abs(cym - 0.5) * 2) * chiffon_billow
+        haze_field = warped_fbm(h, w, 32, 3, 0.28, SEED + 506)
+        moon_highlight = smoothstep(0.78, 0.94, chiffon_billow) * (0.5 + haze_field * 0.5)
+        # Chiffon: very soft height, translucent
+        height = chiffon_billow * 0.18 + chiffon_fold * 0.22 + haze_field * 0.08 + warp * 0.04
+        base = mix(col(p["chiffon_deep"]), col(p["chiffon"]), chiffon_billow * 0.5 + warp * 0.25)
+        base = mix(base, col(p["chiffon_shadow"]), chiffon_fold * 0.22)
+        base = mix(base, col(p["moon_mid"]), moon_highlight * 0.55)
+        base = mix(base, col(p["moon_hi"]), smoothstep(0.88, 0.97, moon_highlight) * 0.45)
+        base = mix(base, col(p["haze"]), haze_field * chiffon_billow * 0.18)
+        rough = mix(p["rough_chiffon"], p["rough_haze"], haze_field * 0.4)
+        rough = mix(rough, p["rough_moon"], moon_highlight * 0.5)
+        metallic = moon_highlight * 0.06
+        emissive = mask_color(moon_highlight * smoothstep(0.5, 0.9, warp), col(p["glow"]) * p["glow_intensity"] * 0.35)
+        emissive = np.clip(emissive, 0, 1)
+        iri = chiffon_fold * 0.45 + moon_highlight * 0.25
+        sheen = chiffon_billow * 0.65
+        opacity = np.clip(0.72 + chiffon_billow * 0.20 - chiffon_fold * 0.12, 0.55, 0.92)
+
+    else:  # FarawayLullabyFleece
+        fleece_pile = warped_fbm(h, w, 64, 3, 0.14, SEED + 507)
+        fleece_nodes = smoothstep(0.58, 0.82, 1.0 - np.abs(cym - 0.5) * 2)
+        lullaby_bloom = smoothstep(0.52, 0.78, cym) * (0.5 + fleece_pile * 0.5)
+        moss_vein = smoothstep(0.68, 0.88, warped_fbm(h, w, 20, 4, 0.32, SEED + 508)) * fleece_nodes
+        height = fleece_pile * 0.18 + fleece_nodes * 0.42 + lullaby_bloom * 0.28 + moss_vein * 0.15 + warp * 0.06
+        base = mix(col(p["fleece_deep"]), col(p["fleece"]), fleece_pile * 0.5 + warp * 0.25)
+        base = mix(base, col(p["fleece_shadow"]), fleece_nodes * 0.22)
+        base = mix(base, col(p["lullaby"]), lullaby_bloom * 0.62)
+        base = mix(base, col(p["lullaby_deep"]), lullaby_bloom * lullaby_bloom * 0.35)
+        base = mix(base, col(p["moss"]), moss_vein * 0.55)
+        rough = mix(p["rough_fleece"], p["rough_lullaby"], lullaby_bloom)
+        rough = mix(rough, p["rough_moss"], moss_vein * 0.5)
+        metallic = moss_vein * 0.08
+        emissive = mask_color(lullaby_bloom * smoothstep(0.4, 0.8, fleece_pile), col(p["glow"]) * p["glow_intensity"] * 0.5)
+        emissive = np.clip(emissive, 0, 1)
+        iri = lullaby_bloom * 0.35 + fleece_nodes * 0.18
+        sheen = fleece_nodes * 0.42
+
+    # Ensure sheen/opacity defined for all branches
+    if 'sheen' not in locals():
+        sheen = cym * 0.5
+    if 'opacity' not in locals():
+        opacity = np.ones((h, w), np.float32)
+
+    result = _assemble(h, w, base, rough, metallic, height, emissive, iri, opacity)
+    # Inject sheen as extra channel for M_Master_Nikki sheen lane (NikkiPearlSheen)
+    result["Sheen"] = to_u8(np.clip(sheen, 0, 1) * 255)
+    return result
+
+def build_faraway_celestial_silk(h, w, frame, total_frames): return _build_faraway_variant(h, w, frame, total_frames, "FarawayCelestialSilk")
+def build_faraway_night_velvet(h, w, frame, total_frames): return _build_faraway_variant(h, w, frame, total_frames, "FarawayNightVelvet")
+def build_faraway_aqua_lace(h, w, frame, total_frames): return _build_faraway_variant(h, w, frame, total_frames, "FarawayAquaLace")
+def build_faraway_gilded_ridge(h, w, frame, total_frames): return _build_faraway_variant(h, w, frame, total_frames, "FarawayGildedRidge")
+def build_faraway_alabaster_drape(h, w, frame, total_frames): return _build_faraway_variant(h, w, frame, total_frames, "FarawayAlabasterDrape")
+def build_faraway_nacre_veil(h, w, frame, total_frames): return _build_faraway_variant(h, w, frame, total_frames, "FarawayNacreVeil")
+def build_faraway_moon_chiffon(h, w, frame, total_frames): return _build_faraway_variant(h, w, frame, total_frames, "FarawayMoonChiffon")
+def build_faraway_lullaby_fleece(h, w, frame, total_frames): return _build_faraway_variant(h, w, frame, total_frames, "FarawayLullabyFleece")
+
+
+def build_royal_velvet_brocade(h, w, frame, total_frames):
+    """Royal velvet with gold-thread brocade embroidery and faceted jewel inlays."""
+    p = VARIANTS["RoyalVelvetBrocade"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+
+    rng = np.random.RandomState(SEED + 300)
+
+    # Velvet base — soft depth variation + woven sheen from tight sine lattice
+    velvet = warped_fbm(h, w, 48, 4, 0.15, SEED + 301)
+    woven = np.sin(nx * p["brocade_freq"] * 40 * np.pi) * np.sin(ny * p["brocade_freq"] * 40 * np.pi) * 0.5 + 0.5
+    velvet = np.clip(velvet * 0.5 + woven * 0.5, 0, 1)
+
+    # Brocade embroidery — cymatic filigree swirls channeling gold thread
+    cym = cymatic_chladni(h, w, freqs=[(9, 13), (17, 11), (24, 20), (13, 22)],
+                          phases=[phase * 0.35 + i * 1.3 for i in range(4)],
+                          weights=[1.0, 0.7, 0.5, 0.35])
+    thread_raw = 1.0 - np.abs(cym - 0.5) * 2.0
+    gold_thread = smoothstep(0.80, 0.96, thread_raw)
+    gold_core = smoothstep(0.90, 0.98, thread_raw)          # brighter centre of the strand
+    filigree = cym * 0.6 + gold_thread * 0.4                # soft underlying swirl shading
+
+    # Jewel inlays on a rounded-rect brocade frame grid
+    jewel_mask = np.zeros((h, w), np.float32)
+    jewel_color = np.zeros((h, w, 3), np.float32)
+    cols = [col(p["ruby"]), col(p["emerald"]), col(p["sapphire"])]
+    n = p["jewel_rows"]
+    for iy in range(n):
+        for ix in range(n):
+            base_cx = (ix + 0.5) * w / n
+            base_cy = (iy + 0.5) * h / n
+            drift_x = int(np.sin(phase * 0.6 + (ix + iy) * 1.7) * w * 0.012)
+            drift_y = int(np.cos(phase * 0.7 + (ix - iy) * 1.3) * h * 0.010)
+            cx = (base_cx + drift_x) % w
+            cy = (base_cy + drift_y) % h
+            size = min(h, w) / (n * 3.2)
+            cm = crystal_shape(h, w, cx, cy, size, 8, phase * 0.12 + ix * 0.9 + iy * 0.4)
+            jewel_mask = np.clip(jewel_mask + cm, 0, 1)
+            c = cols[(ix + iy) % 3]
+            jewel_color = np.clip(jewel_color + mask_color(cm, c), 0, 1)
+    # Attach jewels to the embroidery so nothing floats
+    jewel_mask = jewel_mask * np.clip(gold_thread * 2.2 * 0.5 + 0.5, 0, 1)
+
+    height = velvet * 0.12 + gold_thread * 0.45 + jewel_mask * 0.85
+    base = mix(col(p["velvet_deep"]), col(p["velvet_hi"]), velvet)
+    base = mix(base, col(p["velvet"]), 0.35)               # anchored base crimson
+    base = mix(base, col(p["gold"]), gold_thread * 0.92)
+    base = mix(base, col(p["gold_hi"]), gold_core * 0.5)
+    base = mix(base, col(p["gold_shadow"]), filigree * gold_thread * 0.25)
+    base = np.clip(base * (1 - jewel_mask[:, :, None]) + jewel_color * jewel_mask[:, :, None] * 1.6, 0, 1)
+
+    rough = mix(p["rough_velvet"], p["rough_gold"], gold_thread)
+    rough = mix(rough, p["rough_jewel"], jewel_mask)
+    metallic = np.clip(gold_thread * 0.85 + jewel_mask * 0.9, 0, 1)
+
+    twinkle = warped_fbm(h, w, 8, 3, 0.4, SEED + int(phase * 6))
+    jewel_glow = jewel_mask * smoothstep(0.3, 0.8, twinkle)
+    thread_emissive = gold_core * smoothstep(0.4, 0.8, cym) * 0.5
+    emissive = mask_color(jewel_glow, col(p["glow"]) * p["glow_intensity"] * 1.6)
+    emissive += mask_color(thread_emissive, col(p["gold_hi"]) * p["glow_intensity"] * 0.35)
+    emissive = np.clip(emissive, 0, 1)
+
+    iri = gold_thread * 0.35 + jewel_mask * 0.8
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
 
 # === Main ===
 
@@ -1200,6 +1538,15 @@ BUILDERS = {
     "FrostBloom": build_frost_bloom,
     "ChoirStone": build_choir_stone,
     "CrystalCathedral": build_crystal_cathedral,
+    "RoyalVelvetBrocade": build_royal_velvet_brocade,
+    "FarawayCelestialSilk": build_faraway_celestial_silk,
+    "FarawayNightVelvet": build_faraway_night_velvet,
+    "FarawayAquaLace": build_faraway_aqua_lace,
+    "FarawayGildedRidge": build_faraway_gilded_ridge,
+    "FarawayAlabasterDrape": build_faraway_alabaster_drape,
+    "FarawayNacreVeil": build_faraway_nacre_veil,
+    "FarawayMoonChiffon": build_faraway_moon_chiffon,
+    "FarawayLullabyFleece": build_faraway_lullaby_fleece,
 }
 
 def main():
