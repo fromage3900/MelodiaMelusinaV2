@@ -1,13 +1,13 @@
 {
   "schema": "melodia.hot_loop_state.v1",
-  "run_count": 7,
-  "done": false,
-  "started": "2026-09-02",
-  "updated": "2026-09-02T12:55:00",
+    "run_count": 8,
+    "done": false,
+    "started": "2026-09-02",
+    "updated": "2026-09-02T15:30:00",
   "git_context": {
     "branch": "main",
-    "ahead_origin_estimated": 386,
-    "behind_origin_estimated": 359,
+    "ahead_origin_estimated": 391,
+        "behind_origin_estimated": 360,
     "note": "verify live each run; force-push NEVER if diverged; push rejected non-ff — owner merge/rebase required"
   },
   "cooked_variants_complete": [
@@ -35,8 +35,22 @@
     "pre-commit hook and force-add work cleanly for Docs/Plans + Saved/Audit; push remains non-ff blocked by ~359 behind + ~386 ahead — every run verifies live and records, never forces"
   ],
   "last_commit_hashes": [
-      "ed707a40",
-      "861c96af"
+          "58821675"
+        ],
+    "run_08_summary": {
+      "unit": "advance Copernicus variant library (unit d) — completed + QA'd the PrismaticObsidian hero-material variant",
+      "work": "PrismaticObsidian (volcanic glass / conchoidal fracture / internal crystal lattice / thin-film rainbow sheen) was added to the tool in da25dafd but its 13:17 cook on disk was PARTIAL — only 7/9 PNGs (missing Roughness + ORM). Re-cooked with .venv-guardrails python; now 9/9 maps valid, 1024x1024, non-blank (QA evidence qa_prismatic_obsidian_2026-09-02.json). Manifest updated. NOTE: concurrent work found in tree NOT in this commit — CymaticOrchid variant builder (113 lines in copernicus .py) + Docs/Plans/GN_CYMATIC_PROMOTION_READINESS_2026-09-02.md — left uncommitted as foreign/pending; not stage-swept."
+    },
+    "next_steps": [
+      "editor (Phase C/D/E/F, when 9316 frees): closed-editor Build.bat; rerun WFB PIE param-match gate + golden-run preflight; bind MI_HeroGem_Cymatic into L_PCG_Hero_CrystalHarpGrove; UI: expose SheenMask in M_Master_Nikki sheen lane",
+      "master-index SSOT: promote neural scaffold + hero gem to §2 when build lands (Phase C)",
+      "pending foreign work — cook + QA CymaticOrchid variant (builder already in Tools/Houdini/copernicus/copernicus_cymatic_parallax.py) and decide fate of Docs/Plans/GN_CYMATIC_PROMOTION_READINESS_2026-09-02.md",
+      "merger: local main AHEAD ~391 / BEHIND ~360 vs origin/main — NOT fast-forward; owner pull/merge/rebase required before any ff push (do NOT force)"
+    ],
+    "learnings": [
+      "controller extension + onnxruntime verification IS a clean offline unit (c) — the 5-param controller had a real sheen gap (Faraway variants bake canonical 10th Sheen map); commits carry doc+QA JSON since .py/.onnx are gitignored",
+      "a 'cooked' manifest entry does NOT guarantee the PNGs are on disk — re-QA each time: PrismaticObsidian cook 13:17 was partial (7/9), re-cook required before committing QA evidence",
+      "a concurrent/sibling agent is active in this tree (CymaticOrchid builder + readiness doc appear uncommitted) — stage EXPLICIT paths only, never stage-sweep, to avoid claiming another agent's in-flight work"
     ],
   "push": {
       "attempted": "2026-09-02 (run 7)",

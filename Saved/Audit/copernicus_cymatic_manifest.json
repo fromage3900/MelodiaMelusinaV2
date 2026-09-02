@@ -4,17 +4,17 @@
   "size": "1024x1024",
   "frames": 1,
   "variants": {
-    "PrismaticObsidian": {
+    "CymaticOrchid": {
       "outputs": [
-        "Saved/Audit/copernicus_cymatic/PrismaticObsidian/T_Cymatic_PrismaticObsidian_BaseColor.png",
-        "Saved/Audit/copernicus_cymatic/PrismaticObsidian/T_Cymatic_PrismaticObsidian_Normal.png",
-        "Saved/Audit/copernicus_cymatic/PrismaticObsidian/T_Cymatic_PrismaticObsidian_Roughness.png",
-        "Saved/Audit/copernicus_cymatic/PrismaticObsidian/T_Cymatic_PrismaticObsidian_Metallic.png",
-        "Saved/Audit/copernicus_cymatic/PrismaticObsidian/T_Cymatic_PrismaticObsidian_Height.png",
-        "Saved/Audit/copernicus_cymatic/PrismaticObsidian/T_Cymatic_PrismaticObsidian_ORM.png",
-        "Saved/Audit/copernicus_cymatic/PrismaticObsidian/T_Cymatic_PrismaticObsidian_Emissive.png",
-        "Saved/Audit/copernicus_cymatic/PrismaticObsidian/T_Cymatic_PrismaticObsidian_Iridescence.png",
-        "Saved/Audit/copernicus_cymatic/PrismaticObsidian/T_Cymatic_PrismaticObsidian_Opacity.png"
+        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Normal.png",
+        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Height.png",
+        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_ORM.png",
+        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Opacity.png"
       ]
     }
   },
