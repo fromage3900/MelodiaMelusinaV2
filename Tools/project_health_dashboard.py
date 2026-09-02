@@ -339,6 +339,15 @@ def check_doc_links() -> Claim:
     return c
 
 
+def check_doc_links_offline() -> Claim:
+    """Report documentation debt without blocking hosted source checks."""
+    c = check_doc_links()
+    if c.status == "fail":
+        c.status = "warn"
+        c.detail = (c.detail or "") + "; non-blocking in hosted offline CI"
+    return c
+
+
 def check_utf8_hygiene() -> Claim:
     c = Claim("hygiene_utf8", "Tracked text files are strict UTF-8")
     exts = {".md", ".json", ".py", ".toml", ".yaml", ".yml"}
@@ -667,6 +676,24 @@ CHECKERS = [
     check_run_evidence_consistency,
 ]
 
+# Hosted CI can verify repository-local evidence, but it cannot honestly
+# certify an Unreal editor, local model server, or developer-only Windows path.
+OFFLINE_CHECKERS = [
+    check_completion_gates,
+    check_battle_gates,
+    check_echo_pipeline,
+    check_verb_contract,
+    check_mcp_policy,
+    check_baseline_fingerprints,
+    check_baseline_ci_gates,
+    check_baseline_art_gates,
+    check_doc_links_offline,
+    check_utf8_hygiene,
+    check_hermes_harness,
+    check_run_evidence_consistency,
+    check_toronto_lanes,
+]
+
 STATUS_RANK = {"pass": 0, "hold": 1, "warn": 1, "open": 2, "fail": 3}
 
 
@@ -792,6 +819,11 @@ def generate_html(claims: list[Claim], standing: str, standing_detail: str, now:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Melodia project health dashboard generator")
     parser.add_argument("--json", action="store_true", help="also write Saved/Audit/project_health_claims.json")
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="skip editor, local-model, and developer-checkout probes",
+    )
     parser.add_argument("--watch", action="store_true", help="regenerate every 10s")
     parser.add_argument("--open", action="store_true", help="open the HTML in a browser after writing")
     args = parser.parse_args()
@@ -799,7 +831,8 @@ def main() -> int:
     ledger = _ledger_latest()
 
     claims: list[Claim] = []
-    for checker in CHECKERS:
+    checkers = OFFLINE_CHECKERS if args.offline else CHECKERS
+    for checker in checkers:
         try:
             import inspect
             params = inspect.signature(checker).parameters
@@ -825,6 +858,7 @@ def main() -> int:
     if args.json:
         data = {
             "generated_utc": now.isoformat(),
+            "mode": "offline" if args.offline else "full",
             "standing": standing,
             "standing_detail": standing_detail,
             "editor_reachable": editor_reachable(),
