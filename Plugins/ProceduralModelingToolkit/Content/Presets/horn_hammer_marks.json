@@ -1,0 +1,141 @@
+{
+  "format": "gmm_brass_preset_v1",
+  "instrument_type": "french_horn",
+  "key": "F",
+  "variant": "hammer_marks",
+  "description": "Hand-hammered F horn — visible planishing dimples, anneal heat tint (straw→peacock), seamless bell seam. Story: village smith's masterwork horn.",
+  "modifier_stacks": [
+    {
+      "id": "main_tube",
+      "type": "brass_tube",
+      "enabled": true,
+      "order": 0,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 8.0,
+        "thickness": 1.0,
+        "length": 420.0,
+        "resolution": 32
+      }
+    },
+    {
+      "id": "bell_mouth",
+      "type": "brass_bell_profile",
+      "enabled": true,
+      "order": 1,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "base_radius": 8.0,
+        "tip_radius": 18.0,
+        "height": 45.0,
+        "resolution": 64,
+        "flare_exponent": 1.5,
+        "flare_angle_deg": 10.0
+      }
+    },
+    {
+      "id": "hammer_bell",
+      "type": "brass_hammer_marks",
+      "enabled": true,
+      "order": 2,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "tube_radius": 13.0,
+        "dimple_diameter": 4.2,
+        "dimple_depth": 0.32,
+        "density": 0.22,
+        "jitter": 0.4,
+        "anneal_tint": 0.55,
+        "seed": 1847
+      }
+    },
+    {
+      "id": "hammer_wrap",
+      "type": "brass_hammer_marks",
+      "enabled": true,
+      "order": 3,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "tube_radius": 8.0,
+        "dimple_diameter": 3.0,
+        "dimple_depth": 0.18,
+        "density": 0.15,
+        "jitter": 0.3,
+        "anneal_tint": 0.38,
+        "seed": 1848
+      }
+    },
+    {
+      "id": "rotary_1_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 4,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 10.0,
+        "piston_diameter": 8.5,
+        "port_width": 2.5,
+        "stroke": 50.0,
+        "port_count": 3,
+        "fillet_radius": 0.4
+      }
+    },
+    {
+      "id": "rotary_2_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 5,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 10.0,
+        "piston_diameter": 8.5,
+        "port_width": 2.5,
+        "stroke": 50.0,
+        "port_count": 3,
+        "fillet_radius": 0.4
+      }
+    },
+    {
+      "id": "wrap_formation",
+      "type": "brass_wrap_formation",
+      "enabled": true,
+      "order": 6,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "coil_diameter": 28.0,
+        "wire_diameter": 7.0,
+        "wrap_count": 4,
+        "start_angle": 15.0,
+        "pitch": 22.0
+      }
+    },
+    {
+      "id": "mouthpiece_cup",
+      "type": "brass_mouthpiece_cup",
+      "enabled": true,
+      "order": 7,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "cup_depth": 20.0,
+        "cup_radius": 9.0,
+        "rim_thickness": 4.0,
+        "back_bore_diameter": 4.75
+      }
+    }
+  ],
+  "ue_binding": "MelodiaBrass.FrenchHorn_HammerMarks",
+  "material_hints": {
+    "base": "MI_Starskiff_Brass",
+    "dimple_normal_strength": 2.0,
+    "anneal_tint_lerp": "straw(0.2)→peacock(0.6)→blue(0.9)"
+  },
+  "next_action": "hython_or_edit"
+}
