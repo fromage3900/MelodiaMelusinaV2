@@ -1,0 +1,156 @@
+{
+  "format": "gmm_brass_preset_v1",
+  "instrument_type": "trumpet",
+  "key": "C",
+  "variant": "engraved_filigree",
+  "description": "Ceremonial C trumpet — baroque acanthus engraving, guilloche bands on bell, scrollwork at valve casings. For palace scenes. Story: royal herald's instrument.",
+  "modifier_stacks": [
+    {
+      "id": "body_tube",
+      "type": "brass_tube",
+      "enabled": true,
+      "order": 0,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 12.5,
+        "thickness": 1.4,
+        "length": 360.0,
+        "resolution": 48
+      }
+    },
+    {
+      "id": "bell_mouth",
+      "type": "brass_bell_profile",
+      "enabled": true,
+      "order": 1,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "base_radius": 12.5,
+        "tip_radius": 30.0,
+        "height": 38.0,
+        "resolution": 64,
+        "flare_exponent": 1.45,
+        "flare_angle_deg": 10.0
+      }
+    },
+    {
+      "id": "bell_engraving",
+      "type": "brass_engraved_filigree",
+      "enabled": true,
+      "order": 2,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "tube_radius": 20.0,
+        "pattern": "acanthus",
+        "engrave_depth": 0.35,
+        "line_width": 0.5,
+        "repeat_count": 12,
+        "angle_offset": 0.0,
+        "relief_height": 0.25
+      }
+    },
+    {
+      "id": "body_guiloche",
+      "type": "brass_engraved_filigree",
+      "enabled": true,
+      "order": 3,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "tube_radius": 12.5,
+        "pattern": "guilloche",
+        "engrave_depth": 0.2,
+        "line_width": 0.35,
+        "repeat_count": 16,
+        "angle_offset": 22.5,
+        "relief_height": 0.12
+      }
+    },
+    {
+      "id": "valve_scrollwork",
+      "type": "brass_engraved_filigree",
+      "enabled": true,
+      "order": 4,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "tube_radius": 14.0,
+        "pattern": "scrollwork",
+        "engrave_depth": 0.3,
+        "line_width": 0.45,
+        "repeat_count": 6,
+        "angle_offset": 0.0,
+        "relief_height": 0.18
+      }
+    },
+    {
+      "id": "filigree_spiral_bell",
+      "type": "brass_filigree_spiral",
+      "enabled": true,
+      "order": 5,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "tube_radius": 18.0,
+        "wire_diameter": 0.8,
+        "spiral_pitch": 6.0,
+        "turns": 4,
+        "gap": 0.4
+      }
+    },
+    {
+      "id": "valve_1_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 6,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 14.0,
+        "piston_diameter": 12.0,
+        "port_width": 3.0,
+        "stroke": 40.0,
+        "port_count": 3,
+        "fillet_radius": 0.6
+      }
+    },
+    {
+      "id": "mouthpiece_cup",
+      "type": "brass_mouthpiece_cup",
+      "enabled": true,
+      "order": 7,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "cup_depth": 22.0,
+        "cup_radius": 12.0,
+        "rim_thickness": 5.0,
+        "back_bore_diameter": 5.15
+      }
+    },
+    {
+      "id": "mouthpiece_shank",
+      "type": "brass_mouthpiece_shank",
+      "enabled": true,
+      "order": 8,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "shank_length": 45.0,
+        "major_diameter": 12.0,
+        "minor_diameter": 8.0,
+        "taper_type": "linear"
+      }
+    }
+  ],
+  "ue_binding": "MelodiaBrass.Trumpet_EngravedFiligree",
+  "material_hints": {
+    "base": "MI_Starskiff_BrassFiligree",
+    "engrave_normal_strength": 2.5,
+    "relief_ao": 0.4
+  },
+  "next_action": "hython_or_edit"
+}
