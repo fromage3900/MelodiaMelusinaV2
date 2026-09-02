@@ -1,108 +1,181 @@
-# Melodia — Documentation Index & Authority Map
+# ♬ Melodia — Documentation Score Map
 
-**Front door for project documentation**  
-**Last Updated:** 2026-09-02
+**Last updated:** 2026-09-02
+
+> Front-facing docs tell the current truth. Dated handoffs keep the memory. Research is allowed to be weird. Runtime ownership is not. ♪
 
 ---
 
-## 1. Read in this order
+## 𝄞 Start here — in this order
 
-| Priority | Document | Authority |
+| Order | Read this | Why |
 |:---:|---|---|
-| **1** | [`README.md`](README.md) | Public/product front door: what Melodia is now. |
-| **2** | [`Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`](Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md) | **Canonical product vision:** evergreen single-player RPG, Volumes/Voyages, permanent vs renewable game, long-term persistence philosophy. |
-| **3** | [`Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`](Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md) | **Canonical content structure:** Reveries/Episodes/Chapters/Movements/Monolith Events/Volumes; working 50+ Chapter Volume-I grid. |
-| **4** | [`Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`](Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md) | **Canonical long-term update model:** Gifts, Reveries, Voyages, no-FOMO default, optional online manifest later. |
-| **5** | [`CURRENT_STATE.md`](CURRENT_STATE.md) | **Implementation truth now:** runtime ownership, proven baseline, active closure work. |
-| **6** | [`TODO.md`](TODO.md) | **Production queue:** current closure work, reusable Chapter lane, Volume-I content roadmap. |
-| **7** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Stable runtime architecture and state lifecycle. |
-| **8** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor/package workflow. |
-| **8a** | [Laptop workstation setup and offload plan](Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md) | Second-machine onboarding, RAM profile, offload lanes, and handoff gates. |
-| **9** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) + [`TEST_READY.md`](TEST_READY.md) | P0 proof scope and bounded test evidence. |
+| **♪ 1** | [`README.md`](README.md) | What Melodia is, in plain language. |
+| **♫ 2** | [`Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`](Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md) | The game-as-a-place / endless-journey north star. |
+| **♬ 3** | [`Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`](Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md) | Reveries, Episodes, Chapters, Movements, Monolith Events, Volumes. |
+| **𝄞 4** | [`Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`](Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md) | Gifts, mail, archives, Voyages, and the no-FOMO rule. |
+| **♪ 5** | [`CURRENT_STATE.md`](CURRENT_STATE.md) | What exists and what can actually be claimed today. |
+| **♫ 6** | [`TODO.md`](TODO.md) | The current production score. |
+| **♬ 7** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Who owns what and how state moves. |
+| **𝄞 8** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, browser labs, package flow. |
+| **♪ 8a** | [`Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md`](Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md) | Second-machine onboarding, measured hardware profile, offload lanes, and handoff gates. |
+| **♫ 9** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) + [`TEST_READY.md`](TEST_READY.md) | P0 scope + bounded evidence. |
+
+If you are an agent: **do not start by searching every old handoff.** Read the current front door first, then follow links into the system you are actually touching.
 
 ---
 
-## 2. Important paradigm distinction
+## ♪ Two truths that should never get mixed up
 
-The project has two different truths that must not be conflated:
+### The dream
 
-### Product truth
-Melodia is an **evergreen single-player journey** that may grow for years through complete Volumes, smaller Reveries, optional Gifts, and larger Voyages.
+Melodia is an evergreen single-player journey. A Volume can finish emotionally, then the game can later receive more Chapters, Reveries, Gifts, Voyages, creatures, outfits, impossible places, or whole new Volumes.
 
-### Production truth
-The immediate job is still **runtime closure**. The existing P0 / First Dream + Sea Above route is the current integration proof. Future scale is not permission to bypass persistence, packaged proof, stable authority, or chapter validation.
+### The job today
 
----
+Close the runtime.
 
-## 3. Historical docs vs current authority
+P0 / First Dream + Sea Above is the current integration proof. Future scale does not excuse broken persistence, duplicate rewards, unclear ownership, or a package that cannot survive restart.
 
-Older documents remain valuable evidence and design history, but several old statements are no longer product-authoritative:
-
-- the finite **~12h / four-movement** estimate in `Docs/FULL_GAME_LOOSE_SCOPE_2026-07-31.md` is a historical north-star snapshot;
-- the **“every Chapter executes the exact same six-phase loop”** claim is superseded as content design;
-- the six-phase loop remains a useful **P0 full-stack golden test**;
-- P0 gate/test counts remain evidence for their captured baseline, not universal shipping certification for future Chapters.
-
-Do not delete historical handoffs simply because the product framing evolved. Mark/interpret them through the current strategy docs.
+**Big world, boring contracts. Both matter.**
 
 ---
 
-## 4. Runtime architecture authorities
+## ♫ Runtime authority map
 
-- TurnBased JRPG / Phoenix: combat skeleton, party/turn/target/damage/result/inventory stock ownership.
-- `UMelodiaNarrativeSubsystem` + QuillScript: narrative progression, intents, flags, consequences, checkpoints.
-- Melodia rhythm (`MelodiaCore`, rhythm integration): execution/performance layer over selected actions.
-- `UMelodiaWardrobeSubsystem`: wardrobe/equipped ownership and gameplay relationship/capability state.
-- Convergence: interpretation/glue; must not duplicate owner truth.
-- `UMelodiaUIBridgeSubsystem`: single-writer UI ownership.
-- Canonical save/narrative record: forward-compatible durable history.
+| Truth | Owner |
+|---|---|
+| battle turns / targets / stock action results | Phoenix / TurnBased JRPG |
+| narrative intents / flags / checkpoints / consequences | `UMelodiaNarrativeSubsystem` + QuillScript |
+| rhythm timing / note-highway execution | Melodia rhythm / `MelodiaCore` |
+| owned + equipped wardrobe state | `UMelodiaWardrobeSubsystem` |
+| cross-system interpretation | Convergence |
+| player-facing UI writes | `UMelodiaUIBridgeSubsystem` |
+| durable Melodia memory | canonical save + narrative record |
 
-Relevant architectural records include `Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`, `Docs/ORCHESTRA_CONTRACT_2026-08-20.md`, and the current runtime-persistence closure plan.
+Useful architecture records:
+
+- `Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`
+- `Docs/ORCHESTRA_CONTRACT_2026-08-20.md`
+- current runtime-persistence closure plan
 
 ---
 
-## 5. Chapter and progression docs
+## ♬ Chapter / journey documents
 
-### Current/reusable contracts
+### Reusable contracts
+
 - `specs/progression/`
 - `Docs/Plans/REUSABLE_CHAPTER_VALIDATION_SYSTEM_2026-08-31.md`
 
-### Current major content lanes
-- First Dream / Sea Above P0 package
-- Shorewake transition
-- Mara / Faraway Mother
-- God That Molts planning (needs formal progression package)
-- Horizon Eater planning/spec (needs sequence reconciliation after God That Molts)
-- Movement-IV frontier: House of Measures / Seam Oracle / Last Dress
+### Current major lanes
 
-The working 50+ Chapter grid is an **authoring scaffold**, not a requirement that every title or number survive production unchanged.
+- First Dream / Sea Above;
+- Shorewake + Starskiff departure;
+- Mara / Faraway Mother;
+- God That Molts — still needs a formal progression package;
+- Horizon Eater — needs ordering reconciliation after God That Molts;
+- House of Measures / Seam Oracle / Last Dress of the Sea.
+
+The 50+ Chapter Volume-I grid is an **arrangement scaffold**. It is not proof that every current title or number must survive production.
 
 ---
 
-## 6. Testing and evidence
+## 𝄞 Browser + tool laboratories
+
+These are part of the repository on purpose. They let ideas become interactive quickly without inventing another Unreal authority.
+
+### ♪ Cymatic Sanctuary
+
+`Docs/Tools/puzzle-sandbox/index.html`
+
+12-instrument Three.js Music-as-Key sandbox with phrase gates, watercolor/toon presentation, bloom, particles, and prototype JSON export.
+
+### ♫ MusicKey3D
+
+`Prototypes/Web/MusicKey3D/`
+
+World-interaction lab for music nodes, phrase readability, barrier feedback, and Melodia's illustrative browser style.
+
+### ♬ Traveling Folio
+
+`Prototypes/Web/MelodiaFolio3D/`
+
+3D UI / Starskiff post / Thread navigation / repository-model turntable.
+
+`mara.html` is the more stylized Mara-art-direction variant.
+
+**Browser prototype rule:** emit ideas, view models, proposed schemas, and UI intents. Never quietly become gameplay authority.
+
+---
+
+## ♪ Testing / evidence
+
+Useful roots:
 
 - `run_tests.ps1`
 - `Tools/run_contract_tests.py`
 - `Tools/verify_p0_offline.py`
 - `Tools/test_melodia_mcp.py`
 - `Tools/test_e2e_melusina_release.py`
-- `Saved/gate_ledger.json` where available in the authoring/runtime evidence environment
+- `Saved/gate_ledger.json` where it exists in the evidence environment
 
-A source file or asset existing is not proof of runtime completion. Preserve the distinction between source presence, offline contract proof, live proof, restart proof, and packaged proof.
+Remember the ladder:
+
+```text
+source exists
+   ≠
+offline contract passes
+   ≠
+live runtime proven
+   ≠
+restart proven
+   ≠
+packaged build proven
+```
+
+Say which one you have.
 
 ---
 
-## 7. Toolchain and research
+## ♫ Git-health interpretation
 
-Before proposing another emerging tool, read the existing toolchain discovery/master indexes. The production rule remains:
+As of the 2026-09-02 health pass:
 
-> **Adopt only when it produces visibly better Melodia per hour without creating a more expensive maintenance system.**
+- persistence PR #54 contains useful work but is too stale to merge wholesale; reapply it from current `main`;
+- site / Three.js PR #61 is cleanly based but broad; review it as a large Wix snapshot and reconcile Three.js versions before promotion;
+- very large older research PRs increasingly function as **archives to extract from**, not automatic merge candidates.
 
-The Musical World Compiler is an offline-authoring lane; Unreal/MelodiaCore remains runtime gameplay authority.
+Do not let “open PR” become synonymous with “current authority.”
 
 ---
 
-## 8. Legal / provenance
+## ♬ Historical documents
+
+Older docs are allowed to disagree with current strategy because they preserve how the project got here.
+
+Superseded examples include:
+
+- the old finite `~12h` loose-scope estimate;
+- the idea that every Chapter must run the same six-phase P0 loop.
+
+Keep the history. Read it through the current north-star docs.
+
+---
+
+## ♪ Toolchain / research
+
+Before adding another tool, check the current research/discovery indexes.
+
+The rule remains:
+
+> **Adopt a tool only when it makes visibly better Melodia per hour without creating a more expensive maintenance system.**
+
+Music may author geometry offline. Houdini may author impossible evidence. Browser toys may test interaction. Unreal remains the game.
+
+---
+
+## 𝄞 Legal / provenance
 
 - [`LICENSE`](LICENSE)
 - [`Docs/CREDITS.md`](Docs/CREDITS.md)
@@ -112,4 +185,4 @@ The Musical World Compiler is an offline-authoring lane; Unreal/MelodiaCore rema
 
 ---
 
-**Documentation rule:** front-facing docs describe current product/production truth; dated handoffs preserve evidence and history.
+> **Front door = current truth. Handoff = memory. Research = possibility. Runtime = authority.** ♫

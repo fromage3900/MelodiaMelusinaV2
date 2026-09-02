@@ -1,42 +1,51 @@
-# Melodia MusicKey3D
+# ♪ MusicKey3D — a tiny Melodia world that listens
 
-A browser-side Three.js interaction lab for **music-as-key world puzzles** and the soft watercolor / cel-shaded visual language shown in Mara Elettra Vell concept work.
+This is the browser-side **music-as-key interaction lab**: watercolor ground, toon shading, soft bloom, floating notes, strange little instrument nodes, barriers that answer phrases, and a deliberately simple Melusina / Ebenezer proxy.
 
-## Run
+It exists because sometimes it is much faster to answer **“does this feel like Melodia?”** in a browser than by opening Unreal and rebuilding half a map.
 
-From repository root:
+It does **not** own the game.
+
+---
+
+## ♫ Run it
+
+From the repository root:
 
 ```powershell
 python -m http.server 8080
 ```
 
-Open:
+Then open:
 
 ```text
 http://127.0.0.1:8080/Prototypes/Web/MusicKey3D/
 ```
 
-## What this prototype is for
+---
 
-- test music-node spatial readability;
-- test short phrase sequencing such as `C -> E -> G`;
-- prototype barrier feedback and world-unlock presentation;
-- prototype Mara/Melodia palette, toon ramp, outline, watercolor floor, bloom, floating particles, water-like hair motion, and musical tendrils;
-- export compact JSON for design comparison with the native UE contract;
-- give future browser experiments a concrete Melodia visual reference instead of generic Three.js presentation.
+## ♬ What I use it for
 
-## What it does NOT own
+- checking whether musical nodes read spatially;
+- trying short phrases like `C → E → G` before committing them to a level;
+- testing barrier / route-unlock feedback;
+- testing the Mara / Melodia browser palette;
+- toon ramps, ink-like outlines, watercolor surfaces, quiet bloom, musical tendrils, water-ish hair motion;
+- exporting compact prototype JSON to compare with the native UE contract;
+- making sure future Three.js experiments stop defaulting to generic black-background tech-demo aesthetics.
 
-This is **not** a second game runtime or puzzle authority.
+---
 
-The native project already has the live music-as-key pillar under `Source/BS_GodFile/Piano/`, including steppable note nodes, pattern scoring, PCG musical content, and the typed narrative bridge.
+## 𝄞 The authority rule
 
-The browser sandbox may visualize or export proposed puzzle data, but Unreal remains authoritative for gameplay state and persistence.
+The real project already has the music-as-key pillar under `Source/BS_GodFile/Piano/`: steppable note nodes, pattern scoring, PCG musical content, and the typed narrative bridge.
+
+So the relationship is:
 
 ```text
-MusicKey3D interaction
-      ↓
-prototype phrase / layout / visual feedback
+browser experiment
+      ♪
+phrase / layout / visual idea
       ↓
 compare or author data
       ↓
@@ -44,43 +53,60 @@ UE music-as-key implementation
       ↓
 UMelodiaPCGNarrativeChallengeBridgeComponent
       ↓
-Narrative / world consequence authority
+Narrative decides what the world remembers
 ```
 
-## Relationship to `MelodiaFolio3D`
+A browser barrier opening is presentation. Unreal remains authoritative for gameplay state and persistence.
 
-The two browser prototypes are siblings:
+---
 
-- `Prototypes/Web/MusicKey3D/` — **world interaction laboratory**;
-- `Prototypes/Web/MelodiaFolio3D/` — **cozy UI / repository-model / evergreen-content laboratory**.
+## ♪ Its siblings
 
-They should converge on one visual family:
+### 𝄞 Cymatic Sanctuary
 
-- ivory / lavender paper-like surfaces;
-- plum ink outlines;
-- cool blue and violet shadows;
+`Docs/Tools/puzzle-sandbox/`
+
+The bigger 12-instrument version: four phrase gates, radial sanctuary layout, prototype schema export, and the same “music can unlock the world without becoming another runtime authority” rule.
+
+### ♫ Traveling Folio
+
+`Prototypes/Web/MelodiaFolio3D/`
+
+The cozy 3D UI / Starskiff-post / model-viewer lab.
+
+The browser family should feel related:
+
+- ivory + lavender surfaces;
+- plum ink;
+- cool blue / violet shadows;
 - sakura-pink accents;
-- muted gold highlights;
-- toon or illustrative shading rather than generic PBR tech-demo presentation;
-- music notation, threads, ribbons, water and handwritten field-note motifs;
-- soft bloom used only for resonance / magical state.
+- muted gold;
+- illustrative shading instead of generic PBR showroom lighting;
+- notation, thread, ribbon, water, field-note and dress-pattern motifs;
+- bloom only when something is actually resonating.
 
-## Corrections made while preserving the supplied prototype
+---
 
-The committed version fixes a few runtime hazards from the original one-shot HTML:
+## ♬ Useful corrections already made
 
-- uses `THREE.PCFSoftShadowMap`;
-- adds the secondary directional light correctly instead of attempting to add its `position` vector to the scene;
-- uses `THREE.RedFormat` for the toon ramp texture;
-- preserves barrier outline references when replacing `userData`;
-- prevents locked barriers from accumulating vertical drift every frame;
-- keeps repeated phrase notes removable one at a time;
-- makes clipboard failure non-fatal.
+The checked-in version fixes a few hazards from the original one-shot prototype:
 
-## Next useful experiments
+- `THREE.PCFSoftShadowMap`;
+- correct secondary-light insertion;
+- `THREE.RedFormat` toon ramp;
+- preserved barrier outline references;
+- no accumulating barrier vertical drift;
+- repeated phrase notes can be removed one at a time;
+- clipboard failure stays non-fatal.
 
-1. Replace the primitive Melusina/Ebenezer proxies with curated GLB exports from the real project.
-2. Let `MelodiaFolio3D` reuse this toon/watercolor material language for its model turntable.
-3. Add optional sound playback for note nodes without changing the phrase authority model.
-4. Add an adapter that can read the existing progression/music-key JSON schema directly.
-5. Keep browser export explicitly development-only until a stable schema contract is chosen.
+---
+
+## ♪ Next good experiments
+
+1. Replace proxy figures with one or two **intentional GLB showcase exports** from the real project.
+2. Share the watercolor/toon material language with the Folio turntable.
+3. Add optional note audio without creating another clock or grading system.
+4. Read an existing progression/music-key schema directly instead of hand-copying puzzle data.
+5. Keep every export marked prototype-only until the native contract says otherwise.
+
+> **The browser gets to dream quickly. Unreal gets to decide what is real.** ♫

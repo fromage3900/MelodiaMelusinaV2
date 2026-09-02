@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melodia — Cymatic Sanctuary</title>
+  <style>
+    :root {
+      --paper: #f8f3fb;
+      --mist: #e9e1f2;
+      --ink: #332744;
+      --plum: #4a3f6b;
+      --lavender: #b8a8d8;
+      --blue: #9bb5ff;
+      --water: #6ec8e8;
+      --coral: #ff8fa3;
+      --gold: #e6c45d;
+      --pink: #ff88cc;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body {
+      overflow: hidden;
+      color: var(--plum);
+      background: var(--mist);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    button, select { font: inherit; }
+    #stage { position: relative; width: 100vw; height: 100vh; }
+    canvas { display: block; }
+    .ui {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      padding: 22px;
+      pointer-events: none;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    .ui > * { pointer-events: auto; }
+    .masthead { text-align: center; justify-self: center; }
+    .masthead h1 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-shadow: 0 2px 0 rgba(255,255,255,.8);
+    }
+    .masthead p {
+      margin: 6px 0 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .72rem;
+      letter-spacing: .08em;
+      color: #6b5b8a;
+    }
+    .side {
+      align-self: center;
+      justify-self: end;
+      width: min(290px, 38vw);
+      max-height: 62vh;
+      overflow: auto;
+      padding: 14px;
+      border: 2px solid rgba(184,168,216,.78);
+      border-radius: 18px;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 34px rgba(74,63,107,.14);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .68rem;
+    }
+    .side h2 { margin: 0 0 8px; font: 600 .78rem Georgia, serif; color: var(--ink); }
+    .instrument { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--ink); flex: 0 0 auto; }
+    .phrase-card {
+      align-self: end;
+      justify-self: center;
+      min-width: min(600px, 92vw);
+      padding: 12px 18px;
+      border: 2px solid rgba(184,168,216,.85);
+      border-radius: 22px;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 28px rgba(74,63,107,.14);
+      text-align: center;
+    }
+    .eyebrow { font: 700 .64rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .18em; color: #9b8ec7; }
+    #phrase { margin-top: 4px; min-height: 1.35rem; font: 700 1rem ui-monospace, monospace; color: var(--ink); }
+    #status { margin-top: 4px; font: .7rem ui-monospace, monospace; color: #7d6ca5; }
+    .controls { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+      padding: 7px 13px;
+      color: var(--plum);
+      background: rgba(255,255,255,.94);
+      cursor: pointer;
+      font: .7rem ui-monospace, monospace;
+      transition: transform .15s ease, background .15s ease, color .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); background: var(--blue); color: white; }
+    .btn.gold { border-color: var(--gold); }
+    .btn.gold:hover { background: var(--gold); color: var(--ink); }
+    .btn.coral { border-color: var(--coral); }
+    .btn.coral:hover { background: var(--coral); color: white; }
+    .tooltip {
+      position: absolute;
+      z-index: 30;
+      pointer-events: none;
+      opacity: 0;
+      max-width: 230px;
+      padding: 8px 12px;
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      color: var(--ink);
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 8px 24px rgba(74,63,107,.18);
+      font: .72rem ui-monospace, monospace;
+      transition: opacity .12s ease;
+    }
+    dialog {
+      width: min(650px, 92vw);
+      border: 3px solid var(--blue);
+      border-radius: 18px;
+      color: var(--ink);
+      background: var(--paper);
+      box-shadow: 0 24px 80px rgba(24,12,42,.28);
+    }
+    dialog::backdrop { background: rgba(22,12,34,.52); }
+    dialog h2 { margin: 0 0 10px; font-weight: 500; }
+    dialog pre {
+      max-height: 54vh;
+      overflow: auto;
+      padding: 14px;
+      border-radius: 10px;
+      color: #d8c8ff;
+      background: #2a1f3d;
+      font: .7rem/1.5 ui-monospace, monospace;
+    }
+    @media (max-width: 720px) {
+      .side { width: 210px; max-height: 42vh; font-size: .6rem; }
+      .ui { padding: 12px; }
+      .phrase-card { min-width: 96vw; }
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="stage">
+    <div class="ui">
+      <header class="masthead">
+        <h1>𝄞 Cymatic Sanctuary 𝄞</h1>
+        <p>Melodia · 12 instruments · resonant phrases · ♪ unlock barriers</p>
+      </header>
+
+      <aside class="side" aria-label="Instrument legend">
+        <h2>♫ Sanctuary Instruments</h2>
+        <div id="legend"></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid #d8c8e8;color:#806f9d;line-height:1.5;">
+          Listen for shape, not speed.<br />A phrase is a key only because the world remembers how it was answered.
+        </div>
+      </aside>
+
+      <section class="phrase-card">
+        <div class="eyebrow">♪ current resonant phrase ♪</div>
+        <div id="phrase">—</div>
+        <div id="status">Touch an instrument to begin.</div>
+        <div class="controls">
+          <button class="btn coral" id="reset">♫ Reset phrase</button>
+          <button class="btn" id="demo">♪ Play a sanctuary phrase</button>
+          <button class="btn gold" id="export">✦ Export JSON</button>
+        </div>
+      </section>
+    </div>
+    <div class="tooltip" id="tooltip"></div>
+  </div>
+
+  <dialog id="exportDialog">
+    <h2>✦ Cymatic Sanctuary — phrase data</h2>
+    <p style="font: .72rem ui-monospace, monospace;color:#6b5b8a;">Prototype data only. Compare it with the native UE music-as-key contract; do not treat the browser sandbox as runtime authority.</p>
+    <pre id="exportCode"></pre>
+    <form method="dialog" style="display:flex;gap:8px;justify-content:flex-end;">
+      <button class="btn" value="close">Close</button>
+    </form>
+  </dialog>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+    const PAL = {
+      ink: 0x2a1f3d, paper: 0xf5f0fa, lavender: 0xc8a8e8, blue: 0x9bb5ff,
+      water: 0x6ec8e8, coral: 0xff8fa3, gold: 0xe6c45d, pink: 0xff88cc,
+      iris: 0x8f83c4, mint: 0x91d9c7, pearl: 0xf1ddff, night: 0x4a3f6b,
+      lilac: 0xbca4ff, aqua: 0x79d8e8
+    };
+
+    const stage = document.getElementById('stage');
+    const phraseEl = document.getElementById('phrase');
+    const statusEl = document.getElementById('status');
+    const tooltip = document.getElementById('tooltip');
+    const legend = document.getElementById('legend');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xe9e1f2);
+    scene.fog = new THREE.Fog(0xe9e1f2, 18, 48);
+
+    const camera = new THREE.PerspectiveCamera(46, innerWidth / innerHeight, 0.1, 120);
+    camera.position.set(0, 11, 20);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    stage.prepend(renderer.domElement);
+
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.42, 0.46, 0.34));
+
+    const ramp = new THREE.DataTexture(new Uint8Array([36, 86, 150, 214, 255]), 5, 1, THREE.RedFormat);
+    ramp.needsUpdate = true;
+    ramp.magFilter = THREE.NearestFilter;
+    ramp.minFilter = THREE.NearestFilter;
+
+    function cel(geometry, color, outlineScale = 1.07) {
+      const group = new THREE.Group();
+      const body = new THREE.Mesh(geometry, new THREE.MeshToonMaterial({ color, gradientMap: ramp }));
+      body.castShadow = true;
+      body.receiveShadow = true;
+      group.add(body);
+      const outline = new THREE.Mesh(geometry.clone(), new THREE.MeshBasicMaterial({ color: PAL.ink, side: THREE.BackSide, transparent: true, opacity: .82 }));
+      outline.scale.setScalar(outlineScale);
+      group.add(outline);
+      group.userData.body = body;
+      group.userData.outline = outline;
+      return group;
+    }
+
+    scene.add(new THREE.HemisphereLight(0xd9e5ff, 0xf4eafa, 1.35));
+    const key = new THREE.DirectionalLight(0xfff8e8, 1.65);
+    key.position.set(7, 14, 7);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    scene.add(key);
+    const rim = new THREE.DirectionalLight(0xa8c8ff, .72);
+    rim.position.set(-7, 6, -8);
+    scene.add(rim);
+
+    const paperCanvas = document.createElement('canvas');
+    paperCanvas.width = paperCanvas.height = 512;
+    const p = paperCanvas.getContext('2d');
+    p.fillStyle = '#f3edf8'; p.fillRect(0,0,512,512);
+    const stains = ['rgba(155,181,255,.12)','rgba(200,168,232,.10)','rgba(110,200,232,.09)','rgba(255,136,204,.065)'];
+    for (let i=0;i<90;i++) {
+      const x=Math.random()*512, y=Math.random()*512, r=28+Math.random()*90;
+      const g=p.createRadialGradient(x,y,0,x,y,r);
+      g.addColorStop(0, stains[(Math.random()*stains.length)|0]); g.addColorStop(1,'transparent');
+      p.fillStyle=g; p.fillRect(0,0,512,512);
+    }
+    const paperTex = new THREE.CanvasTexture(paperCanvas);
+    paperTex.wrapS = paperTex.wrapT = THREE.RepeatWrapping;
+    paperTex.repeat.set(5,5);
+    const floor = new THREE.Mesh(new THREE.CircleGeometry(18, 80), new THREE.MeshToonMaterial({ map: paperTex, gradientMap: ramp }));
+    floor.rotation.x = -Math.PI/2;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    // A shallow cymatic pool makes the whole sandbox read as a sanctuary, not a tech demo.
+    const pool = new THREE.Mesh(
+      new THREE.CylinderGeometry(4.4, 4.8, .16, 72),
+      new THREE.MeshPhysicalMaterial({ color: 0xbfdff4, transparent: true, opacity: .42, roughness: .22, transmission: .18 })
+    );
+    pool.position.y = .08;
+    scene.add(pool);
+    for (let i=0;i<5;i++) {
+      const ring = new THREE.Mesh(new THREE.RingGeometry(1+i*.66, 1.025+i*.66, 96), new THREE.MeshBasicMaterial({ color: i%2 ? PAL.lavender : PAL.water, transparent:true, opacity:.16, side:THREE.DoubleSide }));
+      ring.rotation.x = -Math.PI/2;
+      ring.position.y = .18 + i*.008;
+      ring.userData.phase = i*.7;
+      scene.add(ring);
+    }
+
+    const instruments = [
+      { note:'C4',  name:'Lute of Harmonic Bloom', color:PAL.blue,   shape:'orb' },
+      { note:'D4',  name:'Resonant Bell Staff',    color:PAL.water,  shape:'bell' },
+      { note:'E4',  name:'Wire Harp of Tides',     color:PAL.coral,  shape:'harp' },
+      { note:'F4',  name:'Monolith Conductor',     color:PAL.gold,   shape:'monolith' },
+      { note:'G4',  name:'Phase Drum',             color:PAL.pink,   shape:'drum' },
+      { note:'A4',  name:'Resonance Core',         color:PAL.night,  shape:'core' },
+      { note:'B4',  name:'Glass Chimes',           color:PAL.pearl,  shape:'chime' },
+      { note:'C5',  name:'Tide Organ',              color:PAL.aqua,   shape:'organ' },
+      { note:'D5',  name:'Thread Lyre',             color:PAL.lilac,  shape:'lyre' },
+      { note:'E5',  name:'Pearl Ocarina',           color:PAL.mint,   shape:'ocarina' },
+      { note:'F5',  name:'Cymatic Bowl',            color:PAL.iris,   shape:'bowl' },
+      { note:'G5',  name:'Starskiff Bell',          color:PAL.gold,   shape:'starbell' }
+    ];
+
+    const geometries = {
+      orb: new THREE.IcosahedronGeometry(.48, 1),
+      bell: new THREE.ConeGeometry(.42, .9, 8),
+      harp: new THREE.TorusGeometry(.38,.09,8,18,Math.PI*1.45),
+      monolith: new THREE.BoxGeometry(.55,1.05,.55),
+      drum: new THREE.TorusGeometry(.38,.15,8,18),
+      core: new THREE.OctahedronGeometry(.52,0),
+      chime: new THREE.CylinderGeometry(.12,.18,.95,8),
+      organ: new THREE.CylinderGeometry(.28,.38,1.05,12),
+      lyre: new THREE.TorusGeometry(.36,.075,8,20,Math.PI*1.55),
+      ocarina: new THREE.SphereGeometry(.43,12,10),
+      bowl: new THREE.SphereGeometry(.46,18,10,0,Math.PI*2,0,Math.PI*.52),
+      starbell: new THREE.DodecahedronGeometry(.48,0)
+    };
+
+    const nodes = [];
+    const hitTargets = [];
+    instruments.forEach((cfg, i) => {
+      const a = (i / instruments.length) * Math.PI * 2 - Math.PI / 2;
+      const radius = i % 2 ? 8.25 : 7.25;
+      const group = cel(geometries[cfg.shape], cfg.color, 1.11);
+      group.position.set(Math.cos(a)*radius, .72, Math.sin(a)*radius);
+      const ring = new THREE.Mesh(new THREE.RingGeometry(.66,.88,32), new THREE.MeshBasicMaterial({ color:cfg.color, transparent:true, opacity:.24, side:THREE.DoubleSide }));
+      ring.rotation.x = -Math.PI/2; ring.position.y = -.66; group.add(ring);
+
+      const labelCanvas=document.createElement('canvas'); labelCanvas.width=128; labelCanvas.height=64;
+      const c=labelCanvas.getContext('2d'); c.fillStyle='#3b2c50'; c.font='700 26px Georgia'; c.textAlign='center'; c.textBaseline='middle'; c.fillText(cfg.note,64,32);
+      const sprite=new THREE.Sprite(new THREE.SpriteMaterial({ map:new THREE.CanvasTexture(labelCanvas), transparent:true }));
+      sprite.position.set(0,1.05,0); sprite.scale.set(1.1,.55,1); group.add(sprite);
+
+      Object.assign(group.userData, { ...cfg, index:i, active:false, baseY:.72, ring, angle:a });
+      group.userData.body.userData.nodeIndex = i;
+      hitTargets.push(group.userData.body);
+      scene.add(group); nodes.push(group);
+
+      const row=document.createElement('div'); row.className='instrument';
+      row.innerHTML=`<span class="dot" style="background:#${cfg.color.toString(16).padStart(6,'0')}"></span><span>${cfg.note} · ${cfg.name}</span>`;
+      legend.appendChild(row);
+    });
+
+    const targetPhrases = [
+      { id:'sea_above', name:'Sea Above Gate', notes:['C4','E4','G4'] },
+      { id:'sanctuary', name:'Sanctuary Gate', notes:['D4','F4','A4'] },
+      { id:'glasswing', name:'Glasswing Seam', notes:['B4','C5','E5','G5'] },
+      { id:'far_fold', name:'Far Fold', notes:['D5','F5','G5'] }
+    ];
+
+    const gates=[];
+    const gatePositions=[[0,1.65,-10.9],[-10.9,1.65,0],[10.9,1.65,0],[0,1.65,10.9]];
+    targetPhrases.forEach((cfg,i)=>{
+      const g=cel(new THREE.BoxGeometry(i<2?6.6:5.1,3,.24), i<2?PAL.night:PAL.iris, 1.035);
+      g.position.set(...gatePositions[i]);
+      if(i===1||i===2) g.rotation.y=Math.PI/2;
+      Object.assign(g.userData,{...cfg,locked:true,baseY:g.position.y});
+      g.userData.body.material.transparent=true; g.userData.body.material.opacity=.72;
+      scene.add(g); gates.push(g);
+    });
+
+    // Fine musical threads connect neighboring instruments without implying gameplay ownership.
+    for (let i=0;i<nodes.length;i++) {
+      const a=nodes[i].position.clone().add(new THREE.Vector3(0,.25,0));
+      const b=nodes[(i+1)%nodes.length].position.clone().add(new THREE.Vector3(0,.25,0));
+      const mid=a.clone().add(b).multiplyScalar(.5); mid.y+=.7;
+      const curve=new THREE.QuadraticBezierCurve3(a,mid,b);
+      scene.add(new THREE.Mesh(new THREE.TubeGeometry(curve,28,.018,6,false),new THREE.MeshBasicMaterial({color:PAL.lavender,transparent:true,opacity:.11})));
+    }
+
+    const particleCount=260;
+    const positions=new Float32Array(particleCount*3);
+    const colors=new Float32Array(particleCount*3);
+    const phases=[];
+    const colorChoices=[PAL.blue,PAL.water,PAL.pink,PAL.lavender,PAL.gold];
+    for(let i=0;i<particleCount;i++){
+      positions[i*3]=(Math.random()-.5)*28; positions[i*3+1]=Math.random()*8+.1; positions[i*3+2]=(Math.random()-.5)*28;
+      const cc=new THREE.Color(colorChoices[(Math.random()*colorChoices.length)|0]); colors[i*3]=cc.r; colors[i*3+1]=cc.g; colors[i*3+2]=cc.b; phases.push(Math.random()*Math.PI*2);
+    }
+    const pg=new THREE.BufferGeometry(); pg.setAttribute('position',new THREE.BufferAttribute(positions,3)); pg.setAttribute('color',new THREE.BufferAttribute(colors,3));
+    const particles=new THREE.Points(pg,new THREE.PointsMaterial({size:.075,vertexColors:true,transparent:true,opacity:.58,blending:THREE.AdditiveBlending,depthWrite:false}));
+    scene.add(particles);
+
+    const controls=new OrbitControls(camera,renderer.domElement);
+    controls.enableDamping=true; controls.dampingFactor=.06; controls.minDistance=9; controls.maxDistance=30; controls.maxPolarAngle=Math.PI/2.08; controls.target.set(0,.6,0);
+
+    const raycaster=new THREE.Raycaster();
+    const pointer=new THREE.Vector2(-10,-10);
+    let currentPhrase=[];
+
+    function updatePhrase(){
+      phraseEl.textContent=currentPhrase.length?currentPhrase.join(' → '):'—';
+      if(!currentPhrase.length){statusEl.textContent='Touch an instrument to begin.';statusEl.style.color='#7d6ca5';}
+      else {statusEl.textContent=`${currentPhrase.length} note${currentPhrase.length===1?'':'s'} held in the sanctuary.`;}
+    }
+
+    function checkGates(){
+      for(const gate of gates){
+        if(!gate.userData.locked) continue;
+        const notes=gate.userData.notes;
+        if(currentPhrase.length>=notes.length && currentPhrase.slice(-notes.length).every((n,i)=>n===notes[i])){
+          gate.userData.locked=false;
+          gate.userData.body.material.opacity=.08;
+          gate.userData.outline.material.opacity=.08;
+          statusEl.textContent=`✦ ${gate.userData.name} answered the phrase.`;
+          statusEl.style.color='#a07a14';
+          const flash=new THREE.PointLight(PAL.gold,7,12); flash.position.copy(gate.position); scene.add(flash); setTimeout(()=>scene.remove(flash),700);
+        }
+      }
+    }
+
+    function setNode(node,on){
+      const d=node.userData; d.active=on;
+      d.body.material.emissive=new THREE.Color(d.color);
+      d.body.material.emissiveIntensity=on?.62:0;
+      d.ring.material.opacity=on?.72:.24;
+      if(on) currentPhrase.push(d.note);
+      else {
+        const ix=currentPhrase.lastIndexOf(d.note);
+        if(ix>=0) currentPhrase.splice(ix,1);
+      }
+      updatePhrase(); checkGates();
+    }
+
+    function reset(){
+      currentPhrase=[];
+      nodes.forEach(n=>{n.userData.active=false;n.userData.body.material.emissiveIntensity=0;n.userData.ring.material.opacity=.24;});
+      gates.forEach(g=>{g.userData.locked=true;g.userData.body.material.opacity=.72;g.userData.outline.material.opacity=.82;g.position.y=g.userData.baseY;});
+      updatePhrase();
+    }
+
+    function pointerFromEvent(e){
+      const r=renderer.domElement.getBoundingClientRect();
+      pointer.x=((e.clientX-r.left)/r.width)*2-1; pointer.y=-((e.clientY-r.top)/r.height)*2+1;
+    }
+    renderer.domElement.addEventListener('pointermove',pointerFromEvent);
+    renderer.domElement.addEventListener('click',e=>{
+      pointerFromEvent(e); raycaster.setFromCamera(pointer,camera);
+      const hit=raycaster.intersectObjects(hitTargets,false)[0];
+      if(hit){const node=nodes[hit.object.userData.nodeIndex]; setNode(node,!node.userData.active);}
+    });
+
+    document.getElementById('reset').addEventListener('click',reset);
+    document.getElementById('demo').addEventListener('click',async()=>{
+      reset();
+      const target=targetPhrases[Math.floor(Math.random()*targetPhrases.length)].notes;
+      for(const note of target){
+        await new Promise(r=>setTimeout(r,reducedMotion?80:430));
+        const node=nodes.find(n=>n.userData.note===note); if(node) setNode(node,true);
+      }
+    });
+    document.getElementById('export').addEventListener('click',()=>{
+      const data={
+        sandbox_id:'melodia.cymatic_sanctuary.12_instrument',
+        schema:'melodia.music_key_sandbox.v1',
+        instruments:instruments.map((x,i)=>({id:`sanctuary.instrument.${i+1}`,note:x.note,name:x.name,color:`#${x.color.toString(16).padStart(6,'0')}`})),
+        barriers:targetPhrases.map(x=>({id:x.id,name:x.name,required_phrase:x.notes})),
+        current_phrase:[...currentPhrase],
+        unlocked:gates.filter(g=>!g.userData.locked).map(g=>g.userData.id),
+        exported_at:new Date().toISOString(),
+        authority:'prototype_only_unreal_remains_authoritative'
+      };
+      document.getElementById('exportCode').textContent=JSON.stringify(data,null,2);
+      document.getElementById('exportDialog').showModal();
+    });
+
+    window.addEventListener('resize',()=>{
+      camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); composer.setSize(innerWidth,innerHeight);
+    });
+
+    const clock=new THREE.Clock();
+    function animate(){
+      requestAnimationFrame(animate);
+      const t=clock.getElapsedTime();
+      if(!reducedMotion){
+        nodes.forEach((n,i)=>{n.position.y=n.userData.baseY+Math.sin(t*.9+i*.55)*.1;n.rotation.y+=.0035;n.userData.ring.rotation.z+=.006; if(!n.userData.active)n.userData.ring.material.opacity=.23+Math.sin(t+i)*.055;});
+        gates.forEach((g,i)=>{if(g.userData.locked)g.position.y=g.userData.baseY+Math.sin(t*.75+i)*.055;else g.position.y=THREE.MathUtils.lerp(g.position.y,-2.4,.025);});
+        const arr=particles.geometry.attributes.position.array;
+        for(let i=0;i<particleCount;i++){arr[i*3]+=Math.sin(t*.55+phases[i])*.0018;arr[i*3+1]+=.0025+((i%7)*.00018);arr[i*3+2]+=Math.cos(t*.48+phases[i])*.0016;if(arr[i*3+1]>9)arr[i*3+1]=.1;}
+        particles.geometry.attributes.position.needsUpdate=true;
+        scene.children.forEach(o=>{if(o.geometry?.type==='RingGeometry'&&o.parent===scene)o.material.opacity=.12+Math.sin(t*1.1+(o.userData.phase||0))*.045;});
+      }
+
+      raycaster.setFromCamera(pointer,camera);
+      const hover=raycaster.intersectObjects(hitTargets,false)[0];
+      if(hover){
+        const n=nodes[hover.object.userData.nodeIndex];
+        tooltip.innerHTML=`<strong>${n.userData.name}</strong><br>♪ ${n.userData.note}${n.userData.active?' · resonating':''}`;
+        tooltip.style.opacity='1';
+        tooltip.style.left=`${(pointer.x*.5+.5)*innerWidth+16}px`; tooltip.style.top=`${(-pointer.y*.5+.5)*innerHeight-34}px`;
+      } else tooltip.style.opacity='0';
+
+      controls.update(); composer.render();
+    }
+    updatePhrase(); animate();
+  </script>
+</body>
+</html>
