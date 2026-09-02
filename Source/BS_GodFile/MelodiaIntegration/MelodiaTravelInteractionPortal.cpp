@@ -4,6 +4,9 @@
 #include "Components/TextRenderComponent.h"
 #include "GameFramework/Pawn.h"
 #include "MelodiaTravelSubsystem.h"
+#include "MelodiaTraversalCapabilityProvider.h"
+#include "Engine/GameInstance.h"
+#include "TimerManager.h"
 
 AMelodiaTravelInteractionPortal::AMelodiaTravelInteractionPortal()
 {
@@ -26,15 +29,43 @@ void AMelodiaTravelInteractionPortal::BeginPlay()
 	Super::BeginPlay();
 	if (PromptText)
 	{
-		PromptText->SetText(InteractionPrompt);
+		RefreshCapabilityPrompt();
+	}
+	GetWorldTimerManager().SetTimer(CapabilityRefreshTimerHandle, this,
+		&AMelodiaTravelInteractionPortal::RefreshCapabilityPrompt, 0.25f, true);
+}
+
+bool AMelodiaTravelInteractionPortal::IsTraversalUnlocked(FName& OutBlockReason) const
+{
+	OutBlockReason = NAME_None;
+	if (RequiredTraversalCapability.IsNone())
+	{
+		return true;
+	}
+
+	const UGameInstance* GameInstance = GetGameInstance();
+	const UMelodiaTraversalCapabilityRegistry* Registry = GameInstance
+		? GameInstance->GetSubsystem<UMelodiaTraversalCapabilityRegistry>() : nullptr;
+	return Registry && Registry->QueryCapability(
+		RequiredTraversalCapability, TraversalCapabilityContext, OutBlockReason);
+}
+
+void AMelodiaTravelInteractionPortal::RefreshCapabilityPrompt()
+{
+	FName BlockReason;
+	if (PromptText)
+	{
+		PromptText->SetText(IsTraversalUnlocked(BlockReason) ? InteractionPrompt : LockedInteractionPrompt);
 	}
 }
 
 bool AMelodiaTravelInteractionPortal::TryInteract(AActor* InteractingActor)
 {
 	const APawn* Pawn = Cast<APawn>(InteractingActor);
+	FName CapabilityBlockReason;
 	if (bTravelRequested || DestinationMap.IsNone() || !Pawn || !Pawn->IsPlayerControlled()
-		|| !InteractionVolume || !InteractionVolume->IsOverlappingActor(InteractingActor))
+		|| !InteractionVolume || !InteractionVolume->IsOverlappingActor(InteractingActor)
+		|| !IsTraversalUnlocked(CapabilityBlockReason))
 	{
 		return false;
 	}

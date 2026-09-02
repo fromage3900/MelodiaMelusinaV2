@@ -1,0 +1,189 @@
+// Copyright 2026 BS_GodFile. All Rights Reserved.
+//
+// MelodiaInkCommon.ush — shared types, constants, and helpers for all Melodia ink shaders.
+//
+// This is the foundation header that the ink pattern shaders #include. It provides:
+//   - Audio-reactive parameter struct (mirrors the MPC_Melodia_Palette + MPC_MelodiaInk scalars)
+//   - Luminance and color space helpers
+//   - Screen-space UV helpers (the ink operates on PostProcessInput0)
+//   - Deterministic hash noise (no texture dependency)
+//
+// Authoring: this file is edited in JetBrains Rider with full HLSL syntax validation.
+// It is consumed by the Custom HLSL node in M_PP_MelodiaInk (the build script can
+// #include or inline the content). It does NOT call SceneTextureLookup — that is
+// not callable inside Custom nodes in UE 5.8; SceneTexture inputs are passed as
+// named function inputs instead.
+
+#pragma once
+
+// ============================================================================
+// Audio-reactive parameters (mirror of MPC_Melodia_Palette + MPC_MelodiaInk)
+// These are passed as named Custom node inputs, not read from the collection
+// inside the HLSL (UE 5.8 by-name global failure mode, proven 2026-08-18).
+// ============================================================================
+
+struct FMelodiaInkAudio
+{
+    float BeatPulse;          // 0..1, cos²(BeatPhase·π), peaks on beat edge
+    float ComboNormalized;    // 0..1, player combo streak
+    float EnemyTension;       // 0..1, encounter tension level
+    float BreakPulse;         // 0..1, one-shot on rhythm break
+    float VictoryPulse;       // 0..1, one-shot on victory
+    float Bass;               // 0..1, bass band energy
+    float Mid;                // 0..1, mid band energy
+    float Treble;             // 0..1, treble band energy
+    float GlobalReactivity;   // 0..1, overall music energy
+    float InkReact;           // 0..1, ink-specific reactivity gate
+    float InkSyncVision;      // 0..1, sync-vision gate (beat-driven flash)
+    float InkHueShift;         // 0..1, hue rotation amount
+    float InkMasterWeight;    // 0..1, global ink strength
+    float3 MeluPrimary;        // Melusina's primary color (for sync-vision tint)
+};
+
+// ============================================================================
+// Ink parameter struct (mirror of the 20 scalar + 3 vector params)
+// ============================================================================
+
+struct FMelodiaInkParams
+{
+    // Pattern control
+    float DotPitch;        // halftone cell size (0.002..0.08)
+    float DotAngle;        // halftone rotation (0..180)
+    float DotLumaDrive;    // luma-driven dot size (0..1)
+    float DotScale;        // dot radius multiplier (0.2..3.0)
+    float HatchDensity;    // hatch lines per UV (1..24)
+    float HatchAngle;      // hatch rotation (0..180)
+    float HatchShadowBand; // hatch shadow width (0..2)
+    float Strength;        // overall ink strength (0..1.5)
+
+    // Print effects
+    float PrintOffset;      // misregistration offset (0..1)
+    float PrintOffsetDepth; // depth-driven offset (0..1)
+    float PrintShift;       // channel shift intensity (0..1)
+
+    // Paper
+    float Grain;       // paper grain amount (0..0.5)
+    float GrainScale;  // grain frequency (0.5..12)
+    float PaperLight;  // paper lightness (0..1, 1=no shift)
+    float PaperShadow; // paper shadow depth (0..1)
+
+    // Gates (0 or 1)
+    float HalftoneOn;
+    float HatchOn;
+    float GrainOn;
+    float PrintShiftOn;
+    float SmearOn;
+    float Smear;      // smear amount (0..1)
+
+    // Pattern router (new — for interchanging patterns)
+    float PatternIndex;  // 0=halftone, 1=SDF notation, 2=watercolor, 3=shattered
+    float PatternBlend;  // 0..1 crossfade between current and next pattern
+
+    // Bioluminescent bridge (new — shared decay with water)
+    float BiolumDecay;     // decay constant λ (default 2.5)
+    float BiolumIntensity; // peak impulse I₀ (default 2.0)
+    float BiolumOn;        // 0 or 1 gate
+
+    // Colors
+    float3 InkColor;     // base ink color
+    float3 InkHueTint;   // hue rotation tint
+    float3 PaperColor;   // paper tint
+    float3 AccentTint;   // accent (tension/highlight) tint
+};
+
+// ============================================================================
+// Constants
+// ============================================================================
+
+#define MEL_PI 3.14159265
+#define MEL_TAU 6.28318530
+
+// ============================================================================
+// Helpers
+// ============================================================================
+
+float MelLuminance(float3 c)
+{
+    return dot(c, float3(0.2126, 0.7152, 0.0722));
+}
+
+float MelLuminanceNTSC(float3 c)
+{
+    return dot(c, float3(0.299, 0.587, 0.114));
+}
+
+// Rotate a 2D vector by angle in degrees
+float2 MelRotateUV(float2 uv, float angleDegrees)
+{
+    float a = angleDegrees * 0.0174533;
+    float ca = cos(a);
+    float sa = sin(a);
+    float2 v = uv - 0.5;
+    return float2(v.x * ca - v.y * sa, v.x * sa + v.y * ca) + 0.5;
+}
+
+// Deterministic hash noise — no texture dependency
+float MelHash(float2 p)
+{
+    return frac(sin(dot(p, float2(12.9898, 78.233))) * 43758.5453);
+}
+
+float2 MelHash2(float2 p)
+{
+    return float2(
+        frac(sin(dot(p, float2(12.9898, 78.233))) * 43758.5453),
+        frac(sin(dot(p, float2(39.346, 11.135))) * 43758.5453)
+    );
+}
+
+// Smooth hash noise (bilinear interpolation of MelHash)
+float MelHashSmooth(float2 p)
+{
+    float2 i = floor(p);
+    float2 f = frac(p);
+    float2 u = f * f * (3.0 - 2.0 * f);
+    float a = MelHash(i);
+    float b = MelHash(i + float2(1.0, 0.0));
+    float c = MelHash(i + float2(0.0, 1.0));
+    float d = MelHash(i + float2(1.0, 1.0));
+    return lerp(lerp(a, b, u.x), lerp(c, d, u.x), u.y);
+}
+
+// SDF to a circle (for note-heads, petal shapes)
+float MelSdfCircle(float2 p, float2 center, float radius)
+{
+    return length(p - center) - radius;
+}
+
+// SDF to a line segment (for staff lines, hatch)
+float MelSdfLine(float2 p, float2 a, float2 b)
+{
+    float2 pa = p - a;
+    float2 ba = b - a;
+    float h = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-6), 0.0, 1.0);
+    return length(pa - ba * h);
+}
+
+// Exponential decay — the bioluminescent impulse model
+// I(t) = I₀ · exp(-λ · dt)
+float MelBiolumDecay(float dt, float peakIntensity, float decayRate)
+{
+    if (dt < 0.0) return 0.0;
+    return peakIntensity * exp(-decayRate * dt);
+}
+
+// Soft step with anti-aliased edge (uses fwidth for screen-space smoothness)
+float MelSoftStep(float edge, float x)
+{
+    float w = max(fwidth(x) * 2.0, 0.002);
+    return smoothstep(edge - w, edge + w, x);
+}
+
+// Saturate helper (clamp 0..1)
+float MelSaturate(float x) { return clamp(x, 0.0, 1.0); }
+
+// Linear to sRGB
+float3 MelLinearToSRGB(float3 c)
+{
+    return lerp(c * 12.92, 1.055 * pow(c, 1.0 / 2.4) - 0.055, step(0.0031308, c));
+}

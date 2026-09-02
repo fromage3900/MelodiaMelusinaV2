@@ -53,7 +53,7 @@ bool UMelodiaPCGWaterGameplayBridgeComponent::RebindToHost()
 
 bool UMelodiaPCGWaterGameplayBridgeComponent::UnregisterWaterBindings()
 {
-	if (WaterNetworkId.IsNone())
+	if (!WaterNetworkId.IsValid())
 	{
 		return false;
 	}
@@ -76,13 +76,13 @@ void UMelodiaPCGWaterGameplayBridgeComponent::HandleNoteJudged(FPCGHeroMusicNote
 	{
 		SourceActor = GetOwner();
 	}
-	SubmitResonance(GetStrengthForGrade(Event.Grade), NAME_None, PlatformRouteId, SourceActor);
+	SubmitResonance(GetStrengthForGrade(Event.Grade), FGameplayTag(), PlatformRouteId, SourceActor);
 }
 
 void UMelodiaPCGWaterGameplayBridgeComponent::HandlePatternCompleted()
 {
 	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaPCGWaterGameplayBridge_HandlePatternCompleted);
-	if (!bBound || CompletionPuzzleId.IsNone())
+	if (!bBound || !CompletionPuzzleId.IsValid())
 	{
 		return;
 	}
@@ -98,10 +98,10 @@ float UMelodiaPCGWaterGameplayBridgeComponent::GetStrengthForGrade(EMelodiaRhyth
 	return 0.0f;
 }
 
-void UMelodiaPCGWaterGameplayBridgeComponent::SubmitResonance(float Strength, FName PuzzleId, FName RouteId, AActor* SourceActor)
+void UMelodiaPCGWaterGameplayBridgeComponent::SubmitResonance(float Strength, FGameplayTag PuzzleId, FGameplayTag RouteId, AActor* SourceActor)
 {
 	TRACE_CPUPROFILER_EVENT_SCOPE(MelodiaPCGWaterGameplayBridge_SubmitResonance);
-	if (WaterNetworkId.IsNone() || TargetWaterNodeId.IsNone())
+	if (!WaterNetworkId.IsValid() || !TargetWaterNodeId.IsValid())
 	{
 		return;
 	}
