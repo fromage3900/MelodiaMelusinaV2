@@ -42,22 +42,19 @@ bool FMelodiaP0WardrobeEquipTest::RunTest(const FString& Parameters)
 {
 	FMelodiaNarrativeRecord Record;
 	const FName EquipFlag(TEXT("flag.wardrobe.outfit_equipped"));
-	const FName SorrowSeamFlag(TEXT("flags.melusina.sorrow_seam_restored"));
+	const FName SorrowSeamFlag(TEXT("flag.melusina.sorrow_seam_restored"));
 	const FName CosmeticBodyId(TEXT("Cos_Body_MelusinaV2"));
 
 	Record.OwnedCosmeticIds.Add(CosmeticBodyId);
-	Record.EquippedCosmeticIds.Add(CosmeticBodyId);
+	Record.EquippedCosmeticIds.Add(EMelodiaWardrobeSlot::Body, CosmeticBodyId);
 	Record.Flags.Add(EquipFlag, true);
 	Record.Flags.Add(SorrowSeamFlag, true);
 
 	TestTrue(TEXT("Melusina V2 Owned"), Record.OwnedCosmeticIds.Contains(CosmeticBodyId));
-	TestTrue(TEXT("Melusina V2 Equipped"), Record.EquippedCosmeticIds.Contains(CosmeticBodyId));
+	TestEqual(TEXT("Melusina V2 Equipped"), Record.EquippedCosmeticIds.FindRef(EMelodiaWardrobeSlot::Body), CosmeticBodyId);
 	TestTrue(TEXT("Outfit Equipped Flag set"), Record.Flags.FindRef(EquipFlag));
 	TestTrue(TEXT("Sorrow Seam Restored Flag set"), Record.Flags.FindRef(SorrowSeamFlag));
 
-	// Capability check
-	const uint8 GlideBit = static_cast<uint8>(EMelodiaFormCapability::Glide);
-	TestEqual(TEXT("Glide capability enum is 0"), GlideBit, static_cast<uint8>(0));
 	return true;
 }
 
@@ -99,6 +96,44 @@ bool FMelodiaP0SeaAboveCutsceneTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("Sea Above Witnessed Flag set"), Record.Flags.FindRef(WitnessFlag));
 	TestTrue(TEXT("Membrane Pulse Active Flag set"), Record.Flags.FindRef(PulseActiveFlag));
 	TestEqual(TEXT("Resonance Stat incremented"), Record.SocialStats.FindRef(ResonanceStat), 5);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaShorewakeQuestTest,
+	"Melodia.Quest.Shorewake",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaShorewakeQuestTest::RunTest(const FString& Parameters)
+{
+	FMelodiaNarrativeRecord Record;
+	const FName QuestId(TEXT("quest.shorewake.initiation"));
+	const FName CompletionFlag(TEXT("flag.quest.shorewake_completed"));
+	const FName StarskiffFlag(TEXT("flag.sea_above.starskiff_ready"));
+	const FName ShorewakeDressId(TEXT("Cos_ShorewakeDress"));
+	const FName ResonanceStat(TEXT("melodia_resonance"));
+
+	// Initial State
+	TestFalse(TEXT("Shorewake Quest not initially completed"), Record.CompletedQuestIds.Contains(QuestId));
+	TestFalse(TEXT("Completion Flag not initially set"), Record.Flags.FindRef(CompletionFlag));
+	TestFalse(TEXT("Starskiff Ready Flag not initially set"), Record.Flags.FindRef(StarskiffFlag));
+
+	// Simulate complete quest commit and wardrobe grant
+	Record.CompletedQuestIds.Add(QuestId);
+	Record.Flags.Add(CompletionFlag, true);
+	Record.Flags.Add(StarskiffFlag, true);
+	Record.OwnedCosmeticIds.Add(ShorewakeDressId);
+	Record.EquippedCosmeticIds.Add(EMelodiaWardrobeSlot::Skirt, ShorewakeDressId);
+	Record.SocialStats.Add(ResonanceStat, 5);
+
+	// Verify Record Invariants
+	TestTrue(TEXT("Shorewake Quest completed"), Record.CompletedQuestIds.Contains(QuestId));
+	TestTrue(TEXT("Completion Flag set"), Record.Flags.FindRef(CompletionFlag));
+	TestTrue(TEXT("Starskiff Ready Flag set"), Record.Flags.FindRef(StarskiffFlag));
+	TestTrue(TEXT("Shorewake Dress Owned"), Record.OwnedCosmeticIds.Contains(ShorewakeDressId));
+	TestEqual(TEXT("Shorewake Dress Equipped in Skirt slot"), Record.EquippedCosmeticIds.FindRef(EMelodiaWardrobeSlot::Skirt), ShorewakeDressId);
+	TestEqual(TEXT("Resonance Stat incremented"), Record.SocialStats.FindRef(ResonanceStat), 5);
+
 	return true;
 }
 

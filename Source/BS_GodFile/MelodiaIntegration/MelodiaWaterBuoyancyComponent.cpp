@@ -29,7 +29,7 @@ void UMelodiaWaterBuoyancyComponent::InitializePlatformState()
 {
 	if (const AMelodiaWaterPlatform* Platform = Cast<AMelodiaWaterPlatform>(GetOwner()))
 	{
-		if (WaterNetworkId.IsNone())
+		if (!WaterNetworkId.IsValid())
 		{
 			WaterNetworkId = Platform->WaterNetworkId;
 		}
@@ -70,7 +70,8 @@ void UMelodiaWaterBuoyancyComponent::TickComponent(float DeltaTime, ELevelTick T
 		const FVector ProbeWorld = ComponentTransform.TransformPosition(LocalProbe);
 		FMelodiaWaterSample Sample;
 		if (!WaterInteraction->QueryWaterAtLocationForActor(Platform, ProbeWorld, Sample) ||
-			!Sample.bValid || !Sample.bSurfaceValid || Sample.QueryProvider != EMelodiaWaterQueryProvider::NativeWaterBody)
+			!Sample.bValid || !Sample.bSurfaceValid ||
+			(Sample.QueryProvider != EMelodiaWaterQueryProvider::NativeWaterBody && Sample.QueryProvider != EMelodiaWaterQueryProvider::Oceanology))
 		{
 			continue;
 		}
