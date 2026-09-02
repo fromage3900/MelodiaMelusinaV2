@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071018"/><stop offset="1" stop-color="#11152a"/></linearGradient>
+    <style>
+      .t{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#eef4ff}.h{font-size:42px;font-weight:700}.s{font-size:18px;fill:#9fb1c7}.b{font-size:21px;font-weight:700}.m{font-size:16px;fill:#d8e1ee}.sm{font-size:14px;fill:#9fb1c7}.box{rx:18;ry:18;stroke-width:2}.arrow{stroke:#7dd3fc;stroke-width:3;fill:none;marker-end:url(#a)}.arrow2{stroke:#c084fc;stroke-width:3;fill:none;marker-end:url(#a2)}
+    </style>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7dd3fc"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#c084fc"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="70" y="74" class="t h">MELODIA — EXPERIMENTAL SYSTEMS BACKLOG</text>
+  <text x="72" y="108" class="t s">Artist gesture → semantic compiler → ecosystem / representation → runtime response → measured shipping world</text>
+
+  <rect x="60" y="160" width="280" height="185" class="box" fill="#0d2431" stroke="#38bdf8"/>
+  <text x="85" y="198" class="t b">1. AUTHORING LANGUAGE</text>
+  <text x="85" y="232" class="t m">PCG Artist Tool Shelf</text><text x="85" y="258" class="t sm">FilterFlow Brush • Ecology Spline</text>
+  <text x="85" y="284" class="t sm">Monolith Volume • Molt Brush</text>
+  <text x="85" y="310" class="t sm">Dash = last-mile hero composition</text>
+
+  <rect x="390" y="160" width="300" height="185" class="box" fill="#162239" stroke="#818cf8"/>
+  <text x="415" y="198" class="t b">2. SEMANTIC COMPILER</text>
+  <text x="415" y="232" class="t m">Houdini + melodia.semantic-fields.v1</text>
+  <text x="415" y="258" class="t sm">moisture • slope • density • proximity</text>
+  <text x="415" y="284" class="t sm">filter flow • tension • wind vectors</text>
+  <text x="415" y="310" class="t sm">Natural geology → impossible anatomy</text>
+
+  <rect x="740" y="160" width="360" height="185" class="box" fill="#241c35" stroke="#c084fc"/>
+  <text x="765" y="198" class="t b">3. ECOSYSTEM + REPRESENTATION</text>
+  <text x="765" y="232" class="t m">Biome Core • SpeedTree • Nanite canary</text>
+  <text x="765" y="258" class="t sm">AssetID resolution • overlap / priority</text>
+  <text x="765" y="284" class="t sm">SpeedTree botanical source stays truth</text>
+  <text x="765" y="310" class="t sm">PVE only for anomalous secondary growth</text>
+
+  <rect x="1150" y="160" width="390" height="185" class="box" fill="#2a1b2e" stroke="#f472b6"/>
+  <text x="1175" y="198" class="t b">4. RUNTIME / PRESENTATION</text>
+  <text x="1175" y="232" class="t m">Niagara • Cymatic Ecological Memory</text>
+  <text x="1175" y="258" class="t sm">Runtime field response • particles • materials</text>
+  <text x="1175" y="284" class="t sm">LiquiGen / EmberGen = baked sources</text>
+  <text x="1175" y="310" class="t sm">FluidNinja only if native Niagara loses</text>
+
+  <path d="M340 252 H390" class="arrow"/><path d="M690 252 H740" class="arrow"/><path d="M1100 252 H1150" class="arrow2"/>
+
+  <rect x="60" y="405" width="360" height="170" class="box" fill="#101d28" stroke="#34d399"/>
+  <text x="85" y="443" class="t b">VECTOR FIELD LAB</text>
+  <text x="85" y="477" class="t m">Houdini vs Native UE/Niagara vs Vectoray</text>
+  <text x="85" y="505" class="t sm">±XYZ axis canary • units • handedness</text>
+  <text x="85" y="531" class="t sm">One canonical world-space vector contract</text>
+
+  <rect x="455" y="405" width="340" height="170" class="box" fill="#1d1d31" stroke="#f59e0b"/>
+  <text x="480" y="443" class="t b">MATERIAL INTERCHANGE</text>
+  <text x="480" y="477" class="t m">OpenPBR • MaterialX • Substrate canary</text>
+  <text x="480" y="505" class="t sm">Portable PBR subset only</text>
+  <text x="480" y="531" class="t sm">UE toon/runtime material stays authority</text>
+
+  <rect x="830" y="405" width="340" height="170" class="box" fill="#1f1830" stroke="#a78bfa"/>
+  <text x="855" y="443" class="t b">SPECIALIST ACCELERATORS</text>
+  <text x="855" y="477" class="t m">Toolbag • Cascadeur • IlluGen</text>
+  <text x="855" y="505" class="t sm">Feedback loop • physical motion • VFX assets</text>
+  <text x="855" y="531" class="t sm">Adopt only narrow measurable roles</text>
+
+  <rect x="1205" y="405" width="335" height="170" class="box" fill="#11272c" stroke="#2dd4bf"/>
+  <text x="1230" y="443" class="t b">WORLD QA HARNESS</text>
+  <text x="1230" y="477" class="t m">World Streaming Insights + perceptual QA</text>
+  <text x="1230" y="505" class="t sm">Cells • memory • HLOD • visible pop</text>
+  <text x="1230" y="531" class="t sm">Technical win must preserve composition</text>
+
+  <path d="M240 575 V645 H1370 V575" class="arrow"/>
+
+  <rect x="90" y="650" width="1420" height="165" class="box" fill="#0b1420" stroke="#64748b"/>
+  <text x="120" y="690" class="t b">PROMOTION GATE — ONE REAL MELODIA BENCHMARK PER LANE</text>
+  <text x="120" y="727" class="t m">ADOPT only when a lane creates a visibly unique result, materially reduces artist-hours, or proves a durable boundary.</text>
+  <text x="120" y="758" class="t sm">Required evidence: exact builds/licenses • source files • setup/revision minutes • semantic units/space • Git diff • reopen/regenerate • package/cook • perf • fallback.</text>
+  <text x="120" y="789" class="t sm">Unreal remains gameplay/runtime/shipping authority. Houdini is a compiler. SpeedTree is botanical truth. Dash is optional hero composition. Experimental systems stay isolated until proven.</text>
+
+  <text x="60" y="858" class="t sm">Source: Docs/Research/MELODIA_EXPERIMENTAL_SYSTEMS_BACKLOG_2026-08-31.md • PR #37 • 2026-08-31</text>
+</svg>
