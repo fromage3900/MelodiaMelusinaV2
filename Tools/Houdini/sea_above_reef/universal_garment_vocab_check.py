@@ -59,6 +59,33 @@ def main():
                 if isinstance(v, (tuple, list)) and len(v) == 2:
                     domains[k] = (domain, tuple(v))
 
+    # ---- registry cross-check (the real drift risk) ----
+    # The gate must score the registry (universal_garment_system.json),
+    # not just the code literals. If a lane edits one without the other,
+    # report a REGISTRY_DRIFT FAIL so the fork cannot pass silently.
+    registry_issues = []
+    try:
+        reg = json.loads(SYSTEM_JSON.read_text(encoding="utf-8"))
+        reg_body = reg.get("vocab_contract") or reg.get("body", reg)  # modes live under vocab_contract
+        reg_map = {}
+        for piece, mode in (reg_body.get("garment_modes") or {}).items():
+            reg_map[piece] = ("garment", tuple(mode))
+        for zone, mode in (reg_body.get("water_zones") or {}).items():
+            reg_map[zone] = ("water_zone", tuple(mode))
+        for name, (reg_domain, reg_mode) in reg_map.items():
+            code_entry = domains.get(name)
+            if code_entry is None:
+                registry_issues.append(
+                    f"REGISTRY_ONLY {name} mode {reg_mode} not present in code tables")
+            elif code_entry[1] != reg_mode:
+                registry_issues.append(
+                    f"REGISTRY_DRIFT {reg_domain}.{name}: registry {reg_mode} "
+                    f"!= code {code_entry[1]}")
+
+            # a registry piece must also stay unique within its own domain
+    except Exception as e:  # pragma: no cover - defensive
+        registry_issues.append(f"REGISTRY_UNREADABLE {e}")
+
     collisions = {}
     seen = {}
     for name, (domain, mode) in domains.items():
@@ -72,25 +99,33 @@ def main():
             print(f"FAIL {domain}.{name} invalid mode {mode}")
             return 1
 
+    for issue in registry_issues:
+        print(f"FAIL {issue}")
+
     result = {
         "schema": "melodia.universal_garment_vocab_check.v1",
         "seed": 20260902,
         "article_count": len(domains),
         "unique_modes": len(seen),
         "collisions": {f"{m[0]}x{m[1]}": [f"{d}.{n}" for d, n in v] for m, v in collisions.items()},
-        "pass": not collisions,
+        "registry_crosscheck": {
+            "issues": registry_issues,
+            "pass": not registry_issues,
+            "checked_registry": str(SYSTEM_JSON),
+        },
+        "pass": not collisions and not registry_issues,
     }
     print(f"[vocab] {len(domains)} articles | {len(seen)} unique modes | "
-          f"{len(collisions)} collisions")
+          f"{len(collisions)} collisions | {len(registry_issues)} registry issues")
     if collisions:
         for m, v in result["collisions"].items():
             print(f"  COLLISION {m}: {v}")
     out = PROJECT / "Saved/Audit/universal_garment/garment_vocab_check.json"
     out.write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(f"[vocab] wrote {out}")
-    if not collisions:
-        print("[vocab] PASS — vocabulary unique")
-    return 0 if not collisions else 1
+    if not collisions and not registry_issues:
+        print("[vocab] PASS — vocabulary unique + registry in lockstep")
+    return 0 if (not collisions and not registry_issues) else 1
 
 
 if __name__ == "__main__":

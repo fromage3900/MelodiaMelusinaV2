@@ -56,7 +56,7 @@ All garment layers, cymatic modes, water zones, and drapery tiers speak **one ha
 | Domain | Set |
 |---|---|
 | **garment_layer** | 10 layers: `M_Bodice_Torso(5,7) M_Bodice_Front(3,4) M_Bodice_Side(2,6) M_Bodice_Upper(1,3) M_Collar(6,6) M_Shoulder_Trim(4,8) M_Shoulder_Ornament(8,8) M_Sleeve(2,7) M_Underskirt(3,5) M_Skirt_Full(7,9)` |
-| **water_zone** (singing-water-veil) | 4 zones: `SheetVeil(2,4) SingingFall(5,7) HearthPool(1,3) TideSeam(6,6)` |
+| **water_zone** (singing-water-veil) | 4 zones: `SheetVeil(2,4) SingingFall(4,9) HearthPool(1,2) TideSeam(6,7)` *(2026-09-02 rebalanced to clear garment collisions — keep code+registry in lockstep)* |
 | **drapery_tier** | orth prescription A/B/C/D (independent of mode — a piece's tier and its sing mode are separate contracts) |
 | **veil** | hero sheets: Klein Veil, RoseWindow, SheetVeil — tier-B or C drape candidates |
 
@@ -118,7 +118,7 @@ Each stage closes only through **maps + a ledger row**, never prose. Gate closur
 
 ## 6. Gaps blocking true universality (top 3)
 1. **Editor materialization (S4/S5).** Everything is offline-manifest-only. MIs are not cooked, PCG placement is 0/7 live ground-snap (`offline_synthetic`, `TraceChannel` bug, empty landscape). The system is manifests until the editor cooks it onto CanonicalLandscape.
-2. **Harmonic vocabulary uniqueness is unenforced.** 3 of 4 singing-water zones already collide with garment modes (SingingFall(5,7)=Bodice_Torso; HearthPool(1,3)=Bodice_Upper; TideSeam(6,6)=Collar). No validate gate scores `universal_garment_vocab_uniqueness`, so a future lane can still fork a parallel harmonic.
+2. **Harmonic vocabulary uniqueness was unenforced** — **RESOLVED 2026-09-02**: the 3 singing-water collisions were cleared by rebalancing zones (SingingFall(5,7)→(4,9), HearthPool(1,3)→(1,2), TideSeam(6,6)→(6,7)); gate reports 14 unique / 0 collisions, now with a registry cross-check so code+registry stay in lockstep. Keep `universal_garment_vocab_check.py` PASS after any mode edit (update BOTH code tables AND `universal_garment_system.json`).
 3. **Master-family consolidation is not enforced.** ~290 masters vs the Nikki-4 small family; 1114 MIs; phantom `M_Master_FarawayMother_Fabric` (referenced, 0 bytes). Until remapped and a do-not-add-a-master gate runs, a lane can fork a parallel authority or fail the cook.
 
 **Gate ceremony (when closing any stage):** run the stage DoD → `echo_run.py record <gate_id> pass|fail` (ledger row) → commit manifests/proof → reference this spec as authority. **Registry edit ceremony:** any new sing surface or mode change updates `universal_garment_system.json` **first**, then the vocab gate is re-scored.

@@ -167,9 +167,9 @@
     },
     "water_zones": {
       "SheetVeil": [2,4],
-      "SingingFall": [5,7],
-      "HearthPool": [1,3],
-      "TideSeam": [6,6]
+      "SingingFall": [4,9],
+      "HearthPool": [1,2],
+      "TideSeam": [6,7]
     },
     "cloth_tiers": {
       "A": "Rigid authored (structured lace, ornaments, columns, caps) — cheapest, deterministic",
@@ -192,11 +192,8 @@
       "Texture-only audio (no code reads audio)", 
       "Runtime drape only where fidelity matters (B); km terrain = WPO/D, never runtime sim"
     ],
-    "known_mode_collisions": [
-      {"water_zone": "SingingFall", "mode": [5,7], "collides_with": "M_Bodice_Torso"},
-      {"water_zone": "HearthPool", "mode": [1,3], "collides_with": "M_Bodice_Upper"},
-      {"water_zone": "TideSeam", "mode": [6,6], "collides_with": "M_Collar"}
-    ],
+    "known_mode_collisions": [],
+    "mode_rebalance_note": "2026-09-02 rebalance resolved the 3 water-zone/garment collisions from the night defect: SingingFall (5,7)->(4,9), HearthPool (1,3)->(1,2), TideSeam (6,6)->(6,7). Registry water_zones now matches the code MODE_BY_ZONE/ZONE_MODE; universal_garment_vocab_check reports 14 articles / 14 unique modes / 0 collisions. Any future mode change MUST update this registry AND the code tables together (registry-edit ceremony).",
     "vocab_gate": "universal_garment_vocab_uniqueness"
   },
   "gaps": [
@@ -210,7 +207,7 @@
       "rank": 2,
       "id": "vocab_uniqueness_unenforced",
       "title": "Shared harmonic vocabulary is not enforced across domains (mode collisions)",
-      "detail": "3 of 4 singing-water zones already collide with garment layers (SingingFall(5,7)=Bodice_Torso, HearthPool(1,3)=Bodice_Upper, TideSeam(6,6)=Collar). No validate gate asserts 'no two co-singing pieces share (m,n)' across the registry. A future lane can still introduce a parallel harmonic or reuse a mode silently. universal_garment_system.json is the registry; the vocab gate must score it."
+      "detail": "RESOLVED 2026-09-02 rebalance: the 3 singing-water collisions were cleared by rebalancing zones (SingingFall(5,7)->(4,9), HearthPool(1,3)->(1,2), TideSeam(6,6)->(6,7)); 14 articles / 14 unique modes / 0 collisions. Remainder: the gate (universal_garment_vocab_check.py) must stay in lockstep with the registry universal_garment_system.json — a future lane editing one without the other reintroduces a fork. Registry + code tables updated together in this batch; re-run the gate after any mode edit."
     },
     {
       "rank": 3,
