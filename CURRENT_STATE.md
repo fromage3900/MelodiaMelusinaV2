@@ -22,6 +22,7 @@ Melodia has converged from disparate exploratory prototypes into a unified, prod
 4. **Single-Writer UI Architecture**: Strict UI hierarchy where every surface has exactly one designated writer (`UMelodiaUIBridgeSubsystem`), eliminating race conditions, duplicate overlays, and widget memory leaks.
 5. **Canonical Procedural & 3D Pipelines**: Deep cross-system pipeline architecture established in `Docs/Pipelines/MELODIA_CYMATICS_MONOLITH_HOUDINI_EMERGING3D_PIPELINE.md` governing Cymatics math & runtime subsystems, Monolith MCP automation, Houdini procedural authoring, and emerging 3D toolchains.
 6. **Faraway Mother PCG Ecosystem**: Procedural fabric mountain architecture established in `Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md` and `specs/pcg/faraway_mother_pcg_manifest.v1.json`, with 4 biomes (WeaveRidge, LaceCanopy, FrillValley, ResonantSeamWay), multi-frequency WPO deformation, World Field Bus tension integration, and Heart Gate hero music puzzles.
+7. **Perceptual LOD LookDev Architecture**: Advanced optical deception framework established in `Docs/LookDev/MELODIA_PERCEPTUAL_LOD_LOOKDEV_ARCHITECTURE.md`, `Tools/LookDev/build_optical_lod_matrix.py`, `Content/Python/melodia_optical_lod_pipeline.py`, and `specs/lookdev/optical_lod_manifest.v1.json`, delivering 4-tier perceptual LOD continuity, Toksvig specular anti-aliasing compensation, adaptive Parallax Occlusion step scaling, 8x8 Bayer/64x64 blue-noise dithered crossfading, and grazing-angle silhouette compensation.
 
 ---
 
