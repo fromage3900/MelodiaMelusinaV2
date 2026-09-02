@@ -1,12 +1,12 @@
 {
   "schema": "melodia.hot_loop_state.v1",
-  "run_count": 5,
+  "run_count": 6,
   "done": false,
   "started": "2026-09-02",
-  "updated": "2026-09-02T08:40:00",
+  "updated": "2026-09-02T12:05:00",
   "git_context": {
     "branch": "main",
-    "ahead_origin_estimated": 377,
+    "ahead_origin_estimated": 385,
     "behind_origin_estimated": 359,
     "note": "verify live each run; force-push NEVER if diverged; push rejected non-ff — owner merge/rebase required"
   },
@@ -22,26 +22,25 @@
     "onnx_controller": "7/7 PASS onnxruntime 1.29",
     "family_qa": "81/81 maps PASS (9 variants x 9 maps)",
     "flipbooks_qa": "648/648 PASS (9 variants x 8 frames x 9 maps)",
-    "mcpc_namespace": "RECONCILED 2026-09-02 run 5 — single writer now publishes BassIntensity/MidIntensity/BeatTracker aliases; WFB PIE param-match gate expected PASS (was FAIL 3 lanes); editor-bound re-check on 9316 when free"
+    "mcpc_namespace": "RECONCILED run 5 — single writer publishes BassIntensity/MidIntensity/BeatTracker aliases; WFB PIE param-match gate expected PASS; editor re-check on 9316 when free"
   },
-  "run_05_summary": {
-    "unit": "advance neural hero controller (unit c) via MPC namespace reconciliation — offline-safe C++ source edit, no editor/no new writer",
-    "commit": "27b42155 fix(hero-material): reconcile MPC namespace",
-    "what": "MelodiaAudioReactivePresentationSubsystem::Publish now additionally writes BassIntensity(alias Bass), MidIntensity(alias Mid), BeatTracker(alias BeatPulseValue). Consumers (cymatics/cymatics-writer/neural controller) FEATURES now all map to real live lanes. Documented plan §8.",
-    "not_staged": "Tools/Audio/hero_neural_material_controller.py + .onnx are gitignored/untracked — trackable artifact is the C++ + plan §8; retrain/rebuild onnx at build time (5 FEATURES unchanged)"
+  "run_06_summary": {
+    "unit": "author staging doc segment (unit c) — plan §9: flipbook library 648/648 + pipeline-lock status + master-index promotion recommendation",
+    "commit": "e39e87f4 docs(hero-material): plan §9 — flipbook library (648/648) + pipeline-lock/master-index promotion note",
+    "what": "Docs/Plans/AUDIO_HERO_MATERIAL_PLAN_2026-09-02.md gained §9 documenting the fully-baked animated flipbook lane (all 9 variants, 648/648 QA from qa_melodia_flipbooks_2026-09-02.json), status that offline-cook units (a)+(b) are EXHAUSTED, and the deferred master-index SSOT promotion (PRESENT once Phase C closed-editor build lands).",
+    "offline_done": "(a) 9/9 variants cooked, (b) 9/9 flipbooks baked — units exhausted; remaining work editor-bound (Phase C build, D import/MI, E stage, F PIE) on 9316"
   },
   "next_steps": [
-    "editor (Phase D/E light, when 9316 frees): rerun WFB PIE param-match gate + golden-run preflight — expected PASS on 3 reconciled lanes; then Phase E bind MI_HeroGem_Cymatic into L_PCG_Hero_CrystalHarpGrove",
-    "Gaea live PIE captures — 12 locked frames / 4 WP levels ready (Saved/Audit/gaea_*.mp4)",
-    "merger: local main still AHEAD ~377 / BEHIND ~359 vs origin/main — NOT fast-forward; pull/merge/rebase required before any ff push (do NOT force)",
-    "master-index SSOT: promote neural scaffold + hero gem to §2 when closed-editor build lands (Phase C)"
+    "editor (Phase C/D/E/F, when 9316 frees): closed-editor Build.bat; rerun WFB PIE param-match gate + golden-run preflight (expect PASS on 3 reconciled lanes); bind MI_HeroGem_Cymatic into L_PCG_Hero_CrystalHarpGrove",
+    "master-index SSOT: promote neural scaffold + hero gem to §2 when build lands (Phase C)",
+    "merger: local main AHEAD ~385 / BEHIND ~359 vs origin/main — NOT fast-forward; owner pull/merge/rebase required before any ff push (do NOT force)"
   ],
   "learnings": [
-    "run 5: MPC namespace mismatch was the real WFB gate blocker; fixed in the single writer (BassIntensity/MidIntensity/BeatTracker value aliases) rather than adding a second writer or renaming consumers — single-writer ownership preserved, SetScalarParameterValue on unnamed param is a safe no-op before MPC asset declares them",
-    "consumer reads are authoritative for what the writer MUST publish: always grep Source/ for GetScalarParameterValue names before trusting a FEATURES list",
-    "Tools/Audio/* .py + .onnx are gitignored/untracked — commit the tracked C++/docs that drive them, record the ignored artifact in state"
+    "offline-cook units (a)+(b) now fully exhausted — the trackable hot-loop unit going forward is (c) plan/doc staging (controller .py + .onnx stay gitignored; commit the tracked C++/docs)",
+    "pre-commit hook and force-add work cleanly for Docs/Plans; push remains non-ff blocked by ~359 behind + ~385 ahead — every run verifies live and records, never forces"
   ],
   "last_commit_hashes": [
+    "e39e87f4",
     "27b42155",
     "bb0d40f5",
     "0482375a41b98216c20be73b76a410dffe9bcbd4",
@@ -49,9 +48,9 @@
     "ff7d13e4"
   ],
   "push": {
-    "attempted": "2026-09-02 (run 3; no new attempt run 5)",
+    "attempted": "2026-09-02 (run 6)",
     "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
-    "result": "rejected non-fast-forward (ahead 370 / behind 359) — local main behind origin/main ~359; new commit 27b42155 NOT included",
+    "result": "rejected non-fast-forward (ahead 385 / behind 359) — local main behind origin/main ~359; new commit e39e87f4 NOT included",
     "action": "NO force-push, NO reset; offline-safe work committed locally; needs owner-driven merge/rebase to reconcile divergence before next ff push"
   }
 }
