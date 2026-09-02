@@ -1,9 +1,9 @@
 {
   "schema": "melodia.hot_loop_state.v1",
-  "run_count": 2,
-  "done": false,
-  "started": "2026-09-02",
-  "updated": "2026-09-02T07:42:00",
+  "run_count": 3,
+    "done": false,
+    "started": "2026-09-02",
+    "updated": "2026-09-02T08:10:00",
   "git_context": {
     "branch": "main",
     "ahead_origin_estimated": 365,
@@ -39,17 +39,19 @@
     "flipbooks_qa": "648/648 PASS (9 variants x 8 frames x 9 maps)",
     "vdm_qa": "A/B/C non-blank + exr_roundtrip PASS (2026-09-02)",
     "brass_wiring": "8/8 MIs wiring readback verified (5 tex + 17 scalars each)",
+    "eigenmode_verify": "chladni 9/9 PASS (closed-form exact); eigenplate maps 8/8 QA PASS (4_3_brass + 1_2 steel/glass/crystal)",
     "golden_run_preflight": "ready:true (route maps + config + all 4 completion gates pass + echo pipeline)"
   },
   "next_steps": [
-    "bake physics-accurate eigenmode Unreal wiring (chladni_eigen.py 9/9 PASS exists): push plates into a material/PCG lane per AUDIO_HERO_MATERIAL_PLAN",
-    "Gaea live PIE captures (Saved/Audit/gaea_*.json + .mp4)",
-    "World Field Bus PIE (MPC_Melodia_Palette + WorldField epicenter) — read main diverged state first",
-    "commit categorized isolated batches then MERGE/REBASE local main to origin/main before any push (ahead 365 / behind 359 — NOT a fast-forward; do not force)",
-    "do not stage generated copernicus_cymatic_manifest.json"
-  ],
-  "learnings": [
-    "all 9 Melodia* cymatic PBR variants cooked + QA'd 81/81; all 9 have 8-frame flipbooks (648/648 PASS) — QA JSON is the authoritative record, not the generated manifest",
+      "editor: wire eigenplate Height/Normal into M_Master_Toon_Universal hero-gem MI + nodal emissive (=Phase D/E of AUDIO_HERO_MATERIAL_PLAN; needs editor live, single Mono 9316)",
+      "Gaea live PIE captures (Saved/Audit/gaea_*.json + .mp4)",
+      "World Field Bus PIE (MPC_Melodia_Palette + WorldField epicenter)",
+      "commit categorized isolated batches then MERGE/REBASE local main to origin/main before any ff push (ahead ~369 / behind ~359 — NOT fast-forward; do not force)",
+      "do not stage generated copernicus_cymatic_manifest.json"
+    ],
+    "learnings": [
+      "run 3: advanced eigenmode lane — chladni_eigen_verify 9/9 PASS, eigenplate library now 8 maps (4_3_brass + 1_2 steel/glass/crystal) 8/8 QA PASS; plan doc §7 documents the frequency->(m,n)->relief wiring; lane still needs editor (Phase D/E)",
+      "all 9 Melodia* cymatic PBR variants cooked + QA'd 81/81; all 9 have 8-frame flipbooks (648/648 PASS) — QA JSON is the authoritative record, not the generated manifest",
     "brass MIs were unregistered binary-template stubs (0 assets in-engine) — real wiring required importing the 75 PNGs then running the factory; readback is the true verification API (get_texture_parameter_values missing, use get_texture_parameter_values off MaterialEditingLibrary native methods / mi.get_texture_parameter_values)",
     "hython/Apprentice EXR bake caps at 1920px and needs a license; numpy/PIL + imageio EXR writer is the reliable offline float-bake path",
     "no skirmishPoint exists anywhere in the repo — the dedup priority chain resolves to KleinVeil>faraway_mother>horizon_eater>faraway_lod_destruction>singing_water",

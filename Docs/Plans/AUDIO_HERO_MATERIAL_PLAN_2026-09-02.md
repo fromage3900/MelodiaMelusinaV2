@@ -93,6 +93,31 @@ Land the hero gem in the hero's OWN level, not as a loose asset:
 - [ ] Phase E: stage into L_PCG_Hero_CrystalHarpGrove (PCG + cymatic + heatmap + MIs)
 - [ ] Phase F: live PIE — beat reacts: gem emissive pulses through the neural seam.
 
+## 7. Physics-accurate Chladni eigenmode lane (advanced by daemon 2026-09-02)
+
+Closed-form simply-supported rectangular-plate eigenmodes power the *resonant*
+(nodal) drive for the hero gem — the exact alternative to the heuristic
+`m=round(sqrt(f/220)*3)` rule from §1.
+
+- **Math substrate** `Tools/Houdini/copernicus/chladni_eigen.py`:
+  `omega_mn = pi^2 * sqrt(D/(rho*h)) * ((m/Lx)^2 + (n/Ly)^2)`, exact mode
+  `phi_mn(x,y)=sin(m*pi*x/Lx)*sin(n*pi*y/Ly)`, Lorentzian-nearest resonance picker.
+  Verifier `chladni_eigen_verify.py` **9/9 PASS** (closed-form f(1,1..3,3) exact,
+  non-decreasing order, thin→lower fundamental, nearest-resonance, nodal zero-count).
+- **4 physical plates** (brass/steel/glass/crystal) with real E, rho, nu, h, L.
+- **Baked eigenplate map library** `Saved/Audit/eigenplate/` — 8 maps, **8/8 QA PASS**
+  (PNG 1024x1024, non-blank):
+  - `T_EigenPlate_4_3_brass_Height/Normal` (existing)
+  - `T_EigenPlate_1_2_{steel,glass,crystal}_Height/Normal`
+- **Lane target (editor, Phase D/E):** per live audio frequency → nearest (m,n) →
+  pick the matching eigenplate Height (parallax relief on nodal lines) + Normal into
+  the `M_Master_Toon_Universal` hero-gem MI; nodal emissive rides the standing-wave
+  amplitude (follows `WorldField.Resonance`, §4). Read-only consumer of
+  MPC_Melodia_Palette (single-writer preserved).
+- **Identity check per plate:** brass resonant at 440 Hz → (1,2) 423.7 Hz (96.3%
+  match), crystal → (1,1) 404.5 Hz (91.9%). Test bake used anharmonic (1,2) maps to
+  preserve a stable relief set; the lane picks the truly-catalog-nearest (m,n) live.
+
 ## 6. Open items / gates
 - Closed-editor build required before the C++ seam compiles (two editor processes were up —
   HOLD until one editor, 9316).
