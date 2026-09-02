@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melodia — Music-as-Key Puzzle Sandbox</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --paper: #eee7f4;
+      --paper-hi: #faf7fc;
+      --ink: #2a1f3d;
+      --plum: #4a3f6b;
+      --muted: #7b6e9d;
+      --lavender: #9bb5ff;
+      --violet: #c8a8e8;
+      --water: #6ec8e8;
+      --coral: #ff8fa3;
+      --pink: #ff88cc;
+      --gold: #e5bf62;
+    }
+    body {
+      background: var(--paper);
+      font-family: Georgia, serif;
+      overflow: hidden;
+      color: var(--plum);
+    }
+    #canvas-container { width: 100vw; height: 100vh; position: relative; }
+    #ui-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 24px; z-index: 10;
+    }
+    #ui-overlay > * { pointer-events: auto; }
+    .header { text-align: center; }
+    .header h1 {
+      font-size: clamp(1.35rem, 3vw, 1.9rem); color: var(--plum);
+      text-shadow: 0 2px 0 rgba(255,255,255,.8); letter-spacing: 3px; margin-bottom: 4px;
+    }
+    .header p { font-family: monospace; font-size: .7rem; color: #6b5b8a; }
+    .phrase-panel {
+      align-self: center; background: rgba(255,255,255,.86); backdrop-filter: blur(8px);
+      border: 2px solid #b8a8d8; border-radius: 20px; padding: 12px 24px;
+      text-align: center; min-width: min(360px, calc(100vw - 48px));
+      box-shadow: 0 4px 20px rgba(74,63,107,.15);
+    }
+    .phrase-panel .label, .phrase-panel .status {
+      font-family: monospace; font-size: .65rem; color: #9b8ec7; letter-spacing: 1px;
+    }
+    .phrase-panel .label { text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+    #phrase-text { font-family: monospace; font-size: 1rem; color: var(--plum); font-weight: 700; min-height: 1.2rem; }
+    .phrase-panel .status { margin-top: 4px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
+    .btn {
+      font-family: monospace; font-size: .7rem; padding: 9px 16px; min-height: 42px;
+      border: 2px solid var(--lavender); background: rgba(255,255,255,.92); color: var(--plum);
+      border-radius: 20px; cursor: pointer; transition: transform .2s, background .2s, color .2s;
+    }
+    .btn:hover { background: var(--lavender); color: white; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn.export { border-color: var(--gold); }
+    .btn.export:hover { background: var(--gold); color: var(--plum); }
+    .btn.reset { border-color: var(--coral); }
+    .btn.reset:hover { background: var(--coral); color: white; }
+    .tooltip {
+      position: absolute; pointer-events: none; padding: 8px 14px; background: rgba(255,255,255,.96);
+      border: 2px solid var(--lavender); color: var(--plum); font-family: monospace; font-size: .75rem;
+      border-radius: 10px; opacity: 0; transition: opacity .2s; z-index: 20;
+      box-shadow: 0 4px 16px rgba(74,63,107,.2); max-width: 220px;
+    }
+    .legend {
+      position: absolute; top: 24px; right: 24px; background: rgba(255,255,255,.86); backdrop-filter: blur(8px);
+      border: 2px solid #b8a8d8; border-radius: 14px; padding: 16px; font-family: monospace;
+      font-size: .65rem; color: #6b5b8a; pointer-events: auto; box-shadow: 0 6px 20px rgba(74,63,107,.08);
+    }
+    .legend h3 { font-size: .75rem; color: var(--plum); margin-bottom: 8px; border-bottom: 1px solid #d8c8e8; padding-bottom: 4px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink); }
+    #export-modal {
+      display: none; position: fixed; inset: 0; background: rgba(10,0,20,.5); z-index: 100;
+      justify-content: center; align-items: center; padding: 18px;
+    }
+    #export-modal.active { display: flex; }
+    .modal-content { background: #f8f4fc; border: 3px solid var(--lavender); border-radius: 16px; padding: 24px; max-width: 560px; width: 100%; font-family: monospace; }
+    .modal-content h2 { font-family: Georgia, serif; color: var(--plum); margin-bottom: 12px; font-size: 1.2rem; }
+    .modal-content pre { background: var(--ink); color: var(--violet); padding: 16px; border-radius: 8px; overflow: auto; max-height: 50vh; font-size: .7rem; line-height: 1.5; margin-bottom: 12px; }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+    @media (max-width: 780px) {
+      .legend { top: auto; right: 12px; bottom: 86px; padding: 10px; max-width: 185px; }
+      .legend-item:nth-of-type(n+5) { display: none; }
+      #ui-overlay { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="canvas-container">
+    <div id="ui-overlay">
+      <div class="header">
+        <h1>♪ Music-as-Key ♪</h1>
+        <p>Melodia · First Dream · Mara-palette world interaction lab</p>
+      </div>
+      <div class="phrase-panel">
+        <div class="label">Current Phrase</div>
+        <div id="phrase-text">—</div>
+        <div class="status" id="phrase-status">Step on nodes to begin</div>
+      </div>
+      <div class="controls">
+        <button class="btn reset" id="btn-reset" type="button">♫ Reset Phrase</button>
+        <button class="btn" id="btn-demo" type="button">♪ Play Demo</button>
+        <button class="btn export" id="btn-export" type="button">✦ Export JSON</button>
+      </div>
+    </div>
+    <div class="legend">
+      <h3>Instruments</h3>
+      <div class="legend-item"><div class="legend-dot" style="background:#9bb5ff"></div>Lute (C)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#6ec8e8"></div>Bell Staff (D)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ff8fa3"></div>Wire Harp (E)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#e5bf62"></div>Monolith (F)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ff88cc"></div>Phase Drum (G)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4a3f6b"></div>Core (A)</div>
+      <div style="margin-top:12px;border-top:1px solid #d8c8e8;padding-top:8px;font-size:.6rem;color:#8a7ab0;">Targets: C→E→G · D→F→A</div>
+    </div>
+    <div class="tooltip" id="tooltip"></div>
+  </div>
+
+  <div id="export-modal" role="dialog" aria-modal="true" aria-labelledby="export-title">
+    <div class="modal-content">
+      <h2 id="export-title">✦ Export Phrase Data</h2>
+      <p style="font-size:.7rem;color:#6b5b8a;margin-bottom:12px;">Prototype JSON for comparison with UE5 Data Tables / typed narrative contracts. It is not a runtime authority.</p>
+      <pre id="export-code"></pre>
+      <div class="modal-actions">
+        <button class="btn" id="btn-copy" type="button">📋 Copy</button>
+        <button class="btn" id="btn-close" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xe8e0f0);
+    scene.fog = new THREE.Fog(0xe8e0f0, 18, 50);
+
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.set(0, 9, 18);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.prepend(renderer.domElement);
+
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.55, 0.5, 0.3);
+    composer.addPass(bloom);
+
+    const gradientMap = new THREE.DataTexture(new Uint8Array([0, 48, 96, 160, 255]), 5, 1, THREE.RedFormat);
+    gradientMap.needsUpdate = true;
+    gradientMap.magFilter = THREE.NearestFilter;
+    gradientMap.minFilter = THREE.NearestFilter;
+
+    const PAL = {
+      skin: 0x8b6f5c, hair: 0x7ec8e3, dress1: 0x9bb5ff, dress2: 0xc8a8e8,
+      accent: 0xff88cc, gold: 0xe5bf62, ink: 0x2a1f3d, water: 0x6ec8e8,
+      coral: 0xff8fa3, deep: 0x4a3f6b, cream: 0xf5f0fa
+    };
+
+    function makeCelMesh(geo, color, outlineScale = 1.08, outlineColor = PAL.ink) {
+      const group = new THREE.Group();
+      const mat = new THREE.MeshToonMaterial({ color, gradientMap });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.castShadow = true; mesh.receiveShadow = true;
+      group.add(mesh);
+      const outline = new THREE.Mesh(geo.clone(), new THREE.MeshBasicMaterial({
+        color: outlineColor, side: THREE.BackSide, transparent: true, opacity: 0.78
+      }));
+      outline.scale.setScalar(outlineScale);
+      group.add(outline);
+      group.userData.body = mesh;
+      group.userData.outline = outline;
+      return group;
+    }
+
+    scene.add(new THREE.HemisphereLight(0xc8d8f0, 0xf0e8f8, 1.0));
+    const key = new THREE.DirectionalLight(0xfff8e8, 1.3);
+    key.position.set(6, 14, 6); key.castShadow = true; key.shadow.mapSize.set(2048, 2048); scene.add(key);
+    const fill = new THREE.DirectionalLight(0xa8c8ff, 0.5);
+    fill.position.set(-6, 5, -6); scene.add(fill);
+    const pinkRim = new THREE.PointLight(0xffb7e8, 4.0, 20); pinkRim.position.set(5, 5, 4); scene.add(pinkRim);
+
+    const fCan = document.createElement('canvas');
+    fCan.width = 512; fCan.height = 512;
+    const fx = fCan.getContext('2d');
+    fx.fillStyle = '#f0e8f8'; fx.fillRect(0, 0, 512, 512);
+    const washColors = ['rgba(158,181,255,.12)', 'rgba(200,168,232,.1)', 'rgba(110,200,232,.08)', 'rgba(255,136,204,.06)'];
+    for (let i = 0; i < 80; i++) {
+      const x = Math.random() * 512, y = Math.random() * 512, r = 30 + Math.random() * 80;
+      const gr = fx.createRadialGradient(x, y, 0, x, y, r);
+      gr.addColorStop(0, washColors[Math.floor(Math.random() * washColors.length)]);
+      gr.addColorStop(1, 'transparent');
+      fx.fillStyle = gr; fx.fillRect(0, 0, 512, 512);
+    }
+    const fTex = new THREE.CanvasTexture(fCan); fTex.wrapS = fTex.wrapT = THREE.RepeatWrapping; fTex.repeat.set(5, 5);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(50, 50), new THREE.MeshToonMaterial({ map: fTex, gradientMap }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+
+    const melusina = new THREE.Group();
+    const dress = makeCelMesh(new THREE.CylinderGeometry(.3, .9, 1.4, 12), PAL.dress1); dress.position.y = .7; melusina.add(dress);
+    const head = makeCelMesh(new THREE.SphereGeometry(.35, 16, 16), PAL.skin, 1.1); head.position.y = 1.7; melusina.add(head);
+    for (let h = 0; h < 7; h++) {
+      const hair = makeCelMesh(new THREE.ConeGeometry(.08, .9, 6), h % 2 ? PAL.hair : PAL.dress1, 1.13);
+      const angle = (h / 7) * Math.PI * 2;
+      hair.position.set(Math.cos(angle) * .26, 1.92, Math.sin(angle) * .26);
+      hair.rotation.x = Math.sin(angle) * .4; hair.rotation.z = Math.cos(angle) * .4;
+      hair.userData.baseRot = { x: hair.rotation.x, z: hair.rotation.z }; hair.userData.offset = h;
+      melusina.add(hair);
+    }
+    for (let b = 0; b < 2; b++) {
+      const boot = makeCelMesh(new THREE.CylinderGeometry(.12, .15, .4, 8), PAL.accent, 1.1);
+      boot.position.set(b ? .2 : -.2, .2, 0); melusina.add(boot);
+    }
+    for (let a = 0; a < 2; a++) {
+      const arm = makeCelMesh(new THREE.CylinderGeometry(.06, .08, .6, 8), PAL.skin, 1.1);
+      arm.position.set(a ? .45 : -.45, 1.2, 0); arm.rotation.z = a ? -.3 : .3; melusina.add(arm);
+    }
+    const clefCan = document.createElement('canvas'); clefCan.width = clefCan.height = 64;
+    const cx = clefCan.getContext('2d'); cx.fillStyle = '#c8a8e8'; cx.font = '40px serif'; cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.fillText('𝄞', 32, 32);
+    const clefDecal = new THREE.Mesh(new THREE.PlaneGeometry(.4, .4), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(clefCan), transparent: true, side: THREE.DoubleSide }));
+    clefDecal.position.set(0, .9, .46); melusina.add(clefDecal);
+    melusina.position.set(0, 0, 3); scene.add(melusina);
+
+    const ebenezer = new THREE.Group();
+    ebenezer.add(makeCelMesh(new THREE.SphereGeometry(.16, 10, 10), 0x3f314f, 1.1));
+    for (let w = 0; w < 2; w++) {
+      const wing = makeCelMesh(new THREE.SphereGeometry(.1, 8, 8), w ? PAL.dress2 : PAL.water, 1.08);
+      wing.scale.set(1.6, .35, .9); wing.position.set(w ? .16 : -.16, .04, 0); ebenezer.add(wing);
+    }
+    const beak = makeCelMesh(new THREE.ConeGeometry(.04, .1, 6), PAL.gold, 1.08); beak.rotation.x = Math.PI / 2; beak.position.set(0, 0, .16); ebenezer.add(beak);
+    const halo = new THREE.Mesh(new THREE.TorusGeometry(.22, .025, 6, 24), new THREE.MeshBasicMaterial({ color: PAL.gold, transparent: true, opacity: .8 }));
+    halo.position.y = .22; halo.rotation.x = Math.PI / 2; ebenezer.add(halo);
+    ebenezer.position.set(.6, 2.2, 3); scene.add(ebenezer);
+
+    const nodes = [];
+    const NODE_CFG = [
+      { pos: [0,.3,-1], note:'C', color:PAL.dress1, shape:'lute', label:'Lute of Harmonic Bloom' },
+      { pos: [-3.5,.3,-2.5], note:'D', color:PAL.water, shape:'bell', label:'Resonant Bell Staff' },
+      { pos: [3.5,.3,-2.5], note:'E', color:PAL.coral, shape:'harp', label:'Wire Harp of Tides' },
+      { pos: [-2.5,.3,-5.5], note:'F', color:PAL.gold, shape:'monolith', label:'Monolith Conductor' },
+      { pos: [2.5,.3,-5.5], note:'G', color:PAL.accent, shape:'drum', label:'Phase Drum' },
+      { pos: [0,.3,-8], note:'A', color:PAL.deep, shape:'core', label:'Resonance Core' }
+    ];
+    const GEO = {
+      lute: new THREE.SphereGeometry(.5,16,16), bell: new THREE.ConeGeometry(.4,1,8),
+      harp: new THREE.CylinderGeometry(.3,.3,1,8), monolith: new THREE.BoxGeometry(.6,1,.6),
+      drum: new THREE.TorusGeometry(.35,.15,8,16), core: new THREE.OctahedronGeometry(.5,0)
+    };
+    NODE_CFG.forEach((cfg, i) => {
+      const group = makeCelMesh(GEO[cfg.shape], cfg.color, 1.12); group.position.set(...cfg.pos);
+      const body = group.userData.body;
+      const outline = group.userData.outline;
+      const ring = new THREE.Mesh(new THREE.RingGeometry(.7,.9,32), new THREE.MeshBasicMaterial({ color:cfg.color, transparent:true, opacity:.25, side:THREE.DoubleSide }));
+      ring.rotation.x = -Math.PI/2; ring.position.y = .02; group.add(ring);
+      const nCan = document.createElement('canvas'); nCan.width=nCan.height=64;
+      const nx=nCan.getContext('2d'); nx.fillStyle='#4a3f6b'; nx.font='bold 28px serif'; nx.textAlign='center'; nx.textBaseline='middle'; nx.fillText(cfg.note,32,32);
+      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map:new THREE.CanvasTexture(nCan), transparent:true }));
+      sprite.position.set(0,1.3,0); sprite.scale.set(.7,.7,.7); group.add(sprite);
+      group.userData = { note:cfg.note, index:i, active:false, baseY:cfg.pos[1], label:cfg.label, ring, body, outline, color:cfg.color };
+      scene.add(group); nodes.push(group);
+    });
+
+    const barriers = [];
+    const BARRIER_CFG = [
+      { pos:[0,1.5,-3.8], size:[7,3,.3], phrase:['C','E','G'], name:'Sea Above Gate' },
+      { pos:[0,1.5,-6.8], size:[5,3,.3], phrase:['D','F','A'], name:'Sanctuary Gate' }
+    ];
+    BARRIER_CFG.forEach(cfg => {
+      const group = makeCelMesh(new THREE.BoxGeometry(...cfg.size), PAL.deep, 1.04);
+      group.position.set(...cfg.pos);
+      const body = group.userData.body, outline = group.userData.outline;
+      const cCan=document.createElement('canvas'); cCan.width=cCan.height=128; const ctx=cCan.getContext('2d');
+      ctx.fillStyle='#4a3f6b'; ctx.fillRect(0,0,128,128); ctx.strokeStyle='#9bb5ff'; ctx.lineWidth=2; ctx.beginPath();
+      for(let j=0;j<5;j++){ctx.moveTo(0,18+j*22);ctx.lineTo(128,18+j*22);} ctx.stroke();
+      ctx.fillStyle='#c8a8e8'; ctx.font='48px serif'; ctx.textAlign='center'; ctx.fillText('𝄞',64,70);
+      body.material = new THREE.MeshToonMaterial({ map:new THREE.CanvasTexture(cCan), gradientMap, transparent:true, opacity:.8 });
+      group.userData = { locked:true, targetPhrase:cfg.phrase, name:cfg.name, body, outline, baseY:cfg.pos[1] };
+      scene.add(group); barriers.push(group);
+    });
+
+    const paths=[];
+    [[0,1],[0,2],[1,3],[2,4],[3,5],[4,5]].forEach(([from,to]) => {
+      const s=nodes[from].position.clone().add(new THREE.Vector3(0,.5,0));
+      const e=nodes[to].position.clone().add(new THREE.Vector3(0,.5,0));
+      const m=new THREE.Vector3().addVectors(s,e).multiplyScalar(.5);m.y+=1.8;
+      const mesh=new THREE.Mesh(new THREE.TubeGeometry(new THREE.QuadraticBezierCurve3(s,m,e),32,.035,8,false), new THREE.MeshBasicMaterial({color:PAL.dress2,transparent:true,opacity:.12}));
+      scene.add(mesh); paths.push({mesh,from,to,active:false});
+    });
+
+    const pCount=200, pGeo=new THREE.BufferGeometry(), pPos=new Float32Array(pCount*3), pCol=new Float32Array(pCount*3), pVel=[];
+    for(let i=0;i<pCount;i++){
+      pPos[i*3]=(Math.random()-.5)*24;pPos[i*3+1]=Math.random()*10;pPos[i*3+2]=(Math.random()-.5)*24;
+      const c=new THREE.Color([PAL.hair,PAL.dress1,PAL.accent,PAL.water][Math.floor(Math.random()*4)]);
+      pCol[i*3]=c.r;pCol[i*3+1]=c.g;pCol[i*3+2]=c.b;
+      pVel.push({y:Math.random()*.008+.003,phase:Math.random()*Math.PI*2});
+    }
+    pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));pGeo.setAttribute('color',new THREE.BufferAttribute(pCol,3));
+    const particles=new THREE.Points(pGeo,new THREE.PointsMaterial({size:.1,vertexColors:true,transparent:true,opacity:.6,blending:THREE.AdditiveBlending})); scene.add(particles);
+
+    const tendrils=[];
+    for(let t=0;t<5;t++){
+      const pts=[];for(let i=0;i<=25;i++){const a=(i/25)*Math.PI*3+t*Math.PI*2/5;pts.push(new THREE.Vector3(Math.cos(a)*(2.5+t*.6),i*.35,Math.sin(a)*(2.5+t*.6)));}
+      const mesh=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),25,.025,6,false),new THREE.MeshBasicMaterial({color:[PAL.hair,PAL.water,PAL.dress1,PAL.accent,PAL.dress2][t],transparent:true,opacity:.2}));
+      scene.add(mesh);tendrils.push({mesh,offset:t,speed:.2+Math.random()*.3});
+    }
+
+    let currentPhrase=[];
+    const phraseText=document.getElementById('phrase-text'), phraseStatus=document.getElementById('phrase-status'), tooltip=document.getElementById('tooltip');
+    const raycaster=new THREE.Raycaster(), mouse=new THREE.Vector2(-10,-10);
+    container.addEventListener('mousemove',e=>{const r=container.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;});
+
+    function updatePhraseDisplay(){
+      if(!currentPhrase.length){phraseText.textContent='—';phraseStatus.textContent='Step on nodes to begin';phraseStatus.style.color='#8a7ab0';phraseStatus.style.fontWeight='normal';}
+      else {phraseText.textContent=currentPhrase.join(' → ');phraseStatus.textContent=`${currentPhrase.length} notes played`;}
+    }
+    function checkBarriers(){
+      barriers.forEach(b=>{
+        if(!b.userData.locked)return;const target=b.userData.targetPhrase;if(currentPhrase.length<target.length)return;
+        const recent=currentPhrase.slice(-target.length);
+        if(JSON.stringify(recent)===JSON.stringify(target)){
+          b.userData.locked=false;b.userData.body.material.opacity=.05;b.userData.outline.material.opacity=.05;
+          const flash=new THREE.PointLight(PAL.gold,6,12);flash.position.copy(b.position);scene.add(flash);setTimeout(()=>scene.remove(flash),1000);
+          phraseStatus.textContent=`✦ ${b.userData.name} UNLOCKED!`;phraseStatus.style.color='#9b7413';phraseStatus.style.fontWeight='bold';
+        }
+      });
+    }
+    function activateNode(group){
+      const d=group.userData;if(d.active)return;d.active=true;currentPhrase.push(d.note);
+      d.body.material.emissive=new THREE.Color(d.color);d.body.material.emissiveIntensity=.7;d.ring.material.opacity=.7;
+      paths.forEach(p=>{const other=p.from===d.index?p.to:p.to===d.index?p.from:-1;if(other>=0&&nodes[other].userData.active){p.active=true;p.mesh.material.opacity=.5;p.mesh.material.color.setHex(PAL.gold);}});
+      checkBarriers();updatePhraseDisplay();
+    }
+    function deactivateNode(group){
+      const d=group.userData;d.active=false;const last=currentPhrase.lastIndexOf(d.note);if(last>=0)currentPhrase.splice(last,1);
+      d.body.material.emissiveIntensity=0;d.ring.material.opacity=.25;
+      paths.forEach(p=>{if(p.from===d.index||p.to===d.index){p.active=false;p.mesh.material.opacity=.12;p.mesh.material.color.setHex(PAL.dress2);}});updatePhraseDisplay();
+    }
+    container.addEventListener('click',()=>{raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(nodes.map(n=>n.userData.body));if(hits.length){const group=hits[0].object.parent;group.userData.active?deactivateNode(group):activateNode(group);}});
+
+    document.getElementById('btn-reset').addEventListener('click',()=>{
+      currentPhrase=[];nodes.forEach(n=>{n.userData.active=false;n.userData.body.material.emissiveIntensity=0;n.userData.ring.material.opacity=.25;});
+      paths.forEach(p=>{p.active=false;p.mesh.material.opacity=.12;p.mesh.material.color.setHex(PAL.dress2);});
+      barriers.forEach(b=>{b.userData.locked=true;b.userData.body.material.opacity=.8;b.userData.outline.material.opacity=.78;b.position.y=b.userData.baseY;});updatePhraseDisplay();
+    });
+    document.getElementById('btn-demo').addEventListener('click',async()=>{document.getElementById('btn-reset').click();for(const note of ['C','E','G']){const node=nodes.find(n=>n.userData.note===note);await new Promise(r=>setTimeout(r,550));if(node)activateNode(node);}});
+    document.getElementById('btn-export').addEventListener('click',()=>{
+      const exportData={puzzle_id:'melodia_first_dream_music_key',version:'1.0.0',prototype:'MusicKey3D',nodes:NODE_CFG.map(n=>({note:n.note,instrument:n.label,position:n.pos})),barriers:BARRIER_CFG.map(b=>({name:b.name,required_phrase:b.phrase})),current_phrase:currentPhrase,unlocked:barriers.filter(b=>!b.userData.locked).map(b=>b.userData.name),export_time:new Date().toISOString()};
+      document.getElementById('export-code').textContent=JSON.stringify(exportData,null,2);document.getElementById('export-modal').classList.add('active');
+    });
+    document.getElementById('btn-close').addEventListener('click',()=>document.getElementById('export-modal').classList.remove('active'));
+    document.getElementById('btn-copy').addEventListener('click',async()=>{const btn=document.getElementById('btn-copy');try{await navigator.clipboard.writeText(document.getElementById('export-code').textContent);const old=btn.textContent;btn.textContent='✓ Copied!';setTimeout(()=>btn.textContent=old,1500);}catch{btn.textContent='Copy unavailable';}});
+
+    const ctrl=new OrbitControls(camera,renderer.domElement);ctrl.enableDamping=true;ctrl.dampingFactor=.05;ctrl.minDistance=7;ctrl.maxDistance=28;ctrl.maxPolarAngle=Math.PI/2.2;ctrl.target.set(0,1,-3.5);
+    function resize(){const w=container.clientWidth,h=container.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false);composer.setSize(w,h);bloom.setSize(w,h);}resize();window.addEventListener('resize',resize);
+
+    const clock=new THREE.Clock();
+    function animate(){
+      requestAnimationFrame(animate);const t=clock.getElapsedTime();
+      melusina.position.y=Math.sin(t*1.2)*.08;melusina.rotation.y=Math.sin(t*.3)*.1;
+      melusina.children.forEach(child=>{if(child.userData.offset!==undefined&&child.userData.baseRot){child.rotation.x=child.userData.baseRot.x+Math.sin(t*2+child.userData.offset)*.15;child.rotation.z=child.userData.baseRot.z+Math.cos(t*1.8+child.userData.offset)*.1;}});
+      const eAngle=t*.8;ebenezer.position.x=melusina.position.x+Math.cos(eAngle)*.9;ebenezer.position.z=melusina.position.z+Math.sin(eAngle)*.9;ebenezer.position.y=2.3+Math.sin(t*3)*.15;ebenezer.rotation.y=-eAngle;
+      nodes.forEach((node,i)=>{const d=node.userData;node.position.y=d.baseY+Math.sin(t*.8+d.index)*.12;node.rotation.y+=.006;d.ring.rotation.z+=.015;if(!d.active)d.ring.material.opacity=.25+Math.sin(t+i)*.08;});
+      const pa=particles.geometry.attributes.position.array;for(let i=0;i<pCount;i++){const v=pVel[i];pa[i*3]+=Math.sin(t+v.phase)*.006;pa[i*3+1]+=v.y;pa[i*3+2]+=Math.cos(t+v.phase)*.006;if(pa[i*3+1]>10){pa[i*3+1]=0;pa[i*3]=(Math.random()-.5)*24;pa[i*3+2]=(Math.random()-.5)*24;}}particles.geometry.attributes.position.needsUpdate=true;
+      tendrils.forEach(ten=>{ten.mesh.rotation.y=t*.08*ten.speed;ten.mesh.material.opacity=.15+Math.sin(t*ten.speed+ten.offset)*.08;});
+      barriers.forEach(b=>{if(b.userData.locked){b.userData.body.material.opacity=.8+Math.sin(t*2)*.05;b.position.y=b.userData.baseY+Math.sin(t+b.position.x)*.08;}else{b.position.y=THREE.MathUtils.lerp(b.position.y,-2,.03);}});
+      raycaster.setFromCamera(mouse,camera);const hover=raycaster.intersectObjects(nodes.map(n=>n.userData.body));
+      if(hover.length){const g=hover[0].object.parent;tooltip.innerHTML=`<strong>${g.userData.label}</strong><br><span style="color:#9b8ec7">Note: ${g.userData.note}</span>`;tooltip.style.opacity='1';const r=container.getBoundingClientRect();tooltip.style.left=(mouse.x*.5+.5)*r.width+16+'px';tooltip.style.top=(-mouse.y*.5+.5)*r.height-40+'px';}else tooltip.style.opacity='0';
+      ctrl.update();composer.render();
+    }
+    animate();
+  </script>
+</body>
+</html>
