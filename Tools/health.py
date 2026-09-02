@@ -34,6 +34,11 @@ DASHBOARD = HERE / "project_health_dashboard.py"
 def main() -> int:
     parser = argparse.ArgumentParser(description="Melodia project health - one command")
     parser.add_argument("--json", action="store_true", help="also write Saved/Audit/project_health_claims.json")
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="run only repository-local checks; skip editor and local-model probes",
+    )
     parser.add_argument("--open", action="store_true", help="open the dashboard in a browser after writing")
     parser.add_argument("--watch", action="store_true", help="regenerate every 10s")
     args = parser.parse_args()
@@ -45,6 +50,8 @@ def main() -> int:
     extra = []
     if args.json:
         extra.append("--json")
+    if args.offline:
+        extra.append("--offline")
     if args.open:
         extra.append("--open")
     if args.watch:

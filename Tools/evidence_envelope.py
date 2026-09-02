@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import uuid
@@ -28,6 +29,21 @@ def _git(*args: str) -> str:
         return result.stdout.strip()
     except (OSError, subprocess.CalledProcessError):
         return "unknown"
+
+
+def _repository_branch() -> str:
+    """Return a useful ref name in local, CI, and detached checkouts."""
+    branch = _git("branch", "--show-current")
+    if branch:
+        return branch
+    for name in ("GITHUB_HEAD_REF", "GITHUB_REF_NAME"):
+        value = os.environ.get(name, "").strip()
+        if value:
+            return value
+    # GitHub Actions and several archive/check-only workflows intentionally use
+    # detached HEAD. Evidence still needs a non-empty, honest locator.
+    commit = _git("rev-parse", "--short", "HEAD")
+    return f"detached@{commit}" if commit and commit != "unknown" else "detached"
 
 
 def validate_envelope(value: Any) -> list[str]:
@@ -102,7 +118,7 @@ def make_envelope(
         "repository": {
             "root": str(ROOT),
             "commit": _git("rev-parse", "HEAD"),
-            "branch": _git("branch", "--show-current"),
+            "branch": _repository_branch(),
         },
         "producer": {"tool": producer, "version": "1"},
         "checks": [{"name": check_name, "status": check_status, "note": note}],
