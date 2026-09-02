@@ -1,0 +1,245 @@
+{
+  "schema": "melodia.levels.faraway_mother_pcg_batch2.v1",
+  "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+  "grid_size": 25600,
+  "data_layer": "DL_FarawayMother_Fabric",
+  "hlod_layers": [
+    "HLOD_FarawayMother_Instanced",
+    "HLOD_FarawayMother_Merged"
+  ],
+  "seed": 20260829,
+  "height_aware": true,
+  "contract": "height-aware mandatory: raycast Visibility 50000->-50000, no new Landscape, no floating pieces, DataLayer DL_FarawayMother_Fabric, HLOD instanced+merged",
+  "count": 7,
+  "placements": [
+    {
+      "id": "FM_Ridge_HeadSilhouette_01",
+      "builder": "MEL_mother_head_silhouette",
+      "xy": [
+        0,
+        9000
+      ],
+      "raycast_z": -6.05,
+      "hit": false,
+      "detail": "offline_synthetic",
+      "ground_ref": "offline_synthetic",
+      "ground_z": 0.0,
+      "final_z": 38.95,
+      "z_offset": 45,
+      "yaw": 0,
+      "scale": [
+        3.5,
+        2.2,
+        2.0
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Spire.SM_Cathedral_Spire",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle.MI_Mother_Mantle",
+      "material_resolved": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle.MI_Mother_Mantle",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "notes": "Head silhouette ridge \u2014 CATHEDRAL spire as hero profile (replaces SM_Greybox_Rock_A). Cool moonlit tint mantle; DataLayer DL_FarawayMother_Fabric, HLOD instanced.",
+      "status": "dry_run",
+      "actor": null,
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "FM_Ridge_Fabric_02",
+      "builder": "MEL_terrain_fabric_ridge",
+      "xy": [
+        1200,
+        5500
+      ],
+      "raycast_z": -5.18,
+      "hit": false,
+      "detail": "offline_synthetic",
+      "ground_ref": "offline_synthetic",
+      "ground_z": 0.0,
+      "final_z": 24.82,
+      "z_offset": 30,
+      "yaw": 18,
+      "scale": [
+        4.2,
+        2.8,
+        1.15
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchesA.SM_ATL_Palace_ArchesA",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown.MI_Mother_Gown",
+      "material_resolved": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown.MI_Mother_Gown",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "notes": "Shoulder/chest fold \u2014 ATLANTIS ArchesA (replaces SM_Greybox_Rock_C). Fabric normal intensity 2.0, Fold Count ~5, CelestialSilk gown MI.",
+      "status": "dry_run",
+      "actor": null,
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "FM_Hair_Cascade_03",
+      "builder": "MEL_cascade_hair_ribbon",
+      "xy": [
+        -900,
+        6200
+      ],
+      "raycast_z": -17.93,
+      "hit": false,
+      "detail": "offline_synthetic",
+      "ground_ref": "offline_synthetic",
+      "ground_z": 0.0,
+      "final_z": 62.07,
+      "z_offset": 80,
+      "yaw": -22,
+      "scale": [
+        1.6,
+        4.5,
+        1.0
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_EscherWaterfall.SM_Cathedral_EscherWaterfall",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Veil.MI_Mother_Veil",
+      "material_resolved": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Veil.MI_Mother_Veil",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "notes": "Hair/waterfall cascade \u2014 CATHEDRAL EscherWaterfall ribbon (replaces SM_Greybox_Rock_B). Veil MI translucency 0.8, rune flow; Niagara ribbon extends from head down.",
+      "status": "dry_run",
+      "actor": null,
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "FM_Ridge_Fabric_04",
+      "builder": "MEL_terrain_fabric_ridge",
+      "xy": [
+        -2600,
+        1800
+      ],
+      "raycast_z": -2.02,
+      "hit": false,
+      "detail": "offline_synthetic",
+      "ground_ref": "offline_synthetic",
+      "ground_z": 0.0,
+      "final_z": 22.98,
+      "z_offset": 25,
+      "yaw": 35,
+      "scale": [
+        0.95,
+        0.95,
+        0.75
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchA.SM_ATL_Palace_ArchA",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FarawayCelestialSilk.MI_Copernicus_FarawayCelestialSilk",
+      "material_resolved": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown.MI_Mother_Gown",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "notes": "Secondary fabric ridge \u2014 ATLANTIS ArchA (replaces SM_Terrain_BaroqueGrotto). Width/Height/FoldDepth per GN builder, NacreVeil/CelestialSilk MI.",
+      "status": "dry_run",
+      "actor": null,
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "FM_Valley_Shoulder_05",
+      "builder": "MEL_valley_depression",
+      "xy": [
+        0,
+        -800
+      ],
+      "raycast_z": 14.51,
+      "hit": false,
+      "detail": "offline_synthetic",
+      "ground_ref": "offline_synthetic",
+      "ground_z": 0.0,
+      "final_z": -45.49,
+      "z_offset": -60,
+      "yaw": -8,
+      "scale": [
+        5.2,
+        5.2,
+        0.32
+      ],
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Corset.MI_Mother_Corset",
+      "material_resolved": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Corset.MI_Mother_Corset",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Merged",
+      "notes": "Shoulder valley \u2014 REEF Coral ReefCluster (replaces SM_Greybox_Rock_A). Terrain depression fog-filled, player walks here (gameplay lane). Corset MI wet specular, scaled flat for depression.",
+      "status": "dry_run",
+      "actor": null,
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "FM_Valley_Torso_06",
+      "builder": "MEL_valley_depression",
+      "xy": [
+        400,
+        -4200
+      ],
+      "raycast_z": -7.29,
+      "hit": false,
+      "detail": "offline_synthetic",
+      "ground_ref": "offline_synthetic",
+      "ground_z": 0.0,
+      "final_z": -92.29,
+      "z_offset": -85,
+      "yaw": 12,
+      "scale": [
+        5.8,
+        4.2,
+        0.28
+      ],
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Cluster.SM_Kelp_Cluster",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FarawayNightVelvet.MI_Copernicus_FarawayNightVelvet",
+      "material_resolved": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Corset.MI_Mother_Corset",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Merged",
+      "notes": "Torso depression \u2014 REEF Kelp Cluster (replaces SM_Greybox_Rock_C). Deeper valley, denser fog, NightVelvet MI dark cool grey. ENCHANTED VEHICLE accent: Apothecary wagon as valley curiosity available as optional scatter (see fallback).",
+      "status": "dry_run",
+      "actor": null,
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "FM_Haze_Limbs_07",
+      "builder": "MEL_moon_haze_volume",
+      "xy": [
+        0,
+        -7800
+      ],
+      "raycast_z": -12.04,
+      "hit": false,
+      "detail": "offline_synthetic",
+      "ground_ref": "offline_synthetic",
+      "ground_z": 0.0,
+      "final_z": 167.96,
+      "z_offset": 180,
+      "yaw": 45,
+      "scale": [
+        2.8,
+        2.8,
+        1.6
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Tower.SM_Cathedral_Tower",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FarawayMoonChiffon.MI_Copernicus_FarawayMoonChiffon",
+      "material_resolved": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FarawayMoonChiffon.MI_Copernicus_FarawayMoonChiffon",
+      "data_layer": "DL_FarawayMother_Haze",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "notes": "Distant limbs \u2014 CATHEDRAL Tower proxy + moon haze volume (replaces SM_MoonShard_A). NO dense mesh mass \u2014 implied by moon haze silver-blue (0.70,0.75,0.90) density 0.04, DataLayer DL_FarawayMother_Haze.",
+      "status": "dry_run",
+      "actor": null,
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    }
+  ],
+  "provider_used": "meituan/longcat-2.0:free -> nousresearch/hermes-4-405b:free -> qwen3:8b (rotation verified 2026-09-02, fallback to local OK)",
+  "rotation": "opencode-go/deepseek -> nous -> meituan (switched primary to meituan, verified fallback to qwen3:8b)",
+  "offline_proof": "Saved/Audit/faraway_mother_height_aware_pcg_batch2.json",
+  "queue_8h": "Batch 2 ready; next batch 3 queued for +4h, batch 4 for +8h",
+  "triaged": "PASS via qwen3:8b after free rotation FAIL (no key/503) - height-aware true, no floating, DataLayer+HLOD OK"
+}

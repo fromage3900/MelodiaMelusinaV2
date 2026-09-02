@@ -1,0 +1,551 @@
+{
+  "schema": "melodia.levels.sea_above_pcg_batch2.v1",
+  "level": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "level_alt": "/Game/LV_SeaAbove_Prototype",
+  "grid_size": 25600,
+  "wp_cell_size": 25600,
+  "seed": 20260902,
+  "height_aware": true,
+  "biome_bands": {
+    "island_crest": {
+      "z_offset": 55,
+      "yaw_variance": 6,
+      "scale": [
+        2.8,
+        2.8,
+        2.2
+      ],
+      "density": 0.42,
+      "notes": "Highest \u2014 island crest / cathedral perch. Atlantis arches + Cathedral spire.",
+      "target_kit": "Atlantis+Cathedral"
+    },
+    "cathedral_nave": {
+      "z_offset": 22,
+      "yaw_variance": 4,
+      "scale": [
+        3.2,
+        3.2,
+        2.6
+      ],
+      "density": 0.55,
+      "notes": "Hero landmark \u2014 Cathedral nave / vault / rose window axis.",
+      "target_kit": "Cathedral+Houdini"
+    },
+    "lagoon_shallow": {
+      "z_offset": 8,
+      "yaw_variance": 12,
+      "scale": [
+        2.0,
+        2.0,
+        1.1
+      ],
+      "density": 0.35,
+      "notes": "Playable shoreline \u2014 kelp, clutter, small Atlantis scatter.",
+      "target_kit": "Reef"
+    },
+    "reef_wall": {
+      "z_offset": -18,
+      "yaw_variance": 18,
+      "scale": [
+        1.6,
+        1.6,
+        1.4
+      ],
+      "density": 0.48,
+      "notes": "Vertical reef face \u2014 coral, barnacle, wet-rock. Steep normal bias.",
+      "target_kit": "Reef"
+    },
+    "abyssal_keel": {
+      "z_offset": -45,
+      "yaw_variance": 20,
+      "scale": [
+        2.4,
+        2.4,
+        1.0
+      ],
+      "density": 0.28,
+      "notes": "Deep underside \u2014 heavy fog, leviathan bone, sparse islands.",
+      "target_kit": "Reef+Atlantis"
+    },
+    "sky_motes": {
+      "z_offset": 180,
+      "yaw_variance": 25,
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "density": 0.15,
+      "notes": "Airborne \u2014 jelly arms / motes. NO ground contact; haze/creature DataLayer.",
+      "target_kit": "Reef_Creature"
+    }
+  },
+  "pcg_params": {
+    "grid_size": 25600,
+    "seed": 20260902,
+    "wp_cell_size": 25600,
+    "hlod_cell_size": 25600,
+    "bounds_half_extent": [
+      12800.0,
+      12800.0,
+      6000
+    ],
+    "density": 0.4,
+    "cull_distance": 40000,
+    "lod_bias": 0,
+    "nanite_enabled": true,
+    "ism_batch": true,
+    "height_aware": true,
+    "raycast_start_z": 50000,
+    "raycast_end_z": -50000,
+    "trace_channel": "Visibility",
+    "ground_candidates": [
+      "CanonicalLandscape",
+      "MeshTerrain",
+      "Landscape",
+      "SM_SeaAbove_LiquidCathedral"
+    ],
+    "biome_bands": {
+      "island_crest": {
+        "z_offset": 55,
+        "yaw_variance": 6,
+        "scale": [
+          2.8,
+          2.8,
+          2.2
+        ],
+        "density": 0.42,
+        "notes": "Highest \u2014 island crest / cathedral perch. Atlantis arches + Cathedral spire.",
+        "target_kit": "Atlantis+Cathedral"
+      },
+      "cathedral_nave": {
+        "z_offset": 22,
+        "yaw_variance": 4,
+        "scale": [
+          3.2,
+          3.2,
+          2.6
+        ],
+        "density": 0.55,
+        "notes": "Hero landmark \u2014 Cathedral nave / vault / rose window axis.",
+        "target_kit": "Cathedral+Houdini"
+      },
+      "lagoon_shallow": {
+        "z_offset": 8,
+        "yaw_variance": 12,
+        "scale": [
+          2.0,
+          2.0,
+          1.1
+        ],
+        "density": 0.35,
+        "notes": "Playable shoreline \u2014 kelp, clutter, small Atlantis scatter.",
+        "target_kit": "Reef"
+      },
+      "reef_wall": {
+        "z_offset": -18,
+        "yaw_variance": 18,
+        "scale": [
+          1.6,
+          1.6,
+          1.4
+        ],
+        "density": 0.48,
+        "notes": "Vertical reef face \u2014 coral, barnacle, wet-rock. Steep normal bias.",
+        "target_kit": "Reef"
+      },
+      "abyssal_keel": {
+        "z_offset": -45,
+        "yaw_variance": 20,
+        "scale": [
+          2.4,
+          2.4,
+          1.0
+        ],
+        "density": 0.28,
+        "notes": "Deep underside \u2014 heavy fog, leviathan bone, sparse islands.",
+        "target_kit": "Reef+Atlantis"
+      },
+      "sky_motes": {
+        "z_offset": 180,
+        "yaw_variance": 25,
+        "scale": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "density": 0.15,
+        "notes": "Airborne \u2014 jelly arms / motes. NO ground contact; haze/creature DataLayer.",
+        "target_kit": "Reef_Creature"
+      }
+    },
+    "data_layers": [
+      "DL_SeaAbove_Islands",
+      "DL_SeaAbove_Creature",
+      "DL_SeaAbove_Lighting"
+    ],
+    "hlod_layers": [
+      "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "LV_SeaAbove_Prototype_WP_HLODLayer_Merged"
+    ]
+  },
+  "placements": [
+    {
+      "id": "SA_IslandCrest_Arch01",
+      "biome": "island_crest",
+      "xy": [
+        0,
+        4200
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 55.0,
+      "z_offset": 55,
+      "yaw": 0,
+      "scale": [
+        2.8,
+        2.8,
+        2.2
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchA.SM_ATL_Palace_ArchA",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Torii",
+      "notes": "Island crest \u2014 Atlantis arch replaces SM_Greybox_Torii",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_IslandCrest_Arch02",
+      "biome": "island_crest",
+      "xy": [
+        900,
+        4400
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 55.0,
+      "z_offset": 55,
+      "yaw": 8,
+      "scale": [
+        2.6,
+        2.6,
+        2.0
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchB.SM_ATL_Palace_ArchB",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Wall_Tall",
+      "notes": "Island crest \u2014 Atlantis arch B",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_IslandCrest_Columns01",
+      "biome": "island_crest",
+      "xy": [
+        -1100,
+        4000
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 50.0,
+      "z_offset": 50,
+      "yaw": -6,
+      "scale": [
+        2.4,
+        2.4,
+        1.9
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ColumnsA.SM_ATL_Palace_ColumnsA",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Column_05",
+      "notes": "Island crest \u2014 Columns replaces SM_Greybox_Column_05",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_CathedralNave_Spire01",
+      "biome": "cathedral_nave",
+      "xy": [
+        0,
+        0
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 22.0,
+      "z_offset": 22,
+      "yaw": 0,
+      "scale": [
+        3.2,
+        3.2,
+        2.6
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Spire.SM_Cathedral_Spire",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Merged",
+      "greybox_replaced": "SM_Greybox_Pillar_03",
+      "notes": "Hero \u2014 Cathedral spire replaces SM_Greybox_Pillar_03",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_CathedralNave_Vault01",
+      "biome": "cathedral_nave",
+      "xy": [
+        1100,
+        200
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 22.0,
+      "z_offset": 22,
+      "yaw": 12,
+      "scale": [
+        3.0,
+        3.0,
+        2.4
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_VaultBay.SM_Cathedral_VaultBay",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Merged",
+      "greybox_replaced": "SM_Greybox_Beam_4",
+      "notes": "Nave vault replaces SM_Greybox_Beam_4",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_CathedralNave_RoseWindow01",
+      "biome": "cathedral_nave",
+      "xy": [
+        -1200,
+        -150
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 24.0,
+      "z_offset": 24,
+      "yaw": -8,
+      "scale": [
+        2.2,
+        2.2,
+        2.2
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral_Houdini/SM_P4_Cathedral_RoseWindow.SM_P4_Cathedral_RoseWindow",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Merged",
+      "greybox_replaced": "SM_Greybox_LissajousSculpture",
+      "notes": "Houdini rose window replaces SM_Greybox_LissajousSculpture",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_CathedralNave_Grand01",
+      "biome": "cathedral_nave",
+      "xy": [
+        0,
+        -900
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 20.0,
+      "z_offset": 20,
+      "yaw": 0,
+      "scale": [
+        2.8,
+        2.8,
+        2.8
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral_Houdini/SM_P4_Cathedral_Grand.SM_P4_Cathedral_Grand",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Merged",
+      "greybox_replaced": "SM_Greybox_GreatDodecahedron",
+      "notes": "Houdini grand replaces SM_Greybox_GreatDodecahedron",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_Lagoon_Kelp01",
+      "biome": "lagoon_shallow",
+      "xy": [
+        2400,
+        1800
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 8.0,
+      "z_offset": 8,
+      "yaw": 22,
+      "scale": [
+        2.0,
+        2.0,
+        1.1
+      ],
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JellyArm.JellyArm",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Rock_B",
+      "notes": "Lagoon \u2014 JellyArm/kelp replaces SM_Greybox_Rock_B",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_Lagoon_Bench01",
+      "biome": "lagoon_shallow",
+      "xy": [
+        -2200,
+        1600
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 8.0,
+      "z_offset": 8,
+      "yaw": -15,
+      "scale": [
+        1.8,
+        1.8,
+        1.0
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BenchA.SM_ATL_Palace_BenchA",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Wall_Short",
+      "notes": "Lagoon \u2014 Bench replaces SM_Greybox_Wall_Short",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_Lagoon_Pavilion01",
+      "biome": "lagoon_shallow",
+      "xy": [
+        1800,
+        -1400
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 8.0,
+      "z_offset": 8,
+      "yaw": 30,
+      "scale": [
+        2.0,
+        2.0,
+        1.1
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Pavilion.SM_Cathedral_Pavilion",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_TeaHouse",
+      "notes": "Lagoon \u2014 Pavilion replaces SM_Greybox_TeaHouse",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    }
+  ],
+  "total_placements_available": 18,
+  "batch": 2,
+  "provider_used": "meituan/longcat-2.0:free -> nousresearch/hermes-4-405b:free -> qwen3:8b (rotation verified)",
+  "rotation": "opencode-go/deepseek -> nous -> meituan",
+  "offline_proof": "Saved/Audit/sea_above_pcg_integration_batch2.json",
+  "queue_8h": "Batch 2 (10/18) committed; Batch 3 (remaining 8 + drift) queued",
+  "triaged": "PASS via qwen3:8b"
+}

@@ -54,6 +54,12 @@ PRICES = {
     "nvidia/nemotron-3-ultra-550b-a55b:free": (0.0, 0.0),
     "nvidia/nemotron-3-super-120b-a12b:free": (0.0, 0.0),
     "openai/gpt-oss-20b:free": (0.0, 0.0),
+    # Free rotation 2026-09-02: opencode-go/deepseek → nous → meituan (OpenRouter free tier rotation)
+    "meituan/longcat-2.0:free": (0.0, 0.0),
+    "meituan/longcat-flash-chat:free": (0.0, 0.0),
+    "nousresearch/hermes-4-405b:free": (0.0, 0.0),
+    "nousresearch/hermes-4-70b:free": (0.0, 0.0),
+    "nousresearch/hermes-3-llama-3.1-405b:free": (0.0, 0.0),
     "mistralai/codestral-2508": (0.0000003, 0.0000009),
     # Local Ollama tags - zero API cost
     # Verified installed 2026-08-20 via `ollama list`.
@@ -162,14 +168,19 @@ POLICY = {
         ("deepseek/deepseek-v4-flash", "openrouter", "cloud fallback only"),
     ],
     "triage": [
-        ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free 1M ctx"),
-        ("openai/gpt-oss-20b:free", "openrouter", "free code"),
+        # Free rotation 2026-09-02: deepseek (opencode-go) → nous → meituan ; local fallback last
+        ("meituan/longcat-2.0:free", "openrouter", "free rotation primary: meituan (switched)"),
+        ("nousresearch/hermes-4-405b:free", "openrouter", "free rotation secondary: nous"),
+        ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free rotation tertiary: nvidia (prev deepseek lane)"),
+        ("openai/gpt-oss-20b:free", "openrouter", "free code fallback"),
         ("qwen3:8b", "local", "local daemon triage"),
         ("moonshotai/kimi-k3-free", "tokenrouter", "slow but strong fallback"),
     ],
     "audit": [
-        ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free heavy"),
-        ("deepseek/deepseek-v4-flash", "openrouter", "analysis"),
+        ("meituan/longcat-2.0:free", "openrouter", "free rotation primary: meituan"),
+        ("nousresearch/hermes-4-405b:free", "openrouter", "free rotation secondary: nous"),
+        ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free heavy fallback"),
+        ("deepseek/deepseek-v4-flash", "openrouter", "analysis (paid fallback)"),
         ("qwen3-coder:14b", "local", "local static-gate loops"),
         ("meta/muse-spark-1.2", "openrouter", "gamedev-ranked"),
     ],
