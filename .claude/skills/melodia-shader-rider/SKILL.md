@@ -36,6 +36,11 @@ From `AGENTS.md` §2.1:
 
 - New `.usf`/`.ush` files for custom material functions, procedural effects, or Niagara shader tasks.
 - Edits to existing shader includes/sources under the project's shader paths.
+- The MelodiaShader module at `Source/BS_GodFile/MelodiaShader/Shaders/` is the project's
+  custom shader source root — Rider maps this directory for HLSL syntax validation.
+  Files there: `MelodiaInkCommon.ush`, `MelodiaInkSdfNotation.ush`,
+  `MelodiaInkBioluminescent.ush`, `MelodiaInkPatternRouter.ush`, `MelodiaNikkiCommon.ush`,
+  `MelodiaBiolumCommon.ush`.
 - IWYU-driven `#include` cleanup on shader sources.
 - Static analysis via `qodana.yaml` with the `QDJB` profile before the shader reaches review
   (catches memory leaks, missing reflection tags, uninitialized properties where applicable).
