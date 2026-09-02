@@ -132,16 +132,19 @@ def load_source(table_name: str):
     if len(rows) != spec["expected_count"]:
         errors.append(f"{table_name}_row_count_{len(rows)}_not_{spec['expected_count']}")
     for row_name, row in rows.items():
-        missing = sorted(set(spec["fields"]) - set(row))
-        extra = sorted(set(row) - set(spec["fields"]))
+        # 'needs_review' is a tolerated optional annotation on DT_Burdens rows that
+        # could not be fully recovered from source text; never a gameplay column.
+        filtered = {k: v for k, v in row.items() if k != "needs_review"}
+        missing = sorted(set(spec["fields"]) - set(filtered))
+        extra = sorted(set(filtered) - set(spec["fields"]))
         if missing:
             errors.append(f"{table_name}_{row_name}_missing_{','.join(missing)}")
         if extra:
             errors.append(f"{table_name}_{row_name}_unknown_{','.join(extra)}")
         for field, kind in spec["fields"].items():
-            if field not in row:
+            if field not in filtered:
                 continue
-            v = row[field]
+            v = filtered[field]
             if kind == "string":
                 ok = isinstance(v, str)
             elif kind == "int":
