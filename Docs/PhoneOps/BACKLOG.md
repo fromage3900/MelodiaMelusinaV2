@@ -2,26 +2,29 @@
 
 Simple queue for phone agents. Prefer updating this file over inventing parallel TODO files.
 
-**Authority (2026-08-25):** [`PROJECT.md`](../../PROJECT.md) · P0 closeout
-[`../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md) ·
+**Authority (2026-09-02):** [`Docs/P0_TASK_LEDGER.json`](../P0_TASK_LEDGER.json) ·
+[`../Handoffs/P0_CLOSEOUT_TODAY_2026-09-01.md`](../Handoffs/P0_CLOSEOUT_TODAY_2026-09-01.md) ·
+phone snapshot [`../Handoffs/PHONE_PARTY_TRICK_2026-09-02.md`](../Handoffs/PHONE_PARTY_TRICK_2026-09-02.md) ·
+Aug 24 plan (historical) [`../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md) ·
 playbook [`../P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md`](../P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md).
 
 Career sendoffs (downstream): [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../Career/RECRUITER_SENDOFFS_2026-08-25.md).
 
 ## Now
 
-### P0 — Ship Melodia (live proof — prefer over R&D)
+### P0 — Ship Melodia (certify — prefer over R&D)
 
 0. **FAMILY LOCKS — RHYTHM + QUILLSCRIPT WORKED**. Do not reopen without evidence. [RHYTHM…](../Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](../Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
-1. **Current P0 gates** (Aug 24 closeout — still open): `rhythm_grade_to_result`, `hud_single_writer`, `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook` (Glide), `music_world_key`, `battle_integration_map`, `static_gates`, `rhythm_owner`.
-2. **Playbook:** assertion-bearing NPC/quest, four-outcome, restart, packaged evidence — not another feature tranche.
-3. **Claireon:** **PARKED** (disabled in `.uproject` for C1076 PCH). Do not re-enable on the critical path. Monolith stays.
+1. **Task ledger:** all eight active P0 gates are **pass** in [`Docs/P0_TASK_LEDGER.json`](../P0_TASK_LEDGER.json) (Sep 1). Do not rebuild those systems.
+2. **Echo ledger drift (PC):** `Saved/gate_ledger.json` may still disagree with the task ledger — record missing PASS rows via the normal recorder (`wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, `music_world_key`, and any other missing rows). Cloud VMs with no ledger file will report OPEN; that is not a rebuild request. See [PHONE_PARTY_TRICK…](../Handoffs/PHONE_PARTY_TRICK_2026-09-02.md).
+3. **Shipping closeout (PC):** focused pre-package checks → current Win64 package → uninterrupted golden run → fresh `package_launch` row. Aug 13–14 historical rows are not current certification. Playbook: [P0_CLOSEOUT_TODAY…](../Handoffs/P0_CLOSEOUT_TODAY_2026-09-01.md).
+4. **Claireon:** **PARKED** (disabled in `.uproject` for C1076 PCH). Do not re-enable on the critical path. Monolith stays.
 
 ### P1 — Recruiter sendoffs (NVIDIA withdrawn)
 
-4. **Send OpenCode first** — paste from [RECRUITER_SENDOFFS…](../Career/RECRUITER_SENDOFFS_2026-08-25.md) §1.
-5. Certain Affinity → Velan → Infold campus (Oct 31) → Nous optional (corrected evidence only).
-6. **Do not send NVIDIA.**
+5. **Send OpenCode first** — paste from [RECRUITER_SENDOFFS…](../Career/RECRUITER_SENDOFFS_2026-08-25.md) §1.
+6. Certain Affinity → Velan → Infold campus (Oct 31) → Nous optional (corrected evidence only).
+7. **Do not send NVIDIA.**
 
 ## Next
 
@@ -50,6 +53,7 @@ Career sendoffs (downstream): [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../
 ## How to update from phone
 
 ```text
-Reconcile Docs/PhoneOps/BACKLOG.md with PROJECT.md and the Aug 24 P0 closeout.
+Reconcile Docs/PhoneOps/BACKLOG.md with Docs/P0_TASK_LEDGER.json and
+Docs/Handoffs/P0_CLOSEOUT_TODAY_2026-09-01.md (see PHONE_PARTY_TRICK_2026-09-02).
 Move finished items out; do not add speculative work. Commit + PR.
 ```
