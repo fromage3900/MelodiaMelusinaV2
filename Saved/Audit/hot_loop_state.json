@@ -59,13 +59,14 @@
     "hero material pipeline + VDM cook are offline-safe (numpy/PIL); brass MI creation is editor-live via Monolith 9316"
   ],
   "last_commit_hashes": [
-    "0482375a41b98216c20be73b76a410dffe9bcbd4",
-    "9a82e8f0 (loom batch 02 head)"
-  ],
-  "push": {
-    "attempted": "2026-09-02 (prior batch)",
-    "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
-    "result": "rejected non-fast-forward — local main behind origin/main (~359 commits); local head ahead 365",
-    "action": "NO force-push, NO reset; left local main intact — needs owner-driven merge/rebase to reconcile divergence before next ff push"
-  }
+      "0482375a41b98216c20be73b76a410dffe9bcbd4",
+      "9a82e8f0 (loom batch 02 head)",
+      "ff7d13e4 (run 3 eigenmode lane)"
+    ],
+    "push": {
+      "attempted": "2026-09-02 (run 3)",
+      "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
+      "result": "rejected non-fast-forward (ahead 370 / behind 359) — local main behind origin/main ~359; does NOT include new ff7d13e4",
+      "action": "NO force-push, NO reset; committed ff7d13e4 locally, offline-safe work; needs owner-driven merge/rebase to reconcile divergence before next ff push"
+    }
 }
