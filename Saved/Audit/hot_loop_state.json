@@ -1,9 +1,9 @@
 {
   "schema": "melodia.hot_loop_state.v1",
-  "run_count": 3,
+  "run_count": 4,
     "done": false,
     "started": "2026-09-02",
-    "updated": "2026-09-02T08:10:00",
+    "updated": "2026-09-02T08:20:00",
   "git_context": {
     "branch": "main",
     "ahead_origin_estimated": 365,
@@ -34,21 +34,32 @@
     "MelodiaRoseVelvet", "MelodiaMoonlace", "MelodiaForestEmerald", "MelodiaAmethystVein", "MelodiaAuroraGlass"
   ],
   "verify": {
-    "onnx_controller": "7/7 PASS onnxruntime 1.29 (2026-09-02)",
-    "family_qa": "81/81 maps PASS (9 variants x 9 maps)",
-    "flipbooks_qa": "648/648 PASS (9 variants x 8 frames x 9 maps)",
-    "vdm_qa": "A/B/C non-blank + exr_roundtrip PASS (2026-09-02)",
-    "brass_wiring": "8/8 MIs wiring readback verified (5 tex + 17 scalars each)",
-    "eigenmode_verify": "chladni 9/9 PASS (closed-form exact); eigenplate maps 8/8 QA PASS (4_3_brass + 1_2 steel/glass/crystal)",
-    "golden_run_preflight": "ready:true (route maps + config + all 4 completion gates pass + echo pipeline)"
-  },
+      "onnx_controller": "7/7 PASS onnxruntime 1.29 (2026-09-02)",
+      "family_qa": "81/81 maps PASS (9 variants x 9 maps)",
+      "flipbooks_qa": "648/648 PASS (9 variants x 8 frames x 9 maps)",
+      "vdm_qa": "A/B/C non-blank + exr_roundtrip PASS (2026-09-02)",
+      "brass_wiring": "8/8 MIs wiring readback verified (5 tex + 17 scalars each)",
+      "eigenmode_verify": "chladni 9/9 PASS (closed-form exact); eigenplate maps 8/8 QA PASS (4_3_brass + 1_2 steel/glass/crystal)",
+      "herogem_phase_D": "MI_HeroGem_Cymatic verified live on 9316 (readback 2026-09-02 08:14): parented to M_Master_Toon_Universal, 7 tex wired (Albedo/NormalMap/ORM/HeightMap/EmissiveMap/MetallicMap/RoughnessMap), LayerB eigenplate 4_3_brass Height+Normal wired as nodal relief, 8 gold scalars + 7 switches active. Phase D of AUDIO_HERO_MATERIAL_PLAN DONE.",
+      "gaea_capture_plan": "12 locked frames/4 WP terrain levels, all offline prereqs TRUE (editor-bound PIE pending)",
+      "world_field_bus": "Single-writer contract VERIFIED structurally; MPC param NAMESPACE MISMATCH: writer publishes GlobalReactivity/Bass/Mid/Treble/BeatPhase/BeatPulse/BeatIntensity, consumers request BassIntensity/MidIntensity/BeatTracker — PIE param-match gate honestly expected FAIL on 3 lanes",
+      "golden_run_preflight": "ready:true (route maps + config + all 4 completion gates pass + echo pipeline)"
+    },
+    "run_04_summary": {
+      "editor": "Monolith 9316 live (UnrealEditor PID 50612); golden-run preflight re-confirmed PASS 08:03",
+      "herogem_phase_D": "Phase D DONE — MI_HeroGem_Cymatic live-verified: 7 channels wired + eigenplate 4_3_brass nodal relief (LayerB) + audio scalars. Iridescence/Opacity gem maps NOT wired (master has no such texture slot). GlobalEmissiveBoost/BeatPulse/CymaticModeN/M not exposed on master — skipped, not invented.",
+      "gaea_capture_plan": "Offline capture-readiness complete: 4 qualifying WP terrain levels (CadenceCrystalRidge, SakuraTerrace, LiquidCathedral, FugueGrotto), 3 locked frames each = 12, evidence standard + assertion JSON shape + gate ledger row gaea_live_pie. PIE capture itself editor-bound, pending lock free.",
+      "world_field_bus": "Spec + gate row present (2026-09-02 08:07). Salvaged: real param-mismatch finding (writer vs consumer MPC names) that the PIE gate will surface — see next_steps 'reconcile MPC namespace'.",
+      "not_staged": "copernicus_cymatic_manifest.json generated each cook — QA JSON authoritative"
+    },
   "next_steps": [
-      "editor: wire eigenplate Height/Normal into M_Master_Toon_Universal hero-gem MI + nodal emissive (=Phase D/E of AUDIO_HERO_MATERIAL_PLAN; needs editor live, single Mono 9316)",
-      "Gaea live PIE captures (Saved/Audit/gaea_*.json + .mp4)",
-      "World Field Bus PIE (MPC_Melodia_Palette + WorldField epicenter)",
-      "commit categorized isolated batches then MERGE/REBASE local main to origin/main before any ff push (ahead ~369 / behind ~359 — NOT fast-forward; do not force)",
-      "do not stage generated copernicus_cymatic_manifest.json"
-    ],
+        "reconcile MPC param namespace: presentation writer publishes GlobalReactivity/Bass/Mid/Treble/BeatPhase/BeatPulse/BeatIntensity but consumers (cymatics/neural) request BassIntensity/MidIntensity/BeatTracker. Align consumer reads to writer lanes OR extend writer publishes so World Field Bus PIE param-match gate can PASS. Single-writer preserved — do not add a second MPC writer.",
+        "editor (Phase E light): bind MI_HeroGem_Cymatic into L_PCG_Hero_CrystalHarpGrove PCG + cymatic nodal emissive, then Phase F live PIE — beat reacts, gem emissive pulses through neural seam.",
+        "Gaea live PIE captures — 12 locked frames / 4 WP levels ready (Saved/Audit/gaea_*.mp4); editor-bound, run when 9316 frees",
+        "World Field Bus PIE — spec + gate row ready (world_field_bus_pie), param-name gate expected FAIL until namespace reconciled",
+        "commit categorized isolated batches then MERGE/REBASE local main to origin/main before any ff push (ahead ~372 / behind ~359 — NOT fast-forward; do not force)",
+        "do not stage generated copernicus_cymatic_manifest.json"
+      ],
     "learnings": [
       "run 3: advanced eigenmode lane — chladni_eigen_verify 9/9 PASS, eigenplate library now 8 maps (4_3_brass + 1_2 steel/glass/crystal) 8/8 QA PASS; plan doc §7 documents the frequency->(m,n)->relief wiring; lane still needs editor (Phase D/E)",
       "all 9 Melodia* cymatic PBR variants cooked + QA'd 81/81; all 9 have 8-frame flipbooks (648/648 PASS) — QA JSON is the authoritative record, not the generated manifest",
