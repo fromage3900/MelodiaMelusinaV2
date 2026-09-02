@@ -1,20 +1,20 @@
 {
   "schema": "melodia.copernatic_cymatic_parallax.v2",
   "seed": 20260831,
-  "size": "1024x1024",
+  "size": "256x256",
   "frames": 1,
   "variants": {
-    "WeepingWillow": {
+    "MoonlitMoss": {
       "outputs": [
-        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_BaseColor.png",
-        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Normal.png",
-        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Roughness.png",
-        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Metallic.png",
-        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Height.png",
-        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_ORM.png",
-        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Emissive.png",
-        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Iridescence.png",
-        "Saved/Audit/copernicus_cymatic/WeepingWillow/T_Cymatic_WeepingWillow_Opacity.png"
+        "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Normal.png",
+        "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Height.png",
+        "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_ORM.png",
+        "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Opacity.png"
       ]
     }
   },
