@@ -38,9 +38,9 @@
     "347f5042"
   ],
   "push": {
-    "attempted": "2026-09-02 (run 7)",
-    "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
-    "result": "verify live after this run's commit",
-    "action": "NO force-push, NO reset; expect non-ff (ahead ~386 / behind ~359) requiring owner merge/rebase"
-  }
+      "attempted": "2026-09-02 (run 7)",
+      "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
+      "result": "rejected non-fast-forward — after commit ed707a40, HEAD is ahead 387 / behind 359 vs origin/main; new commit NOT on origin",
+      "action": "NO force-push, NO reset; offline-safe work stays committed locally; owner pull/merge/rebase required to reconcile divergence before next ff push"
+    }
 }
