@@ -1,0 +1,142 @@
+{
+  "format": "gmm_brass_preset_v1",
+  "instrument_type": "trombone",
+  "key": "Bb",
+  "modifier_stacks": [
+    {
+      "id": "main_tube",
+      "type": "brass_tube",
+      "enabled": true,
+      "order": 0,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 13.0,
+        "thickness": 1.5,
+        "length": 380.0,
+        "resolution": 32
+      }
+    },
+    {
+      "id": "bell_mouth",
+      "type": "brass_bell_profile",
+      "enabled": true,
+      "order": 1,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "base_radius": 13.0,
+        "tip_radius": 32.0,
+        "height": 40.0,
+        "resolution": 64,
+        "flare_exponent": 1.5,
+        "flare_angle_deg": 10.0
+      }
+    },
+    {
+      "id": "slide_1_taper",
+      "type": "brass_slide_taper",
+      "enabled": true,
+      "order": 2,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "major_diameter": 28.0,
+        "minor_diameter": 25.0,
+        "length": 250.0,
+        "resolution": 32,
+        "grease_groove_width": 1.0
+      }
+    },
+    {
+      "id": "slide_2_taper",
+      "type": "brass_slide_taper",
+      "enabled": true,
+      "order": 3,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "major_diameter": 28.0,
+        "minor_diameter": 25.0,
+        "length": 250.0,
+        "resolution": 32,
+        "grease_groove_width": 1.0
+      }
+    },
+    {
+      "id": "slide_3_taper",
+      "type": "brass_slide_taper",
+      "enabled": true,
+      "order": 4,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "major_diameter": 28.0,
+        "minor_diameter": 25.0,
+        "length": 250.0,
+        "resolution": 32,
+        "grease_groove_width": 1.0
+      }
+    },
+    {
+      "id": "bracing_hoop_1",
+      "type": "brass_bracing_hoop",
+      "enabled": true,
+      "order": 5,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "tube_radius": 13.0,
+        "hoop_diameter": 15.0,
+        "count": 6,
+        "angle_offset": 0.0,
+        "weld_bead_radius": 1.0
+      }
+    },
+    {
+      "id": "bracing_hoop_2",
+      "type": "brass_bracing_hoop",
+      "enabled": true,
+      "order": 6,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "tube_radius": 13.0,
+        "hoop_diameter": 15.0,
+        "count": 6,
+        "angle_offset": 90.0,
+        "weld_bead_radius": 1.0
+      }
+    },
+    {
+      "id": "mouthpiece_cup",
+      "type": "brass_mouthpiece_cup",
+      "enabled": true,
+      "order": 7,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "cup_depth": 25.0,
+        "cup_radius": 13.0,
+        "rim_thickness": 6.0,
+        "back_bore_diameter": 5.5
+      }
+    },
+    {
+      "id": "mouthpiece_shank",
+      "type": "brass_mouthpiece_shank",
+      "enabled": true,
+      "order": 8,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "shank_length": 50.0,
+        "major_diameter": 13.0,
+        "minor_diameter": 9.0,
+        "taper_type": "parabolic"
+      }
+    }
+  ],
+  "ue_binding": "MelodiaBrass.Trombone",
+  "next_action": "hython_or_edit"
+}

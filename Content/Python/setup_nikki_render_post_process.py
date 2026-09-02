@@ -56,12 +56,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 LEVELS = (
-    "/Game/_PROJECT/Levels/RenderTests/L_Render_SakuraDream",
-    "/Game/_PROJECT/Levels/RenderTests/L_Render_SpaceCathedral",
-    "/Game/_PROJECT/Levels/RenderTests/L_Render_BaroqueCastle",
-    "/Game/_PROJECT/Levels/RenderTests/L_Render_BioGrotto",
-    # L_SakuraPath removed 2026-08-18: the level no longer exists in the project
-    # (Sakura folder emptied; only L_Render_SakuraDream remains under _PROJECT).
     "/Game/EnvSandbox/Environments/L_KaleidoNave",
     "/Game/EnvSandbox/Environments/L_FallenMoon",
     "/Game/Melodia/Levels/Opening/L_MelusinaMorning",

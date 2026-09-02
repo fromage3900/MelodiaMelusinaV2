@@ -1,0 +1,188 @@
+{
+  "format": "gmm_brass_preset_v1",
+  "instrument_type": "trumpet",
+  "key": "Bb",
+  "variant": "valve_wear",
+  "description": "Working Bb trumpet — 15 years of daily practice. Polished wear bands on piston strokes, finger-button dish, port edge rounding. Lacquer worn through at contact points.",
+  "modifier_stacks": [
+    {
+      "id": "body_tube",
+      "type": "brass_tube",
+      "enabled": true,
+      "order": 0,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 12.5,
+        "thickness": 1.2,
+        "length": 350.0,
+        "resolution": 32
+      }
+    },
+    {
+      "id": "bell_mouth",
+      "type": "brass_bell_profile",
+      "enabled": true,
+      "order": 1,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "base_radius": 12.5,
+        "tip_radius": 28.0,
+        "height": 35.0,
+        "resolution": 64,
+        "flare_exponent": 1.5,
+        "flare_angle_deg": 10.0
+      }
+    },
+    {
+      "id": "valve_1_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 2,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 14.0,
+        "piston_diameter": 12.0,
+        "port_width": 3.0,
+        "stroke": 40.0,
+        "port_count": 3,
+        "fillet_radius": 0.5
+      }
+    },
+    {
+      "id": "valve_2_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 3,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 14.0,
+        "piston_diameter": 12.0,
+        "port_width": 3.0,
+        "stroke": 40.0,
+        "port_count": 3,
+        "fillet_radius": 0.5
+      }
+    },
+    {
+      "id": "valve_3_cylinder",
+      "type": "brass_valve_cylinder",
+      "enabled": true,
+      "order": 4,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "radius": 14.0,
+        "piston_diameter": 12.0,
+        "port_width": 3.0,
+        "stroke": 40.0,
+        "port_count": 3,
+        "fillet_radius": 0.5
+      }
+    },
+    {
+      "id": "valve_1_wear",
+      "type": "brass_valve_wear",
+      "enabled": true,
+      "order": 5,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "cylinder_radius": 14.0,
+        "stroke": 40.0,
+        "wear_band_width": 7.0,
+        "polish_factor": 0.82,
+        "erosion_depth": 0.18,
+        "contact_roughness": 0.025,
+        "wear_cycles": 120000
+      }
+    },
+    {
+      "id": "valve_2_wear",
+      "type": "brass_valve_wear",
+      "enabled": true,
+      "order": 6,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "cylinder_radius": 14.0,
+        "stroke": 40.0,
+        "wear_band_width": 6.5,
+        "polish_factor": 0.78,
+        "erosion_depth": 0.14,
+        "contact_roughness": 0.03,
+        "wear_cycles": 95000
+      }
+    },
+    {
+      "id": "valve_3_wear",
+      "type": "brass_valve_wear",
+      "enabled": true,
+      "order": 7,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "cylinder_radius": 14.0,
+        "stroke": 40.0,
+        "wear_band_width": 5.5,
+        "polish_factor": 0.65,
+        "erosion_depth": 0.1,
+        "contact_roughness": 0.035,
+        "wear_cycles": 60000
+      }
+    },
+    {
+      "id": "lead_pipe_wear",
+      "type": "brass_lead_pipe",
+      "enabled": true,
+      "order": 8,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "mouthpiece_radius": 12.0,
+        "lead_start_radius": 10.5,
+        "length": 120.0,
+        "roughness": 0.015,
+        "taper_exponent": 0.8
+      }
+    },
+    {
+      "id": "mouthpiece_cup",
+      "type": "brass_mouthpiece_cup",
+      "enabled": true,
+      "order": 9,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "cup_depth": 22.0,
+        "cup_radius": 12.0,
+        "rim_thickness": 5.0,
+        "back_bore_diameter": 5.15
+      }
+    },
+    {
+      "id": "mouthpiece_shank",
+      "type": "brass_mouthpiece_shank",
+      "enabled": true,
+      "order": 10,
+      "scope": "editor",
+      "backend": "auto",
+      "parameters": {
+        "shank_length": 45.0,
+        "major_diameter": 12.0,
+        "minor_diameter": 8.0,
+        "taper_type": "linear"
+      }
+    }
+  ],
+  "ue_binding": "MelodiaBrass.Trumpet_ValveWear",
+  "material_hints": {
+    "base": "MI_Starskiff_Brass",
+    "wear_roughness_curve": "polish_factor drives roughness 0.08 at band center",
+    "erosion_normal_strength": 1.8
+  },
+  "next_action": "hython_or_edit"
+}

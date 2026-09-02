@@ -21,7 +21,14 @@ from dataclasses import dataclass, field
 from enum import IntEnum
 from typing import Dict, List, Optional, Tuple
 
-import numpy as np
+try:
+    import numpy as np
+    HAS_DEPS = True
+except ImportError:
+    HAS_DEPS = False
+
+if not HAS_DEPS:
+    raise unittest.SkipTest("numpy not available in this Python environment")
 
 
 # ---------------------------------------------------------------------------
