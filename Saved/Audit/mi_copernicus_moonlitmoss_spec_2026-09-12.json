@@ -1,0 +1,35 @@
+{
+  "schema": "melodia.mi.creation_spec.v1",
+  "id": "MI_Copernicus_MoonlitMoss_Creation_Spec_2026_09_12",
+  "lane": "audit",
+  "mode": "spec",
+  "generated": "2026-09-02T07:35:00Z",
+  "summary": "MI creation spec for the MoonlitMoss cymatic material instance. All 9 PBR maps verified on disk under Saved/Audit/copernicus_cymatic/MoonlitMoss/ (1024x1024). Parent master M_Master_Toon_Unified confirmed present at Content/EnvSandbox/Materials/Masters/. No MI_Copernicus_MoonlitMoss.uasset exists yet in sibling Instances/Copernicus dir. MoonlitMoss is a bioluminescent-GREEN forest-floor cymatic variant; the ShadowDream blue/pink rider does NOT apply. Editor-gated for materialization.",
+  "texture_paths": [
+    "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_BaseColor.png",
+    "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Emissive.png",
+    "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Height.png",
+    "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Iridescence.png",
+    "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Metallic.png",
+    "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Normal.png",
+    "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Opacity.png",
+    "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_ORM.png",
+    "Saved/Audit/copernicus_cymatic/MoonlitMoss/T_Cymatic_MoonlitMoss_Roughness.png"
+  ],
+  "map_count_verified": "9/9 PBR maps on disk (daemon disk scan, 2026-09-02). NOTE: perfect-parity check -> maps present at full set.",
+  "master_parent": "M_Master_Toon_Unified",
+  "master_parent_path": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Unified.uasset",
+  "proposed_asset_path": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_MoonlitMoss",
+  "target_dir": "Content/EnvSandbox/Materials/Instances/Copernicus/",
+  "naming": "MI_Copernicus_MoonlitMoss (sibling MI_Copernicus_* convention; no collision confirmed - absent from dir listing)",
+  "material_params": {
+    "variant_palette": "bioluminescent-green forest floor",
+    "color_application": "ShadowDream blue/pink rider DOES NOT apply - MoonlitMoss is biolum green; do NOT force #8AA0D6 blue or pink tint",
+    "tint": "dark-loam base with bioluminescent-green emissive accent (Chladni tendrils + twinkle spores per build_moonlit_moss())",
+    "emissive_strength": "moderate emissive on tendril/spore channel to read as biolum glow (owner to tune in editor against M_Master_Toon_Unified params)",
+    "note": "Parent and exact scalar exposure must be confirmed against live M_Master_Toon_Unified param set during editor materialize"
+  },
+  "depends_on": "live editor MI materialization (owner) + live editor parent-parameter read",
+  "guardrails": "no .uasset write from daemon; no git op; spec is editor-gated evidence only",
+  "flag": "EDITOR_GATED"
+}
