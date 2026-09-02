@@ -1,8 +1,8 @@
-# Melodia — Laptop Workstation Setup & Offload Plan
+﻿# Melodia â€” Laptop Workstation Setup & Offload Plan
 
-**Status:** ready-to-run onboarding plan  
-**Target machine:** ASUS Nitro laptop; exact SKU, RAM, GPU, and SSD capacity must be measured  
-**Updated:** 2026-09-02  
+**Status:** ready-to-run onboarding plan
+**Target machine:** Acer Nitro AN515-51; measured 2026-09-02
+**Updated:** 2026-09-02
 **Project:** `fromage3900/MelodiaMelusinaV2` / `BS_GodFile.uproject`
 
 ## 1. Outcome
@@ -14,6 +14,19 @@ This laptop becomes a second Melodia workstation with a clear role:
 - **Shared authority:** Git/Git LFS and explicit handoff branches. Each machine has its own clone. Do not edit the same binary asset from both machines at once.
 
 The setup is deliberately hardware-gated. A 16 GB laptop is a worker-first node; a confirmed 32 GB laptop can become a hybrid UE/editor node. The ASUS Nitro name alone is not enough to decide.
+
+### Measured hardware record
+
+| Component | Measurement | Consequence |
+|---|---|---|
+| Model | Acer Nitro AN515-51 | Use the measured profile, not the product family name |
+| Memory | 15.9 GB RAM; 2 x 8 GB at 2133 MHz | Worker-first; keep heavy applications in separate modes |
+| CPU | Intel Core i5-7300HQ; 4 cores / 4 threads; 2.50 GHz | Good for bounded scripts and serial asset jobs; avoid broad parallel builds |
+| GPU | NVIDIA GeForce GTX 1050 Ti; 4 GB VRAM | Suitable for asset inspection and modest viewport work; not the primary Lumen/Nanite renderer |
+| System drive | `C:` 14.5 GB free of 237.4 GB at inspection | Do not place UE, caches, or the project clone here |
+| Work drive | `P:` 251.4 GB free of 931.5 GB at inspection | Preferred location for the project clone, staged jobs, and bounded outputs |
+
+The laptop is now assigned the dedicated **3D asset / art builder / Moho worker** role. Blender batch work, geometry/material preparation, texture staging, Three.js inspection, and deterministic validation are first-class lanes. Moho is a planned integration lane only: the repository currently contains no Moho tool, plugin, job format, or automation contract.
 
 ## 2. Repository facts verified before this plan
 
@@ -84,7 +97,7 @@ GPU matters more than the product name for Lumen/Nanite and high-resolution rend
 1. Finish Windows Update and reboot.
 2. Install the current GPU driver for the measured NVIDIA/AMD adapter.
 3. Use the laptop on AC power for UE builds and Blender batch work.
-4. Keep the Windows page file system-managed; do not disable it to “save disk.”
+4. Keep the Windows page file system-managed; do not disable it to â€œsave disk.â€
 5. Put the repository and UE on the internal SSD, not a network share. Avoid placing a Derived Data Cache on a nearly full or removable drive.
 6. Keep heavy background startup apps off while profiling the first UE launch.
 
@@ -370,7 +383,7 @@ Do not edit the same lockable binary on both branches and hope Git will resolve 
 
 Never copy `Saved/`, `Intermediate/`, `Binaries/`, `.rider/`, `.idea/`, or `DerivedDataCache/` between workstations as if they were source. They are machine-local/generated state.
 
-## 8. Optional LAN offload — later phase
+## 8. Optional LAN offload â€” later phase
 
 Do not begin with a networked Unreal/MCP worker. First prove that the laptop is healthy locally and can push a small branch that the main PC can consume.
 
@@ -383,6 +396,18 @@ If a LAN worker is added later:
 - document the worker's hostname, IP reservation, service ports, and shutdown behavior in a separate dated handoff.
 
 The current configured service ports are in `Config/paths.json`; their presence does not mean they should run on every machine.
+
+## 8a. 3D asset and Moho worker boundary
+
+The worker owns source-oriented preparation and repeatable local jobs:
+
+- Blender background exports and procedural generation;
+- mesh, material, texture, and animation staging outside Unreal's live `Content/` tree;
+- offline manifests, hashes, and validation reports;
+- Moho source/job staging once a licensed Moho installation and supported automation path are available;
+- handoff of approved outputs through Git branches or the documented asset-transfer path.
+
+The worker does not own final UE gameplay state, final package certification, or simultaneous edits to lockable binaries. A future Moho adapter must define its executable path, version, input/output contract, headless capability, failure reporting, and license requirements before it is allowed into the acceptance ladder.
 
 ## 9. Acceptance checklist
 
@@ -401,7 +426,7 @@ The current configured service ports are in `Config/paths.json`; their presence 
 - [ ] `-RequirePluginBinaries` validation passes.
 - [ ] `run_tests.ps1` passes or its failures are recorded.
 - [ ] A small `collab/laptop/...` branch is pushed and consumed from the main PC.
-- [ ] Any missing art is classified as “not tracked” versus “unhydrated LFS,” not guessed at.
+- [ ] Any missing art is classified as â€œnot trackedâ€ versus â€œunhydrated LFS,â€ not guessed at.
 
 ## 10. First-night order
 

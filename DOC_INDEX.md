@@ -116,6 +116,7 @@ Useful roots:
 - `run_tests.ps1`
 - `deploy/test_laptop_workstation.ps1` — staged laptop Smoke/Fast/Contracts/Build/UE acceptance runner.
 - `deploy/inspect_workstation.ps1` — local hardware/toolchain profile report.
+- `Tools/Moho/README.md` — planned Moho worker boundary and local job scaffold.
 
 - `Tools/run_contract_tests.py`
 - `Tools/verify_p0_offline.py`

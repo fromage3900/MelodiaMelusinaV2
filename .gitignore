@@ -202,6 +202,11 @@ Imports/Animations/Cascadeur/*
 Imports/Animations/Cascadeur/Inbox/*
 !Imports/Animations/Cascadeur/Inbox/README.md
 Tools/*
+!Tools/Moho/
+!Tools/Moho/README.md
+!Tools/Moho/run_moho_worker.ps1
+Tools/Moho/jobs/
+Tools/Moho/output/
 !Tools/Cascadeur/
 !Tools/Cascadeur/Melusina/
 !Tools/Cascadeur/Melusina/README.md
