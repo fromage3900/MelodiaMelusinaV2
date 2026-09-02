@@ -53,9 +53,9 @@ VEIL_ZONE_MAP = {
 # Chladni mode per zone — distinct harmonics, none repeated (garment parity).
 ZONE_MODE = {
     "SheetVeil":   (2, 4),
-    "SingingFall": (5, 7),
-    "HearthPool":  (1, 3),
-    "TideSeam":    (6, 6),
+    "SingingFall": (4, 9),
+    "HearthPool":  (1, 2),
+    "TideSeam":    (6, 7),
 }
 
 # PBR/MI references — verified Sea Above + Melodia masters (no new master).

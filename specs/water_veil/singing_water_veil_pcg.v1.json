@@ -30,7 +30,7 @@
         "MEL_water_veil_plume"
       ],
       "avg_tension": 0.9745,
-      "mode": "5_7",
+      "mode": "4_9",
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
     },
     "HearthPool": {
@@ -41,7 +41,7 @@
         "MEL_water_veil_mirror"
       ],
       "avg_tension": 0.4897,
-      "mode": "1_3",
+      "mode": "1_2",
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
     },
     "TideSeam": {
@@ -52,7 +52,7 @@
         "MEL_water_veil_foam"
       ],
       "avg_tension": 0.9382,
-      "mode": "6_6",
+      "mode": "6_7",
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
     }
   },
@@ -79,7 +79,7 @@
         1.048
       ],
       "tension": 0.5806,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -106,7 +106,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.2424,
       "resonance": 0.2424,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -133,7 +133,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.5902,
       "resonance": 0.5902,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -160,7 +160,7 @@
         0.966
       ],
       "tension": 0.4432,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.8314,
       "resonance": 0.8314,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -187,7 +187,7 @@
         1.144
       ],
       "tension": 0.7397,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.7772,
       "resonance": 0.7772,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -214,7 +214,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.3536,
       "resonance": 0.3536,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -241,7 +241,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 0.3536,
       "resonance": 0.3536,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -268,7 +268,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 1.1201,
       "resonance": 1.1201,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -295,7 +295,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 1.6661,
       "resonance": 1.6661,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -322,7 +322,7 @@
         1.256
       ],
       "tension": 0.9268,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 1.766,
       "resonance": 1.766,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -349,7 +349,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 1.3416,
       "resonance": 1.3416,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -376,7 +376,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 0.5,
       "resonance": 0.5,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -403,7 +403,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.5,
       "resonance": 0.5,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -430,7 +430,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -1.3416,
       "resonance": 1.3416,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -457,7 +457,7 @@
         1.243
       ],
       "tension": 0.9058,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -1.766,
       "resonance": 1.766,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -484,7 +484,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -1.6661,
       "resonance": 1.6661,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -511,7 +511,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -1.1201,
       "resonance": 1.1201,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -538,7 +538,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.3536,
       "resonance": 0.3536,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -565,7 +565,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 0.3536,
       "resonance": 0.3536,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -592,7 +592,7 @@
         1.127
       ],
       "tension": 0.7124,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 0.7772,
       "resonance": 0.7772,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -619,7 +619,7 @@
         0.976
       ],
       "tension": 0.4604,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.8314,
       "resonance": 0.8314,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -646,7 +646,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 0.5902,
       "resonance": 0.5902,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -673,7 +673,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 0.2424,
       "resonance": 0.2424,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -700,7 +700,7 @@
         1.041
       ],
       "tension": 0.5678,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -727,7 +727,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 0.2424,
       "resonance": 0.2424,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -754,7 +754,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -781,7 +781,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.363,
       "resonance": 0.363,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -808,7 +808,7 @@
         1.27
       ],
       "tension": 0.9497,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.6566,
       "resonance": 0.6566,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -835,7 +835,7 @@
         0.981
       ],
       "tension": 0.4679,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.7071,
       "resonance": 0.7071,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -862,7 +862,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.4371,
       "resonance": 0.4371,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -889,7 +889,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0942,
       "resonance": 0.0942,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -916,7 +916,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 0.7071,
       "resonance": 0.7071,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -943,7 +943,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 1.17,
       "resonance": 1.17,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -970,7 +970,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 1.2916,
       "resonance": 1.2916,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -997,7 +997,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 1.0,
       "resonance": 1.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -1024,7 +1024,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": 0.3757,
       "resonance": 0.3757,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -1051,7 +1051,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "5_7",
+      "chladni_mode": "4_9",
       "chladni_val": -0.3757,
       "resonance": 0.3757,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
@@ -1078,7 +1078,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": -0.0942,
       "resonance": 0.0942,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1105,7 +1105,7 @@
         0.971
       ],
       "tension": 0.4511,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.7071,
       "resonance": 0.7071,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1132,7 +1132,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1159,7 +1159,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1186,7 +1186,7 @@
         0.984
       ],
       "tension": 0.4737,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.5346,
       "resonance": 0.5346,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1213,7 +1213,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0442,
       "resonance": 0.0442,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1240,7 +1240,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": -0.0442,
       "resonance": 0.0442,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1267,7 +1267,7 @@
         0.976
       ],
       "tension": 0.4596,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.5346,
       "resonance": 0.5346,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1294,7 +1294,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": -0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1321,7 +1321,7 @@
         0.966
       ],
       "tension": 0.4432,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.8314,
       "resonance": 0.8314,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1348,7 +1348,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1375,7 +1375,7 @@
         1.013
       ],
       "tension": 0.5217,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.5413,
       "resonance": 0.5413,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1402,7 +1402,7 @@
         1.162
       ],
       "tension": 0.7692,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": -0.0659,
       "resonance": 0.0659,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1429,7 +1429,7 @@
         1.162
       ],
       "tension": 0.7695,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0659,
       "resonance": 0.0659,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1456,7 +1456,7 @@
         1.018
       ],
       "tension": 0.5302,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.5413,
       "resonance": 0.5413,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1483,7 +1483,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1510,7 +1510,7 @@
         0.961
       ],
       "tension": 0.4352,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.8314,
       "resonance": 0.8314,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1537,7 +1537,7 @@
         0.981
       ],
       "tension": 0.4679,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.7071,
       "resonance": 0.7071,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1564,7 +1564,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1591,7 +1591,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1618,7 +1618,7 @@
         0.978
       ],
       "tension": 0.464,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.7071,
       "resonance": 0.7071,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1645,7 +1645,7 @@
         0.984
       ],
       "tension": 0.4737,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.5346,
       "resonance": 0.5346,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1672,7 +1672,7 @@
         1.013
       ],
       "tension": 0.5217,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.5413,
       "resonance": 0.5413,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1699,7 +1699,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1726,7 +1726,7 @@
         1.011
       ],
       "tension": 0.5186,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -1.2973,
       "resonance": 1.2973,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1807,7 +1807,7 @@
         1.024
       ],
       "tension": 0.5406,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 1.2973,
       "resonance": 1.2973,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1834,7 +1834,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1861,7 +1861,7 @@
         1.01
       ],
       "tension": 0.5162,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.5413,
       "resonance": 0.5413,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1888,7 +1888,7 @@
         0.986
       ],
       "tension": 0.4767,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.5346,
       "resonance": 0.5346,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -1915,7 +1915,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": -0.0942,
       "resonance": 0.0942,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1942,7 +1942,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1969,7 +1969,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -1996,7 +1996,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0942,
       "resonance": 0.0942,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -2023,7 +2023,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": -0.0442,
       "resonance": 0.0442,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -2050,7 +2050,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -2077,7 +2077,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": -0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -2104,7 +2104,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0442,
       "resonance": 0.0442,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -2131,7 +2131,7 @@
         1.011
       ],
       "tension": 0.5186,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 1.2973,
       "resonance": 1.2973,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2158,7 +2158,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -2185,7 +2185,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": -0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -2212,7 +2212,7 @@
         1.007
       ],
       "tension": 0.5115,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -1.2973,
       "resonance": 1.2973,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2266,7 +2266,7 @@
         1.3
       ],
       "tension": 1.0,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": 0.0,
       "resonance": 0.0,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -2320,7 +2320,7 @@
         0.976
       ],
       "tension": 0.4599,
-      "chladni_mode": "6_6",
+      "chladni_mode": "6_7",
       "chladni_val": -0.0726,
       "resonance": 0.0726,
       "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
@@ -2509,7 +2509,7 @@
         1.024
       ],
       "tension": 0.5406,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -1.2973,
       "resonance": 1.2973,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2536,7 +2536,7 @@
         1.02
       ],
       "tension": 0.5338,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 1.2973,
       "resonance": 1.2973,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2563,7 +2563,7 @@
         0.976
       ],
       "tension": 0.4596,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.5346,
       "resonance": 0.5346,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2590,7 +2590,7 @@
         1.018
       ],
       "tension": 0.5302,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.5413,
       "resonance": 0.5413,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2617,7 +2617,7 @@
         1.007
       ],
       "tension": 0.5115,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 1.2973,
       "resonance": 1.2973,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2698,7 +2698,7 @@
         1.02
       ],
       "tension": 0.5338,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -1.2973,
       "resonance": 1.2973,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2725,7 +2725,7 @@
         1.015
       ],
       "tension": 0.5248,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.5413,
       "resonance": 0.5413,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2752,7 +2752,7 @@
         0.978
       ],
       "tension": 0.4626,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.5346,
       "resonance": 0.5346,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2779,7 +2779,7 @@
         0.971
       ],
       "tension": 0.4511,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": -0.7071,
       "resonance": 0.7071,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
@@ -2806,7 +2806,7 @@
         0.968
       ],
       "tension": 0.447,
-      "chladni_mode": "1_3",
+      "chladni_mode": "1_2",
       "chladni_val": 0.7071,
       "resonance": 0.7071,
       "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"

@@ -45,9 +45,9 @@ SIZE = 2048
 # garment and water share harmonic language).
 MODE_BY_ZONE = {
     "SheetVeil":   (2, 4),
-    "SingingFall": (5, 7),
-    "HearthPool":  (1, 3),
-    "TideSeam":    (6, 6),
+    "SingingFall": (4, 9),
+    "HearthPool":  (1, 2),
+    "TideSeam":    (6, 7),
 }
 PAL = {
     "deep":   (6, 40, 66),     # deep ocean
