@@ -145,8 +145,8 @@ def classify_zone(u, v, tension, chladni_val):
         return "TideSeam"        # on the standing-wave nodal line = the heard edge
     if tension > 0.62:
         return "SingingFall"
-    if tension < 0.40:
-        return "HearthPool"      # calm mirrored pools
+    if tension < 0.55:
+        return "HearthPool"      # calm mirrored pools (bottom ~decile)
     return "SheetVeil"
 
 
