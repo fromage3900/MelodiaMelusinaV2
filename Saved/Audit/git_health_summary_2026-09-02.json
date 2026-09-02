@@ -2,9 +2,9 @@
   "generated_at": "2026-09-02T06:50:00Z",
   "evidence_tier": "CLOUD_SPARSE",
   "head": "ref: refs/heads/cursor/git-health-checkpoint-c2b1",
-  "commit": "8b3d2666cf4ce2cfb4c1539267d7e68908f02e21",
-  "origin_main": "8b3d2666cf4ce2cfb4c1539267d7e68908f02e21",
-  "ahead_behind_origin_main": "0/0 after rebase",
+  "commit": "5b1161cc48991c2b15215bdd267186529b1b977d",
+  "origin_main": "09d852a70d866cf855da25baf37e2d028e4ad6da",
+  "ahead_behind_origin_main": "0/51",
   "lfs_tracked_paths": 3920,
   "lfs_objects_missing_local": 3871,
   "lfs_missing_by_top_prefix": {
@@ -40,5 +40,6 @@
   },
   "lfs_non_pointer_count": 0,
   "unique_work_branches": 23,
-  "note": "Missing LFS objects prove cloud sparse checkout incompleteness, not Windows SoT corruption. Re-run Tools/git_health_audit.py --remote on the full Windows worktree before certifying object health."
+  "note": "Missing LFS objects prove cloud sparse checkout incompleteness, not Windows SoT corruption. Re-run Tools/git_health_audit.py --remote on the full Windows worktree before certifying object health.",
+  "note_update": "2026-09-02 keep-going: merged origin/main merge-train B01-B04 into health PR branch; cloud LFS object FAIL still CLOUD_SPARSE."
 }

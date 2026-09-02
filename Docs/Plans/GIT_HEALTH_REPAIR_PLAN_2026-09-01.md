@@ -23,6 +23,10 @@ Restore trustworthy GitHub health signals without touching gameplay code, Unreal
 
 ## Merge order
 
+**Update 2026-09-02:** PR [#48](https://github.com/fromage3900/MelodiaMelusinaV2/pull/48) landed the CI/workflow repair (`cursor/fix-ci-workflows-529c`), toolchain consolidation docs, Mara instrument plan, and cymatic/RTX specs into one health PR on top of merge-train `main`. Prefer merging #48 over re-opening the separate ahead-only docs/CI PRs for those same tips.
+
+Historical order (pre-#48):
+
 - Review and merge PR #32 first.
 - Review PR #37 after the CI signal is repaired.
 - Rebase PR #41 after PR #37 because the two branches share the cymatic and NVIDIA plan files.

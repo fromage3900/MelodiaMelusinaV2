@@ -1,9 +1,8 @@
 {
-  "generated": "2026-09-02 06:46:41",
-  "total_refs": 33,
-  "unique_work_branches": 25,
+  "generated": "2026-09-02 06:55:34",
+  "total_refs": 34,
+  "unique_work_branches": 26,
   "local_only_with_unique_work": [
-    "cursor/git-health-checkpoint-c2b1",
     "origin"
   ],
   "merged_fully": [
@@ -19,17 +18,17 @@
   "branches": [
     {
       "branch": "cursor/git-health-checkpoint-c2b1",
-      "ahead": 2,
+      "ahead": 61,
       "behind": 0,
       "status": "ahead-only",
-      "upstream": null,
-      "local_only": true,
+      "upstream": "origin/cursor/git-health-checkpoint-c2b1",
+      "local_only": false,
       "merge_base": "853f2c2e0b507b06b7e4cc836f8fc7a3b2cd1619",
       "merge_base_date": "2026-08-30 21:00:59 -0400"
     },
     {
       "branch": "origin",
-      "ahead": 2,
+      "ahead": 10,
       "behind": 0,
       "status": "ahead-only",
       "upstream": null,
@@ -130,6 +129,16 @@
     {
       "branch": "origin/cursor/fix-ci-workflows-529c",
       "ahead": 4,
+      "behind": 0,
+      "status": "ahead-only",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "853f2c2e0b507b06b7e4cc836f8fc7a3b2cd1619",
+      "merge_base_date": "2026-08-30 21:00:59 -0400"
+    },
+    {
+      "branch": "origin/cursor/git-health-checkpoint-c2b1",
+      "ahead": 52,
       "behind": 0,
       "status": "ahead-only",
       "upstream": null,

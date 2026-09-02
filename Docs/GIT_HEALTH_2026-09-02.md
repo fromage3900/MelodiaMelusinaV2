@@ -16,10 +16,10 @@ an intentional `git lfs pull` slice).
 
 | Item | State |
 | --- | --- |
-| Branch (this session) | `cursor/git-health-checkpoint-c2b1` (docs/health) |
-| Documented `HEAD` / `origin/main` | `8b3d2666` — merge-train B00 governance |
-| Ahead / behind vs `origin/main` | `0 / 0` |
-| Remote publication | **Synced** (no outgoing commits at checkpoint) |
+| Branch (this session) | `cursor/git-health-checkpoint-c2b1` (docs/health) — PR #48 |
+| Documented baseline `origin/main` | `09d852a7` — merge-train B04 HoudiniEngine (synced into PR branch) |
+| Ahead / behind vs `origin/main` | health PR tip ahead with docs/CI/toolchain landings; main tip included via merge |
+| Remote publication | PR #48 open; branch rebased/merged onto latest merge-train main |
 | Evidence tier | `CLOUD_SPARSE` |
 | Local `.git` / LFS cache | ~84 MB / ~16 MB (not a full hydrate) |
 | LFS-tracked paths at HEAD | 3920 |
