@@ -1,0 +1,113 @@
+{
+  "threshold_bytes": 2000000,
+  "blobs": [
+    {
+      "bytes": 20068762,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbSlash4.psd"
+    },
+    {
+      "bytes": 19032199,
+      "path": "TDImportCache/hairhairhairt.tdc"
+    },
+    {
+      "bytes": 18477890,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/Orb_Slash_Clean.psd"
+    },
+    {
+      "bytes": 15992582,
+      "path": "Content/Python/quantum/qsharp_project/build_diag.txt"
+    },
+    {
+      "bytes": 14452874,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbSlash3.psd"
+    },
+    {
+      "bytes": 10808992,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbSlash.psd"
+    },
+    {
+      "bytes": 9813210,
+      "path": "Content/Melodia/Characters/Melusina/Hair/SK_MelusinaHair.uasset.boneless_20260730.bak"
+    },
+    {
+      "bytes": 9027389,
+      "path": "Plugins/Monolith/Tools/MonolithQuery/ThirdParty/sqlite3.c"
+    },
+    {
+      "bytes": 7056710,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/Orb_Rock_detail.PSD"
+    },
+    {
+      "bytes": 6925954,
+      "path": "_TouchDesigner/grandmaster_melodia/TDImportCache/shot_import.tdc"
+    },
+    {
+      "bytes": 6208512,
+      "path": "Tools/BlenderAddons/rust_gpu_sdf_addon/bin/win/rust_gpu_sdf.pyd"
+    },
+    {
+      "bytes": 6110208,
+      "path": "Plugins/VRM4U/ThirdParty/assimp/bin/x64/assimp-vc141-mt.dll"
+    },
+    {
+      "bytes": 5238650,
+      "path": "Plugins/PCGExtendedToolkit/.git_disabled/objects/pack/pack-cdab8a5911b6dd01d6c7e9839c2270c352407203.pack"
+    },
+    {
+      "bytes": 4965922,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbRockNoise.psd"
+    },
+    {
+      "bytes": 4757397,
+      "path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/world.json"
+    },
+    {
+      "bytes": 4477952,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbRubble3.psd"
+    },
+    {
+      "bytes": 3859070,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbLineLarge.psd"
+    },
+    {
+      "bytes": 3858874,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbLineSmall.psd"
+    },
+    {
+      "bytes": 3635838,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/Orb_Hammered_Metal.PSD"
+    },
+    {
+      "bytes": 3412054,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbCurve.psd"
+    },
+    {
+      "bytes": 3225914,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbRubble2.psd"
+    },
+    {
+      "bytes": 2634902,
+      "path": "_TouchDesigner/grandmaster_melodia/networks/project1_full.tdn"
+    },
+    {
+      "bytes": 2438636,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbCracks1.psd"
+    },
+    {
+      "bytes": 2407448,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbCracks2.psd"
+    },
+    {
+      "bytes": 2362431,
+      "path": "Plugins/PCGExtendedToolkit/.git_disabled/objects/pack/pack-1be1b8df221eca81b479b1b95b4237c6d3355e44.pack"
+    },
+    {
+      "bytes": 2354108,
+      "path": "86419_Zbrush_Orb_Brushes_pack_for_Blender_3D/textures/OrbRubble4.psd"
+    },
+    {
+      "bytes": 2046647,
+      "path": "_Quarantine_ThirdPartyFix_20260812/BP_BattleController.uasset.bak_fix"
+    }
+  ]
+}

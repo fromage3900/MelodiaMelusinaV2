@@ -66,4 +66,19 @@ Every chapter in Melodia adheres to the 6-phase universal loop. Key contracts an
 - **Security Policy:** [SECURITY.md](SECURITY.md)
 
 ---
+
+## 6. Git / LFS health (2026-09-02)
+
+| Doc | What |
+|---|---|
+| [`Docs/GIT_HEALTH_2026-09-02.md`](Docs/GIT_HEALTH_2026-09-02.md) | **Current** Git/LFS checkpoint + full V2 commit review. Supersedes 2026-08-24. |
+| [`Docs/GIT_BRANCH_TRIAGE_2026-09-02.md`](Docs/GIT_BRANCH_TRIAGE_2026-09-02.md) | MERGE / HOLD / MERGED for unique remotes. No casual deletes. |
+| [`Docs/GIT_BRANCH_HEALTH_2026-09-02.md`](Docs/GIT_BRANCH_HEALTH_2026-09-02.md) | Branch census from `Tools/branch_health.py`. |
+| [`Docs/GIT_WORKTREE_INVENTORY_2026-09-02.md`](Docs/GIT_WORKTREE_INVENTORY_2026-09-02.md) | Cloud topology + carried Windows worktree HOLDs. |
+| [`Docs/GIT_LFS_FORWARD_DISCIPLINE_2026-09-02.md`](Docs/GIT_LFS_FORWARD_DISCIPLINE_2026-09-02.md) | Forward LFS cost rules + stop-commit roots. |
+| [`Docs/GIT_HISTORY_LANDMINES_2026-09-02.md`](Docs/GIT_HISTORY_LANDMINES_2026-09-02.md) | Forever-cost inventory; rewrite only with owner approval. |
+| [`Docs/GIT_BATCH_DISCIPLINE.md`](Docs/GIT_BATCH_DISCIPLINE.md) | Standing batch / push / destructive-op rules. |
+| [`Docs/LFS_COLD_ARCHIVE.md`](Docs/LFS_COLD_ARCHIVE.md) | Glacier cold-archive runbook for portfolio blends. |
+
+---
 *Melodia Documentation Index — Maintained under strict single-source-of-truth discipline.*

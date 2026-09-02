@@ -1,11 +1,15 @@
 # Git health report — 2026-08-24
 
+> **Superseded by [`GIT_HEALTH_2026-09-02.md`](GIT_HEALTH_2026-09-02.md).**
+> Keep this file as historical evidence only. HEAD, ahead/behind, and push-state
+> claims below are point-in-time facts from 2026-08-24 and are no longer current.
+
 ## Status: LOCAL + REMOTE METADATA PASS / SHARED-WORKTREE HOLD / NOT PUSHED
 
-This is the current source-control checkpoint for `BS_GodFile`. It records a
-healthy local object and LFS store, but it does **not** call the working tree
-clean or the outgoing commits published. Valid work from other lanes remains
-in place and must be separated by ownership before any promotion.
+This was the 2026-08-24 source-control checkpoint for `BS_GodFile`. It recorded a
+healthy local object and LFS store, but it did **not** call the working tree
+clean or the outgoing commits published. Valid work from other lanes remained
+in place and had to be separated by ownership before any promotion.
 
 ## Audited baseline
 

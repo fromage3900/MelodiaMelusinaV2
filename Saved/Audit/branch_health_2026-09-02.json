@@ -1,0 +1,335 @@
+{
+  "generated": "2026-09-02 06:46:41",
+  "total_refs": 33,
+  "unique_work_branches": 25,
+  "local_only_with_unique_work": [
+    "cursor/git-health-checkpoint-c2b1",
+    "origin"
+  ],
+  "merged_fully": [
+    "origin/copilot/fix-issue-in-algorithm",
+    "origin/copilot/git-status-check",
+    "origin/copilot/review-recent-documents-on-git",
+    "origin/copilot/validate-source-control-claims",
+    "origin/cursor/docs-safe-batches-ca02",
+    "origin/docs/p1-monolith-character-concepts-2026-08-28",
+    "origin/docs/sea-above-system-shader-breakdowns-2026-08-26",
+    "origin/triage/nemotron-research-p3"
+  ],
+  "branches": [
+    {
+      "branch": "cursor/git-health-checkpoint-c2b1",
+      "ahead": 2,
+      "behind": 0,
+      "status": "ahead-only",
+      "upstream": null,
+      "local_only": true,
+      "merge_base": "853f2c2e0b507b06b7e4cc836f8fc7a3b2cd1619",
+      "merge_base_date": "2026-08-30 21:00:59 -0400"
+    },
+    {
+      "branch": "origin",
+      "ahead": 2,
+      "behind": 0,
+      "status": "ahead-only",
+      "upstream": null,
+      "local_only": true,
+      "merge_base": "853f2c2e0b507b06b7e4cc836f8fc7a3b2cd1619",
+      "merge_base_date": "2026-08-30 21:00:59 -0400"
+    },
+    {
+      "branch": "origin/backup/pre-consolidation-2026-08-30",
+      "ahead": 75,
+      "behind": 54,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "a3808534ff8f23488c154dc4d156867e93fe419d",
+      "merge_base_date": "2026-08-26 22:00:49 +0000"
+    },
+    {
+      "branch": "origin/claude/tonight-cymatic-ecology-interaction",
+      "ahead": 2,
+      "behind": 0,
+      "status": "ahead-only",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "853f2c2e0b507b06b7e4cc836f8fc7a3b2cd1619",
+      "merge_base_date": "2026-08-30 21:00:59 -0400"
+    },
+    {
+      "branch": "origin/codex/perforce-migration-handoff-2026-08-26",
+      "ahead": 2,
+      "behind": 58,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400"
+    },
+    {
+      "branch": "origin/copilot/fix-issue-in-algorithm",
+      "ahead": 0,
+      "behind": 0,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/copilot/git-status-check",
+      "ahead": 0,
+      "behind": 28,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/copilot/new-feature-implementation",
+      "ahead": 1,
+      "behind": 58,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400"
+    },
+    {
+      "branch": "origin/copilot/review-recent-documents-on-git",
+      "ahead": 0,
+      "behind": 0,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/copilot/validate-source-control-claims",
+      "ahead": 0,
+      "behind": 57,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/cursor/branch-cleanup-executed-ca02",
+      "ahead": 1,
+      "behind": 58,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400"
+    },
+    {
+      "branch": "origin/cursor/docs-safe-batches-ca02",
+      "ahead": 0,
+      "behind": 54,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/cursor/fix-ci-workflows-529c",
+      "ahead": 4,
+      "behind": 0,
+      "status": "ahead-only",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "853f2c2e0b507b06b7e4cc836f8fc7a3b2cd1619",
+      "merge_base_date": "2026-08-30 21:00:59 -0400"
+    },
+    {
+      "branch": "origin/cursor/model-lanes-agents-slim-f425",
+      "ahead": 2,
+      "behind": 199,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "62c7920d6b9308faf684df2f98c74dfc47e6c841",
+      "merge_base_date": "2026-08-12 00:35:32 -0400"
+    },
+    {
+      "branch": "origin/cursor/nemotron-docs-batch-ca02",
+      "ahead": 1,
+      "behind": 58,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400"
+    },
+    {
+      "branch": "origin/cursor/nemotron-research-docs-2d2d",
+      "ahead": 3,
+      "behind": 186,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "343d091cf9c728595ce8bc29cab50977bebcf518",
+      "merge_base_date": "2026-08-13 02:51:48 -0400"
+    },
+    {
+      "branch": "origin/cursor/perforce-docs-batch-ca02",
+      "ahead": 2,
+      "behind": 54,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "a3808534ff8f23488c154dc4d156867e93fe419d",
+      "merge_base_date": "2026-08-26 22:00:49 +0000"
+    },
+    {
+      "branch": "origin/cursor/recruiter-sendoffs-no-nvidia-ca02",
+      "ahead": 1,
+      "behind": 71,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "37fb2f89e2a60d226b0e2fa70fc27bd1c2d596f1",
+      "merge_base_date": "2026-08-24 16:02:28 -0400"
+    },
+    {
+      "branch": "origin/cursor/zenforest-docs-batch-ca02",
+      "ahead": 1,
+      "behind": 58,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400"
+    },
+    {
+      "branch": "origin/docs/2026-08-29-character-p1-p2-canon-audit",
+      "ahead": 26,
+      "behind": 33,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "7f05451cc36fda5a8e97848ebd6c6215894ba1c0",
+      "merge_base_date": "2026-08-28 19:18:16 -0400"
+    },
+    {
+      "branch": "origin/docs/2026-08-31-mara-instrument-cymatics-plan",
+      "ahead": 1,
+      "behind": 0,
+      "status": "ahead-only",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "853f2c2e0b507b06b7e4cc836f8fc7a3b2cd1619",
+      "merge_base_date": "2026-08-30 21:00:59 -0400"
+    },
+    {
+      "branch": "origin/docs/monolith-concept-art-backlog-2026-08-26",
+      "ahead": 3,
+      "behind": 58,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "23acba70c32883b947272ed41295f288ea63b47e",
+      "merge_base_date": "2026-08-25 22:32:51 -0400"
+    },
+    {
+      "branch": "origin/docs/p1-monolith-character-concepts-2026-08-28",
+      "ahead": 0,
+      "behind": 39,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/docs/sea-above-system-shader-breakdowns-2026-08-26",
+      "ahead": 0,
+      "behind": 48,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    },
+    {
+      "branch": "origin/docs/toolchain-consolidation-2026-08-31",
+      "ahead": 39,
+      "behind": 0,
+      "status": "ahead-only",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "853f2c2e0b507b06b7e4cc836f8fc7a3b2cd1619",
+      "merge_base_date": "2026-08-30 21:00:59 -0400"
+    },
+    {
+      "branch": "origin/feature/credits-20260813",
+      "ahead": 2,
+      "behind": 186,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "343d091cf9c728595ce8bc29cab50977bebcf518",
+      "merge_base_date": "2026-08-13 02:51:48 -0400"
+    },
+    {
+      "branch": "origin/feature/echo-topo-chapter2",
+      "ahead": 1,
+      "behind": 188,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "4aa9d6132b34fd76014ec4a0e736c8cdf40bb5c4",
+      "merge_base_date": "2026-08-13 01:45:36 -0400"
+    },
+    {
+      "branch": "origin/feature/repo-lockin-20260813",
+      "ahead": 9,
+      "behind": 187,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "549a5572ea2c1b0676811864910a4555a5b204f4",
+      "merge_base_date": "2026-08-13 02:14:37 -0400"
+    },
+    {
+      "branch": "origin/feature/sea-above-choralsheep-20260826",
+      "ahead": 1,
+      "behind": 54,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "a3808534ff8f23488c154dc4d156867e93fe419d",
+      "merge_base_date": "2026-08-26 22:00:49 +0000"
+    },
+    {
+      "branch": "origin/feature/zenforest-glam-headless",
+      "ahead": 17,
+      "behind": 71,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "37fb2f89e2a60d226b0e2fa70fc27bd1c2d596f1",
+      "merge_base_date": "2026-08-24 16:02:28 -0400"
+    },
+    {
+      "branch": "origin/pr/melusina-v22-sync",
+      "ahead": 1,
+      "behind": 71,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "37fb2f89e2a60d226b0e2fa70fc27bd1c2d596f1",
+      "merge_base_date": "2026-08-24 16:02:28 -0400"
+    },
+    {
+      "branch": "origin/rnd/2026-08-30-blender52-music-gn-studio",
+      "ahead": 5,
+      "behind": 27,
+      "status": "divergent",
+      "upstream": null,
+      "local_only": false,
+      "merge_base": "4dd5edb9d46c587571743be816303f0c2adb5ed9",
+      "merge_base_date": "2026-08-30 14:04:49 -0400"
+    },
+    {
+      "branch": "origin/triage/nemotron-research-p3",
+      "ahead": 0,
+      "behind": 58,
+      "status": "merged",
+      "upstream": null,
+      "local_only": false
+    }
+  ]
+}
