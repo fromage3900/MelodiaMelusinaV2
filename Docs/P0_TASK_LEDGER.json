@@ -579,8 +579,8 @@
     {
       "id": "p1_cymatics_present",
       "name": "Cymatics PRESENT promotion",
-      "status": "draft_open",
-      "contract": "Promote MelodiaCymaticsSubsystem from SCAFFOLDED to PRESENT per Master Index \u00a71. Remaining: PostConfigInit module loading verification, cymatic PBR generation CLI, World Field Bus contract, ledger gate.",
+      "status": "material_wiring_offline_done",
+      "contract": "Promote MelodiaCymaticsSubsystem from SCAFFOLDED to PRESENT per Master Index §1. Material generation and offline ingest done; live import and build remain.",
       "deadline": "2026-10-01",
       "priority": 1,
       "evidence": "Saved/Audit/cymatics_present_status.json",
@@ -592,11 +592,18 @@
         "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md"
       ],
       "remaining_steps": [
-        "Verify PostConfigInit module loading and uplugin dependencies",
-        "Add cymatic PBR generation as first-class pipeline step (copernicus_cymatic_parallax.py --cook flag)",
-        "Add cymatic patterns to World Field Bus cross-system contract",
-        "Cymatics P1 promotion gate (owner review)"
-      ]
+        "Verify PostConfigInit module loading and uplugin dependencies (closed-editor Build.bat -- MelodiaCymaticsSubsystem is UGameInstanceSubsystem/FTSTicker, PostConfigInit not required but verify)",
+        "Execute monolith Phase A for 22 new variants (CymaticOrchid + Faraway* + Melodia* + MoonlitMoss/PrismaticObsidian/RoyalVelvetBrocade/SingingDune/WeepingWillow) via Tools/monolith_execution_plan_parallel.py --phase A --variant <name> --execute when editor idle (dry-run 51 steps for CymaticOrchid PASS 2026-09-02)",
+        "World Field Bus cymatic publishers already in Master Index §5b-i and MelodiaCymaticsSubsystem.cpp:UWorldFieldBus::PublishResonance (ModeN/ModeM → Resonance, SampleCymaticAmplitude → Tension) -- verify in PIE",
+        "Cymatics P1 promotion gate (owner review) -- requires Build.bat and PIE probe"
+      ],
+      "completed_offline_2026_09_02": {
+        "variants": "53 (was 21), 2617 PNGs (was 1665), 22 new variants PNGs copied Saved/Audit/copernicus_cymatic/ -> Content/EnvSandbox/Textures/Copernicus/",
+        "pipeline": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py VARIANTS + BUILDERS expanded 21→53, CymaticOrchid + SingingDune added, argparse dynamic",
+        "monolith_plan": "Tools/monolith_execution_plan_parallel.py VARIANTS 21→53, DEST_CYMA_ROOT=/Game/Melodia/Cymatics, dry-run CymaticOrchid 51 steps PASS",
+        "cross_path": "Tools/cross_path_validation.py HYTHON_CYMA_VARIANTS 21→53, hython check 532 pass",
+        "master_index": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md §1 Cymatics row 21→53 variants"
+      }
     }
   ]
 }

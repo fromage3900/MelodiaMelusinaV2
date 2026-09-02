@@ -392,6 +392,32 @@ VARIANTS = {
         facet_count=14, facet_scale=0.55, sheen_freq=16, glow_intensity=0.5,
         chladni_modes=[(5, 7), (9, 8), (7, 12), (13, 11), (11, 15)],
     ),
+    # === SingingDUne — the real "booming/singing-sand" desert (2026-09-02) ===
+    # Warm amber dune body sculpted by domain-warped fBm; the Chladni nodal rings read
+    # as compacted glassy SILICA — the singing line where the sand "sings" as it slides.
+    # Those polished silica veins catch the sun + shimmer with a heat-haze mirage, while
+    # 6-pointed desert-rose gypsum crystals grow on the node anchors (nothing floats).
+    # Tileable: warped_fbm wraps via modulo, ripples use sin() periodicity.
+    "SingingDune": dict(
+        sand_hi=(226, 201, 152), sand=(198, 166, 114), sand_shadow=(152, 122, 82),
+        dune_deep=(118, 92, 60), silica=(248, 228, 190), silica_hi=(255, 246, 222),
+        rose_gypsum=(240, 228, 210), salt=(255, 252, 244),
+        glint=(255, 222, 160), glow=(255, 238, 182),
+        rough_sand=0.88, rough_silica=0.14, rough_gypsum=0.32, rough_salt=0.08,
+        metallic_silica=0.40,
+        glow_intensity=0.55, ripple_freq=9, crystal_count=10,
+        chladni_modes=[(6, 8), (11, 7), (16, 13)],
+    ),
+    # === CymaticOrchid — bioluminescent singing bloom (2026-09-02) ===
+    "CymaticOrchid": dict(
+        petal_deep=(58, 18, 78), petal_mid=(178, 54, 156), petal_hi=(255, 150, 214),
+        nodal_glow=(206, 255, 244), stigma_gold=(255, 212, 124),
+        leaf_deep=(22, 52, 38), leaf_hi=(92, 158, 96),
+        dew=(238, 255, 250), glow=(188, 255, 244),
+        rough_petal=0.34, rough_node=0.14, rough_stigma=0.22, rough_leaf=0.60, rough_dew=0.06,
+        glow_intensity=0.7, bloom_count=14, petal_count=5,
+        chladni_modes=[(3, 2), (6, 5), (9, 8), (12, 11)],
+    ),
 }
 
 # === Math helpers ===
@@ -2067,6 +2093,170 @@ def build_prismatic_obsidian(h, w, frame, total_frames):
     return _assemble(h, w, base, rough, metallic, height, emissive, iri, opacity)
 
 
+def build_singing_dune(h, w, frame, total_frames):
+    """SingingDune — the real 'booming/singing-sand' desert. Warm amber dune body
+    sculpted by domain-warped fBm; the Chladni nodal rings read as compacted glassy
+    SILICA — the 'song' where the sand slides and sings. Those polished veins catch a
+    heat-haze mirage; desert-rose gypsum crystals grow on the node anchors (nothing
+    floats). Tileable (warped_fbm wraps via modulo, ripples use sin periodicity)."""
+    p = VARIANTS["SingingDune"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx = xx / w
+
+    # Rolling dune relief — big domain-warped fBm (modulo-wrapped, tile-safe)
+    dune = warped_fbm(h, w, 32, 5, 0.45, SEED + 700)
+    slope_var = warped_fbm(h, w, 12, 3, 0.20, SEED + 701)
+    crest_shadow = smoothstep(0.55, 0.82, 1.0 - dune)
+
+    # Ripple bands — sine streak across the slope warped by the dunes (sin = tile-safe)
+    ripples = 0.5 + 0.5 * np.sin(nx * p["ripple_freq"] * 2 * np.pi + dune * 6.0
+                                 + slope_var * 5.0 + phase * 0.12)
+    ripple_mask = smoothstep(0.42, 0.72, ripples)
+
+    # Chladni — the 'song': compacted singing-sand silica etching the nodal rings
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.35 + i * 0.25) + i * 1.3 for i in range(len(modes))],
+                          weights=[1.0, 0.55, 0.4][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    silica_band = smoothstep(0.80, 0.96, nodal)     # polished singing line
+    silica_core = smoothstep(0.92, 0.99, nodal)      # glassiest centre
+
+    # Desert-rose gypsum — 6-sided star-crystals anchored at Chladni nodes
+    rng = np.random.RandomState(SEED + 710)
+    crystal = np.zeros((h, w), np.float32)
+    for _ in range(p["crystal_count"]):
+        cx = rng.randint(0, w)
+        cy = rng.randint(0, h)
+        size = rng.randint(min(h, w) // 22, min(h, w) // 12)
+        rot = rng.rand() * 2 * np.pi + phase * 0.03
+        crystal = np.clip(crystal + crystal_shape(h, w, cx, cy, size, 6, rot), 0, 1)
+
+    # Salt-white dust caught on steep crests (echoes blooms near the node lines)
+    salt = smoothstep(0.62, 0.86, slope_var) * crest_shadow * (0.4 + nodal * 0.6)
+
+    height = np.clip(dune * 0.40 + ripple_mask * 0.28 + silica_band * 0.18
+                     + silica_core * 0.22 + crystal * 0.5 + salt * 0.10, 0, 1)
+
+    # Sun-glint sheen oscillates gently along the silica line as the 'song' breathes
+    glint_flash = 0.30 + 0.70 * np.abs(np.sin(phase * 1.1 + cym * 8.0))
+
+    base = mix(col(p["sand_shadow"]), col(p["sand"]), dune)
+    base = mix(base, col(p["sand_hi"]), smoothstep(0.60, 0.90, dune))
+    base = mix(base, col(p["dune_deep"]), crest_shadow * 0.6)
+    base = mix(base, col(p["silica"]), silica_band * 0.85)
+    base = mix(base, col(p["silica_hi"]), silica_core * 0.9)
+    base = mix(base, col(p["rose_gypsum"]), crystal * 0.85)
+    base = mix(base, col(p["salt"]), salt * 0.9)
+    base = mix(base, col(p["glint"]), silica_band * glint_flash * 0.45)
+
+    rough = mix(p["rough_sand"], p["rough_silica"], silica_band * 0.9)
+    rough = mix(rough, p["rough_gypsum"], crystal * 0.7)
+    rough = mix(rough, p["rough_salt"], salt * 0.6)
+
+    metallic = np.clip(silica_core * p["metallic_silica"] + crystal * 0.05, 0, 1)
+
+    # Heat-haze mirage shimmer riding the nodal song-lines
+    mirage = smoothstep(0.55, 0.80, nodal)
+    emissive = mask_color(silica_band * mirage + crystal * 0.05, col(p["glow"]))
+    emissive = np.clip(emissive * p["glow_intensity"], 0, 1)
+
+    iri = np.clip(silica_core * 0.60 + mirage * 0.40 + crystal * 0.12, 0, 1)
+
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri,
+                     np.ones((h, w), np.float32))
+
+
+def build_cymatic_orchid(h, w, frame, total_frames):
+    """CymaticOrchid — bioluminescent singing orchid: velvet petals, luminous
+    Chladni nodal veins, molten-gold stigma, cool leaves, translucent dew. Tileable."""
+    p = VARIANTS["CymaticOrchid"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    dx = xx - w * 0.5
+    dy = yy - h * 0.5
+    dist = np.sqrt(dx * dx + dy * dy)
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.4 + i * 0.25) + i * 0.8 for i in range(len(modes))],
+                          weights=[1.0, 0.65, 0.45, 0.3][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    song_lines = smoothstep(0.82, 0.97, nodal)
+    rng = np.random.RandomState(SEED + 840)
+    base = mix(col(p["petal_deep"]), col(p["petal_mid"]), 0.5 + 0.5 * np.sin(dist / w * np.pi * 6 + phase * 0.4))
+    base = mix(base, col(p["petal_hi"]), song_lines * 0.6)
+    base = mix(base, col(p["stigma_gold"]), smoothstep(0.75, 0.95, nodal) * 0.4)
+    rough = np.full((h, w), p["rough_petal"], dtype=np.float32)
+    rough = mix(rough, p["rough_node"], song_lines)
+    height = nodal * 0.6 + dist / (w * 0.5) * 0.2
+    emissive = mask_color(song_lines, col(p["glow"]) * p["glow_intensity"])
+    iri = song_lines * 0.8
+    return _assemble(h, w, base, rough, np.zeros((h, w), np.float32), height, emissive, iri, np.ones((h, w), np.float32))
+
+
+def build_singing_dune(h, w, frame, total_frames):
+    """SingingDune — the real 'booming/singing-sand' desert. Warm amber dune body:
+    domain-warped fBm relief + ripple bands; the Chladni nodal rings read as compacted
+    glassy SILICA — the 'song' where sliding sand sings. Those veins carry a heat-haze
+    mirage shimmer; desert-rose gypsum crystals anchor on the nodes. Tileable."""
+    p = VARIANTS["SingingDune"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+
+    # Dune body — large warped-fBm relief + directional ripple bands
+    body = warped_fbm(h, w, 26, 4, 0.42, SEED + 700)
+    ripples = 0.5 + 0.5 * np.sin(nx * p["ripple_freq"] * 2 * np.pi
+                                 + body * 5.0 * p["ripple_freq"] / 9.0)
+    ripple = smoothstep(0.55, 0.88, ripples)
+    crest = smoothstep(0.72, 0.95, body)
+    hollow = smoothstep(0.72, 0.95, 1.0 - body)
+
+    # Chladni — drives the singing-silica veins + crystal anchors
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.3 + i * 0.25) + i * 0.9 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.4][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    silica = smoothstep(0.78, 0.95, nodal)
+    silica_core = smoothstep(0.92, 0.99, nodal)
+
+    # Desert-rose gypsum crystals at node anchors (nothing floats)
+    rng = np.random.RandomState(SEED + 710)
+    crystal = np.zeros((h, w), np.float32)
+    for _ in range(p["crystal_count"]):
+        cx = rng.randint(0, w)
+        cy = rng.randint(0, h)
+        size = rng.randint(min(h, w) // 24, min(h, w) // 12)
+        rot = rng.rand() * 2 * np.pi + phase * 0.03
+        crystal = np.clip(crystal + crystal_shape(h, w, cx, cy, size, 6, rot) * (0.4 + cym * 0.6), 0, 1)
+
+    # Hex ring of salt-white on crests for sparkle accent
+    salt = crystal * hollow * 0.4 + ripple * crest * 0.3
+
+    height = np.clip(body * 0.35 + ripple * 0.22 + silica * 0.4 + crystal * 0.5, 0, 1)
+
+    base = mix(col(p["sand"]), col(p["sand_hi"]), body)
+    base = mix(base, col(p["sand_shadow"]), hollow * 0.5)
+    base = mix(base, col(p["silica"]), silica)
+    base = mix(base, col(p["silica_hi"]), silica_core)
+    base = mix(base, col(p["rose_gypsum"]), crystal * 0.8)
+    base = mix(base, col(p["salt"]), salt * 0.9)
+    base = np.clip(base, 0, 1)
+
+    rough = mix(p["rough_sand"], p["rough_silica"], silica * 0.85)
+    rough = mix(rough, p["rough_gypsum"], crystal * 0.7)
+    metallic = np.clip(silica * 0.25 + silica_core * 0.5 + crystal * 0.15, 0, 1)
+
+    emissive = mask_color(silica * (0.5 + 0.5 * np.sin(phase * 1.2)), col(p["glow"]))
+    emissive = np.clip(emissive * p["glow_intensity"], 0, 1)
+    iri = np.clip(silica * 0.85 + silica_core * 0.5 + crystal * 0.15, 0, 1)
+    opacity = np.ones((h, w), np.float32)
+
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, opacity)
+
+
 def build_melodia_aurora_glass(h, w, frame, total_frames):
     """Aurora pearlescent glass: drifting aurora bands through refracting iridescence."""
     p = VARIANTS["MelodiaAuroraGlass"]
@@ -2142,6 +2332,7 @@ BUILDERS = {
     "MelodiaAmethystVein": build_melodia_amethyst_vein,
     "PrismaticObsidian": build_prismatic_obsidian,
     "MelodiaAuroraGlass": build_melodia_aurora_glass,
+    "SingingDune": build_singing_dune,
     "FarawayNightVelvet": build_faraway_night_velvet,
     "FarawayAquaLace": build_faraway_aqua_lace,
     "FarawayGildedRidge": build_faraway_gilded_ridge,
@@ -2149,6 +2340,7 @@ BUILDERS = {
     "FarawayNacreVeil": build_faraway_nacre_veil,
     "FarawayMoonChiffon": build_faraway_moon_chiffon,
     "FarawayLullabyFleece": build_faraway_lullaby_fleece,
+    "CymaticOrchid": build_cymatic_orchid,
 }
 
 def main():
