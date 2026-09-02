@@ -35,8 +35,8 @@
     "pre-commit hook and force-add work cleanly for Docs/Plans + Saved/Audit; push remains non-ff blocked by ~359 behind + ~386 ahead — every run verifies live and records, never forces"
   ],
   "last_commit_hashes": [
-          "58821675"
-        ],
+            "4d1d40a0"
+          ],
     "run_08_summary": {
       "unit": "advance Copernicus variant library (unit d) — completed + QA'd the PrismaticObsidian hero-material variant",
       "work": "PrismaticObsidian (volcanic glass / conchoidal fracture / internal crystal lattice / thin-film rainbow sheen) was added to the tool in da25dafd but its 13:17 cook on disk was PARTIAL — only 7/9 PNGs (missing Roughness + ORM). Re-cooked with .venv-guardrails python; now 9/9 maps valid, 1024x1024, non-blank (QA evidence qa_prismatic_obsidian_2026-09-02.json). Manifest updated. NOTE: concurrent work found in tree NOT in this commit — CymaticOrchid variant builder (113 lines in copernicus .py) + Docs/Plans/GN_CYMATIC_PROMOTION_READINESS_2026-09-02.md — left uncommitted as foreign/pending; not stage-swept."
