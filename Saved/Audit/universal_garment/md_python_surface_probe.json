@@ -1,0 +1,109 @@
+{
+  "probe": {
+    "seed": 20260902,
+    "date": "2026-09-02",
+    "target": "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/",
+    "mode": "offline-readonly",
+    "inspector": "./.venv/Scripts/python.exe",
+    "headless_exec_attempted": false,
+    "headless_exec_note": "MD is a Qt5WebEngine GUI; no CLI/batch entrypoint besides the exe; no proof it runs display-free; NOT attempted."
+  },
+  "custom_api_exists": false,
+  "custom_api_evidence": {
+    "python37_zip": {
+      "entry_count": 612,
+      "stdlib_only": true,
+      "unknown_toplevels": ["__phello__.foo", "macpath", "site-packages", "tty"],
+      "site_packages_entries": ["site-packages/README.txt"],
+      "verdict": "pure stdlib CPython 3.7, .pyc only, no custom module"
+    },
+    "pythlib_dir": "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/PythonLib/",
+    "pythlib_entries": [],
+    "py_files_anywhere": 0,
+    "pyc_files_outside_zip": 0,
+    "site_packages_dirs_found": 0,
+    "usd_omniverse_plugin": "resources/plugInfo.json only; no python plugin, no md/garment export plugin",
+    "boost_python_dll": "boost_python37-vc141-mt-x64-1_68.dll present; no 'marvelous'/'md.py'/'import md' binding strings",
+    "verdict": "embedded CPython + Boost.Python + USD present for MD's internal use, not exposed as an importable module"
+  },
+  "verified_stdlib_list": [
+    "__future__", "_collections_abc", "_compat_pickle", "_compression", "_markupbase",
+    "_py_abc", "_pydecimal", "_pyio", "_sitebuiltins", "_strptime", "_threading_local",
+    "_weakrefset", "abc", "aifc", "antigravity", "argparse", "ast", "asynchat", "asyncore",
+    "asyncio", "base64", "bdb", "binhex", "bisect", "bz2", "cProfile", "calendar", "cgi",
+    "cgitb", "chunk", "cmd", "code", "codecs", "codeop", "collections", "colorsys",
+    "compileall", "concurrent", "configparser", "contextlib", "contextvars", "copy",
+    "copyreg", "csv", "ctypes", "curses", "dataclasses", "datetime", "dbm", "decimal",
+    "difflib", "dis", "distutils", "doctest", "dummy_threading", "email", "encodings",
+    "enum", "errno", "faulthandler", "filecmp", "fileinput", "fnmatch", "formatter",
+    "fractions", "ftplib", "functools", "gc", "genericpath", "getopt", "getpass",
+    "gettext", "glob", "gzip", "hashlib", "heapq", "hmac", "html", "http", "imaplib",
+    "imghdr", "imp", "importlib", "inspect", "io", "ipaddress", "itertools", "json",
+    "keyword", "lib2to3", "linecache", "locale", "logging", "lzma", "mailbox", "mailcap",
+    "marshal", "math", "mimetypes", "mmap", "modulefinder", "msilib", "msvcrt",
+    "multiprocessing", "netrc", "nntplib", "nt", "ntpath", "nturl2path", "numbers",
+    "opcode", "operator", "optparse", "os", "pathlib", "pdb", "pickle", "pickletools",
+    "pipes", "pkgutil", "platform", "plistlib", "poplib", "posixpath", "pprint", "profile",
+    "pstats", "pty", "py_compile", "pyclbr", "pydoc", "pydoc_data", "queue", "quopri",
+    "random", "re", "reprlib", "rlcompleter", "runpy", "sched", "secrets", "selectors",
+    "shelve", "shlex", "shutil", "signal", "site", "smtpd", "smtplib", "sndhdr", "socket",
+    "socketserver", "sqlite3", "sre_compile", "sre_constants", "sre_parse", "ssl", "stat",
+    "statistics", "string", "stringprep", "struct", "subprocess", "sunau", "symbol",
+    "symtable", "sysconfig", "tabnanny", "tarfile", "telnetlib", "tempfile", "termios",
+    "textwrap", "this", "threading", "timeit", "token", "tokenize", "trace", "traceback",
+    "tracemalloc", "tty", "types", "typing", "unicodedata", "unittest", "urllib", "uu",
+    "uuid", "warnings", "wave", "weakref", "webbrowser", "wsgiref", "xdrlib", "xml",
+    "xmlrpc", "zipapp", "zipfile", "zipimport", "zlib"
+  ],
+  "custom_module_finds": [],
+  "source_asset": {
+    "obj": "Saved/Audit/melusina_lookdev/bake/night_pkg_2026-08-31/SM_ShorewakeDress_48MAT_v2_slotted.obj",
+    "obj_bytes": 28865117,
+    "mtl": "Saved/Audit/melusina_lookdev/bake/night_pkg_2026-08-31/SM_ShorewakeDress_48MAT_v2_slotted.mtl",
+    "garment_obj": "Saved/Audit/melusina_lookdev/bake/night_pkg_2026-08-31/SM_ShorewakeDress_48MAT_garment.obj",
+    "fbx": "Saved/Audit/melusina_lookdev/bake/night_pkg_2026-08-31/SM_ShorewakeDress_48MAT_v2_slotted.fbx",
+    "fbx_bytes": 8045196,
+    "panel_id_map": "Saved/Audit/melusina_lookdev/bake/night_pkg_2026-08-31/T_DressShorewake_PanelID_4K.png"
+  },
+  "interchange_seams_available": {
+    "in": ["OBJ", "Alembic", "FBX"],
+    "out": ["USD (bundled usd step: usd.dll, usdGeom, usdSkel, tf.dll)", "FBX (libfbxsdk.dll)", "Alembic"],
+    "usd_plugins": "usd/plugins/omniverse/resources/plugInfo.json only"
+  },
+  "steps": [
+    {
+      "id": "a_export_flatsource",
+      "goal": "Take SM_ShorewakeDress_48MAT_v2_slotted.obj into MD as pattern flat source",
+      "method": "File>Import (drag .obj into MD center tool); OBJ auto-unpacks to 2D patterns; T_DressShorewake_PanelID_4K.png aids 48-panel->10-garment mapping",
+      "feasible": false,
+      "flag": "MANUAL-GUI",
+      "reason": "No MD CLI/API; import is GUI-only. OBJ file preparation itself is AUTOMATABLE (asset already produced), only the MD import action is manual."
+    },
+    {
+      "id": "b_simulate_drape",
+      "goal": "Simulate a drape on the slotted dress",
+      "method": "Arrange on avatar/hanger in MD 3D viewport, Run Simulation",
+      "feasible": false,
+      "flag": "MANUAL-GUI",
+      "reason": "Physical solve exposed only via GUI. Headless CPU solve not exposed; can't prove display-free run, not attempted."
+    },
+    {
+      "id": "c_export_usd_fbx",
+      "goal": "Export USD/FBX back out of MD",
+      "method": "File>Save As -> .usd/.usda or .fbx; MD ships full USD (usd.dll, usdSkel, plugInfo) + libfbxsdk",
+      "feasible": false,
+      "flag": "BLOCKED",
+      "reason": "Headless BLOCKED - no CLI/API to trigger export. User-triggered GUI export works. Verify round-trip via a stock sample first before trusting for the dress."
+    },
+    {
+      "id": "d_import_ue",
+      "goal": "Import exported USD/FBX to UE",
+      "method": "UE import commandlet on exported .usd/.fbx -> .uasset",
+      "feasible": true,
+      "flag": "AUTOMATABLE",
+      "flag_note": "UE-side, editor-bound; commandlet run not executed here per working agreement",
+      "reason": "This side has a real automation entry (UE import commandlet). Requires editor running to execute."
+    }
+  ],
+  "top_recommendation": "Do not build on an MD Python API (none exists). Validate the file-interchange envelope once by hand: human opens MD, imports the existing slotted .obj, simulates a drape, exports .usd+.fbx; confirm UE ingest (d) from the exported file. Automate everything outside MD (OBJ prep now, UE ingest after). If a repeatable high-frequency MD solve is ever required, use Houdini Vellum/SOP (hython) on the same OBJ rather than MD Python."
+}

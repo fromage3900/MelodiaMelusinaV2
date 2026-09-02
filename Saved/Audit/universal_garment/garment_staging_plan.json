@@ -1,0 +1,146 @@
+{
+  "seed": 20260902,
+  "schema": "melodia.universal_garment.staging_plan.v1",
+  "date": "2026-09-02",
+  "goal": "Universal garment push ready-plan: stage the Shorewake 'singing veil' garment umbrella into LV_SeaAbove_Prototype on CanonicalLandscape with height-aware, cymatic-wired, polished-PBR placement — no floating pieces.",
+  "level": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "landscape": "CanonicalLandscape (used, never created)",
+  "garment_masters_verified": [
+    "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+    "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
+    "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+  ],
+  "sea_above_mis_verified_on_disk": [
+    "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean",
+    "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+    "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+  ],
+  "generator": "Tools/PCG/build_garment_veil_staging.py",
+  "generated_manifests": [
+    "specs/garment_staging/garment_veil_staging.v1.json",
+    "specs/garment_staging/garment_veil_staging_placements.json"
+  ],
+  "point_count": 120,
+  "zone_counts": {
+    "Skirt": 30,
+    "Bodice": 30,
+    "Collar": 30,
+    "Veil": 30
+  },
+  "garment_umbrella_layers": {
+    "Skirt_Full":   ["MEL_garment_skirt_full", "MEL_garment_skirt_train"],
+    "Bodice_Base":  ["MEL_garment_bodice_base"],
+    "Bodice_Lace":  ["MEL_garment_bodice_lace"],
+    "Collar":       ["MEL_garment_collar_trim", "MEL_garment_collar_necklace"],
+    "Veil":         ["MEL_garment_veil_singing", "MEL_garment_veil_ribbon"]
+  },
+  "polish_pbr_reconciliation": {
+    "method": "Existing family maps are reconciled to the verified placement MI per garment layer (see layer_matrix). On-disk presence was verified by search; any declared-but-absent family or layer with no verified polish map is flagged as a gap.",
+    "map_families": {
+      "garment_refresh": {
+        "status": "DECLARED-NOT-ON-DISK",
+        "maps": ["BaseColor", "Normal", "ORM" , "Roughness", "Metallic"],
+        "role": "base opaque/surface PBR refresh",
+        "wired_to_mis": ["MI_SeaAbove_SurfaceOcean", "MI_SeaAbove_FalseOcean"],
+        "target_layers": ["Skirt_Full", "Bodice_Base", "Collar"],
+        "evidence": "0 matches for garment_refresh / _refresh /* maps in workspace scan"
+      },
+      "garment_refresh/cymatic": {
+        "status": "DECLARED-NOT-ON-DISK",
+        "maps": ["Emissive", "Height", "CymaticScalar", "Iridescence"],
+        "role": "cymatic-reactive extras for sheer/translucent layers",
+        "wired_to_mis": ["MI_SeaAbove_UpwardDroplet"],
+        "target_layers": ["Bodice_Lace", "Veil"],
+        "evidence": "0 matches for garment_refresh/cymatic in workspace scan"
+      },
+      "water-veil": {
+        "status": "PARTIAL-PLACEHOLDER",
+        "maps": ["droplet/sheet/foam cymatic water-fabric veil"],
+        "role": "shared singing-veil cymatic maps; MEL_water_veil_* builders and PearlWoven_Lace are placeholders (see specs/water_veil/singing_water_veil_pcg.v1.json)",
+        "wired_to_mis": ["MI_SeaAbove_UpwardDroplet"],
+        "target_layers": ["Veil", "Bodice_Lace", "Skirt_Full(tide-edge)"],
+        "evidence": "water-veil family shares the placeholder PearlWoven_Lace texture reference; no PBR_Auto garment MIs on disk (MI_T_FarawayMother_* = phantom)"
+      }
+    },
+    "layer_matrix": [
+      {
+        "layer": "Skirt_Full",
+        "zone": "Skirt",
+        "chladni_mode": "2_4",
+        "verified_placement_mi": "MI_SeaAbove_SurfaceOcean",
+        "garment_master": "M_Universal_Enhanced_Fabric",
+        "polish_maps": [
+          {"family": "garment_refresh", "status": "UNWIRED-MISSING"},
+          {"family": "water-veil(tide-edge)", "status": "PLACEHOLDER"}
+        ],
+        "has_polish_map": false,
+        "gap": "garment_refresh base PBR family absent on disk"
+      },
+      {
+        "layer": "Bodice_Base",
+        "zone": "Bodice",
+        "chladni_mode": "3_5",
+        "verified_placement_mi": "MI_SeaAbove_FalseOcean",
+        "garment_master": "M_Master_Nikki",
+        "polish_maps": [
+          {"family": "garment_refresh", "status": "UNWIRED-MISSING"}
+        ],
+        "has_polish_map": false,
+        "gap": "garment_refresh base PBR family absent on disk"
+      },
+      {
+        "layer": "Bodice_Lace",
+        "zone": "Bodice",
+        "chladni_mode": "3_5",
+        "verified_placement_mi": "MI_SeaAbove_UpwardDroplet",
+        "garment_master": "M_Master_Toon_Universal_Alpha",
+        "polish_maps": [
+          {"family": "garment_refresh/cymatic", "status": "UNWIRED-MISSING"},
+          {"family": "water-veil", "status": "PLACEHOLDER"}
+        ],
+        "has_polish_map": false,
+        "gap": "garment_refresh/cymatic reactive family absent on disk"
+      },
+      {
+        "layer": "Collar",
+        "zone": "Collar",
+        "chladni_mode": "1_3",
+        "verified_placement_mi": "MI_SeaAbove_FalseOcean",
+        "garment_master": "M_Master_Nikki",
+        "polish_maps": [
+          {"family": "garment_refresh", "status": "UNWIRED-MISSING"}
+        ],
+        "has_polish_map": false,
+        "gap": "garment_refresh base PBR family absent on disk; shares MI with Bodice_Base (no dedicated Polish tonal map)"
+      },
+      {
+        "layer": "Veil",
+        "zone": "Veil",
+        "chladni_mode": "4_4",
+        "verified_placement_mi": "MI_SeaAbove_UpwardDroplet",
+        "garment_master": "M_Master_Toon_Universal_Alpha",
+        "polish_maps": [
+          {"family": "garment_refresh/cymatic", "status": "UNWIRED-MISSING"},
+          {"family": "water-veil", "status": "PLACEHOLDER"}
+        ],
+        "has_polish_map": false,
+        "gap": "hero thin-film/iridescence polish (garment_refresh/cymatic Emissive+Height+Iridescence) absent on disk; Shorewake texture set (T_MelusinaC_DressShorewake_*) referenced by wardrobe manifest also not on disk"
+      }
+    ]
+  },
+  "mi_gaps": [
+    "layer=Veil | no verified polish map wired to MI_SeaAbove_UpwardDroplet (needs garment_refresh/cymatic Emissive+Height+Iridescence; Shorewake T_* dress set absent)",
+    "layer=Bodice_Lace | no verified polish map wired to MI_SeaAbove_UpwardDroplet (needs garment_refresh/cymatic reactive set)",
+    "layer=Skirt_Full | no verified polish map wired to MI_SeaAbove_SurfaceOcean (garment_refresh base PBR absent)",
+    "layer=Bodice_Base | no verified polish map wired to MI_SeaAbove_FalseOcean (garment_refresh base PBR absent)",
+    "layer=Collar | no verified polish map wired to MI_SeaAbove_FalseOcean (garment_refresh base PBR absent; shares MI with Bodice_Base)",
+    "family=garment_refresh | declared base PBR map family NOT on disk (0 matches)",
+    "family=garment_refresh/cymatic | declared reactive map family NOT on disk (0 matches)",
+    "family=water-veil | placeholder-only (PearlWoven_Lace / MEL_water_veil_* / MI_T_FarawayMother_* phantom)"
+  ],
+  "next_actions": [
+    "Editor/Monolith lane applies specs/garment_staging/garment_veil_staging_placements.json with a real height-aware line-trace; confirm floor_cm < base_z per placement before commit.",
+    "Author polish maps: garment_refresh base PBR (Skirt_Full/Bodice_Base/Collar) and garment_refresh/cymatic reactive (Bodice_Lace/Veil) — all currently UNWIRED-MISSING.",
+    "Re-map any phantom FarawayMother PBR_Auto garment MIs to verified M_Universal_Enhanced_Fabric family (per SURREAL_FABRIC_NIKKI_AUDIT_2026-09-02)."
+  ]
+}

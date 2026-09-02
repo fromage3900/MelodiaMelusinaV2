@@ -1,0 +1,228 @@
+{
+  "schema": "melodia.universal_garment_system.v1",
+  "schema_version": "1.0.0",
+  "seed": 20260902,
+  "date": "2026-09-02",
+  "author": "Hermes subagent (deepseek-v4-flash)",
+  "purpose": "Single authority registry for the Universal Garment Creation System. Unifies every existing garment / cymatic / water-veil / cloth-tier / PCG-placement work so no future lane forks a parallel garment system. Authority doc: Docs/Art/UNIVERSAL_GARMENT_SYSTEM_MASTER_SPEC_2026-09-02.md",
+  "architecture": {
+    "chain": [
+      {"stage": "s0_pattern_library", "flow": "48 Shorewake panels packed into one slotted dress mesh (SW_Dress_P01..P48)"},
+      {"stage": "s1_silhouette_classifier", "flow": "silhouette geometry -> 10 dead-silhouette garment layers (48->10)"},
+      {"stage": "s2_cloth_tier_dispatch", "flow": "per garment piece -> cloth-tier A/B/C/D (cost ladder)"},
+      {"stage": "s3_fabric_cymatic_generation", "flow": "per layer/zone Chladni PBR 9-map + animated flipbook + singing-water zone maps"},
+      {"stage": "s4_per_garment_mi", "flow": "one MI per garment layer on the VERIFIED small master family"},
+      {"stage": "s5_per_level_pcg_placement", "flow": "height-aware placement on CanonicalLandscape, PCGEx measured-curve splines (no new landscape, no scatter dump)"},
+      {"stage": "s6_md_drape_integration_seam", "flow": "Houdini Vellum / FLIP drape + imported sheet seam; single MPC writer untouched"}
+    ],
+    "verified_small_family": [
+      "M_Master_Nikki",
+      "M_Universal_Enhanced_Fabric",
+      "M_Master_Toon_Universal_Alpha"
+    ],
+    "masters_forbidden": [
+      "M_Master_FarawayMother_Fabric (phantom/missing — remap to M_Universal_Enhanced_Fabric)",
+      "any new master beyond the small family"
+    ]
+  },
+  "stages": [
+    {
+      "id": "s0_pattern_library",
+      "name": "Pattern Library",
+      "status": "DONE",
+      "definition_of_done": "SM_ShorewakeDress_48MAT_v2_slotted.obj packs all 48 panels as one addressable dress mesh with per-panel SW_Dress_PNN geometry spans (z_lo/z_hi/zsp, rmean/rmax, w/d, azimuth). Source manifest hashed, deterministic seed 20260902.",
+      "echo_gate": "universal_garment_s0_pattern_library",
+      "evidence": [
+        "Saved/Audit/melusina_lookdev/bake/night_pkg_2026-08-31/SM_ShorewakeDress_48MAT_v2_slotted.obj",
+        "garment_layers_manifest.json (source field)"
+      ],
+      "editor_gated": false
+    },
+    {
+      "id": "s1_silhouette_classifier",
+      "name": "Silhouette Classifier (48->10)",
+      "status": "DONE",
+      "definition_of_done": "silhouette_garment_label.py classifies all 48 panels into exactly 10 garment-layer material groups; every panel assigned; merged set stable and seed-locked; no two layers identical.",
+      "echo_gate": "universal_garment_s1_silhouette_classifier",
+      "evidence": [
+        "Saved/Audit/melusina_lookdev/night_pkg_2026-08-31/garment_layers_manifest.json (v2, seed 20260902, 48 panels -> 10 material_groups)",
+        "Tools/Houdini/sea_above_reef/silhouette_garment_label.py"
+      ],
+      "editor_gated": false
+    },
+    {
+      "id": "s2_cloth_tier_dispatch",
+      "name": "Cloth-Tier Dispatch (A/B/C/D)",
+      "status": "PARTIAL",
+      "definition_of_done": "Every garment piece, water veil, and terrain placement carries a ClothTier tag (A rigid-authored / B Chaos-Collision hero / C WPO cheap / D VAT-cache). Gameplay-meaning piece gets the expensive tier. Tier table in spec; tags wired in builder CLOTH_TIERS dict.",
+      "echo_gate": "universal_garment_s2_cloth_tier_dispatch",
+      "evidence": [
+        "Docs/Art/FARAWAY_MOTHER_CLOTH_TIERS_2026-09-02.md (A/B/C/D per placement)",
+        "Docs/Art/CYMATIC_GARMENT_NIKKI_PIPELINE_2026-09-02.md section 4 tier table",
+        "Content/Python/faraway_mother_prototype_build.py:CLOTH_TIERS"
+      ],
+      "gaps": [
+        "Skirt_Full tier B Chaos binding pending (ChaosPending=true until Chaotic cloth asset bound)",
+        "Tier tags are JSON/builder-level only; not yet attached as actor metadata/DataLayer tags across all placements",
+        "Faraway Tiers B (Chaos) are planned, not live-bound"
+      ],
+      "editor_gated": true
+    },
+    {
+      "id": "s3_fabric_cymatic_generation",
+      "name": "Fabric / Cymatic Material Generation",
+      "status": "DONE",
+      "definition_of_done": "Per garment layer a 9-map copernicus-contract PBR set (BaseColor/Normal/Height/Roughness/Metallic/Iridescence/Emissive/ORM/Opacity) with Chladni (m,n) weave + separate seamless 8-frame animated flipbook; singing-water zones get their own zone PBR sets. All deterministic seed 20260902, committed, no .uasset touched.",
+      "echo_gate": "universal_garment_s3_fabric_cymatic_generation",
+      "evidence": [
+        "Saved/Audit/melusina_lookdev/garment_refresh/cymatic/ (91 static maps + 400 animated maps in animated/)",
+        "Saved/Audit/melusina_lookdev/garment_refresh/cymatic/cymatic_garment_manifest.json",
+        "Saved/Audit/melusina_lookdev/garment_refresh/garment_refresh_manifest.json",
+        "Saved/Audit/melusina_lookdev/singing_water/cymatic/ (38 zone maps + singing_water_cymatic_manifest.json)",
+        "Tools/Houdini/sea_above_reef/shorewake_cymatic_garment.py"
+      ],
+      "editor_gated": false
+    },
+    {
+      "id": "s4_per_garment_mi",
+      "name": "Per-Garment MI on Verified Small Family",
+      "status": "GATED",
+      "definition_of_done": "One MI per garment layer (10) + one per singing-water zone (4), each parented to a verified small-family master only. Naming per mi_naming contract. Sources imported via Interchange/unreal python. Emissive + Iridescence + Height(parallax) wired; lace variants release alpha cutout.",
+      "echo_gate": "universal_garment_s4_per_garment_mi",
+      "evidence": [
+        "Docs/Art/CYMATIC_GARMENT_NIKKI_PIPELINE_2026-09-02.md section 4 (target MI names)",
+        "Docs/KLEIN_VEIL_SING_2026-09-02.md (klein_veil_import.py pattern; {UE_MI_PATH})"
+      ],
+      "gaps": [
+        "No MI_*.uasset exists yet — all offline manifests, nothing cooked/imported in editor",
+        "Import + MI creation is editor-gated (Monolith proxy was down 2026-09-02)",
+        "Phantom M_Master_FarawayMother_Fabric refs (4 LOD MIs + 12 sidecars) must be remapped to M_Universal_Enhanced_Fabric before any cook"
+      ],
+      "editor_gated": true
+    },
+    {
+      "id": "s5_per_level_pcg_placement",
+      "name": "Per-Level PCG Placement (height-aware, CanonicalLandscape)",
+      "status": "GATED",
+      "definition_of_done": "Per level (FarawayMother/SeaAbove) placements grounded on CanonicalLandscape (never a new landscape) via Visibility raycast 50000->-50000 + 15cm re-trace + floating_check. PCGEx measured-curve splines (ExCreateSpline -> TensorSpin) for fabric-ridge pleats; no 774-instance scatter dumps; ISM/Nanite/HLOD/DataLayer conform.",
+      "echo_gate": "universal_garment_s5_per_level_pcg_placement",
+      "evidence": [
+        "Docs/Handoffs/PCGEX_NIKKI_WISE_2026-09-02.md (height-aware + CanonicalLandscape contract; W5 0/7 hit offline_synthetic)",
+        "faraway_mother_height_aware_pcg.json (7 placements height_aware:true, hit:false offline_synthetic)",
+        "sea_above_pcg_swap_report.md"
+      ],
+      "gaps": [
+        "0/7 live ground-snap hits — TraceChannel int-vs-enum bug; every placement currently offline_synthetic, all invalid on future landscape import",
+        "Landscape is also empty/missing in the live level (no CanonicalLandscape to sample); 0% heatmap-driven graphs",
+        "run_in_editor() PIE required to ground-snap Z; editor-gated"
+      ],
+      "editor_gated": true
+    },
+    {
+      "id": "s6_md_drape_integration_seam",
+      "name": "MD Drape Integration Seam (Houdini Vellum / FLIP)",
+      "status": "PARTIAL",
+      "definition_of_done": "Drape simulation seam defined: Houdini Vellum/Chaos-equivalent drag path for hero sheets (Skirt_Full tier B, RoseWindow, Klein Veil) and singing-water FLIP veil. Runtime import idempotent. Single audio writer untouched; cymatic lanes read-only. Seam replaced by HDA_CH_WardrobeIntersectionAudit-style bake (VAT) for terrain contraction — never runtime sim.",
+      "echo_gate": "universal_garment_s6_md_drape_integration_seam",
+      "evidence": [
+        "Saved/Audit/universal_garment/_vellum_check.py + vellum_node_presence.json (Vellum SOP node presence probe)",
+        "Saved/Audit/melusina_lookdev/singing_water/FLIP_Veil_final_024.obj + FLIP_Veil_mid_012.obj",
+        "Saved/Audit/melusina_lookdev/singing_water/singing_water_flip_manifest.json (Houdini 22, particlefluidtank->flipsolver->OBJ)",
+        "Docs/KLEIN_VEIL_SING_2026-09-02.md (VDM + import seam)"
+      ],
+      "gaps": [
+        "Vellum probe is staged but not run; node presence unrecorded",
+        "FLIP OBJ written but heightfield/cymatic layering staged as next step",
+        "Chaos Cloth asset not bound in UE (Skirt_Full/HeartGate/RoseWindow tier-B pending); import editor-gated"
+      ],
+      "editor_gated": true
+    }
+  ],
+  "vocab_contract": {
+    "harmonic_key": "Chladni standing-wave mode (m,n), 1<=m<=8, 1<=n<=8",
+    "mode_range_note": "m,n integer pair. <=8 so nodal lines stay crisp at 2K; >=1 so they read as a woven motif. Bass->treble maps via m=round(sqrt(f/220)*3), n=round(sqrt(f/220)*5).",
+    "sing": "A bound sing = {domain, piece, chladni:[m,n], read_as} — the single atomic harmonic unit shared by garment layers, water zones, and drapery tiers.",
+    "domains": {
+      "garment_layer": "10 dead-silhouette garment layers; each carries exactly one (m,n)",
+      "water_zone": "4 singing-water zones (singing-water-veil); each carries exactly one (m,n)",
+      "drapery_tier": "A/B/C/D cost class, orthogonal to mode (a piece's tier and mode are independent contracts)",
+      "veil": "hero opaque/sheet surfaces (Klein Veil, RoseWindow, SheetVeil) — drape seam candidates, tier-B or C"
+    },
+    "garment_layers": [
+      "M_Bodice_Torso", "M_Bodice_Front", "M_Bodice_Side", "M_Bodice_Upper",
+      "M_Collar", "M_Shoulder_Trim", "M_Shoulder_Ornament",
+      "M_Sleeve", "M_Underskirt", "M_Skirt_Full"
+    ],
+    "garment_modes": {
+      "M_Bodice_Torso": [5,7],
+      "M_Bodice_Front": [3,4],
+      "M_Bodice_Side": [2,6],
+      "M_Bodice_Upper": [1,3],
+      "M_Collar": [6,6],
+      "M_Shoulder_Trim": [4,8],
+      "M_Shoulder_Ornament": [8,8],
+      "M_Sleeve": [2,7],
+      "M_Underskirt": [3,5],
+      "M_Skirt_Full": [7,9]
+    },
+    "water_zones": {
+      "SheetVeil": [2,4],
+      "SingingFall": [5,7],
+      "HearthPool": [1,3],
+      "TideSeam": [6,6]
+    },
+    "cloth_tiers": {
+      "A": "Rigid authored (structured lace, ornaments, columns, caps) — cheapest, deterministic",
+      "B": "Chaos/Cloth collision — hero sheets carrying gameplay meaning (Skirt_Full, HeartGate finial, RoseWindow lace). Expensive.",
+      "C": "WPO (MF_FabricMountainWPO wind + cymatic micro-swell) — cheap dynamic, km terrain + distant drape",
+      "D": "VAT/cache authored bake — impossible-emergent contraction (terrain) via Houdini bake, never runtime sim"
+    },
+    "tex_contract": "T_<Domain>_<Piece>_<Channel>.png where Domain in {Cymatic_Garment, SingingWater, Shorewake_Garment, KleinVeil}, Channel in {BaseColor,Normal,Height,Roughness,Metallic,Iridescence,Emissive,ORM,Opacity}",
+    "mi_naming": "MI_Melusina_<Family>_Cymatic_<Layer> parented to M_Master_Nikki | M_Universal_Enhanced_Fabric | M_Master_Toon_Universal_Alpha by cloth tier (masked->Toon_Alpha, satin->Nikki, hero sheet->Enhanced_Fabric)",
+    "gameplay_tag_root": "Melodia.Sing.Garment.<Layer> / Melodia.Sing.Water.<Zone> / Melodia.Sing.Veil.<Piece> — FGameplayTag naming shared across cymatics, water zones, and drapery tiers",
+    "mpc_writer_contract": "Single writer UMelodiaAudioReactivePresentationSubsystem -> MPC_Melodia_Palette (BeatPulse/BassIntensity/BeatIntensity/BeatPhase/BeatTracker). Every garment/water/veil consumer is READ-ONLY via UMelodiaCymaticsSubsystem. Never add a second audio writer.",
+    "rules": [
+      "One (m,n) per singable surface; no shared vocabulary key differs by presentation layer",
+      "No two co-singing pieces within a level share the same (m,n) — if two pieces co-present, modes must differ (the dress reads as one instrument)",
+      "Adjacent garment layers must differ in mode",
+      "mode m,n <= 8 (crisp nodal at 2K), >= 1 (readable motif)",
+      "Garment piece carrying gameplay meaning gets the expensive cloth tier (B), supporting pieces cheap (C/A)",
+      "No new master beyond the verified small family",
+      "Height-aware placement on CanonicalLandscape; never a new landscape",
+      "Texture-only audio (no code reads audio)", 
+      "Runtime drape only where fidelity matters (B); km terrain = WPO/D, never runtime sim"
+    ],
+    "known_mode_collisions": [
+      {"water_zone": "SingingFall", "mode": [5,7], "collides_with": "M_Bodice_Torso"},
+      {"water_zone": "HearthPool", "mode": [1,3], "collides_with": "M_Bodice_Upper"},
+      {"water_zone": "TideSeam", "mode": [6,6], "collides_with": "M_Collar"}
+    ],
+    "vocab_gate": "universal_garment_vocab_uniqueness"
+  },
+  "gaps": [
+    {
+      "rank": 1,
+      "id": "editor_materialization",
+      "title": "Everything is offline-manifest-only; nothing is live in the editor",
+      "detail": "S4 MI cook/import and S5 live PCG ground-snap are 100% editor-gated. 0/7 height-aware hits are offline_synthetic (TraceChannel int-vs-enum bug + empty landscape); all placements invalid on future landscape import. Until MIs are created on the verified family and PCG grounds to CanonicalLandscape, the 'system' is manifests, not garments."
+    },
+    {
+      "rank": 2,
+      "id": "vocab_uniqueness_unenforced",
+      "title": "Shared harmonic vocabulary is not enforced across domains (mode collisions)",
+      "detail": "3 of 4 singing-water zones already collide with garment layers (SingingFall(5,7)=Bodice_Torso, HearthPool(1,3)=Bodice_Upper, TideSeam(6,6)=Collar). No validate gate asserts 'no two co-singing pieces share (m,n)' across the registry. A future lane can still introduce a parallel harmonic or reuse a mode silently. universal_garment_system.json is the registry; the vocab gate must score it."
+    },
+    {
+      "rank": 3,
+      "id": "master_family_consolidation",
+      "title": "Master-family consolidation is not enforced (phantom + explosion)",
+      "detail": "~290 masters vs Nikki-4 target; 1114 MIs:1. Phantom M_Master_FarawayMother_Fabric is referenced by 4 LOD MIs + 12 sidecars but is 0 bytes. Until those refs are remapped to M_Universal_Enhanced_Fabric and a do-not-add-new-master gate runs, a new lane can still fork a parallel material authority or cause a cook failure."
+    },
+    {
+      "rank": 4,
+      "id": "drape_seam_unproven",
+      "title": "MD/Vellum/Chaos drape seam staged but unproven",
+      "detail": "Vellum node-presence probe written but not run; FLIP OBJ written but heightfield layering staged; Chaos Cloth asset not bound in UE (tier-B pieces pending). Drape tier is the least-evidenced stage."
+    }
+  ]
+}
