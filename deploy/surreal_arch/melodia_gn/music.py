@@ -14,8 +14,8 @@ from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node,
     label_tree, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param, add_vector_param,
-    make_group_input, sweep_profile, add_music_influence_params,
-    apply_universal_music_pass, input_geometry_with_default,
+    make_group_input, sweep_profile,
+    input_geometry_with_default,
 )
 
 
@@ -377,7 +377,6 @@ def build_music_staff(group_name="MEL_music_staff"):
     add_float_param(tree, "Thickness", 0.008, 0.002, 0.03)
     add_int_param(tree, "Bar Count", 4, 1, 16)
     add_bool_param(tree, "Show Clef", True)
-    add_music_influence_params(tree)
 
     # Single staff line: curve sweep along X
     line_cyl = safe_node(tree, "GeometryNodeMeshLine", (bx - 400, by + 300))
@@ -464,8 +463,7 @@ def build_music_staff(group_name="MEL_music_staff"):
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 600, by + 150))
     shade.inputs["Shade Smooth"].default_value = True
     link_sockets(tree, store_line.outputs["Geometry"], shade.inputs["Geometry"])
-    music_geo = apply_universal_music_pass(tree, gin, shade.outputs["Geometry"], (bx + 800, by + 150))
-    link_sockets(tree, music_geo, gout.inputs["Geometry"])
+    link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
 
     color_node(grid, "curve")
     color_node(inst, "instance")

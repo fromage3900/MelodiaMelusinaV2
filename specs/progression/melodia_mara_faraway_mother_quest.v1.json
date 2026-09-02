@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "melodia.progression_package.v1",
+  "schema_version": "1.0",
+  "kind": "melodia_progression_package",
+  "contract_id": "melodia_mara_faraway_mother_quest",
+  "package": {
+    "package_id": "package.mara_faraway_mother.progression",
+    "definition_version": "0.1",
+    "display_name": "Chapter 3: The Seamstress and the Faraway Mother",
+    "content_kind": "chapter_progression",
+    "status": "draft_for_owner_review"
+  },
+  "content_refs": {
+    "player_route": [
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+      "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype"
+    ],
+    "integration_proof_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "dialogue_source_refs": [
+      "Content/MelodiaIntegration/Narrative/Mara/MelodiaQuillMaraVeilReading.qsc"
+    ],
+    "canon_sources": [
+      "Docs/Art/MONOLITH_LEVEL_DESIGN_BIBLE_2026-08-26.md#10-the-faraway-mother",
+      "Docs/Art/MONOLITH_CONCEPT_ART_BACKLOG_2026-08-26.md"
+    ],
+    "owner_canon_flags": "Mara Elletra Vell's identity, voice, and every proper noun in this
+    package are DRAFT for owner canonization. The Faraway Mother beats A-H are quoted from the
+    Level Design Bible and are canon; everything else is proposal."
+  },
+  "authority": {
+    "runtime_subsystem": "UMelodiaNarrativeSubsystem",
+    "narrative_record": "FMelodiaNarrativeRecord",
+    "save_field": "melodiaNarrativeRecord",
+    "objective_state_source": {
+      "active_quest_ids": "FMelodiaNarrativeRecord.ActiveQuestIds",
+      "flags": "FMelodiaNarrativeRecord.Flags",
+      "consumed_intent_ids": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "consumed_reward_ids": "FMelodiaNarrativeRecord.ConsumedRewardIds",
+      "script_checkpoint": "FMelodiaNarrativeRecord.ScriptCheckpoint"
+    }
+  },
+  "required_allowlist": {
+    "note": "DO NOT merge into DA_MelodiaIntegrationConfig until the owner canonizes the arc.
+    IDs follow the 7-verb notification contract and are idempotency-shaped like the Shorewake set.",
+    "quest_ids": [
+      "quest.mara.veil_reading"
+    ],
+    "narrative_flag_ids": [
+      "flag.quest.mara_veil_reading_completed",
+      "flag.faraway_mother.first_sighting",
+      "flag.faraway_mother.seam_path_open"
+    ],
+    "dialogue_reward_ids": [
+      "reward.mara_seam_map"
+    ]
+  },
+  "chapter": {
+    "chapter_id": "chapter.faraway_mother_transition",
+    "order": 3,
+    "title": "Chapter 3: The Seamstress and the Faraway Mother",
+    "prerequisites": [
+      "quest.shorewake.initiation",
+      "flag.sea_above.starskiff_ready"
+    ],
+    "beat_ids": [
+      "beat.mara.first_contact",
+      "beat.mara.veil_reading",
+      "beat.faraway_mother.the_hemlands",
+      "beat.faraway_mother.perspective_collapse"
+    ],
+    "quest_ids": [
+      "quest.mara.veil_reading"
+    ],
+    "exit_objective_ids": [
+      "objective.faraway_mother.reach_the_far_horizon"
+    ],
+    "checkpoint_id": "checkpoint.mara.complete"
+  },
+  "quests": [
+    {
+      "quest_id": "quest.mara.veil_reading",
+      "title": "The Seamstress of the Veil",
+      "description": "DRAFT. Aboard or beyond the Starskiff route, meet Mara Elletra Vell,
+      the veil-seamstress who reads garments as ritual language. She recognizes Melusina's
+      Shorewake weave as kinship-marking and teaches seam-reading: the skill that reveals
+      that the mountains on the horizon are hem-stitch. Reward: the Seam Map (an embroidery
+      that is also a map).",
+      "script_path": "Content/MelodiaIntegration/Narrative/Mara/MelodiaQuillMaraVeilReading.qsc",
+      "completion_flag": "flag.quest.mara_veil_reading_completed",
+      "reward_id": "reward.mara_seam_map",
+      "intent_id": "intent.mara.complete",
+      "checkpoint_id": "checkpoint.mara.complete"
+    }
+  ]
+}

@@ -1,0 +1,3198 @@
+{
+  "schema": "melodia.faraway_mother_pcg_manifest.v1",
+  "version": "1.0.0",
+  "landscape_bounds_uu": [
+    -400000.0,
+    -400000.0,
+    400000.0,
+    400000.0
+  ],
+  "total_points": 120,
+  "biome_summaries": {
+    "WeaveRidge": {
+      "name": "WeaveRidge",
+      "point_count": 30,
+      "builders": [
+        "MEL_mother_fabric_ridge",
+        "MEL_mother_shoulder_fold",
+        "MEL_mother_silk_vine"
+      ],
+      "avg_tension": 0.9638,
+      "avg_altitude_uu": 3669.58,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    "LaceCanopy": {
+      "name": "LaceCanopy",
+      "point_count": 30,
+      "builders": [
+        "MEL_mother_lace_tree",
+        "MEL_mother_pearl_bush"
+      ],
+      "avg_tension": 0.8732,
+      "avg_altitude_uu": 473.77,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    "FrillValley": {
+      "name": "FrillValley",
+      "point_count": 30,
+      "builders": [
+        "MEL_mother_valley_depression",
+        "MEL_mother_frill_rock",
+        "MEL_mother_frill_arch",
+        "MEL_mother_brocade_flower",
+        "MEL_mother_fog_volume"
+      ],
+      "avg_tension": 0.896,
+      "avg_altitude_uu": -3067.19,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    "ResonantSeamWay": {
+      "name": "ResonantSeamWay",
+      "point_count": 30,
+      "builders": [
+        "MEL_mother_walkway_straight",
+        "MEL_mother_walkway_curved",
+        "MEL_mother_heart_gate",
+        "MEL_mother_head_silhouette",
+        "MEL_mother_hair_cascade"
+      ],
+      "avg_tension": 0.9333,
+      "avg_altitude_uu": 994.99,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    }
+  },
+  "points": [
+    {
+      "id": "PT_Mother_ResonantSeamWay_0000",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -386666.67,
+        -386666.67,
+        156.79
+      ],
+      "rotation": [
+        0.83,
+        -0.43,
+        -135.0
+      ],
+      "scale": [
+        1.236,
+        1.236,
+        1.236
+      ],
+      "tension": 0.4714,
+      "moisture": 0.639,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.906
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0000",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -386666.67,
+        -360000.0,
+        -492.19
+      ],
+      "rotation": [
+        0.83,
+        6.34,
+        -137.05
+      ],
+      "scale": [
+        1.461,
+        1.461,
+        1.461
+      ],
+      "tension": 0.9224,
+      "moisture": 0.5848,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.1622,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.816
+    },
+    {
+      "id": "PT_Mother_FrillValley_0000",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        -386666.67,
+        -333333.33,
+        -1552.73
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        -139.24
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.6941,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.4274,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0001",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -386666.67,
+        -306666.67,
+        -2619.82
+      ],
+      "rotation": [
+        0.83,
+        6.0,
+        -141.58
+      ],
+      "scale": [
+        1.45,
+        1.45,
+        1.45
+      ],
+      "tension": 0.8997,
+      "moisture": 0.8576,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.6942,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.82
+    },
+    {
+      "id": "PT_Mother_FrillValley_0002",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_fog_volume",
+      "position": [
+        -386666.67,
+        -280000.0,
+        -3241.23
+      ],
+      "rotation": [
+        0.83,
+        -2.7,
+        -144.09
+      ],
+      "scale": [
+        1.16,
+        1.16,
+        1.16
+      ],
+      "tension": 0.3197,
+      "moisture": 1.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.8495,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.936
+    },
+    {
+      "id": "PT_Mother_FrillValley_0003",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        -386666.67,
+        -253333.33,
+        -3054.93
+      ],
+      "rotation": [
+        0.83,
+        2.16,
+        -146.77
+      ],
+      "scale": [
+        1.322,
+        1.322,
+        1.322
+      ],
+      "tension": 0.6439,
+      "moisture": 0.9887,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.8029,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.871
+    },
+    {
+      "id": "PT_Mother_FrillValley_0004",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_valley_depression",
+      "position": [
+        -386666.67,
+        -226666.67,
+        -1905.26
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        -149.62
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.7382,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.5155,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0001",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_head_silhouette",
+      "position": [
+        -386666.67,
+        -200000.0,
+        95.24
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        -152.65
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4881,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.0154,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0000",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -386666.67,
+        -173333.33,
+        2576.85
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        -155.85
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.1779,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.605,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0001",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -386666.67,
+        -146666.67,
+        4995.46
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        -159.23
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 1.2097,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0002",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -386666.67,
+        -120000.0,
+        6766.53
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        -162.76
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 1.6524,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0003",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -386666.67,
+        -93333.33,
+        7415.51
+      ],
+      "rotation": [
+        0.83,
+        2.25,
+        -166.43
+      ],
+      "scale": [
+        1.325,
+        1.325,
+        1.325
+      ],
+      "tension": 0.6503,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 1.8147,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.87
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0004",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -386666.67,
+        -66666.67,
+        6704.98
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        -170.22
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 1.637,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0005",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -386666.67,
+        -40000.0,
+        4704.48
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        -174.09
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 1.1369,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0006",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -386666.67,
+        -13333.33,
+        1783.74
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        -178.03
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.277,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.4067,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0005",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        -386666.67,
+        13333.33,
+        -1470.15
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        178.03
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.6838,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.4067,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0006",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_valley_depression",
+      "position": [
+        -386666.67,
+        40000.0,
+        -4390.9
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        174.09
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 1.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -1.1369,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0007",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        -386666.67,
+        66666.67,
+        -6391.39
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        170.22
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 1.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -1.637,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0008",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -386666.67,
+        93333.33,
+        -7101.93
+      ],
+      "rotation": [
+        0.83,
+        2.24,
+        166.43
+      ],
+      "scale": [
+        1.325,
+        1.325,
+        1.325
+      ],
+      "tension": 0.6494,
+      "moisture": 1.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -1.8147,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.87
+    },
+    {
+      "id": "PT_Mother_FrillValley_0009",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_fog_volume",
+      "position": [
+        -386666.67,
+        120000.0,
+        -6452.95
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        162.76
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 1.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -1.6524,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0010",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        -386666.67,
+        146666.67,
+        -4681.87
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        159.23
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 1.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -1.2097,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0011",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_valley_depression",
+      "position": [
+        -386666.67,
+        173333.33,
+        -2263.26
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        155.85
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.7829,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.605,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0002",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_head_silhouette",
+      "position": [
+        -386666.67,
+        200000.0,
+        218.35
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        152.65
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4727,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0154,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0007",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -386666.67,
+        226666.67,
+        2218.84
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        149.62
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.2226,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.5155,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0008",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -386666.67,
+        253333.33,
+        3368.51
+      ],
+      "rotation": [
+        0.83,
+        1.75,
+        146.77
+      ],
+      "scale": [
+        1.308,
+        1.308,
+        1.308
+      ],
+      "tension": 0.6166,
+      "moisture": 0.194,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.8029,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.877
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0001",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -386666.67,
+        280000.0,
+        3554.81
+      ],
+      "rotation": [
+        0.83,
+        -2.44,
+        144.09
+      ],
+      "scale": [
+        1.169,
+        1.169,
+        1.169
+      ],
+      "tension": 0.3372,
+      "moisture": 0.2545,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.8495,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.933
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0009",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -386666.67,
+        306666.67,
+        2933.41
+      ],
+      "rotation": [
+        0.83,
+        6.18,
+        141.58
+      ],
+      "scale": [
+        1.456,
+        1.456,
+        1.456
+      ],
+      "tension": 0.9118,
+      "moisture": 0.1598,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.6942,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.818
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0010",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -386666.67,
+        333333.33,
+        1866.31
+      ],
+      "rotation": [
+        0.83,
+        7.5,
+        139.24
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.2667,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.4274,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0002",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -386666.67,
+        360000.0,
+        805.77
+      ],
+      "rotation": [
+        0.83,
+        6.17,
+        137.05
+      ],
+      "scale": [
+        1.456,
+        1.456,
+        1.456
+      ],
+      "tension": 0.9112,
+      "moisture": 0.4259,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.1622,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.818
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0003",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_hair_cascade",
+      "position": [
+        -386666.67,
+        386666.67,
+        156.79
+      ],
+      "rotation": [
+        0.83,
+        -0.63,
+        135.0
+      ],
+      "scale": [
+        1.229,
+        1.229,
+        1.229
+      ],
+      "tension": 0.4583,
+      "moisture": 0.6429,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.908
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0003",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -360000.0,
+        -386666.67,
+        1112.51
+      ],
+      "rotation": [
+        2.4,
+        6.34,
+        -132.95
+      ],
+      "scale": [
+        1.461,
+        1.461,
+        1.461
+      ],
+      "tension": 0.9224,
+      "moisture": 0.3842,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.1622,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.816
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0004",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -360000.0,
+        -360000.0,
+        463.53
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4421,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0004",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -360000.0,
+        -333333.33,
+        -614.04
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -137.2
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5768,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.2694,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0012",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        -360000.0,
+        -306666.67,
+        -1742.99
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -139.57
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.7179,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.5516,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0013",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -360000.0,
+        -280000.0,
+        -2499.09
+      ],
+      "rotation": [
+        2.4,
+        3.36,
+        -142.13
+      ],
+      "scale": [
+        1.362,
+        1.362,
+        1.362
+      ],
+      "tension": 0.7238,
+      "moisture": 0.8953,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.7407,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.855
+    },
+    {
+      "id": "PT_Mother_FrillValley_0014",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_fog_volume",
+      "position": [
+        -360000.0,
+        -253333.33,
+        -2536.6
+      ],
+      "rotation": [
+        2.4,
+        -0.18,
+        -144.87
+      ],
+      "scale": [
+        1.244,
+        1.244,
+        1.244
+      ],
+      "tension": 0.4878,
+      "moisture": 0.9707,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.75,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.902
+    },
+    {
+      "id": "PT_Mother_FrillValley_0015",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        -360000.0,
+        -226666.67,
+        -1694.98
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -147.8
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.7119,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.5396,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0005",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -360000.0,
+        -200000.0,
+        -56.62
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -150.95
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5071,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.13,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0011",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -360000.0,
+        -173333.33,
+        2061.23
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -154.29
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.2423,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.3994,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0012",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -360000.0,
+        -146666.67,
+        4179.57
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -157.83
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.929,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0013",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -360000.0,
+        -120000.0,
+        5777.28
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -161.57
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 1.3284,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0014",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -360000.0,
+        -93333.33,
+        6426.26
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -165.47
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 1.4907,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0015",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -360000.0,
+        -66666.67,
+        5906.11
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -169.51
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 1.3606,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0016",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -360000.0,
+        -40000.0,
+        4267.75
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -173.66
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.9511,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0017",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -360000.0,
+        -13333.33,
+        1828.43
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        -177.88
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.2714,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.3412,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0006",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -360000.0,
+        13333.33,
+        -901.38
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        177.88
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.6127,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.3412,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0016",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        -360000.0,
+        40000.0,
+        -3340.7
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        173.66
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.9176,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.9511,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0017",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_valley_depression",
+      "position": [
+        -360000.0,
+        66666.67,
+        -4979.06
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        169.51
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 1.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -1.3606,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0018",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        -360000.0,
+        93333.33,
+        -5499.21
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        165.47
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 1.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -1.4907,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0019",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -360000.0,
+        120000.0,
+        -4850.23
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        161.57
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 1.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -1.3284,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0020",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_fog_volume",
+      "position": [
+        -360000.0,
+        146666.67,
+        -3252.52
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        157.83
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.9066,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.929,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0021",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        -360000.0,
+        173333.33,
+        -1134.18
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        154.29
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.6418,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.3994,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0007",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -360000.0,
+        200000.0,
+        983.67
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        150.95
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.377,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.13,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0018",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -360000.0,
+        226666.67,
+        2622.03
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        147.8
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.1722,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.5396,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0008",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -360000.0,
+        253333.33,
+        3463.65
+      ],
+      "rotation": [
+        2.4,
+        -0.48,
+        144.87
+      ],
+      "scale": [
+        1.234,
+        1.234,
+        1.234
+      ],
+      "tension": 0.4682,
+      "moisture": 0.2266,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.75,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.906
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0019",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -360000.0,
+        280000.0,
+        3426.14
+      ],
+      "rotation": [
+        2.4,
+        3.53,
+        142.13
+      ],
+      "scale": [
+        1.368,
+        1.368,
+        1.368
+      ],
+      "tension": 0.7355,
+      "moisture": 0.1511,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.7407,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.853
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0020",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -360000.0,
+        306666.67,
+        2670.04
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        139.57
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.1662,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.5516,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0021",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -360000.0,
+        333333.33,
+        1541.09
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        137.2
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3074,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.2694,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0005",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_head_silhouette",
+      "position": [
+        -360000.0,
+        360000.0,
+        463.53
+      ],
+      "rotation": [
+        2.4,
+        7.5,
+        135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4421,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0009",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -360000.0,
+        386666.67,
+        -185.45
+      ],
+      "rotation": [
+        2.4,
+        6.24,
+        132.95
+      ],
+      "scale": [
+        1.458,
+        1.458,
+        1.458
+      ],
+      "tension": 0.9158,
+      "moisture": 0.5484,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.1622,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.817
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0022",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -333333.33,
+        -386666.67,
+        2459.52
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -130.76
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.1926,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.4274,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0023",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -333333.33,
+        -360000.0,
+        1827.56
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -132.8
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.2716,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.2694,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0006",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -333333.33,
+        -333333.33,
+        750.0
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4062,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0010",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -333333.33,
+        -306666.67,
+        -452.06
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -137.39
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5565,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.3005,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0022",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        -333333.33,
+        -280000.0,
+        -1411.95
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -139.97
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.6765,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.5405,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0023",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -333333.33,
+        -253333.33,
+        -1820.1
+      ],
+      "rotation": [
+        3.7,
+        0.2,
+        -142.77
+      ],
+      "scale": [
+        1.257,
+        1.257,
+        1.257
+      ],
+      "tension": 0.5134,
+      "moisture": 0.8735,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.6425,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.897
+    },
+    {
+      "id": "PT_Mother_FrillValley_0024",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_fog_volume",
+      "position": [
+        -333333.33,
+        -226666.67,
+        -1512.05
+      ],
+      "rotation": [
+        3.7,
+        2.15,
+        -145.78
+      ],
+      "scale": [
+        1.322,
+        1.322,
+        1.322
+      ],
+      "tension": 0.6432,
+      "moisture": 0.796,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.5655,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.871
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0011",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -333333.33,
+        -200000.0,
+        -517.95
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -149.04
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5647,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.317,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0007",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -333333.33,
+        -173333.33,
+        940.39
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -152.53
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3825,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0476,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0024",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -333333.33,
+        -146666.67,
+        2504.58
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -156.25
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.1869,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.4386,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0025",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -333333.33,
+        -120000.0,
+        3772.53
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -160.2
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0284,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.7556,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0026",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -333333.33,
+        -93333.33,
+        4404.49
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -164.36
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.9136,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0027",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_silk_vine",
+      "position": [
+        -333333.33,
+        -66666.67,
+        4214.1
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -168.69
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.866,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0028",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -333333.33,
+        -40000.0,
+        3220.01
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -173.16
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.0975,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.6175,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_WeaveRidge_0029",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -333333.33,
+        -13333.33,
+        1644.0
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        -177.71
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.2945,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.2235,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0012",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -333333.33,
+        13333.33,
+        -144.0
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        177.71
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.518,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.2235,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0025",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_fog_volume",
+      "position": [
+        -333333.33,
+        40000.0,
+        -1720.01
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        173.16
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.715,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.6175,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0026",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        -333333.33,
+        66666.67,
+        -2714.1
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        168.69
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.8393,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.866,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0027",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_valley_depression",
+      "position": [
+        -333333.33,
+        93333.33,
+        -2904.49
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        164.36
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.8631,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.9136,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0028",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        -333333.33,
+        120000.0,
+        -2272.53
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        160.2
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.7841,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.7556,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_FrillValley_0029",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -333333.33,
+        146666.67,
+        -1004.58
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        156.25
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.6256,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.4386,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0008",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_hair_cascade",
+      "position": [
+        -333333.33,
+        173333.33,
+        559.61
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        152.53
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.43,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.0476,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0013",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -333333.33,
+        253333.33,
+        3320.1
+      ],
+      "rotation": [
+        3.7,
+        0.24,
+        142.77
+      ],
+      "scale": [
+        1.258,
+        1.258,
+        1.258
+      ],
+      "tension": 0.5157,
+      "moisture": 0.2303,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.6425,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.897
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0009",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -333333.33,
+        333333.33,
+        750.0
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4062,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0014",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -333333.33,
+        360000.0,
+        -327.56
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        132.8
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5409,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.2694,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0015",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -333333.33,
+        386666.67,
+        -959.52
+      ],
+      "rotation": [
+        3.7,
+        7.5,
+        130.76
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.6199,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.4274,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0010",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -306666.67,
+        -306666.67,
+        1003.7
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        -135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3745,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0016",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -306666.67,
+        -280000.0,
+        -118.43
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        -137.6
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5148,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.2805,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0017",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -306666.67,
+        -253333.33,
+        -912.34
+      ],
+      "rotation": [
+        4.6,
+        5.87,
+        -140.44
+      ],
+      "scale": [
+        1.446,
+        1.446,
+        1.446
+      ],
+      "tension": 0.8912,
+      "moisture": 0.6467,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.479,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.822
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0018",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -306666.67,
+        -173333.33,
+        -388.75
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        -150.52
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5486,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.3481,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0019",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -306666.67,
+        -146666.67,
+        451.17
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        -154.44
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4436,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.1381,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0011",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_head_silhouette",
+      "position": [
+        -306666.67,
+        -120000.0,
+        1265.24
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        -158.63
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3418,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0654,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0012",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -306666.67,
+        -13333.33,
+        1311.75
+      ],
+      "rotation": [
+        4.6,
+        4.48,
+        -177.51
+      ],
+      "scale": [
+        1.399,
+        1.399,
+        1.399
+      ],
+      "tension": 0.7989,
+      "moisture": 0.3964,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.077,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.84
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0013",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_head_silhouette",
+      "position": [
+        -306666.67,
+        13333.33,
+        695.64
+      ],
+      "rotation": [
+        4.6,
+        4.45,
+        177.51
+      ],
+      "scale": [
+        1.398,
+        1.398,
+        1.398
+      ],
+      "tension": 0.7967,
+      "moisture": 0.474,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.077,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.841
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0020",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -306666.67,
+        40000.0,
+        189.62
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        172.57
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4763,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.2035,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0021",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -306666.67,
+        66666.67,
+        -18.34
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        167.74
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5023,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.2555,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0022",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -306666.67,
+        93333.33,
+        172.05
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        163.07
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4785,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.2079,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0014",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -306666.67,
+        120000.0,
+        742.15
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        158.63
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4072,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.0654,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0023",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -306666.67,
+        226666.67,
+        3227.79
+      ],
+      "rotation": [
+        4.6,
+        -5.03,
+        143.53
+      ],
+      "scale": [
+        1.082,
+        1.082,
+        1.082
+      ],
+      "tension": 0.1644,
+      "moisture": 0.3472,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.556,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.967
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0015",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_curved",
+      "position": [
+        -306666.67,
+        306666.67,
+        1003.7
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3745,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0024",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -306666.67,
+        333333.33,
+        -198.36
+      ],
+      "rotation": [
+        4.6,
+        7.5,
+        132.61
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5248,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.3005,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0025",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -280000.0,
+        -386666.67,
+        4611.55
+      ],
+      "rotation": [
+        4.99,
+        -2.7,
+        -125.91
+      ],
+      "scale": [
+        1.16,
+        1.16,
+        1.16
+      ],
+      "tension": 0.3197,
+      "moisture": 0.1276,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.8495,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.936
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0016",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -280000.0,
+        -280000.0,
+        1213.53
+      ],
+      "rotation": [
+        4.99,
+        7.5,
+        -135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3483,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0026",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -280000.0,
+        -253333.33,
+        166.65
+      ],
+      "rotation": [
+        4.99,
+        7.5,
+        -137.86
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.4792,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.2617,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0027",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -280000.0,
+        -226666.67,
+        -674.97
+      ],
+      "rotation": [
+        4.99,
+        4.9,
+        -141.01
+      ],
+      "scale": [
+        1.413,
+        1.413,
+        1.413
+      ],
+      "tension": 0.8266,
+      "moisture": 0.6364,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.4721,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.835
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0028",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -280000.0,
+        -93333.33,
+        -702.21
+      ],
+      "rotation": [
+        4.99,
+        7.5,
+        -161.57
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5878,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.4789,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_LaceCanopy_0029",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -280000.0,
+        -66666.67,
+        -182.06
+      ],
+      "rotation": [
+        4.99,
+        7.5,
+        -166.61
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.5228,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.3489,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0017",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -280000.0,
+        -13333.33,
+        933.01
+      ],
+      "rotation": [
+        4.99,
+        3.56,
+        -177.27
+      ],
+      "scale": [
+        1.369,
+        1.369,
+        1.369
+      ],
+      "tension": 0.7375,
+      "moisture": 0.4621,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.0701,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.853
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0018",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -280000.0,
+        13333.33,
+        1494.04
+      ],
+      "rotation": [
+        4.99,
+        3.56,
+        177.27
+      ],
+      "scale": [
+        1.369,
+        1.369,
+        1.369
+      ],
+      "tension": 0.7375,
+      "moisture": 0.392,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0701,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.852
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0019",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -280000.0,
+        280000.0,
+        1213.53
+      ],
+      "rotation": [
+        4.99,
+        7.5,
+        135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3483,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0020",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -253333.33,
+        -253333.33,
+        1370.32
+      ],
+      "rotation": [
+        4.83,
+        7.5,
+        -135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3287,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0021",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_hair_cascade",
+      "position": [
+        -253333.33,
+        253333.33,
+        1370.32
+      ],
+      "rotation": [
+        4.83,
+        7.5,
+        135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3287,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0022",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -226666.67,
+        -226666.67,
+        1467.22
+      ],
+      "rotation": [
+        4.14,
+        7.5,
+        -135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3166,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0023",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_head_silhouette",
+      "position": [
+        -226666.67,
+        226666.67,
+        1467.22
+      ],
+      "rotation": [
+        4.14,
+        7.5,
+        135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3166,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0024",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_curved",
+      "position": [
+        -200000.0,
+        -386666.67,
+        1561.55
+      ],
+      "rotation": [
+        2.99,
+        7.5,
+        -117.35
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3048,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0154,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0025",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -200000.0,
+        -200000.0,
+        1500.0
+      ],
+      "rotation": [
+        2.99,
+        7.5,
+        -135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3125,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0026",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -200000.0,
+        200000.0,
+        1500.0
+      ],
+      "rotation": [
+        2.99,
+        7.5,
+        135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3125,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0027",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_head_silhouette",
+      "position": [
+        -200000.0,
+        386666.67,
+        1438.45
+      ],
+      "rotation": [
+        2.99,
+        7.5,
+        117.35
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3202,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.0154,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0028",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_hair_cascade",
+      "position": [
+        -173333.33,
+        -333333.33,
+        1276.83
+      ],
+      "rotation": [
+        1.52,
+        7.5,
+        -117.47
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3404,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": -0.0476,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    },
+    {
+      "id": "PT_Mother_ResonantSeamWay_0029",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -173333.33,
+        -173333.33,
+        1467.22
+      ],
+      "rotation": [
+        1.52,
+        7.5,
+        -135.0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "tension": 1.0,
+      "moisture": 0.3166,
+      "resonance_mode": "3_5_Harmonic",
+      "chladni_val": 0.0,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet",
+      "density": 0.8
+    }
+  ],
+  "world_field_channels": [
+    "WorldField.Tension",
+    "WorldField.Resonance",
+    "WorldField.Moisture",
+    "WorldField.FilterFlow"
+  ],
+  "narrative_challenge_hook": {
+    "challenge_id": "challenge.mother_heart_gate",
+    "reward_id": "reward.wardrobe.mother_velvet_mantle",
+    "flag_id": "quest.p1_faraway_mother.heart_unlocked",
+    "host_class": "APCGHeroMusicGraphHost"
+  }
+}

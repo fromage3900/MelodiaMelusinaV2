@@ -1,0 +1,40 @@
+{
+  "schema": "melodia.vdm_manifest.v1",
+  "seed": 20260829,
+  "resolution": 4096,
+  "variants": [
+    {
+      "variant": "A",
+      "seed": 20260829,
+      "res": 4096,
+      "out": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_A.exr",
+      "dry_run": true,
+      "template": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\vdm_baker_A_template.py"
+    },
+    {
+      "variant": "B",
+      "seed": 20260829,
+      "res": 4096,
+      "out": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_B.exr",
+      "dry_run": true,
+      "template": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\vdm_baker_B_template.py"
+    },
+    {
+      "variant": "C",
+      "seed": 20260829,
+      "res": 4096,
+      "out": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_C.exr",
+      "dry_run": true,
+      "template": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\vdm_baker_C_template.py"
+    }
+  ],
+  "ue_path": "/Game/EnvSandbox/Textures/FarawayMother/VDM/",
+  "material": "M_Master_FarawayMother_Fabric (WPO)",
+  "lod_fade": {
+    "LOD0": 1.0,
+    "LOD1": 0.75,
+    "LOD2": 0.3,
+    "LOD3": 0.0
+  },
+  "hash": "915b785bd9f68b5d"
+}
