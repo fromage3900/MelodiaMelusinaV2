@@ -245,6 +245,11 @@ Tools/*
 Tools/PCG/**/__pycache__/
 Tools/PCG/**/*.pyc
 !Tools/test_faraway_mother_pcg.py
+!Tools/LookDev/
+!Tools/LookDev/**
+Tools/LookDev/**/__pycache__/
+Tools/LookDev/**/*.pyc
+!Tools/test_optical_lod_lookdev.py
 !Tools/bp_live_path.py
 !Tools/bp_sweep.py
 !Tools/project_state.py

@@ -1,0 +1,519 @@
+{
+  "schema": "melodia.optical_lod_pipeline.v1",
+  "version": "1.0.0",
+  "ok": true,
+  "manifest_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\specs\\lookdev\\optical_lod_manifest.v1.json",
+  "total_material_instances": 12,
+  "instances": [
+    {
+      "instance_name": "MI_FarawayMother_CelestialSilk_LOD0",
+      "asset_name": "FarawayMother_CelestialSilk",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "tier_name": "LOD0",
+      "tier_index": 0,
+      "distance_min_m": 0.0,
+      "distance_max_m": 15.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 0.0,
+        "LOD_Distance_Min": 0.0,
+        "LOD_Distance_Max": 15.0,
+        "POM_StepCount": 32.0,
+        "Toksvig_AntiAliasing_Weight": 0.0,
+        "Grazing_Rim_Boost": 1.0,
+        "WPO_Resonance_Scale": 1.0,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          0.0,
+          15.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_FarawayMother_CelestialSilk_LOD1",
+      "asset_name": "FarawayMother_CelestialSilk",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "tier_name": "LOD1",
+      "tier_index": 1,
+      "distance_min_m": 15.0,
+      "distance_max_m": 50.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 1.0,
+        "LOD_Distance_Min": 15.0,
+        "LOD_Distance_Max": 50.0,
+        "POM_StepCount": 16.0,
+        "Toksvig_AntiAliasing_Weight": 0.35,
+        "Grazing_Rim_Boost": 1.15,
+        "WPO_Resonance_Scale": 0.75,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          15.0,
+          50.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_FarawayMother_CelestialSilk_LOD2",
+      "asset_name": "FarawayMother_CelestialSilk",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "tier_name": "LOD2",
+      "tier_index": 2,
+      "distance_min_m": 50.0,
+      "distance_max_m": 200.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 2.0,
+        "LOD_Distance_Min": 50.0,
+        "LOD_Distance_Max": 200.0,
+        "POM_StepCount": 0.0,
+        "Toksvig_AntiAliasing_Weight": 0.75,
+        "Grazing_Rim_Boost": 1.4,
+        "WPO_Resonance_Scale": 0.3,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          50.0,
+          200.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_FarawayMother_CelestialSilk_LOD3",
+      "asset_name": "FarawayMother_CelestialSilk",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "tier_name": "LOD3",
+      "tier_index": 3,
+      "distance_min_m": 200.0,
+      "distance_max_m": 5000.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 3.0,
+        "LOD_Distance_Min": 200.0,
+        "LOD_Distance_Max": 5000.0,
+        "POM_StepCount": 0.0,
+        "Toksvig_AntiAliasing_Weight": 1.0,
+        "Grazing_Rim_Boost": 1.8,
+        "WPO_Resonance_Scale": 0.0,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          200.0,
+          5000.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_Melusina_Shorewake_Gown_LOD0",
+      "asset_name": "Melusina_Shorewake_Gown",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "tier_name": "LOD0",
+      "tier_index": 0,
+      "distance_min_m": 0.0,
+      "distance_max_m": 15.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 0.0,
+        "LOD_Distance_Min": 0.0,
+        "LOD_Distance_Max": 15.0,
+        "POM_StepCount": 32.0,
+        "Toksvig_AntiAliasing_Weight": 0.0,
+        "Grazing_Rim_Boost": 1.0,
+        "WPO_Resonance_Scale": 1.0,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          0.0,
+          15.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_Melusina_Shorewake_Gown_LOD1",
+      "asset_name": "Melusina_Shorewake_Gown",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "tier_name": "LOD1",
+      "tier_index": 1,
+      "distance_min_m": 15.0,
+      "distance_max_m": 50.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 1.0,
+        "LOD_Distance_Min": 15.0,
+        "LOD_Distance_Max": 50.0,
+        "POM_StepCount": 16.0,
+        "Toksvig_AntiAliasing_Weight": 0.35,
+        "Grazing_Rim_Boost": 1.15,
+        "WPO_Resonance_Scale": 0.75,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          15.0,
+          50.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_Melusina_Shorewake_Gown_LOD2",
+      "asset_name": "Melusina_Shorewake_Gown",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "tier_name": "LOD2",
+      "tier_index": 2,
+      "distance_min_m": 50.0,
+      "distance_max_m": 200.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 2.0,
+        "LOD_Distance_Min": 50.0,
+        "LOD_Distance_Max": 200.0,
+        "POM_StepCount": 0.0,
+        "Toksvig_AntiAliasing_Weight": 0.75,
+        "Grazing_Rim_Boost": 1.4,
+        "WPO_Resonance_Scale": 0.3,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          50.0,
+          200.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_Melusina_Shorewake_Gown_LOD3",
+      "asset_name": "Melusina_Shorewake_Gown",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "tier_name": "LOD3",
+      "tier_index": 3,
+      "distance_min_m": 200.0,
+      "distance_max_m": 5000.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 3.0,
+        "LOD_Distance_Min": 200.0,
+        "LOD_Distance_Max": 5000.0,
+        "POM_StepCount": 0.0,
+        "Toksvig_AntiAliasing_Weight": 1.0,
+        "Grazing_Rim_Boost": 1.8,
+        "WPO_Resonance_Scale": 0.0,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          200.0,
+          5000.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_Starskiff_Hull_Celestial_LOD0",
+      "asset_name": "Starskiff_Hull_Celestial",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "tier_name": "LOD0",
+      "tier_index": 0,
+      "distance_min_m": 0.0,
+      "distance_max_m": 15.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 0.0,
+        "LOD_Distance_Min": 0.0,
+        "LOD_Distance_Max": 15.0,
+        "POM_StepCount": 32.0,
+        "Toksvig_AntiAliasing_Weight": 0.0,
+        "Grazing_Rim_Boost": 1.0,
+        "WPO_Resonance_Scale": 1.0,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          0.0,
+          15.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_Starskiff_Hull_Celestial_LOD1",
+      "asset_name": "Starskiff_Hull_Celestial",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "tier_name": "LOD1",
+      "tier_index": 1,
+      "distance_min_m": 15.0,
+      "distance_max_m": 50.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 1.0,
+        "LOD_Distance_Min": 15.0,
+        "LOD_Distance_Max": 50.0,
+        "POM_StepCount": 16.0,
+        "Toksvig_AntiAliasing_Weight": 0.35,
+        "Grazing_Rim_Boost": 1.15,
+        "WPO_Resonance_Scale": 0.75,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          15.0,
+          50.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_Starskiff_Hull_Celestial_LOD2",
+      "asset_name": "Starskiff_Hull_Celestial",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "tier_name": "LOD2",
+      "tier_index": 2,
+      "distance_min_m": 50.0,
+      "distance_max_m": 200.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 2.0,
+        "LOD_Distance_Min": 50.0,
+        "LOD_Distance_Max": 200.0,
+        "POM_StepCount": 0.0,
+        "Toksvig_AntiAliasing_Weight": 0.75,
+        "Grazing_Rim_Boost": 1.4,
+        "WPO_Resonance_Scale": 0.3,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          50.0,
+          200.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "instance_name": "MI_Starskiff_Hull_Celestial_LOD3",
+      "asset_name": "Starskiff_Hull_Celestial",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "tier_name": "LOD3",
+      "tier_index": 3,
+      "distance_min_m": 200.0,
+      "distance_max_m": 5000.0,
+      "scalar_parameters": {
+        "LOD_Tier_Index": 3.0,
+        "LOD_Distance_Min": 200.0,
+        "LOD_Distance_Max": 5000.0,
+        "POM_StepCount": 0.0,
+        "Toksvig_AntiAliasing_Weight": 1.0,
+        "Grazing_Rim_Boost": 1.8,
+        "WPO_Resonance_Scale": 0.0,
+        "Dither_Crossfade_Window": 5.0
+      },
+      "texture_parameters": {
+        "BaseColorMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_BaseColor.png",
+        "NormalMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_Normal.png",
+        "ORMMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_ORM.png",
+        "HeightMap": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_Height.png",
+        "DitherPattern": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+        "BlueNoiseStipple": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+        "IridescenceLUT": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+      },
+      "vector_parameters": {
+        "LOD_Distance_Bounds": [
+          200.0,
+          5000.0,
+          5.0,
+          0.0
+        ],
+        "Grazing_Rim_Tint": [
+          0.95,
+          0.98,
+          1.0,
+          1.0
+        ]
+      }
+    }
+  ],
+  "dither_utilities": {
+    "bayer_dither_8x8": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+    "blue_noise_stipple_64x64": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+    "iridescence_thin_film_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+  },
+  "errors": []
+}
