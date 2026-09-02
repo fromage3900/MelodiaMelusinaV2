@@ -1,0 +1,226 @@
+{
+  "schema": "melodia.klein_veil_manifest.v1",
+  "asset_choice": "Klein Veil \u2014 3D Chladni Klein bottle-veil (chosen over Gyroid Heart for non-orientable topology + SDF lineage)",
+  "why_klein_veil": "Klein bottle is already present as SDF M_SDF_Klein_Bottle (61-material math-art lineage); veil extends it to Faraway Mother nacre fabric + CelestialSilk constellation. Gyroid Heart would duplicate LaceCanopy heart_grace; Klein Veil owns the nodal seam.",
+  "seed": 20260829,
+  "resolution": 1024,
+  "ue_asset": "/Game/Melodia/ResonantWorld/Hero/SM_KleinVeil_AudioReactive",
+  "ue_material_instance": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_KleinVeil_CymaticReactive",
+  "ue_textures_root": "/Game/EnvSandbox/Textures/Copernicus/KleinVeil",
+  "ue_textures": [
+    "/Game/EnvSandbox/Textures/Copernicus/KleinVeil/T_KleinVeil_BaseColor",
+    "/Game/EnvSandbox/Textures/Copernicus/KleinVeil/T_KleinVeil_Normal",
+    "/Game/EnvSandbox/Textures/Copernicus/KleinVeil/T_KleinVeil_ORM",
+    "/Game/EnvSandbox/Textures/Copernicus/KleinVeil/T_KleinVeil_Height",
+    "/Game/EnvSandbox/Textures/Copernicus/KleinVeil/T_KleinVeil_Roughness",
+    "/Game/EnvSandbox/Textures/Copernicus/KleinVeil/T_KleinVeil_Metallic",
+    "/Game/EnvSandbox/Textures/Copernicus/KleinVeil/T_KleinVeil_Emissive",
+    "/Game/EnvSandbox/Textures/Copernicus/KleinVeil/T_KleinVeil_Iridescence",
+    "/Game/EnvSandbox/Textures/Copernicus/KleinVeil/T_KleinVeil_Opacity"
+  ],
+  "ue_vdm": "/Game/EnvSandbox/Textures/FarawayMother/VDM/T_FarawayMother_Fabric_VDM_KleinVeil",
+  "ue_vdm_proxy": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_KleinVeil.png",
+  "ue_vdm_float": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_KleinVeil.npy",
+  "vdm_encoding": "RGBA32F proxy: R=X lateral, G=Y lateral, B=Z lift, A=mask (0.5 = zero lateral; B 0..1 lift). Tangent->world in MF_FabricMountainWPO: offset = VDM.r*Scale.x*Tangent + VDM.g*Scale.y*Bitangent + VDM.b*Scale.z*Normal; masked * LOD fade.",
+  "vdm_material_slot": "M_Master_FarawayMother_Fabric / M_Master_Toon_Universal WPO (requires tessellation/Nanite WPO, not Landscape)",
+  "cymatic": {
+    "formula": "Z(u,v)=cos(n\u00b7\u03c0\u00b7u)cos(m\u00b7\u03c0\u00b7v)-cos(m\u00b7\u03c0\u00b7u)cos(n\u00b7\u03c0\u00b7v)",
+    "modes": [
+      [
+        4,
+        6
+      ],
+      [
+        8,
+        12
+      ],
+      [
+        14,
+        18
+      ],
+      [
+        24,
+        18
+      ]
+    ],
+    "weights": [
+      1.0,
+      0.7,
+      0.5,
+      0.3
+    ],
+    "driven_by": "MPC_Melodia_Palette Bass/Mid/BeatPulse via UMelodiaCymaticsSubsystem.SampleCymaticAmplitude (read-only)"
+  },
+  "brass": {
+    "types": [
+      "brass_filigree_spiral (seam wrap, pitch=turns)",
+      "brass_bracing_hoop (seam bracing)",
+      "brass_aged_patina (verdigris bloom on seam)"
+    ],
+    "seam_width_m": 0.18,
+    "filigree_pitch": 0.12,
+    "coverage": 0.88
+  },
+  "surreal_fabric": {
+    "base": "FarawayNacreVeil (nacre 240,245,255) + CelestialSilk constellation",
+    "weave_freq": 14,
+    "sheen": "copernicus_fabric_sheen.py pile_freq=4 tension-driven",
+    "iridescence": "thin-film LUT T_LOD_Iridescence_ThinFilm_LUT (Fresnel) + WPO micro * H_Cymatic"
+  },
+  "lod": {
+    "LOD0": {
+      "tier": "LOD0",
+      "distance_range_m": [
+        0,
+        15
+      ],
+      "POM_StepCount": 32,
+      "Toksvig_AntiAliasing_Weight": 0.0,
+      "WPO_Resonance_Scale": 1.0,
+      "Grazing_Rim_Boost": 1.0,
+      "IridescenceLUT": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_Iridescence_ThinFilm_LUT",
+      "DitherPattern": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BayerDither_8x8",
+      "BlueNoiseStipple": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BlueNoise_64x64"
+    },
+    "LOD1": {
+      "tier": "LOD1",
+      "distance_range_m": [
+        15,
+        50
+      ],
+      "POM_StepCount": 16,
+      "Toksvig_AntiAliasing_Weight": 0.35,
+      "WPO_Resonance_Scale": 0.75,
+      "Grazing_Rim_Boost": 0.85,
+      "IridescenceLUT": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_Iridescence_ThinFilm_LUT",
+      "DitherPattern": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BayerDither_8x8",
+      "BlueNoiseStipple": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BlueNoise_64x64"
+    },
+    "LOD2": {
+      "tier": "LOD2",
+      "distance_range_m": [
+        50,
+        150
+      ],
+      "POM_StepCount": 4,
+      "Toksvig_AntiAliasing_Weight": 0.7,
+      "WPO_Resonance_Scale": 0.3,
+      "Grazing_Rim_Boost": 0.45,
+      "IridescenceLUT": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_Iridescence_ThinFilm_LUT",
+      "DitherPattern": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BayerDither_8x8",
+      "BlueNoiseStipple": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BlueNoise_64x64"
+    },
+    "LOD3": {
+      "tier": "LOD3",
+      "distance_range_m": [
+        150,
+        500
+      ],
+      "POM_StepCount": 0,
+      "Toksvig_AntiAliasing_Weight": 1.0,
+      "WPO_Resonance_Scale": 0.0,
+      "Grazing_Rim_Boost": 0.15,
+      "IridescenceLUT": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_Iridescence_ThinFilm_LUT",
+      "DitherPattern": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BayerDither_8x8",
+      "BlueNoiseStipple": "/Game/EnvSandbox/Textures/Copernicus/Shared/T_LOD_BlueNoise_64x64"
+    }
+  },
+  "mpc_wiring": {
+    "single_writer": "UMelodiaAudioReactivePresentationSubsystem (sole writer of MPC_Melodia_Palette BeatPulse/BeatPhase/BeatIntensity/Bass/Mid/Treble + NPC_Melodia_Palette) \u2014 never add second writer",
+    "consumer": "Klein Veil MI reads MPC only; cymatics via UMelodiaCymaticsSubsystem (IsReadOnlyByContract=true, SampleCymaticAmplitude U,V + GetCymaticMode/GetBeatPulse/GetBassIntensity)",
+    "bindings": [
+      "MPC.BeatPulse (0..1, cos^2(BeatPhase\u00b7\u03c0)) -> MI EmissiveMapIntensity + IridescenceIntensity + WPO_Resonance_Scale pulse (1.0 + BeatPulse*0.6)",
+      "MPC.BassIntensity (Bass) -> MI foldFreq baseFreq + Bass*2.0 + VDM Z scale (pleat depth)",
+      "MPC.Mid -> MI panning DreamFlowSpeed += Mid*0.4 (silk flow along seam)",
+      "NPC.BeatPulse (Niagara twin) -> NS_KleinVeil_Sparkle spawn rate",
+      "Oceanology graft: M_Water_Oceanology_Melodia Biolum_Intensity 1+BeatPulse*1.5 already present \u2014 valley fog/haze shares same beat"
+    ],
+    "guardrails": "No Content/_PROJECT writes except via loader contract; no new MPC; reuse WorldField.Tension/Resonance naming; editor single :9316, batch save unattended:true"
+  },
+  "placement": {
+    "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+    "biome": "FrillValley primary (T<0.40, Z~-1000 relative) + ResonantSeamWay echo (|Chladni|<0.12)",
+    "height_aware": true,
+    "method": "LineTraceSingle Visibility 25000->-10000 complex, fallback synthetic_z; OffsetAboveSurface 35uu; instances only (ISMC/PCG, never unique StaticMeshActor that breaks ISM batching)",
+    "placements": [
+      {
+        "id": "KleinVeil_ValleyHeart",
+        "xy": [
+          -900,
+          6200
+        ],
+        "variant": "KleinVeil",
+        "scale": 1.0,
+        "wpo_scale": [
+          0.35,
+          0.35,
+          0.6
+        ],
+        "yaw": 18,
+        "biome": "FrillValley",
+        "tension": 0.32,
+        "note": "Primary veil \u2014 Klein seam faces Heart Gate, height-aware raycast",
+        "landscape_z_synthetic": 12225.0,
+        "final_z": 12260.0,
+        "height_aware": {
+          "ray_start_z": 25000,
+          "ray_end_z": -10000,
+          "channel": "Visibility",
+          "complex": true,
+          "synthetic_fallback": 12225.0,
+          "offset_above_surface": 35
+        }
+      },
+      {
+        "id": "KleinVeil_RidgeEcho",
+        "xy": [
+          1200,
+          5500
+        ],
+        "variant": "KleinVeil_Echo",
+        "scale": 0.55,
+        "wpo_scale": [
+          0.18,
+          0.18,
+          0.3
+        ],
+        "yaw": 210,
+        "biome": "ResonantSeamWay",
+        "tension": 0.12,
+        "note": "Echo instance on cymatic nodal corridor |Chladni|<0.12",
+        "landscape_z_synthetic": 12462.0,
+        "final_z": 12497.0,
+        "height_aware": {
+          "ray_start_z": 25000,
+          "ray_end_z": -10000,
+          "channel": "Visibility",
+          "complex": true,
+          "synthetic_fallback": 12462.0,
+          "offset_above_surface": 35
+        }
+      }
+    ],
+    "instances_only": true,
+    "ism_guidance": "Spawn via PCG Graph PCG_Faraway_FabricRidge or EditorLevelLibrary.spawn_actor_from_object with HierarchicalISM; material is MI_KleinVeil_CymaticReactive instanced, not unique"
+  },
+  "files": {
+    "pbr": [
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\klein_veil\\T_KleinVeil_BaseColor.png",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\klein_veil\\T_KleinVeil_Normal.png",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\klein_veil\\T_KleinVeil_Roughness.png",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\klein_veil\\T_KleinVeil_Metallic.png",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\klein_veil\\T_KleinVeil_Height.png",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\klein_veil\\T_KleinVeil_ORM.png",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\klein_veil\\T_KleinVeil_Emissive.png",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\klein_veil\\T_KleinVeil_Iridescence.png",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\klein_veil\\T_KleinVeil_Opacity.png"
+    ],
+    "vdm": [
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_KleinVeil.png",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_KleinVeil.npy"
+    ]
+  },
+  "hash": "23498d34fae89e2f",
+  "offline": true,
+  "note": "Offline proof: PBR 9-map + VDM 32f proxy + LOD manifests + placement JSON. In-editor import via Content/Python/klein_veil_import.py (idempotent, creates MI from M_Master_Toon_Universal, wires MPC params, spawns ISM height-aware)."
+}

@@ -283,6 +283,23 @@ VARIANTS = {
         rough_fleece=0.85, rough_lullaby=0.45, rough_moss=0.65,
         glow_intensity=0.40, fleece_freq=9, chladni_modes=[(9, 13), (15, 17), (21, 19)],
     ),
+    # === Reusable audio-reactive HERO GEM (2026-09-02) ===
+    # Infinity Nikki jewellery recipe: opaque, Cubemap-equivalent refraction/reflection +
+    # subsurface (3S) + highlights -> implemented here as low-rough jewel facets, molten
+    # gold veins, nacre iridescence, and nodal-line emissive (= the "singing" 3S glow).
+    # chladni_modes are ordered bass->treble following the frequency->mode coupling
+    # m=round(sqrt(f/220)*3), n=round(sqrt(f/220)*5) — lower modes = bass pulse, higher
+    # nodes = melodic/top decay. Consumed read-only by the MPC -> NeuralHero seam.
+    "MelodiaHeroGem": dict(
+        crystal_deep=(42, 60, 92), matrix=(28, 30, 42),
+        crystal=(185, 220, 255), crystal_hi=(242, 250, 255),
+        gold=(255, 212, 112), gold_shadow=(170, 132, 62),
+        nacre=(200, 226, 255), nacre_pink=(255, 214, 232),
+        glcut=(140, 215, 255), glow=(185, 214, 255),
+        rough_matrix=0.44, rough_facet=0.05, rough_gold=0.22, rough_nacre=0.10,
+        facet_count=14, gem_sides=6, gold_scale=0.55, glow_intensity=0.9,
+        chladni_modes=[(7, 9), (12, 11), (10, 16), (18, 14), (9, 15)],  # bass->treble
+    ),
 }
 
 # === Math helpers ===
@@ -1505,6 +1522,61 @@ def build_royal_velvet_brocade(h, w, frame, total_frames):
     return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
 
 
+def build_melodia_hero_gem(h, w, frame, total_frames):
+    """Reusable audio-reactive HERO GEM — Infinity Nikki jewellery recipe over Chladni.
+
+    Low-roughness jewel facets + molten-gold veins + nacre iridescence + nodal-line
+    emissive (the 'singing' 3S glow). chladni_modes run bass->treble (frequency->mode
+    coupling), so an animated frame sweep (standing-wave phase crawl) reads like the
+    audio pulse climbing the gem. Read-only, 9-map copernicus contract.
+    """
+    p = VARIANTS["MelodiaHeroGem"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.30 + i * 0.20) + i * 1.15 for i in range(len(modes))],
+                          weights=[1.0, 0.7, 0.5, 0.4, 0.3][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0            # thin singing nodal lines
+    core = smoothstep(0.80, 0.97, nodal)             # brightest filaments
+    warp = warped_fbm(h, w, 24, 4, 0.25, SEED + 600)
+
+    # Scattered hexagonal jewel facets across a loose grid
+    facet_mask = np.zeros((h, w), np.float32)
+    fr = min(h, w) // 16
+    spacing = fr * 2.4
+    for gy in range(int(h / spacing) + 1):
+        for gx in range(int(w / spacing) + 1):
+            cx = gx * spacing + (gy % 2) * spacing * 0.5
+            cy = gy * spacing
+            facet_mask += crystal_shape(h, w, cx, cy, fr, p["gem_sides"],
+                                        phase * 0.2 + (gx + gy) * 0.3)
+    facet_mask = np.clip(facet_mask, 0, 1)
+    facet_detail = tileable_value_noise(h, w, 12, SEED + 601) * facet_mask
+
+    # Molten gold veins riding the low-frequency Chladni
+    gold = smoothstep(0.52, 0.78, warp) * (1 - smoothstep(0.78, 0.95, warp))
+    gold = gold * (0.6 + cym * 0.4)
+
+    height = core * 0.55 + facet_mask * 0.65 + gold * 0.30 + facet_detail * 0.12 + cym * 0.10
+    base = mix(col(p["crystal_deep"]), col(p["crystal"]), facet_mask * 0.7 + nodal * 0.15)
+    base = mix(base, col(p["matrix"]), (1 - facet_mask) * warp * 0.4)
+    base = mix(base, col(p["crystal_hi"]), smoothstep(0.5, 0.8, facet_detail) * facet_mask)
+    base = mix(base, col(p["gold"]), gold * 0.9)
+    base = mix(base, col(p["gold_shadow"]), gold * cym * 0.3)
+    base = mix(base, col(p["nacre_pink"]), nodal * facet_mask * 0.35)
+    rough = mix(p["rough_matrix"], p["rough_facet"], facet_mask)
+    rough = mix(rough, p["rough_gold"], gold)
+    rough = mix(rough, p["rough_nacre"], nodal * 0.4)
+    metallic = gold * 0.9 + facet_mask * 0.15
+    emissive = mask_color(core, col(p["glcut"]) * p["glow_intensity"])
+    emissive += mask_color(facet_mask * nodal * 0.4, col(p["glow"]) * 0.45)
+    emissive = np.clip(emissive, 0, 1)
+    # Iridescence (mother-of-pearl + facets + gold) for the Nikki jewellery highlight
+    iri = nodal * 0.9 + facet_mask * 0.5 + gold * 0.3
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri,
+                     np.ones((h, w), np.float32))
+
+
 # === Main ===
 
 BUILDERS = {
@@ -1540,6 +1612,7 @@ BUILDERS = {
     "CrystalCathedral": build_crystal_cathedral,
     "RoyalVelvetBrocade": build_royal_velvet_brocade,
     "FarawayCelestialSilk": build_faraway_celestial_silk,
+    "MelodiaHeroGem": build_melodia_hero_gem,
     "FarawayNightVelvet": build_faraway_night_velvet,
     "FarawayAquaLace": build_faraway_aqua_lace,
     "FarawayGildedRidge": build_faraway_gilded_ridge,
