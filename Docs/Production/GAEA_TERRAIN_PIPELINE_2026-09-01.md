@@ -2,6 +2,38 @@
 
 Status: **Phase 1 COMPLETE** (texture intake verified). Phases 2–4 blocked on decisions D1/D2 (see §7).
 
+## 0. Glacier landscape live in LV_SeaAbove_Prototype (2026-09-02, owner-directed)
+
+- Owner decision: **Glacier** (`kjljbl;bjl;.terrain`, build `003`) is the level terrain, hosted in
+  `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` (the *EnvSandbox* copy — note the
+  root `/Game/LV_SeaAbove_Prototype` duplicate still exists; external actors live under
+  `__ExternalActors__/<respective map path>/`).
+- `CanonicalLandscape` stub (0 components, no data) was deleted (owner-approved) and rebuilt via the new
+  `UGaeaToolsLibrary::CreateLandscapeFromGaeaFiles` (see below): **256 components, 5 km × 5 km, scale
+  (495.54, 495.54, 244.45), heightmap centered at Z≈0 (spans ±625.7 m)**.
+- Verified by raycast: canyon/valley X-axis points match the r16 heightmap **to 0.0–0.7 m**;
+  Y-axis matches with **no flip** (FlipYAxis=false correct; earlier "mismatch" was a flip in the
+  analysis script, not in the terrain).
+- Staging: `Saved/GaeaStaging/Glacier/` — `H_GroundTexture_Out.r16` + `definition.json` as-is; color EXRs →
+  8-bit sRGB PNG (round-trip verified, max_err 0.002); mask EXRs → **resized to 1009²** PNGs.
+  **Landmine #6: Gaea exports masks at 1024² but the heightmap r16 at 1009²** — the weightmap importer
+  asserts `InData.Num() == W*H` and the mismatch **crashed the editor** (LandscapeImportHelper.cpp:364).
+- Material `M_Glacier_Landscape_Layered` (D2a adopted): LandscapeLayerBlend Base/Snow/Water/Rock,
+  each LandscapeLayerCoords → TextureSample (T_Glacier_SatMap/GroundTexture/Combine/ColorErosion).
+  Bound on all 256 components.
+- PCG: both volumes seated on terrain and regenerated (86 + 48 instances, counts match docs).
+  `PCG_Colonnade` is volume-relative → terrain-aware. **`PCG_ResonanceCathedral`'s graph emits world-space
+  Z≈0–15 m regardless of volume location** — it was moved by delta to seat instances at terrain (floor
+  −146.5 m). True graph-level projection needs a PCG graph edit (editor UI / C++), not automation.
+- Plugin changes (compiled, closed-editor build): `GaeaSubsystem.cpp` empty-`ImportResolutions` guard
+  (crash 2026-09-01 ×2 from Create-button click with empty heightmap path), and new
+  `GaeaToolsLibrary` (Python-callable importer; `UGaeaSubsystem`/`UImporterPanelSettings` are NOT
+  exposed to Python glue).
+- Still parked (owner approval required): 75 BC6H auto-imported `/Game/Gaea/Glacier/*.uasset` +
+  15 Hills + Mountains copies; cathedral assembly (165 static meshes) still at Z≈130–140 m ≈ 280 m above
+  the new terrain; NavMesh rebake owed.
+
+
 ## 1. Forensic root cause of the "black terrain" failure (resolved)
 
 - The 3:57 PM batch's `T_Gaea_SeaAbove_SuperColor` black import was **not bad source data**.

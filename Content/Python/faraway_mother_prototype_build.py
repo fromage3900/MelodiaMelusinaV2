@@ -29,6 +29,17 @@ FARAWAY_MIS = [
     "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Cradle",
 ]
 
+# Nikki cloth tiers (INFINITY_NIKKI_UE5_TRANSLATION §3/10): A rigid, B Chaos, C WPO, D VAT.
+# Rule: garment piece with gameplay meaning gets expensive solution. See Docs/Art/FARAWAY_MOTHER_CLOTH_TIERS_2026-09-02.md
+CLOTH_TIERS = {
+    "FM_Ridge_Rosette_Crest":   {"tier": "A_rigid",   "wpo": False, "chaos_pending": False, "note": "Structured filigree — deterministic, no sim"},
+    "FM_Valley_Arch_Entrance":  {"tier": "C_WPO",     "wpo": True,  "chaos_pending": False, "note": "Distant environmental drape — MF_FabricMountainWPO"},
+    "FM_Shoulder_Capital":      {"tier": "A_rigid",   "wpo": False, "chaos_pending": False, "note": "Stone cap — stiff"},
+    "FM_Heart_Finial_Gate":     {"tier": "B_Chaos",   "wpo": True,  "chaos_pending": True,  "note": "Hero Hemkeeper seam — Chaos when bound, WPO until then (BeatPulse)"},
+    "FM_Torso_RoseWindow":      {"tier": "B_Chaos",   "wpo": True,  "chaos_pending": True,  "note": "Sheer lace hero — OIT depth priority, WPO distant / Chaos close"},
+    "FM_FabricRidge_Terrain":   {"tier": "C_WPO+D_VAT","wpo": True, "chaos_pending": False, "note": "Km draped anatomy — WPO breathing + VAT contraction on Heart Gate open, never Chaos"},
+}
+
 # Height-aware placements: XY positions are on the 4km terrain (center at 0,0)
 # Z will be resolved by raycast against terrain collision at runtime / editor trace.
 # Format: (mesh_path, label, xy, yaw, scale, z_offset, mi_override)
@@ -46,6 +57,13 @@ MOON_HAZE = {
     "pp_tint": (0.15, 0.20, 0.35),   # cool moonlit terrain tint
     "vol_extent": (4000, 2600, 900),
     "vol_location": (0, 0, 450),
+    # Nikki P7 readable lighting — restrained grade so fashion/magical effects retain headroom
+    "bloom_intensity": 0.15,
+    "exposure_bias": 0.5,
+    "vignette_intensity": 0.25,
+    "color_temp_K": 6500,
+    "auto_exposure_min": 0.5,
+    "auto_exposure_max": 2.0,
 }
 
 def log(m):
@@ -275,25 +293,58 @@ def wire_moon_haze():
     else:
         log("Fog already exists — skip")
 
-    # 2) PostProcessVolume - cool moonlit tint + bloom
+    # 2) PostProcessVolume - cool moonlit tint + bloom (Nikki P7: restrained so sheer fabrics read)
     if "FM_MoonHaze_PPV" not in existing:
         ppv = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.PostProcessVolume, unreal.Vector(0,0,0), unreal.Rotator(0,0,0))
         ppv.set_actor_label("FM_MoonHaze_PPV")
         try:
             ppv.set_editor_property("b_unbound", True)
-            settings = ppv.get_editor_property("settings") if hasattr(ppv, "get_editor_property") else None
-            # Use direct property set via unreal.PostProcessSettings where available
-            # Tint via SceneColorTint / WhiteTemp
-            if settings:
-                # SceneColorTint drives global moon tint
-                tint = MOON_HAZE["pp_tint"]
-                # The PostProcessSettings struct has many fields; attempt generic set
+            # Restrained bloom/exposure per MOON_HAZE — keep fashion/magical headroom (Nikki P7)
+            # Volumetric / bloom / auto-exposure are on the PostProcessVolume component settings
+            comp_settings = None
+            try:
+                # UE5.8 PostProcessVolume exposes settings struct
+                comp_settings = ppv.get_editor_property("settings")
+            except:
                 pass
+            # Set high-level PPV properties directly where exposed
+            for prop, val in [
+                ("bloom_intensity", MOON_HAZE["bloom_intensity"]),
+                ("vignette_intensity", MOON_HAZE["vignette_intensity"]),
+                ("auto_exposure_bias", MOON_HAZE["exposure_bias"]),
+            ]:
+                try:
+                    ppv.set_editor_property(prop, val)
+                except:
+                    pass
+            # Also apply to settings struct if present
+            if comp_settings is not None:
+                for prop, val in [
+                    ("bloom_intensity", MOON_HAZE["bloom_intensity"]),
+                    ("auto_exposure_bias", MOON_HAZE["exposure_bias"]),
+                    ("vignette_intensity", MOON_HAZE["vignette_intensity"]),
+                ]:
+                    try:
+                        comp_settings.set_editor_property(prop, val)
+                    except:
+                        pass
+            log(f"PPV restrained grade bloom {MOON_HAZE['bloom_intensity']} bias {MOON_HAZE['exposure_bias']} vignette {MOON_HAZE['vignette_intensity']}")
         except Exception as e:
             log(f"PPV set partial: {e}")
-        log("Spawned PostProcessVolume (unbound, moon tint)")
+        log("Spawned PostProcessVolume (unbound, moon tint, restrained grade P7)")
     else:
-        log("PPV already exists — skip")
+        # Harden existing PPV to restrained values (idempotent rerun)
+        try:
+            for a in sub.get_all_level_actors():
+                if a.get_actor_label() == "FM_MoonHaze_PPV":
+                    for prop, val in [("bloom_intensity", MOON_HAZE["bloom_intensity"]), ("auto_exposure_bias", MOON_HAZE["exposure_bias"]), ("vignette_intensity", MOON_HAZE["vignette_intensity"])]:
+                        try: a.set_editor_property(prop, val)
+                        except: pass
+                    log(f"Hardened existing PPV to bloom {MOON_HAZE['bloom_intensity']} bias {MOON_HAZE['exposure_bias']}")
+                    break
+        except Exception as e:
+            log(f"PPV harden partial: {e}")
+        log("PPV already exists — hardened to restrained grade")
 
     # 3) Fog volume mesh - large box with translucent Copernicus haze MI for distant limbs implication
     if "FM_MoonHaze_VolumeBox" not in existing:
