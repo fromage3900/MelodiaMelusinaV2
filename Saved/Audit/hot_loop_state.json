@@ -1,12 +1,12 @@
 {
   "schema": "melodia.hot_loop_state.v1",
-  "run_count": 6,
+  "run_count": 7,
   "done": false,
   "started": "2026-09-02",
-  "updated": "2026-09-02T12:05:00",
+  "updated": "2026-09-02T12:55:00",
   "git_context": {
     "branch": "main",
-    "ahead_origin_estimated": 385,
+    "ahead_origin_estimated": 386,
     "behind_origin_estimated": 359,
     "note": "verify live each run; force-push NEVER if diverged; push rejected non-ff — owner merge/rebase required"
   },
@@ -19,38 +19,28 @@
     "MelodiaRoseVelvet", "MelodiaMoonlace", "MelodiaForestEmerald", "MelodiaAmethystVein", "MelodiaAuroraGlass"
   ],
   "verify": {
-    "onnx_controller": "7/7 PASS onnxruntime 1.29",
-    "family_qa": "81/81 maps PASS (9 variants x 9 maps)",
-    "flipbooks_qa": "648/648 PASS (9 variants x 8 frames x 9 maps)",
-    "mcpc_namespace": "RECONCILED run 5 — single writer publishes BassIntensity/MidIntensity/BeatTracker aliases; WFB PIE param-match gate expected PASS; editor re-check on 9316 when free"
+    "onnx_controller": "run7: 5-in->6-out graph (added SheenMask), 7/7 PASS onnxruntime 1.29; prior 5-param sweep 7/7 PASS"
   },
-  "run_06_summary": {
-    "unit": "author staging doc segment (unit c) — plan §9: flipbook library 648/648 + pipeline-lock status + master-index promotion recommendation",
-    "commit": "e39e87f4 docs(hero-material): plan §9 — flipbook library (648/648) + pipeline-lock/master-index promotion note",
-    "what": "Docs/Plans/AUDIO_HERO_MATERIAL_PLAN_2026-09-02.md gained §9 documenting the fully-baked animated flipbook lane (all 9 variants, 648/648 QA from qa_melodia_flipbooks_2026-09-02.json), status that offline-cook units (a)+(b) are EXHAUSTED, and the deferred master-index SSOT promotion (PRESENT once Phase C closed-editor build lands).",
-    "offline_done": "(a) 9/9 variants cooked, (b) 9/9 flipbooks baked — units exhausted; remaining work editor-bound (Phase C build, D import/MI, E stage, F PIE) on 9316"
+  "run_07_summary": {
+    "unit": "extend neural hero controller (unit c) — added SheenMask 6th output to drive the Faraway showcase M_Master_Nikki sheen lane",
+    "work": "Tools/Audio/hero_neural_material_controller.py gained OUTPUTS['SheenMask']; rebuilt onnx (opset17, [16,12] MLP) and verified 7/7 via onnxruntime sweep (silent/bass_only/full_beat/beat_pulse/loopPhase1/loopPhase2/max_all) — all finite & [0,1]-bounded, SheenMask input-responsive (bass_only 0.51->0.82). Plan gained §10. QA evidence hero_controller_sheenmask_qa_2026-09-02.json. Controller .py/.onnx stay gitignored (commit carries doc + QA JSON)."
   },
   "next_steps": [
-    "editor (Phase C/D/E/F, when 9316 frees): closed-editor Build.bat; rerun WFB PIE param-match gate + golden-run preflight (expect PASS on 3 reconciled lanes); bind MI_HeroGem_Cymatic into L_PCG_Hero_CrystalHarpGrove",
+    "editor (Phase C/D/E/F, when 9316 frees): closed-editor Build.bat; rerun WFB PIE param-match gate + golden-run preflight (expect PASS on 3 reconciled lanes); bind MI_HeroGem_Cymatic into L_PCG_Hero_CrystalHarpGrove; UI: expose SheenMask in M_Master_Nikki sheen lane",
     "master-index SSOT: promote neural scaffold + hero gem to §2 when build lands (Phase C)",
-    "merger: local main AHEAD ~385 / BEHIND ~359 vs origin/main — NOT fast-forward; owner pull/merge/rebase required before any ff push (do NOT force)"
+    "merger: local main AHEAD ~386 / BEHIND ~359 vs origin/main — NOT fast-forward; owner pull/merge/rebase required before any ff push (do NOT force)"
   ],
   "learnings": [
-    "offline-cook units (a)+(b) now fully exhausted — the trackable hot-loop unit going forward is (c) plan/doc staging (controller .py + .onnx stay gitignored; commit the tracked C++/docs)",
-    "pre-commit hook and force-add work cleanly for Docs/Plans; push remains non-ff blocked by ~359 behind + ~385 ahead — every run verifies live and records, never forces"
+    "controller extension + onnxruntime verification IS a clean offline unit (c) — the 5-param controller had a real sheen gap (Faraway variants bake canonical 10th Sheen map); commits carry doc+QA JSON since .py/.onnx are gitignored",
+    "pre-commit hook and force-add work cleanly for Docs/Plans + Saved/Audit; push remains non-ff blocked by ~359 behind + ~386 ahead — every run verifies live and records, never forces"
   ],
   "last_commit_hashes": [
-    "e39e87f4",
-    "27b42155",
-    "bb0d40f5",
-    "0482375a41b98216c20be73b76a410dffe9bcbd4",
-    "9a82e8f0",
-    "ff7d13e4"
+    "347f5042"
   ],
   "push": {
-    "attempted": "2026-09-02 (run 6)",
+    "attempted": "2026-09-02 (run 7)",
     "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
-    "result": "rejected non-fast-forward (ahead 385 / behind 359) — local main behind origin/main ~359; new commit e39e87f4 NOT included",
-    "action": "NO force-push, NO reset; offline-safe work committed locally; needs owner-driven merge/rebase to reconcile divergence before next ff push"
+    "result": "verify live after this run's commit",
+    "action": "NO force-push, NO reset; expect non-ff (ahead ~386 / behind ~359) requiring owner merge/rebase"
   }
 }

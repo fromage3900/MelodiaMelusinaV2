@@ -1,0 +1,24 @@
+{
+  "schema": "melodia.hero_controller.qa.v1",
+  "run": 7,
+  "date": "2026-09-02",
+  "unit": "c — extend neural hero controller with SheenMask (6th output) for M_Master_Nikki sheen lane",
+  "controller": "Tools/Audio/hero_neural_material_controller.py",
+  "opset": 17,
+  "input_shape": [null, 5],
+  "input_features": ["BassIntensity","BeatIntensity","BeatPhase","BeatPulse","BeatTracker"],
+  "output_shape": [null, 6],
+  "output_params": ["EmissiveStrength","EmissiveTint","SubsurfaceScatter","Displacement","SpecularBoost","SheenMask"],
+  "hidden": [16, 12],
+  "runtime": "onnxruntime 1.29.0, CPUExecutionProvider",
+  "sweep": {
+    "checked": 7,
+    "pass": 7,
+    "fail": 0,
+    "cases": ["silent","bass_only","full_beat","beat_pulse","loopPhase1","loopPhase2","max_all"],
+    "bounded_01": true,
+    "finite": true
+  },
+  "note": "SheenMask responds to input (e.g. bass_only sweeps 0.51->0.82) — single audio->material brain now drives the Faraway showcase sheen lane (NikkiPearlSheen) in addition to the 5 core hero params.",
+  "reasoning": "Faraway Mother showcase variants bake a canonical 10th Sheen map (copernicus_cymatic_parallax.py injects 'Sheen'; copernicus_fabric_sheen.py COP) yet the hero controller had no sheen output — gap closed run 7."
+}

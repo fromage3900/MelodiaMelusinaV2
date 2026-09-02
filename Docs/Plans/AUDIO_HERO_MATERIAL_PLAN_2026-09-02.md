@@ -180,3 +180,22 @@ flipbook loop referenced in §1 (multi-oscillator interference + phase crawl).
   (Phase C) lands, promote the neural controller + hero-gem family to §2 of the
   Emerging-Toolchain Master Index as PRESENT (currently still SCAFFOLDED for the C++
   seam; onnx + docs are VERIFIED). The onnx graph and UE runtime seam do not change.
+
+## 10. SheenMask controller output (2026-09-02, daemon run 7)
+
+Closes the sheen gap in the reusable audio->material controller.
+
+- **Gap found:** the Faraway Mother showcase variants bake a canonical 10th `Sheen`
+  map (`copernicus_cymatic_parallax.py` injects `Sheen`; `copernicus_fabric_sheen.py`
+  COP routes it to `M_Master_Nikki` / `NikkiPearlSheen`), yet the hero controller
+  emitted only 5 params with no sheen lane.
+- **Change:** added a 6th controller output `SheenMask` (Sigmoid-bounded [0,1]) so the
+  single audio->material brain can also drive velvet/silk grazing highlights. The
+  existing 5 outputs are unchanged; graph topology (5-in → [16,12] → 6-out) is stable.
+- **Verified (onnxruntime 1.29, CPU):** 7/7 PASS across the MPC feature sweep —
+  `silent / bass_only / full_beat / beat_pulse / loopPhase1 / loopPhase2 / max_all`
+  all finite and bounded; SheenMask is input-responsive (bass_only sweeps 0.51→0.82).
+  Evidence `Saved/Audit/hero_controller_sheenmask_qa_2026-09-02.json`.
+- **Note:** controller `.py` + `.onnx` stay gitignored (standing discipline) — commit
+  carries the doc + QA JSON; the onnx regenerates via
+  `hero_neural_material_controller.py --seed 20260902 --out .../hero_material_controller.onnx`.
