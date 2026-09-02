@@ -39,6 +39,31 @@ A fresh Git clone is not guaranteed to contain the author's entire binary art wo
 
 ---
 
+## ♬ Second workstation / laptop
+
+If this checkout is on a second machine, read:
+
+`Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md`
+
+**before** hydrating the full binary workspace or deciding the laptop should run every tool at once.
+
+Start with the read-only workstation inspector:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\deploy\inspect_workstation.ps1
+```
+
+The current profile is intentionally measured rather than guessed:
+
+- **16 GB RAM** → worker-first: Git, docs/specs, Rider/VS Code, tests, bounded builds, Blender batch work, Three.js; short UE launch as a canary rather than a permanent all-tools-at-once session;
+- **confirmed 32 GB RAM** → controlled hybrid: UE + Rider inspection/small edits become reasonable while the main PC still owns heavy lookdev, long PIE, full art libraries, and release packaging.
+
+Each workstation should have its **own clone**. Git/Git LFS + explicit handoff branches are shared authority. Do not edit the same binary asset from both machines at once.
+
+`Launch_Editor.bat` now respects `MELODIA_UNREAL_ROOT` when UE5.8 is installed somewhere other than the default Epic path.
+
+---
+
 ## ♬ Run the tests
 
 ```powershell
