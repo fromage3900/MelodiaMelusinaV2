@@ -9,14 +9,14 @@ require the destructive-operation approval gate in
 
 Ahead/behind counts are vs `origin/main` at `8b3d2666` (post-fetch).
 
-## MERGE (ahead-only, text/CI — land via PR)
+## MERGE (ahead-only, text/CI — landed on `cursor/git-health-checkpoint-c2b1`)
 
 | Branch | Ahead | Behind | Contents | Disposition |
 | --- | --- | --- | --- | --- |
-| `origin/docs/toolchain-consolidation-2026-08-31` | 39 | 0 | Research/plans: toolchain, PCG, Magpie, Dash, Mara Elletra, experimental systems | **MERGE** into health PR |
-| `origin/cursor/fix-ci-workflows-529c` | 4 | 0 | Actions v7 bumps, site sync cron guard, `quick-deploy.ps1` CRLF normalize, repair-plan doc | **MERGE** into health PR |
-| `origin/claude/tonight-cymatic-ecology-interaction` | 2 | 0 | Cymatic/RTX spike docs + `specs/cymatic_ecology_bridge.json` + `specs/nvidia_rtx_canary_manifest.json` | **MERGE** unique specs; docs may already be covered by toolchain branch (resolve favoring fuller toolchain text) |
-| `origin/docs/2026-08-31-mara-instrument-cymatics-plan` | 1 | 0 | `Docs/Houdini/MARA_INSTRUMENT_CYMATICS_EXECUTION_PLAN_2026-08-31.md` | **MERGE** into health PR |
+| `origin/docs/toolchain-consolidation-2026-08-31` | 39 | 0 | Research/plans: toolchain, PCG, Magpie, Dash, Mara Elletra, experimental systems | **LANDED** (`d225bafc`) |
+| `origin/cursor/fix-ci-workflows-529c` | 4 | 0 | Actions v7 bumps, site sync cron guard, `quick-deploy.ps1` CRLF normalize, repair-plan doc | **LANDED** (`23fbd8b7`) |
+| `origin/claude/tonight-cymatic-ecology-interaction` | 2 | 0 | Cymatic/RTX spike docs + bridge/canary specs | **LANDED** specs (`25523f7b`); fuller spike prose from toolchain merge |
+| `origin/docs/2026-08-31-mara-instrument-cymatics-plan` | 1 | 0 | `Docs/Houdini/MARA_INSTRUMENT_CYMATICS_EXECUTION_PLAN_2026-08-31.md` | **LANDED** (`52ce8ec6`) |
 
 ## HOLD (divergent / backup / WIP — do not delete)
 
