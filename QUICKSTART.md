@@ -61,6 +61,13 @@ The current profile is intentionally measured rather than guessed:
 Each workstation should have its **own clone**. Git/Git LFS + explicit handoff branches are shared authority. Do not edit the same binary asset from both machines at once.
 
 `Launch_Editor.bat` now respects `MELODIA_UNREAL_ROOT` when UE5.8 is installed somewhere other than the default Epic path.
+Run the laptop acceptance test before hydrating more binary art:
+
+```powershell
+.\deploy\test_laptop_workstation.ps1 -Suite Smoke
+```
+
+After Smoke passes, use `-Suite Build` with Unreal closed, then run `-Suite Fast` or `-Suite Contracts` one at a time. Reserve `-Suite UE` for a machine that has passed the build and can afford command-line Unreal.
 
 ---
 
