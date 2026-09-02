@@ -3,7 +3,7 @@
 
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
-#include "ParamCollectionEngineSubsystem.h" // UMaterialParameterCollection::GetInstance / material param writes
+#include "Engine/World.h" // UWorld::GetParameterCollectionInstance
 
 #define LOCTEXT_NAMESPACE "MelodiaNeuralHeroMaterial"
 
@@ -54,11 +54,11 @@ void UMelodiaNeuralHeroMaterialSubsystem::RefreshFromMPC()
 		return;
 	}
 	// Read-only — mirrors how UMelodiaCymaticsSubsystem consumes the palette.
-	BassIntensity  = Instance->GetScalarParameterValue(TEXT("BassIntensity"));
-	BeatIntensity  = Instance->GetScalarParameterValue(TEXT("BeatIntensity"));
-	BeatPhase      = Instance->GetScalarParameterValue(TEXT("BeatPhase"));
-	BeatPulse      = Instance->GetScalarParameterValue(TEXT("BeatPulse"));
-	BeatTracker    = Instance->GetScalarParameterValue(TEXT("BeatTracker"));
+	Instance->GetScalarParameterValue(TEXT("BassIntensity"), BassIntensity);
+	Instance->GetScalarParameterValue(TEXT("BeatIntensity"), BeatIntensity);
+	Instance->GetScalarParameterValue(TEXT("BeatPhase"), BeatPhase);
+	Instance->GetScalarParameterValue(TEXT("BeatPulse"), BeatPulse);
+	Instance->GetScalarParameterValue(TEXT("BeatTracker"), BeatTracker);
 }
 
 void UMelodiaNeuralHeroMaterialSubsystem::RunInference()

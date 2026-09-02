@@ -37,12 +37,6 @@ void UMelodiaOceanologyWaterBridgeSubsystem::Deinitialize()
     Super::Deinitialize();
 }
 
-void UMelodiaOceanologyWaterBridgeSubsystem::OnWorldBeginTearDown(UWorld* World)
-{
-    OceanEntries.RemoveAll([](const FOceanBridgeEntry& E){ return !E.OceanActor.IsValid(); });
-    Super::OnWorldBeginTearDown(World);
-}
-
 EWaterPlacementDecision UMelodiaOceanologyWaterBridgeSubsystem::GetWaterPlacementDecision(FVector WorldPos) const
 {
     const float Z = WorldPos.Z;

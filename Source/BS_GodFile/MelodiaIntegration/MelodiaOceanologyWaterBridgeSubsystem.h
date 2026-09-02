@@ -65,7 +65,6 @@ class BS_GODFILE_API UMelodiaOceanologyWaterBridgeSubsystem final : public UWorl
 public:
     virtual void Initialize(FSubsystemCollectionBase& Collection) override;
     virtual void Deinitialize() override;
-    virtual void OnWorldBeginTearDown(UWorld* World) override;
 
     /** Height-aware water vs fog decision for any world position. */
     UFUNCTION(BlueprintPure, Category="Melodia|Oceanology|Placement")
