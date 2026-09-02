@@ -234,6 +234,12 @@ Tools/*
 !Tools/git_safe_push.py
 !Tools/lfs_health_audit.py
 !Tools/git_health_audit.py
+!Tools/artdrop_archive.py
+!Tools/art_gates.py
+!Tools/validate_source_control_ownership.py
+!Tools/test_artdrop_archive.py
+!Tools/test_art_gates_authority.py
+!Tools/test_validate_source_control_ownership.py
 !Tools/bp_live_path.py
 !Tools/bp_sweep.py
 !Tools/project_state.py

@@ -1,0 +1,46 @@
+{
+  "schema": "bs-godfile.source-control-ownership.v1",
+  "cutover_state": "planned",
+  "purpose": "Single ownership contract for Git engineering files and Perforce creative content.",
+  "authorities": {
+    "git": {
+      "description": "Mergeable engineering, project configuration, automation, and documentation.",
+      "roots": [".github/", "Config/", "Docs/", "Plugins/", "Source/", "Tools/", "deploy/", "specs/", "BS_GodFile.uproject"]
+    },
+    "perforce": {
+      "description": "Active Unreal content, world-partition packages, exports, and irreplaceable source art.",
+      "roots": ["Content/", "Exports/", "RawArt/"]
+    }
+  },
+  "level_bundles": [
+    {
+      "name": "L_MelusinaMorning",
+      "map": "Content/Melodia/Levels/Opening/L_MelusinaMorning.umap",
+      "external_actors": "Content/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/",
+      "external_objects": "Content/__ExternalObjects__/Melodia/Levels/Opening/L_MelusinaMorning/"
+    },
+    {
+      "name": "L_KaleidoNave",
+      "map": "Content/EnvSandbox/Environments/L_KaleidoNave.umap",
+      "external_actors": "Content/__ExternalActors__/EnvSandbox/Environments/L_KaleidoNave/",
+      "external_objects": "Content/__ExternalObjects__/EnvSandbox/Environments/L_KaleidoNave/"
+    },
+    {
+      "name": "LV_SeaAbove_Prototype",
+      "map": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype.umap",
+      "external_actors": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/",
+      "external_objects": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/"
+    }
+  ],
+  "forbidden_dual_ownership": [
+    "A path may match exactly one authority; Git and Perforce roots must never overlap.",
+    "Level maps and their External Actors/External Objects are Perforce-owned as one bundle.",
+    "No Content/, Exports/, or RawArt/ path may be added to a Git batch."
+  ],
+  "required_external_roots": ["Content/__ExternalActors__/", "Content/__ExternalObjects__/"],
+  "archive": {
+    "active_sync": "perforce",
+    "recovery_class": "S3 Glacier Deep Archive",
+    "archive_unit": "compressed milestone bundle with manifest and SHA-256 checksums"
+  }
+}
