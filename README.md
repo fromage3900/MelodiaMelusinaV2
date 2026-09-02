@@ -4,8 +4,6 @@
 ✦ ─── ✧ ─── ★ ─── ✧ ─── ✦
 ```
 
-![Melodia Banner](Docs/melodia-banner.svg)
-
 ![Unreal Engine 5.8](https://img.shields.io/badge/Unreal_Engine-5.8_%2B_C%2B%2B-informational?logo=unrealengine&logoColor=white&color=0a1929)
 ![Blender 5.2](https://img.shields.io/badge/Blender-5.2_LTS-critical?logo=blender&logoColor=white&color=e87d0d)
 ![Assets](https://img.shields.io/badge/uasset-1%2C988_tracked_%2F_24%2C128_local-5e3a8c)
@@ -15,13 +13,13 @@
 
 > **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. See [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md) and [Docs/LFS_COLD_ARCHIVE.md](Docs/LFS_COLD_ARCHIVE.md).
 
-> **Source Control Transition:** Git remains authoritative for code, configuration, tools, specs, documentation, and automated test pipelines. A local Helix Core pilot is authoritative for the seeded `//melodia/Exports/...` depot path (change `2`, 50 files). The Git `Exports/` copies remain intentionally until final cutover sign-off; do not edit the same export concurrently in both systems.
+> **Cross-Machine Development:** This project is actively developed across three workstations — a Windows desktop PC (primary), a laptop (Humber Labs / on-the-go), and Humber Labs workstations. See [Docs/Production/CROSS_MACHINE_WORKFLOW_2026-09-02.md](Docs/Production/CROSS_MACHINE_WORKFLOW_2026-09-02.md) for the authoritative workflow.
 
 ♪ **Production-Grade Rhythm-JRPG in Unreal Engine 5.8 + Blender 5.2.** A single-author vertical slice and extensible multi-chapter framework. Every architectural claim is backed by a verified ledger row in `Saved/gate_ledger.json`. No prose passes for evidence. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
 
-♫ **Current Status (2026-09-01 Evening):** All 10 P0 gameplay completion gates are verified and passing (**10/10 PASS**). The automated test suite reports **524 / 524 passing tests** across GMM Python simulations, P0 content & integration suites, ECHO pipeline contracts, MCP regression suites, and release hygiene validators. Shipping certification is staged for final packaged validation following the [Evening P0 Closeout & Chapter Loop Plan](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md) and the [P0 Golden Run Contract](specs/p0/core_p0_dream_golden_run.v1.json).
+♫ **Current Status (2026-09-02 Night):** 27/31 P0 gameplay completion gates verified passing. **116 automated tests** run (108 pass / 1 fail / 3 errors — under active repair). Two packaging gates remain open (`package_build`, `package_launch`) plus two PIE-capture gates (`world_field_bus_pie`, `gaeA_live_pie`). Shipping certification staged for final packaged validation.
 
-**Sea Above Level Integration:** The canonical landscape and cathedral layouts are verified with zero actors at the Outliner root. Recast navmesh paths pass for sanctuary entry → QuillScript NPC dialogue and music-key routing; gameplay anchors carry PCG exclusion and falloff metadata. The Starskiff vehicle dock passes boarding, possession, movement, and disembark runtime checks.
+**Sea Above Level Integration:** 221 cathedral pieces at Z=13,455 on CanonicalLandscape. 2 PCG volumes. 12 Copernicus MIs. Cutscene trigger at (-910, 500, 13,145). Landscape at Z=0. QuillScript cutscene authored.
 
 ---
 
@@ -98,32 +96,40 @@ Every single chapter in Melodia (from Chapter 1 "First Dream" to the Final Chapt
 
 ### Track 1: Gameplay Vertical Slice — "First Dream"
 - **Route:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/Melodia/Maps/LV_SeaAbove_Prototype` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
-- **10/10 P0 Completion Gates:**
-  1. `runtime` (PASS) — Full real-input PIE session execution.
-  2. `save_load` (PASS) — Save slot roundtrip via `BP_JRPGSaveGame`.
-  3. `repeat_consume` (PASS) — Exactly-once narrative notification consume.
-  4. `package_launch` (PASS) — Standalone Win64 execution verification.
-  5. `rhythm_owner` (PASS) — Rhythm highway input modification verified.
-  6. `hud_single_writer` (PASS) — Zero widget overlap, single UI writer.
-  7. `wardrobe_equip_roundtrip` (PASS) — Mesh part swap and save state roundtrip.
-  8. `rhythm_grade_to_result` (PASS) — Note grading multiplier scaling.
-  9. `music_world_key` (PASS) — Phrase stepping unlocks route barriers.
-  10. `wardrobe_gameplay_hook` (PASS) — Outfit unlocks physical Glide traversal capability.
+- **P0 Completion Gates (27/31 PASS):**
+
+| Gate | Status | Category |
+|---|---|---|
+| `runtime` | ✅ PASS | Core gameplay loop |
+| `save_load` | ✅ PASS | State persistence |
+| `repeat_consume` | ✅ PASS | Narrative queue |
+| `rhythm_owner` | ✅ PASS | Rhythm subsystem |
+| `rhythm_grade_to_result` | ✅ PASS | Combat multiplier |
+| `hud_single_writer` | ✅ PASS | UI hierarchy |
+| `wardrobe_equip_roundtrip` | ✅ PASS | Wardrobe subsystem |
+| `wardrobe_gameplay_hook` | ✅ PASS | Traversal provider |
+| `music_world_key` | ✅ PASS | Resonant world |
+| `static_gates` | ✅ PASS | Material baselines |
+| `battle_integration_map` | ✅ PASS | Allowlist |
+| `package_build` | ❌ FAIL | Cook exits -1 |
+| `package_launch` | ❌ FAIL | No archive |
+| `world_field_bus_pie` | ⏳ PENDING | Needs PIE |
+| `gaeA_live_pie` | ⏳ PENDING | Needs PIE |
 
 ### Track 2: Model Context Protocol (MCP) & Automation Tooling
 - **1330 Typed MCP Actions** across 24 namespaces supporting offline schema inspection and live Unreal Engine automation.
 - **Melodia MCP Server (`deploy/melodia_mcp_server.py`):** 38/38 verified unit & regression tests.
 - **Melusina Agent Test Harness (MATH):** Strict quantitative evaluation of local models across 5 core metrics:
-  - **TCA** (Tool Call Accuracy $\ge 98\%$)
-  - **PAR** (Policy Adherence Rate $= 100\%$)
-  - **SCR** (State Convergence Rate $\ge 95\%$)
-  - **RCF** (Recovery from Feedback $\ge 90\%$)
-  - **TER** (Token Efficiency Ratio $\le 0.20$)
+  - **TCA** (Tool Call Accuracy ≥ 98%)
+  - **PAR** (Policy Adherence Rate = 100%)
+  - **SCR** (State Convergence Rate ≥ 95%)
+  - **RCF** (Recovery from Feedback ≥ 90%)
+  - **TER** (Token Efficiency Ratio ≤ 0.20)
 
 ### Track 3: ECHO Pipeline & Evidence Ledger
 - **Deterministic Pipeline:** `Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote`
 - **Gate Runner:** `Tools/echo_run.py` & `Tools/project_state.py`
-- **Single Source of Truth:** `Saved/gate_ledger.json` (37 evidence rows; no row = not done).
+- **Single Source of Truth:** `Saved/gate_ledger.json` (no row = not done).
 
 ---
 
@@ -153,7 +159,7 @@ cd MelodiaMelusinaV2
 # 2. Pull Git LFS assets
 git lfs pull
 
-# 3. Run full automated test suite (GMM + P0 Integration + ECHO Contracts)
+# 3. Run full automated test suite
 .\run_tests.ps1
 
 # 4. Run offline preflight gate verification
@@ -181,4 +187,5 @@ This repository and its original source code, tools, and configurations are lice
 - **Automated License Gate:** `Tools/credits_gate.py` (enforced via ECHO pipeline)
 
 ---
+
 *Melodia © 2026. Built with Unreal Engine 5.8, Blender 5.2, and Model Context Protocol automation.*
