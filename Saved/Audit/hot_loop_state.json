@@ -40,8 +40,8 @@
       "cooked_variants_added": ["CymaticOrchid"]
     },
     "last_commit_hashes": [
-            "4d1d40a0"
-          ],
+                "2fcfae38"
+              ],
     "run_08_summary": {
       "unit": "advance Copernicus variant library (unit d) — completed + QA'd the PrismaticObsidian hero-material variant",
       "work": "PrismaticObsidian (volcanic glass / conchoidal fracture / internal crystal lattice / thin-film rainbow sheen) was added to the tool in da25dafd but its 13:17 cook on disk was PARTIAL — only 7/9 PNGs (missing Roughness + ORM). Re-cooked with .venv-guardrails python; now 9/9 maps valid, 1024x1024, non-blank (QA evidence qa_prismatic_obsidian_2026-09-02.json). Manifest updated. NOTE: concurrent work found in tree NOT in this commit — CymaticOrchid variant builder (113 lines in copernicus .py) + Docs/Plans/GN_CYMATIC_PROMOTION_READINESS_2026-09-02.md — left uncommitted as foreign/pending; not stage-swept."
@@ -58,9 +58,9 @@
       "a concurrent/sibling agent is active in this tree (CymaticOrchid builder + readiness doc appear uncommitted) — stage EXPLICIT paths only, never stage-sweep, to avoid claiming another agent's in-flight work"
     ],
   "push": {
-        "attempted": "2026-09-02 (run 8)",
-        "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
-        "result": "BLOCKED by branch protection: 'direct pushes to main are not allowed; use a reviewed branch/PR' — refs rejected; commits 4d1d40a0 + d4c8f2d4 are local-only. ALSO still non-ff (ahead 393 / behind 360).",
-        "action": "NO force-push, NO reset; did not open a PR (autonomous job has no PR/merge authority claimed). Owner must push via a reviewed branch/PR or reconcile the 360-commit divergence (pull/merge/rebase) before main is reachable."
-      }
+          "attempted": "2026-09-02 (run 9)",
+          "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
+          "result": "BLOCKED by branch protection: 'direct pushes to main are not allowed; use a reviewed branch/PR' — refs rejected; commit 2fcfae38 is local-only. Non-ff persists (ahead 398 / behind 380).",
+          "action": "NO force-push, NO reset; no PR opened (autonomous job claims no merge authority). Owner must push via a reviewed branch/PR or reconcile the 380-commit divergence."
+        }
 }
