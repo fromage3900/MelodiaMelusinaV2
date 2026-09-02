@@ -1,0 +1,477 @@
+{
+  "schema": "melodia.brass.wiring.v1",
+  "generated": "2026-09-02",
+  "note": "Material-wiring audit of T_Brass_* texture families. PNGs themselves are 'flat' 2D texture sources: height-aware (PCG/parallax) placement does NOT apply to these map PNGs. Height channel is consumed per-instance via material Parallax/Roughness overrides; Height displacement is applied in the shader, never baked into placement. 8 brass families on disk all carry the full 9-map set (BaseColor, Normal, Roughness, Metallic, Height, ORM, Emissive, Iridescence, Opacity) with valid PNG magic bytes.",
+  "texture_dir": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\Copernicus",
+  "map_slots": [
+    "BaseColor",
+    "Normal",
+    "Roughness",
+    "Metallic",
+    "Height",
+    "ORM",
+    "Emissive",
+    "Iridescence",
+    "Opacity"
+  ],
+  "staged_mis_file": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\_staged_brass_mis.json",
+  "families": {
+    "BrassEngraved": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "magic_invalid_maps": [],
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "basecolor": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_BaseColor.png"
+    },
+    "BrassFarawayMother": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "magic_invalid_maps": [],
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "basecolor": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_BaseColor.png"
+    },
+    "BrassFiligreeGold": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "magic_invalid_maps": [],
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "basecolor": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_BaseColor.png"
+    },
+    "BrassHammeredPulse": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "magic_invalid_maps": [],
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "basecolor": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_BaseColor.png"
+    },
+    "BrassIridescent": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "magic_invalid_maps": [],
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "basecolor": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_BaseColor.png"
+    },
+    "BrassNautilus": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "magic_invalid_maps": [],
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "basecolor": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_BaseColor.png"
+    },
+    "BrassPatinaAnimated": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "magic_invalid_maps": [],
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "basecolor": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_BaseColor.png"
+    },
+    "BrassVerdigrisBloom": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "magic_invalid_maps": [],
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "basecolor": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_BaseColor.png"
+    }
+  },
+  "summary": {
+    "families_on_disk": 8,
+    "families_complete_9maps": 8,
+    "total_pngs_validated": 72,
+    "png_magic_invalid_total": 0,
+    "staged_mi_variants_referencing_brass": 8,
+    "staged_mi_names": [
+      "MI_Brass_PatinaAnimated",
+      "MI_Brass_FiligreeGold",
+      "MI_Brass_Engraved",
+      "MI_Brass_Iridescent",
+      "MI_Brass_VerdigrisBloom",
+      "MI_Brass_HammeredPulse",
+      "MI_Brass_Nautilus",
+      "MI_Brass_FarawayMother"
+    ]
+  }
+}
