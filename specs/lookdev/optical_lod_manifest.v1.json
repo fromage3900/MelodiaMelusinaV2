@@ -1,0 +1,363 @@
+{
+  "schema": "melodia.optical_lod_manifest.v1",
+  "version": "1.0.0",
+  "seed": 20260901,
+  "total_assets": 3,
+  "total_textures_generated": 51,
+  "lod_tier_specs": {
+    "LOD0": {
+      "tier": 0,
+      "name": "MicroRelief_CloseRange",
+      "distance_range_m": [
+        0.0,
+        15.0
+      ],
+      "pom_steps": 32,
+      "toksvig_factor": 0.0,
+      "normal_frequency_cutoff": 1.0,
+      "grazing_rim_boost": 1.0,
+      "texture_resolution": 1024,
+      "wpo_resonance_scale": 1.0
+    },
+    "LOD1": {
+      "tier": 1,
+      "name": "MidFrequency_AdaptivePOM",
+      "distance_range_m": [
+        15.0,
+        50.0
+      ],
+      "pom_steps": 16,
+      "toksvig_factor": 0.35,
+      "normal_frequency_cutoff": 0.6,
+      "grazing_rim_boost": 1.15,
+      "texture_resolution": 512,
+      "wpo_resonance_scale": 0.75
+    },
+    "LOD2": {
+      "tier": 2,
+      "name": "MacroSilhouette_ToksvigStable",
+      "distance_range_m": [
+        50.0,
+        200.0
+      ],
+      "pom_steps": 0,
+      "toksvig_factor": 0.75,
+      "normal_frequency_cutoff": 0.3,
+      "grazing_rim_boost": 1.4,
+      "texture_resolution": 256,
+      "wpo_resonance_scale": 0.3
+    },
+    "LOD3": {
+      "tier": 3,
+      "name": "VistaImpostor_ZeroShimmer",
+      "distance_range_m": [
+        200.0,
+        5000.0
+      ],
+      "pom_steps": 0,
+      "toksvig_factor": 1.0,
+      "normal_frequency_cutoff": 0.1,
+      "grazing_rim_boost": 1.8,
+      "texture_resolution": 128,
+      "wpo_resonance_scale": 0.0
+    }
+  },
+  "assets": {
+    "FarawayMother_CelestialSilk": {
+      "asset_name": "FarawayMother_CelestialSilk",
+      "family": "FabricMountain",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 1.0,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_BaseColor.png",
+            "base_color_sha256": "1625e1d1cc6771d7e6c9321e6139bc39ea5fffd4a1241e7285a636870dd2628c",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_Normal.png",
+            "normal_sha256": "7ed1d380b2f3b964024955051649b25f306f9ac9e657a4e8267cb188ad9c6792",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_ORM.png",
+            "orm_packed_sha256": "2ef38f2661b5e435c6f3aea4bd15f4679af77504fbbe1d70fdf0b1adf4f4065d",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_Height.png",
+            "height_sha256": "842716ceda85e8a7006e9382b04658c8f91814f327189840b3cfb602689f28e5"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.75,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_BaseColor.png",
+            "base_color_sha256": "66ac9d657daaebf660a05b53d8fa07ba1e1001b89159ab14701e6d89a836efeb",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_Normal.png",
+            "normal_sha256": "728e3550e3b620dbc11623b39b985e3a0991f023edd82bf3eae4b1162b0c2013",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_ORM.png",
+            "orm_packed_sha256": "c7feb171c05b8a3dcd1a479d6354ef42011b5b483e90f16b3bbada8ede69f456",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_Height.png",
+            "height_sha256": "d0787d13ca9538f56cf32332e974d33073d3d96685ad33b266488cde3e44bba6"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.3,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_BaseColor.png",
+            "base_color_sha256": "c6efb7a020932da046ec0ca4f1b05e6e3852f478ee0c9e07b712de2fe98ea896",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_Normal.png",
+            "normal_sha256": "83bd0732215a0724165b892897ccbf7dc2f9b582fe326993819f04d3d298358c",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_ORM.png",
+            "orm_packed_sha256": "a322571b6b5247842c4eb6dc36d236a1c37922d9afbe4017cefe51ab8749738e",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_Height.png",
+            "height_sha256": "3a74cfe2a3228c86da82da757e6bb83414d42a36981ea6ca909e2cb9ab180df7"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_BaseColor.png",
+            "base_color_sha256": "8bdd6e9ada6910f2f79f18e2517f73410c4c763b5bd12531d97cc446ce703e53",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_Normal.png",
+            "normal_sha256": "8e9db6b08df2b91f5a6c8a47c74d93ecfd0c75fc950e1794c30c521098150d9e",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_ORM.png",
+            "orm_packed_sha256": "a587009a28e24a378d9408462d9c5942af681f9e779ebd1cd77e564c22f88292",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_Height.png",
+            "height_sha256": "257a4f502398cd9d445cdfb1de4a2ab43d9919089d9bceda5c1f50d141743a15"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Melusina_Shorewake_Gown": {
+      "asset_name": "Melusina_Shorewake_Gown",
+      "family": "HeroWardrobe",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 1.0,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_BaseColor.png",
+            "base_color_sha256": "792d21829087320fcd3264218c554cfd7ecea2fd8b1845b5af60724cf7c6e2f2",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_Normal.png",
+            "normal_sha256": "e0bb93be3d39d8b414d63cada951e32e301d5b7e127156b324eb83747937b415",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_ORM.png",
+            "orm_packed_sha256": "0ef629ff635d7027798dbcfe6aab8570954309b23c952c4a997eda2fad28c22e",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_Height.png",
+            "height_sha256": "0730f18bb589477e54dbbb946143acbe7ed3253ee032cd17c559763bd2d9a19f"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.75,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_BaseColor.png",
+            "base_color_sha256": "0c3000db290681fe5cd5a75bd5fd3642a519466e5557c140840ecca463dc2933",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_Normal.png",
+            "normal_sha256": "7b149ba7d62be2061c790a780be42ada3a4f56697498058ee4c3b125ed1b024e",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_ORM.png",
+            "orm_packed_sha256": "40abb5f32b362839cb4b4dbec562773a3a57d168dc6d05c5ee1e6aaed6dcc2f9",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_Height.png",
+            "height_sha256": "eb0d26020e3c61c53b3394d74d7307e628fb74f47bd52b3121bf6ec6f9168db1"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.3,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_BaseColor.png",
+            "base_color_sha256": "66fe38d8ac1d5bf101c65188dcb49f13f24ec7df85dfc8c7b0094616d21d9d89",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_Normal.png",
+            "normal_sha256": "18afdc60ca991491e79ad94c69581450bbd0e62deb0ccb3300d8a3328ea9133e",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_ORM.png",
+            "orm_packed_sha256": "07c62148183e6f74fde91708fb7edcc6554f8aff83673c50bb86fe45ab402a97",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_Height.png",
+            "height_sha256": "8f1716ba24d50cde4f72e629a1ec1f22ee7bceea4fa2c03fe69f29e7e3274cb4"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_BaseColor.png",
+            "base_color_sha256": "cf809afcfb93ddbc4adb4a179c5ca26682ee9da8f9e02dee552ac9848ac8aec8",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_Normal.png",
+            "normal_sha256": "4a8dc9cdbcf92d3631b0aa316d3b1aa4cd87ad562f04f5459627fd82fb7baaea",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_ORM.png",
+            "orm_packed_sha256": "05fa505cb4dd93468727281ba00f31ae269a54f84c8652050dc3e1c20aaa6981",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_Height.png",
+            "height_sha256": "a39e3f8541e07a167eb0ff2f382b0abb5b32dc0c814f475c7966d4b9860cd05f"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    },
+    "Starskiff_Hull_Celestial": {
+      "asset_name": "Starskiff_Hull_Celestial",
+      "family": "VehicleHull",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "lod_tiers": {
+        "LOD0": {
+          "tier_index": 0,
+          "resolution": 1024,
+          "distance_range_m": [
+            0.0,
+            15.0
+          ],
+          "pom_steps": 32,
+          "toksvig_factor": 0.0,
+          "grazing_rim_boost": 1.0,
+          "wpo_resonance_scale": 1.0,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_BaseColor.png",
+            "base_color_sha256": "bb7ec0f0315710fa198d546e58e9a4668e7145bce6e8014c58d328ee96d0d26d",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_Normal.png",
+            "normal_sha256": "8c849d1cf4cc0e81f910bfc32504d51a6063e09dc3645282fdd53a2163b58d13",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_ORM.png",
+            "orm_packed_sha256": "6a215ad21bd5f24e30fe8b151fe6fddfcd13429df5843eb24f10e642faebb5e1",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_Height.png",
+            "height_sha256": "0c385ea2318a0385f9a6bd10501150b166945d8d3d7193c80d43a6576103152f"
+          }
+        },
+        "LOD1": {
+          "tier_index": 1,
+          "resolution": 512,
+          "distance_range_m": [
+            15.0,
+            50.0
+          ],
+          "pom_steps": 16,
+          "toksvig_factor": 0.35,
+          "grazing_rim_boost": 1.15,
+          "wpo_resonance_scale": 0.75,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_BaseColor.png",
+            "base_color_sha256": "b90132f95070239c650f89ba03d93f18e02ef9c758c7e272ae90b44b107b92a2",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_Normal.png",
+            "normal_sha256": "fc0a091c161e00957db6599b40c6720c10dbf391a1b5c55ba3f963ad30e249eb",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_ORM.png",
+            "orm_packed_sha256": "5576dbfc507b1be821fa06f264ec02abe9759f7381db2783442800802e6447af",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_Height.png",
+            "height_sha256": "4d04ca29d7bfddf9e640719b6b7a067c3d0311f7d98a9694af92cf3bc7c30dd9"
+          }
+        },
+        "LOD2": {
+          "tier_index": 2,
+          "resolution": 256,
+          "distance_range_m": [
+            50.0,
+            200.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 0.75,
+          "grazing_rim_boost": 1.4,
+          "wpo_resonance_scale": 0.3,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_BaseColor.png",
+            "base_color_sha256": "21efae167245137299043a7f4803d5e75d8481b119c9eb2c903995e385057471",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_Normal.png",
+            "normal_sha256": "1d68fbf03f0eeac97e0f5cbd47b796c8d4eb435ff6d62727e7b21be931b1bd4b",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_ORM.png",
+            "orm_packed_sha256": "17c7030f98a23f1c25e275121343730f81e153d9b3450e92b920d0b00749c131",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_Height.png",
+            "height_sha256": "2e221e8df405a82df1cf23ed1c871caa671f06969a76f6670948238e1ee90e7f"
+          }
+        },
+        "LOD3": {
+          "tier_index": 3,
+          "resolution": 128,
+          "distance_range_m": [
+            200.0,
+            5000.0
+          ],
+          "pom_steps": 0,
+          "toksvig_factor": 1.0,
+          "grazing_rim_boost": 1.8,
+          "wpo_resonance_scale": 0.0,
+          "maps": {
+            "base_color": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_BaseColor.png",
+            "base_color_sha256": "789fa5e7797e3953e4b3c790bc7d5864b81c4a3cc647de453ba446dddb12d3a1",
+            "normal": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_Normal.png",
+            "normal_sha256": "503832fba9e17d26c5004ef73c4c46b79b4a0e71c6bafe6b3aa644d794d48956",
+            "orm_packed": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_ORM.png",
+            "orm_packed_sha256": "e94043b824adbed480414d0970079cac94bb23116a7a637a6404b0a4680705e6",
+            "height": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_Height.png",
+            "height_sha256": "b9c75c58a47651b85dd6ca8aa50e304d1210dcb2e47d22c75b6bbebd3d780b2e"
+          }
+        }
+      },
+      "dither_transition_map": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "iridescence_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+    }
+  },
+  "shared_utilities": {
+    "bayer_dither_8x8": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+    "blue_noise_stipple_64x64": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+    "iridescence_thin_film_lut": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png"
+  }
+}
