@@ -67,4 +67,3 @@ jobs:
       - name: Explain token-free mode
         if: ${{ secrets.SITE_SYNC_TOKEN == '' }}
         run: echo "SITE_SYNC_TOKEN is not configured; status was generated locally and no site push was attempted."
-          fi
