@@ -6,6 +6,10 @@ Front door for driving **MelodiaMelusinaV2** from iOS / Cursor mobile / SuperGro
 [PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md)
 — what phone Cursor is for (Drive + git + Remote Control), not sandbox ops.
 
+**Artist bridge (read first on phone):**
+[PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md)
+— what phone Cursor is for (Drive + git + Remote Control), not sandbox ops.
+
 ## Start here (order)
 
 1. [../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md) — phone artist intent + Drive-ready protocol
