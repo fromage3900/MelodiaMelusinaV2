@@ -9,9 +9,9 @@ Restore trustworthy GitHub health signals without touching gameplay code, Unreal
 - `main` remains the protected source-of-truth branch.
 - PR #48 now carries the CI repair (Actions checkout/artifact bumps, site-sync
   token-free path, `quick-deploy.ps1` CRLF normalize) plus the git health docs.
-- **2026-09-02 fix:** `site_status_sync.yml` must not use
-  `if: ${{ secrets.SITE_SYNC_TOKEN == '' }}` — that pattern produced 0-job
-  workflow failures on push. Gate only the remote push steps with `!= ''`.
+- **2026-09-02 fix:** never put `secrets.*` in step `if:` on this repo (both
+  `== ''` and `!= ''` produced 0-job push failures). Detect `SITE_SYNC_TOKEN`
+  via `env` + step output, then gate remote push steps on that output.
 - Echo Static Gates and Unreal Build + Tests still require the self-hosted
   `[Windows, UE58]` runner; this plan does not pretend to solve runner availability.
 - A fresh Linux checkout may still report `deploy/quick-deploy.ps1` dirty because
