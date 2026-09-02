@@ -1,0 +1,2220 @@
+{
+  "schema": "melodia.faraway_lod_destruction_pcg.v1",
+  "version": "1.0.0",
+  "seed": 20260829,
+  "total_points": 72,
+  "zone_summaries": {
+    "WeaveRidge": {
+      "name": "WeaveRidge",
+      "point_count": 18,
+      "builders": [
+        "MEL_mother_fabric_ridge",
+        "MEL_mother_shoulder_fold"
+      ],
+      "avg_tension": 0.8441,
+      "avg_destruction": 0.952,
+      "kill_thresh": 0.35,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    "LaceCanopy": {
+      "name": "LaceCanopy",
+      "point_count": 18,
+      "builders": [
+        "MEL_mother_lace_tree",
+        "MEL_mother_pearl_bush"
+      ],
+      "avg_tension": 0.7269,
+      "avg_destruction": 0.9102,
+      "kill_thresh": 0.5,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    "FrillValley": {
+      "name": "FrillValley",
+      "point_count": 18,
+      "builders": [
+        "MEL_mother_frill_rock",
+        "MEL_mother_frill_arch",
+        "MEL_mother_brocade_flower"
+      ],
+      "avg_tension": 0.4094,
+      "avg_destruction": 0.4321,
+      "kill_thresh": 0.85,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    "ResonantSeamWay": {
+      "name": "ResonantSeamWay",
+      "point_count": 18,
+      "builders": [
+        "MEL_mother_walkway_straight",
+        "MEL_mother_heart_gate"
+      ],
+      "avg_tension": 0.2775,
+      "avg_destruction": 0.2645,
+      "kill_thresh": 0.95,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    }
+  },
+  "points": [
+    {
+      "id": "FL_WeaveRidge_0000",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        82593.0977592221,
+        -127308.21973595284,
+        14516.278900196143
+      ],
+      "height_cm": 14516.278900196143,
+      "final_z": 14551.278900196143,
+      "rotation": [
+        0,
+        0,
+        15.03939527790537
+      ],
+      "scale": [
+        0.8836992925903367,
+        0.8836992925903367,
+        0.8836992925903367
+      ],
+      "tension": 0.99,
+      "chladni_val": -0.5013,
+      "horizon_mask": 0.7646,
+      "destruction_t": 0.9763,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0001",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -378053.8318509628,
+        305851.53677692934,
+        13777.955335031562
+      ],
+      "height_cm": 13777.955335031562,
+      "final_z": 13812.955335031562,
+      "rotation": [
+        0,
+        0,
+        49.68427300611427
+      ],
+      "scale": [
+        1.0025548666343531,
+        1.0025548666343531,
+        1.0025548666343531
+      ],
+      "tension": 0.7051,
+      "chladni_val": 0.6698,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9446,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0002",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -376597.76469023596,
+        -366645.14019681123,
+        14380.416027688314
+      ],
+      "height_cm": 14380.416027688314,
+      "final_z": 14415.416027688314,
+      "rotation": [
+        0,
+        0,
+        269.8103294849495
+      ],
+      "scale": [
+        0.8615383356109585,
+        0.8615383356109585,
+        0.8615383356109585
+      ],
+      "tension": 0.6689,
+      "chladni_val": -0.0648,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9192,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0003",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -188195.4581593087,
+        -143485.30620741186,
+        14040.174857912894
+      ],
+      "height_cm": 14040.174857912894,
+      "final_z": 14075.174857912894,
+      "rotation": [
+        0,
+        0,
+        131.90612788048588
+      ],
+      "scale": [
+        1.2106702284015782,
+        1.2106702284015782,
+        1.2106702284015782
+      ],
+      "tension": 0.8575,
+      "chladni_val": -0.7764,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0004",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        171424.6243775621,
+        282171.2810689483,
+        12673.227002897182
+      ],
+      "height_cm": 12673.227002897182,
+      "final_z": 12708.227002897182,
+      "rotation": [
+        0,
+        0,
+        322.7076848537397
+      ],
+      "scale": [
+        0.8571664799391698,
+        0.8571664799391698,
+        0.8571664799391698
+      ],
+      "tension": 0.9726,
+      "chladni_val": 0.6498,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0005",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        357221.59909017745,
+        -327640.12338697223,
+        13628.37990621969
+      ],
+      "height_cm": 13628.37990621969,
+      "final_z": 13663.37990621969,
+      "rotation": [
+        0,
+        0,
+        28.846796002585293
+      ],
+      "scale": [
+        0.9160466949033824,
+        0.9160466949033824,
+        0.9160466949033824
+      ],
+      "tension": 0.7886,
+      "chladni_val": 0.3084,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8888,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0006",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        30648.205174557308,
+        380192.28897666855,
+        13856.842707229875
+      ],
+      "height_cm": 13856.842707229875,
+      "final_z": 13891.842707229875,
+      "rotation": [
+        0,
+        0,
+        331.7320679334254
+      ],
+      "scale": [
+        0.950688596550601,
+        0.950688596550601,
+        0.950688596550601
+      ],
+      "tension": 0.7799,
+      "chladni_val": -0.8777,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9427,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0007",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -101821.05714336087,
+        -399261.912981531,
+        13243.063806827024
+      ],
+      "height_cm": 13243.063806827024,
+      "final_z": 13278.063806827024,
+      "rotation": [
+        0,
+        0,
+        284.16230199644133
+      ],
+      "scale": [
+        1.114166815963322,
+        1.114166815963322,
+        1.114166815963322
+      ],
+      "tension": 0.99,
+      "chladni_val": -1.8414,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0008",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        166767.256609824,
+        70118.66108788949,
+        14047.53496294483
+      ],
+      "height_cm": 14047.53496294483,
+      "final_z": 14082.53496294483,
+      "rotation": [
+        0,
+        0,
+        210.53595665539382
+      ],
+      "scale": [
+        0.8652591775946926,
+        0.8652591775946926,
+        0.8652591775946926
+      ],
+      "tension": 0.8048,
+      "chladni_val": -1.0035,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9542,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0009",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        -278091.6932583344,
+        -147987.41030081527,
+        13170.885109558818
+      ],
+      "height_cm": 13170.885109558818,
+      "final_z": 13205.885109558818,
+      "rotation": [
+        0,
+        0,
+        340.76266131105064
+      ],
+      "scale": [
+        1.3737525493487475,
+        1.3737525493487475,
+        1.3737525493487475
+      ],
+      "tension": 0.7851,
+      "chladni_val": -0.6908,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8836,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0010",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        321317.8356628598,
+        -43469.32055375543,
+        13405.004049456968
+      ],
+      "height_cm": 13405.004049456968,
+      "final_z": 13440.004049456968,
+      "rotation": [
+        0,
+        0,
+        282.17272928524926
+      ],
+      "scale": [
+        1.043963342897361,
+        1.043963342897361,
+        1.043963342897361
+      ],
+      "tension": 0.735,
+      "chladni_val": -0.465,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8663,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0011",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        259075.74132568075,
+        -276682.64584723837,
+        13931.232433895619
+      ],
+      "height_cm": 13931.232433895619,
+      "final_z": 13966.232433895619,
+      "rotation": [
+        0,
+        0,
+        197.34819895981877
+      ],
+      "scale": [
+        1.1914678112134818,
+        1.1914678112134818,
+        1.1914678112134818
+      ],
+      "tension": 0.99,
+      "chladni_val": -0.1767,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0012",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        360819.36538295815,
+        -12075.387065616284,
+        14866.515359832492
+      ],
+      "height_cm": 14866.515359832492,
+      "final_z": 14901.515359832492,
+      "rotation": [
+        0,
+        0,
+        75.33556260388909
+      ],
+      "scale": [
+        0.9991479063830816,
+        0.9991479063830816,
+        0.9991479063830816
+      ],
+      "tension": 0.99,
+      "chladni_val": -0.3122,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0013",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        372910.5556288762,
+        -252768.04458016154,
+        14550.679550462946
+      ],
+      "height_cm": 14550.679550462946,
+      "final_z": 14585.679550462946,
+      "rotation": [
+        0,
+        0,
+        234.67394387569507
+      ],
+      "scale": [
+        0.8807342700573415,
+        0.8807342700573415,
+        0.8807342700573415
+      ],
+      "tension": 0.8008,
+      "chladni_val": 0.7793,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9781,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0014",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_shoulder_fold",
+      "position": [
+        688.9486208840445,
+        -352744.0919112705,
+        12616.725326433001
+      ],
+      "height_cm": 12616.725326433001,
+      "final_z": 12651.725326433001,
+      "rotation": [
+        0,
+        0,
+        270.9387103653785
+      ],
+      "scale": [
+        0.9764135764768654,
+        0.9764135764768654,
+        0.9764135764768654
+      ],
+      "tension": 0.9303,
+      "chladni_val": 0.0164,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0015",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -132338.03101115403,
+        -133522.90919677712,
+        14843.134250423767
+      ],
+      "height_cm": 14843.134250423767,
+      "final_z": 14878.134250423767,
+      "rotation": [
+        0,
+        0,
+        87.13845197408571
+      ],
+      "scale": [
+        0.9635070055306433,
+        0.9635070055306433,
+        0.9635070055306433
+      ],
+      "tension": 0.7471,
+      "chladni_val": 0.0201,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8695,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0016",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -145582.57718101607,
+        82160.38862206698,
+        12807.119317807228
+      ],
+      "height_cm": 12807.119317807228,
+      "final_z": 12842.119317807228,
+      "rotation": [
+        0,
+        0,
+        196.19185608216486
+      ],
+      "scale": [
+        1.1268372899221821,
+        1.1268372899221821,
+        1.1268372899221821
+      ],
+      "tension": 0.8787,
+      "chladni_val": 0.7586,
+      "horizon_mask": 0.8931,
+      "destruction_t": 0.9571,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_WeaveRidge_0017",
+      "biome": "WeaveRidge",
+      "builder": "MEL_mother_fabric_ridge",
+      "position": [
+        -395821.7921515813,
+        162563.14401840654,
+        13654.222690246235
+      ],
+      "height_cm": 13654.222690246235,
+      "final_z": 13689.222690246235,
+      "rotation": [
+        0,
+        0,
+        51.62559128112018
+      ],
+      "scale": [
+        1.3203867249983774,
+        1.3203867249983774,
+        1.3203867249983774
+      ],
+      "tension": 0.7801,
+      "chladni_val": -0.8879,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9552,
+      "kill_threshold": 0.35,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    {
+      "id": "FL_LaceCanopy_0018",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        130290.57833899299,
+        113479.5350953202,
+        13723.933138053604
+      ],
+      "height_cm": 13723.933138053604,
+      "final_z": 13758.933138053604,
+      "rotation": [
+        0,
+        0,
+        316.1784788556897
+      ],
+      "scale": [
+        1.2228967547267113,
+        1.2228967547267113,
+        1.2228967547267113
+      ],
+      "tension": 0.8793,
+      "chladni_val": -0.2553,
+      "horizon_mask": 0.9398,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0019",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -314414.4534345889,
+        -263202.2955798281,
+        14280.932586348517
+      ],
+      "height_cm": 14280.932586348517,
+      "final_z": 14315.932586348517,
+      "rotation": [
+        0,
+        0,
+        237.4274944576776
+      ],
+      "scale": [
+        1.1099038102337146,
+        1.1099038102337146,
+        1.1099038102337146
+      ],
+      "tension": 0.9063,
+      "chladni_val": -0.4834,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0020",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -391266.3103244497,
+        102746.6727295975,
+        13821.487413440687
+      ],
+      "height_cm": 13821.487413440687,
+      "final_z": 13856.487413440687,
+      "rotation": [
+        0,
+        0,
+        152.3830251396766
+      ],
+      "scale": [
+        1.432522197781168,
+        1.432522197781168,
+        1.432522197781168
+      ],
+      "tension": 0.8289,
+      "chladni_val": -1.8192,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0021",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -229229.45787114513,
+        47185.32938741715,
+        13298.52334847919
+      ],
+      "height_cm": 13298.52334847919,
+      "final_z": 13333.52334847919,
+      "rotation": [
+        0,
+        0,
+        253.42472726266996
+      ],
+      "scale": [
+        1.3125127469326483,
+        1.3125127469326483,
+        1.3125127469326483
+      ],
+      "tension": 0.7965,
+      "chladni_val": 0.8572,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9958,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0022",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        374595.8550186946,
+        301465.5622398771,
+        12944.414789300852
+      ],
+      "height_cm": 12944.414789300852,
+      "final_z": 12979.414789300852,
+      "rotation": [
+        0,
+        0,
+        5.439427953412288
+      ],
+      "scale": [
+        0.9632208415150253,
+        0.9632208415150253,
+        0.9632208415150253
+      ],
+      "tension": 0.6779,
+      "chladni_val": -0.6901,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9044,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0023",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        62237.93590068212,
+        220819.45697891695,
+        13896.63891115541
+      ],
+      "height_cm": 13896.63891115541,
+      "final_z": 13931.63891115541,
+      "rotation": [
+        0,
+        0,
+        51.31006321014201
+      ],
+      "scale": [
+        1.0524340268009666,
+        1.0524340268009666,
+        1.0524340268009666
+      ],
+      "tension": 0.7487,
+      "chladni_val": 1.1056,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8574,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0024",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -343616.22533444443,
+        215064.32849419923,
+        14959.223667988357
+      ],
+      "height_cm": 14959.223667988357,
+      "final_z": 14994.223667988357,
+      "rotation": [
+        0,
+        0,
+        218.20260626599116
+      ],
+      "scale": [
+        1.435999807261437,
+        1.435999807261437,
+        1.435999807261437
+      ],
+      "tension": 0.579,
+      "chladni_val": 0.4394,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8512,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0025",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        263219.9138957893,
+        63634.35122201473,
+        14951.023745426297
+      ],
+      "height_cm": 14951.023745426297,
+      "final_z": 14986.023745426297,
+      "rotation": [
+        0,
+        0,
+        184.39711772446435
+      ],
+      "scale": [
+        1.3856110148764356,
+        1.3856110148764356,
+        1.3856110148764356
+      ],
+      "tension": 0.9073,
+      "chladni_val": -0.6503,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0026",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -384154.3109664504,
+        168565.20222674974,
+        14122.258559030508
+      ],
+      "height_cm": 14122.258559030508,
+      "final_z": 14157.258559030508,
+      "rotation": [
+        0,
+        0,
+        152.51251022611785
+      ],
+      "scale": [
+        0.9771778227115356,
+        0.9771778227115356,
+        0.9771778227115356
+      ],
+      "tension": 0.6116,
+      "chladni_val": -0.7067,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8591,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0027",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -285642.32427195704,
+        -234872.94430268893,
+        13393.425750411214
+      ],
+      "height_cm": 13393.425750411214,
+      "final_z": 13428.425750411214,
+      "rotation": [
+        0,
+        0,
+        173.8448583344996
+      ],
+      "scale": [
+        1.0392645859762228,
+        1.0392645859762228,
+        1.0392645859762228
+      ],
+      "tension": 0.6538,
+      "chladni_val": -0.4491,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9064,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0028",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        -337632.17819964665,
+        340057.37318102503,
+        13955.343951441062
+      ],
+      "height_cm": 13955.343951441062,
+      "final_z": 13990.343951441062,
+      "rotation": [
+        0,
+        0,
+        19.07370513037662
+      ],
+      "scale": [
+        0.9840418100726249,
+        0.9840418100726249,
+        0.9840418100726249
+      ],
+      "tension": 0.6115,
+      "chladni_val": -0.0265,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8532,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0029",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        111710.97546649582,
+        153865.39465143727,
+        13667.560645468524
+      ],
+      "height_cm": 13667.560645468524,
+      "final_z": 13702.560645468524,
+      "rotation": [
+        0,
+        0,
+        201.99434962677446
+      ],
+      "scale": [
+        0.8641114478250056,
+        0.8641114478250056,
+        0.8641114478250056
+      ],
+      "tension": 0.7931,
+      "chladni_val": 0.6724,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9563,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0030",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -18610.071315628484,
+        154805.82085335915,
+        12753.044193513453
+      ],
+      "height_cm": 12753.044193513453,
+      "final_z": 12788.044193513453,
+      "rotation": [
+        0,
+        0,
+        266.89603048641
+      ],
+      "scale": [
+        1.0715920509618353,
+        1.0715920509618353,
+        1.0715920509618353
+      ],
+      "tension": 0.6838,
+      "chladni_val": -0.3238,
+      "horizon_mask": 0.7993,
+      "destruction_t": 0.826,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0031",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        389521.0543903168,
+        -343251.33733908436,
+        13915.960964977961
+      ],
+      "height_cm": 13915.960964977961,
+      "final_z": 13950.960964977961,
+      "rotation": [
+        0,
+        0,
+        356.9494602868711
+      ],
+      "scale": [
+        1.238271838342831,
+        1.238271838342831,
+        1.238271838342831
+      ],
+      "tension": 0.4656,
+      "chladni_val": 0.3307,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.7937,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0032",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        277751.57473201875,
+        -379524.8677508452,
+        12919.662807681452
+      ],
+      "height_cm": 12919.662807681452,
+      "final_z": 12954.662807681452,
+      "rotation": [
+        0,
+        0,
+        186.09135298754364
+      ],
+      "scale": [
+        0.9207371101368775,
+        0.9207371101368775,
+        0.9207371101368775
+      ],
+      "tension": 0.8196,
+      "chladni_val": -0.8361,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9437,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0033",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_lace_tree",
+      "position": [
+        -21653.644745254573,
+        248728.52433487357,
+        13896.462159888879
+      ],
+      "height_cm": 13896.462159888879,
+      "final_z": 13931.462159888879,
+      "rotation": [
+        0,
+        0,
+        35.21611929241332
+      ],
+      "scale": [
+        1.3162525209229912,
+        1.3162525209229912,
+        1.3162525209229912
+      ],
+      "tension": 0.6214,
+      "chladni_val": -0.3352,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8231,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0034",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        219009.29613203334,
+        42093.19250170918,
+        14789.508997983
+      ],
+      "height_cm": 14789.508997983,
+      "final_z": 14824.508997983,
+      "rotation": [
+        0,
+        0,
+        283.94614737216995
+      ],
+      "scale": [
+        1.0151430975008542,
+        1.0151430975008542,
+        1.0151430975008542
+      ],
+      "tension": 0.8799,
+      "chladni_val": -0.8276,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9672,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_LaceCanopy_0035",
+      "biome": "LaceCanopy",
+      "builder": "MEL_mother_pearl_bush",
+      "position": [
+        29817.422649350523,
+        336659.3863418486,
+        13109.349575332046
+      ],
+      "height_cm": 13109.349575332046,
+      "final_z": 13144.349575332046,
+      "rotation": [
+        0,
+        0,
+        263.69563264857123
+      ],
+      "scale": [
+        1.3876720987104783,
+        1.3876720987104783,
+        1.3876720987104783
+      ],
+      "tension": 0.6202,
+      "chladni_val": -0.5163,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8454,
+      "kill_threshold": 0.5,
+      "lod_at_rest": "LOD3",
+      "will_destroy": true,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    {
+      "id": "FL_FrillValley_0036",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        -113200.45557525718,
+        -60272.134770646255,
+        14382.005491956272
+      ],
+      "height_cm": 14382.005491956272,
+      "final_z": 14417.005491956272,
+      "rotation": [
+        0,
+        0,
+        302.2301886054062
+      ],
+      "scale": [
+        1.3845635548804711,
+        1.3845635548804711,
+        1.3845635548804711
+      ],
+      "tension": 0.4896,
+      "chladni_val": -0.3818,
+      "horizon_mask": 0.5687,
+      "destruction_t": 0.6084,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0037",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -46912.15834449975,
+        25790.33423992696,
+        13243.680209720858
+      ],
+      "height_cm": 13243.680209720858,
+      "final_z": 13278.680209720858,
+      "rotation": [
+        0,
+        0,
+        108.10781883415768
+      ],
+      "scale": [
+        0.9762061794507386,
+        0.9762061794507386,
+        0.9762061794507386
+      ],
+      "tension": 0.4834,
+      "chladni_val": 0.0164,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.2808,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0038",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        22291.272124562234,
+        -28642.94044684774,
+        13449.568597947187
+      ],
+      "height_cm": 13449.568597947187,
+      "final_z": 13484.568597947187,
+      "rotation": [
+        0,
+        0,
+        169.9920412769691
+      ],
+      "scale": [
+        0.9741770527709115,
+        0.9741770527709115,
+        0.9741770527709115
+      ],
+      "tension": 0.3636,
+      "chladni_val": -0.0019,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.2751,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0039",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        -113705.29983998723,
+        118806.32378235276,
+        12715.73312261193
+      ],
+      "height_cm": 12715.73312261193,
+      "final_z": 12750.73312261193,
+      "rotation": [
+        0,
+        0,
+        191.5514741605402
+      ],
+      "scale": [
+        0.8648442092456072,
+        0.8648442092456072,
+        0.8648442092456072
+      ],
+      "tension": 0.2667,
+      "chladni_val": -0.0731,
+      "horizon_mask": 0.8704,
+      "destruction_t": 0.5413,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0040",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        117274.33686923714,
+        12637.705573442925,
+        14840.66980235948
+      ],
+      "height_cm": 14840.66980235948,
+      "final_z": 14875.66980235948,
+      "rotation": [
+        0,
+        0,
+        266.72533362318273
+      ],
+      "scale": [
+        0.9436704601444295,
+        0.9436704601444295,
+        0.9436704601444295
+      ],
+      "tension": 0.4453,
+      "chladni_val": -0.1309,
+      "horizon_mask": 0.4829,
+      "destruction_t": 0.4602,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0041",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -82619.12808512793,
+        -18406.95800226575,
+        13621.142427079489
+      ],
+      "height_cm": 13621.142427079489,
+      "final_z": 13656.142427079489,
+      "rotation": [
+        0,
+        0,
+        2.68548844985097
+      ],
+      "scale": [
+        1.168953622372266,
+        1.168953622372266,
+        1.168953622372266
+      ],
+      "tension": 0.3064,
+      "chladni_val": -0.0775,
+      "horizon_mask": 0.2054,
+      "destruction_t": 0.3117,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0042",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -61666.36326614299,
+        73833.62572394336,
+        14549.943302175157
+      ],
+      "height_cm": 14549.943302175157,
+      "final_z": 14584.943302175157,
+      "rotation": [
+        0,
+        0,
+        299.13416029791534
+      ],
+      "scale": [
+        1.1418918333856,
+        1.1418918333856,
+        1.1418918333856
+      ],
+      "tension": 0.2913,
+      "chladni_val": -0.0559,
+      "horizon_mask": 0.3017,
+      "destruction_t": 0.3412,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0043",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        101049.59271962999,
+        89305.87824161726,
+        12637.52279641154
+      ],
+      "height_cm": 12637.52279641154,
+      "final_z": 12672.52279641154,
+      "rotation": [
+        0,
+        0,
+        100.12720765291006
+      ],
+      "scale": [
+        1.4233844303360428,
+        1.4233844303360428,
+        1.4233844303360428
+      ],
+      "tension": 0.3662,
+      "chladni_val": -0.1177,
+      "horizon_mask": 0.6238,
+      "destruction_t": 0.4887,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0044",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        88748.27740836615,
+        -86541.50174072814,
+        14891.122820301862
+      ],
+      "height_cm": 14891.122820301862,
+      "final_z": 14926.122820301862,
+      "rotation": [
+        0,
+        0,
+        328.43503490055974
+      ],
+      "scale": [
+        1.0533402193567971,
+        1.0533402193567971,
+        1.0533402193567971
+      ],
+      "tension": 0.4113,
+      "chladni_val": 0.0187,
+      "horizon_mask": 0.533,
+      "destruction_t": 0.4741,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0045",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        116434.0976576141,
+        33669.82202867339,
+        12905.358097504812
+      ],
+      "height_cm": 12905.358097504812,
+      "final_z": 12940.358097504812,
+      "rotation": [
+        0,
+        0,
+        320.14727899698437
+      ],
+      "scale": [
+        1.1460793579319521,
+        1.1460793579319521,
+        1.1460793579319521
+      ],
+      "tension": 0.3491,
+      "chladni_val": -0.3102,
+      "horizon_mask": 0.51,
+      "destruction_t": 0.3891,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0046",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        -69751.35986226171,
+        88203.95048968823,
+        14666.175626994785
+      ],
+      "height_cm": 14666.175626994785,
+      "final_z": 14701.175626994785,
+      "rotation": [
+        0,
+        0,
+        43.48598166490747
+      ],
+      "scale": [
+        1.293748001599964,
+        1.293748001599964,
+        1.293748001599964
+      ],
+      "tension": 0.3995,
+      "chladni_val": -0.1217,
+      "horizon_mask": 0.4371,
+      "destruction_t": 0.4202,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0047",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -56538.22445088097,
+        69522.0803076742,
+        12662.432926205744
+      ],
+      "height_cm": 12662.432926205744,
+      "final_z": 12697.432926205744,
+      "rotation": [
+        0,
+        0,
+        27.646495635509055
+      ],
+      "scale": [
+        1.235306589798272,
+        1.235306589798272,
+        1.235306589798272
+      ],
+      "tension": 0.5235,
+      "chladni_val": -0.0495,
+      "horizon_mask": 0.2467,
+      "destruction_t": 0.4659,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0048",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        18238.712767370303,
+        73221.2206739545,
+        14193.024851860915
+      ],
+      "height_cm": 14193.024851860915,
+      "final_z": 14228.024851860915,
+      "rotation": [
+        0,
+        0,
+        304.88986384817144
+      ],
+      "scale": [
+        1.0019859440447876,
+        1.0019859440447876,
+        1.0019859440447876
+      ],
+      "tension": 0.305,
+      "chladni_val": 0.0549,
+      "horizon_mask": 0.1288,
+      "destruction_t": 0.2906,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0049",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        115982.52761767096,
+        -19852.67073018582,
+        12804.849420324377
+      ],
+      "height_cm": 12804.849420324377,
+      "final_z": 12839.849420324377,
+      "rotation": [
+        0,
+        0,
+        228.93309388397682
+      ],
+      "scale": [
+        1.0969007714824135,
+        1.0969007714824135,
+        1.0969007714824135
+      ],
+      "tension": 0.5453,
+      "chladni_val": 0.1958,
+      "horizon_mask": 0.4806,
+      "destruction_t": 0.5898,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0050",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_arch",
+      "position": [
+        32825.69513209852,
+        -71493.82486424054,
+        13073.562739704012
+      ],
+      "height_cm": 13073.562739704012,
+      "final_z": 13108.562739704012,
+      "rotation": [
+        0,
+        0,
+        157.26394385344068
+      ],
+      "scale": [
+        1.2175633529983882,
+        1.2175633529983882,
+        1.2175633529983882
+      ],
+      "tension": 0.477,
+      "chladni_val": -0.0764,
+      "horizon_mask": 0.1556,
+      "destruction_t": 0.342,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0051",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        18317.147809648835,
+        99546.6080717522,
+        12977.058542309414
+      ],
+      "height_cm": 12977.058542309414,
+      "final_z": 13012.058542309414,
+      "rotation": [
+        0,
+        0,
+        149.17969056798825
+      ],
+      "scale": [
+        0.9512621389441093,
+        0.9512621389441093,
+        0.9512621389441093
+      ],
+      "tension": 0.2929,
+      "chladni_val": 0.1259,
+      "horizon_mask": 0.3435,
+      "destruction_t": 0.3815,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0052",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_frill_rock",
+      "position": [
+        -106597.51116999057,
+        100780.07655858183,
+        13868.722501513254
+      ],
+      "height_cm": 13868.722501513254,
+      "final_z": 13903.722501513254,
+      "rotation": [
+        0,
+        0,
+        255.79479377934337
+      ],
+      "scale": [
+        1.2828839809943169,
+        1.2828839809943169,
+        1.2828839809943169
+      ],
+      "tension": 0.5515,
+      "chladni_val": 0.069,
+      "horizon_mask": 0.7225,
+      "destruction_t": 0.6616,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_FrillValley_0053",
+      "biome": "FrillValley",
+      "builder": "MEL_mother_brocade_flower",
+      "position": [
+        -85351.28545557841,
+        -74828.58024590375,
+        12595.557027488994
+      ],
+      "height_cm": 12595.557027488994,
+      "final_z": 12630.557027488994,
+      "rotation": [
+        0,
+        0,
+        105.36718898722314
+      ],
+      "scale": [
+        1.3488422577457437,
+        1.3488422577457437,
+        1.3488422577457437
+      ],
+      "tension": 0.5009,
+      "chladni_val": -0.0726,
+      "horizon_mask": 0.4459,
+      "destruction_t": 0.4559,
+      "kill_threshold": 0.85,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0054",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -347733.45192866074,
+        -344142.78511384426,
+        12796.1638764063
+      ],
+      "height_cm": 12796.1638764063,
+      "final_z": 12831.1638764063,
+      "rotation": [
+        0,
+        0,
+        77.00498111522326
+      ],
+      "scale": [
+        1.3940893509646917,
+        1.3940893509646917,
+        1.3940893509646917
+      ],
+      "tension": 0.2309,
+      "chladni_val": -0.0372,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3193,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0055",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -187398.43364603698,
+        -359297.99896347395,
+        14379.871558547015
+      ],
+      "height_cm": 14379.871558547015,
+      "final_z": 14414.871558547015,
+      "rotation": [
+        0,
+        0,
+        25.436241252679245
+      ],
+      "scale": [
+        1.0147178482888906,
+        1.0147178482888906,
+        1.0147178482888906
+      ],
+      "tension": 0.2878,
+      "chladni_val": -0.106,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3363,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0056",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -6898.599224564439,
+        -170795.81534541654,
+        14197.481814423765
+      ],
+      "height_cm": 14197.481814423765,
+      "final_z": 14232.481814423765,
+      "rotation": [
+        0,
+        0,
+        234.36149599937957
+      ],
+      "scale": [
+        1.0332581442416882,
+        1.0332581442416882,
+        1.0332581442416882
+      ],
+      "tension": 0.2421,
+      "chladni_val": 0.1392,
+      "horizon_mask": 0.9245,
+      "destruction_t": 0.3037,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0057",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        3082.7430537903488,
+        95233.46275627604,
+        13100.245282897404
+      ],
+      "height_cm": 13100.245282897404,
+      "final_z": 13135.245282897404,
+      "rotation": [
+        0,
+        0,
+        315.14378800435213
+      ],
+      "scale": [
+        1.4113110464691339,
+        1.4113110464691339,
+        1.4113110464691339
+      ],
+      "tension": 0.2764,
+      "chladni_val": 0.0198,
+      "horizon_mask": 0.294,
+      "destruction_t": 0.1564,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0058",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -95514.66211991703,
+        60358.1959252125,
+        14617.617764263883
+      ],
+      "height_cm": 14617.617764263883,
+      "final_z": 14652.617764263883,
+      "rotation": [
+        0,
+        0,
+        256.6005842575212
+      ],
+      "scale": [
+        1.0300189863552274,
+        1.0300189863552274,
+        1.0300189863552274
+      ],
+      "tension": 0.242,
+      "chladni_val": 0.2135,
+      "horizon_mask": 0.4416,
+      "destruction_t": 0.183,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0059",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        174998.17124137183,
+        -335780.0392763653,
+        14741.93407888132
+      ],
+      "height_cm": 14741.93407888132,
+      "final_z": 14776.93407888132,
+      "rotation": [
+        0,
+        0,
+        223.96532679409512
+      ],
+      "scale": [
+        0.9238571967390197,
+        0.9238571967390197,
+        0.9238571967390197
+      ],
+      "tension": 0.1779,
+      "chladni_val": 0.0578,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3034,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0060",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -55753.06887060405,
+        291251.5352914067,
+        14990.212525233532
+      ],
+      "height_cm": 14990.212525233532,
+      "final_z": 15025.212525233532,
+      "rotation": [
+        0,
+        0,
+        335.3241350420719
+      ],
+      "scale": [
+        1.3820475497245772,
+        1.3820475497245772,
+        1.3820475497245772
+      ],
+      "tension": 0.3289,
+      "chladni_val": -0.0728,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3487,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0061",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -317817.1846311174,
+        324279.489100957,
+        12849.533017305184
+      ],
+      "height_cm": 12849.533017305184,
+      "final_z": 12884.533017305184,
+      "rotation": [
+        0,
+        0,
+        126.06371268502839
+      ],
+      "scale": [
+        1.4125538904766854,
+        1.4125538904766854,
+        1.4125538904766854
+      ],
+      "tension": 0.3035,
+      "chladni_val": -0.0745,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3411,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0062",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        5803.068109567366,
+        63107.91919357461,
+        14780.527830656838
+      ],
+      "height_cm": 14780.527830656838,
+      "final_z": 14815.527830656838,
+      "rotation": [
+        0,
+        0,
+        310.19520821287546
+      ],
+      "scale": [
+        0.9784973303772653,
+        0.9784973303772653,
+        0.9784973303772653
+      ],
+      "tension": 0.2544,
+      "chladni_val": 0.0124,
+      "horizon_mask": 0.0281,
+      "destruction_t": 0.0833,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0063",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -314109.14835163427,
+        -153251.52790006076,
+        12845.669306081985
+      ],
+      "height_cm": 12845.669306081985,
+      "final_z": 12880.669306081985,
+      "rotation": [
+        0,
+        0,
+        305.8735191794363
+      ],
+      "scale": [
+        1.3986577312383446,
+        1.3986577312383446,
+        1.3986577312383446
+      ],
+      "tension": 0.2627,
+      "chladni_val": -0.0422,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3288,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0064",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        188626.7532917567,
+        331848.2846449779,
+        14625.967576597275
+      ],
+      "height_cm": 14625.967576597275,
+      "final_z": 14660.967576597275,
+      "rotation": [
+        0,
+        0,
+        46.941269539336254
+      ],
+      "scale": [
+        1.394710463064939,
+        1.394710463064939,
+        1.394710463064939
+      ],
+      "tension": 0.4014,
+      "chladni_val": 0.1869,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3704,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0065",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        -38701.49350037879,
+        32105.618332420338,
+        13955.931555641724
+      ],
+      "height_cm": 13955.931555641724,
+      "final_z": 13990.931555641724,
+      "rotation": [
+        0,
+        0,
+        357.4384498254025
+      ],
+      "scale": [
+        1.210772223291653,
+        1.210772223291653,
+        1.210772223291653
+      ],
+      "tension": 0.2939,
+      "chladni_val": 0.0052,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.0882,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0066",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -229670.33246140956,
+        -217802.84371664296,
+        14700.057665146407
+      ],
+      "height_cm": 14700.057665146407,
+      "final_z": 14735.057665146407,
+      "rotation": [
+        0,
+        0,
+        319.06767571682883
+      ],
+      "scale": [
+        1.1982608940978603,
+        1.1982608940978603,
+        1.1982608940978603
+      ],
+      "tension": 0.2341,
+      "chladni_val": -0.1505,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3202,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0067",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        80466.87458538635,
+        12238.376613668312,
+        14414.52343290567
+      ],
+      "height_cm": 14414.52343290567,
+      "final_z": 14449.52343290567,
+      "rotation": [
+        0,
+        0,
+        76.18204832924589
+      ],
+      "scale": [
+        1.273980563682773,
+        1.273980563682773,
+        1.273980563682773
+      ],
+      "tension": 0.2711,
+      "chladni_val": -0.0496,
+      "horizon_mask": 0.1783,
+      "destruction_t": 0.1259,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0068",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -7212.406902391422,
+        -81614.8382640506,
+        12528.386624951729
+      ],
+      "height_cm": 12528.386624951729,
+      "final_z": 12563.386624951729,
+      "rotation": [
+        0,
+        0,
+        184.1537261728344
+      ],
+      "scale": [
+        1.3877958540598971,
+        1.3877958540598971,
+        1.3877958540598971
+      ],
+      "tension": 0.2609,
+      "chladni_val": 0.0309,
+      "horizon_mask": 0.1828,
+      "destruction_t": 0.124,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0069",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        -283885.9739395095,
+        27306.11959724172,
+        13535.03575840825
+      ],
+      "height_cm": 13535.03575840825,
+      "final_z": 13570.03575840825,
+      "rotation": [
+        0,
+        0,
+        80.06078709131879
+      ],
+      "scale": [
+        1.2643680984292214,
+        1.2643680984292214,
+        1.2643680984292214
+      ],
+      "tension": 0.3019,
+      "chladni_val": 0.103,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3406,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0070",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_walkway_straight",
+      "position": [
+        9758.126172830205,
+        -198541.3494191321,
+        14988.162507320036
+      ],
+      "height_cm": 14988.162507320036,
+      "final_z": 15023.162507320036,
+      "rotation": [
+        0,
+        0,
+        27.858696664618844
+      ],
+      "scale": [
+        1.4106742016181004,
+        1.4106742016181004,
+        1.4106742016181004
+      ],
+      "tension": 0.3156,
+      "chladni_val": -0.2157,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3447,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    },
+    {
+      "id": "FL_ResonantSeamWay_0071",
+      "biome": "ResonantSeamWay",
+      "builder": "MEL_mother_heart_gate",
+      "position": [
+        291556.3723799603,
+        -290262.20397719793,
+        14182.663233432588
+      ],
+      "height_cm": 14182.663233432588,
+      "final_z": 14217.663233432588,
+      "rotation": [
+        0,
+        0,
+        290.38467076201704
+      ],
+      "scale": [
+        1.1282910486998736,
+        1.1282910486998736,
+        1.1282910486998736
+      ],
+      "tension": 0.3088,
+      "chladni_val": 0.0139,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.3426,
+      "kill_threshold": 0.95,
+      "lod_at_rest": "LOD3",
+      "will_destroy": false,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    }
+  ],
+  "hash": "299a481e772f4f3f"
+}

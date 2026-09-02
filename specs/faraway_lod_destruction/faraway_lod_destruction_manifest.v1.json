@@ -1,0 +1,66 @@
+{
+  "schema": "melodia.faraway_lod_destruction_pcg.v1",
+  "version": "1.0.0",
+  "seed": 20260829,
+  "bounds_uu": [
+    -400000.0,
+    -400000.0,
+    400000.0,
+    400000.0
+  ],
+  "total_points": 72,
+  "zone_summaries": {
+    "WeaveRidge": {
+      "name": "WeaveRidge",
+      "point_count": 18,
+      "builders": [
+        "MEL_mother_fabric_ridge",
+        "MEL_mother_shoulder_fold"
+      ],
+      "avg_tension": 0.8441,
+      "avg_destruction": 0.952,
+      "kill_thresh": 0.35,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Gown_CelestialSilkJacquard"
+    },
+    "LaceCanopy": {
+      "name": "LaceCanopy",
+      "point_count": 18,
+      "builders": [
+        "MEL_mother_lace_tree",
+        "MEL_mother_pearl_bush"
+      ],
+      "avg_tension": 0.7269,
+      "avg_destruction": 0.9102,
+      "kill_thresh": 0.5,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Veil_AquaticLullabyLace"
+    },
+    "FrillValley": {
+      "name": "FrillValley",
+      "point_count": 18,
+      "builders": [
+        "MEL_mother_frill_rock",
+        "MEL_mother_frill_arch",
+        "MEL_mother_brocade_flower"
+      ],
+      "avg_tension": 0.4094,
+      "avg_destruction": 0.4321,
+      "kill_thresh": 0.85,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Corset_GildedAcanthusBrocade"
+    },
+    "ResonantSeamWay": {
+      "name": "ResonantSeamWay",
+      "point_count": 18,
+      "builders": [
+        "MEL_mother_walkway_straight",
+        "MEL_mother_heart_gate"
+      ],
+      "avg_tension": 0.2775,
+      "avg_destruction": 0.2645,
+      "kill_thresh": 0.95,
+      "material_instance": "/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_T_FarawayMother_Mantle_NightSkyVelvet"
+    }
+  },
+  "bus": "WorldField.Tension = HorizonEatAmount (UMelodiaAudioReactivePresentationSubsystem sole writer)",
+  "lod_contract": "LOD0 0-15m POM32 T0 R1 W1 | LOD1 15-50m POM16 T0.35 R1.15 W0.75 | LOD2 50-200m POM0 T0.75 R1.4 W0.3 | LOD3 200-5000m POM0 T1 R1.8 W0",
+  "hash": "299a481e772f4f3f"
+}

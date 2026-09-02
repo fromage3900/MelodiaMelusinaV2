@@ -222,10 +222,33 @@ def materialize(name: str, source: dict, row_struct, force: bool):
 
 
 def main() -> int:
-    argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+    if "--" in sys.argv:
+        argv = sys.argv[sys.argv.index("--") + 1:]
+    else:
+        argv = sys.argv[1:]
     verify_only = "--verify-only" in argv or "--dry-run" in argv
     force_burdens = "--force-reimport-burdens" in argv
     if unreal is None:
+        if verify_only:
+            # Headless JSON validation without editor — still verifies every field
+            sources: dict[str, dict] = {}
+            all_errors: list[str] = []
+            for name in TABLES:
+                src, errs = load_source(name)
+                if src is not None:
+                    sources[name] = src
+                all_errors.extend(errs)
+            report["source_counts"] = {n: len(s["rows"]) for n, s in sources.items()}
+            report["source_errors"] = all_errors
+            if all_errors:
+                report["errors"] = all_errors
+                for name, src in sources.items():
+                    report["tables"][name] = {"source": src.get("source",""), "row_count": len(src.get("rows",{})), "status": "source_invalid"}
+                return 1
+            for name, src in sources.items():
+                report["tables"][name] = {"source": src["source"], "row_count": len(src["rows"]), "status": "source_validated_headless_struct_not_compiled", "row_struct": TABLES[name]["row_struct"], "note": "unreal_module_unavailable_run_in_editor_to_materialize"}
+            report["ok"] = True
+            return 0
         report["errors"] = ["unreal_module_unavailable"]
         return 2
     sources: dict[str, dict] = {}

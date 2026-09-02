@@ -1,0 +1,2379 @@
+{
+  "schema": "melodia.horizon_eater_pcg.v1",
+  "version": "1.0.0",
+  "seed": 20260829,
+  "total_points": 80,
+  "zone_summaries": {
+    "FilterCorridor": {
+      "name": "FilterCorridor",
+      "point_count": 20,
+      "builders": [
+        "MEL_horizon_filter_flow",
+        "MEL_horizon_filter_plate"
+      ],
+      "avg_tension": 0.79,
+      "avg_horizon_mask": 0.9451,
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "mode": "3_7"
+    },
+    "HorizonRim": {
+      "name": "HorizonRim",
+      "point_count": 20,
+      "builders": [
+        "MEL_horizon_rim_proxy",
+        "MEL_horizon_mouth_card"
+      ],
+      "avg_tension": 0.8032,
+      "avg_horizon_mask": 1.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "mode": "6_9"
+    },
+    "WayfoldPair": {
+      "name": "WayfoldPair",
+      "point_count": 20,
+      "builders": [
+        "MEL_horizon_wayfold_entry",
+        "MEL_horizon_wayfold_exit"
+      ],
+      "avg_tension": 0.1056,
+      "avg_horizon_mask": 0.1707,
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "mode": "4_4"
+    },
+    "DistanceEvidence": {
+      "name": "DistanceEvidence",
+      "point_count": 20,
+      "builders": [
+        "MEL_horizon_distance_evidence",
+        "MEL_horizon_pollen_drift"
+      ],
+      "avg_tension": 0.8957,
+      "avg_horizon_mask": 0.9216,
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "mode": "5_6"
+    }
+  },
+  "points": [
+    {
+      "id": "HE_FilterCorridor_0000",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_flow",
+      "position": [
+        -380177.6565377867,
+        -400000.0,
+        14059.511560078457
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 604.5115600784575,
+      "rotation": [
+        0,
+        0,
+        15.03939527790537
+      ],
+      "scale": [
+        0.8449323901204491,
+        0.8449323901204491,
+        0.8449323901204491
+      ],
+      "tension": 0.9337,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.1177,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0001",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_flow",
+      "position": [
+        -330732.91964423103,
+        -326595.63117353694,
+        13694.234630301684
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 239.23463030168386,
+      "rotation": [
+        0,
+        0,
+        215.04442328397448
+      ],
+      "scale": [
+        0.9310405653902266,
+        0.9310405653902266,
+        0.9310405653902266
+      ],
+      "tension": 0.7727,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9636,
+      "chladni_val": -0.0839,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0002",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_flow",
+      "position": [
+        -69220.05998479159,
+        -305598.1109010952,
+        13411.682080880155
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -43.3179191198451,
+      "rotation": [
+        0,
+        0,
+        10.531005889393818
+      ],
+      "scale": [
+        0.8333548598031888,
+        0.8333548598031888,
+        0.8333548598031888
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 1.0405,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0003",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_flow",
+      "position": [
+        167140.01518658944,
+        -400000.0,
+        13737.423158888841
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 282.4231588888415,
+      "rotation": [
+        0,
+        0,
+        354.3626102064543
+      ],
+      "scale": [
+        1.0531553999469023,
+        1.0531553999469023,
+        1.0531553999469023
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 1.9148,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0004",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        191869.65382786826,
+        -400000.0,
+        13869.069943165157
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 414.0699431651574,
+      "rotation": [
+        0,
+        0,
+        131.90612788048588
+      ],
+      "scale": [
+        1.280893637868771,
+        1.280893637868771,
+        1.280893637868771
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 1.6177,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0005",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        -358858.0901493851,
+        -172278.8925434524,
+        13266.94413323195
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -188.0558667680507,
+      "rotation": [
+        0,
+        0,
+        229.4733994285757
+      ],
+      "scale": [
+        1.517128188563866,
+        1.517128188563866,
+        1.517128188563866
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 1.2663,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0006",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_flow",
+      "position": [
+        -323080.16617749643,
+        -154266.81621835742,
+        13266.345971241506
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -188.65402875849395,
+      "rotation": [
+        0,
+        0,
+        286.8124170598892
+      ],
+      "scale": [
+        1.5417418961634834,
+        1.5417418961634834,
+        1.5417418961634834
+      ],
+      "tension": 0.58,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.848,
+      "chladni_val": 0.0478,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0007",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        -160615.0421319545,
+        -314865.0576309176,
+        13791.959880524226
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 336.9598805242258,
+      "rotation": [
+        0,
+        0,
+        171.8870165481544
+      ],
+      "scale": [
+        1.2658069370701335,
+        1.2658069370701335,
+        1.2658069370701335
+      ],
+      "tension": 0.6615,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8969,
+      "chladni_val": 0.1459,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0008",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        -11415.9194322339,
+        -325852.38970464584,
+        13795.73708289195
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 340.7370828919502,
+      "rotation": [
+        0,
+        0,
+        331.7320679334254
+      ],
+      "scale": [
+        0.9342514620674681,
+        0.9342514620674681,
+        0.9342514620674681
+      ],
+      "tension": 0.7218,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9331,
+      "chladni_val": 0.2586,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0009",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        215562.94628559344,
+        -335822.8591155674,
+        13792.588125996563
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 337.58812599656267,
+      "rotation": [
+        0,
+        0,
+        103.30310346623165
+      ],
+      "scale": [
+        1.342218320548249,
+        1.342218320548249,
+        1.342218320548249
+      ],
+      "tension": 0.7298,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9379,
+      "chladni_val": 0.1458,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0010",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        -400000.0,
+        -6820.150699217731,
+        13842.648326359862
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 387.64832635986204,
+      "rotation": [
+        0,
+        0,
+        106.28118818309142
+      ],
+      "scale": [
+        1.366767256609824,
+        1.366767256609824,
+        1.366767256609824
+      ],
+      "tension": 0.6956,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9174,
+      "chladni_val": -0.1061,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0011",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        -294456.9436568142,
+        -71676.8747214977,
+        13872.013985177931
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 417.0139851779313,
+      "rotation": [
+        0,
+        0,
+        210.53595665539382
+      ],
+      "scale": [
+        0.8203455701262569,
+        0.8203455701262569,
+        0.8203455701262569
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -1.0224,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0012",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        -146742.00638200023,
+        -115516.97847219567,
+        13691.296075184368
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 236.2960751843675,
+      "rotation": [
+        0,
+        0,
+        229.35377523682976
+      ],
+      "scale": [
+        1.5813661905051744,
+        1.5813661905051744,
+        1.5813661905051744
+      ],
+      "tension": 0.9353,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.7279,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0013",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        41814.784821874,
+        -173505.03311201945,
+        13426.158606046258
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -28.841393953742227,
+      "rotation": [
+        0,
+        0,
+        160.43880575081005
+      ],
+      "scale": [
+        0.9625075582432621,
+        0.9625075582432621,
+        0.9625075582432621
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 1.2844,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0014",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        227872.3236806104,
+        -96946.55086049235,
+        13409.146692690952
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -45.85330730904752,
+      "rotation": [
+        0,
+        0,
+        129.6005831218034
+      ],
+      "scale": [
+        1.4590757413256807,
+        1.4590757413256807,
+        1.4590757413256807
+      ],
+      "tension": 0.5694,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8416,
+      "chladni_val": -0.2199,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0015",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_flow",
+      "position": [
+        -308982.25113621686,
+        14812.405905459247,
+        13825.492973558248
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 370.4929735582482,
+      "rotation": [
+        0,
+        0,
+        197.34819895981877
+      ],
+      "scale": [
+        1.255290414951309,
+        1.255290414951309,
+        1.255290414951309
+      ],
+      "tension": 0.7598,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9559,
+      "chladni_val": 0.3286,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0016",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        -153403.35230809005,
+        77101.90710425211,
+        14199.606143932997
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 744.6061439329969,
+      "rotation": [
+        0,
+        0,
+        75.33556260388909
+      ],
+      "scale": [
+        0.9988638751774421,
+        0.9988638751774421,
+        0.9988638751774421
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -1.5231,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_FilterCorridor_0017",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        9498.533350930316,
+        19335.669300761183,
+        13906.872066321375
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 451.8720663213753,
+      "rotation": [
+        0,
+        0,
+        309.52551152383313
+      ],
+      "scale": [
+        0.8206509233264636,
+        0.8206509233264636,
+        0.8206509233264636
+      ],
+      "tension": 0.0338,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.0203,
+      "chladni_val": -0.0017,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 1.0
+    },
+    {
+      "id": "HE_FilterCorridor_0018",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        -6165.033581650725,
+        141108.18947555427,
+        13573.008003191944
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 118.00800319194423,
+      "rotation": [
+        0,
+        0,
+        21.265158639928256
+      ],
+      "scale": [
+        1.473552105418297,
+        1.473552105418297,
+        1.473552105418297
+      ],
+      "tension": 0.4069,
+      "horizon_mask": 0.9027,
+      "destruction_t": 0.6955,
+      "chladni_val": 0.2167,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.729
+    },
+    {
+      "id": "HE_FilterCorridor_0019",
+      "zone": "FilterCorridor",
+      "builder": "MEL_horizon_filter_plate",
+      "position": [
+        195060.7663430322,
+        97328.61405948059,
+        13588.096363504028
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 133.09636350402798,
+      "rotation": [
+        0,
+        0,
+        16.088447006352055
+      ],
+      "scale": [
+        1.067661968988846,
+        1.067661968988846,
+        1.067661968988846
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 1.0615,
+      "mode": "3_7",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0020",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        159482.76054048268,
+        247115.83365537028,
+        29892.806800886174
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 16437.806800886174,
+      "rotation": [
+        0,
+        0,
+        336.6913320610226
+      ],
+      "scale": [
+        1.8452304899332217,
+        1.8452304899332217,
+        1.8452304899332217
+      ],
+      "tension": 0.4588,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.7753,
+      "chladni_val": 0.0196,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0021",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        -147108.40630330495,
+        -248751.88785789564,
+        34834.21421114247
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 21379.21421114247,
+      "rotation": [
+        0,
+        0,
+        167.41955759752673
+      ],
+      "scale": [
+        1.9157578513571012,
+        1.9157578513571012,
+        1.9157578513571012
+      ],
+      "tension": 0.6544,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8926,
+      "chladni_val": -0.2454,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0022",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_rim_proxy",
+      "position": [
+        220170.34351297794,
+        -213693.44097113537,
+        27890.647065378922
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 14435.647065378922,
+      "rotation": [
+        0,
+        0,
+        51.62559128112018
+      ],
+      "scale": [
+        2.4975690249962135,
+        2.4975690249962135,
+        2.4975690249962135
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -0.7532,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0023",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        341074.4579553934,
+        -6418.368037170133,
+        28281.02557310019
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 14826.025573100189,
+      "rotation": [
+        0,
+        0,
+        316.1784788556897
+      ],
+      "scale": [
+        2.2700924276956598,
+        2.2700924276956598,
+        2.2700924276956598
+      ],
+      "tension": 0.9842,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.525,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0024",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_rim_proxy",
+      "position": [
+        312069.7968926315,
+        -7474.041391601457,
+        31400.222483551697
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 17945.222483551697,
+      "rotation": [
+        0,
+        0,
+        237.4274944576776
+      ],
+      "scale": [
+        2.0064422238786674,
+        2.0064422238786674,
+        2.0064422238786674
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.8586,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0025",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_rim_proxy",
+      "position": [
+        -337616.38370388676,
+        68634.55134570009,
+        28827.329515267847
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 15372.329515267847,
+      "rotation": [
+        0,
+        0,
+        152.3830251396766
+      ],
+      "scale": [
+        2.7592184614893918,
+        2.7592184614893918,
+        2.7592184614893918
+      ],
+      "tension": 0.5516,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8309,
+      "chladni_val": -0.0387,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0026",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        -210684.46722546406,
+        -300081.44686070306,
+        25898.730751483465
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 12443.730751483465,
+      "rotation": [
+        0,
+        0,
+        253.42472726266996
+      ],
+      "scale": [
+        2.4791964095095125,
+        2.4791964095095125,
+        2.4791964095095125
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.8783,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0027",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_rim_proxy",
+      "position": [
+        -307761.4399872114,
+        136813.8790481767,
+        23915.72282008477
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 10460.722820084771,
+      "rotation": [
+        0,
+        0,
+        5.439427953412288
+      ],
+      "scale": [
+        1.664181963535059,
+        1.664181963535059,
+        1.664181963535059
+      ],
+      "tension": 0.8897,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.4272,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0028",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_rim_proxy",
+      "position": [
+        -183965.71412542145,
+        23231.42018450676,
+        29248.1779024703
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 15793.1779024703,
+      "rotation": [
+        0,
+        0,
+        51.31006321014201
+      ],
+      "scale": [
+        1.8723460625355886,
+        1.8723460625355886,
+        1.8723460625355886
+      ],
+      "tension": 0.3544,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.7126,
+      "chladni_val": -0.0847,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0029",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        -66780.35228425998,
+        344053.5994280641,
+        35198.6525407348
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 21743.6525407348,
+      "rotation": [
+        0,
+        0,
+        218.20260626599116
+      ],
+      "scale": [
+        2.7673328836100195,
+        2.7673328836100195,
+        2.7673328836100195
+      ],
+      "tension": 0.6832,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9099,
+      "chladni_val": -0.1749,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0030",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_rim_proxy",
+      "position": [
+        315725.09472681675,
+        -94016.31131782335,
+        35152.73297438727
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 21697.73297438727,
+      "rotation": [
+        0,
+        0,
+        184.39711772446435
+      ],
+      "scale": [
+        2.649759034711683,
+        2.649759034711683,
+        2.649759034711683
+      ],
+      "tension": 0.9622,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -0.5201,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0031",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        -65420.47544349204,
+        323331.4373903437,
+        30511.64793057084
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 17056.64793057084,
+      "rotation": [
+        0,
+        0,
+        152.51251022611785
+      ],
+      "scale": [
+        1.6967482529935831,
+        1.6967482529935831,
+        1.6967482529935831
+      ],
+      "tension": 0.6258,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8755,
+      "chladni_val": 0.1455,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0032",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        -342987.7290744735,
+        125177.58593471127,
+        26430.184202302793
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 12975.184202302793,
+      "rotation": [
+        0,
+        0,
+        173.8448583344996
+      ],
+      "scale": [
+        1.841617367277853,
+        1.841617367277853,
+        1.841617367277853
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.638,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0033",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        -311469.56477571325,
+        73709.18721970274,
+        29576.926128069943
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 16121.926128069943,
+      "rotation": [
+        0,
+        0,
+        19.07370513037662
+      ],
+      "scale": [
+        1.7127642235027913,
+        1.7127642235027913,
+        1.7127642235027913
+      ],
+      "tension": 0.8554,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.417,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0034",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        -104337.26232613242,
+        -285841.1451385054,
+        27965.339614623736
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 14510.339614623736,
+      "rotation": [
+        0,
+        0,
+        201.99434962677446
+      ],
+      "scale": [
+        1.4329267115916797,
+        1.4329267115916797,
+        1.4329267115916797
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -0.9534,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0035",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_rim_proxy",
+      "position": [
+        -337010.99144523795,
+        -96553.29591258109,
+        22844.047483675335
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 9389.047483675335,
+      "rotation": [
+        0,
+        0,
+        266.89603048641
+      ],
+      "scale": [
+        1.917048118910949,
+        1.917048118910949,
+        1.917048118910949
+      ],
+      "tension": 0.8601,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.3714,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0036",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        347525.9822878411,
+        131726.3621777269,
+        29356.38140387658
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 15901.381403876581,
+      "rotation": [
+        0,
+        0,
+        356.9494602868711
+      ],
+      "scale": [
+        2.3059676227999395,
+        2.3059676227999395,
+        2.3059676227999395
+      ],
+      "tension": 0.6006,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8603,
+      "chladni_val": 0.0479,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0037",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_rim_proxy",
+      "position": [
+        -64489.19078988201,
+        -247656.4306687583,
+        23777.111723016133
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 10322.111723016133,
+      "rotation": [
+        0,
+        0,
+        186.09135298754364
+      ],
+      "scale": [
+        1.5650532569860474,
+        1.5650532569860474,
+        1.5650532569860474
+      ],
+      "tension": 0.9712,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.6525,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0038",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_rim_proxy",
+      "position": [
+        -212676.35971608156,
+        149095.0660585925,
+        29247.18809537772
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 15792.188095377722,
+      "rotation": [
+        0,
+        0,
+        35.21611929241332
+      ],
+      "scale": [
+        2.487922548820313,
+        2.487922548820313,
+        2.487922548820313
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -1.1291,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_HorizonRim_0039",
+      "zone": "HorizonRim",
+      "builder": "MEL_horizon_mouth_card",
+      "position": [
+        131651.23160829308,
+        -191984.76939627156,
+        34248.25038870481
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 20793.250388704808,
+      "rotation": [
+        0,
+        0,
+        283.94614737216995
+      ],
+      "scale": [
+        1.7853338941686596,
+        1.7853338941686596,
+        1.7853338941686596
+      ],
+      "tension": 0.6133,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.868,
+      "chladni_val": 0.2935,
+      "mode": "6_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "density": 0.7
+    },
+    {
+      "id": "HE_WayfoldPair_0040",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_exit",
+      "position": [
+        77486.57300580194,
+        -985.0020286067265,
+        13773.084012571213
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 318.08401257121295,
+      "rotation": [
+        0,
+        0,
+        87.02633884781471
+      ],
+      "scale": [
+        1.2365270793878402,
+        1.2365270793878402,
+        1.2365270793878402
+      ],
+      "tension": 0.1162,
+      "horizon_mask": 0.1944,
+      "destruction_t": 0.1669,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.942
+    },
+    {
+      "id": "HE_WayfoldPair_0041",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        89293.45815226564,
+        7771.358698831338,
+        13653.347148625944
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 198.3471486259441,
+      "rotation": [
+        0,
+        0,
+        270.2887908417031
+      ],
+      "scale": [
+        1.420490165310681,
+        1.420490165310681,
+        1.420490165310681
+      ],
+      "tension": 0.1344,
+      "horizon_mask": 0.3292,
+      "destruction_t": 0.2453,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.901
+    },
+    {
+      "id": "HE_WayfoldPair_0042",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_exit",
+      "position": [
+        36949.261066509265,
+        4670.303238129196,
+        13710.577405886646
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 255.57740588664637,
+      "rotation": [
+        0,
+        0,
+        106.3699501998036
+      ],
+      "scale": [
+        1.5329374230544144,
+        1.5329374230544144,
+        1.5329374230544144
+      ],
+      "tension": 0.0559,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.0335,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 1.0
+    },
+    {
+      "id": "HE_WayfoldPair_0043",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        97486.90973148082,
+        -1482.9781929159271,
+        13465.03604131514
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 10.0360413151393,
+      "rotation": [
+        0,
+        0,
+        175.5887140036961
+      ],
+      "scale": [
+        1.1701174247345119,
+        1.1701174247345119,
+        1.1701174247345119
+      ],
+      "tension": 0.1462,
+      "horizon_mask": 0.4166,
+      "destruction_t": 0.2961,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.875
+    },
+    {
+      "id": "HE_WayfoldPair_0044",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        56952.72236896952,
+        36103.376997263666,
+        13831.879154003249
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 376.8791540032489,
+      "rotation": [
+        0,
+        0,
+        143.34120355803944
+      ],
+      "scale": [
+        1.098021976861857,
+        1.098021976861857,
+        1.098021976861857
+      ],
+      "tension": 0.1011,
+      "horizon_mask": 0.0826,
+      "destruction_t": 0.102,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.975
+    },
+    {
+      "id": "HE_WayfoldPair_0045",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        57025.52953670193,
+        -3932.8639303560612,
+        13761.740027812506
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 306.740027812506,
+      "rotation": [
+        0,
+        0,
+        84.7799302364621
+      ],
+      "scale": [
+        1.3538875294001347,
+        1.3538875294001347,
+        1.3538875294001347
+      ],
+      "tension": 0.0857,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.0514,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 1.0
+    },
+    {
+      "id": "HE_WayfoldPair_0046",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_exit",
+      "position": [
+        54667.312453574494,
+        6716.044923604633,
+        13864.203407489187
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 409.20340748918716,
+      "rotation": [
+        0,
+        0,
+        98.93011963614566
+      ],
+      "scale": [
+        1.0403804260920455,
+        1.0403804260920455,
+        1.0403804260920455
+      ],
+      "tension": 0.0826,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.0496,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 1.0
+    },
+    {
+      "id": "HE_WayfoldPair_0047",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_exit",
+      "position": [
+        90790.00052086965,
+        -39559.19821523587,
+        13380.641985774844
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -74.35801422515578,
+      "rotation": [
+        0,
+        0,
+        16.635645955537804
+      ],
+      "scale": [
+        1.053500264412403,
+        1.053500264412403,
+        1.053500264412403
+      ],
+      "tension": 0.1486,
+      "horizon_mask": 0.4337,
+      "destruction_t": 0.306,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.87
+    },
+    {
+      "id": "HE_WayfoldPair_0048",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        68919.93364180128,
+        53669.664968986384,
+        13893.8076981141
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 438.8076981141003,
+      "rotation": [
+        0,
+        0,
+        164.529152378042
+      ],
+      "scale": [
+        0.9593898993206296,
+        0.9593898993206296,
+        0.9593898993206296
+      ],
+      "tension": 0.131,
+      "horizon_mask": 0.3039,
+      "destruction_t": 0.2306,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.909
+    },
+    {
+      "id": "HE_WayfoldPair_0049",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        34920.19235149969,
+        28.913068604299042,
+        13914.318227850083
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 459.3182278500826,
+      "rotation": [
+        0,
+        0,
+        343.601686123468
+      ],
+      "scale": [
+        1.3204742602930661,
+        1.3204742602930661,
+        1.3204742602930661
+      ],
+      "tension": 0.0524,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.0314,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 1.0
+    },
+    {
+      "id": "HE_WayfoldPair_0050",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        31491.780042614242,
+        2120.7115760332936,
+        13503.143979574326
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 48.143979574326295,
+      "rotation": [
+        0,
+        0,
+        57.651566040692906
+      ],
+      "scale": [
+        1.0874337702539172,
+        1.0874337702539172,
+        1.0874337702539172
+      ],
+      "tension": 0.0473,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.0284,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 1.0
+    },
+    {
+      "id": "HE_WayfoldPair_0051",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        67082.92937613967,
+        638.2532624154273,
+        13980.066445516019
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 525.0664455160186,
+      "rotation": [
+        0,
+        0,
+        266.24880095997844
+      ],
+      "scale": [
+        1.4915762006383315,
+        1.4915762006383315,
+        1.4915762006383315
+      ],
+      "tension": 0.1006,
+      "horizon_mask": 0.0787,
+      "destruction_t": 0.0997,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.976
+    },
+    {
+      "id": "HE_WayfoldPair_0052",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        92148.20993158504,
+        11772.622321591327,
+        13318.900625740505
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -136.09937425949465,
+      "rotation": [
+        0,
+        0,
+        22.67034137362704
+      ],
+      "scale": [
+        0.8296280613608467,
+        0.8296280613608467,
+        0.8296280613608467
+      ],
+      "tension": 0.1393,
+      "horizon_mask": 0.3655,
+      "destruction_t": 0.2664,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.89
+    },
+    {
+      "id": "HE_WayfoldPair_0053",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        84732.56784741097,
+        -33098.72165770286,
+        13879.509396130961
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 424.50939613096125,
+      "rotation": [
+        0,
+        0,
+        243.07557866797177
+      ],
+      "scale": [
+        0.8295286873242583,
+        0.8295286873242583,
+        0.8295286873242583
+      ],
+      "tension": 0.1365,
+      "horizon_mask": 0.3441,
+      "destruction_t": 0.2539,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.897
+    },
+    {
+      "id": "HE_WayfoldPair_0054",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_exit",
+      "position": [
+        90669.01462485551,
+        38243.70422059328,
+        14224.622145754858
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 769.6221457548581,
+      "rotation": [
+        0,
+        0,
+        233.89005067332323
+      ],
+      "scale": [
+        0.9401776025545994,
+        0.9401776025545994,
+        0.9401776025545994
+      ],
+      "tension": 0.1476,
+      "horizon_mask": 0.4267,
+      "destruction_t": 0.3019,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.872
+    },
+    {
+      "id": "HE_WayfoldPair_0055",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        77263.19157653442,
+        -26067.430356032153,
+        13710.261863559397
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 255.26186355939717,
+      "rotation": [
+        0,
+        0,
+        81.87303451737779
+      ],
+      "scale": [
+        0.9852499775203749,
+        0.9852499775203749,
+        0.9852499775203749
+      ],
+      "tension": 0.1223,
+      "horizon_mask": 0.2394,
+      "destruction_t": 0.1931,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.928
+    },
+    {
+      "id": "HE_WayfoldPair_0056",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        66221.03280090194,
+        -7181.830553296913,
+        13517.35211458318
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 62.35211458318008,
+      "rotation": [
+        0,
+        0,
+        67.97643009255569
+      ],
+      "scale": [
+        1.0551703853750958,
+        1.0551703853750958,
+        1.0551703853750958
+      ],
+      "tension": 0.0999,
+      "horizon_mask": 0.0734,
+      "destruction_t": 0.0967,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.978
+    },
+    {
+      "id": "HE_WayfoldPair_0057",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_exit",
+      "position": [
+        42319.73602390847,
+        19643.17627412913,
+        13764.330482041907
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 309.3304820419071,
+      "rotation": [
+        0,
+        0,
+        196.37604021790852
+      ],
+      "scale": [
+        1.1521134685530465,
+        1.1521134685530465,
+        1.1521134685530465
+      ],
+      "tension": 0.07,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.042,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 1.0
+    },
+    {
+      "id": "HE_WayfoldPair_0058",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        58448.664800075065,
+        5848.776100312414,
+        13748.787716421926
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 293.78771642192623,
+      "rotation": [
+        0,
+        0,
+        13.040211958415275
+      ],
+      "scale": [
+        0.9799216344713506,
+        0.9799216344713506,
+        0.9799216344713506
+      ],
+      "tension": 0.0881,
+      "horizon_mask": 0.0,
+      "destruction_t": 0.0529,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 1.0
+    },
+    {
+      "id": "HE_WayfoldPair_0059",
+      "zone": "WayfoldPair",
+      "builder": "MEL_horizon_wayfold_entry",
+      "position": [
+        57190.19193762407,
+        -42493.34860466889,
+        13848.034516307296
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 393.03451630729614,
+      "rotation": [
+        0,
+        0,
+        55.896798845529126
+      ],
+      "scale": [
+        1.33253794354094,
+        1.33253794354094,
+        1.33253794354094
+      ],
+      "tension": 0.1069,
+      "horizon_mask": 0.125,
+      "destruction_t": 0.1266,
+      "chladni_val": 0.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "density": 0.963
+    },
+    {
+      "id": "HE_DistanceEvidence_0060",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -400000.0,
+        -400000.0,
+        13573.080240271453
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 118.08024027145257,
+      "rotation": [
+        0,
+        0,
+        211.23738230525478
+      ],
+      "scale": [
+        0.964602452246047,
+        0.964602452246047,
+        0.964602452246047
+      ],
+      "tension": 0.8485,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.0,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0061",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -310065.602293839,
+        -377792.2831548424,
+        13972.825017756722
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 517.8250177567224,
+      "rotation": [
+        0,
+        0,
+        18.315900466436737
+      ],
+      "scale": [
+        1.3513108239022702,
+        1.3513108239022702,
+        1.3513108239022702
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.3045,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0062",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -79305.64031360623,
+        -400000.0,
+        13847.152913371001
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 392.152913371001,
+      "rotation": [
+        0,
+        0,
+        98.83070897333434
+      ],
+      "scale": [
+        1.3999588987350446,
+        1.3999588987350446,
+        1.3999588987350446
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.7065,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0063",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_pollen_drift",
+      "position": [
+        154082.2674870494,
+        -326900.9757009378,
+        13362.120501149484
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -92.87949885051603,
+      "rotation": [
+        0,
+        0,
+        41.22674735423288
+      ],
+      "scale": [
+        1.2771178096018836,
+        1.2771178096018836,
+        1.2771178096018836
+      ],
+      "tension": 0.6337,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8802,
+      "chladni_val": -0.1018,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0064",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_pollen_drift",
+      "position": [
+        170983.35911892145,
+        -365295.22158347635,
+        13527.824140699633
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 72.82414069963306,
+      "rotation": [
+        0,
+        0,
+        334.5694014707012
+      ],
+      "scale": [
+        1.2202481048435145,
+        1.2202481048435145,
+        1.2202481048435145
+      ],
+      "tension": 0.9148,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -0.3442,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0065",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -400000.0,
+        -232487.29477327547,
+        13715.859407626403
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 260.8594076264035,
+      "rotation": [
+        0,
+        0,
+        223.11719328579238
+      ],
+      "scale": [
+        1.229845777176937,
+        1.229845777176937,
+        1.229845777176937
+      ],
+      "tension": 0.9606,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.2963,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0066",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -191827.2018926868,
+        -225091.8311193769,
+        13406.544967896547
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -48.45503210345305,
+      "rotation": [
+        0,
+        0,
+        336.7866278814803
+      ],
+      "scale": [
+        0.9904784905271691,
+        0.9904784905271691,
+        0.9904784905271691
+      ],
+      "tension": 0.902,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.5093,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0067",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_pollen_drift",
+      "position": [
+        -44761.40535104203,
+        -234863.38119452706,
+        13915.650228800645
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 460.650228800645,
+      "rotation": [
+        0,
+        0,
+        48.22880032214996
+      ],
+      "scale": [
+        0.8843093888335722,
+        0.8843093888335722,
+        0.8843093888335722
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -1.0548,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0068",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_pollen_drift",
+      "position": [
+        164086.86510013233,
+        -267453.9544358057,
+        13635.606672350104
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 180.60667235010442,
+      "rotation": [
+        0,
+        0,
+        219.30008191669106
+      ],
+      "scale": [
+        1.0240027037959438,
+        1.0240027037959438,
+        1.0240027037959438
+      ],
+      "tension": 0.9769,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.5624,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0069",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        254485.96702205107,
+        -301305.71326998476,
+        14100.047105705553
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 645.0471057055529,
+      "rotation": [
+        0,
+        0,
+        256.6005842575212
+      ],
+      "scale": [
+        1.0400253151403032,
+        1.0400253151403032,
+        1.0400253151403032
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -1.0017,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0070",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -385872.88360802445,
+        -153919.20648362936,
+        14177.98080305661
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 722.9808030566091,
+      "rotation": [
+        0,
+        0,
+        28.89898232563562
+      ],
+      "scale": [
+        0.9116429055198074,
+        0.9116429055198074,
+        0.9116429055198074
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 0.7383,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0071",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -216551.82570981592,
+        -152365.69704351365,
+        14016.964825932928
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 561.9648259329279,
+      "rotation": [
+        0,
+        0,
+        241.11110062869002
+      ],
+      "scale": [
+        0.9617686444354573,
+        0.9617686444354573,
+        0.9617686444354573
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -0.7505,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0072",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -166568.82611790515,
+        -115788.6990834097,
+        13520.70462273035
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 65.70462273035082,
+      "rotation": [
+        0,
+        0,
+        38.62158789971669
+      ],
+      "scale": [
+        0.8175139086344702,
+        0.8175139086344702,
+        0.8175139086344702
+      ],
+      "tension": 0.897,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": -0.6586,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0073",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        110264.44058116009,
+        -97310.30644336842,
+        13559.52275081874
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 104.52275081873995,
+      "rotation": [
+        0,
+        0,
+        211.12267711259142
+      ],
+      "scale": [
+        1.3188491115763479,
+        1.3188491115763479,
+        1.3188491115763479
+      ],
+      "tension": 1.0,
+      "horizon_mask": 0.9674,
+      "destruction_t": 1.0,
+      "chladni_val": -1.3545,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.71
+    },
+    {
+      "id": "HE_DistanceEvidence_0074",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        226708.05870214466,
+        -132782.9465610407,
+        14119.064419114258
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 664.0644191142583,
+      "rotation": [
+        0,
+        0,
+        262.2179432281349
+      ],
+      "scale": [
+        1.1442469311293961,
+        1.1442469311293961,
+        1.1442469311293961
+      ],
+      "tension": 1.0,
+      "horizon_mask": 1.0,
+      "destruction_t": 1.0,
+      "chladni_val": 1.2658,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0075",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -324282.639492418,
+        58126.656911071615,
+        14062.665789489953
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 607.6657894899527,
+      "rotation": [
+        0,
+        0,
+        357.8706036336285
+      ],
+      "scale": [
+        1.2315709117046512,
+        1.2315709117046512,
+        1.2315709117046512
+      ],
+      "tension": 0.6825,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.9095,
+      "chladni_val": -0.2092,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0076",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        -316276.1243114682,
+        157827.07738422966,
+        13392.813206922074
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": -62.18679307792627,
+      "rotation": [
+        0,
+        0,
+        126.06371268502839
+      ],
+      "scale": [
+        1.5500718539689142,
+        1.5500718539689142,
+        1.5500718539689142
+      ],
+      "tension": 0.6003,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.8602,
+      "chladni_val": -0.0779,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    },
+    {
+      "id": "HE_DistanceEvidence_0077",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_pollen_drift",
+      "position": [
+        8860.103267101049,
+        89140.4263818961,
+        14192.053929756456
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 737.0539297564555,
+      "rotation": [
+        0,
+        0,
+        307.4180141030829
+      ],
+      "scale": [
+        1.1240751466705725,
+        1.1240751466705725,
+        1.1240751466705725
+      ],
+      "tension": 1.0,
+      "horizon_mask": 0.3287,
+      "destruction_t": 0.7643,
+      "chladni_val": -1.05,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.901
+    },
+    {
+      "id": "HE_DistanceEvidence_0078",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        17356.72115479332,
+        70026.71328755516,
+        13526.369238040483
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 71.36923804048274,
+      "rotation": [
+        0,
+        0,
+        261.8066679255097
+      ],
+      "scale": [
+        1.348176357193314,
+        1.348176357193314,
+        1.348176357193314
+      ],
+      "tension": 0.942,
+      "horizon_mask": 0.135,
+      "destruction_t": 0.6327,
+      "chladni_val": -0.9264,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.96
+    },
+    {
+      "id": "HE_DistanceEvidence_0079",
+      "zone": "DistanceEvidence",
+      "builder": "MEL_horizon_distance_evidence",
+      "position": [
+        319912.6046018037,
+        155567.19643210215,
+        14065.399058367615
+      ],
+      "height_cm": 13455.0,
+      "clearance_cm": 610.399058367615,
+      "rotation": [
+        0,
+        0,
+        82.38116359469299
+      ],
+      "scale": [
+        0.9380894761621847,
+        0.9380894761621847,
+        0.9380894761621847
+      ],
+      "tension": 0.5566,
+      "horizon_mask": 1.0,
+      "destruction_t": 0.834,
+      "chladni_val": -0.0255,
+      "mode": "5_6",
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "density": 0.7
+    }
+  ],
+  "hash": "8b6f861539c105f9"
+}
