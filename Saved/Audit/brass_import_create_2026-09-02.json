@@ -1,0 +1,139 @@
+{
+  "imported_textures": [
+    "/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_BaseColor",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Emissive",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Height",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Iridescence",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Metallic",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Normal",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_ORM",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Opacity",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Roughness",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFarawayMother/T_Brass_FarawayMother_BaseColor",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFarawayMother/T_Brass_FarawayMother_Emissive",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFarawayMother/T_Brass_FarawayMother_Height",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFarawayMother/T_Brass_FarawayMother_Iridescence",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFarawayMother/T_Brass_FarawayMother_Metallic",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFarawayMother/T_Brass_FarawayMother_Normal",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFarawayMother/T_Brass_FarawayMother_ORM",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFarawayMother/T_Brass_FarawayMother_Opacity",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFarawayMother/T_Brass_FarawayMother_Roughness",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_BaseColor",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Emissive",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Height",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Iridescence",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Metallic",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Normal",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_ORM",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Opacity",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Roughness",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_BaseColor",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Emissive",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Height",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Iridescence",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Metallic",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Normal",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_ORM",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Opacity",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Roughness",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_BaseColor",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Emissive",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Height",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Iridescence",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Metallic",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Normal",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_ORM",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Opacity",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Roughness",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassNautilus/T_Brass_Nautilus_BaseColor",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassNautilus/T_Brass_Nautilus_Emissive",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassNautilus/T_Brass_Nautilus_Height",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassNautilus/T_Brass_Nautilus_Iridescence",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassNautilus/T_Brass_Nautilus_Metallic",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassNautilus/T_Brass_Nautilus_Normal",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassNautilus/T_Brass_Nautilus_ORM",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassNautilus/T_Brass_Nautilus_Opacity",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassNautilus/T_Brass_Nautilus_Roughness",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_BaseColor",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Emissive",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Height",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Iridescence",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Metallic",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Normal",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_ORM",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Opacity",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Roughness",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_BaseColor",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Emissive",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Height",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Iridescence",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Metallic",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Normal",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_ORM",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Opacity",
+    "/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Roughness",
+    "/Game/EnvSandbox/Textures/Copernicus/_BrassShared/T_Brass_Flipbook_30_Atlas_4x4",
+    "/Game/EnvSandbox/Textures/Copernicus/_BrassShared/T_Brass_FlowMap",
+    "/Game/EnvSandbox/Textures/Copernicus/_BrassShared/T_Brass_PanningNoise"
+  ],
+  "mi_factory_exit": true,
+  "verified_mis": [
+    {
+      "path": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_PatinaAnimated",
+      "status": "ok",
+      "wired_textures": [
+        "ERR:type object 'MaterialEditingLibrary' has no attribute 'get_texture_parameter_values'"
+      ]
+    },
+    {
+      "path": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_FiligreeGold",
+      "status": "ok",
+      "wired_textures": [
+        "ERR:type object 'MaterialEditingLibrary' has no attribute 'get_texture_parameter_values'"
+      ]
+    },
+    {
+      "path": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_Engraved",
+      "status": "ok",
+      "wired_textures": [
+        "ERR:type object 'MaterialEditingLibrary' has no attribute 'get_texture_parameter_values'"
+      ]
+    },
+    {
+      "path": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_Iridescent",
+      "status": "ok",
+      "wired_textures": [
+        "ERR:type object 'MaterialEditingLibrary' has no attribute 'get_texture_parameter_values'"
+      ]
+    },
+    {
+      "path": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_VerdigrisBloom",
+      "status": "ok",
+      "wired_textures": [
+        "ERR:type object 'MaterialEditingLibrary' has no attribute 'get_texture_parameter_values'"
+      ]
+    },
+    {
+      "path": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_HammeredPulse",
+      "status": "ok",
+      "wired_textures": [
+        "ERR:type object 'MaterialEditingLibrary' has no attribute 'get_texture_parameter_values'"
+      ]
+    },
+    {
+      "path": "/Game/Melodia/SeaAbove/Materials/MI_Brass_Nautilus",
+      "status": "ok",
+      "wired_textures": [
+        "ERR:type object 'MaterialEditingLibrary' has no attribute 'get_texture_parameter_values'"
+      ]
+    },
+    {
+      "path": "/Game/Melodia/SeaAbove/Materials/MI_Brass_FarawayMother",
+      "status": "ok",
+      "wired_textures": [
+        "ERR:type object 'MaterialEditingLibrary' has no attribute 'get_texture_parameter_values'"
+      ]
+    }
+  ],
+  "timestamp": "2026-09-02T11:26:27.003218+00:00"
+}
