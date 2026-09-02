@@ -49,6 +49,11 @@ SUITES = (
     Suite("Tools/test_melodia_blessing_burden_contract.py", re.compile(r"validated Blessing/Burden contract")),
     Suite("Tools/test_melodia_wardrobe_transaction_contract.py", re.compile(r"validated Melodia wardrobe transaction contract")),
     Suite("Tools/test_melusina_skin_topology_contract.py", re.compile(r"validated Melusina skin topology contract")),
+    Suite("Tools/test_validate_source_control_ownership.py", re.compile(r"source-control ownership validator contract \(4 assertions\)")),
+    Suite("Tools/test_art_gates_authority.py", re.compile(r"Ran\s+4 tests.*\bOK\b", re.S)),
+    Suite("Tools/test_artdrop_archive.py", re.compile(r"Ran\s+3 tests.*\bOK\b", re.S)),
+    Suite("Tools/test_faraway_mother_pcg.py", re.compile(r"Ran\s+5 tests.*\bOK\b", re.S)),
+    Suite("Tools/test_optical_lod_lookdev.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_melodia_package_launch_contract.py", re.compile(r"validated Melusina package-launch montage contract")),
     Suite("Tools/test_mcp_policy.py", re.compile(r"mcp-policy-tests:\s+\d+/\d+ passed")),
     Suite("Tools/test_mcp_registration.py", re.compile(r"validated checked-in MCP registration policy")),
@@ -61,7 +66,36 @@ SUITES = (
 
 # This is intentionally independent of len(SUITES): removing a suite must make
 # the gate fail instead of lowering its own coverage floor.
-MINIMUM_SUITE_COUNT = 20
+MINIMUM_SUITE_COUNT = 25
+
+# These suites are self-contained in a Git checkout. The remaining suites
+# require Perforce-synced content, materialized LFS binaries, ignored local MCP
+# configuration, or the artist's Windows export workspace and therefore belong
+# to the PC/editor validation lane rather than hosted PR CI.
+OFFLINE_SUITE_PATHS = frozenset(
+    {
+        "Tools/test_echo_contract.py",
+        "Tools/test_t3d_safe_wire.py",
+        "Tools/test_t3d_request_contract.py",
+        "Tools/test_melodia_content_fixtures.py",
+        "Tools/test_melodia_bp_readiness.py",
+        "Tools/test_melodia_bp_materialization_preflight.py",
+        "Tools/test_melodia_skill_bridge_contract.py",
+        "Tools/test_melodia_native_adapter_contract.py",
+        "Tools/test_melodia_bp_registry_contract.py",
+        "Tools/test_melodia_wardrobe_transaction_contract.py",
+        "Tools/test_validate_source_control_ownership.py",
+        "Tools/test_art_gates_authority.py",
+        "Tools/test_artdrop_archive.py",
+        "Tools/test_faraway_mother_pcg.py",
+        "Tools/test_mcp_policy.py",
+        "Tools/test_evidence_envelope.py",
+        "Tools/test_ollama_health.py",
+        "Tools/test_ui_style_audit.py",
+        "Docs/T3D_Baseline/test_canonical.py",
+    }
+)
+MINIMUM_OFFLINE_SUITE_COUNT = 19
 
 
 def run_suite(suite: Suite) -> dict[str, object]:
@@ -105,8 +139,8 @@ def run_suite(suite: Suite) -> dict[str, object]:
     return result
 
 
-def build_report() -> dict[str, object]:
-    results = [run_suite(suite) for suite in SUITES]
+def build_report(suites: tuple[Suite, ...], coverage_floor: int) -> dict[str, object]:
+    results = [run_suite(suite) for suite in suites]
     passed = sum(item.get("status") == "pass" for item in results)
     return {
         "schema_version": "1.0",
@@ -117,7 +151,7 @@ def build_report() -> dict[str, object]:
         "suite_count": len(results),
         "passed": passed,
         "failed": len(results) - passed,
-        "coverage_floor": MINIMUM_SUITE_COUNT,
+        "coverage_floor": coverage_floor,
         "results": results,
     }
 
@@ -126,8 +160,15 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", help="emit machine-readable report")
     parser.add_argument("--ci", action="store_true", help="CI mode; same checks, concise output")
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="run the Git-only suite set; Perforce/LFS/editor-local suites remain PC-gated",
+    )
     args = parser.parse_args(argv)
-    report = build_report()
+    suites = tuple(suite for suite in SUITES if suite.path in OFFLINE_SUITE_PATHS) if args.offline else SUITES
+    coverage_floor = MINIMUM_OFFLINE_SUITE_COUNT if args.offline else MINIMUM_SUITE_COUNT
+    report = build_report(suites, coverage_floor)
     if args.json:
         print(json.dumps(report, indent=2, sort_keys=True))
     else:
@@ -139,10 +180,13 @@ def main(argv: list[str] | None = None) -> int:
             f"contract suites: {report['passed']}/{report['suite_count']} passed; "
             f"coverage floor={report['coverage_floor']}"
         )
+        if args.offline:
+            print(f"offline mode: {len(SUITES) - len(suites)} PC/editor suites intentionally excluded")
     return 0 if (
         report["failed"] == 0
-        and report["passed"] == len(SUITES)
+        and report["passed"] == len(suites)
         and len(SUITES) >= report["coverage_floor"]
+        and len(suites) >= report["coverage_floor"]
     ) else 1
 
 

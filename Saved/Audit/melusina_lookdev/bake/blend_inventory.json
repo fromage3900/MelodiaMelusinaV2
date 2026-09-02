@@ -1,0 +1,101 @@
+{
+ "schema": "melodia.shorewake_blend_inventory.v1",
+ "results": [
+  {
+   "blend": "Shorewake_48MAT.blend",
+   "exists": true,
+   "target_found": true,
+   "slot_count": 48,
+   "unique_materials": 48,
+   "polys": 186955,
+   "verts": 183741,
+   "uv_layers": [
+    "st"
+   ],
+   "color_attrs": [
+    "displayColor"
+   ],
+   "shape_keys": 0,
+   "first_slots": [
+    "SW_Dress_P01",
+    "SW_Dress_P04",
+    "SW_Dress_P05",
+    "SW_Dress_P06",
+    "SW_Dress_P07",
+    "SW_Dress_P08"
+   ],
+   "last_slots": [
+    "SW_Dress_P47",
+    "SW_Dress_P48",
+    "SW_Dress_P02",
+    "SW_Dress_P03"
+   ],
+   "empty_slots": 0,
+   "poly_total_check": 186955
+  },
+  {
+   "blend": "Shorewake_48MAT_frozen_snapshot.blend",
+   "exists": true,
+   "target_found": true,
+   "slot_count": 48,
+   "unique_materials": 48,
+   "polys": 186955,
+   "verts": 183741,
+   "uv_layers": [
+    "st"
+   ],
+   "color_attrs": [
+    "displayColor"
+   ],
+   "shape_keys": 0,
+   "first_slots": [
+    "SW_Dress_P01",
+    "SW_Dress_P04",
+    "SW_Dress_P05",
+    "SW_Dress_P06",
+    "SW_Dress_P07",
+    "SW_Dress_P08"
+   ],
+   "last_slots": [
+    "SW_Dress_P47",
+    "SW_Dress_P48",
+    "SW_Dress_P02",
+    "SW_Dress_P03"
+   ],
+   "empty_slots": 0,
+   "poly_total_check": 186955
+  },
+  {
+   "blend": "Shorewake_48MAT_consolidated.blend",
+   "exists": true,
+   "target_found": true,
+   "slot_count": 7,
+   "unique_materials": 7,
+   "polys": 206780,
+   "verts": 183741,
+   "uv_layers": [
+    "st"
+   ],
+   "color_attrs": [
+    "displayColor"
+   ],
+   "shape_keys": 0,
+   "first_slots": [
+    "SW_Dress_P01",
+    "SW_Trim_G2",
+    "SW_Dress_P32",
+    "SW_Dress_P45",
+    "SW_Dress_P47",
+    "SW_Dress_P48"
+   ],
+   "last_slots": [
+    "SW_Dress_P45",
+    "SW_Dress_P47",
+    "SW_Dress_P48",
+    "SW_Dress_P02"
+   ],
+   "empty_slots": 0,
+   "poly_total_check": 206780
+  }
+ ]
+}

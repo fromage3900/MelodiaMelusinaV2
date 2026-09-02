@@ -406,8 +406,7 @@ def dress_terrain(terrain_obj, obj_path, style_id="verdant", seed=11, budget=140
     """Plan dressing/magic for an already-generated terrain mesh.
 
     If midi_path is given, builds a real heightfield so planned props use
-    grounded coordinates. Instancing is deliberately not claimed here; the
-    current Blender operator reports the plan count only.
+    grounded coordinates. Uses shared core.field.build_field() pipeline.
 
     Returns a short human-readable status string, or raises.
     """
@@ -423,40 +422,15 @@ def dress_terrain(terrain_obj, obj_path, style_id="verdant", seed=11, budget=140
         assert spec.loader is not None
         spec.loader.exec_module(td)
 
-    # Try to build a real field when a MIDI is available - this is the QOL
-    # fix for the {} bug that left every dressing at 0 props. Offline tests
-    # call with midi_path=None and still expect a string, so empty is kept
-    # as a valid fallback.
+    # Build a real field when MIDI is available, so dressing uses grounded coords
     field = {}
     field_ok = False
     if midi_path and os.path.exists(midi_path):
         try:
-            from . import walkable_world as ww
-            mv = ww.load_voxel_module()
-            tracks, tpb = mv.parse_midi(midi_path)
-            if tracks and tracks[0]:
-                notes = list(tracks[0])
-                # Include beatgrid if it exists - same as generate_world
-                bg = beatgrid_for(midi_path)
-                if bg:
-                    try:
-                        b_tracks, b_tpb = mv.parse_midi(bg)
-                        if b_tracks and b_tpb:
-                            scale = float(tpb) / float(b_tpb)
-                            notes.extend((int(n[0] * scale), n[1] + 36, n[2]) for n in b_tracks[0])
-                            notes.sort()
-                    except Exception:
-                        pass
-                wpreset = ww.WALKABLE_PRESETS.get("walkable_valley", {})
-                field, _gw = ww.build_heightfield(
-                    notes,
-                    cells_per_beat=wpreset.get("cells_per_beat", 2),
-                    height_scale=wpreset.get("height_scale", 1.9),
-                    plateau_radius=wpreset.get("plateau_radius", 2),
-                    tpb=tpb,
-                )
-                field = ww.fill_gaps(field)
-                field = ww.limit_slope(field, wpreset.get("max_slope", 1), wpreset.get("smooth_passes", 3))
+            from .core.field import build_field
+            result = build_field(midi_path, "walkable_valley", source="walkable")
+            if result["ok"]:
+                field = result["field"]
                 field_ok = True
         except Exception:
             field = {}
@@ -464,7 +438,6 @@ def dress_terrain(terrain_obj, obj_path, style_id="verdant", seed=11, budget=140
     plan, stats = td.plan_dressing(field, style_id=style_id, seed=seed, budget=budget)
     magic_plan, magic_stats = td.plan_magic(field, style_id=style_id)
     style = td.load_styles().get(style_id, {}).get("label", style_id)
-    # Keep the contract string, but annotate when real field was used so UI can show it
     base = "%s | %d props | %d magic" % (style, len(plan), len(magic_plan))
     if field_ok and field:
         base += " | field %d cells" % len(field)

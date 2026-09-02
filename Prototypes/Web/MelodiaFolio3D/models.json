@@ -1,0 +1,41 @@
+{
+  "schema": "melodia.web_model_manifest.v1",
+  "models": [
+    {
+      "id": "sea_above.island_a",
+      "label": "Sea Above — Reef Island A",
+      "format": "obj",
+      "path": "../../../Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.obj",
+      "source_path": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.obj",
+      "category": "environment",
+      "notes": "Verified tracked OBJ export from the Sea Above prototype reef set."
+    },
+    {
+      "id": "sea_above.island_b",
+      "label": "Sea Above — Reef Island B",
+      "format": "obj",
+      "path": "../../../Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.obj",
+      "source_path": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.obj",
+      "category": "environment",
+      "notes": "Verified tracked OBJ export from the Sea Above prototype reef set."
+    },
+    {
+      "id": "sea_above.island_c",
+      "label": "Sea Above — Reef Island C",
+      "format": "obj",
+      "path": "../../../Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.obj",
+      "source_path": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.obj",
+      "category": "environment",
+      "notes": "Verified tracked OBJ export from the Sea Above prototype reef set."
+    },
+    {
+      "id": "wardrobe.updated_shirt",
+      "label": "Wardrobe — Updated Shirt (FBX test)",
+      "format": "fbx",
+      "path": "../../../UpdatedShirt.fbx",
+      "source_path": "UpdatedShirt.fbx",
+      "category": "wardrobe",
+      "notes": "Verified tracked FBX. May be Git LFS-backed; viewer reports a readable fallback if the development server cannot serve the binary payload."
+    }
+  ]
+}

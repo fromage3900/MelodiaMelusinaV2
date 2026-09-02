@@ -1,0 +1,66 @@
+{
+ "schema": "melodia.flowerspring_skirt_silhouette.v2",
+ "seed": 20260831,
+ "source": "passA2_skirt_panels.obj",
+ "units": "meters (dress-native, no unit correction)",
+ "silhouette_moves": [
+  "hem_flare_cubic",
+  "hilo_train",
+  "petal_overskirt_ring",
+  "radial_fold_ridges",
+  "fbm_wobble"
+ ],
+ "presets": {
+  "cascade": {
+   "flare": 0.42,
+   "train": 0.34,
+   "petals": 16,
+   "pet_len": 0.46,
+   "pet_droop": 0.55,
+   "pet_cup": 0.1,
+   "ridge": 0.02
+  },
+  "tulip": {
+   "flare": 0.18,
+   "train": 0.0,
+   "petals": 14,
+   "pet_len": 0.34,
+   "pet_droop": -0.4,
+   "pet_cup": 0.16,
+   "ridge": 0.012
+  },
+  "bloom": {
+   "flare": 0.55,
+   "train": 0.1,
+   "petals": 18,
+   "pet_len": 0.28,
+   "pet_droop": 0.05,
+   "pet_cup": 0.03,
+   "ridge": 0.03
+  }
+ },
+ "results": {
+  "cascade": {
+   "preset": "cascade",
+   "points": 185149,
+   "obj": "FS_SkirtDraped_cascade.obj",
+   "written": true,
+   "errors": []
+  },
+  "tulip": {
+   "preset": "tulip",
+   "points": 184973,
+   "obj": "FS_SkirtDraped_tulip.obj",
+   "written": true,
+   "errors": []
+  },
+  "bloom": {
+   "preset": "bloom",
+   "points": 185325,
+   "obj": "FS_SkirtDraped_bloom.obj",
+   "written": true,
+   "errors": []
+  }
+ },
+ "houdini": "22.0.368"
+}

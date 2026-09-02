@@ -1,0 +1,146 @@
+{
+  "schema": "melodia.cross_system_mappings.v1",
+  "generated": "2026-09-02T08:00:00Z",
+  "authority": {
+    "source_report": "Saved/Audit/ecosystem_integration_report.json",
+    "consumer": "t3d_material_curve_injector.py (when Monolith 9316 recovers)",
+    "policy": "Spec-only. No .uasset writes by daemon. Owner materializes."
+  },
+  "mi_assignments": {
+    "cymatic_variants": {
+      "description": "21 cymatic variants × 9 PBR maps → MI instances under Content/EnvSandbox/Materials/Instances/Cymatics/",
+      "base_path": "Content/EnvSandbox/Materials/Instances/Cymatics/",
+      "parent_master": "M_Master_Toon_Universal",
+      "tiling": "Tile1_Unique",
+      "parallax": {
+        "ParallaxStrength": 0.35,
+        "ParallaxScale": 0.08,
+        "ParallaxHeight": 0.12
+      },
+      "texture_slot_map": {
+        "BaseColor": "BC",
+        "Normal": "N",
+        "Roughness": "R",
+        "Metallic": "M",
+        "Height": "H",
+        "ORM": "ORM",
+        "Emissive": "E",
+        "Iridescence": "I",
+        "Opacity": "A"
+      },
+      "variants": [
+        {"name": "CavernWeave", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "CherryBlossomWood", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": true},
+        {"name": "CymaticMarble", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "DancingCrystals", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "FinalDreamweaver", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": true},
+        {"name": "FractalCathedral", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "FrozenFracture", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "GildedCoral", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "GildedLoom", "parent": "M_Master_Nikki", "sheen": true, "alpha": false, "flipbook": true},
+        {"name": "GlitterCrystal", "parent": "M_Master_Nikki", "sheen": true, "alpha": false, "flipbook": false},
+        {"name": "GlitterGold", "parent": "M_Master_Nikki", "sheen": true, "alpha": false, "flipbook": false},
+        {"name": "GlitterHolographic", "parent": "M_Master_Nikki", "sheen": true, "alpha": false, "flipbook": false},
+        {"name": "GlitterIridescent", "parent": "M_Master_Nikki", "sheen": true, "alpha": false, "flipbook": true},
+        {"name": "GlitterRainbow", "parent": "M_Master_Nikki", "sheen": true, "alpha": false, "flipbook": false},
+        {"name": "GoldenSpiralGrove", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "SilkWaterfall", "parent": "M_Master_Nikki", "sheen": true, "alpha": false, "flipbook": true},
+        {"name": "SingingConstellations", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "SpiralMonument", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "StarlitAbyss", "parent": "M_Master_Nikki", "sheen": true, "alpha": false, "flipbook": true},
+        {"name": "TessellationSanctum", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false},
+        {"name": "VoronoiSacredGeometry", "parent": "M_Master_Toon_Universal", "sheen": false, "alpha": false, "flipbook": false}
+      ],
+      "naming_pattern": "MI_Cymatic_<VariantName>_R045_Tile1_Unique",
+      "source_textures": "Saved/Audit/copernicus_cymatic/<Variant>/T_Cymatic_<Variant>_<Map>.png"
+    },
+    "faraway_mother_suites": {
+      "description": "6 Faraway Mother fabric suites × 7-8 PBR maps → MI instances under Content/EnvSandbox/Materials/Instances/FarawayMother/P2/",
+      "base_path": "Content/EnvSandbox/Materials/Instances/FarawayMother/P2/",
+      "tiling": "Tile1_Unique",
+      "suites": [
+        {
+          "suite": "Corset_GildedAcanthusBrocade",
+          "mi_name": "MI_FarawayMother_Corset_GildedAcanthusBrocade",
+          "parent": "M_Master_Toon_Universal",
+          "roughness": 0.45,
+          "sheen": false,
+          "alpha": false,
+          "maps": ["AO", "BC", "H", "M", "N", "ORM", "R"]
+        },
+        {
+          "suite": "Cradle_CarvedAlabasterWood",
+          "mi_name": "MI_FarawayMother_Cradle_CarvedAlabasterWood",
+          "parent": "M_Master_Toon_Universal",
+          "roughness": 0.65,
+          "sheen": false,
+          "alpha": false,
+          "maps": ["AO", "BC", "H", "M", "N", "ORM", "R"]
+        },
+        {
+          "suite": "Gown_CelestialSilkJacquard",
+          "mi_name": "MI_FarawayMother_Gown_CelestialSilkJacquard",
+          "parent": "M_Master_Nikki",
+          "roughness": 0.32,
+          "sheen": true,
+          "sheen_strength": 0.5,
+          "sheen_roughness": 0.3,
+          "alpha": false,
+          "maps": ["AO", "BC", "H", "M", "N", "ORM", "R", "Sheen"]
+        },
+        {
+          "suite": "Mantle_NightSkyVelvet",
+          "mi_name": "MI_FarawayMother_Mantle_NightSkyVelvet",
+          "parent": "M_Master_Nikki",
+          "roughness": 0.92,
+          "sheen": true,
+          "sheen_strength": 0.5,
+          "sheen_roughness": 0.3,
+          "alpha": false,
+          "maps": ["AO", "BC", "H", "M", "N", "ORM", "R", "Sheen"]
+        },
+        {
+          "suite": "Ornament_NacreMusicBoxJewel",
+          "mi_name": "MI_FarawayMother_Ornament_NacreMusicBoxJewel",
+          "parent": "M_Master_Nikki",
+          "roughness": 0.22,
+          "sheen": true,
+          "sheen_strength": 0.5,
+          "sheen_roughness": 0.3,
+          "alpha": false,
+          "maps": ["AO", "BC", "H", "M", "N", "ORM", "R", "Sheen"]
+        },
+        {
+          "suite": "Veil_AquaticLullabyLace",
+          "mi_name": "MI_FarawayMother_Veil_AquaticLullabyLace",
+          "parent": "M_Master_Toon_Universal_Alpha",
+          "roughness": 0.55,
+          "sheen": false,
+          "alpha": true,
+          "maps": ["Alpha", "AO", "BC", "H", "M", "Mask", "N", "ORM", "R"]
+        }
+      ],
+      "source_textures": "Content/Textures/FarawayMother_Suites/"
+    }
+  },
+  "world_field_bus_taste_bindings": {
+    "cymatic": {
+      "WorldField.Resonance": "ModeN/M + BeatPulse → MPC_Melodia_Palette.BeatIntensity",
+      "WorldField.Tension": "N-M spread → material ToonRimStrength bias"
+    },
+    "water": {
+      "WorldField.Contact": "RippleCenterA/B/C → MelodiaWaterRippleMaterialBridgeComponent",
+      "WorldField.Reaction": "Impulse magnitudes → FluidEnergy/FluidPeak MPC"
+    },
+    "faraway": {
+      "WorldField.Residue": "fabric weave density from Height map → optional style scoring"
+    }
+  },
+  "guardrails": [
+    "Spec-only. No .uasset writes by daemon.",
+    "All MI instances require live editor for materialization.",
+    "Parent master assignments validated against existing M_Master_Toon_Universal, M_Master_Nikki, M_Master_Toon_Universal_Alpha.",
+    "Sheen suites route to M_Master_Nikki (sheen/iridescence path).",
+    "Alpha suite routes to M_Master_Toon_Universal_Alpha (opacity-masked)."
+  ]
+}

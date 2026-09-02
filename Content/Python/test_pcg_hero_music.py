@@ -35,7 +35,7 @@ class HeroMusicContractTests(unittest.TestCase):
         self.assertEqual(harp_aliases["WalkWidth"], "StringBankWidth")
 
     def test_authoring_baselines_are_independent_per_instrument(self):
-        self.assertEqual(control.authoring_overrides("ResonanceCathedral")["ArrayCount"], 4)
+        self.assertEqual(control.authoring_overrides("ResonanceCathedral")["ArrayCount"], 6)
         self.assertEqual(control.authoring_overrides("ArpeggioBridge")["ArrayCount"], 24)
         self.assertEqual(control.authoring_overrides("BellTreeGarden")["ArrayCount"], 18)
         self.assertEqual(control.authoring_overrides("XylophoneTrail")["ArrayCount"], 4)
@@ -44,19 +44,20 @@ class HeroMusicContractTests(unittest.TestCase):
 
     def test_cathedral_has_twelve_unique_seeded_chord_pads(self):
         pads, _ = build_cathedral_layout()
-        self.assertEqual(len(pads), 12)
+        self.assertEqual(len(pads), 18)
         seeds = [(node_index << 16) | (degree << 8) | midi for _, _, _, node_index, degree, midi in pads]
         self.assertEqual(len(seeds), len(set(seeds)))
         self.assertEqual([midi for *_, midi in pads[:3]], list(chord_for_station(0)))
-        self.assertEqual([degree for *_, degree, _ in pads], list(range(3)) * 4)
+        self.assertEqual([midi for *_, midi in pads[12:15]], list(chord_for_station(4)))
+        self.assertEqual([degree for *_, degree, _ in pads], list(range(3)) * 6)
 
     def test_cathedral_is_a_measured_piano_roll_not_isolated_pads(self):
         positions = build_piano_roll_positions()
-        keybed, ebony = build_piano_roll_detail_points(4, 480.0, 220.0)
-        self.assertEqual(len(positions), 12)
+        keybed, ebony = build_piano_roll_detail_points(6, 480.0, 220.0)
+        self.assertEqual(len(positions), 18)
         self.assertTrue(all(a[0] < b[0] for a, b in zip(positions, positions[1:])))
         self.assertAlmostEqual(positions[1][0] - positions[0][0], 160.0)
-        self.assertEqual(len(ebony), 8)
+        self.assertEqual(len(ebony), 12)
         for x, y, z, _ in ebony:
             self.assertTrue(any(a[0] < x < b[0] for a, b in zip(positions, positions[1:])))
         self.assertEqual(keybed[:3], (0.0, 0.0, 0.0))

@@ -16,8 +16,8 @@ Run inside the editor (Monolith run_python) with zenforesttest open:
 from __future__ import annotations
 
 BLENDABLES = [
-    "/Game/EnvSandbox/Materials/PostProcess/M_PP_ToonOutline",
-    "/Game/EnvSandbox/Materials/PostProcess/M_PP_StorybookVines_Inst",
+    "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_GameplayStandard",  # 2026-08-26 drift fix: M_PP_ToonOutline removed; uses Aug-18 outline candidate
+    "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_GameplayStandard",  # 2026-08-26 drift fix: M_PP_StorybookVines_Inst removed; outline candidate is now shared
     "/Game/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade",
 ]
 

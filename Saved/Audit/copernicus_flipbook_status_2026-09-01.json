@@ -1,0 +1,83 @@
+{
+  "schema": "melodia.copernicus.status.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/copernicus_cymatic/ + copernicus_session_context.md",
+  "mode": "audit",
+  "findings": {
+    "total_variants": 11,
+    "total_pngs": 171,
+    "variants": {
+      "CavernWeave": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      },
+      "CherryBlossomWood": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      },
+      "CymaticMarble": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      },
+      "DancingCrystals": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      },
+      "FinalDreamweaver": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      },
+      "FrozenFracture": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      },
+      "GildedCoral": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      },
+      "GildedLoom": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      },
+      "SilkWaterfall": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      },
+      "SingingConstellations": {
+        "pngs": 81,
+        "flipbook": true,
+        "maps": 9,
+        "frames": 9
+      },
+      "StarlitAbyss": {
+        "pngs": 9,
+        "flipbook": false,
+        "maps": 9
+      }
+    },
+    "flipbook_status": {
+      "SingingConstellations": "COMPLETE (9 frames \u00d7 9 maps = 81 PNGs)",
+      "DancingCrystals": "NOT RUN (flipbook candidate \u2014 twinkle animation)",
+      "SilkWaterfall": "NOT RUN (flipbook candidate \u2014 flow animation)",
+      "GildedLoom": "NOT RUN (flipbook candidate \u2014 gear rotate)",
+      "FinalDreamweaver": "NOT RUN (flipbook candidate \u2014 dream shimmer)"
+    },
+    "missing_work": [
+      "Flipbooks for DancingCrystals, SilkWaterfall, GildedLoom, FinalDreamweaver",
+      "4K hero bakes for strongest 2-3 variants",
+      "Import to Unreal (ghost .uasset cleanup, sRGB flags, MI creation)",
+      "Instance wiring to M_Master_Toon_Universal"
+    ]
+  },
+  "verdict": "11 variants baked at 2048\u00d72048. SingingConstellations has 9-frame flipbook. 4 more flipbook candidates pending.",
+  "status": "AUDIT_COMPLETE"
+}

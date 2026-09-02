@@ -1,0 +1,38 @@
+{
+  "schema": "melodia.wardrobe.slot.naming.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "catalog_dress/gloves/hat/shawl_trail_batch_2026-08-31.json",
+  "mode": "audit",
+  "convention": "Cos_<Slot>_Melusina<Descriptor> (PascalCase, no underscores within descriptor, no bare Melusina)",
+  "total_ids_scanned": 26,
+  "violations": [
+    {
+      "id": "Cos_Dress_Melusina_ResonantWeave",
+      "issue": "underscore in descriptor (should be PascalCase)",
+      "slot": "Dress"
+    },
+    {
+      "id": "Cos_Dress_Melusina_SwiftCurrent",
+      "issue": "underscore in descriptor (should be PascalCase)",
+      "slot": "Dress"
+    },
+    {
+      "id": "Cos_Dress_Melusina_TideWalker",
+      "issue": "underscore in descriptor (should be PascalCase)",
+      "slot": "Dress"
+    },
+    {
+      "id": "Cos_Dress_Melusina",
+      "issue": "bare Melusina",
+      "slot": "Dress"
+    },
+    {
+      "id": "Cos_Gloves_Melusina",
+      "issue": "bare Melusina",
+      "slot": "Gloves"
+    }
+  ],
+  "violation_count": 5,
+  "previously_resolved": 5,
+  "status": "AUDIT_COMPLETE"
+}

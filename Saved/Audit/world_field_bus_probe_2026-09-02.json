@@ -1,0 +1,227 @@
+{
+  "schema": "melodia.world_field_bus.probe.v1",
+  "seed": 20260829,
+  "checks": {
+    "cymatic_to_resonance": true,
+    "amplitude_to_tension": true,
+    "beat_passthrough": true,
+    "vegetation_reads_tension": true,
+    "seed_deterministic": true
+  },
+  "verdict": "SCAFFOLD - World Field Bus Resonance/Tension published from cymatics; VegetationGrowth reads Tension for scatter on VDM folds. Build + PIE next window.",
+  "samples": [
+    {
+      "test": 0,
+      "pos": "valley_center",
+      "world_pos": [
+        0,
+        0,
+        0
+      ],
+      "uv": [
+        0.5,
+        0.5
+      ],
+      "resonance": [
+        3,
+        5
+      ],
+      "tension": 0.0,
+      "beat": 0.5,
+      "grow": false,
+      "cymatic_amp": 0.0
+    },
+    {
+      "test": 0,
+      "pos": "ridge",
+      "world_pos": [
+        1200,
+        5500,
+        0
+      ],
+      "uv": [
+        0.62,
+        0.775
+      ],
+      "resonance": [
+        3,
+        5
+      ],
+      "tension": 0.267,
+      "beat": 0.5,
+      "grow": false,
+      "cymatic_amp": 1.333
+    },
+    {
+      "test": 0,
+      "pos": "head",
+      "world_pos": [
+        0,
+        9000,
+        0
+      ],
+      "uv": [
+        0.5,
+        0.95
+      ],
+      "resonance": [
+        3,
+        5
+      ],
+      "tension": 0.0,
+      "beat": 0.5,
+      "grow": false,
+      "cymatic_amp": 0.0
+    },
+    {
+      "test": 0,
+      "pos": "valley_torso",
+      "world_pos": [
+        400,
+        -4200,
+        0
+      ],
+      "uv": [
+        0.54,
+        0.29
+      ],
+      "resonance": [
+        3,
+        5
+      ],
+      "tension": 0.119,
+      "beat": 0.5,
+      "grow": false,
+      "cymatic_amp": -0.597
+    },
+    {
+      "test": 0,
+      "pos": "hair",
+      "world_pos": [
+        -900,
+        6200,
+        0
+      ],
+      "uv": [
+        0.41,
+        0.81
+      ],
+      "resonance": [
+        3,
+        5
+      ],
+      "tension": 0.191,
+      "beat": 0.5,
+      "grow": false,
+      "cymatic_amp": -0.956
+    },
+    {
+      "test": 1,
+      "pos": "valley_center",
+      "world_pos": [
+        0,
+        0,
+        0
+      ],
+      "uv": [
+        0.5,
+        0.5
+      ],
+      "resonance": [
+        7,
+        9
+      ],
+      "tension": 0.0,
+      "beat": 0.9,
+      "grow": false,
+      "cymatic_amp": 0.0
+    },
+    {
+      "test": 1,
+      "pos": "ridge",
+      "world_pos": [
+        1200,
+        5500,
+        0
+      ],
+      "uv": [
+        0.62,
+        0.775
+      ],
+      "resonance": [
+        7,
+        9
+      ],
+      "tension": 0.338,
+      "beat": 0.9,
+      "grow": false,
+      "cymatic_amp": -0.422
+    },
+    {
+      "test": 1,
+      "pos": "head",
+      "world_pos": [
+        0,
+        9000,
+        0
+      ],
+      "uv": [
+        0.5,
+        0.95
+      ],
+      "resonance": [
+        7,
+        9
+      ],
+      "tension": 0.0,
+      "beat": 0.9,
+      "grow": false,
+      "cymatic_amp": 0.0
+    },
+    {
+      "test": 1,
+      "pos": "valley_torso",
+      "world_pos": [
+        400,
+        -4200,
+        0
+      ],
+      "uv": [
+        0.54,
+        0.29
+      ],
+      "resonance": [
+        7,
+        9
+      ],
+      "tension": 0.512,
+      "beat": 0.9,
+      "grow": true,
+      "cymatic_amp": 0.64
+    },
+    {
+      "test": 1,
+      "pos": "hair",
+      "world_pos": [
+        -900,
+        6200,
+        0
+      ],
+      "uv": [
+        0.41,
+        0.81
+      ],
+      "resonance": [
+        7,
+        9
+      ],
+      "tension": 0.221,
+      "beat": 0.9,
+      "grow": false,
+      "cymatic_amp": 0.276
+    }
+  ],
+  "total_samples": 15,
+  "grow_count": 2,
+  "hash": "37b6806fe10a372e"
+}

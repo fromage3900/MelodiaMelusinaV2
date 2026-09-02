@@ -1,0 +1,200 @@
+{
+  "schema": "melodia.p1p3_roadmap.v1",
+  "as_of": "2026-09-01",
+  "authority": {
+    "status": "P0_ALL_8_PASS_ADDITIVE_ROADMAP",
+    "p0_ledger": "Docs/P0_TASK_LEDGER.json (active_p0_gates 8/8 pass, static_gates verified 2026-09-01)",
+    "grand_review": "Saved/Audit/grand_review_expansion_plan_2026-09-01.json",
+    "coinsheet": "Saved/Audit/ue_level_building_coinsheet_2026-09-01.json",
+    "master_index": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md",
+    "policy": "Additive draft only. Does not overwrite P0 ledger. P0 gates remain frozen truth; P1-P3 items open as future gates with p1_ prefix."
+  },
+  "p0_baseline": {
+    "gates_pass": ["rhythm_owner", "hud_single_writer", "rhythm_grade_to_result", "wardrobe_equip_roundtrip", "wardrobe_gameplay_hook", "music_world_key", "static_gates", "battle_integration_map"],
+    "hython_evidence": {
+      "cymatic_variants": 21,
+      "cymatic_total_pngs": 1665,
+      "height_pngs": 185,
+      "variants_with_height": 21,
+      "flipbook_frames": 80,
+      "faraway_gn_builders": 16,
+      "faraway_hero_meshes": 3,
+      "fabric_textures": 6,
+      "cloth_mountain_obj": "Saved/Audit/faraway_mother/SM_ClothMountains_v0.obj (8.8MB, 384 grid, 2000m tile)",
+      "hython_version": "22.0.368"
+    },
+    "editor_gate": "MODAL_OPEN on 9316 as of coinsheet — recovery precedes all UE-import verification"
+  },
+  "P1_closeout": {
+    "goal": "Make P0-present assets editor-proven and ledger-backed; no new gameplay breadth until P1 gates pass",
+    "deadline": "2026-10-15",
+    "gates": [
+      {
+        "id": "p1_cymatics_present",
+        "maps_to": "phase_1_cymatics_present / rec_1_cymatics_present",
+        "deadline": "2026-10-01",
+        "status": "draft_open",
+        "contract": "UMelodiaCymaticsSubsystem listed as PRESENT in Master Index §1; PostConfigInit load and uplugin deps verified; pipeline is a first-class step (copernicus_cymatic_parallax.py --cook), not ad-hoc; pattern IDs on World Field Bus",
+        "deliverables": ["Saved/Audit/cymatics_present_status.json", "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX.md §1 row for MelodiaCymaticsSubsystem"],
+        "evidence": "hython manifest Saved/Audit/copernicus_cymatic_manifest.json (v2, seed 20260831) + editor-backed Source/.../MelodiaCymaticsSubsystem.h IsReadOnlyByContract() probe + build log PostConfigInit",
+        "depends_on": [],
+        "owner_lanes": ["cpp", "audit"]
+      },
+      {
+        "id": "p1_faraway_p1_status",
+        "maps_to": "phase_2_faraway_p1 / rec_2_faraway_p1",
+        "deadline": "2026-10-15",
+        "status": "draft_open",
+        "contract": "Faraway Mother has a P1_TASK_LEDGER.json entry with pass+evidence; 16 GN builders in main taxonomy; material pipeline parallel to cymatics; onboarding doc for new member",
+        "deliverables": ["P1_TASK_LEDGER.json (faraway_mother: pass)", "Saved/Audit/faraway_p1_status.json", "Docs/Guides/FARAWAY_MOTHER_ONBOARDING.md", "Docs/Houdini/MARA_P0_P3_HOUDINI_EXECUTION_PLAN MD taxonomy update"],
+        "evidence": "Saved/Audit/faraway_mother/cloth_mountains_v0_manifest.json + textures_manifest.json (6 entries, tilecheck pass) + hero meshes SM_FM_* + 16 builders (8 existing + 8 V3) in coin sheet §faraway_mother_state.gn_builders",
+        "depends_on": ["p1_cymatics_present"],
+        "owner_lanes": ["audit", "docs"]
+      },
+      {
+        "id": "p1_hython_monolith_bridge",
+        "maps_to": "phase_3_hython_monolith_bridge / rec_3_hythm_monolith_bridge",
+        "deadline": "2026-11-01",
+        "status": "draft_open",
+        "contract": "Monolith 9316 reachable (no MODAL_OPEN); parallel execution plan exists; cross-path validator compares hython vs Monolith outputs (height maps, meshes, texture sets) within tolerance",
+        "deliverables": ["Saved/Audit/hython_monolith_bridge_report.json", "Tools/validation/cross_path_validation.py", "Tools/Houdini/monolith_execution_plan_parallel.py"],
+        "evidence": "netstat -ano | grep 9316 + Tools/mcp_tool_surface.py dry-run + cross_path_validation.json diffs",
+        "depends_on": ["p1_cymatics_present", "p1_faraway_p1_status"],
+        "owner_lanes": ["mcp", "audit"]
+      },
+      {
+        "id": "p1_hygiene_package_relaunch",
+        "maps_to": "P0 polish — 08-14 package_launch is 150+ commits stale",
+        "deadline": "2026-10-15",
+        "status": "draft_open",
+        "contract": "Closed-editor BuildCookRun Win64 Shipping cooks L_MelusinaMorning+L_KaleidoNave+LV_SeaAbove_Prototype+MelodiaIntegrationMap and launches outside editor with 0 Blueprint Runtime/Accessed None/Ensure/Fatal",
+        "deliverables": ["Products/P0_Itch_Release archive", "Saved/Audit/package_launch_evidence_2026-10.json"],
+        "depends_on": ["p1_cymatics_present"],
+        "owner_lanes": ["cpp"]
+      },
+      {
+        "id": "p1_hygiene_vestigial_retire",
+        "maps_to": "hud_single_writer — owner decision on melodiaBattleUI/MelodiaUI vars",
+        "deadline": "2026-10-15",
+        "status": "draft_open",
+        "contract": "BP_BattleController vestigial vars retired or documented as intentionally retained with comment; hud_single_writer re-proven by direct property read",
+        "deliverables": ["BP_BattleController diff or retention note in P1_TASK_LEDGER"],
+        "depends_on": [],
+        "owner_lanes": ["audit"]
+      },
+      {
+        "id": "p1_economy_slice_minimal",
+        "maps_to": "deferred_post_p0_expansion expansion_001..006 as minimal viable loop",
+        "deadline": "2026-11-15",
+        "status": "draft_open",
+        "contract": "Global economy structs (Healing/Mana/Utility/Grief) + grief modifier on hits + HealingSong/ManaSong base+1 tier + economy HUD on existing UI authority — no dungeon/enemy breadth yet",
+        "deliverables": ["Source/.../MelodiaEconomy*.h", "DataTables for 2 song families", "WBP economy indicators on UMelodiaUIBridgeSubsystem authority"],
+        "depends_on": ["p1_cymatics_present"],
+        "owner_lanes": ["cpp", "beatmap_author"],
+        "notes": "Maps 1:1 to P0_TASK_LEDGER deferred_post_p0_expansion priority 1-6. Expansion_007..009 stay P2-gated."
+      }
+    ]
+  },
+  "P2_faraway_mother_bridge": {
+    "goal": "Faraway Mother goes from hython asset pile to live UE citizen: GN, material, PCG, wardrobe, water",
+    "deadline": "2026-12-01",
+    "items": [
+      {
+        "id": "p2_gn_taxonomy_integration",
+        "status": "draft_open",
+        "spec": "Register all 16 builders (MEL_mother_head_silhouette .. MEL_mother_brocade_flower) in main GN taxonomy §2; Houdini manufactures geometry/masks/LODs, UE composes",
+        "inputs": ["Saved/Audit/faraway_mother/SM_ClothMountains_v0.obj", "Tools/Houdini/copernicus/*.py"],
+        "outputs": ["Content/PCG/FarawayMother/*", "Docs/Houdini/MARA_P0_P3_HOUDINI_EXECUTION_PLAN_2026-08-29.md updates"],
+        "contract": "Houdini bakes reusable geometry/masks; no live HDA cook dependency in packaged build (Master Index §6 rule)",
+        "maps_to_cross_system": "meshes_to_pcg"
+      },
+      {
+        "id": "p2_cloth_mountain_import",
+        "status": "draft_open",
+        "spec": "Import SM_ClothMountains_v0 (384 grid, BASE_H 140, PLEAT_AMP 60, PLEAT_PERIOD 88, SEAM_DEPTH 90) at 100x cm, Nanite enabled, as landscape-sculpture hero; validate LOD/collision batch",
+        "inputs": ["Saved/Audit/faraway_mother/cloth_mountains_v0_manifest.json"],
+        "depends_on": ["p2_gn_taxonomy_integration"],
+        "maps_to_cross_system": "meshes_to_pcg"
+      },
+      {
+        "id": "p2_fabric_material_pipeline",
+        "status": "draft_open",
+        "spec": "Fabric kit (T_FM_PleatDetail_N, T_FM_PleatDetail_2_N, T_FM_SeamMask, T_FM_Embroidery_A/B, T_FM_FabricWeave_N) through Copernicus fabric_sheen + M_Master_Toon_Universal instances; sRGB discipline verified (embroidery true, normals/mask false)",
+        "inputs": ["Saved/Audit/faraway_mother/textures/textures_manifest.json"],
+        "outputs": ["Content/Textures/FarawayMother_Suites/*", "MI_FM_* instances"],
+        "maps_to_cross_system": "fabric_to_wardrobe"
+      },
+      {
+        "id": "p2_structural_columns_and_dress_tie_in",
+        "status": "draft_open",
+        "spec": "5 column families (Doric/Ionic/Corinthian/Fluted/Twisted, 9 PBR maps each from copernicus_structural_assets.py) + Shorewake dress 48-slot tie-in (SM_ShorewakeDress) share the same universal master; verify MI bindings",
+        "maps_to_cross_system": "fabric_to_wardrobe"
+      },
+      {
+        "id": "p2_pcg_population",
+        "status": "draft_open",
+        "spec": "PCG populates levels with Faraway meshes via PCGExtendedToolkit + WorldField filters (moisture/slope/wind_exposure/monolith_proximity); SpeedTree bridge fields reused, not duplicated",
+        "contract": "World Field Bus FilterFlow/Tension/Moisture/Contact/Residue/Reaction/AnchorStability/Resonance (Master Index §5b)",
+        "maps_to_cross_system": "meshes_to_pcg"
+      },
+      {
+        "id": "p2_dungeon_enemy_quest_slice",
+        "status": "draft_open",
+        "spec": "Gated remainder of deferred_post_p0_expansion: expansion_007 dungeon route + expansion_008 debuff enemy + expansion_009 economy-skill quest chain; require p1_economy_slice_minimal pass first",
+        "depends_on": ["p1_economy_slice_minimal", "p2_pcg_population"]
+      }
+    ]
+  },
+  "P3_horizons": {
+    "goal": "Speculative breadth — WATCH per Master Index §3/§4; no code until owner tasks them",
+    "status": "research_only",
+    "items": [
+      {
+        "id": "p3_cymatics_v3",
+        "status": "research_only",
+        "spec": "Cymatics V3: map 21→35+ PBR variants, animated flipbook params (80 frames x 5 maps proven) to GN builder params; cymatic choice drives builder amplitude/period",
+        "source": "copernicus_cymatic_parallax.py (pure numpy trig interference + tileable fBm + domain warping)",
+        "additive_evidence": "Saved/Audit/copernicus_cymatic/CymaticMarble/ 9-map set already 1665 PNGs + 185 height maps"
+      },
+      {
+        "id": "p3_cymatics_v4_neural",
+        "status": "research_only",
+        "spec": "Cymatics V4 / neural shaders: requires a MATERIAL onnx (present onnx is text-embedding only bge-small-en-v1.5-int8); WATCH — do not build until onnx acquisition task",
+        "guardrail": "Master Index §3: Neural shaders gated on material onnx, not embedding onnx"
+      },
+      {
+        "id": "p3_cymatics_4k_heroes",
+        "status": "research_only",
+        "spec": "4K hero sets for top 2-3 cymatic variants + flipbook --frames 16 expansion; UE RVT/MPC path, not second audio writer",
+        "maps_to_cross_system": "cymatics_to_water"
+      },
+      {
+        "id": "p3_magpie_full",
+        "status": "research_only",
+        "spec": "Magpie generative renderer — seam scaffolded via UMelodiaVisualRepresentationSubsystem (read-only); full renderer stays WATCH until owner promotes",
+        "guardrail": "Master Index §3: seam scaffolded only, NO renderer"
+      },
+      {
+        "id": "p3_world_field_bus_formalization",
+        "status": "research_only",
+        "spec": "Formalize World Field Bus (FilterFlow/Tension/Moisture/Contact/Residue/Reaction/AnchorStability/Resonance) and SpeedTree bridge (9 fields: melodia_moisture .. melodia_ecological_density) via R&D discovery, not a giant framework",
+        "guardrail": "Master Index §5: discover the minimum contract via R&D"
+      },
+      {
+        "id": "p3_procedural_fabrics_infinity_nikki_bar",
+        "status": "research_only",
+        "spec": "Procedural fabric families (brocade/lace/silk/pearl) beyond embroidery maps; wardrobe bar Infinity Nikki — requires owner art direction",
+        "maps_to_cross_system": "fabric_to_wardrobe"
+      }
+    ],
+    "promotion_rule": "P3 items move to P2 only via explicit owner task per Master Index §3/§9 checklist; a new parallel implementation is a defect"
+  },
+  "ledger_discipline": {
+    "additive_only": true,
+    "do_not_overwrite": ["Docs/P0_TASK_LEDGER.json", "Saved/Audit/grand_review_expansion_plan_2026-09-01.json", "Saved/Audit/ue_level_building_coinsheet_2026-09-01.json"],
+    "new_ledgers": ["Saved/Audit/p1p3_roadmap.json (this file)", "Saved/Audit/cross_system_mappings.json", "P1_TASK_LEDGER.json (to be created, not this PR)"],
+    "gate_naming": "p1_* gates are distinct from p0_*; P0 8/8 stays frozen truth",
+    "evidence_per_gate": "offline probe + live PIE + ledger row (Master Index §9.7)"
+  },
+  "subagent_queue_after_this": ["rec_5_ecosystem_integration (ecosystem_integration_report.json)", "rec_6_grand_documentation", "rec_7_user_facing"]
+}

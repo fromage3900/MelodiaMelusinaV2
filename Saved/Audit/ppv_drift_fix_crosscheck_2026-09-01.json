@@ -1,0 +1,46 @@
+{
+  "schema": "melodia.audit.ppv_drift_fix_crosscheck.v1",
+  "generated": "2026-09-01T04:30:00Z",
+  "mode": "spec_crosscheck",
+  "source_batch": "ppv_drift_t3d_batch_2026-08-31.json",
+  "source_spec": "PPV_DRIFT_T3D_FIX_SPEC_2026-08-31.md",
+  "coverage_report": {
+    "batch_drift_findings": {
+      "label_mismatch": {
+        "field": "ActorLabel",
+        "current": "PPV_Dreamprint_Candidate",
+        "canonical": "PPV_NikkiDream",
+        "fix_spec_coverage": "COVERED — operation 1: set_property ActorLabel → PPV_NikkiDream"
+      },
+      "weight_drifts": [
+        {
+          "blendable": "MI_MeluColorGrade_PortfolioHero",
+          "delta": 0.51,
+          "fix_spec_coverage": "COVERED — operation 2: set_blendable_weight 0.69"
+        },
+        {
+          "blendable": "MI_MelodiaInk_PortfolioHero",
+          "delta": 0.43,
+          "fix_spec_coverage": "COVERED — operation 3: set_blendable_weight 1.0"
+        }
+      ],
+      "domain_drop": {
+        "asset": "MI_StarryNight_VanGogh",
+        "fix_spec_coverage": "COVERED — operation 4: replace_blendable with MI_StarryNight_Hero"
+      }
+    },
+    "total_drift_findings": 4,
+    "covered_by_fix_spec": 4,
+    "coverage_percentage": 100.0,
+    "uncovered_findings": []
+  },
+  "consistency_check": {
+    "batch_operations_count": 4,
+    "spec_operations_count": 4,
+    "operations_match": true,
+    "t3d_fragment_valid": true,
+    "t3d_covers_all_operations": true
+  },
+  "status": "CROSSCHECK_COMPLETE",
+  "verdict": "FULL_COVERAGE — all 4 drift findings from the batch JSON are addressed by the fix spec. Operations are consistent between batch and spec."
+}

@@ -1,20 +1,10 @@
-# Runner requirement: this job needs a self-hosted runner labeled
+# Runner requirement: this manual job needs a self-hosted runner labeled
 # [self-hosted, Windows, UE58] -- a Windows machine with UE 5.8 installed
-# at UE_ROOT below, plus Python/ruff on PATH. If no matching runner is
-# registered under this repo, the job stays QUEUED forever rather than
-# failing outright. Check Settings > Actions > Runners first if a run
-# never starts.
+# at UE_ROOT below, plus Python/ruff on PATH. It is manual by design so pull
+# requests do not sit queued forever when the artist's PC is offline.
 name: Unreal Build + Tests
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'Source/**'
-      - 'Plugins/**/Source/**'
-      - 'Content/Python/gmm/**'
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 env:

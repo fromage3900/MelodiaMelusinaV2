@@ -1,238 +1,180 @@
-# 🚀 Quick Start Guide
+# Melodia — Quick Start & Developer Guide
 
-**Get started in 5 minutes or less!**
+**Engine:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20 | Python 3.11  
+**Product lens:** evergreen single-player Rhythm-JRPG; current engineering focus is runtime closure.
 
 ---
 
-## 💡 Working with a Team? Read This First!
+## 1. Read first
 
-**👥 Collaborators:** Don't download the full 300GB! Use the tiered onboarding scripts:
-```bash
-# Lightweight collaborator
-bash deploy/collaborator_onboarding.sh lightweight
+Before changing architecture, read:
 
-# Docs/code-only
-bash deploy/collaborator_onboarding.sh docs
+1. `README.md`
+2. `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
+3. `CURRENT_STATE.md`
+4. `TODO.md`
+5. `SYSTEM_MAP.md`
 
-# Validate the UE-capable checkout
-bash deploy/validate_collaborator_setup.sh . ue
-```
+The old six-phase P0 loop remains a useful integration test, but future Chapters may be combat-light, traversal-only, creature-focused, Starskiff-focused, or Monolith Events.
 
-This downloads only ~2-10GB instead of 300GB! 🎉
+---
 
-**📖 Full guide:** [COLLABORATOR_SETUP.md](COLLABORATOR_SETUP.md)
+## 2. Setup
 
-### Source Control Today
+Required:
 
-Git/Git LFS remains the required collaborator checkout path. A local Perforce pilot has seeded
-`//melodia/Exports/...` for locking and large-asset validation, but it runs only on the owner's
-workstation and is not yet a shared service. Do not configure it from another machine or edit the
-same export through Git and Perforce.
-
-For text/code/docs work, run `python Tools/source_control_triage.py` before committing. Its scheduled
-12-hour report identifies review-only binary and Perforce paths; it does not stage or commit changes.
-The source-control plan is [Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
-
-### If plugins such as MeshBlend or PCGEx are missing
-
-The Blender-only sparse checkout does not contain the Unreal project or its
-plugins. Use the UE-capable lightweight tier instead:
-
-```bash
-bash deploy/collaborator_onboarding.sh lightweight
-bash deploy/validate_collaborator_setup.sh . ue
-```
-
-The project plugins are source-only. Install UE 5.8 and Visual Studio 2022
-Desktop development with C++, then build with Unreal closed:
+- Unreal Engine 5.8
+- Visual Studio 2022 / Rider-compatible C++ toolchain
+- Blender 5.2 LTS
+- Git + Git LFS
 
 ```powershell
-$ueRoot = if ($env:MELODIA_UNREAL_ROOT) { $env:MELODIA_UNREAL_ROOT } else { "C:\Program Files\Epic Games\UE_5.8" }
-& "$ueRoot\Engine\Build\BatchFiles\Build.bat" BS_GodFileEditor Win64 Development -Project="$PWD\BS_GodFile.uproject" -NoUBA -MaxParallelActions=1
-.\deploy\validate_setup.ps1 -SkipServices -CheckLfsHydration -RequirePluginBinaries
+git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+cd MelodiaMelusinaV2
+git lfs pull
+.\deploy\validate_setup.ps1
 ```
+
+Bulk art/LFS/Perforce policy is documented separately; do not assume a fresh clone mirrors the author's entire local binary workspace.
 
 ---
 
-## 🎮 I Want to Play the Vertical Slice (First Dream)
+## 3. Run tests
 
-> **Status (2026-08-13):** The game **is playable** in PIE. After Melusina's unique skill, the rhythm highway works (clunky), damage procs, and the next turn applies on skill finish. Rhythm combat and QuillScript are **owner-locked WORKED** — do **not** reopen as P0 (`Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`, `Docs/Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md`). Formal Echo `runtime` ledger (A/B + harness JSON) is still open. Alternate stock battle entry (Morning → KaleidoNave collider/dreamstate path) is still being worked. Living board: [Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md](Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md).
+```powershell
+# Core Python / contract suite
+.\run_tests.ps1
 
-### Step 1: Install Unreal Engine 5.8
-```
-📥 Download from Epic Games Launcher
-📁 Install to: C:\Program Files\Epic Games\UE_5.8\
-```
+# Offline P0/static preflight
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/verify_p0_offline.py
 
-### Step 2: Open the Project
-```
-📂 Open: BS_GodFile.uproject
-⏳ Wait for shaders to compile (first run only)
-📌 Prefer a fresh pull of main (RestoreParty + playable levels are on main)
-```
+# Melodia MCP regression
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_melodia_mcp.py
 
-### Step 3: Play the Live Route
-```
-🎮 Route: L_MelusinaMorning → L_KaleidoNave
-   (L_Melodia_Dreamstate was merged into KaleidoNave on 2026-08-10 — do not hunt a live Dreamstate map)
-📂 Real paths:
-   /Game/Melodia/Levels/Opening/L_MelusinaMorning
-   /Game/EnvSandbox/Environments/L_KaleidoNave
-
-▶️ PIE from Morning (or open KaleidoNave if you only want the battle space)
-⚔️ Reach the encounter → start battle → cast Melusina's unique skill
-🎹 Rhythm highway appears (clunky OK) → hit lanes → damage should proc
-⏭️ Next turn should apply when the skill finishes
+# End-to-end release/hygiene checks
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_e2e_melusina_release.py
 ```
 
-### Step 4: Known Rough Edges (still playable)
-```
-• Rhythm highway feel is clunky — expected for now
-• Some alternate battle entry paths (old dreamstate / collider-name) are still being worked
-• Formal runtime gate needs Decision 024 A/B + record_gate.py before release claims
-```
-
-### Step 5: Current State Docs
-```
-📖 Docs/Handoffs/PIE_RUNTIME_NOTES_2026-08-12.md — living PIE board
-📖 _SESSION_HANDOFF.md — most recent session state
-📖 _VERTICAL_SLICE_SCOPE.md — scope authority
-```
-
-**✅ Done!** You've got a playable First Dream loop in PIE.
+Historical pass counts are evidence for their captured baseline. Re-run relevant suites after changing the code/specs they cover.
 
 ---
 
-## ⚡ I Just Want to See the Environment Art (Viewer Mode)
+## 4. Play the current proof slice
 
-### Step 1: Install Unreal Engine 5.8
-```
-📥 Download from Epic Games Launcher
-📁 Install to: C:\Program Files\Epic Games\UE_5.8\
-```
+Open:
 
-### Step 2: Open the Project
-```
-📂 Open: BS_GodFile.uproject
-⏳ Wait for shaders to compile (first run only)
+```powershell
+start BS_GodFile.uproject
 ```
 
-### Step 3: Explore the Levels
-```
-🎮 Open: /Game/Melodia/Levels/L_MelusinaMorning
-🎮 Open: /Game/EnvSandbox/Environments/L_KaleidoNave
-🎮 Open: /Game/EnvSandbox/Environments/L_KaleidoNave
-🎮 Open: /Game/EnvSandbox/Environments/WP/L_WP_SakuraDream
-```
+The current integration proof revolves around First Dream / Sea Above content and demonstrates the stable core:
 
-**✅ Done!** You've seen the project's environments.
+- Quill/narrative initiation;
+- exploration/world interaction;
+- Phoenix turn-based battle;
+- Melodia rhythm execution;
+- Wardrobe gameplay/traversal consequence;
+- checkpoint/save/restore.
+
+Use `_VERTICAL_SLICE_SCOPE.md` and the current P0 golden-run spec for the exact proof route.
+
+Do **not** infer from this route that every future Chapter must contain the same phases.
 
 ---
 
-## 🏗️ I Want to Build Things (Geometry Mode)
+## 5. Current engineering target
 
-### Step 1: Install Blender 5.2+
-```
-📥 Download: https://www.blender.org/download/
-📁 Install to: C:\Program Files\Blender Foundation\Blender 5.2\
-```
+When working on core runtime, prefer proving this chain:
 
-### Step 2: Open Both Apps
-```
-📂 Open: BS_GodFile.uproject (Unreal)
-📂 Open: Any .blend file (Blender)
-```
-
-### Step 3: Start Live Bridge
-```
-🔧 In Blender (press N for side panel):
-├── Click "Melodia Studio" tab
-├── Find "Live Bridge" 
-├── Click "Refresh Status"
-└── Click "Start Server" under LiveLink :9876
-```
-
-### Step 4: Create & Send Asset
-```
-🎨 In Blender Melodia Studio:
-├── Go to "Genome Carousel"
-├── Pick "ZEN_SHRINE" → Click "Apply"
-└── Click "Send + Materials" in Live Bridge
+```text
+outfit / world state
+        ↓
+exploration / Starskiff
+        ↓
+Phoenix action
+        ↓
+rhythm execution
+        ↓
+Convergence / consequence
+        ↓
+reward / checkpoint
+        ↓
+save
+        ↓
+quit + relaunch
+        ↓
+restore
+        ↓
+repeat load with no duplication
 ```
 
-### Step 5: Use in Unreal
-```
-🎮 In Unreal:
-├── Find your asset in /Game/LiveLink/
-├── Drag it into /Game/EnvSandbox/Environments/L_KaleidoNave
-└── Position it where you want!
-```
-
-**✅ Done!** You're now building live levels!
+A change that adds breadth but makes this less reliable is not progress.
 
 ---
 
-## 🎨 I Want to Make Materials (Material Mode)
+## 6. Authoring future Chapters
 
-### Step 1: Open Test Level
-```
-🎮 Open: /Game/EnvSandbox/Environments/L_KaleidoNave
-```
+A durable Chapter should be package-shaped:
 
-### Step 2: Create Material Instance
-```
-🎨 In Content Browser:
-├── Find: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal
-├── Right-click → "Create Material Instance"
-└── Name it: MI_MyTestMaterial
-```
+- `specs/progression/<chapter>.v1.json`;
+- optional pillar manifests;
+- Quill source if needed;
+- stable IDs and idempotent intents/rewards;
+- assets/maps/content refs;
+- offline validation;
+- runtime proof where applicable;
+- restart/idempotency proof for durable state;
+- packaged proof before release promotion.
 
-### Step 3: Test It
-```
-🎮 In the level:
-├── Create a cube (Place Actors panel → Basic Shapes → Cube)
-├── Apply your material
-├── Double-click material to edit parameters
-└── See changes in real-time! ✨
-```
-
-**✅ Done!** You're creating materials!
+See `Docs/Plans/REUSABLE_CHAPTER_VALIDATION_SYSTEM_2026-08-31.md` and the canonical chapter-tier strategy.
 
 ---
 
-## 🆘 Something Went Wrong
+## 7. Packaging
 
-| Problem | Quick Fix |
-|---------|-----------|
-| 🔴 Unreal won't open | Make sure UE 5.8 is installed |
-| 🔴 Can't find Melodia Studio | Enable `surreal_architecture_gen` / **Melodia Studio** in Blender preferences |
-| 🔴 Port 9876 in use | Close other Blender instances |
-| 🔴 Materials look gray | Run this in UE Python: `import resolve_material_crosswalk; resolve_material_crosswalk.resolve_all()` |
+Use the existing BuildCookRun workflow for the specific maps/content being certified. P0 packaging examples remain useful, but future Voyages/Volumes will have their own explicit content manifests rather than one permanent global map list.
 
----
+Example P0 baseline:
 
-## 📚 Want to Learn More?
+```powershell
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun `
+  -project="C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject" `
+  -noP4 -platform=Win64 -clientconfig=Development `
+  -cook -build -stage -pak -archive
+```
 
-**📖 Full Guide:** [README.md](README.md) - Complete onboarding paths  
-**📖 Gameplay Scope:** [_VERTICAL_SLICE_SCOPE.md](_VERTICAL_SLICE_SCOPE.md)  
-**📖 Level Design:** [Docs/LEVEL_DESIGNER_ONBOARDING.md](Docs/LEVEL_DESIGNER_ONBOARDING.md)  
-**📖 Materials:** [MATERIAL_LOOKDEV_PIPELINE.md](MATERIAL_LOOKDEV_PIPELINE.md)  
-**📖 All Docs:** [DOC_INDEX.md](DOC_INDEX.md) - Complete documentation map  
+Record exact packaged content, build hash, and validation evidence for each promoted release.
 
 ---
 
-## 🎯 Common Tasks
+## 8. MCP / automation
 
-| Task | Command / Location |
-|------|-------------------|
-| 🎮 Play vertical slice | `L_MelusinaMorning` → `L_KaleidoNave` — unique-skill rhythm **playable**; stock battle entry still being worked |
-| 🏗️ Test geometry | Open `/Game/EnvSandbox/Environments/L_KaleidoNave` |
-| 🎨 Test materials | Create instance from `M_Master_Toon_Universal` |
-| 🔧 Check services | Run `deploy/status.ps1` in terminal |
-| 📖 View documentation | Open [DOC_INDEX.md](DOC_INDEX.md) |
+Automation supports the game; it does not become gameplay authority.
+
+- Melodia MCP: schema/test/inspection tooling.
+- Agent Bridge MCP: policy-enforced routing.
+- Monolith MCP: live Unreal inspection/editor automation.
+- ECHO/contract pipeline: spec → validation → runtime evidence → promote.
+
+Use one editor mutation authority at a time.
 
 ---
 
-**💡 Tip:** Want the game first? Use the vertical-slice path above. For art/tools, start with Viewer Mode, then Geometry Mode.
+## 9. Strategy boundary
 
-**🎉 Welcome to the team!**
+Do not build the future optional Gift/remote-manifest backend yet. The evergreen model currently changes **ID discipline, save compatibility, chapter packaging, and product language**. Networking comes after local persistence closure.
+
+---
+
+## 10. Key links
+
+- `README.md`
+- `CURRENT_STATE.md`
+- `TODO.md`
+- `DOC_INDEX.md`
+- `SYSTEM_MAP.md`
+- `DATA_FLOW.md`
+- `_VERTICAL_SLICE_SCOPE.md`
+- `TEST_READY.md`
+
+**Goal:** make adding journeys routine and reopening the engine exceptional.

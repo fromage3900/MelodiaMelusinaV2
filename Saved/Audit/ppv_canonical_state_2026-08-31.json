@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "spec_only",
+    "source": "Docs/Plans/MATERIAL_HEALTH_AND_CONSOLIDATION_PLAN_2026-08-30.md \u00a72.4"
+  },
+  "canonical_ppv_stack": {
+    "blendables": [
+      {
+        "name": "MI_MelodiaInk_PortfolioHero",
+        "weight": 1.0,
+        "domain": "post_process"
+      },
+      {
+        "name": "MI_MeluColorGrade_PortfolioHero",
+        "weight": 0.69,
+        "domain": "post_process"
+      },
+      {
+        "name": "MI_StarryNight_Hero",
+        "weight": 1.0,
+        "domain": "post_process"
+      }
+    ],
+    "actor_label": "PPV_NikkiDream"
+  },
+  "drift_findings": {
+    "label_mismatch": {
+      "current": "PPV_Dreamprint_Candidate",
+      "canonical": "PPV_NikkiDream",
+      "severity": "high"
+    },
+    "weight_drift": [
+      {
+        "slot": "grade",
+        "current": 0.18,
+        "canonical": 0.69,
+        "delta": -0.51
+      },
+      {
+        "slot": "outline",
+        "current": 0.57,
+        "canonical": 1.0,
+        "delta": -0.43
+      }
+    ],
+    "surface_domain_drop": {
+      "asset": "MI_StarryNight_VanGogh",
+      "current_domain": "MD_SURFACE",
+      "required_domain": "MD_POST_PROCESS",
+      "fix": "swap to MI_StarryNight_Hero"
+    }
+  },
+  "fix_sequence": [
+    "1. Rename PPV actor label to PPV_NikkiDream",
+    "2. Set grade weight to 0.69",
+    "3. Set outline weight to 1.0",
+    "4. Replace MI_StarryNight_VanGogh with MI_StarryNight_Hero (post-process domain)",
+    "5. Verify compile via melodia_material_get_compile_stats"
+  ],
+  "safety_note": "Spec only. Requires live Monolith + editor. Never hand-edit .uasset."
+}

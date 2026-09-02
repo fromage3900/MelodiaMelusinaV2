@@ -362,8 +362,8 @@ def collect(*, run_math: bool = True, run_mcp: bool = False) -> dict[str, Any]:
             )
         )
 
-    if pipeline and isinstance(pipeline, dict) and pipeline.get("completion_gates") == list(REQUIRED_COMPLETION):
-        verb_status, verb_ev = "pass", "specs/echo_pipeline.json parseable; 4 completion gates + 7-verb agent_contract"
+    if pipeline and isinstance(pipeline, dict) and set(REQUIRED_COMPLETION).issubset(set(pipeline.get("completion_gates", []))):
+        verb_status, verb_ev = "pass", f"specs/echo_pipeline.json parseable; {len(pipeline.get('completion_gates', []))} completion gates + 7-verb agent_contract"
     else:
         verb_status, verb_ev = "fail", pipe_err or "echo_pipeline.json missing completion_gates"
     claims.append(_claim("contract_verb", "Verb contract valid (echo_pipeline.json)", verb_status, verb_ev, required=True))

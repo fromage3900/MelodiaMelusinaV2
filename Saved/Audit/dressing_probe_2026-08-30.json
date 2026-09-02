@@ -1,0 +1,20 @@
+{
+  "generated": "2026-08-30T23:34:33.390289",
+  "header": {
+    "exists": true,
+    "bytes": 1943
+  },
+  "cpp": {
+    "exists": true,
+    "bytes": 2400
+  },
+  "api": {
+    "DressHeroClutter": true,
+    "PhysicallyDrop": true,
+    "FindCompositionOccluders": true,
+    "GetDressingCatalogPath": true
+  },
+  "no_content_project_writes": true,
+  "no_new_material_master": true,
+  "verdict": "SCAFFOLD \u2014 Dash-capability dressing subsystem; build + PIE validation next closed-editor window"
+}

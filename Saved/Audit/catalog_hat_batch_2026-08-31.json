@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "spec_only",
+    "source_audit": "wardrobe_p0_audit_2026-08-30.json",
+    "note": "Catalog hat batch materialization spec. No .uasset writes. Editor materialization pending."
+  },
+  "catalog_path": "/MelodiaWardrobe/Catalog/DA_MelodiaCosmeticCatalog",
+  "slot": "hat",
+  "hat_batch": [
+    {
+      "CosmeticId": "Cos_Hat_MelusinaForte",
+      "Slot": "hat",
+      "Rarity": "Refined",
+      "ElementMood": "Forte",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 5, "swirl": 2 },
+      "MaterializePriority": 1
+    },
+    {
+      "CosmeticId": "Cos_Hat_MelusinaMaiden",
+      "Slot": "hat",
+      "Rarity": "Refined",
+      "ElementMood": "Tide",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 8, "swirl": 4 },
+      "MaterializePriority": 2
+    },
+    {
+      "CosmeticId": "Cos_Hat_MelusinaMystique",
+      "Slot": "hat",
+      "Rarity": "Couture",
+      "ElementMood": "Arcane",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 8, "swirl": 4 },
+      "MaterializePriority": 3
+    },
+    {
+      "CosmeticId": "Cos_Hat_MelusinaRadiance",
+      "Slot": "hat",
+      "Rarity": "Couture",
+      "ElementMood": "Radiant",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 9, "swirl": 3 },
+      "MaterializePriority": 4
+    },
+    {
+      "CosmeticId": "Cos_Hat_MelusinaTide",
+      "Slot": "hat",
+      "Rarity": "Grandmaster",
+      "ElementMood": "Tide",
+      "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "TokenCost": { "heart": 9, "swirl": 4 },
+      "MaterializePriority": 5
+    }
+  ],
+  "p0_gate_impact": {
+    "wardrobe_slot_coverage": "hat_slot_added",
+    "note": "Hat slot now has 5 catalog entries. PIE test still required."
+  }
+}

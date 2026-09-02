@@ -1,118 +1,157 @@
-# Melusina Agent Release & End-to-End Test Suite Verification Record (TEST_READY)
+# Melodia — Test Readiness & Verification Record
 
-**Document Classification:** End-to-End Automated Verification Certification  
-**Author:** Test Writer Subagent (`teamwork_preview_test_writer`)  
-**Target Repository:** `C:\EnvironmentPortfolio\BS_GodFile` and Workspace `C:\EnvironmentPortfolio`  
-**Date:** 2026-08-18  
-**Verification Status:** **TEST READY — ALL 17 SUITE TESTS PASSING (0 FAILURES, 0 ERRORS)**  
+**Last Updated:** 2026-09-02  
+**Purpose:** distinguish historical P0 evidence from the proof required for future Chapters/Voyages.
 
 ---
 
-## 1. Executive Summary
+## 1. P0 baseline
 
-This document certifies that the **Melusina Agent Test Harness (MATH)** and Melodia Release Verification Suite (`Tools/test_e2e_melusina_release.py`) have been authored, executed, and verified across all four required validation tiers.
+The 2026-09-01 closeout record reports a green automated baseline across the existing GMM, P0 integration, ECHO/contract, MCP, daemon, and release-hygiene suites, including the recorded **524 / 524** aggregate in the prior certification snapshot.
 
-### Verification Matrix Summary
+Treat that number as **bounded evidence for the captured revision and suite composition**. It is not a permanent statement that every later branch, Chapter, or Voyage is certified simply because the old count once passed.
 
-| Tier | Verification Domain | Scope & Targets | Test Status | Details |
-|---|---|---|:---:|---|
-| **Tier 1** | **Repository Open-Source Hygiene** | `README.md`, `LICENSE` (MIT), `CONTRIBUTING.md`, `.gitignore`, `CODE_OF_CONDUCT.md`, `SECURITY.md` | **PASS (5/5)** | Zero UTF-8 decoding errors, zero mojibake/replacement characters, clean build ignore rules. |
-| **Tier 2** | **GitPages Documentation & Assets** | `wix/melusina-agent-harness.html`, `Docs/MELUSINA_AGENT_TEST_HARNESS.md`, `tools/validate_assets.py` | **PASS (4/4)** | 5 MATH metrics verified (TCA, PAR, SCR, RCF, TER), 4 models compared, 0 missing hard assets. |
-| **Tier 3** | **Programmatic MCP & Live UE5 Content** | `deploy/melodia_mcp_server.py`, Fixtures, Quests, Rhythm Skills Data Table | **PASS (5/5)** | Programmatic fixture discovery, quest registry querying, rhythm skills inspection, and Quill verb dispatch. |
-| **Tier 4** | **MCP & Daemon Regression Suite** | `Tools/test_melodia_mcp.py`, `test_melodia_ollama_validation.py`, `test_ollama_daemons_stress.py` | **PASS (3/3)** | 13/13 MCP tests passing, 6/6 Ollama token tests passing, 19/19 daemon stress tests passing. |
-| **Total** | **All 4 Verification Tiers** | `Tools/test_e2e_melusina_release.py` | **PASS (17/17)** | **100% Pass Rate (0 Failures, 0 Errors)** |
+Re-run the relevant suites after changing their subject.
 
 ---
 
-## 2. Test Architecture & Tier Details
+## 2. What P0 proves
 
-### Tier 1: Repository Open-Source Hygiene Verification
-- **Community Standards Compliance:** Verified that `README.md`, `LICENSE` (MIT), `CONTRIBUTING.md`, `.gitignore`, `CODE_OF_CONDUCT.md` (Contributor Covenant v2.1), and `SECURITY.md` exist and are populated across both `BS_GodFile` and the workspace root.
-- **Strict UTF-8 & Zero-Mojibake Invariant:** Every markdown and text configuration file is read with strict UTF-8 decoding (`errors="strict"`). Zero unicode replacement characters (`\ufffd`), zero corrupted box replacement sequences (`? ? ? ?`), and zero Windows-1252 ANSI mojibake artifacts were detected.
-- **Workspace Cleanliness & Build Hygiene:** `.gitignore` enforces exclusion of `Intermediate/`, `Binaries/`, `DerivedDataCache/`, `Saved/`, temporary test reports (`*.json`), and large uncommitted scratch bundles.
+P0 testing provides evidence that the project can integrate:
 
-### Tier 2: GitPages Documentation & Asset Verification
-- **Harness Whitepaper Integrity:** Validated presence of the Melusina Agent Test Harness documentation (`Docs/MELUSINA_AGENT_TEST_HARNESS.md` and GitPages lookbook).
-- **Formal MATH Benchmark Metrics:** Verified explicit documentation, mathematical formulas, and benchmark thresholds for all 5 core evaluation metrics:
-  1. **TCA (Tool Call Accuracy):** Target $\ge 98.0\%$ (Hermes 3 achieved $98.8\%$, LongCat achieved $99.2\%$).
-  2. **PAR (Policy Adherence Rate):** Target $100.0\%$ (Deterministic policy gate enforcement).
-  3. **SCR (State Convergence Rate):** Target $\ge 95.0\%$ (Hermes 3 achieved $95.5\%$, LongCat achieved $97.5\%$).
-  4. **RCF (Recovery from Feedback):** Target $\ge 90.0\%$ (AST/compiler feedback self-correction).
-  5. **TER (Token Efficiency Ratio):** Target $\le 0.20$ (80–85% token reduction via typed MCP schemas).
-- **Model Comparison Suite:** Documented comparative evaluation matrix across Nous Hermes 3 (8B / 70B), Nous LongCat, Qwen 2.5-Coder (7B / 14B), DeepSeek-R1 (14B), and unconstrained baselines across the 4 AAA tracks (Lighting, Camera, Narrative, Blueprint wiring).
-- **Automated Asset Gate:** `tools/validate_assets.py` passes with **0 hard-tier missing assets** and **0 soft-tier missing assets**.
+- Quill/narrative progression;
+- turn-based JRPG/Phoenix action flow;
+- Melodia rhythm execution;
+- wardrobe gameplay/traversal;
+- music-as-key world interaction;
+- single-writer UI;
+- idempotent reward/narrative consumption;
+- canonical save/load infrastructure.
 
-### Tier 3: Programmatic MCP & Live UE5 Content Verification
-- **Module Import:** Clean programmatic import of `deploy/melodia_mcp_server.py`.
-- **Fixture Contract Discovery:** Programmatic execution of `melodia_bp_list_fixtures()` verifies 10 registered fixtures, including `single_target_resonance_skill` mapped to the `skill` template in `melodia_gameplay_bp_kit.v1.json`.
-- **Persona Quests Retrieval:** Programmatic execution of `melodia_persona_get_quests()` verifies active quest definitions (`quest.first_dream`) with allowlist seed integration.
-- **Rhythm Skills & Data Table:** Programmatic execution of `melodia_rhythm_list_skills()` verifies discovered skill assets, canonical grade multipliers (`Poor: 0.35`, `Good: 1.0`, `Great: 1.2`, `Perfect: 1.5`), and structured data table rows in `Content/Melodia/DataStuctures/DT_MelodySlime_Skills.json`.
-- **Narrative Notification & Subsystem Health:** Programmatic execution of `melodia_quill_validate_notification()` validates 7-verb grammar (`melodia:quest`, `melodia:battle`, etc.) and `melodia_system_health()` reports healthy spec configuration.
-
-### Tier 4: Melusina MCP & Daemon Regression Suite
-- **MCP Server Contract Suite (`Tools/test_melodia_mcp.py`):** **13 / 13 passed**.
-- **Ollama Token & C++ Boundary Suite (`Tools/test_melodia_ollama_validation.py`):** **6 / 6 passed**.
-- **Daemon Stress & Timeout Fallback Suite (`Tools/test_ollama_daemons_stress.py`):** **19 / 19 passed**.
+The next quality bar is deeper **restart and repeat-load closure**, especially across Wardrobe, Convergence, Starskiff/world state, and future schema growth.
 
 ---
 
-## 3. How to Execute the Verification Suite
+## 3. Verification tiers for the long-lived game
 
-Run the full end-to-end verification suite from `BS_GodFile`:
+Every new content unit should be explicit about which tiers it requires.
 
-```bash
-# Direct test runner execution
-python Tools/test_e2e_melusina_release.py
+### Tier A — source/content presence
+Files, assets, specs, IDs, and references exist.
 
-# Or via unittest discovery
-python -m unittest Tools/test_e2e_melusina_release.py
+**Not runtime proof.**
+
+### Tier B — offline contract proof
+Schemas, allowlists, progression contracts, static ownership constraints, and deterministic content rules pass without Unreal runtime mutation.
+
+### Tier C — live/PIE proof
+Real runtime behavior executes through the intended owner path with no duplicate UI/authority or stale state.
+
+### Tier D — restart/idempotency proof
+Durable facts survive full process restart; repeated load/consume does not duplicate rewards, modifiers, quest flags, world consequences, or registrations.
+
+### Tier E — packaged proof
+The exact promoted content runs in a packaged build with the claimed route/assets/state.
+
+A major Chapter, Monolith Event, or Voyage is not release-ready until the tiers relevant to its durable behavior pass.
+
+---
+
+## 4. Current commands
+
+```powershell
+# Primary suite
+.\run_tests.ps1
+
+# Offline P0/static preflight
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/verify_p0_offline.py
+
+# Melodia MCP regression
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_melodia_mcp.py
+
+# End-to-end release/hygiene
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_e2e_melusina_release.py
 ```
 
-### Verified Test Run Output
+Use the specific Chapter/content contract suites registered for the files being changed rather than relying only on a global aggregate.
+
+---
+
+## 5. Runtime persistence acceptance
+
+Current high-priority test sequence:
 
 ```text
-================================================================================
-MELUSINA AGENT TEST HARNESS — END-TO-END RELEASE VERIFICATION SUITE
-================================================================================
-GodFile Root:   C:\EnvironmentPortfolio\BS_GodFile
-Workspace Root: C:\EnvironmentPortfolio
-Python Runtime: C:\Python314\python.exe (3.14.5)
---------------------------------------------------------------------------------
-Loaded 17 test cases across 4 verification tiers.
-
-test_01_godfile_hygiene_files_exist (TestTier1OpenSourceHygiene) ... ok
-test_02_workspace_root_hygiene_files_exist (TestTier1OpenSourceHygiene) ... ok
-test_03_strict_utf8_encoding_no_corruption (TestTier1OpenSourceHygiene) ... ok
-test_04_readme_structure_and_professional_tone (TestTier1OpenSourceHygiene) ... ok
-test_05_gitignore_contains_scratch_and_build_patterns (TestTier1OpenSourceHygiene) ... ok
-test_01_harness_documentation_sources_exist (TestTier2GitPagesDocumentation) ... ok
-test_02_math_metrics_documented (TestTier2GitPagesDocumentation) ... ok
-test_03_model_comparisons_and_tracks_documented (TestTier2GitPagesDocumentation) ... ok
-test_04_validate_assets_script_passes (TestTier2GitPagesDocumentation) ... ok
-test_01_programmatic_bp_list_fixtures (TestTier3ProgrammaticMCPAndLiveContent) ... ok
-test_02_programmatic_persona_get_quests (TestTier3ProgrammaticMCPAndLiveContent) ... ok
-test_03_programmatic_rhythm_list_skills (TestTier3ProgrammaticMCPAndLiveContent) ... ok
-test_04_rhythm_skills_datatable_json_integrity (TestTier3ProgrammaticMCPAndLiveContent) ... ok
-test_05_quill_notification_dispatch_and_system_health (TestTier3ProgrammaticMCPAndLiveContent) ... ok
-test_01_regression_test_melodia_mcp (TestTier4MelusinaRegressionSuite) ... ok
-test_02_regression_test_melodia_ollama_validation (TestTier4MelusinaRegressionSuite) ... ok
-test_03_regression_test_ollama_daemons_stress (TestTier4MelusinaRegressionSuite) ... ok
-
-----------------------------------------------------------------------
-Ran 17 tests in 5.532s
-
-OK
-
-================================================================================
-VERIFICATION RESULT: ALL 17 TESTS PASSED CLEANLY (0 FAILURES, 0 ERRORS)
-================================================================================
+construct valid durable state
+      ↓
+save
+      ↓
+end process / PIE
+      ↓
+start fresh process / PIE
+      ↓
+load
+      ↓
+validate complete state vector
+      ↓
+load same save again
+      ↓
+validate identical state / zero duplication
 ```
+
+Test invalid candidates separately:
+
+- inconsistent equipped-vs-owned wardrobe state;
+- unsupported/migration-failed record;
+- intentionally empty equipment/inventory state;
+- missing/corrupt referenced content where fail-safe behavior is expected.
+
+Validation should occur before destructive mutation whenever ownership/dependency boundaries permit it.
 
 ---
 
-## 4. Test Certification & Release Sign-Off
+## 6. Chapter-package acceptance
 
-- **Test Suite Location:** `C:\EnvironmentPortfolio\BS_GodFile\Tools\test_e2e_melusina_release.py`
-- **Regression Dependencies:** All dependencies self-contained or pinned to local verified tools.
-- **Verification Authority:** Test Writer Subagent (`teamwork_preview_test_writer`)
-- **Final Verdict:** **CERTIFIED TEST READY FOR MELUSINA AGENT RELEASE**
+For a future Chapter/Reverie/Voyage, retain evidence for:
+
+- exact progression/content spec revision;
+- stable IDs and prerequisites;
+- authoring source refs;
+- offline validation result;
+- live route/result proof if applicable;
+- save/restart proof for any durable fact;
+- packaged content manifest/build hash before release promotion.
+
+A quiet non-combat Reverie does not need a battle test. A combat Chapter does. A Monolith Event may need world-state/traversal proof instead of enemy-HP proof.
+
+**Testing follows the content's actual systems; content no longer has to imitate P0's pacing to be considered valid.**
+
+---
+
+## 7. Evergreen content boundary
+
+Future Gifts/Reveries/Voyages must use the same verification philosophy:
+
+- stable globally unique IDs;
+- idempotent claims;
+- forward-compatible save migration;
+- optional network failure must not break core gameplay;
+- claimed/installed content must remain legible to future saves.
+
+Remote-manifest/backend tests are intentionally future work and are not a P0 requirement.
+
+---
+
+## 8. Verdict language
+
+Prefer precise claims:
+
+- **source present**;
+- **offline contract pass**;
+- **live PIE pass**;
+- **restart/idempotency pass**;
+- **packaged pass**.
+
+Avoid saying “the game is certified” when only one tier was measured.
+
+This evidence discipline is what lets Melodia grow for years without old confidence claims silently becoming false.

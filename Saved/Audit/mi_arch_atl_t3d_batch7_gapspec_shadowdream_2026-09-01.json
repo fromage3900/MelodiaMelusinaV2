@@ -1,0 +1,760 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "id": "MI_Arch_Atl_T3D_Batch7_GapScan_ShadowDream",
+  "generated": "2026-09-01T06:50:00Z",
+  "source": "Saved/Audit/arch_toon_conversion.json (atlantis_mi_entries[254:333])",
+  "target": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis",
+  "mode": "spec_only",
+  "note": "Batch 7 (final) of Atlantis MI spec. Remaining 79 stems (StoolD through VasesE). No .uasset writes.",
+  "batch": 7,
+  "batch_size": 79,
+  "is_final_batch": true,
+  "gap_analysis": {
+    "total_atlantis_stems": 333,
+    "previous_spec_entries": 254,
+    "total_accounted": 254,
+    "remaining_stems_to_spec": 79,
+    "this_batch_covers": 79,
+    "still_remaining_after": 0
+  },
+  "shadowdream_variants": {
+    "blue": {
+      "hex": "#8AA0D6",
+      "linear": [
+        0.541,
+        0.627,
+        0.839
+      ]
+    },
+    "pink": {
+      "hex": "#E8A0BF",
+      "linear": [
+        0.91,
+        0.627,
+        0.749
+      ]
+    }
+  },
+  "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+  "naming_pattern": "MI_Arch_Atl_<Suffix>",
+  "entries": [
+    {
+      "suffix": "StoolD",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolD",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolE",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolE",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolF",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolF",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolG",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolG",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolH",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolH",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolI",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolI",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolJ",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolJ",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolK",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolK",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolL",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolL",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolM",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolM",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolN",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolN",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "StoolO",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_StoolO",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableA",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableA",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableB",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableB",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableC",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableC",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableD",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableD",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableE",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableE",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableF",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableF",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableG",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableG",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableH",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableH",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableI",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableI",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TableJ",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TableJ",
+      "slot": "Wood_Furniture",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TorchA",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TorchA",
+      "slot": "Gold_Torch",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TorchB",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TorchB",
+      "slot": "Gold_Torch",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TorchC",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TorchC",
+      "slot": "Gold_Torch",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TorchD",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TorchD",
+      "slot": "Gold_Torch",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TorchE",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TorchE",
+      "slot": "Gold_Torch",
+      "roughness": 0.35,
+      "metallic": 0.85,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeA",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeA",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeB",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeB",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeBottomA",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeBottomA",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeBottomB",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeBottomB",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeBottomC",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeBottomC",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeBottomD",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeBottomD",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeBottomE",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeBottomE",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeBottomF",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeBottomF",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeBottomG",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeBottomG",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeC",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeC",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeD",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeD",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeE",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeE",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeF",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeF",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeG",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeG",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeH",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeH",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeI",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeI",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeJ",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeJ",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeK",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeK",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeL",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeL",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeM",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeM",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeN",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeN",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeO",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeO",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeP",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeP",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeQ",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeQ",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeR",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeR",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeS",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeS",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopA",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopA",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopB",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopB",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopC",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopC",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopD",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopD",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopE",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopE",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopF",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopF",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopG",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopG",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopH",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopH",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopI",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopI",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "TreeTopJ",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_TreeTopJ",
+      "slot": "Plant_Tree",
+      "roughness": 0.7,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseA",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseA",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseB",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseB",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseC",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseC",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseD",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseD",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseE",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseE",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseF",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseF",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseG",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseG",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseH",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseH",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseI",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseI",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseJ",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseJ",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VaseK",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VaseK",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VasesA",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VasesA",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VasesB",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VasesB",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VasesC",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VasesC",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VasesD",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VasesD",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    },
+    {
+      "suffix": "VasesE",
+      "mi_path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_VasesE",
+      "slot": "Stone_Planter",
+      "roughness": 0.85,
+      "metallic": 0.0,
+      "tint": null,
+      "shadowdream_strength": 0.55
+    }
+  ],
+  "summary": {
+    "total_entries": 79,
+    "blue_tinted": 0,
+    "pink_tinted": 0,
+    "no_tint": 79,
+    "parent_material": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal"
+  }
+}

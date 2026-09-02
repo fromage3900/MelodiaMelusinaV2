@@ -1,0 +1,16 @@
+{
+  "include": [
+    "Exports/PortfolioStages",
+    "CompatibilityLabs/ProductionPreIntegrationBackup_2026-07-26",
+    "Content/Melodia",
+    "Content/EnvSandbox/Environments"
+  ],
+  "exclude": [
+    "Content/Marketplace",
+    "Content/Fab",
+    "Content/Developers",
+    "Content/**/_Archive*",
+    "*.uasset.tmp",
+    "*.autosave"
+  ]
+}

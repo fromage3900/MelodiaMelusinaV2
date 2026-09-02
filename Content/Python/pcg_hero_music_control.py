@@ -68,7 +68,7 @@ DEFAULT_SNAPSHOT = HeroMusicControlSnapshot()
 PROOF_GRAPH_DEFAULTS: dict[str, dict[str, Any]] = {
     "ResonanceCathedral": {
         "Depth": 1800.0, "Density": 0.40, "WalkWidth": 220.0,
-        "ArrayCount": 4, "ArraySpacing": 480.0, "ResampleSpacing": 120.0,
+        "ArrayCount": 6, "ArraySpacing": 480.0, "ResampleSpacing": 120.0,
     },
     "ArpeggioBridge": {
         "Depth": 1800.0, "Density": 0.40, "WalkWidth": 220.0,

@@ -1,0 +1,77 @@
+{
+  "generated": "2026-09-01",
+  "paradise_room": {
+    "mesh_count": 239,
+    "mesh_location": "Content/EnvSandbox/Meshes/Environment/ (flat, Rooms_Paradise*.uasset)",
+    "pack_mics_found": [
+      "Content/EnvSandbox/Meshes/Environment/Atlas_01_Mat.uasset",
+      "Content/EnvSandbox/Meshes/Environment/Atlas_01_Trans_Mat.uasset",
+      "Content/EnvSandbox/Meshes/Environment/Outliner_Mat.uasset",
+      "Content/EnvSandbox/Meshes/Environment/Shadows_Mat.uasset",
+      "Content/EnvSandbox/Meshes/Environment/Seam_Floor_Mat.uasset",
+      "Content/EnvSandbox/Meshes/Environment/Seam_Sand_Mat.uasset"
+    ],
+    "pack_mic_texture_routing": {
+      "Atlas_01_Mat": "T_Atlas_01_Albedo -> Albedo, TextureWeight=1.0 (per handoff 2026-08-13)",
+      "Atlas_01_Trans_Mat": "T_Atlas_01_Trans -> Albedo (Trans variant), TextureWeight=1.0",
+      "Outliner_Mat": "T_Atlas_01_Albedo -> Albedo, TextureWeight=1.0",
+      "Shadows_Mat": "T_Seam_Shadows_01 -> Albedo, TextureWeight=1.0",
+      "Seam_Floor_Mat": "T_Seam_Floor_Albedo -> Albedo, TextureWeight=1.0",
+      "Seam_Sand_Mat": "T_Seam_Sand_Albedo -> Albedo, TextureWeight=1.0"
+    },
+    "pack_textures_on_disk": [
+      "Content/Imports/Environment/CrystalCrossroads_PolygonalMind/extracted/Textures/Atlas_01_Albedo.png",
+      "Content/Imports/Environment/CrystalCrossroads_PolygonalMind/extracted/Textures/Atlas_01_Trans.tif",
+      "Content/Imports/Environment/CrystalCrossroads_PolygonalMind/extracted/Textures/Atlas_01_Glass.tif",
+      "Content/Imports/Environment/CrystalCrossroads_PolygonalMind/extracted/Textures/Atlas_01_Glass_emissive.png",
+      "Content/Imports/Environment/CrystalCrossroads_PolygonalMind/extracted/Textures/Seam_Floor_Albedo.tif",
+      "Content/Imports/Environment/CrystalCrossroads_PolygonalMind/extracted/Textures/Seam_Sand_Albedo.png",
+      "Content/Imports/Environment/CrystalCrossroads_PolygonalMind/extracted/Textures/Seam_Shadows_01.tif"
+    ],
+    "mi_paradise_art_instances_count": 61,
+    "mi_paradise_art_instance_location": "Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/",
+    "mi_paradise_art_naming_pattern": "MI_Rooms_Paradise_<PropName>_Art[_<PackMIC>]",
+    "mi_paradise_art_examples": [
+      "MI_Rooms_Paradise_08_A_Ray_Art_Atlas_01_Mat",
+      "MI_Rooms_Paradise_08_A_Ray_Art_Atlas_01_Trans_Mat",
+      "MI_Rooms_Paradise_08_A_SandDune_Art",
+      "MI_Rooms_Paradise_08B_Floor_Sand_Art",
+      "MI_Rooms_Paradise_32_Floor_Sand_Art",
+      "MI_Rooms_Paradise_32_Floor_Tiles_Art",
+      "MI_Rooms_Paradise_Arc_Art",
+      "MI_Rooms_Paradise_Column_Regular_Art",
+      "MI_Rooms_Paradise_Crystal_Regular_Art",
+      "MI_Rooms_Paradise_CrystalBase_Art",
+      "MI_Rooms_Paradise_CubePattern_Art",
+      "MI_Rooms_Paradise_CylinderPattern_Art",
+      "MI_Rooms_Paradise_NFTFrame_Vertical_Art",
+      "MI_Rooms_Paradise_Platform03_Art_Atlas_01_Mat",
+      "MI_Rooms_Paradise_Roof01_Art_Atlas_01_Mat",
+      "MI_Rooms_Paradise_SciFi_Drone_Art_Atlas_01_Mat",
+      "MI_Rooms_Paradise_Stairs_Art_Atlas_01_Mat",
+      "MI_Rooms_Paradise_Vase_Large_Art_Atlas_01_Mat"
+    ],
+    "slots_on_pack_mi_per_handoff": 0,
+    "gaps_remaining": [
+      "MI_Rooms_Paradise_*_Art instances (61 on disk under AvatarGarden/Materials/) — parent unknown from disk scan. Need editor read to confirm whether each is on M_Master_Toon_Universal or still on a pack MI or M_<Prop> master.",
+      "239 paradise meshes: handoff §4c says 0 slots on pack MI remain post-fix, but that fix reassigned mesh slot references — it may NOT have reparented the MI_Rooms_Paradise_*_Art instances themselves. The instances may still be children of CrystalCrossroads pack masters rather than Universal.",
+      "MI_Rooms_Paradise_*_Art instances with a _<PackMIC> suffix (e.g. _Atlas_01_Mat, _Atlas_01_Trans_Mat, _Seam_Sand_Mat, _Outliner_Mat, _Shadows_Mat, _Seam_Floor_Mat) were likely created as per-slot overrides but may not have had textures routed onto them — their naming suggests they shadow the pack MIC slot by slot, but without editor read we cannot confirm whether Albedo/TextureWeight landed on them.",
+      "Pure _Art instances without a _<PackMIC> suffix (e.g. MI_Rooms_Paradise_Arc_Art, MI_Rooms_Paradise_Column_Regular_Art, MI_Rooms_Paradise_SciFiMachine_Art, MI_Rooms_Paradise_Wall01_Art) are single-material props — need to confirm they have a texture source (T_<Prop>_Base/Albedo) or are flat-tint (BaseTint).",
+      "No paradise-room-specific conversion script exists in Content/Python/ — fix_library_paradise.py covered the 2026-08-13 mesh reassignment but did not create/reparent the MI_Rooms_Paradise_*_Art instances."
+    ]
+  },
+  "proposed_paradise_conversion": {
+    "goal": "Ensure all 239 paradise meshes render on Melodia masters with textures visible.",
+    "steps": [
+      "Read each MI_Rooms_Paradise_*_Art instance's parent via editor (get_editor_property('parent')).",
+      "For instances NOT on M_Master_Toon_Universal: reparent to Universal (opaque) or Alpha (if the prop has transparency cutout — e.g. Vase_Large_Outline_Art, NFT_Frame01_Outliner, SciFi_Drone_Atlas_01_Trans).",
+      "Route textures: for _<PackMIC>-suffixed instances, route the matching pack texture (Atlas_01_Mat instances -> T_Atlas_01_Albedo; Seam_Sand_Mat instances -> T_Seam_Sand_Albedo; etc.) onto Albedo + set TextureWeight=1.0 + LayerA_TextureWeight=1.0.",
+      "For pure _Art instances (no pack suffix): if a T_<PropName>_Base/Albedo texture exists in the CrystalCrossroads import set, route it; otherwise set BaseTint from the prop's GLB baseColorFactor or leave white (_defaultMat convention).",
+      "Set ShadowDream soft blue #8AA0D6 / pink #E8A0BF (strength 0.7) on all paradise instances per project convention.",
+      "Save all instances + re-read parent to confirm."
+    ],
+    "editor_bound": true,
+    "script_output_path": "Content/Python/convert_paradise_room_materials.py",
+    "run_report_path": "Saved/Audit/paradise_room_conversion_run.json"
+  }
+}

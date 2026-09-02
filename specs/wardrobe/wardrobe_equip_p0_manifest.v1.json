@@ -19,7 +19,12 @@
     "Skirt": {
       "cosmetic_id": "Cos_Skirt_MelusinaV2",
       "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Skirt",
-      "material_slots": ["MI_Melusina_Skirt_Resonant"]
+      "material_slots": [
+        "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SKIRT_003",
+        "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Halftone_3_Inputs_-_Lines___Circles_002",
+        "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_skirtpanel_002",
+        "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005"
+      ]
     },
     "Boots": {
       "cosmetic_id": "Cos_Boots_MelusinaV2",
@@ -38,7 +43,7 @@
     "capability_enum_value": 0,
     "required_flags": [
       "flag.wardrobe.outfit_equipped",
-      "flags.melusina.sorrow_seam_restored"
+      "flag.melusina.sorrow_seam_restored"
     ]
   },
   "traversal_impact": {

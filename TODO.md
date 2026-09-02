@@ -1,56 +1,150 @@
-# Task Ledger — WBP Widget System Refactoring (2026-08-13)
+# Melodia — Master Task Ledger
 
-All items complete. See `CURRENT_STATE.md` for full status.
+**Date:** 2026-09-02  
+**Product lens:** evergreen single-player Rhythm-JRPG / game-as-a-place  
+**Immediate phase:** runtime closure before broad content expansion
 
-## Completed Milestones
+Canonical strategy:
 
-- [x] **WidgetStyleSheet.json** — Created `/BS_GodFile/Content/UI/WidgetStyleSheet.json` with color palette (`primary: #FF6B35`, `secondary: #FFAA00`, `accent: #FFDB58`, `background: #1A1A2E`, `surface: #16213E`, `error: #FF4757`, `success: #4ECDC4`, `warning: #FFE65D`), typography, spacing (8-unit grid), corner radius, shadow elevation.
+- `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
+- `Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`
+- `Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`
 
-- [x] **BP_WidgetComponent_Base_Design.md** — Design doc at `/BS_GodFile/Docs/Widgets/BP_WidgetComponent_Base_Design.md` defining `EWidgetState` enum, `FThemeData`/`FBrushCache` structs, 5 functions (`GetEffectiveBrush`, `GetThemeColor`, `IsInSafeArea`, `NavigateFocus`, `PlayStateAnimation`), brush generation, version policy, and migration paths for 6 existing WBPs.
+---
 
-- [x] **BP_CommandPhaseWBP** — Scaffolded at `/BS_GodFile/Content/Widgets/BP_CommandPhaseWBP` (P1 per luxury plan §B2). Command prompts + timing window + 3 action buttons. Extends `BP_WidgetComponent`, uses `WidgetStyleSheet.json` theme, exposes `OnCommandSelected` + `OnTimingWindowMissed` delegates.
+## P0 — preserve the proven core
 
-- [x] **BP_EnemyPhaseWBP** — Scaffolded at `/BS_GodFile/Content/Widgets/BP_EnemyPhaseWBP` (P1 per luxury plan §B2). Enemy-phase structure, same base + theme as Command phase. Prompts: EVASIVE/COUNTER/BLOCK.
+The 2026-09-01 baseline records a green First Dream / Sea Above integration proof across the existing gate/test infrastructure. Keep that evidence intact, but treat it as a **captured baseline**, not as the definition of every future Chapter.
 
-- [x] **BP_ResultsPhaseWBP** — Scaffolded at `/BS_GodFile/Content/Widgets/BP_ResultsPhaseWBP` (P1 per luxury plan §B2). Score/combo/rank display (S/A/B/C/None ranks with success/warning/error colors). Extends `BP_WidgetComponent`, exposes `OnResultsShown` + `OnContinuePressed` delegates.
+Do not reopen these foundations without a concrete defect:
 
-- [x] **BP_Battle_Rhythm Component Extraction** — Design doc at `/BS_GodFile/Docs/Widgets/Extract_BattleRhythm_Components.md` extracting 4 reusable components from existing `WBP_Battle_Rhythm`:
-  - `BP_TimingWindow` — timing window progress bar/border
-  - `BP_JudgementText` — PERFECT/GOOD/MISS text with color mapping
-  - `BP_ComboCounter` — combo count with pop-in/out animations
-  - `BP_ClockSource` — live HH:MM:SS clock
-  - Migration path: 40-50% node reduction in WBP_Battle_Rhythm.
+- [x] TurnBased JRPG / Phoenix remains combat skeleton and gameplay-state authority.
+- [x] Melodia rhythm layer rides on JRPG action execution rather than replacing it.
+- [x] Narrative intents/rewards/checkpoints use canonical narrative state and exactly-once consumption.
+- [x] Wardrobe can carry gameplay/traversal meaning.
+- [x] Music can affect world-route state.
+- [x] Single-writer UI discipline exists.
+- [x] Reusable progression/spec/test infrastructure exists.
 
-- [x] **UI_ASSET_INVENTORY_2026-08-03.md** — Updated at `/BS_GodFile/Docs/UI_ASSET_INVENTORY_2026-08-03.md` with all new WBPs, version tags, deprecation pipeline (5-step), and rhythm UI wiring status.
+---
 
-## Versioning Convention (all new WBPs)
+## P0.5 — runtime persistence closure (NOW)
 
-```
---- Begin Widget Version Info ---
-Version: 1.0.0
-Updated: 2026-08-13
-Author: Agent System
-DependsOn: BP_WidgetComponent_1.0.0
-BreakingChanges: None
---- End Widget Version Info ---
-```
+Goal:
 
-## Deprecation Pipeline (5-step, documented in inventory)
+`Outfit → Starskiff/exploration → Phoenix action → rhythm execution → Convergence/world consequence → reward/checkpoint → SAVE → quit → relaunch → load → same state → load again → no duplication`
 
-| Step | Action | Status |
-|---|---|---|
-| 1. Tag | Add `!deprecated` to User Comments + Inventory | ✅ Notation standard established |
-| 2. Grace 1 | No new usage; mark as legacy | — |
-| 3. Grace 2 | Update refs → `BP_Legacy*` (read-only) | — |
-| 4. Delete | Remove BP; keep `BP_Legacy*` reference | — |
-| 5. Inventory Purge | Remove from `Available` table | — |
+- [x] Audit existing load-result split; do not duplicate it with a second save framework.
+- [x] Reject persisted equipped-cosmetic state that contradicts ownership before stock load mutation.
+- [ ] Audit restore paths for partial mutation and duplicate rebuild side effects.
+- [ ] Add candidate validation for remaining intrinsic narrative/save invariants.
+- [ ] Keep Wardrobe-owned catalog/slot semantic validation in Wardrobe ownership.
+- [ ] Add repeat-load/idempotency tests.
+- [ ] Trace Starskiff state owner; classify durable facts vs derived/transient state.
+- [ ] Trace Convergence state owner; classify durable facts vs derived/transient state.
+- [ ] Extend save schema only after durable facts are agreed.
+- [ ] Audit save-write sync/async behavior; add stale-write guard only if a real race is proven.
+- [ ] Run full process-restart proof.
+- [ ] Run packaged-build proof.
 
-## Related Documents
+Non-goals:
 
-- `BP_WidgetComponent_Base_Design.md` — base class design
-- `WidgetStyleSheet.json` — theme data for all widgets
-- `Extract_BattleRhythm_Components.md` — reusable component extraction
-- `UI_ASSET_INVENTORY_2026-08-03.md` — single source of truth for all UI assets
-- `MODEL_FLEET_2026-08-13.md` — model pipeline (separate track)
+- no Phoenix rewrite;
+- no second SaveGame authority;
+- no persisted live rhythm session;
+- no raw transient Starskiff physics persistence without a design case;
+- no Akuma/Embermere framework import.
 
-**End of ledger entry.**
+---
+
+## P1 — reusable Chapter production lane
+
+Once runtime closure is green, prove that a **new Chapter package can be added without touching the core**.
+
+- [ ] Define one canonical chapter-package authoring template from existing progression schema.
+- [ ] Make Chapter tier explicit: Reverie / Episode / Chapter / Monolith Event.
+- [ ] Require seven metadata fields: Narrative Question, Mechanical Focus, Character Focus, Location, Visual Signature, Persistent Change, Exit Image.
+- [ ] Require stable IDs + idempotent intents/rewards + checkpoint/restore policy.
+- [ ] Validate offline contract.
+- [ ] Validate PIE/runtime behavior where applicable.
+- [ ] Validate restart/load for durable state.
+- [ ] Validate package/release promotion.
+
+The old six-phase P0 loop becomes **one golden integration pattern**, not mandatory content pacing.
+
+---
+
+## Volume I — working long-term content order
+
+### Movement I — The First Answer
+- [ ] First Dream polish / canonical chapter packaging.
+- [ ] Resonant Weave / outfit-as-gameplay proof.
+- [ ] Choral Sheep / music-creature relationship.
+- [ ] Sea Above Monolith Event.
+- [ ] Shorewake calling and Starskiff departure.
+
+### Movement II — The World Reads Back
+- [ ] Mara Elletra Vell owner canonization pass.
+- [ ] Seam Map / garment-semiotics chapter package.
+- [ ] Hemlands / Pleated Range / Embroidered Basin production plan.
+- [ ] Cymatic fabric-geography integration.
+- [ ] Faraway Mother / The Blink Monolith Event.
+
+### Movement III — The Category Error
+- [ ] Iris Fen owner canonization pass.
+- [ ] `Catalyze` as a narrow material-state/world-interaction verb using existing ownership.
+- [ ] God That Molts formal progression package (currently a planning hole).
+- [ ] Glasswing / Wayfold prototype and progression package.
+- [ ] Horizon Eater progression renumbering and Event integration.
+
+### Movement IV — The Shape We Choose
+- [ ] House of Measures chapter family.
+- [ ] Seam Oracle prototype: outfit silhouette × rhythm behavior × Convergence interpretation.
+- [ ] `Refuse the Measure` constrained late-game outfit reinterpretation.
+- [ ] Last Dress of the Sea world-scale synthesis.
+- [ ] Homecoming / `The First Time She Is Not Late` epilogue.
+
+The working planning grid supports **50+ named Chapters** across Volume I; exact chapter count/titles remain editable.
+
+---
+
+## Evergreen lane — design now, implement later
+
+Do not build backend infrastructure yet. Preserve the architecture that makes it possible.
+
+- [ ] Reserve globally stable content/reward ID discipline for future Gifts/Reveries/Voyages.
+- [ ] Keep save schemas versioned and forward-migratable.
+- [ ] Keep claimed rewards/intents idempotent forever.
+- [ ] Design Starskiff mailbox/archive presentation only after local persistence is closed.
+- [ ] Design optional remote content manifest after packaged single-player runtime is stable.
+- [ ] Default future gifts to permanent/archiveable availability rather than FOMO expiry.
+- [ ] Never make core combat/narrative dependent on an online service.
+
+---
+
+## Toolchain / R&D priority
+
+Keep experiments subordinate to production:
+
+**ADOPT / active:** Houdini + SpeedTree + UE5.8; Blender 5.2 LTS; existing Wardrobe/Rhythm/Starskiff pipelines.  
+**TEST:** Musical World Compiler as offline authoring compiler; Walk on Surface; IlluGen residue; carefully bounded Blender XPBD/Cascadeur tests.  
+**WATCH:** RTX neural material lanes, Magpie, GSplat/other niche tech until a concrete Melodia bottleneck exists.
+
+Rule:
+
+> **Does this produce visibly better Melodia per hour without creating a more expensive maintenance system?**
+
+---
+
+## Definition of progress
+
+Prefer these outcomes over “more systems”:
+
+- a restart-safe save;
+- a repeat-load-safe reward;
+- a Chapter that reuses existing owners;
+- a returning location that reflects durable history;
+- a Monolith Event that reinterprets existing mechanics;
+- a new Voyage that old saves can enter without rebuilding prior content.
+
+**The long-term goal is to spend more time authoring journeys and less time reopening the engine beneath them.**

@@ -1,88 +1,199 @@
-# System Architecture Map — Environment Portfolio Production Platform
+# System Architecture Map — Melodia Melusina
 
-This document describes the high-level system architecture of the **Environment Portfolio Production Platform**, detailing the six core components that enable automated asset layout, shading, composition, and presentation.
-
----
-
-## 1. Core Subsystems
-
-```
- ┌────────────────────────────────────────────────────────────────────────┐
- │                      MCP INTEGRATION LAYER (:55557)                     │
- └───────────────────────────────────┬────────────────────────────────────┘
-                                     │ (RPC Controls)
- ┌───────────────────────────────────▼────────────────────────────────────┐
- │                            IMPORT PIPELINE                             │
- │           Parses manifests, auto-imports FBXs, spawns HISMs            │
- └───────────────────────────────────┬────────────────────────────────────┘
-                                     │ (Placed Actor Hierarchy)
- ┌───────────────────────────────────┼────────────────────────────────────┐
- │  ┌─────────────────────────────┐  │  ┌──────────────────────────────┐  │
- │  │       MATERIAL SYSTEM       │◄─┼─►│          PCG SYSTEM          │  │
- │  │ Masters, instances, functions│  │  │ Universal scatters, falloffs │  │
- │  └─────────────────────────────┘  │  └──────────────────────────────┘  │
- └───────────────────────────────────┼────────────────────────────────────┘
-                                     │ (Configured Scene Data)
- ┌───────────────────────────────────▼────────────────────────────────────┐
- │                              SCENE SYSTEM                              │
- │            Ultra Dynamic Sky, Post-Process, templates, MPC             │
- └───────────────────────────────────┬────────────────────────────────────┘
-                                     │ (Studio Rendering & Audits)
- ┌───────────────────────────────────▼────────────────────────────────────┐
- │                         PORTFOLIO OUTPUT LAYER                         │
- │      Monolith rendering, screenshot overlays, JSON stats metadata     │
- └────────────────────────────────────────────────────────────────────────┘
-```
+**Last Updated:** 2026-09-02  
+**Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20
 
 ---
 
-## 2. Subsystem Definitions
+## 1. Architecture principle
 
-### 2.1 Material System
-*   **Purpose**: Compiles layered Substrate Toon master shaders and automates the creation of material instances.
-*   **Scope**:
-    *   Masters: Opaque surfaces (`M_Master_Toon_Universal`), landscapes (`M_Master_Toon_Landscape_HeightBlend`), water (`M_Water_Master_Grand_v6`), and painterly overlays (`M_Master_Impressionist_Toon`).
-    *   Helper API: [material_lib.py](Content/Python/material_lib.py) constructs graphs programmatically using Unreal's `unreal.MaterialEditingLibrary`.
-    *   Functions: Programmatic subgraphs like `MF_LandscapeHeightCompete` and `MF_WaterShorelineFade`.
-*   **Primary Entry Points**:
-    *   [setup_master_universal.py](Content/Python/setup_master_universal.py)
-    *   [setup_landscape_height_blend.py](Content/Python/setup_landscape_height_blend.py)
-    *   [setup_master_water.py](Content/Python/setup_master_water.py)
+Melodia's long-term growth depends on **stable runtime ownership beneath renewable authored content**.
 
-### 2.2 PCG System
-*   **Purpose**: Automatically scatters foliage, rocks, and debris onto environment geometry.
-*   **Scope**:
-    *   Scatters: Universal graphs (`PCG_FoliageDensity`, `PCG_RockScatter`) and style-specific wrappers (`PCG_Sakura_GroundCover`).
-    *   Libraries: [pcg_graph_builder.py](Content/Python/pcg_graph_builder.py) programmatically wires density filters, voxel grids, and static mesh spawners.
-    *   Standards: [pcg_portfolio_standards.py](Content/Python/pcg_portfolio_standards.py) sets path parameters, volumes, and exclusion tags (`PCG_Ground`, `PCG_Volume`).
+```text
+                         RENEWABLE CONTENT
+   Gifts / Reveries / Episodes / Chapters / Movements / Voyages / Volumes
+                                      │
+                                      ▼
+                           CHAPTER PACKAGE LAYER
+        stable IDs • progression specs • Quill • content manifests • tests
+                                      │
+                                      ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           STABLE GAMEPLAY CORE                               │
+│                                                                              │
+│  Phoenix / TurnBased JRPG        Melodia rhythm execution                    │
+│  turns • targets • results       timing • phrase quality • presentation     │
+│               │                         │                                    │
+│               └────────────┬────────────┘                                    │
+│                            ▼                                                 │
+│                  Wardrobe + Convergence                                      │
+│           build identity • interpretation • world response                   │
+│                            │                                                 │
+│            ┌───────────────┼────────────────┐                                │
+│            ▼               ▼                ▼                                │
+│       Starskiff        World / Music       UI Bridge                         │
+│       traversal        challenges          one writer/surface                │
+│            └───────────────┬────────────────┘                                │
+│                            ▼                                                 │
+│           Narrative / canonical durable state                                │
+│  Quill intents • flags • checkpoints • rewards • forward-compatible save    │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
 
-### 2.3 Scene System
-*   **Purpose**: Manages global environment setups, lighting setups, post-processing stacks, and showcase layouts.
-*   **Scope**:
-    *   Lighting: Dynamically spawns and configures **Ultra Dynamic Sky** and Dynamic Weather actors.
-    *   Post-Processing: Integrates cell outlines (`M_PP_ToonOutline`) and organic vine filters (`M_PP_StorybookVines`).
-    *   Showcases: Generates showcase scene spheres and preview cards.
-*   **Primary Entry Points**:
-    *   [setup_sakura_scene.py](Content/Python/setup_sakura_scene.py)
-    *   [setup_template_showcase.py](Content/Python/setup_template_showcase.py)
-    *   [portfolio_scene_integration.py](Content/Python/portfolio_scene_integration.py)
+The core should become more stable as content grows. A new Voyage is normally a **content integration problem**, not an excuse to reopen combat/save/UI ownership.
 
-### 2.4 Import Pipeline
-*   **Purpose**: Converts layout plans into Unreal Engine outliner actor hierarchies.
-*   **Scope**:
-    *   Importer: [import_world_manifest.py](Content/Python/import_world_manifest.py) reads `{WorldRoot}.world.json` files using the `surreal_arch_world_v1` schema.
-    *   HISM Spawner: Instantiates Hierarchical Instanced Static Mesh components grouped by role and handles coordinate space transformation (Blender Z-up meters to UE Left-handed cm).
-    *   Mesh Resolver: Automatically handles FBX imports and maps roles to material instances using `ROLE_UE_HINTS` mappings.
+---
 
-### 2.5 MCP Integration Layer
-*   **Purpose**: Exposes engine RPC actions over local sockets, enabling external agents to control the editor.
-*   **Scope**:
-    *   Plugin: The `UnrealMCP` plugin listens on Port `55557` and maps incoming JSON requests to command executors.
-    *   Commands: Programmatic graph manipulation and variable editing (`BPConnector.cpp`, `BPVariables.cpp`).
-    *   Client API: [monolith_mcp_client.py](Content/Python/monolith_mcp_client.py) allows python processes to trigger editor actions.
+## 2. System ownership
 
-### 2.6 Portfolio Output Layer
-*   **Purpose**: Automatically renders portfolio-ready images and extracts technical metrics from active levels.
-*   **Scope**:
-    *   Rendering: Captures asset previews (`editor.capture_scene_preview`), material grids (`editor.capture_material_grid`), and diagnostic views (`editor.capture_with_overlay` in wireframe/UV modes).
-    *   Metadata: Audits memory usages and asset metrics, compiling them into a central `portfolio_manifest.json` report.
+### TurnBased JRPG / Phoenix
+Owns combat skeleton and stock gameplay state:
+
+- turn order;
+- targeting;
+- action resolution;
+- HP/MP/stats;
+- party/inventory;
+- terminal battle result;
+- stock gameplay save state it already owns.
+
+**Do not rebuild this in MelodiaCore.**
+
+### Melodia rhythm
+Owns rhythm/performance execution and presentation around an already selected action.
+
+Current simple grade-to-damage behavior is a proven baseline, not the ceiling. Future Chapters may interpret rhythm through outfit/Convergence differently, but the selected JRPG action remains authoritative.
+
+### Narrative / Quill
+`UMelodiaNarrativeSubsystem` + QuillScript own:
+
+- stable narrative intents;
+- quest/objective flags;
+- consequences;
+- checkpoints;
+- exactly-once reward consumption;
+- content progression history.
+
+### Wardrobe
+`UMelodiaWardrobeSubsystem` owns owned/equipped wardrobe state and exposes mechanical capability/identity.
+
+Outfits can affect:
+
+- traversal;
+- rhythm interpretation;
+- battle affordances;
+- creature/world relationships;
+- Convergence response.
+
+### Convergence
+Convergence is an **interpretation layer**. It reads owner state and produces authored relationships. It must not become a duplicate inventory, quest log, battle manager, or second save authority.
+
+### Starskiff
+Starskiff owns vehicle/traversal behavior. Long-term, it may also be the fiction-facing presentation surface for accumulated journey history (parcels, souvenirs, companion objects), while durable ownership remains in canonical save state.
+
+### UI Bridge
+One writer per surface. New Chapters/Voyages may add screens but not parallel UI ownership.
+
+---
+
+## 3. Chapter package boundary
+
+A future Chapter should arrive as data/content around the stable core:
+
+```text
+specs/progression/<chapter>.v1.json
++ optional wardrobe/world/encounter/audio manifests
++ Quill source if needed
++ stable IDs
++ authored maps/assets
++ offline tests
++ runtime/restart/package evidence
+```
+
+A Chapter may use only the systems it needs.
+
+Examples:
+
+- Reverie: Quill + exploration + save;
+- creature Episode: rhythm + world interaction + consequence;
+- combat Chapter: Phoenix + rhythm + Wardrobe/Convergence;
+- Starskiff Chapter: traversal + party dialogue + world state;
+- Monolith Event: authored world transitions + traversal, no conventional boss HP required.
+
+The old six-phase P0 chain is a **full-stack integration pattern**, not a mandatory chapter script.
+
+---
+
+## 4. Long-term update boundary
+
+Optional future online support belongs **outside** the stable gameplay core.
+
+```text
+optional remote manifest
+        ↓
+validated Gift/Voyage availability
+        ↓
+existing idempotent reward/content ownership path
+        ↓
+canonical local save history
+```
+
+If the network is unavailable, core game and owned content continue to work.
+
+Do not put turn resolution, wardrobe ownership, narrative progression, or normal save/load behind a service dependency.
+
+---
+
+## 5. Production hierarchy
+
+### Permanent systems
+Phoenix, rhythm execution, Narrative, Wardrobe, Convergence seams, Starskiff traversal, UI ownership, persistence, chapter loader/validation.
+
+### Renewable authored content
+Chapters, Reveries, creatures, outfits, regions, Monolith Events, world puzzles, dialogue, Voyages, gifts.
+
+When deciding whether to add code, ask:
+
+> Can this be expressed as content using the stable owners we already have?
+
+If yes, prefer that.
+
+---
+
+## 6. Current closure target
+
+```text
+Wardrobe
+   ↓
+Starskiff / exploration
+   ↓
+Phoenix action
+   ↓
+Rhythm execution
+   ↓
+Convergence / consequence
+   ↓
+checkpoint / reward
+   ↓
+canonical save
+   ↓
+full process restart
+   ↓
+restore exact durable state
+   ↓
+repeat load with no duplication
+```
+
+Closing this loop is more important than adding another global subsystem.
+
+---
+
+## 7. Strategy references
+
+- `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
+- `Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`
+- `Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`
+- `CURRENT_STATE.md`
+- `TODO.md`
+
+**Architecture goal:** years from now, most new Melodia work should look like authoring a journey, not repairing the engine underneath it.

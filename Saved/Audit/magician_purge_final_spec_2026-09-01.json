@@ -1,0 +1,33 @@
+{
+  "schema": "melodia.audit.magician_purge_final.v1",
+  "generated": "2026-09-01T06:45:00Z",
+  "mode": "editor_execution_spec",
+  "findings": {
+    "delete_script": {
+      "path": "Saved/_tmp_magician_delete.py",
+      "exists": true,
+      "syntax_valid": true,
+      "lines": 20,
+      "targets": [
+        "/Game/Library/Migrated/MagiciansLibrary"
+      ]
+    },
+    "disk_state": {
+      "magicians_library_files": 356,
+      "canonical_envsandbox": 308,
+      "lab_source_files": 0
+    }
+  },
+  "execution_steps": [
+    "1. Open UE Editor \u2192 Window \u2192 Developer Tools \u2192 Output Log",
+    "2. Run: exec(open('Saved/_tmp_magician_delete.py').read())",
+    "3. Verify deletion: check /Game/Library/Migrated/MagiciansLibrary no longer exists",
+    "4. Run project_state.py staleness check"
+  ],
+  "guardrails": [
+    "No .uasset writes by daemon",
+    "Script requires live editor connection",
+    "356 files will be permanently deleted"
+  ],
+  "status": "SPEC_READY"
+}

@@ -1,0 +1,331 @@
+{
+  "schema": "melodia.ecosystem_integration.v1",
+  "as_of": "2026-09-01",
+  "title": "Cymatics + FarawayMother Ecosystem Integration — 5 Cross-System Mappings",
+  "task": "rec_5_ecosystem_integration (phase_4_p1p3_ecosystem_integration)",
+  "authority": {
+    "grand_review": "Saved/Audit/grand_review_expansion_plan_2026-09-01.json §phase_4_p1p3_ecosystem_integration",
+    "master_index": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md (SSOT — §1 PRESENT, §2 SCAFFOLDED, §5 World Field Bus, §7 Cymatics)",
+    "integration_cpp": "Source/BS_GodFile/MelodiaIntegration/",
+    "p1p3_roadmap": "Saved/Audit/p1p3_roadmap.json",
+    "policy": "Read-only spec only. No .uasset writes, no gate certification, no Content/_PROJECT/ writes. Owner materializes."
+  },
+  "source_evidence": {
+    "cymatics": {
+      "subsystem": "Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.h/.cpp (SCAFFOLDED §2, pending PRESENT §1)",
+      "contract": "READ-ONLY consumer of MPC_Melodia_Palette (BeatPulse, BassIntensity) + NPC_Melodia_Palette — never a second audio writer",
+      "formula": "Chladni amp = cos(n·π·u)·cos(m·π·v) − cos(m·π·u)·cos(n·π·v), scaled by max(BeatPulse,0.15)",
+      "mode_drivers": "ModeN = clamp(2+floor(BassIntensity*6),1,8), ModeM = clamp(3+floor(BeatPulse*5),1,8)",
+      "apis": [
+        "SampleCymaticAmplitude(U,V)",
+        "GetCymaticMode(OutN,OutM)",
+        "GetBeatPulse()",
+        "GetBassIntensity()",
+        "IsReadOnlyByContract()"
+      ],
+      "pipeline": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py (pure numpy: trig interference + tileable fBm + domain warping)",
+      "manifest": "Saved/Audit/copernicus_cymatic_manifest.json — 21 variants × 9 maps (BaseColor/Normal/Roughness/Metallic/Height/ORM/Emissive/Iridescence/Opacity), 1665 PNGs, 185 Height PNGs, 80 flipbook frames",
+      "audio_chain": "MelodiaMusicClockSubsystem (Harmonix preferred, Quartz fallback) → MelodiaAudioReactivePresentationSubsystem (single MPC+NPC writer) → MelodiaCymaticsSubsystem (reader)"
+    },
+    "faraway_mother": {
+      "gn_builders": 16,
+      "hero_meshes": 3,
+      "fabric_texture_suites": 6,
+      "texture_maps_per_suite": "7-8 (AO/BC/H/M/N/ORM/R + Sheen/Alpha/Mask where applicable)",
+      "total_pngs": 47,
+      "mi_specs": "Saved/Audit/faraway_p2_2026-08-30.json — 6 MI proposals (Corset_GildedAcanthusBrocade, Cradle_CarvedAlabasterWood, Gown_CelestialSilkJacquard, Mantle_NightSkyVelvet, Ornament_NacreMusicBoxJewel, Veil_AquaticLullabyLace)",
+      "mi_parents": {
+        "opaque": "M_Master_Toon_Universal",
+        "sheen_silk": "M_Master_Nikki (sheen/iridescence path)",
+        "alpha": "M_Master_Toon_Universal_Alpha"
+      },
+      "cloth_mountains": "Saved/Audit/faraway_mother/SM_ClothMountains_v0.obj (8.8MB, 384 grid, 2000m tile) + manifest",
+      "hython_version": "22.0.368 — bauhaus/fabric GN taxonomy"
+    },
+    "water_addresses": {
+      "subsystems": [
+        "MelodiaWaterGameplaySubsystem (GameInstance, persistent network state)",
+        "MelodiaWaterInteractionSubsystem (contact/impulse bus)",
+        "MelodiaWaterGameplayControllerComponent (per-zone wiring)"
+      ],
+      "components": [
+        "MelodiaWaterFluidZoneComponent (CPU height-field, 32×32 tile, WaveSpeed/HeightDamping)",
+        "MelodiaWaterRippleMaterialBridgeComponent (M_Water_Master_Grand_v9 3-slot ripple + v10 native/substrate params)",
+        "MelodiaWaterNiagaraBridgeComponent (NDC + direct pooled FX)",
+        "MelodiaPCGWaterGameplayBridgeComponent (hero-music → water Resonance)",
+        "MelodiaPCGNarrativeChallengeBridgeComponent (hero-music → narrative CommitWorldChallenge)"
+      ],
+      "types": "MelodiaWaterInteractionTypes.h — tiers (AnalyticSurface/NiagaraParticles/ShallowWater2D/FLIP2D/FLIP3DHero), contact types (Ripple/Splash/Footstep/WaterImpact...), FMelodiaWaterSample, FMelodiaWaterContactEvent",
+      "gameplay_types": "MelodiaWaterGameplayTypes.h — EMelodiaWaterGameplayOperation (ResonancePulse etc.), FMelodiaWaterNodeConfig/State/LinkConfig/OperationRequest",
+      "profile": "MelodiaWaterProfile.h — UPrimaryDataAsset seam (simulation tier, Niagara systems, MetaSounds, SurfaceMaterial, Substrate toon, SurfaceRoughness, etc.)"
+    },
+    "rhythm_addresses": {
+      "subsystem": "MelodiaRhythmCombatSubsystem (TickableWorldSubsystem — owns skill catalog, grade→scalar→resolver path)",
+      "grades": "EMelodiaSkillGrade: Miss/Good/Great/Perfect → FMelodiaRhythmGradeMultipliers per skill (Miss 0.70 / Good 1.00 / Great 1.20 / Perfect 1.45)",
+      "result": "FMelodiaAuthoritativeRhythmResult (Grade, HitCount, MissCount, NoteCount, Accuracy, PresentationScalar, ClockSource)",
+      "skills": "UMelodiaRhythmSkillDefinition — Niche (Sad/Calm/Vigorous) → EffectType (Debuff/Heal+RemoveDebuff/Damage+Crit), MIDI params (TempoBPM 128, NoteDensity, Intro/Active/Outro beats), LaneColor",
+      "clock": "MelodiaMusicClockSubsystem — Harmonix | Quartz | None, BeatPhase/BeatInBar/TempoBPM, GetMusicBeatPhase/GetMusicPulse, ExperiencedTime (scoring) vs VideoRenderTime (visuals)",
+      "hero_music": "APCGHeroMusicGraphHost + UPCGHeroMusicProfile + APCGHeroMusicNode — FPCGHeroMusicNoteEvent (Grade, TimingErrorMs, MidiNote) → OnPatternCompleted",
+      "existing_bridges": "MelodiaPCGWaterGameplayBridgeComponent (GradeStrength map, MinimumAcceptedGrade) + MelodiaPCGNarrativeChallengeBridgeComponent (ChallengeId, CompletionFlagId, RewardId, CompletionIntentId)"
+    },
+    "wardrobe_addresses": {
+      "slots": "EMelodiaWardrobeSlot — Body/Hat/Gloves/Shawl/Trail/HairCharm + V2 Shirt/Skirt/Boots/Accessories (10 slots, append-only serialized)",
+      "record": "FMelodiaNarrativeRecord — OwnedCosmeticIds (TSet<FName>), EquippedCosmeticIds (TMap<Slot,FName>), LastPullUnixSeconds — SaveGame on canonical record, presentation-only axis",
+      "layers": "Docs/MELODIA_WARDROBE_ARCHITECTURE_2026-08-14.md — Cosmetic (look) → Form (capability, gated by flags) → Style (axis grading). Form declares GrantedCapabilities, RequiredFlagIds; TraversalComponent is authority.",
+      "catalog_contract": "FMelodiaCosmeticRecord (CosmeticId, Slot, Rarity, Mesh, ResonantFormId, StyleScores), FMelodiaResonantForm, StyleAxisIds",
+      "on_disk_suites": "Content/Textures/FarawayMother_Suites — 6 suites, 47 PNGs + 47 .uassets, each with AO/BC/H/M/N/ORM/R + Sheen/Alpha/Mask",
+      "mi_routing_prior_art": "Saved/Audit/faraway_p2_2026-08-30.json — sheen suites → M_Master_Nikki, opaque → M_Master_Toon_Universal, veil → M_Master_Toon_Universal_Alpha"
+    },
+    "pcg_addresses": {
+      "plugins": "Plugins/PCGExtendedToolkit/ + UE PCG (PRESENT per Master Index §1)",
+      "hero_graph": "APCGHeroMusicGraphHost / UPCGComponent / UPCGGraph — PCG-spawned music nodes, FPCGHeroMusicNodeDimensions, MidiNotes, RhythmWindows",
+      "growth": "MelodiaVegetationGrowthSubsystem (sandbox-only: PlaceSpeedTreeBiomeTest, MutateSecondaryGrowth, GraftBranch) — supplements PRESENT SpeedTree (M_SpeedTreeMaster) via PCG",
+      "existing_population": "cloth mountains obj (384 grid), faraway hero meshes (SM_FM_MotherSilhouette etc.) — not yet in PCG population graph",
+      "execution_plan": "Docs/Houdini/MARA_P0_P3_HOUDINI_EXECUTION_PLAN_2026-08-29.md — HDA_ENV_TerrainStamp/PathCorridor/ScatterMaskBuilder/HeroRockFamily — bake, never live cook"
+    },
+    "world_field_bus": {
+      "bus_fields": [
+        "WorldField.FilterFlow",
+        "WorldField.Tension",
+        "WorldField.Moisture",
+        "WorldField.Contact",
+        "WorldField.Residue",
+        "WorldField.Reaction",
+        "WorldField.AnchorStability",
+        "WorldField.Resonance"
+      ],
+      "speedtree_bridge": [
+        "melodia_moisture",
+        "melodia_slope",
+        "melodia_wind_exposure",
+        "melodia_soil_depth",
+        "melodia_monolith_proximity",
+        "melodia_molt_age",
+        "melodia_filter_flow",
+        "melodia_tension",
+        "melodia_ecological_density"
+      ],
+      "representations": "MPC / RVTs / Niagara grids / Houdini fields / PCG metadata — minimum shared contract, no giant framework",
+      "source": "EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md §5"
+    }
+  },
+  "mappings": {
+    "cymatic_to_rhythm": {
+      "id": "mapping_01_cymatic_to_rhythm",
+      "title": "Cymatic Interference → Rhythm Combat Grade Patterns",
+      "source": "UMelodiaCymaticsSubsystem (ModeN/ModeM, SampleCymaticAmplitude, BeatPulse, BassIntensity) + MelodiaMusicClockSubsystem (BeatPhase, TempoBPM)",
+      "target": "MelodiaRhythmCombatSubsystem (EMelodiaSkillGrade, FMelodiaRhythmGradeMultipliers, UMelodiaRhythmSkillDefinition) + APCGHeroMusicGraphHost (FPCGHeroMusicNoteEvent.Grade)",
+      "contract": "Cymatic mode indices become a rhythm-difficulty and grade-distribution driver. The mapping is presentation→difficulty, never damage: rhythm grades still resolve only through the stock resolver.",
+      "fields": {
+        "mode_to_niche": "ModeN (bass-driven, radial) → EMelodiaRhythmNiche family bias: low N (1-3) → Calm (heal), mid N (4-5) → Sad (debuff), high N (6-8) → Vigorous (damage/crit). ModeM (beat-driven, cross) → NoteDensity/ActiveBeats scaling.",
+        "amplitude_to_rhythm_window": "SampleCymaticAmplitude(U,V) nodal amplitude → FMelodiaRhythmWindows tolerance: |amp|≈0 (nodal line) → tight window (Perfect requires ±18ms), |amp|≈1 (antinode) → forgiving window (Perfect ±45ms). Lets a performer 'play the standing wave'.",
+        "beat_phase_to_cymatic_pulse": "MelodiaMusicClockSubsystem.BeatPhase/BeatPulse already drives ModeM; close the loop: on BeatPhase wrap (new beat) advance ModeN/M by BassIntensity delta, then publish the consulted ProposedMIDI via rhythm skill TempoBPM — so cymatic interference and rhythm highway share the same clock (Harmonix or Quartz) without a second transport.",
+        "grade_feedback_to_chladni": "On FMelodiaAuthoritativeRhythmResult commit, map Grade→Chladni energy impulse: Perfect=+1.0, Great=+0.6, Good=+0.3, Miss=0.0 — write as a transient bump to BeatPulse (clamped) so a strong run visibly 'excites' the plate. Never mutates score or damage."
+      },
+      "integration_points": {
+        "read_path": "MelodiaCymaticsSubsystem::GetCymaticMode + SampleCymaticAmplitude are BlueprintPure — call from rhythm HUD/skill authoring to set NoteDensity/RhythmWindows without touching combat authority.",
+        "write_guardrail": "Cymatics never calls MelodiaRhythmCombatSubsystem::SubmitResult or the stock resolver. The arrow is cymatic → difficulty/presentation only.",
+        "pcg_bridge": "Reuse MelodiaPCGWaterGameplayBridgeComponent.GradeStrength pattern: add optional UMelodiaCymaticRhythmBridgeComponent (spec only) with TMap<EMelodiaSkillGrade,float> CymaticImpulseStrength, mirroring the water bridge's grade map.",
+        "world_field_bus": "Publish ModeN/ModeM + BeatPulse as WorldField.Resonance and WorldField.Tension (read-only) so materials/PCG/Niagara can taste rhythm without coupling to the battle subsystem."
+      },
+      "evidence_required": [
+        "Offline: probe MelodiaCymaticsSubsystem IsReadOnlyByContract()==true while MelodiaRhythmCombatSubsystem owns the grade path (code assertion).",
+        "Offline: hython manifest 21×9 PBR — at least CymaticMarble Height map encodes one stable Chladni mode visible in Height/Normals.",
+        "Live PIE: play a Vigorous skill (NoteDensity 4) while BassIntensity sweeps 0→1 — observe ModeN steps 2→8 and RhythmWindows tighten at nodal samples. Record FMelodiaAuthoritativeRhythmResult uploads."
+      ],
+      "next_step_spec": "Spec UMelodiaCymaticRhythmBridgeComponent (or extend MelodiaJRPGPresentationRhythmComponent) — read-only fields ModeN/M, BeatPulse, SampleCymaticAmplitude; grade→impulse map; no SubmitResult. Add WorldField.Resonance/Tension writes via existing MPC if needed, else document as future MPC slots."
+    },
+    "faraway_textures_to_wardrobe": {
+      "id": "mapping_02_faraway_textures_to_wardrobe",
+      "title": "Faraway Mother Fabric Textures → Wardrobe Fabric Authority",
+      "source": "Content/Textures/FarawayMother_Suites — 6 suites × 7-8 PBR maps (47 PNGs + 47 .uassets): GildedAcanthusBrocade, CarvedAlabasterWood, CelestialSilkJacquard, NightSkyVelvet, NacreMusicBoxJewel, AquaticLullabyLace",
+      "target": "Wardrobe authority: EMelodiaWardrobeSlot (10 slots) + FMelodiaNarrativeRecord.EquippedCosmeticIds/OwnedCosmeticIds + FMelodiaCosmeticRecord + FMelodiaResonantForm",
+      "contract": "Each Faraway suite becomes one or more FMelodiaCosmeticRecord entries — art-change-only, no gameplay authority. A cosmetic's mesh/MI points at authored Faraway textures; its optional ResonantFormId handles any ability/style separately.",
+      "fields": {
+        "suite_to_slot": {
+          "GildedAcanthusBrocade": "Body + Shirt (brocade corset/bodice)",
+          "CarvedAlabasterWood": "Accessories + Trail (cradle/wood ornament)",
+          "CelestialSilkJacquard": "Body + Skirt + Shawl (jacquard gown — sheen path)",
+          "NightSkyVelvet": "Shawl + Trail + Hat (velvet mantle — sheen path, high Roughness 0.92)",
+          "NacreMusicBoxJewel": "Accessories + HairCharm + Gloves (jewel/pearl ornament — subtle shadowdream)",
+          "AquaticLullabyLace": "Veil/Trail + Accessories (lace — alpha/mask path via M_Master_Toon_Universal_Alpha)"
+        },
+        "mi_parent_routing": "Use Saved/Audit/faraway_p2_2026-08-30.json priors: Sheen suites (CelestialSilk, NightSkyVelvet, NacreJewel) → M_Master_Nikki; opaque (GildedAcanthus, CarvedAlabaster) → M_Master_Toon_Universal; lace veil → M_Master_Toon_Universal_Alpha. Spec-only MI names MI_FarawayMother_<Piece>_R045_Tile1_Unique already proposed.",
+        "pbr_maps_to_slots": "BC→BaseColor, N→Normal, R→Roughness, AO→AO, M/Metallic→Metallic, ORM→ORM (packed), H→Height/Parallax, Sheen→Sheen/FabricSpecular, Alpha/Mask→Opacity. Keep Height out of gameplay — presentation only.",
+        "style_axis_hint": "Add style axes (e.g. 'ethereal', 'regal', 'aquatic') to catalog StyleAxisIds first, then grade each Faraway cosmetic's StyleScores so the Nikki-style scoring loop can taste them without touching traversal."
+      },
+      "integration_points": {
+        "catalog_write": "New rows in the wardrobe catalog: CosmeticId = FM_<Suite>_<Slot> (e.g. FM_CelestialSilkJacquard_Skirt), Slot = per suite_to_slot, ResonantFormId=None (decorative default). No form needed unless an ability is designed.",
+        "mi_wiring": "Extend Tools/Houdini/copernicus faraway_p2 spec to author MI instances under Content/EnvSandbox/Materials/Instances/FarawayMother/P2 — already spec'd, needs editor import to prove nanite/scale.",
+        "save_seam": "Equipping writes FMelodiaNarrativeRecord.EquippedCosmeticIds[Slot]=CosmeticId (via MelodiaNarrativeSubsystem.CompleteEquipped path — same SaveGame authority as Persona stats). Never cache unlock state in the wardrobe component.",
+        "guardrail": "Capabilities live on forms, never on cosmetics — one form can serve many recolor cosmetics sharing the same texture set."
+      },
+      "evidence_required": [
+        "Offline: Content/Textures/FarawayMother_Suites contains 47 PNGs with BC/N/ORM/H complete for all 6 suites (disk inventory).",
+        "Offline: Saved/Audit/faraway_p2_2026-08-30.json 6 MI proposals with correct parent + Roughness tuned (0.32 silk ... 0.92 velvet).",
+        "Live (future): closed-editor Build, import 1 MI per parent path, verify M_Master_* assignments + parallax Height 0.12, then equip roundtrip gate (wardrobe_equip_roundtrip) re-proven."
+      ],
+      "next_step_spec": "Draft wardrobe catalog addendum (6-12 FMelodiaCosmeticRecord rows, one per suite×slot) referencing the existing MI spec names; propose StyleAxisIds ['regal','ethereal','aquatic','celestial'] for grading. No .uasset write — catalog JSON/CSV draft for owner review."
+    },
+    "meshes_to_pcg": {
+      "id": "mapping_03_faraway_meshes_to_pcg",
+      "title": "Faraway Mother Hero Meshes + Cloth Mountains → PCG Population",
+      "source": "Faraway hero meshes (SM_FM_MotherSilhouette etc., 3 meshes) + SM_ClothMountains_v0.obj (8.8MB, 384 grid, 2000m tile, manifest + textures_manifest.json)",
+      "target": "PCG population: PCGExtendedToolkit + UE PCG graph + MelodiaVegetationGrowthSubsystem (sandbox-only SpeedTree supplement) + Houdini HDA_ENV_* execution plan",
+      "contract": "Houdini bakes reusable geometry/masks/LODs; PCG is the runtime scatter/population authority; gameplay stays in Unreal. 'Bake — never leave final playable scenes dependent on live HDA cooking.'",
+      "fields": {
+        "cloth_mountains_to_terrain": "SM_ClothMountains_v0.obj is a landscape-scale drape — treat as HDA_ENV_TerrainStamp output: import with scale 100× (m→cm), Nanite toggle per LOD, assign Faraway fabric ORM/H textures via M_Master_Toon_Universal instances. Scatter via PCG ScatterMaskBuilder, not as a streaming level.",
+        "hero_meshes_to_scatter": "SM_FM_MotherSilhouette + 2 others are hero dressing — place via MelodiaDressingSubsystem (hero props/debris/composition) for set pieces, and via PCG points for distributed echoes (PCG SpawnActor + FPCGPoint metadata: melodia_molt_age / melodia_monolith_proximity).",
+        "density_fields": "Drive PCG density by World Field Bus + SpeedTree bridge fields: melodia_moisture / melodia_slope / melodia_wind_exposure / melodia_ecological_density control cloth-mountain fold density; melodia_filter_flow / melodia_tension modulate silhouette scatter along narrative seams.",
+        "growth_supplement": "MelodiaVegetationGrowthSubsystem.MutateSecondaryGrowth / GraftBranch can add secondary PCG growth around Faraway meshes (moss/ivy on CarvedAlabasterWood, petal drifts on CelestialSilk) — sandbox-only, never chapter maps, and only with SpeedTree as primary plant authority."
+      },
+      "integration_points": {
+        "pcg_graph": "New PCG graph (spec): Input: Landscape / ClothMountains bounds; Nodes: SurfaceSampler → DensityFilter (WorldField.Moisture/Slope) → SpawnActor (SM_FM_* with random yaw/scale 0.9-1.15) → AttributeTransfer (melodia_molt_age). Output: cloth-mountain terrain + scattered silhouettes.",
+        "dressing_subsystem": "MelodiaDressingSubsystem.PlaceSpeedTreeBiomeTest is the R&D gate — keep Faraway mesh placement behind IsSandboxOnly()==true until chapter art lock, then promote hero placements to persistent dressing.",
+        "hda_seam": "Houdini plan HDA_ENV_ScatterMaskBuilder bakes height/slope/wind masks that PCG reads as RVT/Houdini fields — aligns with 'Houdini manufactures reusable geometry/masks/LODs' rule.",
+        "save_guardrail": "PCG population is deterministic from seed + WorldField values — no per-instance SaveGame bloat. Only narrative-relevant hero states (if any) go through FMelodiaNarrativeRecord, not PCG state."
+      },
+      "evidence_required": [
+        "Offline: Saved/Audit/faraway_mother/cloth_mountains_v0_manifest.json + textures_manifest.json pass tilecheck (6 entries).",
+        "Offline: SM_ClothMountains_v0.obj validates: nanite flag documented, scale note (m→cm), poly count in manifest.",
+        "Live (future): one PCG graph cooks without live HDA, spawns N instances of SM_FM_MotherSilhouette with density modulated by melodia_slope — screenshot + PCG profiling in Insights."
+      ],
+      "next_step_spec": "Spec a PCG graph JSON (not authored) — inputs (cloth mountains bounds), scatter mask (Houdini-baked), spawn list (3 hero meshes + cloth tile), density field bindings (World Field Bus 8 fields + SpeedTree 9-field bridge). Keep it in Docs/Houdini/ so it can be ported to a real UPCGGraph when editor recovers from MODAL_OPEN."
+    },
+    "cymatic_to_water": {
+      "id": "mapping_04_cymatic_to_water",
+      "title": "Cymatic Standing Waves → Water Ripple Animation",
+      "source": "UMelodiaCymaticsSubsystem (Chladni amp, ModeN/M, BeatPulse/BassIntensity) + MelodiaMusicClockSubsystem (BeatPhase, TempoBPM, Harmonix/Quartz source)",
+      "target": "Water presentation + simulation: MelodiaWaterInteractionSubsystem, MelodiaWaterFluidZoneComponent (CPU height-field), MelodiaWaterRippleMaterialBridgeComponent (M_Water_Master_Grand_v9 3-slot ripple), MelodiaWaterNiagaraBridgeComponent (NDC), MelodiaPCGWaterGameplayBridgeComponent (ResonancePulse), MelodiaWaterProfile tier ladder",
+      "contract": "Cymatics drives water presentation (ripples/MPC/Niagara/fluid impulses) — never water gameplay state. Gameplay state (levels/pressure/routes/puzzles) stays owned by MelodiaWaterGameplaySubsystem via ResonancePulse operations. Presentation reads cymatics; gameplay is gated.",
+      "fields": {
+        "chladni_to_ripple": "SampleCymaticAmplitude mapped to RippleCenter slots: sample on a 3-point cymatic lattice (U,V) = (0.33,0.33),(0.66,0.33),(0.50,0.70) — three amplitudes → three RippleCenterA/B/C vectors on MelodiaWaterRippleMaterialBridgeComponent. Impulse = |amp| * BeatPulse, so antinodes pulse hardest. Write via existing FluidEnergy/FluidPeak or RippleImpulseA/B/C params — no new material params needed in v1.",
+        "beat_to_impulse": "On MelodiaAudioReactivePresentationSubsystem beat wrap (LastBeatPhase decrease) emit a FMelodiaWaterFluidImpulse to MelodiaWaterFluidZoneComponent with ImpulseGain = BassIntensity * 0.8 + BeatPulse * 0.2. Tier downgrade allowed (bAllowTierDowngrade) so AnalyticSurface maps still receive a impulse when ShallowWater2D is not active.",
+        "tension_to_surface": "WorldField.Tension (from cymatic ModeN/M spread — high (N−M) = high tension) → WaterBody WaveSpeed / HeightDamping: tension↑ → WaveSpeed↑ + HeightDamping↓ (taut membrane). WorldField.Resonance (BeatPulse*BassIntensity) → SurfaceRoughness / ToonRimStrength (resonant shimmer). Both stay in presentation, routed through MelodiaWaterRippleMaterialBridgeComponent's Substrate-toon params (ToonLightBands, ToonRimStrength, SurfaceRoughness) and MelodiaWaterProfile.",
+        "harmonic_channel": "MelodiaWaterChannelTag.Harmonic / Dissonant / Crescendo / Diminuendo map to cymatic consonance: amp sign-coherent across sampled points → Harmonic channel (constructive), sign-mixed → Dissonant. Use as ResonanceChannel in FMelodiaWaterOperationRequest when the optional gameplay bridge is enabled (spec flag bEnableCymaticResonanceGameplay=false by default — quarantined).",
+        "niagara_data_channel": "MelodiaWaterNiagaraBridgeComponent.ContactDataChannel can carry cymatic-tinted intensities: Intensity = base WaterContactEvent.Intensity * (0.5 + 0.5*|SampleCymaticAmplitude|), so Niagara contact particles inherit the standing-wave envelope without a new system."
+      },
+      "integration_points": {
+        "material_bridge": "MelodiaWaterRippleMaterialBridgeComponent already discovers MID slots and shifts 3 ripple slots — feed it cymatic samples instead of (or in addition to) contact events when bWriteNativeWaterParameters is true. Existing params RippleCenterA/B/C, RippleImpulseA/B/C, FluidEnergy/FluidPeak are sufficient.",
+        "fluid_zone": "MelodiaWaterFluidZoneComponent.HandleFluidImpulse + GridResolution 32×32 + WriteMaterialTelemetry — cymatic impulse arrives as FMelodiaWaterFluidImpulse, stepped with FixedStepSeconds 1/30, normalized energy written to MPC FluidEnergy/FluidPeak for materials to taste.",
+        "gameplay_firewall": "If cymatic→gameplay ResonancePulse is ever enabled, it MUST go through MelodiaWaterGameplaySubsystem.ApplyResonance / MelodiaPCGWaterGameplayBridgeComponent.SubmitResonance with MinimumAcceptedGrade gating and puzzle/route ids — never directly mutate FMelodiaWaterNodeState. Default: presentation-only (no ApplyOperation from cymatics).",
+        "world_field_bus": "Publish cymatic→water as WorldField.Contact (ripple centers) and WorldField.Reaction (impulse magnitudes) — the two water-relevant bus fields — so Niagara, materials, and Houdini fields share one spatial truth."
+      },
+      "evidence_required": [
+        "Offline: MelodiaCymaticsSubsystem IsReadOnlyByContract() + MelodiaWaterRippleMaterialBridgeComponent reads 3 RippleCenter params — compatible slot count (3 cymatic samples → 3 ripple slots).",
+        "Offline: MelodiaWaterFluidZoneComponent tier ladder accepts EMelodiaWaterSimulationTier::AnalyticSurface impulse when ShallowWater2D not active (bAllowTierDowngrade).",
+        "Live PIE: with water zone + cymatics active, observe RippleImpulseA/B/C pulse on beat wraps at BassIntensity=0.8, then damp with HeightDamping 1.5 — record FluidEnergy trace and WPO vertex path."
+      ],
+      "next_step_spec": "Spec UMelodiaCymaticWaterBridgeComponent (optional, spec-only): inputs = CymaticsSubsystem + WaterInteractionSubsystem; outputs = 3 cymatic-lattice samples → RippleMaterialBridge PushRipple + FluidZone impulse; property bEnableGameplayResonance=false quarantined. No second writer — it reads MPC_Melodia_Palette via CymaticsSubsystem and writes only to water presentation params."
+    },
+    "cross_material_pbr": {
+      "id": "mapping_05_cross_material_pbr",
+      "title": "Cross-System PBR Material Mapping — Cymatic PBR ↔ Water PBR ↔ Wardrobe PBR",
+      "source": "Copernicus cymatic PBR (9 maps × 21 variants = 189 cymatic textures proven) + Faraway P2 fabric PBR (6 suites × 7-8 maps = 47 textures proven, spec'd to P2 MIs) + Water PBR (M_Water_Master_Grand_v9 + v10 native/substrate toon — SurfaceMaterial/UnderwaterMaterial, ToonLightBands/ShadowSoftness/RimStrength, SurfaceRoughness/Metallic/SubsurfaceWeight, Bioluminescence params)",
+      "target": "Unified material pipeline: Copernicus dress bake / petal / fabric sheen / terrain→Nanite + PCG + Master/MI orchestration (M_Master_Toon_Universal, M_Master_Nikki, M_Master_Toon_Universal_Alpha, M_Water_Master_Grand_v9, M_AudioReactive_BaseMaster) + T3D material inject pipeline",
+      "contract": "Three discipline PBR sets share one orchestration flow: Houdini/Copernicus manufactures → MI instances author → native validation → T3D inject (when editor live) → static_gates fingerprint. No new master is introduced for cymatics or Faraway unless an audit proves a gap.",
+      "fields": {
+        "pbr_map_unification": {
+          "convention": "All sets use the same map vocabulary so MIs are interchangeable: BaseColor(BC), Normal(N), Roughness(R), AO, Height(H), ORM (Occlusion/Rough/Metal packed), Metallic(M), Emissive(E), Opacity/Alpha, Sheen, Iridescence, Mask. Cymatic manifest lists BaseColor/Normal/Roughness/Metallic/Height/ORM/Emissive/Iridescence/Opacity — align by renaming ORM↔AO packing once, then reuse.",
+          "cymatic_set": "9 maps per variant — Height carries the Chladni standing-wave relief, Normal its derivative, Emissive/Iridescence the antinode glow. Tileable fBm already baked for tiling.",
+          "faraway_set": "7-8 maps per suite — H/Height is weave/brocade relief, Sheen is fabric specular (Nikki path), Alpha/Mask for lace, ORM for packed workflow. Roughness pre-tuned (0.32 silk → 0.92 velvet).",
+          "water_set": "Profile-driven: SurfaceMaterial + UnderwaterMaterial MIs expose SurfaceRoughness/SurfaceMetallic/SurfaceSubsurfaceWeight + WaterBioluminescenceWeight + Substrate toon (ToonLightBands, ToonShadowSoftness/Tint, ToonRimStrength, ToonSpecularBand, ToonHighlightTint). Height/Normal come from native/baked shallow water or cymatic impulse.",
+          "shared_orm_packing": "All three traffic ORM as packed Occlusion/Rough/Metal — do not author separate per-channel textures. Copernicus bakes it; Faraway suites already ship it; water reads it via profile."
+        },
+        "master_routing_table": {
+          "cymatic_terrain_cloth": "Cymatic Height/Normal/ORM/BC → M_Master_Toon_Universal instances (MI_Cymatic_<Variant>_R045_Tile1_Unique) — same parent + parallax path as Faraway opaque set. Height→ParallaxStrength 0.35, Scale 0.08, Height 0.12 (from faraway P2 spec, reuse).",
+          "cymatic_sheen": "Cymatic Iridescence/Emissive + Sheen variants → M_Master_Nikki path (sheen/iridescence) when the cymatic variant is tagged 'silk/iridescent' — same branch Faraway's CelestialSilk/NacreJewel use.",
+          "cymatic_alpha": "Cymatic Opacity map → M_Master_Toon_Universal_Alpha for veil/fade cymatics (node lattice where amp≈0).",
+          "faraway_to_water_biolum": "Faraway Emissive / water Bioluminescence share the same emissive channel vocabulary — Faraway NacreMusicBoxJewel glow and cymatic antinode emissive both route to WaterBioluminescenceImpulse / QuantumReaction when the water zone is in biolum mode (Direct path quarantined unless profile enables it).",
+          "water_to_cymatic": "Water SurfaceRoughness/Metallic/SubsurfaceWeight can sample cymatic Roughness/Metallic at the water body's (U,V) to make water read as 'made of the same stuff' as the cymatic cloth — spec flag only, no auto-wiring."
+        },
+        "pipeline_orchestration": {
+          "hython_stage": "Copernicus (cymatics): copernicus_cymatic_parallax.py --seed 20260831 --size 1024 --maps 9 --variants 21 (proven) ; Faraway: GN builders (16) + Copernicus faraway fabric bake (6 suites, 47 PNGs proven). Evidence: .png + .uasset on disk, manifests (copernicus_cymatic_manifest.json, faraway textures_manifest.json).",
+          "mi_stage": "Offline specs draft MI rows (MI_FarawayMother_* and MI_Cymatic_* under Content/EnvSandbox/Materials/Instances/{FarawayMother/{P2}, Cymatics/}) with parent + texture slot assignments + tiling (Tile1_Unique). Already spec'd for Faraway P2; replicate pattern for cymatics — no .uasset write until editor build.",
+          "inject_stage": "T3D material inject (T3DMaterialCurveInjector / t3d_material_curve_injector.py) applies the MI spec via Monolith 9316 when reachable (currently MODAL_OPEN — blocked). Batch unattended:true, one editor, no _PROJECT/.",
+          "validate_stage": "Native validation: MelodiaMaterialAudit / UEditorValidatorSubsystem — broken masters, PPV, texture compression, substrate inputs, socket bindings. + bp_sweep dead islands — ensures no orphan MI.",
+          "gate_stage": "static_gates (graph fingerprint baseline) → runtime_gates (PIE) → echo ledger record — same echo pipeline (specs/echo_pipeline.json) that guards P0."
+        },
+        "world_field_bus_material_taste": "Materials taste the bus without coupling: WorldField.Resonance (cymatic ModeN/M + BeatPulse) → material BeatIntensity/BeatPulse param; WorldField.Contact/Reaction (water ripples) → FluidEnergy/FluidPeak; WorldField.Moisture/FilterFlow (dressing) → fabric AO/roughness bias. One MPC/NPC read, no second writer."
+      },
+      "integration_points": {
+        "present_authorities": "M_Master_Toon_Universal, M_Master_Nikki, M_Master_Toon_Universal_Alpha (opaque/sheen/alpha), M_Water_Master_Grand_v9 (+ v10 native), M_AudioReactive_BaseMaster, M_SpeedTreeMaster — no new master for this integration.",
+        "telemetry_params": "Existing vocabulary is sufficient: RippleCenter/Impulse A/B/C, FluidEnergy/FluidPeak/FluidCenter, NativeShallowWater*, ToonLightBands/ShadowSoftness/RimStrength/SpecularBand/ShadowTint/HighlightTint, SurfaceRoughness/Metallic/SubsurfaceWeight, WaterBioluminescence*, BeatPulse/BeatIntensity — document any future MPC slot as an addendum, don't invent it now.",
+        "editor_gate": "All MI injects serialize through Monolith 9316 (1330+ actions, v0.20.3). Currently MODAL_OPEN — integration is spec-only until recovery; hython side is proven (22.0.368) and does not depend on editor.",
+        "guardrail": "One-editor/unattended/no _PROJECT/ per Master Index §9. Cymatics stays read-only (IsReadOnlyByContract), water gameplay stays on MelodiaWaterGameplaySubsystem.ApplyResonance, wardrobe persistence stays on FMelodiaNarrativeRecord — no second writer in the PBR path either."
+      },
+      "evidence_required": [
+        "Offline: Copernicus cymatic manifest 21 variants × 9 maps + Faraway 6×7-8 maps + water profile types (MelodiaWaterProfile.h) all parse without unknown map names.",
+        "Offline: Saved/Audit/faraway_p2_2026-08-30.json 6 MI proposals with parent + Roughness mapping validate against existing masters M_Master_Toon_Universal / M_Master_Nikki / M_Master_Toon_Universal_Alpha.",
+        "Offline: pbr_pipeline_state.json / sweep_pbr_state.json show no duplicate map-name collisions across cymatic↔faraway↔water sets.",
+        "Live (future): after editor recovery, inject 1 cymatic MI + 1 faraway MI + 1 water MI, run melodia_material_audit + bp_sweep offline fingerprint, record ledger row."
+      ],
+      "next_step_spec": "Draft cross_system_mappings.json (separate from this report) — a MI-instance assignment table: for each cymatic variant and each faraway suite, the target MI path, parent, texture-slot→map assignment, tiling/mode (Tile1_Unique), and optional bus param (BeatPulse/FluidEnergy) it tastes. Keep it as a JSON spec in Saved/Audit/ so t3d_material_curve_injector can consume it directly when 9316 recovers."
+    }
+  },
+  "world_field_bus_adoption": {
+    "purpose": "Minimum shared spatial-field contract (Master Index §5b) so plugins stop inventing their own world truth. Representations: MPC / RVTs / Niagara grids / Houdini fields / PCG metadata. Do not build a generalized field framework — discover the minimum contract via R&D.",
+    "adoptions_by_mapping": {
+      "cymatic_to_rhythm": [
+        "WorldField.Resonance (ModeN/M + BeatPulse)",
+        "WorldField.Tension (N−M spread)"
+      ],
+      "faraway_textures_to_wardrobe": [
+        "WorldField.Residue (fabric weave density, from H/Height) — optional, for future style scoring"
+      ],
+      "meshes_to_pcg": [
+        "WorldField.Moisture",
+        "WorldField.FilterFlow",
+        "WorldField.Tension",
+        "WorldField.AnchorStability — plus SpeedTree bridge fields melodia_moisture/slope/wind_exposure/soil_depth/monolith_proximity/molt_age/filter_flow/tension/ecological_density"
+      ],
+      "cymatic_to_water": [
+        "WorldField.Contact (ripple centers)",
+        "WorldField.Reaction (impulse magnitudes)"
+      ],
+      "cross_material_pbr": [
+        "All 8 bus fields as material-readable MPC params — unified taste point, no second writer"
+      ]
+    },
+    "representation_choice": "v1: MPC scalars/vectors for cymatic and water presentation (proven: MPC_Melodia_Palette already written by MelodiaAudioReactivePresentationSubsystem). PCG metadata for scatter density (already in HDA plan). RVTs/Houdini fields reserved for P2 when bake volume justifies them."
+  },
+  "guardrails_global": [
+    "READ-ONLY cymatics: UMelodiaCymaticsSubsystem never writes MPC_Melodia_Palette or NPC_Melodia_Palette, never calls SubmitResult or ApplyOperation — IsReadOnlyByContract() is the assertion.",
+    "Single audio writer: MelodiaAudioReactivePresentationSubsystem is the only MPC/NPC beat writer — never add a second.",
+    "Water gameplay firewall: presentation (ripples/fluid/Niagara/materials) may read cymatics; gameplay (level/pressure/routes/puzzles) only via MelodiaWaterGameplaySubsystem.ApplyResonance with puzzle/route ids and grade gating — cymatic→gameplay bridge is spec-only and default-off.",
+    "Wardrobe persistence: Owned/Equipped IDs live only on FMelodiaNarrativeRecord (SaveGame) via MelodiaNarrativeSubsystem — no local cache, no second authority (quarantined roguelike pattern is the precedent defect).",
+    "Music-as-key boundary: music opens doors (CommitWorldChallenge + water Resonance), never deals damage — components must never call battle/damage/turn/party APIs.",
+    "One editor / 9316 / unattended:true / no Content/_PROJECT/ writes (Master Index §9) — all T3D/MI injects serialize through Monolith.",
+    "No generalized World Field Bus framework in this phase — adopt the minimum 8-field contract, demonstrate one reader per mapping, defer framework to R&D discovery.",
+    "Save idempotency: CompletionIntentId / ConsumedIntentIds survives reload — do not add local 'already fired' bools.",
+    "Spec-only phase: no .uasset writes, no gate certification by daemon, no P0 ledger mutation — owner materializes editor-dependent steps after MODAL_OPEN recovery."
+  ],
+  "deliverables_this_report": {
+    "this_file": "Saved/Audit/ecosystem_integration_report.json (this report) — the 5 requested mappings, read-only spec, grounded in on-disk APIs and manifests",
+    "companion_specs_pending_owner": [
+      "Saved/Audit/cross_system_mappings.json — MI assignment table (cymatic + faraway → MI path/parent/slot/tiling) for t3d_material_curve_injector",
+      "Saved/Audit/p1p3_roadmap.json — already exists (2026-09-01, P0_ALL_8_PASS_ADDITIVE_ROADMAP) — append p1_ecosystem_integration gate row pointing at this report; do not overwrite P0 gates",
+      "Docs/Houdini/ spec: PCG graph JSON for cloth-mountains + hero-mesh scatter (density = WorldField + SpeedTree bridge fields)",
+      "Wardrobe catalog addendum draft: 6-12 FMelodiaCosmeticRecord rows for Faraway suites (FM_* ids, slots, ResonantFormId=None, StyleScores hint)"
+    ],
+    "not_in_scope_this_task": [
+      "Any .uasset write",
+      "Any Content/_PROJECT/ write",
+      "Any P0_TASK_LEDGER.json or gate_ledger.json mutation",
+      "Any Monolith/MCP live call (9316 MODAL_OPEN)"
+    ]
+  },
+  "evidence_index": {
+    "hython_proven": "Houdini 22.0.368 at C:/Program Files/Side Effects Software/Houdini 22.0.368; 21 cymatic variants × 9 maps (1665 PNGs), 47 Faraway PBR PNGs + 47 .uassets, cloth mountains 8.8MB obj — all on disk.",
+    "cpp_proven": "Source/BS_GodFile/MelodiaIntegration/*.h/.cpp — MelodiaCymaticsSubsystem, MelodiaWater* (7 components + 2 subsystems + profile + types), MelodiaRhythmCombatSubsystem + types + skill definition, MelodiaMusicClockSubsystem, PCG hero host, wardrobe narrative record — all present, SCAFFOLDED/PRESENT per Master Index §§1-2.",
+    "master_index": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md — §1 PRESENT (SpeedTree, Houdini, PCG, MCP, NNERuntimeORT, AudioReactivePresentationSubsystem, MusicClock), §2 SCAFFOLDED (Cymatics, Dressing, VisualRepresentation, VegetationGrowth, CaptureRender), §5 World Field Bus (8 fields + 9-field SpeedTree bridge), §7 Cymatics synesthesia thread.",
+    "grand_review": "Saved/Audit/grand_review_expansion_plan_2026-09-01.json — rec_5_ecosystem_integration specifics verbatim fulfilled by mappings 01-05.",
+    "prior_reports": "Saved/Audit/p1p3_roadmap.json (already additive), Saved/Audit/faraway_p2_2026-08-30.json (6 MI proposals), Saved/Audit/copernicus_cymatic_manifest.json (v2 seed 20260831), Docs/MELODIA_WARDROBE_ARCHITECTURE_2026-08-14.md (three-layer wardrobe)"
+  },
+  "open_risks": [
+    "Editor MODAL_OPEN on 9316 blocks all live proof (static_gates, Monolith probe, T3D inject, PIE). This report is offline spec; live validation (rhythm window tightening at nodal lines, fluid impulse traces, PCG scatter density) requires editor restart + netstat -ano | grep 9316 + mcp_tool_surface dry-run.",
+    "Cymatic→water gameplay bridge (Harmonic/Dissonant → ResonanceChannel) is quarantined (default-off) — enabling it needs explicit design + puzzle/route id authoring to avoid silent gameplay mutation via presentation.",
+    "No new material master is assumed — if a cymatic sheen variant needs iridescence beyond M_Master_Nikki/Toon sheen path, that gap should be recorded in Docs/Research/TOOLCHAIN_INTEGRATION_SPIKE_PLAN_2026-08-31.md Tier B, not patched by inventing a master.",
+    "Houdini live-cook prohibition: cloth mountains / faraway meshes are baked .obj — any future PCG graph must read baked masks/fields, never hold a live HDA dependency in the shipping level."
+  ]
+}

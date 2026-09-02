@@ -1,0 +1,47 @@
+{
+  "schema": "melodia.material.dedup_spec.v1",
+  "id": "MI_BlingVol3_PBR_Auto_Dedup_ShadowDreamPink",
+  "generated": "2026-09-01T02:00:00Z",
+  "source": "Saved/Audit/mi_bling_v3_t3d_spec_2026-09-01.json",
+  "lane": "audit",
+  "mode": "spec_only",
+  "note": "Triage duplicate MI set: 15 MI_BlingVol3_* (Universal parent) vs 15 MI_bling_surface_vol3_* in PBR_Auto (parent UNKNOWN).",
+  "findings": {
+    "confirmed_universal_parent": {
+      "path": "Content/EnvSandbox/Materials/Instances/BlingVol3/",
+      "count": 15,
+      "names": "MI_BlingVol3_01 through MI_BlingVol3_15",
+      "status": "KEEP"
+    },
+    "unknown_parent_duplicates": {
+      "path": "Content/EnvSandbox/Materials/Instances/Environment/PBR_Auto/",
+      "count": 15,
+      "names": "MI_bling_surface_vol3_01 through MI_bling_surface_vol3_15",
+      "status": "TRIAGE_REQUIRED"
+    }
+  },
+  "action_options": [
+    {
+      "option": "A",
+      "label": "Reparent duplicates to Universal + archive",
+      "detail": "If PBR_Auto set has non-Universal parent, reparent to M_Master_Toon_Universal, move to BlingVol3 folder, delete from PBR_Auto"
+    },
+    {
+      "option": "B",
+      "label": "Safe-delete if identical",
+      "detail": "If PBR_Auto set is exact duplicate (same parent, same params), delete PBR_Auto copies"
+    },
+    {
+      "option": "C",
+      "label": "Rename for separate use",
+      "detail": "If PBR_Auto set has intentionally different params (e.g., no ShadowDream), rename to MI_BlingVol3_PBR_ variant"
+    }
+  ],
+  "shadowdream_note": "PBR_Auto set may be the original non-ShadowDream bake. If kept, add ShadowDream pink (0.7 strength, #E8A0BF flower) to match Vol3 aesthetic.",
+  "safety": {
+    "requires_editor": true,
+    "must_confirm_parent_before_delete": true,
+    "gate_acceptance": "echo_run.py record bling_vol3_dedup pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

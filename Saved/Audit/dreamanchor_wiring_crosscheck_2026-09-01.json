@@ -1,0 +1,43 @@
+{
+  "schema": "melodia.dreamanchor.wiring.crosscheck.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/dreamanchor_wiring_t3d_2026-08-31.json vs Docs/Plans/DREAMANCHOR_EVENT_WIRING_SPEC_2026-08-31.md",
+  "mode": "audit",
+  "findings": {
+    "dream_anchor": {
+      "bp_name": "BP_MelodiaInteraction_DreamAnchor",
+      "parent_class": "AMelodiaExplorationInteractionVolume",
+      "t3d_json_wiring": [
+        "BeginPlay: keep_empty",
+        "ActorBeginOverlap: wire to OnMelusinaEntered",
+        "Tick: remove"
+      ],
+      "spec_md_wiring": [
+        "BeginPlay: keep_empty (parent handles)",
+        "ActorBeginOverlap: wire to OnMelusinaEntered",
+        "Tick: remove (bCanEverTick=false)"
+      ],
+      "match": true
+    },
+    "puzzle_relay": {
+      "bp_name": "BP_MelodiaPuzzleRelay_FirstResonance",
+      "parent_class": "AMelodiaPuzzleRelayVolume",
+      "t3d_json_wiring": [
+        "BeginPlay: keep_empty",
+        "ActorBeginOverlap: wire to OnPuzzleActivated.Broadcast",
+        "Tick: remove"
+      ],
+      "spec_md_wiring": [
+        "BeginPlay: keep_empty (parent handles)",
+        "ActorBeginOverlap: wire to OnPuzzleActivated",
+        "Tick: remove (bCanEverTick=false)"
+      ],
+      "match": true
+    }
+  },
+  "verdict": {
+    "status": "MATCH",
+    "note": "T3D JSON and spec MD are consistent. Both targets have identical wiring instructions. No discrepancies found."
+  },
+  "status": "CROSSCHECK_COMPLETE"
+}
