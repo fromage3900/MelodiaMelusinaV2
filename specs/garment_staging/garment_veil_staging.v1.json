@@ -1,0 +1,1877 @@
+{
+  "schema": "melodia.garment_veil_staging.v1",
+  "version": "1.0.0",
+  "level": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "landscape": "CanonicalLandscape (used, never created)",
+  "bounds_cm": [
+    -150000.0,
+    -150000.0,
+    150000.0,
+    150000.0
+  ],
+  "sea_surface_z_cm": 13455.0,
+  "total_points": 60,
+  "zone_summaries": {
+    "Skirt": {
+      "name": "Skirt",
+      "point_count": 0,
+      "builders": [
+        "MEL_garment_skirt_full",
+        "MEL_garment_skirt_train"
+      ],
+      "avg_tension": 0.0,
+      "mode": "2_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric"
+    },
+    "Bodice": {
+      "name": "Bodice",
+      "point_count": 0,
+      "builders": [
+        "MEL_garment_bodice_base",
+        "MEL_garment_bodice_lace"
+      ],
+      "avg_tension": 0.0,
+      "mode": "3_5",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    "Collar": {
+      "name": "Collar",
+      "point_count": 30,
+      "builders": [
+        "MEL_garment_collar_trim",
+        "MEL_garment_collar_necklace"
+      ],
+      "avg_tension": 1.0,
+      "mode": "1_3",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    "Veil": {
+      "name": "Veil",
+      "point_count": 30,
+      "builders": [
+        "MEL_garment_veil_singing",
+        "MEL_garment_veil_ribbon"
+      ],
+      "avg_tension": 1.0,
+      "mode": "4_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    }
+  },
+  "points": [
+    {
+      "id": "GV_Veil_0000",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -143750.0,
+        -143750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0001",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_ribbon",
+      "builder": "MEL_garment_veil_ribbon",
+      "position": [
+        143750.0,
+        -143750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0002",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -131250.0,
+        -131250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0003",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -118750.0,
+        -118750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0004",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -106250.0,
+        -106250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0005",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -93750.0,
+        -93750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0006",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -81250.0,
+        -81250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0007",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -68750.0,
+        -68750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0008",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -56250.0,
+        -56250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0009",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -43750.0,
+        -43750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0010",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -31250.0,
+        -31250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0011",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -18750.0,
+        -18750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0012",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_ribbon",
+      "builder": "MEL_garment_veil_ribbon",
+      "position": [
+        18750.0,
+        -18750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0013",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        -6250.0,
+        -6250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0014",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_ribbon",
+      "builder": "MEL_garment_veil_ribbon",
+      "position": [
+        6250.0,
+        -6250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0015",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_ribbon",
+      "builder": "MEL_garment_veil_ribbon",
+      "position": [
+        -6250.0,
+        6250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0016",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        6250.0,
+        6250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0017",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_ribbon",
+      "builder": "MEL_garment_veil_ribbon",
+      "position": [
+        -18750.0,
+        18750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0018",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        18750.0,
+        18750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0019",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        31250.0,
+        31250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0020",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        43750.0,
+        43750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0021",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        56250.0,
+        56250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0022",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        68750.0,
+        68750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0023",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        81250.0,
+        81250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0024",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        93750.0,
+        93750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0025",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        106250.0,
+        106250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0026",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        118750.0,
+        118750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0027",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        131250.0,
+        131250.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0028",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_ribbon",
+      "builder": "MEL_garment_veil_ribbon",
+      "position": [
+        -143750.0,
+        143750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Veil_0029",
+      "zone": "Veil",
+      "layer": "MEL_garment_veil_singing",
+      "builder": "MEL_garment_veil_singing",
+      "position": [
+        143750.0,
+        143750.0,
+        13485.0
+      ],
+      "height_cm": 13405.0,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 30.0,
+      "rotation": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_4",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "id": "GV_Collar_0000",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        31250.0,
+        -18750.0,
+        13469.0
+      ],
+      "height_cm": 13419.48,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -30.96
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0001",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        31250.0,
+        18750.0,
+        13469.0
+      ],
+      "height_cm": 13419.48,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        30.96
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0002",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        -18750.0,
+        31250.0,
+        13469.0
+      ],
+      "height_cm": 13390.52,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        120.96
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0003",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        18750.0,
+        31250.0,
+        13469.0
+      ],
+      "height_cm": 13390.52,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        59.04
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0004",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        -18750.0,
+        -31250.0,
+        13469.0
+      ],
+      "height_cm": 13390.52,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -120.96
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0005",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        18750.0,
+        -31250.0,
+        13469.0
+      ],
+      "height_cm": 13390.52,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -59.04
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0006",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        -31250.0,
+        -18750.0,
+        13469.0
+      ],
+      "height_cm": 13419.48,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -149.04
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0007",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        -31250.0,
+        18750.0,
+        13469.0
+      ],
+      "height_cm": 13419.48,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        149.04
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0008",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        6250.0,
+        -118750.0,
+        13469.0
+      ],
+      "height_cm": 13451.03,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -86.99
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.1658,
+      "resonance": 0.1658,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0009",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        -118750.0,
+        6250.0,
+        13469.0
+      ],
+      "height_cm": 13358.97,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        176.99
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.1658,
+      "resonance": 0.1658,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0010",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        118750.0,
+        6250.0,
+        13469.0
+      ],
+      "height_cm": 13358.97,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        3.01
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.1658,
+      "resonance": 0.1658,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0011",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        6250.0,
+        118750.0,
+        13469.0
+      ],
+      "height_cm": 13451.03,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        86.99
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.1658,
+      "resonance": 0.1658,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0012",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        -6250.0,
+        -118750.0,
+        13469.0
+      ],
+      "height_cm": 13451.03,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -93.01
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.1658,
+      "resonance": 0.1658,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0013",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        -118750.0,
+        -6250.0,
+        13469.0
+      ],
+      "height_cm": 13358.97,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -176.99
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.1658,
+      "resonance": 0.1658,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0014",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        118750.0,
+        -6250.0,
+        13469.0
+      ],
+      "height_cm": 13358.97,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -3.01
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.1658,
+      "resonance": 0.1658,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0015",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        -6250.0,
+        118750.0,
+        13469.0
+      ],
+      "height_cm": 13451.03,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        93.01
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.1658,
+      "resonance": 0.1658,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0016",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        6250.0,
+        -43750.0,
+        13469.0
+      ],
+      "height_cm": 13366.99,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -81.87
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.1686,
+      "resonance": 0.1686,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0017",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        -43750.0,
+        6250.0,
+        13469.0
+      ],
+      "height_cm": 13443.01,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        171.87
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.1686,
+      "resonance": 0.1686,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0018",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        43750.0,
+        6250.0,
+        13469.0
+      ],
+      "height_cm": 13443.01,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        8.13
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.1686,
+      "resonance": 0.1686,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0019",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        6250.0,
+        43750.0,
+        13469.0
+      ],
+      "height_cm": 13366.99,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        81.87
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.1686,
+      "resonance": 0.1686,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0020",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        -6250.0,
+        -43750.0,
+        13469.0
+      ],
+      "height_cm": 13366.99,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -98.13
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.1686,
+      "resonance": 0.1686,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0021",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        -43750.0,
+        -6250.0,
+        13469.0
+      ],
+      "height_cm": 13443.01,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -171.87
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.1686,
+      "resonance": 0.1686,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0022",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        43750.0,
+        -6250.0,
+        13469.0
+      ],
+      "height_cm": 13443.01,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -8.13
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.1686,
+      "resonance": 0.1686,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0023",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        -6250.0,
+        43750.0,
+        13469.0
+      ],
+      "height_cm": 13366.99,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        98.13
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.1686,
+      "resonance": 0.1686,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0024",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        18750.0,
+        -106250.0,
+        13469.0
+      ],
+      "height_cm": 13413.61,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -79.99
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.2041,
+      "resonance": 0.2041,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0025",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_trim",
+      "builder": "MEL_garment_collar_trim",
+      "position": [
+        -106250.0,
+        18750.0,
+        13469.0
+      ],
+      "height_cm": 13396.39,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        169.99
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.2041,
+      "resonance": 0.2041,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0026",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        -18750.0,
+        -106250.0,
+        13469.0
+      ],
+      "height_cm": 13413.61,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -100.01
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.2041,
+      "resonance": 0.2041,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0027",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        -106250.0,
+        -18750.0,
+        13469.0
+      ],
+      "height_cm": 13396.39,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -169.99
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.2041,
+      "resonance": 0.2041,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0028",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        106250.0,
+        18750.0,
+        13469.0
+      ],
+      "height_cm": 13396.39,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        10.01
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": 0.2041,
+      "resonance": 0.2041,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    },
+    {
+      "id": "GV_Collar_0029",
+      "zone": "Collar",
+      "layer": "MEL_garment_collar_necklace",
+      "builder": "MEL_garment_collar_necklace",
+      "position": [
+        18750.0,
+        106250.0,
+        13469.0
+      ],
+      "height_cm": 13413.61,
+      "sea_surface_cm": 13455.0,
+      "clearance_cm": 14.0,
+      "rotation": [
+        0.0,
+        0.0,
+        79.99
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "1_3",
+      "chladni_val": -0.2041,
+      "resonance": 0.2041,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean",
+      "garment_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki"
+    }
+  ],
+  "world_field_channels": [
+    "WorldField.Resonance",
+    "WorldField.Tension",
+    "WorldField.Moisture",
+    "WorldField.FilterFlow"
+  ],
+  "narrative_hook": {
+    "outfit_id": "Melusina_ShorewakeDress",
+    "reward_id": "reward.wardrobe.shorewake_veil",
+    "flag_id": "quest.p0_sea_above.veil_sung"
+  }
+}
