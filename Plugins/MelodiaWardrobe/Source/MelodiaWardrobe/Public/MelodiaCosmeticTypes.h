@@ -176,6 +176,15 @@ struct MELODIAWARDROBE_API FMelodiaCosmeticRecord
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Wardrobe")
 	FName ResonantFormId;
 
+	/** Narrative reward that grants this cosmetic. Empty means no automatic grant. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Wardrobe|Unlock")
+	FName UnlockRewardId;
+
+	/** Equip immediately when UnlockRewardId is received, using the owning pawn's
+	 * wardrobe component so presentation and canonical state change together. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Wardrobe|Unlock")
+	bool bAutoEquipOnUnlock = false;
+
 	/**
 	 * This garment's grade on each style axis it expresses. Omit an axis entirely
 	 * rather than scoring it D -- absent means "does not express", which reads
