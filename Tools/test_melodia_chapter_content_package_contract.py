@@ -18,6 +18,9 @@ SCHEMA_PATH = ROOT / "specs" / "schemas" / "melodia_chapter_content_package.v1.s
 TEMPLATE_PATH = ROOT / "specs" / "content" / "melodia_chapter_content_package.template.v1.json"
 PROGRESSION_SCHEMA_PATH = ROOT / "specs" / "schemas" / "melodia_progression_package.v1.schema.json"
 PROGRESSION_PATH = ROOT / "specs" / "progression" / "melodia_first_dream_progression.v1.json"
+P2_PROGRESSION_PATH = ROOT / "specs" / "progression" / "melodia_p2_fabric_mountains_progression.v1.json"
+P3_PROGRESSION_PATH = ROOT / "specs" / "progression" / "melodia_p3_horizon_eater_progression.v1.json"
+ALLOWLIST_SEED_PATH = ROOT / "specs" / "progression" / "melodia_integration_allowlist_seed.v1.json"
 TRACKER_PATH = ROOT / "specs" / "progression" / "melodia_objective_tracker_presentation.v1.json"
 STORY_CONTRACT_PATH = ROOT / "Docs" / "MELODIA_STORY_SEQUENCE_AND_QUILL_CONTRACT.md"
 ROUTE_SPEC_PATH = ROOT / "specs" / "p0" / "core_p0_dream_golden_run.v1.json"
@@ -418,6 +421,92 @@ def test_acceptance_and_owner_inputs_keep_future_content_honest() -> None:
     require(authority["forbidden"], "authority boundary has no forbidden duplicate list")
 
 
+def test_p2_fabric_mountains_progression_validates_against_schema() -> None:
+    """P2 Faraway Mother progression: validate allowlist IDs match seed, chapter order is 4, prerequisites are valid format.
+    Full schema conformance is a future work item — P2 is currently a draft progression."""
+    _require_existing_reference(P2_PROGRESSION_PATH, "P2 fabric mountains progression")
+    _require_existing_reference(ALLOWLIST_SEED_PATH, "integration allowlist seed")
+    p2 = load_json(P2_PROGRESSION_PATH)
+    allowlist = load_json(ALLOWLIST_SEED_PATH)
+    require(p2["schema"] == "melodia.progression_package.v1", "P2 schema marker drifted")
+    require(p2["chapter"]["order"] == 4, "P2 chapter order must be 4 (after First Dream=1, P1 Shorewake=2, P1 Cymatics=3)")
+    seed_quests = set(allowlist["sets"]["QuestIds"])
+    seed_flags = set(allowlist["sets"]["NarrativeFlagIds"])
+    seed_rewards = set(allowlist["sets"]["DialogueRewardIds"])
+    for q in p2["required_allowlist"]["quest_ids"]:
+        require(q in seed_quests, f"P2 quest_id {q!r} missing from allowlist seed")
+    for f in p2["required_allowlist"]["narrative_flag_ids"]:
+        require(f in seed_flags, f"P2 flag_id {f!r} missing from allowlist seed")
+    for r in p2["required_allowlist"]["dialogue_reward_ids"]:
+        require(r in seed_rewards, f"P2 reward_id {r!r} missing from allowlist seed")
+    require(p2["chapter"]["prerequisites"], "P2 must declare chapter prerequisites")
+    for prereq in p2["chapter"]["prerequisites"]:
+        require(isinstance(prereq, str) and (prereq.startswith("flag.") or prereq.startswith("quest.")), f"P2 prerequisite is not a valid flag/quest id: {prereq}")
+    require(p2["quests"], "P2 must declare at least one quest")
+    for quest in p2["quests"]:
+        require(quest["quest_id"], "P2 quest missing quest_id")
+        require(quest["title"], "P2 quest missing title")
+        require(quest["completion_flag"], "P2 quest missing completion_flag")
+
+
+def test_p3_horizon_eater_progression_validates_against_schema() -> None:
+    """P3 Horizon Eater progression: validate allowlist IDs match seed, chapter order is 5, prerequisites reference P2 IDs.
+    Full schema conformance is a future work item — P3 is currently a draft progression."""
+    _require_existing_reference(P3_PROGRESSION_PATH, "P3 horizon eater progression")
+    _require_existing_reference(ALLOWLIST_SEED_PATH, "integration allowlist seed")
+    p3 = load_json(P3_PROGRESSION_PATH)
+    allowlist = load_json(ALLOWLIST_SEED_PATH)
+    require(p3["schema"] == "melodia.progression_package.v1", "P3 schema marker drifted")
+    require(p3["chapter"]["order"] == 5, "P3 chapter order must be 5 (after P2=4)")
+    seed_quests = set(allowlist["sets"]["QuestIds"])
+    seed_flags = set(allowlist["sets"]["NarrativeFlagIds"])
+    seed_rewards = set(allowlist["sets"]["DialogueRewardIds"])
+    for q in p3["required_allowlist"]["quest_ids"]:
+        require(q in seed_quests, f"P3 quest_id {q!r} missing from allowlist seed")
+    for f in p3["required_allowlist"]["narrative_flag_ids"]:
+        require(f in seed_flags, f"P3 flag_id {f!r} missing from allowlist seed")
+    for r in p3["required_allowlist"]["dialogue_reward_ids"]:
+        require(r in seed_rewards, f"P3 reward_id {r!r} missing from allowlist seed")
+    require(p3["chapter"]["prerequisites"], "P3 must declare chapter prerequisites")
+    for prereq in p3["chapter"]["prerequisites"]:
+        require(isinstance(prereq, str) and (prereq.startswith("flag.") or prereq.startswith("quest.")), f"P3 prerequisite is not a valid flag/quest id: {prereq}")
+    require(p3["quests"], "P3 must declare at least one quest")
+    for quest in p3["quests"]:
+        require(quest["quest_id"], "P3 quest missing quest_id")
+        require(quest["title"], "P3 quest missing title")
+        require(quest["completion_flag"], "P3 quest missing completion_flag")
+
+
+def test_p2_p3_prerequisite_chains_are_resolvable() -> None:
+    """Walk P2 -> P3 prerequisite chains and confirm every referenced quest_id/flag_id exists in the respective progression or seed."""
+    _require_existing_reference(P2_PROGRESSION_PATH, "P2 progression")
+    _require_existing_reference(P3_PROGRESSION_PATH, "P3 progression")
+    _require_existing_reference(ALLOWLIST_SEED_PATH, "allowlist seed")
+    p2 = load_json(P2_PROGRESSION_PATH)
+    p3 = load_json(P3_PROGRESSION_PATH)
+    allowlist = load_json(ALLOWLIST_SEED_PATH)
+    seed_quests = set(allowlist["sets"]["QuestIds"])
+    seed_flags = set(allowlist["sets"]["NarrativeFlagIds"])
+    p2_quest_ids = {q["quest_id"] for q in p2["quests"]}
+    p2_flag_ids = set(p2["required_allowlist"]["narrative_flag_ids"])
+    p3_prereqs = p3["chapter"]["prerequisites"]
+    for prereq in p3_prereqs:
+        if prereq.startswith("quest."):
+            require(prereq in p2_quest_ids, f"P3 prerequisite quest {prereq!r} not found in P2 quests")
+            require(prereq in seed_quests, f"P3 prerequisite quest {prereq!r} not found in allowlist seed")
+        elif prereq.startswith("flag."):
+            require(prereq in p2_flag_ids, f"P3 prerequisite flag {prereq!r} not found in P2 flags")
+            require(prereq in seed_flags, f"P3 prerequisite flag {prereq!r} not found in allowlist seed")
+    p2_prereqs = p2["chapter"]["prerequisites"]
+    p1_quest_ids = {"quest.first_dream", "quest.harmony_awakening", "quest.echoes_of_resonance", "quest.twilight_overture", "quest.shorewake.initiation", "quest.mara.veil_reading"}
+    p1_flag_ids = {"flag.first_dream.quest.completed", "flag.quest.shorewake_completed", "flag.sea_above.starskiff_ready", "quest.harmony_awakening.completed", "quest.echoes_of_resonance.completed", "quest.twilight_overture.completed", "flag.faraway_mother.seam_path_open"}
+    for prereq in p2_prereqs:
+        if prereq.startswith("quest."):
+            require(prereq in p1_quest_ids or prereq in seed_quests, f"P2 prerequisite quest {prereq!r} not found in P1 quests or seed")
+        elif prereq.startswith("flag."):
+            require(prereq in p1_flag_ids or prereq in seed_flags, f"P2 prerequisite flag {prereq!r} not found in P1 flags or seed")
+
+
 def main() -> int:
     tests = (
         test_schema_and_template_validate,
@@ -426,11 +515,14 @@ def main() -> int:
         test_route_encounter_reward_and_unlock_boundaries,
         test_design_turn_decision_consequence_checkpoint_and_pacing,
         test_acceptance_and_owner_inputs_keep_future_content_honest,
+        test_p2_fabric_mountains_progression_validates_against_schema,
+        test_p3_horizon_eater_progression_validates_against_schema,
+        test_p2_p3_prerequisite_chains_are_resolvable,
     )
     for test in tests:
         test()
     print(f"validated {len(tests)} Melodia chapter content package checks")
-    print("validated JSON Schema shape, progression/Quill ownership, route boundaries, unlocks, pacing, and evidence placeholders")
+    print("validated JSON Schema shape, progression/Quill ownership, route boundaries, unlocks, pacing, evidence placeholders, P2/P3 progression, and prerequisite chains")
     return 0
 
 

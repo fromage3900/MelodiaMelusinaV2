@@ -35,6 +35,8 @@ REQUEST_TIMEOUT = int(os.environ.get("LLM_REQUEST_TIMEOUT", "90"))
 
 LOCAL_BASE = os.environ.get("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434/v1").rstrip("/")
 
+LOCAL_BASE = os.environ.get("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434/v1").rstrip("/")
+
 ENDPOINTS = {
     "openrouter": "https://openrouter.ai/api/v1",
     "tokenrouter": "https://api.tokenrouter.com/v1",
