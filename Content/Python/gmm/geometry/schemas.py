@@ -3,6 +3,12 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 
+# Re-export brass validation for external callers
+try:
+    from .brass_modifiers import validate_brass_parameters  # noqa: F401
+except ImportError:
+    pass
+
 
 BEVEL_DEFAULTS: dict[str, object] = {
     "width": 0.04,

@@ -1,8 +1,8 @@
-﻿"Connect NS_Uni_WaterMist SpawnRate to MPC_Melodia_Palette.PlayerProximity.
+"""Connect NS_Uni_WaterMist SpawnRate to MPC_Melodia_Palette.PlayerProximity.
 
 Adds a Module Script (Emitter Update stage) to WaterMist emitter that reads
 PlayerProximity from MPC_Melodia_Palette and writes to ProximitySpawnRateMultiplier.
-"
+"""
 import unreal
 
 SYSTEM_PATH = "/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_WaterMist"

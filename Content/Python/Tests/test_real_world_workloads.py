@@ -14,7 +14,11 @@ import unittest
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
-import numpy as np
+try:
+    import numpy as np
+    HAS_DEPS = True
+except ImportError:
+    HAS_DEPS = False
 
 
 # ---------------------------------------------------------------------------
@@ -306,6 +310,7 @@ class TestRealWorldWorkloadsTier4(unittest.TestCase):
             self.assertGreaterEqual(ft, 0.0)
             self.assertLessEqual(ft, 7.0)
 
+    @unittest.skipUnless(HAS_DEPS, "numpy not available in this Python environment")
     def test_workload_stage_light_reflection_and_toon_shadow_floor(self):
         """End-to-End Workflow 2: Multi-light studio evaluation, micro-PBR specularity & shadow floor check."""
         sim = ShadingSimulator()

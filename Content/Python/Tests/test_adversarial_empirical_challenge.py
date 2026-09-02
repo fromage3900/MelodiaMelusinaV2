@@ -3,8 +3,13 @@ import math
 import sys
 import unittest
 from pathlib import Path
-import numpy as np
-from PIL import Image
+
+try:
+    import numpy as np
+    from PIL import Image
+    HAS_DEPS = True
+except ImportError:
+    HAS_DEPS = False
 
 TEST_DIR = Path(__file__).resolve().parent
 PYTHON_DIR = TEST_DIR.parent
@@ -20,6 +25,7 @@ import wire_audio_water_modulation as water_mod
 import wire_audio_material_pulsation as mat_pulse
 import wire_water_bioluminescence_harmony as bio_harm
 
+@unittest.skipUnless(HAS_DEPS, "numpy and/or PIL not available in this Python environment")
 class TestEmpiricalViewAnglesAndToonShadow(unittest.TestCase):
     def test_extreme_fresnel_sheen_curve(self):
         presets = mod_fabric.CORE_FABRIC_PRESETS
