@@ -44,6 +44,8 @@ Begin Object Class=/Script/Engine.MaterialParameterCollection Name="MPC_Melodia_
    ScalarParameters(42)=(ParameterName="QuantumSeed",Id=5062E82B44B1F83DFBEC878F429282F4)
    ScalarParameters(43)=(ParameterName="QuantumBackend",Id=47CC79C84774A8A0709C3CA029D3960A)
    ScalarParameters(44)=(ParameterName="QuantumPulse",Id=3988C2B645D4C140246CC0BE23D60879)
+   ScalarParameters(45)=(ParameterName="DreadPresence",Id=5AA170EB4CD8C15441269E9D7615CA59)
+   ScalarParameters(46)=(ParameterName="DissonanceAmount",Id=2B0645514073E889EECF13A91B68498D)
    VectorParameters(0)=(DefaultValue=(R=0.040000,G=0.040000,B=0.078000,A=1.000000),ParameterName="Melusina_InkNavy",Id=B11DE23B4D52AAD160EAD69A8946348E)
    VectorParameters(1)=(DefaultValue=(R=0.490000,G=0.827000,B=0.753000,A=1.000000),ParameterName="Melusina_Aqua",Id=E8A8DD6B4054F2ADAB3D1B86788A259A)
    VectorParameters(2)=(DefaultValue=(R=0.831000,G=0.686000,B=0.216000,A=1.000000),ParameterName="Melusina_Gild",Id=87D7BDAC4F533CFDF115428BBAFC3D8C)

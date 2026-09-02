@@ -1,0 +1,69 @@
+{
+  "schema": "melodia.p0.sea_above.cymatics_live.v1",
+  "date": "2026-09-01",
+  "map": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "verdict": "PASS_SCOPED",
+  "changes": [
+    {
+      "file": "Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.cpp",
+      "fix": "Load the same canonical MPC_Melodia_Palette asset used by the sole audio-reactive writer."
+    },
+    {
+      "file": "Source/BS_GodFile/MelodiaIntegration/MelodiaMusicClockSubsystem.cpp",
+      "fix": "Host the existing validated Harmonix clock on WorldSettings in exploration maps without BP_BattleController."
+    }
+  ],
+  "build": {
+    "method": "Live Coding cpp-only patch",
+    "result": "success",
+    "patch_applied": true,
+    "errors": 0
+  },
+  "runtime": {
+    "subsystem_instantiated": true,
+    "read_only_contract": true,
+    "clock_owner": "WorldSettings",
+    "clock_bpm": 128.0,
+    "beat_grid_validated": true,
+    "samples": [
+      {"beat_pulse": 0.5796064734, "bass_intensity": 0.0, "mode": [2, 5], "amplitude": -0.5320067406},
+      {"beat_pulse": 0.0658215955, "bass_intensity": 0.0, "mode": [2, 3], "amplitude": -0.0314866081}
+    ],
+    "beat_pulse_varied": true,
+    "mode_varied": true,
+    "amplitude_varied": true,
+    "bass_note": "Bass remains zero outside battle by the existing presentation contract."
+  },
+  "scene_census": {
+    "quill_trigger": "SeaAbove_QuillTrigger_Cutscene",
+    "upward_droplets": "SeaAbove_UpwardDroplets_Prototype",
+    "jelly": "Jelly_Cathedral_01",
+    "starskiff": "SeaAbove_Starskiff_MK2",
+    "water_zone": "SeaAbove_WaterSimulationZone",
+    "music_nodes": 12
+  },
+  "automation": {
+    "Melodia.MusicClock.Sanity": "PASS",
+    "Melodia.SeaAbove.Presentation.PulseAndSheenContract": "PASS",
+    "Melodia.WaterGameplay.StateAndSave": "PASS",
+    "Melodia.P0.SeaAboveCutscene": "PASS"
+  },
+  "authority_guards": {
+    "audio_writer_count": 1,
+    "writer": "UMelodiaAudioReactivePresentationSubsystem",
+    "cymatics_is_read_only": true,
+    "second_clock_authority_added": false,
+    "asset_writes": false
+  },
+  "remaining": [
+    "Capture player-visible frames proving which placed material/Niagara consumers visibly react to the live pulse.",
+    "Run Quill Sea Above travel/cutscene through real player input and capture flag/stat/reward read-backs.",
+    "Exercise Starskiff boarding/movement and the music-node route in one uninterrupted player run.",
+    "Run a closed-editor Development build before package certification; Live Coding evidence is editor-session scoped."
+  ],
+  "safety": {
+    "unrelated_dirty_packages_preserved": 11,
+    "dirty_sea_above_external_actors_preserved": 2,
+    "packages_saved": false
+  }
+}
