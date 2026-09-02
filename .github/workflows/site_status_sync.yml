@@ -1,20 +1,14 @@
 name: Sync portfolio status from gate ledger
 
 # Keeps the public portfolio honest by regenerating its status blob from the
-# game repo's real gate ledger (Saved/gate_ledger.json). Runs on every game
-# push to main and nightly. The generator never invents progress.
+# game repo's real gate ledger (Saved/gate_ledger.json). Runs on main and nightly.
+# The generator never invents progress.
 #
-# TWO ways this fires:
-#   1. TOKEN-FREE (default, works today): run `.\deploy\sync_site_to_github.ps1`
-#      locally — it regenerates the status and ships it inside the normal site
-#      deploy (uses your existing git credentials, no PAT needed).
-#   2. SECRET-BASED (optional): this Action also runs on push or schedule and
-#      pushes the blob to my-site using secrets.SITE_SYNC_TOKEN.
-#      Requires a fine-grained PAT with write to fromage3900/my-site, stored as
-#      the SITE_SYNC_TOKEN repo secret on fromage3900/MelodiaMelusinaV2.
+# TOKEN-FREE default: run `.\deploy\sync_site_to_github.ps1` locally.
+# Optional secret SITE_SYNC_TOKEN: Action pushes the blob to fromage3900/my-site.
 #
-# Do not use `secrets.* == ''` in step `if:` — GitHub treats that as an invalid
-# workflow and fails with a 0-job run on any push that touches this file.
+# Never put `secrets.*` directly in step `if:` — that has produced 0-job
+# workflow failures on this repo. Detect the token via env + step output instead.
 on:
   push:
     branches: [main]
@@ -23,7 +17,7 @@ on:
       - 'Tools/sync_site_status.py'
       - '.github/workflows/site_status_sync.yml'
   schedule:
-    - cron: '17 6 * * *'   # daily, off the :00 to avoid the crowd
+    - cron: '17 6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -42,11 +36,22 @@ jobs:
         run: |
           python game/Tools/sync_site_status.py --out game/_site_status.json
           echo "Status blob written to game/_site_status.json"
-          echo "Without SITE_SYNC_TOKEN, remote site push steps are skipped."
-          echo "Use deploy/sync_site_to_github.ps1 locally for token-free site deploy."
+
+      - name: Detect SITE_SYNC_TOKEN
+        id: token
+        env:
+          SITE_SYNC_TOKEN: ${{ secrets.SITE_SYNC_TOKEN }}
+        run: |
+          if [ -n "${SITE_SYNC_TOKEN}" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "SITE_SYNC_TOKEN not configured — skipping remote my-site push."
+            echo "Use deploy/sync_site_to_github.ps1 locally for token-free site deploy."
+          fi
 
       - name: Checkout site repo
-        if: ${{ secrets.SITE_SYNC_TOKEN != '' }}
+        if: steps.token.outputs.present == 'true'
         uses: actions/checkout@v7
         with:
           repository: fromage3900/my-site
@@ -54,13 +59,13 @@ jobs:
           token: ${{ secrets.SITE_SYNC_TOKEN }}
 
       - name: Stage generated status
-        if: ${{ secrets.SITE_SYNC_TOKEN != '' }}
+        if: steps.token.outputs.present == 'true'
         run: |
           mkdir -p site/public/melodia/status
           cp game/_site_status.json site/public/melodia/status/sync_status.json
 
       - name: Commit & push if changed
-        if: ${{ secrets.SITE_SYNC_TOKEN != '' }}
+        if: steps.token.outputs.present == 'true'
         working-directory: site
         run: |
           git add -A
