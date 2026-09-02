@@ -157,3 +157,26 @@ gate from ever passing (surfaced in run 4's audit).
   unchanged and now all live.
 - **Gate re-check (editor, when 9316 frees):** rerun the World Field Bus PIE param-match
   assertion and the golden-run preflight — expected PASS on the 3 reconciled lanes.
+
+## 9. Flipbook library + pipeline lock (2026-09-02, daemon run 6)
+
+Completes the reusable **animated** hero-material lane — the 8-frame standing-wave
+flipbook loop referenced in §1 (multi-oscillator interference + phase crawl).
+
+- **Flipbook bake, all 9 Melodia\* variants** — 8 frames × 9 maps (BaseColor / Normal /
+  ORM / Height / subsurface / emissive / irid / nacre / field) per variant:
+  - Evidence `Saved/Audit/copernicus_cymatic/qa_melodia_flipbooks_2026-09-02.json`
+    → **648/648 PASS** (checked 648, pass 648, fail 0); variant keys
+    `MelodiaHeroGem MelodiaGoldSilk MelodiaMotherPearl MelodiaSapphireGlass
+    MelodiaRoseVelvet MelodiaMoonlace MelodiaForestEmerald MelodiaAmethystVein
+    MelodiaAuroraGlass`.
+  - Contact sheets `Saved/Audit/contact_sheets/contact_sheet_Flipbooks_{Variant}.png`
+    (each variant) — quick visual scan, hero-gem included.
+- **Status.** The two offline-cook units are now EXHAUSTED: (a) all 9 variants cooked
+  (81/81 maps), (b) all 9 flipbooks baked (648/648 frames). Remaining work is
+  editor-bound (Phase C closed-editor build, D import/MI, E stage, F PIE) — deferred
+  until 9316 frees, per §6 hold rule.
+- **Master-index SSOT promotion (recommended, deferred):** when the closed-editor build
+  (Phase C) lands, promote the neural controller + hero-gem family to §2 of the
+  Emerging-Toolchain Master Index as PRESENT (currently still SCAFFOLDED for the C++
+  seam; onnx + docs are VERIFIED). The onnx graph and UE runtime seam do not change.
