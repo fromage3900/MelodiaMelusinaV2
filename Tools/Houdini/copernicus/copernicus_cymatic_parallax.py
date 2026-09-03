@@ -475,6 +475,15 @@ VARIANTS = {
         glow_intensity=0.55, vein_freq=9, scale_freq=42,
         chladni_modes=[(7, 4), (12, 9), (17, 13)],
     ),
+    # === FirstLightDawn — rose-gold daybreak + dew glint (2026-09-03, wardrobe) ===
+    # Primary Chladni mode (8,5): free of all script + garment/water modes (see vocab).
+    "FirstLightDawn": dict(
+        mist=(148, 168, 198), blush=(244, 178, 172), gold=(255, 226, 170),
+        gold_hi=(255, 240, 200), crest=(255, 244, 214),
+        rough_mist=0.66, rough_blush=0.52, rough_gold=0.28,
+        glow_intensity=0.35, band_freq=5,
+        chladni_modes=[(8, 5), (13, 9), (19, 14)],
+    ),
 }
 
 # === Math helpers ===
@@ -2570,6 +2579,41 @@ def build_butterfly_wing_membrane(h, w, frame, total_frames):
     return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
 
 
+def build_first_light_dawn(h, w, frame, total_frames):
+    """Rose-gold daybreak: dawn bands breaking over mist + dew glint."""
+    p = VARIANTS["FirstLightDawn"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.3 + i * 0.2) + i * 1.1 for i in range(len(modes))],
+                          weights=[1.0, 0.7, 0.5][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+    warp = warped_fbm(h, w, 24, 4, 0.25, SEED + 820)
+    # Dawn bands: light cresting horizontally, broken by the Chladni field
+    bands = np.sin((ny * p["band_freq"] + warp * 0.8) * 2 * np.pi) * 0.5 + 0.5
+    crest = smoothstep(0.55, 0.9, bands) * smoothstep(0.35, 0.7, cym)
+    crest_core = smoothstep(0.8, 0.97, bands) * smoothstep(0.5, 0.8, nodal)
+    # Dew: fine glint speckle riding the crests
+    dew = warped_fbm(h, w, 96, 2, 0.2, SEED + 821)
+    glint = smoothstep(0.78, 0.95, dew) * (crest * 0.7 + 0.15)
+    height = np.clip(crest * 0.3 + glint * 0.4 + warp * 0.12, 0, 1)
+    base = mix(col(p["mist"]), col(p["blush"]), warp * 0.5 + cym * 0.3)
+    base = mix(base, col(p["gold"]), crest * 0.8)
+    base = mix(base, col(p["gold_hi"]), crest_core * 0.6)
+    base = np.clip(base, 0, 1)
+    rough = mix(p["rough_mist"], p["rough_blush"], cym)
+    rough = mix(rough, p["rough_gold"], crest)
+    rough = np.clip(rough - glint * 0.35, 0.02, 1.0)  # dew pits shine
+    metallic = np.clip(glint * 0.7, 0, 1)
+    emissive = mask_color(crest_core * smoothstep(0.4, 0.75, cym),
+                          col(p["crest"]) * p["glow_intensity"])
+    emissive = np.clip(emissive, 0, 1)
+    iri = np.clip(crest * 0.2 + glint * 0.35 + warp * 0.08, 0, 1)
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
 # === Main ===
 
 BUILDERS = {
@@ -2632,6 +2676,7 @@ BUILDERS = {
     "CymaticOrchid": build_cymatic_orchid,
     "AntiqueDollRose": build_antique_doll_rose,
     "ButterflyWingMembrane": build_butterfly_wing_membrane,
+    "FirstLightDawn": build_first_light_dawn,
 }
 
 def main():

@@ -4,17 +4,17 @@
   "size": "2048x2048",
   "frames": 1,
   "variants": {
-    "ButterflyWingMembrane": {
+    "FirstLightDawn": {
       "outputs": [
-        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_BaseColor.png",
-        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Normal.png",
-        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Roughness.png",
-        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Metallic.png",
-        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Height.png",
-        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_ORM.png",
-        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Emissive.png",
-        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Iridescence.png",
-        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Opacity.png"
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Normal.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Height.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_ORM.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Opacity.png"
       ]
     }
   },
