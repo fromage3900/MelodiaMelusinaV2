@@ -10,6 +10,8 @@ extends it with on-disk verification + the subsystems built 2026-08-31).
 **Evidence basis:** everything below was verified against `Source/`, `Plugins/`, `Content/`, and the
 research corpus on 2026-08-31 (not assumed).
 
+**Last verified against current main:** 2026-09-02 (this session)
+
 ---
 
 ## 0. The non-negotiable rule
@@ -30,12 +32,14 @@ research corpus on 2026-08-31 (not assumed).
 | **Gaea** | **PRESENT** | `Plugins/GaeaUnrealTools/` |
 | **PCG + toolkit** | **PRESENT** | `Plugins/PCGExtendedToolkit/` · UE PCG enabled |
 | **Unreal MCP / Monolith** | **PRESENT** | `Plugins/UnrealMCP/` · `Plugins/Monolith/` (1330+ actions) |
-| **NNERuntimeORT** | **PRESENT** | in `BS_GodFile.uproject` (enables neural inference) |
+| **NNERuntimeORT** | **PRESENT (laptop: missing, gitignored)** | `Plugins/NNERuntimeORT/` — re-clone required on laptop. |
 | **Audio-Reactive presentation (synesthesia Tiers 1–3)** | **PRESENT — full impl** | `Source/.../MelodiaAudioReactivePresentationSubsystem.h/.cpp` — writes `MPC_Melodia_Palette` + `NPC_Melodia_Palette` (BeatPulse/BeatPhase/BeatIntensity/…). **This is the single audio writer — never add a second.** |
 | **Music clock** | **PRESENT** | `Source/.../MelodiaMusicClockSubsystem.h/.cpp` |
-| **onnx model** | **PRESENT** | `Plugins/Claireon/Resources/Models/bge-small-en-v1.5-int8/model.onnx` (34 MB, text-embedding for Claireon) + onnxruntime installed |
-| **Claireon** | **PRESENT — editor-ACTIVE (owner-approved in-editor usage)** | `Plugins/Claireon/` vendored @ `ed0b457`, enabled in `.uproject` (`6e48ffbc`), editor-module binary built 08-22. Client probe `Tools/test_claireon_toolcalls.py` — qwen3-coder:30b **7/8** (2026-08-31). Owner confirmed concurrent in-editor use is fine; the older "isolate from Monolith" warning no longer applies as a hard rule. See `Docs/CLAIREON_PREP_2026-08-20.md`. |
+| **onnx model** | **PRESENT (laptop: missing, gitignored)** | `Plugins/Claireon/Resources/Models/bge-small-en-v1.5-int8/model.onnx` (34 MB, text-embedding for Claireon). Re-clone required on laptop. |
+| **Claireon** | **PRESENT — editor-ACTIVE (laptop: missing, gitignored)** | `.claireon/` (re-clone: `git clone https://github.com/believer-oss/Claireon.git Plugins/Claireon`) · `BS_GodFile.uproject` enabled. Missing from disk on laptop. |
 | **Cymatics / audio→geometry Chladni** | **PRESENT — source-verified, read-only MPC consumer** | `Source/.../MelodiaCymaticsSubsystem.h/.cpp` (`UGameInstanceSubsystem`, `FTSTicker`, reads `MPC_Melodia_Palette` `BeatPulse`/`BassIntensity` read-only via `GetParameterCollectionInstance` — no writes, `IsReadOnlyByContract()=true`, Chladni `cos(n·π·u)cos(m·π·v)−cos(m·π·u)cos(n·π·v)`) · `Tools/Houdini/copernicus_cymatic_parallax.py` · `Saved/Audit/copernicus_cymatic/` **21 variants × 1665 PNGs (185 Height, 9 maps: BaseColor/Normal/Roughness/Metallic/Height/ORM/Emissive/Iridescence/Opacity, 139 MB, all PNG magic valid)** · probe `Saved/Audit/cymatics_probe_2026-08-31.json` 5/5 PASS · audit `Saved/Audit/cymatics_audit_2026-09-01.json`. Build: closed-editor `Build.bat` required for PIE. Single-writer guard: `UMelodiaAudioReactivePresentationSubsystem` remains the sole MPC writer — this subsystem is READ-ONLY. Promoted from §2 SCAFFOLDED 2026-09-01 (grand_review phase_1). |
+| **Cymatic Sanctuary** | **PRESENT (added 2026-09-02)** | `Docs/Tools/puzzle-sandbox/index.html` — 12-instrument Music-as-Key sandbox for testing schema, interaction, visual language. Commit `dd2e7aec`. Not authoritative for gameplay state. |
+| **MelodiaCymaticsWriterSubsystem** | **PRESENT (added 2026-09-02)** | Single-writer for `MPC_Cymatics_Driver`. Commit `8e5101d3`. Subordinate to `UMelodiaAudioReactivePresentationSubsystem` (the sole MPC writer). |
 
 ## 2. SCAFFOLDED by me 2026-08-31 (buildable, additive new files) — extend, don't duplicate
 
@@ -116,7 +120,7 @@ Tier C/D (RTX, neural, Procedura, Magpie). **Every test uses the required-result
 1. Is the system in §1 (PRESENT)? Extend it, don't rebuild. Especially: audio writer (single), music clock.
 2. Is it in §2 (SCAFFOLDED)? Finish it before starting a parallel copy.
 3. Is it in §3 (WATCH)? Requires an explicit owner task to promote.
-4. Is it §4 (external)? You cannot build it natively; say so, don't fake it.
+4. Is it §4 (external)? You cannot build it natively; say so, don't fake.
 5. Is the field-name you want already in §5 (World Field Bus / SpeedTree bridge)? Reuse the contract.
 6. Editor: one instance, one :9316. Batch saves `unattended:true`. No `Content/_PROJECT/` writes.
 7. Evidence: offline probe + live PIE + ledger row. Prose is not a row.
