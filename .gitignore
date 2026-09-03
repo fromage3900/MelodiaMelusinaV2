@@ -276,7 +276,7 @@ Tools/BlenderAddons/**/*.blend1
 !Tools/melodia_stage_shot.py
 melodia-design-system/
 KitbashExport/
-research/
+/research/
 Products/
 Assets/
 pipeline/

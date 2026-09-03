@@ -1,23 +1,63 @@
 #include "MelodiaOceanologyWaterBridgeSubsystem.h"
 #include "MelodiaWorldFieldBus.h"
-#include "MelodiaCymaticsSubsystem.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "GameFramework/Actor.h"
-#include "Kismet/GameplayStatics.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
 #include "Containers/Ticker.h"
 #include "ProfilingDebugging/CpuProfilerTrace.h"
+#include "UObject/StructOnScope.h"
+#include "UObject/UnrealType.h"
 
 static constexpr TCHAR OceanActorToken[] = TEXT("Oceanology");
 static constexpr TCHAR MPCPalettePath[]  = TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette");
-static constexpr TCHAR MPCCymaticsPath[] = TEXT("/Game/Melodia/Cymatics/MPC_Cymatics_Driver.MPC_Cymatics_Driver");
 
 // Tunables — cymatic Tension -> water ripple scale
 static constexpr float CymaticRippleGain = 1.1f;
 static constexpr float BasinPoolTensionBoost = 0.35f;
+
+namespace MelodiaOceanologyBridge
+{
+    UObject* GetWaterMID(AActor* Actor)
+    {
+        UFunction* Function = Actor->FindFunction(TEXT("GetWaterMID"));
+        FObjectPropertyBase* ReturnProperty = Function
+            ? FindFProperty<FObjectPropertyBase>(Function, TEXT("ReturnValue")) : nullptr;
+        if (!ReturnProperty || !ReturnProperty->HasAnyPropertyFlags(CPF_ReturnParm) || Function->NumParms != 1)
+        {
+            return nullptr;
+        }
+
+        FStructOnScope Params(Function);
+        Actor->ProcessEvent(Function, Params.GetStructMemory());
+        return ReturnProperty->GetObjectPropertyValue_InContainer(Params.GetStructMemory());
+    }
+
+    void SetScalar(AActor* Actor, UObject* WaterMID, FName Name, float Value)
+    {
+        UFunction* Function = Actor->FindFunction(TEXT("SetScalarParameterValue"));
+        FNameProperty* NameProperty = Function
+            ? FindFProperty<FNameProperty>(Function, TEXT("ParameterName")) : nullptr;
+        FFloatProperty* ValueProperty = Function
+            ? FindFProperty<FFloatProperty>(Function, TEXT("Value")) : nullptr;
+        if (NameProperty && ValueProperty && Function->NumParms == 2
+            && NameProperty->HasAnyPropertyFlags(CPF_Parm) && ValueProperty->HasAnyPropertyFlags(CPF_Parm)
+            && !NameProperty->HasAnyPropertyFlags(CPF_OutParm | CPF_ReturnParm)
+            && !ValueProperty->HasAnyPropertyFlags(CPF_OutParm | CPF_ReturnParm))
+        {
+            FStructOnScope Params(Function);
+            NameProperty->SetPropertyValue_InContainer(Params.GetStructMemory(), Name);
+            ValueProperty->SetPropertyValue_InContainer(Params.GetStructMemory(), Value);
+            Actor->ProcessEvent(Function, Params.GetStructMemory());
+        }
+        else if (UMaterialInstanceDynamic* MID = Cast<UMaterialInstanceDynamic>(WaterMID))
+        {
+            MID->SetScalarParameterValue(Name, Value);
+        }
+    }
+}
 
 void UMelodiaOceanologyWaterBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -101,42 +141,9 @@ bool UMelodiaOceanologyWaterBridgeSubsystem::TickBridge(float DeltaTime)
         ApplyHorizonEaterConfig();
     }
 
-    // Read WorldField.Resonance/Tension — the cymatic source bus.
-    // Preference: live cymatics subsystem; fallback: UWorldFieldBus::LastPublished.
-    float BeatPulse = 0.f;
-    float Tension = 0.f;
-    int32 ResonanceN = 2, ResonanceM = 3;
-
-    if (UGameInstance* GI = World->GetGameInstance())
-    {
-        if (UMelodiaCymaticsSubsystem* Cym = GI->GetSubsystem<UMelodiaCymaticsSubsystem>())
-        {
-            BeatPulse = Cym->GetBeatPulse();
-            Tension = FMath::Abs(Cym->SampleCymaticAmplitude(0.5f, 0.5f));
-            Cym->GetCymaticMode(ResonanceN, ResonanceM);
-        }
-        else
-        {
-            const FWorldFieldSample S = UWorldFieldBus::SampleResonanceTension(FVector::ZeroVector);
-            ResonanceN = S.ResonanceN; ResonanceM = S.ResonanceM;
-            Tension = S.Tension; BeatPulse = S.BeatPulse;
-        }
-    }
-
-    // Also read MPC_Cymatics_Driver Tension override (Writer lane may hold fresher Bass)
-    if (UMaterialParameterCollection* CymMPC = LoadObject<UMaterialParameterCollection>(nullptr, MPCCymaticsPath))
-    {
-        if (UMaterialParameterCollectionInstance* Inst = World->GetParameterCollectionInstance(CymMPC))
-        {
-            float Bass = 0.f;
-            if (Inst->GetScalarParameterValue(FName(TEXT("Cymatic_BassIntensity")), Bass))
-            {
-                Tension = FMath::Max(Tension, Bass * 0.85f);
-            }
-        }
-    }
-
-    DriveCymaticRipples(BeatPulse, Tension, ResonanceN, ResonanceM);
+    // Consume the published field; cymatics owns how resonance and tension are produced.
+    const FWorldFieldSample Field = UWorldFieldBus::SampleResonanceTension(FVector::ZeroVector);
+    DriveCymaticRipples(Field.BeatPulse, Field.Tension, Field.ResonanceN, Field.ResonanceM);
     DriveLODDissolveReflection();
     return true;
 }
@@ -163,43 +170,24 @@ void UMelodiaOceanologyWaterBridgeSubsystem::DiscoverOceanActors()
         if (bKnown) continue;
 
         // Prefer GetWaterMID (plugin API) — reflected, no header.
-        UObject* Mid = nullptr;
-        if (UFunction* GetMidFunc = Actor->FindFunction(FName(TEXT("GetWaterMID"))))
-        {
-            struct FGetMidParams { UObject* ReturnValue = nullptr; };
-            FGetMidParams P;
-            Actor->ProcessEvent(GetMidFunc, &P);
-            Mid = P.ReturnValue;
-        }
-        // Fallback: mesh material 0 if MID not yet created (editor PIE race)
-        if (!Mid)
-        {
-            if (UFunction* GetMeshMid = Actor->FindFunction(FName(TEXT("GetWaterMaterial"))))
-            {
-                // Some builds expose GetWaterMaterial instead
-                (void)GetMeshMid;
-            }
-        }
+        UObject* Mid = MelodiaOceanologyBridge::GetWaterMID(Actor);
 
         FOceanBridgeEntry Entry;
         Entry.OceanActor = Actor;
         Entry.WaterMID = Mid;
         OceanEntries.Add(Entry);
 
-        UE_LOG(LogTemp, Log, TEXT("[OceanBridge] Registered %s (MID %s) — horizon %0.0f cm, valley thresholds %0.0f/%0.0f/%0.0f"),
+        UE_LOG(LogTemp, Log, TEXT("[OceanBridge] Registered %s (MID %s) — valley thresholds %0.0f/%0.0f/%0.0f"),
             *Actor->GetName(), Mid ? *Mid->GetName() : TEXT("None"),
-            HorizonConfig.GridExtentCm, HorizonConfig.ValleyWaterThreshold,
+            HorizonConfig.ValleyWaterThreshold,
             HorizonConfig.ValleyFogThreshold, HorizonConfig.BasinDepressionZ);
     }
 }
 
 void UMelodiaOceanologyWaterBridgeSubsystem::ApplyHorizonEaterConfig()
 {
-    // The OceanologyInfiniteOcean quad-tree tiles infinitely, but its
-    // effective horizon is bounded by SLW extinction + scattering + draw distance.
-    // Push horizon-eater params via reflected SetScalarParameterValue so the
-    // 6km water grid genuinely eats the horizon past SLW extinction (~1.2km)
-    // instead of a 500m plane with a visible edge (SeaAbove doc §4.2).
+    // Quadtree extent and actor Z are authored on the Oceanology actor in the editor.
+    // Material scalars cannot configure that geometry; only refresh the fallback MID here.
     for (auto& Entry : OceanEntries)
     {
         AActor* Actor = Entry.OceanActor.Get();
@@ -208,43 +196,7 @@ void UMelodiaOceanologyWaterBridgeSubsystem::ApplyHorizonEaterConfig()
         // Refresh MID handle if it was null at discovery time
         if (!Entry.WaterMID.IsValid())
         {
-            if (UFunction* GetMidFunc = Actor->FindFunction(FName(TEXT("GetWaterMID"))))
-            {
-                struct FGetMidParams { UObject* ReturnValue = nullptr; };
-                FGetMidParams P;
-                Actor->ProcessEvent(GetMidFunc, &P);
-                Entry.WaterMID = P.ReturnValue;
-            }
-        }
-
-        UFunction* SetScalar = Actor->FindFunction(FName(TEXT("SetScalarParameterValue")));
-        UFunction* SetVector = Actor->FindFunction(FName(TEXT("SetVectorParameterValue")));
-        if (!SetScalar) continue;
-
-        auto PushScalar = [&](FName Name, float Value)
-        {
-            struct FSetScalarParams { FName ParameterName; float Value; };
-            FSetScalarParams P{ Name, Value };
-            Actor->ProcessEvent(SetScalar, &P);
-        };
-
-        // Horizon eater — ensure water grid is not clamped to 500m prototype.
-        // These are grafted/custom scalars on M_Water_Oceanology_Melodia:
-        PushScalar(FName(TEXT("HorizonGridExtent")), HorizonConfig.GridExtentCm);
-        PushScalar(FName(TEXT("WaterLevelZ")), HorizonConfig.WaterLevelZ);
-        PushScalar(FName(TEXT("ValleyWaterThreshold")), HorizonConfig.ValleyWaterThreshold);
-
-        // SLW absorption tuning — the "non-physical haze budget of kilometres over metres"
-        // that makes the second ocean read as kilometres deep (SeaAbove doc §3).
-        // Kept conservative here; lookdev tunes via MI, not code.
-        PushScalar(FName(TEXT("AbsorptionExtinctionTune")), 1.f);
-
-        // Also drive shoreline RVT hint so valley water meets fabric without popping
-        PushScalar(FName(TEXT("ShorelineBlend")), 0.f); // overridden per LOD in DriveLODDissolveReflection
-
-        if (SetVector)
-        {
-            (void)SetVector; // reserved for DeepScatteringColor cymatic tint below
+            Entry.WaterMID = MelodiaOceanologyBridge::GetWaterMID(Actor);
         }
     }
 }
@@ -264,45 +216,17 @@ void UMelodiaOceanologyWaterBridgeSubsystem::DriveCymaticRipples(float BeatPulse
         AActor* Actor = Entry.OceanActor.Get();
         if (!Actor) continue;
 
-        // 1) Reflected Oceanology actor API — writes WaterMID + far MID together
-        if (UFunction* SetScalar = Actor->FindFunction(FName(TEXT("SetScalarParameterValue"))))
+        // Oceanology's actor API writes near and far MIDs; direct MID is a fallback only.
+        auto Push = [&](const TCHAR* Name, float Value)
         {
-            auto Push = [&](const TCHAR* Name, float V)
-            {
-                struct FSetScalarParams { FName ParameterName; float Value; };
-                FSetScalarParams P{ FName(Name), V };
-                Actor->ProcessEvent(SetScalar, &P);
-            };
-            // Grafted params on M_Water_Oceanology_Melodia (never overwritten by plugin helpers)
-            Push(TEXT("Cymatic_RippleWeight"), RippleWeight);
-            Push(TEXT("Cymatic_BasinRipple"), BasinRipple);
-            Push(TEXT("Cymatic_Tension"), TensionWeight);
-            Push(TEXT("Cymatic_ResonanceN"), static_cast<float>(ResonanceN));
-            Push(TEXT("Cymatic_ResonanceM"), static_cast<float>(ResonanceM));
-            // Also ride the existing Biolum_*/Toon_* grafts so cymatic pulses are visible even before
-            // the Cymatic_* params are wired in the master.
-            Push(TEXT("Biolum_Intensity"), 1.0f + BeatPulse * 1.2f + Tension * 0.5f);
-            // Keep Toon_Weight ride subtle — SLW banding must stay hand-matched to reef
-            Push(TEXT("Toon_Weight"), 0.60f + Tension * 0.12f);
-        }
-
-        // 2) Direct MID fallback (if GetWaterMID resolved)
-        if (UMaterialInstanceDynamic* Mid = Cast<UMaterialInstanceDynamic>(Entry.WaterMID.Get()))
-        {
-            Mid->SetScalarParameterValue(FName(TEXT("Cymatic_RippleWeight")), RippleWeight);
-            Mid->SetScalarParameterValue(FName(TEXT("Cymatic_Tension")), TensionWeight);
-            Mid->SetScalarParameterValue(FName(TEXT("Biolum_Intensity")), 1.0f + BeatPulse * 1.2f + Tension * 0.5f);
-        }
-
-        // 3) Reflected vector tint — cymatic Tension pulls DeepScattering toward violet on peaks
-        if (UFunction* SetVector = Actor->FindFunction(FName(TEXT("SetVectorParameterValue"))))
-        {
-            struct FSetVectorParams { FName ParameterName; FLinearColor Value; };
-            const float VioletPull = Tension * 0.10f;
-            FSetVectorParams P{ FName(TEXT("DeepScatteringColor")),
-                FLinearColor(0.05f + VioletPull * 0.6f, 0.25f - VioletPull * 0.2f, 0.30f + VioletPull, 0.15f) };
-            Actor->ProcessEvent(SetVector, &P);
-        }
+            MelodiaOceanologyBridge::SetScalar(Actor, Entry.WaterMID.Get(), FName(Name), Value);
+        };
+        // Dedicated cymatic shading only; audio-reactive presentation owns bioluminescence and tint.
+        Push(TEXT("Cymatic_RippleWeight"), RippleWeight);
+        Push(TEXT("Cymatic_BasinRipple"), BasinRipple);
+        Push(TEXT("Cymatic_Tension"), TensionWeight);
+        Push(TEXT("Cymatic_ResonanceN"), static_cast<float>(ResonanceN));
+        Push(TEXT("Cymatic_ResonanceM"), static_cast<float>(ResonanceM));
     }
 }
 
@@ -314,27 +238,28 @@ void UMelodiaOceanologyWaterBridgeSubsystem::DriveLODDissolveReflection()
     // or HLOD system and water follows within one frame.
     //
     // Source of truth for current LOD is external (HLOD / Nanite fallback /
-    // manual dissolve scalar). For scaffold we read a global MPC dissolve scalar
-    // if present, else assume LOD0 (no dissolve) so Sea Above is unaffected.
+    // manual dissolve scalar). Read the optional global MPC scalar only when present.
 
     UWorld* World = GetWorld();
     if (!World) return;
 
     float DissolveT = 0.f; // 0 intact, 1 fully dissolved
+    bool bHasDissolveParameter = false;
     if (UMaterialParameterCollection* Palette = LoadObject<UMaterialParameterCollection>(nullptr, MPCPalettePath))
     {
         if (UMaterialParameterCollectionInstance* Inst = World->GetParameterCollectionInstance(Palette))
         {
-            // Optional scalar published by HLOD / dress pass — absent = 0 (safe)
-            Inst->GetScalarParameterValue(FName(TEXT("FarawayDissolveT")), DissolveT);
+            bHasDissolveParameter = Inst->GetScalarParameterValue(FName(TEXT("FarawayDissolveT")), DissolveT);
         }
     }
-    if (DissolveT <= KINDA_SMALL_NUMBER)
+    if (!bHasDissolveParameter)
     {
-        return; // off-path — no per-frame work, no log spam
+        return; // This world has no dissolve driver; leave its authored water values alone.
     }
 
-    const float ShorelineReveal = FMath::Clamp(DissolveT, 0.f, 1.f);
+    // An existing driver returning to zero must restore all dedicated dissolve values.
+    DissolveT = FMath::Clamp(DissolveT, 0.f, 1.f);
+    const float ShorelineReveal = DissolveT;
     const float FoamReveal = FMath::Clamp(DissolveT * 0.9f + 0.1f, 0.f, 1.f);
     const float WaterOpacity = FMath::Clamp(0.65f + DissolveT * 0.35f, 0.f, 1.f);
 
@@ -342,24 +267,14 @@ void UMelodiaOceanologyWaterBridgeSubsystem::DriveLODDissolveReflection()
     {
         AActor* Actor = Entry.OceanActor.Get();
         if (!Actor) continue;
-        if (UFunction* SetScalar = Actor->FindFunction(FName(TEXT("SetScalarParameterValue"))))
+        auto Push = [&](const TCHAR* Name, float Value)
         {
-            auto Push = [&](const TCHAR* Name, float V)
-            {
-                struct FSetScalarParams { FName ParameterName; float Value; };
-                FSetScalarParams P{ FName(Name), V };
-                Actor->ProcessEvent(SetScalar, &P);
-            };
-            Push(TEXT("ShorelineBlend"), ShorelineReveal);
-            Push(TEXT("FoamReveal"), FoamReveal);
-            Push(TEXT("WaterRevealOpacity"), WaterOpacity);
-            // Tie dissolve into cymatic pool so dissolving ridges shimmer
-            Push(TEXT("Cymatic_DissolveT"), DissolveT);
-        }
-        if (UMaterialInstanceDynamic* Mid = Cast<UMaterialInstanceDynamic>(Entry.WaterMID.Get()))
-        {
-            Mid->SetScalarParameterValue(FName(TEXT("ShorelineBlend")), ShorelineReveal);
-            Mid->SetScalarParameterValue(FName(TEXT("WaterRevealOpacity")), WaterOpacity);
-        }
+            MelodiaOceanologyBridge::SetScalar(Actor, Entry.WaterMID.Get(), FName(Name), Value);
+        };
+        Push(TEXT("ShorelineBlend"), ShorelineReveal);
+        Push(TEXT("FoamReveal"), FoamReveal);
+        Push(TEXT("WaterRevealOpacity"), WaterOpacity);
+        // Tie dissolve into cymatic pool so dissolving ridges shimmer.
+        Push(TEXT("Cymatic_DissolveT"), DissolveT);
     }
 }

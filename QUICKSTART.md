@@ -1,112 +1,102 @@
-# 🚀 Melodia — Quick Start & Developer Guide
+# Quickstart — Run Something in 5 Minutes
 
-**Get up and running with the Melodia Rhythm-JRPG in 5 minutes!**
-**Engine Target:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
-**Status (2026-09-01):** 10/10 P0 Gameplay Completion Gates PASS | 524/524 Automated Tests Passing
+> You just cloned this repo. Here's how to see something happen fast.
 
 ---
 
-## 🛠️ 1. Prerequisites & Environment Setup
+## Option 1: Generate Terrain from MIDI (Blender)
 
-### Required Software
-- **Unreal Engine 5.8.0**: Installed at `C:\Program Files\Epic Games\UE_5.8\`
-- **Visual Studio 2022**: Desktop development with C++ (v143 toolset)
-- **Blender 5.2 LTS**: Installed at `C:\Program Files\Blender Foundation\Blender 5.2\`
-- **Git & Git LFS**: Installed and enabled
+**Time:** 5 minutes | **Needs:** Blender 5.2
 
-### Initial Setup Commands (PowerShell)
-```powershell
-# 1. Clone the repository
-git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
-cd MelodiaMelusinaV2
+```bash
+# 1. Open Blender 5.2
+# 2. Edit > Preferences > Add-ons > Install > select:
+Tools/BlenderAddons/melodia_studio/__init__.py
 
-# 2. Hydrate Git LFS assets
-git lfs pull
-
-# 3. Validate local environment and background services
-.\deploy\validate_setup.ps1
+# 3. Enable "Melodia Studio" addon
+# 4. In 3D View, press N to open sidebar
+# 5. Click "Melodia Studio" tab
+# 6. Select a MIDI file from the dropdown
+# 7. Click "Generate Terrain"
+# 8. Watch the world build itself from the music
 ```
 
+**What you get:** A 3D terrain mesh generated from the MIDI's note data.
+
 ---
 
-## 🧪 2. Running Automated Tests
+## Option 2: Build a Castle (Blender)
 
-Melodia provides a fully automated test harness across Python simulations, C++ automation tests, MCP tool policies, and asset contract validators:
+**Time:** 5 minutes | **Needs:** Blender 5.2 + Melodia Studio addon enabled
 
-```powershell
-# Run the core automated test suite (GMM Simulations + P0 Integration + ECHO Contracts)
-.\run_tests.ps1
+```python
+# In Blender's Text Editor, run:
+import sys
+sys.path.append(r"C:\EnvironmentPortfolio\BS_GodFile\deploy\surreal_arch")
+from melodia_gn.core import new_geometry_tree, label_tree
+from melodia_gn.castle import build_castle_tower
 
-# Run offline P0 preflight gate verification (12 static checks)
-& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/verify_p0_offline.py
-
-# Run Melodia MCP regression test suite (38 tests)
-& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_melodia_mcp.py
-
-# Run end-to-end release & hygiene verification suite (17 tests across 4 tiers)
-& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_e2e_melusina_release.py
+# Build a castle tower
+build_castle_tower("MEL_my_tower")
 ```
 
+**What you get:** A procedural castle tower with parameters.
+
 ---
 
-## 🎮 3. Playing the Vertical Slice & Chapter Loop in Editor (PIE)
+## Option 3: Render a Beauty Shot (Blender)
 
-The P0 vertical slice implements the standardized **6-Phase Reusable Chapter Gameplay Loop**:
+**Time:** 5 minutes | **Needs:** Blender 5.2 + stage blend
 
-### Step 1: Open the Project in Unreal Editor
-```powershell
-start BS_GodFile.uproject
+```bash
+# 1. Open your stage blend (e.g., Melodia_Portfolio_Stage_v4.blend)
+# 2. In Text Editor, run:
+exec(open(r"C:\EnvironmentPortfolio\BS_GodFile\Tools\setup_melusina_master_studio.py").read())
 ```
 
-### Step 2: Open the Chapter 1 Sanctuary Map
-- Open `/Game/Melodia/Levels/Opening/L_MelusinaMorning`
-- Press **Play in Editor (PIE)** (Alt + P)
-
-### Step 3: Experience the 6-Phase Gameplay Flow
-1. **Phase 1 (Sanctuary Dialogue):** Approach the NPC anchor; engage in QuillScript branching dialogue. Unlocks departure gate upon completion.
-2. **Phase 2 (Overworld & Music Key):** Proceed through departure portal to the Sea Above journey map (`LV_SeaAbove_Prototype`). Step on harmonic resonance nodes (`APCGHeroMusicGraphHost`) to unlock the forward route.
-3. **Phase 3 (Turn-Based Combat & Rhythm Highway):** Enter the battle arena (`L_KaleidoNave`). In the single-writer HUD (`UMelodiaUIBridgeSubsystem`), select an attack or skill. Hit incoming notes on the Rhythm Highway (keys: `Q`, `W`, `O`, `P`) to scale damage by your accuracy grade (`Poor: 0.35` to `Perfect: 1.5`).
-4. **Phase 4 (Battle Resolution & Rewards):** Defeat the boss. The narrative subsystem handles resolution and idempotently grants the chapter reward outfit.
-5. **Phase 5 (Wardrobe Traversal Upgrade):** Equip the new outfit to activate the `Glide` traversal capability (`IMelodiaTraversalCapabilityProvider`), allowing you to traverse over the portal chasm.
-6. **Phase 6 (Canonical Checkpoint):** Reach the checkpoint anchor. Player stats, quest flags, wardrobe, and inventory serialize cleanly to `BP_JRPGSaveGame`.
+**What you get:** Fade sky, Komikaze studio set, cameras recomposed to Melusina.
 
 ---
 
-## 📦 4. Packaging the Standalone Win64 Shipping Build
+## Option 4: Run Mocap on Melusina (Unreal)
 
-To build and cook a fresh standalone Win64 package containing all canonical gameplay maps:
+**Time:** 5 minutes | **Needs:** Unreal Editor 5.8 + Rokoko FBX
 
-```powershell
-& "C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun `
-  -project="C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject" `
-  -noP4 -platform=Win64 -clientconfig=Development `
-  -cook -build -stage -pak -archive `
-  -archivedirectory="C:\EnvironmentPortfolio\BS_GodFile\Saved\Packages\P0_Closeout_20260901" `
-  -map="/Game/Melodia/Levels/Opening/L_MelusinaMorning+/Game/EnvSandbox/Environments/L_KaleidoNave+/Game/Melodia/Maps/LV_SeaAbove_Prototype+/Game/Melodia/Maps/MelodiaMainMenu"
+```bash
+# 1. Drop a Rokoko FBX in:
+Imports/Mocap/Rokoko/Inbox/
+
+# 2. Run (editor CLOSED):
+Tools/run_headless_mocap_retarget.ps1
+
+# 3. Check the result:
+cat Saved/Melodia/retarget_report.json
 ```
 
-To run the packaged game:
-```powershell
-& "Saved\Packages\P0_Closeout_20260901\Windows\BS_GodFile.exe" -log
+**What you get:** A retargeted animation clip on Melusina.
+
+---
+
+## Option 5: Test FACS Face Rig (Unreal)
+
+**Time:** 5 minutes | **Needs:** Unreal Editor 5.8
+
+```bash
+# In Unreal Python console:
+python Tools/build_melusina_face_rig.py --plan
+python Tools/build_melusina_face_rig.py --apply
 ```
 
----
-
-## 🤖 5. Model Context Protocol (MCP) Automation
-
-The repository includes local MCP servers for automated inspection, testing, and Unreal Editor control:
-
-- **Melodia MCP (`deploy/melodia_mcp_server.py`):** Schema tools for QuillScript, narrative state, quest registries, and Blueprint fixtures.
-- **Agent Bridge MCP (`deploy/agent_bridge_mcp.py`):** Policy-enforced routing bridge preventing unsafe mutations while exposing typed inspection commands.
-- **Monolith MCP (Port `9316`):** Live Unreal Editor JSON-RPC bridge for Blueprint inspection and reflection.
+**What you get:** FACS face rig wired and ready for animation.
 
 ---
 
-## 📚 6. Key Documentation Links
+## What's Next?
 
-- **Authoritative Evening Plan:** [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md)
-- **Current Architectural State:** [CURRENT_STATE.md](CURRENT_STATE.md)
-- **Master Task Ledger:** [TODO.md](TODO.md)
-- **Gate Ledger:** `Saved/gate_ledger.json`
-- **P0 Golden Run Specification:** `specs/p0/core_p0_dream_golden_run.v1.json`
-- **Documentation Index:** [DOC_INDEX.md](DOC_INDEX.md)
+- **Build something?** → Read `UNIVERSITY.md` to pick a system
+- **Animate something?** → Read `Docs/Production/CHARACTER_ANIMATION_2_SEMESTER_PLAN.md`
+- **Understand the architecture?** → Read `Docs/Research/GEOMETRY_NODES_COMPLETE_REFERENCE.md`
+
+---
+
+*Last updated: 2026-09-03*

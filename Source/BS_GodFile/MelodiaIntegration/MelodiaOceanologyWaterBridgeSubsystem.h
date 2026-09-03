@@ -4,21 +4,19 @@
 #include "MelodiaOceanologyWaterBridgeSubsystem.generated.h"
 
 /**
- * Oceanology SLW horizon-eater + cymatic ripple + height-aware + LOD-reflection bridge.
+ * Oceanology cymatic shading + height-aware queries + LOD-reflection bridge.
  *
  * SCAFFOLD — no Oceanology headers included. All plugin contact is via
- * FindFunction(TEXT("GetWaveInfoAtLocation"/"SetScalarParameterValue"/"GetWaterMID"))
+ * FindFunction(TEXT("SetScalarParameterValue"/"GetWaterMID"))
  * so the module stays buildable with the plugin disabled or absent.
  *
  * Responsibilities (one authority, no second writer):
- *  - Sea Above horizon eater: configure OceanologyInfiniteOcean to 6km grid so the
- *    waterline eats the horizon, not a 500m false-ocean plane (SEA_ABOVE doc §4.2).
- *    Real ocean is at Z=0 SLW (Single Layer Water); false ocean plane at -50m is
- *    presentation-only and never becomes a Water Body.
- *  - Cymatic ripple displacement: sample WorldField.Resonance/Tension (Chladni
+ *  - Oceanology quadtree extent and actor Z are authored in the editor; this
+ *    subsystem does not change geometry through material parameters.
+ *  - Cymatic ripple shading: sample WorldField.Resonance/Tension (Chladni
  *    N,M + Tension) and drive reflected Oceanology scalar params:
- *      Biolum_Intensity, Cymatic_RippleWeight, Cymatic_Tension, Toon_Weight
- *    plus native SLW params (PhaseGLow / ScatterBoost) via SetScalarParameterValue.
+ *      Cymatic_RippleWeight, Cymatic_BasinRipple, Cymatic_Tension,
+ *      Cymatic_ResonanceN, Cymatic_ResonanceM.
  *    WPO/displacement is NEVER touched — shading only (project invariant).
  *  - Height-aware placement: SeaAbove water at Z=0; Faraway Mother valley uses
  *    Z-thresholds — water only where terrain is below ValleyWaterThreshold (-800),
@@ -27,17 +25,16 @@
  *    crumbling), water shoreline SDF / foam / reveal opacity lerps so the mountain
  *    appears to dissolve *into* water rather than popping.
  *
- * Mirrors UMelodiaAudioReactivePresentationSubsystem's ocean beat drive but
- * for the cymatic/WorldField path. Both drives write grafted params only
- * (Biolum_*, Toon_*, Cymatic_*) — plugin-namespace params are untouched.
+ * UMelodiaAudioReactivePresentationSubsystem retains ownership of the ocean's
+ * audio-reactive bioluminescence, toon weight, and scattering tint.
  */
 USTRUCT(BlueprintType)
 struct FOceanologyHorizonConfig
 {
     GENERATED_BODY()
-    /** Horizon-eater grid half-extent in cm. 600000 = 6km — edge past SLW extinction. */
+    /** Editor authoring target: grid half-extent in cm. Runtime does not resize geometry. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Oceanology|Horizon") float GridExtentCm = 600000.f;
-    /** Real ocean surface Z (Sea Above). */
+    /** Editor authoring target: real ocean surface Z (Sea Above). */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Oceanology|Horizon") float WaterLevelZ = 0.f;
     /** Valley water threshold for Faraway Mother (only below this Z is water). */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Oceanology|HeightAware") float ValleyWaterThreshold = -800.f;
@@ -45,7 +42,7 @@ struct FOceanologyHorizonConfig
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Oceanology|HeightAware") float ValleyFogThreshold = -400.f;
     /** Basin depression threshold where standing-wave pooling is strongest. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Oceanology|HeightAware") float BasinDepressionZ = -1200.f;
-    /** Force re-apply horizon config every N seconds (editor drift). */
+    /** Rescan actors and refresh missing water MIDs every N seconds. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Oceanology|Horizon") float RescanIntervalSec = 2.f;
 };
 
