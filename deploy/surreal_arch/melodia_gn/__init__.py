@@ -59,6 +59,7 @@ from .set_dressing import (
     build_music_them_bandstand, build_music_them_stage, build_music_them_shell,
     build_music_them_recital, build_music_them_bridge, build_music_them_fountain,
 )
+from . import house_dress  # noqa: F401 - Mansion house-dress kit (piano walk/sheet rail/staff/xylo/stones/lanterns/tree line) registers via register_builder
 from .env_extras import build_env_lily_pond, build_env_stepping_stones, build_env_reeds_patch, build_env_buoy_line, build_env_market_stall, build_env_campfire_ring, build_env_village_well, build_env_lantern_post, build_env_hedgerow, build_env_waterfall_pool
 from .castle_extras import build_castle_corner_turret, build_castle_portcullis, build_castle_arrow_slit, build_castle_hoarding, build_castle_siege_tower, build_castle_barbican, build_pergola_walkway
 from .geometry_extras import (
