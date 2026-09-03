@@ -1,0 +1,29 @@
+@ Start
+
+? if: {melodia_q_echo_03_complete} == on
+
+  - Twilight Dancer
+    The path no longer asks you to outrun the morning. You found its cadence.
+
+? else:
+
+  ? if: {melodia_q_echo_02_complete} == on
+
+    - Twilight Dancer
+      You heard what the grove was trying to say. The last step is not a race.
+
+    - Melusina
+      I can carry the half-song without forcing it to become whole.
+
+    $ Notify melodia:quest:melodia_q_echo_03
+
+  ? else:
+
+    - Twilight Dancer
+      The morning path waits beyond a constellation still out of tune.
+
+  ? endif
+
+? endif
+
+$ End

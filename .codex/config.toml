@@ -1,0 +1,64 @@
+[mcp_servers.agent-bridge]
+command = "python"
+args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\agent_bridge_mcp.py']
+
+[mcp_servers.agent-bridge.tools.delegate_to_agent]
+approval_mode = "approve"
+
+[mcp_servers.blender-mcp]
+command = "python"
+args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\blender_mcp_adapter.py']
+
+[mcp_servers.filesystem]
+command = "node"
+args = [
+    'C:\Users\froma\AppData\Roaming\npm\node_modules\@modelcontextprotocol\server-filesystem\dist\index.js',
+    'C:\EnvironmentPortfolio\BS_GodFile',
+]
+
+[mcp_servers.git-mcp]
+command = "python"
+args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\mcp_git.py']
+
+[mcp_servers.hermes]
+command = "npx"
+args = [
+    "-y",
+    "@modelcontextprotocol/server-hermes",
+]
+
+[mcp_servers.it-is-unreal]
+url = "http://127.0.0.1:8088/mcp"
+
+[mcp_servers.monolith]
+command = "C:/EnvironmentPortfolio/BS_GodFile/Plugins/Monolith/Binaries/monolith_proxy.exe"
+
+[mcp_servers.monolith.env]
+MONOLITH_PROJECT_ROOT = "C:/EnvironmentPortfolio/BS_GodFile"
+MONOLITH_URL = "http://localhost:9316/mcp"
+
+[mcp_servers.monolith.tools.editor_query]
+approval_mode = "approve"
+
+[mcp_servers.monolith.tools.ui_query]
+approval_mode = "approve"
+
+[mcp_servers.monolith.tools.blueprint_query]
+approval_mode = "approve"
+
+[mcp_servers.monolith.tools.describe_query]
+approval_mode = "approve"
+
+[mcp_servers.monolith.tools.ai_query]
+approval_mode = "approve"
+
+[mcp_servers.ollama]
+command = "node"
+args = ['C:\Users\froma\AppData\Roaming\npm\node_modules\ollama-mcp\dist\index.js']
+
+[mcp_servers.ollama.env]
+OLLAMA_HOST = "http://127.0.0.1:11434"
+
+[mcp_servers.surreal-arch-mcp]
+command = "python"
+args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\surreal_arch_mcp_adapter.py']

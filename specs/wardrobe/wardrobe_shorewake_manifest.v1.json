@@ -1,0 +1,34 @@
+{
+  "schema": "melodia.wardrobe_shorewake.v1",
+  "contract_id": "wardrobe_shorewake_quest",
+  "status": "in_development",
+  "outfit_id": "Melusina_ShorewakeDress",
+  "display_name": "Shorewake Dress (Sea Above Attunement)",
+  "rarity": "Rare",
+  "slots": {
+    "Skirt": {
+      "cosmetic_id": "Cos_ShorewakeDress",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/Shorewake/SK_DressShorewake",
+      "material_slots": ["MI_Melusina_Dress_Shorewake"]
+    }
+  },
+  "textures": {
+    "base_color": "/Game/Melodia/Characters/Melusina/Textures/Clothes/T_MelusinaC_DressShorewake_BaseColor",
+    "normal": "/Game/Melodia/Characters/Melusina/Textures/Clothes/T_MelusinaC_DressShorewake_Normal",
+    "roughness": "/Game/Melodia/Characters/Melusina/Textures/Clothes/T_MelusinaC_DressShorewake_Roughness",
+    "emission": "/Game/Melodia/Characters/Melusina/Textures/Clothes/T_MelusinaC_DressShorewake_Emission"
+  },
+  "resonant_form": {
+    "form_id": "form.melusina.shorewake",
+    "capability_unlocked": "SeaAboveResonance",
+    "required_flags": [
+      "flag.quest.shorewake_completed",
+      "flag.sea_above.starskiff_ready"
+    ]
+  },
+  "traversal_impact": {
+    "can_board_starskiff": true,
+    "sea_above_buoyancy_active": true
+  },
+  "save_contract": "FMelodiaNarrativeRecord.EquippedCosmeticIds + OwnedCosmeticIds"
+}

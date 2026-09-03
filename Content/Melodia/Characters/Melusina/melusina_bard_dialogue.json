@@ -1,0 +1,109 @@
+{
+  "character": "Melusina",
+  "voice": "CosyVoice 3 Melusina (anchor_vc_seed_v1) - melusina_default / gentle / whisper profiles",
+  "language": "en",
+  "speech_style": "Travelling bard, whimsical and warm, soft-punk edge. Keeps arriving after the festival; carries a half-song looking for its answering voice.",
+  "pronoun": "I / my",
+  "description": "A travelling bard who always arrives just after the moment. Her music is a half-song: the duet-partner who once sang back to her is gone (an absence with a shape), and the one bond she can still hold - Sir Melodious - has flown off for snacks. The road guarantees impermanence; applause is not belonging. Named once, at the reunion, in human language.",
+
+  "profiles": {
+    "melusina_default": "Speak naturally, clear feminine voice.",
+    "melusina_gentle": "Speak softly, gentle and quiet, warm breathy feminine voice.",
+    "melusina_whisper": "Whisper very softly, quiet breathy feminine whisper voice.",
+    "melusina_nordic": "Speak with a gentle Nordic accent, soft Scandinavian lilt, clear feminine voice."
+  },
+
+  "lines": [
+    {
+      "id": "mel_perch_01",
+      "text": "The perch is empty again. I know a small absence can fill a whole room.",
+      "context": "perch_morning",
+      "profile": "melusina_default",
+      "notes": "Opening beat. Sir flew off for snacks; benign in truth, catastrophic only in the dream."
+    },
+    {
+      "id": "mel_perch_02",
+      "text": "Sir Melodious? If you can hear me, tap once on the window. Two taps means it's the wind.",
+      "context": "perch_morning",
+      "profile": "melusina_gentle",
+      "notes": "The answering-voice rule: she always leaves a way for the song to be answered."
+    },
+    {
+      "id": "mel_perch_03",
+      "text": "Sir Melodious? Is that you? The quiet petal is humming again.",
+      "context": "perch_morning",
+      "profile": "melusina_gentle",
+      "notes": "Second opening beat in MelodiaMorningIntro. The petal humming = the song being answered."
+    },
+    {
+      "id": "mel_arrival_01",
+      "text": "Every town I reach, the festival has already ended. The banners come down while I'm still tuning my lute.",
+      "context": "arrival_texture",
+      "profile": "melusina_default",
+      "notes": "The 'always behind' engine - arriving late is the quiet texture of the road."
+    },
+    {
+      "id": "mel_arrival_02",
+      "text": "They've already heard a better singer. I don't mind. I just wish I'd been here for the last song.",
+      "context": "arrival_texture",
+      "profile": "melusina_gentle",
+      "notes": "Feeling-behind wound, named softly, not as spectacle."
+    },
+    {
+      "id": "mel_halfsong_01",
+      "text": "I only know my half of this song. The other half used to answer back, once. I play my half and I wait.",
+      "context": "halfsong",
+      "profile": "melusina_whisper",
+      "notes": "The grief hook: a duet with a past partner; the melody is incomplete. Absence-with-shape, never a corpse."
+    },
+    {
+      "id": "mel_halfsong_02",
+      "text": "There's a place by the river that still listens. It doesn't answer yet. But it listens.",
+      "context": "halfsong",
+      "profile": "melusina_gentle",
+      "notes": "Past-person fragment: a place that still 'listens'."
+    },
+    {
+      "id": "mel_road_01",
+      "text": "The road is the thing I can't keep. People come, people go. The lute stays. The lute always stays.",
+      "context": "road",
+      "profile": "melusina_default",
+      "notes": "Lived abandonment made structural: the profession guarantees impermanence."
+    },
+    {
+      "id": "mel_road_02",
+      "text": "I rehearse the same phrase until it stops hurting. It never does. But the phrase gets very good.",
+      "context": "road",
+      "profile": "melusina_gentle",
+      "notes": "OCD-as-ritual, never as punishment. Repetition that adds, per Decision 016."
+    },
+    {
+      "id": "mel_battle_entry",
+      "text": "The dream is restless. Stay close, and sing when I sing.",
+      "context": "battle_entry",
+      "profile": "melusina_default",
+      "notes": "Before the smoke encounter. Call-and-response is the whole game."
+    },
+    {
+      "id": "mel_reunion_01",
+      "text": "There you are. I saved your side of the song. You're not too late. You were never too late.",
+      "context": "reunion_named",
+      "profile": "melusina_gentle",
+      "notes": "The one named moment, at the reunion, in human language. Feel-first/name-once rule."
+    },
+    {
+      "id": "mel_snackrun_01",
+      "text": "He does this. He says 'two minutes, just grabbing snacks' and returns with moonrise. And I wait anyway.",
+      "context": "sir_snackrun",
+      "profile": "melusina_default",
+      "notes": "Sir is alive and retrievable. The absence is benign; the dream reads it as catastrophe."
+    },
+    {
+      "id": "mel_dream_01",
+      "text": "The bridge is gone. No, no, the bridge was fine last time. It's always fine. Breathe.",
+      "context": "dream_catastrophe",
+      "profile": "melusina_whisper",
+      "notes": "BPD catastrophic over-reading of a small absence, rendered honestly in the dream."
+    }
+  ]
+}

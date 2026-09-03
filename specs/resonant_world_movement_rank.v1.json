@@ -1,0 +1,53 @@
+{
+  "format": "melodia_resonant_world_movement_rank",
+  "version": 1,
+  "request": {
+    "job_type": "rank_world_movements",
+    "seed": 3900,
+    "backend": "qsharp-simulator",
+    "candidates": [
+      {
+        "id": "petal_cantata",
+        "movement_id": "petal_cantata",
+        "features": {
+          "outfit_synergy": 0.95,
+          "asset_coverage": 0.82,
+          "traversal_safety": 0.9,
+          "visual_contrast": 0.8,
+          "motif_continuity": 0.9
+        }
+      },
+      {
+        "id": "star_loom",
+        "movement_id": "star_loom",
+        "features": {
+          "outfit_synergy": 0.9,
+          "asset_coverage": 0.88,
+          "traversal_safety": 0.8,
+          "visual_contrast": 0.95,
+          "motif_continuity": 0.75
+        }
+      }
+    ]
+  },
+  "response": {
+    "job_id": "world-composer_0000003900",
+    "status": "completed",
+    "ranker_version": "resonant_movement_ranker_v1",
+    "winner_id": "star_loom",
+    "winner_movement_id": "star_loom",
+    "winner_score": 0.875,
+    "backend_requested": "qsharp-simulator",
+    "backend": "qsharp-simulator",
+    "qsharp_available": true,
+    "classical_baseline_winner_id": "star_loom",
+    "classical_baseline_score": 0.875,
+    "candidate_scores": [],
+    "trace_id": "persisted-before-apply",
+    "replay_contract": {
+      "persist_result_before_world_apply": true,
+      "seed_is_not_a_substitute_for_persisted_quantum_draw": true,
+      "unreal_application_boundary": "async movement result -> authored PCG binding"
+    }
+  }
+}

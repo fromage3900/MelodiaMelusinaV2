@@ -1,0 +1,16 @@
+{
+  "komikaze": {
+    "paths": [
+      "G:/programs/BlenderPlugins/plugins/Komikaze v2.blend",
+      "//../Addons/Komikaze/Komikaze_v2.blend",
+      "${HOME}/.config/blender/5.1/scripts/addons/Komikaze_v2.blend"
+    ],
+    "fallback": "procedural"
+  },
+  "mcp_ports": {
+    "surreal_arch": 9877,
+    "blender_scene": 9878,
+    "ue_monolith": 9316,
+    "blender_http": 9317
+  }
+}

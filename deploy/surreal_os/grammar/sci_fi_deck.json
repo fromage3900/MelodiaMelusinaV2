@@ -1,0 +1,11 @@
+{
+  "id": "SCI_FI_DECK",
+  "label": "Sci-Fi Deck Spine",
+  "description": "Corridor trunk, T-junction, hab room module",
+  "style": "scifi",
+  "modules": [
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 12.0, "gb_corridor_profile": "DOUBLE", "material_choice": "AUTO"}},
+    {"arch_type": "GB_CORRIDOR_T", "overrides": {"gb_length": 6.0, "material_choice": "AUTO"}},
+    {"arch_type": "GREYBOX_ROOM", "overrides": {"gb_width": 8.0, "gb_depth": 6.0, "gb_height": 3.2, "material_choice": "AUTO"}}
+  ]
+}

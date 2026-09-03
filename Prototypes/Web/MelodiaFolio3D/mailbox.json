@@ -1,0 +1,33 @@
+{
+  "schema": "melodia.post_manifest.v1",
+  "entries": [
+    {
+      "entry_id": "gift.dev.mara_emergency_ribbon",
+      "entry_type": "parcel",
+      "definition_version": 1,
+      "sender_id": "companion.mara_ellettra_vell",
+      "sender_label": "Mara Elletra Vell",
+      "title": "You left this on the railing again.",
+      "body": "I am putting it somewhere impossible to miss. Please do not prove me wrong.",
+      "presentation": "gold_thread",
+      "reward_ids": ["wardrobe.dev.mara_emergency_ribbon"],
+      "prerequisite_ids": [],
+      "archive_policy": "permanent",
+      "dev_only": true
+    },
+    {
+      "entry_id": "reverie.dev_starskiff_repair_night",
+      "entry_type": "reverie",
+      "definition_version": 1,
+      "sender_id": "system.starskiff",
+      "sender_label": "Starskiff Log",
+      "title": "A Night of Repairs",
+      "body": "A tiny local fixture representing how a future downloadable Reverie can appear through the same mailbox contract.",
+      "presentation": "lavender_thread",
+      "reward_ids": [],
+      "prerequisite_ids": ["chapter.first_dream"],
+      "archive_policy": "permanent",
+      "dev_only": true
+    }
+  ]
+}

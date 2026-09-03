@@ -1,0 +1,85 @@
+{
+  "schema": "melodia.qsharp_tasks.v1",
+  "kind": "qsharp_lane_tasks",
+  "note": "Deterministic quantum-contract tasks scored with the same _check machinery as the model lanes. All tasks run in-process against Content/Python/quantum/draw_providers.rank_and_draw; a provider failure degrades to classical-baseline and the response backend field reports what actually ran.",
+  "tasks": [
+    {
+      "id": "qsharp_two_candidate_pick",
+      "backend": "qsharp-simulator",
+      "seed": 12345,
+      "candidates": [
+        {"id": "A", "difficulty": 0.7, "spacing": 0.4},
+        {"id": "B", "difficulty": 0.8, "spacing": 0.6}
+      ],
+      "expect_keys": ["job_id", "winner_id", "score", "backend", "status"],
+      "expect": {"status": "completed", "backend": "qsharp-simulator"}
+    },
+    {
+      "id": "qsharp_three_candidates_falls_back",
+      "backend": "qsharp-simulator",
+      "seed": 4242,
+      "candidates": [
+        {"id": "A", "difficulty": 0.7, "spacing": 0.4},
+        {"id": "B", "difficulty": 0.8, "spacing": 0.6},
+        {"id": "C", "difficulty": 0.9, "spacing": 0.9}
+      ],
+      "expect_keys": ["job_id", "winner_id", "score", "backend", "status"],
+      "expect": {"status": "completed", "backend": "classical-baseline"}
+    },
+    {
+      "id": "classical_argmax_deterministic",
+      "backend": "classical-baseline",
+      "seed": 7,
+      "candidates": [
+        {"id": "A", "difficulty": 0.3, "spacing": 0.2},
+        {"id": "B", "difficulty": 0.9, "spacing": 0.8}
+      ],
+      "expect_keys": ["job_id", "winner_id", "score", "backend", "status"],
+      "expect": {"status": "completed", "backend": "classical-baseline", "winner_id": "B"}
+    },
+    {
+      "id": "backend_reported_honestly",
+      "backend": "chaos",
+      "seed": 999,
+      "candidates": [
+        {"id": "A", "difficulty": 0.5, "spacing": 0.5},
+        {"id": "B", "difficulty": 0.6, "spacing": 0.4}
+      ],
+      "expect_keys": ["job_id", "winner_id", "score", "backend", "status"],
+      "expect": {"status": "completed", "backend": "chaos"}
+    },
+    {
+      "id": "commit_reveal_verifiable",
+      "backend": "commit-reveal",
+      "seed": 31337,
+      "candidates": [
+        {"id": "A", "difficulty": 0.5, "spacing": 0.5},
+        {"id": "B", "difficulty": 0.6, "spacing": 0.4}
+      ],
+      "expect_keys": ["job_id", "winner_id", "score", "backend", "status", "commitment", "nonce"],
+      "expect": {"status": "completed", "backend": "commit-reveal", "commitment": "verify_commitment"}
+    },
+    {
+      "id": "unknown_backend_rejected",
+      "backend": "does-not-exist",
+      "seed": 1,
+      "candidates": [
+        {"id": "A", "difficulty": 0.5, "spacing": 0.5}
+      ],
+      "expect_error": true
+    },
+    {
+      "id": "score_bounded_unit_interval",
+      "backend": "swarm",
+      "seed": 2026,
+      "candidates": [
+        {"id": "A", "difficulty": 0.1, "spacing": 0.9},
+        {"id": "B", "difficulty": 0.9, "spacing": 0.1},
+        {"id": "C", "difficulty": 0.5, "spacing": 0.5}
+      ],
+      "expect_keys": ["job_id", "winner_id", "score", "backend", "status"],
+      "expect": {"status": "completed"},
+      "check": "score_in_unit_interval"
+    }
+  ]
+}

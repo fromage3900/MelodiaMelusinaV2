@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Melodia Resonant Armory Three.js weapon silhouette study">
+  <title>Melodia Resonant Armory</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+<div id="melodia-weapon-forge">
+  <style>
+    #melodia-weapon-forge {
+      --wf-ink: #eef5ff;
+      --wf-muted: #8ea8c4;
+      --wf-faint: #55708f;
+      --wf-line: rgba(156, 199, 231, .18);
+      --wf-line-strong: rgba(156, 199, 231, .42);
+      --wf-ocean: #071522;
+      --wf-ocean-deep: #030912;
+      --wf-panel: rgba(8, 22, 36, .86);
+      --wf-coral: #ffb6c9;
+      --wf-aqua: #8ce8e2;
+      --wf-gold: #f1cf86;
+      --wf-violet: #baa2ff;
+      display: block;
+      width: 100%;
+      color: var(--wf-ink);
+      font: 400 14px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    #melodia-weapon-forge * { box-sizing: border-box; }
+    #melodia-weapon-forge button,
+    #melodia-weapon-forge input { font: inherit; }
+    #melodia-weapon-forge .wf-app {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--wf-line);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(104, 180, 207, .14), transparent 35%),
+        radial-gradient(circle at 100% 24%, rgba(186, 162, 255, .13), transparent 30%),
+        linear-gradient(145deg, var(--wf-ocean) 0%, var(--wf-ocean-deep) 70%);
+      box-shadow: 0 24px 72px rgba(0, 9, 20, .38);
+    }
+    #melodia-weapon-forge .wf-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 18px;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--wf-line);
+    }
+    #melodia-weapon-forge .wf-kicker {
+      color: var(--wf-aqua);
+      font: 500 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+    #melodia-weapon-forge h1,
+    #melodia-weapon-forge h2,
+    #melodia-weapon-forge p { margin: 0; }
+    #melodia-weapon-forge h1 {
+      margin-top: 5px;
+      color: var(--wf-ink);
+      font: 400 clamp(25px, 4vw, 42px)/1.05 Georgia, serif;
+      letter-spacing: -.02em;
+    }
+    #melodia-weapon-forge .wf-subtitle {
+      max-width: 680px;
+      margin-top: 8px;
+      color: var(--wf-muted);
+      line-height: 1.5;
+    }
+    #melodia-weapon-forge .wf-session {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+      color: var(--wf-muted);
+      font: 11px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+      white-space: nowrap;
+    }
+    #melodia-weapon-forge .wf-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--wf-aqua);
+      box-shadow: 0 0 14px rgba(140, 232, 226, .8);
+    }
+    #melodia-weapon-forge .wf-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(265px, .45fr);
+      gap: 1px;
+      min-height: 650px;
+      background: var(--wf-line);
+    }
+    #melodia-weapon-forge .wf-stage-column {
+      min-width: 0;
+      background: rgba(2, 11, 19, .44);
+    }
+    #melodia-weapon-forge .wf-stage {
+      position: relative;
+      min-height: 590px;
+      height: min(62vw, 690px);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 25%, rgba(50, 138, 157, .16), transparent 42%),
+        linear-gradient(180deg, rgba(6, 22, 35, .65), rgba(2, 8, 15, .92));
+    }
+    #melodia-weapon-forge .wf-stage canvas {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #melodia-weapon-forge .wf-stage-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #melodia-weapon-forge .wf-stage-readout {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      color: rgba(238, 245, 255, .72);
+      font: 10px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    #melodia-weapon-forge .wf-stage-readout strong {
+      display: block;
+      margin-top: 3px;
+      color: var(--wf-ink);
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+    #melodia-weapon-forge .wf-loading {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      color: var(--wf-muted);
+      font: 11px ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+    #melodia-weapon-forge .wf-stage-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      min-height: 52px;
+      padding: 10px 20px;
+      border-top: 1px solid var(--wf-line);
+      color: var(--wf-muted);
+      font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    #melodia-weapon-forge .wf-foot-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    #melodia-weapon-forge .wf-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: var(--wf-muted);
+    }
+    #melodia-weapon-forge .wf-check input { accent-color: var(--wf-aqua); }
+    #melodia-weapon-forge .wf-inspector {
+      min-width: 0;
+      padding: 19px 17px 18px;
+      background: var(--wf-panel);
+    }
+    #melodia-weapon-forge .wf-section-label {
+      color: var(--wf-faint);
+      font: 500 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    #melodia-weapon-forge .wf-weapon-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 10px;
+    }
+    #melodia-weapon-forge .wf-weapon-button {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+      min-height: 49px;
+      padding: 8px 9px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+      color: var(--wf-muted);
+      text-align: left;
+      cursor: pointer;
+    }
+    #melodia-weapon-forge .wf-weapon-button:hover,
+    #melodia-weapon-forge .wf-weapon-button:focus-visible {
+      border-color: var(--wf-line-strong);
+      background: rgba(140, 232, 226, .07);
+      color: var(--wf-ink);
+    }
+    #melodia-weapon-forge .wf-weapon-button[aria-pressed="true"] {
+      border-color: rgba(241, 207, 134, .58);
+      background: linear-gradient(90deg, rgba(241, 207, 134, .14), rgba(140, 232, 226, .04));
+      color: var(--wf-ink);
+    }
+    #melodia-weapon-forge .wf-swatch {
+      display: block;
+      width: 27px;
+      height: 27px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 9px;
+      background: radial-gradient(circle at 35% 30%, var(--sw-hi), var(--sw-mid) 45%, var(--sw-deep));
+      box-shadow: 0 0 17px color-mix(in srgb, var(--sw-hi) 35%, transparent);
+    }
+    #melodia-weapon-forge .wf-weapon-name {
+      display: block;
+      font: 500 13px/1.2 Georgia, serif;
+    }
+    #melodia-weapon-forge .wf-weapon-meta {
+      display: block;
+      margin-top: 3px;
+      color: var(--wf-faint);
+      font: 10px/1.25 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    #melodia-weapon-forge .wf-divider {
+      height: 1px;
+      margin: 17px 0;
+      background: var(--wf-line);
+    }
+    #melodia-weapon-forge .wf-selected h2 {
+      margin-top: 4px;
+      color: var(--wf-ink);
+      font: 400 26px/1.05 Georgia, serif;
+    }
+    #melodia-weapon-forge .wf-selected p {
+      margin-top: 8px;
+      color: var(--wf-muted);
+      line-height: 1.5;
+    }
+    #melodia-weapon-forge .wf-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      margin: 16px 0 0;
+    }
+    #melodia-weapon-forge .wf-facts div { min-width: 0; }
+    #melodia-weapon-forge .wf-facts dt {
+      color: var(--wf-faint);
+      font: 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    #melodia-weapon-forge .wf-facts dd {
+      margin: 3px 0 0;
+      color: var(--wf-ink);
+      font-size: 12px;
+    }
+    #melodia-weapon-forge .wf-source-list {
+      display: grid;
+      gap: 7px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    #melodia-weapon-forge .wf-source-list li {
+      overflow-wrap: anywhere;
+      padding-left: 10px;
+      border-left: 2px solid rgba(140, 232, 226, .4);
+      color: var(--wf-muted);
+      font: 10px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    #melodia-weapon-forge .wf-intent {
+      display: block;
+      margin-top: 13px;
+      padding: 9px 10px;
+      border: 1px solid var(--wf-line);
+      border-radius: 10px;
+      color: var(--wf-muted);
+      background: rgba(255,255,255,.025);
+      font: 10px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+      overflow-wrap: anywhere;
+    }
+    #melodia-weapon-forge .wf-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 12px 20px 14px;
+      border-top: 1px solid var(--wf-line);
+      color: var(--wf-faint);
+      font: 10px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    #melodia-weapon-forge .wf-bottom strong { color: var(--wf-gold); font-weight: 500; }
+    @media (max-width: 860px) {
+      #melodia-weapon-forge .wf-topbar { align-items: flex-start; flex-direction: column; }
+      #melodia-weapon-forge .wf-session { white-space: normal; }
+      #melodia-weapon-forge .wf-layout { grid-template-columns: 1fr; }
+      #melodia-weapon-forge .wf-stage { min-height: 540px; height: 74vw; max-height: 650px; }
+    }
+    @media (max-width: 430px) {
+      #melodia-weapon-forge .wf-topbar { padding: 18px 16px 15px; }
+      #melodia-weapon-forge .wf-inspector { padding: 17px 14px; }
+      #melodia-weapon-forge .wf-stage-footer { padding: 10px 14px; }
+      #melodia-weapon-forge .wf-bottom { padding-inline: 14px; }
+      #melodia-weapon-forge .wf-facts { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="wf-app">
+    <header class="wf-topbar">
+      <div>
+        <div class="wf-kicker">Melodia // Mara Vell · instrument study</div>
+        <h1>Resonant Armory</h1>
+        <p class="wf-subtitle">A small Three.js turntable for musical weapons assembled from the repository’s Sea Above mesh vocabulary. The silhouette is the design test; the cymatic field is the pulse language.</p>
+      </div>
+      <div class="wf-session"><span class="wf-live-dot" aria-hidden="true"></span><span id="wf-session-status">hydrating repository geometry…</span></div>
+    </header>
+
+    <div class="wf-layout">
+      <section class="wf-stage-column" aria-label="Weapon turntable">
+        <div class="wf-stage" id="wf-stage" role="img" aria-label="Interactive Three.js weapon turntable">
+          <div class="wf-stage-overlay">
+            <div class="wf-stage-readout">selected study<strong id="wf-stage-name">Cyma Spear</strong><span id="wf-stage-phase">PHASE 0.00 · NODAL FIELD ONLINE</span></div>
+            <div class="wf-loading" id="wf-loading">parsing LFS OBJ seeds…</div>
+          </div>
+        </div>
+        <div class="wf-stage-footer">
+          <span>drag · orbit &nbsp; / &nbsp; wheel · zoom &nbsp; / &nbsp; tap · inspect</span>
+          <div class="wf-foot-controls">
+            <label class="wf-check"><input id="wf-auto" type="checkbox" checked /> auto-orbit</label>
+            <label class="wf-check"><input id="wf-cymatics" type="checkbox" checked /> cymatic field</label>
+            <label class="wf-check"><input id="wf-wire" type="checkbox" /> wire overlay</label>
+          </div>
+        </div>
+      </section>
+
+      <aside class="wf-inspector" aria-label="Weapon inspector">
+        <div class="wf-section-label">select weapon silhouette</div>
+        <div class="wf-weapon-list" id="wf-weapon-list">
+          <button class="wf-weapon-button" type="button" data-weapon="cymaSpear" aria-pressed="true" style="--sw-hi:#ffd0e0;--sw-mid:#c7749a;--sw-deep:#39172c">
+            <span class="wf-swatch" aria-hidden="true"></span><span><span class="wf-weapon-name">Cyma Spear</span><span class="wf-weapon-meta">nodal lance · traversal key</span></span>
+          </button>
+          <button class="wf-weapon-button" type="button" data-weapon="bellStaff" aria-pressed="false" style="--sw-hi:#fff0b0;--sw-mid:#c68b5b;--sw-deep:#43271c">
+            <span class="wf-swatch" aria-hidden="true"></span><span><span class="wf-weapon-name">Bell Staff</span><span class="wf-weapon-meta">hanging chorus · warding beat</span></span>
+          </button>
+          <button class="wf-weapon-button" type="button" data-weapon="waveHarp" aria-pressed="false" style="--sw-hi:#b8fff2;--sw-mid:#5fbaca;--sw-deep:#102b48">
+            <span class="wf-swatch" aria-hidden="true"></span><span><span class="wf-weapon-name">Wave Harp</span><span class="wf-weapon-meta">seam frame · tide phrase</span></span>
+          </button>
+          <button class="wf-weapon-button" type="button" data-weapon="drownedOrgan" aria-pressed="false" style="--sw-hi:#e2c7ff;--sw-mid:#72579c;--sw-deep:#181128">
+            <span class="wf-swatch" aria-hidden="true"></span><span><span class="wf-weapon-name">Drowned Organ</span><span class="wf-weapon-meta">monolith conductor · dissonance</span></span>
+          </button>
+        </div>
+
+        <div class="wf-divider"></div>
+        <section class="wf-selected" aria-live="polite">
+          <div class="wf-section-label">selected surface</div>
+          <h2 id="wf-selected-title">Cyma Spear</h2>
+          <p id="wf-selected-copy">A slim sounding staff that turns a nodal line into a spearhead: readable in silhouette before its ornament is resolved.</p>
+          <dl class="wf-facts">
+            <div><dt>family</dt><dd id="wf-fact-family">Mara · P1</dd></div>
+            <div><dt>role</dt><dd id="wf-fact-role">Traversal key</dd></div>
+            <div><dt>pulse</dt><dd id="wf-fact-pulse">BeatPhase → shimmer</dd></div>
+            <div><dt>assembly</dt><dd id="wf-fact-assembly">chime + shell</dd></div>
+          </dl>
+        </section>
+
+        <div class="wf-divider"></div>
+        <section>
+          <div class="wf-section-label">real repository sources</div>
+          <ul class="wf-source-list" id="wf-source-list"></ul>
+        </section>
+        <div class="wf-intent" id="wf-intent" aria-live="polite">{ "intent": "ui.weapon.inspect_requested", "weapon_id": "cymaSpear" }</div>
+      </aside>
+    </div>
+
+    <footer class="wf-bottom"><span><strong>presentation-only</strong> · weapon inspection never mutates combat, inventory, or wardrobe state</span><span id="wf-source-count">3 hydrated OBJ seeds</span></footer>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+
+    const root = document.getElementById('melodia-weapon-forge');
+    const stage = root.querySelector('#wf-stage');
+    const loading = root.querySelector('#wf-loading');
+    const sessionStatus = root.querySelector('#wf-session-status');
+    const stageName = root.querySelector('#wf-stage-name');
+    const stagePhase = root.querySelector('#wf-stage-phase');
+    const selectedTitle = root.querySelector('#wf-selected-title');
+    const selectedCopy = root.querySelector('#wf-selected-copy');
+    const factFamily = root.querySelector('#wf-fact-family');
+    const factRole = root.querySelector('#wf-fact-role');
+    const factPulse = root.querySelector('#wf-fact-pulse');
+    const factAssembly = root.querySelector('#wf-fact-assembly');
+    const sourceList = root.querySelector('#wf-source-list');
+    const intent = root.querySelector('#wf-intent');
+    const autoOrbit = root.querySelector('#wf-auto');
+    const cymaticsToggle = root.querySelector('#wf-cymatics');
+    const wireToggle = root.querySelector('#wf-wire');
+
+    const MODEL_URLS = {
+      chime: '../../../Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Chime.obj',
+      shell: '../../../Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.obj',
+      organ: '../../../Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan.obj'
+    };
+    const SOURCE_PATHS = {
+      chime: 'Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Chime.obj',
+      shell: 'Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.obj',
+      organ: 'Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan.obj'
+    };
+    const WEAPONS = {
+      cymaSpear: {
+        title: 'Cyma Spear',
+        copy: 'A slim sounding staff that turns a nodal line into a spearhead: readable in silhouette before its ornament is resolved.',
+        family: 'Mara · P1', role: 'Traversal key', pulse: 'BeatPhase → shimmer', assembly: 'chime + shell', sources: ['chime', 'shell'], palette: 'rose'
+      },
+      bellStaff: {
+        title: 'Bell Staff',
+        copy: 'A ceremonial staff with a hanging chorus. The resonator cluster should feel like a small weather system around the hand.',
+        family: 'Mara · P0/P1', role: 'Warding beat', pulse: 'BeatPulse → strike', assembly: 'chime × 3 + shell', sources: ['chime', 'shell'], palette: 'copper'
+      },
+      waveHarp: {
+        title: 'Wave Harp',
+        copy: 'An asymmetrical seam frame: part harp, part tide gate. Strings make the silhouette legible while the shell carries the memory of water.',
+        family: 'Mara · P1', role: 'Tide phrase', pulse: 'RhythmPulse → strings', assembly: 'shell + chime', sources: ['shell', 'chime'], palette: 'aqua'
+      },
+      drownedOrgan: {
+        title: 'Drowned Organ',
+        copy: 'The monolithic variant: an organ-body conductor with a soft inner glow, meant to read as a relic before it reads as a weapon.',
+        family: 'Monolith study', role: 'Dissonance', pulse: 'Dissonance → fracture', assembly: 'organ + chime', sources: ['organ', 'chime'], palette: 'violet'
+      }
+    };
+    const PALETTES = {
+      rose: { base: 0x9d4f7b, edge: 0xffb6c9, glow: 0xff6fa9, metal: 0x7b3b59 },
+      copper: { base: 0xb56c45, edge: 0xffd18c, glow: 0xff9f67, metal: 0x6e362b },
+      aqua: { base: 0x3d8fa6, edge: 0x9af5e5, glow: 0x55d7e5, metal: 0x183b57 },
+      violet: { base: 0x644f98, edge: 0xe1c7ff, glow: 0xa580ff, metal: 0x2a1d4a }
+    };
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x050d18, .045);
+    const camera = new THREE.PerspectiveCamera(33, 1, .05, 100);
+    camera.position.set(5.7, 3.2, 8.8);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setClearColor(0x000000, 0);
+    renderer.domElement.setAttribute('aria-label', 'Three.js resonant weapon turntable');
+    stage.prepend(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = .08;
+    controls.enablePan = false;
+    controls.minDistance = 4.2;
+    controls.maxDistance = 15;
+    controls.maxPolarAngle = Math.PI * .57;
+    controls.target.set(0, .6, 0);
+
+    scene.add(new THREE.HemisphereLight(0xb8eaff, 0x081020, 2.5));
+    const key = new THREE.DirectionalLight(0xfff0df, 3.3);
+    key.position.set(-4, 8, 5);
+    key.castShadow = true;
+    scene.add(key);
+    const rim = new THREE.PointLight(0x71e2e1, 18, 14);
+    rim.position.set(4, 3.5, -3);
+    scene.add(rim);
+    const roseLight = new THREE.PointLight(0xe59dff, 14, 12);
+    roseLight.position.set(-4, 1.5, 2);
+    scene.add(roseLight);
+
+    const world = new THREE.Group();
+    scene.add(world);
+    const turntable = new THREE.Group();
+    turntable.position.y = .05;
+    world.add(turntable);
+    const pedestal = new THREE.Mesh(
+      new THREE.CylinderGeometry(2.05, 2.28, .26, 64),
+      new THREE.MeshStandardMaterial({ color: 0x101f31, roughness: .5, metalness: .42 })
+    );
+    pedestal.position.y = -1.92;
+    pedestal.receiveShadow = true;
+    world.add(pedestal);
+    const pedestalRing = new THREE.Mesh(
+      new THREE.TorusGeometry(1.78, .026, 8, 96),
+      new THREE.MeshBasicMaterial({ color: 0x8ce8e2, transparent: true, opacity: .8 })
+    );
+    pedestalRing.rotation.x = Math.PI / 2;
+    pedestalRing.position.y = -1.75;
+    world.add(pedestalRing);
+
+    const starsGeometry = new THREE.BufferGeometry();
+    const starPositions = new Float32Array(420 * 3);
+    for (let i = 0; i < 420; i++) {
+      starPositions[i * 3] = (Math.random() - .5) * 18;
+      starPositions[i * 3 + 1] = Math.random() * 11 - 3;
+      starPositions[i * 3 + 2] = (Math.random() - .5) * 15 - 2;
+    }
+    starsGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+    const stars = new THREE.Points(starsGeometry, new THREE.PointsMaterial({ color: 0x8ce8e2, size: .025, transparent: true, opacity: .5, depthWrite: false }));
+    world.add(stars);
+
+    const sourceRoots = {};
+    const objLoader = new OBJLoader();
+    function normalizeSource(source, targetSize) {
+      source.updateMatrixWorld(true);
+      const bounds = new THREE.Box3().setFromObject(source);
+      const size = bounds.getSize(new THREE.Vector3());
+      const center = bounds.getCenter(new THREE.Vector3());
+      const maxSize = Math.max(size.x, size.y, size.z);
+      if (!Number.isFinite(maxSize) || maxSize <= 0) throw new Error('empty OBJ bounds');
+      source.position.sub(center);
+      source.scale.setScalar(targetSize / maxSize);
+      source.updateMatrixWorld(true);
+      source.traverse((node) => {
+        if (!node.isMesh) return;
+        node.geometry.computeVertexNormals();
+        node.castShadow = true;
+        node.receiveShadow = true;
+      });
+      return source;
+    }
+    function makeMaterial(palette, opts = {}) {
+      const mat = new THREE.MeshPhysicalMaterial({
+        color: opts.color ?? palette.base,
+        emissive: opts.emissive ?? palette.metal,
+        emissiveIntensity: opts.emissiveIntensity ?? .22,
+        roughness: opts.roughness ?? .28,
+        metalness: opts.metalness ?? .58,
+        clearcoat: .22,
+        clearcoatRoughness: .18,
+        side: THREE.DoubleSide,
+        transparent: opts.transparent ?? false,
+        opacity: opts.opacity ?? 1
+      });
+      return mat;
+    }
+    function recolorSource(source, palette, opts = {}) {
+      const copy = source.clone(true);
+      copy.traverse((node) => {
+        if (!node.isMesh) return;
+        const mat = makeMaterial(palette, opts);
+        node.material = mat;
+        node.userData.surfaceMaterial = mat;
+        node.castShadow = true;
+        node.receiveShadow = true;
+      });
+      return copy;
+    }
+    function rememberMaterial(object, material) {
+      object.traverse((node) => {
+        if (node.isMesh) node.userData.surfaceMaterial = material;
+      });
+      return object;
+    }
+    function tube(points, radius, material) {
+      const curve = new THREE.CatmullRomCurve3(points);
+      const object = new THREE.Mesh(new THREE.TubeGeometry(curve, Math.max(24, points.length * 14), radius, 10, false), material);
+      object.castShadow = true;
+      object.receiveShadow = true;
+      return rememberMaterial(object, material);
+    }
+    function line(points, material, width = 1) {
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      const object = new THREE.Line(geometry, material);
+      object.userData.surfaceMaterial = material;
+      object.userData.lineWidth = width;
+      return object;
+    }
+    function metallicRing(radius, tubeRadius, palette, y, z = 0, tilt = Math.PI / 2) {
+      const material = makeMaterial(palette, { color: palette.edge, emissive: palette.glow, emissiveIntensity: .38, roughness: .22, metalness: .74 });
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(radius, tubeRadius, 10, 72), material);
+      ring.position.set(0, y, z);
+      ring.rotation.x = tilt;
+      ring.castShadow = true;
+      return rememberMaterial(ring, material);
+    }
+    function crystal(size, palette, y, z = 0) {
+      const material = makeMaterial(palette, { color: palette.edge, emissive: palette.glow, emissiveIntensity: .85, roughness: .17, metalness: .38, transparent: true, opacity: .92 });
+      const mesh = new THREE.Mesh(new THREE.OctahedronGeometry(size, 1), material);
+      mesh.position.set(0, y, z);
+      mesh.rotation.set(.28, .2, .12);
+      mesh.castShadow = true;
+      return rememberMaterial(mesh, material);
+    }
+    function shaft(palette, lean = 0) {
+      const material = makeMaterial(palette, { color: palette.metal, emissive: palette.glow, emissiveIntensity: .2, roughness: .26, metalness: .74 });
+      const points = [new THREE.Vector3(-lean * .18, -1.85, 0), new THREE.Vector3(lean * .18, -.4, 0), new THREE.Vector3(-lean * .08, .9, 0), new THREE.Vector3(lean, 1.9, 0)];
+      return tube(points, .075, material);
+    }
+    function cymaticDisc(palette, y, radius = .62) {
+      const group = new THREE.Group();
+      const material = new THREE.MeshBasicMaterial({ color: palette.edge, transparent: true, opacity: .14, depthWrite: false, blending: THREE.AdditiveBlending });
+      for (let i = 0; i < 4; i++) {
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(radius * (.34 + i * .22), .012 + i * .004, 6, 80), material.clone());
+        ring.position.y = y;
+        ring.rotation.x = Math.PI / 2;
+        ring.userData.cymaticRing = true;
+        group.add(ring);
+      }
+      const points = [];
+      for (let i = 0; i <= 100; i++) {
+        const a = (i / 100) * Math.PI * 2;
+        const r = radius * (.45 + .13 * Math.sin(a * 5));
+        points.push(new THREE.Vector3(Math.cos(a) * r, y + .012, Math.sin(a) * r));
+      }
+      const wave = line(points, new THREE.LineBasicMaterial({ color: palette.edge, transparent: true, opacity: .58, depthWrite: false, blending: THREE.AdditiveBlending }));
+      wave.userData.cymaticRing = true;
+      group.add(wave);
+      return group;
+    }
+    function chimeCluster(source, palette, count = 3, scale = .35) {
+      const group = new THREE.Group();
+      const angles = count === 3 ? [-.7, 0, .7] : [-.8, -.4, 0, .4, .8];
+      angles.forEach((angle, index) => {
+        const chime = recolorSource(source, palette, { color: palette.base, emissive: palette.glow, emissiveIntensity: .32, roughness: .3, metalness: .62 });
+        chime.scale.multiplyScalar(scale * (index % 2 ? 1.08 : .86));
+        chime.position.set(Math.sin(angle) * .62, .68 - Math.abs(angle) * .1, Math.cos(angle) * .1);
+        chime.rotation.z = angle * .18;
+        group.add(chime);
+      });
+      return group;
+    }
+    function stringSet(pointsStart, pointsEnd, count, palette) {
+      const group = new THREE.Group();
+      for (let i = 0; i < count; i++) {
+        const t = i / Math.max(1, count - 1);
+        const start = pointsStart.clone().lerp(pointsEnd, t);
+        const end = pointsStart.clone().lerp(pointsEnd, t).add(new THREE.Vector3(0, -2.2 + Math.sin(t * Math.PI) * .12, 0));
+        const mat = new THREE.LineBasicMaterial({ color: i % 3 === 0 ? palette.edge : palette.glow, transparent: true, opacity: .72, blending: THREE.AdditiveBlending });
+        group.add(line([start, end], mat));
+      }
+      return group;
+    }
+    function buildWeapon(kind) {
+      const spec = WEAPONS[kind];
+      const palette = PALETTES[spec.palette];
+      const group = new THREE.Group();
+      group.userData.weaponId = kind;
+      if (kind === 'cymaSpear') {
+        group.add(shaft(palette, .22));
+        group.add(metallicRing(.68, .045, palette, .78, 0, Math.PI / 2 + .08));
+        const shell = recolorSource(sourceRoots.shell, palette, { color: palette.base, emissive: palette.glow, emissiveIntensity: .45, roughness: .23, metalness: .52 });
+        shell.scale.multiplyScalar(.48);
+        shell.position.set(0, 1.52, .02);
+        shell.rotation.set(.2, -.38, .24);
+        group.add(shell);
+        group.add(crystal(.24, palette, 2.28, .02));
+        group.add(cymaticDisc(palette, .8, .76));
+        const prongMat = makeMaterial(palette, { color: palette.edge, emissive: palette.glow, emissiveIntensity: .4, roughness: .2, metalness: .7 });
+        group.add(tube([new THREE.Vector3(-.42, 1.1, 0), new THREE.Vector3(-.88, 1.72, .02), new THREE.Vector3(-.35, 2.14, .02)], .035, prongMat));
+        group.add(tube([new THREE.Vector3(.42, 1.1, 0), new THREE.Vector3(.88, 1.72, .02), new THREE.Vector3(.35, 2.14, .02)], .035, prongMat));
+      } else if (kind === 'bellStaff') {
+        group.add(shaft(palette, -.12));
+        group.add(metallicRing(.84, .05, palette, 1.63, 0, Math.PI / 2));
+        const bells = chimeCluster(sourceRoots.chime, palette, 3, .22);
+        bells.position.y = 1.16;
+        group.add(bells);
+        const shell = recolorSource(sourceRoots.shell, palette, { color: palette.base, emissive: palette.glow, emissiveIntensity: .36, roughness: .27, metalness: .55 });
+        shell.scale.multiplyScalar(.34);
+        shell.position.set(0, 1.7, .03);
+        shell.rotation.set(-.2, .2, .1);
+        group.add(shell);
+        group.add(crystal(.2, palette, .1, .02));
+        group.add(cymaticDisc(palette, 1.63, .9));
+        for (let i = 0; i < 5; i++) {
+          const x = (i - 2) * .23;
+          const mat = makeMaterial(palette, { color: palette.edge, emissive: palette.glow, emissiveIntensity: .26, roughness: .23, metalness: .7 });
+          group.add(tube([new THREE.Vector3(x, 1.58, .02), new THREE.Vector3(x * .8, .94, .03)], .018, mat));
+        }
+      } else if (kind === 'waveHarp') {
+        const frameMat = makeMaterial(palette, { color: palette.metal, emissive: palette.glow, emissiveIntensity: .22, roughness: .25, metalness: .72 });
+        group.add(tube([new THREE.Vector3(-1.26, -1.76, 0), new THREE.Vector3(-1.45, -.25, .02), new THREE.Vector3(-.72, 1.55, .04), new THREE.Vector3(.35, 2.13, .03), new THREE.Vector3(1.2, 1.22, .02)], .065, frameMat));
+        group.add(tube([new THREE.Vector3(-1.26, -1.76, 0), new THREE.Vector3(-.1, -1.55, .01), new THREE.Vector3(1.2, 1.22, .02)], .052, frameMat));
+        const shell = recolorSource(sourceRoots.shell, palette, { color: palette.base, emissive: palette.glow, emissiveIntensity: .42, roughness: .24, metalness: .42 });
+        shell.scale.multiplyScalar(.6);
+        shell.position.set(.1, -.55, -.1);
+        shell.rotation.set(.1, -.45, -.12);
+        group.add(shell);
+        group.add(stringSet(new THREE.Vector3(-.68, 1.5, .08), new THREE.Vector3(.88, 1.08, .08), 9, palette));
+        const chime = recolorSource(sourceRoots.chime, palette, { color: palette.base, emissive: palette.glow, emissiveIntensity: .25, roughness: .31, metalness: .55 });
+        chime.scale.multiplyScalar(.19);
+        chime.position.set(-.9, -.75, .06);
+        chime.rotation.z = -.18;
+        group.add(chime);
+        group.add(cymaticDisc(palette, -.58, .68));
+      } else if (kind === 'drownedOrgan') {
+        const organ = recolorSource(sourceRoots.organ, palette, { color: palette.base, emissive: palette.glow, emissiveIntensity: .33, roughness: .32, metalness: .42 });
+        organ.scale.multiplyScalar(.38);
+        organ.position.set(0, -.24, 0);
+        organ.rotation.set(0, .18, 0);
+        group.add(organ);
+        group.add(metallicRing(1.13, .055, palette, .28, 0, Math.PI / 2));
+        group.add(metallicRing(.78, .03, palette, 1.18, .02, Math.PI / 2 + .18));
+        group.add(crystal(.31, palette, 1.94, .04));
+        group.add(chimeCluster(sourceRoots.chime, palette, 3, .16));
+        const pipeMat = makeMaterial(palette, { color: palette.edge, emissive: palette.glow, emissiveIntensity: .48, roughness: .2, metalness: .68 });
+        for (let i = 0; i < 5; i++) {
+          const x = (i - 2) * .3;
+          group.add(tube([new THREE.Vector3(x, 1.27, .1), new THREE.Vector3(x * .7, 2.08 + (i % 2) * .18, .08)], .035, pipeMat));
+        }
+        group.add(cymaticDisc(palette, .3, 1.18));
+      }
+      group.traverse((node) => { if (node.isMesh) node.castShadow = true; });
+      return group;
+    }
+    function setWireframe(object, enabled) {
+      object.traverse((node) => {
+        const material = node.userData.surfaceMaterial || node.material;
+        if (!material) return;
+        if ('wireframe' in material) material.wireframe = enabled;
+        if (node.isLine) node.visible = !enabled || node.userData.cymaticRing !== false;
+      });
+    }
+    function setCymatics(object, enabled) {
+      object.traverse((node) => {
+        if (node.userData.cymaticRing) node.visible = enabled;
+      });
+    }
+
+    let currentKind = 'cymaSpear';
+    let currentWeapon = null;
+    function updateInspector(kind) {
+      const spec = WEAPONS[kind];
+      selectedTitle.textContent = spec.title;
+      selectedCopy.textContent = spec.copy;
+      stageName.textContent = spec.title;
+      factFamily.textContent = spec.family;
+      factRole.textContent = spec.role;
+      factPulse.textContent = spec.pulse;
+      factAssembly.textContent = spec.assembly;
+      sourceList.replaceChildren();
+      spec.sources.forEach((key) => {
+        const item = document.createElement('li');
+        item.textContent = SOURCE_PATHS[key];
+        sourceList.appendChild(item);
+      });
+      root.querySelectorAll('.wf-weapon-button').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.weapon === kind)));
+      intent.textContent = JSON.stringify({ intent: 'ui.weapon.inspect_requested', weapon_id: kind, source_paths: spec.sources.map((key) => SOURCE_PATHS[key]) }, null, 2);
+    }
+    function selectWeapon(kind) {
+      if (!WEAPONS[kind] || !sourceRoots.chime) return;
+      currentKind = kind;
+      updateInspector(kind);
+      if (currentWeapon) turntable.remove(currentWeapon);
+      currentWeapon = buildWeapon(kind);
+      turntable.add(currentWeapon);
+      setCymatics(currentWeapon, cymaticsToggle.checked);
+      setWireframe(currentWeapon, wireToggle.checked);
+    }
+
+    function resize() {
+      const rect = stage.getBoundingClientRect();
+      camera.aspect = rect.width / Math.max(rect.height, 1);
+      camera.updateProjectionMatrix();
+      renderer.setSize(rect.width, rect.height, false);
+    }
+    new ResizeObserver(resize).observe(stage);
+    resize();
+
+    async function loadRepositorySources() {
+      try {
+        for (const [key, url] of Object.entries(MODEL_URLS)) {
+          const source = await objLoader.loadAsync(url);
+          sourceRoots[key] = normalizeSource(source, key === 'organ' ? 3.4 : key === 'chime' ? 2.7 : 1.8);
+        }
+        loading.remove();
+        sessionStatus.textContent = 'three.js · 3 repo OBJ seeds hydrated';
+        selectWeapon(currentKind);
+      } catch (error) {
+        loading.textContent = 'LFS OBJ unavailable · hydrate Git LFS';
+        sessionStatus.textContent = 'source load held · see inspector';
+        console.error(error);
+      }
+    }
+    loadRepositorySources();
+
+    root.querySelectorAll('.wf-weapon-button').forEach((button) => button.addEventListener('click', () => selectWeapon(button.dataset.weapon)));
+    cymaticsToggle.addEventListener('change', () => { if (currentWeapon) setCymatics(currentWeapon, cymaticsToggle.checked); });
+    wireToggle.addEventListener('change', () => { if (currentWeapon) setWireframe(currentWeapon, wireToggle.checked); });
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    renderer.domElement.addEventListener('click', (event) => {
+      if (!currentWeapon) return;
+      const rect = renderer.domElement.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      if (raycaster.intersectObject(currentWeapon, true)[0]) {
+        intent.textContent = JSON.stringify({ intent: 'ui.weapon.inspect_requested', weapon_id: currentKind, source_paths: WEAPONS[currentKind].sources.map((key) => SOURCE_PATHS[key]) }, null, 2);
+      }
+    });
+
+    const clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const time = clock.getElapsedTime();
+      const phase = (time * .32) % 1;
+      stagePhase.textContent = `PHASE ${phase.toFixed(2)} · NODAL FIELD ${cymaticsToggle.checked ? 'ONLINE' : 'MUTED'}`;
+      if (autoOrbit.checked && currentWeapon) turntable.rotation.y += .0026;
+      if (currentWeapon) {
+        currentWeapon.position.y = Math.sin(time * 1.4) * .035;
+        currentWeapon.traverse((node) => {
+          const material = node.userData.surfaceMaterial;
+          if (material && material.emissiveIntensity !== undefined && node.userData.cymaticRing) material.opacity = .22 + Math.sin(time * 2 + node.id) * .08;
+        });
+      }
+      pedestalRing.rotation.z = time * .16;
+      stars.rotation.y = time * .006;
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</div>
+
+</body>
+</html>

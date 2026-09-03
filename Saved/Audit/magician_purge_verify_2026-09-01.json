@@ -1,0 +1,21 @@
+{
+  "schema": "melodia.audit.magician_purge_verify.v1",
+  "generated": "2026-09-01T05:30:00Z",
+  "mode": "disk_scan",
+  "findings": {
+    "plan": {
+      "delete_candidates": 254,
+      "lab_files": 198,
+      "proposed_actions": "delete_directory /Game/Library/Migrated/MagiciansLibrary; archive magicianlabatory to 00_Archive"
+    },
+    "disk_state": {
+      "Library/Migrated/MagiciansLibrary": 356,
+      "magicianlabatory_source_files": 0,
+      "canonical_EnvSandbox": 308
+    },
+    "analysis": "Plan is STALE — magicianlabatory/source/ is empty (0 files vs 198 planned). Files were already archived or deleted. The 254-dupe delete plan for Library/Migrated/MagiciansLibrary remains valid (356 files still on disk, 308 canonical in EnvSandbox).",
+    "delete_script_check": "Saved/_tmp_magician_delete.py — status unknown, verify existence before running"
+  },
+  "verdict": "PARTIALLY_STALE — lab source already handled, dupe delete still needed",
+  "status": "AUDIT_COMPLETE"
+}

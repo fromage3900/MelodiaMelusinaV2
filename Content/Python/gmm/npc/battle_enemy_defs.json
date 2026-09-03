@@ -1,0 +1,177 @@
+{
+  "archetypes": {
+    "SakuraDreamer_Battle": {
+      "enemy_id": "SakuraDreamer_Battle",
+      "display_name": "Sakura Dreamer",
+      "max_hp": 200.0,
+      "max_toughness": 60.0,
+      "base_damage": 12.0,
+      "speed": 75,
+      "element": "Radiant",
+      "bpm_override": 128.0,
+      "mesh_scale": 1.1,
+      "display_mesh": "",
+      "display_material": ""
+    },
+    "CosmicWeaver_Battle": {
+      "enemy_id": "CosmicWeaver_Battle",
+      "display_name": "Cosmic Weaver",
+      "max_hp": 350.0,
+      "max_toughness": 120.0,
+      "base_damage": 18.0,
+      "speed": 65,
+      "element": "Arcane",
+      "bpm_override": 144.0,
+      "mesh_scale": 1.2,
+      "display_mesh": "",
+      "display_material": ""
+    },
+    "MirageDancer_Battle": {
+      "enemy_id": "MirageDancer_Battle",
+      "display_name": "Mirage Dancer",
+      "max_hp": 160.0,
+      "max_toughness": 40.0,
+      "base_damage": 22.0,
+      "speed": 110,
+      "element": "Gale",
+      "bpm_override": 180.0,
+      "mesh_scale": 0.95,
+      "display_mesh": "",
+      "display_material": ""
+    }
+  },
+  "npc_variants": {
+    "SD_01_SakuraMaiden": {
+      "enemy_id": "SD_01_SakuraMaiden_Battle",
+      "display_name": "Sakura Dreamer",
+      "max_hp": 200.0,
+      "max_toughness": 60.0,
+      "base_damage": 12.0,
+      "speed": 75,
+      "element": "Radiant",
+      "bpm_override": 128.0,
+      "mesh_scale": 1.1,
+      "source_archetype": "SakuraDreamer_Battle"
+    },
+    "SD_02_PetalPriestess": {
+      "enemy_id": "SD_02_PetalPriestess_Battle",
+      "display_name": "Sakura Dreamer",
+      "max_hp": 240.0,
+      "max_toughness": 72.0,
+      "base_damage": 10.8,
+      "speed": 75,
+      "element": "Radiant",
+      "bpm_override": 128.0,
+      "mesh_scale": 1.1,
+      "source_archetype": "SakuraDreamer_Battle"
+    },
+    "SD_03_BlossomGuide": {
+      "enemy_id": "SD_03_BlossomGuide_Battle",
+      "display_name": "Sakura Dreamer",
+      "max_hp": 180.0,
+      "max_toughness": 54.0,
+      "base_damage": 13.200000000000001,
+      "speed": 75,
+      "element": "Radiant",
+      "bpm_override": 128.0,
+      "mesh_scale": 1.1,
+      "source_archetype": "SakuraDreamer_Battle"
+    },
+    "SD_04_FlowerMerchant": {
+      "enemy_id": "SD_04_FlowerMerchant_Battle",
+      "display_name": "Sakura Dreamer",
+      "max_hp": 220.00000000000003,
+      "max_toughness": 66.0,
+      "base_damage": 12.0,
+      "speed": 75,
+      "element": "Radiant",
+      "bpm_override": 128.0,
+      "mesh_scale": 1.1,
+      "source_archetype": "SakuraDreamer_Battle"
+    },
+    "SD_05_EternalGardener": {
+      "enemy_id": "SD_05_EternalGardener_Battle",
+      "display_name": "Sakura Dreamer",
+      "max_hp": 300.0,
+      "max_toughness": 90.0,
+      "base_damage": 14.399999999999999,
+      "speed": 75,
+      "element": "Radiant",
+      "bpm_override": 128.0,
+      "mesh_scale": 1.1,
+      "source_archetype": "SakuraDreamer_Battle"
+    },
+    "CW_01_StarWeaver": {
+      "enemy_id": "CW_01_StarWeaver_Battle",
+      "display_name": "Cosmic Weaver",
+      "max_hp": 350.0,
+      "max_toughness": 120.0,
+      "base_damage": 18.0,
+      "speed": 65,
+      "element": "Arcane",
+      "bpm_override": 144.0,
+      "mesh_scale": 1.2,
+      "source_archetype": "CosmicWeaver_Battle"
+    },
+    "CW_02_VoidSeamstress": {
+      "enemy_id": "CW_02_VoidSeamstress_Battle",
+      "display_name": "Cosmic Weaver",
+      "max_hp": 385.00000000000006,
+      "max_toughness": 132.0,
+      "base_damage": 16.2,
+      "speed": 65,
+      "element": "Arcane",
+      "bpm_override": 144.0,
+      "mesh_scale": 1.2,
+      "source_archetype": "CosmicWeaver_Battle"
+    },
+    "CW_03_AstralScribe": {
+      "enemy_id": "CW_03_AstralScribe_Battle",
+      "display_name": "Cosmic Weaver",
+      "max_hp": 315.0,
+      "max_toughness": 108.0,
+      "base_damage": 19.8,
+      "speed": 65,
+      "element": "Arcane",
+      "bpm_override": 144.0,
+      "mesh_scale": 1.2,
+      "source_archetype": "CosmicWeaver_Battle"
+    },
+    "MD_01_TwilightDancer": {
+      "enemy_id": "MD_01_TwilightDancer_Battle",
+      "display_name": "Mirage Dancer",
+      "max_hp": 160.0,
+      "max_toughness": 40.0,
+      "base_damage": 22.0,
+      "speed": 110,
+      "element": "Gale",
+      "bpm_override": 180.0,
+      "mesh_scale": 0.95,
+      "source_archetype": "MirageDancer_Battle"
+    },
+    "MD_02_WindWalker": {
+      "enemy_id": "MD_02_WindWalker_Battle",
+      "display_name": "Mirage Dancer",
+      "max_hp": 176.0,
+      "max_toughness": 44.0,
+      "base_damage": 19.8,
+      "speed": 110,
+      "element": "Gale",
+      "bpm_override": 180.0,
+      "mesh_scale": 0.95,
+      "source_archetype": "MirageDancer_Battle"
+    },
+    "MD_03_ZephyrChampion": {
+      "enemy_id": "MD_03_ZephyrChampion_Battle",
+      "display_name": "Mirage Dancer",
+      "max_hp": 240.0,
+      "max_toughness": 60.0,
+      "base_damage": 28.6,
+      "speed": 110,
+      "element": "Gale",
+      "bpm_override": 180.0,
+      "mesh_scale": 0.95,
+      "source_archetype": "MirageDancer_Battle"
+    }
+  }
+}

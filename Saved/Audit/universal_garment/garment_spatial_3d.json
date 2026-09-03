@@ -1,0 +1,77 @@
+{
+  "schema": "melodia.universal_garment.spatial_3d.v1",
+  "seed": 20260902,
+  "generated": "2026-09-02T00:00:00-04:00",
+  "title": "UNIVERSAL GARMENT SPATIAL 3D — Shorewake spatial-relation engine (offline capability spec)",
+  "status": "SPEC — headless, verify-on-disk, no editor",
+  "engine_class": "spatial-relation compute over body+garment-stack+poses -> distance/penetration/hide-mask/ordering/problem-frame/corrective-target",
+  "purpose": "Quantified, pose-aware authority for the wardrobe clipping/intersection audit (Nikki doctrine §6 -> HDA_CH_WardrobeIntersectionAudit) without runtime geometric intersection solving. Precomputes expensive garment/body relationships offline so the dress 'precomputes rather than simulates'.",
+  "authority":
+  {
+    "nikk_doctrine": "Docs/Research/INFINITY_NIKKI_UE5_TRANSLATION_FOR_MELODIA_2026-08-30.md#6",
+    "toolchain_ssot": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md#5",
+    "garment_grid": "Docs/Art/CYMATIC_GARMENT_NIKKI_PIPELINE_2026-09-02.md#2",
+    "hda_target": "HDA_CH_WardrobeIntersectionAudit"
+  },
+  "input_stack":
+  {
+    "body": "SK_ShorewakeDress_Melusina465.fbx (retargeted) — binary Kaydara FBX, 22.35 MB, 466 Take records (pose samples)",
+    "garment_stack": "48 Shorewake panels (dress_materials_manifest.json) consolidated to 10 dead-silhouette garment layers",
+    "poses": "466 animation Takes from the retargeted FBX + authored QA pose set (T-pose, A-pose, seated, hem-fold, run stride, skirt-peak)",
+    "garment_10_layers":
+    {
+      "M_Bodice_Torso":    {"chladni": [5,7], "tier": "C",  "sol": "WPO micro-swell"},
+      "M_Bodice_Front":    {"chladni": [3,4], "tier": "C",  "sol": "WPO"},
+      "M_Bodice_Side":     {"chladni": [2,6], "tier": "C",  "sol": "WPO"},
+      "M_Bodice_Upper":    {"chladni": [1,3], "tier": "C",  "sol": "WPO"},
+      "M_Collar":          {"chladni": [6,6], "tier": "A",  "sol": "rigid authored"},
+      "M_Shoulder_Trim":   {"chladni": [4,8], "tier": "A",  "sol": "rigid"},
+      "M_Shoulder_Ornament":{"chladni": [8,8], "tier": "A", "sol": "rigid studs"},
+      "M_Sleeve":          {"chladni": [2,7], "tier": "C",  "sol": "WPO drape"},
+      "M_Underskirt":      {"chladni": [3,5], "tier": "C",  "sol": "WPO"},
+      "M_Skirt_Full":      {"chladni": [7,9], "tier": "B",  "sol": "Chaos candidate"}
+    }
+  },
+  "outputs":
+  {
+    "penetration_heatmap": "per-vertex signed penetration depth of each garment layer against the body surface (unsigned distance inside body = negative); latent VDB field + per-layer extraction",
+    "body_hide_groups": "per garment region, the body sub-mesh point groups to hide (Nikki hide-mask doctrine: inner surfaces culled under outer garment)",
+    "problem_frames": "per-pose subset flagged when min-separation breaches a per-layer clearance threshold",
+    "min_separation_field": "distance field of min distance between adjacent garment layers and between garment & body (resolve sky/depth-sort)",
+    "layer_ordering": "depth-sort order of the 10 garment materials for any view direction (translucency/OIT-aware priority)",
+    "corrective_targets": "candidate corrective morph target clusters for recurring intersections (pose-space correction candidates)"
+  },
+  "structured_classifications":
+  [
+    {"id": "CFG_1", "class": "generalization", "field": "body_proxy_spacing", "desc": "one clothing-fitted body proxy + one offset skin field; all 10 garment layers read the same field so penetration is comparable across outfits", "weight": 0.0},
+    {"id": "CFG_2", "class": "generalization", "field": "hide_group_reuse", "desc": "body hide groups are computed once per garment on the shared body-mesh and reused across 466 poses (pose-invariant regions cached, pose-adaptive residual per frame)", "weight": 0.0}
+  ],
+  "core_algorithms":
+  [
+    {"id": "A1", "kind": "houdini_vdb_signed_distance", "prescribed_tool": "hython (Houdini 22.0.368) offline", "desc": "build a dense SDF (VDBCreateFromVolume / iso-offset) of the body proxy; evaluate each garment vertex + sample shell for signed distance; penetration = signed_dist < 0. cliff/clip near-zero epsilon. Returns per-vertex penetration scalar + latent field for reuse.", "verified": true, "evidence": "hython present: C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe; numpy 2.4.6 present"},
+    {"id": "A2", "kind": "numpy_nearest_points_retargeted_fbx", "prescribed_tool": "python3 + numpy + trimesh/pyvista over the retargeted FBX", "desc": "load geometry from the retargeted FBX, KDTree (scipy.cKDTree) of body verts; nearest-point distance per garment vertex; sign by normal.dot(p_garment - p_body_near) to derive inward/outward. Independent cross-check of A1; runs headless in venv python.", "verified": true, "evidence": "numpy 2.4.6 present; retargeted FBX sha256 685f063481825d0b"},
+    {"id": "A3", "kind": "mesh_query_monolith", "prescribed_tool": "HDA_CH_WardrobeIntersectionAudit asset socket", "desc": "prescribed Monolith mesh_query actions map to the HDA outputs; NOT run headless in this spec — the mesh_query surface stays reserved for an editor-gated bake; offline classes are A1/A2 only.", "verified": false, "evidence": null, "note": "stays headless; requirement notes mesh_query may not be run here"},
+    {"id": "A4", "kind": "layer_depth_sorting", "prescribed_tool": "numpy centroid/radius + signed separation field", "desc": "compute per-layer mean radius and reveal direction from body spine; produce static material draw-order + per-view depth-sort using the min-separation field so translucency (M_Collar alpha, M_Skirt_Full sheen) sorts correctly. Respects Nikki OIT caution + layer priority trick; no engine-fork.", "verified": true, "evidence": "10-layer grid from cymatic garment manifest seed 20260902"},
+    {"id": "A5", "kind": "corrective_morph_targets", "prescribed_tool": "pose-space clusterization + mesh morph", "desc": "over problem frames, cluster per-vertex displacement vectors (k-means via numpy) into recurring intersection regions; each cluster yields one corrective-morph target (target mesh edits toward the precomputed 'author' of the region), feeding Control Rig / pose-space correction. Mirrors Nikki correctives.", "verified": true}
+  ],
+  "world_field_bus_mapping":
+  {
+    "bus_contact": "docs EMERGING_TOOLCHAIN_MASTER_INDEX#5b",
+    "mapping":
+    [
+      {"wfb_field": "WorldField.Resonance", "source": "penetration_heatmap (volume + nodal signature per garment Chladni mode)", "semantic": "how strongly the garment stands / sings against the body at a point"},
+      {"wfb_field": "WorldField.Tension", "source": "min_separation_field + penetration depth", "semantic": "how much the garment is 'pulling' / compressing at a location; high tension = low separation near recurring intersection"},
+      {"wfb_field": "WorldField.Contact", "source": "body_hide_groups + proximity", "semantic": "garment-to-body contact regions (where hide masks apply)"}
+    ]
+  },
+  "risk_ranking":
+  [
+    {"rank": 1, "article": "M_Skirt_Full",  "evidence": "largest panel (47->dressedit53/54: 45884/68419 polys) + Tier B Chaos self-intersection on movement; multilayered hem vol", "driver": "self & inner-layer intersection risk highest"},
+    {"rank": 2, "article": "M_Underskirt", "evidence": "inner skin-cling slip; smallest body offset among skirt stack", "driver": "body-penetration + outer-sheet occlusion"},
+    {"rank": 3, "article": "M_Bodice_Torso", "evidence": "skin-tight torso panels (25k poly region, smallest body clearance)", "driver": "highest probability of body-to-garment penetration"},
+    {"rank": 4, "article": "M_Sleeve",     "evidence": "arm region compression during bend/stride poses", "driver": "pose-adaptive intersection on flexion"}
+  ],
+  "input_sbom_sha256": "see Saved/Audit/universal_garment/garment_spatial_3d_inputs_sbom.json",
+  "runs": [],
+  "verification": "all core algorithms A1/A2/A4/A5 verifiable headless; A3 reserved for editor-gated HDA bake; no .uasset; no Content/** uasset; no git clean/checkout; no new landscape"
+}

@@ -1,0 +1,199 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_MelodiaIridescenceSheen" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFresnel Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFresnel_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCustom Name="MaterialExpressionCustom_0" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionCustom_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_MelodiaIridescenceSheenEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MF_MelodiaIridescenceSheenEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_3'"
+      DefaultValue=(R=1.000000,G=0.950000,B=1.000000,A=1.000000)
+      ParameterName="SheenTint"
+      ExpressionGUID=8F7E96FB4117B491A3CEF69F23165146
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=4D813C91459D3F7DAD45FCA97C1CC63A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_2'"
+      DefaultValue=(R=0.160000,G=0.950000,B=0.820000,A=1.000000)
+      ParameterName="IridescenceEdgeTint"
+      ExpressionGUID=71B461494CD0092996B6BF93693CFB84
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=F32850C94B04FA4EF658EFAF8A557411
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_1'"
+      DefaultValue=(R=0.950000,G=0.180000,B=0.820000,A=1.000000)
+      ParameterName="IridescenceMidTint"
+      ExpressionGUID=B82A0AD248CFFB7C3BA3419CB668A36C
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=AC6670A049770AD71B0D29A5C35F2052
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_0'"
+      DefaultValue=(R=0.090000,G=0.220000,B=0.950000,A=1.000000)
+      ParameterName="IridescenceDeepTint"
+      ExpressionGUID=225E87CF4C11DEA46DFCA1BFE84256E7
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=977A7F9F43375A8CF3B19FA7CB81FE59
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_8'"
+      ParameterName="SheenBias"
+      ExpressionGUID=8680D1A044483447CEC7358715DF0850
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=992DFA784814035B531C1BA0F814209D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_7'"
+      DefaultValue=1.000000
+      ParameterName="SheenWidth"
+      ExpressionGUID=C2D2FD7B4CFC9E6186C52B99148A2E1B
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=BA85B2D846F56B1E68985DA6A114675D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_6'"
+      DefaultValue=6.000000
+      ParameterName="SheenPower"
+      ExpressionGUID=09A47F7A430DB63CE4181F81D8F1F4D4
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=3A10C0D34292525E5453A89179B20DED
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_5'"
+      ParameterName="FabricSheen"
+      ExpressionGUID=D8FCD15F4409233384E8F6B763AA6B8E
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=EC5D4786474603897BE3668027474CD2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_4'"
+      ParameterName="IridescenceEmission"
+      ExpressionGUID=D4BF1C3A485FB0F6DDCA2393814E3A35
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=AEDACFEF43A278BBE0766780ABFA3523
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_3'"
+      ParameterName="IridescenceRoughnessAtten"
+      ExpressionGUID=94E80A1A4556154AD78E658BCDF7F314
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=A92E3F9E4FF249E54FDD0BB6B14A9CAA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_2'"
+      ParameterName="IridescenceBias"
+      ExpressionGUID=95EBF4EB4583285DE1B273884CB6C798
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=993B20D84E8AA8F5B855D5B9DAC88705
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_1'"
+      DefaultValue=1.000000
+      ParameterName="IridescencePower"
+      ExpressionGUID=AA1754064CDF5B04B6A918A0D4E438E2
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=5F884115422E90357ACD66805AA915D5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_0'"
+      ParameterName="Iridescence"
+      ExpressionGUID=820500A94130978F18E240B6A9B46E41
+      Group="Iridescence & Sheen"
+      MaterialExpressionGuid=A8685B6741584D38520A93A196343AC4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionOutput_1'"
+      OutputName="EmissiveOut"
+      SortPriority=1
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionCustom_0'",OutputIndex=1)
+      Id=1EE0F5DE434A5CA222054190C8EB6C3E
+      MaterialExpressionEditorX=400
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=39FF8C704D7F00995B311C8E8A6B747A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionOutput_0'"
+      OutputName="ColorOut"
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionCustom_0'")
+      Id=7919E8CD4117567F899D24829CA35632
+      MaterialExpressionEditorX=400
+      MaterialExpressionGuid=1B7E64904BE9CEA0E2A45F80393542F4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionInput_0'"
+      InputName="BaseColorIn"
+      Id=618DED4547D1A8D86B39B0B16458EA66
+      MaterialExpressionEditorX=-400
+      MaterialExpressionGuid=FE4E6C1F439D0B4CCCF81D8382DBA563
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFresnel_0'"
+      MaterialExpressionGuid=93515EDB4CF504B139B6B9A0D39F493E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionCustom_0" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionCustom_0'"
+      Code="float edge = pow(saturate(EdgeMask + IridescenceBias), max(IridescencePower, 0.01));\nfloat interiorAtten = lerp(1.0, edge, saturate(IridescenceRoughnessAtten));\nfloat spectralT = saturate(edge * 1.35 + IridescenceBias);\nfloat3 spectral = lerp(DeepTint, MidTint, saturate(spectralT * 2.0));\nspectral = lerp(spectral, EdgeTint, saturate((spectralT - 0.5) * 2.0));\nfloat iriMask = saturate(Iridescence) * edge * interiorAtten;\nfloat sheenEdge = pow(saturate(EdgeMask + SheenBias), max(SheenPower, 0.01));\nfloat sheenBand = smoothstep(saturate(1.0 - SheenWidth), 1.0, sheenEdge) * saturate(FabricSheen);\nfloat3 sheen = SheenTint * sheenBand;\nEmissiveOut = spectral * (iriMask * saturate(IridescenceEmission)) + sheen * 0.18;\nreturn lerp(BaseColor, spectral + sheen, iriMask);"
+      Description="Three-stop spectral edge blend with independent sheen and emission"
+      Inputs(0)=(InputName="BaseColor",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionInput_0'"))
+      Inputs(1)=(InputName="EdgeMask",Input=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFresnel_0'"))
+      Inputs(2)=(InputName="Iridescence",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_0'"))
+      Inputs(3)=(InputName="IridescencePower",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_1'"))
+      Inputs(4)=(InputName="IridescenceBias",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_2'"))
+      Inputs(5)=(InputName="IridescenceRoughnessAtten",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_3'"))
+      Inputs(6)=(InputName="IridescenceEmission",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_4'"))
+      Inputs(7)=(InputName="DeepTint",Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Inputs(8)=(InputName="MidTint",Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Inputs(9)=(InputName="EdgeTint",Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      Inputs(10)=(InputName="FabricSheen",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_5'"))
+      Inputs(11)=(InputName="SheenPower",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_6'"))
+      Inputs(12)=(InputName="SheenWidth",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_7'"))
+      Inputs(13)=(InputName="SheenBias",Input=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_8'"))
+      Inputs(14)=(InputName="SheenTint",Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_3'",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      AdditionalOutputs(0)=(OutputName="EmissiveOut",OutputType=CMOT_Float3)
+      MaterialExpressionGuid=A99EDCE94E910C069FF5F895CE263659
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen'"
+      bShowOutputNameOnPin=True
+      Outputs(0)=(OutputName="return")
+      Outputs(1)=(OutputName="EmissiveOut")
+   End Object
+   Begin Object Name="MF_MelodiaIridescenceSheenEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MF_MelodiaIridescenceSheenEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionFresnel_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_1'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionVectorParameter_3'","/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MaterialExpressionCustom_0'"))
+   End Object
+   Description="Artist-tuneable Melodia iridescence and sheen: spectral three-stop edge colour, falloff, and emissive response."
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen.MF_MelodiaIridescenceSheen:MF_MelodiaIridescenceSheenEditorOnlyData'"
+   StateId=E6EB4A1D493F3E5C343207BF1F215CFD
+   CombinedInputTypes=4
+End Object

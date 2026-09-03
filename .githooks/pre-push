@@ -1,0 +1,89 @@
+#!/bin/sh
+# Repository push policy. Keep this hook POSIX-compatible for Git for Windows.
+
+set -u
+
+remote_name=${1:-origin}
+
+command -v git-lfs >/dev/null 2>&1 || {
+    printf '%s\n' "This repository requires Git LFS, but 'git-lfs' was not found on PATH." >&2
+    exit 2
+}
+
+if command -v python >/dev/null 2>&1; then
+    PYTHON=python
+elif command -v python3 >/dev/null 2>&1; then
+    PYTHON=python3
+else
+    printf '%s\n' "The Git LFS budget gate requires Python (python or python3) on PATH." >&2
+    exit 2
+fi
+
+input_file=$(mktemp "${TMPDIR:-/tmp}/melodia-pre-push.XXXXXX") || {
+    printf '%s\n' "Unable to create temporary push-ref input." >&2
+    exit 2
+}
+trap 'rm -f "$input_file"' EXIT HUP INT TERM
+cat >"$input_file"
+
+allowed_branch() {
+    case "$1" in
+        feature/*|fix/*|docs/*|cleanup/*|collab/*|codex/*|recovery/*|cursor/*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+# Validate all branch destinations before running any upload. Tags are not
+# subject to branch naming; main is never a direct-push destination.
+while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
+    [ -n "${remote_ref:-}" ] || continue
+    case "$remote_ref" in
+        refs/heads/*)
+            branch=${remote_ref#refs/heads/}
+            if [ "$branch" = "main" ]; then
+                printf '%s\n' "BLOCKED: direct pushes to main are not allowed; use a reviewed branch/PR." >&2
+                exit 1
+            fi
+            if ! allowed_branch "$branch"; then
+                printf '%s\n' "BLOCKED: branch '$branch' must start with feature/, fix/, docs/, cleanup/, collab/, codex/, recovery/, or cursor/." >&2
+                exit 1
+            fi
+            ;;
+    esac
+done <"$input_file"
+
+# Check the actual outgoing commit range supplied by receive-pack. This avoids
+# the old staged-tree check, which cannot describe a push and misses committed
+# LFS changes. Deletions have no outgoing content and are skipped.
+while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
+    [ -n "${remote_ref:-}" ] || continue
+    case "$remote_ref" in
+        refs/heads/*)
+            case "$local_sha" in
+                0000000000000000000000000000000000000000) continue ;;
+            esac
+            branch=${remote_ref#refs/heads/}
+            base_sha=$remote_sha
+            case "$remote_sha" in
+                0000000000000000000000000000000000000000)
+                    # New branches have no receive-pack old tip. Compare with
+                    # the remote mainline when available; otherwise use the
+                    # first parent (or the commit itself for a root commit).
+                    base_sha=$(git rev-parse --verify "refs/remotes/$remote_name/main" 2>/dev/null || true)
+                    if [ -z "$base_sha" ]; then
+                        base_sha=$(git rev-parse --verify "${local_sha}^" 2>/dev/null || true)
+                    fi
+                    if [ -z "$base_sha" ]; then
+                        base_sha=$local_sha
+                    fi
+                    ;;
+            esac
+            "$PYTHON" Tools/git_safe_push.py \
+                --range "${base_sha}..${local_sha}" \
+                --branch "$branch" --auto-limit --check-only || exit $?
+            ;;
+    esac
+done <"$input_file"
+
+# Git LFS must receive the exact original ref-update stream.
+git lfs pre-push "$@" <"$input_file"

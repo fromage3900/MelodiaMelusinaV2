@@ -1,0 +1,13 @@
+{
+  "id": "SCIFI_AIRLOCK",
+  "label": "Sci-Fi Airlock",
+  "description": "Corridor, pressure doors, sealed room, offset corridor",
+  "style": "scifi",
+  "modules": [
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 6.0, "gb_corridor_profile": "DOUBLE", "material_choice": "AUTO"}},
+    {"arch_type": "GB_SCIFI_PRESSURE_DOOR", "overrides": {"gb_length": 3.5, "gb_door_width": 1.2, "gb_trim_mode": "RECESS", "gb_trim_recess": 0.1}},
+    {"arch_type": "GREYBOX_ROOM", "overrides": {"gb_width": 3.5, "gb_depth": 3.5, "gb_height": 3.2, "gb_ceiling": true, "material_choice": "AUTO"}},
+    {"arch_type": "GB_SCIFI_PRESSURE_DOOR", "overrides": {"gb_length": 3.5, "gb_door_width": 1.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 6.0, "gb_trim_mode": "RECESS", "material_choice": "AUTO"}}
+  ]
+}

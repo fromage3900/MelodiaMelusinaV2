@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "benchmark_task": "audio_metasound_harmonic_synth",
+    "model_evaluated": "qwen3.8-27b",
+    "subsystem": "Audio",
+    "timestamp": "2026-08-28T01:51:42Z",
+    "total_score": 100.0,
+    "success": true
+  },
+  "task_description": "Construct a real-time procedural MetaSound synthesizer with tempo clock, dual oscillators, dynamic ADSR envelope, and lowpass filter modulated by gameplay parameters.",
+  "pipeline_operations": [
+    {
+      "tool": "create_metasound_source",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "output_format": "Stereo",
+        "path": "/Game/Audio/MetaSounds"
+      }
+    },
+    {
+      "tool": "set_metasound_parameter",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "parameter_name": "FilterCutoffMod",
+        "parameter_type": "Float",
+        "default_value": 2400.0
+      }
+    },
+    {
+      "tool": "add_metasound_node",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "node_type": "BPMClock",
+        "node_name": "BPMClock_128",
+        "node_position": [
+          100.0,
+          100.0
+        ],
+        "default_inputs": {
+          "BPM": 128.0
+        }
+      }
+    },
+    {
+      "tool": "add_metasound_node",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "node_type": "SineGenerator",
+        "node_name": "SineOsc_Fund",
+        "node_position": [
+          350.0,
+          80.0
+        ],
+        "default_inputs": {
+          "Frequency": 220.0
+        }
+      }
+    },
+    {
+      "tool": "add_metasound_node",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "node_type": "SawGenerator",
+        "node_name": "SawOsc_Harmonic",
+        "node_position": [
+          350.0,
+          240.0
+        ],
+        "default_inputs": {
+          "Frequency": 440.0
+        }
+      }
+    },
+    {
+      "tool": "add_metasound_node",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "node_type": "ADEnvelope",
+        "node_name": "ADEnvelope_Main",
+        "node_position": [
+          600.0,
+          100.0
+        ],
+        "default_inputs": {
+          "AttackTime": 0.02,
+          "DecayTime": 0.25
+        }
+      }
+    },
+    {
+      "tool": "add_metasound_node",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "node_type": "LowPassFilter",
+        "node_name": "LowPassFilter_DSP",
+        "node_position": [
+          850.0,
+          150.0
+        ],
+        "default_inputs": {
+          "CutoffFrequency": 2400.0,
+          "Resonance": 1.8
+        }
+      }
+    },
+    {
+      "tool": "connect_metasound_nodes",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "source_node": "BPMClock_128",
+        "source_pin": "OnBeat",
+        "target_node": "ADEnvelope_Main",
+        "target_pin": "Trigger"
+      }
+    },
+    {
+      "tool": "connect_metasound_nodes",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "source_node": "SineOsc_Fund",
+        "source_pin": "Audio",
+        "target_node": "LowPassFilter_DSP",
+        "target_pin": "InAudio"
+      }
+    },
+    {
+      "tool": "connect_metasound_nodes",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "source_node": "SawOsc_Harmonic",
+        "source_pin": "Audio",
+        "target_node": "LowPassFilter_DSP",
+        "target_pin": "InAudio"
+      }
+    },
+    {
+      "tool": "connect_metasound_nodes",
+      "arguments": {
+        "metasound_name": "MS_Melodia_HarmonicSynth",
+        "source_node": "LowPassFilter_DSP",
+        "source_pin": "OutAudio",
+        "target_node": "AudioOutputs",
+        "target_pin": "OutLeft"
+      }
+    },
+    {
+      "tool": "create_sound_cue",
+      "arguments": {
+        "cue_name": "SC_Melusina_SpellImpact",
+        "path": "/Game/Audio"
+      }
+    },
+    {
+      "tool": "add_sound_node_attenuation",
+      "arguments": {
+        "cue_name": "SC_Melusina_SpellImpact",
+        "inner_radius": 500.0,
+        "outer_radius": 3500.0,
+        "falloff_distance": 3000.0
+      }
+    }
+  ],
+  "graph_summary": {
+    "nodes_count": 9,
+    "connections_count": 4,
+    "required_coverage": "100.0%"
+  }
+}

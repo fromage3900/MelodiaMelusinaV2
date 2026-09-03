@@ -1,0 +1,42 @@
+{
+  "schema": "melodia.substance_stage.v1",
+  "asset": "ButterflyWing",
+  "source_zip": "C:/Users/froma/Downloads/Butterfly wing_fbx_thick.zip",
+  "source_fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_lookdev/substance_staging/ButterflyWing_preview/ball5_fbx_thick.fbx",
+  "staged_fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_lookdev/substance_staging/ButterflyWing/meshes/ButterflyWing.fbx",
+  "fbx_sha12": "a438809c788a",
+  "fbx_size": 50671984,
+  "texture_count": 5,
+  "files": [
+    {
+      "file": "resources/T_ButterflyWing_BaseColor.png",
+      "sha12": "135a65128668",
+      "size": 12616744
+    },
+    {
+      "file": "resources/T_ButterflyWing_Normal.png",
+      "sha12": "ab043823ff94",
+      "size": 237915
+    },
+    {
+      "file": "resources/T_ButterflyWing_Roughness.png",
+      "sha12": "c5510a61183b",
+      "size": 123669
+    },
+    {
+      "file": "resources/T_ButterflyWing_Metallic.png",
+      "sha12": "802dbbcc8ec4",
+      "size": 81670
+    },
+    {
+      "file": "resources/T_ButterflyWing_Height.png",
+      "sha12": "5dd4bf27a42e",
+      "size": 488710
+    }
+  ],
+  "maps_4k": true,
+  "normal_convention": "treat as OpenGL, flip G on UE export if needed",
+  "displacement_is_height": true,
+  "notes": "Hand-paint OPEN - resources staged, no auto-wire. Thick mesh.",
+  "staged_at": "2026-09-03T03:49:51.326092Z"
+}

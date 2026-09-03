@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_package_contract",
+  "contract_id": "melodia_content_package",
+  "purpose": "Shared data seam for reusable gameplay Blueprints and Infinity Nikki-inspired, non-gacha exploration content.",
+  "traversal_authority_contract": "specs/traversal/melodia_traversal_capability.v1.json",
+  "skill_execution_contract": "specs/skills/melodia_skill_execution.v1.json",
+  "release_manifest_contract": "specs/content/melodia_content_release_manifest.v1.json",
+  "capability_gate_contract": "specs/capability/melodia_capability_gate.v1.json",
+  "world_challenge_adapter_contract": "specs/progression/melodia_world_challenge_adapter.v1.json",
+  "state_anchor_adapter_contract": "specs/progression/melodia_state_anchor_adapter.v1.json",
+  "authority_rules": {
+    "execution": "stock_battle_session_or_canonical_subsystem",
+    "travel": "UMelodiaTravelSubsystem",
+    "traversal": "UMelodiaTraversalComponent",
+    "narrative": "UMelodiaNarrativeSubsystem",
+    "persistence": "FMelodiaNarrativeRecord_and_canonical_save_contract",
+    "presentation": "content_package_variant_and_presentation_assets",
+    "forbidden": [
+      "new GameMode authority",
+      "direct OpenLevel calls",
+      "direct save-file mutation",
+      "duplicated traversal state machine",
+      "hardcoded outfit ownership of an ability",
+    "runtime-only unlock state with no canonical key",
+    "local capability/context/progression gate that bypasses the shared capability gate contract"
+    ]
+  },
+  "package_fields": {
+    "identity": ["PackageId", "DefinitionVersion", "ContentKind", "DisplayName", "Tags"],
+    "progression": ["UnlockConditions", "RequiredNarrativePhase", "RequiredRegion", "RequiredTraversalState"],
+    "context": ["AllowedContexts", "BlockedContexts", "InterruptPolicy", "ResetPolicy", "ContextPolicy"],
+    "capability": ["CapabilityGateContract", "ModeSet", "EnterPolicy", "UpdatePolicy", "ExitPolicy", "InterruptPolicy"],
+    "presentation": ["VariantSet", "EquippedVariantId", "FallbackVariantId", "AnimationProfile", "VfxProfile", "AudioProfile", "UiPresentation", "PreviewPolicy", "EffectTogglePolicy", "UnavailableVariantPolicy"],
+    "evolution": ["EvolutionStage", "UpgradeConditions", "EffectOverrides", "IdlePresentation"],
+    "persistence": ["CanonicalStateKey", "IdempotencyKey", "SaveWritePolicy", "MigrationVersion"],
+    "verification": ["FixtureMap", "FixtureRoute", "ExpectedEvidence", "ReadinessLevel"]
+  },
+  "content_kinds": {
+    "skill": {
+      "blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaSkill_Base",
+      "execution_contract": ["target_rules", "cost", "cooldown", "request_stock_execution", "success", "failure", "cancel"],
+      "first_fixture": "single_target_resonance_skill"
+    },
+    "enemy": {
+      "blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEnemy_Base",
+      "execution_contract": ["stock_unit_data", "threat_profile", "defeat_event", "reward_request"],
+      "first_fixture": "single_stock_enemy"
+    },
+    "encounter": {
+      "blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEncounter_Base",
+      "execution_contract": ["activation", "lock_state", "battle_request", "completion", "idempotent_reset"],
+      "first_fixture": "repeatable_first_dream_encounter"
+    },
+    "portal": {
+      "blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaPortal_Base",
+      "execution_contract": ["discovery", "unlock_check", "destination_key", "travel_request", "arrival", "safe_failure"],
+      "first_fixture": "locked_traversal_portal"
+    },
+    "traversal": {
+      "blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaTraversalGate_Base",
+      "execution_contract": ["mode_set", "enter_mode", "update_mode", "exit_mode", "interrupt", "context_lock", "blocked_feedback", "load_reset", "preview_reset"],
+      "first_fixture": "hover_gate_with_dungeon_lock"
+    },
+    "world_challenge": {
+      "blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaWorldChallenge_Base",
+      "execution_contract": ["attempt", "reset", "completion", "reward_request", "canonical_state_write"],
+      "first_fixture": "idempotent_photo_or_resonance_challenge"
+    },
+    "state_anchor": {
+      "blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaStateAnchor_Base",
+      "execution_contract": ["stable_identity", "read", "apply_once", "replay_safe_presentation"],
+      "first_fixture": "first_dream_progress_anchor"
+    }
+  },
+  "traversal_contexts": [
+    "open_world",
+    "dungeon_uncleared",
+    "dungeon_cleared",
+    "boss_stage",
+    "cutscene",
+    "menu",
+    "co_op"
+  ],
+  "readiness": {
+    "L0": "definition and owner recorded",
+    "L1": "parent, authority, fields, and restrictions recorded",
+    "L2": "live graph and dependency audit pass",
+    "L3": "disposable fixture exercises the real route",
+    "L4": "compile, map reachability, runtime, failure path, reset/idempotency, and fresh evidence pass"
+  },
+  "non_copy_boundary": [
+    "Use Infinity Nikki only as a reference for data boundaries, ability presentation, context gating, evolution, and authored handoff.",
+    "Do not copy gacha, pity, monetization, proprietary clipping algorithms, or proprietary production assets."
+  ]
+}

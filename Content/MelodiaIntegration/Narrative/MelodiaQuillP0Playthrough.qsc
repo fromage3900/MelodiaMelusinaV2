@@ -1,0 +1,80 @@
+@ Start
+
+- Melusina
+  The morning bell tolls across the Kaleido Nave. The quiet petal in my hand hums with dawn cadence.
+
+- Sir Melodious
+  Melusina, the dream is awake. Listen closely—before the resonance scatters, we must trace its first note.
+
+* Listen to the morning chime and align cadence. | -> Harmonize
+* Step forward into the nave sanctuary.          | -> AdvanceToEncounter
+
+<@> Harmonize
+
+- Melusina
+  I hear the keynote. The air trembles in perfect fifths.
+
+$ Notify melodia:stat:intent.p0.morning_resonance:melodia_harmony:2
+
+- Sir Melodious
+  Well struck. The sanctuary path opens ahead.
+
+-> AdvanceToEncounter
+
+<@> AdvanceToEncounter
+
+- Melusina
+  Something restless stirs near the central altar. A shadow of unresolved dissonance.
+
+- Sir Melodious
+  Stand firm. Draw your rhythm cadence and face the smoke echo.
+
+$ Notify melodia:battle:melodia_smoke_encounter
+
+? if: {melodia_battle_result} == victory
+
+  - Sir Melodious
+    A triumphant resolution! The dissonance dissolves into pure harmony.
+
+  - Melusina
+    The dream remembers our song, and the path beyond the nave is clear.
+
+  $ melodia_p0_victory = on
+  $ Notify melodia:questcomplete:quest.first_dream:flag.first_dream.quest.completed:reward.first_resonance_echo:intent.first_dream.complete:checkpoint.first_dream.complete
+  $ Notify melodia:flag:flag.p0.playthrough.completed:true
+
+? else:
+
+  ? if: {melodia_battle_result} == defeat
+
+    - Sir Melodious
+      The melody faltered, but the echo held no cruelty. Breathe, and we shall harmonize anew.
+
+    $ Notify melodia:flag:flag.p0.playthrough.attempted:true
+
+  ? else:
+
+    - Sir Melodious
+      We stepped back in good time. The echo waits quietly for our return.
+
+    $ Notify melodia:flag:flag.p0.playthrough.fled:true
+
+  ? endif
+
+? endif
+
+@ Finish
+
+? if: {melodia_p0_victory} == on
+
+  - .
+    The First Dream concludes in resonant harmony. The gates to the resonant world stand open.
+
+? else:
+
+  - .
+    The nave settles into gentle stillness, awaiting your voice once more.
+
+? endif
+
+$ End

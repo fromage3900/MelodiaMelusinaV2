@@ -1,0 +1,115 @@
+{
+  "schema": "melodia.p4.monolith_complex_builders.v1",
+  "as_of": "2026-09-01T04:42Z",
+  "editor_state": "CLOSED (just built, PID 41752 killed) \u2014 hython GN builders are editor-open safe, can proceed immediately",
+  "existing": {
+    "builders": 233,
+    "categories": 15,
+    "gn_taxonomy": "Docs/Production/GN_TAXONOMY_2026-08-29.md 232/51/15 (now 233 with tapestry_wall)"
+  },
+  "p4_scope": "research_only per Master Index \u00a73 until owner promotes \u2014 additive, no P1/P0 overwrite",
+  "builders": [
+    {
+      "id": "MEL_p4_fractal_cathedral",
+      "label": "Fractal Cathedral",
+      "category": "god_molts",
+      "description": "Recursive Gothic cathedral \u2014 fractal arch subdivision with Chladni-driven window tracery, vault ribs as L-system, rose window as cymatic standing wave; Nanite-ready, 4 LODs",
+      "complexity": "high \u2014 recursion + boolean + cymatic sampling",
+      "inputs": [
+        "Recursion Depth (1-4)",
+        "Arch Span",
+        "Vault Height",
+        "Tracery Density",
+        "Cymatic Variant"
+      ],
+      "file": "deploy/surreal_arch/melodia_gn/p4_fractal_cathedral.py"
+    },
+    {
+      "id": "MEL_p4_weave_terrain",
+      "label": "Weave Terrain",
+      "category": "mother",
+      "description": "Cloth-terrain hybrid \u2014 2000m tile where pleat ridges ARE the heightmap (PleatedRange technique), embroidery motifs as scattered detail, seam valleys as WPO flow; bakes to R16 + Nanite mesh",
+      "complexity": "high \u2014 heightfield + scatter + R16 bake",
+      "inputs": [
+        "Tile Size",
+        "Pleat Amplitude/Period",
+        "Seam Depth/Width",
+        "Motif Density",
+        "Embroidery Atlas"
+      ],
+      "file": "deploy/surreal_arch/melodia_gn/p4_weave_terrain.py"
+    },
+    {
+      "id": "MEL_p4_resonance_harp_array",
+      "label": "Resonance Harp Array",
+      "category": "music",
+      "description": "Field of concert harps \u2014 each string length tuned to cymatic ModeN/M (BassIntensity*6), frame curvature from BeatPulse, playable in-world via trace; PCG-populatable",
+      "complexity": "high \u2014 instance + cymatic + audio reactive",
+      "inputs": [
+        "Field Count",
+        "Harp Scale",
+        "ModeN/ModeM",
+        "String Count",
+        "Frame Curve"
+      ],
+      "file": "deploy/surreal_arch/melodia_gn/p4_resonance_harp_array.py"
+    },
+    {
+      "id": "MEL_p4_molten_shell_city",
+      "label": "Molten Shell City",
+      "category": "god_molts",
+      "description": "Molt-shell as city \u2014 trilobite shell plates become habitable districts, fracture seams become streets, growth rings become terraces, iridescence drives material; inspired by SM_ClothMountains grid 384",
+      "complexity": "high \u2014 shell + fracture + urban kitbash",
+      "inputs": [
+        "Shell Scale",
+        "Fracture Count",
+        "Terrace Levels",
+        "Street Width",
+        "Iridescence Strength"
+      ],
+      "file": "deploy/surreal_arch/melodia_gn/p4_molten_shell_city.py"
+    },
+    {
+      "id": "MEL_p4_cymatic_organ_pipes",
+      "label": "Cymatic Organ Pipes",
+      "category": "music",
+      "description": "Walkable pipe organ \u2014 pipe heights from cymatic Chladni nodal values, pipe diameters from BeatPhase, facade tracery from cymatic Height; each pipe is a tuned Static Mesh with collision",
+      "complexity": "high \u2014 pipe array + cymatic + collision",
+      "inputs": [
+        "Pipe Count",
+        "Height Scale",
+        "Diameter Scale",
+        "Facade Style",
+        "Cymatic Variant"
+      ],
+      "file": "deploy/surreal_arch/melodia_gn/p4_cymatic_organ_pipes.py"
+    },
+    {
+      "id": "MEL_p4_tapestry_citadel",
+      "label": "Tapestry Citadel",
+      "category": "mother",
+      "description": "Citadel where every wall IS a tapestry \u2014 mother_tapestry_wall instances assembled into curtain walls, bastions, gatehouse; tapestry Height drives displacement, embroidery drives trim; Nanite + PCG wall sampler",
+      "complexity": "high \u2014 assembly + tapestry + PCG",
+      "inputs": [
+        "Citadel Radius",
+        "Wall Height",
+        "Bastion Count",
+        "Tapestry Variant",
+        "Gate Width"
+      ],
+      "file": "deploy/surreal_arch/melodia_gn/p4_tapestry_citadel.py"
+    }
+  ],
+  "hython_toolchain": "hython 22.0.368 at C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe \u2014 GN builders are Blender Geometry Nodes Python (deploy/surreal_arch/melodia_gn/*.py), not Houdini HDAs; hython is for Copernicus/Houdini Engine separate lane. These builders are verified via `from deploy.surreal_arch.melodia_gn.core import GROUP_METADATA` count check.",
+  "validation": [
+    "python -c \"import re, glob; print(len(set(re.findall(r'register_builder.*MEL_[^\\\"]+', open(p).read()) for p in glob.glob('deploy/surreal_arch/melodia_gn/*.py')))\"",
+    "Blender --background --python deploy/surreal_arch/melodia_gn/<builder>.py smoke (optional)",
+    "GN_TAXONOMY resync 233 -> 239 after all 6 land"
+  ],
+  "next_steps": [
+    "Stub 6 files",
+    "Registry check 239",
+    "Docs sync",
+    "Commit"
+  ]
+}

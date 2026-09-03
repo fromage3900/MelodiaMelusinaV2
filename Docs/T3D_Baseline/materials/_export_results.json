@@ -1,0 +1,497 @@
+[
+  {
+    "asset": "M_Master_Impressionist_Toon",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon",
+    "status": "OK",
+    "bytes": 178701,
+    "nodes": 124,
+    "full_bytes": 173699
+  },
+  {
+    "asset": "M_Master_Impressionist_Toon_Landscape",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape",
+    "status": "OK",
+    "bytes": 107329,
+    "nodes": 73,
+    "full_bytes": 104535
+  },
+  {
+    "asset": "M_Master_Nikki",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki",
+    "status": "OK",
+    "bytes": 133608,
+    "nodes": 108,
+    "full_bytes": 129280
+  },
+  {
+    "asset": "M_Master_Nikki_Landscape",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/_Scratch/M_Master_Nikki_Landscape",
+    "status": "OK",
+    "bytes": 154880,
+    "nodes": 117,
+    "full_bytes": 150216
+  },
+  {
+    "asset": "M_Master_SDF_Toon",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/Masters/M_Master_SDF_Toon",
+    "status": "OK",
+    "bytes": 53579,
+    "nodes": 46,
+    "full_bytes": 51763
+  },
+  {
+    "asset": "M_Master_Simple_Universal",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal",
+    "status": "OK",
+    "bytes": 33343,
+    "nodes": 25,
+    "full_bytes": 32305
+  },
+  {
+    "asset": "M_Master_Toon_Cosmic",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Cosmic",
+    "status": "OK",
+    "bytes": 1358817,
+    "nodes": 1042,
+    "full_bytes": 1318655
+  },
+  {
+    "asset": "M_Master_Toon_Landscape_HeightBlend",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend",
+    "status": "OK",
+    "bytes": 454793,
+    "nodes": 301,
+    "full_bytes": 442385
+  },
+  {
+    "asset": "M_Master_Toon_Unified",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified",
+    "status": "OK",
+    "bytes": 77638,
+    "nodes": 63,
+    "full_bytes": 75110
+  },
+  {
+    "asset": "M_Master_Toon_Universal",
+    "cls": "Material",
+    "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+    "status": "OK",
+    "bytes": 1618354,
+    "nodes": 1201,
+    "full_bytes": 1571495
+  },
+  {
+    "asset": "MF_AnimeSkinWrap",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_AnimeSkinWrap",
+    "status": "OK",
+    "bytes": 301116,
+    "nodes": 256,
+    "full_bytes": 292197
+  },
+  {
+    "asset": "MF_ClothWindDrape",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape",
+    "status": "OK",
+    "bytes": 15669,
+    "nodes": 13,
+    "full_bytes": 15044
+  },
+  {
+    "asset": "MF_ColorRamp3",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3",
+    "status": "OK",
+    "bytes": 28830,
+    "nodes": 26,
+    "full_bytes": 27812
+  },
+  {
+    "asset": "MF_Gemstone",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/_Scratch/MF_Gemstone",
+    "status": "OK",
+    "bytes": 27862,
+    "nodes": 23,
+    "full_bytes": 26834
+  },
+  {
+    "asset": "MF_Impressionist_BrushStroke",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_BrushStroke",
+    "status": "OK",
+    "bytes": 105548,
+    "nodes": 85,
+    "full_bytes": 102517
+  },
+  {
+    "asset": "MF_Impressionist_Impasto",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto",
+    "status": "OK",
+    "bytes": 73678,
+    "nodes": 59,
+    "full_bytes": 71373
+  },
+  {
+    "asset": "MF_Impressionist_InkPool",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_InkPool",
+    "status": "OK",
+    "bytes": 105143,
+    "nodes": 85,
+    "full_bytes": 101972
+  },
+  {
+    "asset": "MF_Impressionist_Temporal",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal",
+    "status": "OK",
+    "bytes": 136979,
+    "nodes": 112,
+    "full_bytes": 132979
+  },
+  {
+    "asset": "MF_IridescenceSheen",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen",
+    "status": "OK",
+    "bytes": 33348,
+    "nodes": 29,
+    "full_bytes": 32219
+  },
+  {
+    "asset": "MF_Itto",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_Itto",
+    "status": "OK",
+    "bytes": 200447,
+    "nodes": 191,
+    "full_bytes": 193795
+  },
+  {
+    "asset": "MF_LandscapeStorybookSDF",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_LandscapeStorybookSDF",
+    "status": "OK",
+    "bytes": 28162,
+    "nodes": 24,
+    "full_bytes": 27243
+  },
+  {
+    "asset": "MF_Madoka",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_Madoka",
+    "status": "OK",
+    "bytes": 268239,
+    "nodes": 245,
+    "full_bytes": 259607
+  },
+  {
+    "asset": "MF_MelodiaIridescenceSheen",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_MelodiaIridescenceSheen",
+    "status": "OK",
+    "bytes": 27057,
+    "nodes": 20,
+    "full_bytes": 26138
+  },
+  {
+    "asset": "MF_MeluPaintBase",
+    "cls": "MaterialFunction",
+    "path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase",
+    "status": "OK",
+    "bytes": 32860,
+    "nodes": 27,
+    "full_bytes": 31780
+  },
+  {
+    "asset": "MF_MeluPaletteColors",
+    "cls": "MaterialFunction",
+    "path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors",
+    "status": "OK",
+    "bytes": 9733,
+    "nodes": 9,
+    "full_bytes": 9319
+  },
+  {
+    "asset": "MF_MeluSparkle",
+    "cls": "MaterialFunction",
+    "path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle",
+    "status": "OK",
+    "bytes": 20851,
+    "nodes": 19,
+    "full_bytes": 20093
+  },
+  {
+    "asset": "MF_MeluTemporalJitter",
+    "cls": "MaterialFunction",
+    "path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTemporalJitter",
+    "status": "OK",
+    "bytes": 13172,
+    "nodes": 12,
+    "full_bytes": 12641
+  },
+  {
+    "asset": "MF_MeluTriplanar",
+    "cls": "MaterialFunction",
+    "path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar",
+    "status": "OK",
+    "bytes": 22766,
+    "nodes": 20,
+    "full_bytes": 21970
+  },
+  {
+    "asset": "MF_MooaDecodeAttributes",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_MooaDecodeAttributes",
+    "status": "OK",
+    "bytes": 37601,
+    "nodes": 27,
+    "full_bytes": 36239
+  },
+  {
+    "asset": "MF_MooaEncodeAttributes",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_MooaEncodeAttributes",
+    "status": "OK",
+    "bytes": 37432,
+    "nodes": 27,
+    "full_bytes": 36105
+  },
+  {
+    "asset": "MF_MooaToonBaseInput",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_MooaToonBaseInput_2.MF_MooaToonBaseInput",
+    "status": "OK",
+    "bytes": 562560,
+    "nodes": 378,
+    "full_bytes": 541839
+  },
+  {
+    "asset": "MF_NikkiDreamGrade",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiDreamGrade",
+    "status": "OK",
+    "bytes": 74566,
+    "nodes": 64,
+    "full_bytes": 72225
+  },
+  {
+    "asset": "MF_NikkiIridescenceSheen",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiIridescenceSheen",
+    "status": "OK",
+    "bytes": 22162,
+    "nodes": 19,
+    "full_bytes": 21383
+  },
+  {
+    "asset": "MF_NikkiRimGlow",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiRimGlow",
+    "status": "OK",
+    "bytes": 20574,
+    "nodes": 19,
+    "full_bytes": 19802
+  },
+  {
+    "asset": "MF_NikkiSparkle",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle",
+    "status": "OK",
+    "bytes": 16836,
+    "nodes": 16,
+    "full_bytes": 16178
+  },
+  {
+    "asset": "MF_SDF_BandRelief",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_SDF_BandRelief",
+    "status": "OK",
+    "bytes": 428599,
+    "nodes": 373,
+    "full_bytes": 415727
+  },
+  {
+    "asset": "MF_Triplanar_Stable",
+    "cls": "MaterialFunction",
+    "path": "/Game/EnvSandbox/Materials/Functions/MF_Triplanar_Stable",
+    "status": "OK",
+    "bytes": 7903,
+    "nodes": 7,
+    "full_bytes": 7525
+  },
+  {
+    "asset": "MPC_Melodia_Palette",
+    "cls": "MaterialParameterCollection",
+    "path": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    "status": "OK",
+    "bytes": 6644,
+    "nodes": 1,
+    "full_bytes": 6287
+  },
+  {
+    "asset": "TP_Character",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Character",
+    "status": "OK",
+    "bytes": 625,
+    "nodes": 1,
+    "full_bytes": 481
+  },
+  {
+    "asset": "TP_Default",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Default",
+    "status": "OK",
+    "bytes": 617,
+    "nodes": 1,
+    "full_bytes": 475
+  },
+  {
+    "asset": "TP_Foliage",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Foliage",
+    "status": "OK",
+    "bytes": 617,
+    "nodes": 1,
+    "full_bytes": 475
+  },
+  {
+    "asset": "TP_Glass",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Glass",
+    "status": "OK",
+    "bytes": 609,
+    "nodes": 1,
+    "full_bytes": 469
+  },
+  {
+    "asset": "TP_Gold",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Gold",
+    "status": "OK",
+    "bytes": 605,
+    "nodes": 1,
+    "full_bytes": 466
+  },
+  {
+    "asset": "TP_Hero",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Hero",
+    "status": "OK",
+    "bytes": 605,
+    "nodes": 1,
+    "full_bytes": 466
+  },
+  {
+    "asset": "TP_Impressionist_Dry",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Dry",
+    "status": "OK",
+    "bytes": 657,
+    "nodes": 1,
+    "full_bytes": 505
+  },
+  {
+    "asset": "TP_Impressionist_Impasto",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Impasto",
+    "status": "OK",
+    "bytes": 673,
+    "nodes": 1,
+    "full_bytes": 517
+  },
+  {
+    "asset": "TP_Impressionist_Wet",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Wet",
+    "status": "OK",
+    "bytes": 657,
+    "nodes": 1,
+    "full_bytes": 505
+  },
+  {
+    "asset": "TP_Melusina",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina",
+    "status": "OK",
+    "bytes": 675,
+    "nodes": 1,
+    "full_bytes": 534
+  },
+  {
+    "asset": "TP_NikkiDream",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_NikkiDream",
+    "status": "OK",
+    "bytes": 629,
+    "nodes": 1,
+    "full_bytes": 484
+  },
+  {
+    "asset": "TP_Ornamental",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Ornamental",
+    "status": "OK",
+    "bytes": 629,
+    "nodes": 1,
+    "full_bytes": 484
+  },
+  {
+    "asset": "TP_Stone",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stone",
+    "status": "OK",
+    "bytes": 609,
+    "nodes": 1,
+    "full_bytes": 469
+  },
+  {
+    "asset": "TP_Stucco",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stucco",
+    "status": "OK",
+    "bytes": 613,
+    "nodes": 1,
+    "full_bytes": 472
+  },
+  {
+    "asset": "TP_Test",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Test",
+    "status": "OK",
+    "bytes": 605,
+    "nodes": 1,
+    "full_bytes": 466
+  },
+  {
+    "asset": "TP_Water",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Water",
+    "status": "OK",
+    "bytes": 609,
+    "nodes": 1,
+    "full_bytes": 469
+  },
+  {
+    "asset": "TP_Wood",
+    "cls": "ToonProfile",
+    "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Wood",
+    "status": "OK",
+    "bytes": 605,
+    "nodes": 1,
+    "full_bytes": 466
+  }
+]

@@ -1,0 +1,1011 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "melodia.mcp_tools.v1",
+  "description": "Tool schema for the Melodia MCP server \u00e2\u20ac\u201d Persona-lite, QuillScript, Rhythm Combat, Narrative, and Blueprint fixture surfaces.",
+  "server": {
+    "name": "melodia-mcp",
+    "version": "1.0.0",
+    "protocol_version": "2024-11-05",
+    "entrypoint": "deploy/melodia_mcp_server.py",
+    "runtime": "python3",
+    "offline_capable": true,
+    "monolith_fallback": true
+  },
+  "tools": {
+    "melodia_persona_get_stats": {
+      "category": "persona",
+      "description": "Read Persona-lite social stats from offline spec or live narrative record.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "stat_id": {
+            "type": "string",
+            "description": "Optional filter to one stat ID"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.persona.stats.v1",
+        "fields": [
+          "source",
+          "known_stat_ids",
+          "live_snapshot",
+          "note"
+        ]
+      }
+    },
+    "melodia_persona_get_quests": {
+      "category": "persona",
+      "description": "List quests and states from allowlist seed or live PersonaContent.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "quest_id": {
+            "type": "string",
+            "description": "Optional filter to one quest ID"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.persona.quests.v1",
+        "fields": [
+          "source",
+          "quests",
+          "live_snapshot"
+        ]
+      }
+    },
+    "melodia_quill_list_scripts": {
+      "category": "quill",
+      "description": "List authored QuillScript .qsc sources and compiled .uassets.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.quill.scripts.v1",
+        "fields": [
+          "count",
+          "scripts",
+          "narrative_dir"
+        ]
+      }
+    },
+    "melodia_quill_validate_notification": {
+      "category": "quill",
+      "description": "Validate a notification string against the seven-verb dispatch contract.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "notification": {
+            "type": "string",
+            "description": "Full notification string, e.g. melodia:battle:encounter_01"
+          }
+        },
+        "required": [
+          "notification"
+        ]
+      },
+      "output": {
+        "schema": "melodia.quill.notification_validate.v1",
+        "fields": [
+          "notification",
+          "verb",
+          "is_valid_verb",
+          "known_allowlist_matches",
+          "idempotency_rule"
+        ]
+      }
+    },
+    "melodia_rhythm_list_skills": {
+      "category": "rhythm",
+      "description": "List rhythm skill definitions from offline scan or live DA_MelodiaSongs.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.rhythm.skills.v1",
+        "fields": [
+          "source",
+          "skills",
+          "grade_multipliers",
+          "live_snapshot"
+        ]
+      }
+    },
+    "melodia_narrative_get_record": {
+      "category": "narrative",
+      "description": "Return FMelodiaNarrativeRecord schema, idempotency seams, and seed state.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.narrative.record.v1",
+        "fields": [
+          "record",
+          "persistence_owner",
+          "migration_path"
+        ]
+      }
+    },
+    "melodia_config_get_allowlist": {
+      "category": "config",
+      "description": "Read integration config allowlist entries.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "set_name": {
+            "type": "string",
+            "description": "Optional: WorldChallengeIds, StateAnchorIds, NarrativeFlagIds, DialogueRewardIds, QuestIds, SocialStatIds"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.config.allowlist.v1",
+        "fields": [
+          "sets",
+          "target_asset",
+          "merge_policy"
+        ]
+      }
+    },
+    "melodia_bp_list_fixtures": {
+      "category": "blueprint",
+      "description": "List all Blueprint fixture specs and L0-L4 readiness levels.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.bp.fixtures.v1",
+        "fields": [
+          "fixture_count",
+          "fixtures",
+          "templates",
+          "creation_order",
+          "template_materialization_order"
+        ]
+      }
+    },
+    "melodia_bp_get_template": {
+      "category": "blueprint",
+      "description": "Get a single template definition from the gameplay BP kit.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "template_id": {
+            "type": "string",
+            "enum": [
+              "skill",
+              "enemy",
+              "encounter",
+              "portal",
+              "traversal_gate",
+              "world_challenge",
+              "state_anchor"
+            ],
+            "description": "Template ID from the kit registry"
+          }
+        },
+        "required": [
+          "template_id"
+        ]
+      },
+      "output": {
+        "schema": "melodia.bp.template.v1",
+        "fields": [
+          "template",
+          "authority",
+          "readiness_levels"
+        ]
+      }
+    },
+    "melodia_bp_validate_fixture": {
+      "category": "blueprint",
+      "description": "Validate a fixture spec exists and has required contract fields.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "fixture_name": {
+            "type": "string",
+            "description": "Fixture spec filename (without .json)"
+          }
+        },
+        "required": [
+          "fixture_name"
+        ]
+      },
+      "output": {
+        "schema": "melodia.bp.fixture_validate.v1",
+        "fields": [
+          "fixture_name",
+          "valid",
+          "missing_fields",
+          "readiness",
+          "kind"
+        ]
+      }
+    },
+    "melodia_system_health": {
+      "category": "system",
+      "description": "Read-only health check across Melodia subsystems, specs, and Monolith reachability.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.system.health.v1",
+        "fields": [
+          "status",
+          "timestamp",
+          "checks"
+        ]
+      }
+    },
+    "melodia_system_list_subsystems": {
+      "category": "system",
+      "description": "List native C++ subsystem authorities from source headers.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.system.subsystems.v1",
+        "fields": [
+          "count",
+          "subsystems",
+          "note"
+        ]
+      }
+    },
+    "melodia_narrative_audit_idempotency": {
+      "category": "narrative",
+      "description": "Audit C++ narrative subsystem source for idempotency guards and replay-safe paths.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.narrative.idempotency_audit.v1",
+        "fields": [
+          "source_file",
+          "all_paths_guarded",
+          "findings",
+          "stat_verb_routes_to_grant",
+          "item_is_logging_stub",
+          "contract_notes"
+        ]
+      }
+    },
+    "melodia_material_list_pbr": {
+      "category": "material",
+      "description": "Scan disk for complete and incomplete PBR texture sets.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.material.pbr_list.v1",
+        "fields": ["source", "complete_sets", "complete_set_count", "incomplete_set_count", "complete_sets_with_instance", "complete_sets_without_instance", "incomplete_stems", "live_existing_instance_count"]
+      }
+    },
+    "melodia_material_get_compile_stats": {
+      "category": "material",
+      "description": "Report material compilation state, using Monolith when available and disk presence offline.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {"asset_path": {"type": "string"}},
+        "required": ["asset_path"]
+      },
+      "output": {
+        "schema": "melodia.material.compile_stats.v1",
+        "fields": ["source", "asset_path", "stats", "uasset_exists", "uasset_size", "note"]
+      }
+    },
+    "melodia_material_audit": {
+      "category": "material",
+      "description": "Audit material pipeline health, PPV defects, and the audio-reactivity gap.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.material.audit.v1",
+        "fields": ["source", "masters", "audio_reactivity_gap", "ppv_known_defects"]
+      }
+    },
+    "melodia_ppv_report": {
+      "category": "material",
+      "description": "Report per-level post-process volume state from offline scripts and live inspection.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.material.ppv_report.v1",
+        "fields": ["source", "levels", "script_spawn_targets", "findings"]
+      }
+    },
+    "melodia_bp_validate_p0_route": {
+      "category": "blueprint",
+      "description": "Validate P0 Dream golden run fixtures, Quill scripts, and allowlist IDs.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.bp.p0_route.v1",
+        "fields": [
+          "p0_route_valid",
+          "fixtures",
+          "scripts",
+          "allowlist_ids",
+          "golden_run_contract"
+        ]
+      }
+    },
+    "melodia_system_golden_run_preflight": {
+      "category": "system",
+      "description": "Pre-flight check for P0 golden run: route maps, config assets, completion gates, echo pipeline.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.system.golden_run_preflight.v1",
+        "fields": [
+          "ready",
+          "timestamp",
+          "checks",
+          "next_step"
+        ]
+      }
+    },
+    "melodia_animation_validate_state_machine": {
+      "category": "animation",
+      "description": "Validate an Animation Blueprint's state machine health. Checks: entry state exists, all states have sequence players, no orphan transitions.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "abp_path": {
+            "type": "string",
+            "description": "Path to the Animation Blueprint asset"
+          }
+        },
+        "required": ["abp_path"]
+      },
+      "output": {
+        "schema": "melodia.animation.validate_sm.v1",
+        "fields": [
+          "abp_path",
+          "target_skeleton",
+          "all_ok",
+          "state_machine_count",
+          "findings",
+          "entry_state"
+        ]
+      }
+    },
+    "melodia_animation_validate_bindings": {
+      "category": "animation",
+      "description": "Verify all states in an ABP have connected pose outputs. Detects T-pose causes: blendspace/sequence player with 0 connections.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "abp_path": {
+            "type": "string",
+            "description": "Path to the Animation Blueprint asset"
+          }
+        },
+        "required": ["abp_path"]
+      },
+      "output": {
+        "schema": "melodia.animation.validate_bindings.v1",
+        "fields": [
+          "abp_path",
+          "all_ok",
+          "node_count",
+          "findings"
+        ]
+      }
+    },
+    "melodia_animation_get_runtime_abp": {
+      "category": "animation",
+      "description": "Return which ABP is assigned to a character BP's Mesh component. Detects skeleton mismatches between mesh and anim class.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "bp_path": {
+            "type": "string",
+            "description": "Path to the character Blueprint asset"
+          }
+        },
+        "required": ["bp_path"]
+      },
+      "output": {
+        "schema": "melodia.animation.get_runtime_abp.v1",
+        "fields": [
+          "bp_path",
+          "anim_class",
+          "parent_class",
+          "abp_skeleton",
+          "mesh_component",
+          "status"
+        ]
+      }
+    },
+    "melodia_audio_list_assets": {
+      "category": "audio",
+      "description": "List audio assets from offline disk scan; enriches with Monolith when live.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "kind": {"type": "string", "enum": ["metasound", "sound_cue", "other"]}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.audio.list.v1",
+        "fields": ["source", "count", "assets", "live_snapshot"]
+      }
+    },
+    "melodia_audio_validate_metasound": {
+      "category": "audio",
+      "description": "Validate a MetaSound asset graph. Falls back to disk presence when Monolith is offline.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "metasound_path": {"type": "string"}
+        },
+        "required": ["metasound_path"]
+      },
+      "output": {
+        "schema": "melodia.audio.validate_metasound.v1",
+        "fields": ["metasound_path", "source", "valid", "node_count", "findings"]
+      }
+    },
+    "melodia_audio_get_rhythm_catalog": {
+      "category": "audio",
+      "description": "Return rhythm-combat audio catalog from live DA or offline fixture scan.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.audio.rhythm_catalog.v1",
+        "fields": ["source", "catalog_assets", "live_snapshot"]
+      }
+    },
+    "melodia_ui_list_widgets": {
+      "category": "ui",
+      "description": "List UMG widget blueprints from offline disk scan; enriches with Monolith when live.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.ui.list.v1",
+        "fields": ["source", "count", "widgets", "live_snapshot"]
+      }
+    },
+    "melodia_ui_validate_widget": {
+      "category": "ui",
+      "description": "Validate a UMG widget hierarchy. Falls back to disk presence when Monolith is offline.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "widget_path": {"type": "string"}
+        },
+        "required": ["widget_path"]
+      },
+      "output": {
+        "schema": "melodia.ui.validate_widget.v1",
+        "fields": ["widget_path", "source", "valid", "child_count", "findings"]
+      }
+    },
+    "melodia_ui_get_battle_hud": {
+      "category": "ui",
+      "description": "Return known battle HUD widget paths and whether they exist on disk or live.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.ui.battle_hud.v1",
+        "fields": ["source", "hud_widgets", "primary_hud"]
+      }
+    },
+    "melodia_system_compile_feedback": {
+      "category": "system",
+      "description": "Return compile feedback for an asset — RCF metric groundwork. Offline-safe stub.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "asset_path": {"type": "string"}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.system.compile_feedback.v1",
+        "fields": ["source", "available", "compile_errors", "compile_warnings", "error_count"]
+      }
+    },
+    "melodia_economy_get_state": {
+      "category": "economy",
+      "description": "Read current global economy state: healing, mana, utility, grief.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.economy.state.v1",
+        "fields": ["healing", "mana", "utility", "grief"]
+      }
+    },
+    "melodia_economy_rhythm_hit": {
+      "category": "economy",
+      "description": "Apply rhythm hit with accuracy 0–1; grief modifies gains.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "accuracy": {"type": "number", "description": "Hit accuracy 0.0–1.0"}
+        },
+        "required": ["accuracy"]
+      },
+      "output": {
+        "schema": "melodia.economy.rhythm_hit.v1",
+        "fields": ["accuracy", "mana_gain", "healing_gain", "utility_gain", "grief_delta", "new_state"]
+      }
+    },
+    "melodia_economy_cast_skill": {
+      "category": "economy",
+      "description": "Cast a rhythm skill: healing_song, mana_song, or utility_debuff.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "skill_id": {"type": "string", "enum": ["healing_song", "mana_song", "utility_debuff"]},
+          "tier": {"type": "integer", "default": 1}
+        },
+        "required": ["skill_id"]
+      },
+      "output": {
+        "schema": "melodia.economy.cast.v1",
+        "fields": ["skill", "tier", "success", "new_state"]
+      }
+    },
+    "melodia_economy_activate_grief_hook": {
+      "category": "economy",
+      "description": "Activate grief hook on dungeon entry — sets grief to 30.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "dungeon_id": {"type": "string", "description": "Dungeon identifier"}
+        },
+        "required": ["dungeon_id"]
+      },
+      "output": {
+        "schema": "melodia.economy.grief_hook.v1",
+        "fields": ["dungeon_id", "grief_set_to", "new_state"]
+      }
+    },
+    "melodia_ui_get_economy_hud": {
+      "category": "ui",
+      "description": "Return structured P0 economy HUD state: 4 indicators, skill availability, grief hook, scalar tiers.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.ui.economy_hud.v1",
+        "fields": ["healing", "mana", "utility", "grief", "can_cast_healing", "can_cast_mana", "can_cast_utility", "grief_active", "scalar_tiers"]
+      }
+    },
+    "melodia_encounter_start": {
+      "category": "encounter",
+      "description": "Start a dungeon encounter: activate grief hook and spawn mana-drainer enemy.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "encounter_id": {"type": "string", "description": "Encounter identifier"}
+        },
+        "required": ["encounter_id"]
+      },
+      "output": {
+        "schema": "melodia.encounter.start.v1",
+        "fields": ["encounter_id", "status", "enemy", "grief_set_to", "new_state"]
+      }
+    },
+    "melodia_encounter_enemy_action": {
+      "category": "encounter",
+      "description": "Enemy performs mana drain action: reduces player ManaEconomy by 15.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "encounter_id": {"type": "string", "description": "Encounter identifier"}
+        },
+        "required": ["encounter_id"]
+      },
+      "output": {
+        "schema": "melodia.encounter.enemy_action.v1",
+        "fields": ["encounter_id", "action", "mana_drained", "new_state"]
+      }
+    },
+    "melodia_encounter_resolve": {
+      "category": "encounter",
+      "description": "Resolve encounter: checks if all 3 skill families were cast.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "encounter_id": {"type": "string", "description": "Encounter identifier"}
+        },
+        "required": ["encounter_id"]
+      },
+      "output": {
+        "schema": "melodia.encounter.resolve.v1",
+        "fields": ["encounter_id", "status", "blocked_enemy", "cast_history", "quest_advancement"]
+      }
+    },
+    "melodia_quest_check_p0": {
+      "category": "quest",
+      "description": "Check P0 quest status based on cast history and encounter resolution.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "quest_id": {"type": "string", "description": "Quest identifier"}
+        },
+        "required": ["quest_id"]
+      },
+      "output": {
+        "schema": "melodia.quest.check_p0.v1",
+        "fields": ["quest_id", "status", "cast_history", "resolved_encounters", "has_combat_skills", "encounter_resolved"]
+      }
+    },
+    "melodia_resonant_world_get_atlas": {
+      "category": "resonant_world",
+      "description": "Read the offline Resonant World asset-family atlas.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.resonant_world.atlas.v1",
+        "fields": ["source", "ok", "artifact_path", "atlas_version", "scanned_file_count", "family_counts", "movement_ids", "manifest_sources", "validation_errors"]
+      }
+    },
+    "melodia_resonant_world_get_constellation": {
+      "category": "resonant_world",
+      "description": "Resolve existing project assets into a deterministic musical-voxel chunk read model without mutating Unreal state.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer", "default": 3900},
+          "movement_id": {"type": "string", "default": "petal_cantata"},
+          "chunk_x": {"type": "integer", "default": 0},
+          "chunk_y": {"type": "integer", "default": 0},
+          "archetype_id": {"type": "string"}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.constellation.v1",
+        "fields": ["source", "ok", "seed", "movement_id", "chunk", "constellation_id", "world", "inventory", "bindings", "coverage", "magical_moment", "quantum_setup", "verification", "runtime_boundary", "validation_errors", "materialization"]
+      }
+    },
+    "melodia_resonant_world_get_score": {
+      "category": "resonant_world",
+      "description": "Compose a deterministic musical call/response route, beat stages, and existing-asset voicing without applying Unreal state.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer", "default": 3900},
+          "movement_id": {"type": "string", "default": "cadence_cathedral"},
+          "chunk_x": {"type": "integer", "default": 0},
+          "chunk_y": {"type": "integer", "default": 0},
+          "archetype_id": {"type": "string"}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.score.v1",
+        "fields": ["source", "ok", "seed", "movement_id", "chunk", "score_id", "motif", "route", "stages", "events", "world", "asset_constellation", "quantum_setup", "persistence", "runtime_boundary", "validation_errors", "materialization"]
+      }
+    },
+    "melodia_resonant_world_project_chronicle": {
+      "category": "resonant_world",
+      "description": "Project append-only discoveries, score completions, style voicings, and sparse voxel edits into a deterministic world-memory read model without writing saves or applying Unreal state.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer", "default": 3900},
+          "movement_id": {"type": "string", "default": "petal_cantata"},
+          "chunk_x": {"type": "integer", "default": 0},
+          "chunk_y": {"type": "integer", "default": 0},
+          "events": {"type": "array", "items": {"type": "object"}, "default": []}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.chronicle.v1",
+        "fields": ["source", "ok", "seed", "movement_id", "chunk", "chronicle_id", "world", "source_provenance", "events", "projection", "persistence", "runtime_boundary", "validation_errors", "materialization"]
+      }
+    },
+    "melodia_resonant_world_get_capture_manifest": {
+      "category": "resonant_world",
+      "description": "Read the four canonical lookdev target slots, absolute source assets, intended camera/material state, and conservative PNG evidence verdicts without rendering or publishing.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer", "default": 3900},
+          "movement_id": {"type": "string", "default": "all"},
+          "chunk_x": {"type": "integer", "default": 0},
+          "chunk_y": {"type": "integer", "default": 0}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.capture_manifest.v1",
+        "fields": ["source", "ok", "seed", "movement_id", "chunk", "render_map_contract", "targets", "verification", "runtime_boundary", "validation_errors", "materialization"]
+      }
+    },
+    "melodia_resonant_world_compile_passage": {
+      "category": "resonant_world",
+      "description": "Compile an in-memory magical Resonant World passage or six-movement portfolio without writing project state.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer", "default": 3900},
+          "movement_id": {"type": "string", "default": "petal_cantata"},
+          "archetype_id": {"type": "string", "default": "SakuraDreamer"}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.passage.v1",
+        "fields": ["source", "ok", "seed", "movement_id", "atlas_source", "passage_count", "passages", "validation_errors", "materialization"]
+      }
+    },
+    "melodia_resonant_world_get_handoff": {
+      "category": "resonant_world",
+      "description": "Return the proof envelope and UI/gameplay/quantum/tool-call handoff documents.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "target": {"type": "string", "enum": ["all", "ui", "gameplay", "quantum", "tool_calls"], "default": "all"}
+        },
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.resonant_world.handoff.v1",
+        "fields": ["ok", "target", "documents", "proof_artifact", "validation_errors"]
+      }
+    },
+    "melodia_resonant_world_get_offline_bundle": {
+      "category": "resonant_world",
+      "description": "Read the clone-visible Blender-to-UE bundle, artifact hashes, six-movement score coverage, and non-mutating UE import plan.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.resonant_world.offline_bundle.v1",
+        "fields": ["ok", "path", "bundle_version", "world", "artifacts", "blender", "ue_import", "ue_import_plan", "validation_errors", "materialization"]
+      }
+    },
+    "melodia_resonant_world_validate": {
+      "category": "resonant_world",
+      "description": "Validate the asset atlas, six-passage portfolio, PCG plan, and editor proof handoff.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {"type": "object", "properties": {}, "required": []},
+      "output": {
+        "schema": "melodia.resonant_world.validate.v1",
+        "fields": ["ok", "checks", "materialization"]
+      }
+    },
+    "melodia_studio_analyze_song": {
+      "category": "studio",
+      "description": "Analyze musical structure: detect sections (intro/verse/chorus/bridge/outro), estimate tempo, compute dynamics, map to biomes.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "midi_path": {
+            "type": "string",
+            "description": "Absolute path to a .mid file"
+          }
+        },
+        "required": [
+          "midi_path"
+        ]
+      },
+      "output": {
+        "schema": "melodia.studio.analyze_song.v1",
+        "fields": [
+          "tempo_bpm",
+          "time_signature",
+          "total_duration_sec",
+          "total_bars",
+          "sections",
+          "dynamics_curve",
+          "suggested_biomes"
+        ]
+      }
+    },
+    "melodia_studio_list_presets": {
+      "category": "studio",
+      "description": "List available walkable terrain presets and dressing styles.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.studio.presets.v1",
+        "fields": [
+          "ok",
+          "walkable_presets",
+          "dressing_styles",
+          "magic_systems",
+          "prop_kinds"
+        ]
+      }
+    },
+    "melodia_studio_get_health": {
+      "category": "studio",
+      "description": "Run a read-only health check: MIDI directory, voxel tool, Blender addon paths, generated scenes, and Gaea integration status.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "schema": "melodia.studio.health.v1",
+        "fields": [
+          "ok",
+          "paths",
+          "midi_count",
+          "scenes_count"
+        ]
+      }
+    },
+    "melodia_studio_export_fbx": {
+      "category": "studio",
+      "description": "Generate smooth terrain from MIDI and export as UE5-compatible FBX.",
+      "approval_required": "none",
+      "mutates": false,
+      "input": {
+        "type": "object",
+        "properties": {
+          "midi_path": {
+            "type": "string",
+            "description": "Absolute path to a .mid file"
+          },
+          "preset_id": {
+            "type": "string",
+            "description": "Terrain preset (default: walkable_valley)"
+          },
+          "output_path": {
+            "type": "string",
+            "description": "Optional: override output FBX path"
+          }
+        },
+        "required": [
+          "midi_path"
+        ]
+      },
+      "output": {
+        "schema": "melodia.studio.export_fbx.v1",
+        "fields": [
+          "ok",
+          "fbx_path",
+          "size_bytes"
+        ]
+      }
+    }
+  },
+  "categories": {
+    "persona": "Persona-lite social stats, quests, equipment, abilities",
+    "quill": "QuillScript narrative scripts, notifications, validation",
+    "rhythm": "Rhythm combat skill catalog, sessions, grading",
+    "narrative": "Narrative record, save/load contract, idempotency",
+    "config": "Integration config, allowlists, validation settings",
+    "blueprint": "Blueprint fixture specs, templates, materialization",
+    "system": "Subsystem enumeration, health checks, diagnostics",
+    "animation": "Animation Blueprint state machine validation, binding checks, T-pose detection",
+    "audio": "MetaSound and SoundCue validation, rhythm audio catalog",
+    "material": "PBR, material compilation, post-process volume, and reactivity audits",
+    "ui": "UMG widget validation, battle HUD discovery",
+    "economy": "P0 global economy: healing, mana, utility, grief; rhythm skill chains",
+    "encounter": "Dungeon encounter lifecycle: start, enemy actions, resolution",
+    "quest": "Quest progression tracking and completion gates",
+    "resonant_world": "Deterministic musical voxel worlds, magical passages, quantum selection, and integration handoffs",
+    "studio": "Melodia Studio Blender addon: MIDI structure analysis, terrain presets, health checks, FBX export"
+  },
+  "integration_notes": {
+    "monolith_delegation": "Read-only tools fall back to offline spec files when Monolith is unreachable. No tool blocks on a dead editor.",
+    "policy_enforcement": "All tools check specs/mcp_tool_policy.v1.json via Tools/mcp_policy.py. Default decision is deny; melodia tools are allow with required_approval: none for reads.",
+    "write_policy": "No melodia tool in v1 mutates project state. Future write tools (fixture materialization, allowlist merge) will require editor or owner approval.",
+    "blueprint_schema_alignment": "Template IDs match specs/blueprints/melodia_gameplay_bp_kit.v1.json exactly. Fixture validation checks the same fields the kit requires."
+  }
+}

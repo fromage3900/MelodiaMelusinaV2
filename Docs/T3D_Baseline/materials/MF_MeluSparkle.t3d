@@ -1,0 +1,163 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_MeluSparkle" ExportPath="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionVectorParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTime Name="MaterialExpressionTime_0" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTime_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_0" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTextureSampleParameter2D_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureCoordinate Name="MaterialExpressionTextureCoordinate_0" ExportPath="/Script/Engine.MaterialExpressionTextureCoordinate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTextureCoordinate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPanner Name="MaterialExpressionPanner_0" ExportPath="/Script/Engine.MaterialExpressionPanner'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionPanner_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_4" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionComment_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_3" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionComment_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_0" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionCollectionParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_MeluSparkleEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MF_MeluSparkleEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionVectorParameter_0'"
+      DefaultValue=(R=0.900000,G=0.800000,B=1.000000,A=1.000000)
+      ParameterName="SparkleColor"
+      ExpressionGUID=3807C7644921051DEF7B33B3C3D55684
+      Group="Sparkle"
+      MaterialExpressionGuid=138463924D1306E320F0F7A3ABD07029
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionTime_0" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTime_0'"
+      MaterialExpressionGuid=62C62B57453F6E3A7BFD3F8B6A746D99
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_0" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTextureSampleParameter2D_0'"
+      ParameterName="SparkleMap"
+      ExpressionGUID=7CDEDE324DF9C875A5837E8D1B08FEDF
+      Group="Sparkle"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionPanner'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionPanner_0'")
+      Texture="/Script/Engine.Texture2D'/Game/_PROJECT/04_Materials/Textures/Voronoi/Voronoi_3_-_512x512.Voronoi_3_-_512x512'"
+      MaterialExpressionGuid=D8F9B5FE4B36F12E481113BF4F4542EA
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureCoordinate_0" ExportPath="/Script/Engine.MaterialExpressionTextureCoordinate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTextureCoordinate_0'"
+      MaterialExpressionGuid=1877D88347D6B1156A109B96A71D8487
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_2'"
+      DefaultValue=1.000000
+      ParameterName="SparkleLocalIntensity"
+      ExpressionGUID=EBAF9651420B02BE34FA82967A8013CF
+      Group="Sparkle"
+      MaterialExpressionGuid=179AC9E74E3B7B7C28654C9D8DDC7554
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_1'"
+      DefaultValue=0.080000
+      ParameterName="SparkleSpeed"
+      ExpressionGUID=432ED0A44B2941FB7B485CAD030C3FFE
+      Group="Sparkle"
+      MaterialExpressionGuid=9100FF984F4D2CCF6461C1A6C515B58F
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_0'"
+      DefaultValue=4.000000
+      ParameterName="SparkleSize"
+      ExpressionGUID=72ADDA5C4BE4E2AA07890E9A3DA24EF2
+      Group="Sparkle"
+      MaterialExpressionGuid=C74F2FAF44D53CB0023A9282C29AE9B7
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionPanner_0" ExportPath="/Script/Engine.MaterialExpressionPanner'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionPanner_0'"
+      Coordinate=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_1'")
+      Time=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_0'")
+      SpeedX=0.040000
+      SpeedY=0.020000
+      MaterialExpressionGuid=93B1B01D4945989CED55C58CEC21B072
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionCollectionParameter_0'")
+      MaterialExpressionGuid=991769A04F9A2B1E4DB2EDB0F5B77EE2
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionGuid=14F6758643A92D92790A30AF3D078980
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTextureSampleParameter2D_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionVectorParameter_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionGuid=1D8BD97F4FC142462841909CF99DC800
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionTextureCoordinate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTextureCoordinate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionGuid=6A04096F4DE9F23F6B472FBB5A4ACC33
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionTime'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTime_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_1'")
+      MaterialExpressionGuid=3FDBF22E49C0477DF6EF509949B247A2
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionFunctionOutput_0'"
+      OutputName="SparkleEmissive"
+      Id=375FA24E4978C25792DB03AB8CE53280
+      MaterialExpressionEditorX=400
+      MaterialExpressionGuid=A970F7A0452515369F57888274198F1F
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_4" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionComment_4'"
+      Text="✦ Sparkle"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=-130
+      MaterialExpressionGuid=C59AF26145A07574A7A0619D64CE48F3
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_3" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionComment_3'"
+      Text="Melu Sparkle ~ tiny glitter factory"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=-130
+      MaterialExpressionGuid=DD0CB19C47423C329BC69BA47E249224
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionCollectionParameter_0" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionCollectionParameter_0'"
+      Collection="/Script/Engine.MaterialParameterCollection'/Game/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'"
+      MaterialExpressionGuid=9B368D424BC931617674C4A4DFBDE67A
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle'"
+   End Object
+   Begin Object Name="MF_MeluSparkleEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MF_MeluSparkleEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionTextureCoordinate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTextureCoordinate_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionVectorParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTextureSampleParameter2D_0'","/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionCollectionParameter_0'","/Script/Engine.MaterialExpressionTime'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionTime_0'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionPanner'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionPanner_0'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionComment_3'","/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MaterialExpressionComment_4'"))
+   End Object
+   Description="Infinity Nikki sparkle — Voronoi animated sparkle emissive driven by MPC GlobalSparkleIntensity."
+   bExposeToLibrary=True
+   LibraryCategoriesText(0)=NSLOCTEXT("", "0167EA6E4F42A397CCA14F8FB46D8B8E", "Melodia")
+   LibraryCategoriesText(1)=NSLOCTEXT("", "F26C3F5E465088F73315C795040C6B35", "Infinity Nikki")
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle.MF_MeluSparkle:MF_MeluSparkleEditorOnlyData'"
+   StateId=429FA57D4B217E459C01A78EC326BE97
+   CombinedInputTypes=15
+End Object

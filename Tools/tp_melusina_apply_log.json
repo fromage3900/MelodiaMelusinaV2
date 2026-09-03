@@ -1,0 +1,291 @@
+{
+  "timestamp": "2026-08-06T23:35:42.879219",
+  "asset": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina",
+  "spec_applied": "specs/toon_profiles/tp_melusina.json",
+  "before": {
+    "raw": "{\"success\":true,\"asset_path\":\"/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina\",\"full_bytes\":534,\"returned_bytes\":534,\"text\":\"Begin Object Class=/Script/Engine.ToonProfile Name=\\\"TP_Melusina\\\" ExportPath=\\\"/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina.TP_Melusina'\\\"\\r\\n   Settings=(DiffuseRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),SpecularRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),ShadowExtinctionCoefficient=0.300000,ShadowHatchingPatternDistributionRamp=(EditorCurveData=()),DiffuseIndirectScale=0.300000,SpecularIndirectScale=0.300000,SpecularIndirectRamp=(EditorCurveData=()))\\r\\nEnd Object\\r\\n\"}",
+    "readout": "{\"ok\":true,\"success\":true,\"mode\":\"execute_file\",\"result\":\"None\",\"output\":[{\"type\":\"info\",\"output\":\"DiffuseIndirectScale: 0.30000001192092896\\r\\n\"},{\"type\":\"info\",\"output\":\"SpecularIndirectScale: 0.30000001192092896\\r\\n\"},{\"type\":\"info\",\"output\":\"ShadowExtinctionCoefficient: 0.30000001192092896\\r\\n\"}]}"
+  },
+  "applied": [
+    {
+      "param": "DiffuseIndirectScale",
+      "type": "scalar",
+      "ok": true
+    },
+    {
+      "param": "SpecularIndirectScale",
+      "type": "scalar",
+      "ok": true
+    },
+    {
+      "param": "ShadowExtinctionCoefficient",
+      "type": "scalar",
+      "ok": true
+    },
+    {
+      "param": "DiffuseRamp",
+      "type": "curve",
+      "ok": false
+    },
+    {
+      "param": "SpecularRamp",
+      "type": "curve",
+      "ok": false
+    },
+    {
+      "param": "ShadowingExtinction",
+      "type": "scalar",
+      "ok": false,
+      "note": "property does not exist on ToonProfileStruct"
+    },
+    {
+      "param": "ShadowHatchingPattern",
+      "type": "texture",
+      "ok": false,
+      "note": "no texture property; ShadowHatchingPatternDistributionRamp exists as float curve"
+    }
+  ],
+  "after": {
+    "raw": "{\"success\":true,\"asset_path\":\"/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina\",\"full_bytes\":534,\"returned_bytes\":534,\"text\":\"Begin Object Class=/Script/Engine.ToonProfile Name=\\\"TP_Melusina\\\" ExportPath=\\\"/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina.TP_Melusina'\\\"\\r\\n   Settings=(DiffuseRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),SpecularRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),ShadowExtinctionCoefficient=0.300000,ShadowHatchingPatternDistributionRamp=(EditorCurveData=()),DiffuseIndirectScale=0.300000,SpecularIndirectScale=0.300000,SpecularIndirectRamp=(EditorCurveData=()))\\r\\nEnd Object\\r\\n\"}",
+    "readout": "{\"ok\":true,\"success\":true,\"mode\":\"execute_file\",\"result\":\"None\",\"output\":[{\"type\":\"info\",\"output\":\"DiffuseIndirectScale: 0.30000001192092896\\r\\n\"},{\"type\":\"info\",\"output\":\"SpecularIndirectScale: 0.30000001192092896\\r\\n\"},{\"type\":\"info\",\"output\":\"ShadowExtinctionCoefficient: 0.30000001192092896\\r\\n\"}]}"
+  },
+  "compile": {
+    "result": "Failed to load material at '/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina'",
+    "stats": "Failed to load material at '/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina'"
+  },
+  "material_instances": {
+    "instances_checked": 45,
+    "results": [
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Treble",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Treble\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Treble/T_Treble_BaseColor.T_Treble_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Treble/T_Treble_Normal.T_Treble_Normal\",\"is_overridden\":true},{\"name\":\"HeightMap\",\"value\":\"/Game/"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Cello",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Cello\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Cello/T_Cello_BaseColor.T_Cello_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Cello/T_Cello_Normal.T_Cello_Normal\",\"is_overridden\":true},{\"name\":\"HeightMap\",\"value\":\"/Game/EnvSand"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Crystal",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Crystal\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Crystal/T_Crystal_BaseColor.T_Crystal_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Crystal/T_Crystal_Normal.T_Crystal_Normal\",\"is_overridden\":true},{\"name\":\"HeightMap\",\"value\":"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_FloralBrickGrayScale",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_FloralBrickGrayScale\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1.5535919666290283,\"is_overridden\":true},{\"name\":\"UVScale\",\"value\":0.80895900726318359,\"is_overridden\":true},{\"name\":\"Roughness\",\"value\":1.0295989513397217,\"is_overridden\":true},{\"name\":\"LayerA_TextureWeight\",\"value\":0.75921797752380371,\"is_overridden\":true},{\"name\":\"S"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Grass",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Grass\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Grass/T_Grass_BaseColor.T_Grass_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Grass/T_Grass_Normal.T_Grass_Normal\",\"is_overridden\":true},{\"name\":\"HeightMap\",\"value\":\"/Game/EnvSand"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_LandscapeGrayscale",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_LandscapeGrayscale\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/LandscapeGrayscale/T_LandscapeGrayscale_BaseColor.T_LandscapeGrayscale_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/LandscapeGrayscale/T_LandscapeGrayscale_Normal.T_"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Leafcool",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Leafcool\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Leafcool/T_Leafcool_BaseColor.T_Leafcool_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Leafcool/T_Leafcool_Normal.T_Leafcool_Normal\",\"is_overridden\":true},{\"name\":\"HeightMap\",\""
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Note",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Note\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Note/T_Note_BaseColor.T_Note_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Note/T_Note_Normal.T_Note_Normal\",\"is_overridden\":true},{\"name\":\"HeightMap\",\"value\":\"/Game/EnvSandbox/Tex"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Soil",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Soil\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Soil/T_Soil_BaseColor.T_Soil_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Soil/T_Soil_Normal.T_Soil_Normal\",\"is_overridden\":true}],\"static_switch\":[{\"name\":\"bUseSeparateRoughnessM"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Stem1",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Stem1\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Stem1/T_Stem1_BaseColor.T_Stem1_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Stem1/T_Stem1_Normal.T_Stem1_Normal\",\"is_overridden\":true},{\"name\":\"HeightMap\",\"value\":\"/Game/EnvSand"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Stembell",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Stembell\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Stembell/T_Stembell_BaseColor.T_Stembell_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Stembell/T_Stembell_Normal.T_Stembell_Normal\",\"is_overridden\":true},{\"name\":\"HeightMap\",\""
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v7.M_Water_Master_Grand_v7\",\"scalar\":[{\"name\":\"WaveSpeed\",\"value\":0.66399997472763062,\"is_overridden\":true},{\"name\":\"ShorelineWidth\",\"value\":0,\"is_overridden\":true},{\"name\":\"CausticIntensity\",\"value\":0.10000000149011612,\"is_overridden\":true},{\"name\":\"MagicalIntensity\",\"value\":0.18000000715255737,\"is_overridden\":true},{\"name\":\"SparkleScale\",\"value\":"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Weave",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_Weave\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Weave/T_Weave_BaseColor.T_Weave_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/EnvSandbox/Textures/Melusina/Weave/T_Weave_Normal.T_Weave_Normal\",\"is_overridden\":true},{\"name\":\"MetallicMap\",\"value\":\"/Game/EnvSa"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_017",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_017\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_m_boot_BaseColor.T_Melusina_m_boot_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_frontpanel_001",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_frontpanel_001\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true},{\"name\":\"UVScale\",\"value\":1.0052030086517334,\"is_overridden\":true},{\"name\":\"RefractionDepthBias\",\"value\":0,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"MetallicMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/Clothes/T_MelusinaC_frontp"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_GLOVES_001",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_GLOVES_001\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"Roughness\",\"value\":0,\"is_overridden\":true},{\"name\":\"LayerA_TextureWeight\",\"value\":-1,\"is_overridden\":true},{\"name\":\"LayerA_ParallaxScale\",\"value\":1,\"is_overridden\":true},{\"name\":\"LayerA_NormalStrength\",\"value\":1,\"is_overridden\":true},{\"name\":\"RefractionDepthBias\",\"value\":0,\"is_overridden\":true},{\"name\":"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_013",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_013\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_Material_007_BaseColor.T_Melusina_Material_007_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_bow_002",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_bow_002\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1.6311999559402466,\"is_overridden\":true},{\"name\":\"LayerA_TextureWeight\",\"value\":1.1143989562988281,\"is_overridden\":true},{\"name\":\"RefractionDepthBias\",\"value\":0,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"MetallicMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_M"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_023",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_023\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true},{\"name\":\"TriplanarSharpness\",\"value\":1,\"is_overridden\":true},{\"name\":\"TriplanarWorldScale\",\"value\":0.0010000000474974513,\"is_overridden\":true},{\"name\":\"DreamRimStrength\",\"value\":0.25439900159835815,\"is_overridden\":true},{\"name\":\"ConstellationStrength\",\"va"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SHAWL_001",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SHAWL_001\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/Clothes/T_MelusinaC_SHAWL_BaseColor.T_MelusinaC_SHAWL_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/Clothe"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SKIRT_003",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SKIRT_003\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1.5784000158309937,\"is_overridden\":true},{\"name\":\"IridescenceCycles\",\"value\":3.3359990119934082,\"is_overridden\":true},{\"name\":\"Iridescence\",\"value\":0.031199999153614044,\"is_overridden\":true},{\"name\":\"IridescencePower\",\"value\":0,\"is_overridden\":true},{\"name\":\"IridescenceBias\",\"value"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_skirtpanel_002",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_skirtpanel_002\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true},{\"name\":\"RefractionDepthBias\",\"value\":0,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"MetallicMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_skirtpanel_004_Metallic.T_Melusina_skirtpanel_004_Metallic\",\"is_overridden\":true},"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_sleeve_003",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_sleeve_003\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true},{\"name\":\"RefractionDepthBias\",\"value\":0,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"MetallicMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_m_sleeve_Metallic.T_Melusina_m_sleeve_Metallic\",\"is_overridden\":true},{\"name\":\"Roughne"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_IRISFRONT_001",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_IRISFRONT_001\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_M_Iris_front_BaseColor.T_Melusina_M_Iris_front_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_M_Iris_front_Normal.T_Melusina_M_Iris_fron"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_021",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_021\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_Material_001_BaseColor.T_Melusina_Material_001_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_022",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_022\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_Material_008_BaseColor.T_Melusina_Material_008_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_024",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_024\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":0.96079999208450317,\"is_overridden\":true},{\"name\":\"UVScale\",\"value\":2.6716001033782959,\"is_overridden\":true},{\"name\":\"ShadowRampPosMid\",\"value\":0.05000000074505806,\"is_overridden\":true},{\"name\":\"DetailTiling\",\"value\":30.771999359130859,\"is_overridden\":true},{\"name\":\"DetailStreng"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_004",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_007",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_007\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1.6647980213165283,\"is_overridden\":true},{\"name\":\"Roughness\",\"value\":0.17080000042915344,\"is_overridden\":true},{\"name\":\"RoughnessBias\",\"value\":-0.0991939976811409,\"is_overridden\":true},{\"name\":\"LayerA_TextureWeight\",\"value\":0.78080397844314575,\"is_overridden\":true},{\"name\":\""
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Gradient__Radial__002",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Gradient__Radial__002\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":-1,\"is_overridden\":true},{\"name\":\"RefractionDepthBias\",\"value\":0,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"MetallicMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_Gradient_Radial_Metallic.T_Melusina_Gradient_Radial_Metallic\",\"is_overridd"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_006",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_006\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_M_Melusina_BaseColor.T_Melusina_M_Melusina_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_024",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_025",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_026",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_027",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_023",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_028",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_030",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_032",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Metal_2__Matcap__002",
+        "action": "checked",
+        "params": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Metal_2__Matcap__002\",\"parent\":\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\",\"scalar\":[{\"name\":\"TextureWeight\",\"value\":1,\"is_overridden\":true}],\"vector\":[],\"texture\":[{\"name\":\"Albedo\",\"value\":\"/Game/Melodia/Characters/Melusina/Textures/T_Melusina_Metal_2_Matcap_BaseColor.T_Melusina_Metal_2_Matcap_BaseColor\",\"is_overridden\":true},{\"name\":\"NormalMap\",\"value\":\"/Game/Melodia/Characters/Melus"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_029",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_034",
+        "action": "skipped",
+        "reason": "outline slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Halftone_Circles___Circles__3_Inputs__001",
+        "action": "skipped",
+        "reason": "halftone slot"
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Halftone_3_Inputs_-_Lines___Circles_002",
+        "action": "skipped",
+        "reason": "halftone slot"
+      }
+    ]
+  },
+  "notes": [
+    "ShadowingExtinction: property does not exist on ToonProfileStruct - skipped",
+    "ShadowHatchingPattern: property does not exist as texture on ToonProfileStruct; ShadowHatchingPatternDistributionRamp (float curve) exists instead - texture set skipped",
+    "Scalar values DiffuseIndirectScale=0.3, SpecularIndirectScale=0.3, ShadowExtinctionCoefficient=0.3 were already set to spec values"
+  ]
+}

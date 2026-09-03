@@ -1,0 +1,124 @@
+{
+  "character": "Melusina",
+  "voice": "Style-Bert-VITS2 Melusina Unified Feminine",
+  "language": "ja",
+  "speech_style": "Dignified, celestial, gentle. Guardian of the Astral Threshold. Ancient wisdom tempered with melancholy.",
+  "pronoun": "watashi (わたし)",
+  "description": "Guardian of the Astral Threshold. Ancient celestial being who maintains the boundary between worlds. Her power is fading, and the seven directional guardians (ZunZun family) are her potential successors. The player's choices determine who inherits her role.",
+
+  "lines": [
+    {
+      "id": "mel_first_meet_01",
+      "text": "ようこそ、旅人よ。私はメリュジーヌ。この世界と、あらゆる世界との境界を守る者です。",
+      "context": "first_meeting",
+      "notes": "Player's first encounter with Melusina at the Astral Threshold"
+    },
+    {
+      "id": "mel_first_meet_02",
+      "text": "あなたの中に、特別な光を感じます。星々があなたを呼んだのでしょう。",
+      "context": "first_meeting_player",
+      "notes": "Recognizing the player's destined nature"
+    },
+
+    {
+      "id": "mel_lore_gates_01",
+      "text": "この世界には七つの門があります。東、西、南、北...そして三つの中枢。それぞれに守護者がいます。",
+      "context": "lore_seven_gates",
+      "notes": "Explaining the seven gate system"
+    },
+    {
+      "id": "mel_lore_fading_01",
+      "text": "わたくしの力は...少しずつ、消えていっています。千年の時を経て、境界は脆くなりました。",
+      "context": "lore_fading_power",
+      "notes": "Revealing her fading strength — central conflict"
+    },
+    {
+      "id": "mel_lore_zundamon_01",
+      "text": "東の門をくぐった小さな妖精...あの子の矢が境界を揺るがせました。偶然ではありません。運命の時が近いのです。",
+      "context": "lore_zundamon",
+      "notes": "Explaining Zundamon's arrival was destined"
+    },
+
+    {
+      "id": "mel_quest_heart_01",
+      "text": "境界の中心に、「星の心臓」と呼ばれる結晶があります。それを...守ってください。わたくしの代わりに。",
+      "context": "quest_heart",
+      "notes": "Main quest: protect the Star Heart at the center of the Threshold"
+    },
+    {
+      "id": "mel_quest_gate_01",
+      "text": "東の門が不安定です。ずんだもんの矢の影響かもしれません。様子を見てきてください。",
+      "context": "quest_east_gate",
+      "notes": "Quest: investigate the eastern gate (ties into Itako's quest)"
+    },
+    {
+      "id": "mel_quest_guardians_01",
+      "text": "七人の守護者たちが目覚めつつあります。彼らと心を通わせてください。それが、この世界を救う鍵です。",
+      "context": "quest_bond_guardians",
+      "notes": "Quest: build bonds with all seven guardians"
+    },
+
+    {
+      "id": "mel_bond_01",
+      "text": "あなたと話していると...なぜか心が温かくなります。こんな気持ちは、何百年ぶりでしょう。",
+      "context": "bond_up",
+      "notes": "Bond increase — Melusina rarely shows vulnerability"
+    },
+    {
+      "id": "mel_bond_02",
+      "text": "もし...もしあなたが望むなら、わたくしの後を継いでほしい。この世界の守護者として。",
+      "context": "bond_high",
+      "notes": "Offering the player the role of Threshold Guardian"
+    },
+
+    {
+      "id": "mel_idle_threshold_01",
+      "text": "（静かに星々を見つめている...何百年も変わらぬ光景だというのに、今日は少し寂しく感じる。）",
+      "context": "idle_stargazing",
+      "notes": "Melusina at the Threshold, feeling the weight of centuries"
+    },
+    {
+      "id": "mel_idle_hope_01",
+      "text": "あなたが来てから...境界が、少しだけ明るくなった気がします。",
+      "context": "idle_hope",
+      "notes": "Player's presence giving her hope"
+    },
+
+    {
+      "id": "mel_ending_guardian_01",
+      "text": "あなたは「星の契約」を継承しました。新しい守護者として、この世界の境界を守ってください。",
+      "context": "ending_player_guardian",
+      "notes": "Ending: player becomes the new Threshold Guardian"
+    },
+    {
+      "id": "mel_ending_zundamon_01",
+      "text": "ずんだもんがわたくしの後を継ぎました。あの小さな体に、無限の勇気が宿っています。どうか、彼女を支えてください。",
+      "context": "ending_zundamon",
+      "notes": "Ending: Zundamon becomes the new Guardian"
+    },
+    {
+      "id": "mel_ending_zunko_01",
+      "text": "東北ずん子...彼女の優しさが、境界を癒しました。温かな光が、世界を包んでいます。",
+      "context": "ending_zunko",
+      "notes": "Ending: Zunko becomes the new Guardian"
+    },
+    {
+      "id": "mel_ending_kiritan_01",
+      "text": "きりたんの剣が、境界を守る新たな盾となりました。彼女の鍛えた刃は、どんな闇も切り裂くでしょう。",
+      "context": "ending_kiritan",
+      "notes": "Ending: Kiritan becomes the new Guardian"
+    },
+    {
+      "id": "mel_ending_itako_01",
+      "text": "イタコ...最初からすべてを知っていたあの子が、最もふさわしい継承者でした。",
+      "context": "ending_itako",
+      "notes": "Ending: Itako becomes the new Guardian (she knew all along)"
+    },
+    {
+      "id": "mel_farewell_01",
+      "text": "ありがとう、旅人よ。あなたの旅路に、星々の祝福があらんことを。",
+      "context": "farewell",
+      "notes": "Final goodbye — Melusina fades as her power transfers"
+    }
+  ]
+}

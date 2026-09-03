@@ -1,0 +1,138 @@
+{
+  "character": "Tohoku Zunko",
+  "voice": "VOICEVOX Tohoku Zunko (speaker 14)",
+  "language": "ja",
+  "speech_style": "Polite, motherly, warm. Occasionally scolding when people overwork.",
+  "pronoun": "watashi (わたし)",
+  "description": "Town elder of the Green East settlement. Master baker who uses magical mochi-based cooking. Responsible older sister figure who manages the hub town and upgrades the player's crafting abilities. Late-game party member (healer/buffer).",
+
+  "lines": [
+    {
+      "id": "zun_first_meet_01",
+      "text": "あら、旅の方ですね。ようこそ東の里へ。わたしは東北ずん子。この里でお菓子屋をやっています。",
+      "context": "first_meeting",
+      "notes": "Warm welcome to the player at the town gate"
+    },
+    {
+      "id": "zun_first_meet_02",
+      "text": "ずんだもんが迷惑をかけていませんか？あの子、すぐにどこかへ行ってしまうんです...",
+      "context": "about_zundamon",
+      "notes": "Checking on Zundamon — knowing her tendency to wander"
+    },
+
+    {
+      "id": "zun_shop_open_01",
+      "text": "いらっしゃいませ。今日の焼き菓子は、ずんだクッキーと抹茶ケーキですよ。",
+      "context": "shop_open",
+      "notes": "Bakery shop greeting"
+    },
+    {
+      "id": "zun_shop_recommend_01",
+      "text": "これは特別なレシピで作りました。食べると体力が回復しますよ。",
+      "context": "shop_recommend",
+      "notes": "Recommending a special healing item"
+    },
+    {
+      "id": "zun_craft_intro_01",
+      "text": "料理は魔法と同じです。材料の力を信じて、心を込めて作る...それが一番大切なことです。",
+      "context": "crafting_intro",
+      "notes": "Introducing the crafting system"
+    },
+    {
+      "id": "zun_craft_upgrade_01",
+      "text": "もっと良い道具があれば、もっと良い料理が作れます。鍛冶屋のきりたんに頼んでみてはいかがですか？",
+      "context": "craft_upgrade_hint",
+      "notes": "Hinting to visit Kiritan for gear upgrades"
+    },
+
+    {
+      "id": "zun_quest_cooking_01",
+      "text": "新しいレシピを試したいのですが、材料が足りなくて...東の森で「月光の実」を採ってきていただけませんか？",
+      "context": "quest_give_01",
+      "notes": "Quest: gather Moonlight Fruit from the eastern forest"
+    },
+    {
+      "id": "zun_quest_feast_01",
+      "text": "来週、里の感謝祭があるんです。大量の料理を用意しないといけなくて...手伝っていただけませんか？",
+      "context": "quest_give_02",
+      "notes": "Quest: prepare dishes for the harvest festival"
+    },
+    {
+      "id": "zun_quest_sisters_01",
+      "text": "イタコ姉さんが山の神社から降りてきません。様子を見に行ってくれませんか？何かあったのかもしれません...",
+      "context": "quest_give_03",
+      "notes": "Quest: check on Itako at the mountain shrine"
+    },
+
+    {
+      "id": "zun_bond_01",
+      "text": "あなたと話していると、心が温かくなります。まるで焼きたてのパンのようです。",
+      "context": "bond_level_up",
+      "notes": "Bond level increase dialogue"
+    },
+    {
+      "id": "zun_bond_02",
+      "text": "私、あなたのことを家族のように思っています。だから...無理はしないでくださいね。",
+      "context": "bond_high",
+      "notes": "High bond level — expressing care"
+    },
+
+    {
+      "id": "zun_idle_baking_01",
+      "text": "ふんふん〜♪ 今日のパンはいい感じに焼けそうです。",
+      "context": "idle_baking",
+      "notes": "Humming while baking"
+    },
+    {
+      "id": "zun_idle_worried_01",
+      "text": "きりたん、また徹夜で鍛冶をしてないといいけど...",
+      "context": "idle_worried",
+      "notes": "Worrying about Kiritan overworking"
+    },
+
+    {
+      "id": "zun_party_join_01",
+      "text": "私も戦います。このモチハンマー、ただの調理器具じゃないんですよ。",
+      "context": "party_join",
+      "notes": "Joining the player's party"
+    },
+    {
+      "id": "zun_battle_heal_01",
+      "text": "これを食べて！元気が出るはずです！",
+      "context": "battle_heal",
+      "notes": "Using healing item/skill in battle"
+    },
+    {
+      "id": "zun_battle_buff_01",
+      "text": "特別なスパイスです。力が湧いてきますよ。",
+      "context": "battle_buff",
+      "notes": "Using buff skill in battle"
+    },
+
+    {
+      "id": "zun_late_truth_01",
+      "text": "ずんだもんだけじゃないんです。私たち姉妹も...ずっと前から、この世界と繋がっていました。",
+      "context": "late_game_reveal",
+      "notes": "Revealing the sisters' connection to the Astral Threshold"
+    },
+    {
+      "id": "zun_late_truth_02",
+      "text": "イタコ姉さんは最初から知っていたんです。私たちがこの世界の門を守る存在だということを。",
+      "context": "late_game_reveal_2",
+      "notes": "Itako knew all along"
+    },
+
+    {
+      "id": "zun_ending_hint_01",
+      "text": "あなたが選ぶ道が、この世界の未来を決めます。でも...どの道を選んでも、わたしはあなたのそばにいます。",
+      "context": "ending_foreshadow",
+      "notes": "Hinting at the multiple ending system"
+    },
+    {
+      "id": "zun_goodbye_01",
+      "text": "またいらしてください。焼きたてのお菓子を用意してお待ちしています。",
+      "context": "goodbye",
+      "notes": "Leaving the bakery"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+fastapi>=0.95.0
+uvicorn[standard]>=0.22.0
+qsharp>=0.17.0
+requests>=2.25.0
+
+# Optional real-quantum backend: amplitude-encode + sample once.
+# The service runs fine without it (degrades to classical-baseline).
+# qiskit-aer>=0.12.0

@@ -1,0 +1,15 @@
+// Copyright 2024 Tore Lervik. All Rights Reserved.
+
+
+#include "/Engine/Public/Platform.ush"
+#include "MeshBlendTextures.usf"
+// ReSharper disable once CppWrongIncludesOrder
+#include "MeshBlendCore.usf"
+
+
+float4 MeshBlendMainPS(float4 SvPosition : SV_POSITION) : SV_Target0
+{
+	ResolvedView = ResolveView();
+	float2 UV = SvPositionToUV(SvPosition.xy);
+	return CalculateMeshBlend(UV, SvPosition);
+}

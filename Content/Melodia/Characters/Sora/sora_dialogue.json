@@ -1,0 +1,53 @@
+{
+  "character": "Kyushu Sora",
+  "voice": "VOICEVOX Kyushu Sora (speaker 16)",
+  "language": "ja",
+  "speech_style": "Elegant, poetic, theatrical. Uses keigo. Occasionally breaks into dramatic monologue.",
+  "pronoun": "watakushi (わたくし)",
+  "description": "Bard from the Southern Continent. Runs the music shop and hosts GMM rhythm minigames. Party member (bard — buffs/debuffs through music).",
+
+  "lines": [
+    {
+      "id": "sor_first_meet_01",
+      "text": "まあ...なんと美しい魂をお持ちの方でしょう。わたくし、九州そらと申します。音楽で世界を彩る者です。",
+      "context": "first_meeting",
+      "notes": "Dramatic introduction"
+    },
+    {
+      "id": "sor_rhythm_intro_01",
+      "text": "音楽には不思議な力があります。さあ、あなたもリズムに身を委ねてみませんか？",
+      "context": "rhythm_intro",
+      "notes": "Introducing the rhythm minigame"
+    },
+    {
+      "id": "sor_shop_open_01",
+      "text": "今日はどんな音色をお求めですか？勇気の曲、癒しの曲、それとも...恋の曲？",
+      "context": "shop_open",
+      "notes": "Music shop — sells soundtrack items and instruments"
+    },
+    {
+      "id": "sor_quest_score_01",
+      "text": "いにしえの楽譜が洞窟に眠っているそうです。それを取り戻していただけませんか？",
+      "context": "quest_give_01",
+      "notes": "Quest: retrieve an ancient musical score from a cave"
+    },
+    {
+      "id": "sor_bond_01",
+      "text": "あなたの心の旋律...とても美しいです。もっと聴かせてください。",
+      "context": "bond_up",
+      "notes": "Bond increase"
+    },
+    {
+      "id": "sor_party_join_01",
+      "text": "では、共に奏でましょう！この琵琶の音色が、あなたの道を照らします。",
+      "context": "party_join",
+      "notes": "Joining the party"
+    },
+    {
+      "id": "sor_ending_01",
+      "text": "あなたとの旅は、まるで壮大な交響曲のようでした。この旋律は、永遠に心に響き続けるでしょう。",
+      "context": "ending",
+      "notes": "Poetic ending"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "ZEN_KARESANSHUI_WALK",
+  "label": "Zen Karesansui Walk",
+  "description": "Torii, roji step, dry garden, machiai, lantern",
+  "style": "zen",
+  "modules": [
+    {"arch_type": "GB_ZEN_TORII_GATE", "overrides": {"torii_width": 3.4, "torii_height": 4.0, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_ROJI_STEP", "overrides": {"gb_length": 5.0, "gb_width": 1.8, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_KARESANSUI", "overrides": {"gb_width": 8.0, "gb_depth": 6.0, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_MACHIAI", "overrides": {"gb_width": 3.2, "gb_depth": 2.4, "gb_height": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_LANTERN", "overrides": {"zen_lantern_height": 1.4, "gb_trim_mode": "RECESS"}}
+  ]
+}

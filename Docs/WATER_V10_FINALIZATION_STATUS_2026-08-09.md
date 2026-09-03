@@ -1,0 +1,91 @@
+# Water v10 Finalization Status — 2026-08-09
+
+## Implemented in source
+
+- Quantum draws now serialize through a per-skill queue.
+- Request generations reject late HTTP callbacks after timeout, cancellation, or teardown.
+- `MelodiaQuantumDrawSubsystem` remains the sole runtime MPC writer.
+- Water Niagara contact routing is exclusive: Data Channel first, direct pooled contact spawning only when explicitly selected or when no channel exists.
+- Water audio no longer mutates profile assets at runtime.
+- Water audio requires the complete cue/mix family before reporting `AudioReady`.
+- Proximity, swim-start, and swim-stop events are silent audio state events.
+- Reemergence audio is deduplicated within a short transition window.
+- Traversal teardown suppresses presentation events before destroying Water bridges.
+- Water profiles are registered with Asset Manager as `MelodiaWaterProfile` Primary Assets.
+- Headless/editor wrappers refuse active Unreal processes instead of force-killing them.
+- The Water Niagara bridge now has a bounded previous-frame Data Channel consumer. It reads the eight configured contact fields, deduplicates per engine frame, and routes each accepted contact through one direct pooled response.
+- The bridge resolves Contact, Ripple, and Splash systems from the serialized profile at BeginPlay instead of relying only on constructor defaults.
+- The V10 material lane is now an additive V9 upgrade: `M_Water_Master_Grand_v10_Upgrade` is a duplicated V9 graph with the native interaction compatibility layer inserted around the preserved V9 wave, ripple, proximity-foam, bioluminescence, normal, WPO, and Substrate water outputs. The original V9 master and instances were not edited.
+- Five V9-derived integrated instances now exist under `/Game/EnvSandbox/Materials/Instances/Water/v10/Integrated/`: CalmPond, BiolumGrotto, CinematicHero, OceanPreview, and RiverClear. Each retains every scalar/vector/texture/static-switch override found on its V9 counterpart and adds profile-driven native-water controls.
+- The project-wide native default is now authored: `MI_WaterV10_NativeDefault` derives from the integrated V10 family with `NativeWaterAvailability=1`, `DA_WaterV10_Default` uses it for `SurfaceMaterial`, uses `M_Water_Underwater_Post_v10` for `UnderwaterMaterial`, leaves `WaterBodyId` runtime-sourced, and resolves the UE 5.8 `ShallowWaterSimComponent` and `WaveFoamSimComponent` classes. The new `ApplyProjectWaterDefaults` path assigns those materials and ensures the project-owned ripple bridge whenever a native Water Body is registered in a world.
+
+## Guarded tools added
+
+- `Content/Python/verify_water_v10_profile.py` — read-only profile contract audit.
+- `Content/Python/prepare_water_v10_flip_assets.py` — dry-run-first promotion of verified NiagaraFluids templates into project-owned assets.
+- `Content/Python/run_world_partition_builder_safe.py` — closed-editor PCG/HLOD commandlet wrapper.
+
+Additional guarded assets/tools:
+
+- `Content/Python/repair_water_v10_world_uv.py` — additive V10-only world-UV domain repair for all layered PBR samples; mesh-UV fallback remains available.
+- `Content/Python/build_nikki_chain_repair_asset.py` — guarded, separate Universal/Nikki chain proof builder; it does not clear or rewrite the live Universal master.
+
+## Verification completed
+
+- Python AST checks pass for all changed Water/build wrappers.
+- The concurrent scale-world PCG contract passes 5/5 pure tests.
+- The safe World Partition wrapper correctly refuses to launch while Unreal Editor processes are active.
+- The elevated cold build succeeded after UHT reprocessed `MelodiaWaterNiagaraBridgeComponent.h`; the build log is `Saved/Logs/WaterFinalizationBuild_20260809b.log`. The Water Niagara bridge compiled and the BS_GodFile target linked successfully. The only diagnostic is the pre-existing VRM4U deprecation.
+- Monolith is healthy on port `9316` with UE 5.8 and project `BS_GodFile`.
+- `verify_water_v10_profile.py` returned `ok: true`, with zero missing references. The profile resolves the Data Channel, contact/fluid/ripple/splash/quantum systems, five Water MetaSounds, concurrency, and attenuation assets. Budgets read back as 60 contacts/sec, 8 audio events/sec, 4 voices, and 2 quantum reactions/sec.
+- `water_v10_gate_audit.py` returned `ok: true` with no blocking source or disk checks.
+- Project-owned FLIP assets now exist and are saved: 2D pool/splash and 3D pool/splash under `Content/EnvSandbox/Water/v10/FLIP/`.
+- `BP_MelodiaNiagaraDriver` validates with zero node errors and correctly connected `QuantumReactionColor` and `QuantumPulse` reads. Four unrelated legacy variable-set nodes remain disconnected but are not part of the quantum path.
+- The source writer is proven to emit all eight NDC fields. Runtime NDC consumer delivery and one-contact/one-response behavior remain a PIE gate; the current placeholder contact Niagara system has no Data Channel interface yet.
+- The non-World-Partition Water validation map contains the native Water Body, Water Zone, project simulation zone, and a saved project-owned Ultra Dynamic Sky actor at `UDS_WaterValidationSky` for visual review.
+- The first validation replay exposed UE 5.8's Front Layer Translucency RDG ensure when VSM translucent quality was enabled without a matching front-layer pass. Re-running with the documented validation-only scalability overrides (`r.Shadow.Virtual.TranslucentQuality 0`, MegaLights/Lumen front-layer overrides disabled) completed 8 seconds with zero runtime errors, zero Blueprint errors, and zero Niagara errors. This is a test-map renderer configuration issue, not a Water bridge crash.
+- The UDS validation clip produced three valid viewport frames under `Saved/Screenshots/WaterV10/UDSValidation/`; the captured view visibly contains Melusina, the Water Body horizon, and the UDS sky. The capture helper itself still emits two Front Layer Translucency ensures while creating its secondary screenshot view, so those frames are visual evidence but not a clean renderer gate.
+- Visual review of the UDS validation clip still confirms that the native Water Body itself reads close to stock UE Water; that remains a native-body material-slot promotion gate. The material family, however, is no longer parallel: the project-owned integrated master now preserves the V9 art-direction graph and adds `MF_WaterNativeInteraction_v10` through vertex-safe WPO and pixel-side normal/foam/bioluminescence branches.
+- Material graph verification for `/Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v10_Upgrade` is clean: compiled, 16 samplers, 260 vertex instructions, 1727 pixel instructions, and zero material validation issues. World Position Offset remains additive (`V9 WPO + native-safe WPO`) and the final output remains `SubstrateSingleLayerWaterBSDF`.
+- V9-preservation comparison is clean for all five pairs: no V9 scalar, vector, texture, or static-switch override is missing from the corresponding integrated instance. Cube material-viewport captures were produced under `Saved/Screenshots/MaterialV10/Integrated_*_Cube_UV.png`; a shared family comparison is also captured at `Saved/Screenshots/MaterialRenderStudio/WaterV10IntegratedFamily_CubeWorldUV.png`. UV tiling and ramp controls were tuned only on the V10 integrated family so the analytic structure reads more clearly in preview.
+- The repeated square artifact was traced to the inherited V9 layered color/UV composition: the same blocks were visible in the untouched V9 plane diagnostic before any native-water changes. V10 retains the additive `V10 Smooth AntiTile Color Veil` driven by `WaterV10AntiTileStrength`, and now adds a V10-only blended absolute-world UV domain in `MaterialExpressionCustom_0`. `WaterV10WorldUVBlend=0` is the mesh-UV rollback; the integrated family is tuned to world-UV blend `1.0` with per-family world texture scales from `0.0009` to `0.0016`. This removes per-primitive UV alignment while preserving every V9 map and temporal control. V9 remains untouched. Plane evidence is under `Saved/Screenshots/MaterialV10/Integrated_*_Plane_WorldUV.png`.
+- A repeatable completion audit now writes `Saved/Audit/water_v10_completion.json`. Its current editor run is green: V9's 138 named expression nodes are all present in V10 with identical classes; V10 adds 38 nodes; all 14 PBR texture parameters have identical resolved source paths; all seven temporal controls (`LayerPanSpeed`, `TwinkleRate`, `TemporalBlend`, `MacroDriftSpeed`, `FoamNoiseSpeed`, `BioFlashRate`, `RippleSpeed`) remain present; a current connection-graph traversal confirms each temporal control has an outgoing path to a material output and the V10 `Time` node reaches the material outputs; all eight V9 water function calls remain in V10 alongside `MF_WaterNativeInteraction_v10`; the world-UV blend code and five V10 instance parents resolve correctly; and every V9 instance scalar/vector/texture override name is still present in its V10 counterpart. The separate Monolith connection audit also confirms all 14 V10 texture nodes have outgoing connections. Source texture inspection remains 2048² wrapped World textures with the expected normal/grayscale compression.
+- The Nikki material-function assets are now repaired at their standalone seams: the `Color` outputs of `MF_NikkiRimGlow`, `MF_NikkiSparkle`, and `MF_NikkiIridescenceSheen` are wired, and the missing Saturate/ComponentMask inputs are restored. `MF_NikkiSparkle` now samples its declared `SparkleMask` texture-object input correctly. `MF_NikkiDreamGrade` (62 expressions), `MF_NikkiRimGlow` (17), `MF_NikkiSparkle` (14), and `MF_NikkiIridescenceSheen` (17) all load with valid inputs/outputs. The live Universal graph recompiles cleanly at 1174 expressions, but it still exposes only `MF_NikkiDreamGrade`, not the other three canonical `/Functions/MF_Nikki*` call nodes. A separate project-owned `/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_NikkiChainRepairV2` provides the earlier compile-clean Dream -> Rim -> Sparkle -> Iridescence proof (971 expressions, 16 samplers, 153 VS, 944 PS). A newer additive `/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_NikkiChainIntegratedV1` duplicates the live Universal graph without editing it, inserts the four-call chain at the existing color gate, and has a full input-connection audit for every new call. The current editor stats are compile-clean at 1194 expressions, 16 samplers, 313 VS, and 1246 PS, and it creates three review-only instances under `/Game/EnvSandbox/Materials/Instances/NikkiIntegrated/` with `bNikkiHero` enabled. Five additional mapped copies under `/Game/EnvSandbox/Materials/Instances/NikkiIntegrated/Mapped/` preserve compatible Albedo/Normal/ramp overrides from the existing NikkiHero family and translate legacy iridescence/sheen controls; the mapping report is `Saved/Audit/nikki_integrated_mapped_family.json` and explicitly confirms that no existing NikkiHero instance was reparented. The family grid is captured at `Saved/Screenshots/MaterialRenderStudio/NikkiHeroIntegratedMappedFamily.png`. The integrated duplicate still inherits the Universal validator's pre-existing broken-reference/island warnings, so it is a review family rather than a production promotion; no V9/V10/live Universal graph was changed.
+- Reflection probing confirms the active editor has not loaded the rebuilt bridge yet: `bConsumeContactDataChannel` and `max_data_channel_reads_per_tick` are absent from the live class, while the rebuilt binary contains both reflected properties.
+- The native-default source patch is staged but the current cold rebuild is blocked by unrelated existing compile errors in `MelodiaJRPGPostBattleLibrary.cpp` (`Engine/UserDefinedStruct.h`) and VRM4U (`VrmConvertModel_Description.cpp` duplicate definitions). No diagnostic points at the Water Body default path; runtime activation still requires a successful rebuild and editor restart.
+- Recovery note: the documented `run_force_universal.py` rebuild was attempted after the Nikki audit, but UE 5.8 asserted in `MaterialEditingLibrary.DeleteMaterialExpression` while clearing the rooted existing Universal graph. No `universal_build_last.json` result was produced, so the Universal package must be re-opened and audited before assuming any change. The V10 master and integrated instances were already saved earlier (`M_Water_Master_Grand_v10_Upgrade.uasset` at 2026-08-09 14:48:46; integrated instances at 14:50:40) and their timestamps remain unchanged. Do not rerun the graph-clear path; use an additive or new-asset Nikki repair path instead.
+
+## Remaining promotion gates
+
+1. Resolve the unrelated cold-build blockers, then restart the active editor once so it loads the native-default module; do not use Live Coding for the reflected bridge lane.
+2. Read back the active native Water Body surface/static-mesh/underwater slots after subsystem initialization; the project-wide source path and profile are now authored, but the body-level replay is still pending.
+3. Replay native height/velocity on that body: it must augment, not replace, the preserved V9 ripple, proximity foam, WPO, bioluminescence, and underwater post-process behavior.
+4. Replay material parameters on that body: native height/velocity must augment—not replace—v9 ripple, proximity foam, WPO, bioluminescence, and underwater post-process behavior.
+5. Add/prove a project-owned Niagara Data Channel consumer interface and replay one contact without a duplicate direct-spawn response.
+6. Replay Water PIE: entry, proximity, swim, dive, impact, exit, reemergence, and map-transition teardown.
+7. Instrument and capture Water audio activation, MetaSound parameter values, concurrency, and teardown.
+8. Capture native Tier 2 performance, bounded Tier 3 2D FLIP, and separate Tier 4 3D FLIP hero evidence.
+9. Run the closed-editor World Partition PCG/HLOD builder, then perform the packaged Asset Manager/chunk/streaming audit.
+10. Review the additive integrated Nikki family in a real character render, map its overrides against the four scratch-parent NikkiHero instances, and only then consider a controlled migration; do not reparent from the proof grid alone.
+11. Normalize the editor lane to exactly one interactive process before final Monolith validation; the shared editor is currently healthy on port `9316`, but the rebuilt bridge module load still needs an explicit reflection readback.
+
+No editor process was terminated. Water profile and project-owned FLIP packages were intentionally saved through the active editor; no engine plugin assets were modified.
+
+---
+
+## Consolidation note — 2026-08-14
+
+- **Canonical v10 confirmed: `M_Water_Master_Grand_v10_Upgrade`** (the additive
+  V9 upgrade above). `M_Water_Master_Grand_v10_Substrate` is the study line;
+  its promotion gates remain open.
+- `MI_Water_v10_BiolumGrotto` reparented `MI_Universal_Enhanced_Water` (an MI)
+  → `M_Water_Master_Grand_v10_Upgrade` (fixes the audit MI_PARENT defect).
+- `MI_WaterV10_NativeDefault` stays parented to `MI_WaterV10_Integrated_CalmPond`
+  (documented intentional MI-of-MI — it derives the family overrides);
+  allowlisted in `audit_mi_runtime.py` as `ok_intentional_mi_parent`.
+- Duplicate `MI_IridescentRock` resolved: single copy retained at
+  `Masters/MI_IridescentRock`; the `Instances/` copy removed (zero referencers
+  verified; a rename-based redirector was not persisted by this engine's
+  `rename_asset`, and none is needed with zero references).
+- `v11` = next-gen master, gated on closing the native-integration promotion
+  gates above (see the Roadmap section in `UNIVERSAL_WATER_FAMILY.md`).

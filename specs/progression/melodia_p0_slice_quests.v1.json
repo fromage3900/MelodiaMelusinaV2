@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "melodia.progression_package.v1",
+  "schema_version": "1.0",
+  "kind": "melodia_progression_package",
+  "contract_id": "melodia_p0_slice_quests",
+  "package": {
+    "package_id": "package.p0_slice_quests.progression",
+    "definition_version": "1.0",
+    "display_name": "P0 Vertical Slice Convergence Quests",
+    "content_kind": "chapter_progression",
+    "status": "ready_for_playthrough"
+  },
+  "content_refs": {
+    "player_route": [
+      "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+      "/Game/EnvSandbox/Environments/L_KaleidoNave",
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype"
+    ],
+    "integration_proof_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "encounter_ids": [
+      "melodia_smoke_encounter"
+    ],
+    "dialogue_source_refs": [
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillP0Playthrough.qsc",
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillWardrobeEquip.qsc",
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillChoralSheepRecruit.qsc",
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillSeaAboveCutscene.qsc"
+    ]
+  },
+  "authority": {
+    "runtime_subsystem": "UMelodiaNarrativeSubsystem",
+    "narrative_record": "FMelodiaNarrativeRecord",
+    "save_field": "melodiaNarrativeRecord",
+    "objective_state_source": {
+      "active_quest_ids": "FMelodiaNarrativeRecord.ActiveQuestIds",
+      "flags": "FMelodiaNarrativeRecord.Flags",
+      "consumed_intent_ids": "FMelodiaNarrativeRecord.ConsumedIntentIds",
+      "consumed_reward_ids": "FMelodiaNarrativeRecord.ConsumedRewardIds",
+      "script_checkpoint": "FMelodiaNarrativeRecord.ScriptCheckpoint"
+    }
+  },
+  "required_allowlist": {
+    "quest_ids": [
+      "quest.first_dream",
+      "quest.wardrobe.equip_outfit",
+      "quest.companion.choral_sheep",
+      "quest.cutscene.sea_above"
+    ],
+    "narrative_flag_ids": [
+      "flag.first_dream.quest.completed",
+      "flag.p0.playthrough.completed",
+      "flag.p0.playthrough.attempted",
+      "flag.p0.playthrough.fled",
+      "flag.wardrobe.outfit_equipped",
+      "flag.melusina.sorrow_seam_restored",
+      "flag.wardrobe.equip_completed",
+      "flag.companion.choral_sheep_recruited",
+      "flag.companion.choral_sheep_completed",
+      "flag.cutscene.sea_above_witnessed",
+      "flag.sea_above.membrane_pulse_active",
+      "flag.cutscene.sea_above_completed"
+    ],
+    "dialogue_reward_ids": [
+      "reward.first_resonance_echo",
+      "reward.wardrobe.first_outfit",
+      "reward.companion.choral_sheep",
+      "reward.cutscene.sea_above_memory"
+    ]
+  },
+  "chapter": {
+    "chapter_id": "chapter.p0_convergence",
+    "order": 1,
+    "title": "P0 Vertical Slice: First Dream & The Sea Above",
+    "prerequisites": [],
+    "beat_ids": [
+      "beat.p0.first_dream_playthrough",
+      "beat.p0.wardrobe_equip",
+      "beat.p0.choral_sheep_recruit",
+      "beat.p0.sea_above_cutscene"
+    ],
+    "quest_ids": [
+      "quest.first_dream",
+      "quest.wardrobe.equip_outfit",
+      "quest.companion.choral_sheep",
+      "quest.cutscene.sea_above"
+    ],
+    "exit_objective_ids": [
+      "objective.cutscene.sea_above.complete"
+    ],
+    "checkpoint_id": "checkpoint.p0_slice.complete"
+  },
+  "quests": [
+    {
+      "quest_id": "quest.first_dream",
+      "title": "First Dream: Resolving the Echo",
+      "description": "Confront the smoke echo in the Kaleido Nave and resolve the dissonance.",
+      "script_path": "Content/MelodiaIntegration/Narrative/MelodiaQuillP0Playthrough.qsc",
+      "completion_flag": "flag.first_dream.quest.completed",
+      "reward_id": "reward.first_resonance_echo",
+      "intent_id": "intent.first_dream.complete",
+      "checkpoint_id": "checkpoint.first_dream.complete"
+    },
+    {
+      "quest_id": "quest.wardrobe.equip_outfit",
+      "title": "The Resonant Weave: Awakening Glide",
+      "description": "Equip the Sorrow Seam / Melusina V2 outfit to restore resonance and unlock Glide.",
+      "script_path": "Content/MelodiaIntegration/Narrative/MelodiaQuillWardrobeEquip.qsc",
+      "completion_flag": "flag.wardrobe.equip_completed",
+      "reward_id": "reward.wardrobe.first_outfit",
+      "intent_id": "intent.wardrobe.complete",
+      "checkpoint_id": "checkpoint.wardrobe.complete"
+    },
+    {
+      "quest_id": "quest.companion.choral_sheep",
+      "title": "Harmony in Middle C: Recruiting the Choral Sheep",
+      "description": "Harmonize with the lost Choral Sheep motif creature to recruit it as a traveling companion.",
+      "script_path": "Content/MelodiaIntegration/Narrative/MelodiaQuillChoralSheepRecruit.qsc",
+      "completion_flag": "flag.companion.choral_sheep_completed",
+      "reward_id": "reward.companion.choral_sheep",
+      "intent_id": "intent.companion.choral_sheep.complete",
+      "checkpoint_id": "checkpoint.companion.choral_sheep.complete"
+    },
+    {
+      "quest_id": "quest.cutscene.sea_above",
+      "title": "The False Ocean: Witnessing the Sea Above",
+      "description": "Ascend the high overlook and witness the pulsing inverted ocean suspended in the heavens.",
+      "script_path": "Content/MelodiaIntegration/Narrative/MelodiaQuillSeaAboveCutscene.qsc",
+      "completion_flag": "flag.cutscene.sea_above_completed",
+      "reward_id": "reward.cutscene.sea_above_memory",
+      "intent_id": "intent.cutscene.sea_above.complete",
+      "checkpoint_id": "checkpoint.cutscene.sea_above.complete"
+    }
+  ]
+}

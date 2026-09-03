@@ -1,0 +1,2826 @@
+{
+  "schema": "melodia.singing_water_veil_pcg.v1",
+  "version": "1.0.0",
+  "landscape": "CanonicalLandscape",
+  "sea_surface_z_uu": 13455.0,
+  "bounds_uu": [
+    -150000.0,
+    -150000.0,
+    150000.0,
+    150000.0
+  ],
+  "total_points": 102,
+  "zone_summaries": {
+    "SheetVeil": {
+      "name": "SheetVeil",
+      "point_count": 12,
+      "builders": [
+        "MEL_water_veil_sheet",
+        "MEL_water_veil_ripple"
+      ],
+      "avg_tension": 0.5887,
+      "mode": "2_4",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    "SingingFall": {
+      "name": "SingingFall",
+      "point_count": 30,
+      "builders": [
+        "MEL_water_veil_fall",
+        "MEL_water_veil_plume"
+      ],
+      "avg_tension": 0.9745,
+      "mode": "4_9",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    "HearthPool": {
+      "name": "HearthPool",
+      "point_count": 30,
+      "builders": [
+        "MEL_water_veil_pool",
+        "MEL_water_veil_mirror"
+      ],
+      "avg_tension": 0.4897,
+      "mode": "1_2",
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    "TideSeam": {
+      "name": "TideSeam",
+      "point_count": 30,
+      "builders": [
+        "MEL_water_veil_seam",
+        "MEL_water_veil_foam"
+      ],
+      "avg_tension": 0.9382,
+      "mode": "6_7",
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    }
+  },
+  "points": [
+    {
+      "id": "WV_TideSeam_0000",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -143750.0,
+        -143750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.048,
+        1.048,
+        1.048
+      ],
+      "tension": 0.5806,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_SingingFall_0000",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        -131250.0,
+        13455.0
+      ],
+      "height_cm": 13396.39,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -137.6
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.2424,
+      "resonance": 0.2424,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0001",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        -118750.0,
+        13455.0
+      ],
+      "height_cm": 13382.06,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -140.44
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.5902,
+      "resonance": 0.5902,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_HearthPool_0000",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -143750.0,
+        -106250.0,
+        13455.0
+      ],
+      "height_cm": 13366.99,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -143.53
+      ],
+      "scale": [
+        0.966,
+        0.966,
+        0.966
+      ],
+      "tension": 0.4432,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.8314,
+      "resonance": 0.8314,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_SingingFall_0002",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        -93750.0,
+        13455.0
+      ],
+      "height_cm": 13356.82,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -146.89
+      ],
+      "scale": [
+        1.144,
+        1.144,
+        1.144
+      ],
+      "tension": 0.7397,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.7772,
+      "resonance": 0.7772,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0003",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        -81250.0,
+        13455.0
+      ],
+      "height_cm": 13356.23,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -150.52
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.3536,
+      "resonance": 0.3536,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0004",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        -68750.0,
+        13455.0
+      ],
+      "height_cm": 13367.58,
+      "clearance_cm": 46.21,
+      "rotation": [
+        0.0,
+        0.0,
+        -154.44
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 0.3536,
+      "resonance": 0.3536,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0005",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        -56250.0,
+        13455.0
+      ],
+      "height_cm": 13390.09,
+      "clearance_cm": 92.2,
+      "rotation": [
+        0.0,
+        0.0,
+        -158.63
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 1.1201,
+      "resonance": 1.1201,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0006",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        -43750.0,
+        13455.0
+      ],
+      "height_cm": 13419.91,
+      "clearance_cm": 124.97,
+      "rotation": [
+        0.0,
+        0.0,
+        -163.07
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 1.6661,
+      "resonance": 1.6661,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0007",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        -31250.0,
+        13455.0
+      ],
+      "height_cm": 13451.03,
+      "clearance_cm": 130.96,
+      "rotation": [
+        0.0,
+        0.0,
+        -167.74
+      ],
+      "scale": [
+        1.256,
+        1.256,
+        1.256
+      ],
+      "tension": 0.9268,
+      "chladni_mode": "4_9",
+      "chladni_val": 1.766,
+      "resonance": 1.766,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0008",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        -18750.0,
+        13455.0
+      ],
+      "height_cm": 13476.71,
+      "clearance_cm": 105.49,
+      "rotation": [
+        0.0,
+        0.0,
+        -172.57
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 1.3416,
+      "resonance": 1.3416,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0009",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        -6250.0,
+        13455.0
+      ],
+      "height_cm": 13491.19,
+      "clearance_cm": 55.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -177.51
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 0.5,
+      "resonance": 0.5,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0010",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        6250.0,
+        13455.0
+      ],
+      "height_cm": 13491.19,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        177.51
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.5,
+      "resonance": 0.5,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0011",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        18750.0,
+        13455.0
+      ],
+      "height_cm": 13476.71,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        172.57
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -1.3416,
+      "resonance": 1.3416,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0012",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        31250.0,
+        13455.0
+      ],
+      "height_cm": 13451.03,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        167.74
+      ],
+      "scale": [
+        1.243,
+        1.243,
+        1.243
+      ],
+      "tension": 0.9058,
+      "chladni_mode": "4_9",
+      "chladni_val": -1.766,
+      "resonance": 1.766,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0013",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        43750.0,
+        13455.0
+      ],
+      "height_cm": 13419.91,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        163.07
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -1.6661,
+      "resonance": 1.6661,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0014",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        56250.0,
+        13455.0
+      ],
+      "height_cm": 13390.09,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        158.63
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -1.1201,
+      "resonance": 1.1201,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0015",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        68750.0,
+        13455.0
+      ],
+      "height_cm": 13367.58,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        154.44
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.3536,
+      "resonance": 0.3536,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0016",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        81250.0,
+        13455.0
+      ],
+      "height_cm": 13356.23,
+      "clearance_cm": 46.21,
+      "rotation": [
+        0.0,
+        0.0,
+        150.52
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 0.3536,
+      "resonance": 0.3536,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0017",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        93750.0,
+        13455.0
+      ],
+      "height_cm": 13356.82,
+      "clearance_cm": 71.63,
+      "rotation": [
+        0.0,
+        0.0,
+        146.89
+      ],
+      "scale": [
+        1.127,
+        1.127,
+        1.127
+      ],
+      "tension": 0.7124,
+      "chladni_mode": "4_9",
+      "chladni_val": 0.7772,
+      "resonance": 0.7772,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_HearthPool_0001",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -143750.0,
+        106250.0,
+        13455.0
+      ],
+      "height_cm": 13366.99,
+      "clearance_cm": 74.88,
+      "rotation": [
+        0.0,
+        0.0,
+        143.53
+      ],
+      "scale": [
+        0.976,
+        0.976,
+        0.976
+      ],
+      "tension": 0.4604,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.8314,
+      "resonance": 0.8314,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_SingingFall_0018",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -143750.0,
+        118750.0,
+        13455.0
+      ],
+      "height_cm": 13382.06,
+      "clearance_cm": 60.41,
+      "rotation": [
+        0.0,
+        0.0,
+        140.44
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 0.5902,
+      "resonance": 0.5902,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0019",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -143750.0,
+        131250.0,
+        13455.0
+      ],
+      "height_cm": 13396.39,
+      "clearance_cm": 39.55,
+      "rotation": [
+        0.0,
+        0.0,
+        137.6
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 0.2424,
+      "resonance": 0.2424,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_TideSeam_0001",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -143750.0,
+        143750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.041,
+        1.041,
+        1.041
+      ],
+      "tension": 0.5678,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_SingingFall_0020",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -131250.0,
+        -143750.0,
+        13455.0
+      ],
+      "height_cm": 13413.61,
+      "clearance_cm": 39.55,
+      "rotation": [
+        0.0,
+        0.0,
+        -132.4
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 0.2424,
+      "resonance": 0.2424,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_TideSeam_0002",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -131250.0,
+        -131250.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_SingingFall_0021",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -131250.0,
+        -118750.0,
+        13455.0
+      ],
+      "height_cm": 13390.52,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -137.86
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.363,
+      "resonance": 0.363,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0022",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -131250.0,
+        -106250.0,
+        13455.0
+      ],
+      "height_cm": 13374.87,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -141.01
+      ],
+      "scale": [
+        1.27,
+        1.27,
+        1.27
+      ],
+      "tension": 0.9497,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.6566,
+      "resonance": 0.6566,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_HearthPool_0002",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -131250.0,
+        -93750.0,
+        13455.0
+      ],
+      "height_cm": 13363.43,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -144.46
+      ],
+      "scale": [
+        0.981,
+        0.981,
+        0.981
+      ],
+      "tension": 0.4679,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.7071,
+      "resonance": 0.7071,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_SingingFall_0023",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -131250.0,
+        -81250.0,
+        13455.0
+      ],
+      "height_cm": 13360.69,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -148.24
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.4371,
+      "resonance": 0.4371,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_TideSeam_0003",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -131250.0,
+        -68750.0,
+        13455.0
+      ],
+      "height_cm": 13369.0,
+      "clearance_cm": 30.65,
+      "rotation": [
+        0.0,
+        0.0,
+        -152.35
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0942,
+      "resonance": 0.0942,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_SingingFall_0024",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -131250.0,
+        -56250.0,
+        13455.0
+      ],
+      "height_cm": 13387.78,
+      "clearance_cm": 67.43,
+      "rotation": [
+        0.0,
+        0.0,
+        -156.8
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 0.7071,
+      "resonance": 0.7071,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0025",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -131250.0,
+        -43750.0,
+        13455.0
+      ],
+      "height_cm": 13413.61,
+      "clearance_cm": 95.2,
+      "rotation": [
+        0.0,
+        0.0,
+        -161.57
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 1.17,
+      "resonance": 1.17,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0026",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -131250.0,
+        -31250.0,
+        13455.0
+      ],
+      "height_cm": 13441.0,
+      "clearance_cm": 102.5,
+      "rotation": [
+        0.0,
+        0.0,
+        -166.61
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 1.2916,
+      "resonance": 1.2916,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0027",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -131250.0,
+        -18750.0,
+        13455.0
+      ],
+      "height_cm": 13463.8,
+      "clearance_cm": 85.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -171.87
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 1.0,
+      "resonance": 1.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0028",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_fall",
+      "position": [
+        -131250.0,
+        -6250.0,
+        13455.0
+      ],
+      "height_cm": 13476.71,
+      "clearance_cm": 47.54,
+      "rotation": [
+        0.0,
+        0.0,
+        -177.27
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": 0.3757,
+      "resonance": 0.3757,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_SingingFall_0029",
+      "zone": "SingingFall",
+      "builder": "MEL_water_veil_plume",
+      "position": [
+        -131250.0,
+        6250.0,
+        13455.0
+      ],
+      "height_cm": 13476.71,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        177.27
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "4_9",
+      "chladni_val": -0.3757,
+      "resonance": 0.3757,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_FalseOcean"
+    },
+    {
+      "id": "WV_TideSeam_0004",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -131250.0,
+        68750.0,
+        13455.0
+      ],
+      "height_cm": 13369.0,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        152.35
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": -0.0942,
+      "resonance": 0.0942,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0003",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -131250.0,
+        93750.0,
+        13455.0
+      ],
+      "height_cm": 13363.43,
+      "clearance_cm": 67.43,
+      "rotation": [
+        0.0,
+        0.0,
+        144.46
+      ],
+      "scale": [
+        0.971,
+        0.971,
+        0.971
+      ],
+      "tension": 0.4511,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.7071,
+      "resonance": 0.7071,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0005",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -131250.0,
+        131250.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0006",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -118750.0,
+        -118750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0004",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -118750.0,
+        -81250.0,
+        13455.0
+      ],
+      "height_cm": 13369.0,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -145.62
+      ],
+      "scale": [
+        0.984,
+        0.984,
+        0.984
+      ],
+      "tension": 0.4737,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.5346,
+      "resonance": 0.5346,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0007",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -118750.0,
+        -56250.0,
+        13455.0
+      ],
+      "height_cm": 13384.21,
+      "clearance_cm": 27.65,
+      "rotation": [
+        0.0,
+        0.0,
+        -154.65
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0442,
+      "resonance": 0.0442,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0008",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -118750.0,
+        56250.0,
+        13455.0
+      ],
+      "height_cm": 13384.21,
+      "clearance_cm": 22.35,
+      "rotation": [
+        0.0,
+        0.0,
+        154.65
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": -0.0442,
+      "resonance": 0.0442,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0005",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -118750.0,
+        81250.0,
+        13455.0
+      ],
+      "height_cm": 13369.0,
+      "clearance_cm": 57.08,
+      "rotation": [
+        0.0,
+        0.0,
+        145.62
+      ],
+      "scale": [
+        0.976,
+        0.976,
+        0.976
+      ],
+      "tension": 0.4596,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.5346,
+      "resonance": 0.5346,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0009",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -118750.0,
+        118750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": -0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0006",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -106250.0,
+        -143750.0,
+        13455.0
+      ],
+      "height_cm": 13443.01,
+      "clearance_cm": 74.88,
+      "rotation": [
+        0.0,
+        0.0,
+        -126.47
+      ],
+      "scale": [
+        0.966,
+        0.966,
+        0.966
+      ],
+      "tension": 0.4432,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.8314,
+      "resonance": 0.8314,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0010",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -106250.0,
+        -106250.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0007",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -106250.0,
+        -81250.0,
+        13455.0
+      ],
+      "height_cm": 13380.06,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -142.59
+      ],
+      "scale": [
+        1.013,
+        1.013,
+        1.013
+      ],
+      "tension": 0.5217,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.5413,
+      "resonance": 0.5413,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0011",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -106250.0,
+        -6250.0,
+        13455.0
+      ],
+      "height_cm": 13419.91,
+      "clearance_cm": 21.04,
+      "rotation": [
+        0.0,
+        0.0,
+        -176.63
+      ],
+      "scale": [
+        1.162,
+        1.162,
+        1.162
+      ],
+      "tension": 0.7692,
+      "chladni_mode": "6_7",
+      "chladni_val": -0.0659,
+      "resonance": 0.0659,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0012",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -106250.0,
+        6250.0,
+        13455.0
+      ],
+      "height_cm": 13419.91,
+      "clearance_cm": 28.96,
+      "rotation": [
+        0.0,
+        0.0,
+        176.63
+      ],
+      "scale": [
+        1.162,
+        1.162,
+        1.162
+      ],
+      "tension": 0.7695,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0659,
+      "resonance": 0.0659,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0008",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -106250.0,
+        81250.0,
+        13455.0
+      ],
+      "height_cm": 13380.06,
+      "clearance_cm": 57.48,
+      "rotation": [
+        0.0,
+        0.0,
+        142.59
+      ],
+      "scale": [
+        1.018,
+        1.018,
+        1.018
+      ],
+      "tension": 0.5302,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.5413,
+      "resonance": 0.5413,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0013",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -106250.0,
+        106250.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0009",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -106250.0,
+        143750.0,
+        13455.0
+      ],
+      "height_cm": 13443.01,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        126.47
+      ],
+      "scale": [
+        0.961,
+        0.961,
+        0.961
+      ],
+      "tension": 0.4352,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.8314,
+      "resonance": 0.8314,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0010",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -93750.0,
+        -131250.0,
+        13455.0
+      ],
+      "height_cm": 13446.57,
+      "clearance_cm": 67.43,
+      "rotation": [
+        0.0,
+        0.0,
+        -125.54
+      ],
+      "scale": [
+        0.981,
+        0.981,
+        0.981
+      ],
+      "tension": 0.4679,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.7071,
+      "resonance": 0.7071,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0014",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -93750.0,
+        -93750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0015",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -93750.0,
+        93750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0011",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -93750.0,
+        131250.0,
+        13455.0
+      ],
+      "height_cm": 13446.57,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        125.54
+      ],
+      "scale": [
+        0.978,
+        0.978,
+        0.978
+      ],
+      "tension": 0.464,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.7071,
+      "resonance": 0.7071,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0012",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -81250.0,
+        -118750.0,
+        13455.0
+      ],
+      "height_cm": 13441.0,
+      "clearance_cm": 57.08,
+      "rotation": [
+        0.0,
+        0.0,
+        -124.38
+      ],
+      "scale": [
+        0.984,
+        0.984,
+        0.984
+      ],
+      "tension": 0.4737,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.5346,
+      "resonance": 0.5346,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0013",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -81250.0,
+        -106250.0,
+        13455.0
+      ],
+      "height_cm": 13429.94,
+      "clearance_cm": 57.48,
+      "rotation": [
+        0.0,
+        0.0,
+        -127.41
+      ],
+      "scale": [
+        1.013,
+        1.013,
+        1.013
+      ],
+      "tension": 0.5217,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.5413,
+      "resonance": 0.5413,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0016",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -81250.0,
+        -81250.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0014",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -81250.0,
+        -43750.0,
+        13455.0
+      ],
+      "height_cm": 13377.02,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -151.7
+      ],
+      "scale": [
+        1.011,
+        1.011,
+        1.011
+      ],
+      "tension": 0.5186,
+      "chladni_mode": "1_2",
+      "chladni_val": -1.2973,
+      "resonance": 1.2973,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_SheetVeil_0000",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_sheet",
+      "position": [
+        -81250.0,
+        -31250.0,
+        13455.0
+      ],
+      "height_cm": 13372.04,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -158.96
+      ],
+      "scale": [
+        1.048,
+        1.048,
+        1.048
+      ],
+      "tension": 0.5806,
+      "chladni_mode": "2_4",
+      "chladni_val": -1.3001,
+      "resonance": 1.3001,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_SheetVeil_0001",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_ripple",
+      "position": [
+        -81250.0,
+        31250.0,
+        13455.0
+      ],
+      "height_cm": 13372.04,
+      "clearance_cm": 103.01,
+      "rotation": [
+        0.0,
+        0.0,
+        158.96
+      ],
+      "scale": [
+        1.035,
+        1.035,
+        1.035
+      ],
+      "tension": 0.5577,
+      "chladni_mode": "2_4",
+      "chladni_val": 1.3001,
+      "resonance": 1.3001,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_HearthPool_0015",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -81250.0,
+        43750.0,
+        13455.0
+      ],
+      "height_cm": 13377.02,
+      "clearance_cm": 102.84,
+      "rotation": [
+        0.0,
+        0.0,
+        151.7
+      ],
+      "scale": [
+        1.024,
+        1.024,
+        1.024
+      ],
+      "tension": 0.5406,
+      "chladni_mode": "1_2",
+      "chladni_val": 1.2973,
+      "resonance": 1.2973,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0017",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -81250.0,
+        81250.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0016",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -81250.0,
+        106250.0,
+        13455.0
+      ],
+      "height_cm": 13429.94,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        127.41
+      ],
+      "scale": [
+        1.01,
+        1.01,
+        1.01
+      ],
+      "tension": 0.5162,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.5413,
+      "resonance": 0.5413,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0017",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -81250.0,
+        118750.0,
+        13455.0
+      ],
+      "height_cm": 13441.0,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        124.38
+      ],
+      "scale": [
+        0.986,
+        0.986,
+        0.986
+      ],
+      "tension": 0.4767,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.5346,
+      "resonance": 0.5346,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0018",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -68750.0,
+        -131250.0,
+        13455.0
+      ],
+      "height_cm": 13441.0,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -117.65
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": -0.0942,
+      "resonance": 0.0942,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0019",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -68750.0,
+        -68750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0020",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -68750.0,
+        68750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0021",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -68750.0,
+        131250.0,
+        13455.0
+      ],
+      "height_cm": 13441.0,
+      "clearance_cm": 30.65,
+      "rotation": [
+        0.0,
+        0.0,
+        117.65
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0942,
+      "resonance": 0.0942,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0022",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -56250.0,
+        -118750.0,
+        13455.0
+      ],
+      "height_cm": 13425.79,
+      "clearance_cm": 22.35,
+      "rotation": [
+        0.0,
+        0.0,
+        -115.35
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": -0.0442,
+      "resonance": 0.0442,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0023",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -56250.0,
+        -56250.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0024",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -56250.0,
+        56250.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": -0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0025",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -56250.0,
+        118750.0,
+        13455.0
+      ],
+      "height_cm": 13425.79,
+      "clearance_cm": 27.65,
+      "rotation": [
+        0.0,
+        0.0,
+        115.35
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0442,
+      "resonance": 0.0442,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0018",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        -43750.0,
+        -81250.0,
+        13455.0
+      ],
+      "height_cm": 13432.98,
+      "clearance_cm": 102.84,
+      "rotation": [
+        0.0,
+        0.0,
+        -118.3
+      ],
+      "scale": [
+        1.011,
+        1.011,
+        1.011
+      ],
+      "tension": 0.5186,
+      "chladni_mode": "1_2",
+      "chladni_val": 1.2973,
+      "resonance": 1.2973,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_TideSeam_0026",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -43750.0,
+        -43750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_TideSeam_0027",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_foam",
+      "position": [
+        -43750.0,
+        43750.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": -0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_HearthPool_0019",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        -43750.0,
+        81250.0,
+        13455.0
+      ],
+      "height_cm": 13432.98,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        118.3
+      ],
+      "scale": [
+        1.007,
+        1.007,
+        1.007
+      ],
+      "tension": 0.5115,
+      "chladni_mode": "1_2",
+      "chladni_val": -1.2973,
+      "resonance": 1.2973,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_SheetVeil_0002",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_sheet",
+      "position": [
+        -31250.0,
+        -81250.0,
+        13455.0
+      ],
+      "height_cm": 13437.96,
+      "clearance_cm": 103.01,
+      "rotation": [
+        0.0,
+        0.0,
+        -111.04
+      ],
+      "scale": [
+        1.048,
+        1.048,
+        1.048
+      ],
+      "tension": 0.5806,
+      "chladni_mode": "2_4",
+      "chladni_val": 1.3001,
+      "resonance": 1.3001,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_TideSeam_0028",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -31250.0,
+        -31250.0,
+        13455.0
+      ],
+      "height_cm": 13405.0,
+      "clearance_cm": 25.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "tension": 1.0,
+      "chladni_mode": "6_7",
+      "chladni_val": 0.0,
+      "resonance": 0.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_SheetVeil_0003",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_ripple",
+      "position": [
+        -31250.0,
+        -18750.0,
+        13455.0
+      ],
+      "height_cm": 13390.52,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -149.04
+      ],
+      "scale": [
+        1.068,
+        1.068,
+        1.068
+      ],
+      "tension": 0.6141,
+      "chladni_mode": "2_4",
+      "chladni_val": -0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_TideSeam_0029",
+      "zone": "TideSeam",
+      "builder": "MEL_water_veil_seam",
+      "position": [
+        -31250.0,
+        -6250.0,
+        13455.0
+      ],
+      "height_cm": 13382.06,
+      "clearance_cm": 20.64,
+      "rotation": [
+        0.0,
+        0.0,
+        -168.69
+      ],
+      "scale": [
+        0.976,
+        0.976,
+        0.976
+      ],
+      "tension": 0.4599,
+      "chladni_mode": "6_7",
+      "chladni_val": -0.0726,
+      "resonance": 0.0726,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_UpwardDroplet"
+    },
+    {
+      "id": "WV_SheetVeil_0004",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_sheet",
+      "position": [
+        -31250.0,
+        18750.0,
+        13455.0
+      ],
+      "height_cm": 13390.52,
+      "clearance_cm": 33.22,
+      "rotation": [
+        0.0,
+        0.0,
+        149.04
+      ],
+      "scale": [
+        1.069,
+        1.069,
+        1.069
+      ],
+      "tension": 0.6158,
+      "chladni_mode": "2_4",
+      "chladni_val": 0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_SheetVeil_0005",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_ripple",
+      "position": [
+        -31250.0,
+        81250.0,
+        13455.0
+      ],
+      "height_cm": 13437.96,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        111.04
+      ],
+      "scale": [
+        1.056,
+        1.056,
+        1.056
+      ],
+      "tension": 0.5933,
+      "chladni_mode": "2_4",
+      "chladni_val": -1.3001,
+      "resonance": 1.3001,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_SheetVeil_0006",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_ripple",
+      "position": [
+        -18750.0,
+        -31250.0,
+        13455.0
+      ],
+      "height_cm": 13419.48,
+      "clearance_cm": 33.22,
+      "rotation": [
+        0.0,
+        0.0,
+        -120.96
+      ],
+      "scale": [
+        1.068,
+        1.068,
+        1.068
+      ],
+      "tension": 0.6141,
+      "chladni_mode": "2_4",
+      "chladni_val": 0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_SheetVeil_0007",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_sheet",
+      "position": [
+        18750.0,
+        -31250.0,
+        13455.0
+      ],
+      "height_cm": 13419.48,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -59.04
+      ],
+      "scale": [
+        1.069,
+        1.069,
+        1.069
+      ],
+      "tension": 0.6158,
+      "chladni_mode": "2_4",
+      "chladni_val": -0.137,
+      "resonance": 0.137,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_SheetVeil_0008",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_ripple",
+      "position": [
+        31250.0,
+        -81250.0,
+        13455.0
+      ],
+      "height_cm": 13437.96,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -68.96
+      ],
+      "scale": [
+        1.035,
+        1.035,
+        1.035
+      ],
+      "tension": 0.5577,
+      "chladni_mode": "2_4",
+      "chladni_val": -1.3001,
+      "resonance": 1.3001,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_SheetVeil_0009",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_sheet",
+      "position": [
+        31250.0,
+        81250.0,
+        13455.0
+      ],
+      "height_cm": 13437.96,
+      "clearance_cm": 103.01,
+      "rotation": [
+        0.0,
+        0.0,
+        68.96
+      ],
+      "scale": [
+        1.043,
+        1.043,
+        1.043
+      ],
+      "tension": 0.5709,
+      "chladni_mode": "2_4",
+      "chladni_val": 1.3001,
+      "resonance": 1.3001,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_HearthPool_0020",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        43750.0,
+        -81250.0,
+        13455.0
+      ],
+      "height_cm": 13432.98,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -61.7
+      ],
+      "scale": [
+        1.024,
+        1.024,
+        1.024
+      ],
+      "tension": 0.5406,
+      "chladni_mode": "1_2",
+      "chladni_val": -1.2973,
+      "resonance": 1.2973,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0021",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        43750.0,
+        81250.0,
+        13455.0
+      ],
+      "height_cm": 13432.98,
+      "clearance_cm": 102.84,
+      "rotation": [
+        0.0,
+        0.0,
+        61.7
+      ],
+      "scale": [
+        1.02,
+        1.02,
+        1.02
+      ],
+      "tension": 0.5338,
+      "chladni_mode": "1_2",
+      "chladni_val": 1.2973,
+      "resonance": 1.2973,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0022",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        81250.0,
+        -118750.0,
+        13455.0
+      ],
+      "height_cm": 13441.0,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -55.62
+      ],
+      "scale": [
+        0.976,
+        0.976,
+        0.976
+      ],
+      "tension": 0.4596,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.5346,
+      "resonance": 0.5346,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0023",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        81250.0,
+        -106250.0,
+        13455.0
+      ],
+      "height_cm": 13429.94,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -52.59
+      ],
+      "scale": [
+        1.018,
+        1.018,
+        1.018
+      ],
+      "tension": 0.5302,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.5413,
+      "resonance": 0.5413,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0024",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        81250.0,
+        -43750.0,
+        13455.0
+      ],
+      "height_cm": 13377.02,
+      "clearance_cm": 102.84,
+      "rotation": [
+        0.0,
+        0.0,
+        -28.3
+      ],
+      "scale": [
+        1.007,
+        1.007,
+        1.007
+      ],
+      "tension": 0.5115,
+      "chladni_mode": "1_2",
+      "chladni_val": 1.2973,
+      "resonance": 1.2973,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_SheetVeil_0010",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_ripple",
+      "position": [
+        81250.0,
+        -31250.0,
+        13455.0
+      ],
+      "height_cm": 13372.04,
+      "clearance_cm": 103.01,
+      "rotation": [
+        0.0,
+        0.0,
+        -21.04
+      ],
+      "scale": [
+        1.056,
+        1.056,
+        1.056
+      ],
+      "tension": 0.5933,
+      "chladni_mode": "2_4",
+      "chladni_val": 1.3001,
+      "resonance": 1.3001,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_SheetVeil_0011",
+      "zone": "SheetVeil",
+      "builder": "MEL_water_veil_sheet",
+      "position": [
+        81250.0,
+        31250.0,
+        13455.0
+      ],
+      "height_cm": 13372.04,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        21.04
+      ],
+      "scale": [
+        1.043,
+        1.043,
+        1.043
+      ],
+      "tension": 0.5709,
+      "chladni_mode": "2_4",
+      "chladni_val": -1.3001,
+      "resonance": 1.3001,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_SeaAbove_SurfaceOcean"
+    },
+    {
+      "id": "WV_HearthPool_0025",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        81250.0,
+        43750.0,
+        13455.0
+      ],
+      "height_cm": 13377.02,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        28.3
+      ],
+      "scale": [
+        1.02,
+        1.02,
+        1.02
+      ],
+      "tension": 0.5338,
+      "chladni_mode": "1_2",
+      "chladni_val": -1.2973,
+      "resonance": 1.2973,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0026",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        81250.0,
+        106250.0,
+        13455.0
+      ],
+      "height_cm": 13429.94,
+      "clearance_cm": 57.48,
+      "rotation": [
+        0.0,
+        0.0,
+        52.59
+      ],
+      "scale": [
+        1.015,
+        1.015,
+        1.015
+      ],
+      "tension": 0.5248,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.5413,
+      "resonance": 0.5413,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0027",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        81250.0,
+        118750.0,
+        13455.0
+      ],
+      "height_cm": 13441.0,
+      "clearance_cm": 57.08,
+      "rotation": [
+        0.0,
+        0.0,
+        55.62
+      ],
+      "scale": [
+        0.978,
+        0.978,
+        0.978
+      ],
+      "tension": 0.4626,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.5346,
+      "resonance": 0.5346,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0028",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_pool",
+      "position": [
+        93750.0,
+        -131250.0,
+        13455.0
+      ],
+      "height_cm": 13446.57,
+      "clearance_cm": 20.0,
+      "rotation": [
+        0.0,
+        0.0,
+        -54.46
+      ],
+      "scale": [
+        0.971,
+        0.971,
+        0.971
+      ],
+      "tension": 0.4511,
+      "chladni_mode": "1_2",
+      "chladni_val": -0.7071,
+      "resonance": 0.7071,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    },
+    {
+      "id": "WV_HearthPool_0029",
+      "zone": "HearthPool",
+      "builder": "MEL_water_veil_mirror",
+      "position": [
+        93750.0,
+        131250.0,
+        13455.0
+      ],
+      "height_cm": 13446.57,
+      "clearance_cm": 67.43,
+      "rotation": [
+        0.0,
+        0.0,
+        54.46
+      ],
+      "scale": [
+        0.968,
+        0.968,
+        0.968
+      ],
+      "tension": 0.447,
+      "chladni_mode": "1_2",
+      "chladni_val": 0.7071,
+      "resonance": 0.7071,
+      "material_instance": "/Game/EnvSandbox/Textures/PearlWoven_Lace"
+    }
+  ],
+  "world_field_channels": [
+    "WorldField.Resonance",
+    "WorldField.Tension",
+    "WorldField.Moisture",
+    "WorldField.FilterFlow"
+  ],
+  "narrative_hook": {
+    "encounter_id": "encounter.shorelistener.reveal",
+    "reward_id": "reward.wardrobe.shorewake_veil",
+    "flag_id": "quest.p0_sea_above.veil_sung"
+  }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+  BRENNAN SHEPHERD · Project Card — Wix HTML embed
+  HOW TO USE IN WIX:
+   1. Editor → Add (+) → Embed Code → Embed HTML → "Enter Code".
+   2. Paste this ENTIRE file.
+   3. Drag the box to ~ 400 × 300 px — it auto-fits.
+   4. Edit the DATA block below for each project.
+  Great for portfolio grids, project showcases, or "featured work" sections.
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:transparent}
+  body{display:flex;justify-content:center;padding:8px}
+  .card{width:100%;max-width:400px;border-radius:3px;overflow:hidden;font-family:'IBM Plex Mono',monospace;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(36,27,46,0.12)}
+  .image{width:100%;height:200px;background:#EFEAE1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .image img{width:100%;height:100%;object-fit:cover}
+  .image-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#F7F4EF,#EFEAE1)}
+  .content{padding:20px}
+  .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .cat{letter-spacing:.18em;font-size:10px;text-transform:uppercase;color:#6E6080}
+  .year{font-size:11px;color:#5A6170}
+  .title{font-family:'Fraunces',serif;font-weight:500;font-size:22px;line-height:1.1;color:#241B2E;margin-bottom:8px}
+  .desc{font-size:13px;color:#5A6170;line-height:1.5;margin-bottom:12px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;background:#F7F4EF;border:1px solid #E3DACE;border-radius:2px;color:#6E6080}
+  .rule{height:1px;background:linear-gradient(to right,transparent,rgba(176,141,79,.4),transparent);margin:16px 0}
+  .foot{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#5A6170}
+  .burst{opacity:.5}
+</style>
+</head>
+<body>
+<div id="card"></div>
+<script>
+/* ============ DATA — edit these for each project ============ */
+var DATA = {
+  theme: "light",                 // "light" (Ivory) or "dark" (Astral)
+  title: "Project Name",
+  category: "Environment",
+  year: "2026",
+  description: "Brief description of the project, what you built, and key technical challenges.",
+  tags: ["Unreal Engine", "PCG", "Houdini"],
+  imageUrl: "",                   // Leave empty for placeholder, or put image URL
+  link: ""                        // Optional: URL to project page
+};
+/* ====================================================================== */
+
+function burst(size,color){
+  var pts=[],cx=size/2,cy=size/2,o=size/2,inr=o*0.4;
+  for(var i=0;i<16;i++){var r=i%2===0?o:inr;var a=-Math.PI/2+i*Math.PI/8;pts.push((cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1));}
+  return '<svg class="burst" width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'"><polygon points="'+pts.join(' ')+'" fill="'+color+'"/></svg>';
+}
+function render(){
+  var dark = DATA.theme!=="light";
+  var c = dark
+    ? {surf:"#1C2340",bord:"rgba(201,168,106,.35)",txt:"#ECEAF4",sec:"#A9A7C0",acc:"#DDC79B",gold:"#C9A86A",line:"rgba(255,255,255,.06)"}
+    : {surf:"#FFFFFF",bord:"rgba(176,141,79,.4)",txt:"#241B2E",sec:"#6E6080",acc:"#A7884E",gold:"#A7884E",line:"rgba(0,0,0,.06)"};
+  var gold = dark ? "#C9A86A" : "#A7884E";
+  var imageHtml = DATA.imageUrl 
+    ? '<img src="'+DATA.imageUrl+'" alt="'+DATA.title+'" />'
+    : '<div class="image-placeholder"><span style="font-size:48px;opacity:0.2">✦</span></div>';
+  var tagsHtml = DATA.tags.map(function(t){
+    return '<span class="tag" style="background:'+(dark?'rgba(255,255,255,0.05)':'#F7F4EF')+';border-color:'+c.line+';color:'+c.sec+'">'+t+'</span>';
+  }).join('');
+  document.getElementById("card").innerHTML =
+    '<div class="card" style="background:'+c.surf+';border:1px solid '+c.bord+';box-shadow:0 2px 8px rgba(36,27,46,0.06)" onclick="if(DATA.location)window.location.href=DATA.location">'
+    +'<div class="image">'+imageHtml+'</div>'
+    +'<div class="content">'
+    +'<div class="head"><span class="cat" style="color:'+c.sec+'">'+DATA.category+'</span><span class="year" style="color:'+c.sec+'">'+DATA.year+'</span></div>'
+    +'<div class="title" style="color:'+c.txt+'">'+DATA.title+'</div>'
+    +'<div class="desc" style="color:'+c.sec+'">'+DATA.description+'</div>'
+    +'<div class="tags">'+tagsHtml+'</div>'
+    +'<div class="rule"></div>'
+    +'<div class="foot"><span style="display:flex;align-items:center;gap:6px">'+burst(10,gold)+'</span><span>BRENNAN SHEPHERD</span></div>'
+    +'</div></div>';
+}
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "id": "renaissance_piazza_v1",
+  "family": "Renaissance",
+  "verticality": 0.58,
+  "symmetry": 0.85,
+  "ornament_density": 0.72,
+  "structural_logic": 0.8,
+  "organic_growth": 0.28,
+  "cosmic_influence": 0.12,
+  "sacred_sequence": [],
+  "compose_style": "RENAISSANCE_PIAZZA",
+  "default_graph": "RENAISSANCE_PIAZZA",
+  "grammar_id": "RENAISSANCE_PIAZZA",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "baroque_order": "CORINTHIAN",
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

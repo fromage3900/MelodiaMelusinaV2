@@ -1,0 +1,40 @@
+{
+  "$schema": "melodia.resonant_world.score.v1",
+  "format": "melodia_resonant_world_score",
+  "version": "resonant_world_score_v1",
+  "purpose": "Compose one deterministic musical phrase, route, stage timeline, and existing-asset voicing for a world chunk.",
+  "phrase": {
+    "beats": 16,
+    "halves": ["call", "response"],
+    "stages": ["invocation", "unfolding", "threshold", "release"],
+    "trigger": "music_clock_on_beat"
+  },
+  "seams": {
+    "route_kind": "edge_to_edge_phrase_lane",
+    "endpoints_are_shared_generator_anchors": true,
+    "chunk_identity_is_seed_movement_coordinate": true
+  },
+  "asset_voicing": {
+    "roles": ["music", "material", "ornament", "vfx", "wardrobe"],
+    "runtime_ready_requires_project_backed_reference": true,
+    "appearance_is_separate_from_capability": true
+  },
+  "quantum_policy": {
+    "scope": "macro movement preparation only",
+    "candidate_count": 2,
+    "selector_not_generator": true,
+    "forbidden_uses": ["individual_voxel_selection", "per_frame_traversal", "player_input_grading", "reward_grants"]
+  },
+  "persistence": {
+    "replay_key": "score_id",
+    "sparse_edit_identity": ["event_id", "cell_id", "intent_id"],
+    "canonical_save_owner": "UMelodiaNarrativeSubsystem",
+    "composer_writes_save": false
+  },
+  "runtime_boundary": {
+    "read_model_only": true,
+    "does_not_spawn_actors": true,
+    "does_not_apply_traversal": true,
+    "does_not_write_save": true
+  }
+}

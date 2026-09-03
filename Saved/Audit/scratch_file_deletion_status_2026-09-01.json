@@ -1,0 +1,68 @@
+{
+  "schema": "melodia.audit.scratch_file_deletion.v1",
+  "generated": "2026-09-01T04:30:00Z",
+  "source": "staged_assets_commit_readiness_2026-08-31.json scratch_files_to_ignore list",
+  "mode": "disk_scan_only",
+  "findings": [
+    {
+      "file": "tmp2vbx97w6.py",
+      "expected_path": "Content/Python/tmp2vbx97w6.py",
+      "exists_on_disk": false,
+      "status": "ALREADY_CLEANED"
+    },
+    {
+      "file": "run_arch_now.py",
+      "expected_path": "Content/Python/run_arch_now.py",
+      "exists_on_disk": false,
+      "status": "ALREADY_CLEANED"
+    },
+    {
+      "file": "run_arch_toon_fixed.py",
+      "expected_path": "Content/Python/run_arch_toon_fixed.py",
+      "exists_on_disk": false,
+      "status": "ALREADY_CLEANED"
+    },
+    {
+      "file": "run_arch_toon_v2.py",
+      "expected_path": "Content/Python/run_arch_toon_v2.py",
+      "exists_on_disk": false,
+      "status": "ALREADY_CLEANED"
+    },
+    {
+      "file": "_run_arch_bg.py",
+      "expected_path": "Content/Python/_run_arch_bg.py",
+      "exists_on_disk": false,
+      "status": "ALREADY_CLEANED"
+    },
+    {
+      "file": "mi_check.py",
+      "expected_path": "Content/Python/mi_check.py",
+      "exists_on_disk": false,
+      "status": "ALREADY_CLEANED"
+    },
+    {
+      "file": "Generate_SheenMasks.py",
+      "expected_path": "Content/Python/Generate_SheenMasks.py (or root)",
+      "exists_on_disk": false,
+      "status": "ALREADY_CLEANED"
+    },
+    {
+      "file": "Generate_SheenMasks.py.bak",
+      "expected_path": "Content/Python/Generate_SheenMasks.py.bak",
+      "exists_on_disk": false,
+      "status": "ALREADY_CLEANED"
+    }
+  ],
+  "summary": {
+    "total_files_checked": 8,
+    "already_cleaned": 8,
+    "still_present": 0,
+    "status": "ALL_SCRATCH_FILES_ALREADY_REMOVED"
+  },
+  "guardrails": [
+    "No .py files deleted by this audit",
+    "No git operations executed",
+    "Disk scan only"
+  ],
+  "status": "AUDIT_COMPLETE"
+}

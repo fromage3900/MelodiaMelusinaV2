@@ -1,0 +1,23 @@
+{
+  "id": "baroque_church_v1",
+  "family": "Baroque",
+  "verticality": 0.65,
+  "symmetry": 0.88,
+  "ornament_density": 0.94,
+  "structural_logic": 0.74,
+  "organic_growth": 0.18,
+  "cosmic_influence": 0.14,
+  "sacred_sequence": ["facade", "nave", "transept", "dome"],
+  "compose_style": "BAROQUE_CHURCH",
+  "default_graph": "BAROQUE_CHURCH",
+  "grammar_id": "BAROQUE_CHURCH",
+  "surreal_transform": "recursive_interior",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "baroque_order": "CORINTHIAN",
+    "baroque_ornament_density": 0.78,
+    "material_choice": "MARBLE",
+    "unit_size": 2.0
+  }
+}

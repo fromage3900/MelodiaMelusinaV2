@@ -1,0 +1,13 @@
+// Fixture: rule (c) *.generated.h base name != header file base name.
+// The header is LintNameMismatch.h but includes "WrongName.generated.h". NOT compiled.
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "WrongName.generated.h"
+
+UCLASS()
+class CPPERGOTESTMOD_API ULintNameMismatch : public UActorComponent
+{
+	GENERATED_BODY()
+};

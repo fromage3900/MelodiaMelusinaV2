@@ -1,0 +1,1709 @@
+{
+  "schema": "melodia.cross_path_validation.v1",
+  "check": "hython",
+  "variant": null,
+  "counts": {
+    "PASS": 212,
+    "FAIL": 0,
+    "SKIP": 0,
+    "ERROR": 0
+  },
+  "results": [
+    {
+      "name": "hython/cymatic/CymaticMarble/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\CymaticMarble",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_BaseColor.png 2381131 bytes hash=e8a6cfe9025a 2048x2048 RGB",
+      "expected": "T_Cymatic_CymaticMarble_BaseColor.png",
+      "actual": "T_Cymatic_CymaticMarble_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Normal.png 2251283 bytes hash=3041e13e633d 2048x2048 RGB",
+      "expected": "T_Cymatic_CymaticMarble_Normal.png",
+      "actual": "T_Cymatic_CymaticMarble_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Roughness.png 724076 bytes hash=0a80e732c612 2048x2048 L",
+      "expected": "T_Cymatic_CymaticMarble_Roughness.png",
+      "actual": "T_Cymatic_CymaticMarble_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Metallic.png 4145 bytes hash=47409785b30c 2048x2048 L",
+      "expected": "T_Cymatic_CymaticMarble_Metallic.png",
+      "actual": "T_Cymatic_CymaticMarble_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Height.png 1379729 bytes hash=d21a8327bb45 2048x2048 RGB",
+      "expected": "T_Cymatic_CymaticMarble_Height.png",
+      "actual": "T_Cymatic_CymaticMarble_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_ORM.png 1561196 bytes hash=4eb26b19dbe7 2048x2048 RGB",
+      "expected": "T_Cymatic_CymaticMarble_ORM.png",
+      "actual": "T_Cymatic_CymaticMarble_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Emissive.png 2006849 bytes hash=f02e072f4285 2048x2048 RGB",
+      "expected": "T_Cymatic_CymaticMarble_Emissive.png",
+      "actual": "T_Cymatic_CymaticMarble_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Iridescence.png 1140673 bytes hash=fb829826c40e 2048x2048 RGB",
+      "expected": "T_Cymatic_CymaticMarble_Iridescence.png",
+      "actual": "T_Cymatic_CymaticMarble_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CymaticMarble/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_CymaticMarble_Opacity.png 8533 bytes hash=7368a2762f02 2048x2048 L",
+      "expected": "T_Cymatic_CymaticMarble_Opacity.png",
+      "actual": "T_Cymatic_CymaticMarble_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/dir",
+      "status": "PASS",
+      "detail": "dir exists, 81 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\GildedLoom",
+      "actual": "81 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedLoom_BaseColor.1.png 233886 bytes hash=1376b5c661e7 512x512 RGB",
+      "expected": "T_Cymatic_GildedLoom_BaseColor.png",
+      "actual": "T_Cymatic_GildedLoom_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedLoom_Normal.1.png 370155 bytes hash=062cad8c2965 512x512 RGB",
+      "expected": "T_Cymatic_GildedLoom_Normal.png",
+      "actual": "T_Cymatic_GildedLoom_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedLoom_Roughness.1.png 95521 bytes hash=1d2de82ebd1c 512x512 L",
+      "expected": "T_Cymatic_GildedLoom_Roughness.png",
+      "actual": "T_Cymatic_GildedLoom_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedLoom_Metallic.1.png 30706 bytes hash=0fcd0000fc06 512x512 L",
+      "expected": "T_Cymatic_GildedLoom_Metallic.png",
+      "actual": "T_Cymatic_GildedLoom_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedLoom_Height.1.png 196802 bytes hash=1067f4a181ba 512x512 RGB",
+      "expected": "T_Cymatic_GildedLoom_Height.png",
+      "actual": "T_Cymatic_GildedLoom_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedLoom_ORM.1.png 237203 bytes hash=fed6eba11c56 512x512 RGB",
+      "expected": "T_Cymatic_GildedLoom_ORM.png",
+      "actual": "T_Cymatic_GildedLoom_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedLoom_Emissive.1.png 21757 bytes hash=754d5034a496 512x512 RGB",
+      "expected": "T_Cymatic_GildedLoom_Emissive.png",
+      "actual": "T_Cymatic_GildedLoom_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedLoom_Iridescence.1.png 36544 bytes hash=c5c47eb35a6a 512x512 RGB",
+      "expected": "T_Cymatic_GildedLoom_Iridescence.png",
+      "actual": "T_Cymatic_GildedLoom_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedLoom/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedLoom_Opacity.1.png 1301 bytes hash=d8acccafa1fd 512x512 L",
+      "expected": "T_Cymatic_GildedLoom_Opacity.png",
+      "actual": "T_Cymatic_GildedLoom_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/dir",
+      "status": "PASS",
+      "detail": "dir exists, 153 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\SilkWaterfall",
+      "actual": "153 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_SilkWaterfall_BaseColor.1.png 226161 bytes hash=5253085b9617 512x512 RGB",
+      "expected": "T_Cymatic_SilkWaterfall_BaseColor.png",
+      "actual": "T_Cymatic_SilkWaterfall_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_SilkWaterfall_Normal.1.png 241366 bytes hash=12a0e24b5a65 512x512 RGB",
+      "expected": "T_Cymatic_SilkWaterfall_Normal.png",
+      "actual": "T_Cymatic_SilkWaterfall_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_SilkWaterfall_Roughness.1.png 13766 bytes hash=8867bd67b9ca 512x512 L",
+      "expected": "T_Cymatic_SilkWaterfall_Roughness.png",
+      "actual": "T_Cymatic_SilkWaterfall_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_SilkWaterfall_Metallic.1.png 334 bytes hash=65795a5b9103 512x512 L",
+      "expected": "T_Cymatic_SilkWaterfall_Metallic.png",
+      "actual": "T_Cymatic_SilkWaterfall_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_SilkWaterfall_Height.1.png 127187 bytes hash=34608c69bb4d 512x512 RGB",
+      "expected": "T_Cymatic_SilkWaterfall_Height.png",
+      "actual": "T_Cymatic_SilkWaterfall_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_SilkWaterfall_ORM.1.png 108592 bytes hash=bd69d43ff857 512x512 RGB",
+      "expected": "T_Cymatic_SilkWaterfall_ORM.png",
+      "actual": "T_Cymatic_SilkWaterfall_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_SilkWaterfall_Emissive.1.png 843 bytes hash=1707efe45730 512x512 RGB",
+      "expected": "T_Cymatic_SilkWaterfall_Emissive.png",
+      "actual": "T_Cymatic_SilkWaterfall_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_SilkWaterfall_Iridescence.1.png 18048 bytes hash=770a04c8878e 512x512 RGB",
+      "expected": "T_Cymatic_SilkWaterfall_Iridescence.png",
+      "actual": "T_Cymatic_SilkWaterfall_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SilkWaterfall/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_SilkWaterfall_Opacity.1.png 1301 bytes hash=d8acccafa1fd 512x512 L",
+      "expected": "T_Cymatic_SilkWaterfall_Opacity.png",
+      "actual": "T_Cymatic_SilkWaterfall_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\CavernWeave",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_CavernWeave_BaseColor.png 1845957 bytes hash=4aaee170ba4e 2048x2048 RGB",
+      "expected": "T_Cymatic_CavernWeave_BaseColor.png",
+      "actual": "T_Cymatic_CavernWeave_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_CavernWeave_Normal.png 937231 bytes hash=202beff6a344 2048x2048 RGB",
+      "expected": "T_Cymatic_CavernWeave_Normal.png",
+      "actual": "T_Cymatic_CavernWeave_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_CavernWeave_Roughness.png 518846 bytes hash=93ff40ba5ff5 2048x2048 L",
+      "expected": "T_Cymatic_CavernWeave_Roughness.png",
+      "actual": "T_Cymatic_CavernWeave_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_CavernWeave_Metallic.png 4145 bytes hash=47409785b30c 2048x2048 L",
+      "expected": "T_Cymatic_CavernWeave_Metallic.png",
+      "actual": "T_Cymatic_CavernWeave_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_CavernWeave_Height.png 971461 bytes hash=da6599f05dda 2048x2048 RGB",
+      "expected": "T_Cymatic_CavernWeave_Height.png",
+      "actual": "T_Cymatic_CavernWeave_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_CavernWeave_ORM.png 1408368 bytes hash=c11d98468fd9 2048x2048 RGB",
+      "expected": "T_Cymatic_CavernWeave_ORM.png",
+      "actual": "T_Cymatic_CavernWeave_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_CavernWeave_Emissive.png 814809 bytes hash=acec95545d1a 2048x2048 RGB",
+      "expected": "T_Cymatic_CavernWeave_Emissive.png",
+      "actual": "T_Cymatic_CavernWeave_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_CavernWeave_Iridescence.png 719209 bytes hash=9ec766e31c78 2048x2048 RGB",
+      "expected": "T_Cymatic_CavernWeave_Iridescence.png",
+      "actual": "T_Cymatic_CavernWeave_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CavernWeave/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_CavernWeave_Opacity.png 8533 bytes hash=7368a2762f02 2048x2048 L",
+      "expected": "T_Cymatic_CavernWeave_Opacity.png",
+      "actual": "T_Cymatic_CavernWeave_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/dir",
+      "status": "PASS",
+      "detail": "dir exists, 153 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\DancingCrystals",
+      "actual": "153 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_DancingCrystals_BaseColor.1.png 151988 bytes hash=fc7856a33042 512x512 RGB",
+      "expected": "T_Cymatic_DancingCrystals_BaseColor.png",
+      "actual": "T_Cymatic_DancingCrystals_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_DancingCrystals_Normal.1.png 201139 bytes hash=570902df73ad 512x512 RGB",
+      "expected": "T_Cymatic_DancingCrystals_Normal.png",
+      "actual": "T_Cymatic_DancingCrystals_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_DancingCrystals_Roughness.1.png 40236 bytes hash=d213a2f6ef8d 512x512 L",
+      "expected": "T_Cymatic_DancingCrystals_Roughness.png",
+      "actual": "T_Cymatic_DancingCrystals_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_DancingCrystals_Metallic.1.png 334 bytes hash=65795a5b9103 512x512 L",
+      "expected": "T_Cymatic_DancingCrystals_Metallic.png",
+      "actual": "T_Cymatic_DancingCrystals_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_DancingCrystals_Height.1.png 106814 bytes hash=596b93360798 512x512 RGB",
+      "expected": "T_Cymatic_DancingCrystals_Height.png",
+      "actual": "T_Cymatic_DancingCrystals_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_DancingCrystals_ORM.1.png 112019 bytes hash=ee3c7fbf54b4 512x512 RGB",
+      "expected": "T_Cymatic_DancingCrystals_ORM.png",
+      "actual": "T_Cymatic_DancingCrystals_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_DancingCrystals_Emissive.1.png 75442 bytes hash=b0734cbd991f 512x512 RGB",
+      "expected": "T_Cymatic_DancingCrystals_Emissive.png",
+      "actual": "T_Cymatic_DancingCrystals_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_DancingCrystals_Iridescence.1.png 34174 bytes hash=d4210781bd72 512x512 RGB",
+      "expected": "T_Cymatic_DancingCrystals_Iridescence.png",
+      "actual": "T_Cymatic_DancingCrystals_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/DancingCrystals/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_DancingCrystals_Opacity.1.png 1301 bytes hash=d8acccafa1fd 512x512 L",
+      "expected": "T_Cymatic_DancingCrystals_Opacity.png",
+      "actual": "T_Cymatic_DancingCrystals_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/dir",
+      "status": "PASS",
+      "detail": "dir exists, 81 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\CherryBlossomWood",
+      "actual": "81 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_CherryBlossomWood_BaseColor.1.png 246608 bytes hash=ae0fb6a8cef7 512x512 RGB",
+      "expected": "T_Cymatic_CherryBlossomWood_BaseColor.png",
+      "actual": "T_Cymatic_CherryBlossomWood_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_CherryBlossomWood_Normal.1.png 245005 bytes hash=b5ae7e630ec8 512x512 RGB",
+      "expected": "T_Cymatic_CherryBlossomWood_Normal.png",
+      "actual": "T_Cymatic_CherryBlossomWood_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_CherryBlossomWood_Roughness.1.png 38816 bytes hash=ed43df3ae497 512x512 L",
+      "expected": "T_Cymatic_CherryBlossomWood_Roughness.png",
+      "actual": "T_Cymatic_CherryBlossomWood_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_CherryBlossomWood_Metallic.1.png 334 bytes hash=65795a5b9103 512x512 L",
+      "expected": "T_Cymatic_CherryBlossomWood_Metallic.png",
+      "actual": "T_Cymatic_CherryBlossomWood_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_CherryBlossomWood_Height.1.png 133295 bytes hash=b7a2bc0dff9d 512x512 RGB",
+      "expected": "T_Cymatic_CherryBlossomWood_Height.png",
+      "actual": "T_Cymatic_CherryBlossomWood_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_CherryBlossomWood_ORM.1.png 152447 bytes hash=4e16001c1f27 512x512 RGB",
+      "expected": "T_Cymatic_CherryBlossomWood_ORM.png",
+      "actual": "T_Cymatic_CherryBlossomWood_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_CherryBlossomWood_Emissive.1.png 19910 bytes hash=967702e4a611 512x512 RGB",
+      "expected": "T_Cymatic_CherryBlossomWood_Emissive.png",
+      "actual": "T_Cymatic_CherryBlossomWood_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_CherryBlossomWood_Iridescence.1.png 66046 bytes hash=440bde7a1e61 512x512 RGB",
+      "expected": "T_Cymatic_CherryBlossomWood_Iridescence.png",
+      "actual": "T_Cymatic_CherryBlossomWood_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/CherryBlossomWood/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_CherryBlossomWood_Opacity.1.png 1301 bytes hash=d8acccafa1fd 512x512 L",
+      "expected": "T_Cymatic_CherryBlossomWood_Opacity.png",
+      "actual": "T_Cymatic_CherryBlossomWood_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\GildedCoral",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedCoral_BaseColor.png 605202 bytes hash=7f4096e76ab3 1024x1024 RGB",
+      "expected": "T_Cymatic_GildedCoral_BaseColor.png",
+      "actual": "T_Cymatic_GildedCoral_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedCoral_Normal.png 322937 bytes hash=88cb22f30440 1024x1024 RGB",
+      "expected": "T_Cymatic_GildedCoral_Normal.png",
+      "actual": "T_Cymatic_GildedCoral_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedCoral_Roughness.png 240222 bytes hash=5151cb6e2583 1024x1024 L",
+      "expected": "T_Cymatic_GildedCoral_Roughness.png",
+      "actual": "T_Cymatic_GildedCoral_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedCoral_Metallic.png 135104 bytes hash=d0cecccc9f0a 1024x1024 L",
+      "expected": "T_Cymatic_GildedCoral_Metallic.png",
+      "actual": "T_Cymatic_GildedCoral_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedCoral_Height.png 305182 bytes hash=4aab9619ab1e 1024x1024 RGB",
+      "expected": "T_Cymatic_GildedCoral_Height.png",
+      "actual": "T_Cymatic_GildedCoral_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedCoral_ORM.png 633019 bytes hash=a3f1fed1accb 1024x1024 RGB",
+      "expected": "T_Cymatic_GildedCoral_ORM.png",
+      "actual": "T_Cymatic_GildedCoral_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedCoral_Emissive.png 26720 bytes hash=8ebb3575c54d 1024x1024 RGB",
+      "expected": "T_Cymatic_GildedCoral_Emissive.png",
+      "actual": "T_Cymatic_GildedCoral_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedCoral_Iridescence.png 325372 bytes hash=f30cecc58784 1024x1024 RGB",
+      "expected": "T_Cymatic_GildedCoral_Iridescence.png",
+      "actual": "T_Cymatic_GildedCoral_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GildedCoral/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_GildedCoral_Opacity.png 3157 bytes hash=92d103ae3b35 1024x1024 L",
+      "expected": "T_Cymatic_GildedCoral_Opacity.png",
+      "actual": "T_Cymatic_GildedCoral_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/dir",
+      "status": "PASS",
+      "detail": "dir exists, 153 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\StarlitAbyss",
+      "actual": "153 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_StarlitAbyss_BaseColor.1.png 40182 bytes hash=ff0a79bde630 512x512 RGB",
+      "expected": "T_Cymatic_StarlitAbyss_BaseColor.png",
+      "actual": "T_Cymatic_StarlitAbyss_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_StarlitAbyss_Normal.1.png 99009 bytes hash=cd71c771dc24 512x512 RGB",
+      "expected": "T_Cymatic_StarlitAbyss_Normal.png",
+      "actual": "T_Cymatic_StarlitAbyss_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_StarlitAbyss_Roughness.1.png 18785 bytes hash=06858dd427e9 512x512 L",
+      "expected": "T_Cymatic_StarlitAbyss_Roughness.png",
+      "actual": "T_Cymatic_StarlitAbyss_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_StarlitAbyss_Metallic.1.png 334 bytes hash=65795a5b9103 512x512 L",
+      "expected": "T_Cymatic_StarlitAbyss_Metallic.png",
+      "actual": "T_Cymatic_StarlitAbyss_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_StarlitAbyss_Height.1.png 69910 bytes hash=b08abe417e57 512x512 RGB",
+      "expected": "T_Cymatic_StarlitAbyss_Height.png",
+      "actual": "T_Cymatic_StarlitAbyss_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_StarlitAbyss_ORM.1.png 63116 bytes hash=6dae39a0045f 512x512 RGB",
+      "expected": "T_Cymatic_StarlitAbyss_ORM.png",
+      "actual": "T_Cymatic_StarlitAbyss_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_StarlitAbyss_Emissive.1.png 42028 bytes hash=ba22796ca519 512x512 RGB",
+      "expected": "T_Cymatic_StarlitAbyss_Emissive.png",
+      "actual": "T_Cymatic_StarlitAbyss_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_StarlitAbyss_Iridescence.1.png 24246 bytes hash=4d9b02bbf758 512x512 RGB",
+      "expected": "T_Cymatic_StarlitAbyss_Iridescence.png",
+      "actual": "T_Cymatic_StarlitAbyss_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/StarlitAbyss/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_StarlitAbyss_Opacity.1.png 1301 bytes hash=d8acccafa1fd 512x512 L",
+      "expected": "T_Cymatic_StarlitAbyss_Opacity.png",
+      "actual": "T_Cymatic_StarlitAbyss_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\FrozenFracture",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_FrozenFracture_BaseColor.png 560436 bytes hash=4c7e7aba413e 1024x1024 RGB",
+      "expected": "T_Cymatic_FrozenFracture_BaseColor.png",
+      "actual": "T_Cymatic_FrozenFracture_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_FrozenFracture_Normal.png 433643 bytes hash=127e77081646 1024x1024 RGB",
+      "expected": "T_Cymatic_FrozenFracture_Normal.png",
+      "actual": "T_Cymatic_FrozenFracture_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_FrozenFracture_Roughness.png 203329 bytes hash=6b0dbf337f50 1024x1024 L",
+      "expected": "T_Cymatic_FrozenFracture_Roughness.png",
+      "actual": "T_Cymatic_FrozenFracture_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_FrozenFracture_Metallic.png 1097 bytes hash=0f4b1668d119 1024x1024 L",
+      "expected": "T_Cymatic_FrozenFracture_Metallic.png",
+      "actual": "T_Cymatic_FrozenFracture_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_FrozenFracture_Height.png 317856 bytes hash=c2cf23ce4ff6 1024x1024 RGB",
+      "expected": "T_Cymatic_FrozenFracture_Height.png",
+      "actual": "T_Cymatic_FrozenFracture_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_FrozenFracture_ORM.png 447012 bytes hash=c4cc266eae6a 1024x1024 RGB",
+      "expected": "T_Cymatic_FrozenFracture_ORM.png",
+      "actual": "T_Cymatic_FrozenFracture_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_FrozenFracture_Emissive.png 358723 bytes hash=35ad4b59a841 1024x1024 RGB",
+      "expected": "T_Cymatic_FrozenFracture_Emissive.png",
+      "actual": "T_Cymatic_FrozenFracture_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_FrozenFracture_Iridescence.png 222292 bytes hash=86a240f48f9b 1024x1024 RGB",
+      "expected": "T_Cymatic_FrozenFracture_Iridescence.png",
+      "actual": "T_Cymatic_FrozenFracture_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FrozenFracture/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_FrozenFracture_Opacity.png 3157 bytes hash=92d103ae3b35 1024x1024 L",
+      "expected": "T_Cymatic_FrozenFracture_Opacity.png",
+      "actual": "T_Cymatic_FrozenFracture_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/dir",
+      "status": "PASS",
+      "detail": "dir exists, 81 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\SingingConstellations",
+      "actual": "81 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_SingingConstellations_BaseColor.1.png 130656 bytes hash=4b26c2b41029 512x512 RGB",
+      "expected": "T_Cymatic_SingingConstellations_BaseColor.png",
+      "actual": "T_Cymatic_SingingConstellations_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_SingingConstellations_Normal.1.png 149615 bytes hash=5e9ae79ddb73 512x512 RGB",
+      "expected": "T_Cymatic_SingingConstellations_Normal.png",
+      "actual": "T_Cymatic_SingingConstellations_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_SingingConstellations_Roughness.1.png 21774 bytes hash=1cad9bc0754c 512x512 L",
+      "expected": "T_Cymatic_SingingConstellations_Roughness.png",
+      "actual": "T_Cymatic_SingingConstellations_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_SingingConstellations_Metallic.1.png 334 bytes hash=65795a5b9103 512x512 L",
+      "expected": "T_Cymatic_SingingConstellations_Metallic.png",
+      "actual": "T_Cymatic_SingingConstellations_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_SingingConstellations_Height.1.png 84606 bytes hash=7e1ef845388c 512x512 RGB",
+      "expected": "T_Cymatic_SingingConstellations_Height.png",
+      "actual": "T_Cymatic_SingingConstellations_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_SingingConstellations_ORM.1.png 81447 bytes hash=956fbb0d1a8f 512x512 RGB",
+      "expected": "T_Cymatic_SingingConstellations_ORM.png",
+      "actual": "T_Cymatic_SingingConstellations_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_SingingConstellations_Emissive.1.png 18839 bytes hash=75e63890860e 512x512 RGB",
+      "expected": "T_Cymatic_SingingConstellations_Emissive.png",
+      "actual": "T_Cymatic_SingingConstellations_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_SingingConstellations_Iridescence.1.png 67408 bytes hash=9e75f1f52dc1 512x512 RGB",
+      "expected": "T_Cymatic_SingingConstellations_Iridescence.png",
+      "actual": "T_Cymatic_SingingConstellations_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SingingConstellations/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_SingingConstellations_Opacity.1.png 1301 bytes hash=d8acccafa1fd 512x512 L",
+      "expected": "T_Cymatic_SingingConstellations_Opacity.png",
+      "actual": "T_Cymatic_SingingConstellations_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/dir",
+      "status": "PASS",
+      "detail": "dir exists, 117 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\FinalDreamweaver",
+      "actual": "117 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_FinalDreamweaver_BaseColor.1.png 182117 bytes hash=8e9d203b46d9 512x512 RGB",
+      "expected": "T_Cymatic_FinalDreamweaver_BaseColor.png",
+      "actual": "T_Cymatic_FinalDreamweaver_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_FinalDreamweaver_Normal.1.png 161833 bytes hash=5f2cf9cb8b98 512x512 RGB",
+      "expected": "T_Cymatic_FinalDreamweaver_Normal.png",
+      "actual": "T_Cymatic_FinalDreamweaver_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_FinalDreamweaver_Roughness.1.png 68532 bytes hash=d9abc9a7c915 512x512 L",
+      "expected": "T_Cymatic_FinalDreamweaver_Roughness.png",
+      "actual": "T_Cymatic_FinalDreamweaver_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_FinalDreamweaver_Metallic.1.png 1813 bytes hash=ff890f19ada9 512x512 L",
+      "expected": "T_Cymatic_FinalDreamweaver_Metallic.png",
+      "actual": "T_Cymatic_FinalDreamweaver_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_FinalDreamweaver_Height.1.png 100702 bytes hash=3f84e56e96a5 512x512 RGB",
+      "expected": "T_Cymatic_FinalDreamweaver_Height.png",
+      "actual": "T_Cymatic_FinalDreamweaver_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_FinalDreamweaver_ORM.1.png 150025 bytes hash=d6c264b08275 512x512 RGB",
+      "expected": "T_Cymatic_FinalDreamweaver_ORM.png",
+      "actual": "T_Cymatic_FinalDreamweaver_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_FinalDreamweaver_Emissive.1.png 140934 bytes hash=4f33c83cef54 512x512 RGB",
+      "expected": "T_Cymatic_FinalDreamweaver_Emissive.png",
+      "actual": "T_Cymatic_FinalDreamweaver_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_FinalDreamweaver_Iridescence.1.png 78568 bytes hash=5a4229decf12 512x512 RGB",
+      "expected": "T_Cymatic_FinalDreamweaver_Iridescence.png",
+      "actual": "T_Cymatic_FinalDreamweaver_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FinalDreamweaver/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_FinalDreamweaver_Opacity.1.png 1301 bytes hash=d8acccafa1fd 512x512 L",
+      "expected": "T_Cymatic_FinalDreamweaver_Opacity.png",
+      "actual": "T_Cymatic_FinalDreamweaver_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/dir",
+      "status": "PASS",
+      "detail": "dir exists, 153 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\GlitterRainbow",
+      "actual": "153 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterRainbow_BaseColor.1.png 46202 bytes hash=65180490d4dd 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterRainbow_BaseColor.png",
+      "actual": "T_Cymatic_GlitterRainbow_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterRainbow_Normal.1.png 63259 bytes hash=a33048ba3484 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterRainbow_Normal.png",
+      "actual": "T_Cymatic_GlitterRainbow_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterRainbow_Roughness.1.png 22619 bytes hash=31741ca339ed 1024x1024 L",
+      "expected": "T_Cymatic_GlitterRainbow_Roughness.png",
+      "actual": "T_Cymatic_GlitterRainbow_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterRainbow_Metallic.1.png 22473 bytes hash=ed55d42951e9 1024x1024 L",
+      "expected": "T_Cymatic_GlitterRainbow_Metallic.png",
+      "actual": "T_Cymatic_GlitterRainbow_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterRainbow_Height.1.png 46252 bytes hash=6b9d6d50b797 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterRainbow_Height.png",
+      "actual": "T_Cymatic_GlitterRainbow_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterRainbow_ORM.1.png 51146 bytes hash=0625b2572734 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterRainbow_ORM.png",
+      "actual": "T_Cymatic_GlitterRainbow_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterRainbow_Emissive.1.png 23588 bytes hash=2ca68a4162c9 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterRainbow_Emissive.png",
+      "actual": "T_Cymatic_GlitterRainbow_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterRainbow_Iridescence.1.png 46266 bytes hash=873a9deec311 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterRainbow_Iridescence.png",
+      "actual": "T_Cymatic_GlitterRainbow_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterRainbow/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterRainbow_Opacity.1.png 3157 bytes hash=92d103ae3b35 1024x1024 L",
+      "expected": "T_Cymatic_GlitterRainbow_Opacity.png",
+      "actual": "T_Cymatic_GlitterRainbow_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/dir",
+      "status": "PASS",
+      "detail": "dir exists, 153 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\GlitterHolographic",
+      "actual": "153 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterHolographic_BaseColor.1.png 41575 bytes hash=97354bf1ca7e 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterHolographic_BaseColor.png",
+      "actual": "T_Cymatic_GlitterHolographic_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterHolographic_Normal.1.png 57809 bytes hash=fa4224911e19 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterHolographic_Normal.png",
+      "actual": "T_Cymatic_GlitterHolographic_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterHolographic_Roughness.1.png 19918 bytes hash=7ebf098cb538 1024x1024 L",
+      "expected": "T_Cymatic_GlitterHolographic_Roughness.png",
+      "actual": "T_Cymatic_GlitterHolographic_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterHolographic_Metallic.1.png 18690 bytes hash=0bfab946cbb5 1024x1024 L",
+      "expected": "T_Cymatic_GlitterHolographic_Metallic.png",
+      "actual": "T_Cymatic_GlitterHolographic_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterHolographic_Height.1.png 40666 bytes hash=049e3d67c0d7 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterHolographic_Height.png",
+      "actual": "T_Cymatic_GlitterHolographic_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterHolographic_ORM.1.png 44430 bytes hash=3f91bcc26376 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterHolographic_ORM.png",
+      "actual": "T_Cymatic_GlitterHolographic_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterHolographic_Emissive.1.png 22879 bytes hash=bccf5385008c 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterHolographic_Emissive.png",
+      "actual": "T_Cymatic_GlitterHolographic_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterHolographic_Iridescence.1.png 40686 bytes hash=2d387638f908 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterHolographic_Iridescence.png",
+      "actual": "T_Cymatic_GlitterHolographic_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterHolographic/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterHolographic_Opacity.1.png 3157 bytes hash=92d103ae3b35 1024x1024 L",
+      "expected": "T_Cymatic_GlitterHolographic_Opacity.png",
+      "actual": "T_Cymatic_GlitterHolographic_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/dir",
+      "status": "PASS",
+      "detail": "dir exists, 153 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\GlitterGold",
+      "actual": "153 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterGold_BaseColor.1.png 50588 bytes hash=3898e0b6e800 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterGold_BaseColor.png",
+      "actual": "T_Cymatic_GlitterGold_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterGold_Normal.1.png 64290 bytes hash=dc731283d72f 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterGold_Normal.png",
+      "actual": "T_Cymatic_GlitterGold_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterGold_Roughness.1.png 21864 bytes hash=d6542b22ad3b 1024x1024 L",
+      "expected": "T_Cymatic_GlitterGold_Roughness.png",
+      "actual": "T_Cymatic_GlitterGold_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterGold_Metallic.1.png 23250 bytes hash=2b35778b0a2d 1024x1024 L",
+      "expected": "T_Cymatic_GlitterGold_Metallic.png",
+      "actual": "T_Cymatic_GlitterGold_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterGold_Height.1.png 47202 bytes hash=9aeb4ddf7fd8 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterGold_Height.png",
+      "actual": "T_Cymatic_GlitterGold_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterGold_ORM.1.png 52906 bytes hash=1945ca01389b 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterGold_ORM.png",
+      "actual": "T_Cymatic_GlitterGold_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterGold_Emissive.1.png 14394 bytes hash=cfb42b9598e6 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterGold_Emissive.png",
+      "actual": "T_Cymatic_GlitterGold_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterGold_Iridescence.1.png 47215 bytes hash=ff84eaef04f4 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterGold_Iridescence.png",
+      "actual": "T_Cymatic_GlitterGold_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterGold/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterGold_Opacity.1.png 3157 bytes hash=92d103ae3b35 1024x1024 L",
+      "expected": "T_Cymatic_GlitterGold_Opacity.png",
+      "actual": "T_Cymatic_GlitterGold_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/dir",
+      "status": "PASS",
+      "detail": "dir exists, 153 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\GlitterIridescent",
+      "actual": "153 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterIridescent_BaseColor.1.png 28225 bytes hash=26735cd47bee 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterIridescent_BaseColor.png",
+      "actual": "T_Cymatic_GlitterIridescent_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterIridescent_Normal.1.png 40482 bytes hash=57eb243cb1d8 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterIridescent_Normal.png",
+      "actual": "T_Cymatic_GlitterIridescent_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterIridescent_Roughness.1.png 13922 bytes hash=36713a46dd20 1024x1024 L",
+      "expected": "T_Cymatic_GlitterIridescent_Roughness.png",
+      "actual": "T_Cymatic_GlitterIridescent_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterIridescent_Metallic.1.png 11789 bytes hash=5c4de29e1d2c 1024x1024 L",
+      "expected": "T_Cymatic_GlitterIridescent_Metallic.png",
+      "actual": "T_Cymatic_GlitterIridescent_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterIridescent_Height.1.png 26458 bytes hash=27abb3eab793 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterIridescent_Height.png",
+      "actual": "T_Cymatic_GlitterIridescent_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterIridescent_ORM.1.png 29521 bytes hash=995c22c9c4b2 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterIridescent_ORM.png",
+      "actual": "T_Cymatic_GlitterIridescent_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterIridescent_Emissive.1.png 21745 bytes hash=0a809050e866 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterIridescent_Emissive.png",
+      "actual": "T_Cymatic_GlitterIridescent_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterIridescent_Iridescence.1.png 26669 bytes hash=2d26b1246103 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterIridescent_Iridescence.png",
+      "actual": "T_Cymatic_GlitterIridescent_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterIridescent/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterIridescent_Opacity.1.png 3157 bytes hash=92d103ae3b35 1024x1024 L",
+      "expected": "T_Cymatic_GlitterIridescent_Opacity.png",
+      "actual": "T_Cymatic_GlitterIridescent_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/dir",
+      "status": "PASS",
+      "detail": "dir exists, 153 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\GlitterCrystal",
+      "actual": "153 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterCrystal_BaseColor.1.png 61244 bytes hash=28c6142e0f57 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterCrystal_BaseColor.png",
+      "actual": "T_Cymatic_GlitterCrystal_BaseColor.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterCrystal_Normal.1.png 73225 bytes hash=c880d93b02f7 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterCrystal_Normal.png",
+      "actual": "T_Cymatic_GlitterCrystal_Normal.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterCrystal_Roughness.1.png 25096 bytes hash=d7f9920ef971 1024x1024 L",
+      "expected": "T_Cymatic_GlitterCrystal_Roughness.png",
+      "actual": "T_Cymatic_GlitterCrystal_Roughness.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterCrystal_Metallic.1.png 27636 bytes hash=0c3a1eb3b339 1024x1024 L",
+      "expected": "T_Cymatic_GlitterCrystal_Metallic.png",
+      "actual": "T_Cymatic_GlitterCrystal_Metallic.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterCrystal_Height.1.png 53069 bytes hash=b06f8eaa838f 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterCrystal_Height.png",
+      "actual": "T_Cymatic_GlitterCrystal_Height.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterCrystal_ORM.1.png 62002 bytes hash=e8b034cb2ae2 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterCrystal_ORM.png",
+      "actual": "T_Cymatic_GlitterCrystal_ORM.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterCrystal_Emissive.1.png 19740 bytes hash=a667793175ca 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterCrystal_Emissive.png",
+      "actual": "T_Cymatic_GlitterCrystal_Emissive.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterCrystal_Iridescence.1.png 52793 bytes hash=a485b065c43f 1024x1024 RGB",
+      "expected": "T_Cymatic_GlitterCrystal_Iridescence.png",
+      "actual": "T_Cymatic_GlitterCrystal_Iridescence.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GlitterCrystal/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_GlitterCrystal_Opacity.1.png 3157 bytes hash=92d103ae3b35 1024x1024 L",
+      "expected": "T_Cymatic_GlitterCrystal_Opacity.png",
+      "actual": "T_Cymatic_GlitterCrystal_Opacity.1.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\FractalCathedral",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_FractalCathedral_BaseColor.png 611739 bytes hash=d7b7a35be395 2048x2048 RGB",
+      "expected": "T_Cymatic_FractalCathedral_BaseColor.png",
+      "actual": "T_Cymatic_FractalCathedral_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_FractalCathedral_Normal.png 537954 bytes hash=f399971fa862 2048x2048 RGB",
+      "expected": "T_Cymatic_FractalCathedral_Normal.png",
+      "actual": "T_Cymatic_FractalCathedral_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_FractalCathedral_Roughness.png 154168 bytes hash=8b0e4f8dfb29 2048x2048 L",
+      "expected": "T_Cymatic_FractalCathedral_Roughness.png",
+      "actual": "T_Cymatic_FractalCathedral_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_FractalCathedral_Metallic.png 189820 bytes hash=8b1bab159b91 2048x2048 L",
+      "expected": "T_Cymatic_FractalCathedral_Metallic.png",
+      "actual": "T_Cymatic_FractalCathedral_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_FractalCathedral_Height.png 857484 bytes hash=c8edd5faa04f 2048x2048 RGB",
+      "expected": "T_Cymatic_FractalCathedral_Height.png",
+      "actual": "T_Cymatic_FractalCathedral_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_FractalCathedral_ORM.png 1032553 bytes hash=a900d8681421 2048x2048 RGB",
+      "expected": "T_Cymatic_FractalCathedral_ORM.png",
+      "actual": "T_Cymatic_FractalCathedral_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_FractalCathedral_Emissive.png 522732 bytes hash=99d61cf08966 2048x2048 RGB",
+      "expected": "T_Cymatic_FractalCathedral_Emissive.png",
+      "actual": "T_Cymatic_FractalCathedral_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_FractalCathedral_Iridescence.png 387934 bytes hash=a3d1febd7e6a 2048x2048 RGB",
+      "expected": "T_Cymatic_FractalCathedral_Iridescence.png",
+      "actual": "T_Cymatic_FractalCathedral_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/FractalCathedral/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_FractalCathedral_Opacity.png 8533 bytes hash=7368a2762f02 2048x2048 L",
+      "expected": "T_Cymatic_FractalCathedral_Opacity.png",
+      "actual": "T_Cymatic_FractalCathedral_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\GoldenSpiralGrove",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_GoldenSpiralGrove_BaseColor.png 1186721 bytes hash=f8d5e77311f1 2048x2048 RGB",
+      "expected": "T_Cymatic_GoldenSpiralGrove_BaseColor.png",
+      "actual": "T_Cymatic_GoldenSpiralGrove_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_GoldenSpiralGrove_Normal.png 2192975 bytes hash=59a1614adb79 2048x2048 RGB",
+      "expected": "T_Cymatic_GoldenSpiralGrove_Normal.png",
+      "actual": "T_Cymatic_GoldenSpiralGrove_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_GoldenSpiralGrove_Roughness.png 467473 bytes hash=8d9c9df11fe4 2048x2048 L",
+      "expected": "T_Cymatic_GoldenSpiralGrove_Roughness.png",
+      "actual": "T_Cymatic_GoldenSpiralGrove_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_GoldenSpiralGrove_Metallic.png 578258 bytes hash=9c7f1c409627 2048x2048 L",
+      "expected": "T_Cymatic_GoldenSpiralGrove_Metallic.png",
+      "actual": "T_Cymatic_GoldenSpiralGrove_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_GoldenSpiralGrove_Height.png 1378664 bytes hash=5e879fb2e818 2048x2048 RGB",
+      "expected": "T_Cymatic_GoldenSpiralGrove_Height.png",
+      "actual": "T_Cymatic_GoldenSpiralGrove_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_GoldenSpiralGrove_ORM.png 1379469 bytes hash=efb58ed8e52d 2048x2048 RGB",
+      "expected": "T_Cymatic_GoldenSpiralGrove_ORM.png",
+      "actual": "T_Cymatic_GoldenSpiralGrove_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_GoldenSpiralGrove_Emissive.png 588524 bytes hash=058aa6caf7f8 2048x2048 RGB",
+      "expected": "T_Cymatic_GoldenSpiralGrove_Emissive.png",
+      "actual": "T_Cymatic_GoldenSpiralGrove_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_GoldenSpiralGrove_Iridescence.png 981236 bytes hash=7d81f901baf3 2048x2048 RGB",
+      "expected": "T_Cymatic_GoldenSpiralGrove_Iridescence.png",
+      "actual": "T_Cymatic_GoldenSpiralGrove_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/GoldenSpiralGrove/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_GoldenSpiralGrove_Opacity.png 8533 bytes hash=7368a2762f02 2048x2048 L",
+      "expected": "T_Cymatic_GoldenSpiralGrove_Opacity.png",
+      "actual": "T_Cymatic_GoldenSpiralGrove_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\VoronoiSacredGeometry",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_VoronoiSacredGeometry_BaseColor.png 139203 bytes hash=8b686bddaf9b 2048x2048 RGB",
+      "expected": "T_Cymatic_VoronoiSacredGeometry_BaseColor.png",
+      "actual": "T_Cymatic_VoronoiSacredGeometry_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_VoronoiSacredGeometry_Normal.png 448686 bytes hash=b8b7496efe46 2048x2048 RGB",
+      "expected": "T_Cymatic_VoronoiSacredGeometry_Normal.png",
+      "actual": "T_Cymatic_VoronoiSacredGeometry_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_VoronoiSacredGeometry_Roughness.png 85819 bytes hash=235f8a8a86f1 2048x2048 L",
+      "expected": "T_Cymatic_VoronoiSacredGeometry_Roughness.png",
+      "actual": "T_Cymatic_VoronoiSacredGeometry_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_VoronoiSacredGeometry_Metallic.png 90959 bytes hash=6bf8bf08698c 2048x2048 L",
+      "expected": "T_Cymatic_VoronoiSacredGeometry_Metallic.png",
+      "actual": "T_Cymatic_VoronoiSacredGeometry_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_VoronoiSacredGeometry_Height.png 408462 bytes hash=2e03ed7f2429 2048x2048 RGB",
+      "expected": "T_Cymatic_VoronoiSacredGeometry_Height.png",
+      "actual": "T_Cymatic_VoronoiSacredGeometry_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_VoronoiSacredGeometry_ORM.png 381285 bytes hash=0ebad28e29c8 2048x2048 RGB",
+      "expected": "T_Cymatic_VoronoiSacredGeometry_ORM.png",
+      "actual": "T_Cymatic_VoronoiSacredGeometry_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_VoronoiSacredGeometry_Emissive.png 237809 bytes hash=f283a3715384 2048x2048 RGB",
+      "expected": "T_Cymatic_VoronoiSacredGeometry_Emissive.png",
+      "actual": "T_Cymatic_VoronoiSacredGeometry_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_VoronoiSacredGeometry_Iridescence.png 178872 bytes hash=4a17036cdf00 2048x2048 RGB",
+      "expected": "T_Cymatic_VoronoiSacredGeometry_Iridescence.png",
+      "actual": "T_Cymatic_VoronoiSacredGeometry_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/VoronoiSacredGeometry/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_VoronoiSacredGeometry_Opacity.png 8533 bytes hash=7368a2762f02 2048x2048 L",
+      "expected": "T_Cymatic_VoronoiSacredGeometry_Opacity.png",
+      "actual": "T_Cymatic_VoronoiSacredGeometry_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\TessellationSanctum",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_TessellationSanctum_BaseColor.png 16918 bytes hash=dc44cba19ab0 2048x2048 RGB",
+      "expected": "T_Cymatic_TessellationSanctum_BaseColor.png",
+      "actual": "T_Cymatic_TessellationSanctum_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_TessellationSanctum_Normal.png 17413 bytes hash=bc2bf23e29a9 2048x2048 RGB",
+      "expected": "T_Cymatic_TessellationSanctum_Normal.png",
+      "actual": "T_Cymatic_TessellationSanctum_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_TessellationSanctum_Roughness.png 8534 bytes hash=adbae9921526 2048x2048 L",
+      "expected": "T_Cymatic_TessellationSanctum_Roughness.png",
+      "actual": "T_Cymatic_TessellationSanctum_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_TessellationSanctum_Metallic.png 4145 bytes hash=47409785b30c 2048x2048 L",
+      "expected": "T_Cymatic_TessellationSanctum_Metallic.png",
+      "actual": "T_Cymatic_TessellationSanctum_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_TessellationSanctum_Height.png 202299 bytes hash=9e070300f2c1 2048x2048 RGB",
+      "expected": "T_Cymatic_TessellationSanctum_Height.png",
+      "actual": "T_Cymatic_TessellationSanctum_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_TessellationSanctum_ORM.png 139435 bytes hash=39fb17943f5b 2048x2048 RGB",
+      "expected": "T_Cymatic_TessellationSanctum_ORM.png",
+      "actual": "T_Cymatic_TessellationSanctum_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_TessellationSanctum_Emissive.png 12287 bytes hash=abc4f0945e18 2048x2048 RGB",
+      "expected": "T_Cymatic_TessellationSanctum_Emissive.png",
+      "actual": "T_Cymatic_TessellationSanctum_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_TessellationSanctum_Iridescence.png 12287 bytes hash=abc4f0945e18 2048x2048 RGB",
+      "expected": "T_Cymatic_TessellationSanctum_Iridescence.png",
+      "actual": "T_Cymatic_TessellationSanctum_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/TessellationSanctum/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_TessellationSanctum_Opacity.png 8533 bytes hash=7368a2762f02 2048x2048 L",
+      "expected": "T_Cymatic_TessellationSanctum_Opacity.png",
+      "actual": "T_Cymatic_TessellationSanctum_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/dir",
+      "status": "PASS",
+      "detail": "dir exists, 9 pngs",
+      "expected": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\copernicus_cymatic\\SpiralMonument",
+      "actual": "9 files",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/BaseColor",
+      "status": "PASS",
+      "detail": "T_Cymatic_SpiralMonument_BaseColor.png 1112751 bytes hash=5fc63019faf8 2048x2048 RGB",
+      "expected": "T_Cymatic_SpiralMonument_BaseColor.png",
+      "actual": "T_Cymatic_SpiralMonument_BaseColor.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/Normal",
+      "status": "PASS",
+      "detail": "T_Cymatic_SpiralMonument_Normal.png 970609 bytes hash=0be0b7a3dcee 2048x2048 RGB",
+      "expected": "T_Cymatic_SpiralMonument_Normal.png",
+      "actual": "T_Cymatic_SpiralMonument_Normal.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/Roughness",
+      "status": "PASS",
+      "detail": "T_Cymatic_SpiralMonument_Roughness.png 291428 bytes hash=ec29f87649d5 2048x2048 L",
+      "expected": "T_Cymatic_SpiralMonument_Roughness.png",
+      "actual": "T_Cymatic_SpiralMonument_Roughness.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/Metallic",
+      "status": "PASS",
+      "detail": "T_Cymatic_SpiralMonument_Metallic.png 448353 bytes hash=52a3d7c34b23 2048x2048 L",
+      "expected": "T_Cymatic_SpiralMonument_Metallic.png",
+      "actual": "T_Cymatic_SpiralMonument_Metallic.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/Height",
+      "status": "PASS",
+      "detail": "T_Cymatic_SpiralMonument_Height.png 541708 bytes hash=e709217f8de4 2048x2048 RGB",
+      "expected": "T_Cymatic_SpiralMonument_Height.png",
+      "actual": "T_Cymatic_SpiralMonument_Height.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/ORM",
+      "status": "PASS",
+      "detail": "T_Cymatic_SpiralMonument_ORM.png 1080061 bytes hash=80faf93442e9 2048x2048 RGB",
+      "expected": "T_Cymatic_SpiralMonument_ORM.png",
+      "actual": "T_Cymatic_SpiralMonument_ORM.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/Emissive",
+      "status": "PASS",
+      "detail": "T_Cymatic_SpiralMonument_Emissive.png 946290 bytes hash=81be3b45a472 2048x2048 RGB",
+      "expected": "T_Cymatic_SpiralMonument_Emissive.png",
+      "actual": "T_Cymatic_SpiralMonument_Emissive.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/Iridescence",
+      "status": "PASS",
+      "detail": "T_Cymatic_SpiralMonument_Iridescence.png 617950 bytes hash=952bf4653f14 2048x2048 RGB",
+      "expected": "T_Cymatic_SpiralMonument_Iridescence.png",
+      "actual": "T_Cymatic_SpiralMonument_Iridescence.png",
+      "metric": null
+    },
+    {
+      "name": "hython/cymatic/SpiralMonument/Opacity",
+      "status": "PASS",
+      "detail": "T_Cymatic_SpiralMonument_Opacity.png 8533 bytes hash=7368a2762f02 2048x2048 L",
+      "expected": "T_Cymatic_SpiralMonument_Opacity.png",
+      "actual": "T_Cymatic_SpiralMonument_Opacity.png",
+      "metric": null
+    },
+    {
+      "name": "hython/flipbook/count",
+      "status": "PASS",
+      "detail": "80 files (16 frames x 5 maps)",
+      "expected": "40",
+      "actual": "80",
+      "metric": null
+    },
+    {
+      "name": "hython/manifest",
+      "status": "PASS",
+      "detail": "schema=melodia.copernatic_cymatic_parallax.v2 variants=1 size=2048x2048",
+      "expected": "valid json",
+      "actual": "1 variants",
+      "metric": null
+    }
+  ]
+}

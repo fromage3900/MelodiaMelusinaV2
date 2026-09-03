@@ -1,0 +1,66 @@
+{
+  "project": "Melodia — ZunZun Family Voice Pack",
+  "characters_processed": 7,
+  "total_lines": 102,
+  "total_generated": 31,
+  "total_cached": 71,
+  "total_errors": 0,
+  "characters": [
+    {
+      "character": "Zundamon",
+      "total": 20,
+      "generated": 0,
+      "cached": 20,
+      "errors": 0,
+      "manifest": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zundamon\\Audio\\voice_manifest.json"
+    },
+    {
+      "character": "Zunko",
+      "total": 20,
+      "generated": 0,
+      "cached": 20,
+      "errors": 0,
+      "manifest": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Zunko\\Audio\\voice_manifest.json"
+    },
+    {
+      "character": "Kiritan",
+      "total": 20,
+      "generated": 0,
+      "cached": 20,
+      "errors": 0,
+      "manifest": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Kiritan\\Audio\\voice_manifest.json"
+    },
+    {
+      "character": "Itako",
+      "total": 21,
+      "generated": 10,
+      "cached": 11,
+      "errors": 0,
+      "manifest": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\voice_manifest.json"
+    },
+    {
+      "character": "Metan",
+      "total": 7,
+      "generated": 7,
+      "cached": 0,
+      "errors": 0,
+      "manifest": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Metan\\Audio\\voice_manifest.json"
+    },
+    {
+      "character": "Sora",
+      "total": 7,
+      "generated": 7,
+      "cached": 0,
+      "errors": 0,
+      "manifest": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Sora\\Audio\\voice_manifest.json"
+    },
+    {
+      "character": "Tsurugi",
+      "total": 7,
+      "generated": 7,
+      "cached": 0,
+      "errors": 0,
+      "manifest": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Tsurugi\\Audio\\voice_manifest.json"
+    }
+  ]
+}

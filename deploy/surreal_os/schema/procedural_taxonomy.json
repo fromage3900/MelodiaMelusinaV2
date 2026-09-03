@@ -1,0 +1,40 @@
+{
+  "primitives": {
+    "gb_box": {"deps": ["surreal_greybox.primitives"], "perf": "low", "outputs": ["mesh_part"]},
+    "gb_join": {"deps": ["surreal_greybox.primitives"], "perf": "low", "outputs": ["mesh"]}
+  },
+  "modifiers": {
+    "trim_recess": {"deps": ["snap_export", "trim_color_bake"], "perf": "low"},
+    "uv_proxy": {"deps": ["uv_workflow", "uv_ops"], "perf": "medium"},
+    "miouv_pack_invoke": {"deps": ["uv_workflow", "uv_ops", "capabilities"], "perf": "medium", "type": "modifier"},
+    "bevel_bridge": {"deps": ["bevel_bridge"], "perf": "medium"},
+    "axis_compression": {"deps": ["rules_engine"], "perf": "low"}
+  },
+  "generators": {
+    "GB_ZEN_ROJI_STEP": {"inputs": ["gb_length", "gb_width", "gb_trim_mode"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "roji_path_segment"},
+    "GB_ZEN_TORII_GATE": {"inputs": ["torii_width", "torii_height", "gb_trim_mode"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "torii_frame"},
+    "GB_ZEN_TSUKUBAI": {"inputs": ["gb_width", "gb_depth", "gb_height"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "tsukubai_station"},
+    "GB_ZEN_ENGAWA": {"inputs": ["gb_width", "gb_depth", "gb_height"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "engawa_threshold"},
+    "GB_ZEN_BAMBOO_FENCE": {"inputs": ["gb_length", "zen_fence_height"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "bamboo_screen"},
+    "GB_ZEN_TOBIISHI": {"inputs": ["gb_length", "gb_width"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "tobiishi_scatter"},
+    "GB_ZEN_KARESANSUI": {"inputs": ["gb_width", "gb_depth", "gb_trim_recess"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "karesansui_field"},
+    "GB_ZEN_MACHIAI": {"inputs": ["gb_width", "gb_depth", "gb_height"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "machiai_wait"},
+    "GB_ZEN_STONE_BRIDGE": {"inputs": ["zen_bridge_span", "zen_bridge_rise", "gb_width"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "stone_bridge_span"},
+    "GB_ZEN_CHERRY_ALLEE": {"inputs": ["gb_length", "gb_width", "gb_height"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "cherry_canopy_path"},
+    "GB_ZEN_WATER_EDGE": {"inputs": ["gb_length", "gb_width", "zen_stream_depth"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "stream_bank_edge"},
+    "GB_ZEN_SANDO": {"inputs": ["gb_length", "gb_width", "gb_trim_mode"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "sando_approach"},
+    "GB_ZEN_KAIRO": {"inputs": ["gb_length", "gb_width", "gb_height"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "kairo_cloister"},
+    "GB_ZEN_HAIDEN": {"inputs": ["gb_width", "gb_depth", "gb_height", "zen_genkan_rise"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "haiden_platform"},
+    "GB_ZEN_GOJU_PAGODA": {"inputs": ["pagoda_tiers", "pagoda_base_radius", "pagoda_tier_height", "pagoda_taper"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "goju_pagoda_tower"},
+    "GB_ZEN_SAKURA_TORII": {"inputs": ["torii_width", "torii_height", "gb_trim_mode"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "sakura_torii_frame"},
+    "GB_ZEN_TAHOTO": {"inputs": ["gb_width", "gb_height", "zen_tahoto_roof_span"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "tahoto_treasure_tower"},
+    "GB_ZEN_HONDEN": {"inputs": ["gb_width", "gb_depth", "gb_height", "zen_honden_platform_rise"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "honden_sanctuary"},
+    "GB_ZEN_LANTERN": {"inputs": ["zen_lantern_height", "zen_lantern_radius", "zen_lantern_style", "gb_trim_mode"], "outputs": ["mesh", "snaps", "trim_groups"], "perf": "low", "atom": "stone_lantern_post"},
+    "GRAPH_ZEN_SHRINE_AXIS": {"inputs": ["graph_spawn_spacing"], "outputs": ["object_chain"], "perf": "medium", "type": "graph"},
+    "GRAPH_ZEN_SAKURA_WALK": {"inputs": ["graph_spawn_spacing"], "outputs": ["object_chain"], "perf": "medium", "type": "graph"}
+  },
+  "ecosystems": {
+    "compose_world": {"inputs": ["plan_mesh", "compose_style", "genome_id"], "outputs": ["WorldRoot", "instances"], "perf": "medium"},
+    "spawn_zen_roji_plan": {"inputs": ["plan_params"], "outputs": ["plan_mesh"], "perf": "low"}
+  }
+}

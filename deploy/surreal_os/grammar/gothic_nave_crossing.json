@@ -1,0 +1,15 @@
+{
+  "id": "GOTHIC_NAVE_CROSSING",
+  "label": "Gothic Nave Crossing",
+  "description": "West portal, long nave, T-crossing junction, transept arm, buttress piers, rose clerestory, aisle bay",
+  "style": "gothic",
+  "modules": [
+    {"arch_type": "GB_GOTHIC_PORTAL", "overrides": {"gb_door_width": 1.8, "gb_door_height": 3.2, "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 14.0, "gb_corridor_profile": "DOUBLE", "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GB_CORRIDOR_T", "overrides": {"gb_length": 10.0, "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 10.0, "gb_corridor_profile": "DOUBLE", "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GB_GOTHIC_BUTTRESS", "overrides": {"gb_height": 6.0, "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "ROSE_WINDOW", "overrides": {"rose_outer_radius": 1.8, "rose_petal_count": 12, "rose_spoke_count": 12, "material_choice": "STAINED"}},
+    {"arch_type": "GB_GOTHIC_BAY", "overrides": {"gb_width": 3.4, "gb_height": 5.2, "gb_trim_mode": "RECESS", "material_choice": "STONE"}}
+  ]
+}

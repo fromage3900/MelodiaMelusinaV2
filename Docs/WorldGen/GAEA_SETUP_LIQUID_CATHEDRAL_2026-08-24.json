@@ -1,0 +1,61 @@
+{
+  "schema": "melodia.gaea_setup.v1",
+  "setup_id": "liquid_cathedral",
+  "status": "recipe_ready_reference_graph_validated_native_export_pending",
+  "display_name": "Liquid Cathedral — River Basin",
+  "world_seed": 3900,
+  "musical_binding": {
+    "movement_id": "liquid_cathedral",
+    "midi_preset": "cathedral_wide_crystalline",
+    "dressing_style": "cathedral",
+    "design_intent": "A broad processional basin where water, pillars, and resonance chambers make the route legible."
+  },
+  "source": {
+    "provider": "Open Topo Data",
+    "dataset": "aster30m",
+    "center_lat": 34.384,
+    "center_lon": 135.857,
+    "source_mesh": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/TerrainSources/Yoshino_ASTER_12km_129/PetalCantata_Yoshino_ASTER_12km_129.obj",
+    "source_extent_m": [12000.0, 12000.0],
+    "working_window_m": [5000.0, 3000.0],
+    "source_units": "meters"
+  },
+  "gaea_reference": {
+    "path": "C:/Program Files/QuadSpinner/Gaea 2/Examples/Canyon River with Sea.terrain",
+    "gaea_version": "2.2.3.2",
+    "validated": true,
+    "resolution": 2048,
+    "bake_resolution": 2048,
+    "reference_extent_m": [5000.0, 2500.0],
+    "node_count": 18,
+    "key_nodes": ["Canyon", "Erosion2", "HydroFix", "Sea", "SatMap", "WaveShine"]
+  },
+  "recipe": {
+    "graph_chain": ["SourceMeshWindow", "Canyon", "HydraulicErosion", "HydroFix", "FlowMap", "SeaLevel", "SatMap", "WaveShine"],
+    "target_resolution": 4097,
+    "output_extent_m": [5000.0, 3000.0],
+    "height_range_m": [0.0, 420.0],
+    "erosion_iterations": 52,
+    "canyon_depth_m": 85.0,
+    "waterline_m": 36.0,
+    "river_width_m": 28.0,
+    "flow_strength": 0.9,
+    "slope_mask_range": [0.12, 0.58]
+  },
+  "outputs": {
+    "mesh_obj": "Saved/Audit/gaea_setups/liquid_cathedral/LiquidCathedral_4097.obj",
+    "heightfield_png16": "Saved/Audit/gaea_setups/liquid_cathedral/LiquidCathedral_4097_height.png",
+    "masks": ["flow", "slope", "curvature", "height", "waterline"],
+    "manifest": "Saved/Audit/gaea_setups/liquid_cathedral/handoff_manifest.json"
+  },
+  "ue5_8": {
+    "target": "Mesh Terrain",
+    "content_namespace": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/LiquidCathedral",
+    "classic_landscape_used": false,
+    "landscape_material": "/Game/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Landscape_HeightBlend/MI_M_Master_Toon_Landscape_HeightBlend_Soil",
+    "water_material": "/Game/EnvSandbox/Materials/Instances/Water/v7/MI_WaterV7_SakuraPond",
+    "pcg_profile": "cathedral",
+    "hero_capture": "Saved/Audit/gaea_setups/liquid_cathedral/PIE_LiquidCathedral_1920x1080.png"
+  },
+  "gates": ["metric_extent_verified", "waterline_mask_verified", "mesh_terrain_partition_built", "water_is_separate_from_terrain", "pcg_reads_partition", "clean_pie", "lookdev_approved"]
+}

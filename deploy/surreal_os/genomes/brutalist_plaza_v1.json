@@ -1,0 +1,21 @@
+{
+  "id": "brutalist_plaza_v1",
+  "family": "Brutalist",
+  "verticality": 0.42,
+  "symmetry": 0.88,
+  "ornament_density": 0.08,
+  "structural_logic": 0.92,
+  "organic_growth": 0.12,
+  "cosmic_influence": 0.05,
+  "sacred_sequence": [],
+  "compose_style": "BRUTALIST_PLAZA",
+  "default_graph": "BRUTALIST_PLAZA",
+  "grammar_id": "BRUTALIST_PLAZA",
+  "surreal_transform": "axis_compression",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": false,
+    "material_choice": "STONE",
+    "unit_size": 3.0
+  }
+}

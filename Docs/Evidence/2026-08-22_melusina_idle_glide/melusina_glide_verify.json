@@ -1,0 +1,17 @@
+{
+  "kind": "melusina_glide_verify",
+  "glide_binding": "A_Mocap_LittleDance_001",
+  "expected_binding": "A_Mocap_LittleDance_001",
+  "entry_rules": {
+    "Idle->Glide": "bool:bIsGliding",
+    "Locomotion->Glide": "bool:bIsGliding"
+  },
+  "exit_rules": {
+    "Glide->Airborne": "bool:bRuntimeIsInAir",
+    "Glide->Land": "bool:bRuntimeIsGrounded"
+  },
+  "uasset_age_s": 82.13539576530457,
+  "problems": [],
+  "ok": true,
+  "generated_at": "2026-08-22T06:36:10.754135+00:00"
+}

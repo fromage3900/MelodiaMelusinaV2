@@ -1,0 +1,12 @@
+{
+  "compatible_pairs": [
+    ["DOOR", "DOOR"],
+    ["WALL", "WALL"],
+    ["WALL", "DOOR"],
+    ["DOOR", "WALL"],
+    ["CORNER", "WALL"],
+    ["WALL", "CORNER"]
+  ],
+  "must_connect_bonus": 6.0,
+  "min_align_dot": -0.35
+}

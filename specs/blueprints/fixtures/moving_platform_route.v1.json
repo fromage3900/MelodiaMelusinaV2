@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "moving_platform_route",
+  "status": "contract_spec_only",
+  "readiness_level": "L1",
+  "owner": "Melodia integration map",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.moving_platform.base",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "moving_platform",
+    "DisplayName": "Melodia Moving Platform Route",
+    "Tags": [
+      "fixture",
+      "moving_platform",
+      "traversal",
+      "water_route"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "fixture_always_available"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "none",
+    "AllowedContexts": [
+      "open_world",
+      "moving_platform_fixture"
+    ],
+    "BlockedContexts": [
+      "cutscene",
+      "menu",
+      "travel",
+      "battle_session"
+    ],
+    "InterruptPolicy": "stop_motion_without_canonical_route_mutation",
+    "ResetPolicy": "reset_fixture_runtime_only",
+    "ContextPolicy": "fail_closed_and_report_block_reason",
+    "ModeSet": [
+      "stopped",
+      "moving",
+      "resetting"
+    ],
+    "EnterPolicy": "read_registered_platform_state",
+    "UpdatePolicy": "request_motion_from_fixture_only",
+    "ExitPolicy": "retain_registered_route_state",
+    "VariantSet": [
+      "moving_platform_default",
+      "moving_platform_disabled"
+    ],
+    "EquippedVariantId": "moving_platform_default",
+    "FallbackVariantId": "moving_platform_default",
+    "AnimationProfile": "ping_pong_platform_motion",
+    "VfxProfile": "optional_water_route_vfx",
+    "AudioProfile": "optional_platform_motion_audio",
+    "UiPresentation": "traversal_platform_status",
+    "PreviewPolicy": "show_runtime_motion_state",
+    "EffectTogglePolicy": "presentation_only",
+    "UnavailableVariantPolicy": "stop_motion_and_keep_state_valid",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "platform_at_start",
+    "CanonicalStateKey": "melodia.fixture.moving_platform.base",
+    "IdempotencyKey": "moving_platform.base.reset",
+    "SaveWritePolicy": "water_gameplay_subsystem_only_when_registered",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "moving_platform_start_reset_save_load",
+    "ExpectedEvidence": "parent_defaults_placement_compile_save_reset",
+    "ReadinessLevel": "L1"
+  },
+  "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "content_kind": "moving_platform",
+  "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaMovingPlatform_Base",
+  "parent_class": "/Script/BS_GodFile.MelodiaMovingPlatform",
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaMovingPlatform_Base",
+    "parent_template": "/Script/BS_GodFile.MelodiaMovingPlatform",
+    "runtime_authority": "AMelodiaMovingPlatform_with_pacing_and_water_state_reads"
+  },
+  "authority": {
+    "motion": "AMelodiaMovingPlatform",
+    "pacing": "UMelodiaPacingSubsystem",
+    "water_route_state": "UMelodiaWaterGameplaySubsystem",
+    "persistence": "canonical water gameplay save contract when a platform state is registered",
+    "forbidden": [
+      "platform owns water route truth",
+      "direct save-object mutation",
+      "per-frame route writes",
+      "second traversal state machine"
+    ]
+  },
+  "defaults": {
+    "bAutoStart": false,
+    "bPingPong": true,
+    "TravelDuration": 2.0
+  },
+  "entry_route": [
+    "register_or_read_platform_state",
+    "request_start_motion_from_fixture",
+    "observe_deterministic_motion"
+  ],
+  "reset_route": [
+    "stop_motion",
+    "reset_platform_to_start",
+    "restore_registered_route_state"
+  ],
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "register_or_read_platform_state",
+      "request_start_motion_from_fixture",
+      "observe_deterministic_motion"
+    ],
+    "repeat_route": [
+      "stop_motion",
+      "request_start_motion_from_fixture",
+      "verify_same_start_and_duration"
+    ],
+    "reset_route": [
+      "stop_motion",
+      "reset_platform_to_start",
+      "restore_registered_route_state"
+    ],
+    "failure_routes": [
+      "non_positive_duration_is_clamped",
+      "missing_water_registration_does_not_invent_route_state"
+    ]
+  },
+  "failure_routes": [
+    "non_positive_duration_is_clamped",
+    "reset_returns_to_start_without_route_mutation",
+    "missing_water_registration_does_not_invent_route_state",
+    "save_reload_restores_logical_platform_state"
+  ],
+  "evidence_required": [
+    "native parent and CDO defaults are read back from the live editor",
+    "platform route placement is read back from the disposable map",
+    "compile/save/mtime/re-export checks pass",
+    "reset and save/reload are observed",
+    "static contract is not promoted to movement or PIE proof"
+  ],
+  "readiness": "L1"
+}

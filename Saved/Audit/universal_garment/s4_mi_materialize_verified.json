@@ -1,0 +1,232 @@
+{
+  "seed": 20260902,
+  "gate": "universal_garment_s4_per_garment_mi",
+  "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+  "master_verified": "M_Master_Toon_Universal_Alpha",
+  "masters_added": 0,
+  "layers": {
+    "M_Bodice_Torso": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Torso",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "45e857b0a2cf383eb2b11adb0e7d133a8b2b864963abc0de0167057fda6e8ddf",
+      "uasset_bytes": 14223
+    },
+    "M_Bodice_Front": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Front",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "114d5a2b2e6e027a05179227b082a02faf6473474448fbd581a93a81e567f3cb",
+      "uasset_bytes": 9657
+    },
+    "M_Bodice_Side": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Side",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "2f36fa9e9bdbf3b0ad7e0aa22e2fdb234ac0c4f672df76cb7de1cc315b3dd83e",
+      "uasset_bytes": 9636
+    },
+    "M_Bodice_Upper": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Upper",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "f95bc7173182a4bf80b1d4399933b83e8c6375261859ebcef1d0a2ca1bde0cb5",
+      "uasset_bytes": 9657
+    },
+    "M_Collar": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Collar",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "fb9f18e22d07fe91192b6aa7ff17ae0fe215040e0aa1e741409185ef2925331c",
+      "uasset_bytes": 9531
+    },
+    "M_Shoulder_Trim": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Shoulder_Trim",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "df1805f525de5666439f5b989d63ba0078da9b2aa55ce44aa814bbb76c5cbd7f",
+      "uasset_bytes": 9678
+    },
+    "M_Shoulder_Ornament": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Shoulder_Ornament",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "16f52b31f8cbf8165ecbe2178c1d0b0dba976d32228dac60f1364bbaf42f4616",
+      "uasset_bytes": 9762
+    },
+    "M_Sleeve": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Sleeve",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "d363b1e88a391da8befc13653caf3a75d5769f6f9b161a4bf45bed0e3ee7b8f4",
+      "uasset_bytes": 9531
+    },
+    "M_Underskirt": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Underskirt",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "18665331843d343cef15dd25b323f458fafda83f1dd42c8a28fea41ad2957b06",
+      "uasset_bytes": 9615
+    },
+    "M_Skirt_Full": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Skirt_Full",
+      "errors": [],
+      "texture_slots": [
+        "Albedo",
+        "NormalMap",
+        "HeightMap",
+        "RoughnessMap",
+        "MetallicMap",
+        "ORM",
+        "EmissiveMap",
+        "OpacityMap"
+      ],
+      "switch_overrides": [
+        "bUseSeparateRoughnessMap",
+        "bUseSeparateMetallicMap",
+        "bUseEmissiveMap",
+        "bUseOpacityMap"
+      ],
+      "uasset_sha256": "36661942b0c23a11caaf8d8a500755611c3f8542f13f4f667c65bb9695c0f9b8",
+      "uasset_bytes": 14179
+    }
+  },
+  "pass": true,
+  "total_layers": 10,
+  "layers_pass": 10
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "melodia.paradise.room.parent.audit.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/",
+  "mode": "disk_scan_only",
+  "findings": {
+    "total_paradise_mis": 96,
+    "alpha_trans_mis": 13,
+    "opaque_mis": 83,
+    "unique_mesh_stems": 68,
+    "meshes_with_multiple_mis": 21,
+    "pack_mi_distribution": {
+      "UNKNOWN": 47,
+      "Atlas_01_Mat": 21,
+      "Atlas_01_Trans_Mat": 13,
+      "Seam_Sand_Mat": 7,
+      "Outliner_Mat": 3,
+      "Shadows_Mat": 3,
+      "Seam_Floor_Mat": 2
+    },
+    "parent_assignment_status": "EDITOR_BOUND",
+    "note": "Cannot read MI parent from disk scan. Requires editor access to confirm if each MI is parented to Universal or still on CrystalCrossroads pack masters."
+  },
+  "next_step": "Editor access required: open each MI_Rooms_Paradise_*_Art_*.uasset and read parent. Reparent non-Universal MIs to Universal. Set TextureWeight=1.0 + LayerA_TextureWeight=1.0 on all.",
+  "status": "DISK_SCAN_ONLY_PENDING_EDITOR"
+}

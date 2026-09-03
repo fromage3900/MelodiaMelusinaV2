@@ -1,0 +1,201 @@
+{
+  "$schema": "melodia.p0.backend_session_evidence.v1",
+  "session_id": "HERMES_MELODIA_BACKEND_2026-08-28",
+  "profile": "default",
+  "model": "upstage/solar-pro4:free (via Nous Portal)",
+  "role": "Melusina — no-editor backend lane",
+  "session_start": "2026-08-28T05:00:00Z",
+  "session_end": "2026-08-28T07:10:00Z",
+  "lane_owner": "Junie (Rider, editor lock)",
+  "p0_status_source": "Docs/P0_CLOSEOUT_PLAN_2026-08-28.md + Docs/P0_TASK_LEDGER.json + Saved/gate_ledger.json",
+  "P0_closeout_status": {
+    "phase0_hygiene": "done_this_session",
+    "phase1_allowlist_compile": "blocked_waiting_editor",
+    "phase2_live_prove": "blocked_waiting_phase1",
+    "phase3_rhythm_gates": "blocked_waiting_editor",
+    "phase4_closeout": "blocked_waiting_phase3",
+    "note": "P0 is NOT closed. Phase 1 is the critical path."
+  },
+  "files_authored_offline": [
+    {
+      "path": "Docs/Backend/MELODIA_BACKEND_INTEGRATION_PLAN_2026-08-28.md",
+      "purpose": "Single plan for backend work — C++ subsystems, T3D pipeline, Echo ledger, contract tests, StateTree spine, native validator plan",
+      "size_bytes": 31197,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": "Docs/Backend/MONOLITH_TEXT_INJECTION_SCALE_UP_2026-08-28.md",
+      "purpose": "Deep dive on T3D/Monolith batch scale-up — batch spec format, one-baseline-many-assertions, Echo rows per family",
+      "size_bytes": 14476,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": "Docs/Backend/UE58_RIDER_WORKFLOW_LONG_TERM_2026-08-28.md",
+      "purpose": "Deep dive on UE 5.8 + Rider workflow — two-lane model, Live Coding limits, single-editor rule, CDO truth, T3D steps, evidence standard",
+      "size_bytes": 14379,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": "Docs/Backend/UI_LONG_TERM_CLEANUP_INVENTORY_2026-08-28.md",
+      "purpose": "UI asset inventory + token coverage + long-term cleanup gaps (Quill chain, battle HUD, other surfaces)",
+      "size_bytes": 10499,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": "Docs/Backend/P0_CONTRACT_TEST_REFERENCE_2026-08-28.md",
+      "purpose": "Snapshot reference of the two P0 contract suites (test_p0_quests_and_content_contract + test_qsc_allowlist_contract)",
+      "size_bytes": 2969,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": "Docs/Handoffs/ENEMY_BATTLE_REPEAT_TEST_PLAN_2026-08-28.md",
+      "purpose": "Enemy battle repeat-test plan — N=10 deterministic, N=50 stochastic, N=5 save/load, offline readiness checklist, editor-bound harness",
+      "size_bytes": 11189,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": "Docs/Handoffs/P0_ALLOWLIST_DELTA_FOR_RIDER_2026-08-28.md",
+      "purpose": "Human handoff for Junie's editor queue — 5-step workflow, files for reference",
+      "size_bytes": 3393,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": "Docs/Handoffs/P0_ALLOWLIST_DELTA_FOR_RIDER_2026-08-28.json",
+      "purpose": "Machine-readable 27-ID delta — QuestIds(5), NarrativeFlagIds(13), DialogueRewardIds(5), SocialStatIds(2), TravelLevelIds(1)",
+      "size_bytes": 3544,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": "Saved/P0_BACKEND_SESSION_2026-08-28.md",
+      "purpose": "Session log + handoff — what this lane did, what changed, what's blocked, what's next",
+      "size_bytes": 5955,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": ".claude/skills/melodia-shader-rider/SKILL.md",
+      "purpose": "Rider shader authoring runbook — .usf/.ush offline, IWYU, qodana, editor-only for material/Niagara side",
+      "size_bytes": 3858,
+      "verified": true,
+      "read_back": true
+    },
+    {
+      "path": ".claude/skills/melodia-p0-closeout/SKILL.md",
+      "purpose": "P0 closeout runbook — Phase 1-4, gate ledger, four pillars, remaining gates, evidence standard",
+      "size_bytes": 11413,
+      "verified": true,
+      "read_back": true
+    }
+  ],
+  "files_modified_offline": [
+    {
+      "path": "AGENTS.md",
+      "change": "Added Rider & UE 5.8 Engineering Protocols section (§2.1-2.3): Blueprint reflection, RiderLink, TObjectPtr, IWYU, shader authoring, qodana, FGameplayTag, StateTree, World Partition data layers, CommonUI, CPU profiling, native editor validation, single-editor lock, discover-before-declare, safe reflection",
+      "size_delta": "+27 lines"
+    }
+  ],
+  "contract_tests_offline": {
+    "test_p0_quests_and_content_contract.py": {
+      "result": "8/8 PASS",
+      "timestamp": "2026-08-28T05:15:00Z",
+      "verified": true
+    },
+    "test_qsc_allowlist_contract.py": {
+      "result": "3/4 PASS, 1 expected FAIL (27 missing IDs)",
+      "timestamp": "2026-08-28T05:15:00Z",
+      "expected": true,
+      "note": "FAIL is the reason Phase 1 exists — 27 IDs outside DA_MelodiaIntegrationConfig"
+    }
+  },
+  "gate_ledger_standing": {
+    "source": "Saved/gate_ledger.json (44 rows, regenerated 2026-08-28 04:27 UTC)",
+    "battle_integration_map": "PASS",
+    "hud_single_writer": "PASS",
+    "static_gates": "FAIL",
+    "rhythm_owner": "OPEN",
+    "rhythm_grade_to_result": "OPEN",
+    "wardrobe_equip_roundtrip": "OPEN",
+    "wardrobe_gameplay_hook": "OPEN",
+    "music_world_key": "OPEN"
+  },
+  "tooling_verified_offline": {
+    "ollama_127.0.0.1:11434": {
+      "reachable": false,
+      "method": "curl http://127.0.0.1:11434/api/tags (timed out)",
+      "status": "UNVERIFIED",
+      "note": "Project docs say reachable; not confirmed this session"
+    },
+    "houdini_hython": {
+      "present": true,
+      "path": "C:\\Program Files\\Side Effects Software\\Houdini 22.0.368\\bin\\hython.exe",
+      "method": "ls -la (exists, 4359472 bytes)",
+      "status": "PRESENT_BUT_LICENSE_UNVERIFIED"
+    },
+    "houdini_engine_license": {
+      "verified": false,
+      "method": "hserver -l (timed out at 20s)",
+      "status": "UNVERIFIED",
+      "note": "Smoke test passes on presence/paths; license is the blocker for HDA baking"
+    },
+    "t3d_pipeline_offline_docs": {
+      "verified": true,
+      "note": "Pipeline exists (inject → compile → fingerprint → assert → promote) but editor-bound for actual runs"
+    }
+  },
+  "p0_blocker_truth": {
+    "phase1_blocker": "The 08-27 content commit is inert until DA_MelodiaIntegrationConfig is extended with 27 IDs and the 5 .qsc are compiled to .uasset. This is Junie's editor work.",
+    "qsc_defects_already_fixed": "flags. → flag. prefix fix, duplicate reward grants removed (working tree, uncommitted). test_flag_prefix_is_singular ✓ and test_no_reward_grant_shadows_a_questcomplete_reward ✓.",
+    "live_proof_not_done": "No live battle with Quill interpreter has been run this session. No PIE click-through of the four pillars. The 08-27 battle_integration_map PASS is from a prior session."
+  },
+  "long_term_items_planned": {
+    "stateTree_quest_battle_spine": "Planned (Docs/Backend/MELODIA_BACKEND_INTEGRATION_PLAN_2026-08-28.md §4) — per-quest UStateTree assets, battle tree, grade-as-parameter, all constrained by existing authority",
+    "native_editor_validator": "Planned (§5) — UEditorValidatorSubsystem, 4 candidate validators ported from Python, on-save semantics",
+    "batch_text_injection": "Planned (Docs/Backend/MONOLITH_TEXT_INJECTION_SCALE_UP_2026-08-28.md) — batch spec format, batch injector, batch verifier, Echo record step — no new C++, editor-bound for actual runs",
+    "ue58_rider_workflow": "Documented (Docs/Backend/UE58_RIDER_WORKFLOW_LONG_TERM_2026-08-28.md) — two-lane model, Live Coding limits, single-editor rule, CDO truth, T3D steps"
+  },
+  "p0_expand_not_build": {
+    "2nd_outfit": {
+      "status": "expansion_not_p0",
+      "infrastructure_exists": "yes — MelodiaWardrobeSubsystem, EMelodiaWardrobeSlot, FMelodiaNarrativeRecord.EquippedCosmeticIds, MelodiaTraversalCapabilityProvider",
+      "what_could_be_done_offline": "spec doc, allowlist delta shape, shader source (.usf/.ush) in Rider, C++ capability-provider sketch",
+      "what_needs_editor": "outfit meshes/materials/instances, Blueprints/CDO, .qsc if quest-gated, allowlist extension, live prove (equip→save→restart→load→capability)"
+    }
+  },
+  "what_needs_editor_next": [
+    "Extend DA_MelodiaIntegrationConfig with 27-ID delta (blueprint_query get_cdo_properties, not melodia_config_get_allowlist)",
+    "Compile 5 .qsc → .uasset (4 P0 + MelodiaQuillHarmonyAwakening)",
+    "Re-run test_qsc_allowlist_contract until 4/4 PASS",
+    "Live-prove P0 Playthrough victory branch + atomic commit order",
+    "Live-prove wardrobe equip → roundtrip (full process restart)",
+    "Live-prove Glide → gameplay hook",
+    "Live-prove Sea Above travel + pulse + droplets",
+    "Live-prove rhythm_owner + rhythm_grade_to_result (real keys, Quill interpreter)",
+    "Host-attach UMelodiaPCGNarrativeChallengeBridgeComponent for music_world_key",
+    "Owner decision: retire vestigial melodiaBattleUI/MelodiaUI vars",
+    "Owner decision on 2 material drifts → re-freeze or revert → rerun static_gates with editor up",
+    "Fix LiveResultsWidgetPath backfill in Initialize()",
+    "Repackage + rerun package_launch + full 20-30 min golden run + record ledger rows"
+  ],
+  "what_this_lane_does_next_offline": [
+    "Keep running contract tests every cycle (test_p0_quests_and_content_contract 8/8, test_qsc_allowlist_contract 3/4 until Phase 1 lands)",
+    "Keep ledger honest — write rows if handoff/ledger drifts",
+    "Review git every cycle — flag destructive commands, untracked .uasset/.fbx, modified .uasset with no commit",
+    "Write remaining long-term docs: FGameplayTag migration order for remaining subsystems, StateTree spine detail, native validator plan, batch text-injection harness sketch",
+    "Be verifier — re-read, don't claim"
+  ],
+  "next_session_handoff": {
+    "who_holds_editor": "Junie (Rider) — Phase 1 is the critical path",
+    "who_does_offline": "This lane (Solar Pro 4) — contract tests, ledger, git review, long-term docs, verifier",
+    "editor_queue_for_next_session": "Phase 1: allowlist + compile; Phase 2: live-prove four pillars; Phase 3: rhythm_owner + rhythm_grade_to_result + music_world_key; Phase 4: vestigial vars + material drifts + LiveResultsWidgetPath + repackage + golden run",
+    "offline_queue_for_next_session": "Contract tests green, ledger honest, git review, remaining long-term docs, re-verify after Phase 1 lands",
+    "blocked_until_resolved": "Houdini Engine license (hserver -l timed out) for HDA baking; Ollama (curl timed out) for spec generation — both UNVERIFIED this session"
+  }
+}

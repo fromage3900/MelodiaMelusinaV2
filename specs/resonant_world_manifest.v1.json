@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia Resonant World Manifest",
+  "type": "object",
+  "required": ["format", "schema_version", "generator_version", "world", "chunks", "ok"],
+  "properties": {
+    "format": {"const": "melodia_resonant_world_manifest"},
+    "schema_version": {"type": "integer", "const": 1},
+    "generator_version": {"type": "string", "const": "resonant_world_v1"},
+    "world": {
+      "type": "object",
+      "required": ["world_seed", "root_pitch_class", "mode_id", "bpm", "beats_per_bar", "motif_id", "movement_id"],
+      "properties": {
+        "world_seed": {"type": "integer"},
+        "root_pitch_class": {"type": "integer", "minimum": 0, "maximum": 11},
+        "mode_id": {"type": "string"},
+        "bpm": {"type": "integer", "minimum": 40, "maximum": 220},
+        "beats_per_bar": {"type": "integer", "minimum": 1},
+        "motif_id": {"type": "string", "minLength": 1},
+        "movement_id": {"type": "string", "minLength": 1},
+        "movement": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "chunks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["chunk_x", "chunk_y", "stable_seed", "region", "movement_id", "movement", "border_anchors", "pcg_binding"],
+        "properties": {
+          "chunk_x": {"type": "integer"},
+          "chunk_y": {"type": "integer"},
+          "stable_seed": {"type": "integer", "minimum": 1},
+          "region": {"type": "object"},
+          "movement_id": {"type": "string", "minLength": 1},
+          "movement": {"type": "object"},
+          "border_anchors": {"type": "object"},
+          "pcg_binding": {"type": "object"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "ok": {"type": "boolean"},
+    "validation_errors": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

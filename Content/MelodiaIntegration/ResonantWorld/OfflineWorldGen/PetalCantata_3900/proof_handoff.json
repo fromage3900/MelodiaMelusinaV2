@@ -1,0 +1,474 @@
+{
+  "format": "melodia_resonant_world_proof_handoff",
+  "schema_version": 1,
+  "handoff_version": "resonant_world_proof_handoff_v1",
+  "source_plan": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\pcg_plan.json",
+  "world_seed": 3900,
+  "proof_level": "/Game/EnvSandbox/PCG/Musical/Hero/L_PCG_Hero_ScaleWorldProof",
+  "pcg_owner": "existing pcg_scale_world_pipeline + pcg_visual_chunk_builder",
+  "graph_reuse": true,
+  "hero_inputs": [
+    {
+      "label": "PCG ScaleWorld -1_0 BellTreeGarden",
+      "graph": "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_BellTreeGarden",
+      "origin_cm": [
+        -25600.0,
+        0.0,
+        0.0
+      ],
+      "chunk": [
+        -1,
+        0
+      ],
+      "profile": "/Game/EnvSandbox/PCG/Musical/Hero/DA_Hero_BellTreeGardenProfile",
+      "tags": [
+        "ResonantWorld",
+        "ResonantMovement_dissonant_expanse",
+        "ResonantVerb_resolve"
+      ],
+      "resonant_world": {
+        "movement_id": "dissonant_expanse",
+        "movement_display_name": "Dissonant Expanse",
+        "world_verb": "resolve",
+        "resonant_form_id": "ResonantForm_DissonanceResolve",
+        "style_axes": [
+          "tension",
+          "resonance"
+        ],
+        "mode_affinities": [
+          "aeolian",
+          "phrygian"
+        ],
+        "region_id": "ash_rim",
+        "degree_name": "supertonic",
+        "pitch_class": 1,
+        "asset_queries": {
+          "pcg": [
+            "PCG_WP_Escher",
+            "PCG_WP_Cyberpunk",
+            "PCG_WP_BaroqueGrotto",
+            "PCG_GardenRuins",
+            "PCG_WP_SpaceCathedral"
+          ],
+          "musical": [
+            "UmbralNocturne",
+            "MIDI",
+            "MusicalOrnament"
+          ],
+          "vfx": [
+            "NS_Melusina_EntropyDust",
+            "NS_Melusina_ChaosDrift",
+            "NS_Nikki_WishBurst"
+          ],
+          "water": [
+            "river_clear",
+            "waterfall_sheet"
+          ],
+          "outfit_archetypes": [
+            "CosmicWeaver",
+            "MirageDancer"
+          ]
+        },
+        "npc_zones": [
+          "VoidLoom",
+          "AstralNexus",
+          "TwilightDunes"
+        ],
+        "quantum_objective": [
+          "constraint_satisfaction",
+          "route_variety",
+          "controlled_tension",
+          "safe_traversal"
+        ],
+        "motif_id": "f8940edc30:1:52"
+      },
+      "data_layers": [
+        "DL_Musical_HeroGameplay",
+        "DL_Musical_StaticArchitecture",
+        "DL_Musical_BiomeDressing"
+      ],
+      "hlod_layers": [
+        "HLOD_Musical_Static"
+      ],
+      "interactive_ownership": {
+        "gameplay_data_layer": "DL_Musical_HeroGameplay",
+        "exclude_from_hlod": true
+      }
+    },
+    {
+      "label": "PCG ScaleWorld 0_0 ResonanceCathedral",
+      "graph": "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_ResonanceCathedral",
+      "origin_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "chunk": [
+        0,
+        0
+      ],
+      "profile": "/Game/EnvSandbox/PCG/Musical/Hero/DA_Hero_ResonanceCathedralProfile",
+      "tags": [
+        "ResonantWorld",
+        "ResonantMovement_cadence_cathedral",
+        "ResonantVerb_compose"
+      ],
+      "resonant_world": {
+        "movement_id": "cadence_cathedral",
+        "movement_display_name": "Cadence Cathedral",
+        "world_verb": "compose",
+        "resonant_form_id": "ResonantForm_CadenceBuild",
+        "style_axes": [
+          "resonance",
+          "cadence"
+        ],
+        "mode_affinities": [
+          "ionian",
+          "lydian",
+          "phrygian"
+        ],
+        "region_id": "ember_court",
+        "degree_name": "tonic",
+        "pitch_class": 0,
+        "asset_queries": {
+          "pcg": [
+            "PCG_Hero_ResonanceCathedral",
+            "PCG_Hero_ArpeggioBridge",
+            "PCG_Hero_BellTreeGarden",
+            "PCG_Hero_XylophoneTrail",
+            "PCG_Hero_CrystalHarpGrove"
+          ],
+          "musical": [
+            "Piano",
+            "MIDI",
+            "MusicalOrnamentKitbash",
+            "SM_Orn_",
+            "PCG_Musical"
+          ],
+          "vfx": [
+            "NS_Nikki_SparkleDrift",
+            "NS_Nikki_WishBurst"
+          ],
+          "water": [],
+          "outfit_archetypes": [
+            "Melusina"
+          ]
+        },
+        "npc_zones": [
+          "ResonanceCathedral",
+          "ArpeggioBridge",
+          "BellTreeGarden",
+          "XylophoneTrail",
+          "CrystalHarpGrove"
+        ],
+        "quantum_objective": [
+          "arrangement_quality",
+          "motif_continuity",
+          "route_variety",
+          "landmark_coverage"
+        ],
+        "motif_id": "f8940edc30:0:33"
+      },
+      "data_layers": [
+        "DL_Musical_HeroGameplay",
+        "DL_Musical_StaticArchitecture",
+        "DL_Musical_BiomeDressing"
+      ],
+      "hlod_layers": [
+        "HLOD_Musical_Static"
+      ],
+      "interactive_ownership": {
+        "gameplay_data_layer": "DL_Musical_HeroGameplay",
+        "exclude_from_hlod": true
+      }
+    },
+    {
+      "label": "PCG ScaleWorld 1_0 ArpeggioBridge",
+      "graph": "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_ArpeggioBridge",
+      "origin_cm": [
+        25600.0,
+        0.0,
+        0.0
+      ],
+      "chunk": [
+        1,
+        0
+      ],
+      "profile": "/Game/EnvSandbox/PCG/Musical/Hero/DA_Hero_ArpeggioBridgeProfile",
+      "tags": [
+        "ResonantWorld",
+        "ResonantMovement_mirage_gala",
+        "ResonantVerb_drift"
+      ],
+      "resonant_world": {
+        "movement_id": "mirage_gala",
+        "movement_display_name": "Mirage Gala",
+        "world_verb": "drift",
+        "resonant_form_id": "ResonantForm_MirageStep",
+        "style_axes": [
+          "cadence",
+          "lilt"
+        ],
+        "mode_affinities": [
+          "lydian",
+          "aeolian",
+          "phrygian"
+        ],
+        "region_id": "cinder_grove",
+        "degree_name": "mediant",
+        "pitch_class": 3,
+        "asset_queries": {
+          "pcg": [
+            "PCG_MeadowBloom",
+            "PCG_SplinePath",
+            "PCG_WP_Escher",
+            "PCG_WP_Cyberpunk",
+            "PCG_Nikki"
+          ],
+          "musical": [
+            "MIDI",
+            "180",
+            "ankle_bells",
+            "MusicalOrnament"
+          ],
+          "vfx": [
+            "NS_Nikki_FabricTrail",
+            "NS_Nikki_SparkleDrift",
+            "NS_Nikki_FloatingMotes"
+          ],
+          "water": [],
+          "outfit_archetypes": [
+            "MirageDancer"
+          ]
+        },
+        "npc_zones": [
+          "TwilightDunes",
+          "WindTemple",
+          "MirageOasis",
+          "ZephyrPeak"
+        ],
+        "quantum_objective": [
+          "outfit_synergy",
+          "route_variety",
+          "traversal_safety",
+          "silhouette_readability"
+        ],
+        "motif_id": "f8940edc30:2:11"
+      },
+      "data_layers": [
+        "DL_Musical_HeroGameplay",
+        "DL_Musical_StaticArchitecture",
+        "DL_Musical_BiomeDressing"
+      ],
+      "hlod_layers": [
+        "HLOD_Musical_Static"
+      ],
+      "interactive_ownership": {
+        "gameplay_data_layer": "DL_Musical_HeroGameplay",
+        "exclude_from_hlod": true
+      }
+    },
+    {
+      "label": "PCG ScaleWorld 0_1 XylophoneTrail",
+      "graph": "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_XylophoneTrail",
+      "origin_cm": [
+        0.0,
+        25600.0,
+        0.0
+      ],
+      "chunk": [
+        0,
+        1
+      ],
+      "profile": "/Game/EnvSandbox/PCG/Musical/Hero/DA_Hero_XylophoneTrailProfile",
+      "tags": [
+        "ResonantWorld",
+        "ResonantMovement_mirage_gala",
+        "ResonantVerb_drift"
+      ],
+      "resonant_world": {
+        "movement_id": "mirage_gala",
+        "movement_display_name": "Mirage Gala",
+        "world_verb": "drift",
+        "resonant_form_id": "ResonantForm_MirageStep",
+        "style_axes": [
+          "cadence",
+          "lilt"
+        ],
+        "mode_affinities": [
+          "lydian",
+          "aeolian",
+          "phrygian"
+        ],
+        "region_id": "lava_tide",
+        "degree_name": "submediant",
+        "pitch_class": 8,
+        "asset_queries": {
+          "pcg": [
+            "PCG_MeadowBloom",
+            "PCG_SplinePath",
+            "PCG_WP_Escher",
+            "PCG_WP_Cyberpunk",
+            "PCG_Nikki"
+          ],
+          "musical": [
+            "MIDI",
+            "180",
+            "ankle_bells",
+            "MusicalOrnament"
+          ],
+          "vfx": [
+            "NS_Nikki_FabricTrail",
+            "NS_Nikki_SparkleDrift",
+            "NS_Nikki_FloatingMotes"
+          ],
+          "water": [],
+          "outfit_archetypes": [
+            "MirageDancer"
+          ]
+        },
+        "npc_zones": [
+          "TwilightDunes",
+          "WindTemple",
+          "MirageOasis",
+          "ZephyrPeak"
+        ],
+        "quantum_objective": [
+          "outfit_synergy",
+          "route_variety",
+          "traversal_safety",
+          "silhouette_readability"
+        ],
+        "motif_id": "f8940edc30:5:45"
+      },
+      "data_layers": [
+        "DL_Musical_HeroGameplay",
+        "DL_Musical_StaticArchitecture",
+        "DL_Musical_BiomeDressing"
+      ],
+      "hlod_layers": [
+        "HLOD_Musical_Static"
+      ],
+      "interactive_ownership": {
+        "gameplay_data_layer": "DL_Musical_HeroGameplay",
+        "exclude_from_hlod": true
+      }
+    },
+    {
+      "label": "PCG ScaleWorld 1_1 CrystalHarpGrove",
+      "graph": "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_CrystalHarpGrove",
+      "origin_cm": [
+        25600.0,
+        25600.0,
+        0.0
+      ],
+      "chunk": [
+        1,
+        1
+      ],
+      "profile": "/Game/EnvSandbox/PCG/Musical/Hero/DA_Hero_CrystalHarpGroveProfile",
+      "tags": [
+        "ResonantWorld",
+        "ResonantMovement_cadence_cathedral",
+        "ResonantVerb_compose"
+      ],
+      "resonant_world": {
+        "movement_id": "cadence_cathedral",
+        "movement_display_name": "Cadence Cathedral",
+        "world_verb": "compose",
+        "resonant_form_id": "ResonantForm_CadenceBuild",
+        "style_axes": [
+          "resonance",
+          "cadence"
+        ],
+        "mode_affinities": [
+          "ionian",
+          "lydian",
+          "phrygian"
+        ],
+        "region_id": "heat_shelf",
+        "degree_name": "subdominant",
+        "pitch_class": 5,
+        "asset_queries": {
+          "pcg": [
+            "PCG_Hero_ResonanceCathedral",
+            "PCG_Hero_ArpeggioBridge",
+            "PCG_Hero_BellTreeGarden",
+            "PCG_Hero_XylophoneTrail",
+            "PCG_Hero_CrystalHarpGrove"
+          ],
+          "musical": [
+            "Piano",
+            "MIDI",
+            "MusicalOrnamentKitbash",
+            "SM_Orn_",
+            "PCG_Musical"
+          ],
+          "vfx": [
+            "NS_Nikki_SparkleDrift",
+            "NS_Nikki_WishBurst"
+          ],
+          "water": [],
+          "outfit_archetypes": [
+            "Melusina"
+          ]
+        },
+        "npc_zones": [
+          "ResonanceCathedral",
+          "ArpeggioBridge",
+          "BellTreeGarden",
+          "XylophoneTrail",
+          "CrystalHarpGrove"
+        ],
+        "quantum_objective": [
+          "arrangement_quality",
+          "motif_continuity",
+          "route_variety",
+          "landmark_coverage"
+        ],
+        "motif_id": "f8940edc30:3:15"
+      },
+      "data_layers": [
+        "DL_Musical_HeroGameplay",
+        "DL_Musical_StaticArchitecture",
+        "DL_Musical_BiomeDressing"
+      ],
+      "hlod_layers": [
+        "HLOD_Musical_Static"
+      ],
+      "interactive_ownership": {
+        "gameplay_data_layer": "DL_Musical_HeroGameplay",
+        "exclude_from_hlod": true
+      }
+    }
+  ],
+  "hero_input_count": 5,
+  "static_spec_count": 162,
+  "chunk_count": 9,
+  "movement_ids": [
+    "cadence_cathedral",
+    "dissonant_expanse",
+    "mirage_gala"
+  ],
+  "wardrobe_voicing": {
+    "applied": true,
+    "request_id": "40fc25df5b20a8ef",
+    "archetype_id": "SakuraDreamer",
+    "does_not_grant_capability": true
+  },
+  "magic_passage": {
+    "applied": true,
+    "passage_id": "5d71c5b6a2ce45c9",
+    "world_verb": "bloom",
+    "stage_count": 4,
+    "does_not_write_save": true
+  },
+  "editor_apply": {
+    "required": true,
+    "performed": false,
+    "single_editor_only": true,
+    "production_maps_touched": false
+  },
+  "validation_errors": [],
+  "ok": true
+}

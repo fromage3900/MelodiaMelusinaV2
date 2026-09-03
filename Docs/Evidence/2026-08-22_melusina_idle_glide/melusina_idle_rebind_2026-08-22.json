@@ -1,0 +1,8 @@
+{
+  "kind": "melusina_idle_rebind_guarded_blender_idle",
+  "utc": "2026-08-22T06:51:27Z",
+  "idle_binding": "A_BL_Melusina_Idle_Loop",
+  "expected": "A_BL_Melusina_Idle_Loop",
+  "ok": true,
+  "rationale": "A_Melusina_Idle_v22 captured lying-down (unguarded import, 5/1124 bones renamed, no cm probe; sidecar ue_import=false). A_BL_Melusina_Idle_Loop passed guarded import onto SK_Melusina_Skeleton with cm probe (Saved/Audit/melusina_blender_idle_wire.json)."
+}

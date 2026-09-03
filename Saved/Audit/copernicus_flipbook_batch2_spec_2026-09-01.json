@@ -1,0 +1,69 @@
+{
+  "schema": "melodia.copernicus.flipbook.batch.v1",
+  "generated": "2026-08-31T07:31:56Z",
+  "source": "Saved/Audit/copernicus_flipbook_status_2026-09-01.json",
+  "mode": "spec_only",
+  "note": "Generates Python/SVG flipbook scripts for 4 remaining Copernicus variants. Requires numpy + PIL. No .uasset writes.",
+  "parent_variant_count": 11,
+  "completed_before": [
+    "SingingConstellations"
+  ],
+  "candidates": [
+    {
+      "name": "DancingCrystals",
+      "animation_type": "twinkle",
+      "frames": 9,
+      "maps_per_frame": 9,
+      "total_pngs": 81,
+      "resolution": "2048x2048",
+      "parent_source": "Saved/Audit/copernicus/cymatic/",
+      "output_subdir": "copernicus/flipbook_batch2/DancingCrystals/",
+      "note": "Crystal twinkle \u2014 modulate emissive pulse per frame",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "SilkWaterfall",
+      "animation_type": "flow",
+      "frames": 9,
+      "maps_per_frame": 9,
+      "total_pngs": 81,
+      "resolution": "2048x2048",
+      "parent_source": "Saved/Audit/copernicus/cymatic/",
+      "output_subdir": "copernicus/flipbook_batch2/SilkWaterfall/",
+      "note": "Water flow \u2014 scroll normal map V offset per frame",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "GildedLoom",
+      "animation_type": "gear_rotate",
+      "frames": 12,
+      "maps_per_frame": 9,
+      "total_pngs": 108,
+      "resolution": "2048x2048",
+      "parent_source": "Saved/Audit/copernicus/cymatic/",
+      "output_subdir": "copernicus/flipbook_batch2/GildedLoom/",
+      "note": "Gear rotation \u2014 rotate UV per frame for mechanical loom",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "FinalDreamweaver",
+      "animation_type": "dream_shimmer",
+      "frames": 9,
+      "maps_per_frame": 9,
+      "total_pngs": 81,
+      "resolution": "2048x2048",
+      "parent_source": "Saved/Audit/copernicus/cymatic/",
+      "output_subdir": "copernicus/flipbook_batch2/FinalDreamweaver/",
+      "note": "Dream shimmer \u2014 sine-wave distortion + opacity pulse",
+      "status": "NOT_RUN"
+    }
+  ],
+  "output_dir": "Saved/Audit/copernicus/flipbook_batch2/",
+  "safety": {
+    "requires_python_numpy": true,
+    "requires_live_editor_for_import": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record copernicus_flipbook_batch2 pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_SCRIPT_GENERATION"
+}

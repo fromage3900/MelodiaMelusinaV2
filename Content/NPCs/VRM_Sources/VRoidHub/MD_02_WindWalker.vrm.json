@@ -1,0 +1,17 @@
+{
+  "source_id": "MD_02_WindWalker",
+  "source_type": "vroid_hub",
+  "archetype": "MirageDancer",
+  "filename": "MD_02_WindWalker.vrm",
+  "author": "VRoid Hub Creator (TODO: add name)",
+  "license": "cc_by_4_0",
+  "commercial_ok": true,
+  "license_url": "https://hub.vroid.com/characters/XXXXXXXX",
+  "hub_url": "https://hub.vroid.com/characters/XXXXXXXX",
+  "hub_model_id": "XXXXXXXX",
+  "body_type": "standard",
+  "base_hair_color": "#C9A86A",
+  "base_eye_color": "#8AA9D6",
+  "expression_presets": ["walking", "determined", "breezy", "confident"],
+  "notes": "DOWNLOAD FROM VROID HUB: Search for standard female, gold hair, astral blue eyes, wind walker outfit. Replace XXXXXXXX with actual model ID. Verify CC-BY 4.0 license."
+}

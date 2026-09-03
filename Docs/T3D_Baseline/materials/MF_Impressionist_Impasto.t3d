@@ -1,0 +1,693 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_Impressionist_Impasto" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_Impressionist_ImpastoEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MF_Impressionist_ImpastoEditorOnlyData'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_2" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionComment_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_3" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionComment_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_7" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_8" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_9" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_19" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_20'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_21" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_21'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_22" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_22'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_23" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_23'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_24" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_24'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_25" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_25'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_26" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_26'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_27" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_27'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_28" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_28'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_9'"
+   End Object
+   Begin Object Name="MF_Impressionist_ImpastoEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MF_Impressionist_ImpastoEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionComment_2'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionComment_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_5'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_10'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_6'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_7'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_11'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_12'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_13'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_8'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_9'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_14'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_15'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_16'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_10'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_11'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_17'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_18'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_19'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_12'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_13'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_20'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_21'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_22'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_14'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_15'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_23'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_24'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_25'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_16'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_17'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_8'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_26'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_27'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_28'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_18'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_19'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_9'"))
+   End Object
+   Begin Object Name="MaterialExpressionComment_2" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionComment_2'"
+      Text="✦ Impasto"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-680
+      MaterialExpressionEditorY=-30
+      MaterialExpressionGuid=2DF32EE1447E2AA2495842AC415A6E51
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_3" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionComment_3'"
+      Text="Impasto ~ thicc paint"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-980
+      MaterialExpressionEditorY=-230
+      MaterialExpressionGuid=4D3D739C4DA62352C2159187AE26884B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionInput_1'"
+      InputName="StrokeMask"
+      Id=BDF0C8EE4C6ED7D360E85E85AF0201B1
+      InputType=FunctionInput_Scalar
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=954ADBF64935ABDC4AD0C2B56ECF14B8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionInput_2'"
+      InputName="StrokeMask"
+      Id=A7F24FE2405F81B03391A7BA21BA5888
+      InputType=FunctionInput_Scalar
+      PreviewValue=(X=0.500000,Y=0.500000,Z=0.500000,W=0.500000)
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=587AA850488D20E8CD417D914723D0CA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_0'"
+      OutputName="ImpastoHeight"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_1'")
+      Id=0F26E5DD4AD5C2D17C861F975C9BC72A
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=CA7D05554AEAFD212F5403A21C469312
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_3'")
+      Id=42E35E0F4960DD3B30503CBD5EF3A5C4
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=0281346346263AF5CE34A29F2D33B15C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_5'")
+      Id=E060B5324E8A125F00012C9338A395CC
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=B6F7F81742EE0B4108B7328C55FC9265
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_7'")
+      Id=788D1BC14F75B80BA4633084E7FAE158
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=90F455E34351AB7CF02355A3E28D0A09
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_9'")
+      Id=F298599A461A940F80A8F7B2637AE9BB
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=383A643A436F26C10F2BB19901C420BC
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_11'")
+      Id=0A54B49F47E9B712F995DE8420A6FF2B
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=68EFEEF94929EFE049E304919A10D89C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_13'")
+      Id=86B313754A5DB24539E91CA35640DF27
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=E42D2958473118A72EA17CB6DDCC4B30
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_7" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_7'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_15'")
+      Id=39B91AAF418CE919196501B94733EC5E
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=B534E0DB46EA6F137B091CA263D63B07
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_8" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_8'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_17'")
+      Id=BB64E4484B67511B89CD1589CD80E77F
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=923F959644B65B047E937FB952AB368E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_9" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionOutput_9'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_19'")
+      Id=3083517642A6A077CC920E8855CA0FEA
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=CD3FEF29443B7BFF73BA0F892B544CDC
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionFunctionInput_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_1'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=82A8D010493883784AA31492759DA008
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=9834C0394A1E424B873EDFBDE69DA973
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_10'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_14'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_15'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=4E5ECFA442B50FEBD37F6697BD6265BF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_11'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_10'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_16'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=2290BCDF4A80DA953EE0DA9D8AE299A0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_12'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_17'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_18'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=FDB96D144E327C4E64AC0ABA98D5D014
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_13'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_12'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_19'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=7E8220D84F09F3588F55FE951A135BCF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_14'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_20'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_21'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=73EBF5C8481B883C42A23A867AD706B6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_15'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_14'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_22'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=52F87E3B45B21B8A6B612793AFA97A6F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_16'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_23'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_24'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=89533A26454F090D133AFDB952337C54
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_17'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_16'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_25'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=4BAFD312423C236B2F319089EB5FD869
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_18'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_26'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_27'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=AEB5F5304BC55F2031B51D939D185FF4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_19" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_19'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_18'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_28'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=766F037F4EC9F841F0ADE2AE4DA78C4B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_3'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=013F1C174B6CBB460FF1498A0C3E3EA4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_4'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=A191EDEB46F5A5306BA9D28D8F2F184F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_6'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=281928594E2B55370947A5BF5B20ED3A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_7'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=28F5D9844BA90EEA79BDF0A4E59AC0A1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_9'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=DDE3385B4DB8C18BAE472AAD54D100DD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_7'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_10'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=2C498D764A0BCA8A6743C690A85F6E95
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_8'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_11'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_12'")
+      MaterialExpressionEditorX=-320
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=785A830D42A20BFECEE0EB9D9EBDE7BD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_9'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionMultiply_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_13'")
+      MaterialExpressionEditorX=-120
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=704614584E63349EE7D2539862BC5A4A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_0'"
+      DefaultValue=0.500000
+      ParameterName="StrokeMask"
+      ExpressionGUID=7E77F331470A519BC6C5989B581D1524
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=3B36190646B592D8DD5E5EA777C16AED
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_1'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=3B62A86E43B0A53FECAC13AE1B61268B
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=6DD14B4744B33D3713B97986B7A811D7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_10'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=8697ED494CB2740339506BA28FD4DE68
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=997E4CA34D8394E51048BEB1BCE73C22
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_11'"
+      DefaultValue=0.500000
+      ParameterName="StrokeMask"
+      ExpressionGUID=5C8C96FA4ADD598B73CA75AC304A311A
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=8026BA6941B3A7A7D01F57B7E4327D55
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_12'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=D5103C354F5FDED3F0117BADECAD1833
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=CF54ECC14A9B40D3233028815EF290CD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_13'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=6545C61849D70B31F4F1AF81636F925E
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=D21A99DA4987E9538284939BAA04ACA8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_14'"
+      DefaultValue=0.500000
+      ParameterName="StrokeMask"
+      ExpressionGUID=E00F54804F43BCAE2DDE4FB09ACF67FA
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=1B387D5341F7065D0951F59A4C619916
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_15'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=36C737A647E2DB5E8C76E3A4BDA43893
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=79760125402B375CEBEF19BA7817A29E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_16" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_16'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=5572590E4D17A3D3FAE538AAA0EC9BA6
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=61D8A0A84E1D40D70DE1598D3CD2E2FE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_17" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_17'"
+      DefaultValue=0.500000
+      ParameterName="StrokeMask"
+      ExpressionGUID=B2E63C224E54100068003999DB4FBFA9
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=A311B5B3489361F010098B876637936B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_18'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=446F696041BA72BB2E37E184587F9DEB
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=4AEDC159411045C6259C92AB36A6B347
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_19'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=8C47033F44FABBC55DD50BBBD9FD2F2B
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=CFC0E2CA4B9C6980B09F75A906EB510A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_2'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=0388F9B848347D3BE477AD9123A8687E
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=BE894D3D42A93AE74A8DB2BA9A191D65
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_20'"
+      DefaultValue=0.500000
+      ParameterName="StrokeMask"
+      ExpressionGUID=D97BCF6948B4900B05CA7EA1F8160DA1
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=A8A243B14CDDE3E739BCAC89DD4F7D49
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_21" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_21'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=60A96FD5402C0561798A64933C698E8B
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=47B2E002401B86AC650924A87A911297
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_22" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_22'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=2ACB33BF49AE83B60373859FC3D41CC6
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=5EF7563C4B8C61B7538991A293286FCE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_23" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_23'"
+      DefaultValue=0.500000
+      ParameterName="StrokeMask"
+      ExpressionGUID=44055A504C572B77091FC297574E2D12
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=EB7A89254FD2616BBF3F93B833C19C1A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_24" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_24'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=E581D2EC4658D019C1B65F9FD0F73B73
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=EB8FFB884AA294B4FB3C4A9FD23D3747
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_25" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_25'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=67373E154551D57614004ABB001D8D6C
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=C524D86748DF7707239865A248A231EB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_26" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_26'"
+      DefaultValue=0.500000
+      ParameterName="StrokeMask"
+      ExpressionGUID=4E251A9C4797048697AD3D8B4AC59379
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=D77A146549CD7B11001E01BFD05B4B4D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_27" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_27'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=2457711C41215CA9EE487EBB5F9F76BF
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=3433AC8C47144EBD6A16BDB17E1939D1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_28" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_28'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=51A764E04756C133C4BC338AA5179710
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=921646CB42EC668E0867CCA8E84A4C99
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_3'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=85BEBDCD4A24C18AFD5ED185CC7429B3
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=2815413E4667A6D551C39B9909AD2216
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_4'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=3502B3B1446F0238EB7960A5CF61A6C0
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=FC2D155C4B53495A4B68F993758DE50F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_5'"
+      DefaultValue=0.500000
+      ParameterName="StrokeMask"
+      ExpressionGUID=1FE24E014CFF161C591D178580A3A658
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=33699BC04DA384FB16598993A1205152
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_6'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=EEC57815459F526F4DBAA1A846C358DA
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=FAF126784F33D172EF07F68F26EE70FD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_7'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=DED16F5B4A53D1C38AEA0E9340C90844
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=7133EE1F46BA83031AF33299ED4657E0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_8'"
+      DefaultValue=0.500000
+      ParameterName="StrokeMask"
+      ExpressionGUID=826966E941643E3D4B7735ADC263BECE
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionGuid=5A4903804CE0B235650193A7FF58DB8B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MaterialExpressionScalarParameter_9'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=AFE5007243BF9E5E8714ED85CE1F6DD1
+      Group="Impasto"
+      MaterialExpressionEditorX=-600
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=2BEB97D64CE99CDB8F557993C16971CD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto'"
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Impasto.MF_Impressionist_Impasto:MF_Impressionist_ImpastoEditorOnlyData'"
+   StateId=9A1F8E144FE140A831DEAFA4D24B0C17
+   CombinedInputTypes=15
+End Object

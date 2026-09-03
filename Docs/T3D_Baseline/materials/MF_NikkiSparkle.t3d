@@ -1,0 +1,154 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_NikkiSparkle" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_0" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionTextureSample_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionSubtract_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionSaturate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_NikkiSparkleEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MF_NikkiSparkleEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_0" ExportPath="/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionTextureSample_0'"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_1'")
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=861EC0034E80B8363405AAAAF0DF2CA6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionSubtract_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionComponentMask_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_4'")
+      MaterialExpressionEditorX=-780
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=FF6DBDEF4020B74DC37F5D84A649EA6C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionSaturate_0'"
+      MaterialExpressionEditorX=-580
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=EB19D1AE4D55AB27A7B4B4AAAD53301A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionMultiply_0'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=180
+      MaterialExpressionGuid=00993D704BFE9DBDB0C27EB38EE2BFF3
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionSaturate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_3'")
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=180
+      MaterialExpressionGuid=03FD7299422A215E13937FB425811CDC
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionOutput_0'"
+      OutputName="Color"
+      Id=B3490DB740A7F7B850FF559004F5F94D
+      MaterialExpressionEditorX=200
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=94383F9E427CF32569F92093F08ADE9F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_5'"
+      InputName="SparkleColor"
+      Id=65D050EE4C3AB8EA4A27B1B6B7386D97
+      SortPriority=5
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=800
+      MaterialExpressionGuid=78A1F445443BC2508BCB2CB4D6BE88B9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_4'"
+      InputName="SparkleThreshold"
+      Id=A5C8799D4D94260D1E7E4A9B3CA370BD
+      InputType=FunctionInput_Scalar
+      SortPriority=4
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=640
+      MaterialExpressionGuid=5A2842C64C58123E247C4CB56DC55EC2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_3'"
+      InputName="SparkleIntensity"
+      Id=170573EF4EF6EE47BE5CB19203489B14
+      InputType=FunctionInput_Scalar
+      SortPriority=3
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=053970C644FCD0CBA158A6904881DCA2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_2'"
+      InputName="SparkleMask"
+      Id=AA0B8DEE498949A1E4CFB4A0D901955C
+      InputType=FunctionInput_Texture2D
+      SortPriority=2
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=A11C250646A289B43BF3E1941E059214
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_1'"
+      InputName="UV"
+      Id=957983A24A50A9829BDB0EB169F95D4C
+      InputType=FunctionInput_Vector2
+      SortPriority=1
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=9440AEAF46B05CD4F245A48ED0640FDB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_0'"
+      InputName="BaseColor"
+      Id=ABBADFA54279F59970EB278498E3E7B6
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionGuid=ABC0BFEF4209066DD840799FDB3C89E5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionComponentMask_0'"
+      R=True
+      MaterialExpressionEditorX=-980
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=1B5963294FF211E2741D36B76ECB600E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionMultiply_1'")
+      MaterialExpressionEditorX=20
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=7FADC5314C8EED4751B13DAEBCDB9DDF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle'"
+   End Object
+   Begin Object Name="MF_NikkiSparkleEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MF_NikkiSparkleEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_3'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_4'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionInput_5'","/Script/Engine.MaterialExpressionTextureSample'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionTextureSample_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionSubtract_0'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MaterialExpressionFunctionOutput_0'"))
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_NikkiSparkle.MF_NikkiSparkle:MF_NikkiSparkleEditorOnlyData'"
+   StateId=5F2EB9E94BA82530E81CC7AF568E8434
+   CombinedInputTypes=31
+End Object

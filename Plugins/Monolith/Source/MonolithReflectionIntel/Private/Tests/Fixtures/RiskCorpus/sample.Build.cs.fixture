@@ -1,0 +1,45 @@
+// Fixture: Phase 2 module-dep-reality + conditional-gate test corpus.
+// SPDX-License-Identifier: MIT
+//
+// File extension is `.Build.cs.fixture` (NOT `.Build.cs`) so UnrealBuildTool's
+// recursive Build.cs discovery does NOT find it and try to compile a phantom
+// module from a directory that has no real source.
+//
+// This file is intentionally INCOMPLETE — it lists Core/CoreUObject/Engine but
+// NOT GameplayTags, even though the sibling sample_uses_FGameplayTag.cpp.fixture
+// uses FGameplayTag. The audit_module_dep_reality action should flag this as a
+// violation row when run against the project's real Build.cs / source tree —
+// the test asserts the parser captures the listed dep names AND does NOT
+// capture GameplayTags from this fixture, so the violation gate has a
+// non-trivial assertion.
+//
+// Also contains a conditional-gating probe: `bHasGameplayAbilities` (PascalCase
+// Build.cs probe). The companion .cpp.fixture file adds `#if WITH_GBA`.
+// FConditionalGateIndexer scans against the live project tree at runtime, not
+// against these fixtures (it filters on actual `.Build.cs` / `.cpp` extensions).
+// The fixture files here are loaded directly by automation tests via
+// FFileHelper::LoadFileToString — bypassing extension-based discovery.
+
+using UnrealBuildTool;
+
+public class SampleRiskFixture : ModuleRules
+{
+    public SampleRiskFixture(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PublicDependencyModuleNames.AddRange(new string[]
+        {
+            "Core",
+            "CoreUObject",
+            "Engine"
+        });
+
+        // Intentional probe — `bHasGameplayAbilities` Build.cs probe pattern.
+        bool bHasGameplayAbilities = false;
+        if (bHasGameplayAbilities)
+        {
+            PrivateDependencyModuleNames.Add("GameplayAbilities");
+        }
+    }
+}

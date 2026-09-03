@@ -1,0 +1,77 @@
+# Runner requirement: this job needs a self-hosted runner labeled
+# [self-hosted, Windows, UE58] -- a Windows machine with UE 5.8 installed
+# at UE_ROOT below, plus Python/ruff on PATH. If no matching runner is
+# registered under this repo, the job stays QUEUED forever rather than
+# failing outright. Check Settings > Actions > Runners first if a run
+# never starts.
+name: Unreal Build + Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Source/**'
+      - 'Plugins/**/Source/**'
+      - 'Content/Python/gmm/**'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  UE_ROOT: C:\Program Files\Epic Games\UE_5.8
+  PROJECT_PATH: ${{ github.workspace }}\BS_GodFile.uproject
+
+jobs:
+  build:
+    runs-on: [self-hosted, Windows, UE58]
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Pull LFS (build-critical only)
+        shell: powershell
+        run: |
+          git lfs pull --include="Content/TurnBasedJRPGTemplate/**,Content/MelodiaIntegration/**,Content/Melodia/**"
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "##[error]LFS pull failed"
+            exit $LASTEXITCODE
+          }
+
+      - name: Build Unreal Editor (development)
+        shell: powershell
+        run: |
+          & "$env:UE_ROOT\Engine\Build\BatchFiles\Build.bat" `
+            BS_GodFileEditor Win64 Development `
+            -Project="$env:PROJECT_PATH" `
+            -NoUBA -MaxParallelActions=4 -Wait -NoProfiling
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "##[error]Build failed"
+            exit $LASTEXITCODE
+          }
+
+      - name: Run Python unit tests
+        shell: powershell
+        working-directory: Content/Python
+        run: |
+          python -m pytest -v --tb=short
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "##[error]Python tests failed"
+            exit $LASTEXITCODE
+          }
+
+      - name: Ruff lint + format check
+        shell: powershell
+        run: |
+          ruff check Content/Python deploy Tools
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "##[error]Ruff lint failed"
+            exit $LASTEXITCODE
+          }
+          ruff format --check Content/Python deploy Tools
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "##[error]Ruff format check failed"
+            exit $LASTEXITCODE
+          }

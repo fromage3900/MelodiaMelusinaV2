@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "melodia_currency_registry.v1.schema.json",
+  "title": "Melodia currency registry export",
+  "description": "Validates specs/economy/melodia_currency_registry.v1.json, the text mirror of DA_MelodiaCurrencyRegistry. The DataAsset is canonical; this schema is what stops a bad row reaching Python, the wardrobe lint and CI without a running editor.",
+  "type": "object",
+  "required": ["schema", "registry_schema_version", "currencies"],
+  "properties": {
+    "schema": { "const": "melodia_currency_registry.v1" },
+    "generated_from": { "type": "string" },
+    "generator": { "type": "string" },
+    "authority_note": { "type": "string" },
+    "registry_schema_version": { "type": "integer", "minimum": 1 },
+    "kinds": { "type": "object" },
+    "currencies": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/currency" }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "currency": {
+      "type": "object",
+      "required": ["currency_id", "kind"],
+      "properties": {
+        "currency_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Wallet key. Balances, costs and save records are keyed by this.",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+        },
+        "display_name": { "type": "string" },
+        "description": { "type": "string" },
+        "kind": { "enum": ["Shard", "Premium", "Resource"] },
+        "default_value": { "type": "number", "minimum": 0 },
+        "max_value": { "type": "number", "minimum": 0 },
+        "refundable": { "type": "boolean" },
+        "counts_toward_total_collected": { "type": "boolean" },
+        "sort_order": { "type": "integer" },
+        "accent_color": { "type": "array", "items": { "type": "number" }, "minItems": 4, "maxItems": 4 },
+        "icon": { "type": "string" },
+        "material": { "type": "string" },
+        "has_legacy_element": { "type": "boolean" },
+        "legacy_element": {
+          "enum": ["Forte", "Tide", "Gale", "Stone", "Radiant", "Umbral", "Arcane"],
+          "description": "Compatibility bridge only. Ignored unless has_legacy_element is true."
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "description": "A Resource currency with no cap clamps to zero, so every grant is a silent no-op.",
+          "if": { "properties": { "kind": { "const": "Resource" } }, "required": ["kind"] },
+          "then": { "properties": { "max_value": { "type": "number", "exclusiveMinimum": 0 } }, "required": ["max_value"] }
+        },
+        {
+          "description": "max_value is only meaningful for Resource currencies; setting it elsewhere is ignored at runtime and misleads the reader.",
+          "if": { "properties": { "kind": { "enum": ["Shard", "Premium"] } }, "required": ["kind"] },
+          "then": { "properties": { "max_value": { "const": 0 } } }
+        }
+      ]
+    }
+  }
+}

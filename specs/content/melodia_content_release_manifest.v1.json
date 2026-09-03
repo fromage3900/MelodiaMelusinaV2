@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_release_manifest_contract",
+  "contract_id": "melodia_content_release_manifest",
+  "purpose": "Versioned lifecycle and cleanup seam for permanent, scheduled, recurring, and retired Melodia content packages.",
+  "required_manifest_fields": [
+    "ManifestId",
+    "DefinitionVersion",
+    "Availability",
+    "StartUtc",
+    "EndUtc",
+    "UnlockConditions",
+    "SupportedMaps",
+    "PackageRefs",
+    "RewardTable",
+    "ResetPolicy",
+    "PreloadBundle",
+    "CleanupPolicy",
+    "FallbackContentId",
+    "MigrationVersion",
+    "EvidenceManifest"
+  ],
+  "availability_values": [
+    "permanent",
+    "scheduled",
+    "recurring",
+    "rerun",
+    "retired"
+  ],
+  "schedule_rules": {
+    "clock": "UTC",
+    "start_and_end_required_for": ["scheduled", "recurring", "rerun"],
+    "permanent_requires_null_window": true,
+    "runtime_authority": "read_only_content_resolver_or_canonical_schedule_service",
+    "blueprints_must_not_own_schedule_state": true,
+    "offline_preview_must_accept_explicit_now_utc": true
+  },
+  "package_ref_fields": [
+    "PackageId",
+    "DefinitionVersion",
+    "DefinitionAsset",
+    "BlueprintAsset",
+    "FixtureSpec",
+    "RequiredReadiness"
+  ],
+  "reset_policy_values": [
+    "never",
+    "daily_utc",
+    "weekly_utc",
+    "on_phase_change",
+    "on_content_rerun"
+  ],
+  "cleanup_policy": {
+    "required_fields": [
+      "BundleId",
+      "RetireAfterUtc",
+      "KeepCanonicalState",
+      "DeleteOnlyWhenUnreferenced",
+      "FallbackContentId"
+    ],
+    "rules": [
+      "retirement must not erase canonical player state",
+      "cleanup is allowed only after package and bundle references are zero",
+      "a retired package must resolve to fallback content or an explicit unavailable state",
+      "content Blueprints never delete assets or mutate save files"
+    ]
+  },
+  "authority_rules": {
+    "definition": "versioned data assets and package JSON",
+    "schedule": "canonical resolver",
+    "rewards": "allowlisted canonical narrative or progression subsystem",
+    "persistence": "FMelodiaNarrativeRecord_and_canonical_save_contract",
+    "presentation": "package variant and fallback assets",
+    "forbidden": [
+      "hardcoded wall-clock checks scattered across Blueprint graphs",
+      "direct save-file mutation",
+      "event-specific GameMode or GameInstance authority",
+      "deleting a content bundle while a package reference remains",
+      "treating preview-only content as a runtime gameplay dependency"
+    ]
+  },
+  "lifecycle_states": [
+    "authored",
+    "contract_validated",
+    "staged",
+    "released",
+    "retired",
+    "cleaned"
+  ],
+  "required_evidence": [
+    "manifest_schema_validation",
+    "package_refs_resolve",
+    "schedule_boundary_tests_at_start_and_end",
+    "fallback_or_unavailable_state_is_observed",
+    "reset_policy_is_deterministic",
+    "cleanup_is_blocked_while_referenced",
+    "canonical_state_survives_retirement",
+    "fresh_evidence_envelope_records_manifest_and_definition_versions"
+  ],
+  "non_copy_boundary": [
+    "Use public live-ops patterns only for lifecycle, scheduling, fallback, preview, and cleanup design.",
+    "Do not copy Infinity Nikki monetization, pity, proprietary production assets, or proprietary runtime algorithms."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia Resonant World PCG Plan",
+  "type": "object",
+  "required": [
+    "format",
+    "adapter_version",
+    "world_seed",
+    "radius",
+    "chunks",
+    "hero_volume_specs",
+    "static_specs",
+    "ok"
+  ],
+  "properties": {
+    "format": {"const": "melodia_resonant_pcg_world_plan"},
+    "adapter_version": {"type": "string", "const": "resonant_world_pcg_adapter_v1"},
+    "world_seed": {"type": "integer"},
+    "radius": {"type": "integer", "minimum": 0},
+    "proof_level": {"type": "string", "pattern": "^/Game/"},
+    "graph_reuse": {"type": "boolean", "const": true},
+    "production_maps_touched": {"type": "boolean", "const": false},
+    "chunks": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "hero_volume_specs": {"type": "array", "items": {"type": "object"}},
+    "static_specs": {"type": "array", "items": {"type": "object"}},
+    "phrase_source": {"type": "object"},
+    "wardrobe_voicing": {"type": "object", "required": ["format", "request_id", "movement_id", "archetype_id", "does_not_grant_capability"]},
+    "magic_passage": {"type": "object", "required": ["format", "passage_id", "movement_id", "stage_count", "does_not_write_save"]},
+    "validation_errors": {"type": "array", "items": {"type": "string"}},
+    "ok": {"type": "boolean", "const": true}
+  },
+  "additionalProperties": true
+}

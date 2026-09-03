@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "created": "2026-08-19",
+  "description": "Controlled experiment spec for Nemotron vs Claude vs DeepSeek vs Qwen in OpenCode + Unreal MCP",
+  "audit_output_dir": "Saved/Audit/nemotron_harness_2026-08-19",
+  "constants": {
+    "opencode_config": ".opencode/opencode.jsonc",
+    "system_context": ["AGENTS.md", "CLAUDE.md"],
+    "mcp_primary": "monolith",
+    "mcp_url": "http://127.0.0.1:9316/mcp",
+    "ue_rule": "one editor instance; enable monolith only when port 9316 has single listener",
+    "generation": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "max_tokens": 32000
+    }
+  },
+  "models": [
+    {
+      "slot": "control",
+      "id": "anthropic/claude-sonnet-4-20250514",
+      "provider": "anthropic",
+      "notes": "Primary baseline"
+    },
+    {
+      "slot": "nemotron_super",
+      "id": "nvidia/nemotron-3-super-120b-a12b",
+      "provider": "openrouter",
+      "notes": "Primary Nemotron candidate; do not use NIM until smoke pass"
+    },
+    {
+      "slot": "nemotron_ultra",
+      "id": "nvidia/nemotron-3-ultra-550b-a55b",
+      "provider": "openrouter",
+      "notes": "OpenRouter only; NIM hangs in OpenCode #34026"
+    },
+    {
+      "slot": "deepseek",
+      "id": "deepseek/deepseek-chat",
+      "provider": "openrouter",
+      "notes": "Or direct DeepSeek API if configured"
+    },
+    {
+      "slot": "qwen_coder",
+      "id": "qwen/qwen3-coder",
+      "provider": "openrouter",
+      "notes": "Watch for empty tool name loops #33618 on Plus/Max variants"
+    },
+    {
+      "slot": "nemotron_lightning",
+      "id": "nemotron-3.5-lightning",
+      "provider": "opencode_zen",
+      "notes": "Optional; added to Zen 2026-08-11"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T1",
+      "prompt": "Using Monolith blueprint_query, read BP_BattleUI's OnKeyDown graph wiring. Report lane-to-key bindings as JSON. Read-only; do not mutate.",
+      "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_BattleUI",
+      "requires_ue": true,
+      "phase_tonight": 2
+    },
+    {
+      "id": "T2",
+      "prompt": "Wire a call site for RestorePartyAfterBattle on BP_MelodiaJRPGGameMode. Follow Monolith Recipe 15: export_graph, fingerprint before, compile, assert_graph_matches, save. Stop on not clean or matched:false.",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode",
+      "requires_ue": true,
+      "phase_tonight": 3,
+      "risk": "write"
+    },
+    {
+      "id": "T3",
+      "prompt": "Find all callers of HandleQuillNotification in C++ and Blueprint. Trace paths that reach it from QuillScript notification dispatch. Report as structured list.",
+      "requires_ue": false,
+      "phase_tonight": null
+    },
+    {
+      "id": "T4",
+      "prompt": "Export DA_MelodiaIntegrationConfig CDO properties via Monolith get_cdo_properties. List TravelLevelIds. Cross-check each ID against AGENTS.md allowlist section. Report discrepancies only.",
+      "asset_path": "/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig",
+      "requires_ue": true,
+      "phase_tonight": 2
+    },
+    {
+      "id": "T5",
+      "prompt": "Run: python Tools/bp_sweep.py --scope Content/MelodiaIntegration/Blueprints (or documented scoped flag). Summarize defect classes found in one paragraph. Quote tool output; do not invent findings.",
+      "requires_ue": false,
+      "phase_tonight": 2
+    },
+    {
+      "id": "T6",
+      "prompt": "Three-step on a named Blueprint property: locate asset, read property via Monolith, set new value, re-read to verify. Owner must name target property before run.",
+      "requires_ue": true,
+      "phase_tonight": null,
+      "risk": "write"
+    },
+    {
+      "id": "T8",
+      "prompt": "Same read-only UE inspection task on two MCP surfaces in SEPARATE OpenCode sessions (restart between): (M) Monolith only vs (C) Claireon. Suggested task: T1 or 'count persistent actors in L_KaleidoNave'. Record input tokens at first tool-bearing request, tokens per turn, tool-call count, wall time, incorrect tool selections.",
+      "requires_ue": true,
+      "phase_tonight": "claireon_session",
+      "surfaces": ["monolith", "claireon"],
+      "rule": "alternate sessions not simultaneous"
+    }
+  ],
+  "metrics": [
+    "tool_call_accuracy",
+    "malformed_calls",
+    "unnecessary_calls",
+    "planning_quality_1_5",
+    "context_retention",
+    "goal_drift",
+    "compile_errors",
+    "recovery_behavior",
+    "task_completed",
+    "input_tokens",
+    "output_tokens",
+    "wall_time_seconds",
+    "human_interventions"
+  ],
+  "mcp_surfaces_experiment_6": [
+    {
+      "id": "A",
+      "name": "epic_native_ue58_mcp",
+      "approx_tool_count": 150,
+      "status": "not_installed"
+    },
+    {
+      "id": "B",
+      "name": "claireon",
+      "approx_tool_count": 5,
+      "status": "pending_worktree_build"
+    },
+    {
+      "id": "C_monolith_only",
+      "name": "monolith",
+      "approx_tool_count": 116,
+      "status": "available"
+    },
+    {
+      "id": "C_multi",
+      "name": "monolith_plus_vibeue",
+      "approx_tool_count": 266,
+      "status": "available",
+      "notes": "Forbidden parallel writes per AGENTS.md; read-only comparison only"
+    }
+  ],
+  "decision_thresholds": {
+    "adopt_super_as_harness": {
+      "min_tool_call_accuracy": 0.9,
+      "min_cost_savings_vs_claude": 0.3,
+      "max_premature_stop_rate": 0.0,
+      "required_tasks_pass": ["T1", "T4", "T5"]
+    },
+    "background_agent_only": {
+      "read_tasks_pass": ["T1", "T4", "T5"],
+      "write_task_t2_requires_intervention": true,
+      "min_handoff_accuracy": 0.95
+    }
+  }
+}

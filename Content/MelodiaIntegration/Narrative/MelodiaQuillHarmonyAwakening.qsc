@@ -1,0 +1,38 @@
+@ Start
+
+? if: {quest.harmony_awakening.completed} == on
+
+  - Petal Priestess
+    The morning cadence is clear now. Your harmony echoes across the entire nave.
+
+? else:
+
+  - Petal Priestess
+    Melusina, the dawn resonance is awaiting your voice.
+
+  - Sir Melodious
+    Remember, young melody-weaver: every note carries its own weight. Let it breathe.
+
+  * Answer with the dawn melody. | -> Harmonize
+  * Listen quietly to the resonance first. | -> Listen
+
+? endif
+
+$ End
+
+<@> Harmonize
+
+- Melusina
+  I hear the cadence. I will harmonize with the morning.
+
+$ Notify melodia:stat:intent.quest.harmony_awakening:melodia_harmony:2
+$ Notify melodia:questcomplete:quest.harmony_awakening:quest.harmony_awakening.completed:reward.harmony_awakening:intent.quest.harmony_awakening.complete:checkpoint.quest.harmony_awakening.complete
+$ End
+
+<@> Listen
+
+- Melusina
+  I will listen first. The answer can come when the echo has made room for it.
+
+$ Notify melodia:quest:quest.harmony_awakening
+$ End

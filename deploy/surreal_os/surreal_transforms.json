@@ -1,0 +1,19 @@
+{
+  "transforms": {
+    "axis_compression": {
+      "type": "graph_wrap",
+      "applies_to": ["ZEN_SHRINE_AXIS", "ZEN_ROJI_PATH", "ZEN_SAKURA_WALK", "ZEN_KARESANSHUI_WALK", "ZEN_STREAM_GARDEN", "ZEN_KAIRO_ENCLOSURE", "BRUTALIST_PLAZA"],
+      "params": {"axis": "Z", "scale_from_genome": "verticality", "scale_min": 0.92, "scale_max": 1.12}
+    },
+    "vertical_stretch": {
+      "type": "graph_wrap",
+      "applies_to": ["ZEN_SHRINE_AXIS", "ZEN_PAGODA_SPIRE", "BYZANTINE_BASILICA", "GOTHIC_NAVE_CROSSING", "ART_DECO"],
+      "params": {"axis": "Y", "scale_from_genome": "verticality", "scale_min": 1.0, "scale_max": 1.28}
+    },
+    "recursive_interior": {
+      "type": "modifier",
+      "applies_to": ["CLOISTER", "GOTHIC_CHAPTER_HOUSE", "SCIFI_AIRLOCK", "SCI_FI_DECK", "ROMANESQUE_CLOISTER", "VENETIAN_CANAL", "ROMANESQUE_APSE", "SCI_FI_DECK_EXPANSION", "SCI_FI_INDUSTRIAL_YARD", "ASIAN_CITY", "ASIAN_CITY_RECURSIVE", "tower_generator", "corridor_generator", "BAROQUE_CHURCH"],
+      "params": {"depth": 3, "scale_decay": 0.85}
+    }
+  }
+}

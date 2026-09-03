@@ -1,0 +1,751 @@
+Begin Object Class=/Script/Engine.Material Name="M_Master_Impressionist_Toon_Landscape" ExportPath="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   Begin Object Class=/Script/Engine.MaterialExpressionVertexNormalWS Name="MaterialExpressionVertexNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVertexNormalWS_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_4" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTime Name="MaterialExpressionTime_0" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionTime_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubstrateToonBSDF Name="MaterialExpressionSubstrateToonBSDF_0" ExportPath="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSubstrateToonBSDF_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_2" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_1" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPixelNormalWS Name="MaterialExpressionPixelNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionPixelNormalWS_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionOneMinus Name="MaterialExpressionOneMinus_0" ExportPath="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionOneMinus_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_16'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_15'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_14'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_13'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_12'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_10'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_4" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_3" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_2" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_0'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLandscapeLayerCoords_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDotProduct Name="MaterialExpressionDotProduct_1" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionDotProduct_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDotProduct Name="MaterialExpressionDotProduct_0" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionDotProduct_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCosine Name="MaterialExpressionCosine_0" ExportPath="/Script/Engine.MaterialExpressionCosine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionCosine_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_1" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant3Vector_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant3Vector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionComponentMask_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_5" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_4" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_3" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_2" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_1" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAbs_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAbs Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAbs_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialEditorOnlyData Name="M_Master_Impressionist_Toon_LandscapeEditorOnlyData" ExportPath="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:M_Master_Impressionist_Toon_LandscapeEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionVertexNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVertexNormalWS_0'"
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=820
+      MaterialExpressionGuid=F761000C4DC77F1BBDF2D68A60DA22E9
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_4" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_4'"
+      DefaultValue=(R=0.050000,G=0.080000,B=0.150000,A=1.000000)
+      ParameterName="InkColor"
+      ExpressionGUID=111FA7134BAE02D8FDD44C8671D434F7
+      Group="Surface"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=1520
+      MaterialExpressionGuid=1E65262347CED86F1A8FC59E6350B012
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_3" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_3'"
+      DefaultValue=(R=1.000000,G=0.300000,B=0.000000,A=0.000000)
+      ParameterName="BrushDirection"
+      ExpressionGUID=03B307D942236D68F6B20F8280CF6D76
+      Group="Brush"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=39FB46C748AABB35EFD53F90EB63D8DC
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_2" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_2'"
+      DefaultValue=(R=0.720000,G=0.820000,B=0.450000,A=1.000000)
+      ParameterName="ColorRampHigh"
+      ExpressionGUID=9CA4B7C94DD62DD27670839A2E0BDD8F
+      Group="Palette"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=ACDBDD364F1B07EC52AE14BE5CD639AE
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_1" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_1'"
+      DefaultValue=(R=0.350000,G=0.520000,B=0.220000,A=1.000000)
+      ParameterName="ColorRampMid"
+      ExpressionGUID=781738B645FE346E7C9D1E9B3E53B10C
+      Group="Palette"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=-40
+      MaterialExpressionGuid=9BA2ACF444C6871D4DB0E39B6BFED7D6
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_0'"
+      DefaultValue=(R=0.120000,G=0.180000,B=0.080000,A=1.000000)
+      ParameterName="ColorRampLow"
+      ExpressionGUID=E1CD2559452A98582527798114D5E5BA
+      Group="Palette"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=-200
+      MaterialExpressionGuid=2E66551C40AE48B494FC99A53685BA19
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionTime_0" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionTime_0'"
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=96C60DC447B386C327A4D7AFA9399346
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSubstrateToonBSDF_0" ExportPath="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSubstrateToonBSDF_0'"
+      BaseColor=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_2'")
+      Roughness=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_4'")
+      Normal=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_4'")
+      ToonProfile="/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Dry.TP_Impressionist_Dry'"
+      MaterialExpressionEditorX=1040
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=582AD3F240A7D755DF84ADA42CECBF8C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_2" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_1'")
+      MaterialExpressionEditorX=-200
+      MaterialExpressionEditorY=680
+      MaterialExpressionGuid=0F737419459E0B8669D0E6AA48E75443
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_1" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=380
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=0DF42C9C4FC1E652070AD592A2FB40BB
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_0'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=14BA1DF14A782FDA779347AD709A0956
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_9" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_9'"
+      DefaultValue=0.500000
+      ParameterName="PoolingStrength"
+      ExpressionGUID=22EA0C564239843703C2908A563D60CE
+      Group="Surface"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=1640
+      MaterialExpressionGuid=06CF7FE04B305E83BC3EC286612A3146
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_8'"
+      ParameterName="InkIntensity"
+      ExpressionGUID=7E4B49B941F312D681505BBF08CC9175
+      Group="Surface"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=1400
+      MaterialExpressionGuid=DC071C8D48C9836786D48EA3CE488DB5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_7'"
+      DefaultValue=0.350000
+      ParameterName="WetRoughness"
+      ExpressionGUID=BE1DDA4D47697BAE9BE4328FC53660DA
+      Group="Surface"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=1280
+      MaterialExpressionGuid=0DBDB4BC4E2A2398B5951392C2EF9328
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_6'"
+      DefaultValue=0.780000
+      ParameterName="DryRoughness"
+      ExpressionGUID=209E894D4E13972DC93247870E499157
+      Group="Surface"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=1160
+      MaterialExpressionGuid=1307F5134A4EDD784B9E42A8250A3CBB
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_5'"
+      ParameterName="Wetness"
+      ExpressionGUID=729A7731482D676F57551D8E04F25086
+      Group="Surface"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=1040
+      MaterialExpressionGuid=81AD20354EC0F80C685402BC98D95763
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_4'"
+      DefaultValue=1.500000
+      ParameterName="NormalStrength"
+      ExpressionGUID=96B379C049B942126763CDBBCE86CA83
+      Group="Impasto"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=920
+      MaterialExpressionGuid=0AB3D8444BE2B8D877880288B98CE284
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_3'"
+      DefaultValue=0.025000
+      ParameterName="ImpastoHeight"
+      ExpressionGUID=D21D36554BD24EBDE450E49409D8828B
+      Group="Impasto"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=800
+      MaterialExpressionGuid=B81F498641A59C802C85FDADDC39AEBD
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_2'"
+      DefaultValue=0.350000
+      ParameterName="ImpastoStrength"
+      ExpressionGUID=9D3B56C444CC944437DE6DBE16FF6000
+      Group="Impasto"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=680
+      MaterialExpressionGuid=95352111475DA6095D4A8BB0EAE98011
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_15'"
+      DefaultValue=0.300000
+      ParameterName="SmearStrength"
+      ExpressionGUID=66BB27424B495E0E44261CAE170FC7C2
+      Group="Animation"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=2360
+      MaterialExpressionGuid=9BA7FD5B4B1EF127C402F598C0C152AD
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_14" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_14'"
+      DefaultValue=1.500000
+      ParameterName="NoiseScale"
+      ExpressionGUID=8FE1E6A446571851513826B582D9661F
+      Group="Animation"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=2240
+      MaterialExpressionGuid=5CAB02954790452A525162AB1455B29A
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_13" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_13'"
+      DefaultValue=0.150000
+      ParameterName="WindSpeed"
+      ExpressionGUID=E7B4DBA1485F101B07E6399C8ACB65D7
+      Group="Animation"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=2120
+      MaterialExpressionGuid=D40B3E3C47F8E0BFE1A197AACEFD0E41
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_12" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_12'"
+      DefaultValue=0.120000
+      ParameterName="TemporalStrength"
+      ExpressionGUID=7AEA2284416D183F653EBFA4EE4C4C54
+      Group="Animation"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=2000
+      MaterialExpressionGuid=D1EE302347FB043365D48C8A7DFED720
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_11" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_11'"
+      DefaultValue=1.000000
+      ParameterName="UVScale"
+      ExpressionGUID=39A347854A619FC86701798B1CE65D29
+      Group="UV"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=1880
+      MaterialExpressionGuid=F8C837AF497F6CF3559AA6A4FC617D2A
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_10" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_10'"
+      ParameterName="BoilIntensity"
+      ExpressionGUID=38A8AB2E4D2A2A8C20E9E4897896747D
+      Group="Animation"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=1760
+      MaterialExpressionGuid=AF72A7F34B860BBA6F19EF819EC8B581
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_1'"
+      DefaultValue=0.550000
+      ParameterName="StrokeStrength"
+      ExpressionGUID=F75585644DBE9F0DEE8B7EAAC1E5AC55
+      Group="Brush"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=9CABE21A4E6AF0EA2175CCA9BA333BF2
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_0'"
+      DefaultValue=0.045000
+      ParameterName="BrushScale"
+      ExpressionGUID=B6DE1FC143DEC2A94A130F8022DD2591
+      Group="Brush"
+      MaterialExpressionEditorX=-1800
+      MaterialExpressionEditorY=280
+      MaterialExpressionGuid=90A595FB47B0F868A2294A9C34622F17
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionPixelNormalWS_0" ExportPath="/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionPixelNormalWS_0'"
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=1040
+      MaterialExpressionGuid=51C3570A4A76A30176FF79994E5C4F99
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionOneMinus_0" ExportPath="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionOneMinus_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_5'")
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=720
+      MaterialExpressionGuid=3B69C6EB4C99B94C8AA66AA7BEBD1592
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_9" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_9'"
+      A=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_12'")
+      MaterialExpressionEditorY=680
+      MaterialExpressionGuid=0A50EF9B4D66BA68A38D8BAA51408DEA
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_8'"
+      A=(Expression="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionDotProduct_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_14'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=6D40B7CD4D8EF38AC85DD38C60EEF206
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_7'"
+      A=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_6'")
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=E58453C44B73279316900CB703A69BAE
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_12'")
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=41AFB54845FD2EDA4622D285161BFEA6
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_1'")
+      MaterialExpressionEditorX=-20
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=E094A86D43A89736665EA7AF8D8C6D9C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAbs_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAbs_1'")
+      MaterialExpressionEditorX=-200
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=2FAEC0A44F3871A8D546D18DCB6D71B2
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant_0'")
+      MaterialExpressionEditorX=-740
+      MaterialExpressionEditorY=620
+      MaterialExpressionGuid=3349FC5D4837B50161F764ACA3CFF7D5
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionTime_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_13'")
+      MaterialExpressionEditorX=-920
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=5E000EEB410D8233288FFA9B9A392F54
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_18'"
+      A=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_15'")
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=900
+      MaterialExpressionGuid=D9F0B5A244D2045B545B45BFE350D683
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_17'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_13'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_4'")
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=900
+      MaterialExpressionGuid=C04EA5E64CB3F2914DA6E8B39BBDC62E
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_16" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_16'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_9'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant_1'")
+      MaterialExpressionEditorX=960
+      MaterialExpressionEditorY=1000
+      MaterialExpressionGuid=074F70134F9BD1F530BD8C94980FD2D3
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_15'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_14'")
+      B=(Expression="/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVertexNormalWS_0'")
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=780
+      MaterialExpressionGuid=AD9BEB3048119E5EC0AC608DB5172BF2
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_14'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_13'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_3'")
+      MaterialExpressionEditorX=380
+      MaterialExpressionEditorY=760
+      MaterialExpressionGuid=7E05B6BE4121800D243AF8A773974CC2
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_13'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=760
+      MaterialExpressionGuid=E88266E7405EDCAB596E0FB78141279D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_12" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_12'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_11'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_9'")
+      MaterialExpressionEditorX=720
+      MaterialExpressionEditorY=740
+      MaterialExpressionGuid=843DBFE14636CC61F35C729905B39307
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_11" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_11'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_10'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_8'")
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=740
+      MaterialExpressionGuid=3619F7084052C2F65227B6810B8FA865
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_10" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_10'"
+      A=(Expression="/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionOneMinus_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_5'")
+      MaterialExpressionEditorX=380
+      MaterialExpressionEditorY=740
+      MaterialExpressionGuid=3F334476455F3F695988AC9A2E41098F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionDotProduct_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionEditorX=-920
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=1DB6E405492DE2025A63FDA420CDDE4B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLandscapeLayerCoords_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_11'")
+      MaterialExpressionEditorX=-1180
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=DAC9930E4ACA6712EF2E9C9F82EF5A7B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_4" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant3Vector_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionPixelNormalWS_0'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_5'")
+      MaterialExpressionEditorX=1140
+      MaterialExpressionEditorY=960
+      MaterialExpressionGuid=67EFD384436E03E70A7B41858742AB39
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_3" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_6'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_7'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_5'")
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=980
+      MaterialExpressionGuid=7A3836404C243B19896C4999CC705FC0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_2" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_4'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_12'")
+      MaterialExpressionEditorX=960
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=BDE2FB23432303AE14A523BAAF76BD53
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_5'")
+      MaterialExpressionEditorX=380
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=C387CE4B4FB7532C7C73BB95C965E67F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_5'")
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=FB2EF9C44AF7CFD04F98D09E2137DD19
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLandscapeLayerCoords_0'"
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=C4889835439BEA246CFFB9AA1AC20967
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionDotProduct_1" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionDotProduct_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionComponentMask_1'")
+      MaterialExpressionEditorX=-740
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=6768822248DEFB848BBE9B802240A917
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionDotProduct_0" ExportPath="/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionDotProduct_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionComponentMask_0'")
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=ECEB87114A95EDDBCF3770B2D9623310
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionCosine_0" ExportPath="/Script/Engine.MaterialExpressionCosine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionCosine_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_3'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionEditorY=620
+      MaterialExpressionGuid=6B212303495A18D0AD4969A0D7350A91
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_1" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant3Vector_1'"
+      Constant=(R=0.000000,G=0.000000,B=1.000000,A=0.000000)
+      MaterialExpressionEditorX=560
+      MaterialExpressionEditorY=1160
+      MaterialExpressionGuid=3A2CD99244D3CC494B9149AAA32079F1
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant3Vector_0'"
+      Constant=(R=0.700000,G=1.300000,B=0.000000,A=0.000000)
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=720
+      MaterialExpressionGuid=A520D56E45D99A7359439BA549A78F06
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant_1'"
+      R=0.100000
+      MaterialExpressionEditorX=960
+      MaterialExpressionEditorY=1080
+      MaterialExpressionGuid=194678204FCBF8A405CB1E857632093D
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant_0'"
+      R=1.300000
+      MaterialExpressionEditorX=-920
+      MaterialExpressionEditorY=680
+      MaterialExpressionGuid=2E532920488F3B685351CE8351C7EA90
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionComponentMask_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant3Vector_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-920
+      MaterialExpressionEditorY=720
+      MaterialExpressionGuid=F01805CF4D23ACEFE12B36B3DB6DA130
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionComponentMask_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_3'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=520
+      MaterialExpressionGuid=FA7FAB7B4F9DAB85FC9BEF9190E20252
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_5" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_17'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_18'")
+      MaterialExpressionEditorX=960
+      MaterialExpressionEditorY=900
+      MaterialExpressionGuid=537474BF4992927F1C18C6BF370D7CAF
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_4" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_3'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_16'")
+      MaterialExpressionEditorX=1140
+      MaterialExpressionEditorY=980
+      MaterialExpressionGuid=249A595547336C6EDB521BA3B53580AB
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_3" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_9'")
+      MaterialExpressionEditorX=960
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=6042BB874F07E3834D0674A9EB495E01
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_2" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_7'")
+      MaterialExpressionEditorX=760
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=563705BB4427C4DAAE5641AF0F131B49
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_8'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=680
+      MaterialExpressionGuid=FB369B8A43B16216B26501B4B2A8B4D0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_2'")
+      MaterialExpressionEditorX=-740
+      MaterialExpressionEditorY=460
+      MaterialExpressionGuid=310F01A54DF463ECDE0AC6A3B348E5E1
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_1" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAbs_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionCosine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionCosine_0'")
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=620
+      MaterialExpressionGuid=10628C0D4D52EB01995C0DAB84247EC0
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="MaterialExpressionAbs_0" ExportPath="/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAbs_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_0'")
+      MaterialExpressionEditorX=-380
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=F4BAA782472083054FB08C822CEBBAB8
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape'"
+   End Object
+   Begin Object Name="M_Master_Impressionist_Toon_LandscapeEditorOnlyData" ExportPath="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:M_Master_Impressionist_Toon_LandscapeEditorOnlyData'"
+      WorldPositionOffset=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_15'")
+      FrontMaterial=(Expression="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSubstrateToonBSDF_0'")
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_0'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_1'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVectorParameter_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_9'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_10'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_11'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_12'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_13'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_14'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionScalarParameter_15'","/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLandscapeLayerCoords_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionDotProduct_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionTime_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_0'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAbs_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant_0'","/Script/Engine.MaterialExpressionCosine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionCosine_0'","/Script/Engine.MaterialExpressionAbs'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAbs_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_5'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_6'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_7'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant3Vector_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionComponentMask_1'","/Script/Engine.MaterialExpressionDotProduct'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionDotProduct_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_8'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSine_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_9'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_2'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_3'","/Script/Engine.MaterialExpressionOneMinus'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionOneMinus_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_10'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_11'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_12'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_13'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_14'","/Script/Engine.MaterialExpressionVertexNormalWS'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionVertexNormalWS_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_15'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_16'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant_1'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_4'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_17'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionMultiply_18'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionAdd_5'","/Script/Engine.MaterialExpressionPixelNormalWS'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionPixelNormalWS_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionLinearInterpolate_4'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionConstant3Vector_1'","/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:MaterialExpressionSubstrateToonBSDF_0'"))
+   End Object
+   StateId=A4779A704EC7CA30216224BAC1BE72F3
+   EditorOnlyData="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Impressionist/Masters/M_Master_Impressionist_Toon_Landscape.M_Master_Impressionist_Toon_Landscape:M_Master_Impressionist_Toon_LandscapeEditorOnlyData'"
+   ToonProfiles(0)="/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Dry.TP_Impressionist_Dry'"
+   LightingGuid=932A4FA2482DABD7E03420A3258BD05A
+End Object

@@ -1,0 +1,45 @@
+# Pre-commit configuration for Melodia Studio / BS_GodFile
+# Install: pip install pre-commit && pre-commit install --config .pre-commit-config.yaml
+# Updated 2026-08-07 as part of project health gate (Scope C).
+# Hooks run via git hooks AND CI (see .github/workflows/unreal_build.yml).
+
+repos:
+  # --- Ruff: Python lint + format ---
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
+
+  # --- Trufflehog: secret scanning ---
+  - repo: https://github.com/trufflesecurity/trufflehog
+    rev: v3.72.6
+    hooks:
+      - id: trufflehog
+        args: [--only-verified, --no-update]
+        # Scan all files; base64 and hex decoders enabled by default.
+        # Exclude .mcp.json explicitly — it is gitignored, so it shouldn't reach hooks,
+        # but belt-and-suspenders.
+
+  # --- markdownlint-cli2: Markdown style ---
+  - repo: https://github.com/igorshubovych/markdownlint-cli2
+    rev: v0.13.0
+    hooks:
+      - id: markdownlint-cli2
+        # Project-specific rules (see markdownlint section in this config).
+        # Excludes docs in .gitignore'd paths and archived historical docs.
+
+  # --- codespell: spelling ---
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args: [--ignore-words-list=Ue,NDKB,ue,an,ue5,ue4,ue6,ue7,ue8,ue9,ue10,ue11,ue12,ue13,ue14,ue15,ue16,ue17,ue18,ue19,ue20,ue21,ue22,ue23,ue24,ue25,ue26,ue27,ue28,ue29,ue30,ue31,ue32,ue33,ue34,ue35,ue36,ue37,ue38,ue39,ue40,ue41,ue42,ue43,ue44,ue45,ue46,ue47,ue48,ue49,ue50]
+
+  # --- lychee: dead-link checker ---
+  - repo: https://github.com/lycheeverse/lychee
+    rev: v0.13.0
+    hooks:
+      - id: lychee
+        args: [--verbose, --no-ssl, --exclude-path, "node_modules/**/*.md"]

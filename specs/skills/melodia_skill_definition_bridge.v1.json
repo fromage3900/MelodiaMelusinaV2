@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_skill_definition_bridge_contract",
+  "contract_id": "melodia_skill_definition_bridge",
+  "status": "design_gate_before_native_refactor",
+  "purpose": "Remove the split between rhythm skill definitions and stock battle recipes without inventing gameplay semantics or allowing double resource spend.",
+  "recommended_architecture": {
+    "canonical_definition_authority": "UMelodiaSongSkillDefinition_in_MelodiaCore",
+    "migration_source_definition": "UMelodiaRhythmSkillDefinition_in_BS_GodFile",
+    "canonical_command_authority": "UMelodiaBattleSession",
+    "rhythm_result_authority": "UMelodiaRhythmCombatSubsystem",
+    "resource_authority": "UMelodiaCombatStateComponent_for_battle_skill_points",
+    "secondary_wallet_rule": "UMelodiaTokenWalletSubsystem_mana_is_separate_and_must_be_explicitly_declared_by_a_content_definition; it is never implicitly charged by battle skill execution",
+    "reason": "The stock battle execution path already resolves FMelodiaSongSkillRecipe, while the project module cannot be imported by MelodiaCore. A plugin-owned definition can serve both paths without a reverse module dependency."
+  },
+  "field_mapping_policy": {
+    "direct_identity": [
+      {"canonical": "SkillId", "rhythm_source": "SkillId", "stock_view": "SkillId", "rule": "required_and_identical"},
+      {"canonical": "DisplayName", "rhythm_source": "DisplayName", "stock_view": "DisplayName", "rule": "required_and_identical"},
+      {"canonical": "Description", "rhythm_source": "Description", "stock_view": "Description", "rule": "required_and_identical"},
+      {"canonical": "PatternAsset", "rhythm_source": "PatternAsset", "stock_view": "ChartNotes_or_pattern_loader", "rule": "must_resolve_or_fail_closed"},
+      {"canonical": "TargetMode", "rhythm_source": "TargetMode", "stock_view": "battle_session_target_validation", "rule": "validated_by_stock_authority"},
+      {"canonical": "TargetCount", "rhythm_source": "TargetCount", "stock_view": "battle_session_target_validation", "rule": "validated_by_stock_authority"},
+      {"canonical": "SkillPointCost", "rhythm_source": "SPCost", "stock_view": "SPCostOverride", "rule": "one_explicit_cost_source"},
+      {"canonical": "PowerScalar", "rhythm_source": "BaseMagnitude_and_grade_result", "stock_view": "PowerScalar", "rule": "result_mapping_must_be_tested"}
+    ],
+    "separate_semantics_no_enum_coercion": [
+      {"canonical": "EffectType", "rhythm_source": "EffectType", "stock_view": "none_direct", "rule": "never_derive_from_Element_or_Niche"},
+      {"canonical": "Element", "rhythm_source": "none_current", "stock_view": "Element", "rule": "must_be_authored_or_defaulted_by_canonical_definition"},
+      {"canonical": "Niche", "rhythm_source": "Niche", "stock_view": "none_direct", "rule": "presentation/balance_hint_only"},
+      {"canonical": "CooldownPolicy", "rhythm_source": "none_current", "stock_view": "battle_session_cooldown_authority", "rule": "native_authority_required"},
+      {"canonical": "ManaCost", "rhythm_source": "token_wallet_mana", "stock_view": "none", "rule": "separate_explicit_cost_only_never_implicit"}
+    ],
+    "chart_precedence": {
+      "preferred": "ChartNotes",
+      "legacy_fallback": "NotePitches_and_NoteDurations_only_when_chart_notes_are_empty_and_lengths_match",
+      "lane_rule": "use_authored_FMelodiaChartNote.LaneIndex_0_to_3",
+      "forbidden_derivations": ["pitch_modulo_four_lane_assignment", "implicit_chart_generation_from_skill_id"]
+    }
+  },
+  "current_split": {
+    "battle_and_stock_execution": "FMelodiaSongSkillRecipe via UMelodiaSongSkillLibrary",
+    "rhythm_combat": "UMelodiaRhythmSkillDefinition via UMelodiaRhythmCombatSubsystem",
+    "unsafe_shortcut": "copying or partially projecting one struct into the other at subsystem startup"
+  },
+  "required_canonical_fields": {
+    "identity": ["SkillId", "DisplayName", "Description", "DefinitionVersion"],
+    "rhythm": ["PatternAsset", "TempoBPM", "IntroBeats", "ActiveBeats", "OutroBeats", "ChartNotes", "NotePitches", "NoteDurations"],
+    "combat": ["EffectType", "Element", "TargetMode", "TargetCount", "BaseMagnitude", "Duration", "PowerScalar"],
+    "cost_and_progression": ["SkillPointCost", "UnlockConditions", "CooldownPolicy"],
+    "presentation": ["Instrument", "Materials", "LaneColor", "CrestTheme", "PresentationVariantSet"]
+  },
+  "request_protocol": {
+    "request_id": "stable FGuid per battle command; replay of an accepted id returns the original result and never spends again",
+    "submit": "UMelodiaBattleSession validates phase, target, cooldown, and skill-point availability before starting rhythm presentation",
+    "grade": "UMelodiaRhythmCombatSubsystem owns timing and produces one typed result for the request id",
+    "resolve": "UMelodiaBattleSession consumes the typed result, spends skill points exactly once, and invokes stock effect resolution",
+    "cancel": "interrupted, invalidated, or reset request has no spend and no pending effect",
+    "blueprint_rule": "BP_MelodiaSkill_Base may request, present, and react to the result; it may not spend resources or apply effects"
+  },
+  "migration_sequence": [
+    "Add the plugin-owned canonical definition and preserve stable SkillId values.",
+    "Add an explicit loader/bridge that maps every canonical field, with fail-closed validation for missing pattern, effect, target, or cost data.",
+    "Refactor UMelodiaRhythmCombatSubsystem and UMelodiaRhythmExecutionComponent to consume the canonical definition.",
+    "Move battle-session lookup and stock execution to the same canonical definition path.",
+    "Remove implicit TrySpendMana from battle skill completion unless a definition explicitly declares a separate mana cost.",
+    "Add request-id, cooldown, cost-result, duplicate, cancel, and reset tests before authoring BP_MelodiaSkill_Base.",
+    "Promote the first Skill fixture only after live compile, map, PIE, failure, and idempotency evidence."
+  ],
+  "forbidden_until_complete": [
+    "guessed cache adapter from UMelodiaRhythmSkillDefinition into FMelodiaSongSkillRecipe",
+    "duplicated SkillId definitions with independently authored costs",
+    "implicit double charge to combat skill points and token-wallet mana",
+    "Blueprint-owned damage, healing, SP, mana, cooldown, or save mutation"
+  ],
+  "offline_validation_invariants": [
+    "canonical definition class is plugin-owned and does not duplicate the current game-module class name",
+    "every direct identity mapping is present exactly once",
+    "EffectType, Element, Niche, CooldownPolicy, and ManaCost are not silently coerced into one another",
+    "ChartNotes use authored lanes in the inclusive range 0..3 and positive durations",
+    "legacy pitch/duration arrays are accepted only as a matched-length fallback",
+    "one explicit skill-point cost source exists and mana is never charged implicitly",
+    "request-id replay, cancellation, and reset semantics remain declared"
+  ],
+  "acceptance_evidence": [
+    "one SkillId resolves to one canonical definition in both battle and rhythm paths",
+    "one accepted request has one request id, one cost result, one pending effect, and one stock resolution",
+    "duplicate request is replay-safe",
+    "cancel and reset leave no resource or pending-effect side effect",
+    "offline schema validator and native unit tests pass",
+    "live BP fixture remains L1 until compile/map/PIE evidence exists"
+  ]
+}

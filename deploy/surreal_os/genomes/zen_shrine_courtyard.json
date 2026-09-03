@@ -1,0 +1,34 @@
+{
+  "id": "zen_shrine_courtyard",
+  "family": "Zen",
+  "verticality": 0.8,
+  "symmetry": 0.75,
+  "ornament_density": 0.55,
+  "structural_logic": 0.82,
+  "organic_growth": 0.5,
+  "cosmic_influence": 0.18,
+  "sacred_sequence": [
+    "torii_frame",
+    "karesansui_field",
+    "haiden_platform",
+    "honden_sanctuary"
+  ],
+  "compose_style": "ZEN_SHRINE",
+  "default_graph": "ZEN_SHRINE_COURTYARD",
+  "grammar_id": "ZEN_SHRINE_COURTYARD",
+  "surreal_transform": "axis_compression",
+  "torii_variant": "standard",
+  "compose_roles": {
+    "gate": "_lib_GB_ZEN_TORII_GATE",
+    "large": "_lib_GB_ZEN_MACHIAI",
+    "medium": "_lib_GB_ZEN_KARESANSUI",
+    "monument": "_lib_ZEN_BRIDGE"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "uv_unwrap_mode": "TRIM_SHEET",
+    "material_choice": "STONE",
+    "unit_size": 2.0
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "moorish_courtyard_v1",
+  "family": "Moorish",
+  "verticality": 0.48,
+  "symmetry": 0.82,
+  "ornament_density": 0.76,
+  "structural_logic": 0.72,
+  "organic_growth": 0.38,
+  "cosmic_influence": 0.16,
+  "sacred_sequence": [],
+  "compose_style": "MOORISH_COURTYARD",
+  "default_graph": "MOORISH_COURTYARD",
+  "grammar_id": "MOORISH_COURTYARD",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "filigree_style": "GEOMETRIC_ARABESQUE",
+    "filigree_density": 0.72,
+    "archway_style": "HORSESHOE",
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

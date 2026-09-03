@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "first_resonance_world_challenge",
+  "status": "contract_spec_only",
+  "owner": "Melodia progression integration",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.challenge.first_resonance_echo",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "world_challenge",
+    "DisplayName": "First Resonance Echo",
+    "Tags": [
+      "fixture",
+      "world_challenge",
+      "resonance",
+      "idempotent",
+      "reload_safe"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "fixture_always_unlocked"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "none",
+    "AllowedContexts": [
+      "open_world",
+      "challenge_fixture"
+    ],
+    "BlockedContexts": [
+      "cutscene",
+      "menu",
+      "travel",
+      "battle_session"
+    ],
+    "ContextPolicy": "re_evaluate_on_enter_and_context_change",
+    "ModeSet": [
+      "locked",
+      "available",
+      "attempting",
+      "completed"
+    ],
+    "EnterPolicy": "read_canonical_state_then_open_attempt_if_not_completed",
+    "UpdatePolicy": "hold_attempt_progress_in_fixture_runtime_until_commit",
+    "ExitPolicy": "commit_completion_through_canonical_adapter_or_reset_without_reward",
+    "InterruptPolicy": "discard_uncommitted_attempt_and_restore_available_state",
+    "ResetPolicy": "clear_fixture_attempt_only_and_preserve_committed_completion",
+    "VariantSet": [
+      "first_resonance_echo_default",
+      "first_resonance_echo_locked"
+    ],
+    "EquippedVariantId": "first_resonance_echo_default",
+    "FallbackVariantId": "first_resonance_echo_locked",
+    "AnimationProfile": "optional_resonance_scan_animation",
+    "VfxProfile": "optional_resonance_echo_vfx",
+    "AudioProfile": "optional_resonance_echo_audio",
+    "UiPresentation": "world_challenge_status_prompt",
+    "PreviewPolicy": "show_completion_requirement_and_reward_before_commit",
+    "EffectTogglePolicy": "presentation_only",
+    "UnavailableVariantPolicy": "use_locked_variant_and_keep_attempt_invalid",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "subtle_resonance_pulse",
+    "CanonicalStateKey": "melodia.fixture.challenge.first_resonance_echo",
+    "IdempotencyKey": "challenge.first_resonance_echo.attempt_id",
+    "SaveWritePolicy": "narrative_subsystem_adapter_only",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "world_challenge_attempt_complete_reload_reset",
+    "ExpectedEvidence": "definition_contract_compile_graph_path_completion_reward_reload_reset",
+    "ReadinessLevel": "L1"
+  },
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaWorldChallenge_FirstResonance",
+    "parent_template": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaWorldChallenge_Base",
+    "runtime_authority": "UMelodiaNarrativeSubsystem_through_pending_world_challenge_adapter",
+    "definition_asset": "/Game/MelodiaIntegration/Definitions/DA_MelodiaWorldChallenge_FirstResonance"
+  },
+  "definition_contract": {
+    "challenge_id": "challenge.first_resonance_echo",
+    "completion_flag_id": "challenge.first_resonance_echo.completed",
+    "reward_id": "reward.first_resonance_echo",
+    "attempt_state_is_runtime_only_until_commit": true,
+    "completion_state_is_canonical": true,
+    "reward_requires_committed_completion": true,
+    "adapter_must_use_existing_narrative_allowlists": true,
+    "adapter_must_not_write_save_object_directly": true
+  },
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "read_completion_flag",
+      "show_preview",
+      "begin_attempt",
+      "satisfy_resonance_condition",
+      "request_canonical_completion"
+    ],
+    "reset_route": [
+      "discard_uncommitted_attempt",
+      "reload_record",
+      "read_completion_flag",
+      "restore_completed_or_available_presentation"
+    ],
+    "success_route": [
+      "set_completion_flag_once",
+      "request_allowlisted_reward_once",
+      "refresh_completed_presentation"
+    ],
+    "duplicate_route": [
+      "repeat_completion_request",
+      "observe_duplicate_rejection_or_no_op",
+      "verify_reward_not_repeated"
+    ],
+    "failure_routes": [
+      "blocked_context_returns_reason",
+      "interrupted_attempt_has_no_reward",
+      "missing_adapter_fails_closed"
+    ]
+  },
+  "failure_routes": [
+    "blocked_context_does_not_begin_attempt",
+    "cancel_or_interrupt_does_not_set_completion_flag",
+    "duplicate_completion_does_not_duplicate_reward",
+    "reload_preserves_committed_completion",
+    "missing_definition_or_adapter_fails_closed"
+  ],
+  "evidence_required": [
+    "definition_path_resolves",
+    "blueprint_compiles_without_new_game_mode_or_save_authority",
+    "graph_export_contains_context_recheck_attempt_reset_and_completion_request",
+    "completion_writes_only_through_the_narrative_adapter",
+    "reward_is_allowlisted_and_idempotent",
+    "reload_restores_completed_state",
+    "fresh_evidence_envelope_records_completion_and_duplicate_attempts"
+  ],
+  "readiness_level": "L1",
+  "readiness": "L1"
+}

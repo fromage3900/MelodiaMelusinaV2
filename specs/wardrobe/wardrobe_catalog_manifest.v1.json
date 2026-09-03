@@ -1,0 +1,109 @@
+{
+  "schema": "melodia.wardrobe_catalog_contract.v1",
+  "catalog_asset": "/MelodiaWardrobe/Catalog/DA_MelodiaCosmeticCatalog",
+  "target_count": 5,
+  "demo_count": 5,
+  "gacha_count": 0,
+  "first_outfit_gate": true,
+  "battle_gate": false,
+  "gacha_enabled": false,
+  "materialization_status": "source_ready_editor_materialization_pending",
+  "source_manifest": "specs/wardrobe/wardrobe_catalog_manifest.v1.json",
+  "golden_cost_per_pull": 1,
+  "rarity_weights": {
+    "Common": 60,
+    "Uncommon": 25,
+    "Rare": 10,
+    "Epic": 4,
+    "Legendary": 1,
+    "Grandmaster": 0
+  },
+  "save_contract": "existing FMelodiaNarrativeRecord wardrobe fields",
+  "first_outfit": {
+    "outfit_id": "MelusinaV2",
+    "record_count": 5,
+    "records": [
+      {
+        "cosmetic_id": "Cos_Body_MelusinaV2",
+        "slot": "Body",
+        "rarity": "Common",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "resonant_form_id": null
+      },
+      {
+        "cosmetic_id": "Cos_Shirt_MelusinaV2",
+        "slot": "Shirt",
+        "rarity": "Common",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Shirt",
+        "resonant_form_id": null
+      },
+      {
+        "cosmetic_id": "Cos_Skirt_MelusinaV2",
+        "slot": "Skirt",
+        "rarity": "Common",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Skirt",
+        "resonant_form_id": null
+      },
+      {
+        "cosmetic_id": "Cos_Boots_MelusinaV2",
+        "slot": "Boots",
+        "rarity": "Common",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Boots",
+        "resonant_form_id": null
+      },
+      {
+        "cosmetic_id": "Cos_Accessories_MelusinaV2",
+        "slot": "Accessories",
+        "rarity": "Common",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Accessories",
+        "resonant_form_id": null
+      }
+    ],
+    "default_slots": [
+      "Shirt",
+      "Skirt",
+      "Boots",
+      "Accessories"
+    ],
+    "resonant_form_policy": "decorative_only",
+    "battle_wardrobe_enabled": false
+  },
+  "draft_reconciliation": {
+    "accepted_source_shapes": [
+      {
+        "root": "Imports/Data/Cosmetics",
+        "id_field": "id",
+        "slot_field": "slot",
+        "rarity_field": "rarity"
+      },
+      {
+        "root": "Plugins/MelodiaWardrobe/Content/MelodiaWardrobe/Drafts",
+        "id_field": "CosmeticId",
+        "slot_field": "Slot",
+        "rarity_field": "Rarity",
+        "source_draft_path_field": "SourceDraftPath"
+      }
+    ],
+    "slot_aliases": {
+      "dress": "Body"
+    },
+    "rarity_aliases": {},
+    "deferred_rarity_values": [
+      "Refined",
+      "Couture"
+    ],
+    "rarity_policy": {
+      "status": "owner_decision_required",
+      "unresolved_values": [
+        "Refined",
+        "Couture"
+      ],
+      "import_action": "reject_until_explicit_mapping"
+    },
+    "content_pack_field": "content_pack_id",
+    "content_pack_policy": "preserve_when_present_optional_until_collection_authority",
+    "token_variant_source": "Content/Python/gmm/game/tokens.py",
+    "larger_catalog_status": "blocked_until_rarity_decision_and_mesh_mapping"
+  },
+  "registration_state": "first-outfit-source-ready"
+}

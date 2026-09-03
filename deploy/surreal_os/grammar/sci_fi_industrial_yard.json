@@ -1,0 +1,14 @@
+{
+  "id": "SCI_FI_INDUSTRIAL_YARD",
+  "label": "Sci-Fi Industrial Yard",
+  "description": "Hypostyle atrium, catwalk spine, pressure bulkhead, offset service corridor",
+  "style": "scifi",
+  "modules": [
+    {"arch_type": "GREYBOX_PILLAR_HALL", "overrides": {"gb_cols_x": 4, "gb_cols_y": 3, "gb_spacing": 4.0, "gb_height": 4.2, "gb_trim_mode": "RECESS", "material_choice": "AUTO", "unit_size": 4.0}},
+    {"arch_type": "GREYBOX_CATWALK", "overrides": {"gb_length": 12.0, "gb_width": 1.6, "gb_rail_height": 1.0, "material_choice": "AUTO"}},
+    {"arch_type": "GB_SCIFI_PRESSURE_DOOR", "overrides": {"gb_length": 3.5, "gb_door_width": 1.6, "gb_trim_mode": "RECESS", "material_choice": "AUTO"}},
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 10.0, "gb_corridor_profile": "DOUBLE", "gb_trim_mode": "RECESS", "material_choice": "AUTO"}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 8.0, "gb_trim_mode": "RECESS", "material_choice": "AUTO"}},
+    {"arch_type": "GREYBOX_CATWALK", "overrides": {"gb_length": 8.0, "gb_width": 1.4, "material_choice": "AUTO"}}
+  ]
+}

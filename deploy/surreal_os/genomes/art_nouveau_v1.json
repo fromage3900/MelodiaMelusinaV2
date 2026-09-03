@@ -1,0 +1,22 @@
+{
+  "id": "art_nouveau_v1",
+  "family": "ArtNouveau",
+  "verticality": 0.62,
+  "symmetry": 0.68,
+  "ornament_density": 0.82,
+  "structural_logic": 0.58,
+  "organic_growth": 0.74,
+  "cosmic_influence": 0.14,
+  "sacred_sequence": [],
+  "compose_style": "ART_NOUVEAU",
+  "default_graph": "ART_NOUVEAU",
+  "grammar_id": "ART_NOUVEAU",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "filigree_style": "ARTNOUVEAU_VINE",
+    "filigree_density": 0.65,
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

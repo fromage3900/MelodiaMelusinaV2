@@ -1,0 +1,25 @@
+{
+  "id": "western_castle_v1",
+  "family": "Western",
+  "verticality": 0.72,
+  "symmetry": 0.78,
+  "ornament_density": 0.45,
+  "structural_logic": 0.82,
+  "organic_growth": 0.22,
+  "cosmic_influence": 0.18,
+  "sacred_sequence": [],
+  "compose_style": "WESTERN_CASTLE",
+  "default_graph": "CLOISTER",
+  "grammar_id": "CLOISTER",
+  "surreal_transform": "recursive_interior",
+  "compose_roles": {
+    "gate": "_lib_GB_GOTHIC_PORTAL",
+    "medium": "_lib_GREYBOX_CORRIDOR"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "material_choice": "STONE",
+    "unit_size": 2.0
+  }
+}

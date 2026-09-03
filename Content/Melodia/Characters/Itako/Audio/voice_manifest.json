@@ -1,0 +1,126 @@
+{
+  "character": "Itako",
+  "speaker_id": 6,
+  "voice_style": "ノーマル",
+  "total": 21,
+  "generated": 10,
+  "cached": 11,
+  "errors": 0,
+  "lines": [
+    {
+      "id": "ita_first_meet_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_first_meet_01.wav"
+    },
+    {
+      "id": "ita_first_meet_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_first_meet_02.wav"
+    },
+    {
+      "id": "ita_lore_intro_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_lore_intro_01.wav"
+    },
+    {
+      "id": "ita_lore_intro_02",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_lore_intro_02.wav"
+    },
+    {
+      "id": "ita_lore_intro_03",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_lore_intro_03.wav"
+    },
+    {
+      "id": "ita_skill_intro_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_skill_intro_01.wav"
+    },
+    {
+      "id": "ita_skill_unlock_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_skill_unlock_01.wav"
+    },
+    {
+      "id": "ita_quest_spirit_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_quest_spirit_01.wav"
+    },
+    {
+      "id": "ita_quest_gate_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_quest_gate_01.wav"
+    },
+    {
+      "id": "ita_quest_melusina_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_quest_melusina_01.wav"
+    },
+    {
+      "id": "ita_bond_01",
+      "status": "cached",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_bond_01.wav"
+    },
+    {
+      "id": "ita_bond_02",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_bond_02.wav",
+      "size_kb": 376.04296875
+    },
+    {
+      "id": "ita_idle_meditate_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_idle_meditate_01.wav",
+      "size_kb": 123.54296875
+    },
+    {
+      "id": "ita_idle_stars_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_idle_stars_01.wav",
+      "size_kb": 217.54296875
+    },
+    {
+      "id": "ita_idle_worried_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_idle_worried_01.wav",
+      "size_kb": 250.04296875
+    },
+    {
+      "id": "ita_party_join_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_party_join_01.wav",
+      "size_kb": 236.04296875
+    },
+    {
+      "id": "ita_battle_spirit_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_battle_spirit_01.wav",
+      "size_kb": 122.54296875
+    },
+    {
+      "id": "ita_battle_debuff_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_battle_debuff_01.wav",
+      "size_kb": 126.54296875
+    },
+    {
+      "id": "ita_late_truth_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_late_truth_01.wav",
+      "size_kb": 533.54296875
+    },
+    {
+      "id": "ita_late_choice_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_late_choice_01.wav",
+      "size_kb": 293.54296875
+    },
+    {
+      "id": "ita_ending_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_ending_01.wav",
+      "size_kb": 318.54296875
+    }
+  ]
+}

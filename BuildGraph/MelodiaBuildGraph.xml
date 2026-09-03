@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BuildGraph xmlns="http://www.epicgames.com/BuildGraph">
+  <!--
+    UE 5.8 integration graph.
+    The outer scheduler is GitHub Actions/Horde; this graph owns dependency
+    ordering and artifact boundaries. Run with RunUAT BuildGraph -Script=... .
+  -->
+  <Option Name="ProjectFile" Description="BS_GodFile .uproject path" DefaultValue="$(RootDir)\BS_GodFile.uproject" />
+  <Option Name="ProjectRoot" Description="BS_GodFile repository root" DefaultValue="$(RootDir)" />
+  <Option Name="UATBat" Description="UE 5.8 RunUAT.bat path" DefaultValue="C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\RunUAT.bat" />
+  <Option Name="PythonExe" Description="Python executable" DefaultValue="python" />
+  <Option Name="ArchiveDir" Description="Cooked package output" DefaultValue="$(RootDir)\Products\Builds\BuildGraph" />
+  <Option Name="GauntletTest" Description="Gauntlet test controller" DefaultValue="UE.TargetAutomation" />
+  <Option Name="CreateHordeArtifact" Description="Emit a Horde artifact (requires UE_HORDE_STREAMID)" DefaultValue="false" />
+
+  <Agent Name="Melodia UE 5.8" Type="Win64">
+    <Node Name="ValidateContracts">
+      <Spawn Exe="$(PythonExe)" Arguments="&quot;$(ProjectRoot)\Tools\test_evidence_envelope.py&quot;" />
+      <Spawn Exe="$(PythonExe)" Arguments="&quot;$(ProjectRoot)\Tools\test_ollama_health.py&quot;" />
+      <Spawn Exe="$(PythonExe)" Arguments="&quot;$(ProjectRoot)\Tools\test_t3d_safe_wire.py&quot;" />
+      <Spawn Exe="$(PythonExe)" Arguments="&quot;$(ProjectRoot)\Tools\test_t3d_request_contract.py&quot;" />
+      <Spawn Exe="$(PythonExe)" Arguments="&quot;$(ProjectRoot)\Tools\test_melodia_content_fixtures.py&quot;" />
+      <Spawn Exe="$(PythonExe)" Arguments="&quot;$(ProjectRoot)\Tools\test_melodia_bp_readiness.py&quot;" />
+      <Spawn Exe="$(PythonExe)" Arguments="&quot;$(ProjectRoot)\Tools\test_melodia_bp_materialization_preflight.py&quot;" />
+      <Spawn Exe="$(PythonExe)" Arguments="&quot;$(ProjectRoot)\Tools\run_contract_tests.py&quot; --ci" />
+    </Node>
+
+    <Node Name="CookPackage" Requires="ValidateContracts">
+      <Spawn Exe="powershell.exe" Arguments="-NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectRoot)\deploy\BuildGraph\Invoke-UATIsolated.ps1&quot; -Task CookPackage -ProjectFile &quot;$(ProjectFile)&quot; -UATBat &quot;$(UATBat)&quot; -ArchiveDir &quot;$(ArchiveDir)&quot; -ProjectRoot &quot;$(ProjectRoot)&quot;" />
+    </Node>
+
+    <Node Name="Gauntlet" Requires="CookPackage">
+      <!-- RunUnreal discovers the staged platform root, not the archive parent. -->
+      <Spawn Exe="powershell.exe" Arguments="-NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectRoot)\deploy\BuildGraph\Invoke-UATIsolated.ps1&quot; -Task Gauntlet -ProjectFile &quot;$(ProjectFile)&quot; -UATBat &quot;$(UATBat)&quot; -ArchiveDir &quot;$(ArchiveDir)&quot; -ProjectRoot &quot;$(ProjectRoot)&quot;" />
+    </Node>
+
+    <Node Name="PublishArtifact" Requires="CookPackage;Gauntlet">
+      <Spawn Exe="powershell.exe" Arguments="-NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectRoot)\deploy\BuildGraph\write_artifact_manifest.ps1&quot; -ArchiveDir &quot;$(ArchiveDir)&quot; -OutputPath &quot;$(ArchiveDir)\melodia_artifact_manifest.json&quot;" />
+      <Tag Files="$(ArchiveDir)\**\*.*" With="#MelodiaPackage" />
+      <!-- GitHub Actions consumes the tagged directory directly. Horde's
+           CreateArtifact API is opt-in because it requires UE_HORDE_STREAMID. -->
+      <CreateArtifact If="$(CreateHordeArtifact)" Name="MelodiaPackage" Type="MelodiaPackage" BaseDir="$(ArchiveDir)" Files="#MelodiaPackage" />
+    </Node>
+
+    <!-- Local/CI fallback: publish the manifest and tag the already-built
+         archive without requiring Horde credentials or rerunning upstream
+         Cook/Gauntlet nodes. GitHub Actions uploads this tagged directory. -->
+    <Node Name="ManifestOnly">
+      <Spawn Exe="powershell.exe" Arguments="-NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectRoot)\deploy\BuildGraph\write_artifact_manifest.ps1&quot; -ArchiveDir &quot;$(ArchiveDir)&quot; -OutputPath &quot;$(ArchiveDir)\melodia_artifact_manifest.local.json&quot;" />
+      <Tag Files="$(ArchiveDir)\**\*.*" With="#MelodiaManifest" />
+    </Node>
+  </Agent>
+
+  <Aggregate Name="MelodiaBuild" Requires="ValidateContracts;CookPackage;Gauntlet;PublishArtifact" />
+</BuildGraph>

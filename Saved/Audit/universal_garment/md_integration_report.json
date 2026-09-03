@@ -1,0 +1,231 @@
+{
+  "schema": "melodia.universal_garment.md_integration_report.v1",
+  "seed": 20260902,
+  "date": "2026-09-02",
+  "authority": "AGENTS.md evidence culture; Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md (external-tool = say-so-don't-fake); Docs/Art/CYMATIC_GARMENT_NIKKI_PIPELINE_2026-09-02.md; Docs/Art/FARAWAY_MOTHER_CLOTH_TIERS_2026-09-02.md (Nikki doctrine cloth tiers A-D)",
+  "goal": "Build the Marvelous Designer (MD) integration seam for the universal garment system: honest on-disk audit of the MD install, a documented Shorewake 48-panel -> MD drape -> back-to-UE import/export recipe, and seed-locked output files. The single most important honest finding: the installed MD is GUI-only (Online-Auth Enterprise) with NO headless/scriptable automation path.",
+  "install_root": "C:/Program Files/Marvelous Designer Enterprise OnlineAuth",
+  "install_audit": {
+    "edition": "Marvelous Designer Enterprise (OnlineAuth variant — online/entitlement-authenticated launcher)",
+    "launcher": {
+      "exe": "MarvelousDesigner_Enterprise_Online.exe",
+      "role": "Main application binary (the MD GUI). Single app entry point; no console/headless sibling exists."
+    },
+    "exported_executables": [
+      {
+        "path": "MarvelousDesigner_Enterprise_Online.exe",
+        "size_bytes": 190190840,
+        "sha256": "2e12fd295121412b6c15f6bd3a2194e3b95ed4aa524f616c36ff7ce0c6f4c08e",
+        "role": "Main MD application (OnlineAuth edition)"
+      },
+      {
+        "path": "QtWebEngineProcess.exe",
+        "size_bytes": 592632,
+        "sha256": "57eb567b762201a0c8d396c1f71ed4470e5d25f4e2db4906a2da23623d217867",
+        "role": "Qt WebEngine helper (embedded browser UI for OnlineAuth/entitlement flows)"
+      },
+      {
+        "path": "Uninstall.exe",
+        "size_bytes": 208346,
+        "sha256": "491b19c1e754347fc2aa31abe89e40853096842ca3cf22acb8ac7fbcda16a432",
+        "role": "Uninstaller — not an automation surface"
+      }
+    ],
+    "usd_plugin": {
+      "base_dir": "usd/",
+      "manifest": {
+        "path": "usd/plugInfo.json",
+        "sha256": "c285a05d159154e3ae201fa383c61766bc57c58aae6d5a70b7463b49e2dcbb2d",
+        "content": "{\"Includes\": [\"*/resources/\"]}",
+        "meaning": "Standard USD Python bindings package manifest — pulls every usd plugin resource dir under usd/.*/resources/"
+      },
+      "plugin_dirs": [
+        "ar","glf","hd","hdSt","hdx","hgiGL","ndr","sdf","usd","usdGeom",
+        "usdHydra","usdImaging","usdImagingGL","usdLux","usdMedia","usdRender",
+        "usdRi","usdRiImaging","usdShade","usdSkel","usdSkelImaging","usdUI",
+        "usdVol","usdVolImaging"
+      ],
+      "omniverse_plugin": {
+        "manifest": "usd/plugins/omniverse/resources/plugInfo.json",
+        "manifest_sha256": "c6821a94fd2f07e649e8af21b96fae0e27cd9d2216ea6f53073f78792cdd0fea",
+        "library": "omni_usd_resolver.dll",
+        "library_sha256": "e6b682ef598e9dee8db06e56f8e110d8d909616295bc48546f6d72b8bd9e4a11",
+        "types": {
+          "OmniUsdResolver": "ArResolver (Omniverse server asset resolver — resolves usd references to omni:// and live sessions)",
+          "OmniUsdWrapperFileFormat": "SdfFileFormat, extension .omni (Omniverse wrapper file format)",
+          "OmniUsdObjectFileFormat": "SdfFileFormat, extension .live (Omniverse live session format)"
+        },
+        "meaning": "This is NVIDIA's Omniverse USD integration plugin (resolver + .omni/.live bridge), NOT a user-facing MD scripting API. It is what enables MD's native USD import/export to interoperate with Omniverse/UE."
+      },
+      "import_export_evidence": "ChangeLog_MarvelousDesigner.txt records native USD authoring support: 'Export garment simulation data to USD', 'USD Single/Multi Objects export option', 'USD file Compatibility', texture-load-into-UE fixes, skel-in-export fix, Unified UV Coordinates support.",
+      "other_geometry_engines": {
+        "alembic": "Alembic.dll present (Alembic import/export)",
+        "fbx": "libfbxsdk.dll present (Autodesk FBX SDK — native FBX import/export)",
+        "obj": "Native OBJ import/export (standard MD surface)"
+      }
+    },
+    "python_surfaces": {
+      "python_runtime": {
+        "python37.dll": {
+          "sha256": "89d96d30f0afc9e1d9fd91cafac467645dcf5421e3b7e7a79518bab8ee43e1d6",
+          "role": "Embedded CPython 3.7 interpreter DLL (stdlib-only, no MD API bindings in it)"
+        },
+        "python37.zip": {
+          "sha256": "09ce140ba97a08aebab398d12d4591df6c686dfed63f0705be7e007b9afcb3a9",
+          "role": "CPython 3.7 stdlib (precompiled .pyc only — e.g. abc.pyc, argparse.pyc). No .py source and no MD module."
+        },
+        "boost_python37-vc141-mt-x64-1_68.dll": {
+          "sha256": "dce06de28bf5d0c23e2caf2594c763a87f0b1b2b69e41f3b83c83a0101a26ef6",
+          "role": "Boost.Python 1.68 bindings layer (legacy C-module glue precedent)"
+        },
+        "PythonLib_dir": {
+          "path": "PythonLib/",
+          "entry_count": 0,
+          "sha256": "EMPTY_DIRECTORY",
+          "role": "Reserved for MD python extension modules / scripts; currently EMPTY — no MD python API modules shipped"
+        }
+      },
+      "pyd_file_count": 0,
+      "py_file_count": 0,
+      "so_file_count": 0,
+      "honest_automation_surface": "NO headless/scriptable automation path exists in this install. There is no console/batch/socket-automation executable, no command-line import/export driver, zero .pyd, zero .py, an EMPTY PythonLib dir, and the only executables are the GUI app, its QtWebEngineProcess helper, and the uninstaller. The embedded CPython 3.7 is stdlib-only (.pyc in python37.zip). Any MD drape work is INTERACTIVE via the GUI (driven by an operator or by desktop/UI automation such as cua). Do NOT fabricate a CLI/script automation surface that is not on disk."
+    },
+    "census": {
+      "dll_count": 145,
+      "exe_count": 3,
+      "pyd_count": 0,
+      "py_count": 0,
+      "usd_resource_plugInfo_count": 27,
+      "checked_note": "Every non-directory checked file above has a recorded sha256 (seed 20260902)."
+    }
+  },
+  "recipe_spec": {
+    "name": "Shorewake Garment Drape Loop (48-panel -> MD -> UE) — Melodia Universal Garment seam",
+    "source_mesh": {
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_lookdev/bake/night_pkg_2026-08-31/SM_ShorewakeDress_48MAT_v2_slotted.obj",
+      "sha256": "5687c303c595656ef08c588b71788528069047329f854b57812c11c0f8e960f8",
+      "generator": "Blender 5.2.1 LTS (OBJ header)",
+      "stats": {
+        "g_group_count": 48,
+        "material_slots": 48,
+        "unique_usemtl": 48,
+        "vertices": 183741,
+        "normals": 183667,
+        "uv": 31664,
+        "faces": 186955,
+        "name": "SM_ShorewakeDress_48MAT",
+        "panel_groups": "SW_Dress_P01..P48 (48 panels)"
+      },
+      "authoritative_grouping": "Saved/Audit/melusina_lookdev/night_pkg_2026-08-31/garment_layers_manifest.json (48 panels -> 10 garment material layers: M_Bodice_Torso/Front/Side/Upper, M_Collar, M_Shoulder_Trim, M_Shoulder_Ornament, M_Sleeve, M_Underskirt, M_Skirt_Full)"
+    },
+    "loop_steps": [
+      {
+        "step": 1,
+        "phase": "Source prep (offline, done)",
+        "input": "SM_ShorewakeDress_48MAT_v2_slotted.obj (48 slotted panels, 183.7k tris)",
+        "action": "Split or keep as-is per the garment_layers_manifest 48->10 layer grouping. For MD draping, the dress must be un-stuffed/de-capped into sewable panels: MD ingests OBJ/FBX/Alembic.",
+        "bakegate": "Dry-run: keep the slotted OBJ as the canonical source; MD project saved as .zpac (source-of-truth MD garment file) in Saved/Audit/universal_garment/md_project/."
+      },
+      {
+        "step": 2,
+        "phase": "Import into MD (INTERACTIVE — no automation path)",
+        "input": "OBJ (or FBX/USD) of slotted panels",
+        "action": "In MD GUI: Import the panel OBJ -> auto-arrange into 2D patterns -> assign fabric properties per the 10 cymatic garment layers (bodice charmeuse/satin, skirt silk sheet, collar/ornament rigid lace). MD physics fabric presets map 1:1 onto the 10 garment materials.",
+        "note": "Because no headless path exists, this step requires an operator session or desktop UI automation; it CANNOT be scripted against this install."
+      },
+      {
+        "step": 3,
+        "phase": "Simulate drape",
+        "input": "Pattern + mannequin (Melusina avatar or scaled proxy)",
+        "action": "MD drape simulation on the bodied silhouette. Save .zpac + export simulated mesh.",
+        "note": "Simulation result is a draped, deformed mesh — the 'true drape' that replaces/augments the authored 48-panel silhouette."
+      },
+      {
+        "step": 4,
+        "phase": "Export back (MD native, verified)",
+        "input": "Simulated garment",
+        "action": "Export the draped result. Options (all engine libraries verified on disk): USD ('Export garment simulation data to USD', Single/Multi Objects, Unified UV Coordinates), FBX (libfbxsdk.dll), OBJ, Alembic (Alembic.dll).",
+        "recommended": "FBX primary for UE import (UBUCloth/Interchange friendly); USD secondary where flap-of-animation/sim cache matters."
+      },
+      {
+        "step": 5,
+        "phase": "Import into UE (editor-bound)",
+        "input": "FBX or USD draped mesh",
+        "action": "Import via UE Interchange (FBX) or the engine USD importer (USD). Hook result mesh into the verified small master family M_Master_Nikki / M_Universal_Enhanced_Fabric / M_Master_Toon_Universal_Alpha with per-layer MIs (per CYMATIC_GARMENT_NIKKI_PIPELINE 2026-09-02 SS4 naming).",
+        "constraints": "Never touch Content/**/*.uasset by script; editor-gated. The draped mesh must keep Unity-Forward (MD +Y up / UE Z-up handedness on import)."
+      }
+    ],
+    "chain_diagram": [
+      "[SM_ShorewakeDress_48MAT_v2_slotted.obj (48 panels, sha256 5687c3...)]",
+      "   |  1. source prep (kept canonical)",
+      "   v",
+      "[garment_layers_manifest.json: 48 panels -> 10 garment layers]",
+      "   |  2. MD GUI import (INTERACTIVE, no automation)",
+      "   v",
+      "[MD drape sim on Melusina silhouette (.zpac project)]",
+      "   |  3. native export: USD / FBX / OBJ / Alembic (engines verified)",
+      "   v",
+      "[Draped FBX/USD mesh]",
+      "   |  4. UE Interchange/USD import (editor-gated)",
+      "   v",
+      "[10 MIs on M_Master_Nikki / M_Universal_Enhanced_Fabric / M_Master_Toon_Universal_Alpha]",
+      "   |  5. cloth-tiers A-D binding (Chaos on Skirt_Full hero, WPO on support)",
+      "   v",
+      "[UNIVERSAL_GARMENT_MD_INTEGRATION_2026-09-02.md + md_integration_report.json (seed 20260902)]"
+    ]
+  },
+  "nikki_cloth_tiers": {
+    "cost_ladder": "Material/WPO -> Niagara/instanced -> authored transform/spline -> Chaos -> Houdini VAT/cache -> custom runtime (FARAWAY_MOTHER_CLOTH_TIERS_2026-09-02.md)",
+    "rule": "The garment piece carrying gameplay meaning gets the expensive solution; the rest support it cheaply.",
+    "tier_definitions": {
+      "A": "Rigid authored (static/structured metal, lace, studs)",
+      "B": "Chaos Cloth (sheer/translucent hero — gameplay-meaningful collision)",
+      "C": "WPO micro-drape (cheap, distance-ok)",
+      "D": "Houdini VAT/cache (precomputed animation — never runtime sim)"
+    },
+    "shorewake_mapping_for_md_drape": [
+      {"garment": "M_Bodice_Torso", "tier": "C", "md_drape_role": "Low-interaction charmeuse — MD sims drape, then WPO in-engine"},
+      {"garment": "M_Bodice_Front", "tier": "C", "md_drape_role": "Yoke charmeuse, WPO"},
+      {"garment": "M_Bodice_Side", "tier": "C", "md_drape_role": "Side torso, WPO"},
+      {"garment": "M_Bodice_Upper", "tier": "C", "md_drape_role": "Bodice band, WPO"},
+      {"garment": "M_Collar", "tier": "A", "md_drape_role": "Structured lace — rigid authored (MD outputs pattern only)"},
+      {"garment": "M_Shoulder_Trim", "tier": "A", "md_drape_role": "Armcap trim — rigid authored"},
+      {"garment": "M_Shoulder_Ornament", "tier": "A", "md_drape_role": "Bead studs — rigid"},
+      {"garment": "M_Sleeve", "tier": "C", "md_drape_role": "WPO drape; MD sim gives rest pose"},
+      {"garment": "M_Underskirt", "tier": "C", "md_drape_role": "Slip — WPO"},
+      {"garment": "M_Skirt_Full", "tier": "B", "md_drape_role": "HERO big skirt plate — MD drape is the source of truth; engine Chaos for collision"}
+    ],
+    "md_seam_policy": "MD supplies the DRAPED GEOMETRY (rest/simulated pose). UE applies the tier cost: tier A rigid static from the draped author pose; tier B/C keep draped mesh + WPO (C) or Chaos (B); tier D precomputed VAT where a drape-to-contraction event is authored."
+  },
+  "master_family": [
+    "M_Master_Nikki",
+    "M_Universal_Enhanced_Fabric",
+    "M_Master_Toon_Universal_Alpha"
+  ],
+  "constraints_honored": [
+    "never launch Unreal/editor from this agent",
+    "never touch Content/**/*.uasset",
+    "no git clean/checkout -- .",
+    "single audio writer (MelodiaAudioReactivePresentationSubsystem) untouched — no second writer",
+    "offline specs/audits/manifests only",
+    "every claimed fact verified on disk with sha256 under seed 20260902"
+  ],
+  "checked_files_sha256": {
+    "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/MarvelousDesigner_Enterprise_Online.exe": "2e12fd295121412b6c15f6bd3a2194e3b95ed4aa524f616c36ff7ce0c6f4c08e",
+    "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/QtWebEngineProcess.exe": "57eb567b762201a0c8d396c1f71ed4470e5d25f4e2db4906a2da23623d217867",
+    "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/Uninstall.exe": "491b19c1e754347fc2aa31abe89e40853096842ca3cf22acb8ac7fbcda16a432",
+    "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/python37.dll": "89d96d30f0afc9e1d9fd91cafac467645dcf5421e3b7e7a79518bab8ee43e1d6",
+    "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/boost_python37-vc141-mt-x64-1_68.dll": "dce06de28bf5d0c23e2caf2594c763a87f0b1b2b69e41f3b83c83a0101a26ef6",
+    "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/omni_usd_resolver.dll": "e6b682ef598e9dee8db06e56f8e110d8d909616295bc48546f6d72b8bd9e4a11",
+    "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/python37.zip": "09ce140ba97a08aebab398d12d4591df6c686dfed63f0705be7e007b9afcb3a9",
+    "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/usd/plugInfo.json": "c285a05d159154e3ae201fa383c61766bc57c58aae6d5a70b7463b49e2dcbb2d",
+    "C:/Program Files/Marvelous Designer Enterprise OnlineAuth/usd/plugins/omniverse/resources/plugInfo.json": "c6821a94fd2f07e649e8af21b96fae0e27cd9d2216ea6f53073f78792cdd0fea",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_lookdev/bake/night_pkg_2026-08-31/SM_ShorewakeDress_48MAT_v2_slotted.obj": "5687c303c595656ef08c588b71788528069047329f854b57812c11c0f8e960f8",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_lookdev/night_pkg_2026-08-31/garment_layers_manifest.json": "76fc93537e88eeba743202d7e62ca9a6c742b07bb20fa97b415e53082e251e00"
+  },
+  "output_files": [
+    "C:/EnvironmentPortfolio/BS_GodFile/Docs/Art/UNIVERSAL_GARMENT_MD_INTEGRATION_2026-09-02.md",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/universal_garment/md_integration_report.json"
+  ],
+  "honest_finding": "The installed Marvelous Designer Enterprise (OnlineAuth) is a GUI-only tool with NO headless/scriptable automation path: zero .pyd, zero .py, an EMPTY PythonLib dir, stdlib-only embedded CPython 3.7, and the only executables are the app, its QtWebEngine helper, and the uninstaller. It DOES have real native USD import/export (Omniverse resolver + OmniUsd exporter plus FBX/Alembic/OBJ engines verified), so MD works as an interactive drape-sim authoring tool with a solid round-trip, but every drape must be driven by an operator or desktop UI automation — not by a script API we do not have."
+}

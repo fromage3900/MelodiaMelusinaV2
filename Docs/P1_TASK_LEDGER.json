@@ -1,0 +1,159 @@
+{
+  "schema": "melodia.p1.task_ledger.v1",
+  "as_of": "2026-09-02",
+  "authority": {
+    "status": "P1_EXPANSION_ACTIVE",
+    "scope": "Post-P0 expansion: Faraway Mother formalization, cymatics promotion, audio-reactive materials, Shorewake quest, Starskiff movement system.",
+    "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct."
+  },
+  "active_p1_gates": [
+    {
+      "id": "FARAWAY_MOTHER_P1_PRESENT",
+      "status": "open",
+      "contract": "FarawayMother GN builders (16) + PBR suites (6) + hero meshes (3) integrated into main GN taxonomy and material pipeline.",
+      "evidence": {
+        "gn_builders": "16 builders in Content/Python/gmm/melodia/faraway_mother/",
+        "pbr_suites": "6 PBR suites in Content/Textures/FarawayMother_Suites/ (47 PNG+uasset pairs)",
+        "hero_meshes": "3 hero meshes in Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/",
+        "missing": "faraway_onboarding_guide.md, GN_TAXONOMY update to 238+ builders, hython pipeline integration"
+      }
+    },
+    {
+      "id": "CYMATICS_PROMOTION",
+      "status": "open",
+      "contract": "Cymatics promoted from SCAFFOLDED to PRESENT in Emerging Toolchain Master Index with PostConfigInit loading and uplugin verification.",
+      "evidence": {
+        "promoted": "cymatics_in_master_index.md confirms §1 PRESENT promotion",
+        "remaining": "PostConfigInit verification, uplugin dependencies, formalize pipeline step, World Field Bus contract"
+      }
+    },
+    {
+      "id": "AUDIO_REACTIVE_MATERIALS",
+      "status": "open",
+      "contract": "MPC_Melodia_Palette params (BeatPulse/Bass/Mid/Treble/BeatPhase/BeatIntensity/GlobalReactivity) consumed by surface materials.",
+      "evidence": {
+        "gap": "mcp__melodia__melodia_material_audit: NO surface material reads MPC params",
+        "blocker": "M_PP_MelodiaInk Custom node 42 inputs, 38 wired (SceneColor, cR, cB, smeared missing)",
+        "solution_path": "MF_NikkiDreamGrade extension or new MF_AudioReactive bridge function"
+      }
+    },
+    {
+      "id": "SHOREWAKE_QUEST",
+      "status": "open",
+      "contract": "Shorewake transformation quest (MelodiaQuillShorewake) wired to wardrobe equip + Glide + Swim + SeaAboveResonance capabilities.",
+      "evidence": {
+        "script": "Content/MelodiaIntegration/Narrative/Shorewake/MelodiaQuillShorewake.qsc",
+        "manifest": "specs/wardrobe/wardrobe_shorewake_manifest.v1.json",
+        "blocker": "Shorewake dress skeleton incompatible (2-bone vs 465-bone)"
+      }
+    },
+    {
+          "id": "STARSKIFF_MOVEMENT",
+          "status": "close_to_pass_pending_commit_and_pie",
+          "contract": "Starskiff MK2 pawn with boarding, movement, input, and traversal consumer.",
+          "evidence": {
+            "pawn_cpp": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.cpp (committed 42cb25d7)",
+            "pawn_h": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.h (committed 42cb25d7)",
+            "blueprint": "BP_Starskiff_MK2 (content/melodiaintegration/blueprints/bp_starskiff_mk2.uasset, dirty)",
+            "boarding": "TryBoard/CanBoard/Disembark implemented; RequestBoatTraversal delegates to UMelodiaTravelSubsystem",
+            "reconcile": "starskiff_pawn_reconcile_2026-09-01.json proves ledger 'no movement component' claim was INCORRECT",
+            "remaining": "UBT closed-editor rebuild + PIE boarding/movement/disembark validation"
+          }
+        }
+  ],
+  "current_source_truth": {
+    "p0_status": "All 8 gates pass (rhythm_owner, hud_single_writer, rhythm_grade_to_result, wardrobe_equip_roundtrip, wardrobe_gameplay_hook, music_world_key, static_gates, battle_integration_map)",
+    "cymatics_count": "21 variants, 1665 PNGs, 185 height maps, 80 flipbook frames",
+    "faraway_mother_gn_builders": 16,
+    "faraway_mother_pbr_suites": 6,
+    "audio_reactivity_params": "16 params written to MPC_Melodia_Palette, 0 consumed by surface materials",
+    "shorewake_dress_status": "2-bone skeleton incompatible with 465-bone Melusina skeleton — quest accessible but equip blocked",
+    "starskiff_status": "Pawn C++ committed (42cb25d7), gate close_to_pass_pending_commit_and_pie. Remaining: UBT rebuild + PIE validation.",
+    "material_audit_ppv_defects": "3 known defects (slot1_surface_in_pp_stack, label_mismatch, grade_weight_mismatch)"
+  },
+  "bounded_historical_evidence": [
+    {
+      "id": "runtime",
+      "recorded_status": "pass",
+      "recorded_on": "2026-08-13",
+      "scope": "Real keyboard input on the captured owner session."
+    },
+    {
+      "id": "save_load",
+      "recorded_status": "pass",
+      "recorded_on": "2026-08-14",
+      "scope": "Canonical stock-JRPG save across the captured process restart."
+    },
+    {
+      "id": "repeat_consume",
+      "recorded_status": "pass",
+      "recorded_on": "2026-08-14",
+      "scope": "Captured authored replay remained exactly once."
+    },
+    {
+      "id": "package_launch",
+      "recorded_status": "pass",
+      "recorded_on": "2026-08-14",
+      "scope": "Captured Development package launched outside the editor."
+    }
+  ],
+  "deferred_post_p1_expansion": [
+    {
+      "id": "expansion_007",
+      "name": "Implement grief modifier on rhythm note hits",
+      "system": "Grief Hook",
+      "priority_after_p1": 1,
+      "status": "deferred",
+      "notes": "GriefEconomy biases rhythm-yield math."
+    },
+    {
+      "id": "expansion_008",
+      "name": "Implement HealingSong (base + 1 scalar tier)",
+      "system": "Healing Song",
+      "priority_after_p1": 2,
+      "status": "deferred",
+      "notes": "Consumes HealingEconomy, heals, and grants small ManaEconomy."
+    },
+    {
+      "id": "expansion_009",
+      "name": "Implement ManaSong (base + 1 scalar tier)",
+      "system": "Mana Song",
+      "priority_after_p1": 3,
+      "status": "deferred",
+      "notes": "Consumes ManaEconomy, restores mana or resonance, and reduces GriefEconomy."
+    },
+    {
+      "id": "expansion_010",
+      "name": "Implement UtilitySong_Debuff (mana drain type)",
+      "system": "Utility Song",
+      "priority_after_p1": 4,
+      "status": "deferred",
+      "notes": "Consumes UtilityEconomy and applies a mana-drain debuff."
+    },
+    {
+      "id": "expansion_011",
+      "name": "Wire HUD/WBP for economy inputs and indicators",
+      "system": "HUD/WBP",
+      "priority_after_p1": 5,
+      "status": "deferred",
+      "notes": "Economy display and input wiring."
+    }
+  ],
+  "agent_work_log_2026_09_05": {
+    "timestamp": "2026-09-05T03:30:00Z",
+    "scope": "Overnight daemon: commit StarskiffPawn C++ (42cb25d7), commit untracked docs/retargeted assets (2326fbd0), promote STARSKIFF_MOVEMENT gate, clean scratch files.",
+    "deliverables": {
+      "starskiff_commit": "42cb25d7 — feat(Starskiff): add MK2 pawn with movement, boarding, and traversal (212 lines)",
+      "docs_assets_commit": "2326fbd0 — Shorewake retargeted uassets, handoff doc, MI naming scanner",
+      "gate_promotion": "STARSKIFF_MOVEMENT open → close_to_pass_pending_commit_and_pie",
+      "scratch_cleanup": "Removed 6 untracked scratch files (3000, 8080, 8081, 9316, 9317, 9318)"
+    }
+  },
+  "agent_work_log_2026_09_02": {
+    "timestamp": "2026-09-02T10:00:00Z",
+    "scope": "P1_TASK_LEDGER.json creation from grand_review_expansion_plan_2026-09-01.json + cross_system_integration_map.md §5 + audio_reactivity_contract.json. Queue refill via read_review_loop (3 new micro-tasks).",
+    "deliverables": {
+      "p1_task_ledger": "Docs/P1_TASK_LEDGER.json — 5 active P1 gates (FarawayMother, Cymatics, AudioReactive, Shorewake, Starskiff)"
+    }
+  }
+}

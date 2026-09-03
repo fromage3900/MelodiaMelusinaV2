@@ -1,0 +1,60 @@
+{
+  "schema": "melodia.companion.v1",
+  "companion_id": "ChoralSheep",
+  "display_name": "Choral Sheep",
+  "description": "A gentle woolly companion that follows resonance through the garden.",
+  "role": "Companion",
+  "combat": false,
+  "style_genome": "ResonanceGarden",
+  "musical_motif": "choral_wool",
+  "habitat_tags": [
+    "SakuraGrove",
+    "ResonanceGarden",
+    "LanternRoute",
+    "PondEdge"
+  ],
+  "supported_interactions": [
+    "Graze",
+    "Harmonize",
+    "Guide"
+  ],
+  "movement": {
+    "follow_distance_cm": 180.0,
+    "acceptance_radius_cm": 75.0
+  },
+  "fur": {
+    "profile_id": "Fur_ChoralSheep_Wool",
+    "lod_bands_cm": [
+      { "min": 0.0, "max": 400.0, "backend": "NativeGroom" },
+      { "min": 400.0, "max": 1200.0, "backend": "ShellCard" },
+      { "min": 1200.0, "max": 1000000.0, "backend": "Impostor" }
+    ],
+    "groom_asset_tag": "Groom_ChoralSheep_Wool_Hero",
+    "shell_asset_tag": "FurShell_ChoralSheep_Wool_Mid",
+    "card_asset_tag": "FurCards_ChoralSheep_Wool_Far",
+    "wool_clump_scale": 0.65,
+    "sheen_response": 0.45,
+    "simulation": true
+  },
+  "asset_status": {
+    "ue_definition_asset": "pending_clean_editor_reservation",
+    "skeletal_mesh": "pending_owner_authored_or_approved_asset_at_reserved_path",
+    "groom": "pending_melodia_studio_authoring",
+    "beauty_capture": "blocked_until_clean_render_gate"
+  },
+  "drop_in_contract": {
+    "skeletal_mesh_path": "/Game/Melodia/Companions/ChoralSheep/SK_ChoralSheep",
+    "definition_asset_path": "/Game/Melodia/Companions/ChoralSheep/DA_ChoralSheepDefinition",
+    "animation_blueprint_path": "/Game/Melodia/Companions/ChoralSheep/ABP_ChoralSheep",
+    "reimport_policy": "Reimport the approved rig at the reserved skeletal-mesh path. The companion definition owns the mesh, optional animation class, and local transform; maps and actor Blueprints must not carry rig references.",
+    "groom_policy": "Optional. Missing Groom must not prevent the base skeletal mesh from loading or the companion from following."
+  },
+  "native_integration": {
+    "native_actor_class": "/Script/MelodiaCore.MelodiaChoralSheepActor",
+    "blueprint_class_path": "/Game/Melodia/Companions/ChoralSheep/BP_ChoralSheep",
+    "interaction_radius_cm": 160.0,
+    "auto_follow_first_player_for_smoke": true,
+    "save_authority": "none",
+    "first_live_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap"
+  }
+}

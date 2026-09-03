@@ -1,0 +1,31 @@
+@ Start
+
+? if: {melodia_solstice_granted} == on
+
+  - Solstice Singer
+    The drum remembers the beat you kept. Carry it back to the grove when you are ready.
+
+? else:
+
+  ? if: {melodia_q_echo_02_complete} == on
+
+    - Solstice Singer
+      You taught the echo to listen, not to vanish. That is the measure the solstice honors.
+
+    - Solstice Singer
+      Take the drum. It will hold your tempo steady when the path ahead grows loud.
+
+    $ melodia_solstice_granted = on
+    $ Notify melodia:reward:melodia_reward_solstice_drum
+    $ Notify melodia:stat:reunion_solstice:melodia_harmony:1
+
+  ? else:
+
+    - Solstice Singer
+      The solstice hums softly. Come back when the grove's echo has been answered.
+
+  ? endif
+
+? endif
+
+$ End

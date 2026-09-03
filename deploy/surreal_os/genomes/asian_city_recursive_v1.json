@@ -1,0 +1,27 @@
+{
+  "id": "asian_city_recursive_v1",
+  "family": "Asian",
+  "verticality": 0.62,
+  "symmetry": 0.68,
+  "ornament_density": 0.52,
+  "structural_logic": 0.74,
+  "organic_growth": 0.58,
+  "cosmic_influence": 0.28,
+  "sacred_sequence": [],
+  "compose_style": "ASIAN_CITY_RECURSIVE",
+  "default_graph": "ASIAN_CITY_RECURSIVE",
+  "grammar_id": "ASIAN_CITY_RECURSIVE",
+  "surreal_transform": "recursive_interior",
+  "compose_roles": {
+    "medium": "_lib_JP_KURA_STOREHOUSE",
+    "small": "_lib_CN_TING_PAVILION",
+    "monument": "_lib_CN_MOON_GATE",
+    "gate": "_lib_CN_PAILOU"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

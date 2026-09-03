@@ -1,0 +1,1858 @@
+{
+	"type": "graph",
+	"name": "MM_Master_SurrealAnimatedPBR",
+	"label": "MM Master Surreal Animated PBR",
+	"longdesc": "Surreal tileable PBR batch converter \u2014 Nikki / Madoka / Itto / Celestial lanes",
+	"shortdesc": "",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"parameters": {},
+	"nodes": [
+		{
+			"name": "Comment_00",
+			"node_position": {
+				"x": -5200,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "00 | INPUT",
+			"text": "[lane:00]\nSource + Remote params",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.55,
+				"g": 0.35,
+				"r": 0.45,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Comment_01",
+			"node_position": {
+				"x": -4100,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "01 | PREPROCESS",
+			"text": "[lane:01]\nScale \u00b7 levels \u00b7 buffer",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.55,
+				"g": 0.35,
+				"r": 0.45,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Comment_02",
+			"node_position": {
+				"x": -3000,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "02 | SEAMLESS TILE",
+			"text": "[lane:02]\nKaleido \u00b7 mirror \u00b7 repeat",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.55,
+				"g": 0.35,
+				"r": 0.45,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Comment_08",
+			"node_position": {
+				"x": -1900,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "08 | NIKKI",
+			"text": "[lane:08]\nRim \u00b7 sparkle \u00b7 dream grade",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.55,
+				"g": 0.35,
+				"r": 0.45,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Comment_22",
+			"node_position": {
+				"x": -800,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "22 | MADOKA",
+			"text": "[lane:22]\nWitch barrier analog",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.38,
+				"g": 0.12,
+				"r": 0.28,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Comment_23",
+			"node_position": {
+				"x": 300,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "23 | ITTO",
+			"text": "[lane:23]\nOni geometry \u00b7 ink cracks",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.55,
+				"g": 0.35,
+				"r": 0.45,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Comment_14",
+			"node_position": {
+				"x": 1400,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "14 | CELESTIAL",
+			"text": "[lane:14]\nNASA spatial maps",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.55,
+				"g": 0.35,
+				"r": 0.45,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Comment_05",
+			"node_position": {
+				"x": 2500,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "05 | HEIGHT",
+			"text": "[lane:05]\nComposite displacement",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.55,
+				"g": 0.35,
+				"r": 0.45,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Comment_06",
+			"node_position": {
+				"x": 3600,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "06 | PBR MAPS",
+			"text": "[lane:06]\nAll channel split",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.55,
+				"g": 0.35,
+				"r": 0.45,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Comment_07",
+			"node_position": {
+				"x": 4700,
+				"y": -420
+			},
+			"parameters": {
+				"size": 4
+			},
+			"title": "07 | OUTPUT",
+			"text": "[lane:07]\nMaterial + exports",
+			"size": {
+				"x": 860,
+				"y": 100
+			},
+			"color": {
+				"a": 1,
+				"b": 0.55,
+				"g": 0.35,
+				"r": 0.45,
+				"type": "Color"
+			},
+			"type": "comment"
+		},
+		{
+			"name": "Remote_MasterParams",
+			"node_position": {
+				"x": -5200,
+				"y": -180
+			},
+			"parameters": {
+				"BakeTime": 0,
+				"AnimSpeed": 0.15,
+				"AnimOffset": 0,
+				"TileRepeat": 2,
+				"SeamBlend": 0.35,
+				"StyleNikki": 0.5,
+				"StyleMadoka": 0,
+				"StyleItto": 0,
+				"StyleCelestial": 0,
+				"DreamSaturation": 0.18,
+				"PastelLift": 0.22,
+				"SparkleDriftSpeed": 0.3,
+				"WitchBarrierPhaseSpeed": 0.45,
+				"WitchBarrierWallpaperScale": 4,
+				"WitchBarrierMazeTightness": 0.5,
+				"WitchBarrierEmissiveVeins": 0.35,
+				"IttoPatternScale": 3,
+				"IttoCrackDepth": 0.4,
+				"IttoInkStrength": 0.6,
+				"CelestialNebulaScale": 0.42,
+				"CelestialTwinkle": 0.5,
+				"HeightScale": 0.25,
+				"NormalStrength": 0.8,
+				"RoughnessBias": 0.55,
+				"MetallicAmount": 0.05,
+				"AOStrength": 0.7,
+				"ExportResolution": 11
+			},
+			"type": "remote",
+			"widgets": [
+				{
+					"name": "BakeTime",
+					"label": "Bake Time",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.001,
+					"default": 0
+				},
+				{
+					"name": "AnimSpeed",
+					"label": "Anim Speed",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 2,
+					"step": 0.01,
+					"default": 0.15
+				},
+				{
+					"name": "AnimOffset",
+					"label": "Anim Offset",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0
+				},
+				{
+					"name": "TileRepeat",
+					"label": "Tile Repeat",
+					"type": "named_parameter",
+					"min": 0.5,
+					"max": 8,
+					"step": 0.1,
+					"default": 2
+				},
+				{
+					"name": "SeamBlend",
+					"label": "Seam Blend",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.35
+				},
+				{
+					"name": "StyleNikki",
+					"label": "Style Nikki",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.5
+				},
+				{
+					"name": "StyleMadoka",
+					"label": "Style Madoka",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0
+				},
+				{
+					"name": "StyleItto",
+					"label": "Style Itto",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0
+				},
+				{
+					"name": "StyleCelestial",
+					"label": "Style Celestial",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0
+				},
+				{
+					"name": "DreamSaturation",
+					"label": "Dream Saturation",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.18
+				},
+				{
+					"name": "PastelLift",
+					"label": "Pastel Lift",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.22
+				},
+				{
+					"name": "SparkleDriftSpeed",
+					"label": "Sparkle Drift",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.3
+				},
+				{
+					"name": "WitchBarrierPhaseSpeed",
+					"label": "Barrier Phase",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 2,
+					"step": 0.01,
+					"default": 0.45
+				},
+				{
+					"name": "WitchBarrierWallpaperScale",
+					"label": "Wallpaper Scale",
+					"type": "named_parameter",
+					"min": 1,
+					"max": 12,
+					"step": 0.1,
+					"default": 4
+				},
+				{
+					"name": "WitchBarrierMazeTightness",
+					"label": "Maze Tightness",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.5
+				},
+				{
+					"name": "WitchBarrierEmissiveVeins",
+					"label": "Emissive Veins",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.35
+				},
+				{
+					"name": "IttoPatternScale",
+					"label": "Itto Pattern Scale",
+					"type": "named_parameter",
+					"min": 1,
+					"max": 12,
+					"step": 0.1,
+					"default": 3
+				},
+				{
+					"name": "IttoCrackDepth",
+					"label": "Itto Crack Depth",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.4
+				},
+				{
+					"name": "IttoInkStrength",
+					"label": "Itto Ink",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.6
+				},
+				{
+					"name": "CelestialNebulaScale",
+					"label": "Nebula Scale",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 2,
+					"step": 0.01,
+					"default": 0.42
+				},
+				{
+					"name": "CelestialTwinkle",
+					"label": "Celestial Twinkle",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.5
+				},
+				{
+					"name": "HeightScale",
+					"label": "Height Scale",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.25
+				},
+				{
+					"name": "NormalStrength",
+					"label": "Normal Strength",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 2,
+					"step": 0.01,
+					"default": 0.8
+				},
+				{
+					"name": "RoughnessBias",
+					"label": "Roughness Bias",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.55
+				},
+				{
+					"name": "MetallicAmount",
+					"label": "Metallic Amount",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.05
+				},
+				{
+					"name": "AOStrength",
+					"label": "AO Strength",
+					"type": "named_parameter",
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"default": 0.7
+				},
+				{
+					"name": "ExportResolution",
+					"label": "Export Resolution",
+					"type": "named_parameter",
+					"min": 8,
+					"max": 12,
+					"step": 1,
+					"default": 11
+				}
+			]
+		},
+		{
+			"name": "SourceImage",
+			"node_position": {
+				"x": -5200,
+				"y": 40
+			},
+			"parameters": {
+				"image": "NASA_Refs/blue_marble_4k.jpg",
+				"fix_ratio": true,
+				"clamp": false
+			},
+			"type": "image"
+		},
+		{
+			"name": "Transform_Scale",
+			"node_position": {
+				"x": -4100,
+				"y": 40
+			},
+			"parameters": {
+				"scale_x": "$TileRepeat",
+				"scale_y": "$TileRepeat",
+				"repeat": false
+			},
+			"type": "transform"
+		},
+		{
+			"name": "Tones_Prep",
+			"node_position": {
+				"x": -4100,
+				"y": 160
+			},
+			"parameters": {
+				"value": 0.5,
+				"contrast": 0.15
+			},
+			"type": "tones"
+		},
+		{
+			"name": "Buffer_Prep",
+			"node_position": {
+				"x": -4100,
+				"y": 280
+			},
+			"parameters": {
+				"size": 0
+			},
+			"type": "buffer"
+		},
+		{
+			"name": "Kaleidoscope_Tile",
+			"node_position": {
+				"x": -3000,
+				"y": 40
+			},
+			"parameters": {
+				"count": 6,
+				"offset": 0
+			},
+			"type": "kaleidoscope"
+		},
+		{
+			"name": "Mirror_Tile",
+			"node_position": {
+				"x": -3000,
+				"y": 160
+			},
+			"parameters": {
+				"direction": 0,
+				"offset": 0.5
+			},
+			"type": "mirror"
+		},
+		{
+			"name": "Transform_Repeat",
+			"node_position": {
+				"x": -3000,
+				"y": 280
+			},
+			"parameters": {
+				"scale_x": 1,
+				"scale_y": 1,
+				"repeat": true
+			},
+			"type": "transform"
+		},
+		{
+			"name": "Shape_Seam",
+			"node_position": {
+				"x": -3000,
+				"y": 400
+			},
+			"parameters": {
+				"shape": 1,
+				"sides": 64,
+				"radius": 0.95,
+				"edge": 0.15
+			},
+			"type": "shape"
+		},
+		{
+			"name": "Blend_Seam",
+			"node_position": {
+				"x": -3000,
+				"y": 520
+			},
+			"parameters": {
+				"amount": "$SeamBlend",
+				"blend_type": 9
+			},
+			"type": "blend"
+		},
+		{
+			"name": "DreamGrade",
+			"node_position": {
+				"x": -1900,
+				"y": 40
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0.92,
+							"g": 0.78,
+							"pos": 0,
+							"r": 0.95
+						},
+						{
+							"a": 1,
+							"b": 0.88,
+							"g": 0.82,
+							"pos": 0.35,
+							"r": 0.98
+						},
+						{
+							"a": 1,
+							"b": 0.95,
+							"g": 0.9,
+							"pos": 0.7,
+							"r": 0.85
+						},
+						{
+							"a": 1,
+							"b": 0.75,
+							"g": 0.65,
+							"pos": 1,
+							"r": 0.78
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Perlin_Sparkle",
+			"node_position": {
+				"x": -1900,
+				"y": 160
+			},
+			"parameters": {
+				"scale_x": 32,
+				"scale_y": 32,
+				"iterations": 3,
+				"persistence": 0.6
+			},
+			"type": "perlin"
+		},
+		{
+			"name": "Translate_Sparkle",
+			"node_position": {
+				"x": -1900,
+				"y": 280
+			},
+			"parameters": {
+				"translate_x": "fract($time * $AnimSpeed + $AnimOffset) * $SparkleDriftSpeed",
+				"translate_y": 0
+			},
+			"type": "translate"
+		},
+		{
+			"name": "Blend_Sparkle",
+			"node_position": {
+				"x": -1900,
+				"y": 400
+			},
+			"parameters": {
+				"amount": 0.35,
+				"blend_type": 12
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Blend_Nikki",
+			"node_position": {
+				"x": -1900,
+				"y": 520
+			},
+			"parameters": {
+				"amount": "$StyleNikki",
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Voronoi_Maze",
+			"node_position": {
+				"x": -800,
+				"y": 40
+			},
+			"parameters": {
+				"scale_x": "$WitchBarrierWallpaperScale",
+				"scale_y": "$WitchBarrierWallpaperScale",
+				"randomness": "$WitchBarrierMazeTightness"
+			},
+			"type": "voronoi"
+		},
+		{
+			"name": "Rotate_Madoka",
+			"node_position": {
+				"x": -800,
+				"y": 160
+			},
+			"parameters": {
+				"rotate": "fract($time * $AnimSpeed + $AnimOffset) * $WitchBarrierPhaseSpeed * 360",
+				"cx": 0.5,
+				"cy": 0.5
+			},
+			"type": "rotate"
+		},
+		{
+			"name": "Warp_Madoka",
+			"node_position": {
+				"x": -800,
+				"y": 280
+			},
+			"parameters": {
+				"amount": 0.08,
+				"eps": 0.05
+			},
+			"type": "warp"
+		},
+		{
+			"name": "Colorize_MadokaCute",
+			"node_position": {
+				"x": -800,
+				"y": 400
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0.88,
+							"g": 0.78,
+							"pos": 0,
+							"r": 0.92
+						},
+						{
+							"a": 1,
+							"b": 0.55,
+							"g": 0.72,
+							"pos": 1,
+							"r": 0.88
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Colorize_MadokaCorrupt",
+			"node_position": {
+				"x": -800,
+				"y": 520
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0.12,
+							"g": 0.15,
+							"pos": 0,
+							"r": 0.98
+						},
+						{
+							"a": 1,
+							"b": 0.72,
+							"g": 0.2,
+							"pos": 1,
+							"r": 0.95
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Blend_MadokaColors",
+			"node_position": {
+				"x": -800,
+				"y": 640
+			},
+			"parameters": {
+				"amount": 0.5,
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Edge_MadokaVeins",
+			"node_position": {
+				"x": -800,
+				"y": 760
+			},
+			"parameters": {
+				"size": 2
+			},
+			"type": "edge_detect"
+		},
+		{
+			"name": "Blend_Madoka",
+			"node_position": {
+				"x": -800,
+				"y": 880
+			},
+			"parameters": {
+				"amount": "$StyleMadoka",
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Truchet_Itto",
+			"node_position": {
+				"x": 300,
+				"y": 40
+			},
+			"parameters": {
+				"size": "$IttoPatternScale",
+				"shape": 0
+			},
+			"type": "truchet"
+		},
+		{
+			"name": "Translate_Itto",
+			"node_position": {
+				"x": 300,
+				"y": 160
+			},
+			"parameters": {
+				"translate_x": "fract($time * $AnimSpeed + $AnimOffset) * 0.05",
+				"translate_y": 0
+			},
+			"type": "translate"
+		},
+		{
+			"name": "Edge_IttoInk",
+			"node_position": {
+				"x": 300,
+				"y": 280
+			},
+			"parameters": {
+				"size": 2
+			},
+			"type": "edge_detect"
+		},
+		{
+			"name": "Colorize_Itto",
+			"node_position": {
+				"x": 300,
+				"y": 400
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0.08,
+							"g": 0.08,
+							"pos": 0,
+							"r": 0.12
+						},
+						{
+							"a": 1,
+							"b": 0.85,
+							"g": 0.82,
+							"pos": 0.45,
+							"r": 0.92
+						},
+						{
+							"a": 1,
+							"b": 0.05,
+							"g": 0.04,
+							"pos": 1,
+							"r": 0.55
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Blend_Itto",
+			"node_position": {
+				"x": 300,
+				"y": 520
+			},
+			"parameters": {
+				"amount": "$StyleItto",
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Image_Hubble",
+			"node_position": {
+				"x": 1400,
+				"y": 40
+			},
+			"parameters": {
+				"image": "NASA_Refs/hubble_carina_4k.jpg",
+				"fix_ratio": false,
+				"clamp": true
+			},
+			"type": "image"
+		},
+		{
+			"name": "Transform_NebulaScroll",
+			"node_position": {
+				"x": 1400,
+				"y": 160
+			},
+			"parameters": {
+				"scale_x": "$CelestialNebulaScale",
+				"scale_y": "$CelestialNebulaScale",
+				"repeat": true
+			},
+			"type": "transform"
+		},
+		{
+			"name": "Translate_Nebula",
+			"node_position": {
+				"x": 1400,
+				"y": 280
+			},
+			"parameters": {
+				"translate_x": "fract($time * $AnimSpeed + $AnimOffset) * $CelestialNebulaScale",
+				"translate_y": 0
+			},
+			"type": "translate"
+		},
+		{
+			"name": "Image_MoonElev",
+			"node_position": {
+				"x": 1400,
+				"y": 400
+			},
+			"parameters": {
+				"image": "NASA_Refs/moon_lro_elevation_2k.png",
+				"fix_ratio": false,
+				"clamp": true
+			},
+			"type": "image"
+		},
+		{
+			"name": "Image_MarsRough",
+			"node_position": {
+				"x": 1400,
+				"y": 520
+			},
+			"parameters": {
+				"image": "NASA_Refs/mars_mola_2k.png",
+				"fix_ratio": false,
+				"clamp": true
+			},
+			"type": "image"
+		},
+		{
+			"name": "Image_StarMask",
+			"node_position": {
+				"x": 1400,
+				"y": 640
+			},
+			"parameters": {
+				"image": "NASA_Refs/star_mask.png",
+				"fix_ratio": false,
+				"clamp": true
+			},
+			"type": "image"
+		},
+		{
+			"name": "Blend_Celestial",
+			"node_position": {
+				"x": 1400,
+				"y": 760
+			},
+			"parameters": {
+				"amount": "$StyleCelestial",
+				"blend_type": 9
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Colorize_HeightBase",
+			"node_position": {
+				"x": 2500,
+				"y": 40
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"pos": 0,
+							"r": 0
+						},
+						{
+							"a": 1,
+							"b": 1,
+							"g": 1,
+							"pos": 1,
+							"r": 1
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Blend_HeightMoon",
+			"node_position": {
+				"x": 2500,
+				"y": 160
+			},
+			"parameters": {
+				"amount": 0.35,
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Blend_HeightItto",
+			"node_position": {
+				"x": 2500,
+				"y": 280
+			},
+			"parameters": {
+				"amount": "$IttoCrackDepth",
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Blend_HeightMadoka",
+			"node_position": {
+				"x": 2500,
+				"y": 400
+			},
+			"parameters": {
+				"amount": 0.25,
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Buffer_Height",
+			"node_position": {
+				"x": 2500,
+				"y": 520
+			},
+			"parameters": {
+				"size": 0
+			},
+			"type": "buffer"
+		},
+		{
+			"name": "Colorize_AlbExport",
+			"node_position": {
+				"x": 3600,
+				"y": 40
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"pos": 0,
+							"r": 0
+						},
+						{
+							"a": 1,
+							"b": 1,
+							"g": 1,
+							"pos": 1,
+							"r": 1
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Blend_Albedo",
+			"node_position": {
+				"x": 3600,
+				"y": 160
+			},
+			"parameters": {
+				"amount": 0.85,
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Colorize_Rough",
+			"node_position": {
+				"x": 3600,
+				"y": 280
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0.85,
+							"g": 0.85,
+							"pos": 0,
+							"r": 0.85
+						},
+						{
+							"a": 1,
+							"b": 0.2,
+							"g": 0.2,
+							"pos": 1,
+							"r": 0.2
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Blend_RoughMars",
+			"node_position": {
+				"x": 3600,
+				"y": 400
+			},
+			"parameters": {
+				"amount": 0.4,
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Tones_RoughBias",
+			"node_position": {
+				"x": 3600,
+				"y": 520
+			},
+			"parameters": {
+				"value": "$RoughnessBias",
+				"contrast": 0
+			},
+			"type": "tones"
+		},
+		{
+			"name": "Blend_MetVeins",
+			"node_position": {
+				"x": 3600,
+				"y": 640
+			},
+			"parameters": {
+				"amount": "$WitchBarrierEmissiveVeins",
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Blend_MetStars",
+			"node_position": {
+				"x": 3600,
+				"y": 760
+			},
+			"parameters": {
+				"amount": 0.6,
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Tones_Metallic",
+			"node_position": {
+				"x": 3600,
+				"y": 880
+			},
+			"parameters": {
+				"value": "$MetallicAmount",
+				"contrast": 0
+			},
+			"type": "tones"
+		},
+		{
+			"name": "Blend_EmissSparkle",
+			"node_position": {
+				"x": 3600,
+				"y": 1000
+			},
+			"parameters": {
+				"amount": 0.5,
+				"blend_type": 12
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Blend_EmissVeins",
+			"node_position": {
+				"x": 3600,
+				"y": 1120
+			},
+			"parameters": {
+				"amount": "$WitchBarrierEmissiveVeins",
+				"blend_type": 12
+			},
+			"type": "blend"
+		},
+		{
+			"name": "Blur_AO",
+			"node_position": {
+				"x": 3600,
+				"y": 1240
+			},
+			"parameters": {
+				"variations": 1,
+				"filter": 1,
+				"sigma": 3
+			},
+			"type": "blur"
+		},
+		{
+			"name": "Colorize_AO",
+			"node_position": {
+				"x": 3600,
+				"y": 1360
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"pos": 0,
+							"r": 0
+						},
+						{
+							"a": 1,
+							"b": 1,
+							"g": 1,
+							"pos": 1,
+							"r": 1
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"type": "colorize"
+		},
+		{
+			"name": "Tones_AO",
+			"node_position": {
+				"x": 3600,
+				"y": 1480
+			},
+			"parameters": {
+				"value": "$AOStrength",
+				"contrast": 0
+			},
+			"type": "tones"
+		},
+		{
+			"name": "Normal_Map",
+			"node_position": {
+				"x": 3600,
+				"y": 1600
+			},
+			"parameters": {
+				"param0": 11,
+				"param1": "$NormalStrength",
+				"param2": 0,
+				"param4": 1
+			},
+			"type": "normal_map"
+		},
+		{
+			"name": "Convert_NormalDX",
+			"node_position": {
+				"x": 3600,
+				"y": 1720
+			},
+			"parameters": {
+				"op": 1
+			},
+			"type": "normal_map_convert"
+		},
+		{
+			"name": "Tones_Opacity",
+			"node_position": {
+				"x": 3600,
+				"y": 1840
+			},
+			"parameters": {
+				"value": 1,
+				"contrast": 0.5
+			},
+			"type": "tones"
+		},
+		{
+			"name": "Blend_SSS",
+			"node_position": {
+				"x": 3600,
+				"y": 1960
+			},
+			"parameters": {
+				"amount": 0.12,
+				"blend_type": 0
+			},
+			"type": "blend"
+		},
+		{
+			"export_paths": {},
+			"name": "Material",
+			"node_position": {
+				"x": 4700,
+				"y": 280
+			},
+			"parameters": {
+				"albedo_color": {
+					"a": 1,
+					"b": 1,
+					"g": 1,
+					"r": 1,
+					"type": "Color"
+				},
+				"ao": 1,
+				"depth_scale": "$HeightScale",
+				"emission_energy": 1,
+				"flags_transparent": true,
+				"metallic": 1,
+				"normal": 1,
+				"roughness": 1,
+				"size": "$ExportResolution",
+				"sss": 0.15
+			},
+			"type": "material_dynamic"
+		}
+	],
+	"connections": [
+		{
+			"from": "SourceImage",
+			"from_port": 0,
+			"to": "Transform_Scale",
+			"to_port": 0
+		},
+		{
+			"from": "Transform_Scale",
+			"from_port": 0,
+			"to": "Tones_Prep",
+			"to_port": 0
+		},
+		{
+			"from": "Tones_Prep",
+			"from_port": 0,
+			"to": "Buffer_Prep",
+			"to_port": 0
+		},
+		{
+			"from": "Buffer_Prep",
+			"from_port": 0,
+			"to": "Kaleidoscope_Tile",
+			"to_port": 0
+		},
+		{
+			"from": "Kaleidoscope_Tile",
+			"from_port": 0,
+			"to": "Mirror_Tile",
+			"to_port": 0
+		},
+		{
+			"from": "Mirror_Tile",
+			"from_port": 0,
+			"to": "Transform_Repeat",
+			"to_port": 0
+		},
+		{
+			"from": "Transform_Repeat",
+			"from_port": 0,
+			"to": "Blend_Seam",
+			"to_port": 0
+		},
+		{
+			"from": "Transform_Repeat",
+			"from_port": 0,
+			"to": "Blend_Seam",
+			"to_port": 1
+		},
+		{
+			"from": "Shape_Seam",
+			"from_port": 0,
+			"to": "Blend_Seam",
+			"to_port": 2
+		},
+		{
+			"from": "Blend_Seam",
+			"from_port": 0,
+			"to": "DreamGrade",
+			"to_port": 0
+		},
+		{
+			"from": "Perlin_Sparkle",
+			"from_port": 0,
+			"to": "Translate_Sparkle",
+			"to_port": 0
+		},
+		{
+			"from": "DreamGrade",
+			"from_port": 0,
+			"to": "Blend_Sparkle",
+			"to_port": 0
+		},
+		{
+			"from": "Translate_Sparkle",
+			"from_port": 0,
+			"to": "Blend_Sparkle",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_Seam",
+			"from_port": 0,
+			"to": "Blend_Nikki",
+			"to_port": 0
+		},
+		{
+			"from": "Blend_Sparkle",
+			"from_port": 0,
+			"to": "Blend_Nikki",
+			"to_port": 1
+		},
+		{
+			"from": "Voronoi_Maze",
+			"from_port": 0,
+			"to": "Rotate_Madoka",
+			"to_port": 0
+		},
+		{
+			"from": "Rotate_Madoka",
+			"from_port": 0,
+			"to": "Warp_Madoka",
+			"to_port": 0
+		},
+		{
+			"from": "Warp_Madoka",
+			"from_port": 0,
+			"to": "Colorize_MadokaCute",
+			"to_port": 0
+		},
+		{
+			"from": "Warp_Madoka",
+			"from_port": 0,
+			"to": "Colorize_MadokaCorrupt",
+			"to_port": 0
+		},
+		{
+			"from": "Colorize_MadokaCute",
+			"from_port": 0,
+			"to": "Blend_MadokaColors",
+			"to_port": 0
+		},
+		{
+			"from": "Colorize_MadokaCorrupt",
+			"from_port": 0,
+			"to": "Blend_MadokaColors",
+			"to_port": 1
+		},
+		{
+			"from": "Warp_Madoka",
+			"from_port": 0,
+			"to": "Edge_MadokaVeins",
+			"to_port": 0
+		},
+		{
+			"from": "Blend_Nikki",
+			"from_port": 0,
+			"to": "Blend_Madoka",
+			"to_port": 0
+		},
+		{
+			"from": "Blend_MadokaColors",
+			"from_port": 0,
+			"to": "Blend_Madoka",
+			"to_port": 1
+		},
+		{
+			"from": "Truchet_Itto",
+			"from_port": 0,
+			"to": "Translate_Itto",
+			"to_port": 0
+		},
+		{
+			"from": "Translate_Itto",
+			"from_port": 0,
+			"to": "Edge_IttoInk",
+			"to_port": 0
+		},
+		{
+			"from": "Translate_Itto",
+			"from_port": 0,
+			"to": "Colorize_Itto",
+			"to_port": 0
+		},
+		{
+			"from": "Blend_Madoka",
+			"from_port": 0,
+			"to": "Blend_Itto",
+			"to_port": 0
+		},
+		{
+			"from": "Colorize_Itto",
+			"from_port": 0,
+			"to": "Blend_Itto",
+			"to_port": 1
+		},
+		{
+			"from": "Image_Hubble",
+			"from_port": 0,
+			"to": "Transform_NebulaScroll",
+			"to_port": 0
+		},
+		{
+			"from": "Transform_NebulaScroll",
+			"from_port": 0,
+			"to": "Translate_Nebula",
+			"to_port": 0
+		},
+		{
+			"from": "Blend_Itto",
+			"from_port": 0,
+			"to": "Blend_Celestial",
+			"to_port": 0
+		},
+		{
+			"from": "Translate_Nebula",
+			"from_port": 0,
+			"to": "Blend_Celestial",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_Celestial",
+			"from_port": 0,
+			"to": "Colorize_HeightBase",
+			"to_port": 0
+		},
+		{
+			"from": "Colorize_HeightBase",
+			"from_port": 0,
+			"to": "Blend_HeightMoon",
+			"to_port": 0
+		},
+		{
+			"from": "Image_MoonElev",
+			"from_port": 0,
+			"to": "Blend_HeightMoon",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_HeightMoon",
+			"from_port": 0,
+			"to": "Blend_HeightItto",
+			"to_port": 0
+		},
+		{
+			"from": "Translate_Itto",
+			"from_port": 0,
+			"to": "Blend_HeightItto",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_HeightItto",
+			"from_port": 0,
+			"to": "Blend_HeightMadoka",
+			"to_port": 0
+		},
+		{
+			"from": "Warp_Madoka",
+			"from_port": 0,
+			"to": "Blend_HeightMadoka",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_HeightMadoka",
+			"from_port": 0,
+			"to": "Buffer_Height",
+			"to_port": 0
+		},
+		{
+			"from": "Blend_Celestial",
+			"from_port": 0,
+			"to": "Colorize_AlbExport",
+			"to_port": 0
+		},
+		{
+			"from": "Blend_Celestial",
+			"from_port": 0,
+			"to": "Blend_Albedo",
+			"to_port": 0
+		},
+		{
+			"from": "Colorize_AlbExport",
+			"from_port": 0,
+			"to": "Blend_Albedo",
+			"to_port": 1
+		},
+		{
+			"from": "Buffer_Height",
+			"from_port": 0,
+			"to": "Colorize_Rough",
+			"to_port": 0
+		},
+		{
+			"from": "Colorize_Rough",
+			"from_port": 0,
+			"to": "Blend_RoughMars",
+			"to_port": 0
+		},
+		{
+			"from": "Image_MarsRough",
+			"from_port": 0,
+			"to": "Blend_RoughMars",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_RoughMars",
+			"from_port": 0,
+			"to": "Tones_RoughBias",
+			"to_port": 0
+		},
+		{
+			"from": "Edge_MadokaVeins",
+			"from_port": 0,
+			"to": "Blend_MetVeins",
+			"to_port": 0
+		},
+		{
+			"from": "Edge_IttoInk",
+			"from_port": 0,
+			"to": "Blend_MetVeins",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_MetVeins",
+			"from_port": 0,
+			"to": "Blend_MetStars",
+			"to_port": 0
+		},
+		{
+			"from": "Image_StarMask",
+			"from_port": 0,
+			"to": "Blend_MetStars",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_MetStars",
+			"from_port": 0,
+			"to": "Tones_Metallic",
+			"to_port": 0
+		},
+		{
+			"from": "Translate_Sparkle",
+			"from_port": 0,
+			"to": "Blend_EmissSparkle",
+			"to_port": 0
+		},
+		{
+			"from": "Translate_Nebula",
+			"from_port": 0,
+			"to": "Blend_EmissSparkle",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_EmissSparkle",
+			"from_port": 0,
+			"to": "Blend_EmissVeins",
+			"to_port": 0
+		},
+		{
+			"from": "Edge_MadokaVeins",
+			"from_port": 0,
+			"to": "Blend_EmissVeins",
+			"to_port": 1
+		},
+		{
+			"from": "Buffer_Height",
+			"from_port": 0,
+			"to": "Blur_AO",
+			"to_port": 0
+		},
+		{
+			"from": "Blur_AO",
+			"from_port": 0,
+			"to": "Colorize_AO",
+			"to_port": 0
+		},
+		{
+			"from": "Colorize_AO",
+			"from_port": 0,
+			"to": "Tones_AO",
+			"to_port": 0
+		},
+		{
+			"from": "Buffer_Height",
+			"from_port": 0,
+			"to": "Normal_Map",
+			"to_port": 0
+		},
+		{
+			"from": "Normal_Map",
+			"from_port": 0,
+			"to": "Convert_NormalDX",
+			"to_port": 0
+		},
+		{
+			"from": "Warp_Madoka",
+			"from_port": 0,
+			"to": "Tones_Opacity",
+			"to_port": 0
+		},
+		{
+			"from": "DreamGrade",
+			"from_port": 0,
+			"to": "Blend_SSS",
+			"to_port": 0
+		},
+		{
+			"from": "Colorize_AlbExport",
+			"from_port": 0,
+			"to": "Blend_SSS",
+			"to_port": 1
+		},
+		{
+			"from": "Blend_Albedo",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 0
+		},
+		{
+			"from": "Tones_Metallic",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 1
+		},
+		{
+			"from": "Tones_RoughBias",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 2
+		},
+		{
+			"from": "Blend_EmissVeins",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 3
+		},
+		{
+			"from": "Normal_Map",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 4
+		},
+		{
+			"from": "Tones_AO",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 5
+		},
+		{
+			"from": "Buffer_Height",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 6
+		},
+		{
+			"from": "Tones_Opacity",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 7
+		},
+		{
+			"from": "Blend_SSS",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 8
+		}
+	]
+}

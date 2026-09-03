@@ -1,0 +1,89 @@
+@ Start
+
+- Melusina
+  Sir Melodious? Is that you? The quiet petal is humming again.
+
+* Follow the quiet chirp. | melodia_met_melodious = on | -> Reunion
+* Wait and listen.         | -> Listening
+
+<@> Listening
+
+- .
+  The room settles. A softer chirp answers from beyond the door, keeping time with her breath.
+
+-> Start
+
+<@> Reunion
+
+? if: {melodia_met_melodious} == on
+
+  - Sir Melodious
+    There you are. Even the silence remembers our song.
+
+? else:
+
+  - .
+    The perch remains empty, but one bright note waits in the air.
+
+? endif
+
+- Sir Melodious
+  Hold fast to the quiet note. Something restless has heard us.
+
+$ Notify melodia:battle:melodia_smoke_encounter
+
+? if: {melodia_battle_result} == victory
+
+  - Sir Melodious
+    Victory. The dream remembers your courage, and the quiet petal opens.
+
+  $ melodia_first_dream_resolved = on
+  $ Notify melodia:quest:melodia_q_echo_01
+  $ Notify melodia:reward:melodia_smoke_reward
+
+? else:
+
+  ? if: {melodia_battle_result} == defeat
+
+    - Sir Melodious
+      The dream releases you gently. We will carry its lesson into the next refrain.
+
+    $ melodia_first_dream_resolved = on
+
+  ? else:
+
+    ? if: {melodia_battle_result} == fled
+
+      - Sir Melodious
+        We escaped with the melody intact. We can return when the rhythm is kinder.
+
+      $ melodia_first_dream_resolved = on
+
+    ? else:
+
+      - Sir Melodious
+        The battle could not begin. The dream remains open, waiting for a safer return.
+
+    ? endif
+
+  ? endif
+
+? endif
+
+@ Finish
+
+? if: {melodia_first_dream_resolved} == on
+
+  $ Notify melodia:flag:melodia_smoke_complete:true
+
+  - .
+    The first dream resolves. Melusina wakes with its melody safely remembered.
+
+? else:
+
+  - .
+    The unfinished dream fades, leaving a path back to its first note.
+
+? endif
+
+$ End

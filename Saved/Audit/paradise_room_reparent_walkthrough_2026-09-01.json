@@ -1,0 +1,115 @@
+{
+  "schema": "melodia.paradise.room.reparent.walkthrough.v1",
+  "generated": "2026-09-01T12:30:00Z",
+  "source": "disk scan of Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/ (96 Paradise MIs)",
+  "mode": "editor_bound_walkthrough",
+  "summary": {
+    "total_paradise_mis": 96,
+    "alpha_trans_mis": 13,
+    "opaque_mis": 83,
+    "unique_mesh_stems": 68,
+    "meshes_with_multiple_mis": 21,
+    "mi_location": "Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/"
+  },
+  "material_suffix_analysis": {
+    "_Atlas_01_Mat": {
+      "count": 47,
+      "type": "opaque",
+      "suggested_parent": "M_Master_Toon_Universal",
+      "texture_weight": 1.0,
+      "layer_a_texture_weight": 1.0
+    },
+    "_Atlas_01_Trans_Mat": {
+      "count": 13,
+      "type": "transparent",
+      "suggested_parent": "M_Master_Toon_Universal_Alpha",
+      "texture_weight": 1.0,
+      "layer_a_texture_weight": 1.0
+    },
+    "_Seam_Sand_Mat": {
+      "count": 7,
+      "type": "opaque",
+      "suggested_parent": "M_Master_Toon_Universal",
+      "texture_weight": 1.0,
+      "layer_a_texture_weight": 1.0
+    },
+    "_Seam_Floor_Mat": {
+      "count": 2,
+      "type": "opaque",
+      "suggested_parent": "M_Master_Toon_Universal",
+      "texture_weight": 1.0,
+      "layer_a_texture_weight": 1.0
+    },
+    "_Outliner_Mat": {
+      "count": 3,
+      "type": "opaque",
+      "suggested_parent": "M_Master_Toon_Universal",
+      "texture_weight": 1.0,
+      "layer_a_texture_weight": 1.0
+    },
+    "_Shadows_Mat": {
+      "count": 3,
+      "type": "opaque",
+      "suggested_parent": "M_Master_Toon_Universal",
+      "texture_weight": 1.0,
+      "layer_a_texture_weight": 1.0
+    },
+    "_Art_no_suffix": {
+      "count": 21,
+      "type": "opaque",
+      "suggested_parent": "M_Master_Toon_Universal",
+      "texture_weight": 1.0,
+      "layer_a_texture_weight": 1.0
+    }
+  },
+  "walkthrough_steps": [
+    {
+      "step": 1,
+      "action": "Open UE Editor → Content Browser",
+      "detail": "Navigate to Content/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/"
+    },
+    {
+      "step": 2,
+      "action": "Filter by MI_Rooms_Paradise",
+      "detail": "Type 'MI_Rooms_Paradise' in search bar to isolate all 96 MIs"
+    },
+    {
+      "step": 3,
+      "action": "Open each MI and read current parent",
+      "detail": "Double-click MI → Details panel → Parent field. Record current parent."
+    },
+    {
+      "step": 4,
+      "action": "Reparent transparent MIs (_Trans_Mat suffix)",
+      "detail": "For 13 MIs with _Atlas_01_Trans_Mat suffix: set parent to M_Master_Toon_Universal_Alpha. Set TextureWeight=1.0, LayerA_TextureWeight=1.0."
+    },
+    {
+      "step": 5,
+      "action": "Reparent opaque MIs (all other suffixes)",
+      "detail": "For 83 MIs without _Trans_Mat suffix: set parent to M_Master_Toon_Universal. Set TextureWeight=1.0, LayerA_TextureWeight=1.0."
+    },
+    {
+      "step": 6,
+      "action": "Save all modified MIs",
+      "detail": "Ctrl+S or right-click → Save. Verify no errors in Output Log."
+    },
+    {
+      "step": 7,
+      "action": "Verify with project_state.py staleness check",
+      "detail": "Run: python Tools/project_state.py staleness --filter Paradise"
+    }
+  ],
+  "batch_script_suggestion": {
+    "note": "For bulk reparenting, use Editor Python:",
+    "code": "import unreal\nmis = unreal.EditorAssetLibrary.list_assets('/Game/EnvSandbox/Meshes/AvatarGarden/Materials/')\nfor mi_path in mis:\n    mi = unreal.EditorAssetLibrary.load_asset(mi_path)\n    if mi and 'Paradise' in mi_path:\n        suffix = mi_path.split('_')[-1] if '_' in mi_path else ''\n        if 'Trans' in suffix:\n            mi.set_editor_property('parent', unreal.EditorAssetLibrary.load_asset('/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha'))\n        else:\n            mi.set_editor_property('parent', unreal.EditorAssetLibrary.load_asset('/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal'))\n        mi.set_editor_property('texture_weight', 1.0)\n        mi.set_editor_property('layer_a_texture_weight', 1.0)\n        unreal.EditorAssetLibrary.save_loaded_asset(mi)"
+  },
+  "guardrails": [
+    "No .uasset writes by daemon",
+    "Editor-bound execution only",
+    "Verify parent master exists before reparenting",
+    "Transparent MIs MUST use Universal_Alpha parent",
+    "Owner must run referencer check before committing",
+    "Backup .uasset files before bulk edit"
+  ],
+  "status": "WALKTHROUGH_READY_PENDING_OWNER_EXEC"
+}

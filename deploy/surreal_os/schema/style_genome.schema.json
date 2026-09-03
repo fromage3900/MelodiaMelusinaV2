@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StyleGenome",
+  "type": "object",
+  "required": ["id", "verticality", "symmetry", "ornament_density", "structural_logic", "organic_growth", "cosmic_influence"],
+  "properties": {
+    "id": { "type": "string" },
+    "verticality": { "type": "number", "minimum": 0, "maximum": 1 },
+    "symmetry": { "type": "number", "minimum": 0, "maximum": 1 },
+    "ornament_density": { "type": "number", "minimum": 0, "maximum": 1 },
+    "structural_logic": { "type": "number", "minimum": 0, "maximum": 1 },
+    "organic_growth": { "type": "number", "minimum": 0, "maximum": 1 },
+    "cosmic_influence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "sacred_sequence": { "type": "array", "items": { "type": "string" } },
+    "compose_style": { "type": "string" },
+    "default_graph": { "type": "string" },
+    "surreal_transform": { "type": ["string", "null"] },
+    "prop_defaults": { "type": "object" }
+  }
+}

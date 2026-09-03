@@ -1,0 +1,11 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "execute_python",
+    "arguments": {
+      "code": "exec(open(r'G:\\EnvironmentPortfolio\\_TouchDesigner\\grandmaster_melodia\\scripts\\build_postfx.py').read())"
+    }
+  }
+}

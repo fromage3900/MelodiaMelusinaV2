@@ -1,0 +1,33 @@
+{
+  "schema": "melodia.copernatic_cymatic_parallax.v2",
+  "seed": 20260831,
+  "size": "2048x2048",
+  "frames": 1,
+  "variants": {
+    "FirstLightDawn": {
+      "outputs": [
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Normal.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Height.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_ORM.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Opacity.png"
+      ]
+    }
+  },
+  "maps": [
+    "BaseColor",
+    "Normal",
+    "Roughness",
+    "Metallic",
+    "Height",
+    "ORM",
+    "Emissive",
+    "Iridescence",
+    "Opacity"
+  ],
+  "pipeline": "pure numpy (cymatic trig interference + tileable fBm + domain warping)"
+}

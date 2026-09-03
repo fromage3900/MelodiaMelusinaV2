@@ -1,0 +1,130 @@
+// Copyright 2026 BS_GodFile. All Rights Reserved.
+//
+// MelodiaInkBioluminescent.ush — bioluminescent ink decay bridge.
+//
+// This is the lowest-effort, highest-unifying ink expansion: it wires the ink's
+// emissive output to the same exponential-decay impulse model as the water
+// bioluminescence system (I(t) = I₀ · exp(-λ · dt)), so the ink GLOWS on beat
+// impacts and fades like a heartbeat — connecting the surface Nikki aesthetic
+// to the underwater Oceanology aesthetic through one shared decay model.
+//
+// The water bioluminescence lives in:
+//   MF_WaterBioluminescence_v9.uasset + wire_water_bioluminescence_harmony.py
+//   (UMelodiaWaterNiagaraBridgeComponent, MPC_Melodia_Palette)
+//
+// This shader brings that same impulse model to the post-process ink, so when
+// a beat hits, the ink flashes and decays at the same rate as the ocean glow.
+//
+// Parameters:
+//   BiolumDecay     — decay constant λ (default 2.5, matching water)
+//   BiolumIntensity — peak impulse I₀ (default 2.0, matching water)
+//   BiolumOn        — 0 or 1 gate
+//
+// Authoring: Rider validates this as HLSL. Consumed by the Custom node in
+// M_PP_MelodiaInk.
+
+#pragma once
+#include "MelodiaInkCommon.ush"
+
+// ============================================================================
+// Bioluminescent impulse — the shared decay model
+// ============================================================================
+//
+// The water system uses: I(t) = I₀ · exp(-λ · dt) where dt is time since the
+// last contact/beat. Here we approximate the same curve using BeatPulse as
+// the impulse trigger and View.GameTime as the clock.
+//
+// BeatPulse is cos²(BeatPhase·π), which peaks at 1.0 on the beat edge and
+// decays to 0.0 between beats. At 128 BPM, the beat period is ~0.469s.
+// The bioluminescent decay λ=2.5 means the glow drops to 1% in ~1.84s.
+// So a beat at 128 BPM (every 0.469s) keeps the glow alive continuously,
+// but with a visible "breathing" envelope — exactly the ocean feel.
+
+float MelBiolumImpulse(FMelodiaInkAudio audio, float decayRate, float peakIntensity)
+{
+    // BeatPulse is already a cos² envelope — it IS the impulse shape.
+    // We scale it by peak intensity and let the natural cos² decay do the work.
+    // This matches the water system's visual behavior without needing a
+    // separate dt clock (which we don't have in a post-process material).
+    float impulse = MelSaturate(audio.BeatPulse) * peakIntensity;
+
+    // Victory pulse adds a longer-decay overlay (celebration bloom)
+    float victoryDecay = MelSaturate(audio.VictoryPulse) * peakIntensity * 0.5;
+
+    // Break pulse adds a sharp flash (shorter decay)
+    float breakFlash = MelSaturate(audio.BreakPulse) * peakIntensity * 0.3;
+
+    return impulse + victoryDecay + breakFlash;
+}
+
+// ============================================================================
+// Bioluminescent glow color — shifts with hue + audio
+// ============================================================================
+
+float3 MelBiolumGlowColor(FMelodiaInkAudio audio, float3 baseInkColor, float3 accentTint)
+{
+    // Base glow is the ink color shifted toward the accent tint at high reactivity
+    float react = MelSaturate(audio.InkReact + audio.GlobalReactivity * 0.3);
+    float3 glow = lerp(baseInkColor, accentTint, react * 0.5);
+
+    // Hue shift with audio — the glow color rotates as the music intensifies
+    float hueShift = MelSaturate(audio.InkHueShift);
+    float3 shifted = lerp(glow, float3(glow.z, glow.x, glow.y), hueShift * 0.3);
+
+    // Bass warms the glow, treble cools it
+    float bassWarm = MelSaturate(audio.Bass) * 0.15;
+    float trebleCool = MelSaturate(audio.Treble) * 0.1;
+    shifted.r += bassWarm;
+    shifted.b += trebleCool;
+
+    return shifted;
+}
+
+// ============================================================================
+// Bioluminescent ink — main function
+// Composes the impulse + glow color + screen-space falloff
+// ============================================================================
+
+float3 MelInkBioluminescent(
+    float3 src,          // SceneColor (PostProcessInput0)
+    float2 uv,           // Screen UV
+    FMelodiaInkAudio audio,
+    FMelodiaInkParams params,
+    float3 inkCol        // pre-computed ink color
+)
+{
+    if (params.BiolumOn < 0.5) return src;
+
+    // Compute the bioluminescent impulse
+    float impulse = MelBiolumImpulse(audio, params.BiolumDecay, params.BiolumIntensity);
+
+    // Compute the glow color
+    float3 glowColor = MelBiolumGlowColor(audio, inkCol, params.AccentTint);
+
+    // Screen-space radial falloff — glow is stronger toward center (vignette-like)
+    float2 center = uv - 0.5;
+    float radial = 1.0 - length(center) * 0.8;
+    radial = MelSaturate(radial);
+
+    // Combine: impulse * glow * radial falloff
+    float glowAmount = impulse * radial * params.Strength * 0.15;
+
+    // Additive glow — this is what makes it "bioluminescent" not just "bright"
+    float3 col = src + glowColor * glowAmount;
+
+    // Soft clip to prevent blowout
+    col = lerp(col, col / (1.0 + MelLuminance(col) * 0.5), MelSaturate(glowAmount * 2.0));
+
+    return col;
+}
+
+// ============================================================================
+// Shared decay constant — exported so the water system and ink stay in sync
+// ============================================================================
+
+// This value MUST match BIOLUMINESCENCE_DECAY_LAMBDA in
+// Content/Python/wire_water_bioluminescence_harmony.py (currently 2.5).
+// If either changes, both must change. The lookdev goal is ONE decay model
+// across surface (ink) and underwater (water) — they must breathe together.
+#define MEL_BIOLUM_DECAY_DEFAULT 2.5
+#define MEL_BIOLUM_INTENSITY_DEFAULT 2.0

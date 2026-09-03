@@ -1,0 +1,14 @@
+{
+  "source_id": "SD_01_SakuraMaiden",
+  "source_type": "vroid_studio",
+  "archetype": "SakuraDreamer",
+  "filename": "SD_01_SakuraMaiden.vrm",
+  "author": "Melodia Team (VRoid Studio)",
+  "license": "vroid_studio_tos",
+  "commercial_ok": true,
+  "body_type": "petite",
+  "base_hair_color": "#D6A9B0",
+  "base_eye_color": "#E7C9CE",
+  "expression_presets": ["gentle_smile", "soft_laugh", "thoughtful", "dreamy"],
+  "notes": "Create in VRoid Studio: petite female, pink hair, light pink eyes, sakura-themed outfit. Export as VRM 1.0."
+}

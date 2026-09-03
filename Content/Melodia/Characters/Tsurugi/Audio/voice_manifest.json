@@ -1,0 +1,53 @@
+{
+  "character": "Tsurugi",
+  "speaker_id": 17,
+  "voice_style": "ノーマル",
+  "total": 7,
+  "generated": 7,
+  "cached": 0,
+  "errors": 0,
+  "lines": [
+    {
+      "id": "tsu_first_meet_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Tsurugi\\Audio\\tsu_first_meet_01.wav",
+      "size_kb": 432.54296875
+    },
+    {
+      "id": "tsu_arena_intro_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Tsurugi\\Audio\\tsu_arena_intro_01.wav",
+      "size_kb": 288.04296875
+    },
+    {
+      "id": "tsu_training_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Tsurugi\\Audio\\tsu_training_01.wav",
+      "size_kb": 288.04296875
+    },
+    {
+      "id": "tsu_quest_worthy_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Tsurugi\\Audio\\tsu_quest_worthy_01.wav",
+      "size_kb": 297.04296875
+    },
+    {
+      "id": "tsu_bond_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Tsurugi\\Audio\\tsu_bond_01.wav",
+      "size_kb": 289.54296875
+    },
+    {
+      "id": "tsu_party_join_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Tsurugi\\Audio\\tsu_party_join_01.wav",
+      "size_kb": 202.54296875
+    },
+    {
+      "id": "tsu_ending_01",
+      "status": "generated",
+      "path": "G:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Tsurugi\\Audio\\tsu_ending_01.wav",
+      "size_kb": 269.04296875
+    }
+  ]
+}

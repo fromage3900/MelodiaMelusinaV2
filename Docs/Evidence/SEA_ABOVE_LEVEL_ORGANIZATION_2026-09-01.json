@@ -1,0 +1,75 @@
+{
+  "recorded_at": "2026-09-01",
+  "map": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "scope": "folder organization and navigation heatmap baseline",
+  "canonical_geometry_policy": "The owner-authored landscape and cathedral placement are canonical. No actor transforms were changed.",
+  "actor_count_after_navigation_setup": 255,
+  "transform_verification": {
+    "unchanged_during_folder_pass": true,
+    "existing_actor_post_folder_pass_sha256": "8c090968adde511515e2a1ef118050a2aa8fcd915a96e2306314d456d3b2ca62"
+  },
+  "folders": {
+    "00_CANON/Cathedral": 68,
+    "00_CANON/Landscape": 132,
+    "01_GAMEPLAY/Player_Quill": 2,
+    "02_GAMEPLAY/MusicKey": 12,
+    "03_GAMEPLAY/Traversal": 1,
+    "05_GAMEPLAY/Navigation_Heatmap": 1,
+    "10_WORLD/Water_Ocean": 6,
+    "11_WORLD/Reef_Flora": 11,
+    "13_WORLD/SetDressing": 3,
+    "15_WORLD/Misc": 11,
+    "21_PRESENTATION/Niagara": 1,
+    "22_PRESENTATION/Lighting_PPV": 1,
+    "40_PCG/World": 6
+  },
+  "navigation": {
+    "bounds": {
+      "actor": "NavMeshBoundsVolume",
+      "location": [-450, 100, 7000],
+      "half_extent": [3000, 4000, 8000]
+    },
+    "build_complete": true,
+    "nav_data": "RecastNavMesh_Default",
+    "route_results": {
+      "entry_to_quill": "no connected path",
+      "quill_to_starskiff": "no connected path",
+      "starskiff_to_music_key": "no connected path"
+    },
+    "nearest_nav_projection": {
+      "SeaAbove_PlayerStart": {
+        "actor_z": 13175,
+        "nav_z": 10160,
+        "offset_cm": 3015
+      },
+      "SeaAbove_QuillTrigger_Cutscene": {
+        "actor_z": 13145,
+        "nav_z": 14156.1291,
+        "offset_cm": 1011.1291
+      },
+      "SeaAbove_Starskiff_MK2": {
+        "actor_z": 10535,
+        "nav_z": 9279.1702,
+        "offset_cm": 1255.8298
+      },
+      "ResonanceCathedral_MusicNode0": {
+        "actor_z": 28,
+        "nav_projection": null,
+        "search_extent_cm": 7000
+      }
+    }
+  },
+  "verification": {
+    "map_saved": true,
+    "errored_blueprints": 0,
+    "unrelated_dirty_packages_preserved": [
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CrystalCathedral",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_PearlWeave",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FrostBloom"
+    ]
+  },
+  "gate_state": "HOLD",
+  "hold_reason": "The navigation heatmap is built, but the core actors are not on one connected walkable surface. No curated landscape, cathedral, or gameplay actor was moved to mask this result."
+}

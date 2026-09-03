@@ -1,0 +1,3 @@
+Begin Object Class=/Script/Engine.ToonProfile Name="TP_Melusina" ExportPath="/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina.TP_Melusina'"
+   Settings=(DiffuseRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),SpecularRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),ShadowExtinctionCoefficient=0.300000,ShadowHatchingPatternDistributionRamp=(EditorCurveData=()),DiffuseIndirectScale=0.300000,SpecularIndirectScale=0.300000,SpecularIndirectRamp=(EditorCurveData=()))
+End Object

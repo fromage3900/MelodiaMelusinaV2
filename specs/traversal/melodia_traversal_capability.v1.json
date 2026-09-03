@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_native_authority_contract",
+  "contract_id": "melodia_traversal_capability",
+  "status": "native_request_api_build_passed_live_evidence_pending",
+  "purpose": "Define the single native seam that future traversal abilities and Blueprint gates must use.",
+  "authorities": {
+    "movement_state": "UMelodiaTraversalComponent",
+    "input_context": "UMelodiaInputContextSubsystem",
+    "presentation_gate": "BP_MelodiaTraversalGate_Base",
+    "progression": "UMelodiaNarrativeSubsystem",
+    "capability_lookup": "UMelodiaTraversalCapabilityRegistry -> canonical read-only provider"
+  },
+  "current_native_surface": {
+    "state_queries": [
+      "IsGliding",
+      "IsSprinting",
+      "IsDashing",
+      "IsSwimming",
+      "IsDiving",
+      "GetGlideStaminaNormalized",
+      "GetBreathNormalized"
+    ],
+    "transition_ownership": "private_input_driven_component_methods",
+    "context_queries": [
+      "GetActiveContext",
+      "IsMovementAllowed",
+      "IsInteractionAllowed",
+      "IsSavingAllowed"
+    ],
+    "capability_query_seam": {
+      "status": "source_wired_closed_editor_build_pending",
+      "canonical_query_provider": "UMelodiaWardrobeSubsystem",
+      "provider_role": "read_only_resonant_form_capability_lookup",
+      "capability_values": ["Glide", "Dash", "Swim"],
+      "context_id_source": "traversal_definition_or_active_input_context",
+      "fail_closed_reasons": ["missing_provider", "unknown_capability", "blocked_context", "progression_locked"],
+      "runtime_decider": "UMelodiaTraversalComponent",
+      "unwired_paths": ["live traversal Blueprint request", "closed-editor/UHT/build evidence", "live PIE context matrix"],
+      "module_dependency_rule": "BS_GodFile must not depend on MelodiaWardrobe; MelodiaWardrobe already depends on BS_GodFile, so use a module-neutral provider/registry or an explicit Blueprint bridge"
+    },
+    "public_capability_request_api": "compiled_and_uht_reflected_live_editor_verification_pending",
+    "source_methods": ["GetTraversalMode", "RequestTraversalMode", "ResetTraversalState", "GetTraversalCapabilityContextId", "SetTraversalCapabilityContextId"],
+    "source_supported_modes": ["Grounded", "Glide"]
+  },
+  "required_future_native_contract": {
+    "stable_capability_id": "FName",
+    "mode_set": ["grounded", "hover", "glide", "swim", "dive", "sprint"],
+    "request_result": ["accepted", "rejected", "interrupted", "already_active"],
+    "block_reason": ["missing_capability", "blocked_context", "progression_locked", "resource_unavailable"],
+    "context_policy": "evaluate before request and after every context/load transition",
+    "capability_gate_policy": "resolve stable capability identity and context before movement transition; missing or unavailable capability rejects without mutation",
+    "reset_policy": "restore grounded state without duplicating input-context ownership",
+    "blueprint_access": "BlueprintCallable request plus BlueprintPure state/result queries",
+    "authority_invariant": "only UMelodiaTraversalComponent mutates movement state"
+  },
+  "gate_contract": {
+    "blueprint": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaTraversalGate_Base",
+    "allowed_operations": [
+      "read capability/progression/context state",
+      "present available or blocked state",
+      "offer alternate route",
+      "recheck after load/context change"
+    ],
+    "forbidden_operations": [
+      "direct movement mutation",
+      "direct input-context stack ownership for traversal",
+      "duplicate traversal booleans",
+      "direct save or travel mutation"
+    ]
+  },
+  "verification_before_promotion": [
+    "native API compiles and is Blueprint-visible",
+    "accepted request produces one deterministic state transition",
+    "blocked context produces a stable reason and no movement mutation",
+    "interrupt/load reset returns to grounded state",
+    "gate observes the same state without owning it",
+    "two-run fixture evidence is reproducible"
+  ]
+}

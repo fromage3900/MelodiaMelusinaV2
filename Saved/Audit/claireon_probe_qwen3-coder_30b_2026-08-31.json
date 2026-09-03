@@ -1,0 +1,151 @@
+{
+  "schema": "claireon.toolcall_probe.v1",
+  "kind": "client_side_two_tool_discovery",
+  "note": "Measures whether a local model produces Claireon's tool_search -> python_execute pattern under a 2-tool manifest. Editor offline = no python_execute round-trip.",
+  "model": "qwen3-coder:30b",
+  "backend": "ollama (qwen3-coder:30b)",
+  "captured_at": "2026-08-31T00:14:34-04:00",
+  "worktree": "C:\\EnvironmentPortfolio\\BS_GodFile",
+  "claireon_port": 64998,
+  "editor_reachable": false,
+  "proxy_reachable": false,
+  "total": 8,
+  "passed": 7,
+  "failed": 1,
+  "surface_adherence_pct": 100.0,
+  "tool_choice_pct": 87.5,
+  "arg_shape_pct": 87.5,
+  "arg_subject_pct": 87.5,
+  "prompt_tokens": 1432,
+  "completion_tokens": 167,
+  "tasks": [
+    {
+      "id": "discover_blueprint",
+      "gold_tool": "tool_search",
+      "chosen_tool": "tool_search",
+      "in_surface": true,
+      "tool_match": true,
+      "arg_keys_ok": true,
+      "hint_ok": true,
+      "status": "pass",
+      "args": {
+        "query": "Blueprint graph editing"
+      },
+      "note": null,
+      "error": null,
+      "raw_head": "{\"tool\": \"tool_search\", \"args\": {\"query\": \"Blueprint graph editing\"}}"
+    },
+    {
+      "id": "discover_statetree",
+      "gold_tool": "tool_search",
+      "chosen_tool": "tool_search",
+      "in_surface": true,
+      "tool_match": true,
+      "arg_keys_ok": true,
+      "hint_ok": true,
+      "status": "pass",
+      "args": {
+        "query": "State Tree"
+      },
+      "note": null,
+      "error": null,
+      "raw_head": "{\"tool\": \"tool_search\", \"args\": {\"query\": \"State Tree\"}}"
+    },
+    {
+      "id": "detail_named_tool",
+      "gold_tool": "tool_search",
+      "chosen_tool": "tool_search",
+      "in_surface": true,
+      "tool_match": true,
+      "arg_keys_ok": true,
+      "hint_ok": true,
+      "status": "pass",
+      "args": {
+        "tool_name": "bp_apply_delta"
+      },
+      "note": null,
+      "error": null,
+      "raw_head": "{\"tool\": \"tool_search\", \"args\": {\"tool_name\": \"bp_apply_delta\"}}"
+    },
+    {
+      "id": "execute_known_tool",
+      "gold_tool": "python_execute",
+      "chosen_tool": "python_execute",
+      "in_surface": true,
+      "tool_match": true,
+      "arg_keys_ok": true,
+      "hint_ok": true,
+      "status": "pass",
+      "args": {
+        "code": "claireon.asset_list('/Game/MelodiaIntegration')"
+      },
+      "note": null,
+      "error": null,
+      "raw_head": "{\"tool\": \"python_execute\", \"args\": {\"code\": \"claireon.asset_list('/Game/MelodiaIntegration')\"}}"
+    },
+    {
+      "id": "execute_python_direct",
+      "gold_tool": "python_execute",
+      "chosen_tool": "tool_search",
+      "in_surface": true,
+      "tool_match": false,
+      "arg_keys_ok": false,
+      "hint_ok": false,
+      "status": "fail",
+      "args": {
+        "query": "selected actors"
+      },
+      "note": null,
+      "error": null,
+      "raw_head": "{\"tool\": \"tool_search\", \"args\": {\"query\": \"selected actors\"}}"
+    },
+    {
+      "id": "discover_niagara",
+      "gold_tool": "tool_search",
+      "chosen_tool": "tool_search",
+      "in_surface": true,
+      "tool_match": true,
+      "arg_keys_ok": true,
+      "hint_ok": true,
+      "status": "pass",
+      "args": {
+        "query": "Niagara"
+      },
+      "note": null,
+      "error": null,
+      "raw_head": "{\"tool\": \"tool_search\", \"args\": {\"query\": \"Niagara\"}}"
+    },
+    {
+      "id": "no_flat_hallucination",
+      "gold_tool": "tool_search",
+      "chosen_tool": "tool_search",
+      "in_surface": true,
+      "tool_match": true,
+      "arg_keys_ok": true,
+      "hint_ok": true,
+      "status": "pass",
+      "args": {
+        "query": "compile blueprint"
+      },
+      "note": "Correct behaviour is to SEARCH first, not invent a flat bp_compile tool.",
+      "error": null,
+      "raw_head": "{\n  \"tool\": \"tool_search\",\n  \"args\": {\n    \"query\": \"compile blueprint\"\n  }\n}"
+    },
+    {
+      "id": "widget_discovery",
+      "gold_tool": "tool_search",
+      "chosen_tool": "tool_search",
+      "in_surface": true,
+      "tool_match": true,
+      "arg_keys_ok": true,
+      "hint_ok": true,
+      "status": "pass",
+      "args": {
+        "query": "UMG widget hierarchy"
+      },
+      "note": null,
+      "error": null,
+      "raw_head": "{\"tool\": \"tool_search\", \"args\": {\"query\": \"UMG widget hierarchy\"}}"
+    }
+  ]
+}

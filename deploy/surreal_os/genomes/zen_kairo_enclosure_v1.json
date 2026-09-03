@@ -1,0 +1,36 @@
+{
+  "id": "zen_kairo_enclosure_v1",
+  "family": "Zen",
+  "verticality": 0.82,
+  "symmetry": 0.88,
+  "ornament_density": 0.5,
+  "structural_logic": 0.9,
+  "organic_growth": 0.42,
+  "cosmic_influence": 0.2,
+  "sacred_sequence": [
+    "torii_frame",
+    "kairo_cloister",
+    "karesansui_field",
+    "haiden_platform",
+    "honden_sanctuary",
+    "machiai_wait"
+  ],
+  "compose_style": "ZEN_SHRINE",
+  "default_graph": "ZEN_KAIRO_ENCLOSURE",
+  "grammar_id": "ZEN_KAIRO_ENCLOSURE",
+  "surreal_transform": "axis_compression",
+  "torii_variant": "standard",
+  "compose_roles": {
+    "gate": "_lib_GB_ZEN_TORII_GATE",
+    "wall": "_lib_GB_ZEN_KAIRO",
+    "large": "_lib_GB_ZEN_HAIDEN",
+    "sacred": "_lib_GB_ZEN_HONDEN"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "uv_unwrap_mode": "TRIM_SHEET",
+    "material_choice": "STONE",
+    "unit_size": 2.0
+  }
+}

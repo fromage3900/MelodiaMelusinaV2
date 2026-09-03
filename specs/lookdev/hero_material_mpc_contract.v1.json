@@ -1,0 +1,37 @@
+{
+  "schema": "melodia.mpc_hero_material_contract.v1",
+  "title": "MPC_Hero_Material —— subsystem-owned hero-material parameter contract",
+  "date": "2026-09-02",
+  "single_writer_rule": "ULMelodiaAudioReactivePresentationSubsystem remains the SOLE MPC audio writer (MPC_Melodia_Palette). This hero parameter surface (MPC_Hero_Material) is OWNED by UMelodiaNeuralHeroMaterialSubsystem — cymatics + neural are READ-ONLY consumers of the audio palette and never write it.",
+  "inputs": {
+    "collection": "MPC_Melodia_Palette",
+    "mode": "READ-ONLY",
+    "features": [
+      {"name": "BassIntensity", "type": "float", "range": [0, 1], "note": "low-band energy"},
+      {"name": "BeatIntensity", "type": "float", "range": [0, 1], "note": "onset strength"},
+      {"name": "BeatPhase", "type": "float", "range": [0, 1], "note": "loop phase (wraps)"},
+      {"name": "BeatPulse", "type": "float", "range": [0, 1], "note": "one-shot beat pulse"},
+      {"name": "BeatTracker", "type": "float", "range": [0, 1], "note": "tracker latch"}
+    ]
+  },
+  "hero_params": {
+    "collection": "MPC_Hero_Material",
+    "mode": "WRITE-ONLY by UMelodiaNeuralHeroMaterialSubsystem; read by hero MIs",
+    "outputs": [
+      {"name": "EmissiveStrength", "type": "float", "range": [0, 1], "unit": "scalar drive", "binding": "base emissive intensity (hero glow / nodal sing)"},
+      {"name": "EmissiveTint", "type": "float", "range": [0, 1], "unit": "hue offset", "binding": "emissive color hue shift"},
+      {"name": "SubsurfaceScatter", "type": "float", "range": [0, 1], "unit": "scalar drive", "binding": "Nikki-jewellery 3S pass-through"},
+      {"name": "Displacement", "type": "float", "range": [0, 1], "unit": "WPO scale", "binding": "surface wobble / relief"},
+      {"name": "SpecularBoost", "type": "float", "range": [0, 1], "unit": "scalar drive", "binding": "highlight / shine gain"}
+    ]
+  },
+  "onnx_backing": {
+    "graph": "melodia_hero_material_controller",
+    "file": "Tools/Audio/models/hero_material_controller.onnx",
+    "input": "audio (float32 [None,5])",
+    "output": "hero (float32 [None,5])",
+    "mapping": "inputs order == inputs.features order; outputs order == hero_params.outputs order",
+    "verified": "7/7 PASS under onnxruntime 1.29 (2026-09-02)"
+  },
+  "usage": "Hero MIs on M_Master_Toon_Universal bind EmissiveStrength/EmissiveTint/SubsurfaceScatter/Displacement/SpecularBoost to MPC_Hero_Material scalars (see melodia-audio-hero-material skill + Docs/Plans/AUDIO_HERO_MATERIAL_PLAN_2026-09-02.md)."
+}

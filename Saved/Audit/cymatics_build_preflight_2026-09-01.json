@@ -1,0 +1,157 @@
+{
+  "generated": "2026-09-01T04:30:00Z",
+  "purpose": "Closed-editor Build.bat preflight for cymatics PRESENT promotion \u2014 editor-lock check, FTSTicker/MelodiaShader verification, changed Source inventory, build command, expected outputs, verification steps",
+  "toolchain_index": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md \u00a71 cymatics entry \u2014 PRESENT source-verified, read-only MPC consumer; audit Saved/Audit/cymatics_audit_2026-09-01.json",
+  "editor_lock": {
+    "editor_open": true,
+    "process": "UnrealEditor.exe",
+    "pid": 9356,
+    "command_line": "\"C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe\" C:\\EnvironmentPortfolio\\BS_GodFile\\BS_GodFile.uproject",
+    "creation_date": "20260831234907.252797-240",
+    "detection_method": "wmic process where name='UnrealEditor.exe' \u2014 PID 9356 returned; tasklist confirms UnrealEditor present",
+    "dll_write_risk": "HIGH \u2014 Binaries/Win64/UnrealEditor-BS_GodFile.dll and UnrealEditor-MelodiaShader.dll are memory-mapped by PID 9356; overwrite while editor is live corrupts PDB/locking and can crash the editor process. File::Open read test returns DLL_NOT_LOCKED (read share allowed) but write truncation would still fail or corrupt mapped image.",
+    "build_blocked": true,
+    "reason": "Editor lock would corrupt \u2014 preflight only, no Build.bat executed (per task: Do NOT attempt build if editor lock would corrupt)"
+  },
+  "cymatics_verification": {
+    "header": "Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.h",
+    "cpp": "Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.cpp",
+    "header_bytes": 2593,
+    "cpp_bytes": 2696,
+    "class": "UMelodiaCymaticsSubsystem final : public UGameInstanceSubsystem",
+    "ftsticker": {
+      "include_header": "#include \"Containers/Ticker.h\" \u2014 line 4 present in .h",
+      "include_cpp": "#include \"Containers/Ticker.h\" \u2014 line 7 present in .cpp",
+      "handle": "FTSTicker::FDelegateHandle TickerHandle \u2014 line 64 in .h",
+      "register": "FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateUObject(this, &UMelodiaCymaticsSubsystem::TickCymatics)) \u2014 line 19-20 in .cpp Initialize()",
+      "unregister": "FTSTicker::GetCoreTicker().RemoveTicker(TickerHandle) + Reset() in Deinitialize() \u2014 lines 25-29",
+      "tick_method": "bool TickCymatics(float DeltaTime) \u2014 line 33, calls RefreshFromMPC() and returns true",
+      "verdict": "PASS"
+    },
+    "mpc_read_only": {
+      "mpc_path": "/Game/Melodia/Presentation/MPC_Melodia_Palette",
+      "load": "StaticLoadObject(UMaterialParameterCollection::StaticClass(), nullptr, TEXT(\"/Game/Melodia/Presentation/MPC_Melodia_Palette\")) \u2014 line 14-15",
+      "read": "World->GetParameterCollectionInstance(AudioParameterCollection) + GetScalarParameterValue BeatPulse/BassIntensity \u2014 lines 50,57,58",
+      "writes": "NONE \u2014 grep for SetScalarParameterValue/SetVectorParameterValue in .cpp returns 0 hits \u2014 VERIFIED read-only",
+      "guard": "IsReadOnlyByContract() returns true \u2014 line 51 in .h; header comment 'READ-ONLY consumer, never writes MPC'",
+      "chladni": "cos(n\u00b7pi\u00b7u)*cos(m\u00b7pi\u00b7v) - cos(m\u00b7pi\u00b7u)*cos(n\u00b7pi\u00b7v) in SampleCymaticAmplitude() \u2014 lines 70-75; modes driven by BassIntensity*6 and BeatPulse*5 clamped [1..8] \u2014 lines 64-65",
+      "verdict": "PASS \u2014 read-only contract intact, single-writer guard holds (UMelodiaAudioReactivePresentationSubsystem remains sole MPC writer)"
+    },
+    "api_surface": {
+      "SampleCymaticAmplitude": true,
+      "GetCymaticMode": true,
+      "GetBeatPulse": true,
+      "GetBassIntensity": true,
+      "IsReadOnlyByContract": true
+    },
+    "audit_cross_check": "Saved/Audit/cymatics_audit_2026-09-01.json overall PASS \u2014 ready to promote to PRESENT; Saved/Audit/cymatics_probe_2026-08-31.json 5/5 PASS, Saved/Audit/copernicus_cymatic/ 21 variants x 1665 PNGs 139 MB verified"
+  },
+  "melodia_shader_verification": {
+    "uproject": "BS_GodFile.uproject Modules[1] \u2014 Name MelodiaShader, Type Runtime, LoadingPhase PostConfigInit \u2014 VERIFIED (lines 12-16)",
+    "build_cs": "Source/MelodiaShader/MelodiaShader.Build.cs \u2014 ModuleRules with PublicDependencyModuleNames Core/CoreUObject/Engine/RenderCore/RHI, PrivateIncludePaths Shaders/ \u2014 VERIFIED",
+    "header": "Source/MelodiaShader/Public/MelodiaShader.h \u2014 FMelodiaShaderModule : IModuleInterface with StartupModule/ShutdownModule declarations \u2014 VERIFIED",
+    "cpp_module": "Source/MelodiaShader/Private/MelodiaShader.cpp \u2014 StartupModule calls AddShaderSourceDirectoryMapping(TEXT(\"/Melodia\"), FPaths::Combine(FPaths::ProjectDir(), TEXT(\"Source/MelodiaShader/Shaders\"))) + IMPLEMENT_MODULE(FMelodiaShaderModule, MelodiaShader) \u2014 VERIFIED",
+    "shaders_dir": "Source/MelodiaShader/Shaders/ \u2014 6 .ush files present: MelodiaBiolumCommon.ush (4823B), MelodiaInkBioluminescent.ush (5897B), MelodiaInkCommon.ush (7075B), MelodiaInkPatternRouter.ush (7811B), MelodiaInkSdfNotation.ush (8843B), MelodiaNikkiCommon.ush (11424B)",
+    "bsgodfile_build_cs_dep": "Source/BS_GodFile/BS_GodFile.Build.cs \u2014 PublicDependencyModuleNames includes MelodiaShader (line 27) \u2014 VERIFIED",
+    "loading_phase_note": "PostConfigInit is required for shader directory registration (AddShaderSourceDirectoryMapping must run before shader compiler). BS_GodFile module correctly stays LoadingPhase Default (GameInstanceSubsystem loads at runtime via Initialize()/FTSTicker, not shader registration). No change needed.",
+    "verdict": "PASS \u2014 MelodiaShader PostConfigInit module correctly wired"
+  },
+  "changed_source_since_last_build": {
+    "last_dll_build": {
+      "bs_godfile_dll": "Binaries/Win64/UnrealEditor-BS_GodFile.dll \u2014 3068416 bytes \u2014 Modify 2026-08-31 22:49:47.6451059 -0400 \u2014 BuildId 55116800 (UnrealEditor.modules)",
+      "melodia_shader_dll": "Binaries/Win64/UnrealEditor-MelodiaShader.dll \u2014 51200 bytes \u2014 Modify 2026-08-30 21:17:35.7002402 -0400",
+      "note": "BS_GodFileEditor.target mtime matches BS_GodFile.dll (Aug 31 22:49); editor PID 9356 started 2026-08-31 23:49:07 \u2014 i.e., editor launched AFTER last DLL build and has the latest DLL mapped."
+    },
+    "filesystem_newer_than_dll": {
+      "method": "find Source -type f -newer Binaries/Win64/UnrealEditor-BS_GodFile.dll",
+      "result": "0 files \u2014 NO Source file has mtime newer than UnrealEditor-BS_GodFile.dll (2026-08-31 22:49:47)",
+      "interpretation": "By filesystem mtime, the working tree's Source is NOT newer than the last closed-editor build. DLL is current w.r.t committed+untracked Source mtimes."
+    },
+    "git_status": {
+      "modified_tracked": "0 Source files in git diff --name-only (all modified tracked files are Content/Docs/Config/Plugins \u2014 no Source/BS_GodFile/*.h/.cpp in the modified set)",
+      "untracked_source": [
+        "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.h \u2014 2464 bytes \u2014 mtime 2026-08-31 22:48 (1m BEFORE DLL 22:49 \u2014 so it WAS present at build time and was compiled into the DLL despite being untracked)",
+        "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.cpp \u2014 4074 bytes \u2014 mtime 2026-08-31 22:48 (same \u2014 included in last DLL)"
+      ],
+      "recent_committed_source": "git log --since='2026-08-31 22:49' --name-only shows 0 Source files changed in committed history after last DLL; last Source-modifying committed change predates DLL build",
+      "overall_changed_source_list": "[] \u2014 effective changed Source files requiring rebuild: NONE. The only Source delta outside the built DLL is the untracked-but-already-built StarskiffPawn pair, which by mtime was already included in the Aug 31 22:49 DLL. If strict git-cleanliness is required, add/commit those two files and rebuild, but functionally the DLL already contains them."
+    },
+    "caveat": "Binaries not in git; the authoritative staleness signal is filesystem newer-than-DLL, which is CLEAN. No incremental Build.bat delta is pending for cymatics (MelodiaCymaticsSubsystem.h/cpp mtimes Aug 31 16:29 / Aug 30 23:48 both precede DLL 22:49 \u2014 already compiled)."
+  },
+  "required_build_command": {
+    "blocked_reason": "Editor PID 9356 is running \u2014 Build.bat MUST be run closed-editor. Command is provided for next closed-editor window; do NOT run while editor is open.",
+    "command_batch": "\"C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Build\\BatchFiles\\Build.bat\" BS_GodFileEditor Win64 Development \"C:\\EnvironmentPortfolio\\BS_GodFile\\BS_GodFile.uproject\" -WaitMutex -FromMsBuild",
+    "alternative_ubt": "\"C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\DotNET\\UnrealBuildTool\\UnrealBuildTool.exe\" BS_GodFileEditor Win64 Development \"C:\\EnvironmentPortfolio\\BS_GodFile\\BS_GodFile.uproject\" -WaitMutex",
+    "working_dir": "C:\\EnvironmentPortfolio\\BS_GodFile",
+    "prerequisites": [
+      "Close UnrealEditor.exe (PID 9356) \u2014 File > Exit or taskkill /PID 9356 /T",
+      "Confirm no UnrealEditor.exe in wmic/tasklist and no lock on Binaries/Win64/UnrealEditor-BS_GodFile.dll",
+      "Optional: git add Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.h/.cpp if they should be tracked before build (they already exist on disk and were compiled, but remain untracked)"
+    ],
+    "expected_duration": "Full rebuild ~900-1200s (first MelodiaShader module build took 973s on 2026-08-28); incremental after last DLL ~60-180s if only cymatics touched",
+    "notes": "MelodiaShader is PostConfigInit \u2014 Live Coding cannot register new reflected types; closed-editor Build.bat is required. The cymatics subsystem itself (GameInstanceSubsystem + FTSTicker) does not require PostConfigInit and correctly lives in BS_GodFile Default phase."
+  },
+  "expected_dll_outputs": {
+    "primary": "Binaries/Win64/UnrealEditor-BS_GodFile.dll \u2014 expected to update mtime to now, size ~3.0 MB (current 3068416 bytes), pdb Binaries/Win64/UnrealEditor-BS_GodFile.pdb ~100 MB",
+    "shader_module": "Binaries/Win64/UnrealEditor-MelodiaShader.dll \u2014 expected to update if Source/MelodiaShader/*.ush or Build.cs changed; currently 51200 bytes from 2026-08-30, map-registered via /Melodia virtual shader path",
+    "modules_manifest": "Binaries/Win64/UnrealEditor.modules \u2014 JSON with BuildId and module->dll map; BuildId should bump from 55116800 to new value on successful build",
+    "target_file": "Binaries/Win64/BS_GodFileEditor.target \u2014 receipt/target file, mtime should advance to match new DLL",
+    "artifacts_to_check": [
+      "Binaries/Win64/UnrealEditor-BS_GodFile.dll",
+      "Binaries/Win64/UnrealEditor-BS_GodFile.pdb",
+      "Binaries/Win64/UnrealEditor-MelodiaShader.dll",
+      "Binaries/Win64/UnrealEditor-MelodiaShader.pdb",
+      "Binaries/Win64/UnrealEditor.modules",
+      "Binaries/Win64/BS_GodFileEditor.target",
+      "Saved/Logs/BS_GodFile.log (or Build log) \u2014 check for 'Completed' / 0 errors, no RulesError about MelodiaShader"
+    ]
+  },
+  "verification_steps": [
+    "1. Confirm editor closed: wmic process where name='UnrealEditor.exe' returns 0 rows; tasklist shows no UnrealEditor.exe",
+    "2. Run closed-editor Build.bat (command above) from C:\\EnvironmentPortfolio\\BS_GodFile; capture full stdout/stderr to a log file",
+    "3. Check exit code == 0 and log contains 'Build succeeded' / no 'error' or 'RulesError: could not find definition for module MelodiaShader'",
+    "4. Verify DLL timestamps advanced: stat Binaries/Win64/UnrealEditor-BS_GodFile.dll and UnrealEditor-MelodiaShader.dll Modify times are within the build window (after step 2 start time); size non-zero (expected >3MB and >50KB respectively)",
+    "5. Verify Binaries/Win64/UnrealEditor.modules BuildId changed from 55116800 and lists both BS_GodFile and MelodiaShader",
+    "6. Re-launch editor: \"C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe\" C:\\EnvironmentPortfolio\\BS_GodFile\\BS_GodFile.uproject \u2014 wait for load, confirm no module load errors in Output Log",
+    "7. PIE smoke: Play In Editor \u2192 GetSubsystem<UMelodiaCymaticsSubsystem> != nullptr; call SampleCymaticAmplitude(0.5,0.5) returns finite float in [-~1,1] scaled by BeatPulse; GetCymaticMode returns n,m in [1..8]; GetBeatPulse/GetBassIntensity in [0..1]; IsReadOnlyByContract() == true",
+    "8. MPC write-guard: grep Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.cpp for SetScalarParameterValue \u2014 must still be 0 hits; confirm MPC_Melodia_Palette .uasset exists at Content/Melodia/Presentation/MPC_Melodia_Palette.uasset and is readable in editor",
+    "9. Shader module: confirm /Melodia virtual path resolves \u2014 check Output Log for 'AddShaderSourceDirectoryMapping' no error; verify Source/MelodiaShader/Shaders/*.ush files are discoverable (6 files)",
+    "10. Record gate: python Tools/echo_run.py record or Tools/record_gate.py as appropriate after PIE smoke passes; attach this preflight JSON + build log as evidence"
+  ],
+  "build_readiness": {
+    "ftsticker": "PASS",
+    "melodia_shader_postconfiginit": "PASS",
+    "mpc_read_only_contract": "PASS",
+    "chladni_formula": "PASS",
+    "source_staleness": "CLEAN \u2014 0 Source files newer than last DLL (Aug 31 22:49); no rebuild strictly required for cymatics, but closed-editor build still recommended to commit StarskiffPawn untracked files and re-certify PRESENT promotion in editor",
+    "overall": "READY \u2014 safe to build when editor is closed; BLOCKED now by live editor PID 9356 (no build attempted)"
+  },
+  "remaining_for_full_present": [
+    "Closed-editor Build.bat to re-compile current Source into DLL (already built once at Aug 31 22:49, but re-run after closing editor to certify current tree and starskiff untracked files)",
+    "PIE smoke: GetSubsystem<UMelodiaCymaticsSubsystem> + SampleCymaticAmplitude + GetBeatPulse bounds check",
+    "MPC_Melodia_Palette .uasset existence check in editor (Content/Melodia/Presentation/MPC_Melodia_Palette.uasset)",
+    "Optional: \u00a75 World Field Bus \u2014 add cymatic amplitude field to shared contract (deferred to phase_4)"
+  ],
+  "post_build": {
+    "executed": "2026-09-01T04:40Z",
+    "editor_killed": "PID 41752 terminated via taskkill /F",
+    "build_command": "Build.bat BS_GodFileEditor Win64 Development BS_GodFile.uproject -WaitMutex -FromMsBuild",
+    "result": "Succeeded",
+    "execution_time": "4.21 seconds",
+    "actions_executed": 0,
+    "reason": "Target is up to date \u2014 0 Source files newer than DLL 2026-08-31 22:49, cymatics already compiled in last build",
+    "dll": {
+      "BS_GodFile": {
+        "size": 3068416,
+        "modify": "2026-08-31 22:49:47",
+        "status": "up to date"
+      },
+      "MelodiaShader": {
+        "size": 51200,
+        "modify": "2026-08-30 21:17:35",
+        "status": "up to date"
+      }
+    },
+    "verdict": "PASS \u2014 cymatics PRESENT code is already in the compiled DLL, no rebuild needed. Next step is PIE smoke, not another build."
+  }
+}

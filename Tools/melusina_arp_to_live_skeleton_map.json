@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "purpose": "Prep-only ARP → live SK_Melusina_Skeleton rename/rescale map. No Unreal import.",
+  "authority": "Saved/Audit/melusina_idle_retarget_rca_2026-08-13.md",
+  "ue_import": false,
+  "live_contract": {
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "bone_count": 465,
+    "name_style": "underscore",
+    "units": "centimeters",
+    "fps": 30,
+    "required_bones": [
+      "DEF_eye_L",
+      "DEF_eye_R",
+      "c_kilt_master_x",
+      "head_x",
+      "root"
+    ]
+  },
+  "source_arp": {
+    "name_style": "dotted",
+    "units": "meters",
+    "fps": 24,
+    "bone_count_seen": [432, 463],
+    "examples": ["DEF_eye.L", "c_kilt_master.x", "c_hand_ik.l", "c_spine_02.x"]
+  },
+  "rename_rule": {
+    "from": ".",
+    "to": "_",
+    "examples": {
+      "DEF_eye.L": "DEF_eye_L",
+      "DEF_eye.R": "DEF_eye_R",
+      "c_kilt_master.x": "c_kilt_master_x",
+      "c_hand_ik.l": "c_hand_ik_l",
+      "c_spine_02.x": "c_spine_02_x",
+      "c_root.x": "c_root_x"
+    },
+    "implemented_by": "Tools/remap_arp_fbx_to_ue.py"
+  },
+  "unit_rule": {
+    "from": "meters",
+    "to": "centimeters",
+    "translation_scale": 100,
+    "note": "FBX UnitScaleFactor 100 or 10000 is not proof of cm tracks. Probe c_spine_02_x local Y: mocap ≈ -12.84, raw blender ≈ -0.128."
+  },
+  "fps_rule": {
+    "from": 24,
+    "to": 30,
+    "note": "Resample or re-author. Rename/scale does not fix frame-rate desync."
+  },
+  "bone_count_rule": {
+    "note": "432/463 vs 465 is structural. Rename cannot add missing live bones. Do not Lane-A import."
+  },
+  "not_gameplay": [
+    "V2Test SM_Melusina* statics under SK_MelusinaRigARP_V2Test",
+    "Quaternius UAL1 Inbox FBX",
+    "Idle_Serene manifest-only"
+  ],
+  "recommended_paths": {
+    "animation": "Rokoko → SK_MocapSource → IK_MocapSource → RTG_Mocap_to_Melusina → IK_Melusina_Body → A_Mocap_*",
+    "split_meshes": "Re-skin to SK_Melusina_Skeleton, import as skeletal meshes, SetLeaderPoseComponent(bodyMesh) via MelodiaWardrobe"
+  }
+}

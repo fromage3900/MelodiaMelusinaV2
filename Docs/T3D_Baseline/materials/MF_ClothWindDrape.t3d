@@ -1,0 +1,140 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_ClothWindDrape" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCustom Name="MaterialExpressionCustom_0" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionCustom_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionConstant3Vector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_ClothWindDrapeEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MF_ClothWindDrapeEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionOutput_1'"
+      OutputName="NormalOffset"
+      A=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionConstant3Vector_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Id=F772B93346877BE3CC57788505F8BB9D
+      MaterialExpressionEditorX=-200
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=4062567C45F77910842E33A37D806D2E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionOutput_0'"
+      OutputName="WPO"
+      A=(Expression="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionCustom_0'")
+      Id=B09F95AD442F7912580D5AAB3DF9BB5B
+      MaterialExpressionEditorX=-200
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=858C3E6B49AB3E9F5A4078964FCA2F21
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_6" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_6'"
+      InputName="DrapeMask"
+      Id=4F7FE46347392CAF909F1EB48605EAC3
+      InputType=FunctionInput_Scalar
+      SortPriority=6
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=740
+      MaterialExpressionGuid=6998CD164FC7AF647336F8B48766D5BA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_5'"
+      InputName="FoldingAmount"
+      Id=85D93DB846C4A61A022B63B53FED5AED
+      InputType=FunctionInput_Scalar
+      SortPriority=5
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=620
+      MaterialExpressionGuid=3CD550BB43AA1CFAE41CBE99114318C1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_4'"
+      InputName="WindDirection"
+      Id=E48EF2AF4CE2CE699E6945B08D637D1C
+      SortPriority=4
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=500
+      MaterialExpressionGuid=5C93E5DD43E8C6769ACBF8831C8BF233
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_3'"
+      InputName="WindSpeed"
+      Id=BCA2CB034454E7CF64ED91A74A02B963
+      InputType=FunctionInput_Scalar
+      SortPriority=3
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=757F0D0843DFBFB23E04CF877ECE8D69
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_2'"
+      InputName="WindStrength"
+      Id=B1AC9F8B49117C155CF67989FD3E1C46
+      InputType=FunctionInput_Scalar
+      SortPriority=2
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=260
+      MaterialExpressionGuid=65E7A32D446BA3F48DFC4DB7AE6F70AF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_1'"
+      InputName="Time"
+      Id=BB4A20004A1E313C38EE60AE77025140
+      InputType=FunctionInput_Scalar
+      SortPriority=1
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=852955734F1F6200ECB4EDB2C6A45AB6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_0'"
+      InputName="UV"
+      Id=C81501694FB1FA4F620A0D851C3EC8E4
+      InputType=FunctionInput_Vector2
+      MaterialExpressionEditorX=-1600
+      MaterialExpressionGuid=1D9DE5CA4C7CD0E9AC2A04AF03536882
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionCustom_0" ExportPath="/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionCustom_0'"
+      Code="float sweep = WindStrength * sin(Time * WindSpeed * 3.14159 * 2.0);\nfloat phaseU = UV.x * 6.28318;\nfloat fold = FoldingAmount * sin(phaseU * 2.0 + Time * WindSpeed * 6.28318 * 0.75);\nfloat flap = FoldingAmount * 0.35 * sin(phaseU + Time * WindSpeed * 6.28318 * 1.25 + 1.7);\nfloat amp = DrapeMask * saturate(WindStrength * 3.0 + FoldingAmount * 1.5);\nfloat3 offset = WindDirection * (sweep + fold + flap) * amp;\noffset.z += amp * 0.25 * (1.0 + sin(Time * WindSpeed * 3.14159 * 1.6 + phaseU * 0.5));\nreturn offset;"
+      Description="MF_ClothWindDrape wind sweep/fold/flap"
+      Inputs(0)=(InputName="UV",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_0'"))
+      Inputs(1)=(InputName="Time",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_1'"))
+      Inputs(2)=(InputName="WindStrength",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_2'"))
+      Inputs(3)=(InputName="WindSpeed",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_3'"))
+      Inputs(4)=(InputName="WindDirection",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_4'"))
+      Inputs(5)=(InputName="FoldingAmount",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_5'"))
+      Inputs(6)=(InputName="DrapeMask",Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_6'"))
+      MaterialExpressionEditorX=-1000
+      MaterialExpressionEditorY=100
+      MaterialExpressionGuid=427A9FD348D909DF955FF2BCED47A77E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionConstant3Vector_0'"
+      Constant=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=764B65AC46780A81E79828AB51601759
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape'"
+   End Object
+   Begin Object Name="MF_ClothWindDrapeEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MF_ClothWindDrapeEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_3'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_4'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_5'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionInput_6'","/Script/Engine.MaterialExpressionCustom'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionCustom_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MaterialExpressionConstant3Vector_0'"))
+   End Object
+   bExposeToLibrary=True
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_ClothWindDrape.MF_ClothWindDrape:MF_ClothWindDrapeEditorOnlyData'"
+   StateId=DC372BAB48F9DB744208CBBFE0288A0A
+   CombinedInputTypes=15
+End Object

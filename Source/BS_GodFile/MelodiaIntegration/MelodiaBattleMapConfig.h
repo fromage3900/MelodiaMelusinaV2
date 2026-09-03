@@ -1,0 +1,35 @@
+﻿#pragma once
+
+#include "CoreMinimal.h"
+#include "Engine/DataAsset.h"
+#include "UObject/SoftObjectPtr.h"
+#include "MelodiaBattleMapConfig.generated.h"
+
+USTRUCT(BlueprintType)
+struct BS_GODFILE_API FBattleMapEntry
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Battle Map")
+	FSoftObjectPath BattleMapPath;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Battle Map")
+	FSoftObjectPath ReturnMapPath;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Battle Map")
+	TArray<FName> SpawnTags;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Battle Map", meta = (ClampMin = "1"))
+	int32 Version = 1;
+};
+
+UCLASS(BlueprintType)
+class BS_GODFILE_API UBattleMapConfig : public UDataAsset
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Battle Maps")
+	TMap<FName, FBattleMapEntry> BattleMaps;
+};

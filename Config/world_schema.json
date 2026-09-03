@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Surreal World Manifest",
+  "type": "object",
+  "required": ["format", "schema_version", "coordinate_system", "instance_count", "instances"],
+  "properties": {
+    "format": {"type": "string", "enum": ["surreal_arch_world_v1"]},
+    "schema_version": {"type": "integer", "minimum": 1},
+    "coordinate_system": {"type": "string"},
+    "style": {"type": "string"},
+    "plan": {"type": "string"},
+    "world_root": {"type": "string"},
+    "compose_mode": {"type": "string"},
+    "instance_count": {"type": "integer", "minimum": 0},
+    "instances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "lib", "object", "transform"],
+        "properties": {
+          "role": {"type": "string"},
+          "lib": {"type": "string"},
+          "object": {"type": "string"},
+          "plan_face": {"type": "integer"},
+          "transform": {
+            "type": "array",
+            "items": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "ue_material_hint": {"type": "string"},
+          "static_mesh_path": {"type": "string"},
+          "lod_group": {"type": "string"},
+          "stream_priority": {"type": "integer"},
+          "gameplay_tags": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "hism_groups": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "collections": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": false
+}

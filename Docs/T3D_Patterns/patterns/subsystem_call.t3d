@@ -1,0 +1,14 @@
+Begin Object Class=/Script/BlueprintGraph.K2Node_GetSubsystem Name="GetSub"
+   CustomClass=Class'"{{subsystem_class}}"'
+   NodePosX=0
+   NodePosY=0
+   NodeGuid={{GUID:sub}}
+   CustomProperties Pin (PinId={{GUID:subout}},PinName="ReturnValue",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategoryObject=Class'"{{subsystem_class}}"',LinkedTo=(DoCall {{GUID:callself}},),)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="DoCall"
+   FunctionReference=(MemberParent=Class'"{{subsystem_class}}"',MemberName="{{function}}")
+   NodePosX=350
+   NodePosY=0
+   NodeGuid={{GUID:call}}
+   CustomProperties Pin (PinId={{GUID:callself}},PinName="self",Direction="EGPD_Input",PinType.PinCategory="object",PinType.PinSubCategoryObject=Class'"{{subsystem_class}}"',LinkedTo=(GetSub {{GUID:subout}},),)
+End Object

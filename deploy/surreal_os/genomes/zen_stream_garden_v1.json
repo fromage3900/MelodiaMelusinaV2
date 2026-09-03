@@ -1,0 +1,36 @@
+{
+  "id": "zen_stream_garden_v1",
+  "family": "Zen",
+  "verticality": 0.7,
+  "symmetry": 0.58,
+  "ornament_density": 0.55,
+  "structural_logic": 0.78,
+  "organic_growth": 0.78,
+  "cosmic_influence": 0.22,
+  "sacred_sequence": [
+    "sando_approach",
+    "stream_bank_edge",
+    "stone_bridge_crossing",
+    "cherry_canopy_path",
+    "karesansui_field",
+    "engawa_threshold"
+  ],
+  "compose_style": "ZEN_SHRINE",
+  "default_graph": "ZEN_STREAM_GARDEN",
+  "grammar_id": "ZEN_STREAM_GARDEN",
+  "surreal_transform": "axis_compression",
+  "torii_variant": "standard",
+  "compose_roles": {
+    "gate": "_lib_GB_ZEN_TORII_GATE",
+    "monument": "_lib_GB_ZEN_STONE_BRIDGE",
+    "wall": "_lib_GB_ZEN_WATER_EDGE",
+    "medium": "_lib_GB_ZEN_MACHIAI"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "uv_unwrap_mode": "TRIM_SHEET",
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

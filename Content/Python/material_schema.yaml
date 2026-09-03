@@ -1,0 +1,454 @@
+# Master Material Parameter Schema — BS_GodFile
+# Canonical definition for validation and auto-repair.
+# Each master lists every expected parameter, its type, range, group, and default.
+---
+version: 1
+date: 2026-08-04
+
+# ── Toon Profile assignments ──────────────────────────────────────────
+# Profiles must be created manually in-editor (no Python API exists yet).
+# See TOON_PROFILES_GUIDE.md for creation steps.
+# After creation, run: python assign_toon_profiles.py --apply
+toon_profiles:
+  TP_Character:
+    expected_path: /Game/EnvSandbox/Materials/ToonProfiles/TP_Character
+    assigned_to: M_Master_Nikki
+    diffuse_stops: 3
+    specular: narrow
+    gi_intensity: 0.3
+    hatching: false
+  TP_Foliage:
+    expected_path: /Game/EnvSandbox/Materials/ToonProfiles/TP_Foliage
+    assigned_to: M_Master_Toon_Landscape_HeightBlend
+    diffuse_stops: 2
+    specular: none
+    gi_intensity: 0.8
+    hatching: false
+  TP_Water:
+    expected_path: /Game/EnvSandbox/Materials/ToonProfiles/TP_Water
+    assigned_to: M_Universal_Enhanced_Water
+    diffuse_stops: 2
+    specular: strong
+    gi_intensity: 1.0
+    hatching: false
+  TP_Hero:
+    expected_path: /Game/EnvSandbox/Materials/ToonProfiles/TP_Hero
+    assigned_to: M_Master_Toon_Universal  # Hero close-ups override
+    diffuse_stops: 3
+    specular: narrow
+    gi_intensity: 0.3
+    hatching: true
+
+# ── Global MPC schema ─────────────────────────────────────────────────
+material_parameter_collections:
+  MPC_Melodia_Palette:
+    path: /Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette
+    scalars:
+      - { name: GlobalTimeScale, default: 1.0, range: [0.0, 10.0] }
+      - { name: BeatPulse, default: 0.0, range: [0.0, 1.0] }
+      - { name: BeatIntensity, default: 0.0, range: [0.0, 1.0] }
+      - { name: BeatPhase, default: 0.0, range: [0.0, 1.0] }
+      - { name: RhythmPulse, default: 0.0, range: [0.0, 1.0] }
+      - { name: GlobalEmissiveBoost, default: 1.0, range: [0.0, 5.0] }
+      - { name: GlobalSparkleIntensity, default: 1.0, range: [0.0, 2.0] }
+      - { name: GlobalUVScale, default: 1.0, range: [0.01, 10.0] }
+      - { name: ProximityGlow, default: 0.0, range: [0.0, 1.0] }
+      - { name: PaletteShift, default: 0.0, range: [0.0, 1.0] }
+      - { name: TemporalJitter, default: 0.0, range: [0.0, 1.0] }
+      - { name: WindStrength, default: 0.5, range: [0.0, 2.0] }
+      - { name: ShadowSharpness, default: 1.0, range: [0.0, 2.0] }
+      - { name: DayCyclePhase, default: 0.0, range: [0.0, 1.0] }
+      - { name: SeasonBlend, default: 0.0, range: [0.0, 1.0] }
+      - { name: UnderwaterDepth, default: 0.0, range: [0.0, 1.0] }
+      - { name: PlayerProximity, default: 0.0, range: [0.0, 1.0] }
+      - { name: GlobalReactivity, default: 0.0, range: [0.0, 1.0] }
+      - { name: Bass, default: 0.0, range: [0.0, 1.0] }
+      - { name: Mid, default: 0.0, range: [0.0, 1.0] }
+      - { name: Treble, default: 0.0, range: [0.0, 1.0] }
+      - { name: BassIntensity, default: 0.0, range: [0.0, 1.0] }
+      - { name: MidIntensity, default: 0.0, range: [0.0, 1.0] }
+      - { name: TrebleIntensity, default: 0.0, range: [0.0, 1.0] }
+      - { name: ComboNormalized, default: 0.0, range: [0.0, 1.0] }
+      - { name: CrescendoNormalized, default: 0.0, range: [0.0, 1.0] }
+      - { name: CommandEnergy, default: 0.0, range: [0.0, 1.0] }
+      - { name: BreakPulse, default: 0.0, range: [0.0, 1.0] }
+      - { name: VictoryPulse, default: 0.0, range: [0.0, 1.0] }
+      - { name: EnemyTension, default: 0.0, range: [0.0, 1.0] }
+      - { name: WaterLevelZ, default: 0.0, range: [-5000.0, 5000.0] }
+      - { name: BaseTintShift, default: 1.0, range: [0.0, 2.0] }
+      - { name: ShadowDreamBias, default: 0.0, range: [-1.0, 1.0] }
+      - { name: RimWarmth, default: 0.0, range: [-1.0, 1.0] }
+      - { name: ElementalGrade, default: 0.0, range: [-1.0, 1.0] }
+      - { name: TimeOfDayWarmth, default: 0.0, range: [-1.0, 1.0] }
+    vectors:
+      - { name: Melusina_InkNavy, default: [0.04, 0.04, 0.08, 1.0] }
+      - { name: Melusina_Aqua, default: [0.2, 0.5, 0.6, 1.0] }
+      - { name: Melusina_Gild, default: [0.75, 0.65, 0.35, 1.0] }
+      - { name: Melusina_SoftWhite, default: [0.92, 0.90, 0.88, 1.0] }
+      - { name: Melusina_Lavender, default: [0.72, 0.65, 0.82, 1.0] }
+      - { name: Melusina_RoseGold, default: [0.85, 0.55, 0.45, 1.0] }
+      - { name: Melusina_DeepTeal, default: [0.05, 0.25, 0.30, 1.0] }
+      - { name: R1999_Burgundy, default: [0.45, 0.08, 0.10, 1.0] }
+      - { name: R1999_Gold, default: [0.85, 0.70, 0.30, 1.0] }
+      - { name: R1999_Teal, default: [0.10, 0.35, 0.40, 1.0] }
+      - { name: R1999_Navy, default: [0.05, 0.08, 0.18, 1.0] }
+      - { name: R1999_Ivory, default: [0.88, 0.85, 0.78, 1.0] }
+      - { name: MeluPrimary, default: [0.75, 0.50, 0.60, 1.0] }
+      - { name: MeluSecondary, default: [0.30, 0.40, 0.55, 1.0] }
+      - { name: MeluAccent, default: [0.85, 0.70, 0.40, 1.0] }
+      - { name: PaletteTint, default: [1.0, 1.0, 1.0, 1.0] }
+
+# ── Master material schemas ──────────────────────────────────────────
+masters:
+  M_Master_Toon_Universal:
+    path: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal
+    toon_profile: TP_Default
+    mpc_references:
+      - MPC_Melodia_Palette: [GlobalSparkleIntensity, GlobalEmissiveBoost, Melusina_Lavender, Melusina_RoseGold, Melusina_SoftWhite]
+    groups:
+      - name: "00 Palette"
+        params:
+          - { name: BaseTint, type: vector, default: [1,1,1,1] }
+          - { name: PaletteRampLow, type: vector, default: [0.1,0.05,0.15,1] }
+          - { name: PaletteRampMid, type: vector, default: [0.5,0.4,0.5,1] }
+          - { name: PaletteRampHigh, type: vector, default: [0.9,0.85,0.8,1] }
+          - { name: PaletteRampStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: PaletteRampDriver, type: float, default: 0.5, range: [0,1] }
+      - name: "01 Surface"
+        params:
+          - { name: RoughnessScale, type: float, default: 1.0, range: [0,1] }
+          - { name: RoughnessBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: MetallicScale, type: float, default: 1.0, range: [0,1] }
+          - { name: MetallicBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: NormalStrength, type: float, default: 1.0, range: [0,2] }
+
+  M_Master_Nikki:
+    path: /Game/EnvSandbox/Materials/Masters/M_Master_Nikki
+    toon_profile: TP_Character
+    mpc_references:
+      - MPC_Melodia_Palette: [GlobalSparkleIntensity, GlobalEmissiveBoost, R1999_Navy, R1999_Gold, Melusina_SoftWhite, Melusina_Lavender]
+    groups:
+      - name: "00 Surface"
+        params:
+          - { name: RoughnessMin, type: float, default: 0.3, range: [0,1] }
+          - { name: RoughnessMax, type: float, default: 0.7, range: [0,1] }
+          - { name: MetallicScale, type: float, default: 0.0, range: [0,1] }
+          - { name: Iridescence, type: float, default: 0.0, range: [0,1] }
+          - { name: IridescencePower, type: float, default: 1.0, range: [0,10] }
+          - { name: IridescenceBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: IridescenceRoughnessAtten, type: float, default: 0.5, range: [0,1] }
+          - { name: FabricSheen, type: float, default: 0.0, range: [0,1] }
+          - { name: SheenPower, type: float, default: 1.0, range: [0,10] }
+          - { name: SheenBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: SheenWidth, type: float, default: 1.0, range: [0,5] }
+      - name: "01 Toon Ramp"
+        params:
+          - { name: BaseTint, type: vector, default: [1,1,1,1] }
+          - { name: RampLow, type: vector, default: [0.1,0.05,0.15,1] }
+          - { name: RampMid, type: vector, default: [0.5,0.4,0.5,1] }
+          - { name: RampHigh, type: vector, default: [0.9,0.85,0.8,1] }
+          - { name: RampPosMid, type: float, default: 0.5, range: [0,1] }
+          - { name: RampContrast, type: float, default: 1.0, range: [0,5] }
+          - { name: RampStrength, type: float, default: 1.0, range: [0,1] }
+          - { name: RampSharpness, type: float, default: 1.0, range: [0,5] }
+      - name: "02 Atmosphere"
+        params:
+          - { name: AtmosphericColor, type: vector, default: [1,1,1,1] }
+          - { name: AtmosphericStart, type: float, default: 0.0, range: [0,1] }
+          - { name: AtmosphericEnd, type: float, default: 1.0, range: [0,1] }
+          - { name: AtmosphericStrength, type: float, default: 0.0, range: [0,1] }
+      - name: "03 Emissive"
+        params:
+          - { name: NikkiEmissiveStrength, type: float, default: 0.0, range: [0,10] }
+          - { name: EmissiveFloor, type: float, default: 0.0, range: [0,1] }
+      - name: "04 Texture Layout"
+        params:
+          - { name: UVScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: ParallaxStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: TriplanarScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: TriplanarBlendSharpness, type: float, default: 1.0, range: [0,5] }
+
+  M_PP_MeluColorGrade:
+    path: /Game/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade
+    custom_hlsl_pins:
+      - { name: CelSteps, type: float, default: 0.0, range: [0, 8], group: "V3 Cel-Shading" }
+      - { name: DynamicContrast, type: float, default: 0.0, range: [0, 1], group: "V3 Adaptive" }
+      - { name: SelectiveStrength, type: float, default: 0.0, range: [0, 1], group: "V3 Adaptive" }
+      - { name: KeepColorHue, type: float, default: 0.0, range: [0, 1], group: "V3 Adaptive" }
+    mpc_references: []
+    groups: []
+
+  M_Universal_Enhanced_Water:
+    path: /Game/_PROJECT/04_Materials/Masters/M_Universal_Enhanced_Water
+    mpc_references: []
+    groups: []
+
+  M_Master_Toon_Landscape_HeightBlend:
+    path: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend
+    toon_profile: TP_Foliage
+    mpc_references:
+      - MPC_Melodia_Palette: [GlobalSparkleIntensity, GlobalEmissiveBoost, GlobalReactivity, Melusina_Lavender, Melusina_SoftWhite]
+    groups:
+      - name: "00 Landscape Layers"
+        params:
+          - { name: GrassTint, type: vector, default: [0.4,0.6,0.3,1] }
+          - { name: RockTint, type: vector, default: [0.5,0.5,0.5,1] }
+          - { name: MudTint, type: vector, default: [0.35,0.25,0.15,1] }
+          - { name: GrassRoughness, type: float, default: 0.6, range: [0,1] }
+          - { name: RockRoughness, type: float, default: 0.8, range: [0,1] }
+          - { name: MudRoughness, type: float, default: 0.9, range: [0,1] }
+          - { name: GrassAmount, type: float, default: 0.5, range: [0,1] }
+          - { name: MudAmount, type: float, default: 0.5, range: [0,1] }
+          - { name: HeightBlendStrength, type: float, default: 1.0, range: [0,5] }
+          - { name: LandscapeUVScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: MacroScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: MacroStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: NormalStrength, type: float, default: 1.0, range: [0,2] }
+          - { name: NormalMapBlendAmount, type: float, default: 1.0, range: [0,1] }
+          - { name: TriplanarTiling, type: float, default: 1.0, range: [0.01,10] }
+          - { name: TriplanarPro_Scale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: TriplanarPro_Sharpness, type: float, default: 1.0, range: [0,5] }
+          - { name: TriplanarPro_BlendStrength, type: float, default: 1.0, range: [0,1] }
+          - { name: TriplanarPro_BreakupScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: TriplanarPro_BreakupStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: TriplanarPro_BreakupContrast, type: float, default: 1.0, range: [0,5] }
+          - { name: TriplanarPro_AxisWeights, type: vector, default: [1,1,1,1] }
+          - { name: TriplanarPro_ProjectionOffset, type: vector, default: [0,0,0,1] }
+          - { name: TriplanarPro_ProjectionRotation, type: vector, default: [0,0,0,1] }
+      - name: "01 Toon Ramp"
+        params:
+          - { name: LayerRampLow, type: vector, default: [0.1,0.05,0.15,1] }
+          - { name: LayerRampMid, type: vector, default: [0.5,0.4,0.5,1] }
+          - { name: LayerRampHigh, type: vector, default: [0.9,0.85,0.8,1] }
+          - { name: LayerRampDriver, type: float, default: 0.5, range: [0,1] }
+          - { name: LayerRampStrength, type: float, default: 1.0, range: [0,1] }
+          - { name: RampSharpness, type: float, default: 1.0, range: [0,5] }
+      - name: "02 Dream Rendering"
+        params:
+          - { name: DreamTint, type: vector, default: [1,1,1,1] }
+          - { name: DreamContrast, type: float, default: 1.0, range: [0,2] }
+          - { name: DreamSaturation, type: float, default: 1.0, range: [0,2] }
+          - { name: DreamShadowLift, type: float, default: 0.0, range: [0,1] }
+          - { name: PastelLift, type: float, default: 0.0, range: [0,1] }
+          - { name: ShadowDreamStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: ShadowDreamTint, type: vector, default: [0.3,0.25,0.4,1] }
+          - { name: ShadowContactBoost, type: float, default: 0.0, range: [0,1] }
+          - { name: Wetness, type: float, default: 0.0, range: [0,1] }
+          - { name: WetRoughness, type: float, default: 0.5, range: [0,1] }
+          - { name: ShoreWetnessBoost, type: float, default: 0.0, range: [0,1] }
+          - { name: ShoreColorDarken, type: float, default: 0.0, range: [0,1] }
+          - { name: SnowStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: SnowUpBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: SnowTint, type: vector, default: [0.95,0.95,1.0,1] }
+          - { name: SlopeSharpness, type: float, default: 1.0, range: [0,5] }
+      - name: "03 Weathering"
+        params:
+          - { name: PathTint, type: vector, default: [0.5,0.45,0.4,1] }
+          - { name: PathWearStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: RimColor, type: vector, default: [1,1,1,1] }
+          - { name: RimIntensity, type: float, default: 0.0, range: [0,1] }
+          - { name: RimWidth, type: float, default: 1.0, range: [0,5] }
+          - { name: AtmosphericFadeColor, type: vector, default: [1,1,1,1] }
+          - { name: AtmosphericFadeStart, type: float, default: 0.0, range: [0,1] }
+          - { name: AtmosphericFadeEnd, type: float, default: 1.0, range: [0,1] }
+          - { name: AtmosphericFadeStrength, type: float, default: 0.0, range: [0,1] }
+      - name: "04 Enchanted Detail"
+        params:
+          - { name: SparkleColor, type: vector, default: [1,1,1,1] }
+          - { name: SparkleIntensity, type: float, default: 0.0, range: [0,5] }
+          - { name: SparkleScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: SparkleThreshold, type: float, default: 0.5, range: [0,1] }
+          - { name: SparkleTwinkleSpeed, type: float, default: 1.0, range: [0,10] }
+          - { name: IridescenceTint, type: vector, default: [1,1,1,1] }
+          - { name: Iridescence, type: float, default: 0.0, range: [0,1] }
+          - { name: IridescencePower, type: float, default: 1.0, range: [0,10] }
+          - { name: FabricSheen, type: float, default: 0.0, range: [0,1] }
+          - { name: SheenTint, type: vector, default: [1,1,1,1] }
+          - { name: GlowIntensity, type: float, default: 0.0, range: [0,5] }
+          - { name: BloomBoost, type: float, default: 1.0, range: [0,5] }
+      - name: "05 Shadow Flora"
+        params:
+          - { name: ShadowFlowerColor, type: vector, default: [0.9,0.85,0.95,1] }
+          - { name: ShadowFlowerStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: ShadowFlowerScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: ShadowFlowerScaleFine, type: float, default: 1.0, range: [0.01,10] }
+          - { name: ShadowFlowerPulseStrength, type: float, default: 0.0, range: [0,1] }
+      - name: "06 Itto Corruption"
+        params:
+          - { name: IttoRampLow, type: vector, default: [0.3,0.1,0.1,1] }
+          - { name: IttoRampHigh, type: vector, default: [0.6,0.2,0.2,1] }
+          - { name: IttoBlendAmount, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoInkStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoPatternScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: IttoSpiralIntensity, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoCrackDepth, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoErosionStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoWearAmount, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoWearDepth, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoBreakupAmount, type: float, default: 0.0, range: [0,1] }
+      - name: "07 Madoka Barrier"
+        params:
+          - { name: MadokaRampLow, type: vector, default: [0.1,0.2,0.3,1] }
+          - { name: MadokaRampMid, type: vector, default: [0.4,0.6,0.7,1] }
+          - { name: MadokaRampHigh, type: vector, default: [0.8,0.9,1.0,1] }
+          - { name: MadokaBlendAmount, type: float, default: 0.0, range: [0,1] }
+          - { name: MadokaCuteBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: MadokaGlowAmount, type: float, default: 0.0, range: [0,1] }
+          - { name: MadokaEmissiveBrightness, type: float, default: 1.0, range: [0,5] }
+          - { name: MadokaRadialBands, type: float, default: 1.0, range: [0,10] }
+          - { name: MadokaRadialSpeed, type: float, default: 1.0, range: [0,10] }
+          - { name: MadokaRealityWarp, type: float, default: 0.0, range: [0,1] }
+          - { name: MadokaVeinEmissive, type: float, default: 0.0, range: [0,1] }
+          - { name: MadokaAudioReactiveAmount, type: float, default: 0.0, range: [0,1] }
+      - name: "08 Witch Barrier"
+        params:
+          - { name: WitchBarrierMazeTightness, type: float, default: 1.0, range: [0,10] }
+          - { name: WitchBarrierPhaseSpeed, type: float, default: 1.0, range: [0,10] }
+          - { name: WitchBarrierWallpaperScale, type: float, default: 1.0, range: [0.01,10] }
+      - name: "09 Water Align"
+        params:
+          - { name: WaterAlignTint, type: vector, default: [1,1,1,1] }
+          - { name: WaterPaletteAlign, type: float, default: 0.0, range: [0,1] }
+
+  M_Master_Nikki_Landscape:
+    path: /Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape
+    toon_profile: TP_Character
+    mpc_references:
+      - MPC_Melodia_Palette: [GlobalSparkleIntensity, GlobalEmissiveBoost, R1999_Navy, R1999_Gold, Melusina_SoftWhite, Melusina_Lavender]
+    groups:
+      - name: "00 Surface"
+        params:
+          - { name: RoughnessMin, type: float, default: 0.3, range: [0,1] }
+          - { name: RoughnessMax, type: float, default: 0.7, range: [0,1] }
+          - { name: MetallicScale, type: float, default: 0.0, range: [0,1] }
+          - { name: Iridescence, type: float, default: 0.0, range: [0,1] }
+          - { name: IridescencePower, type: float, default: 1.0, range: [0,10] }
+          - { name: IridescenceBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: IridescenceRoughnessAtten, type: float, default: 0.5, range: [0,1] }
+          - { name: FabricSheen, type: float, default: 0.0, range: [0,1] }
+          - { name: SheenPower, type: float, default: 1.0, range: [0,10] }
+          - { name: SheenBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: SheenWidth, type: float, default: 1.0, range: [0,5] }
+      - name: "01 Landscape Layers"
+        params:
+          - { name: Grass_UVScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: Grass_Roughness, type: float, default: 0.6, range: [0,1] }
+          - { name: Ground_UVScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: Ground_Roughness, type: float, default: 0.8, range: [0,1] }
+          - { name: Rock_UVScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: Rock_Roughness, type: float, default: 0.9, range: [0,1] }
+      - name: "02 Toon Ramp"
+        params:
+          - { name: BaseTint, type: vector, default: [1,1,1,1] }
+          - { name: RampLow, type: vector, default: [0.1,0.05,0.15,1] }
+          - { name: RampMid, type: vector, default: [0.5,0.4,0.5,1] }
+          - { name: RampHigh, type: vector, default: [0.9,0.85,0.8,1] }
+          - { name: RampPosMid, type: float, default: 0.5, range: [0,1] }
+          - { name: RampContrast, type: float, default: 1.0, range: [0,5] }
+          - { name: RampStrength, type: float, default: 1.0, range: [0,1] }
+          - { name: RampSharpness, type: float, default: 1.0, range: [0,5] }
+      - name: "03 Atmosphere"
+        params:
+          - { name: AtmosphericColor, type: vector, default: [1,1,1,1] }
+          - { name: AtmosphericStart, type: float, default: 0.0, range: [0,1] }
+          - { name: AtmosphericEnd, type: float, default: 1.0, range: [0,1] }
+          - { name: AtmosphericStrength, type: float, default: 0.0, range: [0,1] }
+      - name: "04 Emissive"
+        params:
+          - { name: NikkiEmissiveStrength, type: float, default: 0.0, range: [0,10] }
+          - { name: EmissiveFloor, type: float, default: 0.0, range: [0,1] }
+
+  M_Water_Master_Grand_v10_Upgrade:
+    path: /Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v10_Upgrade
+    # Canonical since 2026-08-14 (see Docs/Production/Materials/UNIVERSAL_WATER_FAMILY.md).
+    # v6/v7/v9 remain in service for their instance families only.
+    mpc_references:
+      - MPC_Melodia_Palette: [GlobalEmissiveBoost, GlobalSparkleIntensity, Bass, Mid, Treble, BassIntensity, MidIntensity, TrebleIntensity, EnemyTension, WaterLevelZ]
+    groups:
+      - name: "00 Water Surface"
+        params:
+          - { name: WaterColorShallow, type: vector, default: [0.2,0.6,0.7,1.0] }
+          - { name: WaterColorDeep, type: vector, default: [0.0,0.2,0.4,1.0] }
+          - { name: CausticTint, type: vector, default: [1,1,1,1] }
+          - { name: CausticIntensity, type: float, default: 0.0, range: [0,5] }
+          - { name: WaterRoughness, type: float, default: 0.2, range: [0,1] }
+          - { name: WaterMetallic, type: float, default: 0.0, range: [0,1] }
+          - { name: WaterSpecular, type: float, default: 0.5, range: [0,1] }
+          - { name: Opacity, type: float, default: 1.0, range: [0,1] }
+          - { name: DepthFadeDistance, type: float, default: 100.0, range: [0,1000] }
+          - { name: WaterUVScale, type: float, default: 1.0, range: [0.01,10] }
+      - name: "01 Waves"
+        params:
+          - { name: WaveSpeed, type: float, default: 1.0, range: [0.5,3.0] }
+          - { name: WaveSteepness, type: float, default: 0.5, range: [0,1] }
+          - { name: WaveChoppiness, type: float, default: 0.5, range: [0,1] }
+          - { name: WaveDetail, type: float, default: 0.5, range: [0,1] }
+          - { name: WaveStylize, type: float, default: 0.0, range: [0,1] }
+          - { name: GerstnerScale, type: float, default: 1.0, range: [0,10] }
+          - { name: Height, type: float, default: 0.0, range: [-500,500] }
+          - { name: ParallaxScale, type: float, default: 1.0, range: [0,10] }
+          - { name: ParallaxDepthFadeDistance, type: float, default: 100.0, range: [0,1000] }
+      - name: "02 Shoreline"
+        params:
+          - { name: ShorelineWidth, type: float, default: 1.0, range: [0,10] }
+          - { name: ShorelineFoam, type: float, default: 0.0, range: [0,1] }
+      - name: "03 Magic"
+        params:
+          - { name: MagicalIntensity, type: float, default: 0.0, range: [0,5] }
+          - { name: SparkleColor, type: vector, default: [1,1,1,1] }
+          - { name: SparkleIntensity, type: float, default: 0.0, range: [0,5] }
+          - { name: SparkleScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: SparkleThreshold, type: float, default: 0.5, range: [0,1] }
+          - { name: SparkleTwinkleSpeed, type: float, default: 1.0, range: [0,10] }
+          - { name: IridescenceTint, type: vector, default: [1,1,1,1] }
+          - { name: Iridescence, type: float, default: 0.0, range: [0,1] }
+          - { name: IridescencePower, type: float, default: 1.0, range: [0,10] }
+          - { name: DreamTint, type: vector, default: [1,1,1,1] }
+          - { name: DreamContrast, type: float, default: 1.0, range: [0,2] }
+          - { name: DreamSaturation, type: float, default: 1.0, range: [0,2] }
+          - { name: DreamShadowLift, type: float, default: 0.0, range: [0,1] }
+          - { name: PastelLift, type: float, default: 0.0, range: [0,1] }
+          - { name: RampSharpness, type: float, default: 1.0, range: [0,5] }
+      - name: "04 Auto-Blend"
+        params:
+          - { name: AutoBlendID, type: float, default: 0.0, range: [0,10] }
+          - { name: StaticAutoBlendID, type: float, default: 0.0, range: [0,10] }
+      - name: "05 Native Integration (v10)"
+        params:
+          - { name: NativeWaterAvailability, type: float, default: 1.0, range: [0,1] }
+          - { name: WaterBodyIndex, type: float, default: 0.0, range: [0,10] }
+          - { name: WaterZoneIndex, type: float, default: 0.0, range: [0,10] }
+          - { name: NativeShallowWaterHeight, type: float, default: 0.0, range: [-1000,1000] }
+          - { name: WaterDepthCm, type: float, default: 100.0, range: [0,5000] }
+          - { name: WaterVelocityNormalStrength, type: float, default: 1.0, range: [0,2] }
+          - { name: WaterVelocityFoamWeight, type: float, default: 0.5, range: [0,1] }
+          - { name: WaterVelocityBioluminescenceWeight, type: float, default: 0.0, range: [0,1] }
+          - { name: WaterV10WorldUVBlend, type: float, default: 1.0, range: [0,1] }
+          - { name: WaterV10WorldTextureScale, type: float, default: 0.001, range: [0.0001,0.01] }
+          - { name: WaterV10AntiTileStrength, type: float, default: 0.5, range: [0,1] }
+      - name: "05 Itto Corruption"
+        params:
+          - { name: IttoRampLow, type: vector, default: [0.3,0.1,0.1,1] }
+          - { name: IttoRampHigh, type: vector, default: [0.6,0.2,0.2,1] }
+          - { name: IttoInkStrength, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoPatternScale, type: float, default: 1.0, range: [0.01,10] }
+          - { name: IttoSpiralIntensity, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoCrackDepth, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoWearAmount, type: float, default: 0.0, range: [0,1] }
+          - { name: IttoBreakupAmount, type: float, default: 0.0, range: [0,1] }
+      - name: "06 Madoka Barrier"
+        params:
+          - { name: MadokaRampLow, type: vector, default: [0.1,0.2,0.3,1] }
+          - { name: MadokaRampMid, type: vector, default: [0.4,0.6,0.7,1] }
+          - { name: MadokaRampHigh, type: vector, default: [0.8,0.9,1.0,1] }
+          - { name: MadokaBlendAmount, type: float, default: 0.0, range: [0,1] }
+          - { name: MadokaCuteBias, type: float, default: 0.0, range: [-1,1] }
+          - { name: MadokaGlowAmount, type: float, default: 0.0, range: [0,1] }
+          - { name: MadokaEmissiveBrightness, type: float, default: 1.0, range: [0,5] }
+          - { name: MadokaRadialBands, type: float, default: 1.0, range: [0,10] }
+          - { name: MadokaRealityWarp, type: float, default: 0.0, range: [0,1] }
+          - { name: MadokaVeinEmissive, type: float, default: 0.0, range: [0,1] }
+          - { name: MadokaAudioReactiveAmount, type: float, default: 0.0, range: [0,1] }
+      - name: "07 Witch Barrier"
+        params:
+          - { name: WitchBarrierWallpaperScale, type: float, default: 1.0, range: [0.01,10] }

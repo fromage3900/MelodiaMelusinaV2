@@ -1,0 +1,13 @@
+{
+  "id": "BRUTALIST_PLAZA",
+  "label": "Brutalist Pilotis Plaza",
+  "description": "Column grid hall, panel wall rhythm, offset slab corridor",
+  "style": "brutalist",
+  "modules": [
+    {"arch_type": "GREYBOX_PILLAR_HALL", "overrides": {"gb_cols_x": 4, "gb_cols_y": 2, "gb_spacing": 4.0, "gb_height": 3.6, "gb_trim_mode": "RECESS", "material_choice": "STONE", "unit_size": 4.0}},
+    {"arch_type": "GB_BRUTALIST_PANEL_WALL", "overrides": {"gb_length": 12.0, "gb_height": 3.6, "gb_trim_mode": "RECESS", "gb_trim_recess": 0.08, "material_choice": "STONE"}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 8.0, "gb_trim_mode": "RECESS", "material_choice": "STONE", "unit_size": 4.0}},
+    {"arch_type": "GB_BRUTALIST_PANEL_WALL", "overrides": {"gb_length": 12.0, "gb_height": 3.6, "material_choice": "STONE"}},
+    {"arch_type": "GREYBOX_PILLAR_HALL", "overrides": {"gb_cols_x": 3, "gb_cols_y": 2, "gb_spacing": 4.0, "gb_height": 3.6, "material_choice": "STONE"}}
+  ]
+}

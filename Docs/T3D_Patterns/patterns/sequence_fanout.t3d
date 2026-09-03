@@ -1,0 +1,22 @@
+Begin Object Class=/Script/BlueprintGraph.K2Node_ExecutionSequence Name="Fan"
+   NodePosX=0
+   NodePosY=0
+   NodeGuid={{GUID:seq}}
+   CustomProperties Pin (PinId={{GUID:seqin}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,)
+   CustomProperties Pin (PinId={{GUID:then0}},PinName="then_0",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(FanA {{GUID:ain}},),)
+   CustomProperties Pin (PinId={{GUID:then1}},PinName="then_1",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(FanB {{GUID:bin}},),)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="FanA"
+   FunctionReference=(MemberParent=Class'"{{target_class}}"',MemberName="{{function_a}}")
+   NodePosX=350
+   NodePosY=-100
+   NodeGuid={{GUID:a}}
+   CustomProperties Pin (PinId={{GUID:ain}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(Fan {{GUID:then0}},),)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="FanB"
+   FunctionReference=(MemberParent=Class'"{{target_class}}"',MemberName="{{function_b}}")
+   NodePosX=350
+   NodePosY=100
+   NodeGuid={{GUID:b}}
+   CustomProperties Pin (PinId={{GUID:bin}},PinName="execute",Direction="EGPD_Input",PinType.PinCategory="exec",PinType.PinSubCategoryObject=None,LinkedTo=(Fan {{GUID:then1}},),)
+End Object

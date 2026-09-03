@@ -1,0 +1,26 @@
+{
+  "id": "scifi_airlock_v1",
+  "family": "Sci-Fi",
+  "verticality": 0.55,
+  "symmetry": 0.9,
+  "ornament_density": 0.35,
+  "structural_logic": 0.95,
+  "organic_growth": 0.1,
+  "cosmic_influence": 0.42,
+  "sacred_sequence": [],
+  "compose_style": "SCIFI_DECK",
+  "default_graph": "SCIFI_AIRLOCK",
+  "grammar_id": "SCIFI_AIRLOCK",
+  "surreal_transform": "recursive_interior",
+  "compose_roles": {
+    "gate": "_lib_GB_SCIFI_PRESSURE_DOOR",
+    "sacred": "_lib_GREYBOX_ROOM",
+    "medium": "_lib_GREYBOX_CORRIDOR"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

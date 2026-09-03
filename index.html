@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#171225" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="Melodia Melusina — an authored single-player rhythm JRPG about music, clothing, strange water, and a world that learns how to answer you." />
+  <meta property="og:title" content="Melodia Melusina" />
+  <meta property="og:description" content="A strange, authored journey through music, clothing, creatures, impossible oceans, and worlds that read you back." />
+  <title>Melodia Melusina — ♪ an endless authored journey ♪</title>
+  <style>
+    :root {
+      --night: #171225;
+      --night-2: #211833;
+      --plum: #37294d;
+      --paper: #f6f0f8;
+      --ink: #2a2039;
+      --lavender: #bda8df;
+      --blue: #91b9e7;
+      --aqua: #82d2db;
+      --rose: #eca7c9;
+      --gold: #d9bc72;
+      --mist: rgba(246, 240, 248, 0.72);
+      --line: rgba(217, 188, 114, 0.28);
+      --soft-line: rgba(246, 240, 248, 0.12);
+      --shadow: 0 28px 90px rgba(7, 5, 14, 0.38);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--paper);
+      background:
+        radial-gradient(circle at 16% 12%, rgba(145,185,231,.16), transparent 32rem),
+        radial-gradient(circle at 82% 30%, rgba(236,167,201,.10), transparent 28rem),
+        linear-gradient(180deg, #171225 0%, #1c162c 42%, #15111f 100%);
+      font-family: Georgia, 'Times New Roman', serif;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    #atmosphere {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .82;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .18;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.16) 0 0.5px, transparent .6px),
+        radial-gradient(circle at 70% 50%, rgba(255,255,255,.10) 0 0.5px, transparent .6px);
+      background-size: 7px 7px, 11px 11px;
+      mix-blend-mode: soft-light;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--soft-line);
+    }
+
+    .brand {
+      text-decoration: none;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: .86rem;
+      color: #fff8ff;
+      white-space: nowrap;
+    }
+
+    .brand::before {
+      content: '𝄞';
+      margin-right: .7rem;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 22px;
+      font: .69rem/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(246,240,248,.68);
+    }
+
+    .nav-links a { text-decoration: none; transition: color .2s ease; }
+    .nav-links a:hover { color: var(--gold); }
+
+    .hero {
+      min-height: min(820px, calc(100vh - 74px));
+      display: grid;
+      align-items: center;
+      padding: 80px 0 96px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap: clamp(44px, 8vw, 110px);
+      align-items: center;
+    }
+
+    .kicker, .eyebrow {
+      margin: 0 0 18px;
+      color: var(--gold);
+      font: 700 .69rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 { font-weight: 400; }
+    h1 {
+      margin: 0;
+      max-width: 860px;
+      font-size: clamp(3.8rem, 8vw, 7.7rem);
+      line-height: .91;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+    }
+
+    .lede {
+      max-width: 720px;
+      margin: 30px 0 0;
+      color: rgba(246,240,248,.78);
+      font-size: clamp(1.12rem, 1.8vw, 1.42rem);
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      text-decoration: none;
+      color: rgba(246,240,248,.88);
+      background: rgba(255,255,255,.025);
+      backdrop-filter: blur(10px);
+      font: .72rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .08em;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(217,188,114,.65);
+    }
+
+    .button.primary {
+      color: #21172b;
+      background: linear-gradient(135deg, #e5cf96, #caa96b);
+      border-color: transparent;
+    }
+
+    .field-card {
+      position: relative;
+      padding: clamp(26px, 4vw, 38px);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .field-card::before,
+    .field-card::after {
+      content: '';
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border-color: rgba(217,188,114,.52);
+      pointer-events: none;
+    }
+    .field-card::before { top: 10px; left: 10px; border-top: 1px solid; border-left: 1px solid; }
+    .field-card::after { right: 10px; bottom: 10px; border-right: 1px solid; border-bottom: 1px solid; }
+
+    .field-card h2 {
+      margin: 0;
+      font-size: clamp(1.9rem, 3vw, 2.65rem);
+      line-height: 1.05;
+    }
+
+    .score {
+      margin: 26px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      font: .75rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: rgba(246,240,248,.66);
+    }
+
+    .score li {
+      display: grid;
+      grid-template-columns: 1.5rem 1fr;
+      gap: 9px;
+    }
+    .score span { color: var(--gold); }
+
+    .section {
+      padding: 110px 0;
+      border-top: 1px solid var(--soft-line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .7fr) minmax(280px, 1.3fr);
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: .98;
+      letter-spacing: -.035em;
+    }
+
+    .section-copy {
+      margin: 0;
+      color: rgba(246,240,248,.68);
+      font-size: 1.06rem;
+      line-height: 1.72;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 330px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border: 1px solid var(--soft-line);
+      background:
+        radial-gradient(circle at 80% 10%, rgba(145,185,231,.10), transparent 40%),
+        rgba(255,255,255,.025);
+      text-decoration: none;
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .card:nth-child(2) { background: radial-gradient(circle at 84% 10%, rgba(236,167,201,.10), transparent 42%), rgba(255,255,255,.025); }
+    .card:nth-child(3) { background: radial-gradient(circle at 80% 10%, rgba(130,210,219,.10), transparent 42%), rgba(255,255,255,.025); }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(217,188,114,.48);
+      background-color: rgba(255,255,255,.045);
+    }
+
+    .card .note {
+      font-size: 2.2rem;
+      color: var(--gold);
+      opacity: .92;
+    }
+
+    .card h3 {
+      margin: auto 0 10px;
+      font-size: 2rem;
+      line-height: 1.05;
+    }
+
+    .card p {
+      margin: 0;
+      color: rgba(246,240,248,.61);
+      line-height: 1.6;
+    }
+
+    .card .meta {
+      margin-top: 22px;
+      color: var(--gold);
+      font: .64rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .manifesto {
+      position: relative;
+      padding: clamp(42px, 7vw, 90px);
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(189,168,223,.12), transparent 42%),
+        rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+    }
+
+    .manifesto blockquote {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(2rem, 4.7vw, 4.8rem);
+      line-height: 1.06;
+      letter-spacing: -.035em;
+    }
+
+    .manifesto footer {
+      margin-top: 32px;
+      color: rgba(246,240,248,.56);
+      font: .72rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .08em;
+    }
+
+    .site-footer {
+      padding: 36px 0 60px;
+      border-top: 1px solid var(--soft-line);
+      color: rgba(246,240,248,.5);
+      font: .68rem/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .06em;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .site-footer a { text-decoration-color: rgba(217,188,114,.42); text-underline-offset: 4px; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .section-head { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .field-card { max-width: 620px; }
+      .nav-links { gap: 13px; }
+      .nav-links a:nth-child(2) { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 28px, 1180px); }
+      .nav { min-height: 64px; }
+      .nav-links a:not(:last-child) { display: none; }
+      .hero { padding-top: 64px; }
+      h1 { font-size: clamp(3.3rem, 19vw, 5rem); }
+      .section { padding: 78px 0; }
+      .card { min-height: 280px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      #atmosphere { display: none; }
+      .button, .card { transition: none; }
+      .button:hover, .card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="atmosphere" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="shell nav">
+      <a class="brand" href="#top">Melodia Melusina</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#journey">Journey</a>
+        <a href="#laboratory">Laboratory</a>
+        <a href="README.md">Field Notes</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="shell hero">
+        <div class="hero-grid">
+          <div>
+            <p class="kicker">♪ a single-player rhythm JRPG ♪</p>
+            <h1>The world is listening back.</h1>
+            <p class="lede">
+              <em>Melodia Melusina</em> is an authored journey through impossible water, clothing that changes how the world reads you, turn-based battles performed through rhythm, strange creatures, and landscapes that may only be pretending to be landscapes.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="Docs/Tools/puzzle-sandbox/">Enter Cymatic Sanctuary</a>
+              <a class="button" href="Prototypes/Web/MelodiaFolio3D/mara.html">Open the Traveling Folio</a>
+              <a class="button" href="README.md">Read the field notes</a>
+            </div>
+          </div>
+
+          <aside class="field-card" aria-label="Current score">
+            <p class="eyebrow">𝄞 current score</p>
+            <h2>Beautiful things are how you play.</h2>
+            <ul class="score">
+              <li><span>♪</span><div>Turn-based strategy is the skeleton.</div></li>
+              <li><span>♫</span><div>Rhythm is execution.</div></li>
+              <li><span>♬</span><div>Outfits are build identity and expression.</div></li>
+              <li><span>𝄞</span><div>Convergence is how the world interprets all of it.</div></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="journey" class="section">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">♫ the journey</p>
+              <h2>Authored to end. Built to keep going.</h2>
+            </div>
+            <p class="section-copy">
+              Melodia is not a seasonal treadmill and it is not an infinite system pretending to be a story. Each Volume is meant to have a real emotional ending. The architecture underneath it is simply designed so another Reverie, Chapter, Voyage, creature, outfit, or impossible horizon can be added without rebuilding the journey that came before it.
+            </p>
+          </div>
+
+          <div class="manifesto">
+            <blockquote>“The beautiful things aren’t rewards for playing the game. They are how you play the game.”</blockquote>
+            <footer>♪ wardrobe · music · world response · traversal · battle · memory</footer>
+          </div>
+        </div>
+      </section>
+
+      <section id="laboratory" class="section">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">♬ little laboratories</p>
+              <h2>Touch the ideas before they become machinery.</h2>
+            </div>
+            <p class="section-copy">
+              The browser experiments are sketches, not replacement engines. They exist so musical puzzles, cozy interface objects, visual language, chapter presentation, and world-schema ideas can become tangible in minutes. Unreal remains the runtime authority.
+            </p>
+          </div>
+
+          <div class="cards">
+            <a class="card" href="Docs/Tools/puzzle-sandbox/">
+              <div class="note">𝄞</div>
+              <div>
+                <h3>Cymatic Sanctuary</h3>
+                <p>A 12-instrument Music-as-Key playground: phrase gates, cymatic rings, toon-watercolor light, particles, and prototype JSON export.</p>
+                <div class="meta">interactive · three.js · music-as-key</div>
+              </div>
+            </a>
+
+            <a class="card" href="Prototypes/Web/MelodiaFolio3D/mara.html">
+              <div class="note">♫</div>
+              <div>
+                <h3>Traveling Folio</h3>
+                <p>A cozy 3D field book for chapters, parcels, wardrobe objects, models, letters from the Starskiff, and the strange things collected along the way.</p>
+                <div class="meta">interactive · folio · field objects</div>
+              </div>
+            </a>
+
+            <a class="card" href="Prototypes/Web/MusicKey3D/">
+              <div class="note">♪</div>
+              <div>
+                <h3>MusicKey3D</h3>
+                <p>A smaller world-interaction sketch where musical nodes become spatial language: notes connect, barriers listen, and the scene remembers a phrase.</p>
+                <div class="meta">interactive · puzzle sketch · resonance</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div>Melodia Melusina · Unreal Engine 5.8 · authored by Brennan Shepherd</div>
+        <div><a href="CURRENT_STATE.md">current state</a> · <a href="DOC_INDEX.md">score map</a> · <a href="https://github.com/fromage3900/MelodiaMelusinaV2">GitHub</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module">
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      try {
+        const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js');
+        const mount = document.getElementById('atmosphere');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(48, innerWidth / innerHeight, 0.1, 100);
+        camera.position.z = 8;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power' });
+        renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5));
+        renderer.setSize(innerWidth, innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        mount.appendChild(renderer.domElement);
+
+        // A sparse field, not a spectacle: points are intentionally few and dim.
+        const count = Math.min(180, Math.max(90, Math.floor(innerWidth / 7)));
+        const pos = new Float32Array(count * 3);
+        const col = new Float32Array(count * 3);
+        const palette = [0xbda8df, 0x91b9e7, 0x82d2db, 0xeca7c9, 0xd9bc72];
+        for (let i = 0; i < count; i++) {
+          const r = 5 + Math.random() * 10;
+          const a = Math.random() * Math.PI * 2;
+          const y = (Math.random() - .5) * 10;
+          pos[i*3] = Math.cos(a) * r;
+          pos[i*3+1] = y;
+          pos[i*3+2] = -2 - Math.random() * 12;
+          const c = new THREE.Color(palette[(Math.random() * palette.length) | 0]);
+          col[i*3] = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(col, 3));
+        const points = new THREE.Points(geometry, new THREE.PointsMaterial({
+          size: .035,
+          vertexColors: true,
+          transparent: true,
+          opacity: .52,
+          depthWrite: false
+        }));
+        scene.add(points);
+
+        // One quiet resonance ring sits far behind the typography.
+        const ring = new THREE.Mesh(
+          new THREE.TorusGeometry(2.55, .006, 6, 160),
+          new THREE.MeshBasicMaterial({ color: 0xbda8df, transparent: true, opacity: .13, depthWrite: false })
+        );
+        ring.position.set(2.2, .7, -5.5);
+        ring.rotation.x = 1.0;
+        ring.rotation.y = -.28;
+        scene.add(ring);
+
+        const ring2 = new THREE.Mesh(
+          new THREE.TorusGeometry(1.9, .004, 6, 140),
+          new THREE.MeshBasicMaterial({ color: 0xd9bc72, transparent: true, opacity: .085, depthWrite: false })
+        );
+        ring2.position.copy(ring.position);
+        ring2.rotation.set(.86, -.12, .3);
+        scene.add(ring2);
+
+        // A handful of thread curves suggest routes without asking for interaction.
+        const threadMaterial = new THREE.LineBasicMaterial({ color: 0x91b9e7, transparent: true, opacity: .09 });
+        for (let i = 0; i < 4; i++) {
+          const curve = new THREE.CubicBezierCurve3(
+            new THREE.Vector3(-5 + i * 1.2, -3 + i * .35, -6 - i),
+            new THREE.Vector3(-1.5, 2.2 - i * .3, -8),
+            new THREE.Vector3(1.6, -1.4 + i * .5, -7),
+            new THREE.Vector3(5.4 - i * .4, 2.8 - i * .7, -10)
+          );
+          const thread = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(48)), threadMaterial.clone());
+          thread.material.opacity = .045 + i * .014;
+          scene.add(thread);
+        }
+
+        let pointerX = 0, pointerY = 0;
+        addEventListener('pointermove', (event) => {
+          pointerX = (event.clientX / innerWidth - .5) * .16;
+          pointerY = (event.clientY / innerHeight - .5) * .10;
+        }, { passive: true });
+
+        const clock = new THREE.Clock();
+        function frame() {
+          const t = clock.getElapsedTime();
+          points.rotation.y = t * .006 + pointerX;
+          points.rotation.x += (pointerY - points.rotation.x) * .015;
+          ring.rotation.z = t * .018;
+          ring2.rotation.z = -.24 - t * .012;
+          renderer.render(scene, camera);
+          requestAnimationFrame(frame);
+        }
+        frame();
+
+        addEventListener('resize', () => {
+          camera.aspect = innerWidth / innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(innerWidth, innerHeight);
+        }, { passive: true });
+      } catch (error) {
+        // The HTML/CSS experience is complete without WebGL.
+        console.info('Melodia atmosphere stayed quiet:', error);
+      }
+    }
+  </script>
+</body>
+</html>

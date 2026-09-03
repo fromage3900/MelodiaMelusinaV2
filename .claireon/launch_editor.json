@@ -1,0 +1,6 @@
+{
+  "command": ["{powershell}", "-NoProfile", "-File",
+              "{worktree_root}/Scripts/LaunchEditor.ps1",
+              "-ProjectPath", "{project_path}"],
+  "skip_build_args": ["-SkipBuild"]
+}

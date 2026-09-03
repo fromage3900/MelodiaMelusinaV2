@@ -1,0 +1,72 @@
+{
+  "format": "melodia_resonant_world_live_proof",
+  "schema_version": 1,
+  "world_seed": 3900,
+  "movement_id": "petal_cantata",
+  "source_checkout": "C:/EnvironmentPortfolio/BS_GodFile",
+  "editor_project_directory": "G:/EnvironmentPortfolio/BS_GodFile",
+  "map": {
+    "content_path": "/Game/_PROJECT/ResonantWorld/Offline/L_MelodiaMIDI_Offline",
+    "clone_relative_path": "Content/_PROJECT/ResonantWorld/Offline/L_MelodiaMIDI_Offline.umap",
+    "protected_maps_touched": false
+  },
+  "import": {
+    "asset_path": "/Game/_PROJECT/ResonantWorld/Offline/MelodiaMIDIEnvironment",
+    "source_fbx_relative_path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/MelodiaMIDIEnvironment.fbx",
+    "source_fbx_sha256": "56d12a33ca4a756c461b70a0045c6846e9bef10494c798d75408fea131e39f14",
+    "apply_requested": true,
+    "apply_performed": true,
+    "static_mesh_only": true,
+    "maps_touched": false,
+    "gameplay_save_written": false,
+    "errors": []
+  },
+  "pcg": {
+    "generated_volume_count": 5,
+    "tagged_output_counts": [4, 6, 5, 3, 6],
+    "graphs": [
+      "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_BellTreeGarden",
+      "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_ResonanceCathedral",
+      "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_ArpeggioBridge",
+      "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_XylophoneTrail",
+      "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_CrystalHarpGrove"
+    ],
+    "all_generated": true
+  },
+  "pie": {
+    "session_id": "pie_smoke_7_235343",
+    "map": "UEDPIE_0_L_MelodiaMIDI_Offline",
+    "duration_seconds": 6,
+    "captured_ok": true,
+    "valid_frames": 2,
+    "invalid_frames": 0,
+    "runtime_gate": {
+      "error": 0,
+      "ensure": 0,
+      "fatal": 0,
+      "cached_lighting": 0,
+      "blueprint_runtime_error": 0,
+      "accessed_none": 0
+    }
+  },
+  "capture": {
+    "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Screenshots/Monolith/OfflineWorldGen/PetalCantata_3900/Melodia_PetalCantata_PCG_Offline_HighRes_1920x1080.png",
+    "native_highres_path": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Screenshots/WindowsEditor/HighresScreenshot00003.png",
+    "highres_command": "HighResShot 1920x1080",
+    "raw_frame_path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Screenshots/Monolith/OfflineWorldGen/PetalCantata_3900/Capture7/frame_002.png",
+    "raw_frame_resolution": [1409, 858],
+    "resolution": [1920, 1080],
+    "camera_actor_label": "Melodia_Offline_Camera",
+    "standalone_framing": true,
+    "editor_chrome": false,
+    "debug_overlay": false,
+    "visual_review": "local inspection passed; retain lookdev/webfront promotion gate"
+  },
+  "runtime_boundary": {
+    "offline_namespace_only": true,
+    "does_not_modify_production_maps": true,
+    "does_not_modify_render_tests": true,
+    "does_not_write_gameplay_save": true
+  },
+  "ok": true
+}

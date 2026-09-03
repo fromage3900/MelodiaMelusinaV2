@@ -1,0 +1,14 @@
+{
+  "source_id": "SD_02_PetalPriestess",
+  "source_type": "vroid_studio",
+  "archetype": "SakuraDreamer",
+  "filename": "SD_02_PetalPriestess.vrm",
+  "author": "Melodia Team (VRoid Studio)",
+  "license": "vroid_studio_tos",
+  "commercial_ok": true,
+  "body_type": "standard",
+  "base_hair_color": "#E7C9CE",
+  "base_eye_color": "#F5E8EA",
+  "expression_presets": ["prayer", "gentle_smile", "blessing", "serene"],
+  "notes": "Create in VRoid Studio: standard female, dusty pink hair, petal white eyes, priestess outfit. Export as VRM 1.0."
+}

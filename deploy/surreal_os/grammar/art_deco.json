@@ -1,0 +1,14 @@
+{
+  "id": "ART_DECO",
+  "label": "Art Deco Lobby Walk",
+  "description": "Stepped tessellation tower, geometric panel wall, chevron filigree, cusped portal, balconette, obelisk spire",
+  "style": "artdeco",
+  "modules": [
+    {"arch_type": "TESSELLATION_TOWER", "overrides": {"tess_grid_x": 6, "tess_grid_y": 6, "tess_size": 0.45, "tess_height_var": 0.65, "tess_rotate_var": 0.15, "material_choice": "AUTO"}},
+    {"arch_type": "GB_BRUTALIST_PANEL_WALL", "overrides": {"gb_length": 10.0, "gb_height": 3.8, "gb_trim_mode": "RECESS", "gb_trim_recess": 0.06, "material_choice": "AUTO"}},
+    {"arch_type": "FILIGREE_PANEL", "overrides": {"filigree_style": "GEOMETRIC_ARABESQUE", "filigree_width": 1.6, "filigree_height": 2.2, "filigree_density": 0.75, "material_choice": "AUTO"}},
+    {"arch_type": "CUSPED_ARCH", "overrides": {"gothic_width": 2.2, "gb_height": 4.2, "gb_trim_mode": "RECESS", "material_choice": "AUTO"}},
+    {"arch_type": "BALCONY", "overrides": {"balcony_width": 2.4, "balcony_depth": 0.75, "balcony_baluster_count": 8, "material_choice": "AUTO"}},
+    {"arch_type": "OBELISK", "overrides": {"base_radius": 0.45, "height": 8.0, "material_choice": "AUTO"}}
+  ]
+}

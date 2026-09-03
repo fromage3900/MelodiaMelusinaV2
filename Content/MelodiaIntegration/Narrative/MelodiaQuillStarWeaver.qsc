@@ -1,0 +1,29 @@
+@ Start
+
+? if: {melodia_q_echo_02_complete} == on
+
+  - Star Weaver
+    The grove remembers your rhythm. Follow the path that has opened beyond the lanterns.
+
+? else:
+
+  ? if: {melodia_q_echo_01_complete} == on
+
+    - Star Weaver
+      I felt the Crystal Shard yield. You did not silence the echo—you taught it to listen.
+
+    - Star Weaver
+      The path forward is answering now. Take its cadence toward morning.
+
+    $ Notify melodia:quest:melodia_q_echo_02
+
+  ? else:
+
+    - Star Weaver
+      A first echo still waits in the grove. Speak with the Petal Priestess, then follow the lantern-song.
+
+  ? endif
+
+? endif
+
+$ End

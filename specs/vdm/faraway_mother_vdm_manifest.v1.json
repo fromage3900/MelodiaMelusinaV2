@@ -1,0 +1,77 @@
+{
+  "schema": "melodia.vdm_manifest.v1",
+  "seed": 20260829,
+  "resolution": 2048,
+  "honest_note": "Variants A/B/C are now REAL cooked (numpy/PIL path, dry_run=false). Resolution 2048 to match the verified KleinVeil npy shape (2048,2048,4). EXR 32f float bakes produced via imageio from the cooked npy.",
+  "variants": [
+    {
+      "variant": "A",
+      "seed": 20260829,
+      "res": 2048,
+      "params": { "foldFreq": 3.0, "depth": 0.3, "mode_type": "ridge" },
+      "dry_run": false,
+      "out": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_A.exr",
+      "outputs": {
+        "npy": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_A.npy",
+        "png": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_A.png",
+        "exr": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_A.exr"
+      },
+      "sha256": {
+        "npy": "8e92968ce630acf0820c5fe7ae90e449a9a4e9df6fb305d69936c4265cd724fa",
+        "png": "3b9740e6cc54bd9e2d37d041efd5ee76e9168ac7873e65dfb73c7c6154a40199",
+        "exr": "a2dcaf96638af15801839df3e205749479a347f42971a9bf031badbe00094750"
+      },
+      "bytes": { "npy": 67108992, "png": 1985688, "exr": 7876637 },
+      "cooker": "Tools/cook_faraway_fabric_vdm.py (numpy/PIL port of Tools/build_klein_veil_sing.py build_vdm)"
+    },
+    {
+      "variant": "B",
+      "seed": 20260829,
+      "res": 2048,
+      "params": { "foldFreq": 1.5, "depth": 0.1, "mode_type": "valley" },
+      "dry_run": false,
+      "out": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_B.exr",
+      "outputs": {
+        "npy": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_B.npy",
+        "png": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_B.png",
+        "exr": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_B.exr"
+      },
+      "sha256": {
+        "npy": "2cca2a1d82062a1ac0ad79a8cf5ea302b8501d78281c61a91f15b15152780bf3",
+        "png": "1b3b698265642386290513a1a3455955d89560387ec1c7e36e108d111cf3ee60",
+        "exr": "e430cf6523470a2cc703d5812c6472c6e3a072f2dd7004208ec6f16345733153"
+      },
+      "bytes": { "npy": 67108992, "png": 1545414, "exr": 6924223 },
+      "cooker": "Tools/cook_faraway_fabric_vdm.py (numpy/PIL port of Tools/build_klein_veil_sing.py build_vdm)"
+    },
+    {
+      "variant": "C",
+      "seed": 20260829,
+      "res": 2048,
+      "params": { "foldFreq": 0.8, "depth": 0.06, "mode_type": "haze_drape" },
+      "dry_run": false,
+      "out": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_C.exr",
+      "outputs": {
+        "npy": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_C.npy",
+        "png": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_C.png",
+        "exr": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\vdm_fabric\\T_FarawayMother_Fabric_VDM_C.exr"
+      },
+      "sha256": {
+        "npy": "39df99f6752ac10744b3028ddb149c0abe042008afb8a2d263901ce76e61af25",
+        "png": "c2c33481b85e918b0de0564a11c5b7c2f34a27043dfa2b7dfea1e416f93d587e",
+        "exr": "966540b107681a15502db906e36b4b0e9a5f1dc2156d4bcd35c7e23968e52358"
+      },
+      "bytes": { "npy": 67108992, "png": 1035989, "exr": 5513443 },
+      "cooker": "Tools/cook_faraway_fabric_vdm.py (numpy/PIL port of Tools/build_klein_veil_sing.py build_vdm)"
+    }
+  ],
+  "ue_path": "/Game/EnvSandbox/Textures/FarawayMother/VDM/",
+  "material": "M_Master_FarawayMother_Fabric (WPO)",
+  "lod_fade": {
+    "LOD0": 1.0,
+    "LOD1": 0.75,
+    "LOD2": 0.3,
+    "LOD3": 0.0
+  },
+  "qa": "Saved/Audit/vdm_fabric/vdm_qa_2026-09-02.json (A/B/C ALL_PASS)"
+}
