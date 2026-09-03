@@ -19,6 +19,7 @@
 | **♬ 7** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Who owns what and how state moves. |
 | **𝄞 8** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, browser labs, package flow. |
 | **♪ 8a** | [`Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md`](Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md) | Second-machine onboarding, measured hardware profile, offload lanes, and handoff gates. |
+| **♫ 8b** | [`melusinashouseplan.md`](melusinashouseplan.md) | **Hermes-first Blender 5.2 Geometry Nodes build score for Melusina's House**, with attached pink/blue round-Baroque reference boards. |
 | **♫ 9** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) + [`TEST_READY.md`](TEST_READY.md) | P0 scope + bounded evidence. |
 
 If you are an agent: **do not start by searching every old handoff.** Read the current front door first, then follow links into the system you are actually touching.
@@ -169,6 +170,8 @@ Keep the history. Read it through the current north-star docs.
 ## ♪ Toolchain / research
 
 Before adding another tool, check the current research/discovery indexes.
+
+- **Current environment hero packet:** [`melusinashouseplan.md`](melusinashouseplan.md) — Blender 5.2 Geometry Nodes build plan, Borromini/Rococo shape research, Hermes execution contract, and attached references.
 
 The rule remains:
 
