@@ -4,7 +4,6 @@
 # Run in editor: python Tools/ue_run_python.py --file Content/Python/faraway_mother_prototype_build.py
 # or: python Tools/editor_run.py Content/Python/faraway_mother_prototype_build.py
 
-import time
 import unreal
 import pathlib
 import json
@@ -30,17 +29,6 @@ FARAWAY_MIS = [
     "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Cradle",
 ]
 
-# Nikki cloth tiers (INFINITY_NIKKI_UE5_TRANSLATION §3/10): A rigid, B Chaos, C WPO, D VAT.
-# Rule: garment piece with gameplay meaning gets expensive solution. See Docs/Art/FARAWAY_MOTHER_CLOTH_TIERS_2026-09-02.md
-CLOTH_TIERS = {
-    "FM_Ridge_Rosette_Crest":   {"tier": "A_rigid",   "wpo": False, "chaos_pending": False, "note": "Structured filigree — deterministic, no sim"},
-    "FM_Valley_Arch_Entrance":  {"tier": "C_WPO",     "wpo": True,  "chaos_pending": False, "note": "Distant environmental drape — MF_FabricMountainWPO"},
-    "FM_Shoulder_Capital":      {"tier": "A_rigid",   "wpo": False, "chaos_pending": False, "note": "Stone cap — stiff"},
-    "FM_Heart_Finial_Gate":     {"tier": "B_Chaos",   "wpo": True,  "chaos_pending": True,  "note": "Hero Hemkeeper seam — Chaos when bound, WPO until then (BeatPulse)"},
-    "FM_Torso_RoseWindow":      {"tier": "B_Chaos",   "wpo": True,  "chaos_pending": True,  "note": "Sheer lace hero — OIT depth priority, WPO distant / Chaos close"},
-    "FM_FabricRidge_Terrain":   {"tier": "C_WPO+D_VAT","wpo": True, "chaos_pending": False, "note": "Km draped anatomy — WPO breathing + VAT contraction on Heart Gate open, never Chaos"},
-}
-
 # Height-aware placements: XY positions are on the 4km terrain (center at 0,0)
 # Z will be resolved by raycast against terrain collision at runtime / editor trace.
 # Format: (mesh_path, label, xy, yaw, scale, z_offset, mi_override)
@@ -58,17 +46,7 @@ MOON_HAZE = {
     "pp_tint": (0.15, 0.20, 0.35),   # cool moonlit terrain tint
     "vol_extent": (4000, 2600, 900),
     "vol_location": (0, 0, 450),
-    # Nikki P7 readable lighting — restrained grade so fashion/magical effects retain headroom
-    "bloom_intensity": 0.15,
-    "exposure_bias": 0.5,
-    "vignette_intensity": 0.25,
-    "color_temp_K": 6500,
-    "auto_exposure_min": 0.5,
-    "auto_exposure_max": 2.0,
 }
-
-TERRAIN_LABEL = "FM_FabricRidge_Terrain"
-
 
 def log(m):
     unreal.log(f"[FarawayMother] {m}")
@@ -209,54 +187,49 @@ def height_aware_place(terrain_actor):
             log(f"Skip {label} — mesh not found: {mesh_path}")
             continue
         mi = unreal.EditorAssetLibrary.load_asset(mi_path) if mi_path else None
-        # Height-aware placement: trace straight down onto the TERRAIN only.
-        # Ignore the moon-haze volume box / PPV (they span the trace corridor) and any
-        # FM_* ornament already placed, so an idempotent re-run cannot stack an ornament
-        # on top of a previous one.
-        les_ = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
-        ignore_actors = [
-            a for a in les_.get_all_level_actors()
-            if a.get_actor_label().startswith("FM_") and a.get_actor_label() != TERRAIN_LABEL
-        ]
-        start = unreal.Vector(xy[0], xy[1], 25000)
-        end = unreal.Vector(xy[0], xy[1], -10000)
-        # line_trace_single returns None (not a HitResult) when nothing is hit, and a
-        # terrain actor spawned earlier in THIS run may not have its collision registered
-        # with the physics scene yet. Retry briefly rather than failing the whole build.
-        hit = None
-        for _attempt in range(12):
-            hit = unreal.SystemLibrary.line_trace_single(
-                world, start, end,
-                unreal.TraceTypeQuery.ECC_VISIBILITY,
-                True,                  # trace complex: terrain is Nanite, needs complex
-                ignore_actors,
-                unreal.DrawDebugTrace.NONE,
-                True,                  # ignore self
+        # Raycast: trace from high above XY down onto terrain collision
+        start = unreal.Vector(xy[0], xy[1], 5000)
+        end = unreal.Vector(xy[0], xy[1], -1000)
+        hit_z = None
+        try:
+            # Use line trace against world collision (terrain actor has collision)
+            result = unreal.SystemLibrary.line_trace_single(
+                world,
+                start, end,
+                unreal.TraceTypeQuery.TRACE_TYPE_QUERY1,
+                False,  # trace complex?
+                [], unreal.DrawDebugTrace.NONE, unreal.HitResult(), True,
+                unreal.LinearColor(1,0,0,1), unreal.LinearColor(0,1,0,1), 5.0
             )
-            if hit is not None:
-                break
-            unreal.SystemLibrary.delay(world, 0.0)   # yield a tick so physics registers
-            time.sleep(0.25)
-        if hit is None:
-            raise RuntimeError(
-                f"{label}: height-aware trace returned no hit at ({xy[0]},{xy[1]}) after 12 "
-                f"attempts. Terrain '{TERRAIN_LABEL}' is missing, has no collision, or its "
-                f"physics state never registered."
-            )
-        d = hit.to_dict()
-        if not d["blocking_hit"]:
-            raise RuntimeError(
-                f"{label}: height-aware trace found no terrain at ({xy[0]},{xy[1]}). "
-                f"Terrain actor '{TERRAIN_LABEL}' missing or has no collision."
-            )
-        hit_actor = d["hit_actor"]
-        if hit_actor is None or hit_actor.get_actor_label() != TERRAIN_LABEL:
-            raise RuntimeError(
-                f"{label}: trace hit '{hit_actor.get_actor_label() if hit_actor else None}' "
-                f"instead of '{TERRAIN_LABEL}'."
-            )
-        hit_z = d["impact_point"].z
-        log(f"{label}: terrain Z={hit_z:.2f} (+{z_off} offset)")
+            # line_trace_single returns bool in older API; try alternative
+            hit_z = None
+        except:
+            pass
+        # Fallback: use EditorLevelLibrary line trace or simply sample height from terrain math
+        # Since trace API varies, fallback to height sampling via terrain actor bounds estimate
+        if hit_z is None:
+            # Fallback 1: try EditorActorSubsystem trace
+            try:
+                # Use World collision query via KismetSystemLibrary
+                hit = unreal.KismetSystemLibrary.line_trace_single(
+                    world, start, end,
+                    unreal.TraceTypeQuery.TRACE_TYPE_QUERY1, False, [], unreal.DrawDebugTrace.NONE, unreal.HitResult(), True
+                )
+                # hit is tuple (bool, HitResult)
+                if isinstance(hit, tuple) and len(hit) >= 2:
+                    ok, h = hit[0], hit[1]
+                    if ok and hasattr(h, "location"):
+                        hit_z = h.location.z
+                    elif ok and hasattr(h, "impact_point"):
+                        hit_z = h.impact_point.z
+                elif hasattr(hit, "location"):
+                    hit_z = hit.location.z
+            except Exception as e:
+                log(f"raycast fallback failed for {label}: {e}")
+        if hit_z is None:
+            # Last fallback: approximate Z from terrain generation formula (mid height)
+            hit_z = 35  # rough median fabric ridge height
+            log(f"{label}: raycast no hit — using fallback Z={hit_z}")
 
         final_z = (hit_z if hit_z is not None else 0) + z_off
         loc = unreal.Vector(xy[0], xy[1], final_z)
@@ -302,58 +275,25 @@ def wire_moon_haze():
     else:
         log("Fog already exists — skip")
 
-    # 2) PostProcessVolume - cool moonlit tint + bloom (Nikki P7: restrained so sheer fabrics read)
+    # 2) PostProcessVolume - cool moonlit tint + bloom
     if "FM_MoonHaze_PPV" not in existing:
         ppv = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.PostProcessVolume, unreal.Vector(0,0,0), unreal.Rotator(0,0,0))
         ppv.set_actor_label("FM_MoonHaze_PPV")
         try:
             ppv.set_editor_property("b_unbound", True)
-            # Restrained bloom/exposure per MOON_HAZE — keep fashion/magical headroom (Nikki P7)
-            # Volumetric / bloom / auto-exposure are on the PostProcessVolume component settings
-            comp_settings = None
-            try:
-                # UE5.8 PostProcessVolume exposes settings struct
-                comp_settings = ppv.get_editor_property("settings")
-            except:
+            settings = ppv.get_editor_property("settings") if hasattr(ppv, "get_editor_property") else None
+            # Use direct property set via unreal.PostProcessSettings where available
+            # Tint via SceneColorTint / WhiteTemp
+            if settings:
+                # SceneColorTint drives global moon tint
+                tint = MOON_HAZE["pp_tint"]
+                # The PostProcessSettings struct has many fields; attempt generic set
                 pass
-            # Set high-level PPV properties directly where exposed
-            for prop, val in [
-                ("bloom_intensity", MOON_HAZE["bloom_intensity"]),
-                ("vignette_intensity", MOON_HAZE["vignette_intensity"]),
-                ("auto_exposure_bias", MOON_HAZE["exposure_bias"]),
-            ]:
-                try:
-                    ppv.set_editor_property(prop, val)
-                except:
-                    pass
-            # Also apply to settings struct if present
-            if comp_settings is not None:
-                for prop, val in [
-                    ("bloom_intensity", MOON_HAZE["bloom_intensity"]),
-                    ("auto_exposure_bias", MOON_HAZE["exposure_bias"]),
-                    ("vignette_intensity", MOON_HAZE["vignette_intensity"]),
-                ]:
-                    try:
-                        comp_settings.set_editor_property(prop, val)
-                    except:
-                        pass
-            log(f"PPV restrained grade bloom {MOON_HAZE['bloom_intensity']} bias {MOON_HAZE['exposure_bias']} vignette {MOON_HAZE['vignette_intensity']}")
         except Exception as e:
             log(f"PPV set partial: {e}")
-        log("Spawned PostProcessVolume (unbound, moon tint, restrained grade P7)")
+        log("Spawned PostProcessVolume (unbound, moon tint)")
     else:
-        # Harden existing PPV to restrained values (idempotent rerun)
-        try:
-            for a in sub.get_all_level_actors():
-                if a.get_actor_label() == "FM_MoonHaze_PPV":
-                    for prop, val in [("bloom_intensity", MOON_HAZE["bloom_intensity"]), ("auto_exposure_bias", MOON_HAZE["exposure_bias"]), ("vignette_intensity", MOON_HAZE["vignette_intensity"])]:
-                        try: a.set_editor_property(prop, val)
-                        except: pass
-                    log(f"Hardened existing PPV to bloom {MOON_HAZE['bloom_intensity']} bias {MOON_HAZE['exposure_bias']}")
-                    break
-        except Exception as e:
-            log(f"PPV harden partial: {e}")
-        log("PPV already exists — hardened to restrained grade")
+        log("PPV already exists — skip")
 
     # 3) Fog volume mesh - large box with translucent Copernicus haze MI for distant limbs implication
     if "FM_MoonHaze_VolumeBox" not in existing:

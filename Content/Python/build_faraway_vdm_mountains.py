@@ -81,7 +81,7 @@ def place_vdm_meshes(dry_run: bool = False):
             "seed": 20260829,
             "placements": placements,
             "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
-            "material": "M_Universal_Enhanced_Fabric (WPO, VDM slot)",
+            "material": "M_Master_FarawayMother_Fabric (WPO, VDM slot)",
             "lod_fade": {"LOD0": 1.0, "LOD1": 0.75, "LOD2": 0.3, "LOD3": 0.0},
             "height_aware": True,
             "dry_run": True
